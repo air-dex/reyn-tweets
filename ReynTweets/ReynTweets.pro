@@ -11,9 +11,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    connection/twittercommunicator.cpp
 
-HEADERS  += mainwindow.hpp
+HEADERS  += mainwindow.hpp \
+    connection/twittercommunicator.hpp
 
 FORMS    += mainwindow.ui
 
@@ -26,6 +28,12 @@ symbian {
     TARGET.EPOCSTACKSIZE = 0x14000
     TARGET.EPOCHEAPSIZE = 0x020000 0x800000
 }
+
+
+
+
+
+
 
 
 

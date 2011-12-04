@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.3.1, 2011-12-04T16:10:18. -->
+<!-- Written by Qt Creator 2.3.1, 2011-12-04T16:27:28. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -35,10 +35,10 @@
    </valuemap>
    <value type="int" key="EditorConfiguration.CodeStyle.Count">1</value>
    <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
-   <value type="QString" key="EditorConfiguration.CurrentFallback">Global</value>
+   <value type="QString" key="EditorConfiguration.CurrentFallback">Project</value>
    <value type="int" key="EditorConfiguration.IndentSize">4</value>
    <value type="bool" key="EditorConfiguration.MouseNavigation">true</value>
-   <value type="int" key="EditorConfiguration.PaddingMode">1</value>
+   <value type="int" key="EditorConfiguration.PaddingMode">2</value>
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
    <value type="bool" key="EditorConfiguration.SmartBackspace">false</value>
    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
@@ -47,7 +47,7 @@
     <valuemap type="QVariantMap" key="value">
      <value type="bool" key="AutoIndent">true</value>
      <value type="bool" key="AutoSpacesForTabs">false</value>
-     <value type="QString" key="CurrentFallback">CppGlobal</value>
+     <value type="QString" key="CurrentFallback">CppProject</value>
      <value type="int" key="IndentSize">4</value>
      <value type="int" key="PaddingMode">1</value>
      <value type="bool" key="SmartBackspace">false</value>
@@ -72,8 +72,8 @@
    </valuemap>
    <value type="int" key="EditorConfiguration.Tab.Count">2</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
-   <value type="int" key="EditorConfiguration.TabSize">8</value>
-   <value type="bool" key="EditorConfiguration.UseGlobal">true</value>
+   <value type="int" key="EditorConfiguration.TabSize">4</value>
+   <value type="bool" key="EditorConfiguration.UseGlobal">false</value>
    <value type="int" key="EditorConfiguration.Utf8BomBehavior">1</value>
    <value type="bool" key="EditorConfiguration.addFinalNewLine">true</value>
    <value type="bool" key="EditorConfiguration.cleanIndentation">true</value>
@@ -138,7 +138,7 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
     <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId">18</value>
-    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">false</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
     <value type="QString" key="ProjectExplorer.BuildCOnfiguration.ToolChain">ProjectExplorer.ToolChain.Msvc:c:\Program Files\Microsoft Visual Studio 9.0\VC\bin\vcvars32.bat::</value>
@@ -1029,7 +1029,7 @@
     <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.DeviceAddress"></value>
     <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.DevicePort">65029</value>
     <value type="QChar" key="Qt4ProjectManager.S60DeployConfiguration.InstallationDriveLetter">C</value>
-    <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.SerialPortName">COM5</value>
+    <value type="QString" key="Qt4ProjectManager.S60DeployConfiguration.SerialPortName"></value>
     <value type="bool" key="Qt4ProjectManager.S60DeployConfiguration.SilentInstall">true</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
@@ -1104,7 +1104,7 @@
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">false</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

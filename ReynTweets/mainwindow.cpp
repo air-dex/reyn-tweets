@@ -20,13 +20,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "mainwindow.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }

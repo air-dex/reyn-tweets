@@ -25,12 +25,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 class TwitterCommunicator : public QObject
 {
     Q_OBJECT
-public:
-    explicit TwitterCommunicator(QObject *parent = 0);
 
-signals:
+    public:
+        explicit TwitterCommunicator(QObject *parent = 0);
 
-public slots:
+    signals:
+
+    public slots:
 
 };
 

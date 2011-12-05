@@ -39,38 +39,53 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// response. <strong>The content of the QByteArray is not parsed.</strong>
 class TwitterCommunicator : public QObject
 {
-Q_OBJECT
+	Q_OBJECT
 
-public:
-TwitterCommunicator(QObject *parent = 0);
-~TwitterCommunicator();
-QByteArray getresponseBuffer();
+	public:
+		TwitterCommunicator(QObject *parent = 0);
+		~TwitterCommunicator();
+		QByteArray getresponseBuffer();
 
-signals:
+	signals:
 
-public slots:
+	public slots:
 
-protected:
-/// @brief Network manager
-QNetworkAccessManager * networkManager;
+	protected:
+		/// @brief Network manager
+		QNetworkAccessManager * networkManager;
 
-/// @brief URL of the service
-QUrl serviceURL;
+		/// @brief URL of the service
+		QUrl serviceURL;
 
-/// @brief GET datas
-QMap getDatas;
+		/// @brief GET datas
+		QMap getParameters;
 
-/// @brief POST datas
-QMap postDatas;
+		/// @brief POST datas
+		QMap postParameters;
 
-/// @brief Resquest to send
-QNetworkRequest request;
+		/// @brief Resquest to send
+		QNetworkRequest request;
 
-/// @brief Entity managing Twitter reply
-QNetworkReply * twitterReply;
+		/// @brief Entity managing Twitter reply
+		QNetworkReply * twitterReply;
 
-/// @brief Content of the response
-QByteArray responseBuffer;
+		/// @brief Content of the response
+		QByteArray responseBuffer;
+
+	private:
+		/// @fn QString buildGetDatas()
+		/// @brief
+		/// @return A QString containing all the GET arguments or an empty
+		/// string if there is no GET arguments. This string will be appended
+		/// at the end of the URL with a '?' between the URL and the string.
+		QString buildGetDatas();
+
+		/// @fn QString buildPostDatas(
+		/// @brief
+		/// @return A QString containing all the POST arguments or an empty
+		/// string if there is no GET arguments. If the string is not empty,
+		/// it will be passed to the post method of the QNetworkAccessManager
+		QString buildPostDatas();
 
 };
 

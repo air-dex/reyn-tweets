@@ -33,10 +33,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     mainwindow.cpp \
-    connection/twittercommunicator.cpp
+    connection/twittercommunicator.cpp \
+    connection/reyntwittercalls.cpp \
+    model/twittercalls.cpp
 
 HEADERS  += mainwindow.hpp \
-    connection/twittercommunicator.hpp
+    connection/twittercommunicator.hpp \
+    connection/twitterurls.hpp \
+    connection/reyntwittercalls.hpp \
+    model/twittercalls.hpp
 
 #CONFIG += mobility
 #MOBILITY =
@@ -47,3 +52,12 @@ HEADERS  += mainwindow.hpp \
 #    TARGET.EPOCSTACKSIZE = 0x14000
 #    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
 #}
+
+
+
+
+
+
+
+
+

@@ -24,11 +24,17 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWITTERURLS_HPP
 #define TWITTERURLS_HPP
 
+#include <QString>
+
 /// @namespace TwitterUrl
 /// @brief Namespace containing all the Twitter API URL.
 namespace TwitterUrl
 {
+	/// @brief URL of all the Twitter API services
 	QString twitterAPI = "http://api.twitter.com";
+
+	/// @brief Path for a search request
+	QString searchPath = "/search.json";
 }
 
 #endif // TWITTERURLS_HPP

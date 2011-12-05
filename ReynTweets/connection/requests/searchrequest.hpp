@@ -1,5 +1,5 @@
-/// @file twittercalls.cpp
-/// @brief Code of the TwitterCalls class
+/// @file searchrequest.hpp
+/// @brief Request class for searches
 /// @author Romain Ducher
 
 /*
@@ -21,8 +21,21 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "twittercalls.hpp"
+#ifndef SEARCHREQUEST_HPP
+#define SEARCHREQUEST_HPP
 
-TwitterCalls::TwitterCalls()
+#include <QObject>
+
+class SearchRequest : public QObject
 {
-}
+	Q_OBJECT
+public:
+	explicit SearchRequest(QObject *parent = 0);
+
+signals:
+
+public slots:
+
+};
+
+#endif // SEARCHREQUEST_HPP

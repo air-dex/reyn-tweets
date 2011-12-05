@@ -32,6 +32,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QUrl>
 #include <QMap>
 
+/// @typedef QMap<QString, QString> ArgsMap
+/// @brief Convinience to designate QMaps that contains arguments
+typedef QMap<QString, QString> ArgsMap;
+
 /// @class TwitterCommunicator
 /// @brief Class managing communication with the Twitter API.<br/>
 /// A Twitter Communicator needs the URL of the service, GET and POST arguments.
@@ -42,26 +46,60 @@ class TwitterCommunicator : public QObject
 	Q_OBJECT
 
 	public:
-		TwitterCommunicator(QObject *parent = 0);
+		/// @fn TwitterCommunicator(QString url,
+		///			ArgsMap getArgs = ArgsMap(),
+		///			ArgsMap postArgs = ArgsMap(),
+		///			QObject * parent = 0);
+		/// @brief Constructor
+		/// @param url String representation of the URL
+		/// @param getArgs GET arguments
+		/// @param postArgs POST arguments
+		/// @param parent Parent Qobject
+		TwitterCommunicator(QString url,
+							ArgsMap getArgs = ArgsMap(),
+							ArgsMap postArgs = ArgsMap(),
+							QObject * parent = 0);
+
+		/// @fn ~TwitterCommunicator();
+		/// @brief Destructor
 		~TwitterCommunicator();
-		QByteArray getresponseBuffer();
+
+		/// @fn void executeRequest();
+		/// @brief Executing the request
+		void executeRequest();
+
+		/// @fn QByteArray getRawResponse();
+		/// @brief Getting the content of the response
+		QByteArray getRawResponse();
+
+		/// @fn QNetworkReply::NetworkError getNetworkError();
+		/// @brief Getting a code indicating whether the request is successful.
+		QNetworkReply::NetworkError getNetworkError();
 
 	signals:
 
-	public slots:
+	protected slots:
+		/// @fn void endRequest();
+		/// @brief Treatments that have to be done at the end of the request
+		void endRequest();
+
+		/// @fn void errorRequest(QNetworkReply::NetworkError errorCode);
+		/// @brief Treatments to do if there is an error
+		/// @param errorCode The error code
+		void errorRequest(QNetworkReply::NetworkError errorCode);
 
 	protected:
 		/// @brief Network manager
 		QNetworkAccessManager * networkManager;
 
 		/// @brief URL of the service
-		QUrl serviceURL;
+		QString serviceURL;
 
 		/// @brief GET datas
-		QMap getParameters;
+		ArgsMap getParameters;
 
 		/// @brief POST datas
-		QMap postParameters;
+		ArgsMap postParameters;
 
 		/// @brief Resquest to send
 		QNetworkRequest request;
@@ -72,20 +110,32 @@ class TwitterCommunicator : public QObject
 		/// @brief Content of the response
 		QByteArray responseBuffer;
 
+		/// @brief Flag indicating a potential error
+		QNetworkReply::NetworkError errorReply;
+
 	private:
-		/// @fn QString buildGetDatas()
-		/// @brief
+		/// @fn QString buildGetDatas();
+		/// @brief Building the string that will contain all the GET arguments
+		/// and go through the Internet
 		/// @return A QString containing all the GET arguments or an empty
 		/// string if there is no GET arguments. This string will be appended
 		/// at the end of the URL with a '?' between the URL and the string.
 		QString buildGetDatas();
 
-		/// @fn QString buildPostDatas(
-		/// @brief
-		/// @return A QString containing all the POST arguments or an empty
-		/// string if there is no GET arguments. If the string is not empty,
+		/// @fn QByteArray buildPostDatas();
+		/// @brief Building the array that will contain all the POST arguments
+		/// and go through the Internet
+		/// @return A QByteArray containing all the POST arguments or an empty
+		/// string if there is no POST arguments. If the string is not empty,
 		/// it will be passed to the post method of the QNetworkAccessManager
-		QString buildPostDatas();
+		QByteArray buildPostDatas();
+
+		/// @fn QString buildDatas(ArgsMap argsMap);
+		/// @brief Building the string that will contain all the arguments
+		/// of the given ArgsMap just like in an URL.
+		/// @param argsMap The argument map
+		/// @return A QString representation looks like val1=arg1&val2=arg2...
+		QString buildDatas(ArgsMap argsMap);
 
 };
 

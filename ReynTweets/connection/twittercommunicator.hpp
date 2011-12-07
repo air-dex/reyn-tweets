@@ -75,7 +75,14 @@ class TwitterCommunicator : public QObject
 		/// @brief Getting a code indicating whether the request is successful.
 		QNetworkReply::NetworkError getNetworkError();
 
+
 	signals:
+		/// @fn void requestDone(bool ok);
+		/// @brief Signal indicating the end of a request
+		/// @param ok Boolean indicating if the request is ok (true) of if there
+		/// was an error (false).
+		void requestDone(bool ok);
+
 
 	protected slots:
 		/// @fn void endRequest();
@@ -86,6 +93,7 @@ class TwitterCommunicator : public QObject
 		/// @brief Treatments to do if there is an error
 		/// @param errorCode The error code
 		void errorRequest(QNetworkReply::NetworkError errorCode);
+
 
 	protected:
 		/// @brief Network manager
@@ -108,6 +116,7 @@ class TwitterCommunicator : public QObject
 
 		/// @brief Flag indicating a potential error
 		QNetworkReply::NetworkError errorReply;
+
 
 	private:
 		/// @fn QString buildGetDatas();

@@ -1,5 +1,5 @@
-/// @file genericrequest.hpp
-/// @brief Generic class for Twitter requests
+/// @file genericrequest.cpp
+/// @brief Code of the GenericRequest class
 /// @author Romain Ducher
 
 /*
@@ -21,21 +21,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GENERICREQUEST_HPP
-#define GENERICREQUEST_HPP
+#include "genericrequester.hpp"
 
-#include <QObject>
-
-class GenericRequest : public QObject
+GenericRequester::GenericRequester(QObject *parent) :
+	QObject(parent)
 {
-	Q_OBJECT
-public:
-	explicit GenericRequest(QObject *parent = 0);
-
-signals:
-
-public slots:
-
-};
-
-#endif // GENERICREQUEST_HPP
+}

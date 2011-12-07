@@ -24,6 +24,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REQUESTS_HPP
 #define REQUESTS_HPP
 
-#include "searchrequest.hpp"
+#include "searchrequester.hpp"
 
 #endif // REQUESTS_HPP

@@ -1,5 +1,5 @@
-/// @file genericrequest.cpp
-/// @brief Code of the GenericRequest class
+/// @file searchrequest.hpp
+/// @brief Requester for searches
 /// @author Romain Ducher
 
 /*
@@ -21,9 +21,24 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "genericrequest.hpp"
+#ifndef SEARCHREQUESTER_HPP
+#define SEARCHREQUESTER_HPP
 
-GenericRequest::GenericRequest(QObject *parent) :
-	QObject(parent)
+#include "genericrequester.hpp"
+
+/// @class SearchRequest
+/// @brief Requester for searches
+class SearchRequester : public GenericRequester
 {
-}
+	Q_OBJECT
+
+	public:
+		SearchRequester(QString q = "", QObject *parent = 0);
+
+	signals:
+
+	public slots:
+
+};
+
+#endif // SEARCHREQUESTER_HPP

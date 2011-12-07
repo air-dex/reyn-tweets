@@ -31,22 +31,25 @@ TARGET = ReynTweets
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-    mainwindow.cpp \
-    connection/twittercommunicator.cpp \
-    connection/reyntwittercalls.cpp \
-    model/twittercalls.cpp \
-    connection/requests/searchrequest.cpp \
-    connection/requests/genericrequest.cpp
+SOURCES += \
+	main.cpp \
+	mainwindow.cpp \
+	connection/twittercommunicator.cpp \
+	connection/reyntwittercalls.cpp \
+	model/twittercalls.cpp \
+	connection/requests/searchrequest.cpp \
+	connection/requests/genericrequest.cpp \
 
-HEADERS  += mainwindow.hpp \
-    connection/twittercommunicator.hpp \
-    connection/twitterurls.hpp \
-    connection/reyntwittercalls.hpp \
-    model/twittercalls.hpp \
-    connection/requests/searchrequest.hpp \
-    connection/requests/requests.hpp \
-    connection/requests/genericrequest.hpp
+
+HEADERS  += \
+	mainwindow.hpp \
+	connection/twittercommunicator.hpp \
+	connection/twitterurls.hpp \
+	connection/reyntwittercalls.hpp \
+	model/twittercalls.hpp \
+	connection/requests/searchrequest.hpp \
+	connection/requests/requests.hpp \
+	connection/requests/genericrequest.hpp
 
 #CONFIG += mobility
 #MOBILITY =

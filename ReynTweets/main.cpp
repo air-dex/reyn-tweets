@@ -24,6 +24,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
 
+#include <QMap>
+#include "connection/twittercommunicator.hpp"
+#include "connection/twitterurls.hpp"
+#include <QByteArray>
+#include <QFile>
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
@@ -35,6 +41,21 @@ int main(int argc, char *argv[])
 			w.show();
 		#endif
 	//*/
+
+	// Test
+	QMap<QString, QString> get;
+	get.insert("q", "xenoblade");
+	TwitterCommunicator communicator(TwitterUrl::searchPath, get);
+	communicator.executeRequest();
 	w.show();
+	QByteArray datas = communicator.getResponseBuffer();
+	QFile f("xenoblade.txt"); //On ouvre le fichier
+
+	if ( f.open(QIODevice::WriteOnly) )
+	{
+			f.write(datas); ////On lit la réponse du serveur que l'on met dans un fichier
+			f.close(); //On ferme le fichier
+	}
+
 	return a.exec();
 }

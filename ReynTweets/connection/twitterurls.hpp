@@ -34,7 +34,7 @@ namespace TwitterUrl
 	QString twitterAPI = "http://api.twitter.com";
 
 	/// @brief Path for a search request
-	QString searchPath = "/search.json";
+	QString searchPath = twitterAPI + "/search.json";
 }
 
 #endif // TWITTERURLS_HPP

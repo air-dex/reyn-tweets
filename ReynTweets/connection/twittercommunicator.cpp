@@ -22,6 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "twittercommunicator.hpp"
+#include <QNetworkRequest>
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
@@ -29,9 +30,11 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 					ArgsMap postArgs,
 					QObject * parent) :
 	QObject(parent),
+	networkManager(),
 	serviceURL(url),
 	getParameters(getArgs),
-	postParameters(postArgs)
+	postParameters(postArgs),
+	twitterReply(0)
 {}
 
 
@@ -45,12 +48,13 @@ void TwitterCommunicator::executeRequest() {
 	QString getArgs = buildGetDatas();
 
 	// Adding the potential GET arguments at the end of the URL
-	if ("" == getArgs) {
-		getArgs.append('?');
+	if ("" != getArgs) {
+		getArgs.prepend('?');
 	}
 
 	serviceURL.append(getArgs);
-	request.setUrl(serviceURL);
+
+	QNetworkRequest request(serviceURL);
 
 
 	// POST arguments
@@ -60,10 +64,10 @@ void TwitterCommunicator::executeRequest() {
 	// Executing the request
 	if ("" == postArgs) {
 		// There is not any POST arguments -> networkManager.get()
-		twitterReply = networkManager->get(request);
+		twitterReply = networkManager.get(request);
 	} else {
 		// There is some POST arguments -> networkManager.post()
-		twitterReply = networkManager->post(request, postArgs);
+		twitterReply = networkManager.post(request, postArgs);
 	}
 
 	// Connecting the reply
@@ -74,7 +78,7 @@ void TwitterCommunicator::executeRequest() {
 
 
 // Getting the raw response
-QByteArray TwitterCommunicator::getRawResponse() {
+QByteArray TwitterCommunicator::getResponseBuffer() {
 	return responseBuffer;
 }
 
@@ -96,7 +100,7 @@ void TwitterCommunicator::endRequest() {
 // Treatments to do if there is an error
 void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
 	errorReply = errorCode;
-	twitterReply->deleteLater();
+	//twitterReply->deleteLater();
 }
 
 

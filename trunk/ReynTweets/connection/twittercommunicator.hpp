@@ -26,7 +26,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QObject>
 #include <QNetworkAccessManager>
-#include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QByteArray>
 #include <QUrl>
@@ -68,9 +67,9 @@ class TwitterCommunicator : public QObject
 		/// @brief Executing the request
 		void executeRequest();
 
-		/// @fn QByteArray getRawResponse();
+		/// @fn QByteArray getResponseBuffer();
 		/// @brief Getting the content of the response
-		QByteArray getRawResponse();
+		QByteArray getResponseBuffer();
 
 		/// @fn QNetworkReply::NetworkError getNetworkError();
 		/// @brief Getting a code indicating whether the request is successful.
@@ -90,7 +89,7 @@ class TwitterCommunicator : public QObject
 
 	protected:
 		/// @brief Network manager
-		QNetworkAccessManager * networkManager;
+		QNetworkAccessManager networkManager;
 
 		/// @brief URL of the service
 		QString serviceURL;
@@ -100,9 +99,6 @@ class TwitterCommunicator : public QObject
 
 		/// @brief POST datas
 		ArgsMap postParameters;
-
-		/// @brief Resquest to send
-		QNetworkRequest request;
 
 		/// @brief Entity managing Twitter reply
 		QNetworkReply * twitterReply;

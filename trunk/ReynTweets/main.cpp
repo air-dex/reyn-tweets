@@ -23,13 +23,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
-
+/*
 #include <QMap>
 #include "connection/twittercommunicator.hpp"
 #include "connection/twitterurls.hpp"
 #include <QByteArray>
 #include <QFile>
-
+//*/
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 			w.show();
 		#endif
 	//*/
-
+/*
 	// Test
 	QMap<QString, QString> get;
 	get.insert("q", "xenoblade");
@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
 			f.write(datas); ////On lit la réponse du serveur que l'on met dans un fichier
 			f.close(); //On ferme le fichier
 	}
+//*/
 
+	w.show();
 	return a.exec();
 }

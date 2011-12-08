@@ -41,7 +41,9 @@ void SearchRequester::buildPOSTParameters() {}
 
 // Method that will parse the raw results of the request.
 void SearchRequester::parseResult() {
-	// TODO
+	QByteArray rawResponse = communicator->getResponseBuffer();
+	QVariant var(rawResponse);
+	parsedResult = var;
 }
 
 // Method that will treat errors of the requests made by the communicator.

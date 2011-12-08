@@ -18,12 +18,43 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "mainwindow.hpp"
+#include "connection/reyntwittercalls.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent)
+	QMainWindow(parent),
+	widget(),
+	layout()
 {
+
+	xenobladeSearch = new QPushButton("Xenoblade");
+	connect(xenobladeSearch, SIGNAL(clicked()), this, SLOT(searchXenoblade()));
+	layout.addWidget(xenobladeSearch);
+
+	camb078Search = new QPushButton("@Camb078");
+	connect(camb078Search, SIGNAL(clicked()), this, SLOT(searchCamb078()));
+	layout.addWidget(camb078Search);
+
+	widget.setLayout(&layout);
+	setCentralWidget(&widget);
 }
 
 MainWindow::~MainWindow()
 {
+	delete xenobladeSearch;
+	delete camb078Search;
+}
+
+void MainWindow::searchCamb078() {
+	ReynTwitterCalls::search("@Camb078");
+}
+
+void MainWindow::searchXenoblade() {
+	ReynTwitterCalls::search("Xenoblade");
+}
+
+void MainWindow::endsearch(QVariant v) {
+	QByteArray array = v.toByteArray();
+	QString s(array);
+	lx = new QLabel(s);
+	centralWidget()->layout()->addWidget(lx);
 }

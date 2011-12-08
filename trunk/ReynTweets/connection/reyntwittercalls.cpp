@@ -23,7 +23,25 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyntwittercalls.hpp"
 
-QVariant ReynTwitterCalls::search(QString q) {
+///////////////////////
+// Request launchers //
+///////////////////////
+
+void ReynTwitterCalls::search(QString q) {
+	qDebug("Début de la recherche");
 	SearchRequester requester(q);
 	requester.executeRequest();
+	connect(&requester, SIGNAL(requestDone(bool)), new ReynTwitterCalls, SLOT(endSearch(bool)));
+}
+
+///////////
+// Slots //
+///////////
+void ReynTwitterCalls::endSearch(bool ok) {
+	SearchRequester * requester = qobject_cast<SearchRequester *>(sender());
+	// Recup du Qvariant
+	QVariant var = requester->getParsedResult();
+	qDebug("Fin de la recherche");
+
+	emit searchResult(var);
 }

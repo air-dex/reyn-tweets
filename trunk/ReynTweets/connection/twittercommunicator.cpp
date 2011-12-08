@@ -45,7 +45,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {}
-
+/*
 // Affectation
 const TwitterCommunicator & TwitterCommunicator::operator=(const TwitterCommunicator & communicator) {
 	recopie(communicator);
@@ -70,7 +70,7 @@ void TwitterCommunicator::recopie(const TwitterCommunicator & communicator) {
 	httpReturnCode = communicator.httpReturnCode;
 	httpReturnReason = communicator.httpReturnReason;
 }
-
+//*/
 
 ///////////////////////////
 // Executing the request //
@@ -95,16 +95,61 @@ void TwitterCommunicator::executeRequest() {
 	QNetworkReply * twitterReply = 0;
 	if ("" == postArgs) {
 		// There is not any POST arguments -> networkManager.get()
-		twitterReply = networkManager.get(request);
+		qDebug("Fin de la descente");
+		reply = networkManager.get(request);
 	} else {
 		// There is some POST arguments -> networkManager.post()
 		twitterReply = networkManager.post(request, postArgs);
 	}
 
 	// Connecting the reply
-	connect(twitterReply, SIGNAL(finished()), this, SLOT(endRequest()));
-	connect(twitterReply, SIGNAL(error(QNetworkReply::NetworkError)),
+	connect(reply, SIGNAL(finished()), this, SLOT(endRequest()));
+	connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
 			this, SLOT(errorRequest(QNetworkReply::NetworkError)));
+}
+
+
+///////////
+// Slots //
+///////////
+#include <QFile>
+// Treatments that have to be done at the end of the request
+void TwitterCommunicator::endRequest() {
+	qDebug("Début de la remontée");
+	// Getting the reply
+	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
+
+	responseBuffer = twitterReply->readAll();
+
+	QFile f("xenoblade.txt"); //On ouvre le fichier
+
+	if ( f.open(QIODevice::WriteOnly) )
+	{
+			f.write(responseBuffer); ////On lit la réponse du serveur que l'on met dans un fichier
+			f.close(); //On ferme le fichier
+	}
+
+
+	errorReply = twitterReply->error();
+	extractHttpStatuses(twitterReply);
+	twitterReply->deleteLater();
+
+	// Telling that the Twitter Communicator has ended its work successfully
+	emit requestDone(true);
+}
+
+// Treatments to do if there is an error
+void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
+	qDebug("Début de la remontée mauvaise");
+	// Getting the reply
+	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
+
+	errorReply = errorCode;
+	extractHttpStatuses(twitterReply);
+	twitterReply->deleteLater();
+
+	// Telling that the Twitter Communicator has ended its work unsuccessfully
+	emit requestDone(false);
 }
 
 
@@ -130,38 +175,6 @@ int TwitterCommunicator::getHttpCode() {
 // Getting the HTTP return reason.
 QString TwitterCommunicator::getHttpReason() {
 	return httpReturnReason;
-}
-
-
-///////////
-// Slots //
-///////////
-
-// Treatments that have to be done at the end of the request
-void TwitterCommunicator::endRequest() {
-	// Getting the reply
-	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
-
-	responseBuffer = twitterReply->readAll();
-	errorReply = twitterReply->error();
-	extractHttpStatuses(twitterReply);
-	twitterReply->deleteLater();
-
-	// Telling that the Twitter Communicator has ended its work successfully
-	emit requestDone(true);
-}
-
-// Treatments to do if there is an error
-void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
-	// Getting the reply
-	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
-
-	errorReply = errorCode;
-	extractHttpStatuses(twitterReply);
-	twitterReply->deleteLater();
-
-	// Telling that the Twitter Communicator has ended its work unsuccessfully
-	emit requestDone(false);
 }
 
 

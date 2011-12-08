@@ -24,13 +24,24 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REYNTWITTERCALLS_HPP
 #define REYNTWITTERCALLS_HPP
 
-#include "../model/twittercalls.hpp"
+#include <QObject>
 #include "requests/requests.hpp"
 
-class ReynTwitterCalls
+class ReynTwitterCalls : public QObject
 {
+	Q_OBJECT
+
 	public:
-		static QVariant search(QString q);
+		/// @fn static void search(QString q);
+		/// @brief Method that launch searches
+		/// @param q The query
+		static void search(QString q);
+
+	public slots:
+		void endSearch(bool);
+
+	signals:
+		void searchResult(QVariant);
 };
 
 #endif // REYNTWITTERCALLS_HPP

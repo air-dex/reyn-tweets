@@ -62,7 +62,7 @@ class TwitterCommunicator : public QObject
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
 		~TwitterCommunicator();
-
+/*
 		/// @fn const TwitterCommunicator & operator=(const TwitterCommunicator & communicator);
 		/// @brief Affectation
 		/// @param communicator Twitter Communicator to copy
@@ -73,7 +73,7 @@ class TwitterCommunicator : public QObject
 		/// @brief Constructor with recopy
 		/// @param communicator Twitter Communicator to copy
 		TwitterCommunicator(const TwitterCommunicator & communicator);
-
+//*/
 		/// @fn void executeRequest();
 		/// @brief Executing the request
 		void executeRequest();
@@ -126,6 +126,9 @@ class TwitterCommunicator : public QObject
 
 		/// @brief POST datas
 		ArgsMap postParameters;
+
+		/// @brief Reply
+		QNetworkReply * reply;
 
 		/// @brief Content of the response
 		QByteArray responseBuffer;

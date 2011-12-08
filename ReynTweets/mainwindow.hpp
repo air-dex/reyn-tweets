@@ -21,16 +21,28 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include "QtGui"
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        explicit MainWindow(QWidget *parent = 0);
-        ~MainWindow();
+	public:
+		explicit MainWindow(QWidget *parent = 0);
+		~MainWindow();
+		QWidget widget;
+		QVBoxLayout layout;
+		QPushButton * xenobladeSearch;
+		QPushButton * camb078Search;
+		QLabel * lx;
+		QLabel * lc;
 
-    private:
+	public slots:
+		void searchXenoblade();
+		void searchCamb078();
+		void endsearch(QVariant);
+
+	private:
 };
 
 #endif // MAINWINDOW_HPP

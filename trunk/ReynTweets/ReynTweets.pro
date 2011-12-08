@@ -36,7 +36,6 @@ SOURCES += \
 	mainwindow.cpp \
 	connection/twittercommunicator.cpp \
 	connection/reyntwittercalls.cpp \
-	model/twittercalls.cpp \
     connection/requests/genericrequester.cpp \
     connection/requests/searchrequester.cpp
 
@@ -46,7 +45,6 @@ HEADERS  += \
 	connection/twittercommunicator.hpp \
 	connection/twitterurls.hpp \
 	connection/reyntwittercalls.hpp \
-	model/twittercalls.hpp \
 	connection/requests/requests.hpp \
     connection/requests/genericrequester.hpp \
     connection/requests/searchrequester.hpp
@@ -60,6 +58,10 @@ HEADERS  += \
 #    TARGET.EPOCSTACKSIZE = 0x14000
 #    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
 #}
+
+
+
+
 
 
 

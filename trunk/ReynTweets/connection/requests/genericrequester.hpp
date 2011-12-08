@@ -1,4 +1,4 @@
-/// @file genericrequest.hpp
+/// @file genericrequester.hpp
 /// @brief Generic class for Twitter requests
 /// @author Romain Ducher
 
@@ -34,10 +34,15 @@ class GenericRequester : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn GenericRequest(QObject * parent = 0);
+		/// @fn GenericRequest(QString url = "", QObject * parent = 0);
 		/// @brief Constructor. It just calls the parent constructor.
+		/// @brief url URL called by the requester
 		/// @param parent Parent QObject.
-		GenericRequester(QObject * parent = 0);
+		GenericRequester(QString url = "", QObject * parent = 0);
+
+		/// @fn ~GenericRequester();
+		/// @brief Destructor.
+		~GenericRequester();
 
 		/// @fn void executeRequest();
 		/// @brief Executing the request
@@ -66,6 +71,9 @@ class GenericRequester : public QObject
 		void treatResults(bool ok);
 
 	protected:
+		/// @brief URL called by the requester
+		QString requestURL;
+
 		/// @brief GET parameters that will be passed to the Communicator.
 		ArgsMap getParameters;
 
@@ -80,9 +88,9 @@ class GenericRequester : public QObject
 		/// @brief Virtual method building postParameters
 		virtual void buildPOSTParameters() = 0;
 
-		/// @brief The Twitter Communicator that will purely execute the request
-		/// and get the raw result of it.
-		TwitterCommunicator communicator;
+		/// @brief Pointer on the Twitter Communicator that will purely execute
+		/// the request and get the raw result of it.
+		TwitterCommunicator * communicator;
 
 		/// @brief Parsed results of the Twitter Communicator's work
 		QVariant parsedResult;
@@ -90,6 +98,11 @@ class GenericRequester : public QObject
 		/// @fn virtual void parseResult() = 0;
 		/// @brief Method that will parse the raw results of the request.
 		virtual void parseResult() = 0;	// Maybe not virtual
+
+		/// @fn virtual void treatError() = 0;
+		/// @brief Method that will treat errors of the requests made by the
+		/// Twitter Communicator.
+		virtual void treatError() = 0;	// Maybe not virtual
 };
 
 #endif // GENERICREQUESTER_HPP

@@ -22,8 +22,29 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "searchrequester.hpp"
+#include "../twitterurls.hpp"
 
-SearchRequester::SearchRequester(QObject *parent) :
-	QObject(parent)
+// Constructor
+SearchRequester::SearchRequester(QString q, QObject * parent) :
+	GenericRequester(TwitterRequestUrl::SEARCH_URL, parent),
+	query(q)
 {
+}
+
+// Virtual method building getParameters
+void SearchRequester::buildGETParameters() {
+	getParameters.insert("q", query);
+}
+
+// Virtual method building postParameters
+void SearchRequester::buildPOSTParameters() {}
+
+// Method that will parse the raw results of the request.
+void SearchRequester::parseResult() {
+	// TODO
+}
+
+// Method that will treat errors of the requests made by the communicator.
+void SearchRequester::treatError() {
+	// TODO
 }

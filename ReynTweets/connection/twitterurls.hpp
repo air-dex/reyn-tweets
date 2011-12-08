@@ -28,13 +28,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @namespace TwitterUrl
 /// @brief Namespace containing all the Twitter API URL.
-namespace TwitterUrl
+namespace TwitterRequestUrl
 {
 	/// @brief URL of all the Twitter API services
 	QString twitterAPI = "http://api.twitter.com";
 
 	/// @brief Path for a search request
-	QString searchPath = twitterAPI + "/search.json";
+	QString SEARCH_URL = twitterAPI + "/search.json";
 }
 
 #endif // TWITTERURLS_HPP

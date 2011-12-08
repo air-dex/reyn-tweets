@@ -54,7 +54,7 @@ class TwitterCommunicator : public QObject
 		/// @param getArgs GET arguments
 		/// @param postArgs POST arguments
 		/// @param parent Parent Qobject
-		TwitterCommunicator(QString url,
+		TwitterCommunicator(QString url = "http://api.twitter.com",
 							ArgsMap getArgs = ArgsMap(),
 							ArgsMap postArgs = ArgsMap(),
 							QObject * parent = 0);
@@ -62,6 +62,17 @@ class TwitterCommunicator : public QObject
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
 		~TwitterCommunicator();
+
+		/// @fn const TwitterCommunicator & operator=(const TwitterCommunicator & communicator);
+		/// @brief Affectation
+		/// @param communicator Twitter Communicator to copy
+		/// @return Copy of the object
+		const TwitterCommunicator & operator=(const TwitterCommunicator & communicator);
+
+		/// @fn TwitterCommunicator(const TwitterCommunicator & communicator);
+		/// @brief Constructor with recopy
+		/// @param communicator Twitter Communicator to copy
+		TwitterCommunicator(const TwitterCommunicator & communicator);
 
 		/// @fn void executeRequest();
 		/// @brief Executing the request
@@ -74,6 +85,14 @@ class TwitterCommunicator : public QObject
 		/// @fn QNetworkReply::NetworkError getNetworkError();
 		/// @brief Getting a code indicating whether the request is successful.
 		QNetworkReply::NetworkError getNetworkError();
+
+		/// @fn int getHttpCode();
+		/// @brief Getting the HTTP return code.
+		int getHttpCode();
+
+		/// @fn QString getHttpReason();
+		/// @brief Getting the HTTP return reason.
+		QString getHttpReason();
 
 
 	signals:
@@ -108,17 +127,26 @@ class TwitterCommunicator : public QObject
 		/// @brief POST datas
 		ArgsMap postParameters;
 
-		/// @brief Entity managing Twitter reply
-		QNetworkReply * twitterReply;
-
 		/// @brief Content of the response
 		QByteArray responseBuffer;
 
 		/// @brief Flag indicating a potential error
 		QNetworkReply::NetworkError errorReply;
 
+		/// @brief HTTP return code
+		int httpReturnCode;
+
+		/// @brief HHTP return reason
+		QString httpReturnReason;
+
 
 	private:
+		/// @fn void recopie(const TwitterCommunicator & communicator);
+		/// @brief Copying a Twitter Communicator
+		/// @param communicator Initial communicator
+		/// @return Copy of communicator
+		void recopie(const TwitterCommunicator & communicator);
+
 		/// @fn QString buildGetDatas();
 		/// @brief Building the string that will contain all the GET arguments
 		/// and go through the Internet
@@ -142,6 +170,9 @@ class TwitterCommunicator : public QObject
 		/// @return A QString representation looks like val1=arg1&val2=arg2...
 		QString buildDatas(ArgsMap argsMap);
 
+		/// @fn void extractHttpStatuses();
+		/// @brief Extract the HTTP return code and reason of the request
+		void extractHttpStatuses(QNetworkReply * reply);
 };
 
 #endif // TWITTERCOMMUNICATOR_HPP

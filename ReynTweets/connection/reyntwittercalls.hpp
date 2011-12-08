@@ -27,11 +27,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "../model/twittercalls.hpp"
 #include "requests/requests.hpp"
 
-class ReynTwitterCalls : public TwitterCalls
+class ReynTwitterCalls
 {
 	public:
-		ReynTwitterCalls();
-
 		static QVariant search(QString q);
 };
 

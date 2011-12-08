@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	// Test
 	QMap<QString, QString> get;
 	get.insert("q", "xenoblade");
-	TwitterCommunicator communicator(TwitterUrl::searchPath, get);
+	TwitterCommunicator communicator(TwitterRequestUrl::SEARCH_URL, get);
 	communicator.executeRequest();
 	w.show();
 	QByteArray datas = communicator.getResponseBuffer();

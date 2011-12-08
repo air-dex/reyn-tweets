@@ -33,12 +33,28 @@ class SearchRequester : public GenericRequester
 	Q_OBJECT
 
 	public:
-		SearchRequester(QString q = "", QObject *parent = 0);
+		SearchRequester(QString q = "", QObject * parent = 0);
 
-	signals:
+	protected:
+		/// @brief Query made by the user
+		QString query;
 
-	public slots:
+		/// @fn virtual void buildGETParameters();
+		/// @brief Virtual method building getParameters
+		void buildGETParameters();
 
+		/// @fn virtual void buildPOSTParameters();
+		/// @brief Virtual method building postParameters
+		void buildPOSTParameters();
+
+		/// @fn virtual void parseResult();
+		/// @brief Method that will parse the raw results of the request.
+		void parseResult();
+
+		/// @fn virtual void treatError() = 0;
+		/// @brief Method that will treat errors of the requests made by the
+		/// Twitter Communicator.
+		void treatError();
 };
 
 #endif // SEARCHREQUESTER_HPP

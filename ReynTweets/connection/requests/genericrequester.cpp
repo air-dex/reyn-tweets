@@ -1,4 +1,4 @@
-/// @file genericrequest.cpp
+/// @file genericrequester.cpp
 /// @brief Code of the GenericRequest class
 /// @author Romain Ducher
 
@@ -23,7 +23,63 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "genericrequester.hpp"
 
-GenericRequester::GenericRequester(QObject *parent) :
-	QObject(parent)
+// Constructor. It just calls the parent constructor.
+GenericRequester::GenericRequester(QString url, QObject * parent) :
+	QObject(parent),
+	requestURL(url),
+	getParameters(),
+	postParameters(),
+	communicator(0),
+	parsedResult()
 {
 }
+
+
+// Destructor
+GenericRequester::~GenericRequester() {
+	// Deleting the communicator
+	if (communicator != 0) {
+		delete communicator;
+	}
+}
+
+
+// Executing the request
+void GenericRequester::executeRequest() {
+	// Building the ArgsMap
+	buildGETParameters();
+	buildPOSTParameters();
+
+	// Executing the request
+	communicator = new TwitterCommunicator(requestURL,
+										   getParameters,
+										   postParameters);
+	connect(communicator, SIGNAL(requestDone(bool)),
+			this, SLOT(treatResults(bool)));
+	communicator->executeRequest();
+}
+
+
+// Slot executed when the Twitter Communicator has just finished its work.
+void GenericRequester::treatResults(bool ok) {
+	if (ok) {
+		parseResult();
+	} else {
+		treatError();
+	}
+
+	// Telling the ReynTwitterAPI that the requester has finished
+	emit requestDone(ok);
+}
+
+
+// Getting parsed results
+QVariant GenericRequester::getParsedResult() {
+	return parsedResult;
+}
+
+
+/*
+// Parse the raw results of the request.
+virtual void GenericRequester::parseResult() = 0;	// Maybe not virtual
+//*/

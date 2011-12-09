@@ -29,6 +29,8 @@ SearchRequester::SearchRequester(QString q, QObject * parent) :
 	GenericRequester(TwitterRequestUrl::SEARCH_URL, parent),
 	query(q)
 {
+	QString s = "Recherche dans Twitter de : " + q;
+	qDebug(s.toUtf8().data());
 }
 
 // Virtual method building getParameters

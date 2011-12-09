@@ -1,5 +1,5 @@
 /// @file reyntwittercalls.hpp
-/// @brief Implementation of TwitterCalls
+/// @brief Calls to Twitter
 /// @author Romain Ducher
 
 /*
@@ -25,23 +25,43 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define REYNTWITTERCALLS_HPP
 
 #include <QObject>
+#include <QList>
 #include "requests/requests.hpp"
 
+/// @class ReynTwitterCalls
+/// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
+/// singleton. To use it
 class ReynTwitterCalls : public QObject
 {
 	Q_OBJECT
 
 	public:
+		static ReynTwitterCalls & getInstance();
+
+	protected:
+		ReynTwitterCalls();
+		static ReynTwitterCalls instance;
+		QList<GenericRequester *> requesterManager;
+
+
+
+
+		//*
+	public:
 		/// @fn static void search(QString q);
 		/// @brief Method that launch searches
 		/// @param q The query
-		static void search(QString q);
+		void search(QString q);
 
 	public slots:
 		void endSearch(bool);
 
 	signals:
 		void searchResult(QVariant);
+
+	private:
+		QList<GenericRequester *> requesters;
+		//*/
 };
 
 #endif // REYNTWITTERCALLS_HPP

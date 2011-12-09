@@ -62,18 +62,7 @@ class TwitterCommunicator : public QObject
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
 		~TwitterCommunicator();
-/*
-		/// @fn const TwitterCommunicator & operator=(const TwitterCommunicator & communicator);
-		/// @brief Affectation
-		/// @param communicator Twitter Communicator to copy
-		/// @return Copy of the object
-		const TwitterCommunicator & operator=(const TwitterCommunicator & communicator);
 
-		/// @fn TwitterCommunicator(const TwitterCommunicator & communicator);
-		/// @brief Constructor with recopy
-		/// @param communicator Twitter Communicator to copy
-		TwitterCommunicator(const TwitterCommunicator & communicator);
-//*/
 		/// @fn void executeRequest();
 		/// @brief Executing the request
 		void executeRequest();
@@ -144,12 +133,6 @@ class TwitterCommunicator : public QObject
 
 
 	private:
-		/// @fn void recopie(const TwitterCommunicator & communicator);
-		/// @brief Copying a Twitter Communicator
-		/// @param communicator Initial communicator
-		/// @return Copy of communicator
-		void recopie(const TwitterCommunicator & communicator);
-
 		/// @fn QString buildGetDatas();
 		/// @brief Building the string that will contain all the GET arguments
 		/// and go through the Internet

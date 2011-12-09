@@ -44,41 +44,21 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 {}
 
 // Destructor
-TwitterCommunicator::~TwitterCommunicator() {}
-/*
-// Affectation
-const TwitterCommunicator & TwitterCommunicator::operator=(const TwitterCommunicator & communicator) {
-	recopie(communicator);
-	return *this;
-}
+TwitterCommunicator::~TwitterCommunicator() {qDebug("Tombstone communicator");}
 
-// Constructor with recopy
-TwitterCommunicator::TwitterCommunicator(const TwitterCommunicator & communicator) :
-	QObject(communicator.parent()),
-	networkManager()
-{
-	recopie(communicator);
-}
-
-// Recopying a Twitter Communicator
-void TwitterCommunicator::recopie(const TwitterCommunicator & communicator) {
-	serviceURL = communicator.serviceURL;
-	getParameters = communicator.getParameters;
-	postParameters = communicator.postParameters;
-	responseBuffer = communicator.responseBuffer;
-	errorReply = communicator.errorReply;
-	httpReturnCode = communicator.httpReturnCode;
-	httpReturnReason = communicator.httpReturnReason;
-}
-//*/
 
 ///////////////////////////
 // Executing the request //
 ///////////////////////////
 
 void TwitterCommunicator::executeRequest() {
+	QString debstr;
+
 	// GET arguments
 	QString getArgs = buildGetDatas();
+
+	debstr = "Arguments GET : " + getArgs;
+	qDebug(debstr.toUtf8().data());
 
 	// Adding the potential GET arguments at the end of the URL
 	if ("" != getArgs) {
@@ -86,10 +66,15 @@ void TwitterCommunicator::executeRequest() {
 		serviceURL.append(getArgs);
 	}
 
+	debstr = "URL finale : " + serviceURL;
+	qDebug(debstr.toUtf8().data());
+
 	QNetworkRequest request(serviceURL);
 
 	// POST arguments
 	QByteArray postArgs = buildPostDatas();
+	debstr = "Arguments POST : " + postArgs;
+	qDebug(debstr.toUtf8().data());
 
 	// Executing the request
 	QNetworkReply * twitterReply = 0;
@@ -203,9 +188,13 @@ QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
 		 argsIterator != argsMap.end();
 		 ++argsIterator) {
 		// Getting the name of the argument and its value
-		QString argName = argsIterator.key();
 		QString argValue = argsIterator.value();
 
+		if (argValue.isEmpty()) {
+			continue;
+		}
+
+		QString argName = argsIterator.key();
 		// URL encoding of the value
 		QByteArray urlizedValue = QUrl::toPercentEncoding(argValue);
 

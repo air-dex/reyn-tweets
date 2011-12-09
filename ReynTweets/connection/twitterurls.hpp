@@ -33,8 +33,8 @@ namespace TwitterRequestUrl
 	/// @brief URL of all the Twitter API services
 	QString twitterAPI = "http://api.twitter.com";
 
-	/// @brief Path for a search request
-	QString SEARCH_URL = twitterAPI + "/search.json";
+	/// @brief URL for a search request
+	QString SEARCH_URL = "http://search.twitter.com/search.json";
 }
 
 #endif // TWITTERURLS_HPP

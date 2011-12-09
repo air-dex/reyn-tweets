@@ -32,6 +32,8 @@ GenericRequester::GenericRequester(QString url, QObject * parent) :
 	communicator(0),
 	parsedResult()
 {
+	QString s = "On fait une requête ici : " + requestURL;
+	qDebug(s.toUtf8().data());
 }
 
 
@@ -41,11 +43,13 @@ GenericRequester::~GenericRequester() {
 	if (communicator != 0) {
 		delete communicator;
 	}
+	qDebug("Tombstone requester");
 }
 
 
 // Executing the request
 void GenericRequester::executeRequest() {
+	qDebug("Execution du requester");
 	// Building the ArgsMap
 	buildGETParameters();
 	buildPOSTParameters();

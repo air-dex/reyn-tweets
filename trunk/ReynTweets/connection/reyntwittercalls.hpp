@@ -25,8 +25,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define REYNTWITTERCALLS_HPP
 
 #include <QObject>
-#include <QList>
+#include <QMap>
+#include <QUuid>
 #include "requests/requests.hpp"
+#include "resultsender.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
@@ -35,33 +37,66 @@ class ReynTwitterCalls : public QObject
 {
 	Q_OBJECT
 
+	//////////////////////////////////
+	// Core management of the class //
+	//////////////////////////////////
+
 	public:
+		/// @fn static ReynTwitterCalls & getInstance();
+		/// @brief Getter on the unique instance
+		/// @return The unique instance
 		static ReynTwitterCalls & getInstance();
 
+	signals:
+		/// @fn void sendResult(ResultSender res);
+		/// @brief Signal emitted to the QObject that sends the request
+		/// @param res Result of a request
+		void sendResult(ResultSender res);
+
+	public slots:
+		/// @fn void endRequest(bool ok);
+		/// @brief Slot executed when a requester has finished its work
+		/// @param ok Boolean indicating if the request is ok (true) of if there
+		/// was an error (false).
+		void endRequest(bool ok);
+
 	protected:
+		/// @fn ReynTwitterCalls();
+		/// @brief Protected constructor
 		ReynTwitterCalls();
+
+		/// @brief The unique ReynTwitterCalls object
 		static ReynTwitterCalls instance;
-		QList<GenericRequester *> requesterManager;
+
+		/// @brief Entity which manages requests that are running
+		QMap<QUuid, GenericRequester *> requesterManager;
+
+	private:
+		/// @fn void addRequester(GenericRequester * requester);
+		/// @brief Adding a requester to the requester manager
+		/// @param requester Address of the requester
+		void addRequester(GenericRequester * requester);
+
+		/// @fn void removeRequester(GenericRequester * requester);
+		/// @brief Removing a requester of the requester manager
+		/// @param requester Address of the requester
+		void removeRequester(GenericRequester * requester);
+
+		/// @fn ResultSender buildResultSender(GenericRequester * endedRequest);
+		/// @brief Method that builds the wrapper of a result
+		/// @param endedRequest Ended request that contaons the result
+		/// @return The wrapper of the request result
+		ResultSender buildResultSender(GenericRequester * endedRequest);
 
 
-
-
-		//*
+	/////////////////////////////
+	// Methods calling Twitter //
+	/////////////////////////////
 	public:
 		/// @fn static void search(QString q);
 		/// @brief Method that launch searches
 		/// @param q The query
 		void search(QString q);
-
-	public slots:
-		void endSearch(bool);
-
-	signals:
-		void searchResult(QVariant);
-
-	private:
-		QList<GenericRequester *> requesters;
-		//*/
 };
 
 #endif // REYNTWITTERCALLS_HPP

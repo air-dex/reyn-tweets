@@ -23,18 +23,24 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyntwittercalls.hpp"
 
+//////////////////////////
+// Siggleton management //
+//////////////////////////
+
+// Protected constructor
 ReynTwitterCalls::ReynTwitterCalls() :
 	requesterManager()
 {}
 
+// Init the unique instance
+ReynTwitterCalls ReynTwitterCalls::instance = ReynTwitterCalls();
+
+// Getter on the unique instance
 ReynTwitterCalls & ReynTwitterCalls::getInstance() {
 	return instance;
 }
 
 
-ReynTwitterCalls ReynTwitterCalls::instance = ReynTwitterCalls();
-
-//*
 ///////////////////////
 // Request launchers //
 ///////////////////////

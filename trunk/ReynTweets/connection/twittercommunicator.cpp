@@ -44,7 +44,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 {}
 
 // Destructor
-TwitterCommunicator::~TwitterCommunicator() {qDebug("Tombstone communicator");}
+TwitterCommunicator::~TwitterCommunicator() {}
 
 
 ///////////////////////////
@@ -52,13 +52,8 @@ TwitterCommunicator::~TwitterCommunicator() {qDebug("Tombstone communicator");}
 ///////////////////////////
 
 void TwitterCommunicator::executeRequest() {
-	QString debstr;
-
 	// GET arguments
 	QString getArgs = buildGetDatas();
-
-	debstr = "Arguments GET : " + getArgs;
-	qDebug(debstr.toUtf8().data());
 
 	// Adding the potential GET arguments at the end of the URL
 	if ("" != getArgs) {
@@ -66,25 +61,18 @@ void TwitterCommunicator::executeRequest() {
 		serviceURL.append(getArgs);
 	}
 
-	debstr = "URL finale : " + serviceURL;
-	qDebug(debstr.toUtf8().data());
-
 	QNetworkRequest request(serviceURL);
 
 	// POST arguments
 	QByteArray postArgs = buildPostDatas();
-	debstr = "Arguments POST : " + postArgs;
-	qDebug(debstr.toUtf8().data());
 
 	// Executing the request
-	QNetworkReply * twitterReply = 0;
 	if ("" == postArgs) {
 		// There is not any POST arguments -> networkManager.get()
-		qDebug("Fin de la descente");
 		reply = networkManager.get(request);
 	} else {
 		// There is some POST arguments -> networkManager.post()
-		twitterReply = networkManager.post(request, postArgs);
+		reply = networkManager.post(request, postArgs);
 	}
 
 	// Connecting the reply
@@ -100,7 +88,6 @@ void TwitterCommunicator::executeRequest() {
 #include <QFile>
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest() {
-	qDebug("Début de la remontée");
 	// Getting the reply
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
 
@@ -125,7 +112,6 @@ void TwitterCommunicator::endRequest() {
 
 // Treatments to do if there is an error
 void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
-	qDebug("Début de la remontée mauvaise");
 	// Getting the reply
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
 

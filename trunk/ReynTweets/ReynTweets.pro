@@ -37,7 +37,8 @@ SOURCES += \
 	connection/twittercommunicator.cpp \
 	connection/reyntwittercalls.cpp \
     connection/requests/genericrequester.cpp \
-    connection/requests/searchrequester.cpp
+    connection/requests/searchrequester.cpp \
+    connection/resultsender.cpp
 
 
 HEADERS  += \
@@ -47,7 +48,8 @@ HEADERS  += \
 	connection/reyntwittercalls.hpp \
 	connection/requests/requests.hpp \
     connection/requests/genericrequester.hpp \
-    connection/requests/searchrequester.hpp
+    connection/requests/searchrequester.hpp \
+    connection/resultsender.hpp
 
 #CONFIG += mobility
 #MOBILITY =
@@ -58,6 +60,12 @@ HEADERS  += \
 #    TARGET.EPOCSTACKSIZE = 0x14000
 #    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
 #}
+
+
+
+
+
+
 
 
 

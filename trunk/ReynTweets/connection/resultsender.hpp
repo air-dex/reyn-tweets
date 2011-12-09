@@ -1,5 +1,5 @@
-/// @file twitterurls.hpp
-/// @brief Namespace containing all the Twitter API URL.
+/// @file resultsender.hpp
+/// @brief Header of RessultSender
 /// @author Romain Ducher
 
 /*
@@ -14,27 +14,35 @@ the Free Software Foundation, either version 3 of the License, or
 
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef TWITTERURLS_HPP
-#define TWITTERURLS_HPP
+#ifndef RESULTSENDER_HPP
+#define RESULTSENDER_HPP
 
-#include <QString>
+#include <QObject>
+#include <QVariant>
 
-/// @namespace TwitterUrl
-/// @brief Namespace containing all the Twitter API URLs.
-namespace TwitterRequestUrl
+/// @class ResultSender
+/// @brief Class containg result of requests and the sender of it
+class ResultSender : public QObject
 {
-	/// @brief Base URL of all the Twitter API services
-	QString twitterAPI = "http://api.twitter.com";
+	Q_OBJECT
 
-	/// @brief URL for a search request
-	QString SEARCH_URL = "http://search.twitter.com/search.json";
-}
+	public:
+		ResultSender(QObject *parent = 0);
 
-#endif // TWITTERURLS_HPP
+	signals:
+
+	public slots:
+
+	protected:
+		QObject * sender;
+		QVariant result;
+};
+
+#endif // RESULTSENDER_HPP

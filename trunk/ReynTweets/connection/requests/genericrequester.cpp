@@ -26,15 +26,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(QString url, QObject * parent) :
 	QObject(parent),
+	uuid(QUuid::createUuid()),
 	requestURL(url),
 	getParameters(),
 	postParameters(),
 	communicator(0),
 	parsedResult()
-{
-	QString s = "On fait une requête ici : " + requestURL;
-	qDebug(s.toUtf8().data());
-}
+{}
 
 
 // Destructor
@@ -43,13 +41,11 @@ GenericRequester::~GenericRequester() {
 	if (communicator != 0) {
 		delete communicator;
 	}
-	qDebug("Tombstone requester");
 }
 
 
 // Executing the request
 void GenericRequester::executeRequest() {
-	qDebug("Execution du requester");
 	// Building the ArgsMap
 	buildGETParameters();
 	buildPOSTParameters();
@@ -80,6 +76,13 @@ void GenericRequester::treatResults(bool ok) {
 // Getting parsed results
 QVariant GenericRequester::getParsedResult() {
 	return parsedResult;
+}
+
+/// @fn QUuid getUuid();
+/// @brief Getter on the requester's UUID
+/// @return The requester's UUID
+QUuid GenericRequester::getUuid() {
+	return uuid;
 }
 
 

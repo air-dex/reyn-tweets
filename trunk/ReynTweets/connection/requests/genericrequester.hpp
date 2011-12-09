@@ -25,10 +25,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define GENERICREQUESTER_HPP
 
 #include <QObject>
+#include <QUuid>
 #include "../twittercommunicator.hpp"
 
 /// @class GenericRequest
-/// @brief Base class for all the requesters
+/// @brief Base class for all the requesters. Parents of such requests are
+/// QObjects that demand the request.
 class GenericRequester : public QObject
 {
 	Q_OBJECT
@@ -43,6 +45,11 @@ class GenericRequester : public QObject
 		/// @fn ~GenericRequester();
 		/// @brief Destructor.
 		~GenericRequester();
+
+		/// @fn QUuid getUuid();
+		/// @brief Getter on the requester's UUID
+		/// @return The requester's UUID
+		QUuid getUuid();
 
 		/// @fn void executeRequest();
 		/// @brief Executing the request
@@ -71,6 +78,9 @@ class GenericRequester : public QObject
 		void treatResults(bool ok);
 
 	protected:
+		/// @brief UUID of the request
+		QUuid uuid;
+
 		/// @brief URL called by the requester
 		QString requestURL;
 

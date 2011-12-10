@@ -1,3 +1,5 @@
-= Reyn Tweets =
+= *Reyn Tweets* =
 
-*Reyn Tweets* est un client Twitter pour Windows, Symbian et Linux développé avec Qt. Il est en cours de développement, tout comme son wiki. ;-)
+*Reyn Tweets* est un client Twitter pour Windows, Symbian et Linux développé avec Qt.
+
+Il est en cours de développement, tout comme son wiki. ;-) Pour connaitre l'avancement de Reyn Tweets, il existe la page officielle de son développement disponible ici : [https://code.google.com/p/reyn-tweets/wiki/Developpements]

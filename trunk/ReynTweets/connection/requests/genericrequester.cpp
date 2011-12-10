@@ -24,8 +24,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "genericrequester.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(QString url, QObject * parent) :
-	QObject(parent),
+GenericRequester::GenericRequester(QObject * requester, QString url) :
+	QObject(requester),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
 	getParameters(),
@@ -68,8 +68,8 @@ void GenericRequester::treatResults(bool ok) {
 		treatError();
 	}
 
-	// Telling the ReynTwitterAPI that the requester has finished
-	emit requestDone(ok);
+	// Telling the ReynTwitterAPI that the request is finished
+	emit requestDone();
 }
 
 

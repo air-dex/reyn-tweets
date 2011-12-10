@@ -21,9 +21,18 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "resultsender.hpp"
+#include "resultwrapper.hpp"
 
-ResultSender::ResultSender(QObject *parent) :
-	QObject(parent)
-{
+// Constructor
+ResultWrapper::ResultWrapper(QObject * requestSender, QVariant requestResult) :
+	asker(requestSender),
+	result(requestResult)
+{}
+
+// Method to access to the result
+QVariant ResultWrapper::accessResult(QObject * demanderAdress) {
+	return (demanderAdress == asker) ? result : QVariant();
 }
+
+// Invalid Result Wrapper
+ResultWrapper ResultWrapper::INVALID_RESULTWRAPPER = ResultWrapper(0, QVariant());

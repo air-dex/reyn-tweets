@@ -22,6 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include "QtGui"
+#include "connection/resultwrapper.hpp"
 
 class MainWindow : public QMainWindow
 {
@@ -40,7 +41,7 @@ class MainWindow : public QMainWindow
 	public slots:
 		void searchXenoblade();
 		void searchCamb078();
-		void endsearch(QVariant);
+		void endsearch(ResultWrapper);
 
 	private:
 };

@@ -1,0 +1,18 @@
+= *Développement de Reyn Tweets* =
+
+Où en est Reyn Tweets ?
+
+== Ce qui est fait ==
+
+  * Architecture d'un Appel à l'API Twitter.
+
+
+== Ce qui reste à faire ==
+
+  # Parsage des résultats de l'API Twitter : intégration de QJSON [http://qjson.sourceforge.net].
+  # Authentification à Twitter avec OAuth.
+  # Modèle de données
+  # Implémentation des fonctionnalités de base.
+  # Interface graphique (UI).
+  # Portage sur Symbian.
+  # Releaser

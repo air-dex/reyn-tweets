@@ -12,7 +12,10 @@ Où en est Reyn Tweets ?
   # Parsage des résultats de l'API Twitter : intégration de QJSON [http://qjson.sourceforge.net].
   # Authentification à Twitter avec OAuth.
   # Modèle de données
+  # Approfondir la documentation
+  # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)
   # Implémentation des fonctionnalités de base.
   # Interface graphique (UI).
-  # Portage sur Symbian.
+  # Portage sur Symbian
+  # Revue de code
   # Releaser

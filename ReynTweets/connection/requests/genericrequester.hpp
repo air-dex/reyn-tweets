@@ -38,9 +38,9 @@ class GenericRequester : public QObject
 	public:
 		/// @fn GenericRequest(QString url = "", QObject * parent = 0);
 		/// @brief Constructor. It just calls the parent constructor.
+		/// @param requester QObject which asks for this search
 		/// @brief url URL called by the requester
-		/// @param parent Parent QObject.
-		GenericRequester(QString url = "", QObject * parent = 0);
+		GenericRequester(QObject * requester, QString url);
 
 		/// @fn ~GenericRequester();
 		/// @brief Destructor.
@@ -67,7 +67,7 @@ class GenericRequester : public QObject
 		/// the Twitter Communicator have been treated.
 		/// @param ok Boolean indicating if the request is ok (true) of if there
 		/// was an error (false).
-		void requestDone(bool ok);
+		void requestDone();
 
 	public slots:
 		/// @fn void treatResults(bool ok);

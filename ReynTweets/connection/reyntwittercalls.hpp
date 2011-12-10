@@ -28,7 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMap>
 #include <QUuid>
 #include "requests/requests.hpp"
-#include "resultsender.hpp"
+#include "resultwrapper.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
@@ -51,14 +51,12 @@ class ReynTwitterCalls : public QObject
 		/// @fn void sendResult(ResultSender res);
 		/// @brief Signal emitted to the QObject that sends the request
 		/// @param res Result of a request
-		void sendResult(ResultSender res);
+		void sendResult(ResultWrapper res);
 
 	public slots:
-		/// @fn void endRequest(bool ok);
+		/// @fn void endRequest();
 		/// @brief Slot executed when a requester has finished its work
-		/// @param ok Boolean indicating if the request is ok (true) of if there
-		/// was an error (false).
-		void endRequest(bool ok);
+		void endRequest();
 
 	protected:
 		/// @fn ReynTwitterCalls();
@@ -86,7 +84,12 @@ class ReynTwitterCalls : public QObject
 		/// @brief Method that builds the wrapper of a result
 		/// @param endedRequest Ended request that contaons the result
 		/// @return The wrapper of the request result
-		ResultSender buildResultSender(GenericRequester * endedRequest);
+		ResultWrapper buildResultSender(GenericRequester * endedRequest);
+
+		/// @fn inline void executeRequest(GenericRequester * requester);
+		/// @brief Inline method for executing requests
+		/// @param requester The requester
+		inline void executeRequest(GenericRequester * requester);
 
 
 	/////////////////////////////
@@ -95,8 +98,9 @@ class ReynTwitterCalls : public QObject
 	public:
 		/// @fn static void search(QString q);
 		/// @brief Method that launch searches
+		/// @param requestDemander QObject which asks for the request
 		/// @param q The query
-		void search(QString q);
+		void search(QObject * requestDemander, QString q);
 };
 
 #endif // REYNTWITTERCALLS_HPP

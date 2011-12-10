@@ -46,19 +46,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::searchCamb078() {
 	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
-	connect(&rtc, SIGNAL(searchResult(QVariant)), this, SLOT(endsearch(QVariant)));
-	rtc.search("@Camb078");
+	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
+	rtc.search(this, "@Camb078");
 }
 
 void MainWindow::searchXenoblade() {
 	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
-	connect(&rtc, SIGNAL(searchResult(QVariant)), this, SLOT(endsearch(QVariant)));
-	rtc.search("Xenoblade");
+	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
+	rtc.search(this, "Xenoblade");
 	qDebug("fin du GUI");
 }
 
-void MainWindow::endsearch(QVariant v) {
+void MainWindow::endsearch(ResultWrapper res) {
 	qDebug("retour au GUI");
+	QVariant v = res.accessResult(this);
 	QByteArray array = v.toByteArray();
 	QString s(array);
 	lx = new QLabel(s);

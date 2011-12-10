@@ -24,11 +24,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "reyntwittercalls.hpp"
 
 //////////////////////////
-// Siggleton management //
+// Singleton management //
 //////////////////////////
 
 // Protected constructor
 ReynTwitterCalls::ReynTwitterCalls() :
+	QObject(),
 	requesterManager()
 {}
 
@@ -41,31 +42,60 @@ ReynTwitterCalls & ReynTwitterCalls::getInstance() {
 }
 
 
+/////////////////////
+// Core management //
+/////////////////////
+
+// Adding a requester to the requester manager
+void ReynTwitterCalls::addRequester(GenericRequester * requester) {
+	if (requester != 0) {
+		requesterManager.insert(requester->getUuid(), requester);
+	}
+}
+
+// Slot executed when a requester has finished its work
+void ReynTwitterCalls::endRequest() {
+	GenericRequester * requester = qobject_cast<GenericRequester *>(sender());
+	ResultWrapper res = buildResultSender(requester);
+	removeRequester(requester);
+	emit sendResult(res);
+}
+
+// Removing a requester of the requester manager
+void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
+	if (requester != 0) {
+		// Deleting properly the requester
+		QMap<QUuid, GenericRequester *>::iterator requesterInManager = requesterManager.find(requester->getUuid());
+		delete requesterInManager.value();
+
+		requesterManager.remove(requester->getUuid());
+	}
+}
+
+// Method that builds the wrapper of a result
+ResultWrapper ReynTwitterCalls::buildResultSender(GenericRequester * endedRequest) {
+	return (endedRequest == 0) ? ResultWrapper::INVALID_RESULTWRAPPER
+							   : ResultWrapper(endedRequest->parent(),
+											   endedRequest->getParsedResult());
+}
+
+// Inline method for executing requests
+void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
+	if (requester != 0) {
+		connect(requester, SIGNAL(requestDone()), this, SLOT(endRequest()));
+		addRequester(requester);
+		requester->executeRequest();
+	}
+}
+
+
 ///////////////////////
 // Request launchers //
 ///////////////////////
 
-void ReynTwitterCalls::search(QString q) {
-	qDebug("Début de la recherche");
-	SearchRequester * requester = new SearchRequester(q);
-	requesterManager.append(requester);
+void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
+	SearchRequester * requester = new SearchRequester(requestDemander, q);
+	connect(requester, SIGNAL(requestDone()), this, SLOT(endRequest()));
+	addRequester(requester);
 	requester->executeRequest();
-	connect(requester, SIGNAL(requestDone(bool)), this, SLOT(endSearch(bool)));
-	qDebug("fin du call");
 }
-
-///////////
-// Slots //
-///////////
-void ReynTwitterCalls::endSearch(bool ok) {
-	SearchRequester * requester = qobject_cast<SearchRequester *>(sender());
-	int i = requesters.indexOf(requester);
-	qDebug(QString::number(i).toUtf8().data());
-	requesters.removeAt(i);
-	// Recup du Qvariant
-	QVariant var = requester->getParsedResult();
-	qDebug("Fin de la recherche");
-
-	emit searchResult(var);
-}
-//*/

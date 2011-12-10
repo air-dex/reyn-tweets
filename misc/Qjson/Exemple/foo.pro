@@ -12,8 +12,12 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-INCLUDEPATH += c:\programmi\qjson\include
+QJSON_PATH = C:\\Libs\\qjson
+INCLUDEPATH += $${QJSON_PATH}\\include
+LIBS += -L$${QJSON_PATH}\\lib -lqjson0
 
-LIBS += -Lc:\programmi\qjson\lib -lqjson
+#INCLUDEPATH += C:\Libs\Qjson\qjson\include\QJson
+
+#LIBS += -LC:\Libs\Qjson\qjson\include\QJson -lqjson
 
 SOURCES += main.cpp

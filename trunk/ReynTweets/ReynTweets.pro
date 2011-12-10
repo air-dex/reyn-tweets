@@ -36,9 +36,9 @@ SOURCES += \
 	mainwindow.cpp \
 	connection/twittercommunicator.cpp \
 	connection/reyntwittercalls.cpp \
-    connection/requests/genericrequester.cpp \
-    connection/requests/searchrequester.cpp \
-    connection/resultwrapper.cpp
+	connection/requests/genericrequester.cpp \
+	connection/requests/searchrequester.cpp \
+	connection/resultwrapper.cpp
 
 
 HEADERS  += \
@@ -47,9 +47,9 @@ HEADERS  += \
 	connection/twitterurls.hpp \
 	connection/reyntwittercalls.hpp \
 	connection/requests/requests.hpp \
-    connection/requests/genericrequester.hpp \
-    connection/requests/searchrequester.hpp \
-    connection/resultwrapper.hpp
+	connection/requests/genericrequester.hpp \
+	connection/requests/searchrequester.hpp \
+	connection/resultwrapper.hpp
 
 #CONFIG += mobility
 #MOBILITY =
@@ -62,41 +62,25 @@ HEADERS  += \
 #}
 
 
+# QJSON
+
+win32 {
+	QJSON_PATH = C:\\Libs\\qjson
+	INCLUDEPATH += $${QJSON_PATH}\\include
+	LIBS += -L$${QJSON_PATH}\\lib -lqjson0
+}
+
+#linux {
+#	QJSON_PATH = # TODO
+#	INCLUDEPATH += $${QJSON_PATH}/include
+#	LIBS += -L$${QJSON_PATH}/lib -lqjson
+#}
+
+#symbian {
+#	INCLUDEPATH += c:\Libs\Qjson\include
+#	LIBS += -Lc:\Libs\Qjson\lib -lqjson
+#}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# OAuth
+#TODO

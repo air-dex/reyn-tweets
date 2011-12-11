@@ -7,11 +7,12 @@ Où en est Reyn Tweets ?
 
   * Architecture d'un Appel à l'API Twitter.
   * Intégration de QJSON [http://qjson.sourceforge.net] pour le parsage des résultats délivrés par l'API Twitter.
+  * Parsage des résultats de l'API Twitter avec QJSON.
 
 
 == Ce qui reste à faire ==
 
-  # Parsage des résultats de l'API Twitter avec QJSON.
+  # Traitement des cas d'erreur
   # Authentification à Twitter avec OAuth.
   # Modèle de données
   # Approfondir la documentation

@@ -25,11 +25,15 @@
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
+
+#----------------------#
+# Common configuration #
+#----------------------#
+
 QT       += core gui network svg
 
 TARGET = ReynTweets
 TEMPLATE = app
-
 
 SOURCES += \
 	main.cpp \
@@ -40,7 +44,6 @@ SOURCES += \
 	connection/requests/searchrequester.cpp \
 	connection/resultwrapper.cpp
 
-
 HEADERS  += \
 	mainwindow.hpp \
 	connection/twittercommunicator.hpp \
@@ -50,6 +53,11 @@ HEADERS  += \
 	connection/requests/genericrequester.hpp \
 	connection/requests/searchrequester.hpp \
 	connection/resultwrapper.hpp
+
+
+#-----------------------#
+# Symbian configuration #
+#-----------------------#
 
 #CONFIG += mobility
 #MOBILITY =
@@ -62,7 +70,14 @@ HEADERS  += \
 #}
 
 
-# QJSON
+#-------#
+# QJSON #
+#-------#
+
+# QJSON (http://qjson.sourceforge.net/) is an open source parser for JSON
+# written in Qt (LGPLv2.1 license). Itis compatible with Windows, Mac, Linux,
+# Symbian and MeeGo.
+# QJSON_PATH is the location of QJSON in the system.
 
 win32 {
 	QJSON_PATH = C:\\Libs\\qjson
@@ -82,5 +97,8 @@ win32 {
 #}
 
 
-# OAuth
+#-------#
+# OAuth #
+#-------#
+
 #TODO

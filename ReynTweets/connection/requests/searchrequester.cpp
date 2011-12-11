@@ -21,6 +21,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QJson/Parser>
 #include "searchrequester.hpp"
 #include "../twitterurls.hpp"
 
@@ -39,10 +40,28 @@ void SearchRequester::buildGETParameters() {
 void SearchRequester::buildPOSTParameters() {}
 
 // Method that will parse the raw results of the request.
-void SearchRequester::parseResult() {
+bool SearchRequester::parseResult() {
 	QByteArray rawResponse = communicator->getResponseBuffer();
-	QVariant var(rawResponse);
-	parsedResult = var;
+
+	// Parsing with QJson
+	QJson::Parser parser;
+	bool ok;
+	QVariant result = parser.parse(rawResponse, &ok);
+
+	if (ok) {
+		parsedResult = result;
+	} else {
+		// There was a problem while parsing
+		QString errorMsg = parser.errorString();
+		int lineMsg = parser.errorLine();
+		QVariantMap res;
+		res.insert("errorMsg", QVariant(errorMsg));
+		res.insert("lineError", QVariant(lineMsg));
+		res.insert("parsedResult", result);
+		parsedResult = QVariant(res);
+	}
+
+	return ok;
 }
 
 // Method that will treat errors of the requests made by the communicator.

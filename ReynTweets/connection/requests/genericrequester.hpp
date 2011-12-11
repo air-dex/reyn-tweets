@@ -107,7 +107,8 @@ class GenericRequester : public QObject
 
 		/// @fn virtual void parseResult() = 0;
 		/// @brief Method that will parse the raw results of the request.
-		virtual void parseResult() = 0;	// Maybe not virtual
+		/// @return true if there was no problem while parsing, false otherwise.
+		virtual bool parseResult() = 0;	// Maybe not virtual
 
 		/// @fn virtual void treatError() = 0;
 		/// @brief Method that will treat errors of the requests made by the

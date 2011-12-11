@@ -3,7 +3,7 @@
 #include <QtCore/QDebug>
 #include <QtCore/QVariant>
 
-#include <Parser>
+#include <QJson/Parser>
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
 		qDebug() << "something went wrong during the conversion";
 	else
 		qDebug() << "converted to" << result;
+
+	qDebug("Fin de foo");
 
 	return a.exec();
 }

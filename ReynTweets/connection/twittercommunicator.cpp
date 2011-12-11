@@ -85,22 +85,13 @@ void TwitterCommunicator::executeRequest() {
 ///////////
 // Slots //
 ///////////
-#include <QFile>
+
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest() {
 	// Getting the reply
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
 
 	responseBuffer = twitterReply->readAll();
-
-	QFile f("xenoblade.txt"); //On ouvre le fichier
-
-	if ( f.open(QIODevice::WriteOnly) )
-	{
-			f.write(responseBuffer); ////On lit la réponse du serveur que l'on met dans un fichier
-			f.close(); //On ferme le fichier
-	}
-
 
 	errorReply = twitterReply->error();
 	extractHttpStatuses(twitterReply);

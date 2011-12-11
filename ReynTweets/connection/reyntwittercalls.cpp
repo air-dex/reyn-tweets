@@ -64,10 +64,6 @@ void ReynTwitterCalls::endRequest() {
 // Removing a requester of the requester manager
 void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
 	if (requester != 0) {
-		// Deleting properly the requester
-		QMap<QUuid, GenericRequester *>::iterator requesterInManager = requesterManager.find(requester->getUuid());
-		delete requesterInManager.value();
-
 		requesterManager.remove(requester->getUuid());
 	}
 }

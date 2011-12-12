@@ -25,7 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define RESULTWRAPPER_HPP
 
 #include <QObject>
-#include <QVariant>
+#include "requestresult.hpp"
 
 /// @class ResultSender
 /// @brief Class containg result of requests (field "result") and the QObject
@@ -35,19 +35,19 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 class ResultWrapper
 {
 	public:
-		/// @fn ResultSender(QObject * requestSender, QVariantMap requestResult);
+		/// @fn ResultSender(QObject * requestSender, RequestResult requestResult);
 		/// @brief Constructor
 		/// @param requestSender Sender of the reqauest
 		/// @param requestResult Result of the request
-		ResultWrapper(QObject * requestSender, QVariantMap requestResult);
+		ResultWrapper(QObject * requestSender, RequestResult requestResult);
 
-		/// @fn QVariantMap accessResult(QObject * demanderAdress);
+		/// @fn RequestResult accessResult(QObject * demanderAdress);
 		/// @brief Method to access to the result
 		/// @param Memory address of the QObject which wants to access
 		/// to the result.
 		/// @return The request result if demanderAdress is right or Qvariant()
 		/// otherwise.
-		QVariantMap accessResult(QObject * demanderAdress);
+		RequestResult accessResult(QObject * demanderAdress);
 
 		/// @brief Invalid wrapper with a NULL sender and an invalid result
 		static ResultWrapper INVALID_RESULTWRAPPER;
@@ -57,7 +57,7 @@ class ResultWrapper
 		QObject * asker;
 
 		/// @brief Result of the request
-		QVariantMap result;
+		RequestResult result;
 };
 
 #endif // RESULTWRAPPER_HPP

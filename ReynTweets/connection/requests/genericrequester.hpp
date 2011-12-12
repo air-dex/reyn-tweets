@@ -29,6 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QVariant>
 #include "../twittercommunicator.hpp"
 #include "../errortypes.hpp"
+#include "../requestresult.hpp"
 
 /// @class GenericRequest
 /// @brief Base class for all the requesters. Parents of such requests are
@@ -57,10 +58,10 @@ class GenericRequester : public QObject
 		/// @brief Executing the request
 		void executeRequest();
 
-		/// @fn QVariant getParsedResult();
+		/// @fn RequestResult getParsedResult();
 		/// @brief Getting parsed results
 		/// @return Parsed results in a QVariant object.
-		QVariantMap getParsedResult();
+		RequestResult getRequestResult();
 
 	protected:
 		/// @brief UUID of the request
@@ -106,7 +107,7 @@ class GenericRequester : public QObject
 		/// <li><strong>parsingError</strong> : potential errors that can occur
 		/// while parsing results</li>
 		/// </ul>
-		QVariantMap parsedResult;
+		RequestResult requestResult;
 
 	public slots:
 		/// @fn void treatResults(bool ok);

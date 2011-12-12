@@ -59,9 +59,9 @@ void MainWindow::searchXenoblade() {
 
 void MainWindow::endsearch(ResultWrapper res) {
 	qDebug("retour au GUI");
-	QVariant v = res.accessResult(this);
-	QByteArray array = v.toByteArray();
-	QString s(array);
-	lx = new QLabel(s);
-	centralWidget()->layout()->addWidget(lx);
+	RequestResult resultats = res.accessResult(this);
+	QVariantMap parsedResult = resultats.getParsedResult().toMap();
+	QVariant maxIDstr = parsedResult.value("max_id_str");
+	const char * typeName = maxIDstr.typeName();
+	qDebug(typeName);
 }

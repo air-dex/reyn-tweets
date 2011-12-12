@@ -24,15 +24,15 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "resultwrapper.hpp"
 
 // Constructor
-ResultWrapper::ResultWrapper(QObject * requestSender, QVariantMap requestResult) :
+ResultWrapper::ResultWrapper(QObject * requestSender, RequestResult requestResult) :
 	asker(requestSender),
 	result(requestResult)
 {}
 
 // Method to access to the result
-QVariantMap ResultWrapper::accessResult(QObject * demanderAdress) {
-	return (demanderAdress == asker) ? result : QVariantMap();
+RequestResult ResultWrapper::accessResult(QObject * demanderAdress) {
+	return (demanderAdress == asker) ? result : RequestResult::FAKE_REQUEST_RESULT;
 }
 
 // Invalid Result Wrapper
-ResultWrapper ResultWrapper::INVALID_RESULTWRAPPER = ResultWrapper(0, QVariantMap());
+ResultWrapper ResultWrapper::INVALID_RESULTWRAPPER = ResultWrapper(0, RequestResult::FAKE_REQUEST_RESULT);

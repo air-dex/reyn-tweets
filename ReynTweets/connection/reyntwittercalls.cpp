@@ -53,19 +53,19 @@ void ReynTwitterCalls::addRequester(GenericRequester * requester) {
 	}
 }
 
+// Removing a requester of the requester manager
+void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
+	if (requester != 0) {
+		requesterManager.remove(requester->getUuid());
+	}
+}
+
 // Slot executed when a requester has finished its work
 void ReynTwitterCalls::endRequest() {
 	GenericRequester * requester = qobject_cast<GenericRequester *>(sender());
 	ResultWrapper res = buildResultSender(requester);
 	removeRequester(requester);
 	emit sendResult(res);
-}
-
-// Removing a requester of the requester manager
-void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
-	if (requester != 0) {
-		requesterManager.remove(requester->getUuid());
-	}
 }
 
 // Method that builds the wrapper of a result
@@ -89,9 +89,8 @@ void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 // Request launchers //
 ///////////////////////
 
+// Method that launch searches
 void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
 	SearchRequester * requester = new SearchRequester(requestDemander, q);
-	connect(requester, SIGNAL(requestDone()), this, SLOT(endRequest()));
-	addRequester(requester);
-	requester->executeRequest();
+	executeRequest(requester);
 }

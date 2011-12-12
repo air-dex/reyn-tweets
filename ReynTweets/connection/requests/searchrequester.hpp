@@ -51,17 +51,6 @@ class SearchRequester : public GenericRequester
 		/// @fn virtual void buildPOSTParameters();
 		/// @brief Virtual method building postParameters
 		void buildPOSTParameters();
-
-		/// @fn virtual void parseResult();
-		/// @brief Method that will parse the raw results of the request.
-		/// @return true if there was no problem while parsing, false otherwise.
-		/// @sa bool GenericRequester::parseResult();
-		bool parseResult();
-
-		/// @fn virtual void treatError() = 0;
-		/// @brief Method that will treat errors of the requests made by the
-		/// Twitter Communicator.
-		void treatError();
 };
 
 #endif // SEARCHREQUESTER_HPP

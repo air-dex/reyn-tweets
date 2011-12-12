@@ -26,7 +26,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QObject>
 #include <QUuid>
+#include <QVariant>
 #include "../twittercommunicator.hpp"
+#include "../errortypes.hpp"
 
 /// @class GenericRequest
 /// @brief Base class for all the requesters. Parents of such requests are
@@ -36,9 +38,9 @@ class GenericRequester : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn GenericRequest(QString url = "", QObject * parent = 0);
-		/// @brief Constructor. It just calls the parent constructor.
-		/// @param requester QObject which asks for this search
+		/// @fn GenericRequester(QObject * requester, QString url);
+		/// @brief Constructor
+		/// @param requester QObject which asks for this search0
 		/// @brief url URL called by the requester
 		GenericRequester(QObject * requester, QString url);
 
@@ -58,24 +60,7 @@ class GenericRequester : public QObject
 		/// @fn QVariant getParsedResult();
 		/// @brief Getting parsed results
 		/// @return Parsed results in a QVariant object.
-		QVariant getParsedResult();
-
-
-	signals:
-		/// @fn void requestDone(bool ok);
-		/// @brief Signal sent when the results of the request received by
-		/// the Twitter Communicator have been treated.
-		/// @param ok Boolean indicating if the request is ok (true) of if there
-		/// was an error (false).
-		void requestDone();
-
-	public slots:
-		/// @fn void treatResults(bool ok);
-		/// @brief Slot that is executed when the Twitter Communicator has just
-		/// finished its work.
-		/// @param ok Boolean indicating if the Twitter Communicator work is ok
-		/// (true) of if therewas an error (false).
-		void treatResults(bool ok);
+		QVariantMap getParsedResult();
 
 	protected:
 		/// @brief UUID of the request
@@ -102,18 +87,72 @@ class GenericRequester : public QObject
 		/// the request and get the raw result of it.
 		TwitterCommunicator * communicator;
 
-		/// @brief Parsed results of the Twitter Communicator's work
-		QVariant parsedResult;
 
-		/// @fn virtual void parseResult() = 0;
+	//////////////////////////
+	// Treatment of results //
+	//////////////////////////
+
+	protected:
+		/// @brief Parsed results of the Twitter Communicator's work. It is a
+		/// QVariantMap which gets 5 fields :<ul>
+		/// <li><strong>requestSuccessful</strong> : code indicating whether
+		/// an error occured during the request.</li>
+		/// <li><strong>parsedResult</strong> : results of the request parsed
+		/// by QJson.</li>
+		/// <li><strong>httpInfos</strong> : information about the pure
+		/// http request</li>
+		/// <li><strong>networkError</strong> : code indicating whether
+		/// a network error occured during the request.</li>
+		/// <li><strong>parsingError</strong> : potential errors that can occur
+		/// while parsing results</li>
+		/// </ul>
+		QVariantMap parsedResult;
+
+	public slots:
+		/// @fn void treatResults(bool ok);
+		/// @brief Slot that is executed when the Twitter Communicator has just
+		/// finished its work.
+		/// @param ok Boolean indicating if the Twitter Communicator work is ok
+		/// (true) of if therewas an error (false).
+		void treatResults(bool ok);
+
+	private:
+		/// @fn QVariant parseResult(bool & parseOK);
 		/// @brief Method that will parse the raw results of the request.
-		/// @return true if there was no problem while parsing, false otherwise.
-		virtual bool parseResult() = 0;	// Maybe not virtual
+		/// @param parseOK Boolean whose value will be set to true if there was
+		/// no problem while parsing, false otherwise.
+		/// @param parsingErrors QVariantMap that may contain information about
+		/// errors that may occur while parsing.
+		/// @return Parsed results
+		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 
-		/// @fn virtual void treatError() = 0;
+		/*
+		/// @fn QVariant treatError();
 		/// @brief Method that will treat errors of the requests made by the
 		/// Twitter Communicator.
-		virtual void treatError() = 0;	// Maybe not virtual
+		QVariant treatError();
+		//*/
+
+		/// @fn void fillParsedResult(ErrorType errorType,
+		///			QVariant parsedResults,
+		///			QVariantMap parsingErrors);
+		/// @brief Filling parsedResult. Some information such as the
+		/// networkError and httpInfos are contained in the Twitter Communicator
+		/// son they are not passed as parameters of the method.
+		/// @param errorType ErrorType
+		/// @param parsedResults Parsed results. If there w
+		/// @param parsingErrors Errors that may occur while parsing.
+		void fillParsedResult(ErrorType errorType,
+							  QVariant parsedResults,
+							  QVariantMap parsingErrors);
+
+	signals:
+		/// @fn void requestDone(bool ok);
+		/// @brief Signal sent when the results of the request received by
+		/// the Twitter Communicator have been treated.
+		/// @param ok Boolean indicating if the request is ok (true) of if there
+		/// was an error (false).
+		void requestDone();
 };
 
 #endif // GENERICREQUESTER_HPP

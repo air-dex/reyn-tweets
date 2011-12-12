@@ -30,9 +30,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
-					ArgsMap getArgs,
-					ArgsMap postArgs,
-					QObject * parent) :
+										 ArgsMap getArgs,
+										 ArgsMap postArgs,
+										 QObject * parent) :
 	QObject(parent),
 	networkManager(),
 	serviceURL(url),
@@ -92,7 +92,6 @@ void TwitterCommunicator::endRequest() {
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
 
 	responseBuffer = twitterReply->readAll();
-
 	errorReply = twitterReply->error();
 	extractHttpStatuses(twitterReply);
 	twitterReply->deleteLater();

@@ -13,7 +13,7 @@ Où en est Reyn Tweets ?
 
 == Ce qui reste à faire ==
 
-  # Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult ( [https://code.google.com/p/reyn-tweets/issues/detail?id=8 Issue #8] ).
+  # Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult ([https://code.google.com/p/reyn-tweets/issues/detail?id=8 Issue #8]).
   # Authentification à Twitter avec OAuth.
   # Modèle de données
   # Approfondir la documentation

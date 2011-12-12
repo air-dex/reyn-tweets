@@ -32,7 +32,7 @@ GenericRequester::GenericRequester(QObject * requester, QString url) :
 	getParameters(),
 	postParameters(),
 	communicator(0),
-	parsedResult()
+	requestResult(RequestResult::FAKE_REQUEST_RESULT)
 {}
 
 
@@ -50,8 +50,8 @@ GenericRequester::~GenericRequester() {
 /////////////
 
 // Getting parsed results
-QVariantMap GenericRequester::getParsedResult() {
-	return parsedResult;
+RequestResult GenericRequester::getRequestResult() {
+	return requestResult;
 }
 
 // Getter on the requester's UUID
@@ -128,21 +128,10 @@ QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 void GenericRequester::fillParsedResult(ErrorType errorType,
 										QVariant parsedResults,
 										QVariantMap parsingErrors) {
-	// "requestSuccessful" field
-	parsedResult.insert("requestSuccessful", errorType);
-
-	// "parsedResult" field
-	parsedResult.insert("parsedResult", parsedResults);
-
-	// "httpInfos" field
-	QVariantMap httpInfos;
-	httpInfos.insert("httpCode", QVariant(communicator->getHttpCode()));
-	httpInfos.insert("httpReason", QVariant(communicator->getHttpReason()));
-	parsedResult.insert("httpInfos", parsedResults);
-
-	// "networkError" field
-	parsedResult.insert("networkError", QVariant(communicator->getNetworkError()));
-
-	// "parsingError" field
-	parsedResult.insert("parsingError", QVariant(parsingErrors));
+	requestResult = RequestResult(errorType,
+								  parsedResults,
+								  communicator->getHttpCode(),
+								  communicator->getHttpReason(),
+								  communicator->getNetworkError(),
+								  parsingErrors);
 }

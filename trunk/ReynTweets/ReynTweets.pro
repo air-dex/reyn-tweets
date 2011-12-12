@@ -42,7 +42,8 @@ SOURCES += \
 	connection/reyntwittercalls.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/searchrequester.cpp \
-	connection/resultwrapper.cpp
+	connection/resultwrapper.cpp \
+    connection/requestresult.cpp
 
 HEADERS  += \
 	mainwindow.hpp \
@@ -53,7 +54,8 @@ HEADERS  += \
 	connection/requests/genericrequester.hpp \
 	connection/requests/searchrequester.hpp \
 	connection/resultwrapper.hpp \
-    connection/errortypes.hpp
+    connection/errortypes.hpp \
+    connection/requestresult.hpp
 
 
 #-----------------------#
@@ -103,4 +105,6 @@ win32 {
 #-------#
 
 #TODO
+
+
 

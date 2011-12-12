@@ -28,6 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief Enumeration which indicates if something bad happened during the
 /// request. It can takes three values depending on what happened :<ul>
 /// <li><strong>NO_ERROR</strong> if there was not any error.</li>
+/// <li><strong>FAKE_RESULT<strong> for a fake RequestResult
 /// <li><strong>API_CALL<strong> if an error occured while calling the
 /// Twitter API.</li>
 /// <li><strong>QJSON_PARSING</strong> if an error occured while parsing
@@ -36,6 +37,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 enum ErrorType {
 	/// @brief Code indicating that there was no error.
 	NO_ERROR,
+
+	/// @brief Code for a fake request result.
+	FAKE_RESULT,
 
 	/// @brief Code indicating that there were an error while calling the
 	/// Twitter API.

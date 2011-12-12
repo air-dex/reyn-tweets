@@ -21,6 +21,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QJson/Parser>
 #include "genericrequester.hpp"
 
 // Constructor. It just calls the parent constructor.
@@ -44,7 +45,25 @@ GenericRequester::~GenericRequester() {
 }
 
 
-// Executing the request
+/////////////
+// Getters //
+/////////////
+
+// Getting parsed results
+QVariantMap GenericRequester::getParsedResult() {
+	return parsedResult;
+}
+
+// Getter on the requester's UUID
+QUuid GenericRequester::getUuid() {
+	return uuid;
+}
+
+
+///////////////////////////
+// Executing the request //
+///////////////////////////
+
 void GenericRequester::executeRequest() {
 	// Building the ArgsMap
 	buildGETParameters();
@@ -60,33 +79,70 @@ void GenericRequester::executeRequest() {
 }
 
 
+//////////////////////////
+// Treatment of results //
+//////////////////////////
+
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults(bool ok) {
+	ErrorType errorType;
+	QVariant parsedResults;
+	QVariantMap parsingErrorInfos;
+
 	if (ok) {
-		parseResult();
+		bool parseOK;
+		parsedResults = parseResult(parseOK, parsingErrorInfos);
+		errorType = parseOK ? NO_ERROR : QJSON_PARSING;
 	} else {
-		treatError();
+		errorType = API_CALL;
+		//treatError();
 	}
+
+	fillParsedResult(errorType, parsedResults, parsingErrorInfos);
 
 	// Telling the ReynTwitterAPI that the request is finished
 	emit requestDone();
 }
 
+// Method that will parse the raw results of the request.
+QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	QByteArray rawResponse = communicator->getResponseBuffer();
 
-// Getting parsed results
-QVariant GenericRequester::getParsedResult() {
-	return parsedResult;
+	// Parsing with QJson
+	QJson::Parser parser;
+	QVariant result = parser.parse(rawResponse, &parseOK);
+
+	if (!parseOK) {
+		// There was a problem while parsing -> fill the parsingErrors map !
+		QString errorMsg = parser.errorString();
+		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+
+		int lineMsg = parser.errorLine();
+		parsingErrors.insert("lineError", QVariant(lineMsg));
+	}
+
+	return result;
 }
 
-/// @fn QUuid getUuid();
-/// @brief Getter on the requester's UUID
-/// @return The requester's UUID
-QUuid GenericRequester::getUuid() {
-	return uuid;
+// Filling parsedResult
+void GenericRequester::fillParsedResult(ErrorType errorType,
+										QVariant parsedResults,
+										QVariantMap parsingErrors) {
+	// "requestSuccessful" field
+	parsedResult.insert("requestSuccessful", errorType);
+
+	// "parsedResult" field
+	parsedResult.insert("parsedResult", parsedResults);
+
+	// "httpInfos" field
+	QVariantMap httpInfos;
+	httpInfos.insert("httpCode", QVariant(communicator->getHttpCode()));
+	httpInfos.insert("httpReason", QVariant(communicator->getHttpReason()));
+	parsedResult.insert("httpInfos", parsedResults);
+
+	// "networkError" field
+	parsedResult.insert("networkError", QVariant(communicator->getNetworkError()));
+
+	// "parsingError" field
+	parsedResult.insert("parsingError", QVariant(parsingErrors));
 }
-
-
-/*
-// Parse the raw results of the request.
-virtual void GenericRequester::parseResult() = 0;	// Maybe not virtual
-//*/

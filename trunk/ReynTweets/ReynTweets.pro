@@ -52,7 +52,8 @@ HEADERS  += \
 	connection/requests/requests.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/searchrequester.hpp \
-	connection/resultwrapper.hpp
+	connection/resultwrapper.hpp \
+    connection/errortypes.hpp
 
 
 #-----------------------#
@@ -102,3 +103,4 @@ win32 {
 #-------#
 
 #TODO
+

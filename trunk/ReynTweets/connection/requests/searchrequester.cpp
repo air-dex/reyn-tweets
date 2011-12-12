@@ -38,33 +38,3 @@ void SearchRequester::buildGETParameters() {
 
 // Virtual method building postParameters
 void SearchRequester::buildPOSTParameters() {}
-
-// Method that will parse the raw results of the request.
-bool SearchRequester::parseResult() {
-	QByteArray rawResponse = communicator->getResponseBuffer();
-
-	// Parsing with QJson
-	QJson::Parser parser;
-	bool ok;
-	QVariant result = parser.parse(rawResponse, &ok);
-
-	if (ok) {
-		parsedResult = result;
-	} else {
-		// There was a problem while parsing
-		QString errorMsg = parser.errorString();
-		int lineMsg = parser.errorLine();
-		QVariantMap res;
-		res.insert("errorMsg", QVariant(errorMsg));
-		res.insert("lineError", QVariant(lineMsg));
-		res.insert("parsedResult", result);
-		parsedResult = QVariant(res);
-	}
-
-	return ok;
-}
-
-// Method that will treat errors of the requests made by the communicator.
-void SearchRequester::treatError() {
-	// TODO
-}

@@ -35,19 +35,19 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 class ResultWrapper
 {
 	public:
-		/// @fn ResultSender(QObject * requestSender, QVariant requestResult);
+		/// @fn ResultSender(QObject * requestSender, QVariantMap requestResult);
 		/// @brief Constructor
 		/// @param requestSender Sender of the reqauest
 		/// @param requestResult Result of the request
-		ResultWrapper(QObject * requestSender, QVariant requestResult);
+		ResultWrapper(QObject * requestSender, QVariantMap requestResult);
 
-		/// @fn QVariant accessResult(QObject * demanderAdress);
+		/// @fn QVariantMap accessResult(QObject * demanderAdress);
 		/// @brief Method to access to the result
 		/// @param Memory address of the QObject which wants to access
 		/// to the result.
 		/// @return The request result if demanderAdress is right or Qvariant()
 		/// otherwise.
-		QVariant accessResult(QObject * demanderAdress);
+		QVariantMap accessResult(QObject * demanderAdress);
 
 		/// @brief Invalid wrapper with a NULL sender and an invalid result
 		static ResultWrapper INVALID_RESULTWRAPPER;
@@ -57,7 +57,7 @@ class ResultWrapper
 		QObject * asker;
 
 		/// @brief Result of the request
-		QVariant result;
+		QVariantMap result;
 };
 
 #endif // RESULTWRAPPER_HPP

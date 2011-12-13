@@ -34,7 +34,7 @@ class RequestResult
 {
 	public:
 		/// @fn RequestResult();
-		/// @brief Default constructor. It builds an invalid wrapper.
+		/// @brief Default constructor. It builds an invalid result.
 		RequestResult();
 
 		/// @fn RequestResult(ErrorType errorType,
@@ -91,10 +91,8 @@ class RequestResult
 		/// @brief Getter on parsingErrors
 		/// @return The value of parsingErrors
 		QVariantMap getParsingErrors();
-/*
-		/// @brief Fake request result
-		static RequestResult FAKE_REQUEST_RESULT;
-//*/
+
+
 	protected:
 		/// @brief Code indicating whether an error occured during the request.
 		ErrorType requestSuccessful;
@@ -112,7 +110,5 @@ class RequestResult
 		/// @brief Potential errors that can occur while parsing results.
 		QVariantMap parsingErrors;
 };
-
-//const RequestResult FAKE_REQUEST_RESULT;
 
 #endif // REQUESTRESULT_HPP

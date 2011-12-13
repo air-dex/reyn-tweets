@@ -94,19 +94,7 @@ class GenericRequester : public QObject
 	//////////////////////////
 
 	protected:
-		/// @brief Parsed results of the Twitter Communicator's work. It is a
-		/// QVariantMap which gets 5 fields :<ul>
-		/// <li><strong>requestSuccessful</strong> : code indicating whether
-		/// an error occured during the request.</li>
-		/// <li><strong>parsedResult</strong> : results of the request parsed
-		/// by QJson.</li>
-		/// <li><strong>httpInfos</strong> : information about the pure
-		/// http request</li>
-		/// <li><strong>networkError</strong> : code indicating whether
-		/// a network error occured during the request.</li>
-		/// <li><strong>parsingError</strong> : potential errors that can occur
-		/// while parsing results</li>
-		/// </ul>
+		/// @brief Result of the request.
 		RequestResult requestResult;
 
 	public slots:

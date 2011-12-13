@@ -29,10 +29,16 @@ ResultWrapper::ResultWrapper(QObject * requestSender, RequestResult requestResul
 	result(requestResult)
 {}
 
+ResultWrapper::ResultWrapper() :
+	asker(0),
+	result()
+{}
+
 // Method to access to the result
 RequestResult ResultWrapper::accessResult(QObject * demanderAdress) {
-	return (demanderAdress == asker) ? result : RequestResult::FAKE_REQUEST_RESULT;
+	return (demanderAdress == asker) ? result : RequestResult();
 }
-
+/*
 // Invalid Result Wrapper
 ResultWrapper ResultWrapper::INVALID_RESULTWRAPPER = ResultWrapper(0, RequestResult::FAKE_REQUEST_RESULT);
+//*/

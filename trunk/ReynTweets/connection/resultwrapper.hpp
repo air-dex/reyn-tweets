@@ -34,7 +34,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// prove that it is the real sender of the request.
 class ResultWrapper
 {
-	public:
+	public:/// @fn ResultSender(QObject * requestSender, RequestResult requestResult);
+		/// @brief Constructor
+		/// @param requestSender Sender of the reqauest
+		/// @param requestResult Result of the request
+		ResultWrapper();
+
+
 		/// @fn ResultSender(QObject * requestSender, RequestResult requestResult);
 		/// @brief Constructor
 		/// @param requestSender Sender of the reqauest
@@ -48,10 +54,10 @@ class ResultWrapper
 		/// @return The request result if demanderAdress is right or Qvariant()
 		/// otherwise.
 		RequestResult accessResult(QObject * demanderAdress);
-
+/*
 		/// @brief Invalid wrapper with a NULL sender and an invalid result
 		static ResultWrapper INVALID_RESULTWRAPPER;
-
+//*/
 	protected:
 		/// @brief Sender of the request
 		QObject * asker;
@@ -59,5 +65,7 @@ class ResultWrapper
 		/// @brief Result of the request
 		RequestResult result;
 };
+
+//const ResultWrapper INVALID_RESULTWRAPPER;
 
 #endif // RESULTWRAPPER_HPP

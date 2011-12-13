@@ -33,6 +33,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+
 	MainWindow w;
 	/*
 		#if defined(Q_WS_S60)

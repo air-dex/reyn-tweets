@@ -23,6 +23,15 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "requestresult.hpp"
 
+// Default constructor
+RequestResult::RequestResult() :
+	requestSuccessful(FAKE_RESULT),
+	parsedResult(),
+	httpInfos(),
+	networkError(),
+	parsingErrors()
+{}
+
 // Constructor
 RequestResult::RequestResult(ErrorType errorType,
 							 QVariant parsedResults,
@@ -40,7 +49,7 @@ RequestResult::RequestResult(ErrorType errorType,
 	httpInfos.insert("httpCode", QVariant(httpCode));
 	httpInfos.insert("httpReason", QVariant(httpReason));
 }
-
+/*
 // Fake request result
 RequestResult RequestResult::FAKE_REQUEST_RESULT = RequestResult(FAKE_RESULT,
 																 QVariant(),
@@ -48,7 +57,7 @@ RequestResult RequestResult::FAKE_REQUEST_RESULT = RequestResult(FAKE_RESULT,
 																 "",
 																 QNetworkReply::NoError,
 																 QVariantMap());
-
+//*/
 // Method indicating if the request was successful
 bool RequestResult::isRequestSuccessful() {
 	return requestSuccessful == NO_ERROR;

@@ -9,11 +9,11 @@ Où en est Reyn Tweets ?
   * Intégration de QJSON [http://qjson.sourceforge.net] pour le parsage des résultats délivrés par l'API Twitter.
   * Parsage des résultats de l'API Twitter avec QJSON.
   * Traitement des cas d'erreur.
+  * Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
 
 
 == Ce qui reste à faire ==
 
-  # Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
   # Authentification à Twitter avec OAuth.
   # Modèle de données
   # Approfondir la documentation

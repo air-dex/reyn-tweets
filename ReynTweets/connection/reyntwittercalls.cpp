@@ -70,7 +70,7 @@ void ReynTwitterCalls::endRequest() {
 
 // Method that builds the wrapper of a result
 ResultWrapper ReynTwitterCalls::buildResultSender(GenericRequester * endedRequest) {
-	return (endedRequest == 0) ? ResultWrapper::INVALID_RESULTWRAPPER
+	return (endedRequest == 0) ? ResultWrapper()
 							   : ResultWrapper(endedRequest->parent(),
 											   endedRequest->getRequestResult());
 }

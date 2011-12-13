@@ -32,7 +32,7 @@ GenericRequester::GenericRequester(QObject * requester, QString url) :
 	getParameters(),
 	postParameters(),
 	communicator(0),
-	requestResult(RequestResult::FAKE_REQUEST_RESULT)
+	requestResult()
 {}
 
 

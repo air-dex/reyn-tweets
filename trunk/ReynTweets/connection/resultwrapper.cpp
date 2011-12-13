@@ -38,7 +38,3 @@ ResultWrapper::ResultWrapper() :
 RequestResult ResultWrapper::accessResult(QObject * demanderAdress) {
 	return (demanderAdress == asker) ? result : RequestResult();
 }
-/*
-// Invalid Result Wrapper
-ResultWrapper ResultWrapper::INVALID_RESULTWRAPPER = ResultWrapper(0, RequestResult::FAKE_REQUEST_RESULT);
-//*/

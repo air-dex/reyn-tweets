@@ -163,17 +163,20 @@ QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
 	for (ArgsMap::iterator argsIterator = argsMap.begin();
 		 argsIterator != argsMap.end();
 		 ++argsIterator) {
-		// Getting the name of the argument and its value
+		// Getting the value of the argument
 		QString argValue = argsIterator.value();
 
 		if (argValue.isEmpty()) {
 			continue;
 		}
 
-		QString argName = argsIterator.key();
 		// URL encoding of the value
 		QByteArray urlizedValue = QUrl::toPercentEncoding(argValue);
 
+		// Getting the name of the argument
+		QString argName = argsIterator.key();
+
+		// Append the argument in the argument string
 		res.append(argName);
 		res.append('=');
 		res.append(QString(urlizedValue));

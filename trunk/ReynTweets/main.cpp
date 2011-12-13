@@ -35,30 +35,13 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	MainWindow w;
-	/*
-		#if defined(Q_WS_S60)
-			w.showMaximized();
-		#else
-			w.show();
-		#endif
-	//*/
-/*
-	// Test
-	QMap<QString, QString> get;
-	get.insert("q", "xenoblade");
-	TwitterCommunicator communicator(TwitterRequestUrl::SEARCH_URL, get);
-	communicator.executeRequest();
-	w.show();
-	QByteArray datas = communicator.getResponseBuffer();
-	QFile f("xenoblade.txt"); //On ouvre le fichier
 
-	if ( f.open(QIODevice::WriteOnly) )
-	{
-			f.write(datas); ////On lit la réponse du serveur que l'on met dans un fichier
-			f.close(); //On ferme le fichier
-	}
-//*/
+	#if defined(Q_WS_S60)
+		w.showMaximized();
+	#else
+		// Pour le moment, on ne fait que passer ici
+		w.show();
+	#endif
 
-	w.show();
 	return a.exec();
 }

@@ -10,11 +10,18 @@ Où en est Reyn Tweets ?
   * Parsage des résultats de l'API Twitter avec QJSON.
   * Traitement des cas d'erreur.
   * Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
+  * _Authentification avec OAuth :_
+    * Comprendre OAuth
 
 
 == Ce qui reste à faire ==
 
-  # Authentification à Twitter avec OAuth.
+  # _Authentification à Twitter avec OAuth :_
+    # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus.
+    # Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?).
+    # Mettre en place l'architecture pour l'authentification et adapter ce qui existe déjà si nécessaire.
+    # Coder
+    # Tester
   # Modèle de données
   # Approfondir la documentation
   # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)

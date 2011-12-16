@@ -116,6 +116,9 @@ class TwitterCommunicator : public QObject
 		/// @brief POST datas
 		ArgsMap postParameters;
 
+		/// @brief Boolean indicating if authentication is required for the request
+		bool authenticationRequired;
+
 		/// @brief Reply
 		QNetworkReply * reply;
 

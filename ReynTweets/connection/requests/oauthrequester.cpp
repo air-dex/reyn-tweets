@@ -1,5 +1,5 @@
-/// @file requests.hpp
-/// @brief Header including all the request classes
+/// @file oauthrequester.cpp
+/// @brief Implementation of OAuthRequester
 /// @author Romain Ducher
 
 /*
@@ -18,13 +18,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REQUESTS_HPP
-#define REQUESTS_HPP
-
-#include "searchrequester.hpp"
 #include "oauthrequester.hpp"
 
-#endif // REQUESTS_HPP
+OAuthRequester::OAuthRequester(QObject *parent) :
+	QObject(parent)
+{
+}

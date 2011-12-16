@@ -29,6 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QUuid>
 #include "requests/requests.hpp"
 #include "resultwrapper.hpp"
+#include "oauthmanager.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a

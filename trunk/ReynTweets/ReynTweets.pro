@@ -43,7 +43,9 @@ SOURCES += \
 	connection/requests/genericrequester.cpp \
 	connection/requests/searchrequester.cpp \
 	connection/resultwrapper.cpp \
-    connection/requestresult.cpp
+    connection/requestresult.cpp \
+    connection/oauthmanager.cpp \
+    connection/requests/oauthrequester.cpp
 
 HEADERS  += \
 	mainwindow.hpp \
@@ -55,7 +57,9 @@ HEADERS  += \
 	connection/requests/searchrequester.hpp \
 	connection/resultwrapper.hpp \
     connection/errortypes.hpp \
-    connection/requestresult.hpp
+    connection/requestresult.hpp \
+    connection/oauthmanager.hpp \
+    connection/requests/oauthrequester.hpp
 
 
 #-----------------------#

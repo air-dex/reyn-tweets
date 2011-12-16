@@ -13,7 +13,7 @@ Où en est Reyn Tweets ?
   * _Authentification avec OAuth :_
     * Comprendre OAuth
     * Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?) : pas de librairies annexe afin de pouvoir réutiliser le Twitter Communicator
-    * Mettre en place l'architecture pour l'authentification et adapter ce qui existe déjà si nécessaire.
+    * Mettre en place l'architecture.
     * Codage
       * Création des classes
 
@@ -22,13 +22,13 @@ Où en est Reyn Tweets ?
 
   # _Authentification à Twitter avec OAuth :_
     # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?.
-    # Mettre en place l'architecture pour l'authentification et adapter ce qui existe déjà si nécessaire.
+    # Adapter l'architecture existante (se fera en cours de codage si nécessaire).
     # Coder
-      # Adaptation du Twitter Communicator
       # Codage de OAuthManager
       # Codage de OAuthRequester
       # Intégration de l'OAuthManager dans les requesters et le TwitterCommunicator
-      # Stockage des tokens
+      # Adaptation du TwitterCommunicator
+      # Stockage des tokens (en clair c'est mal !).
     # Tester
   # Passage à QtCreator 2.4.0 : vérifier qu'il n'y a pas eu de problèmes.
   # Modèle de données

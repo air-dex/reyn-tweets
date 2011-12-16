@@ -12,16 +12,25 @@ Où en est Reyn Tweets ?
   * Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
   * _Authentification avec OAuth :_
     * Comprendre OAuth
+    * Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?) : pas de librairies annexe afin de pouvoir réutiliser le Twitter Communicator
+    * Mettre en place l'architecture pour l'authentification et adapter ce qui existe déjà si nécessaire.
+    * Codage
+      * Création des classes
 
 
 == Ce qui reste à faire ==
 
   # _Authentification à Twitter avec OAuth :_
-    # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus.
-    # Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?).
+    # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?.
     # Mettre en place l'architecture pour l'authentification et adapter ce qui existe déjà si nécessaire.
     # Coder
+      # Adaptation du Twitter Communicator
+      # Codage de OAuthManager
+      # Codage de OAuthRequester
+      # Intégration de l'OAuthManager dans les requesters et le TwitterCommunicator
+      # Stockage des tokens
     # Tester
+  # Passage à QtCreator 2.4.0 : vérifier qu'il n'y a pas eu de problèmes.
   # Modèle de données
   # Approfondir la documentation
   # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)

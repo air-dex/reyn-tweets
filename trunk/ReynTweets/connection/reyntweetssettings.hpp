@@ -1,5 +1,5 @@
-/// @file requests.hpp
-/// @brief Header including all the request classes
+/// @file reyntweetssettings.hpp
+/// @brief Special values of Reyn Tweets
 /// @author Romain Ducher
 
 /*
@@ -21,13 +21,20 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REQUESTS_HPP
-#define REQUESTS_HPP
+#ifndef REYNTWEETSSETTINGS_HPP
+#define REYNTWEETSSETTINGS_HPP
 
-//#include "authentication/accesstokenoauthrequester.hpp"
-//#include "authentication/authenticateoauthrequester.hpp"
-//#include "authentication/authorizeoauthrequester.hpp"
-//#include "authentication/requesttokenoauthrequester.hpp"
-#include "searches/searchrequester.hpp"
+#include <QString>
 
-#endif // REQUESTS_HPP
+namespace ReynTweetsConfiguration {
+	/// @brief Reyn Tweets' consumer key
+	QString CONSUMER_KEY = "3p4Tw20gGGqvzqwWjJO4Zw";
+
+	/// @brief Reyn Tweets' consumer secret
+	QString CONSUMER_SECRET = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
+
+	/// @brief Reyn Tweets' callback URL
+	QString CALLBACK_URL = "http://code.google.com/p/reyn-tweets/";
+}
+
+#endif // REYNTWEETSSETTINGS_HPP

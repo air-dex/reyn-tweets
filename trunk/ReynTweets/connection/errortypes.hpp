@@ -45,9 +45,13 @@ enum ErrorType {
 	/// Twitter API.
 	API_CALL,
 
-	/// @brief Code indicating that there were an error while parsing results
+	/// @brief Code indicating that there was an error while parsing results
 	/// with <a href="http://qjson.sourceforge.net">QJson</a>.
-	QJSON_PARSING
+	QJSON_PARSING,
+
+	/// @brief Code indicating that there was an error while parsing results
+	/// of OAuth authentication.
+	OAUTH_PARSING
 };
 
 #endif // ERRORTYPES_HPP

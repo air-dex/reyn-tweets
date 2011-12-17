@@ -1,5 +1,5 @@
-/// @file requests.hpp
-/// @brief Header including all the request classes
+/// @file oauthrequester.hpp
+/// @brief Header of OAuthRequester
 /// @author Romain Ducher
 
 /*
@@ -18,16 +18,26 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REQUESTS_HPP
-#define REQUESTS_HPP
+#ifndef OAUTHREQUESTER_HPP
+#define OAUTHREQUESTER_HPP
 
-//#include "authentication/accesstokenoauthrequester.hpp"
-//#include "authentication/authenticateoauthrequester.hpp"
-//#include "authentication/authorizeoauthrequester.hpp"
-//#include "authentication/requesttokenoauthrequester.hpp"
-#include "searches/searchrequester.hpp"
+#include <QObject>
 
-#endif // REQUESTS_HPP
+/// @class OAuthRequester
+/// @brief Class managing requests with the Twitter API about OAuth
+class OAuthRequester : public QObject
+{
+		Q_OBJECT
+	public:
+		explicit OAuthRequester(QObject *parent = 0);
+
+	signals:
+
+	public slots:
+
+};
+
+#endif // OAUTHREQUESTER_HPP

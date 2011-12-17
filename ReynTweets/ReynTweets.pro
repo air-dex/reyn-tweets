@@ -45,7 +45,10 @@ SOURCES += \
 	connection/resultwrapper.cpp \
     connection/requestresult.cpp \
     connection/oauthmanager.cpp \
-    connection/requests/oauthrequester.cpp
+    connection/requests/authentication/accesstokenoauthrequester.cpp \
+    connection/requests/authentication/authenticateoauthrequester.cpp \
+    connection/requests/authentication/authorizeoauthrequester.cpp \
+    connection/requests/authentication/requesttokenoauthrequester.cpp
 
 HEADERS  += \
 	mainwindow.hpp \
@@ -59,7 +62,11 @@ HEADERS  += \
     connection/errortypes.hpp \
     connection/requestresult.hpp \
     connection/oauthmanager.hpp \
-    connection/requests/oauthrequester.hpp
+    connection/reyntweetssettings.hpp \
+    connection/requests/authentication/accesstokenoauthrequester.hpp \
+    connection/requests/authentication/authenticateoauthrequester.hpp \
+    connection/requests/authentication/authorizeoauthrequester.hpp \
+    connection/requests/authentication/requesttokenoauthrequester.hpp
 
 
 #-----------------------#

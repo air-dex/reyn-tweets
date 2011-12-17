@@ -21,14 +21,72 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "oauthmanager.hpp"
 #include <QCryptographicHash>
+#include "oauthmanager.hpp"
 
-OAuthManager::OAuthManager(QObject *parent) :
-	QObject(parent)
-{
-}
+// Constructor
+OAuthManager::OAuthManager(QString clientKey,
+						   QString clientSecret,
+						   QString clientUrl,
+						   QString signatureAlgorithm,
+						   QString version,
+						   QObject *parent) :
+	QObject(parent),
+	consumerKey(clientKey),
+	consumerSecret(clientSecret),
+	callbackUrl(clientUrl),
+	oauthSignatureMethod(signatureAlgorithm),
+	oauthVersion(version),
+	requestToken(""),
+	requestSecret(""),
+	accessToken(""),
+	tokenSecret(""),
+	oauthVerifier("")
+{}
 
+/////////////////////////////
+// 3-legged authentication //
+/////////////////////////////
+
+/// @fn void getRequestToken();
+/// @brief Getting temporary credentials
+bool OAuthManager::getRequestToken();
+
+/// @fn void authorize();
+/// @brief Enabling the application to use the Twitter account
+/// of the user.
+void OAuthManager::authorize();
+
+/// @fn void getRequestToken();
+/// @brief Getting Token credentials
+void OAuthManager::getAccessToken();
+
+////////////////////////////
+// Utilities for requests //
+////////////////////////////
+
+/// @fn QString signDatas(QByteArray datas);
+/// @brief Method for signing datas
+/// @param datas Datas to sign
+/// @return The signature of the given datas
+QString OAuthManager::signDatas(QByteArray datas);
+
+/// @fn QString getAuthorizationHeader();
+/// @brief Getting that will be written in the "Authorization" field
+/// of requests
+QString OAuthManager::getAuthorizationHeader();
+
+/// @fn QString generateNonce();
+/// @brief Generates a nonce for a request
+/// @return A nonce for a request.
+QString OAuthManager::generateNonce();
+
+/// @fn QString generateTimestamp();
+/// @brief Generates a timestamp for a request
+/// @return A timestamp corresponding to the current date.
+QString OAuthManager::generateTimestamp();
+
+// HMAC-SHA1 algorithm for signatures.
 QString OAuthManager::hmacSha1(QByteArray key, QByteArray baseString) {
 	int blockSize = 64; // HMAC-SHA-1 block size, defined in SHA-1 standard
 

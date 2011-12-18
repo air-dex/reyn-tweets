@@ -24,22 +24,20 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHMANAGER_HPP
 #define OAUTHMANAGER_HPP
 
-#include <QObject>
-#include "twittercommunicator.hpp"
+#include <QByteArray>
+#include <QString>
 #include "reyntweetssettings.hpp"
 
 /// @class OAuthManager
 /// @brief Class managing OAuth authentication to Twitter.
-class OAuthManager : public QObject
+class OAuthManager
 {
-		Q_OBJECT
 	public:
 		/// @fn OAuthManager(QString clientKey = ReynTweetsConfiguration::CONSUMER_KEY,
 		///			QString clientSecret = ReynTweetsConfiguration::CONSUMER_SECRET,
 		///			QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
 		///			QString signatureAlgorithm = "SHA-1",
-		///			QString version = "1.0",
-		///			QObject *parent = 0);
+		///			QString version = "1.0);
 		/// @brief Constructor
 		/// @param clientKey Consumer key of the application. Reyn Tweets'
 		/// consumer key is its default value.
@@ -50,32 +48,52 @@ class OAuthManager : public QObject
 		/// @param signatureAlgorithm Algorithm used for signing requests.
 		/// @param version Version of the OAuth protocol used for
 		/// authentication. Reyn Tweets uses OAuth 1.0.
-		/// @param parent Parent object
 		OAuthManager(QString clientKey = ReynTweetsConfiguration::CONSUMER_KEY,
 					 QString clientSecret = ReynTweetsConfiguration::CONSUMER_SECRET,
 					 QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
 					 QString signatureAlgorithm = "SHA-1",
-					 QString version = "1.0",
-					 QObject *parent = 0);
+					 QString version = "1.0");
 
-		/////////////////////////////
-		// 3-legged authentication //
-		/////////////////////////////
 
-		/// @fn bool getRequestToken();
-		/// @brief Getting temporary credentials
-		/// @return true if the callback URL is confirmed or if the HTTP return
-		/// code is 200 ("OK"), false otherwise.
-		bool getRequestToken();
+		/////////////////////
+		// Getters on data //
+		/////////////////////
 
-		/// @fn void authorize();
-		/// @brief Enabling the application to use the Twitter account
-		/// of the user.
-		void authorize();
+		/// @fn QString getCallbackUrl();
+		/// @brief Getter for callbackUrl
+		/// @return The callback URL
+		QString getCallbackUrl();
 
-		/// @fn void getRequestToken();
-		/// @brief Getting Token credentials
-		void getAccessToken();
+		/// @fn QString getConsumerKey();
+		/// @brief Getter for consumerKey
+		/// @return The consumer key
+		QString getConsumerKey();
+
+		/// @fn QString getSignatureMethod();
+		/// @brief Getter for oauthSignatureMethod
+		/// @return The Algorithm used for the signature
+		QString getSignatureMethod();
+
+		/// @fn QString getOAuthVersion();
+		/// @brief Getter for oauthVersion
+		/// @return The version of the OAuth protocol used
+		QString getOAuthVersion();
+
+		/// @fn QString getOAuthToken();
+		/// @brief Getter on the OAuth token
+		/// @return The value of the OAuth token
+		QString getOAuthToken();
+
+		/// @fn QString getOAuthSecret();
+		/// @brief Getter on the OAuth secret
+		/// @return The value of the OAuth secret
+		QString getOAuthSecret();
+
+		/// @fn QString getVerifier();
+		/// @brief Getter on the verifier
+		/// @return The verifier
+		QString getVerifier();
+
 
 		////////////////////////////
 		// Utilities for requests //
@@ -90,11 +108,7 @@ class OAuthManager : public QObject
 		/// @fn QString getAuthorizationHeader();
 		/// @brief Getting that will be written in the "Authorization" field
 		/// of requests
-		QString getAuthorizationHeader();
-
-	signals:
-
-	public slots:
+		QString getAuthorizationHeader(bool isRequestTokenRequest = false);
 
 	protected:
 		/// @brief Consumer key
@@ -125,10 +139,10 @@ class OAuthManager : public QObject
 		QString oauthVersion;
 
 		/// @brief Token used for requests
-		QString & oauthToken;
+		QString * oauthToken;
 
 		/// @brief Secret used for signatures
-		QString & oauthSecret;
+		QString * oauthSecret;
 
 		/// @brief Verifier for authentication
 		QString oauthVerifier;

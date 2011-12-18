@@ -30,6 +30,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
+										 bool authRequired,
+										 OAuthManager * authManager,
 										 ArgsMap getArgs,
 										 ArgsMap postArgs,
 										 QObject * parent) :
@@ -40,7 +42,9 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	postParameters(postArgs),
 	responseBuffer(""),
 	httpReturnCode(0),
-	httpReturnReason("Request not done")
+	httpReturnReason("Request not done"),
+	authenticationRequired(authRequired),
+	oauthManager(authManager)
 {}
 
 // Destructor
@@ -65,6 +69,15 @@ void TwitterCommunicator::executeRequest() {
 
 	// POST arguments
 	QByteArray postArgs = buildPostDatas();
+
+	// Building the authentication header if needed
+	if (authenticationRequired && oauthManager == 0) {
+		// Is it a RequestTokenRequest ?
+
+		// Bulding the header
+
+		// Insert the header
+	}
 
 	// Executing the request
 	if ("" == postArgs) {

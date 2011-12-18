@@ -27,9 +27,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
-#include "../twittercommunicator.hpp"
 #include "../errortypes.hpp"
 #include "../requestresult.hpp"
+#include "../twittercommunicator.hpp"
+#include "../twitterurls.hpp"
 
 /// @class GenericRequest
 /// @brief Base class for all the requesters. Parents of such requests are
@@ -39,11 +40,20 @@ class GenericRequester : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn GenericRequester(QObject * requester, QString url);
+		/// @fn GenericRequester(QObject * requester,
+		///						 QString url,
+		///						 bool authRequired,
+		///						 OAuthManager * authManager);
 		/// @brief Constructor
 		/// @param requester QObject which asks for this search0
 		/// @brief url URL called by the requester
-		GenericRequester(QObject * requester, QString url);
+		/// @param authRequired Boolean indicating if an authentication to the
+		/// Twitter API is required
+		/// @brief authManager Entity with information for OAuth
+		GenericRequester(QObject * requester,
+						 QString url,
+						 bool authRequired,
+						 OAuthManager * authManager);
 
 		/// @fn ~GenericRequester();
 		/// @brief Destructor.
@@ -88,6 +98,12 @@ class GenericRequester : public QObject
 		/// the request and get the raw result of it.
 		TwitterCommunicator * communicator;
 
+		/// @brief Boolean indicating if an authentication to Twitter is required
+		bool authenticationRequired;
+
+		/// @brief Entity with authentication information
+		OAuthManager * oauthManager;
+
 
 	//////////////////////////
 	// Treatment of results //
@@ -105,8 +121,7 @@ class GenericRequester : public QObject
 		/// (true) of if therewas an error (false).
 		void treatResults(bool ok);
 
-	private:
-		/// @fn QVariant parseResult(bool & parseOK);
+		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
@@ -115,7 +130,8 @@ class GenericRequester : public QObject
 		/// @return Parsed results
 		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 
-		/*
+
+	private:/*
 		/// @fn QVariant treatError();
 		/// @brief Method that will treat errors of the requests made by the
 		/// Twitter Communicator.

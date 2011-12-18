@@ -23,7 +23,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "oauthrequester.hpp"
 
-OAuthRequester::OAuthRequester(QObject *parent) :
-	QObject(parent)
-{
-}
+OAuthRequester::OAuthRequester(OAuthManager &authManager,
+							   QString url,
+							   QObject * requester = 0) :
+	GenericRequester(requester, url, true, &authManager)
+{}

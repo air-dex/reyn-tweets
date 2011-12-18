@@ -24,10 +24,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REQUESTS_HPP
 #define REQUESTS_HPP
 
-//#include "authentication/accesstokenoauthrequester.hpp"
-//#include "authentication/authenticateoauthrequester.hpp"
-//#include "authentication/authorizeoauthrequester.hpp"
-//#include "authentication/requesttokenoauthrequester.hpp"
+//#include "oauth/accesstokenoauthrequester.hpp"
+//#include "oauth/authenticateoauthrequester.hpp"
+//#include "oauth/authorizeoauthrequester.hpp"
+//#include "oauth/requesttokenoauthrequester.hpp"
 #include "searches/searchrequester.hpp"
 
 #endif // REQUESTS_HPP

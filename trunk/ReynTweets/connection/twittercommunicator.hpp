@@ -30,6 +30,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QByteArray>
 #include <QUrl>
 #include <QMap>
+#include "oauthmanager.hpp"
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
@@ -46,15 +47,23 @@ class TwitterCommunicator : public QObject
 
 	public:
 		/// @fn TwitterCommunicator(QString url,
-		///			ArgsMap getArgs = ArgsMap(),
-		///			ArgsMap postArgs = ArgsMap(),
-		///			QObject * parent = 0);
+		///							bool authRequired,
+		///							OAuthManager * authManager,
+		///							ArgsMap getArgs = ArgsMap(),
+		///							ArgsMap postArgs = ArgsMap(),
+		///							QObject * parent = 0);
 		/// @brief Constructor
 		/// @param url String representation of the URL
+		/// @param authRequired Boolean indicating whether an authentication
+		/// is required for the request
+		/// @param authManager The authentication manager. A pointer is kept
+		/// for cases where an authentication is not required
 		/// @param getArgs GET arguments
 		/// @param postArgs POST arguments
 		/// @param parent Parent Qobject
-		TwitterCommunicator(QString url = "http://api.twitter.com",
+		TwitterCommunicator(QString url,
+							bool authRequired,
+							OAuthManager * authManager,
 							ArgsMap getArgs = ArgsMap(),
 							ArgsMap postArgs = ArgsMap(),
 							QObject * parent = 0);
@@ -133,6 +142,12 @@ class TwitterCommunicator : public QObject
 
 		/// @brief HHTP return reason
 		QString httpReturnReason;
+
+		/// @brief Boolean indicating if an authentication to Twitter is required
+		bool authenticationRequired;
+
+		/// @brief Entity with authentication information
+		OAuthManager & oauthManager;
 
 
 	private:

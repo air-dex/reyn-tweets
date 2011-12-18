@@ -30,7 +30,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Protected constructor
 ReynTwitterCalls::ReynTwitterCalls() :
 	QObject(),
-	requesterManager()
+	requesterManager(),
+	oauthManager()
 {}
 
 // Init the unique instance
@@ -93,4 +94,11 @@ void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
 	SearchRequester * requester = new SearchRequester(requestDemander, q);
 	executeRequest(requester);
+}
+
+
+// OAuth
+// Method for getting a request token
+void requestToken(QObject * requestDemander) {
+
 }

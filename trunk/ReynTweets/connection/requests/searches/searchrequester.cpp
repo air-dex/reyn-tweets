@@ -23,11 +23,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QJson/Parser>
 #include "searchrequester.hpp"
-#include "../twitterurls.hpp"
 
 // Constructor
 SearchRequester::SearchRequester(QObject * requester, QString q) :
-	GenericRequester(requester, TwitterRequestUrl::SEARCH_URL),
+	GenericRequester(requester, TwitterRequestUrl::SEARCH_URL, false, 0),
 	query(q)
 {}
 

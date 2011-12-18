@@ -29,9 +29,7 @@ OAuthManager::OAuthManager(QString clientKey,
 						   QString clientSecret,
 						   QString clientUrl,
 						   QString signatureAlgorithm,
-						   QString version,
-						   QObject *parent) :
-	QObject(parent),
+						   QString version) :
 	consumerKey(clientKey),
 	consumerSecret(clientSecret),
 	callbackUrl(clientUrl),
@@ -41,50 +39,75 @@ OAuthManager::OAuthManager(QString clientKey,
 	requestSecret(""),
 	accessToken(""),
 	tokenSecret(""),
+	oauthToken(0),
+	oauthSecret(0),
 	oauthVerifier("")
 {}
 
-/////////////////////////////
-// 3-legged authentication //
-/////////////////////////////
 
-/// @fn void getRequestToken();
-/// @brief Getting temporary credentials
-bool OAuthManager::getRequestToken();
+/////////////////////
+// Getters on data //
+/////////////////////
 
-/// @fn void authorize();
-/// @brief Enabling the application to use the Twitter account
-/// of the user.
-void OAuthManager::authorize();
+// Getter for callbackUrl
+QString OAuthManager::getCallbackUrl() {
+	return callbackUrl;
+}
 
-/// @fn void getRequestToken();
-/// @brief Getting Token credentials
-void OAuthManager::getAccessToken();
+// Getter for consumerKey
+QString OAuthManager::getConsumerKey() {
+	return consumerKey;
+}
+
+// Getter for oauthSignatureMethod
+QString OAuthManager::getSignatureMethod() {
+	return oauthSignatureMethod;
+}
+
+// Getter for oauthVersion
+QString OAuthManager::getOAuthVersion() {
+	return oauthVersion;
+}
+
+// Getter on the OAuthToken
+QString OAuthManager::getOAuthToken() {
+	return oauthToken == 0 ? "" : *oauthToken;
+}
+
+// Getter on the OAuth secret
+QString OAuthManager::getOAuthSecret() {
+	return oauthSecret == 0 ? "" : *oauthSecret;
+}
+
+// Getter on the verifier
+QString OAuthManager::getVerifier() {
+	return oauthVerifier;
+}
+
 
 ////////////////////////////
 // Utilities for requests //
 ////////////////////////////
 
-/// @fn QString signDatas(QByteArray datas);
-/// @brief Method for signing datas
-/// @param datas Datas to sign
-/// @return The signature of the given datas
-QString OAuthManager::signDatas(QByteArray datas);
+// Signing datas
+QString OAuthManager::signDatas(QByteArray datas) {
+	return ;
+}
 
-/// @fn QString getAuthorizationHeader();
-/// @brief Getting that will be written in the "Authorization" field
-/// of requests
-QString OAuthManager::getAuthorizationHeader();
+// Getting the "Authorization" header
+QString OAuthManager::getAuthorizationHeader(bool isRequestTokenRequest) {
+	return ;
+}
 
-/// @fn QString generateNonce();
-/// @brief Generates a nonce for a request
-/// @return A nonce for a request.
-QString OAuthManager::generateNonce();
+// Generates a nonce for a request
+QString OAuthManager::generateNonce() {
+	return ;
+}
 
-/// @fn QString generateTimestamp();
-/// @brief Generates a timestamp for a request
-/// @return A timestamp corresponding to the current date.
-QString OAuthManager::generateTimestamp();
+// Generates a timestamp for a request
+QString OAuthManager::generateTimestamp() {
+	return ;
+}
 
 // HMAC-SHA1 algorithm for signatures.
 QString OAuthManager::hmacSha1(QByteArray key, QByteArray baseString) {

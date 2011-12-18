@@ -70,6 +70,9 @@ class ReynTwitterCalls : public QObject
 		/// @brief Entity which manages requests that are running
 		QMap<QUuid, GenericRequester *> requesterManager;
 
+		/// @brief OAuth information
+		OAuthManager oauthManager;
+
 	private:
 		/// @fn void addRequester(GenericRequester * requester);
 		/// @brief Adding a requester to the requester manager
@@ -96,12 +99,22 @@ class ReynTwitterCalls : public QObject
 	/////////////////////////////
 	// Methods calling Twitter //
 	/////////////////////////////
+
 	public:
-		/// @fn static void search(QString q);
+		// Searches
+		/// @fn void search(QObject * requestDemander, QString q);
 		/// @brief Method that launch searches
 		/// @param requestDemander QObject which asks for the request
 		/// @param q The query
 		void search(QObject * requestDemander, QString q);
+
+
+		// OAuth requests
+
+		/// @fn void requestToken(QObject * requestDemander);
+		/// @brief Method for getting a request token
+		/// @param requestDemander QObject which asks for the request
+		void requestToken(QObject * requestDemander);
 };
 
 #endif // REYNTWITTERCALLS_HPP

@@ -25,13 +25,15 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "genericrequester.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(QObject * requester, QString url) :
+GenericRequester::GenericRequester(QObject * requester, QString url, bool authRequired, OAuthManager *authManager) :
 	QObject(requester),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
 	getParameters(),
 	postParameters(),
 	communicator(0),
+	authenticationRequired(authRequired),
+	oauthManager(authManager),
 	requestResult()
 {}
 
@@ -72,7 +74,10 @@ void GenericRequester::executeRequest() {
 	// Executing the request
 	communicator = new TwitterCommunicator(requestURL,
 										   getParameters,
-										   postParameters);
+										   postParameters,
+										   authenticationRequired,
+										   oauthManager,
+										   this);
 	connect(communicator, SIGNAL(requestDone(bool)),
 			this, SLOT(treatResults(bool)));
 	communicator->executeRequest();

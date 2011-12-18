@@ -41,14 +41,15 @@ SOURCES += \
 	connection/twittercommunicator.cpp \
 	connection/reyntwittercalls.cpp \
 	connection/requests/genericrequester.cpp \
-	connection/requests/searchrequester.cpp \
+	connection/requests/searches/searchrequester.cpp \
 	connection/resultwrapper.cpp \
-    connection/requestresult.cpp \
-    connection/oauthmanager.cpp \
-    connection/requests/authentication/accesstokenoauthrequester.cpp \
-    connection/requests/authentication/authenticateoauthrequester.cpp \
-    connection/requests/authentication/authorizeoauthrequester.cpp \
-    connection/requests/authentication/requesttokenoauthrequester.cpp
+	connection/requestresult.cpp \
+	connection/oauthmanager.cpp \
+	connection/requests/oauth/accesstokenoauthrequester.cpp \
+	connection/requests/oauth/authenticateoauthrequester.cpp \
+	connection/requests/oauth/authorizeoauthrequester.cpp \
+    connection/requests/oauth/oauthrequester.cpp \
+    connection/requests/oauth/requesttokenrequester.cpp
 
 HEADERS  += \
 	mainwindow.hpp \
@@ -57,16 +58,17 @@ HEADERS  += \
 	connection/reyntwittercalls.hpp \
 	connection/requests/requests.hpp \
 	connection/requests/genericrequester.hpp \
-	connection/requests/searchrequester.hpp \
+	connection/requests/searches/searchrequester.hpp \
 	connection/resultwrapper.hpp \
-    connection/errortypes.hpp \
-    connection/requestresult.hpp \
-    connection/oauthmanager.hpp \
-    connection/reyntweetssettings.hpp \
-    connection/requests/authentication/accesstokenoauthrequester.hpp \
-    connection/requests/authentication/authenticateoauthrequester.hpp \
-    connection/requests/authentication/authorizeoauthrequester.hpp \
-    connection/requests/authentication/requesttokenoauthrequester.hpp
+	connection/errortypes.hpp \
+	connection/requestresult.hpp \
+	connection/oauthmanager.hpp \
+	connection/reyntweetssettings.hpp \
+	connection/requests/oauth/accesstokenoauthrequester.hpp \
+	connection/requests/oauth/authenticateoauthrequester.hpp \
+	connection/requests/oauth/authorizeoauthrequester.hpp \
+    connection/requests/oauth/oauthrequester.hpp \
+    connection/requests/oauth/requesttokenrequester.hpp
 
 
 #-----------------------#

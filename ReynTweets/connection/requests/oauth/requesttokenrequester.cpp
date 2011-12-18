@@ -1,5 +1,5 @@
-/// @file oauthrequester.hpp
-/// @brief Header of OAuthRequester
+/// @file requesttokenrequester.cpp
+/// @brief Implementation of RequestTokenRequester
 /// @author Romain Ducher
 
 /*
@@ -21,23 +21,20 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OAUTHREQUESTER_HPP
-#define OAUTHREQUESTER_HPP
+#include "requesttokenrequester.hpp"
 
-#include <QObject>
+RequestTokenRequester::RequestTokenRequester(OAuthManager & authManager,
+											 QObject *requester) :
+	OAuthRequester(authManager,
+				   TwitterRequestUrl::REQUEST_TOKEN_URL,
+				   requester)
+{}
 
-/// @class OAuthRequester
-/// @brief Class managing requests with the Twitter API about OAuth
-class OAuthRequester : public QObject
-{
-		Q_OBJECT
-	public:
-		explicit OAuthRequester(QObject *parent = 0);
+// Building GET Parameters
+void RequestTokenRequester::buildGETParameters() {}
 
-	signals:
+// Building POST Parameters
+void RequestTokenRequester::buildPOSTParameters() {}
 
-	public slots:
-
-};
-
-#endif // OAUTHREQUESTER_HPP
+// Parse the raw results of the request.
+QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors);

@@ -10,6 +10,7 @@ Où en est Reyn Tweets ?
   * Parsage des résultats de l'API Twitter avec QJSON.
   * Traitement des cas d'erreur.
   * Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
+  * Passage à QtCreator 2.4.0 : vérifier qu'il n'y a pas eu de problèmes.
   * _Authentification avec OAuth :_
     * Comprendre OAuth
     * Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?) : pas de librairies annexe afin de pouvoir réutiliser le Twitter Communicator

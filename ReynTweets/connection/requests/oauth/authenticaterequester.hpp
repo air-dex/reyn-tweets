@@ -1,5 +1,5 @@
-/// @file oauthrequester.cpp
-/// @brief Implementation of OAuthRequester
+/// @file authenticaterequester.hpp
+/// @brief Header of AuthenticateRequester
 /// @author Romain Ducher
 
 /*
@@ -21,9 +21,23 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef AUTHENTICATEREQUESTER_HPP
+#define AUTHENTICATEREQUESTER_HPP
+
 #include "oauthrequester.hpp"
 
-OAuthRequester::OAuthRequester(QObject *parent) :
-	QObject(parent)
+/// @class AuthenticateRequester
+/// @brief Requester for OAuth authentication
+class AuthenticateRequester : public OAuthRequester
 {
-}
+		Q_OBJECT
+	public:
+		AuthenticateRequester(QObject *parent = 0);
+
+	signals:
+
+	public slots:
+
+};
+
+#endif // AUTHENTICATEREQUESTER_HPP

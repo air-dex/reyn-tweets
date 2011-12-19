@@ -31,6 +31,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QUrl>
 #include <QMap>
 #include "oauthmanager.hpp"
+#include "requesttype.hpp"
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
@@ -47,6 +48,7 @@ class TwitterCommunicator : public QObject
 
 	public:
 		/// @fn TwitterCommunicator(QString url,
+		///							RequestType type,
 		///							bool authRequired,
 		///							OAuthManager * authManager,
 		///							ArgsMap getArgs = ArgsMap(),
@@ -54,6 +56,7 @@ class TwitterCommunicator : public QObject
 		///							QObject * parent = 0);
 		/// @brief Constructor
 		/// @param url String representation of the URL
+		/// @param type Type of the request (GET ou POST).
 		/// @param authRequired Boolean indicating whether an authentication
 		/// is required for the request
 		/// @param authManager The authentication manager. A pointer is kept
@@ -62,6 +65,7 @@ class TwitterCommunicator : public QObject
 		/// @param postArgs POST arguments
 		/// @param parent Parent Qobject
 		TwitterCommunicator(QString url,
+							RequestType type,
 							bool authRequired,
 							OAuthManager * authManager,
 							ArgsMap getArgs = ArgsMap(),
@@ -119,6 +123,9 @@ class TwitterCommunicator : public QObject
 		/// @brief URL of the service
 		QString serviceURL;
 
+		/// @brief Request type
+		RequestType requestType;
+
 		/// @brief GET datas
 		ArgsMap getParameters;
 
@@ -147,7 +154,7 @@ class TwitterCommunicator : public QObject
 		bool authenticationRequired;
 
 		/// @brief Entity with authentication information
-		OAuthManager & oauthManager;
+		OAuthManager * oauthManager;
 
 
 	private:

@@ -1,5 +1,5 @@
-/// @file oauthrequester.hpp
-/// @brief Header of OAuthRequester
+/// @file requesttype.hpp
+/// @brief Header of RequestType
 /// @author Romain Ducher
 
 /*
@@ -21,23 +21,31 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OAUTHREQUESTER_HPP
-#define OAUTHREQUESTER_HPP
+#ifndef REQUESTTYPE_HPP
+#define REQUESTTYPE_HPP
 
-#include <QObject>
+#include <QString>
 
-/// @class OAuthRequester
-/// @brief Class managing requests with the Twitter API about OAuth
-class OAuthRequester : public QObject
-{
-		Q_OBJECT
-	public:
-		explicit OAuthRequester(QObject *parent = 0);
-
-	signals:
-
-	public slots:
-
+/// @enum RequestType
+/// @brief Enum indicating the type of the request
+enum RequestType {
+	GET,
+	POST
 };
 
-#endif // OAUTHREQUESTER_HPP
+/// @fn QString requestTypeToString(RequestType type)
+/// @brief Converting a RequestType into a QString
+/// @param type The RequestType
+/// @return The corresponding QString
+QString requestTypeToString(RequestType type) {
+	switch (type) {
+		case GET:
+			return "GET";
+		case POST:
+			return "POST";
+		default:
+			return "";
+	}
+}
+
+#endif // REQUESTTYPE_HPP

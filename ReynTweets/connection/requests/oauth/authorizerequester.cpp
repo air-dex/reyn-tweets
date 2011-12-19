@@ -1,5 +1,5 @@
-/// @file oauthrequester.cpp
-/// @brief Implementation of OAuthRequester
+/// @file authorizerequester.cpp
+/// @brief Implementation of AuthorizeRequester
 /// @author Romain Ducher
 
 /*
@@ -21,9 +21,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "oauthrequester.hpp"
+#include "authorizerequester.hpp"
 
-OAuthRequester::OAuthRequester(QObject *parent) :
+AuthorizeRequester::AuthorizeRequester(QObject *parent) :
 	QObject(parent)
 {
 }

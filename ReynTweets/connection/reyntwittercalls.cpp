@@ -98,7 +98,10 @@ void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
 
 
 // OAuth
-// Method for getting a request token
-void requestToken(QObject * requestDemander) {
 
+// Method for getting a request token
+void ReynTwitterCalls::requestToken(QObject * requestDemander) {
+	RequestTokenRequester * requester = new RequestTokenRequester(oauthManager,
+																  requestDemander);
+	executeRequest(requester);
 }

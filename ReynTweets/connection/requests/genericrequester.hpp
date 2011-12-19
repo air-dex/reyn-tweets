@@ -41,19 +41,28 @@ class GenericRequester : public QObject
 
 	public:
 		/// @fn GenericRequester(QObject * requester,
+		///						 RequestType type,
 		///						 QString url,
 		///						 bool authRequired,
-		///						 OAuthManager * authManager);
+		///						 OAuthManager * authManager,
+		///						 ErrorType parseError = QJSON_PARSING);
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search0
-		/// @brief url URL called by the requester
+		/// @param requester QObject which asks for this search.
+		/// @param type Type of the request (GET ou POST).
+		/// @param url URL called by the requester
 		/// @param authRequired Boolean indicating if an authentication to the
 		/// Twitter API is required
-		/// @brief authManager Entity with information for OAuth
+		/// @param authManager Entity with information for OAuth
+		/// @param parseError Error type if an error occurs while parsing. Most
+		/// of the time, this value is set to QJSON_PARSING because results are
+		/// QJson stream parsed with QJson. However, OAuth requesters use their
+		/// own parsing process so they need a special value called OAUTH_PARSING.
 		GenericRequester(QObject * requester,
+						 RequestType type,
 						 QString url,
 						 bool authRequired,
-						 OAuthManager * authManager);
+						 OAuthManager * authManager,
+						 ErrorType parseError = QJSON_PARSING);
 
 		/// @fn ~GenericRequester();
 		/// @brief Destructor.
@@ -80,6 +89,9 @@ class GenericRequester : public QObject
 		/// @brief URL called by the requester
 		QString requestURL;
 
+		/// @brief Request type
+		RequestType requestType;
+
 		/// @brief GET parameters that will be passed to the Communicator.
 		ArgsMap getParameters;
 
@@ -104,6 +116,8 @@ class GenericRequester : public QObject
 		/// @brief Entity with authentication information
 		OAuthManager * oauthManager;
 
+		/// @brief Type of parsing error
+		ErrorType parsingErrorType;
 
 	//////////////////////////
 	// Treatment of results //

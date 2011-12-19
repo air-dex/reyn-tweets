@@ -30,6 +30,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
+										 RequestType type,
 										 bool authRequired,
 										 OAuthManager * authManager,
 										 ArgsMap getArgs,
@@ -38,6 +39,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	QObject(parent),
 	networkManager(),
 	serviceURL(url),
+	requestType(type),
 	getParameters(getArgs),
 	postParameters(postArgs),
 	responseBuffer(""),
@@ -58,35 +60,49 @@ TwitterCommunicator::~TwitterCommunicator() {}
 void TwitterCommunicator::executeRequest() {
 	// GET arguments
 	QString getArgs = buildGetDatas();
+	bool areGetArgsEmpty = "" == postArgs;
 
 	// Adding the potential GET arguments at the end of the URL
-	if ("" != getArgs) {
+	if (!areGetArgsEmpty) {
 		getArgs.prepend('?');
 		serviceURL.append(getArgs);
 	}
 
+
 	QNetworkRequest request(serviceURL);
+
 
 	// POST arguments
 	QByteArray postArgs = buildPostDatas();
+	bool arePostArgsEmpty = "" == postArgs;
+
 
 	// Building the authentication header if needed
 	if (authenticationRequired && oauthManager == 0) {
 		// Is it a RequestTokenRequest ?
+		bool isRequestTokenRequest = oauthManager->getOAuthToken().isEmpty();
 
-		// Bulding the header
+		// Bulding the Authorization header
+		QByteArray authHeader = oauthManager->getAuthorizationHeader(requestType,
+																	 serviceURL,
+																	 getArgs,
+																	 postArgs,
+																	 isRequestTokenRequest);
 
 		// Insert the header
+		request.setRawHeader("Authorization", authHeader);
 	}
 
+
 	// Executing the request
-	if ("" == postArgs) {
+	if (arePostArgsEmpty) {
 		// There is not any POST arguments -> networkManager.get()
 		reply = networkManager.get(request);
 	} else {
 		// There is some POST arguments -> networkManager.post()
 		reply = networkManager.post(request, postArgs);
 	}
+
 
 	// Connecting the reply
 	connect(reply, SIGNAL(finished()), this, SLOT(endRequest()));

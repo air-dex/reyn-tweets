@@ -1,5 +1,5 @@
-/// @file oauthrequester.cpp
-/// @brief Implementation of OAuthRequester
+/// @file authorizerequester.hpp
+/// @brief Header of AuthorizeRequester
 /// @author Romain Ducher
 
 /*
@@ -21,11 +21,24 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef AUTHORIZEREQUESTER_HPP
+#define AUTHORIZEREQUESTER_HPP
+
 #include "oauthrequester.hpp"
 
-// Constructor
-OAuthRequester::OAuthRequester(OAuthManager & authManager,
-							   RequestType type,
-							   QString url = 0, QObject *requester) :
-	GenericRequester(requester, type, url, true, &authManager, OAUTH_PARSING)
-{}
+/// @class AuthorizeRequester
+/// @brief Requester for OAuth authentication
+class AuthorizeRequester : public OAuthRequester
+{
+	Q_OBJECT
+
+	public:
+		AuthorizeRequester(QObject *parent = 0);
+
+	signals:
+
+	public slots:
+
+};
+
+#endif // AUTHORIZEREQUESTER_HPP

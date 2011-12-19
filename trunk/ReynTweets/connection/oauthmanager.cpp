@@ -22,6 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QCryptographicHash>
+#include <QDateTime>
+#include <QUrl>
 #include "oauthmanager.hpp"
 
 // Constructor
@@ -35,12 +37,8 @@ OAuthManager::OAuthManager(QString clientKey,
 	callbackUrl(clientUrl),
 	oauthSignatureMethod(signatureAlgorithm),
 	oauthVersion(version),
-	requestToken(""),
-	requestSecret(""),
-	accessToken(""),
-	tokenSecret(""),
-	oauthToken(0),
-	oauthSecret(0),
+	oauthToken(""),
+	oauthSecret(""),
 	oauthVerifier("")
 {}
 
@@ -54,34 +52,19 @@ QString OAuthManager::getCallbackUrl() {
 	return callbackUrl;
 }
 
-// Getter for consumerKey
-QString OAuthManager::getConsumerKey() {
-	return consumerKey;
+// Setter on the OAuth token
+void OAuthManager::setOAuthToken(QString oauthToken) {
+	this->oauthToken = oauthToken;
 }
 
-// Getter for oauthSignatureMethod
-QString OAuthManager::getSignatureMethod() {
-	return oauthSignatureMethod;
+// Setter on the OAuth secret
+void OAuthManager::setOAuthSecret(QString oauthSecret) {
+	this->oauthSecret = oauthSecret;
 }
 
-// Getter for oauthVersion
-QString OAuthManager::getOAuthVersion() {
-	return oauthVersion;
-}
-
-// Getter on the OAuthToken
-QString OAuthManager::getOAuthToken() {
-	return oauthToken == 0 ? "" : *oauthToken;
-}
-
-// Getter on the OAuth secret
-QString OAuthManager::getOAuthSecret() {
-	return oauthSecret == 0 ? "" : *oauthSecret;
-}
-
-// Getter on the verifier
-QString OAuthManager::getVerifier() {
-	return oauthVerifier;
+// Setter on the verifier
+void OAuthManager::setVerifier(QString verifier) {
+	this->verifier = verifier;
 }
 
 
@@ -89,24 +72,231 @@ QString OAuthManager::getVerifier() {
 // Utilities for requests //
 ////////////////////////////
 
-// Signing datas
-QString OAuthManager::signDatas(QByteArray datas) {
-	return ;
+// Getting the "Authorization" header
+QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
+												QString baseURL,
+												QString getDatas,
+												QString postDatas,
+												bool isRequestTokenRequest)
+{
+	QString authorizationHeader = "OAuth ";
+	QString formattedParamString;
+	QString nonce = generateNonce();
+	QString timestamp = generateTimestamp();
+	QString signature = signDatas(type,
+								  baseURL,
+								  getDatas,
+								  postDatas,
+								  nonce,
+								  timestamp,
+								  isRequestTokenRequest);
+
+	// oauth_callback
+	if (isRequestTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_callback",
+												callbackUrl,
+												true);
+		authorizationHeader.append(formattedParamString);
+		authorizationHeader.append(", ");
+	}
+
+	// oauth_consumer_key
+	formattedParamString = formatOAuthParam("oauth_consumer_key",
+											consumerKey,
+											true);
+	authorizationHeader.append(formattedParamString);
+	authorizationHeader.append(", ");
+
+	// oauth_nonce
+	formattedParamString = formatOAuthParam("oauth_nonce",
+											nonce,
+											true);
+	authorizationHeader.append(formattedParamString);
+	authorizationHeader.append(", ");
+
+	// oauth_signature
+	formattedParamString = formatOAuthParam("oauth_signature",
+											signature,
+											true);
+	authorizationHeader.append(formattedParamString);
+	authorizationHeader.append(", ");
+
+	// oauth_signature_method
+	formattedParamString = formatOAuthParam("oauth_signature_method",
+											oauthSignatureMethod,
+											true);
+	authorizationHeader.append(formattedParamString);
+	authorizationHeader.append(", ");
+
+	// oauth_timestamp
+	formattedParamString = formatOAuthParam("oauth_timestamp",
+											timestamp,
+											true);
+	authorizationHeader.append(formattedParamString);
+	authorizationHeader.append(", ");
+
+	// oauth_token
+	if (!isRequestTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_token",
+												oauthToken,
+												true);
+		authorizationHeader.append(formattedParamString);
+		authorizationHeader.append(", ");
+	}
+
+	// oauth_version
+	formattedParamString = formatOAuthParam("oauth_version",
+											oauthVersion,
+											true);
+	authorizationHeader.append(formattedParamString);
+
+	return authorizationHeader;
 }
 
-// Getting the "Authorization" header
-QString OAuthManager::getAuthorizationHeader(bool isRequestTokenRequest) {
-	return ;
+// Formatting parameters in the Authorization header
+QString OAuthManager::formatOAuthParam(QString name, QString value, bool putDoubleQuotes) {
+	QString res = "";
+	QByteArray percentEncoded;
+
+	// Percent encoding the name
+	percentEncoded = QUrl::toPercentEncoding(name);
+	res.append(percentEncoded);
+
+	res.append('=');
+	if (putDoubleQuotes) {
+		res.append('"');
+	}
+
+	// Percent encoding the value
+	percentEncoded = QUrl::toPercentEncoding(value);
+	res.append(percentEncoded);
+
+	if (putDoubleQuotes) {
+		res.append('"');
+	}
+
+	return res;
 }
 
 // Generates a nonce for a request
 QString OAuthManager::generateNonce() {
-	return ;
+	QString base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int baseLength = base.length();
+
+	QString randomString = "";
+	int randomStringLength = 32;
+
+	// Taking random word characters
+	for (int i = 0; i < randomStringLength; ++i) {
+		int position = int(baseLength * double(qrand())/double(RAND_MAX));
+		randomString.append(base.at(position));
+	}
+
+	QByteArray encodedNonce = randomString.toAscii().toBase64();
+
+	return QString(encodedNonce);
 }
 
 // Generates a timestamp for a request
 QString OAuthManager::generateTimestamp() {
-	return ;
+	qint64 timestamp = QDateTime::currentMSecsSinceEpoch();
+	return QString::number(timestamp);
+}
+
+// Signing datas
+QString OAuthManager::signDatas(RequestType type,
+								QString baseURL,
+								QString getDatas,
+								QString postDatas,
+								QString nonce,
+								QString timestamp,
+								bool isRequestTokenRequest)
+{
+	// Building the key
+	QString key = "";
+
+	key.append(consumerSecret);
+	key.append('&');
+	key.append(oauthSecret);
+
+
+	// Building that will be signed
+
+	// Parameter string
+	QString parameterString = getArgs;
+	QString formattedParamString;
+
+	if ("" != getDatas && "" != postDatas) {
+		parameterString.append('&');
+	}
+
+	parameterString.append(postArgs);
+
+	// Appending OAuth arguments
+
+	// oauth_callback
+	if (isRequestTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_callback",
+												callbackUrl,
+												false);
+		authorizationHeader.append(formattedParamString);
+		authorizationHeader.append(", ");
+	}
+
+	// oauth_consumer_key
+	formattedParamString = formatOAuthParam("oauth_consumer_key",
+											consumerKey,
+											false);
+	parameterString.append(formattedParamString);
+	parameterString.append('&');
+
+	// oauth_nonce
+	formattedParamString = formatOAuthParam("oauth_nonce",
+											nonce,
+											false);
+	parameterString.append(formattedParamString);
+	parameterString.append('&');
+
+	// oauth_signature_method
+	formattedParamString = formatOAuthParam("oauth_signature_method",
+											oauthSignatureMethod,
+											false);
+	parameterString.append(formattedParamString);
+	parameterString.append('&');
+
+	// oauth_timestamp
+	formattedParamString = formatOAuthParam("oauth_timestamp",
+											timestamp,
+											false);
+	parameterString.append(formattedParamString);
+	parameterString.append('&');
+
+	// oauth_token
+	if (!isRequestTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_token",
+												oauthToken,
+												false);
+		parameterString.append(formattedParamString);
+		parameterString.append('&');
+	}
+
+	// oauth_version
+	formattedParamString = formatOAuthParam("oauth_version",
+											oauthVersion,
+											false);
+	parameterString.append(formattedParamString);
+
+
+	// Building the base String
+	QByteArray toSign = "";
+
+	toSign.append(requestTypeToString(type).toAscii());
+	toSign.append('&');
+	toSign.append(QUrl::toPercentEncoding(baseURL));
+	toSign.append('&');
+	toSign.append(QUrl::toPercentEncoding(parameterString));
+
+	return hmacSha1(key, toSign);
 }
 
 // HMAC-SHA1 algorithm for signatures.

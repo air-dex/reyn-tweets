@@ -34,19 +34,19 @@ class OAuthRequester : public GenericRequester
 
 	public:
 		/// @fn OAuthRequester(OAuthManager & authManager,
+		///					   RequestType type,
 		///					   QString url,
 		///					   QObject * requester = 0);
 		/// @brief Constructor
-		/// @param authManager Information for OAuth. It has to be not null
+		/// @param authManager Information for OAuth. The requester takes its
+		/// memory address.
+		/// @param type Type of the request (GET ou POST).
 		/// @param url URL of the request
 		/// @param requester QObject which asks for this search.
 		OAuthRequester(OAuthManager & authManager,
+					   RequestType type,
 					   QString url,
 					   QObject * requester = 0);
-
-	protected:
-		/// @brief Information for authentication with OAuth
-		OAuthManager & oauthManager;
 };
 
 #endif // OAUTHREQUESTER_HPP

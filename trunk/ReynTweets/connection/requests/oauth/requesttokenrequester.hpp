@@ -52,7 +52,11 @@ class RequestTokenRequester : public OAuthRequester
 		void buildPOSTParameters();
 
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
-		/// @brief Method that will parse the raw results of the request.
+		/// @brief Method that will parse the raw results of the request. For
+		/// this kind of request, results look like :<br/>
+		/// oauth_token=<value of the request token>&
+		/// oauth_token_secret=<value of the request secret>&
+		/// oauth_callback_confirmed=<true or false>
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about

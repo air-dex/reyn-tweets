@@ -25,7 +25,11 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "genericrequester.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(QObject * requester, QString url, bool authRequired, OAuthManager *authManager) :
+GenericRequester::GenericRequester(QObject * requester,
+								   QString url,
+								   bool authRequired,
+								   OAuthManager *authManager,
+								   ErrorType parseError = QJSON_PARSING) :
 	QObject(requester),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
@@ -34,6 +38,7 @@ GenericRequester::GenericRequester(QObject * requester, QString url, bool authRe
 	communicator(0),
 	authenticationRequired(authRequired),
 	oauthManager(authManager),
+	parsingErrorType(),
 	requestResult()
 {}
 
@@ -97,7 +102,7 @@ void GenericRequester::treatResults(bool ok) {
 	if (ok) {
 		bool parseOK;
 		parsedResults = parseResult(parseOK, parsingErrorInfos);
-		errorType = parseOK ? NO_ERROR : QJSON_PARSING;
+		errorType = parseOK ? NO_ERROR : parsingErrorType;
 	} else {
 		errorType = API_CALL;
 		//treatError();

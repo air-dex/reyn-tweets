@@ -40,35 +40,36 @@ SOURCES += \
 	mainwindow.cpp \
 	connection/twittercommunicator.cpp \
 	connection/reyntwittercalls.cpp \
-	connection/requests/genericrequester.cpp \
-	connection/requests/searches/searchrequester.cpp \
 	connection/resultwrapper.cpp \
 	connection/requestresult.cpp \
+	connection/requests/genericrequester.cpp \
+	connection/requests/searches/searchrequester.cpp \
 	connection/oauthmanager.cpp \
-	connection/requests/oauth/accesstokenoauthrequester.cpp \
-	connection/requests/oauth/authenticateoauthrequester.cpp \
-	connection/requests/oauth/authorizeoauthrequester.cpp \
-    connection/requests/oauth/oauthrequester.cpp \
-    connection/requests/oauth/requesttokenrequester.cpp
+	connection/requests/oauth/oauthrequester.cpp \
+	connection/requests/oauth/requesttokenrequester.cpp #\
+#	connection/requests/oauth/accesstokenrequester.cpp #\
+#	connection/requests/oauth/authenticaterequester.cpp #\
+#	connection/requests/oauth/authorizerequester.cpp
 
 HEADERS  += \
 	mainwindow.hpp \
 	connection/twittercommunicator.hpp \
 	connection/twitterurls.hpp \
 	connection/reyntwittercalls.hpp \
-	connection/requests/requests.hpp \
-	connection/requests/genericrequester.hpp \
-	connection/requests/searches/searchrequester.hpp \
 	connection/resultwrapper.hpp \
 	connection/errortypes.hpp \
 	connection/requestresult.hpp \
 	connection/oauthmanager.hpp \
 	connection/reyntweetssettings.hpp \
-	connection/requests/oauth/accesstokenoauthrequester.hpp \
-	connection/requests/oauth/authenticateoauthrequester.hpp \
-	connection/requests/oauth/authorizeoauthrequester.hpp \
-    connection/requests/oauth/oauthrequester.hpp \
-    connection/requests/oauth/requesttokenrequester.hpp
+	connection/requesttype.hpp \
+	connection/requests/requests.hpp \
+	connection/requests/genericrequester.hpp \
+	connection/requests/searches/searchrequester.hpp \
+	connection/requests/oauth/oauthrequester.hpp \
+	connection/requests/oauth/requesttokenrequester.hpp #\
+#	connection/requests/oauth/accesstokenrequester.hpp #\
+#	connection/requests/oauth/authenticaterequester.hpp #\
+#	connection/requests/oauth/authorizerequester.hpp
 
 
 #-----------------------#

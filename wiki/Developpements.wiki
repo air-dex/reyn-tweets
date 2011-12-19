@@ -32,7 +32,6 @@ Où en est Reyn Tweets ?
       # Résolution du problème de linkage (issue 11).
       # Stockage des tokens (en clair c'est mal !).
     # Tester
-  # Passage à QtCreator 2.4.0 : vérifier qu'il n'y a pas eu de problèmes.
   # Modèle de données
   # Approfondir la documentation
   # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)

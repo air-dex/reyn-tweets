@@ -52,19 +52,24 @@ QString OAuthManager::getCallbackUrl() {
 	return callbackUrl;
 }
 
+// Getter on the OAuth Token
+QString OAuthManager::getOAuthToken() {
+	return oauthToken;
+}
+
 // Setter on the OAuth token
-void OAuthManager::setOAuthToken(QString oauthToken) {
-	this->oauthToken = oauthToken;
+void OAuthManager::setOAuthToken(QString authToken) {
+	oauthToken = authToken;
 }
 
 // Setter on the OAuth secret
-void OAuthManager::setOAuthSecret(QString oauthSecret) {
-	this->oauthSecret = oauthSecret;
+void OAuthManager::setOAuthSecret(QString authSecret) {
+	oauthSecret = authSecret;
 }
 
 // Setter on the verifier
 void OAuthManager::setVerifier(QString verifier) {
-	this->verifier = verifier;
+	oauthVerifier = verifier;
 }
 
 
@@ -150,7 +155,7 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 											true);
 	authorizationHeader.append(formattedParamString);
 
-	return authorizationHeader;
+	return authorizationHeader.toAscii();
 }
 
 // Formatting parameters in the Authorization header
@@ -223,14 +228,14 @@ QString OAuthManager::signDatas(RequestType type,
 	// Building that will be signed
 
 	// Parameter string
-	QString parameterString = getArgs;
+	QString parameterString = getDatas;
 	QString formattedParamString;
 
 	if ("" != getDatas && "" != postDatas) {
 		parameterString.append('&');
 	}
 
-	parameterString.append(postArgs);
+	parameterString.append(postDatas);
 
 	// Appending OAuth arguments
 
@@ -239,8 +244,8 @@ QString OAuthManager::signDatas(RequestType type,
 		formattedParamString = formatOAuthParam("oauth_callback",
 												callbackUrl,
 												false);
-		authorizationHeader.append(formattedParamString);
-		authorizationHeader.append(", ");
+		parameterString.append(formattedParamString);
+		parameterString.append(", ");
 	}
 
 	// oauth_consumer_key
@@ -296,7 +301,7 @@ QString OAuthManager::signDatas(RequestType type,
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(parameterString));
 
-	return hmacSha1(key, toSign);
+	return hmacSha1(key.toAscii(), toSign);
 }
 
 // HMAC-SHA1 algorithm for signatures.

@@ -1,4 +1,4 @@
-/// @file requesttype.hpp
+/// @file requesttype.cpp
 /// @brief Header of RequestType
 /// @author Romain Ducher
 
@@ -21,22 +21,19 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REQUESTTYPE_HPP
-#define REQUESTTYPE_HPP
-
-#include <QString>
-
-/// @enum RequestType
-/// @brief Enum indicating the type of the request
-enum RequestType {
-	GET,
-	POST
-};
+#include "requesttype.hpp"
 
 /// @fn QString requestTypeToString(RequestType type)
 /// @brief Converting a RequestType into a QString
 /// @param type The RequestType
 /// @return The corresponding QString
-QString requestTypeToString(RequestType type);
-
-#endif // REQUESTTYPE_HPP
+QString requestTypeToString(RequestType type) {
+	switch (type) {
+		case GET:
+			return "GET";
+		case POST:
+			return "POST";
+		default:
+			return "";
+	}
+}

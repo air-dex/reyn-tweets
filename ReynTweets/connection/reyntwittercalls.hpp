@@ -29,7 +29,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QUuid>
 #include "requests/requests.hpp"
 #include "resultwrapper.hpp"
-#include "oauthmanager.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
@@ -110,11 +109,12 @@ class ReynTwitterCalls : public QObject
 
 
 		// OAuth requests
-
+/*
 		/// @fn void requestToken(QObject * requestDemander);
 		/// @brief Method for getting a request token
 		/// @param requestDemander QObject which asks for the request
 		void requestToken(QObject * requestDemander);
+		//*/
 };
 
 #endif // REYNTWITTERCALLS_HPP

@@ -1,4 +1,4 @@
-/// @file resultwrapperer.hpp
+/// @file resultwrapper.hpp
 /// @brief Header of ResultWrapper
 /// @author Romain Ducher
 

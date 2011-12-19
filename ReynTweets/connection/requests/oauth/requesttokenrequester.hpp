@@ -24,7 +24,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef REQUESTTOKENREQUESTER_HPP
 #define REQUESTTOKENREQUESTER_HPP
 
-#include <QObject>
 #include "oauthrequester.hpp"
 
 /// @class OAuthRequester

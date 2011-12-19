@@ -27,7 +27,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
-#include "../errortypes.hpp"
 #include "../requestresult.hpp"
 #include "../twittercommunicator.hpp"
 #include "../twitterurls.hpp"

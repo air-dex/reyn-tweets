@@ -1,4 +1,4 @@
-/// @file resultsender.cpp
+/// @file resultwrapper.cpp
 /// @brief Implementation of ResultSender
 /// @author Romain Ducher
 

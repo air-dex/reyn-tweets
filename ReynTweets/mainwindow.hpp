@@ -22,7 +22,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include "QtGui"
-#include "connection/resultwrapper.hpp"
+
+#include "connection/reyntwittercalls.hpp"
+//#include "connection/resultwrapper.hpp"
 
 class MainWindow : public QMainWindow
 {

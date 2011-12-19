@@ -31,7 +31,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QUrl>
 #include <QMap>
 #include "oauthmanager.hpp"
-#include "requesttype.hpp"
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
@@ -149,9 +148,6 @@ class TwitterCommunicator : public QObject
 
 		/// @brief HHTP return reason
 		QString httpReturnReason;
-
-		/// @brief Boolean indicating if an authentication to Twitter is required
-		bool authenticationRequired;
 
 		/// @brief Entity with authentication information
 		OAuthManager * oauthManager;

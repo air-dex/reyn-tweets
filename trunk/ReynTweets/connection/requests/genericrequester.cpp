@@ -26,19 +26,21 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(QObject * requester,
+								   RequestType type,
 								   QString url,
 								   bool authRequired,
-								   OAuthManager *authManager,
-								   ErrorType parseError = QJSON_PARSING) :
+								   OAuthManager * authManager,
+								   ErrorType parseError) :
 	QObject(requester),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
+	requestType(type),
 	getParameters(),
 	postParameters(),
 	communicator(0),
 	authenticationRequired(authRequired),
 	oauthManager(authManager),
-	parsingErrorType(),
+	parsingErrorType(parseError),
 	requestResult()
 {}
 
@@ -78,10 +80,11 @@ void GenericRequester::executeRequest() {
 
 	// Executing the request
 	communicator = new TwitterCommunicator(requestURL,
-										   getParameters,
-										   postParameters,
+										   requestType,
 										   authenticationRequired,
 										   oauthManager,
+										   getParameters,
+										   postParameters,
 										   this);
 	connect(communicator, SIGNAL(requestDone(bool)),
 			this, SLOT(treatResults(bool)));

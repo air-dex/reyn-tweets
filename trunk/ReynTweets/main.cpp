@@ -23,13 +23,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
-/*
-#include <QMap>
-#include "connection/twittercommunicator.hpp"
-#include "connection/twitterurls.hpp"
-#include <QByteArray>
-#include <QFile>
-//*/
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);

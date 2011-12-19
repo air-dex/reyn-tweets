@@ -36,7 +36,7 @@ namespace TwitterRequestUrl
 
 	/// @brief URL for getting a request token
 	QString REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token";
-
+/*
 	/// @brief URL for authorizing the application
 	QString AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize";
 
@@ -44,8 +44,8 @@ namespace TwitterRequestUrl
 	QString AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
 
 	/// @brief URL for getting an access token
-	QString ACCES_TOKEN_URL = "https://api.twitter.com/oauth/access_token";
-
+	QString ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token";
+//*/
 
 	//////////////
 	// Searches //

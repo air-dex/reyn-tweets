@@ -24,7 +24,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SEARCHREQUESTER_HPP
 #define SEARCHREQUESTER_HPP
 
-#include "genericrequester.hpp"
+#include "../genericrequester.hpp"
 
 /// @class SearchRequest
 /// @brief Requester for searches

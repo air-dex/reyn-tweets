@@ -21,8 +21,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "twittercommunicator.hpp"
 #include <QNetworkRequest>
+#include "twittercommunicator.hpp"
 
 /////////////
 // Coplien //
@@ -42,10 +42,10 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	requestType(type),
 	getParameters(getArgs),
 	postParameters(postArgs),
+	authenticationRequired(authRequired),
 	responseBuffer(""),
 	httpReturnCode(0),
 	httpReturnReason("Request not done"),
-	authenticationRequired(authRequired),
 	oauthManager(authManager)
 {}
 
@@ -60,21 +60,18 @@ TwitterCommunicator::~TwitterCommunicator() {}
 void TwitterCommunicator::executeRequest() {
 	// GET arguments
 	QString getArgs = buildGetDatas();
-	bool areGetArgsEmpty = "" == postArgs;
 
 	// Adding the potential GET arguments at the end of the URL
-	if (!areGetArgsEmpty) {
+	if ("" != getArgs) {
 		getArgs.prepend('?');
 		serviceURL.append(getArgs);
 	}
-
 
 	QNetworkRequest request(serviceURL);
 
 
 	// POST arguments
 	QByteArray postArgs = buildPostDatas();
-	bool arePostArgsEmpty = "" == postArgs;
 
 
 	// Building the authentication header if needed
@@ -95,7 +92,7 @@ void TwitterCommunicator::executeRequest() {
 
 
 	// Executing the request
-	if (arePostArgsEmpty) {
+	if ("" == postArgs) {
 		// There is not any POST arguments -> networkManager.get()
 		reply = networkManager.get(request);
 	} else {

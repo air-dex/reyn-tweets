@@ -65,15 +65,20 @@ class OAuthManager
 		/// @return The callback URL
 		QString getCallbackUrl();
 
-		/// @fn void setOAuthToken(QString oauthToken);
+		/// @fn QString getOAuthToken();
+		/// @brief Getter on the OAuth Token
+		/// @return The OAuth Token
+		QString getOAuthToken();
+
+		/// @fn void setOAuthToken(QString authToken);
 		/// @brief Setter on the OAuth token
-		/// @param oauthToken The new value of the OAuth token
-		void setOAuthToken(QString oauthToken);
+		/// @param authToken The new value of the OAuth token
+		void setOAuthToken(QString authToken);
 
 		/// @fn void setOAuthSecret(QString oauthSecret);
 		/// @brief Setter on the OAuth secret
 		/// @param oauthSecret The new value of the OAuth secret
-		void setOAuthSecret(QString oauthSecret);
+		void setOAuthSecret(QString authSecret);
 
 		/// @fn void setVerifier(QString verifier);
 		/// @brief Setter on the verifier

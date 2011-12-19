@@ -18,7 +18,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "mainwindow.hpp"
-#include "connection/reyntwittercalls.hpp"
+//#include "connection/reyntwittercalls.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),

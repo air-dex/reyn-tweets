@@ -37,31 +37,32 @@ TEMPLATE = app
 
 SOURCES += \
 	main.cpp \
-	mainwindow.cpp \
-	connection/twittercommunicator.cpp \
-	connection/reyntwittercalls.cpp \
+	connection/oauthmanager.cpp \
 	connection/resultwrapper.cpp \
 	connection/requestresult.cpp \
+	mainwindow.cpp \
+	connection/reyntwittercalls.cpp \
+	connection/twittercommunicator.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
-	connection/oauthmanager.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
-	connection/requests/oauth/requesttokenrequester.cpp #\
+	connection/requests/oauth/requesttokenrequester.cpp \ #\
+    connection/requesttype.cpp
 #	connection/requests/oauth/accesstokenrequester.cpp #\
 #	connection/requests/oauth/authenticaterequester.cpp #\
 #	connection/requests/oauth/authorizerequester.cpp
 
 HEADERS  += \
-	mainwindow.hpp \
-	connection/twittercommunicator.hpp \
-	connection/twitterurls.hpp \
-	connection/reyntwittercalls.hpp \
-	connection/resultwrapper.hpp \
+	connection/oauthmanager.hpp \
 	connection/errortypes.hpp \
 	connection/requestresult.hpp \
-	connection/oauthmanager.hpp \
-	connection/reyntweetssettings.hpp \
+	connection/resultwrapper.hpp \
 	connection/requesttype.hpp \
+	connection/twitterurls.hpp \
+	connection/reyntweetssettings.hpp \
+	mainwindow.hpp \
+	connection/reyntwittercalls.hpp \
+	connection/twittercommunicator.hpp \
 	connection/requests/requests.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
@@ -112,13 +113,3 @@ win32 {
 #	INCLUDEPATH += c:\Libs\Qjson\include
 #	LIBS += -Lc:\Libs\Qjson\lib -lqjson
 #}
-
-
-#-------#
-# OAuth #
-#-------#
-
-#TODO
-
-
-

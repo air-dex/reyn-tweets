@@ -1,5 +1,5 @@
 /// @file twitterurls.hpp
-/// @brief Namespace containing all the Twitter API URL.
+/// @brief Declaration of the TwitterURL namespace.
 /// @author Romain Ducher
 
 /*
@@ -26,25 +26,25 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QString>
 
-/// @namespace RequestUrl
+/// @namespace TwitterURL
 /// @brief Namespace containing all the Twitter API URLs.
-namespace RequestUrl
+namespace TwitterURL
 {
 	///////////
 	// OAuth //
 	///////////
 
 	/// @brief URL for getting a request token
-	extern QString REQUEST_TOKEN_URL;// = "https://api.twitter.com/oauth/request_token";
+	extern QString REQUEST_TOKEN_URL;
 
 	/// @brief URL for authorizing the application
-	extern QString AUTHORIZE_URL;// = "https://api.twitter.com/oauth/authorize";
+	extern QString AUTHORIZE_URL;
 
 	/// @brief URL for authentication
-	extern QString AUTHENTICATE_URL;// = "https://api.twitter.com/oauth/authenticate";
+	extern QString AUTHENTICATE_URL;
 
 	/// @brief URL for getting an access token
-	extern QString ACCESS_TOKEN_URL;// = "https://api.twitter.com/oauth/access_token";
+	extern QString ACCESS_TOKEN_URL;
 
 
 	//////////////
@@ -52,7 +52,7 @@ namespace RequestUrl
 	//////////////
 
 	/// @brief URL for a search request
-	extern QString SEARCH_URL;// = "http://search.twitter.com/search.json";
+	extern QString SEARCH_URL;
 }
 
 #endif // TWITTERURLS_HPP

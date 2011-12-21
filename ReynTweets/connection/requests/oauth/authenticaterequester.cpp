@@ -27,7 +27,7 @@ AuthenticateRequester::AuthenticateRequester(OAuthManager & authManager,
 											 QObject *requester) :
 	OAuthRequester(authManager,
 				   GET,
-				   RequestUrl::AUTHENTICATE_URL,
+				   TwitterURL::AUTHENTICATE_URL,
 				   requester)
 {}
 

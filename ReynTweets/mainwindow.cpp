@@ -18,7 +18,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "mainwindow.hpp"
-//#include "connection/reyntwittercalls.hpp"
+#include "connection/reyntwittercalls.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -34,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(camb078Search, SIGNAL(clicked()), this, SLOT(searchCamb078()));
 	layout.addWidget(camb078Search);
 
+	getRequestTokens = new QPushButton("Je veux des Request tokens !");
+	connect(getRequestTokens, SIGNAL(clicked()), this, SLOT(requestTokensSlot()));
+	layout.addWidget(getRequestTokens);
+
 	widget.setLayout(&layout);
 	setCentralWidget(&widget);
 }
@@ -42,26 +46,45 @@ MainWindow::~MainWindow()
 {
 	delete xenobladeSearch;
 	delete camb078Search;
+	delete getRequestTokens;
 }
 
 void MainWindow::searchCamb078() {
 	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
-	rtc.search(this, "@Camb078");
+	rtc.search(camb078Search, "@Camb078");
 }
 
 void MainWindow::searchXenoblade() {
 	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
-	rtc.search(this, "Xenoblade");
+	rtc.search(xenobladeSearch, "Xenoblade");
 	qDebug("fin du GUI");
 }
 
 void MainWindow::endsearch(ResultWrapper res) {
 	qDebug("retour au GUI");
+
+	// Pour la recherche
+	/*
 	RequestResult resultats = res.accessResult(this);
 	QVariantMap parsedResult = resultats.getParsedResult().toMap();
 	QVariant maxIDstr = parsedResult.value("max_id_str");
 	const char * typeName = maxIDstr.typeName();
 	qDebug(typeName);
+	//*/
+
+	// Pour les request token
+	RequestResult resultats = res.accessResult(getRequestTokens);
+	QVariantMap parsedResult = resultats.getParsedResult().toMap();
+	QVariant resu = parsedResult.value("oauth_callback_confirmed");
+	bool urlOK = resu.toBool();
+	char * msg = urlOK ? "C'est bon pour l'URL" : "C'est pas bon pour l'URL";
+	qDebug(msg);
+}
+
+void MainWindow::requestTokensSlot() {
+	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
+	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
+	rtc.requestToken(getRequestTokens);
 }

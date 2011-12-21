@@ -23,7 +23,107 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "authorizerequester.hpp"
 
-AuthorizeRequester::AuthorizeRequester(QObject *parent) :
-	QObject(parent)
-{
+AuthorizeRequester::AuthorizeRequester(OAuthManager & authManager,
+											 QObject *requester) :
+	OAuthRequester(authManager,
+				   GET,
+				   RequestUrl::AUTHORIZE_URL,
+				   requester)
+{}
+
+// Building GET Parameters
+void AuthorizeRequester::buildGETParameters() {
+	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
+}
+
+// Building POST Parameters
+void AuthorizeRequester::buildPOSTParameters() {}
+
+// Parse the raw results of the request.
+QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	/*
+	QVariantMap resultMap;	// Result of the request
+	bool rightParameter;	// Boolean indicating if the parameter name is right
+	QString errorMsg = "Error for parameter ";
+	QString subErrorMsg;
+
+	// Parsing
+	QByteArray rawResponse = communicator->getResponseBuffer();
+	QList<QByteArray> results = rawResponse.split('&');
+
+	QList<QByteArray> resultPair;
+	QByteArray parameterName;
+	QByteArray result;
+
+	// Getting the request token
+	resultPair = results.at(0).split('=');
+
+	// Ensures that the parameter name is "oauth_token"
+	parameterName = resultPair.at(0);
+	rightParameter = "oauth_token" == parameterName;
+	parseOK = rightParameter;
+
+	if (rightParameter) {
+		result = resultPair.at(1);
+		oauthManager->setOAuthToken(QString(result));
+	} else {
+		subErrorMsg = "'";
+		subErrorMsg.append(parameterName);
+		subErrorMsg.append("' (supposed to be 'oauth_token'), ");
+		errorMsg.append(subErrorMsg);
+	}
+
+	// Getting the request secret
+	resultPair = results.at(1).split('=');
+
+	// Ensures that the parameter name is "oauth_token_secret"
+	parameterName = resultPair.at(0);
+	rightParameter = "oauth_token_secret" == parameterName;
+	parseOK = parseOK && rightParameter;
+
+	if (rightParameter) {
+		result = resultPair.at(1);
+		oauthManager->setOAuthSecret(QString(result));
+	} else {
+		subErrorMsg = "parameter '";
+		subErrorMsg.append(parameterName);
+		subErrorMsg.append("' (supposed to be 'oauth_token_secret'), ");
+		errorMsg.append(subErrorMsg);
+	}
+
+
+	// Was the callback URL confirmed ?
+	resultPair = results.at(2).split('=');
+
+	// Ensures that the parameter name is "oauth_callback_confirmed"
+	parameterName = resultPair.at(0);
+	rightParameter = "oauth_callback_confirmed" == parameterName;
+	parseOK = parseOK && rightParameter;
+
+	if (rightParameter) {
+		result = resultPair.at(1);
+		bool callbackUrlConfirmed = ("true" == result) || !("false" == result);
+		resultMap.insert("oauth_callback_confirmed", QVariant(callbackUrlConfirmed));
+	} else {
+		subErrorMsg = "parameter '";
+		subErrorMsg.append(parameterName);
+		subErrorMsg.append("' (supposed to be 'oauth_callback_confirmed')");
+		errorMsg.append(subErrorMsg);
+	}
+
+
+	// There was a problem while parsing -> fill the parsingErrors map !
+	if (!parseOK) {
+		if (errorMsg.endsWith(", ")) {
+			errorMsg.chop(2);
+			errorMsg.append('.');
+		}
+
+		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+	}
+
+	return QVariant(resultMap);
+	//*/
+
+	return QVariant();
 }

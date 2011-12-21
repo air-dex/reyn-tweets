@@ -30,13 +30,35 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @brief Requester for OAuth authentication
 class AuthenticateRequester : public OAuthRequester
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
-		AuthenticateRequester(QObject *parent = 0);
+		/// @fn AuthenticateRequester(OAuthManager & authManager,
+		///							  QObject * requester = 0);
+		/// @brief Constructor
+		/// @param authManager Information for OAuth. It has to be not null
+		/// @param requester QObject which asks for this search.
+		AuthenticateRequester(OAuthManager & authManager,
+							  QObject * requester = 0);
 
-	signals:
+	protected:
+		/// @fn void buildGETParameters();
+		/// @brief Method building GET Parameters
+		void buildGETParameters();
 
-	public slots:
+		/// @fn void buildPOSTParameters();
+		/// @brief Method building POST Parameters
+		void buildPOSTParameters();
+
+		// TODO
+		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @brief Method that will parse the raw results of the request.
+		/// @param parseOK Boolean whose value will be set to true if there was
+		/// no problem while parsing, false otherwise.
+		/// @param parsingErrors QVariantMap that may contain information about
+		/// errors that may occur while parsing.
+		/// @return Parsed results
+		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 
 };
 

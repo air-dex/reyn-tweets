@@ -67,6 +67,11 @@ void OAuthManager::setOAuthSecret(QString authSecret) {
 	oauthSecret = authSecret;
 }
 
+// Getter on the verifier
+QString OAuthManager::getVerifier() {
+	return oauthVerifier;
+}
+
 // Setter on the verifier
 void OAuthManager::setVerifier(QString verifier) {
 	oauthVerifier = verifier;
@@ -193,7 +198,7 @@ QString OAuthManager::generateNonce() {
 
 	// Taking random word characters
 	for (int i = 0; i < randomStringLength; ++i) {
-		int position = int(baseLength * double(qrand())/double(RAND_MAX));
+		int position = qrand() % baseLength;
 		randomString.append(base.at(position));
 	}
 

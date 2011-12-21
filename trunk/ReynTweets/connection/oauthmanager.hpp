@@ -80,6 +80,11 @@ class OAuthManager
 		/// @param oauthSecret The new value of the OAuth secret
 		void setOAuthSecret(QString authSecret);
 
+		/// @fn QString getVerifier();
+		/// @brief Getter on the verifier
+		/// @return The verifier
+		QString getVerifier();
+
 		/// @fn void setVerifier(QString verifier);
 		/// @brief Setter on the verifier
 		/// @param verifier The new verifier

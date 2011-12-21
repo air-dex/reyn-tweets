@@ -27,7 +27,7 @@ RequestTokenRequester::RequestTokenRequester(OAuthManager & authManager,
 											 QObject *requester) :
 	OAuthRequester(authManager,
 				   POST,
-				   TwitterRequestUrl::REQUEST_TOKEN_URL,
+				   RequestUrl::REQUEST_TOKEN_URL,
 				   requester)
 {}
 

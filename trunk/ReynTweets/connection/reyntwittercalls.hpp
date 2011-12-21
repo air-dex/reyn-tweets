@@ -27,8 +27,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QMap>
 #include <QUuid>
-#include "requests/requests.hpp"
 #include "resultwrapper.hpp"
+#include "requests/requests.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
@@ -109,12 +109,27 @@ class ReynTwitterCalls : public QObject
 
 
 		// OAuth requests
-/*
+
 		/// @fn void requestToken(QObject * requestDemander);
 		/// @brief Method for getting a request token
 		/// @param requestDemander QObject which asks for the request
 		void requestToken(QObject * requestDemander);
-		//*/
+
+		/// @fn void requestToken(QObject * requestDemander);
+		/// @brief Method for authentication
+		/// @param requestDemander QObject which asks for the request
+		void authorize(QObject * requestDemander);
+
+		/// @fn void authenticate(QObject * requestDemander);
+		/// @brief Method for authentication
+		/// @param requestDemander QObject which asks for the request
+		void authenticate(QObject * requestDemander);
+
+		/// @fn void accessToken(QObject * requestDemander);
+		/// @brief Method for getting an access token
+		/// @param requestDemander QObject which asks for the request
+		void accessToken(QObject * requestDemander);
+
 };
 
 #endif // REYNTWITTERCALLS_HPP

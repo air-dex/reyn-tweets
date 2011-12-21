@@ -33,12 +33,32 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		AuthorizeRequester(QObject *parent = 0);
+		/// @fn AuthorizeRequester(OAuthManager & authManager,
+		///						   QObject * requester = 0);
+		/// @brief Constructor
+		/// @param authManager Information for OAuth. It has to be not null
+		/// @param requester QObject which asks for this search.
+		AuthorizeRequester(OAuthManager & authManager,
+						   QObject * requester = 0);
 
-	signals:
+	protected:
+		/// @fn void buildGETParameters();
+		/// @brief Method building GET Parameters
+		void buildGETParameters();
 
-	public slots:
+		/// @fn void buildPOSTParameters();
+		/// @brief Method building POST Parameters
+		void buildPOSTParameters();
 
+		// TODO
+		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @brief Method that will parse the raw results of the request.
+		/// @param parseOK Boolean whose value will be set to true if there was
+		/// no problem while parsing, false otherwise.
+		/// @param parsingErrors QVariantMap that may contain information about
+		/// errors that may occur while parsing.
+		/// @return Parsed results
+		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

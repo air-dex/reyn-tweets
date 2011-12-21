@@ -37,40 +37,42 @@ TEMPLATE = app
 
 SOURCES += \
 	main.cpp \
-	connection/oauthmanager.cpp \
-	connection/resultwrapper.cpp \
-	connection/requestresult.cpp \
 	mainwindow.cpp \
 	connection/reyntwittercalls.cpp \
-	connection/twittercommunicator.cpp \
-	connection/requests/genericrequester.cpp \
+	connection/requests/oauth/accesstokenrequester.cpp \
+	connection/requests/oauth/authenticaterequester.cpp \
+	connection/requests/oauth/authorizerequester.cpp \
+	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
-	connection/requests/oauth/requesttokenrequester.cpp \ #\
-    connection/requesttype.cpp
-#	connection/requests/oauth/accesstokenrequester.cpp #\
-#	connection/requests/oauth/authenticaterequester.cpp #\
-#	connection/requests/oauth/authorizerequester.cpp
+	connection/requests/genericrequester.cpp \
+	connection/resultwrapper.cpp \
+	connection/requestresult.cpp \
+	connection/twittercommunicator.cpp \
+	connection/oauthmanager.cpp \
+	connection/requesttype.cpp \
+    connection/reyntweetssettings.cpp \
+    connection/twitterurls.cpp
 
 HEADERS  += \
-	connection/oauthmanager.hpp \
-	connection/errortypes.hpp \
-	connection/requestresult.hpp \
-	connection/resultwrapper.hpp \
-	connection/requesttype.hpp \
-	connection/twitterurls.hpp \
-	connection/reyntweetssettings.hpp \
 	mainwindow.hpp \
 	connection/reyntwittercalls.hpp \
-	connection/twittercommunicator.hpp \
 	connection/requests/requests.hpp \
-	connection/requests/genericrequester.hpp \
+	connection/requests/oauth/accesstokenrequester.hpp \
+	connection/requests/oauth/authenticaterequester.hpp \
+	connection/requests/oauth/authorizerequester.hpp \
+	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
-	connection/requests/oauth/requesttokenrequester.hpp #\
-#	connection/requests/oauth/accesstokenrequester.hpp #\
-#	connection/requests/oauth/authenticaterequester.hpp #\
-#	connection/requests/oauth/authorizerequester.hpp
+	connection/requests/genericrequester.hpp \
+	connection/twitterurls.hpp \
+	connection/resultwrapper.hpp \
+	connection/requestresult.hpp \
+	connection/errortypes.hpp \
+	connection/twittercommunicator.hpp \
+	connection/oauthmanager.hpp \
+	connection/requesttype.hpp \
+	connection/reyntweetssettings.hpp
 
 
 #-----------------------#

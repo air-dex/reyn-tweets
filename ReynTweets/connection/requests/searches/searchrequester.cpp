@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 SearchRequester::SearchRequester(QObject * requester, QString q) :
-	GenericRequester(requester, GET, TwitterRequestUrl::SEARCH_URL, false, 0),
+	GenericRequester(requester, GET, RequestUrl::SEARCH_URL, false, 0),
 	query(q)
 {}
 

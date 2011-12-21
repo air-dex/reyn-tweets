@@ -28,13 +28,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace ReynTweetsConfiguration {
 	/// @brief Reyn Tweets' consumer key
-	QString CONSUMER_KEY = "3p4Tw20gGGqvzqwWjJO4Zw";
+	extern QString CONSUMER_KEY;// = "3p4Tw20gGGqvzqwWjJO4Zw";
 
 	/// @brief Reyn Tweets' consumer secret
-	QString CONSUMER_SECRET = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
+	extern QString CONSUMER_SECRET;// = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
 
 	/// @brief Reyn Tweets' callback URL
-	QString CALLBACK_URL = "http://code.google.com/p/reyn-tweets/";
+	extern QString CALLBACK_URL;// = "http://code.google.com/p/reyn-tweets/";
 }
 
 #endif // REYNTWEETSSETTINGS_HPP

@@ -21,10 +21,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include "QtGui"
-
+#include <QtGui>
 #include "connection/reyntwittercalls.hpp"
-//#include "connection/resultwrapper.hpp"
 
 class MainWindow : public QMainWindow
 {

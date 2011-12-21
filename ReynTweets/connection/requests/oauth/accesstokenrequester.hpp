@@ -33,12 +33,35 @@ class AccessTokenRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		AccessTokenRequester(QObject *parent = 0);
+		/// @fn RequestTokenRequester(OAuthManager & authManager,
+		///							  QObject * requester = 0);
+		/// @brief Constructor
+		/// @param authManager Information for OAuth. It has to be not null
+		/// @param requester QObject which asks for this search.
+		AccessTokenRequester(OAuthManager & authManager,
+							 QObject * requester = 0);
 
-	signals:
+	protected:
+		/// @fn void buildGETParameters();
+		/// @brief Method building GET Parameters
+		void buildGETParameters();
 
-	public slots:
+		/// @fn void buildPOSTParameters();
+		/// @brief Method building POST Parameters
+		void buildPOSTParameters();
 
+		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @brief Method that will parse the raw results of the request. For
+		/// this kind of request, results look like :<br/>
+		/// oauth_token=<value of the request token>&
+		/// oauth_token_secret=<value of the request secret>&
+		/// oauth_callback_confirmed=<true or false>
+		/// @param parseOK Boolean whose value will be set to true if there was
+		/// no problem while parsing, false otherwise.
+		/// @param parsingErrors QVariantMap that may contain information about
+		/// errors that may occur while parsing.
+		/// @return Parsed results
+		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 };
 
 #endif // ACCESSTOKENREQUESTER_HPP

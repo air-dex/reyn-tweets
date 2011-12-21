@@ -27,9 +27,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
+#include "../twitterurls.hpp"
 #include "../requestresult.hpp"
 #include "../twittercommunicator.hpp"
-#include "../twitterurls.hpp"
 
 /// @class GenericRequest
 /// @brief Base class for all the requesters. Parents of such requests are

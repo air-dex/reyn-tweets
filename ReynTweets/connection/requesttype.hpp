@@ -29,7 +29,10 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @enum RequestType
 /// @brief Enum indicating the type of the request
 enum RequestType {
+	/// @brief GET requests
 	GET,
+
+	/// @brief POST requests
 	POST
 };
 

@@ -1,5 +1,5 @@
 /// @file reyntweetssettings.hpp
-/// @brief Special values of Reyn Tweets
+/// @brief Declaration of the ReynTweetsSettings namespace
 /// @author Romain Ducher
 
 /*
@@ -26,15 +26,17 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QString>
 
-namespace ReynTweetsConfiguration {
+/// @namespace ReynTweetsSettings
+/// @brief Namespace with Reyn Tweets settings for OAuth
+namespace ReynTweetsSettings {
 	/// @brief Reyn Tweets' consumer key
-	extern QString CONSUMER_KEY;// = "3p4Tw20gGGqvzqwWjJO4Zw";
+	extern QString CONSUMER_KEY;
 
 	/// @brief Reyn Tweets' consumer secret
-	extern QString CONSUMER_SECRET;// = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
+	extern QString CONSUMER_SECRET;
 
 	/// @brief Reyn Tweets' callback URL
-	extern QString CALLBACK_URL;// = "http://code.google.com/p/reyn-tweets/";
+	extern QString CALLBACK_URL;
 }
 
 #endif // REYNTWEETSSETTINGS_HPP

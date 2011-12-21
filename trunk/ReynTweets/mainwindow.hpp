@@ -22,7 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include <QtGui>
-#include "connection/reyntwittercalls.hpp"
+#include "connection/resultwrapper.hpp"
 
 class MainWindow : public QMainWindow
 {
@@ -37,8 +37,10 @@ class MainWindow : public QMainWindow
 		QPushButton * camb078Search;
 		QLabel * lx;
 		QLabel * lc;
+		QPushButton * getRequestTokens;
 
 	public slots:
+		void requestTokensSlot();
 		void searchXenoblade();
 		void searchCamb078();
 		void endsearch(ResultWrapper);

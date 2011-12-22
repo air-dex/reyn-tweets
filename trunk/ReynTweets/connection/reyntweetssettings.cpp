@@ -23,11 +23,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyntweetssettings.hpp"
 
+// NB : QString::fromUtf8(); is used to avoid problem with character conversion.
+
 /// @brief Reyn Tweets' consumer key
-QString ReynTweetsSettings::CONSUMER_KEY = "3p4Tw20gGGqvzqwWjJO4Zw";
+QString ReynTweetsSettings::CONSUMER_KEY = QString::fromUtf8("3p4Tw20gGGqvzqwWjJO4Zw");
 
 /// @brief Reyn Tweets' consumer secret
-QString ReynTweetsSettings::CONSUMER_SECRET = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
+QString ReynTweetsSettings::CONSUMER_SECRET = QString::fromUtf8("q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y");
 
 /// @brief Reyn Tweets' callback URL
-QString ReynTweetsSettings::CALLBACK_URL = "http://code.google.com/p/reyn-tweets/";
+QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("http://code.google.com/p/reyn-tweets/");

@@ -75,7 +75,7 @@ void TwitterCommunicator::executeRequest() {
 
 
 	// Building the authentication header if needed
-	if (authenticationRequired && oauthManager == 0) {
+	if (authenticationRequired && oauthManager != 0) {
 		// Is it a RequestTokenRequest ?
 		bool isRequestTokenRequest = oauthManager->getOAuthToken().isEmpty();
 
@@ -92,12 +92,12 @@ void TwitterCommunicator::executeRequest() {
 
 
 	// Executing the request
-	if ("" == postArgs) {
-		// There is not any POST arguments -> networkManager.get()
-		reply = networkManager.get(request);
-	} else {
+	if (POST == requestType) {
 		// There is some POST arguments -> networkManager.post()
 		reply = networkManager.post(request, postArgs);
+	} else {
+		// There is not any POST arguments -> networkManager.get()
+		reply = networkManager.get(request);
 	}
 
 
@@ -118,10 +118,10 @@ void TwitterCommunicator::endRequest() {
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
 
 	responseBuffer = twitterReply->readAll();
+
 	errorReply = twitterReply->error();
 	extractHttpStatuses(twitterReply);
 	twitterReply->deleteLater();
-
 	// Telling that the Twitter Communicator has ended its work successfully
 	emit requestDone(true);
 }
@@ -130,7 +130,7 @@ void TwitterCommunicator::endRequest() {
 void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
 	// Getting the reply
 	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
-
+	responseBuffer = twitterReply->readAll();
 	errorReply = errorCode;
 	extractHttpStatuses(twitterReply);
 	twitterReply->deleteLater();

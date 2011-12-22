@@ -27,6 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+	qsrand(QDateTime::currentMSecsSinceEpoch());
 
 	MainWindow w;
 

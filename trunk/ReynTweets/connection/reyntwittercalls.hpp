@@ -28,7 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMap>
 #include <QUuid>
 #include "resultwrapper.hpp"
-#include "requests/requests.hpp"
+#include "requests/genericrequester.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
@@ -63,8 +63,12 @@ class ReynTwitterCalls : public QObject
 		/// @brief Protected constructor
 		ReynTwitterCalls();
 
+		/// @fn ~ReynTwitterCalls();
+		/// @brief Destructor
+		~ReynTwitterCalls();
+
 		/// @brief The unique ReynTwitterCalls object
-		static ReynTwitterCalls instance;
+		static ReynTwitterCalls * instance;
 
 		/// @brief Entity which manages requests that are running
 		QMap<QUuid, GenericRequester *> requesterManager;
@@ -73,6 +77,17 @@ class ReynTwitterCalls : public QObject
 		OAuthManager oauthManager;
 
 	private:
+		/// @fn ReynTwitterCalls(const ReynTwitterCalls & rtc);
+		/// @brief Copy constructor. It is here in order to avoid copies.
+		/// @param rtc The ReynTwitterCalls instance to copy (or not)
+		ReynTwitterCalls(const ReynTwitterCalls & rtc);
+
+		/// @fn const ReynTwitterCalls & operator=(const ReynTwitterCalls & rtc);
+		/// @brief Operator =. It is here in order to avoid copies.
+		/// @param rtc The ReynTwitterCalls instance to copy (or not)
+		/// @return An illegal copy of rtc.
+		const ReynTwitterCalls & operator=(const ReynTwitterCalls & rtc);
+
 		/// @fn void addRequester(GenericRequester * requester);
 		/// @brief Adding a requester to the requester manager
 		/// @param requester Address of the requester

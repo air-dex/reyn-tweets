@@ -22,6 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "reyntwittercalls.hpp"
+#include "requests/requests.hpp"
 
 //////////////////////////
 // Singleton management //
@@ -34,12 +35,23 @@ ReynTwitterCalls::ReynTwitterCalls() :
 	oauthManager()
 {}
 
+// Destructor
+ReynTwitterCalls::~ReynTwitterCalls() {
+	if (instance) {
+		delete instance;
+	}
+	instance = 0;
+}
+
 // Init the unique instance
-ReynTwitterCalls ReynTwitterCalls::instance = ReynTwitterCalls();
+ReynTwitterCalls * ReynTwitterCalls::instance = 0;
 
 // Getter on the unique instance
 ReynTwitterCalls & ReynTwitterCalls::getInstance() {
-	return instance;
+	if (!instance) {
+		instance = new ReynTwitterCalls;
+	}
+	return *instance;
 }
 
 

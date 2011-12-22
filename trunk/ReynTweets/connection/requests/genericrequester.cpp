@@ -73,6 +73,12 @@ QUuid GenericRequester::getUuid() {
 // Executing the request //
 ///////////////////////////
 
+// Building GET Parameters
+void GenericRequester::buildGETParameters() {}
+
+// Bbuilding POST Parameters
+void GenericRequester::buildPOSTParameters() {}
+
 void GenericRequester::executeRequest() {
 	// Building the ArgsMap
 	buildGETParameters();
@@ -104,7 +110,7 @@ void GenericRequester::treatResults(bool ok) {
 
 	if (ok) {
 		bool parseOK;
-		parsedResults = parseResult(parseOK, parsingErrorInfos);
+		parsedResults = this->parseResult(parseOK, parsingErrorInfos);
 		errorType = parseOK ? NO_ERROR : parsingErrorType;
 	} else {
 		errorType = API_CALL;

@@ -119,10 +119,8 @@ void TwitterCommunicator::executeRequest() {
 void TwitterCommunicator::endRequest(QNetworkReply::NetworkError) {
 	// If we have already got a response, no need to continue
 	if (reqBasta) {
-		qDebug("Request ended");
 		return;
 	}
-	qDebug("Request reply");
 
 	// Analysing the response
 	extractHttpStatuses(reply);

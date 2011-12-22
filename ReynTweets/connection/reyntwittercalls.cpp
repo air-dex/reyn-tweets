@@ -62,6 +62,8 @@ ReynTwitterCalls & ReynTwitterCalls::getInstance() {
 // Adding a requester to the requester manager
 void ReynTwitterCalls::addRequester(GenericRequester * requester) {
 	if (requester != 0) {
+		connect(requester, SIGNAL(requestDone()),
+				this, SLOT(endRequest()));
 		requesterManager.insert(requester->getUuid(), requester);
 	}
 }
@@ -69,6 +71,8 @@ void ReynTwitterCalls::addRequester(GenericRequester * requester) {
 // Removing a requester of the requester manager
 void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
 	if (requester != 0) {
+		disconnect(requester, SIGNAL(requestDone()),
+				   this, SLOT(endRequest()));
 		requesterManager.remove(requester->getUuid());
 	}
 }
@@ -91,7 +95,6 @@ ResultWrapper ReynTwitterCalls::buildResultSender(GenericRequester * endedReques
 // Inline method for executing requests
 void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 	if (requester != 0) {
-		connect(requester, SIGNAL(requestDone()), this, SLOT(endRequest()));
 		addRequester(requester);
 		requester->executeRequest();
 	}

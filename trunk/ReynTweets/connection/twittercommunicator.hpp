@@ -52,7 +52,7 @@ class TwitterCommunicator : public QObject
 		///							OAuthManager * authManager,
 		///							ArgsMap getArgs = ArgsMap(),
 		///							ArgsMap postArgs = ArgsMap(),
-		///							QObject * parent = 0);
+		///							QObject * requester = 0);
 		/// @brief Constructor
 		/// @param url String representation of the URL
 		/// @param type Type of the request (GET ou POST).
@@ -62,14 +62,15 @@ class TwitterCommunicator : public QObject
 		/// for cases where an authentication is not required
 		/// @param getArgs GET arguments
 		/// @param postArgs POST arguments
-		/// @param parent Parent Qobject
+		/// @param requester Requester using the communicator. It corresponds to
+		/// the parent QObject.
 		TwitterCommunicator(QString url,
 							RequestType type,
 							bool authRequired,
 							OAuthManager * authManager,
 							ArgsMap getArgs = ArgsMap(),
 							ArgsMap postArgs = ArgsMap(),
-							QObject * parent = 0);
+							QObject * requester = 0);
 
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
@@ -105,17 +106,15 @@ class TwitterCommunicator : public QObject
 
 
 	protected slots:
-		/// @fn void endRequest();
-		/// @brief Treatments that have to be done at the end of the request
-		void endRequest();
-
-		/// @fn void errorRequest(QNetworkReply::NetworkError errorCode);
-		/// @brief Treatments to do if there is an error
-		/// @param errorCode The error code
-		void errorRequest(QNetworkReply::NetworkError errorCode);
-
+		/// @fn void endRequest(QNetworkReply::NetworkError errorCode = QNetworkReply::NoError);
+		/// @brief Slot called during the network request if an error occurs or
+		/// when the request is finished.
+		/// @param errorCode The potential error code. It is unused.
+		void endRequest(QNetworkReply::NetworkError = QNetworkReply::NoError);
 
 	protected:
+		// Entities for request
+
 		/// @brief Network manager
 		QNetworkAccessManager networkManager;
 
@@ -133,6 +132,12 @@ class TwitterCommunicator : public QObject
 
 		/// @brief Boolean indicating if authentication is required for the request
 		bool authenticationRequired;
+
+
+		// Entities for response
+
+		/// @brief Boolean indicating if the request has ended
+		bool reqBasta;
 
 		/// @brief Reply
 		QNetworkReply * reply;

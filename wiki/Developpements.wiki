@@ -31,6 +31,7 @@ Où en est Reyn Tweets ?
     # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?.
     # Coder
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
+      # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
     # Tester
   # Modèle de données
   # Approfondir la documentation

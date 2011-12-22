@@ -75,6 +75,8 @@ void MainWindow::endsearch(ResultWrapper res) {
 	//*/
 
 	// Pour les request token
+	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
+	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
 	RequestResult resultats = res.accessResult(getRequestTokens);
 	QVariantMap parsedResult = resultats.getParsedResult().toMap();
 	QVariant resu = parsedResult.value("oauth_callback_confirmed");

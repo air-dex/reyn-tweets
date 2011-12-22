@@ -31,12 +31,6 @@ RequestTokenRequester::RequestTokenRequester(OAuthManager & authManager,
 				   requester)
 {}
 
-// Building GET Parameters
-void RequestTokenRequester::buildGETParameters() {}
-
-// Building POST Parameters
-void RequestTokenRequester::buildPOSTParameters() {}
-
 // Parse the raw results of the request.
 QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
 	QVariantMap resultMap;	// Result of the request

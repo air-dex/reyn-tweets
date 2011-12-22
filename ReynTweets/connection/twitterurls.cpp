@@ -23,21 +23,23 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "twitterurls.hpp"
 
+// NB : QString::fromUtf8(); is used to avoid problem with character conversion.
+
 ///////////
 // OAuth //
 ///////////
 
 /// @brief URL for getting a request token
-QString TwitterURL::REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token";
+QString TwitterURL::REQUEST_TOKEN_URL = QString::fromUtf8("https://api.twitter.com/oauth/request_token");
 
 /// @brief URL for authorizing the application
-QString TwitterURL::AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize";
+QString TwitterURL::AUTHORIZE_URL = QString::fromUtf8("https://api.twitter.com/oauth/authorize");
 
 /// @brief URL for authentication
-QString TwitterURL::AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
+QString TwitterURL::AUTHENTICATE_URL = QString::fromUtf8("https://api.twitter.com/oauth/authenticate");
 
 /// @brief URL for getting an access token
-QString TwitterURL::ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token";
+QString TwitterURL::ACCESS_TOKEN_URL = QString::fromUtf8("https://api.twitter.com/oauth/access_token");
 
 
 //////////////
@@ -45,4 +47,4 @@ QString TwitterURL::ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_tok
 //////////////
 
 /// @brief URL for a search request
-QString TwitterURL::SEARCH_URL = "http://search.twitter.com/search.json";
+QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/search.json");

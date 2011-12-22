@@ -42,14 +42,6 @@ class RequestTokenRequester : public OAuthRequester
 							  QObject * requester = 0);
 
 	protected:
-		/// @fn void buildGETParameters();
-		/// @brief Method building GET Parameters
-		void buildGETParameters();
-
-		/// @fn void buildPOSTParameters();
-		/// @brief Method building POST Parameters
-		void buildPOSTParameters();
-
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request. For
 		/// this kind of request, results look like :<br/>

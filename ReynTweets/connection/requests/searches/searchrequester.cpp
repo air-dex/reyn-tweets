@@ -34,6 +34,3 @@ SearchRequester::SearchRequester(QObject * requester, QString q) :
 void SearchRequester::buildGETParameters() {
 	getParameters.insert("q", query);
 }
-
-// Virtual method building postParameters
-void SearchRequester::buildPOSTParameters() {}

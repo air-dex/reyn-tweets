@@ -36,10 +36,4 @@ enum RequestType {
 	POST
 };
 
-/// @fn QString requestTypeToString(RequestType type)
-/// @brief Converting a RequestType into a QString
-/// @param type The RequestType
-/// @return The corresponding QString
-QString requestTypeToString(RequestType type);
-
 #endif // REQUESTTYPE_HPP

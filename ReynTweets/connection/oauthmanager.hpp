@@ -151,7 +151,8 @@ class OAuthManager
 		QString generateNonce();
 
 		/// @fn QString generateTimestamp();
-		/// @brief Generates a timestamp for a request
+		/// @brief Generates a timestamp for a request. The timestamp is the
+		/// number of seconds since the Unix Epoch (1/1/1970 at midnight).
 		/// @return A timestamp corresponding to the current date.
 		QString generateTimestamp();
 
@@ -179,17 +180,6 @@ class OAuthManager
 						  QString nonce,
 						  QString timestamp,
 						  bool isRequestTokenRequest);
-
-		/// @fn QString hmacSha1(QByteArray key, QByteArray baseString);
-		/// @brief HMAC-SHA1 algorithm for signatures. Its implementation for
-		/// Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">
-		/// Qt Developer Network</a> here :
-		/// <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">
-		/// http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.
-		/// @param key Key for signature
-		/// @param baseString String that we want to sign
-		/// @return The signature
-		QString hmacSha1(QByteArray key, QByteArray baseString);
 
 		/// @fn QString formatOAuthParam(QString name,
 		///								 QString value,

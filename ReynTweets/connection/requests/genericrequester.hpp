@@ -63,9 +63,9 @@ class GenericRequester : public QObject
 						 OAuthManager * authManager,
 						 ErrorType parseError = QJSON_PARSING);
 
-		/// @fn ~GenericRequester();
+		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.
-		~GenericRequester();
+		virtual ~GenericRequester();
 
 		/// @fn QUuid getUuid();
 		/// @brief Getter on the requester's UUID
@@ -94,16 +94,16 @@ class GenericRequester : public QObject
 		/// @brief GET parameters that will be passed to the Communicator.
 		ArgsMap getParameters;
 
-		/// @fn virtual void buildGETParameters() = 0;
+		/// @fn virtual void buildGETParameters();
 		/// @brief Virtual method building getParameters
-		virtual void buildGETParameters() = 0;
+		virtual void buildGETParameters();
 
 		/// @brief POST parameters that will be passed to the Communicator.
 		ArgsMap postParameters;
 
-		/// @fn virtual void buildPOSTParameters() = 0;
+		/// @fn virtual void buildPOSTParameters();
 		/// @brief Virtual method building postParameters
-		virtual void buildPOSTParameters() = 0;
+		virtual void buildPOSTParameters();
 
 		/// @brief Pointer on the Twitter Communicator that will purely execute
 		/// the request and get the raw result of it.
@@ -134,14 +134,16 @@ class GenericRequester : public QObject
 		/// (true) of if therewas an error (false).
 		void treatResults(bool ok);
 
-		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @fn virtual QVariant parseResult(bool & parseOK,
+		///									 QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
 		/// errors that may occur while parsing.
 		/// @return Parsed results
-		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		virtual QVariant parseResult(bool & parseOK,
+									 QVariantMap & parsingErrors);
 
 
 	private:/*

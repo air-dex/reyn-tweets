@@ -44,13 +44,9 @@ class SearchRequester : public GenericRequester
 		/// @brief Query made by the user
 		QString query;
 
-		/// @fn virtual void buildGETParameters();
-		/// @brief Virtual method building getParameters
+		/// @fn void buildGETParameters();
+		/// @brief Building getParameters
 		void buildGETParameters();
-
-		/// @fn virtual void buildPOSTParameters();
-		/// @brief Virtual method building postParameters
-		void buildPOSTParameters();
 };
 
 #endif // SEARCHREQUESTER_HPP

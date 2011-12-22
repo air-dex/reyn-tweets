@@ -126,14 +126,6 @@ class GenericRequester : public QObject
 		/// @brief Result of the request.
 		RequestResult requestResult;
 
-	public slots:
-		/// @fn void treatResults(bool ok);
-		/// @brief Slot that is executed when the Twitter Communicator has just
-		/// finished its work.
-		/// @param ok Boolean indicating if the Twitter Communicator work is ok
-		/// (true) of if therewas an error (false).
-		void treatResults(bool ok);
-
 		/// @fn virtual QVariant parseResult(bool & parseOK,
 		///									 QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
@@ -144,6 +136,22 @@ class GenericRequester : public QObject
 		/// @return Parsed results
 		virtual QVariant parseResult(bool & parseOK,
 									 QVariantMap & parsingErrors);
+
+	public slots:
+		/// @fn void treatResults(bool requestOK);
+		/// @brief Slot that is executed when the Twitter Communicator has just
+		/// finished its work.
+		/// @param requestOK Boolean indicating if the Twitter Communicator did
+		/// its work successfully.
+		void treatResults(bool requestOK);
+
+	signals:
+		/// @fn void requestDone(bool ok);
+		/// @brief Signal sent when the results of the request received by
+		/// the Twitter Communicator have been treated.
+		/// @param ok Boolean indicating if the request is ok (true) of if there
+		/// was an error (false).
+		void requestDone();
 
 
 	private:/*
@@ -165,14 +173,6 @@ class GenericRequester : public QObject
 		void fillParsedResult(ErrorType errorType,
 							  QVariant parsedResults,
 							  QVariantMap parsingErrors);
-
-	signals:
-		/// @fn void requestDone(bool ok);
-		/// @brief Signal sent when the results of the request received by
-		/// the Twitter Communicator have been treated.
-		/// @param ok Boolean indicating if the request is ok (true) of if there
-		/// was an error (false).
-		void requestDone();
 };
 
 #endif // GENERICREQUESTER_HPP

@@ -103,12 +103,12 @@ void GenericRequester::executeRequest() {
 //////////////////////////
 
 // Slot executed when the Twitter Communicator has just finished its work.
-void GenericRequester::treatResults(bool ok) {
+void GenericRequester::treatResults(bool requestOK) {
 	ErrorType errorType;
 	QVariant parsedResults;
 	QVariantMap parsingErrorInfos;
 
-	if (ok) {
+	if (requestOK) {
 		bool parseOK;
 		parsedResults = this->parseResult(parseOK, parsingErrorInfos);
 		errorType = parseOK ? NO_ERROR : parsingErrorType;

@@ -35,14 +35,16 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 										 OAuthManager * authManager,
 										 ArgsMap getArgs,
 										 ArgsMap postArgs,
-										 QObject * parent) :
-	QObject(parent),
+										 QObject * requester) :
+	QObject(requester),
 	networkManager(),
 	serviceURL(url),
 	requestType(type),
 	getParameters(getArgs),
 	postParameters(postArgs),
 	authenticationRequired(authRequired),
+	reqBasta(false),
+	reply(0),
 	responseBuffer(""),
 	httpReturnCode(0),
 	httpReturnReason("Request not done"),
@@ -102,41 +104,38 @@ void TwitterCommunicator::executeRequest() {
 
 
 	// Connecting the reply
-	connect(reply, SIGNAL(finished()), this, SLOT(endRequest()));
+	connect(reply, SIGNAL(finished()),
+			this, SLOT(endRequest()));
 	connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-			this, SLOT(errorRequest(QNetworkReply::NetworkError)));
+			this, SLOT(endRequest(QNetworkReply::NetworkError)));
 }
 
 
-///////////
-// Slots //
-///////////
+//////////
+// Slot //
+//////////
 
 // Treatments that have to be done at the end of the request
-void TwitterCommunicator::endRequest() {
-	// Getting the reply
-	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
+void TwitterCommunicator::endRequest(QNetworkReply::NetworkError) {
+	// If we have already got a response, no need to continue
+	if (reqBasta) {
+		qDebug("Request ended");
+		return;
+	}
+	qDebug("Request reply");
 
-	responseBuffer = twitterReply->readAll();
+	// Analysing the response
+	extractHttpStatuses(reply);
+	errorReply = reply->error();
+	bool requestOK = httpReturnCode == 200;
 
-	errorReply = twitterReply->error();
-	extractHttpStatuses(twitterReply);
-	twitterReply->deleteLater();
-	// Telling that the Twitter Communicator has ended its work successfully
-	emit requestDone(true);
-}
+	// Extracting informations
+	responseBuffer = reply->readAll();
+	reply->deleteLater();
 
-// Treatments to do if there is an error
-void TwitterCommunicator::errorRequest(QNetworkReply::NetworkError errorCode) {
-	// Getting the reply
-	QNetworkReply * twitterReply = qobject_cast<QNetworkReply*>(sender());
-	responseBuffer = twitterReply->readAll();
-	errorReply = errorCode;
-	extractHttpStatuses(twitterReply);
-	twitterReply->deleteLater();
-
-	// Telling that the Twitter Communicator has ended its work unsuccessfully
-	emit requestDone(false);
+	// Ending the request
+	reqBasta = true;
+	emit requestDone(requestOK);
 }
 
 

@@ -34,6 +34,7 @@ Où en est Reyn Tweets ?
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
     # Tester
+  # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
   # Approfondir la documentation
   # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)

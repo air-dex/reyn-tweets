@@ -16,7 +16,8 @@ Où en est Reyn Tweets ?
     * Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?) : pas de librairies annexe afin de pouvoir réutiliser le Twitter Communicator
     * Mettre en place l'architecture.
     * Adapter l'architecture existante (se fera en cours de codage si nécessaire).
-    * Codage
+    * Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?). -> Fait en déboguant.
+    * Codage :
       * Création des classes
       * Codage de OAuthManager
       * Codage des OAuthRequesters
@@ -28,8 +29,8 @@ Où en est Reyn Tweets ?
 == Ce qui reste à faire ==
 
   # _Authentification à Twitter avec OAuth :_
-    # Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?.
     # Coder
+      # Trouver une procédure pour récupérer l'oauth_verifier (et l'oauth_token qu'on a déjà) de la procédure d'autorisation des Request Tokens (authorize()).
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
     # Tester

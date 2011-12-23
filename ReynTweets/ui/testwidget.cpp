@@ -25,12 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "../connection/reyntwittercalls.hpp"
 
 TestWidget::TestWidget(QWidget *parent) :
-	QWidget(parent)
-{
-}
-
-TestWidget::TestWidget(QWidget *parent) :
-	QMainWindow(parent),
+	QWidget(parent),
 	layout()
 {
 

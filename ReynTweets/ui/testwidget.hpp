@@ -36,7 +36,8 @@ class TestWidget : public QWidget
 {
 		Q_OBJECT
 	public:
-		explicit TestWidget(QWidget *parent = 0);
+		TestWidget(QWidget *parent = 0);
+		~TestWidget();
 		QVBoxLayout layout;
 		QLabel * lx;
 		QPushButton * xenobladeSearch;

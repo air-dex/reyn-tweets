@@ -33,7 +33,11 @@ Où en est Reyn Tweets ?
       # Trouver une procédure pour récupérer l'oauth_verifier (et l'oauth_token qu'on a déjà) de la procédure d'autorisation des Request Tokens (authorize()).
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
+      # Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter.
     # Tester
+  # UI quand on arrive sur l'application :
+    # Ecrans d'autorisation à manipuler le compte Twitter.
+    # Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
   # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
   # Approfondir la documentation

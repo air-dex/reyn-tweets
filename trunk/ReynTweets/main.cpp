@@ -23,6 +23,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
+#include "ui/testwidget.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -31,7 +32,11 @@ int main(int argc, char *argv[])
 
 	MainWindow w;
 
-	#if defined(Q_WS_S60)
+	// Widget for tests purposes
+	TestWidget widget;
+	w.setCentralWidget(&widget);
+
+	#if defined(Q_OS_SYMBIAN)
 		w.showMaximized();
 	#else
 		// Pour le moment, on ne fait que passer ici

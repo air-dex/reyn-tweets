@@ -1,3 +1,7 @@
+/// @file mainwindow.hpp
+/// @brief Header of the main window
+/// @author Romain Ducher
+
 /*
 Copyright 2011 Romain Ducher
 
@@ -29,23 +33,8 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 	public:
-		explicit MainWindow(QWidget *parent = 0);
+		MainWindow(QWidget *parent = 0);
 		~MainWindow();
-		QWidget widget;
-		QVBoxLayout layout;
-		QPushButton * xenobladeSearch;
-		QPushButton * camb078Search;
-		QLabel * lx;
-		QLabel * lc;
-		QPushButton * getRequestTokens;
-
-	public slots:
-		void requestTokensSlot();
-		void searchXenoblade();
-		void searchCamb078();
-		void endsearch(ResultWrapper);
-
-	private:
 };
 
 #endif // MAINWINDOW_HPP

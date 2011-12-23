@@ -46,10 +46,6 @@ class AuthorizeRequester : public OAuthRequester
 		/// @brief Method building GET Parameters
 		void buildGETParameters();
 
-		/// @fn void buildPOSTParameters();
-		/// @brief Method building POST Parameters
-		void buildPOSTParameters();
-
 		// TODO
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.

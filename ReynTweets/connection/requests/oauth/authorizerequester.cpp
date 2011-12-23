@@ -36,9 +36,6 @@ void AuthorizeRequester::buildGETParameters() {
 	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
 }
 
-// Building POST Parameters
-void AuthorizeRequester::buildPOSTParameters() {}
-
 // Parse the raw results of the request.
 QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
 	/*

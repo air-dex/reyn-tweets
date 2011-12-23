@@ -31,9 +31,6 @@ AccessTokenRequester::AccessTokenRequester(OAuthManager & authManager,
 				   requester)
 {}
 
-// Building GET Parameters
-void AccessTokenRequester::buildGETParameters() {}
-
 // Building POST Parameters
 void AccessTokenRequester::buildPOSTParameters() {
 	postParameters.insert("oauth_verifier", oauthManager->getVerifier());

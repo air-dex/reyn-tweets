@@ -52,7 +52,8 @@ SOURCES += \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
 	mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    ui/testwidget.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
@@ -73,7 +74,8 @@ HEADERS  += \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
-	mainwindow.hpp
+	mainwindow.hpp \
+    ui/testwidget.hpp
 
 
 #-----------------------#

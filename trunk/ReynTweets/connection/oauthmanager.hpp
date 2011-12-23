@@ -99,7 +99,8 @@ class OAuthManager
 		///										  QString baseURL,
 		///										  QString getDatas,
 		///										  QString postDatas,
-		///										  bool isRequestTokenRequest);
+		///										  bool isRequestTokenRequest,
+		///										  bool isAccessTokenRequest);
 		/// @brief Getting that will be written in the "Authorization" field
 		/// of requests
 		/// @param type Request type (GET or POST)
@@ -107,12 +108,16 @@ class OAuthManager
 		/// @param isRequestTokenRequest Boolean indicationg whether the request
 		/// is for a request token. In this case, the "oauth_token" parameter is
 		/// replaced by "oauth_callback_url".
+		/// @param isAccessTokenRequest Boolean indicationg whether the request
+		/// is for an accee token. In this case, the "oauth_verifier" parameter
+		/// is added.
 		/// @return That will be written in the "Authorization" header.
 		QByteArray getAuthorizationHeader(RequestType type,
 										  QString baseURL,
 										  QString getDatas,
 										  QString postDatas,
-										  bool isRequestTokenRequest);
+										  bool isRequestTokenRequest,
+										  bool isAccessTokenRequest);
 
 
 	protected:
@@ -179,7 +184,8 @@ class OAuthManager
 						  QString postDatas,
 						  QString nonce,
 						  QString timestamp,
-						  bool isRequestTokenRequest);
+						  bool isRequestTokenRequest,
+						  bool isAccessTokenRequest);
 
 		/// @fn QString formatOAuthParam(QString name,
 		///								 QString value,

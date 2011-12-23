@@ -40,10 +40,10 @@ OAuthManager::OAuthManager(QString clientKey,
 	oauthVersion(version),
 	oauthToken(""),
 	oauthSecret(""),
-	oauthVerifier("")
+	oauthVerifier(ReynTweetsSettings::VERIFIER)
 {
-	//oauthToken = "333687556-vSh0ddf6Q6xSDlMBqKsKSjtXAqWmopKuFj87OPmx";
-	//oauthSecret = "zHR5AOdcK22WGXGD70f4OUQu06IkBOVVCAV7NFU";
+	oauthToken = "E68zNM68jlxjmPMCYwXDbFUAOVikfZMmfSOGdtstgAM";
+	oauthSecret = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
 }
 
 
@@ -91,7 +91,8 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 												QString baseURL,
 												QString getDatas,
 												QString postDatas,
-												bool isRequestTokenRequest)
+												bool isRequestTokenRequest,
+												bool isAccessTokenRequest)
 {
 	QString authorizationHeader = "OAuth ";
 	QString formattedParamString;
@@ -103,7 +104,8 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 								  postDatas,
 								  nonce,
 								  timestamp,
-								  isRequestTokenRequest);
+								  isRequestTokenRequest,
+								  isAccessTokenRequest);
 
 	// oauth_callback
 	if (isRequestTokenRequest) {
@@ -153,6 +155,15 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 	if (!isRequestTokenRequest) {
 		formattedParamString = formatOAuthParam("oauth_token",
 												oauthToken,
+												true);
+		authorizationHeader.append(formattedParamString);
+		authorizationHeader.append(", ");
+	}
+
+	// oauth_verifier
+	if (!isAccessTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_verifier",
+												oauthVerifier,
 												true);
 		authorizationHeader.append(formattedParamString);
 		authorizationHeader.append(", ");
@@ -224,7 +235,8 @@ QString OAuthManager::signDatas(RequestType type,
 								QString postDatas,
 								QString nonce,
 								QString timestamp,
-								bool isRequestTokenRequest)
+								bool isRequestTokenRequest,
+								bool isAccessTokenRequest)
 {
 	// Building the key
 	QString key = "";
@@ -289,6 +301,15 @@ QString OAuthManager::signDatas(RequestType type,
 	if (!isRequestTokenRequest) {
 		formattedParamString = formatOAuthParam("oauth_token",
 												oauthToken,
+												false);
+		parameterString.append(formattedParamString);
+		parameterString.append('&');
+	}
+
+	// oauth_verifier
+	if (!isAccessTokenRequest) {
+		formattedParamString = formatOAuthParam("oauth_verifier",
+												oauthVerifier,
 												false);
 		parameterString.append(formattedParamString);
 		parameterString.append('&');

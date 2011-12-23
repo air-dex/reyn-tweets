@@ -42,9 +42,6 @@ class AccessTokenRequester : public OAuthRequester
 							 QObject * requester = 0);
 
 	protected:
-		/// @fn void buildGETParameters();
-		/// @brief Method building GET Parameters
-		void buildGETParameters();
 
 		/// @fn void buildPOSTParameters();
 		/// @brief Method building POST Parameters

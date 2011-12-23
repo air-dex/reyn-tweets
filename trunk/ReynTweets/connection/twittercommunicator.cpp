@@ -81,12 +81,16 @@ void TwitterCommunicator::executeRequest() {
 		// Is it a RequestTokenRequest ?
 		bool isRequestTokenRequest = oauthManager->getOAuthToken().isEmpty();
 
+		// Is it a AccessTokenRequest ?
+		bool isAccessTokenRequest = oauthManager->getVerifier().isEmpty();
+
 		// Bulding the Authorization header
 		QByteArray authHeader = oauthManager->getAuthorizationHeader(requestType,
 																	 serviceURL,
 																	 getArgs,
 																	 postArgs,
-																	 isRequestTokenRequest);
+																	 isRequestTokenRequest,
+																	 isAccessTokenRequest);
 
 		// Insert the header
 		request.setRawHeader("Authorization", authHeader);

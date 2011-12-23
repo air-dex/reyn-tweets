@@ -39,24 +39,32 @@ class TestWidget : public QWidget
 		TestWidget(QWidget *parent = 0);
 		~TestWidget();
 		QVBoxLayout layout;
-		QLabel * lx;
+
+		//Search
 		QPushButton * xenobladeSearch;
 		QPushButton * camb078Search;
+		QLabel * lx;
 
+		// OAuth
 		QPushButton * getRequestTokens;
-
 		QPushButton * authorize;
+		QPushButton * getAccessTokens;
 
 	public slots:
+		// Search
 		void searchXenoblade();
 		void searchCamb078();
 		void endsearch(ResultWrapper);
 
+		// OAuth
 		void requestTokensSlot();
 		void endRequestToken(ResultWrapper);
 
 		void authorizeSlot();
 		void endAuthorize(ResultWrapper);
+
+		void accessTokensSlot();
+		void endAccessToken(ResultWrapper);
 
 	private:
 };

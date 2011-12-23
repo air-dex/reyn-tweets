@@ -25,11 +25,25 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // NB : QString::fromUtf8(); is used to avoid problem with character conversion.
 
-/// @brief Reyn Tweets' consumer key
+// consumer key
 QString ReynTweetsSettings::CONSUMER_KEY = QString::fromUtf8("3p4Tw20gGGqvzqwWjJO4Zw");
 
-/// @brief Reyn Tweets' consumer secret
+// Reyn Tweets' consumer secret
 QString ReynTweetsSettings::CONSUMER_SECRET = QString::fromUtf8("q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y");
 
-/// @brief Reyn Tweets' callback URL
+// Reyn Tweets' callback URL
+/*
+QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("oob");
+//*/
+//*
 QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("http://code.google.com/p/reyn-tweets/");
+//*/
+
+// PIN code to authorize ReynTweets
+extern QString ReynTweetsSettings::VERIFIER = "OwdwBIQHt2GYyBAmUroEvteThfNmKalAK6rhxxzFA";
+
+// Reyn Tweets' access token
+extern QString ReynTweetsSettings::ACCESS_TOKEN = "333687556-li5x26es2u4nX0KTohahhZOJcYezMUuJlcJq8ej2";
+
+// Reyn Tweets' token secret
+extern QString ReynTweetsSettings::TOKEN_SECRET = "J3ahUe29WBpjPPUMiXC7gKRrcycu2WyO55klSbw8OC0";

@@ -43,8 +43,12 @@ TestWidget::TestWidget(QWidget *parent) :
 
 	authorize = new QPushButton("J'autorise !");
 	authorize->setEnabled(false);
-	connect(authorize, SIGNAL(clicked()), this, SLOT(requestTokensSlot()));
+	connect(authorize, SIGNAL(clicked()), this, SLOT(authorizeSlot()));
 	layout.addWidget(authorize);
+
+	getAccessTokens = new QPushButton("Je veux des Access tokens !");
+	connect(getAccessTokens, SIGNAL(clicked()), this, SLOT(accessTokensSlot()));
+	layout.addWidget(getAccessTokens);
 
 	setLayout(&layout);
 }
@@ -111,11 +115,42 @@ void TestWidget::endAuthorize(ResultWrapper res) {
 	qDebug("Fin de l'autorisation");
 
 	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
-	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endRequestToken(ResultWrapper)));
-	/*
+	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAuthorize(ResultWrapper)));
+	RequestResult resultats = res.accessResult(getRequestTokens);
+	QVariantMap httpInfos = resultats.getHttpInfos();
+
+	int code = httpInfos.value("httpCode").toInt();
+	qDebug("Le code retour :");
+	qDebug(QString::number(code).toAscii().data());
+
+	QString reason = httpInfos.value("httpReason").toString();
+	qDebug("La raison :");
+	qDebug(reason.toAscii().data());
+
+	qDebug("Fin de l'autorisation");
+}
+
+void TestWidget::accessTokensSlot() {
+	ReynTwitterCalls & rtc = ReynTwitterCalls::getInstance();
+	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAccessToken(ResultWrapper)));
+	rtc.accessToken(getRequestTokens);
+}
+
+void TestWidget::endAccessToken(ResultWrapper res) {
+	qDebug("Fin de Access Token");
+
+	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
+	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAccessToken(ResultWrapper)));
 	RequestResult resultats = res.accessResult(getRequestTokens);
 	QVariantMap parsedResult = resultats.getParsedResult().toMap();
-	QVariant oa = parsedResult.value("oauth_callback_confirmed");
-	//*/
 
+	QVariant resu = parsedResult.value("user_id");
+	QString userID = resu.toString();
+	qDebug("L'user ID :");
+	qDebug(userID.toAscii().data());
+
+	resu = parsedResult.value("screen_name");
+	QString screenName = resu.toString();
+	qDebug("Le screen name :");
+	qDebug(screenName.toAscii().data());
 }

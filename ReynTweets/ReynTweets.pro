@@ -51,11 +51,12 @@ SOURCES += \
 	connection/requests/oauth/authenticaterequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
+	controls/oauthprocess.cpp \
 	ui/oauthwidget.cpp \
 	ui/testwidget.cpp \
+	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
-	main.cpp \
-    ui/reyntweetswidget.cpp
+	main.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
@@ -76,10 +77,11 @@ HEADERS  += \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
+	controls/oauthprocess.hpp \
 	ui/oauthwidget.hpp \
 	ui/testwidget.hpp \
-	mainwindow.hpp \
-    ui/reyntweetswidget.hpp
+	ui/reyntweetswidget.hpp \
+	mainwindow.hpp
 
 
 #-----------------------#
@@ -119,6 +121,7 @@ win32 {
 #}
 
 #symbian {
+#	QJSON_PATH = # TODO
 #	INCLUDEPATH += c:\Libs\Qjson\include
 #	LIBS += -Lc:\Libs\Qjson\lib -lqjson
 #}

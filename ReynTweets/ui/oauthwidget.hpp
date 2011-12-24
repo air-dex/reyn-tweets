@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWidget>
 #include <QWebView>
-#include "../connection/reyntwittercalls.hpp"
+#include "../controls/oauthprocess.hpp"
 
 /// @class OAuthWidget
 /// @brief Widget dealing with OAuth authentication.
@@ -40,11 +40,19 @@ class OAuthWidget : public QWidget
 		/// @param parent Parent widget
 		OAuthWidget(QWidget * parent = 0);
 
+		/// @fn ~OAuthWidget();
+		/// @brief Destructor
+		~OAuthWidget();
+
 		/// @fn void allowReynTweets();
 		/// @brief Allowing Reyn Tweets to use your Twitter account
 		void allowReynTweets();
 
 	signals:
+		/// @fn void startAuthentication();
+		/// @brief Signal to send when authentication is started
+		void startAuthentication();
+
 		/// @fn void authenticationFinished(bool authOK);
 		/// @brief Signal sent when the authentication is finished
 		/// @param authOK Boolean indicating whether the authentication was
@@ -52,41 +60,25 @@ class OAuthWidget : public QWidget
 		void authenticationFinished(bool authOK);
 
 	public slots:
-		/// @fn void requestTokenDemanded(ResultWrapper res);
-		/// @brief Treatments after the request for Request Tokens
-		/// @param res Result of the request
-		void requestTokenDemanded(ResultWrapper res);
+		/// @fn void browserVisible(bool visible);
+		/// @brief Slot executing to show (or to hide) authorizePage
+		/// @param visible Boolean indicating authorizePage has to be shown or
+		/// has to be hidden.
+		void browserVisible(bool visible);
 
 		/// @fn void authorizeDemanded(ResultWrapper res);
-		/// @brief Treatments after the request for authorizing Request Tokens
-		/// @param res Result of the request
-		void authorizeDemanded(ResultWrapper res);
-
-		/// @fn void accessTokenDemanded(ResultWrappers res);
-		/// @brief Treatments after the request for Access Tokens
-		/// @param res Result of the request
-		void accessTokenDemanded(ResultWrapper res);
+		/// @brief Slot executing at the end of the authentication. It just
+		/// sends the {@link #authenticationFinished(bool)} signal.
+		/// @param authOK Boolean indicating whether the authentication was
+		/// successful. (subject to change)
+		void endAuthentication(bool authOK);
 
 	protected:
-		/// @brief Entity calling Twitter
-		ReynTwitterCalls & twitterCalls;
-
 		/// @brief Embedded Web browser to authorize Reyn Tweets
 		QWebView authorizePage;
 
-	private:
-		/// @fn void requestToken();
-		/// @brief Demanding a Request Token
-		void requestToken();
-
-		/// @fn void authorize();
-		/// @brief Authorizing Reyn Tweets by displaying the Twitter
-		/// authentication page.
-		void authorize();
-
-		/// @fn void accessToken();
-		/// @brief Demanding an Access Token
-		void accessToken();
+		/// @brief Entity calling Twitter
+		OAuthProcess * oauthAuthenticationFlow;
 };
 
 #endif // OAUTHWIDGET_HPP

@@ -26,9 +26,14 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
-	twitterCalls(ReynTwitterCalls::getInstance()),
-	authorizePage()
+	authorizePage(),
+	oauthAuthenticationFlow(authorizePage, this)
 {}
+
+// Treatments after the request for Request Tokens
+void OAuthWidget::browserVisible(bool visible) {
+
+}
 
 
 /////////////////////////
@@ -37,62 +42,10 @@ OAuthWidget::OAuthWidget(QWidget *parent) :
 
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget::allowReynTweets() {
-	requestToken();
-}
-
-// Demanding a Request Token
-void OAuthWidget::requestToken() {
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(requestTokenDemanded(ResultWrapper)));
-	twitterCalls.requestToken(this);
-}
-
-// Treatments after the request for Request Tokens
-void OAuthWidget::requestTokenDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(requestTokenDemanded(ResultWrapper)));
-
-	// Treatments on res for continuing the authentication process
-
-	authorize();	// If that's ok
-}
-
-// Authorizing Reyn Tweets by displaying the Twitter
-void OAuthWidget::authorize() {
-	// Put on the browser
-
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitterCalls.requestToken(this);
+	emit startAuthentication();
 }
 
 // Treatments after the request for authorizing Request Tokens
-void OAuthWidget::authorizeDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(authorizeDemanded(ResultWrapper)));
+void OAuthWidget::endAuthentication(bool authOK) {
 
-	// Put off the browser
-
-	// Treatments on res for continuing the authentication process
-
-	accessToken();	// If that's ok
-}
-
-// Demanding an Access Token
-void OAuthWidget::accessToken() {
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(accessTokenDemanded(ResultWrapper)));
-	twitterCalls.accessToken(this);
-}
-
-// Treatments after the request for Access Tokens
-void OAuthWidget::accessTokenDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(accessTokenDemanded(ResultWrapper)));
-
-	bool accessTokenOK;
-
-	// Treatments on res
-
-	emit authenticationFinished(accessTokenOK);
 }

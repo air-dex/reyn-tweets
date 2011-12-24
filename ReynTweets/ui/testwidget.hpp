@@ -1,4 +1,4 @@
-/// @file testwidget.cpp
+/// @file testwidget.hpp
 /// @brief Header for TestWidget
 /// @author Romain Ducher
 

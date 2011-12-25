@@ -36,10 +36,10 @@ Où en est Reyn Tweets ?
       # Codage de la procédure authorize() :
         # Traiter de ce qui se passe lorsque l'utilisateur est sur la page (dans l'AuthorizeRequester).
         # Finir l'OAuthProcess avec le codage du slot de traitement de l'autorisation des Request Tokens (authorizeDemanded).
-      # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
-      # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
       # Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter
         # Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
+      # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
+      # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
     # Tester
   # UI quand on arrive sur l'application :
     # Ecrans d'autorisation à manipuler le compte Twitter.

@@ -72,9 +72,11 @@ class GenericRequester : public QObject
 		/// @return The requester's UUID
 		QUuid getUuid();
 
-		/// @fn void executeRequest();
-		/// @brief Executing the request
-		void executeRequest();
+		/// @fn virtual void executeRequest();
+		/// @brief Executing the request. The method is virtual because of the
+		/// Authorize step in the OAuth process whose request is quite different
+		/// from the other ones.
+		virtual void executeRequest();
 
 		/// @fn RequestResult getParsedResult();
 		/// @brief Getting parsed results

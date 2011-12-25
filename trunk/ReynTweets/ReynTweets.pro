@@ -48,7 +48,7 @@ SOURCES += \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
-	connection/requests/oauth/authenticaterequester.cpp \
+#	connection/requests/oauth/authenticaterequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
 	controls/oauthprocess.cpp \
@@ -73,7 +73,7 @@ HEADERS  += \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
-	connection/requests/oauth/authenticaterequester.hpp \
+#	connection/requests/oauth/authenticaterequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \

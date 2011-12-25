@@ -23,18 +23,110 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "authorizerequester.hpp"
 
-AuthorizeRequester::AuthorizeRequester(OAuthManager & authManager,
-											 QObject *requester) :
+AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
+									   OAuthManager &authManager,
+									   QObject *requester) :
 	OAuthRequester(authManager,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
-				   requester)
+				   requester),
+	browser(twitterBrowser)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
 	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
 }
+
+// Authorizing request tokens
+void AuthorizeRequester::executeRequest() {
+	// Building the ArgsMap
+	buildGETParameters();
+
+	// Executing the request
+	communicator = new TwitterCommunicator(requestURL,
+										   requestType,
+										   authenticationRequired,
+										   oauthManager,
+										   getParameters,
+										   postParameters,
+										   this);
+
+	QNetworkRequest * request = communicator->prepareRequest();
+
+	// Connecting browser signals and requester slots to see what happened and what to do.
+	connect(&browser, SIGNAL(linkClicked(QUrl)),
+			this, SLOT(linkClickedSlot(QUrl)));
+	connect(&browser, SIGNAL(loadFinished(bool)),
+			this, SLOT(loadFinishedSlot(bool)));
+	connect(&browser, SIGNAL(loadProgress(int)),
+			this, SLOT(loadProgressSlot(int)));
+	connect(&browser, SIGNAL(loadStarted()),
+			this, SLOT(loadStartedSlot()));
+	connect(&browser, SIGNAL(selectionChanged()),
+			this, SLOT(selectionChangedSlot()));
+	connect(&browser, SIGNAL(statusBarMessage(QString)),
+			this, SLOT(statusBarMessageSlot(QString)));
+	connect(&browser, SIGNAL(titleChanged(QString)),
+			this, SLOT(titleChangedSlot(QString)));
+	connect(&browser, SIGNAL(urlChanged(QUrl)),
+			this, SLOT(urlChanged(QUrl)));
+
+	// Launching requests
+	browser.load(request);
+}
+
+// Slots de test pour intéraction avec la QWebView
+void	AuthorizeRequester::linkClickedSlot ( const QUrl & url ) {
+	QByteArray ba = "Clic sur le lien ";
+	ba.append(url.toString());
+	qDebug(ba.data());
+}
+
+void	AuthorizeRequester::loadFinishedSlot ( bool ok ) {
+	char * message = ok ? "Ca finit bien" : "Ca finit mal";
+	qDebug(message);
+}
+
+void	AuthorizeRequester::loadProgressSlot ( int progress ) {
+	QByteArray ba = "Ca progresse de ";
+	ba.append(QString::number(progress));
+	qDebug(ba.data());
+}
+
+void	AuthorizeRequester::loadStartedSlot () {
+	qDebug("Ca charge !");
+}
+
+void	AuthorizeRequester::selectionChangedSlot () {
+	qDebug("La sélection change !");
+}
+
+void	AuthorizeRequester::statusBarMessageSlot ( const QString & text ) {
+	QByteArray ba = "Message dans la status bar : ";
+	ba.append(text);
+	qDebug(ba.data());
+}
+
+void	AuthorizeRequester::titleChangedSlot ( const QString & title ) {
+	QByteArray ba = "Le titre change : ";
+	ba.append(title);
+	qDebug(ba.data());
+}
+
+void	AuthorizeRequester::urlChangedSlot ( const QUrl & url ) {
+	QByteArray ba = "L'URL change : ";
+	ba.append(url.toString());
+	qDebug(ba.data());
+}
+
+
+
+
+
+
+
+
 
 // Parse the raw results of the request.
 QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {

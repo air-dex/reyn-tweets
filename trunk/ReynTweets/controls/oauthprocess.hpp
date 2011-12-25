@@ -47,6 +47,18 @@ class OAuthProcess : public QObject
 		/// @param visible Boolean indicating if the browser has to be visible.
 		void browserVisible(bool visible);
 
+		/// @fn void errorProcess(QString errorMsg, bool fatalError);
+		/// @brief Signal emitted when an error occurs during the process
+		/// @param errorMsg Message describing the error
+		/// @param fatalError Boolean indicating if the error is fatal for
+		/// the process.
+		void errorProcess(QString errorMsg, bool fatalError);
+
+		/// @fn void authenticationProcessFinished(bool authOK);
+		/// @brief Signal sent when the authentication process ends.
+		/// @param authOK Boolean indicating if the process was successful.
+		void authenticationProcessFinished(bool authOK);
+
 	public slots:
 		/// @fn void startAuthentication();
 		/// @brief Starting the OAuth authentication flow

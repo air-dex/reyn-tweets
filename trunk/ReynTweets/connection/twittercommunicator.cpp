@@ -43,6 +43,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	getParameters(getArgs),
 	postParameters(postArgs),
 	authenticationRequired(authRequired),
+	request(0),
 	reqBasta(false),
 	reply(0),
 	responseBuffer(""),
@@ -52,14 +53,25 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 {}
 
 // Destructor
-TwitterCommunicator::~TwitterCommunicator() {}
+TwitterCommunicator::~TwitterCommunicator() {
+	// Deleting the request
+	if (request != 0) {
+		delete request;
+	}
+
+	// Deleting the reply
+	if (reply != 0) {
+		delete reply;
+	}
+}
 
 
 ///////////////////////////
 // Executing the request //
 ///////////////////////////
 
-void TwitterCommunicator::executeRequest() {
+// Preparing the request
+void TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 	// GET arguments
 	QString getArgs = buildGetDatas();
 
@@ -69,11 +81,11 @@ void TwitterCommunicator::executeRequest() {
 		serviceURL.append(getArgs);
 	}
 
-	QNetworkRequest request(serviceURL);
+	QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
 
 
 	// POST arguments
-	QByteArray postArgs = buildPostDatas();
+	postArgs = buildPostDatas();
 
 
 	// Building the authentication header if needed
@@ -93,17 +105,26 @@ void TwitterCommunicator::executeRequest() {
 																	 isAccessTokenRequest);
 
 		// Insert the header
-		request.setRawHeader("Authorization", authHeader);
+		requestToTwitter->setRawHeader("Authorization", authHeader);
 	}
 
+	return requestToTwitter;
+}
+
+// Executing the request
+void TwitterCommunicator::executeRequest() {
+	QByteArray postArgs;
+
+	// Preparing the request
+	request = prepareRequest(postArgs);
 
 	// Executing the request
 	if (POST == requestType) {
 		// There is some POST arguments -> networkManager.post()
-		reply = networkManager.post(request, postArgs);
+		reply = networkManager.post(*request, postArgs);
 	} else {
 		// There is not any POST arguments -> networkManager.get()
-		reply = networkManager.get(request);
+		reply = networkManager.get(*request);
 	}
 
 

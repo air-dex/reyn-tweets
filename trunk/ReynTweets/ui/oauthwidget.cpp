@@ -27,12 +27,23 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
 	authorizePage(),
-	oauthAuthenticationFlow(authorizePage, this)
+	oauthAuthenticationFlow(0)
 {}
+
+// Destructor
+OAuthWidget::~OAuthWidget() {
+	if (oauthAuthenticationFlow != 0) {
+		delete oauthAuthenticationFlow;
+	}
+}
 
 // Treatments after the request for Request Tokens
 void OAuthWidget::browserVisible(bool visible) {
-
+	if (visible) {
+		// Displaying authorizePage
+	} else {
+		// Hiding authorizePage
+	}
 }
 
 
@@ -42,10 +53,29 @@ void OAuthWidget::browserVisible(bool visible) {
 
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget::allowReynTweets() {
-	emit startAuthentication();
+	oauthAuthenticationFlow = new OAuthProcess(authorizePage, this);
+
+	if (oauthAuthenticationFlow) {
+		connect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
+				this, SLOT(browserVisible(bool)));
+		connect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
+				this, SLOT(endAuthentication(bool)));
+		oauthAuthenticationFlow->startAuthentication();
+	} else {
+		// Erreur à l'initialisation du process
+	}
 }
 
-// Treatments after the request for authorizing Request Tokens
+// End of authentication
 void OAuthWidget::endAuthentication(bool authOK) {
+	// Killing the process
+	disconnect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
+			this, SLOT(browserVisible(bool)));
+	disconnect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
+			this, SLOT(endAuthentication(bool)));
+	delete oauthAuthenticationFlow;
+	oauthAuthenticationFlow = 0;
 
+	// Transmitting the result
+	emit authenticationFinished(authOK);
 }

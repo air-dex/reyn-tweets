@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 RequestResult::RequestResult() :
-	requestSuccessful(INVALID_RESULT),
+	resultType(INVALID_RESULT),
 	parsedResult(),
 	httpInfos(),
 	networkError(),
@@ -39,7 +39,7 @@ RequestResult::RequestResult(ErrorType errorType,
 							 QString httpReason,
 							 QNetworkReply::NetworkError netError,
 							 QVariantMap parsingErrorInfos) :
-	requestSuccessful(errorType),
+	resultType(errorType),
 	parsedResult(parsedResults),
 	httpInfos(),
 	networkError(netError),
@@ -52,17 +52,17 @@ RequestResult::RequestResult(ErrorType errorType,
 
 // Method indicating if the request was successful
 bool RequestResult::isRequestSuccessful() {
-	return requestSuccessful == NO_ERROR;
+	return resultType == NO_ERROR;
 }
 
 // Method indicating if the request result is fake
 bool RequestResult::isFakeResult() {
-	return requestSuccessful == INVALID_RESULT;
+	return resultType == INVALID_RESULT;
 }
 
 // Getter of requestSuccessful
-ErrorType RequestResult::getRequestSuccessful() {
-	return requestSuccessful;
+ErrorType RequestResult::getErrorType() {
+	return resultType;
 }
 
 // Getter on real results

@@ -24,6 +24,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef AUTHORIZEREQUESTER_HPP
 #define AUTHORIZEREQUESTER_HPP
 
+#include <QWebView>
 #include "oauthrequester.hpp"
 
 /// @class AuthorizeRequester
@@ -33,15 +34,26 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(OAuthManager & authManager,
+		/// @fn AuthorizeRequester(QWebView & twitterBrowser,
+		///						   OAuthManager & authManager,
 		///						   QObject * requester = 0);
 		/// @brief Constructor
-		/// @param authManager Information for OAuth. It has to be not null
+		/// @param twitterBrowser QWebView used for the request
+		/// @param authManager Informations for OAuth.
 		/// @param requester QObject which asks for this search.
-		AuthorizeRequester(OAuthManager & authManager,
+		AuthorizeRequester(QWebView & twitterBrowser,
+						   OAuthManager & authManager,
 						   QObject * requester = 0);
 
+		/// @fn void executeRequest();
+		/// @brief Executing the request. For this request, the process is quite
+		/// different. That is why the method is refined for this requester.
+		void executeRequest();
+
 	protected:
+		/// @brief Browser that will communicate with Twitter
+		QWebView & browser;
+
 		/// @fn void buildGETParameters();
 		/// @brief Method building GET Parameters
 		void buildGETParameters();
@@ -55,6 +67,18 @@ class AuthorizeRequester : public OAuthRequester
 		/// errors that may occur while parsing.
 		/// @return Parsed results
 		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+
+
+	public slots:
+		// Slots de test pour intéraction avec la QWebView
+		void	linkClickedSlot ( const QUrl & url );
+		void	loadFinishedSlot ( bool ok );
+		void	loadProgressSlot ( int progress );
+		void	loadStartedSlot ();
+		void	selectionChangedSlot ();
+		void	statusBarMessageSlot ( const QString & text );
+		void	titleChangedSlot ( const QString & title );
+		void	urlChanged ( const QUrl & url );
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

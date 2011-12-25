@@ -67,10 +67,10 @@ class RequestResult
 		/// @return true if the object is FAKE_REQUEST_RESULT, false otherwise.
 		bool isFakeResult();
 
-		/// @fn ErrorType getRequestSuccessful();
+		/// @fn ErrorType getErrorType();
 		/// @brief Getter on requestSuccessful
 		/// @return The value of requestSuccessful
-		ErrorType getRequestSuccessful();
+		ErrorType getErrorType();
 
 		/// @fn QVariant getParsedResult();
 		/// @brief Getter on real results
@@ -95,7 +95,7 @@ class RequestResult
 
 	protected:
 		/// @brief Code indicating whether an error occured during the request.
-		ErrorType requestSuccessful;
+		ErrorType resultType;
 
 		/// @brief Results of the request parsed by QJson.
 		QVariant parsedResult;

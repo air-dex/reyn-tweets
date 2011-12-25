@@ -121,21 +121,24 @@ void ReynTwitterCalls::requestToken(QObject * requestDemander) {
 	executeRequest(requester);
 }
 
-// Method for authentication
-void ReynTwitterCalls::authorize(QObject * requestDemander) {
-	AuthorizeRequester * requester = new AuthorizeRequester(oauthManager,
+// Authorizing request Tokens
+void ReynTwitterCalls::authorize(QObject * requestDemander, QWebView & browser) {
+	AuthorizeRequester * requester = new AuthorizeRequester(browser,
+															oauthManager,
 															requestDemander);
 	executeRequest(requester);
 }
 
-// Method for getting a request token
+/*
+// Authorizing request Tokens
 void ReynTwitterCalls::authenticate(QObject * requestDemander) {
 	AuthenticateRequester * requester = new AuthenticateRequester(oauthManager,
 																  requestDemander);
 	executeRequest(requester);
 }
+//*/
 
-// Method for getting a request token
+// Getting the access tokens
 void ReynTwitterCalls::accessToken(QObject * requestDemander) {
 	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager,
 																requestDemander);

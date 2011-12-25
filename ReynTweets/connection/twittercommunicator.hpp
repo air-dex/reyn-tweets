@@ -27,6 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QByteArray>
 #include <QUrl>
 #include <QMap>
@@ -76,24 +77,36 @@ class TwitterCommunicator : public QObject
 		/// @brief Destructor
 		~TwitterCommunicator();
 
+		/// @fn QNetworkRequest * prepareRequest(QByteArray & postArgs = "");
+		/// @brief Preparing the request. It builds the parameters for GET
+		/// and POST and the Authorization header if needed.
+		/// @param postArgs QByteArrray for storing the POST argument under
+		/// the form arg1=val1&arg2=val2&...&argN=valN if needed.
+		/// @return A pointer on the request
+		QNetworkRequest * prepareRequest(QByteArray & postArgs = QByteArray());
+
 		/// @fn void executeRequest();
 		/// @brief Executing the request
 		void executeRequest();
 
 		/// @fn QByteArray getResponseBuffer();
 		/// @brief Getting the content of the response
+		/// @return The buffer containing the response
 		QByteArray getResponseBuffer();
 
 		/// @fn QNetworkReply::NetworkError getNetworkError();
 		/// @brief Getting a code indicating whether the request is successful.
+		/// @return The network error
 		QNetworkReply::NetworkError getNetworkError();
 
 		/// @fn int getHttpCode();
 		/// @brief Getting the HTTP return code.
+		/// @return The HTTP code of the request.
 		int getHttpCode();
 
 		/// @fn QString getHttpReason();
 		/// @brief Getting the HTTP return reason.
+		/// @return The description of the HTTP return code.
 		QString getHttpReason();
 
 
@@ -132,6 +145,9 @@ class TwitterCommunicator : public QObject
 
 		/// @brief Boolean indicating if authentication is required for the request
 		bool authenticationRequired;
+
+		/// @brief The request
+		QNetworkRequest * request;
 
 
 		// Entities for response

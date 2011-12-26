@@ -1,4 +1,4 @@
-file:///C:/Users/Romain/Desktop/Reyn Tweets/misc/authrorizePage.html
+file:///C:/Users/Romain/Desktop/Reyn Tweets/misc/RetroIngeOAuth/authrorizePage.html
 
 https://api.twitter.com/oauth/authorize?oauth_token=E68zNM68jlxjmPMCYwXDbFUAOVikfZMmfSOGdtstgAM
 

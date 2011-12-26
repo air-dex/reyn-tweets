@@ -24,6 +24,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHWIDGET_HPP
 #define OAUTHWIDGET_HPP
 
+#include <QGridLayout>
 #include <QWidget>
 #include <QWebView>
 #include "../controls/oauthprocess.hpp"
@@ -88,6 +89,9 @@ class OAuthWidget : public QWidget
 		OAuthProcess * oauthAuthenticationFlow;
 
 	private:
+		/// @brief Layout of the widget
+		QGridLayout layout;
+
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow
 		void killOAuthProcess();

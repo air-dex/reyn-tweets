@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <title>Twitter / Autoriser une application</title>
+
+    <link href="https://si0.twimg.com/a/1324510588/phoenix/css/tfw.bundle.css" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if (IEMobile) & (lt IE 9)]>
+    <link href="https://si0.twimg.com/a/1324510588/phoenix/css/tfw_iemobile.bundle.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    
+
+    <style type="text/css">
+      html { display:none; }
+    </style>
+    <noscript>
+      <style type="text/css">
+        html { display: block; }
+      </style>
+    </noscript>
+    <!--[if IEMobile & lt IE 9]>
+    <style type="text/css">
+      html { display: block; }
+    </style>
+    <![endif]-->
+
+  </head>
+  <body class="oauth write tfw fr logged-out noloki">
+
+    <div id="header" role="banner">
+      <div class="bar">
+        <h1 class="logo"><a href="https://twitter.com/home" class="alternate-context">Twitter</a></h1>
+
+        
+        <div id="not-logged-in">
+  <a href="https://twitter.com/signup?context=oauth&amp;oauth_token=7Od3FTewqWS0pKxCgKu4RRyZjQarDJrMOoKCuuy5I" class="sign-up alternate-context">S'inscrire</a></div>
+        
+      </div>
+    </div>
+
+    <div id="bd" role="main">
+      
+<div class="error notice" role="alert">
+  <h2>Oups, il y a eu un souci.</h2>
+  <p>Nom d'utilisateur ou mot de passe invalide. <a href="https://api.twitter.com/home" class="launch alternate-context">Retourner sur twitter.com</a></p>
+</div>
+
+
+
+
+
+<div class="auth">
+  <h2>Autoriser Reyn Tweets à utiliser votre compte ?</h2>
+
+  
+<div class="app-info" role="content-info" tabindex="0">
+  <h3>
+    <img alt="" class="app-icon" src="https://si0.twimg.com/client_application_images/350211/logo_reyn_tweets.png" title="Reyn Tweets par @air_dex" />
+    Reyn Tweets
+  </h3>
+  <dl>
+    <dt class="dev">Développeur</dt>
+    <dd class="dev">Par @air_dex</dd>
+    <dt class="url">URL de l'application</dt>
+    <dd class="url">code.google.com/p/reyn-tweets/</dd>
+    <dt class="notes">À propos de cette application</dt>
+    <dd class="notes"><p>Client Twitter pour Windows, Linux et Symbian^3 écrit avec Qt</p></dd>
+  </dl>
+</div>
+
+
+
+  <div class="permissions allow">
+  <p>Cette application <strong>sera autorisée à</strong> :</p>
+  <ul>
+    <li>Lire les Tweets de votre fil.</li>
+    
+    <li>Regarder vos abonnements et suivre de nouvelles personnes.</li>
+    <li>Mettre à jour votre profil.</li>
+    <li>Poster des tweets pour vous.</li>
+
+
+    
+    
+    <li>Accéder à vos messages privés.</li>
+    
+  </ul>
+</div>
+
+
+  <form action="https://api.twitter.com/oauth/authorize" id="oauth_form" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="7941ae9efcf452e5fb534e85175c0d3d18827895" /></div>
+
+    <input id="oauth_token" name="oauth_token" type="hidden" value="7Od3FTewqWS0pKxCgKu4RRyZjQarDJrMOoKCuuy5I" />        
+
+
+<fieldset class="sign-in">
+  <legend>Sign in to Twitter</legend>
+  <div class="row user error">
+    <label for="username_or_email" tabindex="-1">Nom d'utilisateur ou e-mail</label>
+    <input aria-describedby="sign-in-error" aria-invalid="true" aria-required="true" autocapitalize="off" autocorrect="off" autofocus="autofocus" class="text" id="username_or_email" name="session[username_or_email]" required="required" type="text" />
+  </div>
+  <div class="row password error">
+  <label for="password" tabindex="-1">Mot de passe</label>
+    <input aria-invalid="true" aria-required="true" class="password" id="password" name="session[password]" required="required" type="password" value="" />
+  </div>
+  <p class="forgot"><a class="alternate-context" href="/account/resend_password">Mot de passe oublié ?</a></p>
+</fieldset>
+
+
+
+    <fieldset class="buttons">
+      <legend>Autoriser Reyn Tweets à utiliser votre compte ?</legend>
+      <input type="submit" value="Autoriser l'application" class="submit button selected" id="allow">
+      <input type="submit" value="Non merci" class="submit button" name="deny" id="deny">
+    </fieldset>
+</form>
+  <div class="permissions deny">
+  <p>Cette application <strong>ne sera pas capable de</strong> :</p>
+  <ul>
+
+    
+    
+
+    <li>Voir votre mot de passe Twitter.</li>
+  </ul>
+</div>
+
+</div>
+
+
+
+
+
+
+    </div>
+
+    
+
+    
+    <div class="footer" role="navigation"><div id="ft">
+      
+<p class="tip">Vous pouvez retirer l'accès à toute application à tout moment depuis l'<a href="https://twitter.com/settings/applications">onglet Applications</a> de vos Paramètres.</p>
+<p><small>En autorisant une application, vous êtes toujours soumis aux <a href="https://twitter.com/tos">conditions d'utilisation de Twitter</a>. Par ailleurs, certaines données sur votre activité seront renvoyées à Twitter. Pour en savoir plus, veuillez consulter notre <a href="https://twitter.com/privacy">politique de confidentialité</a>.</small></p>
+
+    </div></div>
+    
+
+    <script type="text/javascript" charset="utf-8">
+      var twttr = twttr || {};
+      twttr.form_authenticity_token = '7941ae9efcf452e5fb534e85175c0d3d18827895';
+      if (self == top) {
+        document.documentElement.style.display = 'block';
+      }
+    </script>
+
+    <script src="https://si0.twimg.com/a/1324510588/javascripts/loadrunner.js" data-main="tfw/intents/main" data-path="https://si0.twimg.com/a/1324510588/javascripts/modules" type="text/javascript"></script>
+
+    <script src="https://si0.twimg.com/a/1324510588/javascripts/i18n/fr.js?1324512114" type="text/javascript"></script>
+
+    
+    <script type="text/javascript" charset="utf-8">
+      
+using('imports/jquery', function($) {
+  $('.app-info').click(function() {
+    $(this).toggleClass('expanded');
+  });
+});
+using('imports/jquery', function($) {
+  $('input#allow').click(function() {
+    window.pageTracker && window.pageTracker._trackPageview('/oauth/approved/Reyn+Tweets');
+  });
+
+  $('input#deny').click(function() {
+    window.pageTracker && window.pageTracker._trackPageview('/oauth/declined/Reyn+Tweets');
+  });
+});
+using('imports/jquery', function($) {
+  // Adjust window sizes when opening the OAuth flow in a new window.
+  // NB. Pleasepleaseplease don't invoke OAuth flows in new window without a
+  //     visible address bar/SSL verification and scroll bar support. Hugs! ;-)
+  if(window.opener) {
+    $(function() {
+      buffer = 170;
+      content = document.getElementById('bd');
+      vph = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      browser = window.outerHeight || vph + 60;
+      
+      vpw = window.innerWidth || document.documentElement.clientWidth + 29 || document.body.clientWidth + 29;
+      
+      if(vph < content.offsetHeight + buffer) {
+        window.resizeTo(vpw, content.offsetHeight + (browser - vph) + buffer);
+      }
+    });
+  }
+});
+
+      
+    </script>
+    
+        <!-- BEGIN google analytics -->
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+  <script type="text/javascript">
+
+    try {
+      var pageTracker = _gat._getTracker("UA-30775-6");
+      pageTracker._setDomainName("twitter.com");
+            pageTracker._setVar('Not Logged In');
+            pageTracker._setVar('lang: fr');
+            pageTracker._initData();
+                              pageTracker._trackPageview();
+                  } catch(err) { }
+
+  </script>
+
+  <!-- END google analytics -->
+
+
+
+  </body>
+</html>

@@ -70,7 +70,7 @@ void AuthorizeRequester::executeRequest() {
 	connect(&browser, SIGNAL(titleChanged(QString)),
 			this, SLOT(titleChangedSlot(QString)));
 	connect(&browser, SIGNAL(urlChanged(QUrl)),
-			this, SLOT(urlChanged(QUrl)));
+			this, SLOT(urlChangedSlot(QUrl)));
 
 	// Launching requests
 	browser.load(*request);
@@ -86,6 +86,7 @@ void	AuthorizeRequester::linkClickedSlot ( const QUrl & url ) {
 void	AuthorizeRequester::loadFinishedSlot ( bool ok ) {
 	char * message = ok ? "Ca finit bien" : "Ca finit mal";
 	qDebug(message);
+	qDebug("\n");
 }
 
 void	AuthorizeRequester::loadProgressSlot ( int progress ) {

@@ -24,7 +24,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REYNTWEETSWIDGET_HPP
 #define REYNTWEETSWIDGET_HPP
 
+#include <QVBoxLayout>
 #include <QWidget>
+#include "oauthwidget.hpp"
+#include "testwidget.hpp"
 
 /// @class ReynTweetsWidget
 /// @brief Main Widget of Reyn Tweets.
@@ -33,11 +36,13 @@ class ReynTweetsWidget : public QWidget
 		Q_OBJECT
 	public:
 		explicit ReynTweetsWidget(QWidget *parent = 0);
+		TestWidget tw;
+		OAuthWidget oaw;
+		QVBoxLayout lay;
 
 	signals:
 
 	public slots:
-
 };
 
 #endif // REYNTWEETSWIDGET_HPP

@@ -48,14 +48,14 @@ void OAuthProcess::startAuthentication() {
 // Demanding a Request Token
 void OAuthProcess::requestToken() {
 	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(browserVisible(ResultWrapper)));
+			this, SLOT(requestTokenDemanded(ResultWrapper)));
 	twitterCalls.requestToken(this);
 }
 
 // Treatments after the request for Request Tokens
 void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(browserVisible(ResultWrapper)));
+			   this, SLOT(requestTokenDemanded(ResultWrapper)));
 
 	// Treatments on res for continuing the authentication process
 	RequestResult result = res.accessResult(this);
@@ -69,7 +69,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 			if (callbackOKResult.toBool()) {
 				// All is OK. Let's go to the next step
-				qDebug("Fin de request token.");
+				qDebug("Fin de request token.\n");
 				authorize();
 			} else {
 				// Invalid callback URL. Abort.
@@ -122,7 +122,7 @@ void OAuthProcess::authorize() {
 	emit browserVisible(true);
 
 	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(endAuthentication(ResultWrapper)));
+			this, SLOT(authorizeDemanded(ResultWrapper)));
 	twitterCalls.authorize(this, embeddedBrowser);
 }
 
@@ -130,7 +130,7 @@ void OAuthProcess::authorize() {
 // Treatments after the request for authorizing Request Tokens
 void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(endAuthentication(ResultWrapper)));
+			   this, SLOT(authorizeDemanded(ResultWrapper)));
 
 	// Hide the browser
 	emit browserVisible(false);

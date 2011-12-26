@@ -27,9 +27,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 OAuthWidget::OAuthWidget(QWidget * parent) :
 	QWidget(parent),
-	authorizePage(this),
-	oauthAuthenticationFlow(0)
+	authorizePage(),
+	oauthAuthenticationFlow(0),
+	layout()
 {
+	// authorizePage is put in a layout because it is more convinient when resizing
+	layout.addWidget(&authorizePage, 0, 0);
+	setLayout(&layout);
 	authorizePage.hide();
 }
 

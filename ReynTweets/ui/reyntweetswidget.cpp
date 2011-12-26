@@ -24,6 +24,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "reyntweetswidget.hpp"
 
 ReynTweetsWidget::ReynTweetsWidget(QWidget *parent) :
-	QWidget(parent)
+	QWidget(parent),
+	tw(),
+	oaw(),
+	lay()
 {
+	lay.addWidget(&tw);
+	lay.addWidget(&oaw);
+	setLayout(&lay);
 }

@@ -89,6 +89,12 @@ class TwitterCommunicator : public QObject
 		/// @brief Executing the request
 		void executeRequest();
 
+		/// @fn bool treatReply(QNetworkReply * response = this->reply);
+		/// @brief Treating a response.
+		/// @param response The Reply to treat
+		/// @return A boolean indicating if the request was successful
+		bool treatReply(QNetworkReply * response = reply);
+
 		/// @fn QByteArray getResponseBuffer();
 		/// @brief Getting the content of the response
 		/// @return The buffer containing the response
@@ -108,6 +114,12 @@ class TwitterCommunicator : public QObject
 		/// @brief Getting the HTTP return reason.
 		/// @return The description of the HTTP return code.
 		QString getHttpReason();
+
+		/// @fn QNetworkAccessManager & getNetworkManager();
+		/// @brief Getter on the network manager. Used by the AuthorizeRequester
+		/// for tracking Web requests done by its authorizationPage (QWebView).
+		/// @return A reference on the network manager.
+		QNetworkAccessManager & getNetworkManager();
 
 
 	signals:

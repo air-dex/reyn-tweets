@@ -147,17 +147,29 @@ void TwitterCommunicator::endRequest(QNetworkReply::NetworkError) {
 		return;
 	}
 
-	// Analysing the response
-	extractHttpStatuses(reply);
-	errorReply = reply->error();
-	bool requestOK = httpReturnCode == 200;
-
-	// Extracting informations
-	responseBuffer = reply->readAll();
-	reply->deleteLater();
+	// Treating the response
+	bool requestOK = treatReply();
 
 	// Ending the request
 	reqBasta = true;
+	emit requestDone(requestOK);
+}
+
+bool TwitterCommunicator::treatReply(QNetworkReply * response) {
+	if (!response) {
+		return false;
+	}
+
+	// Analysing the response
+	extractHttpStatuses(response);
+	errorReply = response->error();
+	bool requestOK = httpReturnCode == 200;
+
+	// Extracting informations
+	responseBuffer = response->readAll();
+	response->deleteLater();
+
+	// Ending the request
 	emit requestDone(requestOK);
 }
 
@@ -186,6 +198,10 @@ QString TwitterCommunicator::getHttpReason() {
 	return httpReturnReason;
 }
 
+// Getter on the network manager.
+QNetworkAccessManager & TwitterCommunicator::getNetworkManager() {
+	return networkManager;
+}
 
 /////////////////////
 // Buiding ArgMaps //

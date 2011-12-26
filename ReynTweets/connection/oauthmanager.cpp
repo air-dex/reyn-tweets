@@ -40,11 +40,8 @@ OAuthManager::OAuthManager(QString clientKey,
 	oauthVersion(version),
 	oauthToken(""),
 	oauthSecret(""),
-	oauthVerifier(ReynTweetsSettings::VERIFIER)
-{
-	oauthToken = "E68zNM68jlxjmPMCYwXDbFUAOVikfZMmfSOGdtstgAM";
-	oauthSecret = "q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y";
-}
+	oauthVerifier("")
+{}
 
 
 /////////////////////
@@ -85,6 +82,13 @@ void OAuthManager::setVerifier(QString verifier) {
 ////////////////////////////
 // Utilities for requests //
 ////////////////////////////
+
+// Resetting tokens
+void OAuthManager::resetTokens() {
+	oauthToken = "";
+	oauthSecret = "";
+	oauthVerifier = "";
+}
 
 // Getting the "Authorization" header
 QByteArray OAuthManager::getAuthorizationHeader(RequestType type,

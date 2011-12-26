@@ -119,6 +119,11 @@ class OAuthManager
 										  bool isRequestTokenRequest,
 										  bool isAccessTokenRequest);
 
+		/// @fn void resetTokens();
+		/// @brief Resetting the tokens. A full new OAuth authentication process
+		/// has to be launch to get tokens and for authentication in requests
+		void resetTokens();
+
 
 	protected:
 		/// @brief Consumer key

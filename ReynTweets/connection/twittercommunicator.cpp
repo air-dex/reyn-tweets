@@ -71,7 +71,7 @@ TwitterCommunicator::~TwitterCommunicator() {
 ///////////////////////////
 
 // Preparing the request
-void TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
+QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 	// GET arguments
 	QString getArgs = buildGetDatas();
 

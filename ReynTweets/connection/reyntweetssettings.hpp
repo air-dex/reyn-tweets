@@ -37,7 +37,7 @@ namespace ReynTweetsSettings {
 
 	/// @brief Reyn Tweets' callback URL
 	extern QString CALLBACK_URL;
-
+/*
 	/// @brief PIN code to authorize ReynTweets
 	extern QString VERIFIER;
 
@@ -46,6 +46,7 @@ namespace ReynTweetsSettings {
 
 	/// @brief Reyn Tweets' token secret
 	extern QString TOKEN_SECRET;
+//*/
 }
 
 #endif // REYNTWEETSSETTINGS_HPP

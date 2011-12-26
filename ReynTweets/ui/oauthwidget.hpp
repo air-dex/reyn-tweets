@@ -66,6 +66,13 @@ class OAuthWidget : public QWidget
 		/// has to be hidden.
 		void browserVisible(bool visible);
 
+		/// @fn void errorProcess(QString errorMsg, bool fatalError);
+		/// @brief Signal emitted when an error occurs during the process
+		/// @param errorMsg Message describing the error
+		/// @param fatalError Boolean indicating if the error is fatal for
+		/// the process.
+		void errorProcess(QString errorMsg, bool fatalError);
+
 		/// @fn void authorizeDemanded(ResultWrapper res);
 		/// @brief Slot executing at the end of the authentication. It just
 		/// sends the {@link #authenticationFinished(bool)} signal.
@@ -79,6 +86,11 @@ class OAuthWidget : public QWidget
 
 		/// @brief Entity calling Twitter
 		OAuthProcess * oauthAuthenticationFlow;
+
+	private:
+		/// @fn void killOAuthProcess();
+		/// @brief Killing the OAuth Authentication Flow
+		void killOAuthProcess();
 };
 
 #endif // OAUTHWIDGET_HPP

@@ -149,6 +149,11 @@ class ReynTwitterCalls : public QObject
 		/// @param requestDemander QObject which asks for the request
 		void accessToken(QObject * requestDemander);
 
+		/// @fn void resetTokens();
+		/// @brief Resetting the tokens. A full new OAuth authentication process
+		/// has to be launch to get tokens and for authentication in requests
+		void resetTokens();
+
 };
 
 #endif // REYNTWITTERCALLS_HPP

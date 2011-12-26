@@ -32,13 +32,13 @@ QString ReynTweetsSettings::CONSUMER_KEY = QString::fromUtf8("3p4Tw20gGGqvzqwWjJ
 QString ReynTweetsSettings::CONSUMER_SECRET = QString::fromUtf8("q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y");
 
 // Reyn Tweets' callback URL
-/*
+//*
 QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("oob");
 //*/
-//*
+/*
 QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("http://code.google.com/p/reyn-tweets/");
 //*/
-
+/*
 // PIN code to authorize ReynTweets
 extern QString ReynTweetsSettings::VERIFIER = "OwdwBIQHt2GYyBAmUroEvteThfNmKalAK6rhxxzFA";
 
@@ -47,3 +47,4 @@ extern QString ReynTweetsSettings::ACCESS_TOKEN = "333687556-li5x26es2u4nX0KToha
 
 // Reyn Tweets' token secret
 extern QString ReynTweetsSettings::TOKEN_SECRET = "J3ahUe29WBpjPPUMiXC7gKRrcycu2WyO55klSbw8OC0";
+//*/

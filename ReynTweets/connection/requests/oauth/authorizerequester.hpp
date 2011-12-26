@@ -78,7 +78,7 @@ class AuthorizeRequester : public OAuthRequester
 		void	selectionChangedSlot ();
 		void	statusBarMessageSlot ( const QString & text );
 		void	titleChangedSlot ( const QString & title );
-		void	urlChanged ( const QUrl & url );
+		void	urlChangedSlot ( const QUrl & url );
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

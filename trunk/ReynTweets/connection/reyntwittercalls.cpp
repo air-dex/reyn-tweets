@@ -145,3 +145,7 @@ void ReynTwitterCalls::accessToken(QObject * requestDemander) {
 	executeRequest(requester);
 }
 
+// Resetting the credentials to connect to Twitter
+void ReynTwitterCalls::resetTokens() {
+	oauthManager.resetTokens();
+}

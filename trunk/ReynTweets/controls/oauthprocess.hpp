@@ -41,6 +41,16 @@ class OAuthProcess : public QObject
 		/// @param parent Parent object
 		OAuthProcess(QWebView & browser, QObject * parent);
 
+		/// @fn void startAuthentication();
+		/// @brief Starting the OAuth authentication flow
+		void startAuthentication();
+
+		/// @fn void resetTokens();
+		/// @brief Resetting the tokens. A full new OAuth authentication process
+		/// has to be launch to get tokens and for authentication in requests
+		void resetTokens();
+
+
 	signals:
 		/// @fn void browserVisible(bool visible);
 		/// @brief Signal sent to show or to hide the browser
@@ -60,10 +70,6 @@ class OAuthProcess : public QObject
 		void authenticationProcessFinished(bool authOK);
 
 	public slots:
-		/// @fn void startAuthentication();
-		/// @brief Starting the OAuth authentication flow
-		void startAuthentication();
-
 		/// @fn void requestTokenDemanded(ResultWrapper res);
 		/// @brief Treatments after the request for Request Tokens
 		/// @param res Result of the request

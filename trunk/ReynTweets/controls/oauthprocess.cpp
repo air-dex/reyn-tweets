@@ -31,6 +31,11 @@ OAuthProcess::OAuthProcess(QWebView & browser, QObject * parent) :
 	embeddedBrowser(browser)
 {}
 
+// Resetting the tokens.
+void OAuthProcess::resetTokens() {
+	twitterCalls.resetTokens();
+}
+
 ///////////////////////////////
 // OAuth Authentication flow //
 ///////////////////////////////
@@ -55,26 +60,26 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	// Treatments on res for continuing the authentication process
 	RequestResult result = res.accessResult(this);
 	ErrorType resultType = result.getErrorType();
-	QString errorMessage;
 
 	switch (resultType) {
-		case NO_ERROR:
+		case NO_ERROR: {
 			// The request was successful.
-			QVariantMap resultMap = result.getParsedResult();
+			QVariantMap resultMap = result.getParsedResult().toMap();
 			QVariant callbackOKResult = resultMap.value("oauth_callback_confirmed");
 
 			if (callbackOKResult.toBool()) {
 				// All is OK. Let's go to the next step
+				qDebug("Fin de request token.");
 				authorize();
 			} else {
 				// Invalid callback URL. Abort.
 				emit authenticationProcessFinished(false);
 			}
-			break;
+		}break;
 
-		case API_CALL:
+		case API_CALL: {
 			// A problem occured while calling Twitter -> Resume ?
-			errorMessage = "Problème lors de la connection à Twitter :\n";
+			QString errorMessage = "Problème lors de la connection à Twitter :\n";
 
 			QVariantMap httpInfos = result.getHttpInfos();
 			QString httpReason = httpInfos.value("httpReason").toString();
@@ -87,11 +92,11 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
 
 			emit errorProcess(errorMessage, false);
-			break;
+		}break;
 
-		case OAUTH_PARSING:
+		case OAUTH_PARSING: {
 			// A problem occured while treating results -> Resume ?
-			errorMessage = "Problème lors du traitement des résultats :\n";
+			QString errorMessage = "Problème lors du traitement des résultats :\n";
 
 			QVariantMap parsingError = result.getParsingErrors();
 			QString errMsg = parsingError.value("errorMsg").toString();
@@ -99,15 +104,15 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
 
 			emit errorProcess(errorMessage, false);
-			break;
+		}break;
 
-		default:
+		default: {
 			// Unexpected problem. Abort.
-			errorMessage = "Problème inattendu :\n";
+			QString errorMessage = "Problème inattendu :\n";
 			errorMessage.append(resultType);
 			errorMessage.append("\n\nFin de l'authentification.");
 			emit errorProcess(errorMessage, true);
-			break;
+		}break;
 	}
 }
 
@@ -159,9 +164,9 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			// The request was successful.
 			break;
 
-		case API_CALL:
+		case API_CALL: {
 			// A problem occured while calling Twitter -> Resume ?
-			errorMessage = "Problème lors de la connection à Twitter :\n";
+			QString errorMessage = "Problème lors de la connection à Twitter :\n";
 
 			QVariantMap httpInfos = result.getHttpInfos();
 			QString httpReason = httpInfos.value("httpReason").toString();
@@ -174,11 +179,11 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
 
 			emit errorProcess(errorMessage, false);
-			break;
+		}break;
 
-		case OAUTH_PARSING:
+		case OAUTH_PARSING: {
 			// A problem occured while treating results -> Resume ?
-			errorMessage = "Problème lors du traitement des résultats :\n";
+			QString errorMessage = "Problème lors du traitement des résultats :\n";
 
 			QVariantMap parsingError = result.getParsingErrors();
 			QString errMsg = parsingError.value("errorMsg").toString();
@@ -186,15 +191,15 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
 
 			emit errorProcess(errorMessage, false);
-			break;
+		}break;
 
-		default:
+		default: {
 			// Unexpected problem. Abort.
-			errorMessage = "Problème inattendu :\n";
+			QString errorMessage = "Problème inattendu :\n";
 			errorMessage.append(resultType);
 			errorMessage.append("\n\nFin de l'authentification.");
 			emit errorProcess(errorMessage, true);
-			break;
+		}break;
 	}
 
 	emit authenticationProcessFinished(accessTokenOK);

@@ -23,7 +23,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
-#include "ui/testwidget.hpp"
+//#include "ui/testwidget.hpp"
+#include "ui/oauthwidget.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -32,9 +33,15 @@ int main(int argc, char *argv[])
 
 	MainWindow w;
 
+	/*
 	// Widget for tests purposes
 	TestWidget widget;
 	w.setCentralWidget(&widget);
+	//*/
+
+	// OAuthWidget
+	OAuthWidget oaw;
+	w.setCentralWidget(&oaw);
 
 	#if defined(Q_OS_SYMBIAN)
 		w.showMaximized();

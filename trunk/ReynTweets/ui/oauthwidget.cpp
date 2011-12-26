@@ -21,29 +21,28 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QMessageBox>
 #include "oauthwidget.hpp"
 
 // Constructor
-OAuthWidget::OAuthWidget(QWidget *parent) :
+OAuthWidget::OAuthWidget(QWidget * parent) :
 	QWidget(parent),
-	authorizePage(),
+	authorizePage(this),
 	oauthAuthenticationFlow(0)
-{}
+{
+	authorizePage.hide();
+}
 
 // Destructor
 OAuthWidget::~OAuthWidget() {
 	if (oauthAuthenticationFlow != 0) {
-		delete oauthAuthenticationFlow;
+		killOAuthProcess();
 	}
 }
 
-// Treatments after the request for Request Tokens
+// Show or hide the browser
 void OAuthWidget::browserVisible(bool visible) {
-	if (visible) {
-		// Displaying authorizePage
-	} else {
-		// Hiding authorizePage
-	}
+	authorizePage.setVisible(visible);
 }
 
 
@@ -60,21 +59,65 @@ void OAuthWidget::allowReynTweets() {
 				this, SLOT(browserVisible(bool)));
 		connect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
 				this, SLOT(endAuthentication(bool)));
+		connect(oauthAuthenticationFlow, SIGNAL(errorProcess(QString,bool)),
+				this, SLOT(errorProcess(QString,bool)));
 		oauthAuthenticationFlow->startAuthentication();
 	} else {
-		// Erreur à l'initialisation du process
+		// Critical error -> Abort the process.
+		QMessageBox::critical(this,
+							  "Erreur dans le processus d'authentification",
+							  "Erreur au lancement de l'authentification. Authentification terminée.");
+		emit authenticationFinished(false);
 	}
+}
+
+// Signal emitted when an error occurs during the process
+void OAuthWidget::errorProcess(QString errorMsg, bool fatalError) {
+	if (fatalError) {
+		// Critical error -> Abort the process.
+		QMessageBox::critical(this,
+							  "Erreur dans le processus d'authentification",
+							  errorMsg);
+		emit authenticationFinished(false);
+	} else {
+		// The error is not critical. The process can be resumed.
+		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
+																		"Imprévu dans le processus d'authentification",
+																		errorMsg,
+																		QMessageBox::Yes | QMessageBox::No,
+																		QMessageBox::Yes);
+		if (QMessageBox::Yes == userResponse) {
+			// Resume the process
+			oauthAuthenticationFlow->resetTokens();
+			killOAuthProcess();
+			startAuthentication();
+		} else {
+			// Abort the process
+			QMessageBox::information(this,
+									 "Fin du processus d'authentification",
+									 "Fin du processus d'authentification");
+			endAuthentication(false);
+		}
+	}
+}
+
+// Killing the OAuth Authentication Flow
+void OAuthWidget::killOAuthProcess() {
+	// Killing the process
+	disconnect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
+			   this, SLOT(browserVisible(bool)));
+	disconnect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
+			   this, SLOT(endAuthentication(bool)));
+	disconnect(oauthAuthenticationFlow, SIGNAL(errorProcess(QString,bool)),
+			   this, SLOT(errorProcess(QString,bool)));
+	delete oauthAuthenticationFlow;
+	oauthAuthenticationFlow = 0;
 }
 
 // End of authentication
 void OAuthWidget::endAuthentication(bool authOK) {
-	// Killing the process
-	disconnect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
-			this, SLOT(browserVisible(bool)));
-	disconnect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
-			this, SLOT(endAuthentication(bool)));
-	delete oauthAuthenticationFlow;
-	oauthAuthenticationFlow = 0;
+	killOAuthProcess();
+	qDebug("fin de l'OAuth Authentication Flow");
 
 	// Transmitting the result
 	emit authenticationFinished(authOK);

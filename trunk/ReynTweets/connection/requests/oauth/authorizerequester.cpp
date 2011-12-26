@@ -73,7 +73,7 @@ void AuthorizeRequester::executeRequest() {
 			this, SLOT(urlChanged(QUrl)));
 
 	// Launching requests
-	browser.load(request);
+	browser.load(*request);
 }
 
 // Slots de test pour intéraction avec la QWebView

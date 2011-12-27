@@ -29,7 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QVariant>
 #include "../twitterurls.hpp"
 #include "../requestresult.hpp"
-#include "../twittercommunicator.hpp"
+#include "../twittercommunicators/twittercommunicator.hpp"
 
 /// @class GenericRequest
 /// @brief Base class for all the requesters. Parents of such requests are
@@ -140,12 +140,12 @@ class GenericRequester : public QObject
 									 QVariantMap & parsingErrors);
 
 	public slots:
-		/// @fn void treatResults(bool requestOK);
+		/// @fn virtual void treatResults(bool requestOK);
 		/// @brief Slot that is executed when the Twitter Communicator has just
-		/// finished its work.
+		/// finished its work. It is virtual because of the AuthorizeManager.
 		/// @param requestOK Boolean indicating if the Twitter Communicator did
 		/// its work successfully.
-		void treatResults(bool requestOK);
+		virtual void treatResults(bool requestOK);
 
 	signals:
 		/// @fn void requestDone(bool ok);
@@ -175,6 +175,11 @@ class GenericRequester : public QObject
 		void fillParsedResult(ErrorType errorType,
 							  QVariant parsedResults,
 							  QVariantMap parsingErrors);
+
+		/// @fn virtual void initCommunicator();
+		/// @brief Initialize the communicator. This a template method because
+		/// of the authorize() request and its special Twitter Communicator.
+		virtual void initCommunicator();
 };
 
 #endif // GENERICREQUESTER_HPP

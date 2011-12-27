@@ -22,6 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QMessageBox>
+#include <QWebHistory>
 #include "oauthwidget.hpp"
 
 // Constructor
@@ -29,12 +30,31 @@ OAuthWidget::OAuthWidget(QWidget * parent) :
 	QWidget(parent),
 	authorizePage(),
 	oauthAuthenticationFlow(0),
-	layout()
+	layout(),
+	authPageButton("Retourner à la page d'authentification")
 {
-	// authorizePage is put in a layout because it is more convinient when resizing
-	layout.addWidget(&authorizePage, 0, 0);
-	setLayout(&layout);
+	// Wiring of the widget
+
+	// Disable the button when you go back to the Authentication Page
+	connect(&authorizePage, SIGNAL(loadStarted()),
+			this, SLOT(enableAuthPageButton()));
+
+	// Go to the Authentication Page when you click on authPageButton
+	connect(&authPageButton, SIGNAL(clicked()),
+			this, SLOT(goToAuthPage()));
+
+
+	// Building the UI
+
+	// authPageButton
+	authPageButton.setEnabled(false);
+	layout.addWidget(&authPageButton);
+
+	// authorizePage
+	layout.addWidget(&authorizePage);
 	authorizePage.hide();
+
+	setLayout(&layout);
 }
 
 // Destructor
@@ -47,6 +67,13 @@ OAuthWidget::~OAuthWidget() {
 // Show or hide the browser
 void OAuthWidget::browserVisible(bool visible) {
 	authorizePage.setVisible(visible);
+}
+
+// Got to the authentication page
+void OAuthWidget::goToAuthPage() {
+	QWebHistory * history = authorizePage.history();
+	history->goToItem(history->itemAt(0));
+	authPageButton.setEnabled(false);
 }
 
 

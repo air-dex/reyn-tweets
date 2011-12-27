@@ -11,7 +11,4 @@ oauth_token_secret=J3ahUe29WBpjPPUMiXC7gKRrcycu2WyO55klSbw8OC0
 &user_id=333687556
 &screen_name=air_dex
 
-air_dex
-wR0nG#Ä1r~dêX!&
-
 Authorization: OAuth oauth_consumer_key="3p4Tw20gGGqvzqwWjJO4Zw", oauth_nonce="ZG9IdUlPamdYVHltamt0UWJ1ZUhXcm1nQXRLV2tTZUI%3D", oauth_signature="Ygmbn%2BWHehA1yolnL7IVpP%2Bvovc%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1324606728", oauth_token="E68zNM68jlxjmPMCYwXDbFUAOVikfZMmfSOGdtstgAM", oauth_version="1.0"

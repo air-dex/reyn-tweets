@@ -45,11 +45,6 @@ class AuthorizeRequester : public OAuthRequester
 						   OAuthManager & authManager,
 						   QObject * requester = 0);
 
-		/// @fn void executeRequest();
-		/// @brief Executing the request. For this request, the process is quite
-		/// different. That is why the method is refined for this requester.
-		void executeRequest();
-
 	protected:
 		/// @brief Browser that will communicate with Twitter
 		QWebView & browser;
@@ -68,17 +63,17 @@ class AuthorizeRequester : public OAuthRequester
 		/// @return Parsed results
 		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 
+		/// @fn void initCommunicator();
+		/// @brief Initialize the communicator.
+		void initCommunicator();
+
 
 	public slots:
-		// Slots de test pour intéraction avec la QWebView
-		void	linkClickedSlot ( const QUrl & url );
-		void	loadFinishedSlot ( bool ok );
-		void	loadProgressSlot ( int progress );
-		void	loadStartedSlot ();
-		void	selectionChangedSlot ();
-		void	statusBarMessageSlot ( const QString & text );
-		void	titleChangedSlot ( const QString & title );
-		void	urlChangedSlot ( const QUrl & url );
+		/// @fn void treatResults(bool requestOK);
+		/// @brief Traditionnal treatment Unit for results.
+		/// @param requestOK Boolean indicating if the Twitter Communicator did
+		/// its work successfully.
+		void treatResults(bool requestOK);
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

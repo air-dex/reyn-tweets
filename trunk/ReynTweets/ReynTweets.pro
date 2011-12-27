@@ -55,7 +55,7 @@ SOURCES += \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
 	controls/oauthprocess.cpp \
-	ui/oauthwidget.cpp \
+	ui/authentication/oauthwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
@@ -85,7 +85,7 @@ HEADERS  += \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
 	controls/oauthprocess.hpp \
-	ui/oauthwidget.hpp \
+	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
 	mainwindow.hpp

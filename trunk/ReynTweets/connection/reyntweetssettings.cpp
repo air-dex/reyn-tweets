@@ -36,7 +36,7 @@ QString ReynTweetsSettings::CONSUMER_SECRET = QString::fromUtf8("q170YBNh3utMDcg
 QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("oob");
 //*/
 //*
-QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("http://code.google.com/p/reyn-tweets/");
+QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("https://twitter.com/");
 //*/
 /*
 // PIN code to authorize ReynTweets

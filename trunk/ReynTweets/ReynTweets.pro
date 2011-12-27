@@ -41,6 +41,7 @@ SOURCES += \
 	connection/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
+	connection/twittercommunicators/authorizetwittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
@@ -57,7 +58,8 @@ SOURCES += \
 	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
 	main.cpp \
-    connection/twittercommunicators/authorizetwittercommunicator.cpp
+    connection/parsers/jsonparser.cpp \
+    connection/parsers/oauthparser.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
@@ -65,6 +67,7 @@ HEADERS  += \
 	connection/requesttype.hpp \
 	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
+	connection/twittercommunicators/authorizetwittercommunicator.hpp \
 	connection/errortypes.hpp \
 	connection/requestresult.hpp \
 	connection/resultwrapper.hpp \
@@ -83,7 +86,9 @@ HEADERS  += \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
 	mainwindow.hpp \
-    connection/twittercommunicators/authorizetwittercommunicator.hpp
+    connection/parsers/genericparser.hpp \
+    connection/parsers/jsonparser.hpp \
+    connection/parsers/oauthparser.hpp
 
 
 #-----------------------#

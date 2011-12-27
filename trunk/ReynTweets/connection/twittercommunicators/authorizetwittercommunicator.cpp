@@ -48,10 +48,6 @@ AuthorizeTwitterCommunicator::AuthorizeTwitterCommunicator(QWebView & embeddedBr
 	connect(&browser, SIGNAL(urlChanged(QUrl)),
 			this, SLOT(urlAnalyser(QUrl)));
 
-	// Sets the tracker for Web pages
-	connect(&browser, SIGNAL(loadFinished(bool)),
-			this, SLOT(isReynTweetsDenied(bool)));
-
 	// Sets the tracker for the browser
 	browser.page()->setNetworkAccessManager(&networkManager);
 	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
@@ -61,7 +57,6 @@ AuthorizeTwitterCommunicator::AuthorizeTwitterCommunicator(QWebView & embeddedBr
 // Executing the request
 void AuthorizeTwitterCommunicator::executeRequest() {
 	request = prepareRequest();
-
 	reply = networkManager.get(*request);
 }
 
@@ -75,6 +70,10 @@ void AuthorizeTwitterCommunicator::urlAnalyser(const QUrl & url) {
 		// Writing the result
 		QString datas = urlString.split("?").at(1);
 		responseBuffer = datas.toUtf8();
+		errorReply = QNetworkReply::NoError;
+		errorMessage = "";
+		httpReturnCode = 200;
+		httpReturnReason = "OK";
 
 		browser.stop();
 		emit requestDone(true);
@@ -89,10 +88,11 @@ void AuthorizeTwitterCommunicator::repliesCatcher(QNetworkReply * response) {
 	if (responseOK) {
 		if (isReynTweetsDenied()) {
 			responseBuffer = "denied=true";
+			errorMessage = "The user denies Reyn Tweets to use its Twitter Account ! :(";
 			emit requestDone(true);
 		}
 	} else {
-		// Error !
+		// Error ! The communicator has been already filled.
 		emit requestDone(false);
 	}
 }

@@ -22,6 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "accesstokenrequester.hpp"
+#include "../../parsers/oauthparser.hpp"
 
 AccessTokenRequester::AccessTokenRequester(OAuthManager & authManager,
 											 QObject *requester) :
@@ -38,56 +39,53 @@ void AccessTokenRequester::buildPOSTParameters() {
 
 // Parse the raw results of the request.
 QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	OAuthParser parser;
+	QByteArray rawResponse = communicator->getResponseBuffer();
+	QString parseErrorMsg = "";
+
+	QVariantMap resultMap = parser.parse(rawResponse, parseOK, parseErrorMsg);
+
+	QString errorMsg = "";
+	bool expectedParameter;
+
+	// Extracting the "oauth_token" prameter
+	expectedParameter = resultMap.contains("oauth_token");
+	parseOK = parseOK && expectedParameter;
+
+	if (expectedParameter) {
+		QVariant token = resultMap.value("oauth_token");
+		oauthManager->setOAuthToken(token.toString());
+		resultMap.remove("oauth_token");
+	} else {
+		errorMsg.append("Parameter 'oauth_token' expected.\n");
+	}
+
+
+	// Extracting the "oauth_token_secret" prameter
+	if (resultMap.contains("oauth_token_secret")) {
+		QVariant tokenSecret = resultMap.value("oauth_token_secret");
+		oauthManager->setOAuthSecret(tokenSecret.toString());
+		resultMap.remove("oauth_token_secret");
+	} else {
+		errorMsg.append("Parameter 'oauth_token_secret' expected.\n");
+	}
+
+
+	// Ensures that the two remaining arguments are "user_id" and "screen_name"
+	// TODO
+
+/*
 	QVariantMap resultMap;	// Result of the request
 	bool rightParameter;	// Boolean indicating if the parameter name is right
-	QString errorMsg = "Error for parameter ";
-	QString subErrorMsg;
 
 	// Parsing
-	QByteArray rawResponse = communicator->getResponseBuffer();
 	QList<QByteArray> results = rawResponse.split('&');
 
 	QList<QByteArray> resultPair;
 	QByteArray parameterName;
 	QByteArray result;
-
-	// Getting the request token
-	resultPair = results.at(0).split('=');
-
-	// Ensures that the parameter name is "oauth_token"
-	parameterName = resultPair.at(0);
-	rightParameter = "oauth_token" == parameterName;
-	parseOK = rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		oauthManager->setOAuthToken(QString(result));
-	} else {
-		subErrorMsg = "'";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_token'), ");
-		errorMsg.append(subErrorMsg);
-	}
-
-	// Getting the request secret
-	resultPair = results.at(1).split('=');
-
-	// Ensures that the parameter name is "oauth_token_secret"
-	parameterName = resultPair.at(0);
-	rightParameter = "oauth_token_secret" == parameterName;
-	parseOK = parseOK && rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		oauthManager->setOAuthSecret(QString(result));
-	} else {
-		subErrorMsg = "parameter '";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_token_secret'), ");
-		errorMsg.append(subErrorMsg);
-	}
-
-
+//*/
+/*
 	// Getting the user ID
 	resultPair = results.at(2).split('=');
 
@@ -124,15 +122,11 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 		subErrorMsg.append("' (supposed to be 'screen_name')");
 		errorMsg.append(subErrorMsg);
 	}
-
+//*/
 
 	// There was a problem while parsing -> fill the parsingErrors map !
 	if (!parseOK) {
-		if (errorMsg.endsWith(", ")) {
-			errorMsg.chop(2);
-			errorMsg.append('.');
-		}
-
+		errorMsg.append(parseErrorMsg);
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 

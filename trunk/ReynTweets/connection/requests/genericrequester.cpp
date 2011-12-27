@@ -21,8 +21,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QJson/Parser>
 #include "genericrequester.hpp"
+#include "../parsers/jsonparser.hpp"
 
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(QObject * requester,
@@ -128,22 +128,19 @@ void GenericRequester::treatResults(bool requestOK) {
 
 // Method that will parse the raw results of the request.
 QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	JSONParser parser;
 	QByteArray rawResponse = communicator->getResponseBuffer();
-
-	// Parsing with QJson
-	QJson::Parser parser;
-	QVariant result = parser.parse(rawResponse, &parseOK);
+	QString errorMsg;
+	int lineMsg;
+	QVariantMap result = parser.parse(rawResponse, parseOK, errorMsg, lineMsg);
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !
-		QString errorMsg = parser.errorString();
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
-
-		int lineMsg = parser.errorLine();
 		parsingErrors.insert("lineError", QVariant(lineMsg));
 	}
 
-	return result;
+	return QVariant(result);
 }
 
 // Filling parsedResult
@@ -155,5 +152,6 @@ void GenericRequester::fillParsedResult(ErrorType errorType,
 								  communicator->getHttpCode(),
 								  communicator->getHttpReason(),
 								  communicator->getNetworkError(),
-								  parsingErrors);
+								  parsingErrors,
+								  communicator->getErrorMessage());
 }

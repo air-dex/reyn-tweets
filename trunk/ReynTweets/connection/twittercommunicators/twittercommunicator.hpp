@@ -111,6 +111,11 @@ class TwitterCommunicator : public QObject
 		/// @return The description of the HTTP return code.
 		QString getHttpReason();
 
+		/// @fn QString getErrorMessage();
+		/// @brief Getter on the error massage
+		/// @return The error message
+		QString getErrorMessage();
+
 
 	signals:
 		/// @fn void requestDone(bool ok);
@@ -172,8 +177,11 @@ class TwitterCommunicator : public QObject
 		/// @brief HTTP return code
 		int httpReturnCode;
 
-		/// @brief HHTP return reason
+		/// @brief HTTP return reason
 		QString httpReturnReason;
+
+		/// @brief Error message
+		QString errorMessage;
 
 		/// @fn bool treatReply(QNetworkReply * response);
 		/// @brief Treating a response.

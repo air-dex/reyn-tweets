@@ -42,7 +42,8 @@ class RequestResult
 		///				int httpCode,
 		///				QString httpReason,
 		///				QNetworkReply::NetworkError netError,
-		///				QVariantMap parsingErrorInfos);
+		///				QVariantMap parsingErrorInfos,
+		///				QString errorMsg);
 		/// @brief Constructor
 		/// @param errorType Code indicating if an error occured.
 		/// @param parsedResults Pure results of the request.
@@ -50,12 +51,14 @@ class RequestResult
 		/// @param httpReason HTTP reason
 		/// @param netError Network error of the QNetworkReply
 		/// @param parsingErrorInfos Information about potential parsing errors
+		/// @param errorMsg Error message
 		RequestResult(ErrorType errorType,
 					  QVariant parsedResults,
 					  int httpCode,
 					  QString httpReason,
 					  QNetworkReply::NetworkError netError,
-					  QVariantMap parsingErrorInfos);
+					  QVariantMap parsingErrorInfos,
+					  QString errorMsg);
 
 		/// @fn bool isRequestSuccessful();
 		/// @brief Method indicating if the request was successful
@@ -92,6 +95,11 @@ class RequestResult
 		/// @return The value of parsingErrors
 		QVariantMap getParsingErrors();
 
+		/// @fn QString getErrorMessage();
+		/// @brief Getter on the error massage
+		/// @return The error message
+		QString getErrorMessage();
+
 
 	protected:
 		/// @brief Code indicating whether an error occured during the request.
@@ -109,6 +117,9 @@ class RequestResult
 
 		/// @brief Potential errors that can occur while parsing results.
 		QVariantMap parsingErrors;
+
+		/// @brief Error message
+		QString errorMessage;
 };
 
 #endif // REQUESTRESULT_HPP

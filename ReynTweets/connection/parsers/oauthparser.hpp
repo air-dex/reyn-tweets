@@ -34,23 +34,23 @@ class OAuthParser : public GenericParser
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
-		///						  bool & parseOK = true,
-		///						  QString & parseError = "",
-		///						  int & lineError = 0);
-		/// @brief Parsing JSON datas
+		///						  bool & parseOK,
+		///						  QString & parseError,
+		///						  int * lineError = 0);
+		/// @brief Parsing datas for OAuth
 		/// @param Raw datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error. Unused.
 		QVariantMap parse(QByteArray data,
-						  bool & parseOK = true,
-						  QString & parseError = "",
-						  int & lineError = 0);
+						  bool & parseOK,
+						  QString & parseError,
+						  int * lineError = 0);
 
 		/// @fn QVariant extractParameter(QVariantMap & parsedMap,
 		///								  QString parameterName,
-		///								  bool & extractOK = true,
-		///								  QString & extractError = "");
+		///								  bool & extractOK,
+		///								  QString & extractError);
 		/// @brief Extracting one parameter from the parsed result
 		/// @param parsedMap Parsed result
 		/// @param parameterName Name of the the parameter to extract
@@ -59,13 +59,13 @@ class OAuthParser : public GenericParser
 		/// @return The value of the extracted parameter
 		QVariant extractParameter(QVariantMap &parsedMap,
 								  QString parameterName,
-								  bool & extractOK = true,
-								  QString &extractError = "");
+								  bool & extractOK,
+								  QString &extractError);
 
 		/// @fn void rewriteAsBool(QVariantMap & parsedMap,
 		///						   QString parameterName,
-		///						   bool & rewriteOK = true,
-		///						   QString & rewriteError = "");
+		///						   bool & rewriteOK,
+		///						   QString & rewriteError);
 		/// @brief Rewriting one parameter of the parsed result as a boolean
 		/// @param parsedMap Parsed result
 		/// @param parameterName Name of the the parameter to rewrite
@@ -73,8 +73,8 @@ class OAuthParser : public GenericParser
 		/// @param rewriteError Error message about a rewriting error
 		void rewriteAsBool(QVariantMap & parsedMap,
 						   QString parameterName,
-						   bool & rewriteOK = true,
-						   QString & rewriteError = "");
+						   bool & rewriteOK,
+						   QString & rewriteError);
 };
 
 #endif // OAUTHPARSER_HPP

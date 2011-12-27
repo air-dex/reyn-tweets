@@ -28,7 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 QVariantMap OAuthParser::parse(QByteArray data,
 							   bool & parseOK,
 							   QString & parseError,
-							   int &)
+							   int *)
 {
 	QVariantMap res;
 	QString errorMsg = "Following arguments are invalid : ";
@@ -49,10 +49,9 @@ QVariantMap OAuthParser::parse(QByteArray data,
 			QString value = QString(couple.at(1));
 			res.insert(name, QVariant(value));
 		} else {
-			errorMsg.append('');
+			errorMsg.append("OAuth parsing : cannot parse '");
 			errorMsg.append(argument);
-			errorMsg.append('');
-			errorMsg.append(", ");
+			errorMsg.append("'.\n");
 		}
 	}
 
@@ -61,9 +60,6 @@ QVariantMap OAuthParser::parse(QByteArray data,
 	parseError = "";
 
 	if (!parseOK) {
-		// Replacing the last ", " by a ".\n".
-		errorMsg.chop(2);
-		errorMsg.append(".\n");
 		parseError = errorMsg;
 	}
 
@@ -102,7 +98,7 @@ void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
 	rewriteError = "";
 
 	if (rewriteOK) {
-		QString result = resultMap.value(parameterName).toString();
+		QString result = parsedMap.value(parameterName).toString();
 		bool convertOK = "true" == result || "false" == result;
 		rewriteOK = rewriteOK && convertOK;
 
@@ -115,8 +111,8 @@ void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
 				booleanValue = false;
 			}
 
-			resultMap.remove(parameterName);
-			resultMap.insert(parameterName, QVariant(booleanValue));
+			parsedMap.remove(parameterName);
+			parsedMap.insert(parameterName, QVariant(booleanValue));
 		} else {
 			// Unexpected value. This is an error.
 			rewriteError.append("Rewriting as bool : unexpected value '")

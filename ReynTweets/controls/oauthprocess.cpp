@@ -152,6 +152,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 				emit errorProcess(message, false);
 			} else {
 				// The user authorized the request Tokens. Now you can get the access tokens.
+				qDebug("Fin de authorize().\n");
 				accessToken();
 			}
 		}break;
@@ -257,5 +258,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 		}break;
 	}
 
+
+	qDebug("Fin d'OAuth.\n");
 	emit authenticationProcessFinished(accessTokenOK);
 }

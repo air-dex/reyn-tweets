@@ -33,18 +33,18 @@ class JSONParser : public GenericParser
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
-		///						  bool & parseOK = true,
-		///						  QString & parseError = "",
-		///						  int & lineError = 0);
+		///						  bool & parseOK,
+		///						  QString & parseError,
+		///						  int * lineError = 0);
 		/// @brief Parsing JSON datas
 		/// @param Raw datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		QVariantMap parse(QByteArray data,
-						  bool & parseOK = true,
-						  QString & parseError = "",
-						  int & lineError = 0);
+						  bool & parseOK,
+						  QString & parseError,
+						  int * lineError = 0);
 };
 
 #endif // JSONPARSER_HPP

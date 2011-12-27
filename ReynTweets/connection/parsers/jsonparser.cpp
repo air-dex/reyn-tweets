@@ -28,7 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 QVariantMap JSONParser::parse(QByteArray data,
 							  bool & parseOK,
 							  QString & parseError,
-							  int & lineError)
+							  int * lineError)
 {
 	// Parsing with QJson
 	QJson::Parser parser;
@@ -36,7 +36,9 @@ QVariantMap JSONParser::parse(QByteArray data,
 
 	if (!parseOK) {
 		parseError = parser.errorString();
-		lineError = parser.errorLine();
+		if (lineError) {
+			*lineError = parser.errorLine();
+		}
 	}
 
 	return result.toMap();

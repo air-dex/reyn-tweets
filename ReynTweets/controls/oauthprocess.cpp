@@ -147,8 +147,8 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 
 			if (reynTweetsDenied) {
 				QString message =
-						"Vous venez de ne pas autoriser l'application à utiliser votre compte Twitter. "
-						+ "Voulez-vous recommencer la procédure d'authentification ?";
+						QString("Vous venez de ne pas autoriser l'application à utiliser votre compte Twitter. ")
+						+ QString("Voulez-vous recommencer la procédure d'authentification ?");
 				emit errorProcess(message, false);
 			} else {
 				// The user authorized the request Tokens. Now you can get the access tokens.

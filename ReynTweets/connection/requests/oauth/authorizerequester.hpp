@@ -67,13 +67,14 @@ class AuthorizeRequester : public OAuthRequester
 		/// @brief Initialize the communicator.
 		void initCommunicator();
 
-
+/*
 	public slots:
 		/// @fn void treatResults(bool requestOK);
 		/// @brief Traditionnal treatment Unit for results.
 		/// @param requestOK Boolean indicating if the Twitter Communicator did
 		/// its work successfully.
 		void treatResults(bool requestOK);
+		//*/
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

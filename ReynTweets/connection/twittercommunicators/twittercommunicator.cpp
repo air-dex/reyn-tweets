@@ -1,5 +1,7 @@
 /// @file twittercommunicator.cpp
-/// @brief Code of the TwitterCommunicator class
+/// @brief Implementation of TwitterCommunicator.<br/>
+/// SVN revisions of this file that are older than r80 are in the folder
+/// /trunk/ReynTweets/connection.
 /// @author Romain Ducher
 
 /*
@@ -43,13 +45,13 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	getParameters(getArgs),
 	postParameters(postArgs),
 	authenticationRequired(authRequired),
+	oauthManager(authManager),
 	request(0),
 	reqBasta(false),
 	reply(0),
 	responseBuffer(""),
 	httpReturnCode(0),
-	httpReturnReason("Request not done"),
-	oauthManager(authManager)
+	httpReturnReason("Request not done")
 {}
 
 // Destructor
@@ -148,7 +150,7 @@ void TwitterCommunicator::endRequest(QNetworkReply::NetworkError) {
 	}
 
 	// Treating the response
-	bool requestOK = treatReply();
+	bool requestOK = treatReply(reply);
 
 	// Ending the request
 	reqBasta = true;
@@ -171,6 +173,7 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 
 	// Ending the request
 	emit requestDone(requestOK);
+	return requestOK;
 }
 
 
@@ -196,11 +199,6 @@ int TwitterCommunicator::getHttpCode() {
 // Getting the HTTP return reason.
 QString TwitterCommunicator::getHttpReason() {
 	return httpReturnReason;
-}
-
-// Getter on the network manager.
-QNetworkAccessManager & TwitterCommunicator::getNetworkManager() {
-	return networkManager;
 }
 
 /////////////////////

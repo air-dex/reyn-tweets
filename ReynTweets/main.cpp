@@ -23,7 +23,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtGui/QApplication>
 #include "mainwindow.hpp"
-//#include "ui/testwidget.hpp"
 #include "ui/reyntweetswidget.hpp"
 
 int main(int argc, char *argv[])

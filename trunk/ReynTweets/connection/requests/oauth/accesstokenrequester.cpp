@@ -75,7 +75,9 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 
 
 	// Ensures that the two remaining arguments are "user_id" and "screen_name"
-	treatmentOK = resultMap.size() == 2;
+	treatmentOK = resultMap.size() == 2
+			&& resultMap.contains("user_id")
+			&& resultMap.contains("screen_name");
 	parseOK = parseOK && treatmentOK;
 
 	// Listing all the unexpected parameters

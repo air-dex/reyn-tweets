@@ -79,12 +79,13 @@ QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsin
 
 
 	// Ensures that "oauth_callback_confirmed" is the last argument of the list.
-	treatmentOK = resultMap.size() == 1;
+	treatmentOK = resultMap.size() == 1 && resultMap.contains("oauth_callback_confirmed");
 	parseOK = parseOK && treatmentOK;
 
 	// Listing all the unexpected parameters
 	if (!treatmentOK) {
 		QList<QString> argNames = resultMap.keys();
+		argNames.removeOne("oauth_callback_confirmed");
 		foreach (QString argName, argNames) {
 			errorMsg.append("Unexpected parameter '")
 					.append(argName)

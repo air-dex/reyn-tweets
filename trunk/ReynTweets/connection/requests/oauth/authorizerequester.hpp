@@ -53,7 +53,6 @@ class AuthorizeRequester : public OAuthRequester
 		/// @brief Method building GET Parameters
 		void buildGETParameters();
 
-		// TODO
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
 		/// @param parseOK Boolean whose value will be set to true if there was
@@ -66,15 +65,6 @@ class AuthorizeRequester : public OAuthRequester
 		/// @fn void initCommunicator();
 		/// @brief Initialize the communicator.
 		void initCommunicator();
-
-/*
-	public slots:
-		/// @fn void treatResults(bool requestOK);
-		/// @brief Traditionnal treatment Unit for results.
-		/// @param requestOK Boolean indicating if the Twitter Communicator did
-		/// its work successfully.
-		void treatResults(bool requestOK);
-		//*/
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

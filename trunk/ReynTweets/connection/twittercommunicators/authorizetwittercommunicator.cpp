@@ -70,6 +70,7 @@ void AuthorizeTwitterCommunicator::urlAnalyser(const QUrl & url) {
 		// Writing the result
 		QString datas = urlString.split("?").at(1);
 		responseBuffer = datas.toUtf8();
+		responseBuffer.append("denied=false");
 		errorReply = QNetworkReply::NoError;
 		errorMessage = "";
 		httpReturnCode = 200;

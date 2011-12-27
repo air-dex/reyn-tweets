@@ -32,7 +32,6 @@ QVariantMap OAuthParser::parse(QByteArray data,
 {
 	QVariantMap res;
 	QString errorMsg = "Following arguments are invalid : ";
-
 	parseOK = true;
 
 	// Split the couples of arguments
@@ -57,12 +56,78 @@ QVariantMap OAuthParser::parse(QByteArray data,
 		}
 	}
 
+
+	// Writing parsing errors
+	parseError = "";
+
 	if (!parseOK) {
-		// Replacing the last ", " by a '.'.
+		// Replacing the last ", " by a ".\n".
 		errorMsg.chop(2);
-		errorMsg.append('.');
+		errorMsg.append(".\n");
 		parseError = errorMsg;
 	}
 
 	return res;
+}
+
+// Extracting one parameter from the parsed result
+QVariant OAuthParser::extractParameter(QVariantMap & parsedMap,
+									   QString parameterName,
+									   bool & extractOK,
+									   QString & extractError)
+{
+	QVariant res;
+	extractError = "";
+	extractOK = parsedMap.contains(parameterName);
+
+	if (extractOK) {
+		res = parsedMap.value(parameterName);
+		parsedMap.remove(parameterName);
+	} else {
+		extractError.append("Parameter extraction : parameter '");
+		extractError.append(parameterName);
+		extractError.append("' expected.\n");
+	}
+
+	return res;
+}
+
+// Rewriting one parameter of the parsed result as a boolean
+void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
+								QString parameterName,
+								bool & rewriteOK,
+								QString & rewriteError)
+{
+	rewriteOK = parsedMap.contains(parameterName);
+	rewriteError = "";
+
+	if (rewriteOK) {
+		QString result = resultMap.value(parameterName).toString();
+		bool convertOK = "true" == result || "false" == result;
+		rewriteOK = rewriteOK && convertOK;
+
+		if (convertOK) {
+			bool booleanValue;
+
+			if ("true" == result) {
+				booleanValue = true;
+			} else if ("false" == result) {
+				booleanValue = false;
+			}
+
+			resultMap.remove(parameterName);
+			resultMap.insert(parameterName, QVariant(booleanValue));
+		} else {
+			// Unexpected value. This is an error.
+			rewriteError.append("Rewriting as bool : unexpected value '")
+					.append(result)
+					.append("' for parameter '")
+					.append(parameterName)
+					.append("'.\n");
+		}
+	} else {
+		rewriteError.append("Rewriting as bool : parameter '")
+				.append(parameterName)
+				.append("' expected.\n");
+	}
 }

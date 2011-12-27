@@ -23,6 +23,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "authorizerequester.hpp"
 #include "../../twittercommunicators/authorizetwittercommunicator.hpp"
+#include "../../parsers/oauthparser.hpp"
 
 AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
 									   OAuthManager &authManager,
@@ -51,65 +52,60 @@ void AuthorizeRequester::initCommunicator() {
 
 // Parse the raw results of the request.
 QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-	QVariantMap resultMap;	// Result of the request
-	bool rightParameter;	// Boolean indicating if the parameter name is right
-	QString errorMsg = "Error for parameter ";
-	QString subErrorMsg;
+	OAuthParser parser;
+	QByteArray rawResponse = communicator->getResponseBuffer();
+	QString errorMsg = "";
+
+	// For treatments
+	QVariant extractedCredential;
+	bool treatmentOK;
+	QString treatmentErrorMsg = "";
+
 
 	// Parsing
-	QByteArray rawResponse = communicator->getResponseBuffer();
-	QList<QByteArray> results = rawResponse.split('&');
+	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
+	errorMsg.append(treatmentErrorMsg);
 
-	QList<QByteArray> resultPair;
-	QByteArray parameterName;
-	QByteArray result;
 
-	// Getting the request token or the "denied"
-	resultPair = results.at(0).split('=');
-	parameterName = resultPair.at(0);
+	// Rewriting the "denied" parameter as a boolean
+	parser.rewriteAsBool(resultMap,
+						 "denied",
+						 treatmentOK,
+						 treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
 
-	if ("denied" == parameterName) {
-		resultMap.insert("denied", result);
-		parseOK = true;
-		return QVariant(resultMap);
-	} else if ("oauth_token" == parameterName) {
-		result = resultPair.at(1);
-		parseOK = true;
-		oauthManager->setOAuthToken(QString(result));
-	} else {
-		parseOK = false;
-		subErrorMsg = "'";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_token' or 'denied'), ");
-		errorMsg.append(subErrorMsg);
-	}
+	if (treatmentOK) {
+		bool reynTweetsDenied = resultMap.value("denied").toBool();
 
-	// Getting the verifier
-	resultPair = results.at(1).split('=');
+		if (reynTweetsDenied) {
+			// Extracting the "oauth_token" parameter
+			extractedCredential = parser.extractParameter(resultMap,
+														  "oauth_token",
+														  treatmentOK,
+														  treatmentErrorMsg);
+			parseOK = parseOK && treatmentOK;
+			errorMsg.append(treatmentErrorMsg);
+			if (treatmentOK) {
+				oauthManager->setOAuthToken(extractedCredential.toString());
+			}
 
-	// Ensures that the parameter name is "oauth_verifier"
-	parameterName = resultPair.at(0);
-	rightParameter = "oauth_verifier" == parameterName;
-	parseOK = parseOK && rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		oauthManager->setVerifier(QString(result));
-	} else {
-		subErrorMsg = "parameter '";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_verifier'), ");
-		errorMsg.append(subErrorMsg);
+			// Extracting the "oauth_verifier" parameter
+			extractedCredential = parser.extractParameter(resultMap,
+														  "oauth_verifier",
+														  treatmentOK,
+														  treatmentErrorMsg);
+			parseOK = parseOK && treatmentOK;
+			errorMsg.append(treatmentErrorMsg);
+			if (treatmentOK) {
+				oauthManager->setVerifier(extractedCredential.toString());
+			}
+		}
 	}
 
 
 	// There was a problem while parsing -> fill the parsingErrors map !
 	if (!parseOK) {
-		if (errorMsg.endsWith(", ")) {
-			errorMsg.chop(2);
-			errorMsg.append('.');
-		}
-
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 

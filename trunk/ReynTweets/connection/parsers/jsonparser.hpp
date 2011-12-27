@@ -33,7 +33,7 @@ class JSONParser : public GenericParser
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
-		///						  bool & parseOK,
+		///						  bool & parseOK = true,
 		///						  QString & parseError = "",
 		///						  int & lineError = 0);
 		/// @brief Parsing JSON datas
@@ -42,7 +42,7 @@ class JSONParser : public GenericParser
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		QVariantMap parse(QByteArray data,
-						  bool & parseOK,
+						  bool & parseOK = true,
 						  QString & parseError = "",
 						  int & lineError = 0);
 };

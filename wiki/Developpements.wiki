@@ -25,19 +25,21 @@ Où en est Reyn Tweets ?
       * Adaptation du TwitterCommunicator
       * Résolution du problème de linkage (issue 11).
       * Trouver une procédure pour récupérer l'oauth_verifier (et l'oauth_token qu'on a déjà) de la procédure d'autorisation des Request Tokens (authorize()) : "procédure Authorize" trouvée.
+      * Codage de la procédure authorize() :
+        * Traiter de ce qui se passe lorsque l'utilisateur est sur la page (dans l'AuthorizeRequester).
+        * Finir l'OAuthProcess avec le codage du slot de traitement de l'autorisation des Request Tokens (authorizeDemanded).
+      * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter
+        * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
       * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter.
         * Structure mise en place (OAuthWidget) et intégration du controlleur chargé de faire le travail (OAuthProcess).
+        * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
 
 
 == Ce qui reste à faire ==
 
   # _Authentification à Twitter avec OAuth :_
     # Coder
-      # Codage de la procédure authorize() :
-        # Traiter de ce qui se passe lorsque l'utilisateur est sur la page (dans l'AuthorizeRequester).
-        # Finir l'OAuthProcess avec le codage du slot de traitement de l'autorisation des Request Tokens (authorizeDemanded).
-      # Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter
-        # Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
+      # Finir la revue du parsage.
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
     # Tester

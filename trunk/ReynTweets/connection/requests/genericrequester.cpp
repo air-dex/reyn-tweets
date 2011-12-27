@@ -132,7 +132,7 @@ QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 	QByteArray rawResponse = communicator->getResponseBuffer();
 	QString errorMsg;
 	int lineMsg;
-	QVariantMap result = parser.parse(rawResponse, parseOK, errorMsg, lineMsg);
+	QVariantMap result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !

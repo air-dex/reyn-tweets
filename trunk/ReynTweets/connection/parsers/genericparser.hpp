@@ -33,18 +33,18 @@ class GenericParser
 {
 	public:
 		/// @fn virtual QVariantMap parse(QByteArray data,
-		///								  bool & parseOK = true,
-		///								  QString & parseError = "",
-		///								  int & lineError = 0) = 0;
+		///								  bool & parseOK,
+		///								  QString & parseError,
+		///								  int * lineError = 0) = 0;
 		/// @brief Method for parsing results
 		/// @param Raw datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		virtual QVariantMap parse(QByteArray data,
-								  bool & parseOK = true,
-								  QString & parseError = "",
-								  int & lineError = 0) = 0;
+								  bool & parseOK,
+								  QString & parseError,
+								  int * lineError = 0) = 0;
 };
 
 #endif // GENERICPARSER_HPP

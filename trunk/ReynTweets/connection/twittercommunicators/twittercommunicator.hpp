@@ -1,5 +1,7 @@
 /// @file twittercommunicator.hpp
-/// @brief Class managing communication with the Twitter API
+/// @brief Header of TwitterCommunicator.<br/>
+/// SVN revisions of this file that are older than r80 are in the folder
+/// /trunk/ReynTweets/connection.
 /// @author Romain Ducher
 
 /*
@@ -31,7 +33,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QByteArray>
 #include <QUrl>
 #include <QMap>
-#include "oauthmanager.hpp"
+#include "../oauthmanager.hpp"
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
@@ -146,6 +148,9 @@ class TwitterCommunicator : public QObject
 		/// @brief Boolean indicating if authentication is required for the request
 		bool authenticationRequired;
 
+		/// @brief Entity with authentication information
+		OAuthManager * oauthManager;
+
 		/// @brief The request
 		QNetworkRequest * request;
 
@@ -170,8 +175,11 @@ class TwitterCommunicator : public QObject
 		/// @brief HHTP return reason
 		QString httpReturnReason;
 
-		/// @brief Entity with authentication information
-		const OAuthManager * oauthManager;
+		/// @fn bool treatReply(QNetworkReply * response);
+		/// @brief Treating a response.
+		/// @param response The Reply to treat
+		/// @return A boolean indicating if the request was successful
+		bool treatReply(QNetworkReply * response);
 
 
 	private:
@@ -197,12 +205,6 @@ class TwitterCommunicator : public QObject
 		/// @param argsMap The argument map
 		/// @return A QString representation looks like val1=arg1&val2=arg2...
 		QString buildDatas(ArgsMap argsMap);
-
-		/// @fn bool treatReply(QNetworkReply * response = this->reply);
-		/// @brief Treating a response.
-		/// @param response The Reply to treat
-		/// @return A boolean indicating if the request was successful
-		bool treatReply(QNetworkReply * response = reply);
 
 		/// @fn void extractHttpStatuses();
 		/// @brief Extract the HTTP return code and reason of the request

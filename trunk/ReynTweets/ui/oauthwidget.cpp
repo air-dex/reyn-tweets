@@ -76,6 +76,11 @@ void OAuthWidget::goToAuthPage() {
 	authPageButton.setEnabled(false);
 }
 
+// Enable authPageButton when a new Wed page is loaded
+void OAuthWidget::enableAuthPageButton() {
+	authPageButton.setEnabled(true);
+}
+
 
 /////////////////////////
 // Authentication flow //

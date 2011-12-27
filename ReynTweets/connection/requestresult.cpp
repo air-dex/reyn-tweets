@@ -38,12 +38,14 @@ RequestResult::RequestResult(ErrorType errorType,
 							 int httpCode,
 							 QString httpReason,
 							 QNetworkReply::NetworkError netError,
-							 QVariantMap parsingErrorInfos) :
+							 QVariantMap parsingErrorInfos,
+							 QString errorMsg) :
 	resultType(errorType),
 	parsedResult(parsedResults),
 	httpInfos(),
 	networkError(netError),
-	parsingErrors(parsingErrorInfos)
+	parsingErrors(parsingErrorInfos),
+	errorMessage(errorMsg)
 {
 	// Filling httpInfos
 	httpInfos.insert("httpCode", QVariant(httpCode));
@@ -83,4 +85,9 @@ QNetworkReply::NetworkError RequestResult::getNetworkError() {
 // Getter on parsingErrors
 QVariantMap RequestResult::getParsingErrors() {
 	return parsingErrors;
+}
+
+// Getter on the error massage
+QString RequestResult::getErrorMessage() {
+	return errorMessage;
 }

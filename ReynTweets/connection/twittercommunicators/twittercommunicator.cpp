@@ -51,7 +51,8 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	reply(0),
 	responseBuffer(""),
 	httpReturnCode(0),
-	httpReturnReason("Request not done")
+	httpReturnReason(""),
+	errorMessage("Request not done")
 {}
 
 // Destructor
@@ -165,6 +166,7 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 	// Analysing the response
 	extractHttpStatuses(response);
 	errorReply = response->error();
+	errorMessage = response->errorString();
 	bool requestOK = httpReturnCode == 200;
 
 	// Extracting informations
@@ -172,7 +174,6 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 	response->deleteLater();
 
 	// Ending the request
-	emit requestDone(requestOK);
 	return requestOK;
 }
 
@@ -199,6 +200,11 @@ int TwitterCommunicator::getHttpCode() {
 // Getting the HTTP return reason.
 QString TwitterCommunicator::getHttpReason() {
 	return httpReturnReason;
+}
+
+// Getter on the error massage
+QString TwitterCommunicator::getErrorMessage() {
+	return errorMessage;
 }
 
 /////////////////////

@@ -50,6 +50,7 @@ GenericRequester::~GenericRequester() {
 	// Deleting the communicator
 	if (communicator != 0) {
 		delete communicator;
+		communicator = 0;
 	}
 }
 
@@ -117,7 +118,6 @@ void GenericRequester::treatResults(bool requestOK) {
 		errorType = parseOK ? NO_ERROR : parsingErrorType;
 	} else {
 		errorType = API_CALL;
-		//treatError();
 	}
 
 	fillParsedResult(errorType, parsedResults, parsingErrorInfos);

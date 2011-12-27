@@ -140,12 +140,12 @@ class GenericRequester : public QObject
 									 QVariantMap & parsingErrors);
 
 	public slots:
-		/// @fn virtual void treatResults(bool requestOK);
+		/// @fn void treatResults(bool requestOK);
 		/// @brief Slot that is executed when the Twitter Communicator has just
-		/// finished its work. It is virtual because of the AuthorizeManager.
+		/// finished its work.
 		/// @param requestOK Boolean indicating if the Twitter Communicator did
 		/// its work successfully.
-		virtual void treatResults(bool requestOK);
+		void treatResults(bool requestOK);
 
 	signals:
 		/// @fn void requestDone(bool ok);
@@ -156,13 +156,7 @@ class GenericRequester : public QObject
 		void requestDone();
 
 
-	private:/*
-		/// @fn QVariant treatError();
-		/// @brief Method that will treat errors of the requests made by the
-		/// Twitter Communicator.
-		QVariant treatError();
-		//*/
-
+	private:
 		/// @fn void fillParsedResult(ErrorType errorType,
 		///			QVariant parsedResults,
 		///			QVariantMap parsingErrors);

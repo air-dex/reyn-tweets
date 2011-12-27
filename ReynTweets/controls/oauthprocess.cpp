@@ -143,7 +143,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 		case NO_ERROR: {
 			// The request was successful.
 			QVariantMap resultMap = result.getParsedResult().toMap();
-			bool reynTweetsDenied = resultMap.contains("denied");
+			bool reynTweetsDenied = resultMap.value("denied").toBool();
 
 			if (reynTweetsDenied) {
 				QString message =

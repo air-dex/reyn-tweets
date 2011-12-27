@@ -103,6 +103,21 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 		}
 	}
 
+	// Ensures that there was not any parameters excepting "denied"
+	treatmentOK = resultMap.size() == 1 && resultMap.contains("denied");
+	parseOK = parseOK && treatmentOK;
+
+	// Listing all the unexpected parameters
+	if (!treatmentOK) {
+		QList<QString> argNames = resultMap.keys();
+		argNames.removeOne("denied");
+		foreach (QString argName, argNames) {
+			errorMsg.append("Unexpected parameter '")
+					.append(argName)
+					.append("'.\n");
+		}
+	}
+
 
 	// There was a problem while parsing -> fill the parsingErrors map !
 	if (!parseOK) {

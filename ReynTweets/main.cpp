@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 		w.show();
 	#endif
 
-//	mainWidget.oaw.allowReynTweets();
+	mainWidget.oaw.allowReynTweets();
 
 	return a.exec();
 }

@@ -136,8 +136,63 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	emit browserVisible(false);
 
 	// Treatments on res for continuing the authentication process
+	RequestResult result = res.accessResult(this);
+	ErrorType resultType = result.getErrorType();
 
-	accessToken();	// If that's ok
+	switch (resultType) {
+		case NO_ERROR: {
+			// The request was successful.
+			QVariantMap resultMap = result.getParsedResult().toMap();
+			bool reynTweetsDenied = resultMap.contains("denied");
+
+			if (reynTweetsDenied) {
+				QString message =
+						"Vous venez de ne pas autoriser l'application à utiliser votre compte Twitter. "
+						+ "Voulez-vous recommencer la procédure d'authentification ?";
+				emit errorProcess(message, false);
+			} else {
+				// The user authorized the request Tokens. Now you can get the access tokens.
+				accessToken();
+			}
+		}break;
+
+		case API_CALL: {
+			// A problem occured while calling Twitter -> Resume ?
+			QString errorMessage = "Problème lors de la connection à Twitter :\n";
+
+			QVariantMap httpInfos = result.getHttpInfos();
+			QString httpReason = httpInfos.value("httpReason").toString();
+			int httpCode = httpInfos.value("httpCode").toInt();
+
+			errorMessage.append("Erreur ");
+			errorMessage.append(QString::number(httpCode));
+			errorMessage.append(" : ");
+			errorMessage.append(httpReason);
+			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
+
+			emit errorProcess(errorMessage, false);
+		}break;
+
+		case OAUTH_PARSING: {
+			// A problem occured while treating results -> Resume ?
+			QString errorMessage = "Problème lors du traitement des résultats :\n";
+
+			QVariantMap parsingError = result.getParsingErrors();
+			QString errMsg = parsingError.value("errorMsg").toString();
+			errorMessage.append(errMsg);
+			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
+
+			emit errorProcess(errorMessage, false);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Problème inattendu :\n";
+			errorMessage.append(resultType);
+			errorMessage.append("\n\nFin de l'authentification.");
+			emit errorProcess(errorMessage, true);
+		}break;
+	}
 }
 
 // Demanding an Access Token

@@ -85,15 +85,9 @@ class TwitterCommunicator : public QObject
 		/// @return A pointer on the request
 		QNetworkRequest * prepareRequest(QByteArray & postArgs = QByteArray());
 
-		/// @fn void executeRequest();
+		/// @fn virtual void executeRequest();
 		/// @brief Executing the request
-		void executeRequest();
-
-		/// @fn bool treatReply(QNetworkReply * response = this->reply);
-		/// @brief Treating a response.
-		/// @param response The Reply to treat
-		/// @return A boolean indicating if the request was successful
-		bool treatReply(QNetworkReply * response = reply);
+		virtual void executeRequest();
 
 		/// @fn QByteArray getResponseBuffer();
 		/// @brief Getting the content of the response
@@ -114,12 +108,6 @@ class TwitterCommunicator : public QObject
 		/// @brief Getting the HTTP return reason.
 		/// @return The description of the HTTP return code.
 		QString getHttpReason();
-
-		/// @fn QNetworkAccessManager & getNetworkManager();
-		/// @brief Getter on the network manager. Used by the AuthorizeRequester
-		/// for tracking Web requests done by its authorizationPage (QWebView).
-		/// @return A reference on the network manager.
-		QNetworkAccessManager & getNetworkManager();
 
 
 	signals:
@@ -183,7 +171,7 @@ class TwitterCommunicator : public QObject
 		QString httpReturnReason;
 
 		/// @brief Entity with authentication information
-		OAuthManager * oauthManager;
+		const OAuthManager * oauthManager;
 
 
 	private:
@@ -209,6 +197,12 @@ class TwitterCommunicator : public QObject
 		/// @param argsMap The argument map
 		/// @return A QString representation looks like val1=arg1&val2=arg2...
 		QString buildDatas(ArgsMap argsMap);
+
+		/// @fn bool treatReply(QNetworkReply * response = this->reply);
+		/// @brief Treating a response.
+		/// @param response The Reply to treat
+		/// @return A boolean indicating if the request was successful
+		bool treatReply(QNetworkReply * response = reply);
 
 		/// @fn void extractHttpStatuses();
 		/// @brief Extract the HTTP return code and reason of the request

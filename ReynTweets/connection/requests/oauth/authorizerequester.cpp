@@ -22,6 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "authorizerequester.hpp"
+#include "../../twittercommunicators/authorizetwittercommunicator.hpp"
 
 AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
 									   OAuthManager &authManager,
@@ -38,100 +39,18 @@ void AuthorizeRequester::buildGETParameters() {
 	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
 }
 
-// Authorizing request tokens
-void AuthorizeRequester::executeRequest() {
-	// Building the ArgsMap
-	buildGETParameters();
-
-	// Executing the request
-	communicator = new TwitterCommunicator(requestURL,
-										   requestType,
-										   authenticationRequired,
-										   oauthManager,
-										   getParameters,
-										   postParameters,
-										   this);
-
-	QNetworkRequest * request = communicator->prepareRequest();
-
-	// Connecting browser signals and requester slots to see what happened and what to do.
-	connect(&browser, SIGNAL(linkClicked(QUrl)),
-			this, SLOT(linkClickedSlot(QUrl)));
-	connect(&browser, SIGNAL(loadFinished(bool)),
-			this, SLOT(loadFinishedSlot(bool)));
-	connect(&browser, SIGNAL(loadProgress(int)),
-			this, SLOT(loadProgressSlot(int)));
-	connect(&browser, SIGNAL(loadStarted()),
-			this, SLOT(loadStartedSlot()));
-	connect(&browser, SIGNAL(selectionChanged()),
-			this, SLOT(selectionChangedSlot()));
-	connect(&browser, SIGNAL(statusBarMessage(QString)),
-			this, SLOT(statusBarMessageSlot(QString)));
-	connect(&browser, SIGNAL(titleChanged(QString)),
-			this, SLOT(titleChangedSlot(QString)));
-	connect(&browser, SIGNAL(urlChanged(QUrl)),
-			this, SLOT(urlChangedSlot(QUrl)));
-
-	// Launching requests
-	browser.load(*request);
+// Initialize the communicator.
+void AuthorizeRequester::initCommunicator() {
+	communicator = new AuthorizeTwitterCommunicator(browser,
+													*oauthManager,
+													getParameters,
+													this);
+	connect(communicator, SIGNAL(requestDone(bool)),
+			this, SLOT(treatResults(bool)));
 }
-
-// Slots de test pour intéraction avec la QWebView
-void	AuthorizeRequester::linkClickedSlot ( const QUrl & url ) {
-	QByteArray ba = "Clic sur le lien ";
-	ba.append(url.toString());
-	qDebug(ba.data());
-}
-
-void	AuthorizeRequester::loadFinishedSlot ( bool ok ) {
-	char * message = ok ? "Ca finit bien" : "Ca finit mal";
-	qDebug(message);
-	qDebug("\n");
-}
-
-void	AuthorizeRequester::loadProgressSlot ( int progress ) {
-	QByteArray ba = "Ca progresse de ";
-	ba.append(QString::number(progress));
-	qDebug(ba.data());
-}
-
-void	AuthorizeRequester::loadStartedSlot () {
-	qDebug("Ca charge !");
-}
-
-void	AuthorizeRequester::selectionChangedSlot () {
-	qDebug("La sélection change !");
-}
-
-void	AuthorizeRequester::statusBarMessageSlot ( const QString & text ) {
-	QByteArray ba = "Message dans la status bar : ";
-	ba.append(text);
-	qDebug(ba.data());
-}
-
-void	AuthorizeRequester::titleChangedSlot ( const QString & title ) {
-	QByteArray ba = "Le titre change : ";
-	ba.append(title);
-	qDebug(ba.data());
-}
-
-void	AuthorizeRequester::urlChangedSlot ( const QUrl & url ) {
-	QByteArray ba = "L'URL change : ";
-	ba.append(url.toString());
-	qDebug(ba.data());
-}
-
-
-
-
-
-
-
-
 
 // Parse the raw results of the request.
 QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-	/*
 	QVariantMap resultMap;	// Result of the request
 	bool rightParameter;	// Boolean indicating if the parameter name is right
 	QString errorMsg = "Error for parameter ";
@@ -145,59 +64,41 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 	QByteArray parameterName;
 	QByteArray result;
 
-	// Getting the request token
+	// Getting the request token or the "denied"
 	resultPair = results.at(0).split('=');
-
-	// Ensures that the parameter name is "oauth_token"
 	parameterName = resultPair.at(0);
-	rightParameter = "oauth_token" == parameterName;
-	parseOK = rightParameter;
 
-	if (rightParameter) {
+	if ("denied" == parameterName) {
+		resultMap.insert("denied", result);
+		parseOK = true;
+		return QVariant(resultMap);
+	} else if ("oauth_token" == parameterName) {
 		result = resultPair.at(1);
+		parseOK = true;
 		oauthManager->setOAuthToken(QString(result));
 	} else {
+		parseOK = false;
 		subErrorMsg = "'";
 		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_token'), ");
+		subErrorMsg.append("' (supposed to be 'oauth_token' or 'denied'), ");
 		errorMsg.append(subErrorMsg);
 	}
 
-	// Getting the request secret
+	// Getting the verifier
 	resultPair = results.at(1).split('=');
 
-	// Ensures that the parameter name is "oauth_token_secret"
+	// Ensures that the parameter name is "oauth_verifier"
 	parameterName = resultPair.at(0);
-	rightParameter = "oauth_token_secret" == parameterName;
+	rightParameter = "oauth_verifier" == parameterName;
 	parseOK = parseOK && rightParameter;
 
 	if (rightParameter) {
 		result = resultPair.at(1);
-		oauthManager->setOAuthSecret(QString(result));
+		oauthManager->setVerifier(QString(result));
 	} else {
 		subErrorMsg = "parameter '";
 		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_token_secret'), ");
-		errorMsg.append(subErrorMsg);
-	}
-
-
-	// Was the callback URL confirmed ?
-	resultPair = results.at(2).split('=');
-
-	// Ensures that the parameter name is "oauth_callback_confirmed"
-	parameterName = resultPair.at(0);
-	rightParameter = "oauth_callback_confirmed" == parameterName;
-	parseOK = parseOK && rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		bool callbackUrlConfirmed = ("true" == result) || !("false" == result);
-		resultMap.insert("oauth_callback_confirmed", QVariant(callbackUrlConfirmed));
-	} else {
-		subErrorMsg = "parameter '";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'oauth_callback_confirmed')");
+		subErrorMsg.append("' (supposed to be 'oauth_verifier'), ");
 		errorMsg.append(subErrorMsg);
 	}
 
@@ -213,7 +114,4 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 	}
 
 	return QVariant(resultMap);
-	//*/
-
-	return QVariant();
 }

@@ -79,12 +79,8 @@ void GenericRequester::buildGETParameters() {}
 // Bbuilding POST Parameters
 void GenericRequester::buildPOSTParameters() {}
 
-void GenericRequester::executeRequest() {
-	// Building the ArgsMap
-	buildGETParameters();
-	buildPOSTParameters();
-
-	// Executing the request
+// Initialize the communicator.
+void GenericRequester::initCommunicator() {
 	communicator = new TwitterCommunicator(requestURL,
 										   requestType,
 										   authenticationRequired,
@@ -94,6 +90,13 @@ void GenericRequester::executeRequest() {
 										   this);
 	connect(communicator, SIGNAL(requestDone(bool)),
 			this, SLOT(treatResults(bool)));
+}
+
+// Executing the request
+void GenericRequester::executeRequest() {
+	buildGETParameters();
+	buildPOSTParameters();
+	initCommunicator();
 	communicator->executeRequest();
 }
 

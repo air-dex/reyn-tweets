@@ -40,7 +40,7 @@ SOURCES += \
 	connection/twitterurls.cpp \
 	connection/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
-	connection/twittercommunicator.cpp \
+	connection/twittercommunicators/twittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
@@ -56,14 +56,15 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    connection/twittercommunicators/authorizetwittercommunicator.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
 	connection/reyntweetssettings.hpp \
 	connection/requesttype.hpp \
 	connection/oauthmanager.hpp \
-	connection/twittercommunicator.hpp \
+	connection/twittercommunicators/twittercommunicator.hpp \
 	connection/errortypes.hpp \
 	connection/requestresult.hpp \
 	connection/resultwrapper.hpp \
@@ -81,7 +82,8 @@ HEADERS  += \
 	ui/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	mainwindow.hpp
+	mainwindow.hpp \
+    connection/twittercommunicators/authorizetwittercommunicator.hpp
 
 
 #-----------------------#

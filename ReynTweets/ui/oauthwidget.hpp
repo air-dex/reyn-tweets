@@ -24,7 +24,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHWIDGET_HPP
 #define OAUTHWIDGET_HPP
 
-#include <QGridLayout>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <QWidget>
 #include <QWebView>
 #include "../controls/oauthprocess.hpp"
@@ -61,6 +62,14 @@ class OAuthWidget : public QWidget
 		void authenticationFinished(bool authOK);
 
 	public slots:
+		/// @fn void goToAuthPage();
+		/// @brief Slot executing to return to the authentication page
+		void goToAuthPage();
+
+		/// @fn void enableAuthPageButton();
+		/// @brief Enable authPageButton when a new Wed page is loaded
+		void enableAuthPageButton();
+
 		/// @fn void browserVisible(bool visible);
 		/// @brief Slot executing to show (or to hide) authorizePage
 		/// @param visible Boolean indicating authorizePage has to be shown or
@@ -90,7 +99,10 @@ class OAuthWidget : public QWidget
 
 	private:
 		/// @brief Layout of the widget
-		QGridLayout layout;
+		QVBoxLayout layout;
+
+		/// @brief Button to return to the authentication page
+		QPushButton authPageButton;
 
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow

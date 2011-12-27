@@ -33,7 +33,7 @@ class GenericParser
 {
 	public:
 		/// @fn virtual QVariantMap parse(QByteArray data,
-		///								  bool & parseOK,
+		///								  bool & parseOK = true,
 		///								  QString & parseError = "",
 		///								  int & lineError = 0) = 0;
 		/// @brief Method for parsing results
@@ -42,7 +42,7 @@ class GenericParser
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		virtual QVariantMap parse(QByteArray data,
-								  bool & parseOK,
+								  bool & parseOK = true,
 								  QString & parseError = "",
 								  int & lineError = 0) = 0;
 };

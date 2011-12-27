@@ -41,92 +41,58 @@ void AccessTokenRequester::buildPOSTParameters() {
 QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
 	OAuthParser parser;
 	QByteArray rawResponse = communicator->getResponseBuffer();
-	QString parseErrorMsg = "";
-
-	QVariantMap resultMap = parser.parse(rawResponse, parseOK, parseErrorMsg);
-
 	QString errorMsg = "";
-	bool expectedParameter;
 
-	// Extracting the "oauth_token" prameter
-	expectedParameter = resultMap.contains("oauth_token");
-	parseOK = parseOK && expectedParameter;
-
-	if (expectedParameter) {
-		QVariant token = resultMap.value("oauth_token");
-		oauthManager->setOAuthToken(token.toString());
-		resultMap.remove("oauth_token");
-	} else {
-		errorMsg.append("Parameter 'oauth_token' expected.\n");
-	}
+	// For treatments
+	QVariant extractedCredential;
+	bool treatmentOK;
+	QString treatmentErrorMsg = "";
 
 
-	// Extracting the "oauth_token_secret" prameter
-	if (resultMap.contains("oauth_token_secret")) {
-		QVariant tokenSecret = resultMap.value("oauth_token_secret");
-		oauthManager->setOAuthSecret(tokenSecret.toString());
-		resultMap.remove("oauth_token_secret");
-	} else {
-		errorMsg.append("Parameter 'oauth_token_secret' expected.\n");
-	}
+	// Parsing
+	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
+	errorMsg.append(treatmentErrorMsg);
+
+
+	// Extracting the "oauth_token" parameter
+	extractedCredential = parser.extractParameter(resultMap,
+												  "oauth_token",
+												  treatmentOK,
+												  treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
+	oauthManager->setOAuthToken(extractedCredential.toString());
+
+
+	// Extracting the "oauth_token_secret" parameter
+	extractedCredential = parser.extractParameter(resultMap,
+												  "oauth_token_secret",
+												  treatmentOK,
+												  treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
+	oauthManager->setOAuthSecret(extractedCredential.toString());
 
 
 	// Ensures that the two remaining arguments are "user_id" and "screen_name"
-	// TODO
+	treatmentOK = resultMap.size() == 2;
+	parseOK = parseOK && treatmentOK;
 
-/*
-	QVariantMap resultMap;	// Result of the request
-	bool rightParameter;	// Boolean indicating if the parameter name is right
-
-	// Parsing
-	QList<QByteArray> results = rawResponse.split('&');
-
-	QList<QByteArray> resultPair;
-	QByteArray parameterName;
-	QByteArray result;
-//*/
-/*
-	// Getting the user ID
-	resultPair = results.at(2).split('=');
-
-	// Ensures that the parameter name is "user_id"
-	parameterName = resultPair.at(0);
-	rightParameter = "user_id" == parameterName;
-	parseOK = parseOK && rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		resultMap.insert("user_id", QVariant(result));
-	} else {
-		subErrorMsg = "parameter '";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'user_id')");
-		errorMsg.append(subErrorMsg);
+	// Listing all the unexpected parameters
+	if (!treatmentOK) {
+		QList<QString> argNames = resultMap.keys();
+		argNames.removeOne("user_id");
+		argNames.removeOne("screen_name");
+		foreach (QString argName, argNames) {
+			errorMsg.append("Unexpected parameter '")
+					.append(argName)
+					.append("'.\n");
+		}
 	}
 
-
-	// Getting the screen name
-	resultPair = results.at(3).split('=');
-
-	// Ensures that the parameter name is "screen_name"
-	parameterName = resultPair.at(0);
-	rightParameter = "screen_name" == parameterName;
-	parseOK = parseOK && rightParameter;
-
-	if (rightParameter) {
-		result = resultPair.at(1);
-		resultMap.insert("screen_name", QVariant(result));
-	} else {
-		subErrorMsg = "parameter '";
-		subErrorMsg.append(parameterName);
-		subErrorMsg.append("' (supposed to be 'screen_name')");
-		errorMsg.append(subErrorMsg);
-	}
-//*/
 
 	// There was a problem while parsing -> fill the parsingErrors map !
 	if (!parseOK) {
-		errorMsg.append(parseErrorMsg);
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 

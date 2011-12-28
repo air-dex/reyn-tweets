@@ -104,11 +104,6 @@ class TwitterCommunicator : public QObject
 		/// @return The buffer containing the response
 		QByteArray getResponseBuffer();
 
-		/// @fn QNetworkReply::NetworkError getNetworkError();
-		/// @brief Getting a code indicating whether the request is successful.
-		/// @return The network error
-		QNetworkReply::NetworkError getNetworkError();
-
 		/// @fn int getHttpCode();
 		/// @brief Getting the HTTP return code.
 		/// @return The HTTP code of the request.
@@ -135,10 +130,9 @@ class TwitterCommunicator : public QObject
 
 	protected slots:
 		/// @fn void endRequest(QNetworkReply::NetworkError errorCode = QNetworkReply::NoError);
-		/// @brief Slot called during the network request if an error occurs or
-		/// when the request is finished.
-		/// @param errorCode The potential error code. It is unused.
-		void endRequest(QNetworkReply::NetworkError = QNetworkReply::NoError);
+		/// @brief Slot called at the end of the request.
+		/// @param errorCode The response.
+		void endRequest(QNetworkReply * response);
 
 	protected:
 		// Entities for request
@@ -178,17 +172,8 @@ class TwitterCommunicator : public QObject
 
 		// Entities for response
 
-		/// @brief Boolean indicating if the request has ended
-		bool reqBasta;
-
-		/// @brief Reply
-		QNetworkReply * reply;
-
 		/// @brief Content of the response
 		QByteArray responseBuffer;
-
-		/// @brief Flag indicating a potential error
-		QNetworkReply::NetworkError errorReply;
 
 		/// @brief HTTP return code
 		int httpReturnCode;

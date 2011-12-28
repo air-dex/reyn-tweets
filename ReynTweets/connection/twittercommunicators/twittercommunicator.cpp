@@ -51,24 +51,21 @@ TwitterCommunicator::TwitterCommunicator(QObject * requester,
 	callbackUrlNeeded(callbackURLNeeded),
 	oauthTokenNeeded(tokenNeeded),
 	request(0),
-	reqBasta(false),
-	reply(0),
 	responseBuffer(""),
 	httpReturnCode(0),
 	httpReturnReason(""),
 	errorMessage("Request not done")
-{}
+{
+	// Connection for receiving the response
+	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+			this, SLOT(endRequest(QNetworkReply*)));
+}
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
 	// Deleting the request
 	if (request != 0) {
 		delete request;
-	}
-
-	// Deleting the reply
-	if (reply != 0) {
-		delete reply;
 	}
 }
 
@@ -122,18 +119,21 @@ void TwitterCommunicator::executeRequest() {
 	// Executing the request
 	if (POST == requestType) {
 		// There is some POST arguments -> networkManager.post()
-		reply = networkManager.post(*request, postArgs);
+		networkManager.post(*request, postArgs);
 	} else {
 		// There is not any POST arguments -> networkManager.get()
-		reply = networkManager.get(*request);
+		networkManager.get(*request);
 	}
 
-
 	// Connecting the reply
+	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+			this, SLOT(endRequest(QNetworkReply*)));
+
+/*
 	connect(reply, SIGNAL(finished()),
 			this, SLOT(endRequest()));
 	connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-			this, SLOT(endRequest(QNetworkReply::NetworkError)));
+			this, SLOT(endRequest(QNetworkReply::NetworkError)));*/
 }
 
 
@@ -142,17 +142,11 @@ void TwitterCommunicator::executeRequest() {
 //////////
 
 // Treatments that have to be done at the end of the request
-void TwitterCommunicator::endRequest(QNetworkReply::NetworkError) {
-	// If we have already got a response, no need to continue
-	if (reqBasta) {
-		return;
-	}
-
+void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
-	bool requestOK = treatReply(reply);
+	bool requestOK = treatReply(response);
 
 	// Ending the request
-	reqBasta = true;
 	emit requestDone(requestOK);
 }
 
@@ -163,7 +157,6 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 
 	// Analysing the response
 	extractHttpStatuses(response);
-	errorReply = response->error();
 	errorMessage = response->errorString();
 	bool requestOK = httpReturnCode == 200;
 
@@ -183,11 +176,6 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 // Getting the raw response
 QByteArray TwitterCommunicator::getResponseBuffer() {
 	return responseBuffer;
-}
-
-// Getting a code indicating whether the request is successful.
-QNetworkReply::NetworkError TwitterCommunicator::getNetworkError() {
-	return errorReply;
 }
 
 // Getting the HTTP return code.

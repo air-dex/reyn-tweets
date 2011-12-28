@@ -41,7 +41,6 @@ class RequestResult
 		///				QVariant parsedResults,
 		///				int httpCode,
 		///				QString httpReason,
-		///				QNetworkReply::NetworkError netError,
 		///				QVariantMap parsingErrorInfos,
 		///				QString errorMsg);
 		/// @brief Constructor
@@ -56,7 +55,6 @@ class RequestResult
 					  QVariant parsedResults,
 					  int httpCode,
 					  QString httpReason,
-					  QNetworkReply::NetworkError netError,
 					  QVariantMap parsingErrorInfos,
 					  QString errorMsg);
 
@@ -85,11 +83,6 @@ class RequestResult
 		/// @return The value of httpInfos
 		QVariantMap getHttpInfos();
 
-		/// @fn QNetworkReply::NetworkError getNetworkError();
-		/// @brief Getter on networkError
-		/// @return The value of networkError
-		QNetworkReply::NetworkError getNetworkError();
-
 		/// @fn QVariantMap getParsingErrors();
 		/// @brief Getter on parsingErrors
 		/// @return The value of parsingErrors
@@ -110,10 +103,6 @@ class RequestResult
 
 		/// @brief Information about the pure http request.
 		QVariantMap httpInfos;
-
-		/// @brief Code indicating whether a network error occured during
-		/// the request.
-		QNetworkReply::NetworkError networkError;
 
 		/// @brief Potential errors that can occur while parsing results.
 		QVariantMap parsingErrors;

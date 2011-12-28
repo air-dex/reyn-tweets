@@ -146,7 +146,6 @@ void GenericRequester::fillParsedResult(ErrorType errorType,
 								  parsedResults,
 								  communicator->getHttpCode(),
 								  communicator->getHttpReason(),
-								  communicator->getNetworkError(),
 								  parsingErrors,
 								  communicator->getErrorMessage());
 }

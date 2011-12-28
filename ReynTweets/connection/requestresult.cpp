@@ -28,7 +28,6 @@ RequestResult::RequestResult() :
 	resultType(INVALID_RESULT),
 	parsedResult(),
 	httpInfos(),
-	networkError(),
 	parsingErrors()
 {}
 
@@ -37,13 +36,11 @@ RequestResult::RequestResult(ErrorType errorType,
 							 QVariant parsedResults,
 							 int httpCode,
 							 QString httpReason,
-							 QNetworkReply::NetworkError netError,
 							 QVariantMap parsingErrorInfos,
 							 QString errorMsg) :
 	resultType(errorType),
 	parsedResult(parsedResults),
 	httpInfos(),
-	networkError(netError),
 	parsingErrors(parsingErrorInfos),
 	errorMessage(errorMsg)
 {
@@ -75,11 +72,6 @@ QVariant RequestResult::getParsedResult() {
 // Getter on httpInfos
 QVariantMap RequestResult::getHttpInfos() {
 	return httpInfos;
-}
-
-// Getter on networkError
-QNetworkReply::NetworkError RequestResult::getNetworkError() {
-	return networkError;
 }
 
 // Getter on parsingErrors

@@ -22,13 +22,31 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QtGui/QApplication>
+#include <QLocale>
+#include <QTranslator>
 #include "mainwindow.hpp"
 #include "ui/reyntweetswidget.hpp"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
+
+	// Program in French
+//*
+	QTranslator translator;
+	translator.load("reyntweets_fr");
+	a.installTranslator(&translator);
+//*/
+
+	// Defalult idiom : local idiom
+/*
+	QString locale = QLocale::system().name().section('_', 0, 0);
+	QTranslator translator;
+	translator.load(QString("zeroclassgenerator_") + locale);
+	a.installTranslator(&translator);
+//*/
 
 	MainWindow w;
 

@@ -34,6 +34,7 @@ QT       += core gui network svg webkit
 
 TARGET = ReynTweets
 TEMPLATE = app
+TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 SOURCES += \
 	connection/utils.cpp \
@@ -51,10 +52,14 @@ SOURCES += \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
+	connection/requests/oauth/postauthorizerequester.cpp \
 #	connection/requests/oauth/authenticaterequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
+	controls/oauthprocess2.cpp \
 	controls/oauthprocess.cpp \
+	ui/authentication/loginwidget.cpp \
+	ui/authentication/oauthwidget2.cpp \
 	ui/authentication/oauthwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
@@ -80,20 +85,24 @@ HEADERS  += \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
+	connection/requests/oauth/postauthorizerequester.hpp \
 #	connection/requests/oauth/authenticaterequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
+	controls/oauthprocess2.hpp \
 	controls/oauthprocess.hpp \
+	ui/authentication/loginwidget.hpp \
+	ui/authentication/oauthwidget2.hpp \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
 	mainwindow.hpp
 
 
-#-----------------------#
-# Symbian configuration #
-#-----------------------#
+#-------------------------------#
+# Symbian special configuration #
+#-------------------------------#
 
 #CONFIG += mobility
 #MOBILITY =

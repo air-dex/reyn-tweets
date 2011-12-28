@@ -1,5 +1,5 @@
-/// @file oauthwidget.hpp
-/// @brief Header of OAuthWidget
+/// @file loginwidget.hpp
+/// @brief Header of LoginWidget
 /// @author Romain Ducher
 
 /*
@@ -21,39 +21,44 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OAUTHWIDGET_HPP
-#define OAUTHWIDGET_HPP
+#ifndef OAUTHWIDGET2_HPP
+#define OAUTHWIDGET2_HPP
 
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QWidget>
-#include <QWebView>
-#include "../../controls/oauthprocess.hpp"
+#include <QVBoxLayout>
+#include "loginwidget.hpp"
+#include "../../controls/oauthprocess2.hpp"
 
-/// @class OAuthWidget
-/// @brief Widget dealing with OAuth authentication.
-class OAuthWidget : public QWidget
+class OAuthWidget2 : public QWidget
 {
-	Q_OBJECT
-
+		Q_OBJECT
 	public:
 		/// @fn OAuthWidget(QWidget * parent = 0);
 		/// @brief Constructor
 		/// @param parent Parent widget
-		OAuthWidget(QWidget * parent = 0);
+		OAuthWidget2(QWidget *parent = 0);
 
 		/// @fn ~OAuthWidget();
 		/// @brief Destructor
-		~OAuthWidget();
+		~OAuthWidget2();
 
 		/// @fn void allowReynTweets();
 		/// @brief Allowing Reyn Tweets to use your Twitter account
 		void allowReynTweets();
 
 	signals:
-		/// @fn void startAuthentication();
-		/// @brief Signal to send when authentication is started
-		void startAuthentication();
+		/// @fn void authorizeReynTweets(QString login, QString password);
+		/// @brief Signal sent to allow Reyn Tweets to use the Twitter account :).
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void authorizeReynTweets(QString login, QString password);
+
+		/// @fn void denyReynTweets(QString login, QString password, QString denyString);
+		/// @brief Signal sent to deny Reyn Tweets to use the Twitter account :(.
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		/// @param denyString String indicating that Reyn Tweets is not allowed.
+		void denyReynTweets(QString login, QString password, QString denyString);
 
 		/// @fn void authenticationFinished(bool authOK);
 		/// @brief Signal sent when the authentication is finished
@@ -62,26 +67,18 @@ class OAuthWidget : public QWidget
 		void authenticationFinished(bool authOK);
 
 	public slots:
-		/// @fn void goToAuthPage();
-		/// @brief Slot executing to return to the authentication page
-		void goToAuthPage();
+		/// @fn void loginPanelVisible(bool visible);
+		/// @brief Slot executing to show (or to hide) the login panel
+		/// @param visible Boolean indicating if the login panel has to
+		/// be shown or has to be hidden.
+		void loginPanelVisible(bool visible);
 
-		/// @fn void enableAuthPageButton();
-		/// @brief Enable authPageButton when a new Wed page is loaded
-		void enableAuthPageButton();
-
-		/// @fn void browserVisible(bool visible);
-		/// @brief Slot executing to show (or to hide) authorizePage
-		/// @param visible Boolean indicating authorizePage has to be shown or
-		/// has to be hidden.
-		void browserVisible(bool visible);
-
-		/// @fn void errorProcess(QString errorMsg, bool fatalError);
+		/// @fn void errorProcess(bool fatalError, QString errorMsg);
 		/// @brief Signal emitted when an error occurs during the process
-		/// @param errorMsg Message describing the error
 		/// @param fatalError Boolean indicating if the error is fatal for
 		/// the process.
-		void errorProcess(QString errorMsg, bool fatalError);
+		/// @param errorMsg Message describing the error
+		void errorProcess(bool fatalError, QString errorMsg);
 
 		/// @fn void authorizeDemanded(ResultWrapper res);
 		/// @brief Slot executing at the end of the authentication. It just
@@ -90,23 +87,33 @@ class OAuthWidget : public QWidget
 		/// successful. (subject to change)
 		void endAuthentication(bool authOK);
 
-	protected:
-		/// @brief Embedded Web browser to authorize Reyn Tweets
-		QWebView authorizePage;
+	protected slots:
+		/////////////////////
+		// Launching Slots //
+		/////////////////////
 
-		/// @brief Entity calling Twitter
-		OAuthProcess * oauthAuthenticationFlow;
+		/// @fn void launchAuthorize();
+		/// @brief Internal Slot used to send the authorizeReynTweets signal.
+		void launchAuthorize();
+
+		/// @fn void launchDeny();
+		/// @brief Internal Slot used to send the denyReynTweets signal.
+		void launchDeny();
+
+	protected:
+		/// @brief OAuth Authentication Flow
+		OAuthProcess2 * authenticationFlow;
+
+		/// @brief Login Widget
+		LoginWidget loginWidget;
 
 	private:
 		/// @brief Layout of the widget
 		QVBoxLayout layout;
-
-		/// @brief Button to return to the authentication page
-		QPushButton authPageButton;
 
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow
 		void killOAuthProcess();
 };
 
-#endif // OAUTHWIDGET_HPP
+#endif // OAUTHWIDGET2_HPP

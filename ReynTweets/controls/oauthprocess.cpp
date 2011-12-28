@@ -27,7 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 OAuthProcess::OAuthProcess(QWebView & browser, QObject * parent) :
 	QObject(parent),
-	twitterCalls(ReynTwitterCalls::getInstance()),
+	twitterCalls(this),
 	embeddedBrowser(browser)
 {}
 

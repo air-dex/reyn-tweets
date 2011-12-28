@@ -1,5 +1,5 @@
-/// @file requesttokenrequester.hpp
-/// @brief Header of RequestTokenRequester
+/// @file authorizerequester.hpp
+/// @brief Header of AuthorizeRequester
 /// @author Romain Ducher
 
 /*
@@ -21,33 +21,33 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REQUESTTOKENREQUESTER_HPP
-#define REQUESTTOKENREQUESTER_HPP
+#ifndef AUTHORIZEREQUESTER2_HPP
+#define AUTHORIZEREQUESTER2_HPP
 
 #include "oauthrequester.hpp"
 
-/// @class OAuthRequester
-/// @brief Class managing requests with the Twitter API about OAuth
-class RequestTokenRequester : public OAuthRequester
+/// @class AuthorizeRequester
+/// @brief Requester for OAuth authentication
+class AuthorizeRequester2 : public OAuthRequester
 {
-	Q_OBJECT
-
+		Q_OBJECT
 	public:
-		/// @fn RequestTokenRequester(QObject * requester,
-		///							  OAuthManager & authManager);
+		/// @fn AuthorizeRequester(QObject * requester,
+		///						   OAuthManager & authManager);
 		/// @brief Constructor
+		/// @param twitterBrowser QWebView used for the request
+		/// @param authManager Informations for OAuth.
 		/// @param requester QObject which asks for this search.
-		/// @param authManager Information for OAuth.
-		RequestTokenRequester(QObject * requester,
-							  OAuthManager & authManager);
+		AuthorizeRequester2(QObject * requester,
+							OAuthManager & authManager);
 
 	protected:
+		/// @fn void buildGETParameters();
+		/// @brief Method building GET Parameters
+		void buildGETParameters();
+
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
-		/// @brief Method that will parse the raw results of the request. For
-		/// this kind of request, results look like :<br/>
-		/// oauth_token=<value of the request token>&
-		/// oauth_token_secret=<value of the request secret>&
-		/// oauth_callback_confirmed=<true or false>
+		/// @brief Method that will parse the raw results of the request.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
@@ -56,4 +56,4 @@ class RequestTokenRequester : public OAuthRequester
 		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 };
 
-#endif // REQUESTTOKENREQUESTER_HPP
+#endif // AUTHORIZEREQUESTER2_HPP

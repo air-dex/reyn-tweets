@@ -49,13 +49,15 @@ class TwitterCommunicator : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn TwitterCommunicator(QString url,
+		/// @fn TwitterCommunicator(QObject * requester,
+		///							QString url,
 		///							RequestType type,
-		///							bool authRequired,
-		///							OAuthManager * authManager,
 		///							ArgsMap getArgs = ArgsMap(),
 		///							ArgsMap postArgs = ArgsMap(),
-		///							QObject * requester = 0);
+		///							bool authRequired,
+		///							OAuthManager * authManager = 0,
+		///							bool tokenNeeded = true,
+		///							bool callbackURLNeeded = false);
 		/// @brief Constructor
 		/// @param url String representation of the URL
 		/// @param type Type of the request (GET ou POST).
@@ -67,13 +69,19 @@ class TwitterCommunicator : public QObject
 		/// @param postArgs POST arguments
 		/// @param requester Requester using the communicator. It corresponds to
 		/// the parent QObject.
-		TwitterCommunicator(QString url,
+		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
+		/// is required for authentication.
+		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
+		/// parameter is required for authentication.
+		TwitterCommunicator(QObject * requester,
+							QString url,
 							RequestType type,
-							bool authRequired,
-							OAuthManager * authManager,
 							ArgsMap getArgs = ArgsMap(),
 							ArgsMap postArgs = ArgsMap(),
-							QObject * requester = 0);
+							bool authRequired,
+							OAuthManager * authManager = 0,
+							bool tokenNeeded = true,
+							bool callbackURLNeeded = false);
 
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
@@ -155,6 +163,14 @@ class TwitterCommunicator : public QObject
 
 		/// @brief Entity with authentication information
 		OAuthManager * oauthManager;
+
+		/// @brief Boolean indicating if the oauth_token parameter is required
+		/// for authentication.
+		bool oauthTokenNeeded;
+
+		/// @brief Boolean indicating if the oauth_callback parameter
+		/// is required for authentication.
+		bool callbackUrlNeeded;
 
 		/// @brief The request
 		QNetworkRequest * request;

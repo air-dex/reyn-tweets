@@ -24,29 +24,37 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHREQUESTER_HPP
 #define OAUTHREQUESTER_HPP
 
-#include "../genericrequester.hpp"
+#include "../authenticationrequester.hpp"
 
 /// @class OAuthRequester
 /// @brief Generic requester for requests dealing with OAuth
-class OAuthRequester : public GenericRequester
+class OAuthRequester : public AuthenticationRequester
 {
 	Q_OBJECT
 
 	public:
-		/// @fn OAuthRequester(OAuthManager & authManager,
+		/// @fn OAuthRequester(QObject * requester,
 		///					   RequestType type,
 		///					   QString url,
-		///					   QObject * requester = 0);
+		///					   OAuthManager &authManager,
+		///					   bool tokenNeeded,
+		///					   bool callbackURLneeded);
 		/// @brief Constructor
-		/// @param authManager Information for OAuth. The requester takes its
-		/// memory address.
+		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL of the request
-		/// @param requester QObject which asks for this search.
-		OAuthRequester(OAuthManager & authManager,
+		/// @param authManager Information for OAuth. The requester takes its
+		/// memory address.
+		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
+		/// is required for authentication.
+		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
+		/// parameter is required for authentication.
+		OAuthRequester(QObject * requester,
 					   RequestType type,
 					   QString url,
-					   QObject * requester = 0);
+					   OAuthManager &authManager,
+					   bool tokenNeeded,
+					   bool callbackURLneeded);
 };
 
 #endif // OAUTHREQUESTER_HPP

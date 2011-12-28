@@ -26,6 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "oauth/accesstokenrequester.hpp"
 #include "oauth/authorizerequester.hpp"
+#include "oauth/authorizerequester2.hpp"
 #include "oauth/postauthorizerequester.hpp"
 #include "oauth/requesttokenrequester.hpp"
 #include "searches/searchrequester.hpp"

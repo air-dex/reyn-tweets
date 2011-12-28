@@ -1,5 +1,5 @@
-/// @file oauthrequester.cpp
-/// @brief Implementation of OAuthRequester
+/// @file authorizerequester.cpp
+/// @brief Implementation of AuthorizeRequester
 /// @author Romain Ducher
 
 /*
@@ -21,20 +21,23 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "oauthrequester.hpp"
+#include "authorizerequester2.hpp"
 
 // Constructor
-OAuthRequester::OAuthRequester(QObject * requester,
-							   RequestType type = 0,
-							   QString url,
-							   OAuthManager &authManager,
-							   bool tokenNeeded,
-							   bool callbackURLneeded) :
-	AuthenticationRequester(requester,
-							type,
-							url,
-							authManager,
-							OAUTH_PARSING,
-							tokenNeeded,
-							callbackURLneeded)
+AuthorizeRequester2::AuthorizeRequester2(QObject *requester,
+										 OAuthManager & authManager) :
+	OAuthRequester(authManager,
+				   GET,
+				   TwitterURL::AUTHORIZE_URL,
+				   requester)
 {}
+
+// Building GET Parameters
+void AuthorizeRequester2::buildGETParameters() {
+	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
+}
+
+// Parsing results
+void AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
+	// TODO
+}

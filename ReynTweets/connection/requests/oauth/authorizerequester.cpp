@@ -37,13 +37,13 @@ AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
-	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
+	getParameters.insert("oauth_token", oauthManager.getOAuthToken());
 }
 
 // Initialize the communicator.
 void AuthorizeRequester::initCommunicator() {
 	communicator = new AuthorizeTwitterCommunicator(browser,
-													*oauthManager,
+													oauthManager,
 													getParameters,
 													this);
 	connect(communicator, SIGNAL(requestDone(bool)),
@@ -87,7 +87,7 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 			parseOK = parseOK && treatmentOK;
 			errorMsg.append(treatmentErrorMsg);
 			if (treatmentOK) {
-				oauthManager->setOAuthToken(extractedCredential.toString());
+				oauthManager.setOAuthToken(extractedCredential.toString());
 			}
 
 			// Extracting the "oauth_verifier" parameter
@@ -98,7 +98,7 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 			parseOK = parseOK && treatmentOK;
 			errorMsg.append(treatmentErrorMsg);
 			if (treatmentOK) {
-				oauthManager->setVerifier(extractedCredential.toString());
+				oauthManager.setVerifier(extractedCredential.toString());
 			}
 		}
 	}

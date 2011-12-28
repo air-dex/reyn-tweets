@@ -21,23 +21,51 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QtXml>
 #include "authorizerequester2.hpp"
 
 // Constructor
 AuthorizeRequester2::AuthorizeRequester2(QObject *requester,
 										 OAuthManager & authManager) :
-	OAuthRequester(authManager,
+	OAuthRequester(requester,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
-				   requester)
+				   authManager)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester2::buildGETParameters() {
-	getParameters.insert("oauth_token", oauthManager->getOAuthToken());
+	getParameters.insert("oauth_token", oauthManager.getOAuthToken());
 }
 
 // Parsing results
-void AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
-	// TODO
+QVariant AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
+	// Méthode champenoise : ça me saoule !
+
+	// Méthode parsage xml car in fine le HTML, c'est du XML !
+	QString errmsg = "";
+	int lineerr = -1;
+	int colerr = -1;
+	QDomDocument doc("TwitterResponse");
+	doc.setContent(communicator->getResponseBuffer(), &errmsg, &lineerr, &colerr);
+
+	QDomElement element = doc.documentElement();
+
+	// Récupération du formulaire
+	QDomNodeList forms = element.elementsByTagName("form"); // Son id est oauth_form
+	QDomElement form = forms.item(0).toElement();
+
+	for (QDomNode child = form.firstChild(); !child.isNull(); child = child.nextSibling()) {
+		QDomElement e = child.toElement();
+		QString nodename = e.attribute("name");
+
+		if (nodename != "authenticity_token")
+			continue;
+
+		QString authenticitytoken = e.attribute("value");
+		qDebug(authenticitytoken.toAscii().data());
+	}
+
+
+	return QVariant();
 }

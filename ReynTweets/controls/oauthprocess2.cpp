@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 OAuthProcess2::OAuthProcess2(QObject * parent) :
 	QObject(parent),
-	twitter(this)
+	twitter(*this)
 {}
 
 // Resetting the tokens.
@@ -75,8 +75,8 @@ void OAuthProcess2::requestTokenDemanded(ResultWrapper res) {
 		case API_CALL: {
 			// Retrieving network informations
 			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode");
-			QString httpReason = httpMap.value("httpReason");
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
 
 			// Building error message
 			QString errorMsg = "Network error ";
@@ -110,7 +110,7 @@ void OAuthProcess2::authorize() {
 
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitter.authorize(embeddedBrowser);
+	twitter.authorize2();
 }
 
 // Treatments after the request for authorizing Request Tokens
@@ -123,14 +123,14 @@ void OAuthProcess2::authorizeDemanded(ResultWrapper res) {
 void OAuthProcess2::authorizeReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitter.postAuthorize(login, password);
+//	twitter.postAuthorize(login, password);
 }
 
 // Denying Reyn Tweets :(
 void OAuthProcess2::denyReynTweets(QString login, QString password, QString denyString) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitter.postAuthorize(login, password, denyString);
+//	twitter.postAuthorize(login, password, denyString);
 }
 
 // The POST authorizing request
@@ -163,8 +163,8 @@ void OAuthProcess2::accessTokenDemanded(ResultWrapper res) {
 		case API_CALL: {
 			// Retrieving network informations
 			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode");
-			QString httpReason = httpMap.value("httpReason");
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
 
 			// Building error message
 			QString errorMsg = "Network error ";

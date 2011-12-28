@@ -37,8 +37,8 @@ class OAuthRequester : public AuthenticationRequester
 		///					   RequestType type,
 		///					   QString url,
 		///					   OAuthManager &authManager,
-		///					   bool tokenNeeded,
-		///					   bool callbackURLneeded);
+		///					   bool tokenNeeded = true,
+		///					   bool callbackURLneeded = false);
 		/// @brief Constructor
 		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
@@ -53,8 +53,8 @@ class OAuthRequester : public AuthenticationRequester
 					   RequestType type,
 					   QString url,
 					   OAuthManager &authManager,
-					   bool tokenNeeded,
-					   bool callbackURLneeded);
+					   bool tokenNeeded = true,
+					   bool callbackURLneeded = false);
 };
 
 #endif // OAUTHREQUESTER_HPP

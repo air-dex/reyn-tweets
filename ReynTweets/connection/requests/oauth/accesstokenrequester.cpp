@@ -35,7 +35,7 @@ AccessTokenRequester::AccessTokenRequester(QObject *requester,
 
 // Building POST Parameters
 void AccessTokenRequester::buildPOSTParameters() {
-	postParameters.insert("oauth_verifier", oauthManager->getVerifier());
+	postParameters.insert("oauth_verifier", oauthManager.getVerifier());
 }
 
 // Parse the raw results of the request.
@@ -62,7 +62,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	oauthManager->setOAuthToken(extractedCredential.toString());
+	oauthManager.setOAuthToken(extractedCredential.toString());
 
 
 	// Extracting the "oauth_token_secret" parameter
@@ -72,7 +72,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	oauthManager->setOAuthSecret(extractedCredential.toString());
+	oauthManager.setOAuthSecret(extractedCredential.toString());
 
 
 	// Ensures that the two remaining arguments are "user_id" and "screen_name"

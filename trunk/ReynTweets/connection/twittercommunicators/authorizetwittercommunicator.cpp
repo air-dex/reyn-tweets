@@ -57,7 +57,7 @@ AuthorizeTwitterCommunicator::AuthorizeTwitterCommunicator(QWebView & embeddedBr
 // Executing the request
 void AuthorizeTwitterCommunicator::executeRequest() {
 	request = prepareRequest();
-	reply = networkManager.get(*request);
+	networkManager.get(*request);
 }
 
 
@@ -71,7 +71,6 @@ void AuthorizeTwitterCommunicator::urlAnalyser(const QUrl & url) {
 		QString datas = urlString.split("?").at(1);
 		responseBuffer = datas.toUtf8();
 		responseBuffer.append("denied=false");
-		errorReply = QNetworkReply::NoError;
 		errorMessage = "";
 		httpReturnCode = 200;
 		httpReturnReason = "OK";

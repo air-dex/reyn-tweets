@@ -228,7 +228,7 @@ QString OAuthManager::generateNonce() {
 
 // Generates a timestamp for a request
 QString OAuthManager::generateTimestamp() {
-	qint64 timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
+	qint64 timestamp = QDateTime::currentMSecsSinceEpoch();// / 1000;
 	return QString::number(timestamp);
 }
 

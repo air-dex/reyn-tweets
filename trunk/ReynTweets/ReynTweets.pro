@@ -30,7 +30,7 @@
 # Common configuration #
 #----------------------#
 
-QT       += core gui network svg webkit
+QT       += core gui network svg webkit xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -48,10 +48,12 @@ SOURCES += \
 	connection/parsers/jsonparser.cpp \
 	connection/parsers/oauthparser.cpp \
 	connection/requests/genericrequester.cpp \
+	connection/requests/authenticationrequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
+	connection/requests/oauth/authorizerequester2.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
 #	connection/requests/oauth/authenticaterequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
@@ -64,9 +66,7 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
-	main.cpp \
-    connection/requests/oauth/authorizerequester2.cpp \
-    connection/requests/authenticationrequester.cpp
+	main.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
@@ -83,10 +83,12 @@ HEADERS  += \
 	connection/parsers/jsonparser.hpp \
 	connection/parsers/oauthparser.hpp \
 	connection/requests/genericrequester.hpp \
+	connection/requests/authenticationrequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
+	connection/requests/oauth/authorizerequester2.hpp \
 	connection/requests/oauth/postauthorizerequester.hpp \
 #	connection/requests/oauth/authenticaterequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
@@ -99,9 +101,7 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	mainwindow.hpp \
-    connection/requests/oauth/authorizerequester2.hpp \
-    connection/requests/authenticationrequester.hpp
+	mainwindow.hpp
 
 
 #-------------------------------#

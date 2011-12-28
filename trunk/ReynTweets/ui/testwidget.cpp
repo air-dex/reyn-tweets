@@ -61,15 +61,15 @@ TestWidget::~TestWidget()
 }
 
 void TestWidget::searchCamb078() {
-	ReynTwitterCalls rtc(this);
+	ReynTwitterCalls rtc(*this);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
-	rtc.search(this, "@Camb078");
+	rtc.search("@Camb078");
 }
 
 void TestWidget::searchXenoblade() {
-	ReynTwitterCalls rtc(this);
+	ReynTwitterCalls rtc(*this);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
-	rtc.search(this, "Xenoblade");
+	rtc.search("Xenoblade");
 	qDebug("fin du GUI");
 }
 
@@ -86,9 +86,9 @@ void TestWidget::endsearch(ResultWrapper res) {
 }
 
 void TestWidget::requestTokensSlot() {
-	ReynTwitterCalls rtc(getRequestTokens);
+	ReynTwitterCalls rtc(*getRequestTokens);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endRequestToken(ResultWrapper)));
-	rtc.requestToken(getRequestTokens);
+	rtc.requestToken();
 }
 
 void TestWidget::endRequestToken(ResultWrapper res) {
@@ -106,7 +106,7 @@ void TestWidget::endRequestToken(ResultWrapper res) {
 }
 
 void TestWidget::authorizeSlot() {
-	ReynTwitterCalls rtc(authorize);
+	ReynTwitterCalls rtc(*authorize);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAuthorize(ResultWrapper)));
 	rtc.authorize(QWebView());
 }
@@ -131,7 +131,7 @@ void TestWidget::endAuthorize(ResultWrapper res) {
 }
 
 void TestWidget::accessTokensSlot() {
-	ReynTwitterCalls rtc(getRequestTokens);
+	ReynTwitterCalls rtc(*getRequestTokens);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAccessToken(ResultWrapper)));
 	rtc.accessToken();
 }

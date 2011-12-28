@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 OAuthRequester::OAuthRequester(QObject * requester,
-							   RequestType type = 0,
+							   RequestType type,
 							   QString url,
 							   OAuthManager &authManager,
 							   bool tokenNeeded,

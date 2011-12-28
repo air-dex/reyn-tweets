@@ -27,7 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 OAuthProcess::OAuthProcess(QWebView & browser, QObject * parent) :
 	QObject(parent),
-	twitterCalls(this),
+	twitterCalls(*this),
 	embeddedBrowser(browser)
 {}
 
@@ -49,7 +49,7 @@ void OAuthProcess::startAuthentication() {
 void OAuthProcess::requestToken() {
 	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(requestTokenDemanded(ResultWrapper)));
-	twitterCalls.requestToken(this);
+	twitterCalls.requestToken();
 }
 
 // Treatments after the request for Request Tokens
@@ -123,7 +123,7 @@ void OAuthProcess::authorize() {
 
 	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitterCalls.authorize(this, embeddedBrowser);
+	twitterCalls.authorize(embeddedBrowser);
 }
 
 // TODO
@@ -200,7 +200,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 void OAuthProcess::accessToken() {
 	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(accessTokenDemanded(ResultWrapper)));
-	twitterCalls.accessToken(this);
+	twitterCalls.accessToken();
 }
 
 // Treatments after the request for Access Tokens

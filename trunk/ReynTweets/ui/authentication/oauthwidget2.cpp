@@ -55,7 +55,7 @@ OAuthWidget2::~OAuthWidget2() {
 
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget2::allowReynTweets() {
-	authenticationFlow = new OAuthProcess2(authorizePage, this);
+	authenticationFlow = new OAuthProcess2(this);
 
 	if (authenticationFlow) {
 		// Wiring connection beetween the widget and the process
@@ -75,7 +75,7 @@ void OAuthWidget2::allowReynTweets() {
 		// Critical error -> Abort the process.
 		QMessageBox::critical(this,
 							  QObject::tr("Erreur dans le processus d'authentification"),
-							  QObject::tr("Erreur au lancement de l'authentification. Authentification terminée.");
+							  QObject::tr("Erreur au lancement de l'authentification. Authentification terminée."));
 		emit authenticationFinished(false);
 	}
 }
@@ -95,7 +95,7 @@ void OAuthWidget2::errorProcess(bool fatalError, QString errorMsg) {
 
 		QMessageBox::critical(this,
 							  QObject::tr("Erreur dans le processus d'authentification"),
-							  QObject::tr(message));
+							  QObject::tr(message.toUtf8().data()));
 		endAuthentication(false);
 	} else {
 		// The error is not critical. The process can be resumed.
@@ -103,14 +103,14 @@ void OAuthWidget2::errorProcess(bool fatalError, QString errorMsg) {
 
 		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
 																		QObject::tr("Imprévu dans le processus d'authentification"),
-																		QObject::tr(message),
+																		QObject::tr(message.toUtf8().data()),
 																		QMessageBox::Yes | QMessageBox::No,
 																		QMessageBox::Yes);
 		if (QMessageBox::Yes == userResponse) {
 			// Resume the process
 			authenticationFlow->resetTokens();
 			killOAuthProcess();
-			startAuthentication();
+			allowReynTweets();
 		} else {
 			// Abort the process
 			QMessageBox::information(this,

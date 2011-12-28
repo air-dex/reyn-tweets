@@ -54,7 +54,7 @@ class GenericRequester : public QObject
 		GenericRequester(QObject * requester,
 						 RequestType type,
 						 QString url,
-						 ErrorType parseError);
+						 ErrorType parseError = QJSON_PARSING);
 
 		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.

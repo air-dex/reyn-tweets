@@ -125,7 +125,7 @@ class OAuthProcess2 : public QObject
 
 	protected:
 		/// @brief Entity calling Twitter
-		ReynTwitterCalls & twitter;
+		ReynTwitterCalls twitter;
 };
 
 #endif // OAUTHPROCESS2_HPP

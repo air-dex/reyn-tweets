@@ -29,10 +29,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 //////////////////////////
 
 // Static components
-QMap<QUuid, GenericRequester *> requesterManager = QMap<QUuid, GenericRequester *>();
+QMap<QUuid, GenericRequester *> ReynTwitterCalls::requesterManager = QMap<QUuid, GenericRequester *>();
 
 /// @brief OAuth information
-OAuthManager oauthManager = OAuthManager();
+OAuthManager ReynTwitterCalls::oauthManager = OAuthManager();
 
 // Protected constructor
 ReynTwitterCalls::ReynTwitterCalls(QObject & requester) :
@@ -120,12 +120,11 @@ void ReynTwitterCalls::authorize(QWebView & browser) {
 
 // Authorizing request Tokens
 void ReynTwitterCalls::authorize2() {
-	AuthorizeRequester2 * requester = new AuthorizeRequester2(browser,
-															oauthManager,
-															&requestDemander);
+	AuthorizeRequester2 * requester = new AuthorizeRequester2(&requestDemander,
+															oauthManager);
 	executeRequest(requester);
 }
-
+/*
 // POST authorize() requests to allow or to deny the application.
 void ReynTwitterCalls::postAuthorize(QString login, QString password, QString denyString) {
 	PostAuthorizeRequester * requester = new AuthorizeRequester(login,
@@ -134,7 +133,7 @@ void ReynTwitterCalls::postAuthorize(QString login, QString password, QString de
 																&requestDemander);
 	executeRequest(requester);
 }
-
+//*/
 // Getting the access tokens
 void ReynTwitterCalls::accessToken() {
 	AccessTokenRequester * requester = new AccessTokenRequester(&requestDemander,

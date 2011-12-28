@@ -28,8 +28,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 GenericRequester::GenericRequester(QObject * requester,
 								   RequestType type,
 								   QString url,
-								   bool authRequired,
-								   OAuthManager * authManager,
 								   ErrorType parseError) :
 	QObject(requester),
 	uuid(QUuid::createUuid()),
@@ -38,8 +36,6 @@ GenericRequester::GenericRequester(QObject * requester,
 	getParameters(),
 	postParameters(),
 	communicator(0),
-	authenticationRequired(authRequired),
-	oauthManager(authManager),
 	parsingErrorType(parseError),
 	requestResult()
 {}
@@ -82,13 +78,12 @@ void GenericRequester::buildPOSTParameters() {}
 
 // Initialize the communicator.
 void GenericRequester::initCommunicator() {
-	communicator = new TwitterCommunicator(requestURL,
+	communicator = new TwitterCommunicator(this,
+										   requestURL,
 										   requestType,
-										   authenticationRequired,
-										   oauthManager,
 										   getParameters,
 										   postParameters,
-										   this);
+										   false);
 	connect(communicator, SIGNAL(requestDone(bool)),
 			this, SLOT(treatResults(bool)));
 }

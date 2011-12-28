@@ -28,10 +28,10 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
 									   OAuthManager &authManager,
 									   QObject *requester) :
-	OAuthRequester(authManager,
+	OAuthRequester(requester,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
-				   requester),
+				   authManager),
 	browser(twitterBrowser)
 {}
 

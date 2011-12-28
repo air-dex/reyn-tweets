@@ -105,14 +105,22 @@ void ReynTwitterCalls::search(QString q) {
 
 // Method for getting a request token
 void ReynTwitterCalls::requestToken() {
-	RequestTokenRequester * requester = new RequestTokenRequester(oauthManager,
-																  &requestDemander);
+	RequestTokenRequester * requester = new RequestTokenRequester(&requestDemander,
+																  oauthManager);
 	executeRequest(requester);
 }
 
 // Authorizing request Tokens
 void ReynTwitterCalls::authorize(QWebView & browser) {
 	AuthorizeRequester * requester = new AuthorizeRequester(browser,
+															oauthManager,
+															&requestDemander);
+	executeRequest(requester);
+}
+
+// Authorizing request Tokens
+void ReynTwitterCalls::authorize2() {
+	AuthorizeRequester2 * requester = new AuthorizeRequester2(browser,
 															oauthManager,
 															&requestDemander);
 	executeRequest(requester);
@@ -129,8 +137,8 @@ void ReynTwitterCalls::postAuthorize(QString login, QString password, QString de
 
 // Getting the access tokens
 void ReynTwitterCalls::accessToken() {
-	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager,
-																&requestDemander);
+	AccessTokenRequester * requester = new AccessTokenRequester(&requestDemander,
+																oauthManager);
 	executeRequest(requester);
 }
 

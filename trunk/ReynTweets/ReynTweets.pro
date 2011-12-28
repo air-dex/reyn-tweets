@@ -64,7 +64,9 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    connection/requests/oauth/authorizerequester2.cpp \
+    connection/requests/authenticationrequester.cpp
 
 HEADERS  += \
 	connection/utils.hpp \
@@ -97,7 +99,9 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	mainwindow.hpp
+	mainwindow.hpp \
+    connection/requests/oauth/authorizerequester2.hpp \
+    connection/requests/authenticationrequester.hpp
 
 
 #-------------------------------#

@@ -42,16 +42,11 @@ class GenericRequester : public QObject
 		/// @fn GenericRequester(QObject * requester,
 		///						 RequestType type,
 		///						 QString url,
-		///						 bool authRequired,
-		///						 OAuthManager * authManager,
 		///						 ErrorType parseError = QJSON_PARSING);
 		/// @brief Constructor
 		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
-		/// @param authRequired Boolean indicating if an authentication to the
-		/// Twitter API is required
-		/// @param authManager Entity with information for OAuth
 		/// @param parseError Error type if an error occurs while parsing. Most
 		/// of the time, this value is set to QJSON_PARSING because results are
 		/// QJson stream parsed with QJson. However, OAuth requesters use their
@@ -59,9 +54,7 @@ class GenericRequester : public QObject
 		GenericRequester(QObject * requester,
 						 RequestType type,
 						 QString url,
-						 bool authRequired,
-						 OAuthManager * authManager,
-						 ErrorType parseError = QJSON_PARSING);
+						 ErrorType parseError);
 
 		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.
@@ -110,12 +103,6 @@ class GenericRequester : public QObject
 		/// @brief Pointer on the Twitter Communicator that will purely execute
 		/// the request and get the raw result of it.
 		TwitterCommunicator * communicator;
-
-		/// @brief Boolean indicating if an authentication to Twitter is required
-		bool authenticationRequired;
-
-		/// @brief Entity with authentication information
-		OAuthManager * oauthManager;
 
 		/// @brief Type of parsing error
 		ErrorType parsingErrorType;
@@ -172,7 +159,7 @@ class GenericRequester : public QObject
 
 		/// @fn virtual void initCommunicator();
 		/// @brief Initialize the communicator. This a template method because
-		/// of the authorize() request and its special Twitter Communicator.
+		/// requests with authentication needs more parameters.
 		virtual void initCommunicator();
 };
 

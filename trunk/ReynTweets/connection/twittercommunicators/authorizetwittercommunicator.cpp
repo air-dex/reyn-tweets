@@ -35,13 +35,13 @@ AuthorizeTwitterCommunicator::AuthorizeTwitterCommunicator(QWebView & embeddedBr
 														   OAuthManager & authManager,
 														   ArgsMap getArgs,
 														   QObject * requester) :
-	TwitterCommunicator(TwitterURL::AUTHORIZE_URL,
+	TwitterCommunicator(requester,
+						TwitterURL::AUTHORIZE_URL,
 						GET,
-						true,
-						&authManager,
 						getArgs,
 						ArgsMap(),
-						requester),
+						true,
+						&authManager),
 	browser(embeddedBrowser)
 {
 	// Sets the tracker for URL

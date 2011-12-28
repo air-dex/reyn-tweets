@@ -31,13 +31,15 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /////////////
 
 // Constructor
-TwitterCommunicator::TwitterCommunicator(QString url,
+TwitterCommunicator::TwitterCommunicator(QObject * requester,
+										 QString url,
 										 RequestType type,
-										 bool authRequired,
-										 OAuthManager * authManager,
 										 ArgsMap getArgs,
 										 ArgsMap postArgs,
-										 QObject * requester) :
+										 bool authRequired,
+										 OAuthManager * authManager,
+										 bool tokenNeeded,
+										 bool callbackURLNeeded) :
 	QObject(requester),
 	networkManager(),
 	serviceURL(url),
@@ -46,6 +48,8 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	postParameters(postArgs),
 	authenticationRequired(authRequired),
 	oauthManager(authManager),
+	callbackUrlNeeded(callbackURLNeeded),
+	oauthTokenNeeded(tokenNeeded),
 	request(0),
 	reqBasta(false),
 	reply(0),
@@ -93,19 +97,13 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 
 	// Building the authentication header if needed
 	if (authenticationRequired && oauthManager != 0) {
-		// Is it a RequestTokenRequest ?
-		bool isRequestTokenRequest = oauthManager->getOAuthToken().isEmpty();
-
-		// Is it a AccessTokenRequest ?
-		bool isAccessTokenRequest = oauthManager->getVerifier().isEmpty();
-
 		// Bulding the Authorization header
 		QByteArray authHeader = oauthManager->getAuthorizationHeader(requestType,
 																	 serviceURL,
 																	 getArgs,
 																	 postArgs,
-																	 isRequestTokenRequest,
-																	 isAccessTokenRequest);
+																	 oauthTokenNeeded,
+																	 callbackUrlNeeded);
 
 		// Insert the header
 		requestToTwitter->setRawHeader("Authorization", authHeader);

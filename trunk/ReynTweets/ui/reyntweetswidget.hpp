@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVBoxLayout>
 #include <QWidget>
-#include "oauthwidget.hpp"
+#include "authentication/oauthwidget.hpp"
 #include "testwidget.hpp"
 
 /// @class ReynTweetsWidget

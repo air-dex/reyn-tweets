@@ -28,31 +28,20 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Singleton management //
 //////////////////////////
 
+// Static components
+QMap<QUuid, GenericRequester *> requesterManager = QMap<QUuid, GenericRequester *>();
+
+/// @brief OAuth information
+OAuthManager oauthManager = OAuthManager();
+
 // Protected constructor
-ReynTwitterCalls::ReynTwitterCalls() :
-	QObject(),
-	requesterManager(),
-	oauthManager()
+ReynTwitterCalls::ReynTwitterCalls(QObject & requester) :
+	QObject(&requester),
+	requestDemander(requester)
 {}
 
 // Destructor
-ReynTwitterCalls::~ReynTwitterCalls() {
-	if (instance) {
-		delete instance;
-	}
-	instance = 0;
-}
-
-// Init the unique instance
-ReynTwitterCalls * ReynTwitterCalls::instance = 0;
-
-// Getter on the unique instance
-ReynTwitterCalls & ReynTwitterCalls::getInstance() {
-	if (!instance) {
-		instance = new ReynTwitterCalls;
-	}
-	return *instance;
-}
+ReynTwitterCalls::~ReynTwitterCalls() {}
 
 
 /////////////////////
@@ -106,8 +95,8 @@ void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 ///////////////////////
 
 // Method that launch searches
-void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
-	SearchRequester * requester = new SearchRequester(requestDemander, q);
+void ReynTwitterCalls::search(QString q) {
+	SearchRequester * requester = new SearchRequester(&requestDemander, q);
 	executeRequest(requester);
 }
 
@@ -115,33 +104,33 @@ void ReynTwitterCalls::search(QObject * requestDemander, QString q) {
 // OAuth
 
 // Method for getting a request token
-void ReynTwitterCalls::requestToken(QObject * requestDemander) {
+void ReynTwitterCalls::requestToken() {
 	RequestTokenRequester * requester = new RequestTokenRequester(oauthManager,
-																  requestDemander);
+																  &requestDemander);
 	executeRequest(requester);
 }
 
 // Authorizing request Tokens
-void ReynTwitterCalls::authorize(QObject * requestDemander, QWebView & browser) {
+void ReynTwitterCalls::authorize(QWebView & browser) {
 	AuthorizeRequester * requester = new AuthorizeRequester(browser,
 															oauthManager,
-															requestDemander);
+															&requestDemander);
 	executeRequest(requester);
 }
 
-/*
-// Authorizing request Tokens
-void ReynTwitterCalls::authenticate(QObject * requestDemander) {
-	AuthenticateRequester * requester = new AuthenticateRequester(oauthManager,
-																  requestDemander);
+// POST authorize() requests to allow or to deny the application.
+void ReynTwitterCalls::postAuthorize(QString login, QString password, QString denyString) {
+	PostAuthorizeRequester * requester = new AuthorizeRequester(login,
+																password,
+																denyString,
+																&requestDemander);
 	executeRequest(requester);
 }
-//*/
 
 // Getting the access tokens
-void ReynTwitterCalls::accessToken(QObject * requestDemander) {
+void ReynTwitterCalls::accessToken() {
 	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager,
-																requestDemander);
+																&requestDemander);
 	executeRequest(requester);
 }
 

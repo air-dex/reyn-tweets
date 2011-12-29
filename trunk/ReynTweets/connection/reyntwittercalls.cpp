@@ -112,16 +112,8 @@ void ReynTwitterCalls::requestToken() {
 }
 
 // Authorizing request Tokens
-void ReynTwitterCalls::authorize(QWebView & browser) {
-	AuthorizeRequester * requester = new AuthorizeRequester(browser,
-															oauthManager,
-															&requestDemander);
-	executeRequest(requester);
-}
-
-// Authorizing request Tokens
 void ReynTwitterCalls::authorize2() {
-	AuthorizeRequester2 * requester = new AuthorizeRequester2(&requestDemander,
+	AuthorizeRequester * requester = new AuthorizeRequester(&requestDemander,
 															oauthManager);
 	executeRequest(requester);
 }

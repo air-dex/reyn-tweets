@@ -42,7 +42,6 @@ SOURCES += \
 	connection/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
-	connection/twittercommunicators/authorizetwittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
 	connection/parsers/htmlparser.cpp \
@@ -54,14 +53,11 @@ SOURCES += \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
-	connection/requests/oauth/authorizerequester2.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
-	controls/oauthprocess2.cpp \
 	controls/oauthprocess.cpp \
 	ui/authentication/loginwidget.cpp \
-	ui/authentication/oauthwidget2.cpp \
 	ui/authentication/oauthwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
@@ -74,7 +70,6 @@ HEADERS  += \
 	connection/requesttype.hpp \
 	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
-	connection/twittercommunicators/authorizetwittercommunicator.hpp \
 	connection/errortypes.hpp \
 	connection/requestresult.hpp \
 	connection/resultwrapper.hpp \
@@ -89,16 +84,13 @@ HEADERS  += \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
-	connection/requests/oauth/authorizerequester2.hpp \
 	connection/requests/oauth/postauthorizerequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
 	controls/oauthprocessresult.hpp \
-	controls/oauthprocess2.hpp \
 	controls/oauthprocess.hpp \
 	ui/authentication/loginwidget.hpp \
-	ui/authentication/oauthwidget2.hpp \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \

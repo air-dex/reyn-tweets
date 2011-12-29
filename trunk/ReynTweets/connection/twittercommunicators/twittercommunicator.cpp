@@ -39,7 +39,8 @@ TwitterCommunicator::TwitterCommunicator(QObject * requester,
 										 bool authRequired,
 										 OAuthManager * authManager,
 										 bool tokenNeeded,
-										 bool callbackURLNeeded) :
+										 bool callbackURLNeeded,
+										 bool verifierNeeded) :
 	QObject(requester),
 	networkManager(),
 	serviceURL(url),
@@ -50,11 +51,13 @@ TwitterCommunicator::TwitterCommunicator(QObject * requester,
 	oauthManager(authManager),
 	callbackUrlNeeded(callbackURLNeeded),
 	oauthTokenNeeded(tokenNeeded),
+	oauthVerifierlNeeded(verifierNeeded),
 	request(0),
 	responseBuffer(""),
 	httpReturnCode(0),
 	httpReturnReason(""),
-	errorMessage("Request not done")
+	errorMessage("Request not done"),
+	replyURL("")
 {
 	// Connection for receiving the response
 	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
@@ -104,7 +107,8 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 																	 getArgs,
 																	 postArgs,
 																	 oauthTokenNeeded,
-																	 callbackUrlNeeded);
+																	 callbackUrlNeeded,
+																	 oauthVerifierlNeeded);
 
 		// Insert the header
 		requestToTwitter->setRawHeader("Authorization", authHeader);
@@ -155,6 +159,7 @@ bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 	// Analysing the response
 	extractHttpStatuses(response);
 	errorMessage = response->errorString();
+	replyURL = response->url().toString();
 	bool requestOK = httpReturnCode == 200;
 
 	// Extracting informations
@@ -183,6 +188,11 @@ int TwitterCommunicator::getHttpCode() {
 // Getting the HTTP return reason.
 QString TwitterCommunicator::getHttpReason() {
 	return httpReturnReason;
+}
+
+// Getting the URL of the reply
+QString TwitterCommunicator::getReplyURL() {
+	return replyURL;
 }
 
 // Getter on the error massage

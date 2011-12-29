@@ -30,14 +30,14 @@ OAuthRequester::OAuthRequester(QObject * requester,
 							   OAuthManager &authManager,
 							   ErrorType parseErrorType,
 							   bool tokenNeeded,
-							   bool callbackURLneeded) :
+							   bool callbackURLneeded,
+							   bool verifierNeeded) :
 	AuthenticationRequester(requester,
 							type,
 							url,
 							authManager,
-							OAUTH_PARSING,
+							parseErrorType,
 							tokenNeeded,
-							callbackURLneeded)
-{
-	setParsingErrorType(parseErrorType);
-}
+							callbackURLneeded,
+							verifierNeeded)
+{}

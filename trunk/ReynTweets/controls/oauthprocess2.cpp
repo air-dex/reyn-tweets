@@ -121,6 +121,7 @@ void OAuthProcess2::authorizeDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case NO_ERROR:
 			// The user can give its credentials now
+			qDebug("authorize() OK");
 			emit loginPanelVisible(true);
 			break;
 
@@ -158,14 +159,14 @@ void OAuthProcess2::authorizeDemanded(ResultWrapper res) {
 // Allowing Reyn Tweets :)
 void OAuthProcess2::authorizeReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(authorizeDemanded(ResultWrapper)));
+			this, SLOT(postAuthorizeDemanded(ResultWrapper)));
 	twitter.postAuthorize(login, password, false);
 }
 
 // Denying Reyn Tweets :(
 void OAuthProcess2::denyReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(authorizeDemanded(ResultWrapper)));
+			this, SLOT(postAuthorizeDemanded(ResultWrapper)));
 	twitter.postAuthorize(login, password, true);
 }
 

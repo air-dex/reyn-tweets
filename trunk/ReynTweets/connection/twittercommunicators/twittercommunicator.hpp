@@ -52,12 +52,13 @@ class TwitterCommunicator : public QObject
 		/// @fn TwitterCommunicator(QObject * requester,
 		///							QString url,
 		///							RequestType type,
-		///							ArgsMap getArgs = ArgsMap(),
-		///							ArgsMap postArgs = ArgsMap(),
+		///							ArgsMap getArgs,
+		///							ArgsMap postArgs,
 		///							bool authRequired,
 		///							OAuthManager * authManager = 0,
 		///							bool tokenNeeded = true,
-		///							bool callbackURLNeeded = false);
+		///							bool callbackURLNeeded = false,
+		///							bool verifierNeeded = false);
 		/// @brief Constructor
 		/// @param url String representation of the URL
 		/// @param type Type of the request (GET ou POST).
@@ -73,6 +74,8 @@ class TwitterCommunicator : public QObject
 		/// is required for authentication.
 		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
 		/// parameter is required for authentication.
+		/// @param verifierNeeded Boolean indicating if the oauth_verifier
+		/// parameter is required for authentication.
 		TwitterCommunicator(QObject * requester,
 							QString url,
 							RequestType type,
@@ -81,7 +84,8 @@ class TwitterCommunicator : public QObject
 							bool authRequired,
 							OAuthManager * authManager = 0,
 							bool tokenNeeded = true,
-							bool callbackURLNeeded = false);
+							bool callbackURLNeeded = false,
+							bool verifierNeeded = false);
 
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
@@ -113,6 +117,11 @@ class TwitterCommunicator : public QObject
 		/// @brief Getting the HTTP return reason.
 		/// @return The description of the HTTP return code.
 		QString getHttpReason();
+
+		/// @fn QString getReplyURL();
+		/// @brief Getting the URL of the reply.
+		/// @return replyURL
+		QString getReplyURL();
 
 		/// @fn QString getErrorMessage();
 		/// @brief Getter on the error massage
@@ -166,6 +175,10 @@ class TwitterCommunicator : public QObject
 		/// is required for authentication.
 		bool callbackUrlNeeded;
 
+		/// @brief Boolean indicating if the oauth_verifier parameter
+		/// is required for authentication.
+		bool oauthVerifierlNeeded;
+
 		/// @brief The request
 		QNetworkRequest * request;
 
@@ -183,6 +196,9 @@ class TwitterCommunicator : public QObject
 
 		/// @brief Error message
 		QString errorMessage;
+
+		/// @brief URL of the reply
+		QString replyURL;
 
 		/// @fn bool treatReply(QNetworkReply * response);
 		/// @brief Treating a response.

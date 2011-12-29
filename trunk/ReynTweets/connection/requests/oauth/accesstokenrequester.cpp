@@ -31,7 +31,10 @@ AccessTokenRequester::AccessTokenRequester(QObject *requester,
 				   POST,
 				   TwitterURL::ACCESS_TOKEN_URL,
 				   authManager,
-				   OAUTH_PARSING)
+				   OAUTH_PARSING,
+				   true,
+				   false,
+				   true)
 {}
 
 // Building POST Parameters

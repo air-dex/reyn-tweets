@@ -44,7 +44,7 @@ void AuthorizeRequester2::buildGETParameters() {
 // Parsing results
 QVariant AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
 	// Flags for treatment
-	bool treatmentOK = true;
+	bool treatmentOK;
 	QString errTreatment = "";
 
 	// Error message for the whole parsing process
@@ -127,5 +127,5 @@ QVariant AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErr
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 
-	return QVariantMap();
+	return QVariant();
 }

@@ -119,25 +119,27 @@ class OAuthManager
 		///										  QString baseURL,
 		///										  QString getDatas,
 		///										  QString postDatas,
-		///										  bool isRequestTokenRequest,
-		///										  bool isAccessTokenRequest);
+		///										  bool oauthTokenNeeded,
+		///										  bool callbackUrlNeeded,
+		///										  bool oauthVerifierNeeded);
 		/// @brief Getting that will be written in the "Authorization" field
 		/// of requests
 		/// @param type Request type (GET or POST)
 		/// @param dataToSign Datas that will be signed
-		/// @param isRequestTokenRequest Boolean indicationg whether the request
-		/// is for a request token. In this case, the "oauth_token" parameter is
-		/// replaced by "oauth_callback_url".
-		/// @param isAccessTokenRequest Boolean indicationg whether the request
-		/// is for an accee token. In this case, the "oauth_verifier" parameter
-		/// is added.
+		/// @param oauthTokenNeeded Boolean indicationg that the oauth_token
+		/// is requested for the header.
+		/// @param callbackUrlNeeded Boolean indicationg that the oauth_callback
+		/// is requested for the header.
+		/// @param oauthVerifierNeeded Boolean indicationg that the oauth_verifier
+		/// is requested for the header.
 		/// @return That will be written in the "Authorization" header.
 		QByteArray getAuthorizationHeader(RequestType type,
 										  QString baseURL,
 										  QString getDatas,
 										  QString postDatas,
-										  bool isRequestTokenRequest,
-										  bool isAccessTokenRequest);
+										  bool oauthTokenNeeded,
+										  bool callbackUrlNeeded,
+										  bool oauthVerifierNeeded);
 
 		/// @fn void resetTokens();
 		/// @brief Resetting the tokens. A full new OAuth authentication process
@@ -198,7 +200,9 @@ class OAuthManager
 		///						  QString postDatas,
 		///						  QString nonce,
 		///						  QString timestamp,
-		///						  bool isRequestTokenRequest);
+		///						  bool oauthTokenNeeded,
+		///						  bool callbackUrlNeeded,
+		///						  bool oauthVerifierNeeded);
 		/// @brief Method for signing datas. It is described
 		/// <a href="https://dev.twitter.com/docs/auth/creating-signature">here
 		/// </a>.
@@ -208,6 +212,12 @@ class OAuthManager
 		/// @param postDatas POST datas to sign
 		/// @param nonce Nonce of the request
 		/// @param timestamp Timestamp of the request
+		/// @param oauthTokenNeeded Boolean indicationg that the oauth_token
+		/// is requested for the header.
+		/// @param callbackUrlNeeded Boolean indicationg that the oauth_callback
+		/// is requested for the header.
+		/// @param oauthVerifierNeeded Boolean indicationg that the oauth_verifier
+		/// is requested for the header.
 		/// @return The signature of the given datas
 		QString signDatas(RequestType type,
 						  QString baseURL,
@@ -215,8 +225,9 @@ class OAuthManager
 						  QString postDatas,
 						  QString nonce,
 						  QString timestamp,
-						  bool isRequestTokenRequest,
-						  bool isAccessTokenRequest);
+						  bool oauthTokenNeeded,
+						  bool callbackUrlNeeded,
+						  bool oauthVerifierNeeded);
 
 		/// @fn QString formatOAuthParam(QString name,
 		///								 QString value,

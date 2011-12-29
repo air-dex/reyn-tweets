@@ -30,11 +30,13 @@ AuthenticationRequester::AuthenticationRequester(QObject * requester,
 												 OAuthManager & authManager,
 												 ErrorType parseError,
 												 bool tokenNeeded,
-												 bool callbackURLneeded) :
+												 bool callbackURLneeded,
+												 bool verifierNeeded) :
 	GenericRequester(requester, type, url, parseError),
 	oauthManager(authManager),
 	oauthTokenNeeded(tokenNeeded),
-	oauthCallbackUrlNeeded(callbackURLneeded)
+	oauthCallbackUrlNeeded(callbackURLneeded),
+	oauthVerifierNeeded(verifierNeeded)
 {}
 
 
@@ -48,7 +50,8 @@ void AuthenticationRequester::initCommunicator() {
 										   true,
 										   &oauthManager,
 										   oauthTokenNeeded,
-										   oauthCallbackUrlNeeded);
+										   oauthCallbackUrlNeeded,
+										   oauthVerifierNeeded);
 	connect(communicator, SIGNAL(requestDone(bool)),
 			this, SLOT(treatResults(bool)));
 }

@@ -25,6 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define OAUTHPROCESS2_HPP
 
 #include <QObject>
+#include "oauthprocessresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 
 class OAuthProcess2 : public QObject
@@ -53,6 +54,13 @@ class OAuthProcess2 : public QObject
 		/// @param visible Boolean indicating if the browser has to be visible.
 		void loginPanelVisible(bool visible);
 
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void credentialsOK(bool ok);
+
 		/// @fn void errorProcess(bool fatalError, QString errorMsg);
 		/// @brief Signal emitted when an error occurs during the process
 		/// @param fatalError Boolean indicating if the error is fatal for
@@ -60,10 +68,10 @@ class OAuthProcess2 : public QObject
 		/// @param errorMsg Message describing the error
 		void errorProcess(bool fatalError, QString errorMsg);
 
-		/// @fn void authenticationProcessFinished(bool authOK);
+		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult);
 		/// @brief Signal sent when the authentication process ends.
-		/// @param authOK Boolean indicating if the process was successful.
-		void authenticationProcessFinished(bool authOK);
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void authenticationProcessFinished(OAuthProcessResult processResult);
 
 	private:
 		/// @fn void requestToken();

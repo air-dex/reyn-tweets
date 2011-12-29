@@ -30,11 +30,11 @@
 # Common configuration #
 #----------------------#
 
-QT       += core gui network svg webkit xml
+QT       += core gui network webkit #svg
 
 TARGET = ReynTweets
 TEMPLATE = app
-TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
+#TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 SOURCES += \
 	connection/utils.cpp \
@@ -56,7 +56,6 @@ SOURCES += \
 	connection/requests/oauth/authorizerequester.cpp \
 	connection/requests/oauth/authorizerequester2.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
-#	connection/requests/oauth/authenticaterequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/reyntwittercalls.cpp \
 	controls/oauthprocess2.cpp \
@@ -92,10 +91,10 @@ HEADERS  += \
 	connection/requests/oauth/authorizerequester.hpp \
 	connection/requests/oauth/authorizerequester2.hpp \
 	connection/requests/oauth/postauthorizerequester.hpp \
-#	connection/requests/oauth/authenticaterequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/reyntwittercalls.hpp \
+	controls/oauthprocessresult.hpp \
 	controls/oauthprocess2.hpp \
 	controls/oauthprocess.hpp \
 	ui/authentication/loginwidget.hpp \

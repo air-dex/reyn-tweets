@@ -59,11 +59,17 @@ class OAuthWidget2 : public QWidget
 		/// @param password User password
 		void denyReynTweets(QString login, QString password);
 
-		/// @fn void authenticationFinished(bool authOK);
+		/// @fn void authenticationFinished(OAuthProcessResult processResult);
 		/// @brief Signal sent when the authentication is finished
-		/// @param authOK Boolean indicating whether the authentication was
-		/// successful. (subject to change)
-		void authenticationFinished(bool authOK);
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void authenticationFinished(OAuthProcessResult processResult);
+
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void credentialsOK(bool ok);
 
 	public slots:
 		/// @fn void loginPanelVisible(bool visible);
@@ -71,6 +77,13 @@ class OAuthWidget2 : public QWidget
 		/// @param visible Boolean indicating if the login panel has to
 		/// be shown or has to be hidden.
 		void loginPanelVisible(bool visible);
+
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void rightCredentials(bool ok);
 
 		/// @fn void errorProcess(bool fatalError, QString errorMsg);
 		/// @brief Signal emitted when an error occurs during the process
@@ -80,11 +93,9 @@ class OAuthWidget2 : public QWidget
 		void errorProcess(bool fatalError, QString errorMsg);
 
 		/// @fn void authorizeDemanded(ResultWrapper res);
-		/// @brief Slot executing at the end of the authentication. It just
-		/// sends the {@link #authenticationFinished(bool)} signal.
-		/// @param authOK Boolean indicating whether the authentication was
-		/// successful. (subject to change)
-		void endAuthentication(bool authOK);
+		/// @brief Slot executed at the end of the authentication.
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void endAuthentication(OAuthProcessResult processResult);
 
 	protected slots:
 		/////////////////////

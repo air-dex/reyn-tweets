@@ -175,7 +175,65 @@ void OAuthProcess2::postAuthorizeDemanded(ResultWrapper res) {
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postAuthorizeDemanded(ResultWrapper)));
 
-	// TODO
+	RequestResult result = res.accessResult(this);
+	ErrorType errorType = result.getErrorType();
+
+	switch (errorType) {
+		case NO_ERROR: {
+			QVariantMap resultMap = result.getParsedResult().toMap();
+			bool urlOK = resultMap.value("urlOK").toBool();
+
+			if (urlOK) {
+				bool rightCrdentials = resultMap.value("rightCredentials").toBool();
+				emit credentialsOK(rightCrdentials);
+
+				if (rightCrdentials) {
+					emit loginPanelVisible(false);
+
+					if (resultMap.value("denied").toBool()) {
+						// Reyn Tweets is denied. The process ends.
+						emit authenticationProcessFinished(DENIED);
+					} else {
+						// Request tokens are authorized. Let's get access tokens
+						accessToken();
+					}
+				}
+			} else {
+				QString errorMsg = "Unexpected redirection. Process aborted.\n";
+				emit errorProcess(true, errorMsg);
+			}
+		}break;
+
+		case API_CALL: {
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
+
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		case HTML_PARSING:
+		case OAUTH_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
+		}break;
+	}
 }
 
 // Demanding an Access Token
@@ -194,10 +252,10 @@ void OAuthProcess2::accessTokenDemanded(ResultWrapper res) {
 	ErrorType errorType = result.getErrorType();
 
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_ERROR:
 			// The authentication process is ended.
-			emit authenticationProcessFinished(true);
-		}break;
+			emit authenticationProcessFinished(AUTHORIZED);
+			break;
 
 		case API_CALL: {
 			// Retrieving network informations

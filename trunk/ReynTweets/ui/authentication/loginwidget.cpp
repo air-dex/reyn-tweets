@@ -26,6 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 LoginWidget::LoginWidget(QWidget *parent) :
 	QWidget(parent),
 	widgetLayout(),
+	credentialsErrorMessage(QObject::tr("<strong color=\"red\">Username or password invalid. Try again.</strong>")),
 	formLayout(),
 	loginLineEdit(),
 	passwordLineEdit(),
@@ -35,6 +36,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
 	denyButton(QObject::tr("No thanks"))
 {
 	// Building the UI
+	credentialsErrorMessage.setVisible(false);
 
 	// Password form
 	passwordLineEdit.setEchoMode(QLineEdit::Password);
@@ -48,6 +50,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
 	buttonsLayout.addWidget(&denyButton);
 
 	// Widget
+	widgetLayout.addWidget(&credentialsErrorMessage);
 	widgetLayout.addLayout(&formLayout);
 	widgetLayout.addLayout(&buttonsLayout);
 	setLayout(&widgetLayout);
@@ -85,4 +88,9 @@ void LoginWidget::showPassword(bool boxChecked) {
 	}
 
 	passwordLineEdit.setEchoMode(newEchoMode);
+}
+
+// Showing or hidding the credentials error message.
+void LoginWidget::showCredentialsErrorMessage(bool ok) {
+	credentialsErrorMessage.setVisible(ok);
 }

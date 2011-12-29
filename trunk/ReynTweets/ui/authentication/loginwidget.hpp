@@ -27,6 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QCheckBox>
 #include <QFormLayout>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -67,6 +68,14 @@ class LoginWidget : public QWidget
 		/// @brief Deny the application
 		void deny();
 
+	public slots:
+		/// @fn void showCredentialsErrorMessage(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void showCredentialsErrorMessage(bool ok);
+
 	protected slots:
 		/// @fn void showPassword(bool boxChecked);
 		/// @brief Showing or hiding the password
@@ -77,6 +86,9 @@ class LoginWidget : public QWidget
 		// GUI Elements
 		/// @brief Main layout of the widget
 		QVBoxLayout widgetLayout;
+
+		/// @brief Message for bad credentials
+		QLabel credentialsErrorMessage;
 
 		// Form for entering the credentials
 		/// @brief Layout of the form

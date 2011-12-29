@@ -100,8 +100,9 @@ void ReynTwitterCalls::search(QString q) {
 	executeRequest(requester);
 }
 
-
-// OAuth
+///////////
+// OAuth //
+///////////
 
 // Method for getting a request token
 void ReynTwitterCalls::requestToken() {
@@ -124,16 +125,17 @@ void ReynTwitterCalls::authorize2() {
 															oauthManager);
 	executeRequest(requester);
 }
-/*
+
 // POST authorize() requests to allow or to deny the application.
-void ReynTwitterCalls::postAuthorize(QString login, QString password, QString denyString) {
-	PostAuthorizeRequester * requester = new AuthorizeRequester(login,
-																password,
-																denyString,
-																&requestDemander);
+void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny) {
+	PostAuthorizeRequester * requester = new PostAuthorizeRequester(&requestDemander,
+																	oauthManager,
+																	login,
+																	password,
+																	deny);
 	executeRequest(requester);
 }
-//*/
+
 // Getting the access tokens
 void ReynTwitterCalls::accessToken() {
 	AccessTokenRequester * requester = new AccessTokenRequester(&requestDemander,

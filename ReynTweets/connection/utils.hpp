@@ -50,6 +50,12 @@ class Utils
 		/// @param type The RequestType
 		/// @return The corresponding QString
 		static QString requestTypeToString(RequestType type);
+
+		/// @fn static bool oubien(bool a, bool b);
+		/// @brief Logical XOR :<code>a XOR b == a && !b || !a && b</code>
+		/// @param a 1st bool
+		/// @param b 2nd bool
+		static bool ouBien(bool a, bool b);
 };
 
 #endif // UTILS_HPP

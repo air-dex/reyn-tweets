@@ -53,12 +53,11 @@ class OAuthWidget2 : public QWidget
 		/// @param password User password
 		void authorizeReynTweets(QString login, QString password);
 
-		/// @fn void denyReynTweets(QString login, QString password, QString denyString);
+		/// @fn void denyReynTweets(QString login, QString password);
 		/// @brief Signal sent to deny Reyn Tweets to use the Twitter account :(.
 		/// @param login User login, i.e. its username or its email.
 		/// @param password User password
-		/// @param denyString String indicating that Reyn Tweets is not allowed.
-		void denyReynTweets(QString login, QString password, QString denyString);
+		void denyReynTweets(QString login, QString password);
 
 		/// @fn void authenticationFinished(bool authOK);
 		/// @brief Signal sent when the authentication is finished

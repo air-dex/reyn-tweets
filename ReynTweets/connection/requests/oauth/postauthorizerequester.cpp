@@ -23,7 +23,42 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "postauthorizerequester.hpp"
 
-PostAuthorizeRequester::PostAuthorizeRequester() :
-	OAuthRequester(0, POST, TwitterURL::AUTHORIZE_URL, OAuthManager())
-{
+// Constructor
+PostAuthorizeRequester::PostAuthorizeRequester(QObject * requester,
+											   OAuthManager & authManager,
+											   QString pseudo,
+											   QString pwd,
+											   bool deny) :
+	OAuthRequester(requester,
+				   POST,
+				   TwitterURL::AUTHORIZE_URL,
+				   authManager,
+				   HTML_PARSING),
+	login(pseudo),
+	password(pwd),
+	denyReynTweets(deny)
+{}
+
+// Building postParameters
+void PostAuthorizeRequester::buildPOSTParameters() {
+	postParameters.insert("authenticity_token", oauthManager.getAuthenticityToken());
+	postParameters.insert("oauth_token", oauthManager.getOAuthToken());
+
+	postParameters.insert("session[username_or_email]", login);
+	postParameters.insert("session[password]", password);
+
+	if (denyReynTweets) {
+		postParameters.insert("deny", oauthManager.getDeny());
+	}
+}
+
+// Parsing the raw results of the request.
+QVariant PostAuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	// Looking at the URL
+
+	// If it is URL callback, OK ! denied=false then retrieve oauth_token and oauth_verfier
+
+	// If it is TwitterURL::AUTHORIZE_URL, looking at the body class if denied, pas de chance
+
+	return QVariant();
 }

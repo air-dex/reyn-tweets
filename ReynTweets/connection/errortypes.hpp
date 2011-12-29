@@ -50,8 +50,11 @@ enum ErrorType {
 	QJSON_PARSING,
 
 	/// @brief Code indicating that there was an error while parsing results
-	/// of OAuth authentication.
-	OAUTH_PARSING
+	/// under the form <code>arg1=val1&arg2=val2&...&argN=valN</code>.
+	OAUTH_PARSING,
+
+	/// @brief Code indicating that there was an error while parsing HTML.
+	HTML_PARSING
 };
 
 #endif // ERRORTYPES_HPP

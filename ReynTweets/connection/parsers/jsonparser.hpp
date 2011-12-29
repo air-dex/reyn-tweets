@@ -29,7 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @class JSONParser
 /// @brief Parser for JSON datas. It uses the <a href="qjson.sourceforge.net">
 /// QJSON</a> library to parse.
-class JSONParser : public GenericParser
+class JSONParser : public GenericParser<QVariantMap>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,

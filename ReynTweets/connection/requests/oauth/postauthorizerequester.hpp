@@ -24,12 +24,63 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef POSTAUTHORIZEREQUESTER_HPP
 #define POSTAUTHORIZEREQUESTER_HPP
 
+#include <QObject>
+#include <QVariant>
 #include "oauthrequester.hpp"
 
+/// @class PostAuthorizeRequester
+/// @brief Request POST authorize(). They send to Twitter user's credentials to
+/// authorize the request tokens.
 class PostAuthorizeRequester : public OAuthRequester
 {
+	Q_OBJECT
+
 	public:
-		PostAuthorizeRequester();
+		/// @fn PostAuthorizeRequester(QObject * requester,
+		///							   OAuthManager & authManager,
+		///							   QString pseudo,
+		///							   QString pwd,
+		///							   bool deny);
+		/// @brief Constructor
+		/// @param requester QObject asking for the request
+		/// @param authManager OAuth informations
+		/// @param pseudo User login, i.e. sername or email
+		/// @param pwd User password
+		/// @param deny Boolean indicating if the application must be denied
+		/// (true) or authorized (false).
+		PostAuthorizeRequester(QObject * requester,
+							   OAuthManager & authManager,
+							   QString pseudo,
+							   QString pwd,
+							   bool deny);
+
+	protected:
+		/// @brief User login, i.e. its username or its email
+		QString login;
+
+		/// @brief User password
+		QString password;
+
+		/// @brief Boolean indicating if the application must be denied (true)
+		/// or authorized (false).
+		bool denyReynTweets;
+
+		/////////////////////////////////
+		// Override for this requester //
+		/////////////////////////////////
+
+		/// @fn void buildPOSTParameters();
+		/// @brief Building postParameters
+		void buildPOSTParameters();
+
+		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @brief Method that will parse the raw results of the request.
+		/// @param parseOK Boolean whose value will be set to true if there was
+		/// no problem while parsing, false otherwise.
+		/// @param parsingErrors QVariantMap that may contain information about
+		/// errors that may occur while parsing.
+		/// @return Parsed results
+		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
 };
 
 #endif // POSTAUTHORIZEREQUESTER_HPP

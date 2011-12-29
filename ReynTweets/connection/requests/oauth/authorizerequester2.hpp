@@ -30,7 +30,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @brief Requester for OAuth authentication
 class AuthorizeRequester2 : public OAuthRequester
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		/// @fn AuthorizeRequester(QObject * requester,
 		///						   OAuthManager & authManager);
@@ -42,6 +43,10 @@ class AuthorizeRequester2 : public OAuthRequester
 							OAuthManager & authManager);
 
 	protected:
+		/////////////////////////////////
+		// Override for this requester //
+		/////////////////////////////////
+
 		/// @fn void buildGETParameters();
 		/// @brief Method building GET Parameters
 		void buildGETParameters();

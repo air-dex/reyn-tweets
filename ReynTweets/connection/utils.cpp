@@ -70,3 +70,8 @@ QString Utils::requestTypeToString(RequestType type) {
 			return "";
 	}
 }
+
+// Exclusive OR
+bool Utils::ouBien(bool a, bool b) {
+	return  a && !b || !a && b;
+}

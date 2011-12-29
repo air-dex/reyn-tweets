@@ -39,7 +39,7 @@ LoginWidget::LoginWidget(QWidget *parent) :
 	// Password form
 	passwordLineEdit.setEchoMode(QLineEdit::Password);
 	formLayout.addRow(QObject::tr("Username or email :"), &loginLineEdit);
-	formLayout.addRow(QObject::tr("Password"), &passwordLineEdit);
+	formLayout.addRow(QObject::tr("Password :"), &passwordLineEdit);
 	passwordCheckBox.setTristate(false);
 	formLayout.addRow(&passwordCheckBox);
 
@@ -72,11 +72,6 @@ QString LoginWidget::getLogin() {
 // Getter on the password written by the user
 QString LoginWidget::getPassword() {
 	return passwordLineEdit.text();
-}
-
-// Getter on the deny value
-QString LoginWidget::getDeny() {
-	return denyButton.text();
 }
 
 // Showing or hiding the password

@@ -105,9 +105,6 @@ void OAuthProcess2::requestTokenDemanded(ResultWrapper res) {
 
 // Authorize the request tokens
 void OAuthProcess2::authorize() {
-	// Show the browser
-	emit loginPanelVisible(true);
-
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
 	twitter.authorize2();
@@ -117,26 +114,67 @@ void OAuthProcess2::authorize() {
 void OAuthProcess2::authorizeDemanded(ResultWrapper res) {
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(authorizeDemanded(ResultWrapper)));
+
+	RequestResult result = res.accessResult(this);
+	ErrorType errorType = result.getErrorType();
+
+	switch (errorType) {
+		case NO_ERROR:
+			// The user can give its credentials now
+			emit loginPanelVisible(true);
+			break;
+
+		case API_CALL: {
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
+
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		case HTML_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
+		}break;
+	}
 }
 
 // Allowing Reyn Tweets :)
 void OAuthProcess2::authorizeReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-//	twitter.postAuthorize(login, password);
+	twitter.postAuthorize(login, password, false);
 }
 
 // Denying Reyn Tweets :(
-void OAuthProcess2::denyReynTweets(QString login, QString password, QString denyString) {
+void OAuthProcess2::denyReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-//	twitter.postAuthorize(login, password, denyString);
+	twitter.postAuthorize(login, password, true);
 }
 
-// The POST authorizing request
+// Treatments for the POST authorizing request
 void OAuthProcess2::postAuthorizeDemanded(ResultWrapper res) {
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postAuthorizeDemanded(ResultWrapper)));
+
+	// TODO
 }
 
 // Demanding an Access Token

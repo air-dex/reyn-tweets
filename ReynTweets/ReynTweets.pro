@@ -45,6 +45,7 @@ SOURCES += \
 	connection/twittercommunicators/authorizetwittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
+	connection/parsers/htmlparser.cpp \
 	connection/parsers/jsonparser.cpp \
 	connection/parsers/oauthparser.cpp \
 	connection/requests/genericrequester.cpp \
@@ -80,6 +81,7 @@ HEADERS  += \
 	connection/resultwrapper.hpp \
 	connection/twitterurls.hpp \
 	connection/parsers/genericparser.hpp \
+	connection/parsers/htmlparser.hpp \
 	connection/parsers/jsonparser.hpp \
 	connection/parsers/oauthparser.hpp \
 	connection/requests/genericrequester.hpp \

@@ -1,5 +1,5 @@
-/// @file genericparser.hpp
-/// @brief Header of GenericParser
+/// @file htmlparser.hpp
+/// @brief Header of HTMLParser
 /// @author Romain Ducher
 
 /*
@@ -21,32 +21,28 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GENERICPARSER_HPP
-#define GENERICPARSER_HPP
+#ifndef HTMLPARSER_HPP
+#define HTMLPARSER_HPP
 
-#include <QByteArray>
-#include <QVariantMap>
+#include <QWebElement>
+#include "genericparser.hpp"
 
-/// @class GenericParser
-/// @brief Base class for all the parsers.
-/// @param T Type of parsed results
-template <class T>
-class GenericParser
+class HTMLParser : public GenericParser<QWebElement>
 {
 	public:
-		/// @fn virtual QVariantMap parse(QByteArray data,
-		///								  bool & parseOK,
-		///								  QString & parseError,
-		///								  int * lineError = 0) = 0;
+		/// @fn QWebElement parse(QByteArray data,
+		///						  bool & parseOK,
+		///						  QString & parseError,
+		///						  int * lineError = 0);
 		/// @brief Method for parsing results
 		/// @param Raw datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
-		/// @param lineError Line of the error
-		virtual T parse(QByteArray data,
-						bool & parseOK,
-						QString & parseError,
-						int * lineError = 0) = 0;
+		/// @param lineError Line of the error. Unused
+		QWebElement parse(QByteArray data,
+						  bool & parseOK,
+						  QString & parseError,
+						  int * lineError = 0);
 };
 
-#endif // GENERICPARSER_HPP
+#endif // HTMLPARSER_HPP

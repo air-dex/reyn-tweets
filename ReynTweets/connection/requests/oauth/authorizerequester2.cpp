@@ -21,8 +21,10 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QtXml>
+#include <QWebElement>
 #include "authorizerequester2.hpp"
+#include "../../parsers/htmlparser.hpp"
+#include "../../utils.hpp"
 
 // Constructor
 AuthorizeRequester2::AuthorizeRequester2(QObject *requester,
@@ -30,7 +32,8 @@ AuthorizeRequester2::AuthorizeRequester2(QObject *requester,
 	OAuthRequester(requester,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
-				   authManager)
+				   authManager,
+				   HTML_PARSING)
 {}
 
 // Building GET Parameters
@@ -40,32 +43,89 @@ void AuthorizeRequester2::buildGETParameters() {
 
 // Parsing results
 QVariant AuthorizeRequester2::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
-	// Méthode champenoise : ça me saoule !
+	// Flags for treatment
+	bool treatmentOK = true;
+	QString errTreatment = "";
 
-	// Méthode parsage xml car in fine le HTML, c'est du XML !
-	QString errmsg = "";
-	int lineerr = -1;
-	int colerr = -1;
-	QDomDocument doc("TwitterResponse");
-	doc.setContent(communicator->getResponseBuffer(), &errmsg, &lineerr, &colerr);
+	// Error message for the whole parsing process
+	QString errorMsg = "";
 
-	QDomElement element = doc.documentElement();
+	// Getting the HTML document
+	HTMLParser parser;
+	QWebElement htmlDocument = parser.parse(communicator->getResponseBuffer(),
+											parseOK,
+											errTreatment);
+	errorMsg.append(errTreatment);
 
-	// Récupération du formulaire
-	QDomNodeList forms = element.elementsByTagName("form"); // Son id est oauth_form
-	QDomElement form = forms.item(0).toElement();
+	treatmentOK = !htmlDocument.isNull();
+	parseOK = parseOK && treatmentOK;
 
-	for (QDomNode child = form.firstChild(); !child.isNull(); child = child.nextSibling()) {
-		QDomElement e = child.toElement();
-		QString nodename = e.attribute("name");
+	if (treatmentOK) {
+		// Getting the parameters (auth token, oauth_token and deny)
 
-		if (nodename != "authenticity_token")
-			continue;
+		// Boolean indicating if the parameters are found
+		bool authenticityTokenFound = false;
+		bool oauthTokenFound = false;
+		bool denyFound = false;
 
-		QString authenticitytoken = e.attribute("value");
-		qDebug(authenticitytoken.toAscii().data());
+		// treatmentOK : 3 parameters found
+		// treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound
+		treatmentOK = false;
+
+		QWebElementCollection inputs = htmlDocument.findAll("input");
+
+		// It stops when the 3 parameters are found xor when all is seen in the collection
+		for (QWebElementCollection::iterator it = inputs.begin();
+			 it != inputs.end() && !treatmentOK;
+			 ++it)
+		{
+			QWebElement input = *it;
+			QString inputName = input.attribute("name");
+			QString inputValue = input.attribute("value");
+
+			// Is a parameter found ?
+			if (!authenticityTokenFound && inputName == "authenticity_token") {
+				// The authenticity token is found !
+				oauthManager.setAuthenticityToken(inputValue);
+				authenticityTokenFound = true;
+			} else if (!oauthTokenFound && inputName == "oauth_token") {
+				// The oauth token is found (WTF) !
+				oauthManager.setOAuthToken(inputValue);
+				oauthTokenFound = true;
+			} else if (!denyFound && inputName == "deny") {
+				// The deny value is found !
+				oauthManager.setDeny(inputValue);
+				denyFound = true;
+			}
+
+			treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
+		}
+
+		parseOK = parseOK && treatmentOK;
+
+		// Are all the parameters found ?
+		if (!treatmentOK) {
+			if (!authenticityTokenFound) {
+				errorMsg.append("Authenticity token not found.\n");
+			}
+
+			if (!oauthTokenFound) {
+				errorMsg.append("OAuth token not found.\n");
+			}
+
+			if (!denyFound) {
+				errorMsg.append("Deny value not found.\n");
+			}
+		}
+	} else {
+		errorMsg.append("Empty HTML page.\n");
 	}
 
 
-	return QVariant();
+	// There was a problem while parsing -> fill the parsingErrors map !
+	if (!parseOK) {
+		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+	}
+
+	return QVariantMap();
 }

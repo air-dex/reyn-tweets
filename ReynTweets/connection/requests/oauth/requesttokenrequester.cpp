@@ -30,6 +30,7 @@ RequestTokenRequester::RequestTokenRequester(QObject *requester,
 				   POST,
 				   TwitterURL::REQUEST_TOKEN_URL,
 				   authManager,
+				   OAUTH_PARSING,
 				   false,
 				   true)
 {}

@@ -107,6 +107,12 @@ class GenericRequester : public QObject
 		/// @brief Type of parsing error
 		ErrorType parsingErrorType;
 
+		/// @fn void setParsingErrorType(ErrorType parsingErrorType);
+		/// @brief Setting parsingErrorType in classes which inherits from
+		/// GenericRequesters.
+		/// @param parseErrorType New value for parsingErrorType
+		void setParsingErrorType(ErrorType parseErrorType);
+
 	//////////////////////////
 	// Treatment of results //
 	//////////////////////////

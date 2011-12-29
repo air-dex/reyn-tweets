@@ -39,7 +39,8 @@ class OAuthRequester : public AuthenticationRequester
 		///					   OAuthManager &authManager,
 		///					   ErrorType parseErrorType,
 		///					   bool tokenNeeded = true,
-		///					   bool callbackURLneeded = false);
+		///					   bool callbackURLneeded = false,
+		///					   bool verifierNeeded = false);
 		/// @brief Constructor
 		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
@@ -51,13 +52,16 @@ class OAuthRequester : public AuthenticationRequester
 		/// is required for authentication.
 		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
 		/// parameter is required for authentication.
+		/// @param verifierNeeded Boolean indicating if the oauth_verifier
+		/// parameter is required for authentication.
 		OAuthRequester(QObject * requester,
 					   RequestType type,
 					   QString url,
 					   OAuthManager &authManager,
 					   ErrorType parseErrorType,
 					   bool tokenNeeded = true,
-					   bool callbackURLneeded = false);
+					   bool callbackURLneeded = false,
+					   bool verifierNeeded = false);
 };
 
 #endif // OAUTHREQUESTER_HPP

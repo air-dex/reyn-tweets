@@ -38,6 +38,7 @@ class AuthenticationRequester : public GenericRequester
 		///								OAuthManager & authManager,
 		///								ErrorType parseError = QJSON_PARSING,
 		///								bool tokenNeeded = true,
+		///								bool callbackURLneeded = false,
 		///								bool callbackURLneeded = false);
 		/// @brief Constructor
 		/// @param requester QObject which asks for this search.
@@ -54,13 +55,16 @@ class AuthenticationRequester : public GenericRequester
 		/// is required for authentication.
 		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
 		/// parameter is required for authentication.
+		/// @param verifierNeeded Boolean indicating if the oauth_verifier
+		/// parameter is required for authentication.
 		AuthenticationRequester(QObject * requester,
 								RequestType type,
 								QString url,
 								OAuthManager & authManager,
 								ErrorType parseError = QJSON_PARSING,
 								bool tokenNeeded = true,
-								bool callbackURLneeded = false);
+								bool callbackURLneeded = false,
+								bool verifierNeeded = false);
 
 
 	protected:
@@ -74,6 +78,10 @@ class AuthenticationRequester : public GenericRequester
 		/// @brief Boolean indicating if the oauth_callback parameter
 		/// is required for authentication.
 		bool oauthCallbackUrlNeeded;
+
+		/// @brief Boolean indicating if the oauth_token parameter is required
+		/// for authentication.
+		bool oauthVerifierNeeded;
 
 	private:
 		/// @fn virtual void initCommunicator();

@@ -119,8 +119,9 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 												QString baseURL,
 												QString getDatas,
 												QString postDatas,
-												bool isRequestTokenRequest,
-												bool isAccessTokenRequest)
+												bool oauthTokenNeeded,
+												bool callbackUrlNeeded,
+												bool oauthVerifierNeeded)
 {
 	QString authorizationHeader = "OAuth ";
 	QString formattedParamString;
@@ -132,11 +133,12 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 								  postDatas,
 								  nonce,
 								  timestamp,
-								  isRequestTokenRequest,
-								  isAccessTokenRequest);
+								  oauthTokenNeeded,
+								  callbackUrlNeeded,
+								  oauthVerifierNeeded);
 
 	// oauth_callback
-	if (isRequestTokenRequest) {
+	if (callbackUrlNeeded) {
 		formattedParamString = formatOAuthParam("oauth_callback",
 												callbackUrl,
 												true);
@@ -180,7 +182,7 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 	authorizationHeader.append(", ");
 
 	// oauth_token
-	if (!isRequestTokenRequest) {
+	if (oauthTokenNeeded) {
 		formattedParamString = formatOAuthParam("oauth_token",
 												oauthToken,
 												true);
@@ -189,7 +191,7 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 	}
 
 	// oauth_verifier
-	if (!isAccessTokenRequest) {
+	if (oauthVerifierNeeded) {
 		formattedParamString = formatOAuthParam("oauth_verifier",
 												oauthVerifier,
 												true);
@@ -263,8 +265,9 @@ QString OAuthManager::signDatas(RequestType type,
 								QString postDatas,
 								QString nonce,
 								QString timestamp,
-								bool isRequestTokenRequest,
-								bool isAccessTokenRequest)
+								bool oauthTokenNeeded,
+								bool callbackUrlNeeded,
+								bool oauthVerifierNeeded)
 {
 	// Building the key
 	QString key = "";
@@ -289,7 +292,7 @@ QString OAuthManager::signDatas(RequestType type,
 	// Appending OAuth arguments
 
 	// oauth_callback
-	if (isRequestTokenRequest) {
+	if (callbackUrlNeeded) {
 		formattedParamString = formatOAuthParam("oauth_callback",
 												callbackUrl,
 												false);
@@ -326,7 +329,7 @@ QString OAuthManager::signDatas(RequestType type,
 	parameterString.append('&');
 
 	// oauth_token
-	if (!isRequestTokenRequest) {
+	if (oauthTokenNeeded) {
 		formattedParamString = formatOAuthParam("oauth_token",
 												oauthToken,
 												false);
@@ -335,7 +338,7 @@ QString OAuthManager::signDatas(RequestType type,
 	}
 
 	// oauth_verifier
-	if (!isAccessTokenRequest) {
+	if (oauthVerifierNeeded) {
 		formattedParamString = formatOAuthParam("oauth_verifier",
 												oauthVerifier,
 												false);

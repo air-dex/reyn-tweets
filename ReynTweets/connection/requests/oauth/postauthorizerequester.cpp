@@ -22,6 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "postauthorizerequester.hpp"
+#include "../../parsers/htmlparser.hpp"
+#include "../../parsers/oauthparser.hpp"
 
 // Constructor
 PostAuthorizeRequester::PostAuthorizeRequester(QObject * requester,
@@ -54,11 +56,105 @@ void PostAuthorizeRequester::buildPOSTParameters() {
 
 // Parsing the raw results of the request.
 QVariant PostAuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+	// Map for results
+	QVariantMap parsedResults;
+
+	// For treatments
+	QString errorMsg = "";
+	bool treatmentOK;
+	QString errTreatment = "";
+
 	// Looking at the URL
+	QString replyURL = communicator->getReplyURL();
+
 
 	// If it is URL callback, OK ! denied=false then retrieve oauth_token and oauth_verfier
+	if (replyURL.startsWith(oauthManager.getCallbackUrl())) {
+		// Reyn Tweets is accepted ! :D
+		parsedResults.insert("urlOK", QVariant(true));
+		parsedResults.insert("denied", QVariant(false));
+		parsedResults.insert("rightCredentials", QVariant(true));
 
-	// If it is TwitterURL::AUTHORIZE_URL, looking at the body class if denied, pas de chance
+		// Retrieving the oauth_token and the oauth_verifier in the URL (GET parameters)
+		setParsingErrorType(OAUTH_PARSING);
+		OAuthParser parser;
+		QByteArray rawResponse = replyURL.toUtf8().split('?').at(1);
 
-	return QVariant();
+		// Parsing
+		QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
+		errorMsg.append(errTreatment);
+
+		QVariant extractedCredential;
+
+		// Extracting the "oauth_token" parameter
+		extractedCredential = parser.extractParameter(resultMap,
+													  "oauth_token",
+													  treatmentOK,
+													  errTreatment);
+		parseOK = parseOK && treatmentOK;
+		errorMsg.append(errTreatment);
+		oauthManager.setOAuthToken(extractedCredential.toString());
+
+
+		// Extracting the "oauth_verifier" parameter
+		extractedCredential = parser.extractParameter(resultMap,
+													  "oauth_verifier",
+													  treatmentOK,
+													  errTreatment);
+		parseOK = parseOK && treatmentOK;
+		errorMsg.append(errTreatment);
+		oauthManager.setVerifier(extractedCredential.toString());
+	} else if (replyURL.startsWith(TwitterURL::AUTHORIZE_URL)) {
+		/*
+		 * Parsing the HTML page to know if Reyn Tweets was denied or
+		 * if the credentials were bad.
+		 */
+		parsedResults.insert("urlOK", QVariant(true));
+
+		// Getting the HTML document
+		HTMLParser parser;
+		QWebElement htmlDocument = parser.parse(communicator->getResponseBuffer(),
+												parseOK,
+												errTreatment);
+		errorMsg.append(errTreatment);
+
+		treatmentOK = !htmlDocument.isNull();
+		parseOK = parseOK && treatmentOK;
+
+		if (treatmentOK) {
+			// Get the body class
+			QWebElement body = htmlDocument.findFirst("body");
+			QString bodyClass = body.attribute("class");
+
+			if(bodyClass.startsWith("oauth write")) {
+				// Credentials were bad.
+				treatmentOK = true;
+				parsedResults.insert("rightCredentials", QVariant(false));
+			} else if (bodyClass.startsWith("oauth denied")) {
+				// Reyn Tweets was denied. :(
+				treatmentOK = true;
+				parsedResults.insert("denied", QVariant(true));
+				parsedResults.insert("rightCredentials", QVariant(true));
+			} else {
+				// Error according to the observations done for the process
+				treatmentOK = false;
+				errorMsg.append("Unexpected <body> class.\n");
+			}
+
+			parseOK = parseOK && treatmentOK;
+		} else {
+			errorMsg.append("Empty HTML page.\n");
+		}
+	} else {
+		parsedResults.insert("urlOK", QVariant(false));
+		errorMsg.append("Wrong URL.\n");
+	}
+
+
+	// There was a problem while parsing -> fill the parsingErrors map !
+	if (!parseOK) {
+		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+	}
+
+	return QVariant(parsedResults);
 }

@@ -65,6 +65,11 @@ QUuid GenericRequester::getUuid() {
 	return uuid;
 }
 
+// Setting parsingErrorType
+void GenericRequester::setParsingErrorType(ErrorType parseErrorType) {
+	parsingErrorType = parseErrorType;
+}
+
 
 ///////////////////////////
 // Executing the request //

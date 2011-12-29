@@ -67,6 +67,10 @@ TwitterCommunicator::~TwitterCommunicator() {
 	if (request != 0) {
 		delete request;
 	}
+
+	// Unwiring
+	disconnect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+			   this, SLOT(endRequest(QNetworkReply*)));
 }
 
 
@@ -124,16 +128,6 @@ void TwitterCommunicator::executeRequest() {
 		// There is not any POST arguments -> networkManager.get()
 		networkManager.get(*request);
 	}
-
-	// Connecting the reply
-	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
-			this, SLOT(endRequest(QNetworkReply*)));
-
-/*
-	connect(reply, SIGNAL(finished()),
-			this, SLOT(endRequest()));
-	connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-			this, SLOT(endRequest(QNetworkReply::NetworkError)));*/
 }
 
 
@@ -145,6 +139,9 @@ void TwitterCommunicator::executeRequest() {
 void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
 	bool requestOK = treatReply(response);
+
+	qDebug("Reponse :");
+	qDebug(responseBuffer.data());
 
 	// Ending the request
 	emit requestDone(requestOK);

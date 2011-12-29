@@ -1,5 +1,5 @@
-/// @file oauthrequester.cpp
-/// @brief Implementation of OAuthRequester
+/// @file htmlparser.cpp
+/// @brief Implementation of HTMLParser
 /// @author Romain Ducher
 
 /*
@@ -18,26 +18,30 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "oauthrequester.hpp"
+#include <QWebFrame>
+#include <QWebPage>
+#include "htmlparser.hpp"
 
-// Constructor
-OAuthRequester::OAuthRequester(QObject * requester,
-							   RequestType type,
-							   QString url,
-							   OAuthManager &authManager,
-							   ErrorType parseErrorType,
-							   bool tokenNeeded,
-							   bool callbackURLneeded) :
-	AuthenticationRequester(requester,
-							type,
-							url,
-							authManager,
-							OAUTH_PARSING,
-							tokenNeeded,
-							callbackURLneeded)
+// Parsing results
+QWebElement HTMLParser::parse(QByteArray data,
+							  bool & parseOK,
+							  QString & parseError,
+							  int *)
 {
-	setParsingErrorType(parseErrorType);
+	QWebPage webPage;
+	QWebFrame * frame = webPage.mainFrame();
+
+	if (frame) {
+		frame->setHtml(QString::fromUtf8(data.data()));
+		parseOK = true;
+		parseError = "";
+		return frame->documentElement();
+	} else {
+		parseOK = false;
+		parseError = "No HTML parser available.\n";
+		return QWebElement();
+	}
 }

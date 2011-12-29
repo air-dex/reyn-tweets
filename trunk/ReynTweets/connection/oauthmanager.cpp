@@ -40,7 +40,9 @@ OAuthManager::OAuthManager(QString clientKey,
 	oauthVersion(version),
 	oauthToken(""),
 	oauthSecret(""),
-	oauthVerifier("")
+	oauthVerifier(""),
+	authenticityToken(""),
+	denyTag("")
 {}
 
 
@@ -78,6 +80,26 @@ void OAuthManager::setVerifier(QString verifier) {
 	oauthVerifier = verifier;
 }
 
+// Getter on the Authenticity Token
+QString OAuthManager::getAuthenticityToken() {
+	return authenticityToken;
+}
+
+// Setter on the Authenticity Token
+void OAuthManager::setAuthenticityToken(QString authToken) {
+	authenticityToken = authToken;
+}
+
+// Getter on the deny tag
+QString OAuthManager::getDeny() {
+	return denyTag;
+}
+
+// Setter on the deny tag
+void OAuthManager::setDeny(QString denyString) {
+	denyTag = denyString;
+}
+
 
 ////////////////////////////
 // Utilities for requests //
@@ -88,6 +110,8 @@ void OAuthManager::resetTokens() {
 	oauthToken = "";
 	oauthSecret = "";
 	oauthVerifier = "";
+	authenticityToken = "";
+	denyTag = "";
 }
 
 // Getting the "Authorization" header
@@ -228,7 +252,7 @@ QString OAuthManager::generateNonce() {
 
 // Generates a timestamp for a request
 QString OAuthManager::generateTimestamp() {
-	qint64 timestamp = QDateTime::currentMSecsSinceEpoch();// / 1000;
+	qint64 timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
 	return QString::number(timestamp);
 }
 

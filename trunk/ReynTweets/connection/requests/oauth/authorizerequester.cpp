@@ -31,7 +31,8 @@ AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
 	OAuthRequester(requester,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
-				   authManager),
+				   authManager,
+				   OAUTH_PARSING),
 	browser(twitterBrowser)
 {}
 

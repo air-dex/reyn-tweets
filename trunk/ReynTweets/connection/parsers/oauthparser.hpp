@@ -30,7 +30,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief Parser for data which are under the form <code>
 /// arg1=val1&arg2=val2&...&argN=valN</code>. This kind of parser is used for
 /// parsing OAuth results.
-class OAuthParser : public GenericParser
+class OAuthParser : public GenericParser<QVariantMap>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,

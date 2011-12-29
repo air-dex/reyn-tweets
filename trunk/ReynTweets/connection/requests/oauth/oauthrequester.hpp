@@ -37,6 +37,7 @@ class OAuthRequester : public AuthenticationRequester
 		///					   RequestType type,
 		///					   QString url,
 		///					   OAuthManager &authManager,
+		///					   ErrorType parseErrorType,
 		///					   bool tokenNeeded = true,
 		///					   bool callbackURLneeded = false);
 		/// @brief Constructor
@@ -45,6 +46,7 @@ class OAuthRequester : public AuthenticationRequester
 		/// @param url URL of the request
 		/// @param authManager Information for OAuth. The requester takes its
 		/// memory address.
+		/// @param parseErrorType Error type while parsing. It is not JSON.
 		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
 		/// is required for authentication.
 		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
@@ -53,6 +55,7 @@ class OAuthRequester : public AuthenticationRequester
 					   RequestType type,
 					   QString url,
 					   OAuthManager &authManager,
+					   ErrorType parseErrorType,
 					   bool tokenNeeded = true,
 					   bool callbackURLneeded = false);
 };

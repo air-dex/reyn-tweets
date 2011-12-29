@@ -67,8 +67,8 @@ void OAuthWidget2::allowReynTweets() {
 				this, SLOT(errorProcess(bool,QString)));
 		connect(this, SIGNAL(authorizeReynTweets(QString,QString)),
 				authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
-		connect(this, SIGNAL(denyReynTweets(QString,QString,QString)),
-				authenticationFlow, SLOT(denyReynTweets(QString,QString,QString)));
+		connect(this, SIGNAL(denyReynTweets(QString,QString)),
+				authenticationFlow, SLOT(denyReynTweets(QString,QString)));
 
 		authenticationFlow->startAuthentication();
 	} else {
@@ -132,8 +132,8 @@ void OAuthWidget2::killOAuthProcess() {
 			   this, SLOT(errorProcess(bool,QString)));
 	disconnect(this, SIGNAL(authorizeReynTweets(QString,QString)),
 			   authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
-	disconnect(this, SIGNAL(denyReynTweets(QString,QString,QString)),
-			   authenticationFlow, SLOT(denyReynTweets(QString,QString,QString)));
+	disconnect(this, SIGNAL(denyReynTweets(QString,QString)),
+			   authenticationFlow, SLOT(denyReynTweets(QString,QString)));
 
 	delete authenticationFlow;
 	authenticationFlow = 0;
@@ -159,10 +159,8 @@ void OAuthWidget2::launchAuthorize() {
 							 loginWidget.getPassword());
 }
 
-/// @fn void launchDeny();
-/// @brief Internal Slot used to send the denyReynTweets signal.
+// Internal Slot used to send the denyReynTweets signal.
 void OAuthWidget2::launchDeny() {
 	emit denyReynTweets(loginWidget.getLogin(),
-						loginWidget.getPassword(),
-						loginWidget.getDeny());
+						loginWidget.getPassword());
 }

@@ -90,6 +90,26 @@ class OAuthManager
 		/// @param verifier The new verifier
 		void setVerifier(QString verifier);
 
+		/// @fn QString getAuthenticityToken();
+		/// @brief Getter on the Authenticity Token
+		/// @return The Authenticity Token
+		QString getAuthenticityToken();
+
+		/// @fn void setAuthenticityToken(QString authToken);
+		/// @brief Setter on the Authenticity Token
+		/// @param authToken The new value of the Authenticity Token
+		void setAuthenticityToken(QString authToken);
+
+		/// @fn QString getDeny();
+		/// @brief Getter on the deny tag
+		/// @return The verifier
+		QString getDeny();
+
+		/// @fn void setDeny(QString denyString);
+		/// @brief Setter on the deny tag
+		/// @param denyString The new value for the deny tag
+		void setDeny(QString denyString);
+
 
 		////////////////////////////
 		// Utilities for requests //
@@ -149,6 +169,12 @@ class OAuthManager
 
 		/// @brief Verifier for authentication
 		QString oauthVerifier;
+
+		/// @brief Authenticity token for POST authorizing()
+		QString authenticityToken;
+
+		/// @brief Value used to tell Twitter that an application is denied
+		QString denyTag;
 
 
 	private:

@@ -58,11 +58,6 @@ class LoginWidget : public QWidget
 		/// @return The password
 		QString getPassword();
 
-		/// @fn QString getDeny();
-		/// @brief Getter on the deny value
-		/// @return The deny value
-		QString getDeny();
-
 	signals:
 		/// @fn void authorize();
 		/// @brief Authorize the application

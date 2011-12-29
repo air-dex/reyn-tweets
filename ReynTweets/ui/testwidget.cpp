@@ -108,7 +108,7 @@ void TestWidget::endRequestToken(ResultWrapper res) {
 void TestWidget::authorizeSlot() {
 	ReynTwitterCalls rtc(*authorize);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAuthorize(ResultWrapper)));
-	rtc.authorize(QWebView());
+	rtc.authorize2();
 }
 
 void TestWidget::endAuthorize(ResultWrapper res) {

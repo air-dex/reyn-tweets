@@ -39,7 +39,11 @@ Où en est Reyn Tweets ?
 
   # _Authentification à Twitter avec OAuth :_
     # Coder
-      # Finir la revue du parsage.
+      # Fin de l'OAuth Process 2
+      # Remonter l'avis de mauvais credentials dans la popup de login
+      # Rendre la popup de login modale
+      # Mettre les xxx2 à la place des originaux
+      # Intégration de l'OAuthWidget dans l'application
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
     # Tester
@@ -54,4 +58,5 @@ Où en est Reyn Tweets ?
   # Interface graphique (UI).
   # Portage sur Symbian
   # Revue de code
+    # TwitterCommunicator pour requêtes authentifiées
   # Releaser

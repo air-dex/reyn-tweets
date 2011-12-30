@@ -38,6 +38,10 @@ class OAuthProcess : public QObject
 		/// @param parent Parent object
 		OAuthProcess(QObject * parent);
 
+		/// @fn ~OAuthProcess();
+		/// @brief Destructor
+		~OAuthProcess();
+
 		/// @fn void startAuthentication();
 		/// @brief Starting the OAuth authentication flow
 		void startAuthentication();

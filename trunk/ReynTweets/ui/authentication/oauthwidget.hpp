@@ -111,7 +111,8 @@ class OAuthWidget : public QWidget
 		void launchDeny();
 
 	protected:
-		/// @brief OAuth Authentication Flow
+		/// @brief OAuth Authentication Flow. It is this object that will
+		/// execute the whole authentication process.
 		OAuthProcess * authenticationFlow;
 
 		/// @brief Login Widget

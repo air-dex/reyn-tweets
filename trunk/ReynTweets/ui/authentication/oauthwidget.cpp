@@ -65,6 +65,26 @@ OAuthWidget::~OAuthWidget() {
 			   &loginWidget, SLOT(showCredentialsErrorMessage(bool)));
 }
 
+
+//////////////////////////
+// Visual notifications //
+//////////////////////////
+
+// Slot executing to show (or to hide) the login panel
+void OAuthWidget::loginPanelVisible(bool visible) {
+	loginWidget.setVisible(visible);
+}
+
+// Showing or hidding an error message about the validity of credentials.
+void OAuthWidget::rightCredentials(bool ok) {
+	emit credentialsOK(ok);
+}
+
+
+///////////////////
+// OAuth process //
+///////////////////
+
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget::allowReynTweets() {
 	authenticationFlow = new OAuthProcess(this);
@@ -96,16 +116,6 @@ void OAuthWidget::allowReynTweets() {
 							  QObject::tr("Erreur au lancement de l'authentification. Authentification terminée."));
 		emit authenticationFinished(ERROR_PROCESS);
 	}
-}
-
-// Slot executing to show (or to hide) the login panel
-void OAuthWidget::loginPanelVisible(bool visible) {
-	loginWidget.setVisible(visible);
-}
-
-// Showing or hidding an error message about the validity of credentials.
-void OAuthWidget::rightCredentials(bool ok) {
-	emit credentialsOK(ok);
 }
 
 // Signal emitted when an error occurs during the process

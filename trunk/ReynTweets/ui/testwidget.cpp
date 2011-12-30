@@ -37,7 +37,7 @@ TestWidget::TestWidget(QWidget *parent) :
 	connect(camb078Search, SIGNAL(clicked()), this, SLOT(searchCamb078()));
 	layout.addWidget(camb078Search);
 
-	allowReynTweetsButton = new QPushButton("Autorise Reyhn Tweets");
+	allowReynTweetsButton = new QPushButton("Autorise Reyn Tweets");
 	connect(allowReynTweetsButton, SIGNAL(clicked()), this, SLOT(allowRTSlot()));
 	layout.addWidget(allowReynTweetsButton);
 

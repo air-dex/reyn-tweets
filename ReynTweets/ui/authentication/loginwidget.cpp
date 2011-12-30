@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 LoginWidget::LoginWidget(QWidget *parent) :
 	QWidget(parent),
 	widgetLayout(),
-	credentialsErrorMessage(QObject::tr("<strong color=\"red\">Username or password invalid. Try again.</strong>")),
+	credentialsErrorMessage(QObject::tr("<strong style=\"color:red\">Username or password invalid. Try again.</strong>")),
 	formLayout(),
 	loginLineEdit(),
 	passwordLineEdit(),
@@ -56,15 +56,32 @@ LoginWidget::LoginWidget(QWidget *parent) :
 	setLayout(&widgetLayout);
 
 
-	// Wiring : showing or hiding the password while writing it.
+	// Wiring
+
+	// Showing or hiding the password while writing it.
 	connect(&passwordCheckBox, SIGNAL(toggled(bool)),
 			this, SLOT(showPassword(bool)));
+
+	// Authorizing or denying the application
+	connect(&authorizeButton, SIGNAL(clicked()),
+			this, SLOT(authorizeReynTweets()));
+	connect(&denyButton, SIGNAL(clicked()),
+			this, SLOT(denyReynTweets()));
 }
 
 // Destructor
 LoginWidget::~LoginWidget() {
+	// Unwiring
+
+	// Showing or hiding the password while writing it.
 	disconnect(&passwordCheckBox, SIGNAL(toggled(bool)),
 			   this, SLOT(showPassword(bool)));
+
+	// Authorizing or denying the application
+	disconnect(&authorizeButton, SIGNAL(clicked()),
+			   this, SLOT(authorizeReynTweets()));
+	disconnect(&denyButton, SIGNAL(clicked()),
+			   this, SLOT(denyReynTweets()));
 }
 
 // Getter on the login (username or email) written by the user
@@ -75,6 +92,16 @@ QString LoginWidget::getLogin() {
 // Getter on the password written by the user
 QString LoginWidget::getPassword() {
 	return passwordLineEdit.text();
+}
+
+// Authorize the application
+void LoginWidget::authorizeReynTweets() {
+	emit authorize();
+}
+
+// Deny the application
+void LoginWidget::denyReynTweets() {
+	emit deny();
 }
 
 // Showing or hiding the password
@@ -92,5 +119,5 @@ void LoginWidget::showPassword(bool boxChecked) {
 
 // Showing or hidding the credentials error message.
 void LoginWidget::showCredentialsErrorMessage(bool ok) {
-	credentialsErrorMessage.setVisible(ok);
+	credentialsErrorMessage.setVisible(!ok);
 }

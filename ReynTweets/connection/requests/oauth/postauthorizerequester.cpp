@@ -56,97 +56,160 @@ void PostAuthorizeRequester::buildPOSTParameters() {
 
 // Parsing the raw results of the request.
 QVariant PostAuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-	// Map for results
-	QVariantMap parsedResults;
+	QVariantMap parsedResults;		// Map for results
+	QString errorMsg = "";			// Error message written while parsing
 
-	// For treatments
-	QString errorMsg = "";
-	bool treatmentOK;
-	QString errTreatment = "";
-
-	// Looking at the URL
+	// Looking at the URL. Is it the right one ?
 	QString replyURL = communicator->getReplyURL();
+	bool urlOK = replyURL.startsWith(TwitterURL::AUTHORIZE_URL);
+	parsedResults.insert("urlOK", QVariant(urlOK));
+	parseOK = urlOK;
 
-
-	// If it is URL callback, OK ! denied=false then retrieve oauth_token and oauth_verfier
-	if (replyURL.startsWith(oauthManager.getCallbackUrl())) {
-		// Reyn Tweets is accepted ! :D
-		parsedResults.insert("urlOK", QVariant(true));
-		parsedResults.insert("denied", QVariant(false));
-		parsedResults.insert("rightCredentials", QVariant(true));
-
-		// Retrieving the oauth_token and the oauth_verifier in the URL (GET parameters)
-		setParsingErrorType(OAUTH_PARSING);
-		OAuthParser parser;
-		QByteArray rawResponse = replyURL.toUtf8().split('?').at(1);
-
-		// Parsing
-		QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
-		errorMsg.append(errTreatment);
-
-		QVariant extractedCredential;
-
-		// Extracting the "oauth_token" parameter
-		extractedCredential = parser.extractParameter(resultMap,
-													  "oauth_token",
-													  treatmentOK,
-													  errTreatment);
-		parseOK = parseOK && treatmentOK;
-		errorMsg.append(errTreatment);
-		oauthManager.setOAuthToken(extractedCredential.toString());
-
-
-		// Extracting the "oauth_verifier" parameter
-		extractedCredential = parser.extractParameter(resultMap,
-													  "oauth_verifier",
-													  treatmentOK,
-													  errTreatment);
-		parseOK = parseOK && treatmentOK;
-		errorMsg.append(errTreatment);
-		oauthManager.setVerifier(extractedCredential.toString());
-	} else if (replyURL.startsWith(TwitterURL::AUTHORIZE_URL)) {
-		/*
-		 * Parsing the HTML page to know if Reyn Tweets was denied or
-		 * if the credentials were bad.
-		 */
-		parsedResults.insert("urlOK", QVariant(true));
+	if (urlOK) {
+		// For treatments
+		bool treatmentOK;
+		QString errTreatment = "";
 
 		// Getting the HTML document
 		HTMLParser parser;
 		QWebElement htmlDocument = parser.parse(communicator->getResponseBuffer(),
-												parseOK,
+												treatmentOK,
 												errTreatment);
+		parseOK = parseOK && treatmentOK;
 		errorMsg.append(errTreatment);
 
-		treatmentOK = !htmlDocument.isNull();
-		parseOK = parseOK && treatmentOK;
-
 		if (treatmentOK) {
-			// Get the body class
-			QWebElement body = htmlDocument.findFirst("body");
-			QString bodyClass = body.attribute("class");
-
-			if(bodyClass.startsWith("oauth write")) {
-				// Credentials were bad.
-				treatmentOK = true;
-				parsedResults.insert("rightCredentials", QVariant(false));
-			} else if (bodyClass.startsWith("oauth denied")) {
-				// Reyn Tweets was denied. :(
-				treatmentOK = true;
-				parsedResults.insert("denied", QVariant(true));
-				parsedResults.insert("rightCredentials", QVariant(true));
-			} else {
-				// Error according to the observations done for the process
-				treatmentOK = false;
-				errorMsg.append("Unexpected <body> class.\n");
-			}
-
+			treatmentOK = !htmlDocument.isNull();
 			parseOK = parseOK && treatmentOK;
+
+			// Page for what ?
+			if (treatmentOK) {
+				// Get the body class
+				QWebElement body = htmlDocument.findFirst("body");
+				QString bodyClass = body.attribute("class");
+
+
+				if (bodyClass.startsWith("oauth denied")) {
+					// Reyn Tweets was denied. :(
+					treatmentOK = true;
+					parseOK = parseOK && treatmentOK;
+					parsedResults.insert("denied", QVariant(true));
+					parsedResults.insert("rightCredentials", QVariant(true));
+				} else if(bodyClass.startsWith("oauth write")) {
+					/*
+					 * Two cases :
+					 * - oauth_callback="oob" and a <div id="oauth_pin"> tag exists :
+					 *   Reyn Tweets is authorized and the verifier is a PIN code.
+					 * - Otherwise, credentials were wrong.
+					 */
+					if (oauthManager.getCallbackUrl() == "oob") {
+						// Looking for the <div id="oauth_pin"> HTML tag
+						QWebElementCollection divs = body.findAll("div");
+						QWebElement oauthPinDiv;
+
+						for (QWebElementCollection::iterator it = divs.begin();
+							 it != divs.end() && oauthPinDiv.isNull();
+							 ++it)
+						{
+							QWebElement div = *it;
+
+							if (div.attribute("id") == "oauth_pin") {
+								oauthPinDiv = div;
+							}
+						}
+
+						if (oauthPinDiv.isNull()) {
+							// Credentials were bad.
+							treatmentOK = true;
+							parseOK = parseOK && treatmentOK;
+							parsedResults.insert("rightCredentials", QVariant(false));
+						} else {
+							// Reyn Tweets is authorized ! :D Let's get the PIN code !
+							QWebElement codeTag = oauthPinDiv.findFirst("code");
+							treatmentOK = !codeTag.isNull();
+							parseOK = parseOK && treatmentOK;
+
+							// Writing the verifier
+							if (treatmentOK) {
+								oauthManager.setVerifier(codeTag.toPlainText());
+								parsedResults.insert("denied", QVariant(false));
+								parsedResults.insert("rightCredentials", QVariant(true));
+							} else {
+								errorMsg.append("PIN code (oauth verifier) not found.\n");
+							}
+						}
+					} else {
+						// Credentials were bad.
+						treatmentOK = true;
+						parsedResults.insert("rightCredentials", QVariant(false));
+					}
+				} else {
+					// Reyn Tweets is authorized if a <div class="happy notice callback"> exists
+					QWebElementCollection divs = body.findAll("div");
+					QWebElement happyDiv;
+
+					// Looking for the <div class="happy notice callback"> HTML tag
+					for (QWebElementCollection::iterator it = divs.begin();
+						 it != divs.end() && happyDiv.isNull();
+						 ++it)
+					{
+						QWebElement div = *it;
+
+						if (div.attribute("class") == "happy notice callback") {
+							happyDiv = div;
+						}
+					}
+
+					treatmentOK = !happyDiv.isNull();
+					parseOK = parseOK && treatmentOK;
+
+					if (treatmentOK) {
+						// Reyn Tweets is authorized ! :D
+						parsedResults.insert("denied", QVariant(false));
+						parsedResults.insert("rightCredentials", QVariant(true));
+
+						// Retrieving the oauth_token and the oauth_verifier in the URL (GET parameters)
+						QString redirectURL = happyDiv.findFirst("a").attribute("href");
+						QByteArray oauthParameters = redirectURL.toUtf8().split('?').at(1);
+
+						// Parsing oauthParameters to get oauth_token and the oauth_verifier
+						setParsingErrorType(OAUTH_PARSING);
+						OAuthParser parser;
+						QVariantMap resultMap = parser.parse(oauthParameters, parseOK, errTreatment);
+						errorMsg.append(errTreatment);
+
+						QVariant extractedCredential;
+
+						// Extracting the "oauth_token" parameter
+						extractedCredential = parser.extractParameter(resultMap,
+																	  "oauth_token",
+																	  treatmentOK,
+																	  errTreatment);
+						parseOK = parseOK && treatmentOK;
+						errorMsg.append(errTreatment);
+						oauthManager.setOAuthToken(extractedCredential.toString());
+
+
+						// Extracting the "oauth_verifier" parameter
+						extractedCredential = parser.extractParameter(resultMap,
+																	  "oauth_verifier",
+																	  treatmentOK,
+																	  errTreatment);
+						parseOK = parseOK && treatmentOK;
+						errorMsg.append(errTreatment);
+						oauthManager.setVerifier(extractedCredential.toString());
+					} else {
+						// Error according to the observations done for the process
+						errorMsg.append("<div class=\"happy notice callback\"> HTML tag expected.\n");
+					}
+				}
+			} else {
+				errorMsg.append("Empty HTML page.\n");
+			}
 		} else {
-			errorMsg.append("Empty HTML page.\n");
+			errorMsg.append("HTML parsing failed.\n");
 		}
 	} else {
-		parsedResults.insert("urlOK", QVariant(false));
 		errorMsg.append("Wrong URL.\n");
 	}
 

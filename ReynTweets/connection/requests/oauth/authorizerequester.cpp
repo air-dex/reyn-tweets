@@ -21,19 +21,19 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QWebElement>
 #include "authorizerequester.hpp"
-#include "../../twittercommunicators/authorizetwittercommunicator.hpp"
-#include "../../parsers/oauthparser.hpp"
+#include "../../parsers/htmlparser.hpp"
+#include "../../utils.hpp"
 
-AuthorizeRequester::AuthorizeRequester(QWebView & twitterBrowser,
-									   OAuthManager &authManager,
-									   QObject *requester) :
+// Constructor
+AuthorizeRequester::AuthorizeRequester(QObject *requester,
+										 OAuthManager & authManager) :
 	OAuthRequester(requester,
 				   GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
-				   OAUTH_PARSING),
-	browser(twitterBrowser)
+				   HTML_PARSING)
 {}
 
 // Building GET Parameters
@@ -41,82 +41,84 @@ void AuthorizeRequester::buildGETParameters() {
 	getParameters.insert("oauth_token", oauthManager.getOAuthToken());
 }
 
-// Initialize the communicator.
-void AuthorizeRequester::initCommunicator() {
-	communicator = new AuthorizeTwitterCommunicator(browser,
-													oauthManager,
-													getParameters,
-													this);
-	connect(communicator, SIGNAL(requestDone(bool)),
-			this, SLOT(treatResults(bool)));
-}
+// Parsing results
+QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
+	// Flags for treatment
+	bool treatmentOK;
+	QString errTreatment = "";
 
-// Parse the raw results of the request.
-QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-	OAuthParser parser;
-	QByteArray rawResponse = communicator->getResponseBuffer();
+	// Error message for the whole parsing process
 	QString errorMsg = "";
 
-	// For treatments
-	QVariant extractedCredential;
-	bool treatmentOK;
-	QString treatmentErrorMsg = "";
+	// Getting the HTML document
+	HTMLParser parser;
+	QWebElement htmlDocument = parser.parse(communicator->getResponseBuffer(),
+											parseOK,
+											errTreatment);
+	errorMsg.append(errTreatment);
 
-
-	// Parsing
-	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
-	errorMsg.append(treatmentErrorMsg);
-
-
-	// Rewriting the "denied" parameter as a boolean
-	parser.rewriteAsBool(resultMap,
-						 "denied",
-						 treatmentOK,
-						 treatmentErrorMsg);
+	treatmentOK = !htmlDocument.isNull();
 	parseOK = parseOK && treatmentOK;
-	errorMsg.append(treatmentErrorMsg);
 
 	if (treatmentOK) {
-		bool reynTweetsDenied = resultMap.value("denied").toBool();
+		// Getting the parameters (auth token, oauth_token and deny)
 
-		if (reynTweetsDenied) {
-			// Extracting the "oauth_token" parameter
-			extractedCredential = parser.extractParameter(resultMap,
-														  "oauth_token",
-														  treatmentOK,
-														  treatmentErrorMsg);
-			parseOK = parseOK && treatmentOK;
-			errorMsg.append(treatmentErrorMsg);
-			if (treatmentOK) {
-				oauthManager.setOAuthToken(extractedCredential.toString());
+		// Boolean indicating if the parameters are found
+		bool authenticityTokenFound = false;
+		bool oauthTokenFound = false;
+		bool denyFound = false;
+
+		// treatmentOK : 3 parameters found
+		// treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound
+		treatmentOK = false;
+
+		QWebElementCollection inputs = htmlDocument.findAll("input");
+
+		// It stops when the 3 parameters are found xor when all is seen in the collection
+		for (QWebElementCollection::iterator it = inputs.begin();
+			 it != inputs.end() && !treatmentOK;
+			 ++it)
+		{
+			QWebElement input = *it;
+			QString inputName = input.attribute("name");
+			QString inputValue = input.attribute("value");
+
+			// Is a parameter found ?
+			if (!authenticityTokenFound && inputName == "authenticity_token") {
+				// The authenticity token is found !
+				oauthManager.setAuthenticityToken(inputValue);
+				authenticityTokenFound = true;
+			} else if (!oauthTokenFound && inputName == "oauth_token") {
+				// The oauth token is found (WTF) !
+				oauthManager.setOAuthToken(inputValue);
+				oauthTokenFound = true;
+			} else if (!denyFound && inputName == "deny") {
+				// The deny value is found !
+				oauthManager.setDeny(inputValue);
+				denyFound = true;
 			}
 
-			// Extracting the "oauth_verifier" parameter
-			extractedCredential = parser.extractParameter(resultMap,
-														  "oauth_verifier",
-														  treatmentOK,
-														  treatmentErrorMsg);
-			parseOK = parseOK && treatmentOK;
-			errorMsg.append(treatmentErrorMsg);
-			if (treatmentOK) {
-				oauthManager.setVerifier(extractedCredential.toString());
+			treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
+		}
+
+		parseOK = parseOK && treatmentOK;
+
+		// Are all the parameters found ?
+		if (!treatmentOK) {
+			if (!authenticityTokenFound) {
+				errorMsg.append("Authenticity token not found.\n");
+			}
+
+			if (!oauthTokenFound) {
+				errorMsg.append("OAuth token not found.\n");
+			}
+
+			if (!denyFound) {
+				errorMsg.append("Deny value not found.\n");
 			}
 		}
-	}
-
-	// Ensures that there was not any parameters excepting "denied"
-	treatmentOK = resultMap.size() == 1 && resultMap.contains("denied");
-	parseOK = parseOK && treatmentOK;
-
-	// Listing all the unexpected parameters
-	if (!treatmentOK) {
-		QList<QString> argNames = resultMap.keys();
-		argNames.removeOne("denied");
-		foreach (QString argName, argNames) {
-			errorMsg.append("Unexpected parameter '")
-					.append(argName)
-					.append("'.\n");
-		}
+	} else {
+		errorMsg.append("Empty HTML page.\n");
 	}
 
 
@@ -125,5 +127,5 @@ QVariant AuthorizeRequester::parseResult(bool & parseOK, QVariantMap & parsingEr
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 
-	return QVariant(resultMap);
+	return QVariant();
 }

@@ -21,244 +21,269 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QVariant>
 #include "oauthprocess.hpp"
 
 // Constructor
-OAuthProcess::OAuthProcess(QWebView & browser, QObject * parent) :
+OAuthProcess::OAuthProcess(QObject * parent) :
 	QObject(parent),
-	twitterCalls(*this),
-	embeddedBrowser(browser)
+	twitter(*this)
 {}
 
 // Resetting the tokens.
 void OAuthProcess::resetTokens() {
-	twitterCalls.resetTokens();
+	twitter.resetTokens();
 }
+
 
 ///////////////////////////////
 // OAuth Authentication flow //
 ///////////////////////////////
 
-// Starting the authentication flow
+// Starting the OAuth authentication flow
 void OAuthProcess::startAuthentication() {
 	requestToken();
 }
 
 // Demanding a Request Token
 void OAuthProcess::requestToken() {
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(requestTokenDemanded(ResultWrapper)));
-	twitterCalls.requestToken();
+	twitter.requestToken();
 }
 
 // Treatments after the request for Request Tokens
 void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(requestTokenDemanded(ResultWrapper)));
 
-	// Treatments on res for continuing the authentication process
 	RequestResult result = res.accessResult(this);
-	ErrorType resultType = result.getErrorType();
+	ErrorType errorType = result.getErrorType();
 
-	switch (resultType) {
+	switch (errorType) {
 		case NO_ERROR: {
-			// The request was successful.
-			QVariantMap resultMap = result.getParsedResult().toMap();
-			QVariant callbackOKResult = resultMap.value("oauth_callback_confirmed");
-
-			if (callbackOKResult.toBool()) {
-				// All is OK. Let's go to the next step
-				qDebug("Fin de request token.\n");
+			QVariantMap parsedResults = result.getParsedResult().toMap();
+			// The request was successful. Was the callback URL confirmed ?
+			if (parsedResults.value("oauth_callback_confirmed").toBool()) {
+				// Let's authorize the request tokens !
 				authorize();
 			} else {
-				// Invalid callback URL. Abort.
-				emit authenticationProcessFinished(false);
+				// Cannot keep on if the URL is not confirmed
+				emit errorProcess(true, "Callback URL not confirmed.");
 			}
 		}break;
 
 		case API_CALL: {
-			// A problem occured while calling Twitter -> Resume ?
-			QString errorMessage = "Problème lors de la connection à Twitter :\n";
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
 
-			QVariantMap httpInfos = result.getHttpInfos();
-			QString httpReason = httpInfos.value("httpReason").toString();
-			int httpCode = httpInfos.value("httpCode").toInt();
-
-			errorMessage.append("Erreur ");
-			errorMessage.append(QString::number(httpCode));
-			errorMessage.append(" : ");
-			errorMessage.append(httpReason);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
 		}break;
 
 		case OAUTH_PARSING: {
-			// A problem occured while treating results -> Resume ?
-			QString errorMessage = "Problème lors du traitement des résultats :\n";
-
-			QVariantMap parsingError = result.getParsingErrors();
-			QString errMsg = parsingError.value("errorMsg").toString();
-			errorMessage.append(errMsg);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
-			QString errorMessage = "Problème inattendu :\n";
-			errorMessage.append(resultType);
-			errorMessage.append("\n\nFin de l'authentification.");
-			emit errorProcess(errorMessage, true);
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
 		}break;
 	}
 }
 
-// Authorizing Reyn Tweets by displaying the Twitter
+// Authorize the request tokens
 void OAuthProcess::authorize() {
-	// Show the browser
-	emit browserVisible(true);
-
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitterCalls.authorize(embeddedBrowser);
+	twitter.authorize2();
 }
 
-// TODO
 // Treatments after the request for authorizing Request Tokens
 void OAuthProcess::authorizeDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(authorizeDemanded(ResultWrapper)));
 
-	// Hide the browser
-	emit browserVisible(false);
-
-	// Treatments on res for continuing the authentication process
 	RequestResult result = res.accessResult(this);
-	ErrorType resultType = result.getErrorType();
+	ErrorType errorType = result.getErrorType();
 
-	switch (resultType) {
-		case NO_ERROR: {
-			// The request was successful.
-			QVariantMap resultMap = result.getParsedResult().toMap();
-			bool reynTweetsDenied = resultMap.value("denied").toBool();
-
-			if (reynTweetsDenied) {
-				QString message =
-						QString("Vous venez de ne pas autoriser l'application à utiliser votre compte Twitter. ")
-						+ QString("Voulez-vous recommencer la procédure d'authentification ?");
-				emit errorProcess(message, false);
-			} else {
-				// The user authorized the request Tokens. Now you can get the access tokens.
-				qDebug("Fin de authorize().\n");
-				accessToken();
-			}
-		}break;
+	switch (errorType) {
+		case NO_ERROR:
+			// The user can give its credentials now
+			qDebug("authorize() OK");
+			emit loginPanelVisible(true);
+			break;
 
 		case API_CALL: {
-			// A problem occured while calling Twitter -> Resume ?
-			QString errorMessage = "Problème lors de la connection à Twitter :\n";
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
 
-			QVariantMap httpInfos = result.getHttpInfos();
-			QString httpReason = httpInfos.value("httpReason").toString();
-			int httpCode = httpInfos.value("httpCode").toInt();
-
-			errorMessage.append("Erreur ");
-			errorMessage.append(QString::number(httpCode));
-			errorMessage.append(" : ");
-			errorMessage.append(httpReason);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
 		}break;
 
-		case OAUTH_PARSING: {
-			// A problem occured while treating results -> Resume ?
-			QString errorMessage = "Problème lors du traitement des résultats :\n";
-
-			QVariantMap parsingError = result.getParsingErrors();
-			QString errMsg = parsingError.value("errorMsg").toString();
-			errorMessage.append(errMsg);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+		case HTML_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
-			QString errorMessage = "Problème inattendu :\n";
-			errorMessage.append(resultType);
-			errorMessage.append("\n\nFin de l'authentification.");
-			emit errorProcess(errorMessage, true);
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
+		}break;
+	}
+}
+
+// Allowing Reyn Tweets :)
+void OAuthProcess::authorizeReynTweets(QString login, QString password) {
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(postAuthorizeDemanded(ResultWrapper)));
+	twitter.postAuthorize(login, password, false);
+}
+
+// Denying Reyn Tweets :(
+void OAuthProcess::denyReynTweets(QString login, QString password) {
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(postAuthorizeDemanded(ResultWrapper)));
+	twitter.postAuthorize(login, password, true);
+}
+
+// Treatments for the POST authorizing request
+void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(postAuthorizeDemanded(ResultWrapper)));
+
+	RequestResult result = res.accessResult(this);
+	ErrorType errorType = result.getErrorType();
+
+	switch (errorType) {
+		case NO_ERROR: {
+			QVariantMap resultMap = result.getParsedResult().toMap();
+			bool urlOK = resultMap.value("urlOK").toBool();
+
+			if (urlOK) {
+				bool rightCrdentials = resultMap.value("rightCredentials").toBool();
+				emit credentialsOK(rightCrdentials);
+
+				if (rightCrdentials) {
+					emit loginPanelVisible(false);
+
+					if (resultMap.value("denied").toBool()) {
+						// Reyn Tweets is denied. The process ends.
+						emit authenticationProcessFinished(DENIED);
+					} else {
+						// Request tokens are authorized. Let's get access tokens.
+						accessToken();
+					}
+				}
+			} else {
+				QString errorMsg = "Unexpected redirection. Process aborted.\n";
+				emit errorProcess(true, errorMsg);
+			}
+		}break;
+
+		case API_CALL: {
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
+
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		case HTML_PARSING:
+		case OAUTH_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
 		}break;
 	}
 }
 
 // Demanding an Access Token
 void OAuthProcess::accessToken() {
-	connect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(accessTokenDemanded(ResultWrapper)));
-	twitterCalls.accessToken();
+	twitter.accessToken();
 }
 
 // Treatments after the request for Access Tokens
 void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
-	disconnect(&twitterCalls, SIGNAL(sendResult(ResultWrapper)),
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(accessTokenDemanded(ResultWrapper)));
 
-
-	// Treatments on the result
 	RequestResult result = res.accessResult(this);
-	bool accessTokenOK = result.isRequestSuccessful();
-	ErrorType resultType = result.getErrorType();
-	QString errorMessage;
+	ErrorType errorType = result.getErrorType();
 
-	switch (resultType) {
+	switch (errorType) {
 		case NO_ERROR:
-			// The request was successful.
+			// The authentication process is ended.
+			emit authenticationProcessFinished(AUTHORIZED);
 			break;
 
 		case API_CALL: {
-			// A problem occured while calling Twitter -> Resume ?
-			QString errorMessage = "Problème lors de la connection à Twitter :\n";
+			// Retrieving network informations
+			QVariantMap httpMap = result.getHttpInfos();
+			int httpCode = httpMap.value("httpCode").toInt();
+			QString httpReason = httpMap.value("httpReason").toString();
 
-			QVariantMap httpInfos = result.getHttpInfos();
-			QString httpReason = httpInfos.value("httpReason").toString();
-			int httpCode = httpInfos.value("httpCode").toInt();
-
-			errorMessage.append("Erreur ");
-			errorMessage.append(QString::number(httpCode));
-			errorMessage.append(" : ");
-			errorMessage.append(httpReason);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append('.');
+			emit errorProcess(false, errorMsg);
 		}break;
 
 		case OAUTH_PARSING: {
-			// A problem occured while treating results -> Resume ?
-			QString errorMessage = "Problème lors du traitement des résultats :\n";
-
-			QVariantMap parsingError = result.getParsingErrors();
-			QString errMsg = parsingError.value("errorMsg").toString();
-			errorMessage.append(errMsg);
-			errorMessage.append("\n\nVoulez-vous recommencer l'authentification ?");
-
-			emit errorProcess(errorMessage, false);
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getErrorMessage());
+			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
-			QString errorMessage = "Problème inattendu :\n";
-			errorMessage.append(resultType);
-			errorMessage.append("\n\nFin de l'authentification.");
-			emit errorProcess(errorMessage, true);
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage());
+			emit errorProcess(true, errorMessage);
 		}break;
 	}
-
-
-	qDebug("Fin d'OAuth.\n");
-	emit authenticationProcessFinished(accessTokenOK);
 }

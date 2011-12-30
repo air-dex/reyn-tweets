@@ -22,139 +22,174 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QMessageBox>
-#include <QWebHistory>
 #include "oauthwidget.hpp"
 
 // Constructor
-OAuthWidget::OAuthWidget(QWidget * parent) :
+OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
-	authorizePage(),
-	oauthAuthenticationFlow(0),
-	layout(),
-	authPageButton("Retourner à la page d'authentification")
+	authenticationFlow(0),
+	loginWidget(),
+	layout()
 {
-	// Wiring of the widget
+	loginWidget.setVisible(false);
 
-	// Disable the button when you go back to the Authentication Page
-	connect(&authorizePage, SIGNAL(loadStarted()),
-			this, SLOT(enableAuthPageButton()));
+	// Wiring
 
-	// Go to the Authentication Page when you click on authPageButton
-	connect(&authPageButton, SIGNAL(clicked()),
-			this, SLOT(goToAuthPage()));
+	// Between the login panel and the launching slots
+	connect(&loginWidget, SIGNAL(authorize()),
+			this, SLOT(launchAuthorize()));
+	connect(&loginWidget, SIGNAL(deny()),
+			this, SLOT(launchDeny()));
 
-
-	// Building the UI
-
-	// authPageButton
-	authPageButton.setEnabled(false);
-	layout.addWidget(&authPageButton);
-
-	// authorizePage
-	layout.addWidget(&authorizePage);
-	authorizePage.hide();
-
-	setLayout(&layout);
+	// Showing or hiding the error message for credentials
+	connect(this, SIGNAL(credentialsOK(bool)),
+			&loginWidget, SLOT(showCredentialsErrorMessage(bool)));
 }
 
 // Destructor
 OAuthWidget::~OAuthWidget() {
-	if (oauthAuthenticationFlow != 0) {
+	if (authenticationFlow) {
 		killOAuthProcess();
 	}
+
+	// Unwiring
+
+	// Launching slots
+	disconnect(&loginWidget, SIGNAL(authorize()),
+			   this, SLOT(launchAuthorize()));
+	disconnect(&loginWidget, SIGNAL(deny()),
+			   this, SLOT(launchDeny()));
+
+	// Error message for credentials
+	disconnect(this, SIGNAL(credentialsOK(bool)),
+			   &loginWidget, SLOT(showCredentialsErrorMessage(bool)));
 }
-
-// Show or hide the browser
-void OAuthWidget::browserVisible(bool visible) {
-	authorizePage.setVisible(visible);
-}
-
-// Got to the authentication page
-void OAuthWidget::goToAuthPage() {
-	QWebHistory * history = authorizePage.history();
-	history->goToItem(history->itemAt(0));
-	authPageButton.setEnabled(false);
-}
-
-// Enable authPageButton when a new Wed page is loaded
-void OAuthWidget::enableAuthPageButton() {
-	authPageButton.setEnabled(true);
-}
-
-
-/////////////////////////
-// Authentication flow //
-/////////////////////////
 
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget::allowReynTweets() {
-	oauthAuthenticationFlow = new OAuthProcess(authorizePage, this);
+	authenticationFlow = new OAuthProcess(this);
 
-	if (oauthAuthenticationFlow) {
-		connect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
-				this, SLOT(browserVisible(bool)));
-		connect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
-				this, SLOT(endAuthentication(bool)));
-		connect(oauthAuthenticationFlow, SIGNAL(errorProcess(QString,bool)),
-				this, SLOT(errorProcess(QString,bool)));
-		oauthAuthenticationFlow->startAuthentication();
+	if (authenticationFlow) {
+		// Wiring connection beetween the widget and the process
+
+		// Visual changes
+		connect(authenticationFlow, SIGNAL(loginPanelVisible(bool)),
+				this, SLOT(loginPanelVisible(bool)));
+		connect(authenticationFlow, SIGNAL(credentialsOK(bool)),
+				this, SLOT(rightCredentials(bool)));
+
+		// Process notifications
+		connect(this, SIGNAL(authorizeReynTweets(QString,QString)),
+				authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
+		connect(this, SIGNAL(denyReynTweets(QString,QString)),
+				authenticationFlow, SLOT(denyReynTweets(QString,QString)));
+		connect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult)),
+				this, SLOT(endAuthentication(OAuthProcessResult)));
+		connect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
+				this, SLOT(errorProcess(bool,QString)));
+
+		authenticationFlow->startAuthentication();
 	} else {
 		// Critical error -> Abort the process.
 		QMessageBox::critical(this,
-							  "Erreur dans le processus d'authentification",
-							  "Erreur au lancement de l'authentification. Authentification terminée.");
-		emit authenticationFinished(false);
+							  QObject::tr("Erreur dans le processus d'authentification"),
+							  QObject::tr("Erreur au lancement de l'authentification. Authentification terminée."));
+		emit authenticationFinished(ERROR_PROCESS);
 	}
 }
 
+// Slot executing to show (or to hide) the login panel
+void OAuthWidget::loginPanelVisible(bool visible) {
+	loginWidget.setVisible(visible);
+}
+
+// Showing or hidding an error message about the validity of credentials.
+void OAuthWidget::rightCredentials(bool ok) {
+	emit credentialsOK(ok);
+}
+
 // Signal emitted when an error occurs during the process
-void OAuthWidget::errorProcess(QString errorMsg, bool fatalError) {
+void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
+	QString message = errorMsg;
+
 	if (fatalError) {
 		// Critical error -> Abort the process.
+		message.append("\nFin de l'authentification.");
+
 		QMessageBox::critical(this,
-							  "Erreur dans le processus d'authentification",
-							  errorMsg);
-		emit authenticationFinished(false);
+							  QObject::tr("Erreur dans le processus d'authentification"),
+							  QObject::tr(message.toUtf8().data()));
+		endAuthentication(ERROR_PROCESS);
 	} else {
 		// The error is not critical. The process can be resumed.
+		message.append("\nVoulez-vous recommencer l'authentification ?");
+
 		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
-																		"Imprévu dans le processus d'authentification",
-																		errorMsg,
+																		QObject::tr("Imprévu dans le processus d'authentification"),
+																		QObject::tr(message.toUtf8().data()),
 																		QMessageBox::Yes | QMessageBox::No,
 																		QMessageBox::Yes);
 		if (QMessageBox::Yes == userResponse) {
 			// Resume the process
-			oauthAuthenticationFlow->resetTokens();
+			authenticationFlow->resetTokens();
 			killOAuthProcess();
-			startAuthentication();
+			allowReynTweets();
 		} else {
 			// Abort the process
 			QMessageBox::information(this,
-									 "Fin du processus d'authentification",
-									 "Fin du processus d'authentification");
-			endAuthentication(false);
+									 QObject::tr("Fin du processus d'authentification"),
+									 QObject::tr("Authentification terminée"));
+			endAuthentication(ERROR_PROCESS);
 		}
 	}
 }
 
 // Killing the OAuth Authentication Flow
 void OAuthWidget::killOAuthProcess() {
-	// Killing the process
-	disconnect(oauthAuthenticationFlow, SIGNAL(browserVisible(bool)),
-			   this, SLOT(browserVisible(bool)));
-	disconnect(oauthAuthenticationFlow, SIGNAL(authenticationProcessFinished(bool)),
-			   this, SLOT(endAuthentication(bool)));
-	disconnect(oauthAuthenticationFlow, SIGNAL(errorProcess(QString,bool)),
-			   this, SLOT(errorProcess(QString,bool)));
-	delete oauthAuthenticationFlow;
-	oauthAuthenticationFlow = 0;
+	// Unwiring connection beetween the widget and the process
+
+	// Visual changes
+	disconnect(authenticationFlow, SIGNAL(loginPanelVisible(bool)),
+			   this, SLOT(loginPanelVisible(bool)));
+	disconnect(authenticationFlow, SIGNAL(credentialsOK(bool)),
+			   this, SLOT(rightCredentials(bool)));
+
+	// Process notifications
+	disconnect(this, SIGNAL(authorizeReynTweets(QString,QString)),
+			   authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
+	disconnect(this, SIGNAL(denyReynTweets(QString,QString)),
+			   authenticationFlow, SLOT(denyReynTweets(QString,QString)));
+	disconnect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult)),
+			   this, SLOT(endAuthentication(OAuthProcessResult)));
+	disconnect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
+			   this, SLOT(errorProcess(bool,QString)));
+
+	delete authenticationFlow;
+	authenticationFlow = 0;
 }
 
 // End of authentication
-void OAuthWidget::endAuthentication(bool authOK) {
+void OAuthWidget::endAuthentication(OAuthProcessResult processResult) {
 	killOAuthProcess();
 	qDebug("fin de l'OAuth Authentication Flow");
 
 	// Transmitting the result
-	emit authenticationFinished(authOK);
+	emit authenticationFinished(processResult);
+}
+
+
+/////////////////////
+// Launching Slots //
+/////////////////////
+
+// Internal Slot used to send the authorizeReynTweets signal.
+void OAuthWidget::launchAuthorize() {
+	emit authorizeReynTweets(loginWidget.getLogin(),
+							 loginWidget.getPassword());
+}
+
+// Internal Slot used to send the denyReynTweets signal.
+void OAuthWidget::launchDeny() {
+	emit denyReynTweets(loginWidget.getLogin(),
+						loginWidget.getPassword());
 }

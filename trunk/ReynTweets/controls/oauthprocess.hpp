@@ -25,21 +25,18 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define OAUTHPROCESS_HPP
 
 #include <QObject>
-#include <QWebView>
+#include "oauthprocessresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 
-/// @class OAuthProcess
-/// @brief Class executing the OAuth authentication flow
 class OAuthProcess : public QObject
 {
 	Q_OBJECT
 
 	public:
-		/// @fn OAuthProcess(QWebView & browser, QObject * parent);
+		/// @fn OAuthProcess(QObject * parent);
 		/// @brief Constructor
-		/// @param browser Web view displaying authorization
 		/// @param parent Parent object
-		OAuthProcess(QWebView & browser, QObject * parent);
+		OAuthProcess(QObject * parent);
 
 		/// @fn void startAuthentication();
 		/// @brief Starting the OAuth authentication flow
@@ -52,24 +49,49 @@ class OAuthProcess : public QObject
 
 
 	signals:
-		/// @fn void browserVisible(bool visible);
+		/// @fn void loginPanelVisible(bool visible);
 		/// @brief Signal sent to show or to hide the browser
 		/// @param visible Boolean indicating if the browser has to be visible.
-		void browserVisible(bool visible);
+		void loginPanelVisible(bool visible);
 
-		/// @fn void errorProcess(QString errorMsg, bool fatalError);
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void credentialsOK(bool ok);
+
+		/// @fn void errorProcess(bool fatalError, QString errorMsg);
 		/// @brief Signal emitted when an error occurs during the process
-		/// @param errorMsg Message describing the error
 		/// @param fatalError Boolean indicating if the error is fatal for
 		/// the process.
-		void errorProcess(QString errorMsg, bool fatalError);
+		/// @param errorMsg Message describing the error
+		void errorProcess(bool fatalError, QString errorMsg);
 
-		/// @fn void authenticationProcessFinished(bool authOK);
+		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult);
 		/// @brief Signal sent when the authentication process ends.
-		/// @param authOK Boolean indicating if the process was successful.
-		void authenticationProcessFinished(bool authOK);
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void authenticationProcessFinished(OAuthProcessResult processResult);
+
+	private:
+		/// @fn void requestToken();
+		/// @brief Demanding a Request Token
+		void requestToken();
+
+		/// @fn void authorize();
+		/// @brief Authorize the request tokens
+		void authorize();
+
+		/// @fn void accessToken();
+		/// @brief Demanding an Access Token
+		void accessToken();
+
 
 	public slots:
+		/////////////////////////
+		// Requests to Twitter //
+		/////////////////////////
+
 		/// @fn void requestTokenDemanded(ResultWrapper res);
 		/// @brief Treatments after the request for Request Tokens
 		/// @param res Result of the request
@@ -80,32 +102,37 @@ class OAuthProcess : public QObject
 		/// @param res Result of the request
 		void authorizeDemanded(ResultWrapper res);
 
+		/// @fn void authorizeDemanded(ResultWrapper res);
+		/// @brief Treatments after the POST authorizing request
+		/// @param res Result of the request
+		void postAuthorizeDemanded(ResultWrapper res);
+
 		/// @fn void accessTokenDemanded(ResultWrappers res);
 		/// @brief Treatments after the request for Access Tokens
 		/// @param res Result of the request
 		void accessTokenDemanded(ResultWrapper res);
 
+
+		//////////////////////////
+		// OAuthWidget requests //
+		//////////////////////////
+
+		/// @fn void authorizeReynTweets(QString login, QString password);
+		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void authorizeReynTweets(QString login, QString password);
+
+		/// @fn void denyReynTweets(QString login, QString password);
+		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void denyReynTweets(QString login, QString password);
+
+
 	protected:
 		/// @brief Entity calling Twitter
-		ReynTwitterCalls twitterCalls;
-
-		/// @brief Embedded Web browser to authorize Reyn Tweets
-		QWebView & embeddedBrowser;
-
-	private:
-		/// @fn void requestToken();
-		/// @brief Demanding a Request Token
-		void requestToken();
-
-		/// @fn void authorize();
-		/// @brief Authorizing Reyn Tweets by displaying the Twitter
-		/// authentication page.
-		void authorize();
-
-		/// @fn void accessToken();
-		/// @brief Demanding an Access Token
-		void accessToken();
-
+		ReynTwitterCalls twitter;
 };
 
 #endif // OAUTHPROCESS_HPP

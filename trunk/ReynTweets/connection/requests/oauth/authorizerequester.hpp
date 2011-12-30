@@ -24,7 +24,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef AUTHORIZEREQUESTER_HPP
 #define AUTHORIZEREQUESTER_HPP
 
-#include <QWebView>
 #include "oauthrequester.hpp"
 
 /// @class AuthorizeRequester
@@ -34,20 +33,19 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(QWebView & twitterBrowser,
-		///						   OAuthManager & authManager,
-		///						   QObject * requester = 0);
+		/// @fn AuthorizeRequester(QObject * requester,
+		///						   OAuthManager & authManager);
 		/// @brief Constructor
 		/// @param twitterBrowser QWebView used for the request
 		/// @param authManager Informations for OAuth.
 		/// @param requester QObject which asks for this search.
-		AuthorizeRequester(QWebView & twitterBrowser,
-						   OAuthManager & authManager,
-						   QObject * requester = 0);
+		AuthorizeRequester(QObject * requester,
+						   OAuthManager & authManager);
 
 	protected:
-		/// @brief Browser that will communicate with Twitter
-		QWebView & browser;
+		/////////////////////////////////
+		// Override for this requester //
+		/////////////////////////////////
 
 		/// @fn void buildGETParameters();
 		/// @brief Method building GET Parameters
@@ -61,10 +59,6 @@ class AuthorizeRequester : public OAuthRequester
 		/// errors that may occur while parsing.
 		/// @return Parsed results
 		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
-
-		/// @fn void initCommunicator();
-		/// @brief Initialize the communicator.
-		void initCommunicator();
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

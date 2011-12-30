@@ -82,6 +82,14 @@ class LoginWidget : public QWidget
 		/// @param boxChecked Boolean indicating if passwordCheckBox is checked.
 		void showPassword(bool boxChecked);
 
+		/// @fn void authorize();
+		/// @brief Authorize the application
+		void authorizeReynTweets();
+
+		/// @fn void deny();
+		/// @brief Deny the application
+		void denyReynTweets();
+
 	protected:
 		// GUI Elements
 		/// @brief Main layout of the widget

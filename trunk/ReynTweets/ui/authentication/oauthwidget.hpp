@@ -24,23 +24,19 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHWIDGET_HPP
 #define OAUTHWIDGET_HPP
 
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QWidget>
-#include <QWebView>
+#include <QVBoxLayout>
+#include "loginwidget.hpp"
 #include "../../controls/oauthprocess.hpp"
 
-/// @class OAuthWidget
-/// @brief Widget dealing with OAuth authentication.
 class OAuthWidget : public QWidget
 {
-	Q_OBJECT
-
+		Q_OBJECT
 	public:
 		/// @fn OAuthWidget(QWidget * parent = 0);
 		/// @brief Constructor
 		/// @param parent Parent widget
-		OAuthWidget(QWidget * parent = 0);
+		OAuthWidget(QWidget *parent = 0);
 
 		/// @fn ~OAuthWidget();
 		/// @brief Destructor
@@ -51,58 +47,79 @@ class OAuthWidget : public QWidget
 		void allowReynTweets();
 
 	signals:
-		/// @fn void startAuthentication();
-		/// @brief Signal to send when authentication is started
-		void startAuthentication();
+		/// @fn void authorizeReynTweets(QString login, QString password);
+		/// @brief Signal sent to allow Reyn Tweets to use the Twitter account :).
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void authorizeReynTweets(QString login, QString password);
 
-		/// @fn void authenticationFinished(bool authOK);
+		/// @fn void denyReynTweets(QString login, QString password);
+		/// @brief Signal sent to deny Reyn Tweets to use the Twitter account :(.
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void denyReynTweets(QString login, QString password);
+
+		/// @fn void authenticationFinished(OAuthProcessResult processResult);
 		/// @brief Signal sent when the authentication is finished
-		/// @param authOK Boolean indicating whether the authentication was
-		/// successful. (subject to change)
-		void authenticationFinished(bool authOK);
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void authenticationFinished(OAuthProcessResult processResult);
+
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void credentialsOK(bool ok);
 
 	public slots:
-		/// @fn void goToAuthPage();
-		/// @brief Slot executing to return to the authentication page
-		void goToAuthPage();
+		/// @fn void loginPanelVisible(bool visible);
+		/// @brief Slot executing to show (or to hide) the login panel
+		/// @param visible Boolean indicating if the login panel has to
+		/// be shown or has to be hidden.
+		void loginPanelVisible(bool visible);
 
-		/// @fn void enableAuthPageButton();
-		/// @brief Enable authPageButton when a new Wed page is loaded
-		void enableAuthPageButton();
+		/// @fn void credentialsOK(bool ok);
+		/// @brief Signal sent to show or to hide an error message telling
+		/// the user if the credentials he gave were right.
+		/// @param ok Boolean indicating if the credentials sent to Twitter
+		/// were right.
+		void rightCredentials(bool ok);
 
-		/// @fn void browserVisible(bool visible);
-		/// @brief Slot executing to show (or to hide) authorizePage
-		/// @param visible Boolean indicating authorizePage has to be shown or
-		/// has to be hidden.
-		void browserVisible(bool visible);
-
-		/// @fn void errorProcess(QString errorMsg, bool fatalError);
+		/// @fn void errorProcess(bool fatalError, QString errorMsg);
 		/// @brief Signal emitted when an error occurs during the process
-		/// @param errorMsg Message describing the error
 		/// @param fatalError Boolean indicating if the error is fatal for
 		/// the process.
-		void errorProcess(QString errorMsg, bool fatalError);
+		/// @param errorMsg Message describing the error
+		void errorProcess(bool fatalError, QString errorMsg);
 
 		/// @fn void authorizeDemanded(ResultWrapper res);
-		/// @brief Slot executing at the end of the authentication. It just
-		/// sends the {@link #authenticationFinished(bool)} signal.
-		/// @param authOK Boolean indicating whether the authentication was
-		/// successful. (subject to change)
-		void endAuthentication(bool authOK);
+		/// @brief Slot executed at the end of the authentication.
+		/// @param processResult Value indicating how the OAuth process has ended.
+		void endAuthentication(OAuthProcessResult processResult);
+
+	protected slots:
+		/////////////////////
+		// Launching Slots //
+		/////////////////////
+
+		/// @fn void launchAuthorize();
+		/// @brief Internal Slot used to send the authorizeReynTweets signal.
+		void launchAuthorize();
+
+		/// @fn void launchDeny();
+		/// @brief Internal Slot used to send the denyReynTweets signal.
+		void launchDeny();
 
 	protected:
-		/// @brief Embedded Web browser to authorize Reyn Tweets
-		QWebView authorizePage;
+		/// @brief OAuth Authentication Flow
+		OAuthProcess * authenticationFlow;
 
-		/// @brief Entity calling Twitter
-		OAuthProcess * oauthAuthenticationFlow;
+		/// @brief Login Widget
+		LoginWidget loginWidget;
 
 	private:
 		/// @brief Layout of the widget
 		QVBoxLayout layout;
-
-		/// @brief Button to return to the authentication page
-		QPushButton authPageButton;
 
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow

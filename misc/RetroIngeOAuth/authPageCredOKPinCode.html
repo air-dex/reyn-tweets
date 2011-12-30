@@ -11,8 +11,7 @@
     <link href="https://si0.twimg.com/a/1324510588/phoenix/css/tfw_iemobile.bundle.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
 
-    <meta http-equiv="refresh" content="0;url=http://twitter.com?oauth_token=XW2d3a9Rj9Ne6I4Kh8TnX0F87nqVnqRvhwXTT071ig&oauth_verifier=t35QUQ0Y7NoLLEaSpfJlUrFSI444cEH55bqNofhPag">
-
+    
 
     <style type="text/css">
       html { display:none; }
@@ -29,7 +28,7 @@
     <![endif]-->
 
   </head>
-  <body class="tfw fr logged-in noloki">
+  <body class="oauth write signed-in tfw fr logged-in noloki">
 
     <div id="header" role="banner">
       <div class="bar">
@@ -47,9 +46,9 @@
               <li class="new"><a href="/intent/tweet">New Tweet</a></li>
               <li class="settings"><a href="/settings">Settings</a></li>
               <li class="help"><a href="/help">Help</a></li>
-              <li class="signout"><form action="/intent/session" method="post"><div style="margin:0;padding:0"><input name="_method" type="hidden" value="delete" /><input name="authenticity_token" type="hidden" value="c7386a0758055c26f4f0ef95b2446e36d9f89e6b" /></div>
+              <li class="signout"><form action="/intent/session" method="post"><div style="margin:0;padding:0"><input name="_method" type="hidden" value="delete" /><input name="authenticity_token" type="hidden" value="7941ae9efcf452e5fb534e85175c0d3d18827895" /></div>
                   <input id="referer" name="referer" type="hidden" value="/oauth/authorize" />
-                  <input type="submit" class="textual link" value="DÃ©connexion ">
+                  <input type="submit" class="textual link" value="Déconnexion ">
               </form></li>
             </ul>
 
@@ -62,9 +61,13 @@
 
     <div id="bd" role="main">
       
-<div class="happy notice callback">
-  <h2>Vous allez Ãªtre redirigÃ© vers l'application. Cela peut prendre quelques instants.</h2>
-  <p>Si votre navigateur ne vous redirige pas, veuillez <a href="http://twitter.com?oauth_token=XW2d3a9Rj9Ne6I4Kh8TnX0F87nqVnqRvhwXTT071ig&oauth_verifier=t35QUQ0Y7NoLLEaSpfJlUrFSI444cEH55bqNofhPag" class="maintain-context">cliquez ici pour continuer</a></p>
+<p class="action-information">Vous avez autorisé l'accès à Reyn Tweets !</p>
+
+<div id="oauth_pin">
+  <p>
+    <span id="code-desc">Ensuite, retournez à Reyn Tweets et entrez ce PIN pour terminer la procédure d'autorisation.</span>
+    <kbd aria-labelledby="code-desc"><code>2973089</code></kbd>
+  </p>
 </div>
 
 
@@ -76,15 +79,19 @@
     
     <div class="footer" role="navigation"><div id="ft">
       
-<p class="tip">Vous pouvez retirer l'accÃ¨s Ã  toute application Ã  tout moment depuis l'<a href="https://twitter.com/settings/applications">onglet Applications</a> de vos ParamÃ¨tres.</p>
-<p><small>En autorisant une application, vous Ãªtes toujours soumis aux <a href="https://twitter.com/tos">conditions d'utilisation de Twitter</a>. Par ailleurs, certaines donnÃ©es sur votre activitÃ© seront renvoyÃ©es Ã  Twitter. Pour en savoir plus, veuillez consulter notre <a href="https://twitter.com/privacy">politique de confidentialitÃ©</a>.</small></p>
+  <a href="https://api.twitter.com/home" class="return-link alternate-context">Aller sur Twitter</a>
+
+  <a href="http://code.google.com/p/reyn-tweets/" class="supplemental-link alternate-context">Aller à la page d'accueil de Reyn Tweets</a>
+
+<p class="tip">Vous pouvez retirer l'accès à toute application à tout moment depuis l'<a href="https://twitter.com/settings/applications">onglet Applications</a> de vos Paramètres.</p>
+<p><small>En autorisant une application, vous êtes toujours soumis aux <a href="https://twitter.com/tos">conditions d'utilisation de Twitter</a>. Par ailleurs, certaines données sur votre activité seront renvoyées à Twitter. Pour en savoir plus, veuillez consulter notre <a href="https://twitter.com/privacy">politique de confidentialité</a>.</small></p>
 
     </div></div>
     
 
     <script type="text/javascript" charset="utf-8">
       var twttr = twttr || {};
-      twttr.form_authenticity_token = 'c7386a0758055c26f4f0ef95b2446e36d9f89e6b';
+      twttr.form_authenticity_token = '7941ae9efcf452e5fb534e85175c0d3d18827895';
       if (self == top) {
         document.documentElement.style.display = 'block';
       }
@@ -95,22 +102,11 @@
     <script src="https://si0.twimg.com/a/1324510588/javascripts/i18n/fr.js?1324512114" type="text/javascript"></script>
 
     
-    <script type="text/javascript" charset="utf-8">
-      
-using('imports/jquery', function($) {
-  window.setTimeout(function() {
-    $(document.body).addClass('redirect-timeout');
-  }, 10000);
-});
-
-      
-    </script>
-    
         <!-- BEGIN google analytics -->
 
   <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'1.257610E-302%3C/script1.919091E-307"));
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
 
   <script type="text/javascript">

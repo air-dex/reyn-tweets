@@ -37,18 +37,17 @@ TestWidget::TestWidget(QWidget *parent) :
 	connect(camb078Search, SIGNAL(clicked()), this, SLOT(searchCamb078()));
 	layout.addWidget(camb078Search);
 
-	getRequestTokens = new QPushButton("Je veux des Request tokens !");
-	connect(getRequestTokens, SIGNAL(clicked()), this, SLOT(requestTokensSlot()));
-	layout.addWidget(getRequestTokens);
+	allowReynTweetsButton = new QPushButton("Autorise Reyhn Tweets");
+	connect(allowReynTweetsButton, SIGNAL(clicked()), this, SLOT(allowRTSlot()));
+	layout.addWidget(allowReynTweetsButton);
 
-	authorize = new QPushButton("J'autorise !");
-	authorize->setEnabled(false);
-	connect(authorize, SIGNAL(clicked()), this, SLOT(authorizeSlot()));
-	layout.addWidget(authorize);
+	authorizeWidget = new OAuthWidget;
+	connect(authorizeWidget, SIGNAL(authenticationFinished(OAuthProcessResult)),
+			this, SLOT(endAllowRT(OAuthProcessResult)));
+	layout.addWidget(authorizeWidget);
 
-	getAccessTokens = new QPushButton("Je veux des Access tokens !");
-	connect(getAccessTokens, SIGNAL(clicked()), this, SLOT(accessTokensSlot()));
-	layout.addWidget(getAccessTokens);
+	resLabel = new QLabel("Prompt autorisation");
+	layout.addWidget(resLabel);
 
 	setLayout(&layout);
 }
@@ -57,7 +56,9 @@ TestWidget::~TestWidget()
 {
 	delete xenobladeSearch;
 	delete camb078Search;
-	delete getRequestTokens;
+	delete allowReynTweetsButton;
+	delete authorizeWidget;
+	delete resLabel;
 }
 
 void TestWidget::searchCamb078() {
@@ -85,72 +86,28 @@ void TestWidget::endsearch(ResultWrapper res) {
 	qDebug(typeName);
 }
 
-void TestWidget::requestTokensSlot() {
-	ReynTwitterCalls rtc(*getRequestTokens);
-	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endRequestToken(ResultWrapper)));
-	rtc.requestToken();
+void TestWidget::allowRTSlot() {
+	resLabel->setText("Authentification en cours...");
+	authorizeWidget->allowReynTweets();
 }
 
-void TestWidget::endRequestToken(ResultWrapper res) {
-	qDebug("Fin de Request Token");
+void TestWidget::endAllowRT(OAuthProcessResult res) {
+	QString texte;
 
-	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
-	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endRequestToken(ResultWrapper)));
-	RequestResult resultats = res.accessResult(getRequestTokens);
-	QVariantMap parsedResult = resultats.getParsedResult().toMap();
-	QVariant resu = parsedResult.value("oauth_callback_confirmed");
-	bool urlOK = resu.toBool();
-	char * msg = urlOK ? "C'est bon pour l'URL" : "C'est pas bon pour l'URL";
-	qDebug(msg);
-	authorize->setEnabled(true);
-}
+	switch (res) {
+		case AUTHORIZED:
+			texte = "Reyn Tweets a été autorisé :D";
+			break;
+		case DENIED:
+			texte = "Reyn Tweets a été refusé :'(";
+			break;
+		case ERROR_PROCESS:
+			texte = "Erreur pendant OAuth";
+			break;
+		default:
+			texte = "Fin mystère";
+			break;
+	}
 
-void TestWidget::authorizeSlot() {
-	ReynTwitterCalls rtc(*authorize);
-	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAuthorize(ResultWrapper)));
-	rtc.authorize2();
-}
-
-void TestWidget::endAuthorize(ResultWrapper res) {
-	qDebug("Fin de l'autorisation");
-
-	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
-	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAuthorize(ResultWrapper)));
-	RequestResult resultats = res.accessResult(getRequestTokens);
-	QVariantMap httpInfos = resultats.getHttpInfos();
-
-	int code = httpInfos.value("httpCode").toInt();
-	qDebug("Le code retour :");
-	qDebug(QString::number(code).toAscii().data());
-
-	QString reason = httpInfos.value("httpReason").toString();
-	qDebug("La raison :");
-	qDebug(reason.toAscii().data());
-
-	qDebug("Fin de l'autorisation");
-}
-
-void TestWidget::accessTokensSlot() {
-	ReynTwitterCalls rtc(*getRequestTokens);
-	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAccessToken(ResultWrapper)));
-	rtc.accessToken();
-}
-
-void TestWidget::endAccessToken(ResultWrapper res) {
-	qDebug("Fin de Access Token");
-
-	ReynTwitterCalls * rtc = qobject_cast<ReynTwitterCalls *>(sender());
-	disconnect(rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endAccessToken(ResultWrapper)));
-	RequestResult resultats = res.accessResult(getRequestTokens);
-	QVariantMap parsedResult = resultats.getParsedResult().toMap();
-
-	QVariant resu = parsedResult.value("user_id");
-	QString userID = resu.toString();
-	qDebug("L'user ID :");
-	qDebug(userID.toAscii().data());
-
-	resu = parsedResult.value("screen_name");
-	QString screenName = resu.toString();
-	qDebug("Le screen name :");
-	qDebug(screenName.toAscii().data());
+	resLabel->setText(texte);
 }

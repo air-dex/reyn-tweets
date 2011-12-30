@@ -144,9 +144,6 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
 	bool requestOK = treatReply(response);
 
-	qDebug("Reponse :");
-	qDebug(responseBuffer.data());
-
 	// Ending the request
 	emit requestDone(requestOK);
 }

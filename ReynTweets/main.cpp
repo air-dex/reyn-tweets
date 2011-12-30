@@ -60,7 +60,5 @@ int main(int argc, char *argv[])
 		w.show();
 	#endif
 
-	mainWidget.oaw.allowReynTweets();
-
 	return a.exec();
 }

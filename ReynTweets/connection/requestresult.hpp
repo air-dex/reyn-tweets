@@ -39,22 +39,22 @@ class RequestResult
 
 		/// @fn RequestResult(ErrorType errorType,
 		///				QVariant parsedResults,
-		///				int httpCode,
-		///				QString httpReason,
+		///				int httpReturnCode,
+		///				QString httpReturnReason,
 		///				QVariantMap parsingErrorInfos,
 		///				QString errorMsg);
 		/// @brief Constructor
 		/// @param errorType Code indicating if an error occured.
 		/// @param parsedResults Pure results of the request.
-		/// @param httpCode HTTP code of the request
-		/// @param httpReason HTTP reason
+		/// @param httpReturnCode HTTP code of the request
+		/// @param httpReturnReason HTTP reason
 		/// @param netError Network error of the QNetworkReply
 		/// @param parsingErrorInfos Information about potential parsing errors
 		/// @param errorMsg Error message
 		RequestResult(ErrorType errorType,
 					  QVariant parsedResults,
-					  int httpCode,
-					  QString httpReason,
+					  int httpReturnCode,
+					  QString httpReturnReason,
 					  QVariantMap parsingErrorInfos,
 					  QString errorMsg);
 
@@ -78,15 +78,25 @@ class RequestResult
 		/// @return The real results of the request
 		QVariant getParsedResult();
 
-		/// @fn QVariantMap getHttpInfos();
-		/// @brief Getter on httpInfos
-		/// @return The value of httpInfos
-		QVariantMap getHttpInfos();
+		/// @fn int getHttpCode();
+		/// @brief Getter on httpCode
+		/// @return The HTTP return code
+		int getHttpCode();
+
+		/// @fn QString getHttpReason();
+		/// @brief Getter on httpReason
+		/// @return The value of httpReaso
+		QString getHttpReason();
 
 		/// @fn QVariantMap getParsingErrors();
 		/// @brief Getter on parsingErrors
 		/// @return The value of parsingErrors
 		QVariantMap getParsingErrors();
+
+		/// @fn QVariantMap getParsingErrors();
+		/// @brief Getter on the parsing error message
+		/// @return The parsing error message
+		QString getParsingErrorMessage();
 
 		/// @fn QString getErrorMessage();
 		/// @brief Getter on the error massage
@@ -101,8 +111,11 @@ class RequestResult
 		/// @brief Results of the request parsed by QJson.
 		QVariant parsedResult;
 
-		/// @brief Information about the pure http request.
-		QVariantMap httpInfos;
+		/// @brief HTTP return code.
+		int httpCode;
+
+		/// @brief Reason associated to the HTTP return code.
+		QString httpReason;
 
 		/// @brief Potential errors that can occur while parsing results.
 		QVariantMap parsingErrors;

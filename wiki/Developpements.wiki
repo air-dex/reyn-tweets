@@ -24,29 +24,24 @@ Où en est Reyn Tweets ?
       * Intégration de l'OAuthManager dans les requesters et le TwitterCommunicator
       * Adaptation du TwitterCommunicator
       * Résolution du problème de linkage (issue 11).
-      * Trouver une procédure pour récupérer l'oauth_verifier (et l'oauth_token qu'on a déjà) de la procédure d'autorisation des Request Tokens (authorize()) : "procédure Authorize" trouvée.
-      * Codage de la procédure authorize() :
-        * Traiter de ce qui se passe lorsque l'utilisateur est sur la page (dans l'AuthorizeRequester).
-        * Finir l'OAuthProcess avec le codage du slot de traitement de l'autorisation des Request Tokens (authorizeDemanded).
+      * Mettre en place une procédure de bout en bout pour l'authentification.
       * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter
         * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
       * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter.
         * Structure mise en place (OAuthWidget) et intégration du controlleur chargé de faire le travail (OAuthProcess).
         * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
+      * Intégration de l'OAuthWidget dans le widget de test.
 
 
 == Ce qui reste à faire ==
 
   # _Authentification à Twitter avec OAuth :_
     # Coder
-      # Fin de l'OAuth Process 2
-      # Remonter l'avis de mauvais credentials dans la popup de login
-      # Rendre la popup de login modale
-      # Mettre les xxx2 à la place des originaux
-      # Intégration de l'OAuthWidget dans l'application
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
     # Tester
+      # Plantage de fin de process (issue 36)
+      # Cas avec des erreurs (requêtes ne finissant pas en 200 genre pas de réseau)
   # UI quand on arrive sur l'application :
     # Ecrans d'autorisation à manipuler le compte Twitter.
     # Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
@@ -56,6 +51,8 @@ Où en est Reyn Tweets ?
   # Génération de la documentation Doxygen de Reyn Tweets et publication quelque part (Google Sites ?)
   # Implémentation des fonctionnalités de base.
   # Interface graphique (UI).
+    # Intégration de l'OAuthWidget dans l'application
+    # Rendre la popup de login modale
   # Portage sur Symbian
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées

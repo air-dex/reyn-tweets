@@ -38,7 +38,7 @@ class OAuthManager
 		///			QString clientSecret = ReynTweetsConfiguration::CONSUMER_SECRET,
 		///			QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
 		///			QString signatureAlgorithm = "SHA-1",
-		///			QString version = "1.0);
+		///			QString version = "1.0");
 		/// @brief Constructor
 		/// @param clientKey Consumer key of the application. Reyn Tweets'
 		/// consumer key is its default value.

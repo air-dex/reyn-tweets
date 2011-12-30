@@ -29,6 +29,9 @@ OAuthProcess::OAuthProcess(QObject * parent) :
 	twitter(*this)
 {}
 
+// Destructor
+OAuthProcess::~OAuthProcess() {}
+
 // Resetting the tokens.
 void OAuthProcess::resetTokens() {
 	twitter.resetTokens();

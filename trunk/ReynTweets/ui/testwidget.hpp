@@ -28,7 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QLabel>
-#include "../connection/resultwrapper.hpp"
+#include "authentication/oauthwidget.hpp"
 
 /// @class TestWidget
 /// @brief QWidget for testing functionnalities
@@ -46,9 +46,9 @@ class TestWidget : public QWidget
 		QLabel * lx;
 
 		// OAuth
-		QPushButton * getRequestTokens;
-		QPushButton * authorize;
-		QPushButton * getAccessTokens;
+		QPushButton * allowReynTweetsButton;
+		OAuthWidget * authorizeWidget;
+		QLabel * resLabel;
 
 	public slots:
 		// Search
@@ -57,14 +57,8 @@ class TestWidget : public QWidget
 		void endsearch(ResultWrapper);
 
 		// OAuth
-		void requestTokensSlot();
-		void endRequestToken(ResultWrapper);
-
-		void authorizeSlot();
-		void endAuthorize(ResultWrapper);
-
-		void accessTokensSlot();
-		void endAccessToken(ResultWrapper);
+		void allowRTSlot();
+		void endAllowRT(OAuthProcessResult);
 
 	private:
 };

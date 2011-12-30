@@ -74,30 +74,31 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 		case API_CALL: {
 			// Retrieving network informations
-			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode").toInt();
-			QString httpReason = httpMap.value("httpReason").toString();
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
 
 			// Building error message
 			QString errorMsg = "Network error ";
 			errorMsg.append(QString::number(httpCode))
 					.append(" : ")
 					.append(httpReason)
-					.append('.');
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		case OAUTH_PARSING: {
 			// Building error message
 			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getErrorMessage());
+			errorMsg.append(result.getParsingErrorMessage());
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
 			QString errorMessage = "Unexpected problem :\n";
-			errorMessage.append(result.getErrorMessage());
+			errorMessage.append(result.getErrorMessage()).append(".\n");
 			emit errorProcess(true, errorMessage);
 		}break;
 	}
@@ -121,36 +122,36 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case NO_ERROR:
 			// The user can give its credentials now
-			qDebug("authorize() OK");
 			emit loginPanelVisible(true);
 			break;
 
 		case API_CALL: {
 			// Retrieving network informations
-			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode").toInt();
-			QString httpReason = httpMap.value("httpReason").toString();
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
 
 			// Building error message
 			QString errorMsg = "Network error ";
 			errorMsg.append(QString::number(httpCode))
 					.append(" : ")
 					.append(httpReason)
-					.append('.');
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		case HTML_PARSING: {
 			// Building error message
 			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getErrorMessage());
+			errorMsg.append(result.getParsingErrorMessage());
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
 			QString errorMessage = "Unexpected problem :\n";
-			errorMessage.append(result.getErrorMessage());
+			errorMessage.append(result.getErrorMessage()).append(".\n");
 			emit errorProcess(true, errorMessage);
 		}break;
 	}
@@ -206,16 +207,17 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 
 		case API_CALL: {
 			// Retrieving network informations
-			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode").toInt();
-			QString httpReason = httpMap.value("httpReason").toString();
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
 
 			// Building error message
 			QString errorMsg = "Network error ";
 			errorMsg.append(QString::number(httpCode))
 					.append(" : ")
 					.append(httpReason)
-					.append('.');
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
 			emit errorProcess(false, errorMsg);
 		}break;
 
@@ -223,7 +225,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 		case OAUTH_PARSING: {
 			// Building error message
 			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getErrorMessage());
+			errorMsg.append(result.getParsingErrorMessage());
 			emit errorProcess(false, errorMsg);
 		}break;
 
@@ -259,30 +261,31 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 
 		case API_CALL: {
 			// Retrieving network informations
-			QVariantMap httpMap = result.getHttpInfos();
-			int httpCode = httpMap.value("httpCode").toInt();
-			QString httpReason = httpMap.value("httpReason").toString();
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
 
 			// Building error message
 			QString errorMsg = "Network error ";
 			errorMsg.append(QString::number(httpCode))
 					.append(" : ")
 					.append(httpReason)
-					.append('.');
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		case OAUTH_PARSING: {
 			// Building error message
 			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getErrorMessage());
+			errorMsg.append(result.getParsingErrorMessage());
 			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
 			QString errorMessage = "Unexpected problem :\n";
-			errorMessage.append(result.getErrorMessage());
+			errorMessage.append(result.getErrorMessage()).append(".\n");
 			emit errorProcess(true, errorMessage);
 		}break;
 	}

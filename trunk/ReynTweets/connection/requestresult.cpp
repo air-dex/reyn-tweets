@@ -27,27 +27,26 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 RequestResult::RequestResult() :
 	resultType(INVALID_RESULT),
 	parsedResult(),
-	httpInfos(),
-	parsingErrors()
+	httpCode(),
+	httpReason(),
+	parsingErrors(),
+	errorMessage("Invalid result")
 {}
 
 // Constructor
 RequestResult::RequestResult(ErrorType errorType,
 							 QVariant parsedResults,
-							 int httpCode,
-							 QString httpReason,
+							 int httpReturnCode,
+							 QString httpReturnReason,
 							 QVariantMap parsingErrorInfos,
 							 QString errorMsg) :
 	resultType(errorType),
 	parsedResult(parsedResults),
-	httpInfos(),
+	httpCode(httpReturnCode),
+	httpReason(httpReturnReason),
 	parsingErrors(parsingErrorInfos),
 	errorMessage(errorMsg)
-{
-	// Filling httpInfos
-	httpInfos.insert("httpCode", QVariant(httpCode));
-	httpInfos.insert("httpReason", QVariant(httpReason));
-}
+{}
 
 // Method indicating if the request was successful
 bool RequestResult::isRequestSuccessful() {
@@ -69,9 +68,19 @@ QVariant RequestResult::getParsedResult() {
 	return parsedResult;
 }
 
-// Getter on httpInfos
-QVariantMap RequestResult::getHttpInfos() {
-	return httpInfos;
+// Getter on httpCode
+int RequestResult::getHttpCode() {
+	return httpCode;
+}
+
+// Getter on httpReason
+QString RequestResult::getHttpReason() {
+	return httpReason;
+}
+
+// Getter on the parsing error message
+QString RequestResult::getParsingErrorMessage() {
+	return parsingErrors.value("errorMsg").toString();
 }
 
 // Getter on parsingErrors

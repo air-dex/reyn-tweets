@@ -112,8 +112,8 @@ void OAuthWidget::allowReynTweets() {
 	} else {
 		// Critical error -> Abort the process.
 		QMessageBox::critical(this,
-							  QObject::tr("Erreur dans le processus d'authentification"),
-							  QObject::tr("Erreur au lancement de l'authentification. Authentification terminée."));
+							  QObject::trUtf8("Error during the authentication process"),
+							  QObject::trUtf8("Error while launching the authentication process. Authentication ended."));
 		emit authenticationFinished(ERROR_PROCESS);
 	}
 }
@@ -124,19 +124,19 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 
 	if (fatalError) {
 		// Critical error -> Abort the process.
-		message.append("\nFin de l'authentification.");
+		message.append(QObject::trUtf8("\nFin de l'authentification."));
 
 		QMessageBox::critical(this,
-							  QObject::tr("Erreur dans le processus d'authentification"),
-							  QObject::tr(message.toUtf8().data()));
+							  QObject::trUtf8("Error during the authentication process"),
+							  QObject::trUtf8(message.toUtf8().data()));
 		endAuthentication(ERROR_PROCESS);
 	} else {
 		// The error is not critical. The process can be resumed.
-		message.append("\nVoulez-vous recommencer l'authentification ?");
+		message.append(QObject::trUtf8("\nVoulez-vous recommencer l'authentification ?"));
 
 		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
-																		QObject::tr("Imprévu dans le processus d'authentification"),
-																		QObject::tr(message.toUtf8().data()),
+																		QObject::trUtf8("Hitch in the authentication process"),
+																		QObject::trUtf8(message.toUtf8().data()),
 																		QMessageBox::Yes | QMessageBox::No,
 																		QMessageBox::Yes);
 		if (QMessageBox::Yes == userResponse) {
@@ -147,8 +147,8 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 		} else {
 			// Abort the process
 			QMessageBox::information(this,
-									 QObject::tr("Fin du processus d'authentification"),
-									 QObject::tr("Authentification terminée"));
+									 QObject::trUtf8("Fin du processus d'authentification"),
+									 QObject::trUtf8("Authentification terminée"));
 			endAuthentication(ERROR_PROCESS);
 		}
 	}

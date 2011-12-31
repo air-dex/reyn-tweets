@@ -124,7 +124,7 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 
 	if (fatalError) {
 		// Critical error -> Abort the process.
-		message.append(QObject::trUtf8("\nFin de l'authentification."));
+		message.append(QObject::trUtf8("\nEnd of the authentication process."));
 
 		QMessageBox::critical(this,
 							  QObject::trUtf8("Error during the authentication process"),
@@ -132,7 +132,7 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 		endAuthentication(ERROR_PROCESS);
 	} else {
 		// The error is not critical. The process can be resumed.
-		message.append(QObject::trUtf8("\nVoulez-vous recommencer l'authentification ?"));
+		message.append(QObject::trUtf8("\nWould you like to resume the authentication process ?"));
 
 		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
 																		QObject::trUtf8("Hitch in the authentication process"),
@@ -147,8 +147,8 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 		} else {
 			// Abort the process
 			QMessageBox::information(this,
-									 QObject::trUtf8("Fin du processus d'authentification"),
-									 QObject::trUtf8("Authentification terminée"));
+									 QObject::trUtf8("End of the authentication process"),
+									 QObject::trUtf8("Authentication ended"));
 			endAuthentication(ERROR_PROCESS);
 		}
 	}

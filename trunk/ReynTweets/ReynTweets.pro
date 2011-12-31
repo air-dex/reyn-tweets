@@ -34,7 +34,7 @@ QT       += core gui network webkit #svg
 
 TARGET = ReynTweets
 TEMPLATE = app
-#TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
+TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 SOURCES += \
 	connection/utils.cpp \

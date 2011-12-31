@@ -26,22 +26,22 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 LoginWidget::LoginWidget(QWidget *parent) :
 	QWidget(parent),
 	widgetLayout(),
-	credentialsErrorMessage(QObject::tr("<strong style=\"color:red\">Username or password invalid. Try again.</strong>")),
+	credentialsErrorMessage(QObject::trUtf8("<strong style=\"color:red\">Username or password invalid. Try again.</strong>")),
 	formLayout(),
 	loginLineEdit(),
 	passwordLineEdit(),
-	passwordCheckBox(QObject::tr("Show password")),
+	passwordCheckBox(QObject::trUtf8("Show password")),
 	buttonsLayout(),
-	authorizeButton(QObject::tr("Authorize")),
-	denyButton(QObject::tr("No thanks"))
+	authorizeButton(QObject::trUtf8("Authorize")),
+	denyButton(QObject::trUtf8("No thanks"))
 {
 	// Building the UI
 	credentialsErrorMessage.setVisible(false);
 
 	// Password form
 	passwordLineEdit.setEchoMode(QLineEdit::Password);
-	formLayout.addRow(QObject::tr("Username or email :"), &loginLineEdit);
-	formLayout.addRow(QObject::tr("Password :"), &passwordLineEdit);
+	formLayout.addRow(QObject::trUtf8("Username or email:"), &loginLineEdit);
+	formLayout.addRow(QObject::trUtf8("Password:"), &passwordLineEdit);
 	passwordCheckBox.setTristate(false);
 	formLayout.addRow(&passwordCheckBox);
 

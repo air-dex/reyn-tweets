@@ -96,6 +96,10 @@ HEADERS  += \
 	ui/reyntweetswidget.hpp \
 	mainwindow.hpp
 
+OTHER_FILES = \
+	reyntweets_en.ts \
+	reyntweets_fr.ts
+
 
 #-------------------------------#
 # Symbian special configuration #

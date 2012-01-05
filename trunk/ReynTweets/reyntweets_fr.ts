@@ -6,7 +6,7 @@
     <message>
         <location filename="ui/authentication/loginwidget.cpp" line="29"/>
         <source>&lt;strong style=&quot;color:red&quot;&gt;Username or password invalid. Try again.&lt;/strong&gt;</source>
-        <translation>&lt;strong style=\&quot;color:red\&quot;&gt;Nom d&apos;utilisateur ou mot de passe invalide. Veuillez réessayer.&lt;/strong&gt;</translation>
+        <translation>&lt;strong style=&quot;color:red&quot;&gt;Nom d&apos;utilisateur ou mot de passe invalide. Veuillez réessayer.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="ui/authentication/loginwidget.cpp" line="33"/>

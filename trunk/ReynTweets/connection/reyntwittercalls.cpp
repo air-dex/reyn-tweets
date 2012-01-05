@@ -41,7 +41,9 @@ ReynTwitterCalls::ReynTwitterCalls(QObject & requester) :
 {}
 
 // Destructor
-ReynTwitterCalls::~ReynTwitterCalls() {}
+ReynTwitterCalls::~ReynTwitterCalls() {
+	qDebug("Reyn is deadly shot");
+}
 
 
 /////////////////////

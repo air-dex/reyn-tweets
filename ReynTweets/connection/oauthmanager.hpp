@@ -55,6 +55,10 @@ class OAuthManager
 					 QString signatureAlgorithm = "HMAC-SHA1",
 					 QString version = "1.0");
 
+		/// @fn virtual ~OAuthManager();
+		/// @brief Destructor
+		virtual ~OAuthManager();
+
 
 		/////////////////////
 		// Getters on data //

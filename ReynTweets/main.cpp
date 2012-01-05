@@ -34,17 +34,17 @@ int main(int argc, char *argv[])
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 
 	// Program in French
-//*
+/*
 	QTranslator translator;
 	translator.load("reyntweets_fr");
 	a.installTranslator(&translator);
 //*/
 
 	// Defalult idiom : local idiom
-/*
+//*
 	QString locale = QLocale::system().name().section('_', 0, 0);
 	QTranslator translator;
-	translator.load(QString("zeroclassgenerator_") + locale);
+	translator.load(QString("reyntweets_") + locale);
 	a.installTranslator(&translator);
 //*/
 

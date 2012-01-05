@@ -30,7 +30,7 @@
 # Common configuration #
 #----------------------#
 
-QT       += core gui network webkit #svg
+QT       += core gui network webkit
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -98,7 +98,8 @@ HEADERS  += \
 
 OTHER_FILES = \
 	reyntweets_en.ts \
-	reyntweets_fr.ts
+	reyntweets_fr.ts \
+    Doxyfile.txt
 
 
 #-------------------------------#

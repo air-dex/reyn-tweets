@@ -27,10 +27,15 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 OAuthProcess::OAuthProcess(QObject * parent) :
 	QObject(parent),
 	twitter(*this)
-{}
+{
+	qDebug("Born OAuthProcess");
+}
 
 // Destructor
-OAuthProcess::~OAuthProcess() {}
+OAuthProcess::~OAuthProcess() {
+	qDebug("Tombstone OAuthProcess");
+//	twitter.deleteLater();
+}
 
 // Resetting the tokens.
 void OAuthProcess::resetTokens() {

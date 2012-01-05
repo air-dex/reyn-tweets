@@ -110,4 +110,5 @@ void TestWidget::endAllowRT(OAuthProcessResult res) {
 	}
 
 	resLabel->setText(texte);
+	qDebug("Ok. So what about Jermaine ? Fuck Jermaine !");
 }

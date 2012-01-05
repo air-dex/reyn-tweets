@@ -63,6 +63,8 @@ OAuthWidget::~OAuthWidget() {
 	// Error message for credentials
 	disconnect(this, SIGNAL(credentialsOK(bool)),
 			   &loginWidget, SLOT(showCredentialsErrorMessage(bool)));
+
+	qDebug("Tombstone OAuthWidget");
 }
 
 
@@ -174,6 +176,7 @@ void OAuthWidget::killOAuthProcess() {
 	disconnect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 			   this, SLOT(errorProcess(bool,QString)));
 
+//	authenticationFlow->deleteLater();
 	delete authenticationFlow;
 	authenticationFlow = 0;
 }

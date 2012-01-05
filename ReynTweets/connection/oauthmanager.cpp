@@ -45,6 +45,11 @@ OAuthManager::OAuthManager(QString clientKey,
 	denyTag("")
 {}
 
+// Destructor
+OAuthManager::~OAuthManager() {
+	qDebug("No more tokens. GIZMO CACA !");
+}
+
 
 /////////////////////
 // Getters on data //

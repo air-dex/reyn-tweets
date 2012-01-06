@@ -25,11 +25,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "../parsers/jsonparser.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(QObject * requester,
-								   RequestType type,
+GenericRequester::GenericRequester(RequestType type,
 								   QString url,
 								   ErrorType parseError) :
-	QObject(requester),
+	QObject(),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
 	requestType(type),
@@ -83,8 +82,7 @@ void GenericRequester::buildPOSTParameters() {}
 
 // Initialize the communicator.
 void GenericRequester::initCommunicator() {
-	communicator = new TwitterCommunicator(this,
-										   requestURL,
+	communicator = new TwitterCommunicator(requestURL,
 										   requestType,
 										   getParameters,
 										   postParameters,

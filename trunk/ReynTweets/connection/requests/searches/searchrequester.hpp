@@ -33,12 +33,11 @@ class SearchRequester : public GenericRequester
 	Q_OBJECT
 
 	public:
-		/// @fn SearchRequester(QObject * requester, QString q = "");
+		/// @fn SearchRequester(QString q = "");
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search
 		/// @param q The query
 		/// @see https://dev.twitter.com/docs/api/1/get/search
-		SearchRequester(QObject * requester, QString q = "");
+		SearchRequester(QString q = "");
 
 	protected:
 		/// @brief Query made by the user

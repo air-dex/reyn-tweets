@@ -125,6 +125,8 @@ class OAuthWidget : public QWidget
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow
 		void killOAuthProcess();
+
+		QLabel test;
 };
 
 #endif // OAUTHWIDGET_HPP

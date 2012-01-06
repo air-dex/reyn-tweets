@@ -32,8 +32,7 @@ class AuthenticationRequester : public GenericRequester
 {
 		Q_OBJECT
 	public:
-		/// @fn AuthenticationRequester(QObject * requester,
-		///								RequestType type,
+		/// @fn AuthenticationRequester(RequestType type,
 		///								QString url,
 		///								OAuthManager & authManager,
 		///								ErrorType parseError = QJSON_PARSING,
@@ -41,7 +40,6 @@ class AuthenticationRequester : public GenericRequester
 		///								bool callbackURLneeded = false,
 		///								bool callbackURLneeded = false);
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
 		/// @param authRequired Boolean indicating if an authentication to the
@@ -57,8 +55,7 @@ class AuthenticationRequester : public GenericRequester
 		/// parameter is required for authentication.
 		/// @param verifierNeeded Boolean indicating if the oauth_verifier
 		/// parameter is required for authentication.
-		AuthenticationRequester(QObject * requester,
-								RequestType type,
+		AuthenticationRequester(RequestType type,
 								QString url,
 								OAuthManager & authManager,
 								ErrorType parseError = QJSON_PARSING,

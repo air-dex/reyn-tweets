@@ -33,8 +33,7 @@ class OAuthRequester : public AuthenticationRequester
 	Q_OBJECT
 
 	public:
-		/// @fn OAuthRequester(QObject * requester,
-		///					   RequestType type,
+		/// @fn OAuthRequester(RequestType type,
 		///					   QString url,
 		///					   OAuthManager &authManager,
 		///					   ErrorType parseErrorType,
@@ -42,7 +41,6 @@ class OAuthRequester : public AuthenticationRequester
 		///					   bool callbackURLneeded = false,
 		///					   bool verifierNeeded = false);
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search.
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL of the request
 		/// @param authManager Information for OAuth. The requester takes its
@@ -54,8 +52,7 @@ class OAuthRequester : public AuthenticationRequester
 		/// parameter is required for authentication.
 		/// @param verifierNeeded Boolean indicating if the oauth_verifier
 		/// parameter is required for authentication.
-		OAuthRequester(QObject * requester,
-					   RequestType type,
+		OAuthRequester(RequestType type,
 					   QString url,
 					   OAuthManager &authManager,
 					   ErrorType parseErrorType,

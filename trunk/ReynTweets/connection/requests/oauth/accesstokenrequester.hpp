@@ -33,13 +33,10 @@ class AccessTokenRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn RequestTokenRequester(QObject * requester,
-		///							  OAuthManager & authManager);
+		/// @fn RequestTokenRequester(OAuthManager & authManager);
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search.
 		/// @param authManager Information for OAuth.
-		AccessTokenRequester(QObject * requester,
-							 OAuthManager & authManager);
+		AccessTokenRequester(OAuthManager & authManager);
 
 	protected:
 		/// @fn void buildPOSTParameters();

@@ -24,16 +24,14 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "oauthrequester.hpp"
 
 // Constructor
-OAuthRequester::OAuthRequester(QObject * requester,
-							   RequestType type,
+OAuthRequester::OAuthRequester(RequestType type,
 							   QString url,
 							   OAuthManager &authManager,
 							   ErrorType parseErrorType,
 							   bool tokenNeeded,
 							   bool callbackURLneeded,
 							   bool verifierNeeded) :
-	AuthenticationRequester(requester,
-							type,
+	AuthenticationRequester(type,
 							url,
 							authManager,
 							parseErrorType,

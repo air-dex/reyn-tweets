@@ -33,14 +33,10 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(QObject * requester,
-		///						   OAuthManager & authManager);
+		/// @fn AuthorizeRequester(OAuthManager & authManager);
 		/// @brief Constructor
-		/// @param twitterBrowser QWebView used for the request
 		/// @param authManager Informations for OAuth.
-		/// @param requester QObject which asks for this search.
-		AuthorizeRequester(QObject * requester,
-						   OAuthManager & authManager);
+		AuthorizeRequester(OAuthManager & authManager);
 
 	protected:
 		/////////////////////////////////

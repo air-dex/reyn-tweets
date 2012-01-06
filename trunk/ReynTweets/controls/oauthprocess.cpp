@@ -24,9 +24,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "oauthprocess.hpp"
 
 // Constructor
-OAuthProcess::OAuthProcess(QObject * parent) :
-	QObject(parent),
-	twitter(*this)
+OAuthProcess::OAuthProcess() :
+	QObject(),
+	twitter(this)
 {
 	qDebug("Born OAuthProcess");
 }
@@ -116,7 +116,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 void OAuthProcess::authorize() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(authorizeDemanded(ResultWrapper)));
-	twitter.authorize2();
+	twitter.authorize();
 }
 
 // Treatments after the request for authorizing Request Tokens

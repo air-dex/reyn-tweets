@@ -29,20 +29,21 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 //////////////////////////
 
 // Static components
-QMap<QUuid, GenericRequester *> ReynTwitterCalls::requesterManager = QMap<QUuid, GenericRequester *>();
+RequesterManager ReynTwitterCalls::requesterManager = RequesterManager();
 
 /// @brief OAuth information
 OAuthManager ReynTwitterCalls::oauthManager = OAuthManager();
 
 // Protected constructor
-ReynTwitterCalls::ReynTwitterCalls(QObject & requester) :
-	QObject(&requester),
+ReynTwitterCalls::ReynTwitterCalls(QObject * requester) :
+	QObject(),
 	requestDemander(requester)
 {}
 
 // Destructor
 ReynTwitterCalls::~ReynTwitterCalls() {
 	qDebug("Reyn is deadly shot");
+	requestDemander = 0;
 }
 
 
@@ -55,7 +56,7 @@ void ReynTwitterCalls::addRequester(GenericRequester * requester) {
 	if (requester != 0) {
 		connect(requester, SIGNAL(requestDone()),
 				this, SLOT(endRequest()));
-		requesterManager.insert(requester->getUuid(), requester);
+		requesterManager.addRequest(requestDemander, requester);
 	}
 }
 
@@ -64,7 +65,7 @@ void ReynTwitterCalls::removeRequester(GenericRequester * requester) {
 	if (requester != 0) {
 		disconnect(requester, SIGNAL(requestDone()),
 				   this, SLOT(endRequest()));
-		requesterManager.remove(requester->getUuid());
+		requesterManager.removeRequest(requester->getUuid());
 	}
 }
 
@@ -78,9 +79,13 @@ void ReynTwitterCalls::endRequest() {
 
 // Method that builds the wrapper of a result
 ResultWrapper ReynTwitterCalls::buildResultSender(GenericRequester * endedRequest) {
-	return (endedRequest == 0) ? ResultWrapper()
-							   : ResultWrapper(endedRequest->parent(),
-											   endedRequest->getRequestResult());
+	if (endedRequest) {
+		RequestInfos & requestInfos = requesterManager.getRequestInfos(endedRequest->getUuid());
+		return ResultWrapper(requestInfos.getAsker(),
+							 requestInfos.getRequester()->getRequestResult());
+	} else {
+		return ResultWrapper();
+	}
 }
 
 // Inline method for executing requests
@@ -98,7 +103,7 @@ void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 
 // Method that launch searches
 void ReynTwitterCalls::search(QString q) {
-	SearchRequester * requester = new SearchRequester(&requestDemander, q);
+	SearchRequester * requester = new SearchRequester(q);
 	executeRequest(requester);
 }
 
@@ -108,22 +113,19 @@ void ReynTwitterCalls::search(QString q) {
 
 // Method for getting a request token
 void ReynTwitterCalls::requestToken() {
-	RequestTokenRequester * requester = new RequestTokenRequester(&requestDemander,
-																  oauthManager);
+	RequestTokenRequester * requester = new RequestTokenRequester(oauthManager);
 	executeRequest(requester);
 }
 
 // Authorizing request Tokens
-void ReynTwitterCalls::authorize2() {
-	AuthorizeRequester * requester = new AuthorizeRequester(&requestDemander,
-															oauthManager);
+void ReynTwitterCalls::authorize() {
+	AuthorizeRequester * requester = new AuthorizeRequester(oauthManager);
 	executeRequest(requester);
 }
 
 // POST authorize() requests to allow or to deny the application.
 void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny) {
-	PostAuthorizeRequester * requester = new PostAuthorizeRequester(&requestDemander,
-																	oauthManager,
+	PostAuthorizeRequester * requester = new PostAuthorizeRequester(oauthManager,
 																	login,
 																	password,
 																	deny);
@@ -132,8 +134,7 @@ void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny)
 
 // Getting the access tokens
 void ReynTwitterCalls::accessToken() {
-	AccessTokenRequester * requester = new AccessTokenRequester(&requestDemander,
-																oauthManager);
+	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager);
 	executeRequest(requester);
 }
 

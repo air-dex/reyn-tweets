@@ -24,10 +24,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "requesttokenrequester.hpp"
 #include "../../parsers/oauthparser.hpp"
 
-RequestTokenRequester::RequestTokenRequester(QObject *requester,
-											 OAuthManager & authManager) :
-	OAuthRequester(requester,
-				   POST,
+RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
+	OAuthRequester(POST,
 				   TwitterURL::REQUEST_TOKEN_URL,
 				   authManager,
 				   OAUTH_PARSING,

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.0, 2012-01-05T18:01:27. -->
+<!-- Written by Qt Creator 2.4.0, 2012-01-06T23:44:46. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -78,7 +78,7 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.2">
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">Doxyfile.txt</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">C:/Program Files/doxygen/bin/doxygen.exe</value>
-      <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">true</value>
+      <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">false</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{sourceDir}</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Étape personnalisée</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
@@ -101,7 +101,7 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">/S /Q *</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">del</value>
-      <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">true</value>
+      <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">false</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{sourceDir}/../doc</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Étape personnalisée</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>

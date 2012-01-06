@@ -24,15 +24,14 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "authenticationrequester.hpp"
 
 // Constructor
-AuthenticationRequester::AuthenticationRequester(QObject * requester,
-												 RequestType type,
+AuthenticationRequester::AuthenticationRequester(RequestType type,
 												 QString url,
-												 OAuthManager & authManager,
+												 OAuthManager &authManager,
 												 ErrorType parseError,
 												 bool tokenNeeded,
 												 bool callbackURLneeded,
 												 bool verifierNeeded) :
-	GenericRequester(requester, type, url, parseError),
+	GenericRequester(type, url, parseError),
 	oauthManager(authManager),
 	oauthTokenNeeded(tokenNeeded),
 	oauthCallbackUrlNeeded(callbackURLneeded),
@@ -42,8 +41,7 @@ AuthenticationRequester::AuthenticationRequester(QObject * requester,
 
 // Initialize the communicator
 void AuthenticationRequester::initCommunicator() {
-	communicator = new TwitterCommunicator(this,
-										   requestURL,
+	communicator = new TwitterCommunicator(requestURL,
 										   requestType,
 										   getParameters,
 										   postParameters,

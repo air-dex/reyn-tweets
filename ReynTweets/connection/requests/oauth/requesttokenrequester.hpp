@@ -33,13 +33,10 @@ class RequestTokenRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn RequestTokenRequester(QObject * requester,
-		///							  OAuthManager & authManager);
+		/// @fn RequestTokenRequester(OAuthManager & authManager);
 		/// @brief Constructor
-		/// @param requester QObject which asks for this search.
 		/// @param authManager Information for OAuth.
-		RequestTokenRequester(QObject * requester,
-							  OAuthManager & authManager);
+		RequestTokenRequester(OAuthManager & authManager);
 
 	protected:
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);

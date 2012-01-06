@@ -26,13 +26,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "../../parsers/oauthparser.hpp"
 
 // Constructor
-PostAuthorizeRequester::PostAuthorizeRequester(QObject * requester,
-											   OAuthManager & authManager,
+PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 											   QString pseudo,
 											   QString pwd,
 											   bool deny) :
-	OAuthRequester(requester,
-				   POST,
+	OAuthRequester(POST,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
 				   HTML_PARSING),

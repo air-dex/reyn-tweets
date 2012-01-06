@@ -30,9 +30,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Coplien //
 /////////////
 
+QNetworkAccessManager networkManager = QNetworkAccessManager();
+
 // Constructor
-TwitterCommunicator::TwitterCommunicator(QObject * requester,
-										 QString url,
+TwitterCommunicator::TwitterCommunicator(QString url,
 										 RequestType type,
 										 ArgsMap getArgs,
 										 ArgsMap postArgs,
@@ -41,8 +42,8 @@ TwitterCommunicator::TwitterCommunicator(QObject * requester,
 										 bool tokenNeeded,
 										 bool callbackURLNeeded,
 										 bool verifierNeeded) :
-	QObject(requester),
-	networkManager(),
+	QObject(),
+//	networkManager(),
 	serviceURL(url),
 	requestType(type),
 	getParameters(getArgs),
@@ -66,6 +67,9 @@ TwitterCommunicator::TwitterCommunicator(QObject * requester,
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
+	qDebug("Delete communicator avec URL : ");
+	qDebug(serviceURL.toUtf8().data());
+
 	// Deleting the request
 	if (request != 0) {
 		delete request;

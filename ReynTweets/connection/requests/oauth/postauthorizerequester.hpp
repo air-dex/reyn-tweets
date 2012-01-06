@@ -36,20 +36,17 @@ class PostAuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn PostAuthorizeRequester(QObject * requester,
-		///							   OAuthManager & authManager,
+		/// @fn PostAuthorizeRequester(OAuthManager & authManager,
 		///							   QString pseudo,
 		///							   QString pwd,
 		///							   bool deny);
 		/// @brief Constructor
-		/// @param requester QObject asking for the request
 		/// @param authManager OAuth informations
 		/// @param pseudo User login, i.e. sername or email
 		/// @param pwd User password
 		/// @param deny Boolean indicating if the application must be denied
 		/// (true) or authorized (false).
-		PostAuthorizeRequester(QObject * requester,
-							   OAuthManager & authManager,
+		PostAuthorizeRequester(OAuthManager & authManager,
 							   QString pseudo,
 							   QString pwd,
 							   bool deny);

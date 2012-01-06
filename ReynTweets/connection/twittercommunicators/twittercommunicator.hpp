@@ -35,6 +35,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMap>
 #include "../oauthmanager.hpp"
 
+/// @brief Network manager
+extern QNetworkAccessManager networkManager;
+
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
 typedef QMap<QString, QString> ArgsMap;
@@ -49,8 +52,7 @@ class TwitterCommunicator : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn TwitterCommunicator(QObject * requester,
-		///							QString url,
+		/// @fn TwitterCommunicator(QString url,
 		///							RequestType type,
 		///							ArgsMap getArgs,
 		///							ArgsMap postArgs,
@@ -68,23 +70,20 @@ class TwitterCommunicator : public QObject
 		/// for cases where an authentication is not required
 		/// @param getArgs GET arguments
 		/// @param postArgs POST arguments
-		/// @param requester Requester using the communicator. It corresponds to
-		/// the parent QObject.
 		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
 		/// is required for authentication.
 		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
 		/// parameter is required for authentication.
 		/// @param verifierNeeded Boolean indicating if the oauth_verifier
 		/// parameter is required for authentication.
-		TwitterCommunicator(QObject * requester,
-							QString url,
+		TwitterCommunicator(QString url,
 							RequestType type,
 							ArgsMap getArgs,
 							ArgsMap postArgs,
 							bool authRequired,
 							OAuthManager * authManager = 0,
-							bool tokenNeeded = true,
-							bool callbackURLNeeded = false,
+							bool tokenNeeded = 0,
+							bool callbackURLNeeded = true,
 							bool verifierNeeded = false);
 
 		/// @fn ~TwitterCommunicator();
@@ -145,10 +144,10 @@ class TwitterCommunicator : public QObject
 
 	protected:
 		// Entities for request
-
+/*
 		/// @brief Network manager
 		QNetworkAccessManager networkManager;
-
+//*/
 		/// @brief URL of the service
 		QString serviceURL;
 

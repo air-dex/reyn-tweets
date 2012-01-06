@@ -55,6 +55,8 @@ SOURCES += \
 	connection/requests/oauth/authorizerequester.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
+	connection/requestinfos.cpp \
+	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
 	controls/oauthprocess.cpp \
 	ui/authentication/loginwidget.cpp \
@@ -87,6 +89,8 @@ HEADERS  += \
 	connection/requests/oauth/postauthorizerequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/requests.hpp \
+	connection/requestinfos.hpp \
+	connection/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
 	controls/oauthprocessresult.hpp \
 	controls/oauthprocess.hpp \
@@ -99,7 +103,7 @@ HEADERS  += \
 OTHER_FILES = \
 	reyntweets_en.ts \
 	reyntweets_fr.ts \
-    Doxyfile.txt
+	Doxyfile.txt
 
 
 #-------------------------------#

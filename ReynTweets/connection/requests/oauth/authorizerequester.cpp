@@ -27,10 +27,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "../../utils.hpp"
 
 // Constructor
-AuthorizeRequester::AuthorizeRequester(QObject *requester,
-										 OAuthManager & authManager) :
-	OAuthRequester(requester,
-				   GET,
+AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
+	OAuthRequester(GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
 				   HTML_PARSING)

@@ -62,13 +62,13 @@ TestWidget::~TestWidget()
 }
 
 void TestWidget::searchCamb078() {
-	ReynTwitterCalls rtc(*this);
+	ReynTwitterCalls rtc(this);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
 	rtc.search("@Camb078");
 }
 
 void TestWidget::searchXenoblade() {
-	ReynTwitterCalls rtc(*this);
+	ReynTwitterCalls rtc(this);
 	connect(&rtc, SIGNAL(sendResult(ResultWrapper)), this, SLOT(endsearch(ResultWrapper)));
 	rtc.search("Xenoblade");
 	qDebug("fin du GUI");

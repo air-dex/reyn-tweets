@@ -29,9 +29,13 @@ OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
 	authenticationFlow(0),
 	loginWidget(),
-	layout()
+	layout(),
+	test("Ici se trouve l'OAuthWidget.")
 {
 	loginWidget.setVisible(false);
+
+	layout.addWidget(&test);
+	setLayout(&layout);
 
 	// Wiring
 
@@ -89,7 +93,7 @@ void OAuthWidget::rightCredentials(bool ok) {
 
 // Allowing Reyn Tweets to use your Twitter account
 void OAuthWidget::allowReynTweets() {
-	authenticationFlow = new OAuthProcess(this);
+	authenticationFlow = new OAuthProcess();
 
 	if (authenticationFlow) {
 		// Wiring connection beetween the widget and the process

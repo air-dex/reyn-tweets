@@ -31,6 +31,8 @@ Où en est Reyn Tweets ?
         * Structure mise en place (OAuthWidget) et intégration du controlleur chargé de faire le travail (OAuthProcess).
         * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
       * Intégration de l'OAuthWidget dans le widget de test.
+    * Tester
+      * Plantage de fin de process (issue 36)
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
     * Automatisation de la génération de documentation.
@@ -43,7 +45,6 @@ Où en est Reyn Tweets ?
       # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
       # Stockage des tokens (en clair c'est mal !) : se fera après le debug.
     # Tester
-      # Plantage de fin de process (issue 36)
       # Cas avec des erreurs (requêtes ne finissant pas en 200 genre pas de réseau)
   # UI quand on arrive sur l'application :
     # Ecrans d'autorisation à manipuler le compte Twitter.

@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDateTime>
 #include <QUrl>
 #include "oauthmanager.hpp"
-#include "utils.hpp"
+#include "../tools/utils.hpp"
 
 // Constructor
 OAuthManager::OAuthManager(QByteArray clientKey,

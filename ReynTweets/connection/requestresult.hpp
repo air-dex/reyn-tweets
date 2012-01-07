@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
@@ -38,17 +38,16 @@ class RequestResult
 		RequestResult();
 
 		/// @fn RequestResult(ErrorType errorType,
-		///				QVariant parsedResults,
-		///				int httpReturnCode,
-		///				QString httpReturnReason,
-		///				QVariantMap parsingErrorInfos,
-		///				QString errorMsg);
+		///					  QVariant parsedResults,
+		///					  int httpReturnCode,
+		///					  QString httpReturnReason,
+		///					  QVariantMap parsingErrorInfos,
+		///					  QString errorMsg);
 		/// @brief Constructor
 		/// @param errorType Code indicating if an error occured.
 		/// @param parsedResults Pure results of the request.
 		/// @param httpReturnCode HTTP code of the request
 		/// @param httpReturnReason HTTP reason
-		/// @param netError Network error of the QNetworkReply
 		/// @param parsingErrorInfos Information about potential parsing errors
 		/// @param errorMsg Error message
 		RequestResult(ErrorType errorType,
@@ -93,7 +92,7 @@ class RequestResult
 		/// @return The value of parsingErrors
 		QVariantMap getParsingErrors();
 
-		/// @fn QVariantMap getParsingErrors();
+		/// @fn QVariantMap getParsingErrorMessage();
 		/// @brief Getter on the parsing error message
 		/// @return The parsing error message
 		QString getParsingErrorMessage();

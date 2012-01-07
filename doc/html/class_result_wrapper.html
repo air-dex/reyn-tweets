@@ -89,6 +89,9 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>ResultWrapper Class Reference</h1><!-- doxytag: class="ResultWrapper" -->
+<p>Class containg result of requests (field "result") and the QObject which asks for it (field "asker"). Only the sender of the request is allowed to have access to the result. It has to give its memory address in order to prove that it is the real sender of the request.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="resultwrapper_8hpp_source.html">resultwrapper.hpp</a>&gt;</code></p>
 
 <p><a href="class_result_wrapper-members.html">List of all members.</a></p>
@@ -97,7 +100,9 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_request_result.html">RequestResult</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2">accessResult</a> (QObject *demanderAdress)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method to access to the result.  <a href="#af2da3459b5c11224475b2e4ac62247e2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_result_wrapper.html#a03070c620da4dd8dd7fe3a9af64b6ca2">ResultWrapper</a> (QObject *requestSender, <a class="el" href="class_request_result.html">RequestResult</a> requestResult)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a03070c620da4dd8dd7fe3a9af64b6ca2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_result_wrapper.html#a7b6fffd28ced8879951f8f09945b5fce">ResultWrapper</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor which builds an invalid wrapper.  <a href="#a7b6fffd28ced8879951f8f09945b5fce"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_result_wrapper.html#a004934e32beb9720c0d483bae626ceba">asker</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sender of the request.  <a href="#a004934e32beb9720c0d483bae626ceba"></a><br/></td></tr>
@@ -105,6 +110,7 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Result of the request.  <a href="#a353ec4ab30e5567341c95db79862dd4d"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Class containg result of requests (field "result") and the QObject which asks for it (field "asker"). Only the sender of the request is allowed to have access to the result. It has to give its memory address in order to prove that it is the real sender of the request. </p>
 
 <p>Definition at line <a class="el" href="resultwrapper_8hpp_source.html#l00035">35</a> of file <a class="el" href="resultwrapper_8hpp_source.html">resultwrapper.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -123,7 +129,9 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="resultwrapper_8cpp_source.html#l00032">32</a> of file <a class="el" href="resultwrapper_8cpp_source.html">resultwrapper.cpp</a>.</p>
+<p>Default constructor which builds an invalid wrapper. </p>
+
+<p>Definition at line <a class="el" href="resultwrapper_8cpp_source.html#l00033">33</a> of file <a class="el" href="resultwrapper_8cpp_source.html">resultwrapper.cpp</a>.</p>
 
 </div>
 </div>
@@ -152,6 +160,15 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>requestSender</em>&nbsp;</td><td>Sender of the reqauest </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>requestResult</em>&nbsp;</td><td>Result of the request </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="resultwrapper_8cpp_source.html#l00027">27</a> of file <a class="el" href="resultwrapper_8cpp_source.html">resultwrapper.cpp</a>.</p>
 
 </div>
@@ -176,13 +193,13 @@ window.onload = initDynSections;
 <p>Method to access to the result. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Memory</em>&nbsp;</td><td>address of the QObject which wants to access to the result. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>demanderAdress</em>&nbsp;</td><td>Memory address of the QObject which wants to access to the result. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The request result if demanderAdress is right or Qvariant() otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="resultwrapper_8cpp_source.html#l00038">38</a> of file <a class="el" href="resultwrapper_8cpp_source.html">resultwrapper.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resultwrapper_8cpp_source.html#l00039">39</a> of file <a class="el" href="resultwrapper_8cpp_source.html">resultwrapper.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,7 +257,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:47 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

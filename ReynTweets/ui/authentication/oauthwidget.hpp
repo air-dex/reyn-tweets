@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -29,6 +29,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "loginwidget.hpp"
 #include "../../controls/oauthprocess.hpp"
 
+/// @class OAuthWidget
+/// @brief View for the OAuth process execution
 class OAuthWidget : public QWidget
 {
 		Q_OBJECT
@@ -92,7 +94,7 @@ class OAuthWidget : public QWidget
 		/// @param errorMsg Message describing the error
 		void errorProcess(bool fatalError, QString errorMsg);
 
-		/// @fn void authorizeDemanded(ResultWrapper res);
+		/// @fn void endAuthentication(OAuthProcessResult processResult);
 		/// @brief Slot executed at the end of the authentication.
 		/// @param processResult Value indicating how the OAuth process has ended.
 		void endAuthentication(OAuthProcessResult processResult);
@@ -125,8 +127,6 @@ class OAuthWidget : public QWidget
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow
 		void killOAuthProcess();
-
-		QLabel test;
 };
 
 #endif // OAUTHWIDGET_HPP

@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -38,7 +38,7 @@ class OAuthParser : public GenericParser<QVariantMap>
 		///						  QString & parseError,
 		///						  int * lineError = 0);
 		/// @brief Parsing datas for OAuth
-		/// @param Raw datas to parse
+		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error. Unused.
@@ -54,13 +54,13 @@ class OAuthParser : public GenericParser<QVariantMap>
 		/// @brief Extracting one parameter from the parsed result
 		/// @param parsedMap Parsed result
 		/// @param parameterName Name of the the parameter to extract
-		/// @param rewriteOK Boolean indicating if the extraction was successful
-		/// @param rewriteError Error message about an extraction error
+		/// @param extractOK Boolean indicating if the extraction was successful
+		/// @param extractError Error message about an extraction error
 		/// @return The value of the extracted parameter
-		QVariant extractParameter(QVariantMap &parsedMap,
+		QVariant extractParameter(QVariantMap & parsedMap,
 								  QString parameterName,
 								  bool & extractOK,
-								  QString &extractError);
+								  QString & extractError);
 
 		/// @fn void rewriteAsBool(QVariantMap & parsedMap,
 		///						   QString parameterName,

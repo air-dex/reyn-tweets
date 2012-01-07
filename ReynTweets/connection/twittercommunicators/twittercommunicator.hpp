@@ -17,7 +17,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -35,12 +35,21 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMap>
 #include "../oauthmanager.hpp"
 
-/// @brief Network manager
-extern QNetworkAccessManager networkManager;
+/////////////////////
+// Network Manager //
+/////////////////////
+
+/// @brief Network manager used by all the requesters for all the request.
+/// <strong>Including him in the TwitterCommunicator
+/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=36">
+/// could cause crashes</a></strong>.
+extern QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
+
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments
 typedef QMap<QString, QString> ArgsMap;
+
 
 /// @class TwitterCommunicator
 /// @brief Class managing communication with the Twitter API.<br/>
@@ -137,17 +146,14 @@ class TwitterCommunicator : public QObject
 
 
 	protected slots:
-		/// @fn void endRequest(QNetworkReply::NetworkError errorCode = QNetworkReply::NoError);
+		/// @fn void endRequest(QNetworkReply * response);
 		/// @brief Slot called at the end of the request.
-		/// @param errorCode The response.
+		/// @param response The network reply.
 		void endRequest(QNetworkReply * response);
 
 	protected:
 		// Entities for request
-/*
-		/// @brief Network manager
-		QNetworkAccessManager networkManager;
-//*/
+
 		/// @brief URL of the service
 		QString serviceURL;
 
@@ -230,8 +236,9 @@ class TwitterCommunicator : public QObject
 		/// @return A QString representation looks like val1=arg1&val2=arg2...
 		QString buildDatas(ArgsMap argsMap);
 
-		/// @fn void extractHttpStatuses();
+		/// @fn void extractHttpStatuses(QNetworkReply * reply);
 		/// @brief Extract the HTTP return code and reason of the request
+		/// @param reply Network reply containing the statuses.
 		void extractHttpStatuses(QNetworkReply * reply);
 };
 

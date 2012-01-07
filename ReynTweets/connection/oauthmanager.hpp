@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
@@ -129,14 +129,16 @@ class OAuthManager
 		/// @brief Getting that will be written in the "Authorization" field
 		/// of requests
 		/// @param type Request type (GET or POST)
-		/// @param dataToSign Datas that will be signed
+		/// @param baseURL URL for the request
+		/// @param getDatas GET arguments of the request
+		/// @param postDatas POST arguments of the request
 		/// @param oauthTokenNeeded Boolean indicationg that the oauth_token
 		/// is requested for the header.
 		/// @param callbackUrlNeeded Boolean indicationg that the oauth_callback
 		/// is requested for the header.
 		/// @param oauthVerifierNeeded Boolean indicationg that the oauth_verifier
 		/// is requested for the header.
-		/// @return That will be written in the "Authorization" header.
+		/// @return Value of the "Authorization" header.
 		QByteArray getAuthorizationHeader(RequestType type,
 										  QString baseURL,
 										  QString getDatas,

@@ -1,4 +1,4 @@
-/// @file errortypes.cpp
+/// @file errortypes.hpp
 /// @brief Header containing the ErrorType enum
 /// @author Romain Ducher
 
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -26,14 +26,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @enum ErrorType
 /// @brief Enumeration which indicates if something bad happened during the
-/// request. It can takes three values depending on what happened :<ul>
-/// <li><strong>NO_ERROR</strong> if there was not any error.</li>
-/// <li><strong>INVALID_RESULT<strong> for an invalid RequestResult.
-/// <li><strong>API_CALL<strong> if an error occured while calling the
-/// Twitter API.</li>
-/// <li><strong>QJSON_PARSING</strong> if an error occured while parsing
-/// results (with a href="http://qjson.sourceforge.net">QJson</a>).</li>
-/// </ul>
+/// request. It can takes three values depending on what happened. See the
+/// enum values for more details.
 enum ErrorType {
 	/// @brief Code indicating that there was no error.
 	NO_ERROR,

@@ -105,7 +105,7 @@ window.onload = initDynSections;
 <a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
 <a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
@@ -114,36 +114,35 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef AUTHENTICATIONREQUESTER_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define AUTHENTICATIONREQUESTER_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="genericrequester_8hpp.html" title="Generic class for Twitter requests.">genericrequester.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="genericrequester_8hpp.html" title="Header of GenericRequester.">genericrequester.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 
-<a name="l00031"></a><a class="code" href="class_authentication_requester.html">00031</a> <span class="keyword">class </span><a class="code" href="class_authentication_requester.html" title="Requester for requests which needs authentication.">AuthenticationRequester</a> : <span class="keyword">public</span> <a class="code" href="class_generic_requester.html">GenericRequester</a>
+<a name="l00031"></a><a class="code" href="class_authentication_requester.html">00031</a> <span class="keyword">class </span><a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a> : <span class="keyword">public</span> <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>
 <a name="l00032"></a>00032 {
 <a name="l00033"></a>00033                 Q_OBJECT
 <a name="l00034"></a>00034         <span class="keyword">public</span>:
-<a name="l00060"></a>00060                 <a class="code" href="class_authentication_requester.html#a7152dc8f7207e7b11eab0ae8a5928938" title="Constructor.">AuthenticationRequester</a>(QObject * requester,
-<a name="l00061"></a>00061                                                                 <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type,
-<a name="l00062"></a>00062                                                                 QString url,
-<a name="l00063"></a>00063                                                                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; authManager,
-<a name="l00064"></a>00064                                                                 <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> parseError = <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e" title="Code indicating that there was an error while parsing results with QJson.">QJSON_PARSING</a>,
-<a name="l00065"></a>00065                                                                 <span class="keywordtype">bool</span> tokenNeeded = <span class="keyword">true</span>,
-<a name="l00066"></a>00066                                                                 <span class="keywordtype">bool</span> callbackURLneeded = <span class="keyword">false</span>,
-<a name="l00067"></a>00067                                                                 <span class="keywordtype">bool</span> verifierNeeded = <span class="keyword">false</span>);
+<a name="l00056"></a>00056                 <a class="code" href="class_authentication_requester.html#a56f1c2c11fce844c83639d726cfa9fc8" title="Constructor.">AuthenticationRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type,
+<a name="l00057"></a>00057                                                                 QString url,
+<a name="l00058"></a>00058                                                                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; authManager,
+<a name="l00059"></a>00059                                                                 <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> parseError = <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e" title="Code indicating that there was an error while parsing results with QJson.">QJSON_PARSING</a>,
+<a name="l00060"></a>00060                                                                 <span class="keywordtype">bool</span> tokenNeeded = <span class="keyword">true</span>,
+<a name="l00061"></a>00061                                                                 <span class="keywordtype">bool</span> callbackURLNeeded = <span class="keyword">false</span>,
+<a name="l00062"></a>00062                                                                 <span class="keywordtype">bool</span> verifierNeeded = <span class="keyword">false</span>);
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="keyword">protected</span>:
+<a name="l00067"></a><a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3">00067</a>                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>;
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070         <span class="keyword">protected</span>:
-<a name="l00072"></a><a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3">00072</a>                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>;
-<a name="l00073"></a>00073 
-<a name="l00076"></a><a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff">00076</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>;
-<a name="l00077"></a>00077 
-<a name="l00080"></a><a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae">00080</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae" title="Boolean indicating if the oauth_callback parameter is required for authentication...">oauthCallbackUrlNeeded</a>;
-<a name="l00081"></a>00081 
-<a name="l00084"></a><a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849">00084</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthVerifierNeeded</a>;
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086         <span class="keyword">private</span>:
-<a name="l00090"></a>00090                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e" title="Initialize the communicator. This a template method because of the authorize() request...">initCommunicator</a>();
-<a name="l00091"></a>00091 };
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 <span class="preprocessor">#endif // AUTHENTICATIONREQUESTER_HPP</span>
+<a name="l00071"></a><a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff">00071</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>;
+<a name="l00072"></a>00072 
+<a name="l00075"></a><a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae">00075</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae" title="Boolean indicating if the oauth_callback parameter is required for authentication...">oauthCallbackUrlNeeded</a>;
+<a name="l00076"></a>00076 
+<a name="l00079"></a><a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849">00079</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthVerifierNeeded</a>;
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081         <span class="keyword">private</span>:
+<a name="l00085"></a>00085                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e" title="Initialize the communicator. This a template method because of the authorize() request...">initCommunicator</a>();
+<a name="l00086"></a>00086 };
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="preprocessor">#endif // AUTHENTICATIONREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -159,7 +158,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:43 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:14 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

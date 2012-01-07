@@ -109,43 +109,43 @@ Inheritance diagram for AccessTokenRequester:</div>
 <p><a href="class_access_token_requester-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_access_token_requester.html#a2450931b35a98eb4d0b1dd4820c10564">AccessTokenRequester</a> (QObject *requester, <a class="el" href="class_o_auth_manager.html">OAuthManager</a> &amp;authManager)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_access_token_requester.html#a51cff18504d43f498c78c4cd314f0b0c">AccessTokenRequester</a> (<a class="el" href="class_o_auth_manager.html">OAuthManager</a> &amp;authManager)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a51cff18504d43f498c78c4cd314f0b0c"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080">buildPOSTParameters</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method building POST Parameters.  <a href="#a1e95b19bd4c4ec7572d2ea90397d7080"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_access_token_requester.html#af3cb805ecf6b9abe4ccee4e022161bef">parseResult</a> (bool &amp;parseOK, QVariantMap &amp;parsingErrors)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method that will parse the raw results of the request. For this kind of request, results look like :<br/>
- oauth_token=&amp; oauth_token_secret=&amp; oauth_callback_confirmed=&lt;true or="" false&gt;=""&gt;  <a href="#af3cb805ecf6b9abe4ccee4e022161bef"></a><br/></td></tr>
+ oauth_token=value of the access token&amp; oauth_token_secret=value of the token secret&amp; user_id=id of the user&amp; screen_name=screen name.  <a href="#af3cb805ecf6b9abe4ccee4e022161bef"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Requester for getting OAuth access tokens. </p>
 
 <p>Definition at line <a class="el" href="accesstokenrequester_8hpp_source.html#l00031">31</a> of file <a class="el" href="accesstokenrequester_8hpp_source.html">accesstokenrequester.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a2450931b35a98eb4d0b1dd4820c10564"></a><!-- doxytag: member="AccessTokenRequester::AccessTokenRequester" ref="a2450931b35a98eb4d0b1dd4820c10564" args="(QObject *requester, OAuthManager &amp;authManager)" -->
+<a class="anchor" id="a51cff18504d43f498c78c4cd314f0b0c"></a><!-- doxytag: member="AccessTokenRequester::AccessTokenRequester" ref="a51cff18504d43f498c78c4cd314f0b0c" args="(OAuthManager &amp;authManager)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AccessTokenRequester::AccessTokenRequester </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>requester</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="class_o_auth_manager.html">OAuthManager</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>authManager</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
+          <td class="paramname"> <em>authManager</em></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>authManager</em>&nbsp;</td><td>Information for OAuth. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="accesstokenrequester_8cpp_source.html#l00028">28</a> of file <a class="el" href="accesstokenrequester_8cpp_source.html">accesstokenrequester.cpp</a>.</p>
 
@@ -171,7 +171,7 @@ Inheritance diagram for AccessTokenRequester:</div>
 
 <p>Reimplemented from <a class="el" href="class_generic_requester.html#ac725aed910a90e3b46ca4121218068e1">GenericRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="accesstokenrequester_8cpp_source.html#l00041">41</a> of file <a class="el" href="accesstokenrequester_8cpp_source.html">accesstokenrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="accesstokenrequester_8cpp_source.html#l00039">39</a> of file <a class="el" href="accesstokenrequester_8cpp_source.html">accesstokenrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -201,7 +201,7 @@ Inheritance diagram for AccessTokenRequester:</div>
 <div class="memdoc">
 
 <p>Method that will parse the raw results of the request. For this kind of request, results look like :<br/>
- oauth_token=&amp; oauth_token_secret=&amp; oauth_callback_confirmed=&lt;true or="" false&gt;=""&gt; </p>
+ oauth_token=value of the access token&amp; oauth_token_secret=value of the token secret&amp; user_id=id of the user&amp; screen_name=screen name. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parseOK</em>&nbsp;</td><td>Boolean whose value will be set to true if there was no problem while parsing, false otherwise. </td></tr>
@@ -213,7 +213,7 @@ Inheritance diagram for AccessTokenRequester:</div>
 
 <p>Reimplemented from <a class="el" href="class_generic_requester.html#a653ea483faea1662fb9276837708a6e3">GenericRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="accesstokenrequester_8cpp_source.html#l00046">46</a> of file <a class="el" href="accesstokenrequester_8cpp_source.html">accesstokenrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="accesstokenrequester_8cpp_source.html#l00044">44</a> of file <a class="el" href="accesstokenrequester_8cpp_source.html">accesstokenrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +236,7 @@ Inheritance diagram for AccessTokenRequester:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:45 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

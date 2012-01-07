@@ -89,6 +89,9 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>GenericRequester Class Reference</h1><!-- doxytag: class="GenericRequester" -->
+<p>Base class for all the requesters.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for GenericRequester:</div>
@@ -115,12 +118,14 @@ Inheritance diagram for GenericRequester:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot that is executed when the Twitter Communicator has just finished its work.  <a href="#a60801bd6fb58861ab36b5b74f17d1965"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Signals</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d">requestDone</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent when the results of the request received by the Twitter Communicator have been treated.  <a href="#a1cbc1b1af35e16e624ebce7f9610967d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#acf6a9613ec954573d2f711233b91e041">executeRequest</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Executing the request. The method is virtual because of the Authorize step in the OAuth process whose request is quite different from the other ones.  <a href="#acf6a9613ec954573d2f711233b91e041"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#af0abd6446ce4bc4da78cd5c899394dc5">GenericRequester</a> (QObject *requester, <a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString url, <a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a">ErrorType</a> parseError=QJSON_PARSING)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#af0abd6446ce4bc4da78cd5c899394dc5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#af77f35b90da4dbac0264c674f8700bf2">GenericRequester</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString url, <a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a">ErrorType</a> parseError=QJSON_PARSING)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#af77f35b90da4dbac0264c674f8700bf2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_request_result.html">RequestResult</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#adb81f1c95ff44b7bbe8f2acdfded28ca">getRequestResult</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting parsed results.  <a href="#adb81f1c95ff44b7bbe8f2acdfded28ca"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QUuid&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#ac6988d34457dd4ac6098ef290e50ab62">getUuid</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the requester's UUID.  <a href="#ac6988d34457dd4ac6098ef290e50ab62"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generic_requester.html#aac8e096d6636c2cf6d1bbeaf41d7ee9f">~GenericRequester</a> ()</td></tr>
@@ -158,22 +163,17 @@ Inheritance diagram for GenericRequester:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize the communicator. This a template method because requests with authentication needs more parameters.  <a href="#a296b8637e3e86cdff9e54865e43d6de2"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Base class for all the requesters. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00037">37</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00036">36</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af0abd6446ce4bc4da78cd5c899394dc5"></a><!-- doxytag: member="GenericRequester::GenericRequester" ref="af0abd6446ce4bc4da78cd5c899394dc5" args="(QObject *requester, RequestType type, QString url, ErrorType parseError=QJSON_PARSING)" -->
+<a class="anchor" id="af77f35b90da4dbac0264c674f8700bf2"></a><!-- doxytag: member="GenericRequester::GenericRequester" ref="af77f35b90da4dbac0264c674f8700bf2" args="(RequestType type, QString url, ErrorType parseError=QJSON_PARSING)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">GenericRequester::GenericRequester </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>requester</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a>&nbsp;</td>
           <td class="paramname"> <em>type</em>, </td>
         </tr>
@@ -201,7 +201,6 @@ Inheritance diagram for GenericRequester:</div>
 <p>Constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>requester</em>&nbsp;</td><td>QObject which asks for this search. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>Type of the request (GET ou POST). </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>url</em>&nbsp;</td><td>URL called by the requester </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>parseError</em>&nbsp;</td><td>Error type if an error occurs while parsing. Most of the time, this value is set to QJSON_PARSING because results are QJson stream parsed with QJson. However, OAuth requesters use their own parsing process so they need a special value called OAUTH_PARSING. </td></tr>
@@ -230,7 +229,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00045">45</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00044">44</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +253,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Reimplemented in <a class="el" href="class_authenticate_requester.html#af0e9c4cb2dd2162032acf8d3e7b52053">AuthenticateRequester</a>, <a class="el" href="class_authorize_requester.html#a04997f5c1dad90e7313204daf8e2d397">AuthorizeRequester</a>, and <a class="el" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d">SearchRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00079">79</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00078">78</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +276,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Reimplemented in <a class="el" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080">AccessTokenRequester</a>, <a class="el" href="class_authenticate_requester.html#a12b86ea8932ba023eedc84cf23eea109">AuthenticateRequester</a>, and <a class="el" href="class_post_authorize_requester.html#a921fa9d1a2c62a91cb7cbbb5e2210a3b">PostAuthorizeRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00082">82</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00081">81</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +297,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Executing the request. The method is virtual because of the Authorize step in the OAuth process whose request is quite different from the other ones. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00097">97</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00095">95</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,7 +342,7 @@ Inheritance diagram for GenericRequester:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00147">147</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00145">145</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +361,10 @@ Inheritance diagram for GenericRequester:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00059">59</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Getting parsed results. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Parsed results in a QVariant object. </dd></dl>
+
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00058">58</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -384,7 +386,7 @@ Inheritance diagram for GenericRequester:</div>
 <p>Getter on the requester's UUID. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The requester's UUID </dd></dl>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00064">64</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00063">63</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +409,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Reimplemented in <a class="el" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e">AuthenticationRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00085">85</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00084">84</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,7 +450,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Reimplemented in <a class="el" href="class_access_token_requester.html#af3cb805ecf6b9abe4ccee4e022161bef">AccessTokenRequester</a>, <a class="el" href="class_authenticate_requester.html#aa69f34a375793a52aa39e5d3560dbf4c">AuthenticateRequester</a>, <a class="el" href="class_authorize_requester.html#ab2320de8078a5847340ac17ea2b18741">AuthorizeRequester</a>, <a class="el" href="class_post_authorize_requester.html#af17bd7aa0f8d5a211f30c2501e6b1172">PostAuthorizeRequester</a>, and <a class="el" href="class_request_token_requester.html#ac07779fbb608806f0e785b9d5b6c61aa">RequestTokenRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00130">130</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00128">128</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,6 +469,8 @@ Inheritance diagram for GenericRequester:</div>
 </div>
 <div class="memdoc">
 
+<p>Signal sent when the results of the request received by the Twitter Communicator have been treated. </p>
+
 </div>
 </div>
 <a class="anchor" id="a5e051448a3c3d5792c407129536b5b9d"></a><!-- doxytag: member="GenericRequester::setParsingErrorType" ref="a5e051448a3c3d5792c407129536b5b9d" args="(ErrorType parseErrorType)" -->
@@ -477,7 +481,7 @@ Inheritance diagram for GenericRequester:</div>
           <td class="memname">void GenericRequester::setParsingErrorType </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a">ErrorType</a>&nbsp;</td>
-          <td class="paramname"> <em>parsingErrorType</em></td>
+          <td class="paramname"> <em>parseErrorType</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [protected]</code></td>
         </tr>
@@ -493,7 +497,7 @@ Inheritance diagram for GenericRequester:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00069">69</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00068">68</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +525,7 @@ Inheritance diagram for GenericRequester:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00110">110</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8cpp_source.html#l00108">108</a> of file <a class="el" href="genericrequester_8cpp_source.html">genericrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -539,7 +543,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Pointer on the Twitter Communicator that will purely execute the request and get the raw result of it. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00105">105</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00101">101</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -556,7 +560,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>GET parameters that will be passed to the Communicator. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00090">90</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00086">86</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -573,7 +577,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Type of parsing error. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00108">108</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00104">104</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -590,7 +594,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>POST parameters that will be passed to the Communicator. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00097">97</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00093">93</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -607,7 +611,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Result of the request. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00122">122</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00118">118</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -624,7 +628,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>Request type. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00087">87</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00083">83</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -641,7 +645,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>URL called by the requester. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00084">84</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00080">80</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -658,7 +662,7 @@ Inheritance diagram for GenericRequester:</div>
 
 <p>UUID of the request. </p>
 
-<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00081">81</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="genericrequester_8hpp_source.html#l00077">77</a> of file <a class="el" href="genericrequester_8hpp_source.html">genericrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -681,7 +685,7 @@ Inheritance diagram for GenericRequester:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:46 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

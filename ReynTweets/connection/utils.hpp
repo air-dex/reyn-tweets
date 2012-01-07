@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -28,34 +28,27 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "requesttype.hpp"
 
-/// @class Utils
-/// @brief Utilities
-class Utils
-{
-	public:
-		/// @fn QString hmacSha1(QByteArray key, QByteArray baseString);
-		/// @brief HMAC-SHA1 algorithm for signatures. Its implementation for
-		/// Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">
-		/// Qt Developer Network</a> here :
-		/// <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">
-		/// http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.
-		/// @param key Key for signature
-		/// @param baseString String that we want to sign
-		/// @return The signature
-		static QString hmacSha1(QByteArray key, QByteArray baseString);
+/// @fn QString hmacSha1(QByteArray key, QByteArray baseString);
+/// @brief HMAC-SHA1 algorithm for signatures. Its implementation for
+/// Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">
+/// Qt Developer Network</a> here :
+/// <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">
+/// http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.
+/// @param key Key for signature
+/// @param baseString String that we want to sign
+/// @return The signature
+QString hmacSha1(QByteArray key, QByteArray baseString);
 
+/// @fn QString requestTypeToString(RequestType type)
+/// @brief Converting a RequestType into a QString
+/// @param type The RequestType
+/// @return The corresponding QString
+QString requestTypeToString(RequestType type);
 
-		/// @fn QString requestTypeToString(RequestType type)
-		/// @brief Converting a RequestType into a QString
-		/// @param type The RequestType
-		/// @return The corresponding QString
-		static QString requestTypeToString(RequestType type);
-
-		/// @fn static bool oubien(bool a, bool b);
-		/// @brief Logical XOR :<code>a XOR b == a && !b || !a && b</code>
-		/// @param a 1st bool
-		/// @param b 2nd bool
-		static bool ouBien(bool a, bool b);
-};
+/// @fn ouBien(bool a, bool b);
+/// @brief Logical XOR :<code>a XOR b == a && !b || !a && b</code>
+/// @param a 1st bool
+/// @param b 2nd bool
+bool ouBien(bool a, bool b);
 
 #endif // UTILS_HPP

@@ -1,5 +1,5 @@
 /// @file genericrequester.hpp
-/// @brief Generic class for Twitter requests
+/// @brief Header of GenericRequester
 /// @author Romain Ducher
 
 /*
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -31,9 +31,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "../requestresult.hpp"
 #include "../twittercommunicators/twittercommunicator.hpp"
 
-/// @class GenericRequest
-/// @brief Base class for all the requesters. Parents of such requests are
-/// QObjects that demand the request.
+/// @class GenericRequester
+/// @brief Base class for all the requesters.
 class GenericRequester : public QObject
 {
 	Q_OBJECT
@@ -68,7 +67,7 @@ class GenericRequester : public QObject
 		/// from the other ones.
 		virtual void executeRequest();
 
-		/// @fn RequestResult getParsedResult();
+		/// @fn RequestResult getRequestResult();
 		/// @brief Getting parsed results
 		/// @return Parsed results in a QVariant object.
 		RequestResult getRequestResult();
@@ -104,7 +103,7 @@ class GenericRequester : public QObject
 		/// @brief Type of parsing error
 		ErrorType parsingErrorType;
 
-		/// @fn void setParsingErrorType(ErrorType parsingErrorType);
+		/// @fn void setParsingErrorType(ErrorType parseErrorType);
 		/// @brief Setting parsingErrorType in classes which inherits from
 		/// GenericRequesters.
 		/// @param parseErrorType New value for parsingErrorType
@@ -138,11 +137,9 @@ class GenericRequester : public QObject
 		void treatResults(bool requestOK);
 
 	signals:
-		/// @fn void requestDone(bool ok);
+		/// @fn void requestDone();
 		/// @brief Signal sent when the results of the request received by
 		/// the Twitter Communicator have been treated.
-		/// @param ok Boolean indicating if the request is ok (true) of if there
-		/// was an error (false).
 		void requestDone();
 
 

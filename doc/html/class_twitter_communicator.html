@@ -115,12 +115,13 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the content of the response.  <a href="#a69ad6476590374e490ddd927c42f2ad3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QNetworkRequest *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a0dbccfeed64a8eeb06a42af385ff74bd">prepareRequest</a> (QByteArray &amp;postArgs=QByteArray())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Preparing the request. It builds the parameters for GET and POST and the Authorization header if needed.  <a href="#a0dbccfeed64a8eeb06a42af385ff74bd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a2090cddb5e686b7dca0f4225d4cd102b">TwitterCommunicator</a> (QObject *requester, QString url, <a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, <a class="el" href="twittercommunicator_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getArgs, <a class="el" href="twittercommunicator_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postArgs, bool authRequired, <a class="el" href="class_o_auth_manager.html">OAuthManager</a> *authManager=0, bool tokenNeeded=true, bool callbackURLNeeded=false, bool verifierNeeded=false)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a2090cddb5e686b7dca0f4225d4cd102b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a199cbf01949f42530e25e306bdbc81e3">TwitterCommunicator</a> (QString url, <a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, <a class="el" href="twittercommunicator_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getArgs, <a class="el" href="twittercommunicator_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postArgs, bool authRequired, <a class="el" href="class_o_auth_manager.html">OAuthManager</a> *authManager=0, bool tokenNeeded=0, bool callbackURLNeeded=true, bool verifierNeeded=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a199cbf01949f42530e25e306bdbc81e3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#aff1dc45d969094652b855478f231d440">~TwitterCommunicator</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#aff1dc45d969094652b855478f231d440"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Slots</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#ab64f579867ad139249134d68d8e31439">endRequest</a> (QNetworkReply *response)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot called at the end of the request.  <a href="#ab64f579867ad139249134d68d8e31439"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a2021e6975f053104d2d4c375b10e6255">treatReply</a> (QNetworkReply *response)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treating a response.  <a href="#a2021e6975f053104d2d4c375b10e6255"></a><br/></td></tr>
@@ -137,8 +138,6 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HTTP return code.  <a href="#ab85dce5adb7f44ca9bfa86862fc4276d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#aba0f71b4a0d29318ab9cbc62fb327513">httpReturnReason</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HTTP return reason.  <a href="#aba0f71b4a0d29318ab9cbc62fb327513"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QNetworkAccessManager&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a2dc83211451efd45177af10fedec8c55">networkManager</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Network manager.  <a href="#a2dc83211451efd45177af10fedec8c55"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_auth_manager.html">OAuthManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#ac04094e26979a3b803934f39cc7526b1">oauthManager</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Entity with authentication information.  <a href="#ac04094e26979a3b803934f39cc7526b1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a0cd7b9d459e9582412c6424f76d1614a">oauthTokenNeeded</a></td></tr>
@@ -165,26 +164,21 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a8bc4c59514a281bd53b8a1d8eb4aacc3">buildPostDatas</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the array that will contain all the POST arguments and go through the Internet.  <a href="#a8bc4c59514a281bd53b8a1d8eb4aacc3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_twitter_communicator.html#a3f35ea1bebdbc2c413c9790c4596599b">extractHttpStatuses</a> (QNetworkReply *reply)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Extract the HTTP return code and reason of the request.  <a href="#a3f35ea1bebdbc2c413c9790c4596599b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Class managing communication with the Twitter API.<br/>
  A Twitter Communicator needs the URL of the service, GET and POST arguments. It will doing the request and storing it in a QByteArray containing the response. <b>The content of the QByteArray is not parsed.</b> </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00047">47</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00059">59</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a2090cddb5e686b7dca0f4225d4cd102b"></a><!-- doxytag: member="TwitterCommunicator::TwitterCommunicator" ref="a2090cddb5e686b7dca0f4225d4cd102b" args="(QObject *requester, QString url, RequestType type, ArgsMap getArgs, ArgsMap postArgs, bool authRequired, OAuthManager *authManager=0, bool tokenNeeded=true, bool callbackURLNeeded=false, bool verifierNeeded=false)" -->
+<a class="anchor" id="a199cbf01949f42530e25e306bdbc81e3"></a><!-- doxytag: member="TwitterCommunicator::TwitterCommunicator" ref="a199cbf01949f42530e25e306bdbc81e3" args="(QString url, RequestType type, ArgsMap getArgs, ArgsMap postArgs, bool authRequired, OAuthManager *authManager=0, bool tokenNeeded=0, bool callbackURLNeeded=true, bool verifierNeeded=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">TwitterCommunicator::TwitterCommunicator </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>requester</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">QString&nbsp;</td>
           <td class="paramname"> <em>url</em>, </td>
         </tr>
@@ -222,13 +216,13 @@ window.onload = initDynSections;
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>tokenNeeded</em> = <code>true</code>, </td>
+          <td class="paramname"> <em>tokenNeeded</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>callbackURLNeeded</em> = <code>false</code>, </td>
+          <td class="paramname"> <em>callbackURLNeeded</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -254,7 +248,6 @@ window.onload = initDynSections;
     <tr><td valign="top"></td><td valign="top"><em>authManager</em>&nbsp;</td><td>The authentication manager. A pointer is kept for cases where an authentication is not required </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>getArgs</em>&nbsp;</td><td>GET arguments </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>postArgs</em>&nbsp;</td><td>POST arguments </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>requester</em>&nbsp;</td><td>Requester using the communicator. It corresponds to the parent QObject. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tokenNeeded</em>&nbsp;</td><td>Boolean indicating if the oauth_token parameter is required for authentication. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>callbackURLNeeded</em>&nbsp;</td><td>Boolean indicating if the oauth_callback parameter is required for authentication. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>verifierNeeded</em>&nbsp;</td><td>Boolean indicating if the oauth_verifier parameter is required for authentication. </td></tr>
@@ -262,7 +255,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00034">34</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00037">37</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,7 +276,7 @@ window.onload = initDynSections;
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00068">68</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00069">69</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -313,7 +306,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A QString representation looks like val1=arg1&amp;val2=arg2... </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00217">217</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00219">219</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -335,7 +328,7 @@ window.onload = initDynSections;
 <p>Building the string that will contain all the GET arguments and go through the Internet. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A QString containing all the GET arguments or an empty string if there is no GET arguments. This string will be appended at the end of the URL with a '?' between the URL and the string. </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00205">205</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00207">207</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -357,7 +350,7 @@ window.onload = initDynSections;
 <p>Building the array that will contain all the POST arguments and go through the Internet. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A QByteArray containing all the POST arguments or an empty string if there is no POST arguments. If the string is not empty, it will be passed to the post method of the QNetworkAccessManager </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00210">210</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00212">212</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -377,7 +370,15 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00143">143</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Slot called at the end of the request. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>response</em>&nbsp;</td><td>The network reply. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00144">144</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +399,7 @@ window.onload = initDynSections;
 
 <p>Executing the request. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00121">121</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00122">122</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +419,15 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00255">255</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Extract the HTTP return code and reason of the request. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>reply</em>&nbsp;</td><td>Network reply containing the statuses. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00257">257</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,7 +449,7 @@ window.onload = initDynSections;
 <p>Getter on the error massage. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The error message </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00196">196</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00197">197</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +471,7 @@ window.onload = initDynSections;
 <p>Getting the HTTP return code. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The HTTP code of the request. </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00181">181</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00182">182</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +493,7 @@ window.onload = initDynSections;
 <p>Getting the HTTP return reason. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The description of the HTTP return code. </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00186">186</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00187">187</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +515,7 @@ window.onload = initDynSections;
 <p>Getting the URL of the reply. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyURL </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00191">191</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00192">192</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -528,7 +537,7 @@ window.onload = initDynSections;
 <p>Getting the content of the response. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The buffer containing the response </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00176">176</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00177">177</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -557,7 +566,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer on the request </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00085">85</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00086">86</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -612,7 +621,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A boolean indicating if the request was successful </dd></dl>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00151">151</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8cpp_source.html#l00152">152</a> of file <a class="el" href="twittercommunicator_8cpp_source.html">twittercommunicator.cpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +639,7 @@ window.onload = initDynSections;
 
 <p>Boolean indicating if authentication is required for the request. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00165">165</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00170">170</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -647,7 +656,7 @@ window.onload = initDynSections;
 
 <p>Boolean indicating if the oauth_callback parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00176">176</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00181">181</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -664,7 +673,7 @@ window.onload = initDynSections;
 
 <p>Error message. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00198">198</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00203">203</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -681,7 +690,7 @@ window.onload = initDynSections;
 
 <p>GET datas. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00159">159</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00164">164</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -698,7 +707,7 @@ window.onload = initDynSections;
 
 <p>HTTP return code. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00192">192</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00197">197</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -715,24 +724,7 @@ window.onload = initDynSections;
 
 <p>HTTP return reason. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00195">195</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2dc83211451efd45177af10fedec8c55"></a><!-- doxytag: member="TwitterCommunicator::networkManager" ref="a2dc83211451efd45177af10fedec8c55" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QNetworkAccessManager <a class="el" href="class_twitter_communicator.html#a2dc83211451efd45177af10fedec8c55">TwitterCommunicator::networkManager</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Network manager. </p>
-
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00150">150</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00200">200</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -749,7 +741,7 @@ window.onload = initDynSections;
 
 <p>Entity with authentication information. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00168">168</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00173">173</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -766,7 +758,7 @@ window.onload = initDynSections;
 
 <p>Boolean indicating if the oauth_token parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00172">172</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00177">177</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -783,7 +775,7 @@ window.onload = initDynSections;
 
 <p>Boolean indicating if the oauth_verifier parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00180">180</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00185">185</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -800,7 +792,7 @@ window.onload = initDynSections;
 
 <p>POST datas. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00162">162</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00167">167</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -817,7 +809,7 @@ window.onload = initDynSections;
 
 <p>URL of the reply. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00201">201</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00206">206</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -834,7 +826,7 @@ window.onload = initDynSections;
 
 <p>The request. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00183">183</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00188">188</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -851,7 +843,7 @@ window.onload = initDynSections;
 
 <p>Request type. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00156">156</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00161">161</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -868,7 +860,7 @@ window.onload = initDynSections;
 
 <p>Content of the response. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00189">189</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00194">194</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -885,7 +877,7 @@ window.onload = initDynSections;
 
 <p>URL of the service. </p>
 
-<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00153">153</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
+<p>Definition at line <a class="el" href="twittercommunicator_8hpp_source.html#l00158">158</a> of file <a class="el" href="twittercommunicator_8hpp_source.html">twittercommunicator.hpp</a>.</p>
 
 </div>
 </div>
@@ -908,7 +900,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:47 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

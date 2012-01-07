@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
@@ -38,7 +38,7 @@ class OAuthRequester : public AuthenticationRequester
 		///					   OAuthManager &authManager,
 		///					   ErrorType parseErrorType,
 		///					   bool tokenNeeded = true,
-		///					   bool callbackURLneeded = false,
+		///					   bool callbackURLNeeded = false,
 		///					   bool verifierNeeded = false);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
@@ -57,7 +57,7 @@ class OAuthRequester : public AuthenticationRequester
 					   OAuthManager &authManager,
 					   ErrorType parseErrorType,
 					   bool tokenNeeded = true,
-					   bool callbackURLneeded = false,
+					   bool callbackURLNeeded = false,
 					   bool verifierNeeded = false);
 };
 

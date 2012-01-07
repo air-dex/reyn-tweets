@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
@@ -46,9 +46,7 @@ OAuthManager::OAuthManager(QString clientKey,
 {}
 
 // Destructor
-OAuthManager::~OAuthManager() {
-	qDebug("No more tokens. GIZMO CACA !");
-}
+OAuthManager::~OAuthManager() {}
 
 
 /////////////////////
@@ -361,11 +359,11 @@ QString OAuthManager::signDatas(RequestType type,
 	// Building the base String
 	QByteArray toSign = "";
 
-	toSign.append(Utils::requestTypeToString(type).toAscii());
+	toSign.append(requestTypeToString(type).toAscii());
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(baseURL));
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(parameterString));
 
-	return Utils::hmacSha1(key.toAscii(), toSign);
+	return hmacSha1(key.toAscii(), toSign);
 }

@@ -1,5 +1,5 @@
-/// @file searchrequest.hpp
-/// @brief Requester for searches
+/// @file searchrequester.hpp
+/// @brief Header of SearchRequester
 /// @author Romain Ducher
 
 /*
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../genericrequester.hpp"
 
-/// @class SearchRequest
+/// @class SearchRequester
 /// @brief Requester for searches
 class SearchRequester : public GenericRequester
 {
@@ -36,7 +36,6 @@ class SearchRequester : public GenericRequester
 		/// @fn SearchRequester(QString q = "");
 		/// @brief Constructor
 		/// @param q The query
-		/// @see https://dev.twitter.com/docs/api/1/get/search
 		SearchRequester(QString q = "");
 
 	protected:

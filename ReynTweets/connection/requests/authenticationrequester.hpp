@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
@@ -27,7 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "genericrequester.hpp"
 
 /// @class AuthenticationRequester
-/// @brief Requester for requests which needs authentication
+/// @brief Requester specialized for requests which needs authentication.
 class AuthenticationRequester : public GenericRequester
 {
 		Q_OBJECT
@@ -37,13 +37,11 @@ class AuthenticationRequester : public GenericRequester
 		///								OAuthManager & authManager,
 		///								ErrorType parseError = QJSON_PARSING,
 		///								bool tokenNeeded = true,
-		///								bool callbackURLneeded = false,
-		///								bool callbackURLneeded = false);
+		///								bool callbackURLNeeded = false,
+		///								bool verifierNeeded = false);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
-		/// @param authRequired Boolean indicating if an authentication to the
-		/// Twitter API is required
 		/// @param authManager Entity with information for OAuth
 		/// @param parseError Error type if an error occurs while parsing. Most
 		/// of the time, this value is set to QJSON_PARSING because results are
@@ -60,7 +58,7 @@ class AuthenticationRequester : public GenericRequester
 								OAuthManager & authManager,
 								ErrorType parseError = QJSON_PARSING,
 								bool tokenNeeded = true,
-								bool callbackURLneeded = false,
+								bool callbackURLNeeded = false,
 								bool verifierNeeded = false);
 
 

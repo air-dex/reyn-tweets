@@ -105,7 +105,7 @@ window.onload = initDynSections;
 <a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
 <a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
@@ -119,53 +119,53 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="loginwidget_8hpp.html" title="Header of LoginWidget.">loginwidget.hpp</a>&quot;</span>
 <a name="l00030"></a>00030 <span class="preprocessor">#include &quot;../../controls/oauthprocess.hpp&quot;</span>
 <a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="class_o_auth_widget.html">00032</a> <span class="keyword">class </span><a class="code" href="class_o_auth_widget.html">OAuthWidget</a> : <span class="keyword">public</span> QWidget
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034                 Q_OBJECT
-<a name="l00035"></a>00035         <span class="keyword">public</span>:
-<a name="l00039"></a>00039                 <a class="code" href="class_o_auth_widget.html#a18628d0d748c4beb6af748ab9d76706b" title="Constructor.">OAuthWidget</a>(QWidget *parent = 0);
-<a name="l00040"></a>00040 
-<a name="l00043"></a>00043                 <a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab" title="Destructor.">~OAuthWidget</a>();
-<a name="l00044"></a>00044 
-<a name="l00047"></a>00047                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049         signals:
-<a name="l00054"></a>00054                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString login, QString password);
-<a name="l00055"></a>00055 
-<a name="l00060"></a>00060                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
-<a name="l00061"></a>00061 
-<a name="l00065"></a>00065                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult);
-<a name="l00066"></a>00066 
-<a name="l00072"></a>00072                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span> ok);
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074         <span class="keyword">public</span> slots:
-<a name="l00079"></a>00079                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span> visible);
-<a name="l00080"></a>00080 
-<a name="l00086"></a>00086                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span> ok);
-<a name="l00087"></a>00087 
-<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span> fatalError, QString errorMsg);
-<a name="l00094"></a>00094 
-<a name="l00098"></a>00098                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult);
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100         <span class="keyword">protected</span> slots:
-<a name="l00102"></a>00102                 <span class="comment">// Launching Slots //</span>
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00107"></a>00107                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>();
-<a name="l00108"></a>00108 
-<a name="l00111"></a>00111                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>();
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113         <span class="keyword">protected</span>:
-<a name="l00116"></a><a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf">00116</a>                 <a class="code" href="class_o_auth_process.html">OAuthProcess</a> * <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>;
-<a name="l00117"></a>00117 
-<a name="l00119"></a><a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25">00119</a>                 <a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a> <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121         <span class="keyword">private</span>:
-<a name="l00123"></a><a class="code" href="class_o_auth_widget.html#a32be2f7679e135d30332a90777a664cb">00123</a>                 QVBoxLayout <a class="code" href="class_o_auth_widget.html#a32be2f7679e135d30332a90777a664cb" title="Layout of the widget.">layout</a>;
-<a name="l00124"></a>00124 
-<a name="l00127"></a>00127                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
-<a name="l00128"></a>00128 };
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <span class="preprocessor">#endif // OAUTHWIDGET_HPP</span>
+<a name="l00034"></a><a class="code" href="class_o_auth_widget.html">00034</a> <span class="keyword">class </span><a class="code" href="class_o_auth_widget.html" title="View for the OAuth process execution.">OAuthWidget</a> : <span class="keyword">public</span> QWidget
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036                 Q_OBJECT
+<a name="l00037"></a>00037         <span class="keyword">public</span>:
+<a name="l00041"></a>00041                 <a class="code" href="class_o_auth_widget.html#a18628d0d748c4beb6af748ab9d76706b" title="Constructor.">OAuthWidget</a>(QWidget *parent = 0);
+<a name="l00042"></a>00042 
+<a name="l00045"></a>00045                 <a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab" title="Destructor.">~OAuthWidget</a>();
+<a name="l00046"></a>00046 
+<a name="l00049"></a>00049                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         signals:
+<a name="l00056"></a>00056                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString login, QString password);
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
+<a name="l00063"></a>00063 
+<a name="l00067"></a>00067                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult);
+<a name="l00068"></a>00068 
+<a name="l00074"></a>00074                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span> ok);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         <span class="keyword">public</span> slots:
+<a name="l00081"></a>00081                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span> visible);
+<a name="l00082"></a>00082 
+<a name="l00088"></a>00088                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span> ok);
+<a name="l00089"></a>00089 
+<a name="l00095"></a>00095                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span> fatalError, QString errorMsg);
+<a name="l00096"></a>00096 
+<a name="l00100"></a>00100                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult);
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102         <span class="keyword">protected</span> slots:
+<a name="l00104"></a>00104                 <span class="comment">// Launching Slots //</span>
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00109"></a>00109                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>();
+<a name="l00110"></a>00110 
+<a name="l00113"></a>00113                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>();
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115         <span class="keyword">protected</span>:
+<a name="l00118"></a><a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf">00118</a>                 <a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> * <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>;
+<a name="l00119"></a>00119 
+<a name="l00121"></a><a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25">00121</a>                 <a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a> <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>;
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123         <span class="keyword">private</span>:
+<a name="l00125"></a><a class="code" href="class_o_auth_widget.html#a32be2f7679e135d30332a90777a664cb">00125</a>                 QVBoxLayout <a class="code" href="class_o_auth_widget.html#a32be2f7679e135d30332a90777a664cb" title="Layout of the widget.">layout</a>;
+<a name="l00126"></a>00126 
+<a name="l00129"></a>00129                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
+<a name="l00130"></a>00130 };
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <span class="preprocessor">#endif // OAUTHWIDGET_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -181,7 +181,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:44 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:14 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

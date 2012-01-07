@@ -30,10 +30,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief Namespace with Reyn Tweets settings for OAuth
 namespace ReynTweetsSettings {
 	/// @brief Reyn Tweets' consumer key
-	extern QString CONSUMER_KEY;
+	extern QByteArray CONSUMER_KEY;
 
 	/// @brief Reyn Tweets' consumer secret
-	extern QString CONSUMER_SECRET;
+	extern QByteArray CONSUMER_SECRET;
 
 	/// @brief Reyn Tweets' callback URL
 	extern QString CALLBACK_URL;

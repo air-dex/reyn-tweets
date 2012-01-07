@@ -89,7 +89,7 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>OAuthManager Class Reference</h1><!-- doxytag: class="OAuthManager" -->
-<p>Class managing OAuth authentication to Twitter.  
+<p>Class managing OAuth authentication to Twitter. For the security, tokens are kept secret. They are encoded for that.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>&gt;</code></p>
@@ -97,53 +97,53 @@ window.onload = initDynSections;
 <p><a href="class_o_auth_manager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ab0fc5506b92f2626aede8e7ee6d8617a">getAuthenticityToken</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the Authenticity Token.  <a href="#ab0fc5506b92f2626aede8e7ee6d8617a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a66378d342823937f967a516d4e0d6888">getAuthenticityToken</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the Authenticity Token.  <a href="#a66378d342823937f967a516d4e0d6888"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ad5ed528109a5bbc9153b3b2c852e58b7">getAuthorizationHeader</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, QString getDatas, QString postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting that will be written in the "Authorization" field of requests.  <a href="#ad5ed528109a5bbc9153b3b2c852e58b7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aad8cf88e751405f20abbaf01dbd2b8f4">getCallbackUrl</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter for callbackUrl.  <a href="#aad8cf88e751405f20abbaf01dbd2b8f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a198a290395933fe0530f7fd518f90204">getDeny</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the deny tag.  <a href="#a198a290395933fe0530f7fd518f90204"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aa1551c402a20e7620b122e19df743d94">getOAuthToken</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the OAuth Token.  <a href="#aa1551c402a20e7620b122e19df743d94"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4e71fcdb61f07ceca2616d5edd6434bb">getVerifier</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the verifier.  <a href="#a4e71fcdb61f07ceca2616d5edd6434bb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a8efe8753f9a86dd20170c5e762bee673">OAuthManager</a> (QString clientKey=<a class="el" href="namespace_reyn_tweets_settings.html#a12b4f5119b36309fcf7a367cd20d641d">ReynTweetsSettings::CONSUMER_KEY</a>, QString clientSecret=<a class="el" href="namespace_reyn_tweets_settings.html#aea8a925e5c9f7d8f789a472d32c4dcef">ReynTweetsSettings::CONSUMER_SECRET</a>, QString clientUrl=<a class="el" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">ReynTweetsSettings::CALLBACK_URL</a>, QString signatureAlgorithm=&quot;HMAC-SHA1&quot;, QString version=&quot;1.0&quot;)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a8efe8753f9a86dd20170c5e762bee673"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a24a1e564bf3602e3ce2090e673156171">getOAuthToken</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the OAuth Token.  <a href="#a24a1e564bf3602e3ce2090e673156171"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a510ed95ef339b06bb3727ee61c0afb79">getVerifier</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the verifier.  <a href="#a510ed95ef339b06bb3727ee61c0afb79"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a1f3c0442a309c1f14db73f5c8b6ee525">OAuthManager</a> (QByteArray clientKey=<a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a>, QByteArray clientSecret=<a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a>, QString clientUrl=<a class="el" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">ReynTweetsSettings::CALLBACK_URL</a>, QString signatureAlgorithm=&quot;HMAC-SHA1&quot;, QString version=&quot;1.0&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a1f3c0442a309c1f14db73f5c8b6ee525"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a7b1a85a67ca7052e178ae829d5d02189">resetTokens</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests.  <a href="#a7b1a85a67ca7052e178ae829d5d02189"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a5483c8d895ddf6b4ed3b7ba6e0c24c62">setAuthenticityToken</a> (QString authToken)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the Authenticity Token.  <a href="#a5483c8d895ddf6b4ed3b7ba6e0c24c62"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4ce9bd4c4561d87d75c255a960ed5d0b">setAuthenticityToken</a> (QByteArray authToken)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the Authenticity Token.  <a href="#a4ce9bd4c4561d87d75c255a960ed5d0b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a28f6a1fbe6da6387d40863090d908be4">setDeny</a> (QString denyString)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the deny tag.  <a href="#a28f6a1fbe6da6387d40863090d908be4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a85345a8a166ecd939b90bdc90796c4da">setOAuthSecret</a> (QString authSecret)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the OAuth secret.  <a href="#a85345a8a166ecd939b90bdc90796c4da"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a8e0f164ec34a2c44b087020314986b98">setOAuthToken</a> (QString authToken)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the OAuth token.  <a href="#a8e0f164ec34a2c44b087020314986b98"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ab966afa7c9b293b29615bfa57835fece">setVerifier</a> (QString verifier)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the verifier.  <a href="#ab966afa7c9b293b29615bfa57835fece"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af89cb1fd781c76d8ae373f7a2db680e4">setOAuthSecret</a> (QByteArray authSecret)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the OAuth secret.  <a href="#af89cb1fd781c76d8ae373f7a2db680e4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aefc7fd2f62d37cb76344c8aad561f8c0">setOAuthToken</a> (QByteArray authToken)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the OAuth token.  <a href="#aefc7fd2f62d37cb76344c8aad561f8c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ac15ad8abdf37aac183d7879526831b68">setVerifier</a> (QByteArray verifier)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the verifier.  <a href="#ac15ad8abdf37aac183d7879526831b68"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#afd85781094eb1178f9eb10e1f5de87a5">~OAuthManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#afd85781094eb1178f9eb10e1f5de87a5"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ab9719d57a4170a5c06fb7a8a3c9607da">authenticityToken</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Authenticity token for POST authorizing().  <a href="#ab9719d57a4170a5c06fb7a8a3c9607da"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a6871bf42e3c74a75f8eb0f9dd014b2db">authenticityToken</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Authenticity token for POST authorizing().  <a href="#a6871bf42e3c74a75f8eb0f9dd014b2db"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a879f5c98a57c385ba4b19c6f8b921e29">callbackUrl</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Callback URL of the application.  <a href="#a879f5c98a57c385ba4b19c6f8b921e29"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a89d85c2a81e0e576a1ed3367bb2a6b0c">consumerKey</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Consumer key.  <a href="#a89d85c2a81e0e576a1ed3367bb2a6b0c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ac12932985e6b4977b85622e1568d936a">consumerSecret</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Consumer secret.  <a href="#ac12932985e6b4977b85622e1568d936a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a26c67768b4f4abfe8738177cd9a48cdd">consumerKey</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Consumer key.  <a href="#a26c67768b4f4abfe8738177cd9a48cdd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a08dfde3d00eab4a06addb5c18bc55365">consumerSecret</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Consumer secret.  <a href="#a08dfde3d00eab4a06addb5c18bc55365"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aea91a54208a14e1bfbaaa127b922bf02">denyTag</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Value used to tell Twitter that an application is denied.  <a href="#aea91a54208a14e1bfbaaa127b922bf02"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aea73508359d2fdfa7e2c9616403fc24b">oauthSecret</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Secret used for signatures.  <a href="#aea73508359d2fdfa7e2c9616403fc24b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a644a950820ad049510d95cbaed71c885">oauthSecret</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Secret used for signatures.  <a href="#a644a950820ad049510d95cbaed71c885"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4281ee3bd7902fffa35761ae635eba35">oauthSignatureMethod</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Algorithm used for signing requests.  <a href="#a4281ee3bd7902fffa35761ae635eba35"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4bc3fcd69cbd2ee9495c0a5ba7f014e0">oauthToken</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Token used for requests.  <a href="#a4bc3fcd69cbd2ee9495c0a5ba7f014e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a2e4c311fbfbd85a244d40fb36364b684">oauthVerifier</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verifier for authentication.  <a href="#a2e4c311fbfbd85a244d40fb36364b684"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a0c6ca32df5224b8196ac94d86d67a31c">oauthToken</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Token used for requests.  <a href="#a0c6ca32df5224b8196ac94d86d67a31c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af25c63eefd591d305da7f5df82cb1a79">oauthVerifier</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verifier for authentication.  <a href="#af25c63eefd591d305da7f5df82cb1a79"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a846898793d41758ca2d878ee2e5ac7ef">oauthVersion</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Version of the OAuth protocol used for the authentication.  <a href="#a846898793d41758ca2d878ee2e5ac7ef"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
@@ -157,25 +157,25 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for signing datas. It is described <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a>.  <a href="#ac2ee6de3d71ccdd0538b14499fb2c3b2"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Class managing OAuth authentication to Twitter. </p>
+<p>Class managing OAuth authentication to Twitter. For the security, tokens are kept secret. They are encoded for that. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00034">34</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00035">35</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8efe8753f9a86dd20170c5e762bee673"></a><!-- doxytag: member="OAuthManager::OAuthManager" ref="a8efe8753f9a86dd20170c5e762bee673" args="(QString clientKey=ReynTweetsSettings::CONSUMER_KEY, QString clientSecret=ReynTweetsSettings::CONSUMER_SECRET, QString clientUrl=ReynTweetsSettings::CALLBACK_URL, QString signatureAlgorithm=&quot;HMAC&#45;SHA1&quot;, QString version=&quot;1.0&quot;)" -->
+<a class="anchor" id="a1f3c0442a309c1f14db73f5c8b6ee525"></a><!-- doxytag: member="OAuthManager::OAuthManager" ref="a1f3c0442a309c1f14db73f5c8b6ee525" args="(QByteArray clientKey=ReynTweetsSettings::CONSUMER_KEY, QByteArray clientSecret=ReynTweetsSettings::CONSUMER_SECRET, QString clientUrl=ReynTweetsSettings::CALLBACK_URL, QString signatureAlgorithm=&quot;HMAC&#45;SHA1&quot;, QString version=&quot;1.0&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">OAuthManager::OAuthManager </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>clientKey</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a12b4f5119b36309fcf7a367cd20d641d">ReynTweetsSettings::CONSUMER_KEY</a></code>, </td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>clientKey</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>clientSecret</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#aea8a925e5c9f7d8f789a472d32c4dcef">ReynTweetsSettings::CONSUMER_SECRET</a></code>, </td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>clientSecret</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -284,7 +284,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The formatted parameters </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00215">215</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00219">219</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +306,7 @@ window.onload = initDynSections;
 <p>Generates a nonce for a request. To generate a nonce, a random string is generated by taking 32 times one letter in the alphabet. The letter could be in upper case or lower case. The final nonce is the 64 base-encoding of the random string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A nonce for a request. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00240">240</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00244">244</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,16 +328,16 @@ window.onload = initDynSections;
 <p>Generates a timestamp for a request. The timestamp is the number of seconds since the Unix Epoch (1/1/1970 at midnight). </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A timestamp corresponding to the current date. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00259">259</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00263">263</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab0fc5506b92f2626aede8e7ee6d8617a"></a><!-- doxytag: member="OAuthManager::getAuthenticityToken" ref="ab0fc5506b92f2626aede8e7ee6d8617a" args="()" -->
+<a class="anchor" id="a66378d342823937f967a516d4e0d6888"></a><!-- doxytag: member="OAuthManager::getAuthenticityToken" ref="a66378d342823937f967a516d4e0d6888" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString OAuthManager::getAuthenticityToken </td>
+          <td class="memname">QByteArray OAuthManager::getAuthenticityToken </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -472,12 +472,12 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="aa1551c402a20e7620b122e19df743d94"></a><!-- doxytag: member="OAuthManager::getOAuthToken" ref="aa1551c402a20e7620b122e19df743d94" args="()" -->
+<a class="anchor" id="a24a1e564bf3602e3ce2090e673156171"></a><!-- doxytag: member="OAuthManager::getOAuthToken" ref="a24a1e564bf3602e3ce2090e673156171" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString OAuthManager::getOAuthToken </td>
+          <td class="memname">QByteArray OAuthManager::getOAuthToken </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -494,12 +494,12 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a4e71fcdb61f07ceca2616d5edd6434bb"></a><!-- doxytag: member="OAuthManager::getVerifier" ref="a4e71fcdb61f07ceca2616d5edd6434bb" args="()" -->
+<a class="anchor" id="a510ed95ef339b06bb3727ee61c0afb79"></a><!-- doxytag: member="OAuthManager::getVerifier" ref="a510ed95ef339b06bb3727ee61c0afb79" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString OAuthManager::getVerifier </td>
+          <td class="memname">QByteArray OAuthManager::getVerifier </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -537,14 +537,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a5483c8d895ddf6b4ed3b7ba6e0c24c62"></a><!-- doxytag: member="OAuthManager::setAuthenticityToken" ref="a5483c8d895ddf6b4ed3b7ba6e0c24c62" args="(QString authToken)" -->
+<a class="anchor" id="a4ce9bd4c4561d87d75c255a960ed5d0b"></a><!-- doxytag: member="OAuthManager::setAuthenticityToken" ref="a4ce9bd4c4561d87d75c255a960ed5d0b" args="(QByteArray authToken)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void OAuthManager::setAuthenticityToken </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
           <td class="paramname"> <em>authToken</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -593,14 +593,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a85345a8a166ecd939b90bdc90796c4da"></a><!-- doxytag: member="OAuthManager::setOAuthSecret" ref="a85345a8a166ecd939b90bdc90796c4da" args="(QString authSecret)" -->
+<a class="anchor" id="af89cb1fd781c76d8ae373f7a2db680e4"></a><!-- doxytag: member="OAuthManager::setOAuthSecret" ref="af89cb1fd781c76d8ae373f7a2db680e4" args="(QByteArray authSecret)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void OAuthManager::setOAuthSecret </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
           <td class="paramname"> <em>oauthSecret</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -621,14 +621,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a8e0f164ec34a2c44b087020314986b98"></a><!-- doxytag: member="OAuthManager::setOAuthToken" ref="a8e0f164ec34a2c44b087020314986b98" args="(QString authToken)" -->
+<a class="anchor" id="aefc7fd2f62d37cb76344c8aad561f8c0"></a><!-- doxytag: member="OAuthManager::setOAuthToken" ref="aefc7fd2f62d37cb76344c8aad561f8c0" args="(QByteArray authToken)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void OAuthManager::setOAuthToken </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
           <td class="paramname"> <em>authToken</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -649,14 +649,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="ab966afa7c9b293b29615bfa57835fece"></a><!-- doxytag: member="OAuthManager::setVerifier" ref="ab966afa7c9b293b29615bfa57835fece" args="(QString verifier)" -->
+<a class="anchor" id="ac15ad8abdf37aac183d7879526831b68"></a><!-- doxytag: member="OAuthManager::setVerifier" ref="ac15ad8abdf37aac183d7879526831b68" args="(QByteArray verifier)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void OAuthManager::setVerifier </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
           <td class="paramname"> <em>verifier</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -761,17 +761,17 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature of the given datas </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00265">265</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00269">269</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ab9719d57a4170a5c06fb7a8a3c9607da"></a><!-- doxytag: member="OAuthManager::authenticityToken" ref="ab9719d57a4170a5c06fb7a8a3c9607da" args="" -->
+<a class="anchor" id="a6871bf42e3c74a75f8eb0f9dd014b2db"></a><!-- doxytag: member="OAuthManager::authenticityToken" ref="a6871bf42e3c74a75f8eb0f9dd014b2db" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#ab9719d57a4170a5c06fb7a8a3c9607da">OAuthManager::authenticityToken</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#a6871bf42e3c74a75f8eb0f9dd014b2db">OAuthManager::authenticityToken</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -779,7 +779,7 @@ window.onload = initDynSections;
 
 <p>Authenticity token for POST authorizing(). </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00182">182</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00183">183</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -796,16 +796,16 @@ window.onload = initDynSections;
 
 <p>Callback URL of the application. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00164">164</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00165">165</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a89d85c2a81e0e576a1ed3367bb2a6b0c"></a><!-- doxytag: member="OAuthManager::consumerKey" ref="a89d85c2a81e0e576a1ed3367bb2a6b0c" args="" -->
+<a class="anchor" id="a26c67768b4f4abfe8738177cd9a48cdd"></a><!-- doxytag: member="OAuthManager::consumerKey" ref="a26c67768b4f4abfe8738177cd9a48cdd" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#a89d85c2a81e0e576a1ed3367bb2a6b0c">OAuthManager::consumerKey</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#a26c67768b4f4abfe8738177cd9a48cdd">OAuthManager::consumerKey</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -813,16 +813,16 @@ window.onload = initDynSections;
 
 <p>Consumer key. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00158">158</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00159">159</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac12932985e6b4977b85622e1568d936a"></a><!-- doxytag: member="OAuthManager::consumerSecret" ref="ac12932985e6b4977b85622e1568d936a" args="" -->
+<a class="anchor" id="a08dfde3d00eab4a06addb5c18bc55365"></a><!-- doxytag: member="OAuthManager::consumerSecret" ref="a08dfde3d00eab4a06addb5c18bc55365" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#ac12932985e6b4977b85622e1568d936a">OAuthManager::consumerSecret</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#a08dfde3d00eab4a06addb5c18bc55365">OAuthManager::consumerSecret</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -830,7 +830,7 @@ window.onload = initDynSections;
 
 <p>Consumer secret. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00161">161</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00162">162</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -847,16 +847,16 @@ window.onload = initDynSections;
 
 <p>Value used to tell Twitter that an application is denied. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00185">185</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00186">186</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aea73508359d2fdfa7e2c9616403fc24b"></a><!-- doxytag: member="OAuthManager::oauthSecret" ref="aea73508359d2fdfa7e2c9616403fc24b" args="" -->
+<a class="anchor" id="a644a950820ad049510d95cbaed71c885"></a><!-- doxytag: member="OAuthManager::oauthSecret" ref="a644a950820ad049510d95cbaed71c885" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#aea73508359d2fdfa7e2c9616403fc24b">OAuthManager::oauthSecret</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#a644a950820ad049510d95cbaed71c885">OAuthManager::oauthSecret</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -864,7 +864,7 @@ window.onload = initDynSections;
 
 <p>Secret used for signatures. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00176">176</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00177">177</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -881,16 +881,16 @@ window.onload = initDynSections;
 
 <p>Algorithm used for signing requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00167">167</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00168">168</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4bc3fcd69cbd2ee9495c0a5ba7f014e0"></a><!-- doxytag: member="OAuthManager::oauthToken" ref="a4bc3fcd69cbd2ee9495c0a5ba7f014e0" args="" -->
+<a class="anchor" id="a0c6ca32df5224b8196ac94d86d67a31c"></a><!-- doxytag: member="OAuthManager::oauthToken" ref="a0c6ca32df5224b8196ac94d86d67a31c" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#a4bc3fcd69cbd2ee9495c0a5ba7f014e0">OAuthManager::oauthToken</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#a0c6ca32df5224b8196ac94d86d67a31c">OAuthManager::oauthToken</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -898,16 +898,16 @@ window.onload = initDynSections;
 
 <p>Token used for requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00173">173</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00174">174</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2e4c311fbfbd85a244d40fb36364b684"></a><!-- doxytag: member="OAuthManager::oauthVerifier" ref="a2e4c311fbfbd85a244d40fb36364b684" args="" -->
+<a class="anchor" id="af25c63eefd591d305da7f5df82cb1a79"></a><!-- doxytag: member="OAuthManager::oauthVerifier" ref="af25c63eefd591d305da7f5df82cb1a79" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="class_o_auth_manager.html#a2e4c311fbfbd85a244d40fb36364b684">OAuthManager::oauthVerifier</a><code> [protected]</code></td>
+          <td class="memname">QByteArray <a class="el" href="class_o_auth_manager.html#af25c63eefd591d305da7f5df82cb1a79">OAuthManager::oauthVerifier</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -915,7 +915,7 @@ window.onload = initDynSections;
 
 <p>Verifier for authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00179">179</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00180">180</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -932,7 +932,7 @@ window.onload = initDynSections;
 
 <p>Version of the OAuth protocol used for the authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00170">170</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00171">171</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -955,7 +955,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:29:20 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:20 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

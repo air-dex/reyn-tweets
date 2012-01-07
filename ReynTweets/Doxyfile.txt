@@ -31,7 +31,7 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = ReynTweets
 PROJECT_NUMBER         = 0.1dev
-OUTPUT_DIRECTORY       = C:/Users/Romain/Documents/ReynTweets/trunk/doc
+OUTPUT_DIRECTORY       = ../doc
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES

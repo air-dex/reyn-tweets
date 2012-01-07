@@ -1,5 +1,6 @@
-/// @file main.cpp
-/// @brief File with the main method
+/// @file mainwindow.cpp
+/// @brief Implementation of MainWindow.<br/>
+/// Revisions older than r113 are in /trunk/ReynTweets
 /// @author Romain Ducher
 
 /*
@@ -24,9 +25,14 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "mainwindow.hpp"
 #include "connection/reyntwittercalls.hpp"
 
+// Constructor
 MainWindow::MainWindow(QWidget *parent) :
-	QMainWindow(parent)
-{}
+	QMainWindow(parent),
+	reynTweets()
+{
+	setCentralWidget(&reynTweets);
+}
 
+// Destructor
 MainWindow::~MainWindow()
 {}

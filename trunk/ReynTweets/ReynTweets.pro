@@ -67,7 +67,7 @@ SOURCES += \
 	ui/authentication/oauthwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
-	mainwindow.cpp \
+	ui/mainwindow.cpp \
 	main.cpp
 
 HEADERS  += \
@@ -102,7 +102,7 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	mainwindow.hpp
+	ui/mainwindow.hpp
 
 
 OTHER_FILES = \

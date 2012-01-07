@@ -105,7 +105,7 @@ window.onload = initDynSections;
 <a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
 <a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
@@ -116,25 +116,25 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="oauthrequester_8hpp.html" title="Header of OAuthRequester.">oauthrequester.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 
-<a name="l00031"></a><a class="code" href="class_authenticate_requester.html">00031</a> <span class="keyword">class </span><a class="code" href="class_authenticate_requester.html" title="Requester for OAuth authentication.">AuthenticateRequester</a> : <span class="keyword">public</span> <a class="code" href="class_o_auth_requester.html" title="Generic requester for requests dealing with OAuth.">OAuthRequester</a>
-<a name="l00032"></a>00032 {
-<a name="l00033"></a>00033         Q_OBJECT
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035         <span class="keyword">public</span>:
-<a name="l00041"></a>00041                 <a class="code" href="class_authenticate_requester.html#a59bd741984ba5dbd0c09eafe2e64854b" title="Constructor.">AuthenticateRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; authManager,
-<a name="l00042"></a>00042                                                           QObject * requester = 0);
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <span class="keyword">protected</span>:
-<a name="l00047"></a>00047                 <span class="keywordtype">void</span> <a class="code" href="class_authenticate_requester.html#af0e9c4cb2dd2162032acf8d3e7b52053" title="Method building GET Parameters.">buildGETParameters</a>();
-<a name="l00048"></a>00048 
-<a name="l00051"></a>00051                 <span class="keywordtype">void</span> <a class="code" href="class_authenticate_requester.html#a12b86ea8932ba023eedc84cf23eea109" title="Method building POST Parameters.">buildPOSTParameters</a>();
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053                 <span class="comment">// TODO</span>
-<a name="l00061"></a>00061 <span class="comment"></span>                QVariant <a class="code" href="class_authenticate_requester.html#aa69f34a375793a52aa39e5d3560dbf4c" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK, QVariantMap &amp; parsingErrors);
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 };
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 <span class="preprocessor">#endif // AUTHENTICATEREQUESTER_HPP</span>
+<a name="l00032"></a><a class="code" href="class_authenticate_requester.html">00032</a> <span class="keyword">class </span><a class="code" href="class_authenticate_requester.html" title="Requester for OAuth authentication. Unused for the moment.">AuthenticateRequester</a> : <span class="keyword">public</span> <a class="code" href="class_o_auth_requester.html" title="Generic requester for requests dealing with OAuth.">OAuthRequester</a>
+<a name="l00033"></a>00033 {
+<a name="l00034"></a>00034         Q_OBJECT
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036         <span class="keyword">public</span>:
+<a name="l00042"></a>00042                 <a class="code" href="class_authenticate_requester.html#a59bd741984ba5dbd0c09eafe2e64854b" title="Constructor.">AuthenticateRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter.">OAuthManager</a> &amp; authManager,
+<a name="l00043"></a>00043                                                           QObject * requester = 0);
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045         <span class="keyword">protected</span>:
+<a name="l00048"></a>00048                 <span class="keywordtype">void</span> <a class="code" href="class_authenticate_requester.html#af0e9c4cb2dd2162032acf8d3e7b52053" title="Method building GET Parameters.">buildGETParameters</a>();
+<a name="l00049"></a>00049 
+<a name="l00052"></a>00052                 <span class="keywordtype">void</span> <a class="code" href="class_authenticate_requester.html#a12b86ea8932ba023eedc84cf23eea109" title="Method building POST Parameters.">buildPOSTParameters</a>();
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054                 <span class="comment">// TODO</span>
+<a name="l00062"></a>00062 <span class="comment"></span>                QVariant <a class="code" href="class_authenticate_requester.html#aa69f34a375793a52aa39e5d3560dbf4c" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK, QVariantMap &amp; parsingErrors);
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 };
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="preprocessor">#endif // AUTHENTICATEREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -150,7 +150,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:14 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:29:15 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

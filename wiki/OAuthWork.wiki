@@ -1,0 +1,27 @@
+#labels Phase-Implementation
+= *Développement de Reyn Tweets* =
+
+== Travail fait pour l'intégration de OAuth ==
+
+  * Comprendre OAuth
+  * Choisir une librairie pour OAuth (QOAuth ? kQOAuth ?) : pas de librairies annexe afin de pouvoir réutiliser le Twitter Communicator
+  * Mettre en place l'architecture.
+  * Adapter l'architecture existante (se fera en cours de codage si nécessaire).
+  * Faire une procédure de "3-legged authorization" indépendante de Reyn Tweets pour finir d'assimiler le processus (est-ce bien nécessaire ?). -> Fait en déboguant.
+  * Codage :
+    * Création des classes
+    * Codage de OAuthManager
+    * Codage des OAuthRequesters
+    * Intégration de l'OAuthManager dans les requesters et le TwitterCommunicator
+    * Adaptation du TwitterCommunicator
+    * Résolution du problème de linkage (issue 11).
+    * Mettre en place une procédure de bout en bout pour l'authentification.
+    * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter
+      * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
+    * Faire l'UI de l'autorisation de Reyn Tweets sur le compte Twitter.
+      * Structure mise en place (OAuthWidget) et intégration du controlleur chargé de faire le travail (OAuthProcess).
+      * Gestion de la partie UI de l'OAuthWidget (affichage de la page Web, affichage des fenêtres d'erreurs et replacement dans le processus d'authentification).
+    * Intégration de l'OAuthWidget dans le widget de test.
+    * Stockage des tokens (en clair c'est mal !).
+  * Tester
+    * Plantage de fin de process (issue 36)

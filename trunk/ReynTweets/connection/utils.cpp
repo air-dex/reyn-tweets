@@ -1,5 +1,5 @@
 /// @file utils.cpp
-/// @brief Implementation of the Utils methods
+/// @brief Implementation of the useful methods declared in utils.hpp.
 /// @author Romain Ducher
 
 /*
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // HMAC-SHA1 algorithm for signatures.
-QString Utils::hmacSha1(QByteArray key, QByteArray baseString) {
+QString hmacSha1(QByteArray key, QByteArray baseString) {
 	int blockSize = 64; // HMAC-SHA-1 block size, defined in SHA-1 standard
 
 	if (key.length() > blockSize) {
@@ -60,7 +60,7 @@ QString Utils::hmacSha1(QByteArray key, QByteArray baseString) {
 }
 
 // Converting a RequestType into a QString
-QString Utils::requestTypeToString(RequestType type) {
+QString requestTypeToString(RequestType type) {
 	switch (type) {
 		case GET:
 			return "GET";
@@ -72,6 +72,6 @@ QString Utils::requestTypeToString(RequestType type) {
 }
 
 // Exclusive OR
-bool Utils::ouBien(bool a, bool b) {
+bool ouBien(bool a, bool b) {
 	return  a && !b || !a && b;
 }

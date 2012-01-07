@@ -1,5 +1,5 @@
-/// @file searchrequest.cpp
-/// @brief Code of the ReynTwitterCalls class
+/// @file reyntwittercalls.cpp
+/// @brief Implementation of ReynTwitterCalls
 /// @author Romain Ducher
 
 /*
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -42,7 +42,6 @@ ReynTwitterCalls::ReynTwitterCalls(QObject * requester) :
 
 // Destructor
 ReynTwitterCalls::~ReynTwitterCalls() {
-	qDebug("Reyn is deadly shot");
 	requestDemander = 0;
 }
 

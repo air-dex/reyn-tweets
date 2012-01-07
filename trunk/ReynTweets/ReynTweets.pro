@@ -18,7 +18,7 @@
 # Reyn Tweets is distributed in the hope that it will be useful,              #
 # but WITHOUT ANY WARRANTY; without even the implied warranty of              #
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                #
-# GNU General Public License for more details.                                #
+# GNU Lesser General Public License for more details.                         #
 #                                                                             #
 # You should have received a copy of the GNU Lesser General Public License    #
 # along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.         #
@@ -34,7 +34,11 @@ QT       += core gui network webkit
 
 TARGET = ReynTweets
 TEMPLATE = app
-TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
+
+
+#--------------#
+# Source files #
+#--------------#
 
 SOURCES += \
 	connection/utils.cpp \
@@ -100,10 +104,20 @@ HEADERS  += \
 	ui/reyntweetswidget.hpp \
 	mainwindow.hpp
 
+
 OTHER_FILES = \
 	reyntweets_en.ts \
 	reyntweets_fr.ts \
-	Doxyfile.txt
+	Doxyfile.txt \
+	doxygen_log.txt
+
+#--------------#
+# Translations #
+#--------------#
+
+TRANSLATIONS = \
+	reyntweets_en.ts \ # English
+	reyntweets_fr.ts \ # French
 
 
 #-------------------------------#

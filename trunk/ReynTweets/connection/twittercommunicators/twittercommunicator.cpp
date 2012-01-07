@@ -17,7 +17,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -26,11 +26,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QNetworkRequest>
 #include "twittercommunicator.hpp"
 
+// Network manager
+QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
+
 /////////////
 // Coplien //
 /////////////
-
-QNetworkAccessManager networkManager = QNetworkAccessManager();
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
@@ -43,7 +44,6 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 										 bool callbackURLNeeded,
 										 bool verifierNeeded) :
 	QObject(),
-//	networkManager(),
 	serviceURL(url),
 	requestType(type),
 	getParameters(getArgs),
@@ -61,22 +61,19 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	replyURL("")
 {
 	// Connection for receiving the response
-	connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+	connect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
 			this, SLOT(endRequest(QNetworkReply*)));
 }
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
-	qDebug("Delete communicator avec URL : ");
-	qDebug(serviceURL.toUtf8().data());
-
 	// Deleting the request
 	if (request != 0) {
 		delete request;
 	}
 
 	// Unwiring
-	disconnect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+	disconnect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
 			   this, SLOT(endRequest(QNetworkReply*)));
 }
 
@@ -131,10 +128,10 @@ void TwitterCommunicator::executeRequest() {
 	// Executing the request
 	if (POST == requestType) {
 		// There is some POST arguments -> networkManager.post()
-		networkManager.post(*request, postArgs);
+		REYN_TWEETS_NETWORK_MANAGER.post(*request, postArgs);
 	} else {
 		// There is not any POST arguments -> networkManager.get()
-		networkManager.get(*request);
+		REYN_TWEETS_NETWORK_MANAGER.get(*request);
 	}
 }
 
@@ -200,6 +197,7 @@ QString TwitterCommunicator::getReplyURL() {
 QString TwitterCommunicator::getErrorMessage() {
 	return errorMessage;
 }
+
 
 /////////////////////
 // Buiding ArgMaps //

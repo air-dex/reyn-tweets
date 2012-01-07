@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -27,7 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include "requestresult.hpp"
 
-/// @class ResultSender
+/// @class ResultWrapper
 /// @brief Class containg result of requests (field "result") and the QObject
 /// which asks for it (field "asker"). Only the sender of the request is allowed
 /// to have access to the result. It has to give its memory address in order to
@@ -35,11 +35,11 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 class ResultWrapper
 {
 	public:
-		/// @fn ResultSender();
+		/// @fn ResultWrapper();
 		/// @brief Default constructor which builds an invalid wrapper.
 		ResultWrapper();
 
-		/// @fn ResultSender(QObject * requestSender, RequestResult requestResult);
+		/// @fn ResultWrapper(QObject * requestSender, RequestResult requestResult);
 		/// @brief Constructor
 		/// @param requestSender Sender of the reqauest
 		/// @param requestResult Result of the request
@@ -47,7 +47,7 @@ class ResultWrapper
 
 		/// @fn RequestResult accessResult(QObject * demanderAdress);
 		/// @brief Method to access to the result
-		/// @param Memory address of the QObject which wants to access
+		/// @param demanderAdress Memory address of the QObject which wants to access
 		/// to the result.
 		/// @return The request result if demanderAdress is right or Qvariant()
 		/// otherwise.

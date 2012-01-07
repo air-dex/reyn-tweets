@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -28,6 +28,8 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "oauthprocessresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 
+/// @class OAuthProcess
+/// @brief Controller for the execution of the Twitter's OAuth Authentication Flow
 class OAuthProcess : public QObject
 {
 	Q_OBJECT
@@ -105,12 +107,12 @@ class OAuthProcess : public QObject
 		/// @param res Result of the request
 		void authorizeDemanded(ResultWrapper res);
 
-		/// @fn void authorizeDemanded(ResultWrapper res);
+		/// @fn void postAuthorizeDemanded(ResultWrapper res);
 		/// @brief Treatments after the POST authorizing request
 		/// @param res Result of the request
 		void postAuthorizeDemanded(ResultWrapper res);
 
-		/// @fn void accessTokenDemanded(ResultWrappers res);
+		/// @fn void accessTokenDemanded(ResultWrapper res);
 		/// @brief Treatments after the request for Access Tokens
 		/// @param res Result of the request
 		void accessTokenDemanded(ResultWrapper res);

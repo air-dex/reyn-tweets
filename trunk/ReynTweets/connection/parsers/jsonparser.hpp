@@ -1,4 +1,4 @@
-/// @file jsoncparser.hpp
+/// @file jsonparser.hpp
 /// @brief Header of JSONParser
 /// @author Romain Ducher
 
@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -27,7 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "genericparser.hpp"
 
 /// @class JSONParser
-/// @brief Parser for JSON datas. It uses the <a href="qjson.sourceforge.net">
+/// @brief Parser for JSON datas. It uses the <a href="http://qjson.sourceforge.net">
 /// QJSON</a> library to parse.
 class JSONParser : public GenericParser<QVariantMap>
 {
@@ -37,7 +37,7 @@ class JSONParser : public GenericParser<QVariantMap>
 		///						  QString & parseError,
 		///						  int * lineError = 0);
 		/// @brief Parsing JSON datas
-		/// @param Raw datas to parse
+		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error

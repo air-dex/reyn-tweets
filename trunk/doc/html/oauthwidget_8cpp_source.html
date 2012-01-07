@@ -105,7 +105,7 @@ window.onload = initDynSections;
 <a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
 <a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
 <a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU General Public License for more details.</span>
+<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
@@ -122,174 +122,172 @@ window.onload = initDynSections;
 <a name="l00032"></a>00032         layout()
 <a name="l00033"></a>00033 {
 <a name="l00034"></a>00034         <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.setVisible(<span class="keyword">false</span>);
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036         <span class="comment">// Wiring</span>
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="comment">// Between the login panel and the launching slots</span>
-<a name="l00039"></a>00039         connect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(authorize()),
-<a name="l00040"></a>00040                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>()));
-<a name="l00041"></a>00041         connect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(deny()),
-<a name="l00042"></a>00042                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>()));
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <span class="comment">// Showing or hiding the error message for credentials</span>
-<a name="l00045"></a>00045         connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
-<a name="l00046"></a>00046                         &amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SLOT(showCredentialsErrorMessage(<span class="keywordtype">bool</span>)));
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="comment">// Destructor</span>
-<a name="l00050"></a><a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab">00050</a> <a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab" title="Destructor.">OAuthWidget::~OAuthWidget</a>() {
-<a name="l00051"></a>00051         <span class="keywordflow">if</span> (<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>) {
-<a name="l00052"></a>00052                 <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
-<a name="l00053"></a>00053         }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055         <span class="comment">// Unwiring</span>
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057         <span class="comment">// Launching slots</span>
-<a name="l00058"></a>00058         disconnect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(authorize()),
-<a name="l00059"></a>00059                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>()));
-<a name="l00060"></a>00060         disconnect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(deny()),
-<a name="l00061"></a>00061                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>()));
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         <span class="comment">// Error message for credentials</span>
-<a name="l00064"></a>00064         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
-<a name="l00065"></a>00065                            &amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SLOT(showCredentialsErrorMessage(<span class="keywordtype">bool</span>)));
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         qDebug(<span class="stringliteral">&quot;Tombstone OAuthWidget&quot;</span>);
-<a name="l00068"></a>00068 }
+<a name="l00035"></a>00035         setLayout(&amp;<a class="code" href="class_o_auth_widget.html#a32be2f7679e135d30332a90777a664cb" title="Layout of the widget.">layout</a>);
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037         <span class="comment">// Wiring</span>
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039         <span class="comment">// Between the login panel and the launching slots</span>
+<a name="l00040"></a>00040         connect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(authorize()),
+<a name="l00041"></a>00041                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>()));
+<a name="l00042"></a>00042         connect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(deny()),
+<a name="l00043"></a>00043                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>()));
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045         <span class="comment">// Showing or hiding the error message for credentials</span>
+<a name="l00046"></a>00046         connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
+<a name="l00047"></a>00047                         &amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SLOT(showCredentialsErrorMessage(<span class="keywordtype">bool</span>)));
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// Destructor</span>
+<a name="l00051"></a><a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab">00051</a> <a class="code" href="class_o_auth_widget.html#a7e0656f925a7dc421146be2b657f2aab" title="Destructor.">OAuthWidget::~OAuthWidget</a>() {
+<a name="l00052"></a>00052         <span class="keywordflow">if</span> (<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>) {
+<a name="l00053"></a>00053                 <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="comment">// Unwiring</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058         <span class="comment">// Launching slots</span>
+<a name="l00059"></a>00059         disconnect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(authorize()),
+<a name="l00060"></a>00060                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">launchAuthorize</a>()));
+<a name="l00061"></a>00061         disconnect(&amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SIGNAL(deny()),
+<a name="l00062"></a>00062                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">launchDeny</a>()));
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="comment">// Error message for credentials</span>
+<a name="l00065"></a>00065         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
+<a name="l00066"></a>00066                            &amp;<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>, SLOT(showCredentialsErrorMessage(<span class="keywordtype">bool</span>)));
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00072"></a>00072 <span class="comment">// Visual notifications //</span>
-<a name="l00074"></a>00074 <span class="comment"></span>
-<a name="l00075"></a>00075 <span class="comment">// Slot executing to show (or to hide) the login panel</span>
-<a name="l00076"></a><a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8">00076</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">OAuthWidget::loginPanelVisible</a>(<span class="keywordtype">bool</span> visible) {
-<a name="l00077"></a>00077         <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.setVisible(visible);
-<a name="l00078"></a>00078 }
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="comment">// Showing or hidding an error message about the validity of credentials.</span>
-<a name="l00081"></a><a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">00081</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">OAuthWidget::rightCredentials</a>(<span class="keywordtype">bool</span> ok) {
-<a name="l00082"></a>00082         emit <a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(ok);
-<a name="l00083"></a>00083 }
+<a name="l00071"></a>00071 <span class="comment">// Visual notifications //</span>
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">// Slot executing to show (or to hide) the login panel</span>
+<a name="l00075"></a><a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8">00075</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">OAuthWidget::loginPanelVisible</a>(<span class="keywordtype">bool</span> visible) {
+<a name="l00076"></a>00076         <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.setVisible(visible);
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="comment">// Showing or hidding an error message about the validity of credentials.</span>
+<a name="l00080"></a><a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">00080</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">OAuthWidget::rightCredentials</a>(<span class="keywordtype">bool</span> ok) {
+<a name="l00081"></a>00081         emit <a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(ok);
+<a name="l00082"></a>00082 }
+<a name="l00083"></a>00083 
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085 
-<a name="l00087"></a>00087 <span class="comment">// OAuth process //</span>
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">// Allowing Reyn Tweets to use your Twitter account</span>
-<a name="l00091"></a><a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">OAuthWidget::allowReynTweets</a>() {
-<a name="l00092"></a>00092         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a> = <span class="keyword">new</span> <a class="code" href="class_o_auth_process.html">OAuthProcess</a>(<span class="keyword">this</span>);
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094         <span class="keywordflow">if</span> (<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>) {
-<a name="l00095"></a>00095                 <span class="comment">// Wiring connection beetween the widget and the process</span>
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097                 <span class="comment">// Visual changes</span>
-<a name="l00098"></a>00098                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)),
-<a name="l00099"></a>00099                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)));
-<a name="l00100"></a>00100                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
-<a name="l00101"></a>00101                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span>)));
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103                 <span class="comment">// Process notifications</span>
-<a name="l00104"></a>00104                 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)),
-<a name="l00105"></a>00105                                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)));
-<a name="l00106"></a>00106                 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)),
-<a name="l00107"></a>00107                                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)));
-<a name="l00108"></a>00108                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(authenticationProcessFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)),
-<a name="l00109"></a>00109                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)));
-<a name="l00110"></a>00110                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)),
-<a name="l00111"></a>00111                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)));
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>-&gt;<a class="code" href="class_o_auth_process.html#a66945fe251e86ad88f84d8c05c0dd9b3" title="Starting the OAuth authentication flow.">startAuthentication</a>();
-<a name="l00114"></a>00114         } <span class="keywordflow">else</span> {
-<a name="l00115"></a>00115                 <span class="comment">// Critical error -&gt; Abort the process.</span>
-<a name="l00116"></a>00116                 QMessageBox::critical(<span class="keyword">this</span>,
-<a name="l00117"></a>00117                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error during the authentication process&quot;</span>),
-<a name="l00118"></a>00118                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error while launching the authentication process. Authentication ended.&quot;</span>));
-<a name="l00119"></a>00119                 emit <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
-<a name="l00120"></a>00120         }
-<a name="l00121"></a>00121 }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="comment">// Signal emitted when an error occurs during the process</span>
-<a name="l00124"></a><a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115">00124</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">OAuthWidget::errorProcess</a>(<span class="keywordtype">bool</span> fatalError, QString errorMsg) {
-<a name="l00125"></a>00125         QString message = errorMsg;
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127         <span class="keywordflow">if</span> (fatalError) {
-<a name="l00128"></a>00128                 <span class="comment">// Critical error -&gt; Abort the process.</span>
-<a name="l00129"></a>00129                 message.append(QObject::trUtf8(<span class="stringliteral">&quot;\nEnd of the authentication process.&quot;</span>));
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131                 QMessageBox::critical(<span class="keyword">this</span>,
-<a name="l00132"></a>00132                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error during the authentication process&quot;</span>),
-<a name="l00133"></a>00133                                                           QObject::trUtf8(message.toUtf8().data()));
-<a name="l00134"></a>00134                 <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
-<a name="l00135"></a>00135         } <span class="keywordflow">else</span> {
-<a name="l00136"></a>00136                 <span class="comment">// The error is not critical. The process can be resumed.</span>
-<a name="l00137"></a>00137                 message.append(QObject::trUtf8(<span class="stringliteral">&quot;\nWould you like to resume the authentication process ?&quot;</span>));
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139                 QMessageBox::StandardButton userResponse = QMessageBox::warning(<span class="keyword">this</span>,
-<a name="l00140"></a>00140                                                                                                                                                 QObject::trUtf8(<span class="stringliteral">&quot;Hitch in the authentication process&quot;</span>),
-<a name="l00141"></a>00141                                                                                                                                                 QObject::trUtf8(message.toUtf8().data()),
-<a name="l00142"></a>00142                                                                                                                                                 QMessageBox::Yes | QMessageBox::No,
-<a name="l00143"></a>00143                                                                                                                                                 QMessageBox::Yes);
-<a name="l00144"></a>00144                 <span class="keywordflow">if</span> (QMessageBox::Yes == userResponse) {
-<a name="l00145"></a>00145                         <span class="comment">// Resume the process</span>
-<a name="l00146"></a>00146                         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>-&gt;<a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
-<a name="l00147"></a>00147                         <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
-<a name="l00148"></a>00148                         <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
-<a name="l00149"></a>00149                 } <span class="keywordflow">else</span> {
-<a name="l00150"></a>00150                         <span class="comment">// Abort the process</span>
-<a name="l00151"></a>00151                         QMessageBox::information(<span class="keyword">this</span>,
-<a name="l00152"></a>00152                                                                          QObject::trUtf8(<span class="stringliteral">&quot;End of the authentication process&quot;</span>),
-<a name="l00153"></a>00153                                                                          QObject::trUtf8(<span class="stringliteral">&quot;Authentication ended&quot;</span>));
-<a name="l00154"></a>00154                         <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
-<a name="l00155"></a>00155                 }
-<a name="l00156"></a>00156         }
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="comment">// Killing the OAuth Authentication Flow</span>
-<a name="l00160"></a><a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f">00160</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">OAuthWidget::killOAuthProcess</a>() {
-<a name="l00161"></a>00161         <span class="comment">// Unwiring connection beetween the widget and the process</span>
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163         <span class="comment">// Visual changes</span>
-<a name="l00164"></a>00164         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)),
-<a name="l00165"></a>00165                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)));
-<a name="l00166"></a>00166         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
-<a name="l00167"></a>00167                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span>)));
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169         <span class="comment">// Process notifications</span>
-<a name="l00170"></a>00170         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)),
-<a name="l00171"></a>00171                            <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)));
-<a name="l00172"></a>00172         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)),
-<a name="l00173"></a>00173                            <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)));
-<a name="l00174"></a>00174         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(authenticationProcessFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)),
-<a name="l00175"></a>00175                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)));
-<a name="l00176"></a>00176         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)),
-<a name="l00177"></a>00177                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)));
-<a name="l00178"></a>00178 
-<a name="l00179"></a>00179 <span class="comment">//      authenticationFlow-&gt;deleteLater();</span>
-<a name="l00180"></a>00180         <span class="keyword">delete</span> <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>;
-<a name="l00181"></a>00181         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a> = 0;
-<a name="l00182"></a>00182 }
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184 <span class="comment">// End of authentication</span>
-<a name="l00185"></a><a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">00185</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">OAuthWidget::endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult) {
-<a name="l00186"></a>00186         <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
-<a name="l00187"></a>00187         qDebug(<span class="stringliteral">&quot;fin de l&#39;OAuth Authentication Flow&quot;</span>);
-<a name="l00188"></a>00188 
-<a name="l00189"></a>00189         <span class="comment">// Transmitting the result</span>
-<a name="l00190"></a>00190         emit <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(processResult);
-<a name="l00191"></a>00191 }
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193 
-<a name="l00195"></a>00195 <span class="comment">// Launching Slots //</span>
-<a name="l00197"></a>00197 <span class="comment"></span>
-<a name="l00198"></a>00198 <span class="comment">// Internal Slot used to send the authorizeReynTweets signal.</span>
-<a name="l00199"></a><a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de">00199</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">OAuthWidget::launchAuthorize</a>() {
-<a name="l00200"></a>00200         emit <a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a8e80670589b42263a3e2744183723951" title="Getter on the login (username or email) written by the user.">getLogin</a>(),
-<a name="l00201"></a>00201                                                          <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a4396a0d9027f8501c3dd65c618beddd7" title="Getter on the password written by the user.">getPassword</a>());
-<a name="l00202"></a>00202 }
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204 <span class="comment">// Internal Slot used to send the denyReynTweets signal.</span>
-<a name="l00205"></a><a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf">00205</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">OAuthWidget::launchDeny</a>() {
-<a name="l00206"></a>00206         emit <a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a8e80670589b42263a3e2744183723951" title="Getter on the login (username or email) written by the user.">getLogin</a>(),
-<a name="l00207"></a>00207                                                 <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a4396a0d9027f8501c3dd65c618beddd7" title="Getter on the password written by the user.">getPassword</a>());
-<a name="l00208"></a>00208 }
+<a name="l00086"></a>00086 <span class="comment">// OAuth process //</span>
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">// Allowing Reyn Tweets to use your Twitter account</span>
+<a name="l00090"></a><a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835">00090</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">OAuthWidget::allowReynTweets</a>() {
+<a name="l00091"></a>00091         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a> = <span class="keyword">new</span> <a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a>();
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         <span class="keywordflow">if</span> (<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>) {
+<a name="l00094"></a>00094                 <span class="comment">// Wiring connection beetween the widget and the process</span>
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096                 <span class="comment">// Visual changes</span>
+<a name="l00097"></a>00097                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)),
+<a name="l00098"></a>00098                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)));
+<a name="l00099"></a>00099                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
+<a name="l00100"></a>00100                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span>)));
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102                 <span class="comment">// Process notifications</span>
+<a name="l00103"></a>00103                 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)),
+<a name="l00104"></a>00104                                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)));
+<a name="l00105"></a>00105                 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)),
+<a name="l00106"></a>00106                                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)));
+<a name="l00107"></a>00107                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(authenticationProcessFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)),
+<a name="l00108"></a>00108                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)));
+<a name="l00109"></a>00109                 connect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)),
+<a name="l00110"></a>00110                                 <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)));
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112                 <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>-&gt;<a class="code" href="class_o_auth_process.html#a66945fe251e86ad88f84d8c05c0dd9b3" title="Starting the OAuth authentication flow.">startAuthentication</a>();
+<a name="l00113"></a>00113         } <span class="keywordflow">else</span> {
+<a name="l00114"></a>00114                 <span class="comment">// Critical error -&gt; Abort the process.</span>
+<a name="l00115"></a>00115                 QMessageBox::critical(<span class="keyword">this</span>,
+<a name="l00116"></a>00116                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error during the authentication process&quot;</span>),
+<a name="l00117"></a>00117                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error while launching the authentication process. Authentication ended.&quot;</span>));
+<a name="l00118"></a>00118                 emit <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
+<a name="l00119"></a>00119         }
+<a name="l00120"></a>00120 }
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="comment">// Signal emitted when an error occurs during the process</span>
+<a name="l00123"></a><a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115">00123</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">OAuthWidget::errorProcess</a>(<span class="keywordtype">bool</span> fatalError, QString errorMsg) {
+<a name="l00124"></a>00124         QString message = errorMsg;
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126         <span class="keywordflow">if</span> (fatalError) {
+<a name="l00127"></a>00127                 <span class="comment">// Critical error -&gt; Abort the process.</span>
+<a name="l00128"></a>00128                 message.append(QObject::trUtf8(<span class="stringliteral">&quot;\nEnd of the authentication process.&quot;</span>));
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130                 QMessageBox::critical(<span class="keyword">this</span>,
+<a name="l00131"></a>00131                                                           QObject::trUtf8(<span class="stringliteral">&quot;Error during the authentication process&quot;</span>),
+<a name="l00132"></a>00132                                                           QObject::trUtf8(message.toUtf8().data()));
+<a name="l00133"></a>00133                 <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
+<a name="l00134"></a>00134         } <span class="keywordflow">else</span> {
+<a name="l00135"></a>00135                 <span class="comment">// The error is not critical. The process can be resumed.</span>
+<a name="l00136"></a>00136                 message.append(QObject::trUtf8(<span class="stringliteral">&quot;\nWould you like to resume the authentication process ?&quot;</span>));
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138                 QMessageBox::StandardButton userResponse = QMessageBox::warning(<span class="keyword">this</span>,
+<a name="l00139"></a>00139                                                                                                                                                 QObject::trUtf8(<span class="stringliteral">&quot;Hitch in the authentication process&quot;</span>),
+<a name="l00140"></a>00140                                                                                                                                                 QObject::trUtf8(message.toUtf8().data()),
+<a name="l00141"></a>00141                                                                                                                                                 QMessageBox::Yes | QMessageBox::No,
+<a name="l00142"></a>00142                                                                                                                                                 QMessageBox::Yes);
+<a name="l00143"></a>00143                 <span class="keywordflow">if</span> (QMessageBox::Yes == userResponse) {
+<a name="l00144"></a>00144                         <span class="comment">// Resume the process</span>
+<a name="l00145"></a>00145                         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>-&gt;<a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00146"></a>00146                         <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
+<a name="l00147"></a>00147                         <a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
+<a name="l00148"></a>00148                 } <span class="keywordflow">else</span> {
+<a name="l00149"></a>00149                         <span class="comment">// Abort the process</span>
+<a name="l00150"></a>00150                         QMessageBox::information(<span class="keyword">this</span>,
+<a name="l00151"></a>00151                                                                          QObject::trUtf8(<span class="stringliteral">&quot;End of the authentication process&quot;</span>),
+<a name="l00152"></a>00152                                                                          QObject::trUtf8(<span class="stringliteral">&quot;Authentication ended&quot;</span>));
+<a name="l00153"></a>00153                         <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>);
+<a name="l00154"></a>00154                 }
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156 }
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 <span class="comment">// Killing the OAuth Authentication Flow</span>
+<a name="l00159"></a><a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f">00159</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">OAuthWidget::killOAuthProcess</a>() {
+<a name="l00160"></a>00160         <span class="comment">// Unwiring connection beetween the widget and the process</span>
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162         <span class="comment">// Visual changes</span>
+<a name="l00163"></a>00163         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)),
+<a name="l00164"></a>00164                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a1c42d408aecb9d0d61a36d59dae744b8" title="Slot executing to show (or to hide) the login panel.">loginPanelVisible</a>(<span class="keywordtype">bool</span>)));
+<a name="l00165"></a>00165         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#aa83bebce6a1ec8dde7c1537d8fc28ead" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span>)),
+<a name="l00166"></a>00166                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a7dc7e5850414c8588c568ac4eb98cc7a">rightCredentials</a>(<span class="keywordtype">bool</span>)));
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168         <span class="comment">// Process notifications</span>
+<a name="l00169"></a>00169         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)),
+<a name="l00170"></a>00170                            <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString,QString)));
+<a name="l00171"></a>00171         disconnect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)),
+<a name="l00172"></a>00172                            <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SLOT(<a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString,QString)));
+<a name="l00173"></a>00173         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(authenticationProcessFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)),
+<a name="l00174"></a>00174                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>)));
+<a name="l00175"></a>00175         disconnect(<a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>, SIGNAL(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)),
+<a name="l00176"></a>00176                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_o_auth_widget.html#ac3ac01df8e6b8b9dcc9b5868ddd85115" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span>,QString)));
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178         <span class="keyword">delete</span> <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a>;
+<a name="l00179"></a>00179         <a class="code" href="class_o_auth_widget.html#a0d3d679d766a24ea085d6100a03d63bf" title="OAuth Authentication Flow. It is this object that will execute the whole authentication...">authenticationFlow</a> = 0;
+<a name="l00180"></a>00180 }
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182 <span class="comment">// End of authentication</span>
+<a name="l00183"></a><a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa">00183</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a0ed126fb1756ec13b81fe95ef70568aa" title="Slot executed at the end of the authentication.">OAuthWidget::endAuthentication</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult) {
+<a name="l00184"></a>00184         <a class="code" href="class_o_auth_widget.html#aa2c6cd8961fa74aec7e524772755050f" title="Killing the OAuth Authentication Flow.">killOAuthProcess</a>();
+<a name="l00185"></a>00185         qDebug(<span class="stringliteral">&quot;fin de l&#39;OAuth Authentication Flow&quot;</span>);
+<a name="l00186"></a>00186 
+<a name="l00187"></a>00187         <span class="comment">// Transmitting the result</span>
+<a name="l00188"></a>00188         emit <a class="code" href="class_o_auth_widget.html#aa97b2b4a73bd3db8f26c74ea02fa9da9" title="Signal sent when the authentication is finished.">authenticationFinished</a>(processResult);
+<a name="l00189"></a>00189 }
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191 
+<a name="l00193"></a>00193 <span class="comment">// Launching Slots //</span>
+<a name="l00195"></a>00195 <span class="comment"></span>
+<a name="l00196"></a>00196 <span class="comment">// Internal Slot used to send the authorizeReynTweets signal.</span>
+<a name="l00197"></a><a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de">00197</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#afb6e589e2f717c743b7d6d50ac8f20de" title="Internal Slot used to send the authorizeReynTweets signal.">OAuthWidget::launchAuthorize</a>() {
+<a name="l00198"></a>00198         emit <a class="code" href="class_o_auth_widget.html#a80d201db1552aae3ea4438835fbfc330" title="Signal sent to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a8e80670589b42263a3e2744183723951" title="Getter on the login (username or email) written by the user.">getLogin</a>(),
+<a name="l00199"></a>00199                                                          <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a4396a0d9027f8501c3dd65c618beddd7" title="Getter on the password written by the user.">getPassword</a>());
+<a name="l00200"></a>00200 }
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 <span class="comment">// Internal Slot used to send the denyReynTweets signal.</span>
+<a name="l00203"></a><a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf">00203</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_widget.html#a32f042c96eb8530d92754169fe7897cf" title="Internal Slot used to send the denyReynTweets signal.">OAuthWidget::launchDeny</a>() {
+<a name="l00204"></a>00204         emit <a class="code" href="class_o_auth_widget.html#a1dd4f569c11812fb9e4b7b34b19ebb1e" title="Signal sent to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(<a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a8e80670589b42263a3e2744183723951" title="Getter on the login (username or email) written by the user.">getLogin</a>(),
+<a name="l00205"></a>00205                                                 <a class="code" href="class_o_auth_widget.html#a43e8276563390f3bc30daf5d18511a25" title="Login Widget.">loginWidget</a>.<a class="code" href="class_login_widget.html#a4396a0d9027f8501c3dd65c618beddd7" title="Getter on the password written by the user.">getPassword</a>());
+<a name="l00206"></a>00206 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -305,7 +303,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:44 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:14 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -107,7 +107,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on httpReason.  <a href="#ad3a9fe5029968a3a34bcf26a5580ea93"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0">getParsedResult</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on real results.  <a href="#ad68a5520d8012399c251bca146263fc0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request_result.html#a467af2dfa714702a49ed8fb3a4d79938">getParsingErrorMessage</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3">getParsingErrorMessage</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the parsing error message.  <a href="#a86ce794a4628982c2c3f653baeb553e3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request_result.html#a64f12ae9e8c6d6a14c7b5ebffa278baa">getParsingErrors</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on parsingErrors.  <a href="#a64f12ae9e8c6d6a14c7b5ebffa278baa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request_result.html#a5810ac704a7bc733d8a3fdb7aba2a2ca">isFakeResult</a> ()</td></tr>
@@ -214,7 +215,6 @@ window.onload = initDynSections;
     <tr><td valign="top"></td><td valign="top"><em>parsedResults</em>&nbsp;</td><td>Pure results of the request. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>httpReturnCode</em>&nbsp;</td><td>HTTP code of the request </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>httpReturnReason</em>&nbsp;</td><td>HTTP reason </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>netError</em>&nbsp;</td><td>Network error of the QNetworkReply </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>parsingErrorInfos</em>&nbsp;</td><td>Information about potential parsing errors </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>errorMsg</em>&nbsp;</td><td>Error message </td></tr>
   </table>
@@ -336,12 +336,12 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a467af2dfa714702a49ed8fb3a4d79938"></a><!-- doxytag: member="RequestResult::getParsingErrorMessage" ref="a467af2dfa714702a49ed8fb3a4d79938" args="()" -->
+<a class="anchor" id="a86ce794a4628982c2c3f653baeb553e3"></a><!-- doxytag: member="RequestResult::getParsingErrorMessage" ref="a86ce794a4628982c2c3f653baeb553e3" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString RequestResult::getParsingErrorMessage </td>
+          <td class="memname">QVariantMap RequestResult::getParsingErrorMessage </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -350,6 +350,9 @@ window.onload = initDynSections;
       </table>
 </div>
 <div class="memdoc">
+
+<p>Getter on the parsing error message. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The parsing error message </dd></dl>
 
 <p>Definition at line <a class="el" href="requestresult_8cpp_source.html#l00082">82</a> of file <a class="el" href="requestresult_8cpp_source.html">requestresult.cpp</a>.</p>
 
@@ -371,10 +374,7 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>Getter on parsingErrors. </p>
-<p>Getter on the parsing error message.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The value of parsingErrors</dd>
-<dd>
-The parsing error message </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The value of parsingErrors </dd></dl>
 
 <p>Definition at line <a class="el" href="requestresult_8cpp_source.html#l00087">87</a> of file <a class="el" href="requestresult_8cpp_source.html">requestresult.cpp</a>.</p>
 
@@ -438,7 +438,7 @@ The parsing error message </dd></dl>
 
 <p>Error message. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00124">124</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00123">123</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -455,7 +455,7 @@ The parsing error message </dd></dl>
 
 <p>HTTP return code. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00115">115</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00114">114</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -472,7 +472,7 @@ The parsing error message </dd></dl>
 
 <p>Reason associated to the HTTP return code. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00118">118</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00117">117</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ The parsing error message </dd></dl>
 
 <p>Results of the request parsed by QJson. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00112">112</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00111">111</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +506,7 @@ The parsing error message </dd></dl>
 
 <p>Potential errors that can occur while parsing results. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00121">121</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00120">120</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -523,7 +523,7 @@ The parsing error message </dd></dl>
 
 <p>Code indicating whether an error occured during the request. </p>
 
-<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00109">109</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
+<p>Definition at line <a class="el" href="requestresult_8hpp_source.html#l00108">108</a> of file <a class="el" href="requestresult_8hpp_source.html">requestresult.hpp</a>.</p>
 
 </div>
 </div>
@@ -546,7 +546,7 @@ The parsing error message </dd></dl>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:47 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

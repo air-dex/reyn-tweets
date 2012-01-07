@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -82,11 +82,11 @@ class LoginWidget : public QWidget
 		/// @param boxChecked Boolean indicating if passwordCheckBox is checked.
 		void showPassword(bool boxChecked);
 
-		/// @fn void authorize();
+		/// @fn void authorizeReynTweets();
 		/// @brief Authorize the application
 		void authorizeReynTweets();
 
-		/// @fn void deny();
+		/// @fn void denyReynTweets();
 		/// @brief Deny the application
 		void denyReynTweets();
 

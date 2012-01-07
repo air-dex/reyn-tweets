@@ -89,12 +89,16 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>OAuthProcess Class Reference</h1><!-- doxytag: class="OAuthProcess" -->
+<p>Controller for the execution of the Twitter's OAuth Authentication Flow.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>&gt;</code></p>
 
 <p><a href="class_o_auth_process-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Slots</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ad8835a22e417032d3f2a8b144501d87c">accessTokenDemanded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treatments after the request for Access Tokens.  <a href="#ad8835a22e417032d3f2a8b144501d87c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ae3ba0bf426dd752ccbae8e4f893e3554">authorizeDemanded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treatments after the request for authorizing Request Tokens.  <a href="#ae3ba0bf426dd752ccbae8e4f893e3554"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#aa742d72e0dc772b64ed3f931a69760a1">authorizeReynTweets</a> (QString login, QString password)</td></tr>
@@ -102,6 +106,7 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ab5ab0afaf7f28638240d7b13d905a768">denyReynTweets</a> (QString login, QString password)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed to deny Reyn Tweets to use the Twitter account :(.  <a href="#ab5ab0afaf7f28638240d7b13d905a768"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a2e5577d819cbdf19da28d9e428aa33e9">postAuthorizeDemanded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treatments after the POST authorizing request.  <a href="#a2e5577d819cbdf19da28d9e428aa33e9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a13a6ef4f0ced8efc25eeca55e001e20f">requestTokenDemanded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treatments after the request for Request Tokens.  <a href="#a13a6ef4f0ced8efc25eeca55e001e20f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Signals</h2></td></tr>
@@ -114,8 +119,8 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a01d18fecbfabd450c7b7f23d12da3b6f">loginPanelVisible</a> (bool visible)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent to show or to hide the browser.  <a href="#a01d18fecbfabd450c7b7f23d12da3b6f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a87b0ed8c99b5aa7501bf6be5d270f6db">OAuthProcess</a> (QObject *parent)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a87b0ed8c99b5aa7501bf6be5d270f6db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a6d88675639eb01ae0706a0989c73911f">OAuthProcess</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a6d88675639eb01ae0706a0989c73911f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45">resetTokens</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests.  <a href="#a8912d5b8e244314bc7656a5bd3956a45"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a66945fe251e86ad88f84d8c05c0dd9b3">startAuthentication</a> ()</td></tr>
@@ -134,18 +139,18 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Demanding a Request Token.  <a href="#add6570abea1bf47588a6678da4182f0c"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Controller for the execution of the Twitter's OAuth Authentication Flow. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00031">31</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00033">33</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a87b0ed8c99b5aa7501bf6be5d270f6db"></a><!-- doxytag: member="OAuthProcess::OAuthProcess" ref="a87b0ed8c99b5aa7501bf6be5d270f6db" args="(QObject *parent)" -->
+<a class="anchor" id="a6d88675639eb01ae0706a0989c73911f"></a><!-- doxytag: member="OAuthProcess::OAuthProcess" ref="a6d88675639eb01ae0706a0989c73911f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">OAuthProcess::OAuthProcess </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>parent</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -154,12 +159,6 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>Constructor. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>Parent object </td></tr>
-  </table>
-  </dd>
-</dl>
 
 <p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00027">27</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
@@ -182,7 +181,7 @@ window.onload = initDynSections;
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00035">35</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00033">33</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -204,7 +203,7 @@ window.onload = initDynSections;
 
 <p>Demanding an Access Token. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00250">250</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00245">245</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,7 +223,15 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00257">257</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Treatments after the request for Access Tokens. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>res</em>&nbsp;</td><td>Result of the request </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00252">252</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -271,7 +278,7 @@ window.onload = initDynSections;
 
 <p>Authorize the request tokens. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00116">116</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00111">111</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +299,6 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>Treatments after the request for authorizing Request Tokens. </p>
-<p>Treatments after the POST authorizing request.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>res</em>&nbsp;</td><td>Result of the request </td></tr>
@@ -300,7 +306,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00123">123</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00118">118</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +344,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00169">169</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00164">164</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +408,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00176">176</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00171">171</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +490,15 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00183">183</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Treatments after the POST authorizing request. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>res</em>&nbsp;</td><td>Result of the request </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00178">178</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +519,7 @@ window.onload = initDynSections;
 
 <p>Demanding a Request Token. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00056">56</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00051">51</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -533,7 +547,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00063">63</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00058">58</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -554,7 +568,7 @@ window.onload = initDynSections;
 
 <p>Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00041">41</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00036">36</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +589,7 @@ window.onload = initDynSections;
 
 <p>Starting the OAuth authentication flow. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00051">51</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00046">46</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -593,7 +607,7 @@ window.onload = initDynSections;
 
 <p>Entity calling Twitter. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00139">139</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00140">140</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -616,7 +630,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 6 17:06:46 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

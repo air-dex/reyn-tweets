@@ -15,7 +15,7 @@ the Free Software Foundation, either version 3 of the License, or
 Reyn Tweets is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
@@ -29,12 +29,9 @@ OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
 	authenticationFlow(0),
 	loginWidget(),
-	layout(),
-	test("Ici se trouve l'OAuthWidget.")
+	layout()
 {
 	loginWidget.setVisible(false);
-
-	layout.addWidget(&test);
 	setLayout(&layout);
 
 	// Wiring
@@ -67,8 +64,6 @@ OAuthWidget::~OAuthWidget() {
 	// Error message for credentials
 	disconnect(this, SIGNAL(credentialsOK(bool)),
 			   &loginWidget, SLOT(showCredentialsErrorMessage(bool)));
-
-	qDebug("Tombstone OAuthWidget");
 }
 
 
@@ -180,7 +175,6 @@ void OAuthWidget::killOAuthProcess() {
 	disconnect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 			   this, SLOT(errorProcess(bool,QString)));
 
-//	authenticationFlow->deleteLater();
 	delete authenticationFlow;
 	authenticationFlow = 0;
 }

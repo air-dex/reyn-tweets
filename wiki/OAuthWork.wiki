@@ -25,3 +25,4 @@
     * Stockage des tokens (en clair c'est mal !).
   * Tester
     * Plantage de fin de process (issue 36)
+    * Cas avec des erreurs (requêtes ne finissant pas en 200 genre pas de réseau)

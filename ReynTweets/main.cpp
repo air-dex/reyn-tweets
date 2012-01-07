@@ -24,8 +24,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include <QLocale>
 #include <QTranslator>
-#include "mainwindow.hpp"
-#include "ui/reyntweetswidget.hpp"
+#include "ui/mainwindow.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -49,9 +48,6 @@ int main(int argc, char *argv[])
 //*/
 
 	MainWindow w;
-
-	ReynTweetsWidget mainWidget;
-	w.setCentralWidget(&mainWidget);
 
 	#if defined(Q_OS_SYMBIAN)
 		w.showMaximized();

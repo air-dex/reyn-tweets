@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: Utils Class Reference</title>
+<title>ReynTweets: RequesterManager Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -88,126 +88,148 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>Utils Class Reference</h1><!-- doxytag: class="Utils" -->
-<p>Utilities.  
+<h1>RequesterManager Class Reference</h1><!-- doxytag: class="RequesterManager" -->
+<p>Entity storing requests while they are executed. They are indexed with a UUID.  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="requestermanager_8hpp_source.html">requestermanager.hpp</a>&gt;</code></p>
 
-<p><a href="class_utils-members.html">List of all members.</a></p>
+<p><a href="class_requester_manager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_utils.html#a1f49134b0713fe2b630f788444c068f1">hmacSha1</a> (QByteArray key, QByteArray baseString)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">Qt Developer Network</a> here : <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.  <a href="#a1f49134b0713fe2b630f788444c068f1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_utils.html#a0d87507c751fe6231d9d2c633f8511e1">ouBien</a> (bool a, bool b)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_utils.html#a6513808a92f3470bd450a0dc43f279e7">requestTypeToString</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a RequestType into a QString.  <a href="#a6513808a92f3470bd450a0dc43f279e7"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_requester_manager.html#a10a091b4bbe60c7a01674977c7b2a01e">addRequest</a> (QObject *asker, <a class="el" href="class_generic_requester.html">GenericRequester</a> *requester)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Storing a request.  <a href="#a10a091b4bbe60c7a01674977c7b2a01e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_request_infos.html">RequestInfos</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_requester_manager.html#a1d6e0f10a39f6beb3954c763ce4390a2">getRequestInfos</a> (QUuid requestUuid)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on request informations.  <a href="#a1d6e0f10a39f6beb3954c763ce4390a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_requester_manager.html#ac1adbd4583c50bc75c281d1e0e15de6a">removeRequest</a> (QUuid requestUuid)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removing a request from the manager.  <a href="#ac1adbd4583c50bc75c281d1e0e15de6a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_requester_manager.html#ac8607fe8b8f7b37b907d4b92342a9849">RequesterManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructs an empty map.  <a href="#ac8607fe8b8f7b37b907d4b92342a9849"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Utilities. </p>
+<p>Entity storing requests while they are executed. They are indexed with a UUID. </p>
 
-<p>Definition at line <a class="el" href="utils_8hpp_source.html#l00033">33</a> of file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a1f49134b0713fe2b630f788444c068f1"></a><!-- doxytag: member="Utils::hmacSha1" ref="a1f49134b0713fe2b630f788444c068f1" args="(QByteArray key, QByteArray baseString)" -->
+<p>Definition at line <a class="el" href="requestermanager_8hpp_source.html#l00034">34</a> of file <a class="el" href="requestermanager_8hpp_source.html">requestermanager.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac8607fe8b8f7b37b907d4b92342a9849"></a><!-- doxytag: member="RequesterManager::RequesterManager" ref="ac8607fe8b8f7b37b907d4b92342a9849" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString Utils::hmacSha1 </td>
+          <td class="memname">RequesterManager::RequesterManager </td>
           <td>(</td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>baseString</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">Qt Developer Network</a> here : <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td>Key for signature </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>baseString</em>&nbsp;</td><td>String that we want to sign </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The signature </dd></dl>
-
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00029">29</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0d87507c751fe6231d9d2c633f8511e1"></a><!-- doxytag: member="Utils::ouBien" ref="a0d87507c751fe6231d9d2c633f8511e1" args="(bool a, bool b)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Utils::ouBien </td>
-          <td>(</td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00075">75</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6513808a92f3470bd450a0dc43f279e7"></a><!-- doxytag: member="Utils::requestTypeToString" ref="a6513808a92f3470bd450a0dc43f279e7" args="(RequestType type)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QString Utils::requestTypeToString </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a>&nbsp;</td>
-          <td class="paramname"> <em>type</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [static]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Converting a RequestType into a QString. </p>
+<p>Constructs an empty map. </p>
+
+<p>Definition at line <a class="el" href="requestermanager_8cpp_source.html#l00026">26</a> of file <a class="el" href="requestermanager_8cpp_source.html">requestermanager.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a10a091b4bbe60c7a01674977c7b2a01e"></a><!-- doxytag: member="RequesterManager::addRequest" ref="a10a091b4bbe60c7a01674977c7b2a01e" args="(QObject *asker, GenericRequester *requester)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RequesterManager::addRequest </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&nbsp;</td>
+          <td class="paramname"> <em>asker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_generic_requester.html">GenericRequester</a> *&nbsp;</td>
+          <td class="paramname"> <em>requester</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Storing a request. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>The RequestType </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>asker</em>&nbsp;</td><td>Entity that asks for the request </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>requester</em>&nbsp;</td><td>Entity that executing the request </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QString </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00063">63</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="requestermanager_8cpp_source.html#l00031">31</a> of file <a class="el" href="requestermanager_8cpp_source.html">requestermanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d6e0f10a39f6beb3954c763ce4390a2"></a><!-- doxytag: member="RequesterManager::getRequestInfos" ref="a1d6e0f10a39f6beb3954c763ce4390a2" args="(QUuid requestUuid)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_request_infos.html">RequestInfos</a> &amp; RequesterManager::getRequestInfos </td>
+          <td>(</td>
+          <td class="paramtype">QUuid&nbsp;</td>
+          <td class="paramname"> <em>requestUuid</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Getter on request informations. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>requestUuid</em>&nbsp;</td><td>UUID of the requester </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="requestermanager_8cpp_source.html#l00043">43</a> of file <a class="el" href="requestermanager_8cpp_source.html">requestermanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac1adbd4583c50bc75c281d1e0e15de6a"></a><!-- doxytag: member="RequesterManager::removeRequest" ref="ac1adbd4583c50bc75c281d1e0e15de6a" args="(QUuid requestUuid)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RequesterManager::removeRequest </td>
+          <td>(</td>
+          <td class="paramtype">QUuid&nbsp;</td>
+          <td class="paramname"> <em>requestUuid</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removing a request from the manager. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>requestUuid</em>&nbsp;</td><td>UUID of the requester </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="requestermanager_8cpp_source.html#l00037">37</a> of file <a class="el" href="requestermanager_8cpp_source.html">requestermanager.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>connection/<a class="el" href="utils_8hpp_source.html">utils.hpp</a></li>
-<li>connection/<a class="el" href="utils_8cpp_source.html">utils.cpp</a></li>
+<li>connection/<a class="el" href="requestermanager_8hpp_source.html">requestermanager.hpp</a></li>
+<li>connection/<a class="el" href="requestermanager_8cpp_source.html">requestermanager.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -224,7 +246,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 00:25:36 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:29:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

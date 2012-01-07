@@ -110,44 +110,40 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QtGui/QApplication&gt;</span>
 <a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QLocale&gt;</span>
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QTranslator&gt;</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="mainwindow_8hpp.html" title="Header of the main window.">mainwindow.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetswidget_8hpp.html" title="Header of ReynTweetsWidget.">ui/reyntweetswidget.hpp</a>&quot;</span>
-<a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00030</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
-<a name="l00031"></a>00031 {
-<a name="l00032"></a>00032         QApplication a(argc, argv);
-<a name="l00033"></a>00033         <span class="comment">// Init the random generator used for generating nonces</span>
-<a name="l00034"></a>00034         qsrand(QDateTime::currentMSecsSinceEpoch());
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036         <span class="comment">// Program in French</span>
-<a name="l00037"></a>00037 <span class="comment">/*</span>
-<a name="l00038"></a>00038 <span class="comment">        QTranslator translator;</span>
-<a name="l00039"></a>00039 <span class="comment">        translator.load(&quot;reyntweets_fr&quot;);</span>
-<a name="l00040"></a>00040 <span class="comment">        a.installTranslator(&amp;translator);</span>
-<a name="l00041"></a>00041 <span class="comment">//*/</span>
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043         <span class="comment">// Defalult idiom : local idiom</span>
-<a name="l00044"></a>00044 <span class="comment">//*</span>
-<a name="l00045"></a>00045         QString locale = QLocale::system().name().section(<span class="charliteral">&#39;_&#39;</span>, 0, 0);
-<a name="l00046"></a>00046         QTranslator translator;
-<a name="l00047"></a>00047         translator.load(QString(<span class="stringliteral">&quot;reyntweets_&quot;</span>) + locale);
-<a name="l00048"></a>00048         a.installTranslator(&amp;translator);
-<a name="l00049"></a>00049 <span class="comment">//*/</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <a class="code" href="class_main_window.html">MainWindow</a> w;
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <a class="code" href="class_reyn_tweets_widget.html" title="Main Widget of Reyn Tweets.">ReynTweetsWidget</a> mainWidget;
-<a name="l00054"></a>00054         w.setCentralWidget(&amp;mainWidget);
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">        #if defined(Q_OS_SYMBIAN)</span>
-<a name="l00057"></a>00057 <span class="preprocessor"></span>                w.showMaximized();
-<a name="l00058"></a>00058 <span class="preprocessor">        #else</span>
-<a name="l00059"></a>00059 <span class="preprocessor"></span>                <span class="comment">// Pour le moment, on ne fait que passer ici</span>
-<a name="l00060"></a>00060                 w.show();
-<a name="l00061"></a>00061 <span class="preprocessor">        #endif</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span>
-<a name="l00063"></a>00063         <span class="keywordflow">return</span> a.exec();
-<a name="l00064"></a>00064 }
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="mainwindow_8hpp.html" title="Header of MainWindow.  Revisions older than r113 are in /trunk/ReynTweets.">ui/mainwindow.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00029</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<a name="l00030"></a>00030 {
+<a name="l00031"></a>00031         QApplication a(argc, argv);
+<a name="l00032"></a>00032         <span class="comment">// Init the random generator used for generating nonces</span>
+<a name="l00033"></a>00033         qsrand(QDateTime::currentMSecsSinceEpoch());
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035         <span class="comment">// Program in French</span>
+<a name="l00036"></a>00036 <span class="comment">/*</span>
+<a name="l00037"></a>00037 <span class="comment">        QTranslator translator;</span>
+<a name="l00038"></a>00038 <span class="comment">        translator.load(&quot;reyntweets_fr&quot;);</span>
+<a name="l00039"></a>00039 <span class="comment">        a.installTranslator(&amp;translator);</span>
+<a name="l00040"></a>00040 <span class="comment">//*/</span>
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042         <span class="comment">// Defalult idiom : local idiom</span>
+<a name="l00043"></a>00043 <span class="comment">//*</span>
+<a name="l00044"></a>00044         QString locale = QLocale::system().name().section(<span class="charliteral">&#39;_&#39;</span>, 0, 0);
+<a name="l00045"></a>00045         QTranslator translator;
+<a name="l00046"></a>00046         translator.load(QString(<span class="stringliteral">&quot;reyntweets_&quot;</span>) + locale);
+<a name="l00047"></a>00047         a.installTranslator(&amp;translator);
+<a name="l00048"></a>00048 <span class="comment">//*/</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <a class="code" href="class_main_window.html" title="Main window of the program. All the functionnalities are in its central widget whose...">MainWindow</a> w;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="preprocessor">        #if defined(Q_OS_SYMBIAN)</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span>                w.showMaximized();
+<a name="l00054"></a>00054 <span class="preprocessor">        #else</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span>                <span class="comment">// Pour le moment, on ne fait que passer ici</span>
+<a name="l00056"></a>00056                 w.show();
+<a name="l00057"></a>00057 <span class="preprocessor">        #endif</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span>
+<a name="l00059"></a>00059         <span class="keywordflow">return</span> a.exec();
+<a name="l00060"></a>00060 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -163,7 +159,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:06:14 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

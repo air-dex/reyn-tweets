@@ -28,7 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class AuthenticateRequester
 /// @brief Requester for OAuth authentication.
-/// <strong>Unused for the moment.<strong>
+/// <strong>Unused for the moment.</strong>
 class AuthenticateRequester : public OAuthRequester
 {
 	Q_OBJECT

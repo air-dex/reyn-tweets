@@ -1,5 +1,6 @@
 /// @file mainwindow.hpp
-/// @brief Header of the main window
+/// @brief Header of MainWindow.<br/>
+/// Revisions older than r113 are in /trunk/ReynTweets
 /// @author Romain Ducher
 
 /*
@@ -26,15 +27,27 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMainWindow>
 #include <QtGui>
-#include "connection/resultwrapper.hpp"
+#include "reyntweetswidget.hpp"
 
+/// @class MainWindow
+/// @brief Main window of the program. All the functionnalities are in its
+/// central widget whose class is ReynTweetsWidget.
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 	public:
+		/// @fn MainWindow(QWidget *parent = 0);
+		/// @brief Constructor
 		MainWindow(QWidget *parent = 0);
+
+		/// @fn ~MainWindow();
+		/// @brief Destructor
 		~MainWindow();
+
+	protected:
+		/// @brief Central widget which is the heart of the application
+		ReynTweetsWidget reynTweets;
 };
 
 #endif // MAINWINDOW_HPP

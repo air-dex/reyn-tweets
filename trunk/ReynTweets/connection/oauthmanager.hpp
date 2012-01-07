@@ -30,15 +30,16 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "requesttype.hpp"
 
 /// @class OAuthManager
-/// @brief Class managing OAuth authentication to Twitter.
+/// @brief Class managing OAuth authentication to Twitter. For the security,
+/// tokens are kept secret. They are encoded for that.
 class OAuthManager
 {
 	public:
-		/// @fn OAuthManager(QString clientKey = ReynTweetsConfiguration::CONSUMER_KEY,
-		///			QString clientSecret = ReynTweetsConfiguration::CONSUMER_SECRET,
-		///			QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
-		///			QString signatureAlgorithm = "SHA-1",
-		///			QString version = "1.0");
+		/// @fn OAuthManager(QByteArray clientKey = ReynTweetsConfiguration::CONSUMER_KEY,
+		///					 QByteArray clientSecret = ReynTweetsConfiguration::CONSUMER_SECRET,
+		///					 QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
+		///					 QString signatureAlgorithm = "SHA-1",
+		///					 QString version = "1.0");
 		/// @brief Constructor
 		/// @param clientKey Consumer key of the application. Reyn Tweets'
 		/// consumer key is its default value.
@@ -49,8 +50,8 @@ class OAuthManager
 		/// @param signatureAlgorithm Algorithm used for signing requests.
 		/// @param version Version of the OAuth protocol used for the
 		/// authentication. Reyn Tweets uses OAuth 1.0.
-		OAuthManager(QString clientKey = ReynTweetsSettings::CONSUMER_KEY,
-					 QString clientSecret = ReynTweetsSettings::CONSUMER_SECRET,
+		OAuthManager(QByteArray clientKey = ReynTweetsSettings::CONSUMER_KEY,
+					 QByteArray clientSecret = ReynTweetsSettings::CONSUMER_SECRET,
 					 QString clientUrl = ReynTweetsSettings::CALLBACK_URL,
 					 QString signatureAlgorithm = "HMAC-SHA1",
 					 QString version = "1.0");
@@ -69,40 +70,40 @@ class OAuthManager
 		/// @return The callback URL
 		QString getCallbackUrl();
 
-		/// @fn QString getOAuthToken();
+		/// @fn QByteArray getOAuthToken();
 		/// @brief Getter on the OAuth Token
 		/// @return The OAuth Token
-		QString getOAuthToken();
+		QByteArray getOAuthToken();
 
-		/// @fn void setOAuthToken(QString authToken);
+		/// @fn void setOAuthToken(QByteArray authToken);
 		/// @brief Setter on the OAuth token
 		/// @param authToken The new value of the OAuth token
-		void setOAuthToken(QString authToken);
+		void setOAuthToken(QByteArray authToken);
 
-		/// @fn void setOAuthSecret(QString oauthSecret);
+		/// @fn void setOAuthSecret(QByteArray oauthSecret);
 		/// @brief Setter on the OAuth secret
 		/// @param oauthSecret The new value of the OAuth secret
-		void setOAuthSecret(QString authSecret);
+		void setOAuthSecret(QByteArray authSecret);
 
-		/// @fn QString getVerifier();
+		/// @fn QByteArray getVerifier();
 		/// @brief Getter on the verifier
 		/// @return The verifier
-		QString getVerifier();
+		QByteArray getVerifier();
 
-		/// @fn void setVerifier(QString verifier);
+		/// @fn void setVerifier(QByteArray verifier);
 		/// @brief Setter on the verifier
 		/// @param verifier The new verifier
-		void setVerifier(QString verifier);
+		void setVerifier(QByteArray verifier);
 
-		/// @fn QString getAuthenticityToken();
+		/// @fn QByteArray getAuthenticityToken();
 		/// @brief Getter on the Authenticity Token
 		/// @return The Authenticity Token
-		QString getAuthenticityToken();
+		QByteArray getAuthenticityToken();
 
-		/// @fn void setAuthenticityToken(QString authToken);
+		/// @fn void setAuthenticityToken(QByteArray authToken);
 		/// @brief Setter on the Authenticity Token
 		/// @param authToken The new value of the Authenticity Token
-		void setAuthenticityToken(QString authToken);
+		void setAuthenticityToken(QByteArray authToken);
 
 		/// @fn QString getDeny();
 		/// @brief Getter on the deny tag
@@ -155,10 +156,10 @@ class OAuthManager
 
 	protected:
 		/// @brief Consumer key
-		QString consumerKey;
+		QByteArray consumerKey;
 
 		/// @brief Consumer secret
-		QString consumerSecret;
+		QByteArray consumerSecret;
 
 		/// @brief Callback URL of the application
 		QString callbackUrl;
@@ -170,16 +171,16 @@ class OAuthManager
 		QString oauthVersion;
 
 		/// @brief Token used for requests
-		QString oauthToken;
+		QByteArray oauthToken;
 
 		/// @brief Secret used for signatures
-		QString oauthSecret;
+		QByteArray oauthSecret;
 
 		/// @brief Verifier for authentication
-		QString oauthVerifier;
+		QByteArray oauthVerifier;
 
 		/// @brief Authenticity token for POST authorizing()
-		QString authenticityToken;
+		QByteArray authenticityToken;
 
 		/// @brief Value used to tell Twitter that an application is denied
 		QString denyTag;

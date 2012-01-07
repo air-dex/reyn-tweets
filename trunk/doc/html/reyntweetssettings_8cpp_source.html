@@ -113,16 +113,14 @@ window.onload = initDynSections;
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetssettings_8hpp.html" title="Declaration of the ReynTweetsSettings namespace.">reyntweetssettings.hpp</a>&quot;</span>
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="comment">// NB : QString::fromUtf8(); is used to avoid problem with character conversion.</span>
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="comment">// consumer key</span>
-<a name="l00029"></a><a class="code" href="namespace_reyn_tweets_settings.html#a12b4f5119b36309fcf7a367cd20d641d">00029</a> QString <a class="code" href="namespace_reyn_tweets_settings.html#a12b4f5119b36309fcf7a367cd20d641d" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a> = QString::fromUtf8(<span class="stringliteral">&quot;3p4Tw20gGGqvzqwWjJO4Zw&quot;</span>);
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="comment">// Reyn Tweets&#39; consumer secret</span>
-<a name="l00032"></a><a class="code" href="namespace_reyn_tweets_settings.html#aea8a925e5c9f7d8f789a472d32c4dcef">00032</a> QString <a class="code" href="namespace_reyn_tweets_settings.html#aea8a925e5c9f7d8f789a472d32c4dcef" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a> = QString::fromUtf8(<span class="stringliteral">&quot;q170YBNh3utMDcg4WJHDhXhViSsHb5pXaOGfz1xw2Y&quot;</span>);
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="comment">// Reyn Tweets&#39; callback URL</span>
-<a name="l00035"></a><a class="code" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">00035</a> QString <a class="code" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a" title="Reyn Tweets&amp;#39; callback URL.">ReynTweetsSettings::CALLBACK_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://twitter.com&quot;</span>);
+<a name="l00026"></a>00026 <span class="comment">// Consumer key</span>
+<a name="l00027"></a><a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">00027</a> QByteArray <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a> = <span class="stringliteral">&quot;WUlUMzFFNGE4N29CVFdqeURlUnc=&quot;</span>;
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="comment">// Reyn Tweets&#39; consumer secret</span>
+<a name="l00030"></a><a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">00030</a> QByteArray <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a> = <span class="stringliteral">&quot;dzk3enV0UEpnNkZ6dFZleTNXNkVicG52N0x2MWZtNEVUWGpsbzZFeVQw&quot;</span>;
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="comment">// Reyn Tweets&#39; callback URL. QString::fromUtf8(); is used to avoid problem with character conversion.</span>
+<a name="l00033"></a><a class="code" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">00033</a> QString <a class="code" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a" title="Reyn Tweets&amp;#39; callback URL.">ReynTweetsSettings::CALLBACK_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://twitter.com&quot;</span>);
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -138,7 +136,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 02:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:15 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

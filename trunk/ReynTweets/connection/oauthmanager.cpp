@@ -28,8 +28,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "utils.hpp"
 
 // Constructor
-OAuthManager::OAuthManager(QString clientKey,
-						   QString clientSecret,
+OAuthManager::OAuthManager(QByteArray clientKey,
+						   QByteArray clientSecret,
 						   QString clientUrl,
 						   QString signatureAlgorithm,
 						   QString version) :
@@ -59,38 +59,38 @@ QString OAuthManager::getCallbackUrl() {
 }
 
 // Getter on the OAuth Token
-QString OAuthManager::getOAuthToken() {
-	return oauthToken;
+QByteArray OAuthManager::getOAuthToken() {
+	return QByteArray::fromBase64(oauthToken);
 }
 
 // Setter on the OAuth token
-void OAuthManager::setOAuthToken(QString authToken) {
-	oauthToken = authToken;
+void OAuthManager::setOAuthToken(QByteArray authToken) {
+	oauthToken = authToken.toBase64();
 }
 
 // Setter on the OAuth secret
-void OAuthManager::setOAuthSecret(QString authSecret) {
-	oauthSecret = authSecret;
+void OAuthManager::setOAuthSecret(QByteArray authSecret) {
+	oauthSecret = authSecret.toBase64();
 }
 
 // Getter on the verifier
-QString OAuthManager::getVerifier() {
-	return oauthVerifier;
+QByteArray OAuthManager::getVerifier() {
+	return QByteArray::fromBase64(oauthVerifier);
 }
 
 // Setter on the verifier
-void OAuthManager::setVerifier(QString verifier) {
-	oauthVerifier = verifier;
+void OAuthManager::setVerifier(QByteArray verifier) {
+	oauthVerifier = verifier.toBase64();
 }
 
 // Getter on the Authenticity Token
-QString OAuthManager::getAuthenticityToken() {
-	return authenticityToken;
+QByteArray OAuthManager::getAuthenticityToken() {
+	return QByteArray::fromBase64(authenticityToken);
 }
 
 // Setter on the Authenticity Token
-void OAuthManager::setAuthenticityToken(QString authToken) {
-	authenticityToken = authToken;
+void OAuthManager::setAuthenticityToken(QByteArray authToken) {
+	authenticityToken = authToken.toBase64();
 }
 
 // Getter on the deny tag
@@ -139,6 +139,7 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 								  oauthTokenNeeded,
 								  callbackUrlNeeded,
 								  oauthVerifierNeeded);
+	QByteArray clearToken;
 
 	// oauth_callback
 	if (callbackUrlNeeded) {
@@ -150,8 +151,9 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 	}
 
 	// oauth_consumer_key
+	clearToken = QByteArray::fromBase64(consumerKey);
 	formattedParamString = formatOAuthParam("oauth_consumer_key",
-											consumerKey,
+											QString::fromAscii(clearToken.data()),
 											true);
 	authorizationHeader.append(formattedParamString);
 	authorizationHeader.append(", ");
@@ -186,8 +188,9 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 
 	// oauth_token
 	if (oauthTokenNeeded) {
+		clearToken = QByteArray::fromBase64(oauthToken);
 		formattedParamString = formatOAuthParam("oauth_token",
-												oauthToken,
+												QString::fromAscii(clearToken.data()),
 												true);
 		authorizationHeader.append(formattedParamString);
 		authorizationHeader.append(", ");
@@ -195,8 +198,9 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 
 	// oauth_verifier
 	if (oauthVerifierNeeded) {
+		clearToken = QByteArray::fromBase64(oauthVerifier);
 		formattedParamString = formatOAuthParam("oauth_verifier",
-												oauthVerifier,
+												QString::fromAscii(clearToken.data()),
 												true);
 		authorizationHeader.append(formattedParamString);
 		authorizationHeader.append(", ");
@@ -275,9 +279,9 @@ QString OAuthManager::signDatas(RequestType type,
 	// Building the key
 	QString key = "";
 
-	key.append(consumerSecret);
+	key.append(QByteArray::fromBase64(consumerSecret));
 	key.append('&');
-	key.append(oauthSecret);
+	key.append(QByteArray::fromBase64(oauthSecret));
 
 
 	// Building that will be signed
@@ -293,6 +297,7 @@ QString OAuthManager::signDatas(RequestType type,
 	parameterString.append(postDatas);
 
 	// Appending OAuth arguments
+	QByteArray clearToken;
 
 	// oauth_callback
 	if (callbackUrlNeeded) {
@@ -304,8 +309,9 @@ QString OAuthManager::signDatas(RequestType type,
 	}
 
 	// oauth_consumer_key
+	clearToken = QByteArray::fromBase64(consumerKey);
 	formattedParamString = formatOAuthParam("oauth_consumer_key",
-											consumerKey,
+											QString::fromAscii(clearToken.data()),
 											false);
 	parameterString.append(formattedParamString);
 	parameterString.append('&');
@@ -333,8 +339,9 @@ QString OAuthManager::signDatas(RequestType type,
 
 	// oauth_token
 	if (oauthTokenNeeded) {
+		clearToken = QByteArray::fromBase64(oauthToken);
 		formattedParamString = formatOAuthParam("oauth_token",
-												oauthToken,
+												QString::fromAscii(clearToken.data()),
 												false);
 		parameterString.append(formattedParamString);
 		parameterString.append('&');
@@ -342,8 +349,9 @@ QString OAuthManager::signDatas(RequestType type,
 
 	// oauth_verifier
 	if (oauthVerifierNeeded) {
+		clearToken = QByteArray::fromBase64(oauthVerifier);
 		formattedParamString = formatOAuthParam("oauth_verifier",
-												oauthVerifier,
+												QString::fromAscii(clearToken.data()),
 												false);
 		parameterString.append(formattedParamString);
 		parameterString.append('&');

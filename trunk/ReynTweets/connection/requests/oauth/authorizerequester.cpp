@@ -23,8 +23,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWebElement>
 #include "authorizerequester.hpp"
-#include "../../parsers/htmlparser.hpp"
-#include "../../utils.hpp"
+#include "../../../tools/parsers/htmlparser.hpp"
+#include "../../../tools/utils.hpp"
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :

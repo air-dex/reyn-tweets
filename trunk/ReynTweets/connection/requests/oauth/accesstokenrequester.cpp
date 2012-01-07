@@ -22,7 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "accesstokenrequester.hpp"
-#include "../../parsers/oauthparser.hpp"
+#include "../../../tools/parsers/oauthparser.hpp"
 
 // Constructor
 AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager) :

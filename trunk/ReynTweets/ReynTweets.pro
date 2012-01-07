@@ -41,16 +41,16 @@ TEMPLATE = app
 #--------------#
 
 SOURCES += \
-	connection/utils.cpp \
+	tools/utils.cpp \
 	connection/twitterurls.cpp \
 	connection/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
-	connection/parsers/htmlparser.cpp \
-	connection/parsers/jsonparser.cpp \
-	connection/parsers/oauthparser.cpp \
+	tools/parsers/htmlparser.cpp \
+	tools/parsers/jsonparser.cpp \
+	tools/parsers/oauthparser.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
@@ -71,7 +71,7 @@ SOURCES += \
 	main.cpp
 
 HEADERS  += \
-	connection/utils.hpp \
+	tools/utils.hpp \
 	connection/reyntweetssettings.hpp \
 	connection/requesttype.hpp \
 	connection/oauthmanager.hpp \
@@ -80,10 +80,10 @@ HEADERS  += \
 	connection/requestresult.hpp \
 	connection/resultwrapper.hpp \
 	connection/twitterurls.hpp \
-	connection/parsers/genericparser.hpp \
-	connection/parsers/htmlparser.hpp \
-	connection/parsers/jsonparser.hpp \
-	connection/parsers/oauthparser.hpp \
+	tools/parsers/genericparser.hpp \
+	tools/parsers/htmlparser.hpp \
+	tools/parsers/jsonparser.hpp \
+	tools/parsers/oauthparser.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \

@@ -22,7 +22,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "genericrequester.hpp"
-#include "../parsers/jsonparser.hpp"
+#include "../../tools/parsers/jsonparser.hpp"
 
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(RequestType type,

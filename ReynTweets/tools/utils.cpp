@@ -84,12 +84,54 @@ bool ouBien(bool a, bool b) {
 ////////////////////
 // JSON Streaming //
 ////////////////////
-
+#include "../model/configuration/useraccount.hpp"
 // Output stream operator for serialization
 QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream) {
 	// Converting the object into a JSON file
 	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream);
 	QJson::Serializer serializer;
+
+	// Infos sur la map
+	foreach (QString cle, accountMap.keys()) {
+		QString msg = "La cle : ";
+		msg.append(cle);
+		qDebug(msg.toUtf8().data());
+
+		QVariant v = accountMap.value(cle);
+		msg = "Type : ";
+		QString typeName(v.typeName());
+		msg.append(v.typeName());
+		qDebug(msg.toUtf8().data());
+
+		if (typeName == "UserAccount") {
+			UserAccount ua2 = qVariantValue<UserAccount>(v);
+			qDebug(QByteArray("AccessToken : ").append(ua2.getAccessToken()).append('.').data());
+			qDebug(QByteArray("TokenSecret : ").append(ua2.getTokenSecret()).append('.').data());
+			qDebug(QByteArray("User : ").append(ua2.getUser()).append('.').data());
+
+			QByteArray uaSerialized = serializer.serialize(v);
+			msg = "UserAccount sérialisé : ";
+			msg.append(uaSerialized);
+			qDebug(msg.toUtf8().data());
+
+			qDebug("Sur le QVariant : ");
+			bool answer = false;
+
+			answer = ! v.isValid();
+			if(answer)
+				qDebug("Invalide");
+
+			answer = qVariantCanConvert<QString>(v);
+			if(answer)
+				qDebug("Conversion en string");
+
+			if(!answer)
+				qDebug("Rien de tout ça");
+		}
+	}
+
+
+
 	QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
 
 	// Putting it in the stream

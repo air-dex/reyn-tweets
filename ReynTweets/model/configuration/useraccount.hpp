@@ -39,6 +39,7 @@ class UserAccount : public QObject
 	// Serialization management //
 	//////////////////////////////
 
+
 	public:
 		/// @fn UserAccount();
 		/// @brief Default constructor
@@ -87,6 +88,36 @@ class UserAccount : public QObject
 		friend QDataStream & operator>>(QDataStream & in,
 										UserAccount & account);
 
+	private:
+		// Properties
+
+		// Access Token
+		Q_PROPERTY(QByteArray p_accessToken
+				   READ getAccessToken
+				   WRITE setAccessToken)
+
+		/// @fn void updateAccessToken();
+		/// @brief Updates the property p_accessToken
+		void updateAccessTokenProperty();
+
+		// Token Secret
+		Q_PROPERTY(QByteArray p_tokenSecret
+				   READ getTokenSecret
+				   WRITE setTokenSecret)
+
+		/// @fn void updateTokenScret();
+		/// @brief Updates the property p_tokenScret
+		void updateTokenScretProperty();
+
+		//User
+		Q_PROPERTY(QString p_user
+				   READ getUser
+				   WRITE setUser)
+
+		/// @fn void updateUser();
+		/// @brief Updates the property p_user
+		void updateUserProperty();
+
 
 	//////////////////////////////
 	// Configuration management //
@@ -126,36 +157,12 @@ class UserAccount : public QObject
 	protected:
 		/// @brief Access token
 		QByteArray accessToken;
-		Q_PROPERTY(QByteArray p_accessToken
-				   READ getAccessToken
-				   WRITE setAccessToken)
 
 		/// @brief Token Secret
 		QByteArray tokenSecret;
-		Q_PROPERTY(QByteArray p_tokenSecret
-				   READ getTokenSecret
-				   WRITE setTokenSecret)
 
 		/// @brief Twitter User
 		QString user;
-		Q_PROPERTY(QString p_user
-				   READ getUser
-				   WRITE setUser)
-
-	private:
-		// Updating properties
-
-		/// @fn void updateAccessToken();
-		/// @brief Updates the property p_accessToken
-		void updateAccessTokenProperty();
-
-		/// @fn void updateTokenScret();
-		/// @brief Updates the property p_tokenScret
-		void updateTokenScretProperty();
-
-		/// @fn void updateUser();
-		/// @brief Updates the property p_user
-		void updateUserProperty();
 };
 
 // Serialization of UserAccount

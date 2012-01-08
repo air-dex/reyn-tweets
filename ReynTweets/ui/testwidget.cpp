@@ -52,10 +52,15 @@ TestWidget::TestWidget(QWidget *parent) :
 	resLabel = new QLabel("Prompt autorisation");
 	layout.addWidget(resLabel);
 
-	serialButton = new QPushButton("Serialise");
-	connect(serialButton, SIGNAL(clicked()),
-			this, SLOT(serialSlot()));
-	layout.addWidget(serialButton);
+	serialUAButton = new QPushButton("Serialise un user account");
+	connect(serialUAButton, SIGNAL(clicked()),
+			this, SLOT(serialUASlot()));
+	layout.addWidget(serialUAButton);
+
+	serialConfButton = new QPushButton("Serialise une configuration");
+	connect(serialConfButton, SIGNAL(clicked()),
+			this, SLOT(serialConfSlot()));
+	layout.addWidget(serialConfButton);
 
 	setLayout(&layout);
 }
@@ -67,7 +72,8 @@ TestWidget::~TestWidget()
 	delete allowReynTweetsButton;
 	delete authorizeWidget;
 	delete resLabel;
-	delete serialButton;
+	delete serialUAButton;
+	delete serialConfButton;
 }
 
 void TestWidget::searchCamb078() {
@@ -122,7 +128,7 @@ void TestWidget::endAllowRT(OAuthProcessResult res) {
 	qDebug("Ok. So what about Jermaine ? Fuck Jermaine !");
 }
 
-void TestWidget::serialSlot() {
+void TestWidget::serialConfSlot() {
 	UserAccount ua;
 	ua.setAccessToken("tocredaccess");
 	ua.setTokenSecret("tokensecret");
@@ -130,6 +136,54 @@ void TestWidget::serialSlot() {
 
 	ReynTweetsConfiguration conf;
 	conf.setUserAccount(ua);
+
+	// Pour voir
+	QVariant uaInConf = conf.property("p_userAccount");
+	UserAccount correspua = qVariantValue<UserAccount>(uaInConf);
+
+	// Sérialisation de la configuration
+	QVariant rtcVariant = qVariantFromValue(conf);
+	if (!rtcVariant.isValid()) {
+		qDebug("ReynTweetsConfiguration, c'est de la merde !");
+		return;
+	}
+
+	QFile fileConf("ReynTweetsConfiguration.txt");
+
+	bool openOK = fileConf.open(QFile::WriteOnly);
+	if (!openOK) {
+		qDebug("Putain de fichier de conf qui veut pas s'ouvrir ! C'est de la merde !");
+		return;
+	}
+
+	QDataStream rtcstream(&fileConf);
+	rtcstream << rtcVariant;
+	fileConf.close();
+
+
+	// Tests d'égalité
+
+	// ReynTweetsConfiguration
+	openOK = fileConf.open(QFile::ReadOnly);
+	if (!openOK) {
+		qDebug("Putain de fichier de conf qui veut pas s'ouvrir pour lire ! C'est de la merde !");
+		return;
+	}
+	QDataStream rtcstream2(&fileConf);
+	QVariant conf2Var;
+	rtcstream2 >> conf2Var;
+	ReynTweetsConfiguration conf2 = qVariantValue<ReynTweetsConfiguration>(conf2Var);
+	qDebug("Le nouveau user account de la conf :");
+	qDebug(QByteArray("AccessToken : ").append(conf2.getUserAccount().getAccessToken()).append('.').data());
+	qDebug(QByteArray("TokenSecret : ").append(conf2.getUserAccount().getTokenSecret()).append('.').data());
+	qDebug(QByteArray("User : ").append(conf2.getUserAccount().getUser()).append('.').data());
+}
+
+void TestWidget::serialUASlot() {
+	UserAccount ua;
+	ua.setAccessToken("tocredaccess");
+	ua.setTokenSecret("tokensecret");
+	ua.setUser("@air_dex");
 
 	// Sérialiszation de l'user account
 	QVariant uaVariant = qVariantFromValue(ua);
@@ -150,27 +204,6 @@ void TestWidget::serialSlot() {
 	uastream << uaVariant;
 	fileUA.close();
 
-
-	// Sérialisation de la configuration
-	QVariant rtcVariant = qVariantFromValue(conf);
-	if (!rtcVariant.isValid()) {
-		qDebug("ReynTweetsConfiguration, c'est de la merde !");
-		return;
-	}
-
-	QFile fileConf("ReynTweetsConfiguration.txt");
-
-	openOK = fileConf.open(QFile::WriteOnly);
-	if (!openOK) {
-		qDebug("Putain de fichier de conf qui veut pas s'ouvrir ! C'est de la merde !");
-		return;
-	}
-
-	QDataStream rtcstream(&fileConf);
-	rtcstream << rtcVariant;
-	fileConf.close();
-
-
 	// Tests d'égalité
 
 	// UserAccount
@@ -187,19 +220,5 @@ void TestWidget::serialSlot() {
 	qDebug(QByteArray("AccessToken : ").append(ua2.getAccessToken()).append('.').data());
 	qDebug(QByteArray("TokenSecret : ").append(ua2.getTokenSecret()).append('.').data());
 	qDebug(QByteArray("User : ").append(ua2.getUser()).append('.').data());
-
-	// ReynTweetsConfiguration
-	openOK = fileConf.open(QFile::ReadOnly);
-	if (!openOK) {
-		qDebug("Putain de fichier de conf qui veut pas s'ouvrir pour lire ! C'est de la merde !");
-		return;
-	}
-	QDataStream rtcstream2(&fileConf);
-	QVariant conf2Var;
-	rtcstream2 >> conf2Var;
-	ReynTweetsConfiguration conf2 = qVariantValue<ReynTweetsConfiguration>(conf2Var);
-	qDebug("Le nouveau user account de la conf :");
-	qDebug(QByteArray("AccessToken : ").append(conf2.getUserAccount().getAccessToken()).append('.').data());
-	qDebug(QByteArray("TokenSecret : ").append(conf2.getUserAccount().getTokenSecret()).append('.').data());
-	qDebug(QByteArray("User : ").append(conf2.getUserAccount().getUser()).append('.').data());
 }
+

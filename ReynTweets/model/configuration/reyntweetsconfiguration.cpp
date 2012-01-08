@@ -21,6 +21,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QJson/QObjectHelper>
 #include "reyntweetsconfiguration.hpp"
 #include "../../connection/reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
@@ -93,6 +94,7 @@ QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSetting
 QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::CONSUMER_SECRET;
 
 
+
 //////////////////////////////
 // Configuration management //
 //////////////////////////////
@@ -105,9 +107,24 @@ UserAccount ReynTweetsConfiguration::getUserAccount() {
 // Setter on userAccount
 void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
+	updateUserAccountProperty();
+}
+
+// Getter on userAccount
+QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
+	return userAccountProperty;
+}
+
+// Setter on userAccount
+void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap account) {
+	userAccountProperty = account;
 }
 
 // Updating the property p_userAccount
 void ReynTweetsConfiguration::updateUserAccountProperty() {
-	setProperty("userAccount", qVariantFromValue(userAccount));
+	// Converting the userAccount into a QVariantMap
+	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&userAccount);
+
+	// Updating the property
+	setProperty("userAccount", QVariant(accountMap));
 }

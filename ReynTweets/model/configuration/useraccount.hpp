@@ -35,6 +35,10 @@ class UserAccount : public QObject
 {
 	Q_OBJECT
 
+	//////////////////////////////
+	// Serialization management //
+	//////////////////////////////
+
 	public:
 		/// @fn UserAccount();
 		/// @brief Default constructor
@@ -55,15 +59,9 @@ class UserAccount : public QObject
 		/// @return Copy of the original account
 		const UserAccount & operator=(const UserAccount & account);
 
-	protected:
-		/// @brief Access token
-		QByteArray accessToken;
-
-		/// @brief Token Secret
-		QByteArray tokenSecret;
-
-		/// @brief Twitter User
-		QString user;
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
 
 	private:
 		/// @fn void recopie(const UserAccount & account);
@@ -71,11 +69,6 @@ class UserAccount : public QObject
 		/// @param account Account to copy
 		void recopie(const UserAccount & account);
 
-		/// @fn static void initSystem();
-		/// @brief Serialization declaration
-		static void initSystem();
-
-		// Friends function
 		/// @fn friend QDataStream & operator<<(QDataStream & out,
 		///										const UserAccount & account);
 		/// @brief Output stream operator for serialization
@@ -93,6 +86,76 @@ class UserAccount : public QObject
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
 										UserAccount & account);
+
+
+	//////////////////////////////
+	// Configuration management //
+	//////////////////////////////
+
+	public:
+		/// @fn QByteArray getAccessToken();
+		/// @brief Getter on the access token
+		/// @return The access token
+		QByteArray getAccessToken();
+
+		/// @fn void setAccessToken(QByteArray token);
+		/// @brief Setter on the Access Token
+		/// @param token The new Access Token
+		void setAccessToken(QByteArray token);
+
+		/// @fn QByteArray getTokenSecret();
+		/// @brief Getter on the secret token
+		/// @return The secret token
+		QByteArray getTokenSecret();
+
+		/// @fn void setTokenSecret(QByteArray secret);
+		/// @brief Setter on the secret token
+		/// @param secret The new token secret
+		void setTokenSecret(QByteArray secret);
+
+		/// @fn QString getUser();
+		/// @brief Getter on the user
+		/// @return The user
+		QString getUser();
+
+		/// @fn void setUser(QString u);
+		/// @brief Setter on the user
+		/// @param u The new user
+		void setUser(QString u);
+
+	protected:
+		/// @brief Access token
+		QByteArray accessToken;
+		Q_PROPERTY(QByteArray p_accessToken
+				   READ getAccessToken
+				   WRITE setAccessToken)
+
+		/// @brief Token Secret
+		QByteArray tokenSecret;
+		Q_PROPERTY(QByteArray p_tokenSecret
+				   READ getTokenSecret
+				   WRITE setTokenSecret)
+
+		/// @brief Twitter User
+		QString user;
+		Q_PROPERTY(QString p_user
+				   READ getUser
+				   WRITE setUser)
+
+	private:
+		// Updating properties
+
+		/// @fn void updateAccessToken();
+		/// @brief Updates the property p_accessToken
+		void updateAccessTokenProperty();
+
+		/// @fn void updateTokenScret();
+		/// @brief Updates the property p_tokenScret
+		void updateTokenScretProperty();
+
+		/// @fn void updateUser();
+		/// @brief Updates the property p_user
+		void updateUserProperty();
 };
 
 // Serialization of UserAccount

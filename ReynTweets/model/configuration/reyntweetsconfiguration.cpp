@@ -25,27 +25,15 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "../../connection/reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
 
-////////////////////
-// Static members //
-////////////////////
-
-// Consumer Key
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::CONSUMER_KEY;
-
-// Consumer Secret
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::CONSUMER_SECRET;
-
-
 //////////////////////////////
 // Serialization management //
 //////////////////////////////
 
 // Default constructor
 ReynTweetsConfiguration::ReynTweetsConfiguration() :
-	userAccount(),
-	currentUser()
+	userAccount()
 {
-	userAccount.append(currentUser);
+	updateUserAccountProperty();
 }
 
 // Destructor
@@ -65,7 +53,7 @@ const ReynTweetsConfiguration & ReynTweetsConfiguration::operator=(const ReynTwe
 // Copy of a ReynTweetsConfiguration
 void ReynTweetsConfiguration::recopie(const ReynTweetsConfiguration & configuration) {
 	userAccount = configuration.userAccount;
-	currentUser = configuration.currentUser;
+	updateUserAccountProperty();
 }
 
 // Serialization declaration
@@ -91,4 +79,35 @@ QDataStream & operator>>(QDataStream & in,
 						 ReynTweetsConfiguration & configuration)
 {
 	return jsonStreamingIn(in, configuration);
+}
+
+
+////////////////////
+// Static members //
+////////////////////
+
+// Consumer Key
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::CONSUMER_KEY;
+
+// Consumer Secret
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::CONSUMER_SECRET;
+
+
+//////////////////////////////
+// Configuration management //
+//////////////////////////////
+
+// Getter on userAccount
+UserAccount ReynTweetsConfiguration::getUserAccount() {
+	return userAccount;
+}
+
+// Setter on userAccount
+void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
+	userAccount = account;
+}
+
+// Updating the property p_userAccount
+void ReynTweetsConfiguration::updateUserAccountProperty() {
+	setProperty("userAccount", qVariantFromValue(userAccount));
 }

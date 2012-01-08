@@ -50,6 +50,9 @@ class TestWidget : public QWidget
 		OAuthWidget * authorizeWidget;
 		QLabel * resLabel;
 
+		// Serialization
+		QPushButton * serialButton;
+
 	public slots:
 		// Search
 		void searchXenoblade();
@@ -59,6 +62,9 @@ class TestWidget : public QWidget
 		// OAuth
 		void allowRTSlot();
 		void endAllowRT(OAuthProcessResult);
+
+		// Serialization
+		void serialSlot();
 
 	private:
 };

@@ -37,6 +37,10 @@ class ReynTweetsConfiguration : public QObject
 {
 	Q_OBJECT
 
+	//////////////////////////////
+	// Serialization management //
+	//////////////////////////////
+
 	public:
 		/// @fn ReynTweetsConfiguration();
 		/// @brief Default constructor
@@ -57,18 +61,9 @@ class ReynTweetsConfiguration : public QObject
 		/// @return Copy of the original configuration
 		const ReynTweetsConfiguration & operator=(const ReynTweetsConfiguration & configuration);
 
-	protected:
-		/// @brief Consumer Key
-		static QByteArray REYN_TWEETS_CONSUMER_KEY;
-
-		/// @brief Consumer Secret
-		static QByteArray REYN_TWEETS_CONSUMER_SECRET;
-
-		/// @brief Twitter Account
-		QList<UserAccount> userAccount;
-
-		/// @brief Current user account
-		UserAccount currentUser;
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
 
 	private:
 		/// @fn void recopie(const ReynTweetsConfiguration & configuration);
@@ -76,11 +71,8 @@ class ReynTweetsConfiguration : public QObject
 		/// @param configuration Configuration to copy
 		void recopie(const ReynTweetsConfiguration & configuration);
 
-		/// @fn static void initSystem();
-		/// @brief Serialization declaration
-		static void initSystem();
-
 		// Friends serialization operators
+
 		/// @fn friend QDataStream & operator<<(QDataStream & out,
 		///										const ReynTweetsConfiguration & configuration);
 		/// @brief Output stream operator for serialization
@@ -98,6 +90,40 @@ class ReynTweetsConfiguration : public QObject
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
 										ReynTweetsConfiguration & configuration);
+
+
+	//////////////////////////////
+	// Configuration management //
+	//////////////////////////////
+
+	public:
+		/// @fn UserAccount getUserAccount();
+		/// @brief Getter on the user account
+		/// @return The user account
+		UserAccount getUserAccount();
+
+		/// @fn void setUserAccount(UserAccount account);
+		/// @brief Setter on the user account
+		/// @param account New value for the account
+		void setUserAccount(UserAccount account);
+
+	protected:
+		/// @brief Consumer Key
+		static QByteArray REYN_TWEETS_CONSUMER_KEY;
+
+		/// @brief Consumer Secret
+		static QByteArray REYN_TWEETS_CONSUMER_SECRET;
+
+		/// @brief Twitter Account
+		UserAccount userAccount;
+		Q_PROPERTY(UserAccount p_userAccount
+				   READ getUserAccount
+				   WRITE setUserAccount)
+
+	private:
+		/// @fn void updateUserAccountProperty();
+		/// @brief Updating the property p_userAccount
+		void updateUserAccountProperty();
 };
 
 // Serialization of ReynTweetsConfiguration

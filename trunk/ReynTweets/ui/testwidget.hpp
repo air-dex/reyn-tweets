@@ -51,7 +51,8 @@ class TestWidget : public QWidget
 		QLabel * resLabel;
 
 		// Serialization
-		QPushButton * serialButton;
+		QPushButton * serialUAButton;
+		QPushButton * serialConfButton;
 
 	public slots:
 		// Search
@@ -64,7 +65,8 @@ class TestWidget : public QWidget
 		void endAllowRT(OAuthProcessResult);
 
 		// Serialization
-		void serialSlot();
+		void serialUASlot();
+		void serialConfSlot();
 
 	private:
 };

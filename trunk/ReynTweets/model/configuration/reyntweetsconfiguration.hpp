@@ -91,6 +91,30 @@ class ReynTweetsConfiguration : public QObject
 		friend QDataStream & operator>>(QDataStream & in,
 										ReynTweetsConfiguration & configuration);
 
+	private:
+		// Properties
+
+		// User account
+		/// @brief userAccount under the form of a QVariantMap
+		QVariantMap userAccountProperty;
+		Q_PROPERTY(QVariantMap p_userAccount
+				   READ getUserAccountProperty
+				   WRITE setUserAccountProperty)
+
+		/// @fn QVariantMap getUserAccountProperty();
+		/// @brief Getter on the user account
+		/// @return The user account
+		QVariantMap getUserAccountProperty();
+
+		/// @fn void setUserAccountProperty(QVariantMap account);
+		/// @brief Setter on the user account
+		/// @param account New value for the account
+		void setUserAccountProperty(QVariantMap account);
+
+		/// @fn void updateUserAccountProperty();
+		/// @brief Updating the property p_userAccount
+		void updateUserAccountProperty();
+
 
 	//////////////////////////////
 	// Configuration management //
@@ -116,14 +140,6 @@ class ReynTweetsConfiguration : public QObject
 
 		/// @brief Twitter Account
 		UserAccount userAccount;
-		Q_PROPERTY(UserAccount p_userAccount
-				   READ getUserAccount
-				   WRITE setUserAccount)
-
-	private:
-		/// @fn void updateUserAccountProperty();
-		/// @brief Updating the property p_userAccount
-		void updateUserAccountProperty();
 };
 
 // Serialization of ReynTweetsConfiguration

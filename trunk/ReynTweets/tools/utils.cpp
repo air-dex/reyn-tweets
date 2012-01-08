@@ -23,6 +23,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QCryptographicHash>
+#include <QJson/QObjectHelper>
+#include <QJson/Parser>
+#include <QJson/Serializer>
 #include "utils.hpp"
 
 
@@ -75,4 +78,38 @@ QString requestTypeToString(RequestType type) {
 // Exclusive OR
 bool ouBien(bool a, bool b) {
 	return  a && !b || !a && b;
+}
+
+
+////////////////////
+// JSON Streaming //
+////////////////////
+
+// Output stream operator for serialization
+QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream) {
+	// Converting the object into a JSON file
+	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream);
+	QJson::Serializer serializer;
+	QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
+
+	// Putting it in the stream
+	out << jsonedAccount;
+
+	return out;
+}
+
+// Input stream operator for serialization
+QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream) {
+	QByteArray jsonedAccount = "";
+	in >> jsonedAccount;
+
+	QJson::Parser parser;
+	bool parseOK;
+	QVariant accountVariant = parser.parse(jsonedAccount, &parseOK);
+
+	if (parseOK) {
+		QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &objectToStream);
+	}
+
+	return in;
 }

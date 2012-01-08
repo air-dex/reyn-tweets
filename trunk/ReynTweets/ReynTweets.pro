@@ -62,6 +62,8 @@ SOURCES += \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
+	model/configuration/useraccount.cpp \
+	model/configuration/reyntweetsconfiguration.cpp \
 	controls/oauthprocess.cpp \
 	ui/authentication/loginwidget.cpp \
 	ui/authentication/oauthwidget.cpp \
@@ -96,6 +98,8 @@ HEADERS  += \
 	connection/requestinfos.hpp \
 	connection/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
+	model/configuration/useraccount.hpp \
+	model/configuration/reyntweetsconfiguration.hpp \
 	controls/oauthprocessresult.hpp \
 	controls/oauthprocess.hpp \
 	ui/authentication/loginwidget.hpp \

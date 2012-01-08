@@ -27,6 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QVBoxLayout>
 #include <QWidget>
 #include "testwidget.hpp"
+#include "../model/configuration/reyntweetsconfiguration.hpp"
 
 /// @class ReynTweetsWidget
 /// @brief Main Widget of Reyn Tweets.

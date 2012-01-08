@@ -24,12 +24,20 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "useraccount.hpp"
 #include "../../tools/utils.hpp"
 
+//////////////////////////////
+// Serialization management //
+//////////////////////////////
+
 // Default constructor
 UserAccount::UserAccount() :
 	accessToken(""),
 	tokenSecret(""),
 	user("")
-{}
+{
+	updateAccessTokenProperty();
+	updateTokenScretProperty();
+	updateUserProperty();
+}
 
 // Destructor
 UserAccount::~UserAccount() {}
@@ -48,8 +56,11 @@ const UserAccount & UserAccount::operator=(const UserAccount & account) {
 // Recopying a UserAccount
 void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
+	updateAccessTokenProperty();
 	tokenSecret = account.tokenSecret;
+	updateTokenScretProperty();
 	user = account.user;
+	updateUserProperty();
 }
 
 // Serialization declaration
@@ -71,4 +82,54 @@ QDataStream & operator<<(QDataStream & out, const UserAccount & account) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 	return jsonStreamingIn(in, account);
+}
+
+
+//////////////////////////////
+// Configuration management //
+//////////////////////////////
+
+// Getter on accessToken
+QByteArray UserAccount::getAccessToken() {
+	return accessToken;
+}
+
+// Setter on accessToken
+void UserAccount::setAccessToken(QByteArray token) {
+	accessToken = token;
+}
+
+// Updates the property p_accessToken
+void UserAccount::updateAccessTokenProperty() {
+	setProperty("accessToken", accessToken);
+}
+
+// Getter on tokenSecret
+QByteArray UserAccount::getTokenSecret() {
+	return tokenSecret;
+}
+
+// Setter on tokenSecret
+void UserAccount::setTokenSecret(QByteArray secret) {
+	tokenSecret = secret;
+}
+
+// Updates the property p_tokenScret
+void UserAccount::updateTokenScretProperty() {
+	setProperty("tokenSecret", tokenSecret);
+}
+
+// Getter on user
+QString UserAccount::getUser() {
+	return user;
+}
+
+// Setter on user
+void UserAccount::setUser(QString u) {
+	user = u;
+}
+
+// Updates the property p_user
+void UserAccount::updateUserProperty() {
+	setProperty("user", user);
 }

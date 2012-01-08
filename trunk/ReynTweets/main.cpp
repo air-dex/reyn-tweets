@@ -29,8 +29,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
+
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
+
+	// Init for serialization
+	UserAccount::initSystem();
+	ReynTweetsConfiguration::initSystem();
 
 	// Program in French
 /*

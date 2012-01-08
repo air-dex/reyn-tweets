@@ -26,6 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define UTILS_HPP
 
 #include <QByteArray>
+#include <QDataStream>
 #include <QString>
 #include "../connection/requesttype.hpp"
 
@@ -51,5 +52,24 @@ QString requestTypeToString(RequestType type);
 /// @param a 1st bool
 /// @param b 2nd bool
 bool ouBien(bool a, bool b);
+
+
+////////////////////
+// JSON Streaming //
+////////////////////
+
+/// @fn static QDataStream & jsonStreamOut(QDataStream & out, const QObject & objectToStream);
+/// @brief Output stream operator for JSON serialization
+/// @param out The output stream
+/// @param objectToStream Object to put in the stream
+/// @return The stream with the object
+QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream);
+
+/// @fn static QDataStream & jsonStreamIn(QDataStream & in, QObject & objectToStream);
+/// @brief Input stream operator for JSON serialization
+/// @param in The input stream
+/// @param objectToStream Object to put in the stream
+/// @return The stream with the object
+QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
 
 #endif // UTILS_HPP

@@ -91,6 +91,8 @@ window.onload = initDynSections;
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_rela.html"><span>Related&nbsp;Functions</span></a></li>
     </ul>
   </div>
   <div class="tabs">
@@ -139,8 +141,23 @@ Here is a list of all class members with links to the classes they belong to:
 <li>sendResult()
 : <a class="el" href="class_reyn_twitter_calls.html#ac16c647f67abd118fc5a39b98ed60371">ReynTwitterCalls</a>
 </li>
+<li>serialConfButton
+: <a class="el" href="class_test_widget.html#a326f4a3ec5b8f8f5dd75a13c08561934">TestWidget</a>
+</li>
+<li>serialConfSlot()
+: <a class="el" href="class_test_widget.html#aceff3315807e66a58258a4fec39c72fd">TestWidget</a>
+</li>
+<li>serialUAButton
+: <a class="el" href="class_test_widget.html#a96715ca12be8654a4bca30d87a14d6bc">TestWidget</a>
+</li>
+<li>serialUASlot()
+: <a class="el" href="class_test_widget.html#ada80e66f3cfb7fbdd36dadc188f6a2d0">TestWidget</a>
+</li>
 <li>serviceURL
 : <a class="el" href="class_twitter_communicator.html#a9ef3d63d91d84f717e4ad7db8865a3e8">TwitterCommunicator</a>
+</li>
+<li>setAccessToken()
+: <a class="el" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08">UserAccount</a>
 </li>
 <li>setAuthenticityToken()
 : <a class="el" href="class_o_auth_manager.html#a4ce9bd4c4561d87d75c255a960ed5d0b">OAuthManager</a>
@@ -156,6 +173,18 @@ Here is a list of all class members with links to the classes they belong to:
 </li>
 <li>setParsingErrorType()
 : <a class="el" href="class_generic_requester.html#a5e051448a3c3d5792c407129536b5b9d">GenericRequester</a>
+</li>
+<li>setTokenSecret()
+: <a class="el" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d">UserAccount</a>
+</li>
+<li>setUser()
+: <a class="el" href="class_user_account.html#a9379e414c4c7216e00e11af530d43144">UserAccount</a>
+</li>
+<li>setUserAccount()
+: <a class="el" href="class_reyn_tweets_configuration.html#a5288f81262b86ad67b24997f852b8353">ReynTweetsConfiguration</a>
+</li>
+<li>setUserAccountProperty()
+: <a class="el" href="class_reyn_tweets_configuration.html#a859a45ccc9f5979d73775e3f4af5f083">ReynTweetsConfiguration</a>
 </li>
 <li>setVerifier()
 : <a class="el" href="class_o_auth_manager.html#ac15ad8abdf37aac183d7879526831b68">OAuthManager</a>
@@ -179,7 +208,7 @@ Here is a list of all class members with links to the classes they belong to:
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -188,7 +217,7 @@ Here is a list of all class members with links to the classes they belong to:
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:19 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jan 9 19:48:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

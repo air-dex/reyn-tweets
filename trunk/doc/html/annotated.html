@@ -110,12 +110,15 @@ window.onload = initDynSections;
   <tr><td class="indexkey"><a class="el" href="class_request_result.html">RequestResult</a></td><td class="indexvalue">Results of a request </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_request_token_requester.html">RequestTokenRequester</a></td><td class="indexvalue">Class managing requests with the Twitter API about OAuth </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_result_wrapper.html">ResultWrapper</a></td><td class="indexvalue">Class containg result of requests (field "result") and the QObject which asks for it (field "asker"). Only the sender of the request is allowed to have access to the result. It has to give its memory address in order to prove that it is the real sender of the request </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a></td><td class="indexvalue">Configuration of Reyn Tweets </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a></td><td class="indexvalue">Abstract class to represent classes which are serializable. It converts the object into a QVariantMap which are serializable by QJSON (<code><a class="el" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap()</a>;</code>) and vice versa (<code><a class="el" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap()</a>;</code>). Here are two default methods using the QObjectHelper class of QJSON </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_reyn_tweets_widget.html">ReynTweetsWidget</a></td><td class="indexvalue">Main Widget of Reyn Tweets </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_reyn_twitter_calls.html">ReynTwitterCalls</a></td><td class="indexvalue"><a class="el" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> is a class which manages calls to Twitter. It is a singleton. To use it </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_search_requester.html">SearchRequester</a></td><td class="indexvalue">Requester for searches </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_test_widget.html">TestWidget</a></td><td class="indexvalue">QWidget for testing functionnalities </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_twitter_communicator.html">TwitterCommunicator</a></td><td class="indexvalue">Class managing communication with the Twitter API.<br/>
  A Twitter Communicator needs the URL of the service, GET and POST arguments. It will doing the request and storing it in a QByteArray containing the response. <b>The content of the QByteArray is not parsed.</b> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_user_account.html">UserAccount</a></td><td class="indexvalue">User account </td></tr>
 </table>
 </div>
 <!--- window showing the filter options -->
@@ -123,7 +126,7 @@ window.onload = initDynSections;
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -132,7 +135,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:18 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jan 9 19:48:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

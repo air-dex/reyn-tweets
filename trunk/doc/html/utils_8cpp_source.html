@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/utils.cpp Source File</title>
+<title>ReynTweets: tools/utils.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>
+  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>
   </div>
 </div>
 <div class="contents">
@@ -92,86 +92,122 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QCryptographicHash&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="utils_8hpp.html" title="Header with useful methods.">utils.hpp</a>&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="comment">// HMAC-SHA1 algorithm for signatures.</span>
-<a name="l00029"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00029</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found...">hmacSha1</a>(QByteArray key, QByteArray baseString) {
-<a name="l00030"></a>00030         <span class="keywordtype">int</span> blockSize = 64; <span class="comment">// HMAC-SHA-1 block size, defined in SHA-1 standard</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 <span class="comment">/*</span>
+<a name="l00007"></a>00007 <span class="comment">Copyright 2011 Romain Ducher</span>
+<a name="l00008"></a>00008 <span class="comment"></span>
+<a name="l00009"></a>00009 <span class="comment">This file is part of Reyn Tweets.</span>
+<a name="l00010"></a>00010 <span class="comment"></span>
+<a name="l00011"></a>00011 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
+<a name="l00012"></a>00012 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
+<a name="l00013"></a>00013 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
+<a name="l00014"></a>00014 <span class="comment">(at your option) any later version.</span>
+<a name="l00015"></a>00015 <span class="comment"></span>
+<a name="l00016"></a>00016 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
+<a name="l00017"></a>00017 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00018"></a>00018 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span>
+<a name="l00019"></a>00019 <span class="comment">GNU Lesser General Public License for more details.</span>
+<a name="l00020"></a>00020 <span class="comment"></span>
+<a name="l00021"></a>00021 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
+<a name="l00022"></a>00022 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00023"></a>00023 <span class="comment">*/</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QCryptographicHash&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QJson/QObjectHelper&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QJson/Parser&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QJson/Serializer&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="utils_8hpp.html" title="Header with useful methods  Revisions older than r120 are in the folder /trunk/ReynTweets/connection...">utils.hpp</a>&quot;</span>
+<a name="l00030"></a>00030 
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032         <span class="keywordflow">if</span> (key.length() &gt; blockSize) {
-<a name="l00033"></a>00033                 <span class="comment">// if key is longer than block size (64), reduce key length with</span>
-<a name="l00034"></a>00034                 <span class="comment">// SHA-1 compression</span>
-<a name="l00035"></a>00035                 key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
-<a name="l00036"></a>00036         }
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="comment">// initialize inner padding with char &quot;6&quot;</span>
-<a name="l00039"></a>00039         QByteArray innerPadding(blockSize, <span class="keywordtype">char</span>(0x36));
-<a name="l00040"></a>00040         <span class="comment">// initialize outer padding with char &quot;\&quot;</span>
-<a name="l00041"></a>00041         QByteArray outerPadding(blockSize, <span class="keywordtype">char</span>(0x5c));
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043         <span class="comment">// ascii characters 0x36 (&quot;6&quot;) and 0x5c (&quot;\&quot;) are selected because they have</span>
-<a name="l00044"></a>00044         <span class="comment">// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; key.length(); i++) {
-<a name="l00047"></a>00047                 <span class="comment">// XOR operation between every byte in key and innerpadding, of key length</span>
-<a name="l00048"></a>00048                 innerPadding[i] = innerPadding[i] ^ key.at(i);
-<a name="l00049"></a>00049                 <span class="comment">// XOR operation between every byte in key and outerpadding, of key length</span>
-<a name="l00050"></a>00050                 outerPadding[i] = outerPadding[i] ^ key.at(i);
-<a name="l00051"></a>00051         }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <span class="comment">// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64</span>
-<a name="l00054"></a>00054         QByteArray total = outerPadding;
-<a name="l00055"></a>00055         QByteArray part = innerPadding;
-<a name="l00056"></a>00056         part.append(baseString);
-<a name="l00057"></a>00057         total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-<a name="l00058"></a>00058         QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
-<a name="l00059"></a>00059         <span class="keywordflow">return</span> hashed.toBase64();
-<a name="l00060"></a>00060 }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="comment">// Converting a RequestType into a QString</span>
-<a name="l00063"></a><a class="code" href="utils_8hpp.html#a7761eeb958785fd8489d741e7abf3281">00063</a> QString <a class="code" href="utils_8cpp.html#a7761eeb958785fd8489d741e7abf3281" title="Converting a RequestType into a QString.">requestTypeToString</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type) {
-<a name="l00064"></a>00064         <span class="keywordflow">switch</span> (type) {
-<a name="l00065"></a>00065                 <span class="keywordflow">case</span> <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>:
-<a name="l00066"></a>00066                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;GET&quot;</span>;
-<a name="l00067"></a>00067                 <span class="keywordflow">case</span> <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa368c5bc07109370b819193871352b926" title="POST requests.">POST</a>:
-<a name="l00068"></a>00068                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;POST&quot;</span>;
-<a name="l00069"></a>00069                 <span class="keywordflow">default</span>:
-<a name="l00070"></a>00070                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00071"></a>00071         }
-<a name="l00072"></a>00072 }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="comment">// Exclusive OR</span>
-<a name="l00075"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00075</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#adf962ce37dadd55a872a51c1e554193d" title="Logical XOR :a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
-<a name="l00076"></a>00076         <span class="keywordflow">return</span>  a &amp;&amp; !b || !a &amp;&amp; b;
-<a name="l00077"></a>00077 }
+<a name="l00032"></a>00032 <span class="comment">// HMAC-SHA1 algorithm for signatures.</span>
+<a name="l00033"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00033</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found...">hmacSha1</a>(QByteArray key, QByteArray baseString) {
+<a name="l00034"></a>00034         <span class="keywordtype">int</span> blockSize = 64; <span class="comment">// HMAC-SHA-1 block size, defined in SHA-1 standard</span>
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036         <span class="keywordflow">if</span> (key.length() &gt; blockSize) {
+<a name="l00037"></a>00037                 <span class="comment">// if key is longer than block size (64), reduce key length with</span>
+<a name="l00038"></a>00038                 <span class="comment">// SHA-1 compression</span>
+<a name="l00039"></a>00039                 key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
+<a name="l00040"></a>00040         }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042         <span class="comment">// initialize inner padding with char &quot;6&quot;</span>
+<a name="l00043"></a>00043         QByteArray innerPadding(blockSize, <span class="keywordtype">char</span>(0x36));
+<a name="l00044"></a>00044         <span class="comment">// initialize outer padding with char &quot;\&quot;</span>
+<a name="l00045"></a>00045         QByteArray outerPadding(blockSize, <span class="keywordtype">char</span>(0x5c));
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="comment">// ascii characters 0x36 (&quot;6&quot;) and 0x5c (&quot;\&quot;) are selected because they have</span>
+<a name="l00048"></a>00048         <span class="comment">// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; key.length(); i++) {
+<a name="l00051"></a>00051                 <span class="comment">// XOR operation between every byte in key and innerpadding, of key length</span>
+<a name="l00052"></a>00052                 innerPadding[i] = innerPadding[i] ^ key.at(i);
+<a name="l00053"></a>00053                 <span class="comment">// XOR operation between every byte in key and outerpadding, of key length</span>
+<a name="l00054"></a>00054                 outerPadding[i] = outerPadding[i] ^ key.at(i);
+<a name="l00055"></a>00055         }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         <span class="comment">// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64</span>
+<a name="l00058"></a>00058         QByteArray total = outerPadding;
+<a name="l00059"></a>00059         QByteArray part = innerPadding;
+<a name="l00060"></a>00060         part.append(baseString);
+<a name="l00061"></a>00061         total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
+<a name="l00062"></a>00062         QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
+<a name="l00063"></a>00063         <span class="keywordflow">return</span> hashed.toBase64();
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="comment">// Converting a RequestType into a QString</span>
+<a name="l00067"></a><a class="code" href="utils_8hpp.html#a7761eeb958785fd8489d741e7abf3281">00067</a> QString <a class="code" href="utils_8cpp.html#a7761eeb958785fd8489d741e7abf3281" title="Converting a RequestType into a QString.">requestTypeToString</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type) {
+<a name="l00068"></a>00068         <span class="keywordflow">switch</span> (type) {
+<a name="l00069"></a>00069                 <span class="keywordflow">case</span> <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>:
+<a name="l00070"></a>00070                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;GET&quot;</span>;
+<a name="l00071"></a>00071                 <span class="keywordflow">case</span> <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa368c5bc07109370b819193871352b926" title="POST requests.">POST</a>:
+<a name="l00072"></a>00072                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;POST&quot;</span>;
+<a name="l00073"></a>00073                 <span class="keywordflow">default</span>:
+<a name="l00074"></a>00074                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00075"></a>00075         }
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="comment">// Exclusive OR</span>
+<a name="l00079"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00079</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#adf962ce37dadd55a872a51c1e554193d" title="Logical XOR :a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
+<a name="l00080"></a>00080         <span class="keywordflow">return</span>  a &amp;&amp; !b || !a &amp;&amp; b;
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00085"></a>00085 <span class="comment">// JSON Streaming //</span>
+<a name="l00087"></a>00087 <span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00089"></a><a class="code" href="utils_8hpp.html#a060e8578c6b3529a70a785950f60a2b8">00089</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream) {
+<a name="l00090"></a>00090         <span class="comment">// Converting the object into a JSON file</span>
+<a name="l00091"></a>00091         QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&amp;objectToStream);
+<a name="l00092"></a>00092         QJson::Serializer serializer;
+<a name="l00093"></a>00093         QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095         <span class="comment">// Putting it in the stream</span>
+<a name="l00096"></a>00096         out &lt;&lt; jsonedAccount;
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098         <span class="keywordflow">return</span> out;
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00102"></a><a class="code" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">00102</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream) {
+<a name="l00103"></a>00103         QByteArray jsonedAccount = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00104"></a>00104         in &gt;&gt; jsonedAccount;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106         QJson::Parser parser;
+<a name="l00107"></a>00107         <span class="keywordtype">bool</span> parseOK;
+<a name="l00108"></a>00108         QVariant accountVariant = parser.parse(jsonedAccount, &amp;parseOK);
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110         <span class="keywordflow">if</span> (parseOK) {
+<a name="l00111"></a>00111                 QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &amp;objectToStream);
+<a name="l00112"></a>00112         }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114         <span class="keywordflow">return</span> in;
+<a name="l00115"></a>00115 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -180,7 +216,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jan 9 19:48:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

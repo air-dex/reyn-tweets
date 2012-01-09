@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/utils.cpp File Reference</title>
+<title>ReynTweets: tools/utils.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,14 +84,18 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>
+  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>
   </div>
 </div>
 <div class="contents">
 <h1>utils.cpp File Reference</h1>
-<p>Implementation of the useful methods declared in <a class="el" href="utils_8hpp.html" title="Header with useful methods.">utils.hpp</a>.  
+<p>Implementation of the useful methods declared in <a class="el" href="utils_8hpp.html" title="Header with useful methods  Revisions older than r120 are in the folder /trunk/ReynTweets/connection...">utils.hpp</a>.<br/>
+ Revisions older than r120 are in the folder /trunk/ReynTweets/connection/.  
 <a href="#_details">More...</a></p>
 <code>#include &lt;QCryptographicHash&gt;</code><br/>
+<code>#include &lt;QJson/QObjectHelper&gt;</code><br/>
+<code>#include &lt;QJson/Parser&gt;</code><br/>
+<code>#include &lt;QJson/Serializer&gt;</code><br/>
 <code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br/>
 
 <p><a href="utils_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -99,13 +103,18 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">hmacSha1</a> (QByteArray key, QByteArray baseString)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">Qt Developer Network</a> here : <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.  <a href="#acfc27e59d388cde8e4e5e9c960aab0d5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34">jsonStreamingIn</a> (QDataStream &amp;in, QObject &amp;objectToStream)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Input stream operator for JSON serialization.  <a href="#a238e1abfe41c75c5f96cb89d0175bb34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7">jsonStreamingOut</a> (QDataStream &amp;out, const QObject &amp;objectToStream)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for JSON serialization.  <a href="#acf619ad37c4138e1d040869dbb323fc7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8cpp.html#adf962ce37dadd55a872a51c1e554193d">ouBien</a> (bool a, bool b)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Logical XOR :<code>a XOR b == a &amp;&amp; !b || !a &amp;&amp; b</code>  <a href="#adf962ce37dadd55a872a51c1e554193d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8cpp.html#a7761eeb958785fd8489d741e7abf3281">requestTypeToString</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a RequestType into a QString.  <a href="#a7761eeb958785fd8489d741e7abf3281"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Implementation of the useful methods declared in <a class="el" href="utils_8hpp.html" title="Header with useful methods.">utils.hpp</a>. </p>
+<p>Implementation of the useful methods declared in <a class="el" href="utils_8hpp.html" title="Header with useful methods  Revisions older than r120 are in the folder /trunk/ReynTweets/connection...">utils.hpp</a>.<br/>
+ Revisions older than r120 are in the folder /trunk/ReynTweets/connection/. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher </dd></dl>
 
 <p>Definition in file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
@@ -145,7 +154,85 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00029">29</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00033">33</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a238e1abfe41c75c5f96cb89d0175bb34"></a><!-- doxytag: member="utils.cpp::jsonStreamingIn" ref="a238e1abfe41c75c5f96cb89d0175bb34" args="(QDataStream &amp;in, QObject &amp;objectToStream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static QDataStream &amp; jsonStreamingIn </td>
+          <td>(</td>
+          <td class="paramtype">QDataStream &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject &amp;&nbsp;</td>
+          <td class="paramname"> <em>objectToStream</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Input stream operator for JSON serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>in</em>&nbsp;</td><td>The input stream </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>objectToStream</em>&nbsp;</td><td>Object to put in the stream </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
+
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00102">102</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf619ad37c4138e1d040869dbb323fc7"></a><!-- doxytag: member="utils.cpp::jsonStreamingOut" ref="acf619ad37c4138e1d040869dbb323fc7" args="(QDataStream &amp;out, const QObject &amp;objectToStream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static QDataStream &amp; jsonStreamingOut </td>
+          <td>(</td>
+          <td class="paramtype">QDataStream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QObject &amp;&nbsp;</td>
+          <td class="paramname"> <em>objectToStream</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output stream operator for JSON serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>out</em>&nbsp;</td><td>The output stream </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>objectToStream</em>&nbsp;</td><td>Object to put in the stream </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
+
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00089">89</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +270,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00075">75</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00079">79</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,7 +299,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QString </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00063">63</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00067">67</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,7 +309,7 @@ window.onload = initDynSections;
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -231,7 +318,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:17 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jan 9 19:48:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

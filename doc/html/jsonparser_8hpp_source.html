@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/parsers/jsonparser.hpp Source File</title>
+<title>ReynTweets: tools/parsers/jsonparser.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_43b87dfd4c898e6a0986566219d161e1.html">parsers</a>
+  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
   </div>
 </div>
 <div class="contents">
@@ -92,47 +92,48 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#ifndef JSONPARSER_HPP</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define JSONPARSER_HPP</span>
-<a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="genericparser_8hpp.html" title="Header of GenericParser.">genericparser.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 
-<a name="l00032"></a><a class="code" href="class_j_s_o_n_parser.html">00032</a> <span class="keyword">class </span><a class="code" href="class_j_s_o_n_parser.html" title="Parser for JSON datas. It uses the QJSON library to parse.">JSONParser</a> : <span class="keyword">public</span> <a class="code" href="class_generic_parser.html" title="Base class for all the parsers.">GenericParser</a>&lt;QVariantMap&gt;
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034         <span class="keyword">public</span>:
-<a name="l00044"></a>00044                 QVariantMap <a class="code" href="class_j_s_o_n_parser.html#aaa9719cb7ad966e3b975534dba3601ad" title="Parsing JSON datas.">parse</a>(QByteArray data,
-<a name="l00045"></a>00045                                                   <span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00046"></a>00046                                                   QString &amp; parseError,
-<a name="l00047"></a>00047                                                   <span class="keywordtype">int</span> * lineError = 0);
-<a name="l00048"></a>00048 };
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#endif // JSONPARSER_HPP</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 <span class="comment">/*</span>
+<a name="l00007"></a>00007 <span class="comment">Copyright 2011 Romain Ducher</span>
+<a name="l00008"></a>00008 <span class="comment"></span>
+<a name="l00009"></a>00009 <span class="comment">This file is part of Reyn Tweets.</span>
+<a name="l00010"></a>00010 <span class="comment"></span>
+<a name="l00011"></a>00011 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
+<a name="l00012"></a>00012 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
+<a name="l00013"></a>00013 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
+<a name="l00014"></a>00014 <span class="comment">(at your option) any later version.</span>
+<a name="l00015"></a>00015 <span class="comment"></span>
+<a name="l00016"></a>00016 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
+<a name="l00017"></a>00017 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00018"></a>00018 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00019"></a>00019 <span class="comment">GNU Lesser General Public License for more details.</span>
+<a name="l00020"></a>00020 <span class="comment"></span>
+<a name="l00021"></a>00021 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
+<a name="l00022"></a>00022 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00023"></a>00023 <span class="comment">*/</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="preprocessor">#ifndef JSONPARSER_HPP</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span><span class="preprocessor">#define JSONPARSER_HPP</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="genericparser_8hpp.html" title="Header of GenericParser  Revisions older than r120 are in the folder /trunk/ReynTweets/connection/pa...">genericparser.hpp</a>&quot;</span>
+<a name="l00029"></a>00029 
+<a name="l00033"></a><a class="code" href="class_j_s_o_n_parser.html">00033</a> <span class="keyword">class </span><a class="code" href="class_j_s_o_n_parser.html" title="Parser for JSON datas. It uses the QJSON library to parse.">JSONParser</a> : <span class="keyword">public</span> <a class="code" href="class_generic_parser.html" title="Base class for all the parsers.">GenericParser</a>&lt;QVariantMap&gt;
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035         <span class="keyword">public</span>:
+<a name="l00045"></a>00045                 QVariantMap <a class="code" href="class_j_s_o_n_parser.html#aaa9719cb7ad966e3b975534dba3601ad" title="Parsing JSON datas.">parse</a>(QByteArray data,
+<a name="l00046"></a>00046                                                   <span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00047"></a>00047                                                   QString &amp; parseError,
+<a name="l00048"></a>00048                                                   <span class="keywordtype">int</span> * lineError = 0);
+<a name="l00049"></a>00049 };
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="preprocessor">#endif // JSONPARSER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -141,7 +142,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 7 04:16:14 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jan 9 19:48:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

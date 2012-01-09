@@ -32,7 +32,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class UserAccount
 /// @brief User account.
-class UserAccount : public QObject, virtual public ReynTweetsSerializable
+class UserAccount : public ReynTweetsSerializable
 {
 	Q_OBJECT
 
@@ -97,7 +97,7 @@ class UserAccount : public QObject, virtual public ReynTweetsSerializable
 				   READ getAccessToken
 				   WRITE setAccessToken)
 
-		/// @fn void updateAccessToken();
+		/// @fn void updateAccessTokenProperty();
 		/// @brief Updates the property p_accessToken
 		void updateAccessTokenProperty();
 
@@ -106,16 +106,16 @@ class UserAccount : public QObject, virtual public ReynTweetsSerializable
 				   READ getTokenSecret
 				   WRITE setTokenSecret)
 
-		/// @fn void updateTokenScret();
+		/// @fn void updateTokenSecretProperty();
 		/// @brief Updates the property p_tokenScret
-		void updateTokenScretProperty();
+		void updateTokenSecretProperty();
 
 		//User
 		Q_PROPERTY(QString p_user
 				   READ getUser
 				   WRITE setUser)
 
-		/// @fn void updateUser();
+		/// @fn void updateUserProperty();
 		/// @brief Updates the property p_user
 		void updateUserProperty();
 

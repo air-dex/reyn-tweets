@@ -42,15 +42,15 @@ TEMPLATE = app
 
 SOURCES += \
 	tools/utils.cpp \
+	tools/parsers/htmlparser.cpp \
+	tools/parsers/jsonparser.cpp \
+	tools/parsers/oauthparser.cpp \
 	connection/twitterurls.cpp \
 	connection/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
 	connection/requestresult.cpp \
 	connection/resultwrapper.cpp \
-	tools/parsers/htmlparser.cpp \
-	tools/parsers/jsonparser.cpp \
-	tools/parsers/oauthparser.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
@@ -62,6 +62,7 @@ SOURCES += \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
+	model/reyntweetsserializable.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
 	controls/oauthprocess.cpp \
@@ -70,11 +71,14 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp \
-    model/reyntweetsserializable.cpp
+	main.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
+	tools/parsers/genericparser.hpp \
+	tools/parsers/htmlparser.hpp \
+	tools/parsers/jsonparser.hpp \
+	tools/parsers/oauthparser.hpp \
 	connection/reyntweetssettings.hpp \
 	connection/requesttype.hpp \
 	connection/oauthmanager.hpp \
@@ -83,10 +87,6 @@ HEADERS  += \
 	connection/requestresult.hpp \
 	connection/resultwrapper.hpp \
 	connection/twitterurls.hpp \
-	tools/parsers/genericparser.hpp \
-	tools/parsers/htmlparser.hpp \
-	tools/parsers/jsonparser.hpp \
-	tools/parsers/oauthparser.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
@@ -99,6 +99,7 @@ HEADERS  += \
 	connection/requestinfos.hpp \
 	connection/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
+	model/reyntweetsserializable.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \
 	controls/oauthprocessresult.hpp \
@@ -107,8 +108,7 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp \
-    model/reyntweetsserializable.hpp
+	ui/mainwindow.hpp
 
 
 OTHER_FILES = \

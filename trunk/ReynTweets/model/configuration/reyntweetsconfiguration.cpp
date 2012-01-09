@@ -22,6 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "reyntweetsconfiguration.hpp"
+#include "../../connection/reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
 
 //////////////////////////////
@@ -30,6 +31,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 ReynTweetsConfiguration::ReynTweetsConfiguration() :
+	userAccountProperty(),
 	userAccount()
 {
 	updateUserAccountProperty();
@@ -85,7 +87,7 @@ void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
 // Updating the property p_userAccount
 void ReynTweetsConfiguration::updateUserAccountProperty() {
 	// Updating the property
-	setProperty("userAccount", QVariant(userAccount.toMap()));
+	setProperty("p_userAccount", QVariant(userAccount.toMap()));
 }
 
 
@@ -104,7 +106,7 @@ QDataStream & operator<<(QDataStream & out,
 QDataStream & operator>>(QDataStream & in,
 						 ReynTweetsConfiguration & configuration)
 {
-	in = jsonStreamingIn(in, configuration);
+	jsonStreamingIn(in, configuration);
 
 	// Filling the user account
 	configuration.fillWithPropertiesMaps();

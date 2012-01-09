@@ -135,11 +135,24 @@ void TestWidget::serialConfSlot() {
 	ua.setUser("@air_dex");
 
 	ReynTweetsConfiguration conf;
+	qDebug("La propriete p_userAccount avant son affectation :");
+	QVariantMap uaInConf = conf.property("p_userAccount").toMap();
+	foreach (QString cle, uaInConf.keys()) {
+		QVariant v = uaInConf.value(cle);
+		qDebug(QByteArray("Cle : ").append(cle).data());
+		qDebug(QByteArray("Valeur : ").append(v.toString()).data());
+	}
+
 	conf.setUserAccount(ua);
 
 	// Pour voir
-	QVariant uaInConf = conf.property("p_userAccount");
-	UserAccount correspua = qVariantValue<UserAccount>(uaInConf);
+	qDebug("La propriete p_userAccount avant sa serialisation :");
+	uaInConf = conf.property("p_userAccount").toMap();
+	foreach (QString cle, uaInConf.keys()) {
+		QVariant v = uaInConf.value(cle);
+		qDebug(QByteArray("Cle : ").append(cle).data());
+		qDebug(QByteArray("Valeur : ").append(v.toString()).data());
+	}
 
 	// Sérialisation de la configuration
 	QVariant rtcVariant = qVariantFromValue(conf);

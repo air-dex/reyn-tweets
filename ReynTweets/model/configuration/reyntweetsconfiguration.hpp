@@ -34,7 +34,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class ReynTweetsConfiguration
 /// @brief Configuration of Reyn Tweets
-class ReynTweetsConfiguration : public QObject, virtual public ReynTweetsSerializable
+class ReynTweetsConfiguration : public ReynTweetsSerializable
 {
 	Q_OBJECT
 

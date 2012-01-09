@@ -35,7 +35,7 @@ UserAccount::UserAccount() :
 	user("")
 {
 	updateAccessTokenProperty();
-	updateTokenScretProperty();
+	updateTokenSecretProperty();
 	updateUserProperty();
 }
 
@@ -58,7 +58,7 @@ void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
 	updateAccessTokenProperty();
 	tokenSecret = account.tokenSecret;
-	updateTokenScretProperty();
+	updateTokenSecretProperty();
 	user = account.user;
 	updateUserProperty();
 }
@@ -85,6 +85,26 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 }
 
 
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Updates the property p_accessToken
+void UserAccount::updateAccessTokenProperty() {
+	setProperty("p_accessToken", accessToken);
+}
+
+// Updates the property p_tokenScret
+void UserAccount::updateTokenSecretProperty() {
+	setProperty("p_tokenSecret", tokenSecret);
+}
+
+// Updates the property p_user
+void UserAccount::updateUserProperty() {
+	setProperty("p_user", user);
+}
+
+
 //////////////////////////////
 // Configuration management //
 //////////////////////////////
@@ -99,11 +119,6 @@ void UserAccount::setAccessToken(QByteArray token) {
 	accessToken = token;
 }
 
-// Updates the property p_accessToken
-void UserAccount::updateAccessTokenProperty() {
-	setProperty("accessToken", accessToken);
-}
-
 // Getter on tokenSecret
 QByteArray UserAccount::getTokenSecret() {
 	return tokenSecret;
@@ -114,11 +129,6 @@ void UserAccount::setTokenSecret(QByteArray secret) {
 	tokenSecret = secret;
 }
 
-// Updates the property p_tokenScret
-void UserAccount::updateTokenScretProperty() {
-	setProperty("tokenSecret", tokenSecret);
-}
-
 // Getter on user
 QString UserAccount::getUser() {
 	return user;
@@ -127,9 +137,4 @@ QString UserAccount::getUser() {
 // Setter on user
 void UserAccount::setUser(QString u) {
 	user = u;
-}
-
-// Updates the property p_user
-void UserAccount::updateUserProperty() {
-	setProperty("user", user);
 }

@@ -58,14 +58,14 @@ bool ouBien(bool a, bool b);
 // JSON Streaming //
 ////////////////////
 
-/// @fn static QDataStream & jsonStreamOut(QDataStream & out, const QObject & objectToStream);
+/// @fn static QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream);
 /// @brief Output stream operator for JSON serialization
 /// @param out The output stream
 /// @param objectToStream Object to put in the stream
 /// @return The stream with the object
 QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream);
 
-/// @fn static QDataStream & jsonStreamIn(QDataStream & in, QObject & objectToStream);
+/// @fn static QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
 /// @brief Input stream operator for JSON serialization
 /// @param in The input stream
 /// @param objectToStream Object to put in the stream

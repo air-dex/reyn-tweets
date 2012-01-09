@@ -29,11 +29,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include <QObject>
 #include <QVariant>
+#include "../reyntweetsserializable.hpp"
 #include "useraccount.hpp"
 
 /// @class ReynTweetsConfiguration
 /// @brief Configuration of Reyn Tweets
-class ReynTweetsConfiguration : public QObject
+class ReynTweetsConfiguration : public QObject, virtual public ReynTweetsSerializable
 {
 	Q_OBJECT
 
@@ -93,23 +94,27 @@ class ReynTweetsConfiguration : public QObject
 
 	private:
 		// Properties
+		/// @fn void fillWithPropertiesMaps();
+		/// @brief Filling serializable fields with thecorresponding  property maps
+		void fillWithPropertiesMaps();
 
 		// User account
-		/// @brief userAccount under the form of a QVariantMap
-		QVariantMap userAccountProperty;
 		Q_PROPERTY(QVariantMap p_userAccount
 				   READ getUserAccountProperty
 				   WRITE setUserAccountProperty)
 
+		/// @brief Representation of the property p_userAccount
+		QVariantMap userAccountProperty;
+
 		/// @fn QVariantMap getUserAccountProperty();
-		/// @brief Getter on the user account
+		/// @brief Reading the property p_userAccount
 		/// @return The user account
 		QVariantMap getUserAccountProperty();
 
 		/// @fn void setUserAccountProperty(QVariantMap account);
-		/// @brief Setter on the user account
+		/// @brief Writing the property p_userAccount
 		/// @param account New value for the account
-		void setUserAccountProperty(QVariantMap account);
+		void setUserAccountProperty(QVariantMap accountMap);
 
 		/// @fn void updateUserAccountProperty();
 		/// @brief Updating the property p_userAccount

@@ -70,7 +70,8 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    model/reyntweetsserializable.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -106,7 +107,8 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+    model/reyntweetsserializable.hpp
 
 
 OTHER_FILES = \

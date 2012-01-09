@@ -28,10 +28,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
+#include "../reyntweetsserializable.hpp"
 
 /// @class UserAccount
 /// @brief User account.
-class UserAccount : public QObject
+class UserAccount : public QObject, virtual public ReynTweetsSerializable
 {
 	Q_OBJECT
 

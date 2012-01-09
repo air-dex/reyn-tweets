@@ -21,9 +21,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QJson/QObjectHelper>
 #include "reyntweetsconfiguration.hpp"
-#include "../../connection/reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
 
 //////////////////////////////
@@ -64,6 +62,33 @@ void ReynTweetsConfiguration::initSystem() {
 }
 
 
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Filling serializable fields with the corresponding property maps
+void ReynTweetsConfiguration::fillWithPropertiesMaps() {
+	// Filling the user account
+	userAccount.fillWithMap(userAccountProperty);
+}
+
+// Reading the property p_userAccount
+QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
+	return userAccountProperty;
+}
+
+// Writing the property p_userAccount
+void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
+	userAccountProperty = accountMap;
+}
+
+// Updating the property p_userAccount
+void ReynTweetsConfiguration::updateUserAccountProperty() {
+	// Updating the property
+	setProperty("userAccount", QVariant(userAccount.toMap()));
+}
+
+
 ////////////////////
 // JSON Streaming //
 ////////////////////
@@ -79,7 +104,12 @@ QDataStream & operator<<(QDataStream & out,
 QDataStream & operator>>(QDataStream & in,
 						 ReynTweetsConfiguration & configuration)
 {
-	return jsonStreamingIn(in, configuration);
+	in = jsonStreamingIn(in, configuration);
+
+	// Filling the user account
+	configuration.fillWithPropertiesMaps();
+
+	return in;
 }
 
 
@@ -108,23 +138,4 @@ UserAccount ReynTweetsConfiguration::getUserAccount() {
 void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
 	updateUserAccountProperty();
-}
-
-// Getter on userAccount
-QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
-	return userAccountProperty;
-}
-
-// Setter on userAccount
-void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap account) {
-	userAccountProperty = account;
-}
-
-// Updating the property p_userAccount
-void ReynTweetsConfiguration::updateUserAccountProperty() {
-	// Converting the userAccount into a QVariantMap
-	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&userAccount);
-
-	// Updating the property
-	setProperty("userAccount", QVariant(accountMap));
 }

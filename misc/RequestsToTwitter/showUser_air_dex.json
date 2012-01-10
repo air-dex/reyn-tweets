@@ -1,0 +1,80 @@
+https://api.twitter.com/1/users/show.json?screen_name=air_dex&include_entities=true
+
+{
+	"contributors_enabled":false,
+	"lang":"fr",
+	"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/379324270\/Reyn.png",
+	"protected":false,
+	"profile_link_color":"0084B4",
+	"url":"http:\/\/fr.gravatar.com\/airdex",
+	"name":"Romain Ducher",
+	"listed_count":0,
+	"utc_offset":3600,
+	"profile_background_color":"ffffff",
+	"followers_count":18,
+	"profile_image_url":"http:\/\/a1.twimg.com\/profile_images\/1537855468\/bn8vatar_normal.jpg",
+	"description":"Romain Ducher, aka air-dex.",
+	"profile_background_tile":true,
+	"statuses_count":741,
+	"following":null,
+	"created_at":"Mon Jul 11 22:47:24 +0000 2011",
+	"profile_sidebar_fill_color":"DDEEF6",
+	"screen_name":"air_dex",
+	"status":{
+		"entities":{
+			"user_mentions":[
+				{
+					"name":"Allan Levassort",
+					"indices":[0,10],
+					"screen_name":"trossavel",
+					"id_str":"203936147",
+					"id":203936147
+				}
+			],
+			"urls":[],
+			"hashtags":[
+				{
+					"indices":[53,56],
+					"text":"X7"
+				}
+			]
+		},
+		"in_reply_to_user_id":203936147,
+		"favorited":false,
+		"place":null,
+		"coordinates":null,
+		"retweet_count":0,
+		"in_reply_to_screen_name":"trossavel",
+		"in_reply_to_status_id_str":"156522626095923201",
+		"geo":null,
+		"retweeted":false,
+		"in_reply_to_user_id_str":"203936147",
+		"created_at":"Mon Jan 09 23:56:36 +0000 2012",
+		"in_reply_to_status_id":156522626095923201,
+		"id_str":"156524807696031745",
+		"contributors":null,
+		"source":"\u003Ca href=\"http:\/\/seesmic.com\/\" rel=\"nofollow\"\u003ESeesmic\u003C\/a\u003E",
+		"truncated":false,
+		"id":156524807696031745,
+		"text":"@trossavel Et dire qu'ils voulaient faire \u00e7a avec un #X7 l'an dernier. Vivement son grand fr\u00e8re plus tard dans l'ann\u00e9e."
+	},
+	"geo_enabled":false,
+	"default_profile_image":false,
+	"friends_count":105,
+	"profile_sidebar_border_color":"C0DEED",
+	"id_str":"333687556",
+	"show_all_inline_media":false,
+	"follow_request_sent":null,
+	"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/379324270\/Reyn.png",
+	"is_translator":false,
+	"default_profile":false,
+	"notifications":null,
+	"profile_use_background_image":true,
+	"profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/1537855468\/bn8vatar_normal.jpg",
+	"id":333687556,
+	"verified":false,
+	"time_zone":"Paris",
+	"favourites_count":69,
+	"profile_text_color":"333333",
+	"location":""
+}

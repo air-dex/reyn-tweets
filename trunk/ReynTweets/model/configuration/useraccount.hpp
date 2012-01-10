@@ -93,6 +93,8 @@ class UserAccount : public ReynTweetsSerializable
 		// Properties
 
 		// Access Token
+		/// @property p_user
+		/// @brief Access token
 		Q_PROPERTY(QByteArray p_accessToken
 				   READ getAccessToken
 				   WRITE setAccessToken)
@@ -102,6 +104,8 @@ class UserAccount : public ReynTweetsSerializable
 		void updateAccessTokenProperty();
 
 		// Token Secret
+		/// @property p_tokenSecret
+		/// @brief Token secret
 		Q_PROPERTY(QByteArray p_tokenSecret
 				   READ getTokenSecret
 				   WRITE setTokenSecret)
@@ -110,7 +114,9 @@ class UserAccount : public ReynTweetsSerializable
 		/// @brief Updates the property p_tokenScret
 		void updateTokenSecretProperty();
 
-		//User
+		// User
+		/// @property p_user
+		/// @brief Twitter user
 		Q_PROPERTY(QString p_user
 				   READ getUser
 				   WRITE setUser)

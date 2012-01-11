@@ -131,22 +131,22 @@ class URLEntity : public ReynTweetsSerializable
 		// indices
 		/// @property indices
 		/// @brief Indexes
-		Q_PROPERTY(QList<int> indices
+		Q_PROPERTY(QVariantList indices
 				   READ getIndices
 				   WRITE setIndices)
 
 		/// @brief Representation of the property thumb
-		QList<int> indexList;
+		QVariantList indexList;
 
-		/// @fn QList<int> getIndices();
+		/// @fn QVariantList getIndices();
 		/// @brief Reading method for the property indices
 		/// @return indexList
-		QList<int> getIndices();
+		QVariantList getIndices();
 
-		/// @fn void setIndices(QList<int> newIndexList);
+		/// @fn void setIndices(QVariantList newIndexList);
 		/// @brief Writing method for the property indices
 		/// @param newIndexList New value for the property indices
-		void setIndices(QList<int> newIndexList);
+		void setIndices(QVariantList newIndexList);
 
 		/// @fn void updateIndices();
 		/// @brief Updating the property indices

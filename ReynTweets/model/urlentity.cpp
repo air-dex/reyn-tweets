@@ -89,7 +89,7 @@ QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 
 // Filling serializable fields with thecorresponding  property maps
 void URLEntity::fillWithPropertiesMaps() {
-	// Indexes TODO
+	indexes.fillWithVariantList(indexList);
 }
 
 // Updating all the properties
@@ -116,18 +116,18 @@ void URLEntity::updateExpandedURL() {
 }
 
 // Reading method for the property indices
-QList<int> URLEntity::getIndices() {
+QVariantList URLEntity::getIndices() {
 	return indexList;
 }
 
 // Writing method for the property indices
-void URLEntity::setIndices(QList<int> newIndexList) {
+void URLEntity::setIndices(QVariantList newIndexList) {
 	indexList = newIndexList;
 }
 
 // Updating the property indices
 void URLEntity::updateIndices() {
-	// Prévoir une méthode toList pour les indexes
+	setProperty("indices", QVariant(indexes.toVariantList()));
 }
 
 

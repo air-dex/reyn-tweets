@@ -23,7 +23,100 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
 
-IndexBounds::IndexBounds(QObject *parent) :
-	ReynTweetsSerializable(parent)
-{
+// Constructor
+IndexBounds::IndexBounds() :
+	min(0),
+	max(0)
+{}
+
+// Destructor
+IndexBounds::~IndexBounds() {}
+
+// Copy constructor
+IndexBounds::IndexBounds(const IndexBounds & indexes) {
+	recopie(indexes);
+}
+
+// Affectation
+const IndexBounds & IndexBounds::operator=(const IndexBounds & indexes) {
+	recopie(indexes);
+	return *this;
+}
+
+// Serialization declaration
+void IndexBounds::initSystem() {
+	qRegisterMetaTypeStreamOperators<IndexBounds>("IndexBounds");
+	qMetaTypeId<IndexBounds>();
+}
+
+// Copy of a IndexBounds
+void IndexBounds::recopie(const IndexBounds & indexes) {
+	min = indexes.min;
+	max = indexes.max;
+}
+
+// Output stream operator for serialization
+QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
+	out << indexes.toVariantList();
+	return out;
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
+	QVariantList list;
+	in >> list;
+	indexes.fillWithVariantList(list);
+	return in;
+}
+
+
+////////////////////////
+// Indexes management //
+////////////////////////
+
+// Sorting the min and the max
+void IndexBounds::sort() {
+	if (max < min) {
+		int tmp = max;
+		min = max;
+		max = tmp;
+	}
+}
+
+// Getter on min
+int IndexBounds::getMin() {
+	return min;
+}
+
+// Setter on min
+int IndexBounds::setMin(int newMin) {
+	min = newMin;
+	sort();
+}
+
+// Getter on max
+int IndexBounds::getMax() {
+	return max;
+}
+
+// Setter on max
+void IndexBounds::setMax(int newMax) {
+	max = newMax;
+	sort();
+}
+
+// Converting the bounds into a QVariantList
+QVariantList IndexBounds::toVariantList() {
+	QVariantList res;
+	res.append(QVariant(min));
+	res.append(QVariant(max));
+	return res;
+}
+
+// Filling the object with a QVariantList
+void IndexBounds::fillWithVariantList(QVariantList variantList) {
+	QVariant bound1 = variantList.at(0);
+	QVariant bound2 = variantList.at(1);
+	setMin(bound1.toInt());
+	setMax(bound2.toInt());
 }

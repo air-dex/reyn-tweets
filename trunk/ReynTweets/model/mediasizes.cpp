@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file mediasizes.cpp
+/// @brief Implementation of MediaSizes
 /// @author Romain Ducher
 
 /*
@@ -21,4 +21,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tweet.hpp"
+#include "mediasizes.hpp"
+
+MediaSizes::MediaSizes(QObject *parent) :
+	ReynTweetsSerializable(parent)
+{
+}

@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file hashtag.hpp
+/// @brief Header of Hashtag
 /// @author Romain Ducher
 
 /*
@@ -21,4 +21,26 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tweet.hpp"
+#ifndef HASHTAG_HPP
+#define HASHTAG_HPP
+
+#include "indexbounds.hpp"
+#include "reyntweetsserializable.hpp"
+
+/// @class Hashtag
+/// @brief Hashtag in a tweet
+class Hashtag : public ReynTweetsSerializable
+{
+		Q_OBJECT
+	public:
+		explicit Hashtag(QObject *parent = 0);
+
+	protected:
+		/// @brief Indexes of the hashtag in the tweet
+		IndexBounds indexes;
+
+		/// @brief Text of the tag
+		QString text;
+};
+
+#endif // HASHTAG_HPP

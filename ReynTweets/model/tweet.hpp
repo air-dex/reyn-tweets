@@ -24,11 +24,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWEET_HPP
 #define TWEET_HPP
 
-#include <QObject>
+#include "reyntweetsserializable.hpp"
 
 /// @class Tweet
 /// @brief Model of a tweet
-class Tweet : public QObject
+class Tweet : public ReynTweetsSerializable
 {
 		Q_OBJECT
 	public:

@@ -146,6 +146,17 @@ class User : public ReynTweetsSerializable
 		/// @brief Updating the property protected
 		void updateProtected();
 
+		// profile_link_color
+		/// @property profile_link_color
+		/// @brief Serializable form of linkColor
+		Q_PROPERTY(QColor profile_link_color
+				   READ getProfileLinkColor
+				   WRITE setProfileLinkColor)
+
+		/// @fn void updateProfileLinkColor();
+		/// @brief Updating the property profile_link_color
+		void updateProfileLinkColor();
+
 		// url
 		/// @property url
 		/// @brief Serializable form of userURL
@@ -703,6 +714,16 @@ class User : public ReynTweetsSerializable
 		/// @param newProtected The new value of protected
 		void setProtected(bool newProtected);
 
+		/// @fn QColor getProfileLinkColor();
+		/// @brief Getter on linkColor
+		/// @return The value of linkColor
+		QColor getProfileLinkColor();
+
+		/// @fn void getProfileLinkColor(QColor newLinkColor);
+		/// @brief Setter on linkColor
+		/// @param newLinkColor The new value of linkColor
+		void setProfileLinkColor(QColor newLinkColor);
+
 		/// @fn QString getURL();
 		/// @brief Getter on url
 		/// @return The value of url
@@ -1033,5 +1054,22 @@ class User : public ReynTweetsSerializable
 		/// @param newLocation The new value of location
 		void setLocation(QString newLocation);
 };
+
+// Serialization of User
+Q_DECLARE_METATYPE(User)
+
+/// @fn QDataStream & operator<<(QDataStream & out, const User & user);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param user Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const User & user);
+
+/// @fn QDataStream & operator>>(QDataStream & in, User & user);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param user Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, User & user);
 
 #endif // USER_HPP

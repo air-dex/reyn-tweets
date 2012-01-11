@@ -1,5 +1,5 @@
-/// @file tweet.hpp
-/// @brief Header of Tweet
+/// @file usermention.hpp
+/// @brief Header of UserMention
 /// @author Romain Ducher
 
 /*
@@ -27,6 +27,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "indexbounds.hpp"
 #include "reyntweetsserializable.hpp"
 
+/// @class UserMention
+/// @brief Mention of a user in a tweet.
 class UserMention : public ReynTweetsSerializable
 {
 	Q_OBJECT
@@ -145,7 +147,7 @@ class UserMention : public ReynTweetsSerializable
 				   READ getIndices
 				   WRITE setIndices)
 
-		/// @brief Representation of the property thumb
+		/// @brief Representation of the property indices
 		QVariantList indexList;
 
 		/// @fn QVariantList getIndices();

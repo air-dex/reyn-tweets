@@ -1,5 +1,5 @@
 /// @file media.cpp
-/// @brief Implementation of Tweet
+/// @brief Implementation of Media
 /// @author Romain Ducher
 
 /*
@@ -22,8 +22,196 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "media.hpp"
+#include "../tools/utils.hpp"
 
-Media::Media(QObject *parent) :
-	ReynTweetsSerializable(parent)
+//////////////////////////////
+// Serialization management //
+//////////////////////////////
+
+// Constructor
+Media::Media() :
+	URLEntity(),
+	sizesMap(),
+	mediaID(-1),
+	mediaIDstr("-1"),
+	mediaURL(""),
+	mediaURLhttps(""),
+	mediaType(""),
+	mediaSizes()
 {
+	updateAllProperties();
+}
+
+// Destructor
+Media::~Media() {}
+
+// Copy constructor
+Media::Media(const Media & media) {
+	recopie(media);
+}
+
+// Affectation
+const Media & Media::operator=(const Media & media) {
+	recopie(media);
+	return *this;
+}
+
+// Serialization declaration
+void Media::initSystem() {
+	qRegisterMetaTypeStreamOperators<Media>("Media");
+	qMetaTypeId<Media>();
+}
+
+// Copy of a Media
+void Media::recopie(const Media & media) {
+	mediaID = media.mediaID;
+	mediaIDstr = media.mediaIDstr;
+	mediaURL = media.mediaURL;
+	mediaURLhttps = media.mediaURLhttps;
+	mediaType = media.mediaType;
+	mediaSizes = media.mediaSizes;
+	updateAllProperties();
+}
+
+// Output stream operator for serialization
+QDataStream & operator<<(QDataStream & out, const Media & media) {
+	return jsonStreamingOut(out, media);
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, Media & media) {
+	jsonStreamingIn(in, media);
+
+	// Updating mediaSizes
+	media.fillWithPropertiesMaps();
+
+	return in;
+}
+
+
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Filling serializable fields with thecorresponding  property maps
+void Media::fillWithPropertiesMaps() {
+	URLEntity::fillWithPropertiesMaps();	// Don't forget the superior class !
+	mediaSizes.fillWithMap(sizesMap);
+}
+
+// Updating all the properties
+void Media::updateAllProperties() {
+	URLEntity::updateAllProperties();	// Don't forget the superior class !
+	updateID();
+	updateIDstr();
+	updateMediaURL();
+	updateMediaURLhttps();
+	updateType();
+	updateSizes();
+}
+
+// Updating the property id
+void Media::updateID() {
+	setProperty("id", QVariant(mediaID));
+}
+
+// Updating the property id_str
+void Media::updateIDstr() {
+	setProperty("id_str", QVariant(mediaIDstr));
+}
+
+// Updating the property media_url
+void Media::updateMediaURL() {
+	setProperty("media_url", QVariant(mediaURL));
+}
+
+// Updating the property media_url_https
+void Media::updateMediaURLhttps() {
+	setProperty("media_url_https", QVariant(mediaURLhttps));
+}
+
+// Updating the property type
+void Media::updateType() {
+	setProperty("type", QVariant(mediaType));
+}
+
+// Reading method for the property sizes
+QVariantMap Media::getSizesProperty() {
+	return sizesMap;
+}
+
+// Writing method for the property sizes
+void Media::setSizesProperty(QVariantMap newMap) {
+	sizesMap = newMap;
+}
+
+// Updating the property sizes
+void Media::updateSizes() {
+	setProperty("sizes", QVariant(mediaSizes.toMap()));
+}
+
+
+////////////////////////
+// Getter and setters //
+////////////////////////
+
+// Reading mediaID
+long Media::getID() {
+	return mediaID;
+}
+
+// Writing mediaID
+void Media::setID(long newID) {
+	mediaID = newID;
+}
+
+// Reading mediaIDstr
+QString Media::getIDstr() {
+	return mediaIDstr;
+}
+
+// Writing mediaIDstr
+void Media::setIDstr(QString newID) {
+	mediaIDstr = newID;
+}
+
+// Reading method for mediaURL
+QString Media::getMediaURL() {
+	return mediaURL;
+}
+
+// Writing mediaURL
+void Media::setMediaURL(QString newMediaURL) {
+	mediaURL = newMediaURL;
+}
+
+// Reading method for mediaURLhttps
+QString Media::getMediaURLhttps() {
+	return mediaURLhttps;
+}
+
+// Writing method for mediaURLhttps
+void Media::setMediaURLhttps(QString newMediaURL) {
+	mediaURLhttps = newMediaURL;
+}
+
+// Reading method for mediaType
+QString Media::getType() {
+	return mediaType;
+}
+
+// Writing method for mediaType
+void Media::setType(QString newType) {
+	mediaType = newType;
+}
+
+// Reading mediaSizes
+MediaSizes Media::getSizes() {
+	return mediaSizes;
+}
+
+// Writing mediaSizes
+void Media::setSizes(MediaSizes newSizes) {
+	mediaSizes = newSizes;
+	updateSizes();
 }

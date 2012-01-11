@@ -87,13 +87,13 @@ class URLEntity : public ReynTweetsSerializable
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
+		/// @fn virtual void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		virtual void fillWithPropertiesMaps();
 
-		/// @fn void updateAllProperties();
+		/// @fn virtual void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		virtual void updateAllProperties();
 
 		// url
 		/// @property url

@@ -47,7 +47,7 @@ class User : public ReynTweetsSerializable
 		/// @brief Default constructor
 		User();
 
-		/// @fn virtual ~ReynTweetsConfiguration();
+		/// @fn virtual ~User();
 		/// @brief Destructor
 		virtual ~User();
 
@@ -74,23 +74,19 @@ class User : public ReynTweetsSerializable
 
 		// Friends serialization operators
 
-		/// @fn friend QDataStream & operator<<(QDataStream & out,
-		///										const User & user);
+		/// @fn friend QDataStream & operator<<(QDataStream & out, const User & user);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
 		/// @param user Object to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator<<(QDataStream & out,
-										const User & user);
+		friend QDataStream & operator<<(QDataStream & out, const User & user);
 
-		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										ReynTweetsConfiguration & user);
+		/// @fn friend QDataStream & operator>>(QDataStream & in, User & user);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param user Object to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator>>(QDataStream & in,
-										User & user);
+		friend QDataStream & operator>>(QDataStream & in, User & user);
 
 	private:
 		// Properties
@@ -719,7 +715,7 @@ class User : public ReynTweetsSerializable
 		/// @return The value of linkColor
 		QColor getProfileLinkColor();
 
-		/// @fn void getProfileLinkColor(QColor newLinkColor);
+		/// @fn void setProfileLinkColor(QColor newLinkColor);
 		/// @brief Setter on linkColor
 		/// @param newLinkColor The new value of linkColor
 		void setProfileLinkColor(QColor newLinkColor);

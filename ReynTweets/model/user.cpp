@@ -22,8 +22,3 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user.hpp"
-
-User::User(QObject *parent) :
-	QObject(parent)
-{
-}

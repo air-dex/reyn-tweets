@@ -83,7 +83,7 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 		/// @fn const MediaSize & operator=(const MediaSize & size);
 		/// @brief Affectation
 		/// @param size User to copy
-		/// @return Copy of the original configuration
+		/// @return Copy of the original media size
 		const MediaSize & operator=(const MediaSize & size);
 
 		/// @fn static void initSystem();

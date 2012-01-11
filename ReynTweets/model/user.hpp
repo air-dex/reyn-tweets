@@ -59,7 +59,7 @@ class User : public ReynTweetsSerializable
 		/// @fn const User & operator=(const User & user);
 		/// @brief Affectation
 		/// @param user User to copy
-		/// @return Copy of the original configuration
+		/// @return Copy of the original user
 		const User & operator=(const User & user);
 
 		/// @fn static void initSystem();

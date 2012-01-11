@@ -92,8 +92,8 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 
 	private:
 		/// @fn void recopie(const MediaSize & size);
-		/// @brief Copy of a ReynTweetsConfiguration
-		/// @param size User to copy
+		/// @brief Copy of a MediaSize
+		/// @param size MediaSize to copy
 		void recopie(const MediaSize & size);
 
 		// Friends serialization operators

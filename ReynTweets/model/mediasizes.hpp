@@ -60,8 +60,8 @@ class MediaSizes : public ReynTweetsSerializable
 
 	private:
 		/// @fn void recopie(const MediaSizes & sizes);
-		/// @brief Copy of a ReynTweetsConfiguration
-		/// @param sizes User to copy
+		/// @brief Copy of a MediaSizes
+		/// @param sizes MediaSizes to copy
 		void recopie(const MediaSizes & sizes);
 
 		// Friends serialization operators
@@ -206,6 +206,52 @@ class MediaSizes : public ReynTweetsSerializable
 
 		/// @brief Thumb size
 		MediaSize thumbSize;
+
+
+	////////////////////////
+	// Getter and setters //
+	////////////////////////
+
+	public:
+		/// @fn MediaSize getLargeSize();
+		/// @brief Reading method for largeSize
+		/// @return largeSize
+		MediaSize getLargeSize();
+
+		/// @fn void setLargeSize(MediaSize newLargeSize);
+		/// @brief Writing method for largeSize
+		/// @param newLargeSize New value for largeSize
+		void setLargeSize(MediaSize newLargeSize);
+
+		/// @fn MediaSize getMediumSize();
+		/// @brief Reading method for mediumSize
+		/// @return mediumSize
+		MediaSize getMediumSize();
+
+		/// @fn void setMediumSize(MediaSize newMediumSize);
+		/// @brief Writing method for mediumSize
+		/// @param newMediumSize New value for mediumSize
+		void setMediumSize(MediaSize newMediumSize);
+
+		/// @fn MediaSize getSmallSize();
+		/// @brief Reading method smallSize
+		/// @return smallSize
+		MediaSize getSmallSize();
+
+		/// @fn void setSmallSize(MediaSize newSmallSize);
+		/// @brief Writing method for smallSize
+		/// @param newSmallSize New value for smallSize
+		void setSmallSize(MediaSize newSmallSize);
+
+		/// @fn MediaSize getThumbSize();
+		/// @brief Reading method for thumbSize
+		/// @return thumbSize
+		MediaSize getThumbSize();
+
+		/// @fn void setThumbSize(MediaSize newThumbSize);
+		/// @brief Writing method for thumbSize
+		/// @param newThumbSize New value for thumbSize
+		void setThumbSize(MediaSize newThumbSize);
 };
 
 // Serialization of MediaSizes

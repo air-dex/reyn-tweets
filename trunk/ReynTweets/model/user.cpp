@@ -96,7 +96,7 @@ void User::initSystem() {
 	qMetaTypeId<User>();
 }
 
-// Copy of a ReynTweetsConfiguration
+// Copy of a User
 void User::recopie(const User & user) {
 	userID = user.userID;
 	userIDstr = user.userIDstr;
@@ -129,7 +129,7 @@ void User::recopie(const User & user) {
 	createdAt = user.createdAt;
 	language = user.language;
 	protectedAccount = user.protectedAccount;
-	geotaggingEnabled= user.geotaggingEnabled;
+	geotaggingEnabled = user.geotaggingEnabled;
 	verifiedAccount = user.verifiedAccount;
 	contributorsEnabled = user.contributorsEnabled;
 	twitterTranslator = user.twitterTranslator;

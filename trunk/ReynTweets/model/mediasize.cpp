@@ -52,7 +52,7 @@ const MediaSize & MediaSize::operator=(const MediaSize & size) {
 	return *this;
 }
 
-// Copy of a ReynTweetsConfiguration
+// Copy of a MediaSize
 void MediaSize::recopie(const MediaSize & size) {
 	setWidth(size.width());
 	setHeight(size.height());

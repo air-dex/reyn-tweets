@@ -68,7 +68,7 @@ class User : public ReynTweetsSerializable
 
 	private:
 		/// @fn void recopie(const User & user);
-		/// @brief Copy of a ReynTweetsConfiguration
+		/// @brief Copy of a User
 		/// @param user User to copy
 		void recopie(const User & user);
 
@@ -673,9 +673,12 @@ class User : public ReynTweetsSerializable
 		/// @brief Receive notifications from a user (by mobile phone)
 		bool notificationsEnabled;
 
-	public:
-		// Getter and setters
 
+	////////////////////////
+	// Getter and setters //
+	////////////////////////
+
+	public:
 		/// @fn bool isContributorsEnabled();
 		/// @brief Getter on contributorsEnabled
 		/// @return The value of contributorsEnabled

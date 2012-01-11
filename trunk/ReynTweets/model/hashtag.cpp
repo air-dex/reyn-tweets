@@ -22,8 +22,120 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "hashtag.hpp"
+#include "../tools/utils.hpp"
 
-Hashtag::Hashtag(QObject *parent) :
-	ReynTweetsSerializable(parent)
+//////////////////////////////
+// Serialization management //
+//////////////////////////////
+
+// Constructor
+Hashtag::Hashtag() :
+	ReynTweetsSerializable(),
+	indexList(),
+	hashText(),
+	indexes()
 {
+	updateAllProperties();
+}
+
+// Destructor
+Hashtag::~Hashtag() {}
+
+// Copy constructor
+Hashtag::Hashtag(const Hashtag & hashtag) {
+	recopie(hashtag);
+}
+
+// Affectation
+const Hashtag & Hashtag::operator=(const Hashtag & hashtag) {
+	recopie(hashtag);
+	return *this;
+}
+
+// Serialization declaration
+void Hashtag::initSystem() {
+	qRegisterMetaTypeStreamOperators<Hashtag>("Hashtag");
+	qMetaTypeId<Hashtag>();
+}
+
+// Copy of a Hashtag
+void Hashtag::recopie(const Hashtag & hashtag) {
+	hashText = hashtag.hashText;
+	indexes = hashtag.indexes;
+	updateAllProperties();
+}
+
+// Output stream operator for serialization
+QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag) {
+	return jsonStreamingOut(out, hashtag);
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
+	jsonStreamingIn(in, hashtag);
+
+	// Updating indexes
+	hashtag.fillWithPropertiesMaps();
+
+	return in;
+}
+
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Filling serializable fields with the corresponding property maps
+void Hashtag::fillWithPropertiesMaps() {
+	indexes.fillWithVariantList(indexList);
+}
+
+// Updating all the properties
+void Hashtag::updateAllProperties() {
+	updateText();
+	updateIndices();
+}
+
+// Updating the property text
+void Hashtag::updateText() {
+	setProperty("text", QVariant(hashText));
+}
+
+// Reading method for the property indices
+QVariantList Hashtag::getIndices() {
+	return indexList;
+}
+
+// Writing method for the property indices
+void Hashtag::setIndices(QVariantList newIndexList) {
+	indexList = newIndexList;
+}
+
+// Updating the property indices
+void Hashtag::updateIndices() {
+	setProperty("indices", QVariant(indexes.toVariantList()));
+}
+
+
+////////////////////////
+// Getter and setters //
+////////////////////////
+
+// Reading hashText
+QString Hashtag::getText() {
+	return hashText;
+}
+
+// Writing hashText
+void Hashtag::setText(QString newText) {
+	hashText = newText;
+}
+
+// Reading indexes
+IndexBounds Hashtag::getIndexes() {
+	return indexes;
+}
+
+// Writing indexes
+void Hashtag::setIndexes(IndexBounds newIndexes) {
+	indexes = newIndexes;
 }

@@ -31,6 +31,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 URLEntity::URLEntity() :
 	ReynTweetsSerializable(),
+	indexList(),
 	extractedURL(""),
 	displayedURL(""),
 	expandedURL(""),
@@ -78,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 	jsonStreamingIn(in, entity);
 
 	// Updating indexes
-	sizes.fillWithPropertiesMaps();
+	entity.fillWithPropertiesMaps();
 
 	return in;
 }

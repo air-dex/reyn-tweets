@@ -22,36 +22,139 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user.hpp"
+#include "../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
 //////////////////////////////
 
 // Default constructor
-User::User();
+User::User() :
+	ReynTweetsSerializable(),
+	lastTweetMap(),
+	userID(-1),
+	userIDstr("-1"),
+	screenName(""),
+	userName(""),
+	userDescription(""),
+	userURL(""),
+	userLocation(""),
+	defaultProfileImage(true),
+	avatarURL(""),
+	avatarURLhttps(""),
+	tweetsCount(0),
+	lastTweet(),
+	friendsCount(0),
+	followersCount(0),
+	favoritesCount(0),
+	listsCount(0),
+	defaultProfile(true),
+	useBackgroundImage(true),
+	backgroundTile(false),
+	backgroundURL(""),
+	backgroundURLhttps(""),
+	backgroundColor(Qt::white),
+	textColor(Qt::black),
+	linkColor(Qt::blue),
+	sidebarColor(Qt::cyan),
+	sidebarBorderColor(Qt::darkCyan),
+	timeZoneOffset(0),
+	timeZone("London"),
+	createdAt(),
+	language("en"),
+	protectedAccount(false),
+	geotaggingEnabled(false),
+	verifiedAccount(false),
+	contributorsEnabled(false),
+	twitterTranslator(false),
+	followRequestSent(false),
+	showAllInlineMedia(false),
+	notificationsEnabled(false)
+{
+	updateAllProperties();
+}
 
 // Destructor
-User::~User();
+User::~User() {}
 
 // Copy constructor
-User::User(const User & user);
+User::User(const User & user) :
+	ReynTweetsSerializable()
+{
+	recopie(user);
+}
 
 // Affectation operator
-const User & User::operator=(const User & user);
+const User & User::operator=(const User & user) {
+	recopie(user);
+	return *this;
+}
 
 // Serialization declaration
-void User::initSystem();
+void User::initSystem() {
+	qRegisterMetaTypeStreamOperators<User>("User");
+	qMetaTypeId<User>();
+}
 
 // Copy of a ReynTweetsConfiguration
-void User::recopie(const User & user);
+void User::recopie(const User & user) {
+	userID = user.userID;
+	userIDstr = user.userIDstr;
+	screenName = user.screenName;
+	userName = user.userName;
+	userDescription = user.userDescription;
+	userURL = user.userURL;
+	userLocation = user.userLocation;
+	defaultProfileImage = user.defaultProfileImage;
+	avatarURL = user.avatarURL;
+	avatarURLhttps = user.avatarURLhttps;
+	tweetsCount = user.tweetsCount;
+	lastTweet = user.lastTweet;
+	friendsCount = user.friendsCount;
+	followersCount = user.followersCount;
+	favoritesCount = user.favoritesCount;
+	listsCount = user.listsCount;
+	defaultProfile = user.defaultProfile;
+	useBackgroundImage = user.useBackgroundImage;
+	backgroundTile = user.backgroundTile;
+	backgroundURL = user.backgroundURL;
+	backgroundURLhttps = user.backgroundURLhttps;
+	backgroundColor = user.backgroundColor;
+	textColor = user.textColor;
+	linkColor = user.linkColor;
+	sidebarColor = user.sidebarColor;
+	sidebarBorderColor = user.sidebarBorderColor;
+	timeZoneOffset = user.timeZoneOffset;
+	timeZone = user.timeZone;
+	createdAt = user.createdAt;
+	language = user.language;
+	protectedAccount = user.protectedAccount;
+	geotaggingEnabled= user.geotaggingEnabled;
+	verifiedAccount = user.verifiedAccount;
+	contributorsEnabled = user.contributorsEnabled;
+	twitterTranslator = user.twitterTranslator;
+	followRequestSent = user.followRequestSent;
+	showAllInlineMedia = user.showAllInlineMedia;
+	notificationsEnabled = user.notificationsEnabled;
+	updateAllProperties();
+}
 
 // Friends serialization operators
 
 // Output stream operator for serialization
-QDataStream & operator<<(QDataStream & out, const User & user);
+QDataStream & operator<<(QDataStream & out, const User & user) {
+	return jsonStreamingOut(out, configuration);
+}
 
 // Input stream operator for serialization
-QDataStream & operator>>(QDataStream & in, User & user);
+QDataStream & operator>>(QDataStream & in, User & user) {
+	jsonStreamingIn(in, configuration);
+
+	// Filling the user account
+	user.fillWithPropertiesMaps();
+
+	return in;
+}
 
 
 ///////////////////////////
@@ -59,10 +162,51 @@ QDataStream & operator>>(QDataStream & in, User & user);
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void User::fillWithPropertiesMaps();
+void User::fillWithPropertiesMaps() {
+	lastTweet.fillWithMap(lastTweetMap);
+}
 
 // Updating all the properties
-void User::updateAllProperties();
+void User::updateAllProperties() {
+	updateContributorsEnabled();
+	updateCreatedAt();
+	updateDescription();
+	updateDefaultProfileImage();
+	updateDefaultProfile();
+	updateFollowersCount();
+	updateFriendsCount();
+	updateFollowRequestSent();
+	updateFavouritesCount();
+	updateGeoEnabled();
+	updateIDstr();
+	updateID();
+	updateLang();
+	updateListedCount();
+	updateLocation();
+	updateName();
+	updateNotifications();
+	updateProfileBackgroundImageURL();
+	updateProfileLinkColor();
+	updateProfileBackgroundColor();
+	updateProfileImageURL();
+	updateProfileBackgroundTile();
+	updateProfileSidebarFillColor();
+	updateProfileSidebarBorderColor();
+	updateProfileBackgroundImageURLhttps();
+	updateProfileUseBackgroundImage();
+	updateProfileImageURLhttps();
+	updateProfileTextColor();
+	updateProtected();
+	updateStatusesCount();
+	updateScreenName();
+	updateStatus();
+	updateShowAllInlineMedia();
+	updateTranslator();
+	updateTimeZone();
+	updateURL();
+	updateUTCoffset();
+	updateVerified();
+}
 
 // Updating the property contributors_enabled
 void User::updateContributorsEnabled() {

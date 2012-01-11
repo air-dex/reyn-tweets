@@ -88,6 +88,11 @@ class User : public ReynTweetsSerializable
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, User & user);
 
+
+	///////////////////////////
+	// Properties management //
+	///////////////////////////
+
 	private:
 		// Properties
 		/// @fn void fillWithPropertiesMaps();
@@ -466,7 +471,7 @@ class User : public ReynTweetsSerializable
 		// id
 		/// @property id
 		/// @brief Serializable form of userID
-		Q_PROPERTY(int id
+		Q_PROPERTY(long id
 				   READ getID
 				   WRITE setID)
 
@@ -529,6 +534,7 @@ class User : public ReynTweetsSerializable
 		/// @brief Updating the property location
 		void updateLocation();
 
+
 	/////////////////////
 	// User management //
 	/////////////////////
@@ -537,7 +543,7 @@ class User : public ReynTweetsSerializable
 		// User ID
 
 		/// @brief User ID
-		int userID;
+		long userID;
 
 		/// @brief User ID (String version)
 		QString userIDstr;
@@ -990,15 +996,15 @@ class User : public ReynTweetsSerializable
 		/// @param newAvatarURL The new value of avatarURLhttps
 		void setProfileImageURLhttps(QString newAvatarURL);
 
-		/// @fn int getID();
+		/// @fn long getID();
 		/// @brief Getter on ID
 		/// @return The value of ID
-		int getID();
+		long getID();
 
-		/// @fn void setID(int newID);
+		/// @fn void setID(long newID);
 		/// @brief Setter on ID
 		/// @param newID The new value of ID
-		void setID(int newID);
+		void setID(long newID);
 
 		/// @fn bool isVerified();
 		/// @brief Getter on verified

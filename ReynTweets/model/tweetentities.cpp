@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file tweetentities.cpp
+/// @brief Implementation of TweetEntities
 /// @author Romain Ducher
 
 /*
@@ -21,4 +21,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tweet.hpp"
+#include "tweetentities.hpp"
+
+TweetEntities::TweetEntities(QObject *parent) :
+	ReynTweetsSerializable(parent)
+{
+}

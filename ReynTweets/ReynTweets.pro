@@ -73,7 +73,15 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    model/tweetentities.cpp \
+    model/usermention.cpp \
+    model/hashtag.cpp \
+    model/urlentity.cpp \
+    model/media.cpp \
+    model/indexbounds.cpp \
+    model/mediasize.cpp \
+    model/mediasizes.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -112,7 +120,15 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+    model/tweetentities.hpp \
+    model/usermention.hpp \
+    model/hashtag.hpp \
+    model/urlentity.hpp \
+    model/media.hpp \
+    model/indexbounds.hpp \
+    model/mediasize.hpp \
+    model/mediasizes.hpp
 
 
 OTHER_FILES = \

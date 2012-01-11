@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file tweet.hpp
+/// @brief Header of Tweet
 /// @author Romain Ducher
 
 /*
@@ -21,4 +21,31 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tweet.hpp"
+#ifndef URLENTITY_HPP
+#define URLENTITY_HPP
+
+#include <QString>
+#include "indexbounds.hpp"
+#include "reyntweetsserializable.hpp"
+
+class URLEntity : public ReynTweetsSerializable
+{
+		Q_OBJECT
+	public:
+		explicit URLEntity(QObject *parent = 0);
+
+	protected:
+		/// @brief Extracted URL
+		QString url;
+
+		/// @brief URL displayed on the tweet
+		QString displayedURL;
+
+		/// @brief Full URL (only for t.co URLs)
+		QString expandedURL;
+
+		/// @brief Indexes in the tweet
+		IndexBounds indexes;
+};
+
+#endif // URLENTITY_HPP

@@ -143,12 +143,12 @@ void User::recopie(const User & user) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const User & user) {
-	return jsonStreamingOut(out, configuration);
+	return jsonStreamingOut(out, user);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, User & user) {
-	jsonStreamingIn(in, configuration);
+	jsonStreamingIn(in, user);
 
 	// Filling the user account
 	user.fillWithPropertiesMaps();
@@ -735,12 +735,12 @@ void User::setProfileImageURLhttps(QString newAvatarURL) {
 }
 
 // Getter on ID
-int User::getID() {
+long User::getID() {
 	return userID;
 }
 
 // Setter on ID
-void User::setID(int newID) {
+void User::setID(long newID) {
 	userID = newID;
 }
 

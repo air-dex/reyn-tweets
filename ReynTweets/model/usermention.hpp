@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file tweet.hpp
+/// @brief Header of Tweet
 /// @author Romain Ducher
 
 /*
@@ -21,4 +21,34 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tweet.hpp"
+#ifndef USERMENTION_HPP
+#define USERMENTION_HPP
+
+#include "indexbounds.hpp"
+#include "reyntweetsserializable.hpp"
+
+class UserMention : public ReynTweetsSerializable
+{
+		Q_OBJECT
+	public:
+		explicit UserMention(QObject *parent = 0);
+
+	protected:
+		/// @brief UserID
+		long userID;
+
+		/// @brief String version of userID
+		QString IDstr;
+
+		/// @brief Screen name of the user
+		QString screenName;
+
+		/// @brief User's name
+		QString userName;
+
+		/// @brief Indexes of the mention in the tweet
+		IndexBounds indices;
+
+};
+
+#endif // USERMENTION_HPP

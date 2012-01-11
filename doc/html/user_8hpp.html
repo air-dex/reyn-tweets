@@ -103,12 +103,96 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html">User</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Person who uses Twitter.  <a href="class_user.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="user_8hpp.html#a3e6ed0ba71014677473d8e6a0df745d6">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_user.html">User</a> &amp;user)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#a3e6ed0ba71014677473d8e6a0df745d6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="user_8hpp.html#aecf5cd8b5440b1c3bec9f631ad22b878">operator&gt;&gt;</a> (QDataStream &amp;in, <a class="el" href="class_user.html">User</a> &amp;user)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Input stream operator for serialization.  <a href="#aecf5cd8b5440b1c3bec9f631ad22b878"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Header of <a class="el" href="class_user.html" title="Person who uses Twitter.">User</a>. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher </dd></dl>
 
 <p>Definition in file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a3e6ed0ba71014677473d8e6a0df745d6"></a><!-- doxytag: member="user.hpp::operator&lt;&lt;" ref="a3e6ed0ba71014677473d8e6a0df745d6" args="(QDataStream &amp;out, const User &amp;user)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDataStream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">QDataStream &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_user.html">User</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>user</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output stream operator for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>out</em>&nbsp;</td><td>The output stream </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>user</em>&nbsp;</td><td>Object to put in the stream </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
+
+<p>Definition at line <a class="el" href="user_8cpp_source.html#l00145">145</a> of file <a class="el" href="user_8cpp_source.html">user.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecf5cd8b5440b1c3bec9f631ad22b878"></a><!-- doxytag: member="user.hpp::operator&gt;&gt;" ref="aecf5cd8b5440b1c3bec9f631ad22b878" args="(QDataStream &amp;in, User &amp;user)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDataStream&amp; operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">QDataStream &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_user.html">User</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>user</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Input stream operator for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>in</em>&nbsp;</td><td>The input stream </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>user</em>&nbsp;</td><td>Object to put in the stream </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
+
+<p>Definition at line <a class="el" href="user_8cpp_source.html#l00150">150</a> of file <a class="el" href="user_8cpp_source.html">user.cpp</a>.</p>
+
+</div>
+</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -124,7 +208,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jan 10 04:03:04 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:24 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

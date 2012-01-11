@@ -1,4 +1,4 @@
-https://api.twitter.com/1/users/show.json?screen_name=air_dex&include_entities=true
+//https://api.twitter.com/1/users/show.json?screen_name=air_dex&include_entities=true
 
 {
 	"contributors_enabled":false,

@@ -30,6 +30,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 class MediaSizes : public ReynTweetsSerializable
 {
 	Q_OBJECT
+
 	//////////////////////////////
 	// Serialization management //
 	//////////////////////////////
@@ -51,7 +52,7 @@ class MediaSizes : public ReynTweetsSerializable
 		/// @fn const MediaSizes & operator=(const MediaSizes & sizes);
 		/// @brief Affectation
 		/// @param sizes User to copy
-		/// @return Copy of the original configuration
+		/// @return Copy of the original media sizes
 		const MediaSizes & operator=(const MediaSizes & size);
 
 		/// @fn static void initSystem();

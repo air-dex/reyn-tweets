@@ -31,16 +31,160 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @brief Hashtag in a tweet
 class Hashtag : public ReynTweetsSerializable
 {
-		Q_OBJECT
+	Q_OBJECT
+
+	//////////////////////////////
+	// Serialization management //
+	//////////////////////////////
+
 	public:
-		explicit Hashtag(QObject *parent = 0);
+		/// @fn Hashtag();
+		/// @brief Constructor
+		Hashtag();
+
+		/// @fn virtual ~URLEntity();
+		/// @brief Destructor
+		virtual ~Hashtag();
+
+		/// @fn Hashtag(const Hashtag & hashtag);
+		/// @brief Copy constructor
+		/// @param hashtag Hashtag to copy
+		Hashtag(const Hashtag & hashtag);
+
+		/// @fn const Hashtag & operator=(const Hashtag & hashtag);
+		/// @brief Affectation
+		/// @param hashtag Hashtag to copy
+		/// @return Copy of the original entity
+		const Hashtag & operator=(const Hashtag & hashtag);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	private:
+		/// @fn void recopie(const Hashtag & hashtag);
+		/// @brief Copy of a Hashtag
+		/// @param hashtag Hashtag to copy
+		void recopie(const Hashtag & hashtag);
+
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param hashtag Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param hashtag Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
+
+	///////////////////////////
+	// Properties management //
+	///////////////////////////
 
 	protected:
+		/// @fn void fillWithPropertiesMaps();
+		/// @brief Filling serializable fields with thecorresponding  property maps
+		void fillWithPropertiesMaps();
+
+		/// @fn void updateAllProperties();
+		/// @brief Updating all the properties
+		void updateAllProperties();
+
+		// text
+		/// @property text
+		/// @brief Text of the hashtag
+		Q_PROPERTY(QString text
+				   READ getText
+				   WRITE setText)
+
+		/// @fn void updateText();
+		/// @brief Updating the property text
+		void updateText();
+
+		// indices
+		/// @property indices
+		/// @brief Indexes
+		Q_PROPERTY(QVariantList indices
+				   READ getIndices
+				   WRITE setIndices)
+
+		/// @brief Representation of the property thumb
+		QVariantList indexList;
+
+		/// @fn QVariantList getIndices();
+		/// @brief Reading method for the property indices
+		/// @return indexList
+		QVariantList getIndices();
+
+		/// @fn void setIndices(QVariantList newIndexList);
+		/// @brief Writing method for the property indices
+		/// @param newIndexList New value for the property indices
+		void setIndices(QVariantList newIndexList);
+
+		/// @fn void updateIndices();
+		/// @brief Updating the property indices
+		void updateIndices();
+
+
+	////////////////////////
+	// Hashtag management //
+	////////////////////////
+
+	protected:
+		/// @brief Text of the tag
+		QString hashText;
+
 		/// @brief Indexes of the hashtag in the tweet
 		IndexBounds indexes;
 
-		/// @brief Text of the tag
-		QString text;
+
+	////////////////////////
+	// Getter and setters //
+	////////////////////////
+
+	public:
+		/// @fn QString getText();
+		/// @brief Reading extractedURL
+		/// @return extractedURL
+		QString getText();
+
+		/// @fn void setText(QString newURL);
+		/// @brief Writing extractedURL
+		/// @param newText New value for extractedURL
+		void setText(QString newText);
+
+		/// @fn IndexBounds getIndexes();
+		/// @brief Reading indexes
+		/// @return indexes
+		IndexBounds getIndexes();
+
+		/// @fn void setIndexes(IndexBounds newIndexes);
+		/// @brief Writing indexes
+		/// @param newIndexes New value for indexes
+		void setIndexes(IndexBounds newIndexes);
 };
+
+// Serialization of Hashtag
+Q_DECLARE_METATYPE(Hashtag)
+
+/// @fn QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param hashtag Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
+
+/// @fn QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param hashtag Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
 
 #endif // HASHTAG_HPP

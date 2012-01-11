@@ -181,7 +181,7 @@ class URLEntity : public ReynTweetsSerializable
 		/// @return extractedURL
 		QString getURL();
 
-		/// @fn void setLarge(QString newURL);
+		/// @fn void setURL(QString newURL);
 		/// @brief Writing extractedURL
 		/// @param newURL New value for extractedURL
 		void setURL(QString newURL);
@@ -227,7 +227,7 @@ Q_DECLARE_METATYPE(URLEntity)
 /// @return The stream with the object
 QDataStream & operator<<(QDataStream & out, const URLEntity & entity);
 
-/// @fn QDataStream & operator>>(QDataStream & in, MediaSizes & entity);
+/// @fn QDataStream & operator>>(QDataStream & in, URLEntity & entity);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param entity Object to put in the stream

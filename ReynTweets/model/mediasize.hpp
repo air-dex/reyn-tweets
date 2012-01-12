@@ -116,7 +116,7 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 	// Properties management //
 	///////////////////////////
 
-	private:
+	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
 		void fillWithPropertiesMaps();

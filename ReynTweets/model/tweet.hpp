@@ -89,7 +89,7 @@ class Tweet : public ReynTweetsSerializable
 	// Properties management //
 	///////////////////////////
 
-	private:
+	protected:
 
 
 	//////////////////////

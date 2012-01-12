@@ -63,6 +63,14 @@ SOURCES += \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
 	model/reyntweetsserializable.cpp \
+	model/mediasize.cpp \
+	model/mediasizes.cpp \
+	model/indexbounds.cpp \
+	model/media.cpp \
+	model/urlentity.cpp \
+	model/usermention.cpp \
+	model/hashtag.cpp \
+	model/tweetentities.cpp \
 	model/tweet.cpp \
 	model/user.cpp \
 	model/configuration/useraccount.cpp \
@@ -73,15 +81,7 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp \
-    model/tweetentities.cpp \
-    model/usermention.cpp \
-    model/hashtag.cpp \
-    model/urlentity.cpp \
-    model/media.cpp \
-    model/indexbounds.cpp \
-    model/mediasize.cpp \
-    model/mediasizes.cpp
+	main.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -110,6 +110,14 @@ HEADERS  += \
 	connection/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
 	model/reyntweetsserializable.hpp \
+	model/indexbounds.hpp \
+	model/mediasize.hpp \
+	model/mediasizes.hpp \
+	model/urlentity.hpp \
+	model/media.hpp \
+	model/usermention.hpp \
+	model/hashtag.hpp \
+	model/tweetentities.hpp \
 	model/tweet.hpp \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \
@@ -120,15 +128,7 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp \
-    model/tweetentities.hpp \
-    model/usermention.hpp \
-    model/hashtag.hpp \
-    model/urlentity.hpp \
-    model/media.hpp \
-    model/indexbounds.hpp \
-    model/mediasize.hpp \
-    model/mediasizes.hpp
+	ui/mainwindow.hpp
 
 
 OTHER_FILES = \

@@ -93,7 +93,7 @@ class User : public ReynTweetsSerializable
 	// Properties management //
 	///////////////////////////
 
-	private:
+	protected:
 		// Properties
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps

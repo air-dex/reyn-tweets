@@ -22,6 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <QJson/QObjectHelper>
+#include <QList>
 #include "reyntweetsserializable.hpp"
 
 // Converting the object into a QVariantMap
@@ -33,3 +34,24 @@ QVariantMap ReynTweetsSerializable::toMap() {
 void ReynTweetsSerializable::fillWithMap(QVariantMap map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
 }
+
+// Converting a list of serializables into a QVariantList
+QVariantList ReynTweetsSerializable::toVariantList(QList<ReynTweetsSerializable> serializables) {
+	QVariantList res;
+
+	for (QList<ReynTweetsSerializable>::iterator it = serializables.begin();
+		 it != serializables.end();
+		 ++it)
+	{
+		ReynTweetsSerializable serializable = *it;
+		res.append(qVariantFromValue(serializable));
+	}
+
+	return res;
+}
+/*
+// Converting a QVariantList into a list of ReynTweetsSerializable
+QList<ReynTweetsSerializable> ReynTweetsSerializable::fillWithList(QVariantList serializables) {
+
+}
+//*/

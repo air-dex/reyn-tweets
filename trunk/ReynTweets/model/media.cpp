@@ -64,6 +64,7 @@ void Media::initSystem() {
 
 // Copy of a Media
 void Media::recopie(const Media & media) {
+	URLEntity::recopie(media);	// Don't forget the base class !
 	mediaID = media.mediaID;
 	mediaIDstr = media.mediaIDstr;
 	mediaURL = media.mediaURL;
@@ -95,13 +96,13 @@ QDataStream & operator>>(QDataStream & in, Media & media) {
 
 // Filling serializable fields with thecorresponding  property maps
 void Media::fillWithPropertiesMaps() {
-	URLEntity::fillWithPropertiesMaps();	// Don't forget the superior class !
+	URLEntity::fillWithPropertiesMaps();	// Don't forget the base class !
 	mediaSizes.fillWithMap(sizesMap);
 }
 
 // Updating all the properties
 void Media::updateAllProperties() {
-	URLEntity::updateAllProperties();	// Don't forget the superior class !
+	URLEntity::updateAllProperties();	// Don't forget the base class !
 	updateID();
 	updateIDstr();
 	updateMediaURL();

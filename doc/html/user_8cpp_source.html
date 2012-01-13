@@ -169,12 +169,12 @@ window.onload = initDynSections;
 <a name="l00081"></a><a class="code" href="class_user.html#aa93176c0f05349bc8daf0c6074fcb929">00081</a> <a class="code" href="class_user.html#a4a0137053e591fbb79d9057dd7d2283d" title="Default constructor.">User::User</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) :
 <a name="l00082"></a>00082         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>()
 <a name="l00083"></a>00083 {
-<a name="l00084"></a>00084         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a ReynTweetsConfiguration.">recopie</a>(user);
+<a name="l00084"></a>00084         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087 <span class="comment">// Affectation operator</span>
 <a name="l00088"></a><a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557">00088</a> <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; <a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557" title="Affectation.">User::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00089"></a>00089         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a ReynTweetsConfiguration.">recopie</a>(user);
+<a name="l00089"></a>00089         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
 <a name="l00090"></a>00090         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
@@ -184,9 +184,9 @@ window.onload = initDynSections;
 <a name="l00096"></a>00096         qMetaTypeId&lt;User&gt;();
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="comment">// Copy of a ReynTweetsConfiguration</span>
-<a name="l00100"></a><a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a ReynTweetsConfiguration.">User::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00101"></a>00101         <a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a> = user.<a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a>;
+<a name="l00099"></a>00099 <span class="comment">// Copy of a User</span>
+<a name="l00100"></a><a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">User::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
+<a name="l00101"></a>00101         <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a> = user.<a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>;
 <a name="l00102"></a>00102         <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a> = user.<a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>;
 <a name="l00103"></a>00103         <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a> = user.<a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
 <a name="l00104"></a>00104         <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a> = user.<a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>;
@@ -217,7 +217,7 @@ window.onload = initDynSections;
 <a name="l00129"></a>00129         <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a> = user.<a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>;
 <a name="l00130"></a>00130         <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a> = user.<a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>;
 <a name="l00131"></a>00131         <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a> = user.<a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>;
-<a name="l00132"></a>00132         <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>= user.<a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
+<a name="l00132"></a>00132         <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a> = user.<a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
 <a name="l00133"></a>00133         <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a> = user.<a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>;
 <a name="l00134"></a>00134         <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a> = user.<a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>;
 <a name="l00135"></a>00135         <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a> = user.<a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>;
@@ -231,12 +231,12 @@ window.onload = initDynSections;
 <a name="l00143"></a>00143 
 <a name="l00144"></a>00144 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00145"></a><a class="code" href="user_8hpp.html#a3e6ed0ba71014677473d8e6a0df745d6">00145</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00146"></a>00146         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, configuration);
+<a name="l00146"></a>00146         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, user);
 <a name="l00147"></a>00147 }
 <a name="l00148"></a>00148 
 <a name="l00149"></a>00149 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00150"></a><a class="code" href="user_8hpp.html#aecf5cd8b5440b1c3bec9f631ad22b878">00150</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00151"></a>00151         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, configuration);
+<a name="l00151"></a>00151         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, user);
 <a name="l00152"></a>00152 
 <a name="l00153"></a>00153         <span class="comment">// Filling the user account</span>
 <a name="l00154"></a>00154         user.<a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
@@ -466,7 +466,7 @@ window.onload = initDynSections;
 <a name="l00380"></a>00380 
 <a name="l00381"></a>00381 <span class="comment">// Updating the property id</span>
 <a name="l00382"></a><a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359">00382</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359" title="Updating the property id.">User::updateID</a>() {
-<a name="l00383"></a>00383         setProperty(<span class="stringliteral">&quot;id&quot;</span>, QVariant(<a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a>));
+<a name="l00383"></a>00383         setProperty(<span class="stringliteral">&quot;id&quot;</span>, QVariant(<a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>));
 <a name="l00384"></a>00384 }
 <a name="l00385"></a>00385 
 <a name="l00386"></a>00386 <span class="comment">// Updating the property verified</span>
@@ -819,13 +819,13 @@ window.onload = initDynSections;
 <a name="l00735"></a>00735 }
 <a name="l00736"></a>00736 
 <a name="l00737"></a>00737 <span class="comment">// Getter on ID</span>
-<a name="l00738"></a><a class="code" href="class_user.html#adce159ebd006321c4bfc869998064e7f">00738</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#adce159ebd006321c4bfc869998064e7f" title="Getter on ID.">User::getID</a>() {
-<a name="l00739"></a>00739         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a>;
+<a name="l00738"></a><a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2">00738</a> <span class="keywordtype">long</span> <a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2" title="Getter on ID.">User::getID</a>() {
+<a name="l00739"></a>00739         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>;
 <a name="l00740"></a>00740 }
 <a name="l00741"></a>00741 
 <a name="l00742"></a>00742 <span class="comment">// Setter on ID</span>
-<a name="l00743"></a><a class="code" href="class_user.html#a1ddc3cc277ed53f42e914c182fff5226">00743</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a1ddc3cc277ed53f42e914c182fff5226" title="Setter on ID.">User::setID</a>(<span class="keywordtype">int</span> newID) {
-<a name="l00744"></a>00744         <a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a> = newID;
+<a name="l00743"></a><a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb">00743</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb" title="Setter on ID.">User::setID</a>(<span class="keywordtype">long</span> newID) {
+<a name="l00744"></a>00744         <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a> = newID;
 <a name="l00745"></a>00745 }
 <a name="l00746"></a>00746 
 <a name="l00747"></a>00747 <span class="comment">// Getter on verified</span>
@@ -892,7 +892,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

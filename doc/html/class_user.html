@@ -117,8 +117,8 @@ Inheritance diagram for User:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on followersCount.  <a href="#ac7786a9c75ee9af8f329932730111aaa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771">getFriendsCount</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on friendsCount.  <a href="#a69cd2c2c13cfa4a2bd7939871fdae771"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#adce159ebd006321c4bfc869998064e7f">getID</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on ID.  <a href="#adce159ebd006321c4bfc869998064e7f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2">getID</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on ID.  <a href="#a76d1a8514ccde75b2e4106e996113bb2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59">getIDstr</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on IDstr.  <a href="#a34234f88f4038d77a9d33d4f24ea7c59"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8">getLang</a> ()</td></tr>
@@ -207,8 +207,8 @@ Inheritance diagram for User:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on friendsCount.  <a href="#a17699685bc82dceca44b9c27d3540ae8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff">setGeoEnabled</a> (bool newGeoEnabled)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on geoEnabled.  <a href="#a862fabb8b07883976bb35ed47c8c34ff"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a1ddc3cc277ed53f42e914c182fff5226">setID</a> (int newID)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on ID.  <a href="#a1ddc3cc277ed53f42e914c182fff5226"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb">setID</a> (long newID)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on ID.  <a href="#a7850666c3ceeefa5462bccc3c343e3fb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50">setIDstr</a> (QString newID)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on IDstr.  <a href="#ab7408be442e1f05daf0891a495ea0b50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ac75369267fe9334a7cf44c2255955e14">setLang</a> (QString newLang)</td></tr>
@@ -350,6 +350,11 @@ Inheritance diagram for User:</div>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#a6bf0bce103007fa6ac523381e5df853c"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a3838a20d812f92861e4144d2c947e4be">fillWithPropertiesMaps</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#a3838a20d812f92861e4144d2c947e4be"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c">updateAllProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a999d5248427a109a4121d60d7f5a6a0c"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279">avatarURL</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL of the user's avatar.  <a href="#a71a5cbd8c221112b7af2c3214bbdc279"></a><br/></td></tr>
@@ -415,8 +420,8 @@ Inheritance diagram for User:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boolean indicating if the user has got a background image.  <a href="#a2488ea641f9b1f41ced202c4e98cb37b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a4e053470229c9113efa847f4104ebe0b">userDescription</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Description.  <a href="#a4e053470229c9113efa847f4104ebe0b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a2763d16d115f2a3be14689c378b434c8">userID</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> ID.  <a href="#a2763d16d115f2a3be14689c378b434c8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a0628594a5c552515b615aad83d0cbc09">userID</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> ID.  <a href="#a0628594a5c552515b615aad83d0cbc09"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab">userIDstr</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> ID (String version).  <a href="#aa9f7d9634258de4e47685936ba8612ab"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#af947ab7029b48bd3018275b8ee132b81">userLocation</a></td></tr>
@@ -448,7 +453,7 @@ Inheritance diagram for User:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of friendsCount.  <a href="#a3642f59dfad778c69c5d48db64af1a01"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a41e2088179dd4f81007f6ec08e55fa2a">geo_enabled</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of geoEnabled.  <a href="#a41e2088179dd4f81007f6ec08e55fa2a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#aac799cfbb4c8d4ef6634007d8bb4a18a">id</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#aac799cfbb4c8d4ef6634007d8bb4a18a">id</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of userID.  <a href="#aac799cfbb4c8d4ef6634007d8bb4a18a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#ab93c5689f313cdf45fb2f2d571c714f8">id_str</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of userIDstr.  <a href="#ab93c5689f313cdf45fb2f2d571c714f8"></a><br/></td></tr>
@@ -507,12 +512,8 @@ Inheritance diagram for User:</div>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a5800f62eba1e4560543009a3a29fa697">verified</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of verifiedAccount.  <a href="#a5800f62eba1e4560543009a3a29fa697"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a3838a20d812f92861e4144d2c947e4be">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#a3838a20d812f92861e4144d2c947e4be"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">recopie</a> (const <a class="el" href="class_user.html">User</a> &amp;user)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a>.  <a href="#a121965d8a86a0cbfe685c40991af6696"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a999d5248427a109a4121d60d7f5a6a0c"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_user.html" title="Person who uses Twitter.">User</a>.  <a href="#a121965d8a86a0cbfe685c40991af6696"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user.html#acb7d8a2d7e573bcf8f42e3ee5766f2a5">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_user.html">User</a> &amp;user)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#acb7d8a2d7e573bcf8f42e3ee5766f2a5"></a><br/></td></tr>
@@ -604,7 +605,7 @@ Inheritance diagram for User:</div>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -726,12 +727,12 @@ Inheritance diagram for User:</div>
 
 </div>
 </div>
-<a class="anchor" id="adce159ebd006321c4bfc869998064e7f"></a><!-- doxytag: member="User::getID" ref="adce159ebd006321c4bfc869998064e7f" args="()" -->
+<a class="anchor" id="a76d1a8514ccde75b2e4106e996113bb2"></a><!-- doxytag: member="User::getID" ref="a76d1a8514ccde75b2e4106e996113bb2" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int User::getID </td>
+          <td class="memname">long User::getID </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -1518,7 +1519,7 @@ Inheritance diagram for User:</div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original configuration </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original user </dd></dl>
 
 <p>Definition at line <a class="el" href="user_8cpp_source.html#l00088">88</a> of file <a class="el" href="user_8cpp_source.html">user.cpp</a>.</p>
 
@@ -1540,7 +1541,7 @@ Inheritance diagram for User:</div>
 </div>
 <div class="memdoc">
 
-<p>Copy of a <a class="el" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a>. </p>
+<p>Copy of a <a class="el" href="class_user.html" title="Person who uses Twitter.">User</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>user</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> to copy </td></tr>
@@ -1832,14 +1833,14 @@ Inheritance diagram for User:</div>
 
 </div>
 </div>
-<a class="anchor" id="a1ddc3cc277ed53f42e914c182fff5226"></a><!-- doxytag: member="User::setID" ref="a1ddc3cc277ed53f42e914c182fff5226" args="(int newID)" -->
+<a class="anchor" id="a7850666c3ceeefa5462bccc3c343e3fb"></a><!-- doxytag: member="User::setID" ref="a7850666c3ceeefa5462bccc3c343e3fb" args="(long newID)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void User::setID </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
+          <td class="paramtype">long&nbsp;</td>
           <td class="paramname"> <em>newID</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -2653,7 +2654,7 @@ Inheritance diagram for User:</div>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -3556,7 +3557,7 @@ Inheritance diagram for User:</div>
 
 <p>URL of the user's avatar. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00568">568</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00574">574</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3573,7 +3574,7 @@ Inheritance diagram for User:</div>
 
 <p>URL of the user's avatar (HTTPS version). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00571">571</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00577">577</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3590,7 +3591,7 @@ Inheritance diagram for User:</div>
 
 <p>Background color. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00611">611</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00617">617</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3607,7 +3608,7 @@ Inheritance diagram for User:</div>
 
 <p>Is the background repeated as a tile ("mosaïque" in French) ? </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00602">602</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00608">608</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3624,7 +3625,7 @@ Inheritance diagram for User:</div>
 
 <p>URL of the user's background. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00605">605</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00611">611</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3641,7 +3642,7 @@ Inheritance diagram for User:</div>
 
 <p>URL of the user's background (HTTPS version). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00608">608</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00614">614</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3659,7 +3660,7 @@ Inheritance diagram for User:</div>
 <p>Is the contributors feature enable for the user ? </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="http://blog.twitter.com/2009/12/feature-test-with-businesses.html">http://blog.twitter.com/2009/12/feature-test-with-businesses.html</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00654">654</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00660">660</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3676,7 +3677,7 @@ Inheritance diagram for User:</div>
 
 <p>Date when the account was created. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00637">637</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00643">643</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3693,7 +3694,7 @@ Inheritance diagram for User:</div>
 
 <p>Is it the default profile ? </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00596">596</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00602">602</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3710,7 +3711,7 @@ Inheritance diagram for User:</div>
 
 <p>Boolean indicating if the profile image is the default image. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00565">565</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00571">571</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3727,7 +3728,7 @@ Inheritance diagram for User:</div>
 
 <p>Number of favorites tweets. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00588">588</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00594">594</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3744,7 +3745,7 @@ Inheritance diagram for User:</div>
 
 <p>Number of followers. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00585">585</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00591">591</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3761,7 +3762,7 @@ Inheritance diagram for User:</div>
 
 <p>follow_request_sent </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00662">662</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00668">668</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3778,7 +3779,7 @@ Inheritance diagram for User:</div>
 
 <p>Number of friends (people followed by the user). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00582">582</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00588">588</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3795,7 +3796,7 @@ Inheritance diagram for User:</div>
 
 <p>Boolean indicating if the user gives a geolocalisation by default to its tweets. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00647">647</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00653">653</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3812,7 +3813,7 @@ Inheritance diagram for User:</div>
 
 <p>User's idiom. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00640">640</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00646">646</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3829,7 +3830,7 @@ Inheritance diagram for User:</div>
 
 <p>Last tweet posted by the user. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00579">579</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00585">585</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3846,7 +3847,7 @@ Inheritance diagram for User:</div>
 
 <p>Color of links in the Twitter Timeline. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00617">617</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00623">623</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3863,7 +3864,7 @@ Inheritance diagram for User:</div>
 
 <p>Number of lists. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00591">591</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00597">597</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3880,7 +3881,7 @@ Inheritance diagram for User:</div>
 
 <p>Receive notifications from a user (by mobile phone). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00668">668</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00674">674</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3897,7 +3898,7 @@ Inheritance diagram for User:</div>
 
 <p>Boolean indicating if the user protects its account. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00643">643</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00649">649</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3914,7 +3915,7 @@ Inheritance diagram for User:</div>
 
 <p>Screen name ("toto" in "@toto", for example). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00548">548</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00554">554</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3931,7 +3932,7 @@ Inheritance diagram for User:</div>
 
 <p>show_all_inline_media </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00665">665</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00671">671</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3948,7 +3949,7 @@ Inheritance diagram for User:</div>
 
 <p>Color of the border of sidebar panels. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00624">624</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00630">630</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3965,7 +3966,7 @@ Inheritance diagram for User:</div>
 
 <p>Color of sidebar panels. For example, these panels are on your right when you watch your Twitter parameters online. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00621">621</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00627">627</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3982,7 +3983,7 @@ Inheritance diagram for User:</div>
 
 <p>Color of text in the Twitter Timeline. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00614">614</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00620">620</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -3999,7 +4000,7 @@ Inheritance diagram for User:</div>
 
 <p>Name of the user's time zone. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00632">632</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00638">638</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4016,7 +4017,7 @@ Inheritance diagram for User:</div>
 
 <p>Time zone. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00629">629</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00635">635</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4033,7 +4034,7 @@ Inheritance diagram for User:</div>
 
 <p>Number of tweets. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00576">576</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00582">582</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4050,7 +4051,7 @@ Inheritance diagram for User:</div>
 
 <p>Indicates if the user is a Twitter translator. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00657">657</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00663">663</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4067,7 +4068,7 @@ Inheritance diagram for User:</div>
 
 <p>Boolean indicating if the user has got a background image. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00599">599</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00605">605</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4084,16 +4085,16 @@ Inheritance diagram for User:</div>
 
 <p>Description. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00554">554</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00560">560</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2763d16d115f2a3be14689c378b434c8"></a><!-- doxytag: member="User::userID" ref="a2763d16d115f2a3be14689c378b434c8" args="" -->
+<a class="anchor" id="a0628594a5c552515b615aad83d0cbc09"></a><!-- doxytag: member="User::userID" ref="a0628594a5c552515b615aad83d0cbc09" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="class_user.html#a2763d16d115f2a3be14689c378b434c8">User::userID</a><code> [protected]</code></td>
+          <td class="memname">long <a class="el" href="class_user.html#a0628594a5c552515b615aad83d0cbc09">User::userID</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -4101,7 +4102,7 @@ Inheritance diagram for User:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> ID. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00540">540</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00546">546</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4118,7 +4119,7 @@ Inheritance diagram for User:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> ID (String version). </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00543">543</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00549">549</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4135,7 +4136,7 @@ Inheritance diagram for User:</div>
 
 <p>Location as reported by the user. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00560">560</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00566">566</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4152,7 +4153,7 @@ Inheritance diagram for User:</div>
 
 <p>User's name. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00551">551</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00557">557</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4169,7 +4170,7 @@ Inheritance diagram for User:</div>
 
 <p>URL of the user. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00557">557</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00563">563</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4186,7 +4187,7 @@ Inheritance diagram for User:</div>
 
 <p>Boolean indicating if the account is verified. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00650">650</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00656">656</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4204,7 +4205,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of contributorsEnabled. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00106">106</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00111">111</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4221,7 +4222,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of createdAt. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00271">271</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00276">276</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4238,7 +4239,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of defaultProfile. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00427">427</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00432">432</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4255,7 +4256,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of defaultProfileImage. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00339">339</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00344">344</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4272,7 +4273,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userDescription. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00238">238</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00243">243</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4289,7 +4290,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of favouritesCount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00504">504</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00509">509</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4306,7 +4307,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of followRequestSent. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00394">394</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00399">399</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4323,7 +4324,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of followersCount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00216">216</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00221">221</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4340,7 +4341,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of friendsCount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00350">350</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00355">355</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4357,7 +4358,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of geoEnabled. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00328">328</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00333">333</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4374,7 +4375,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userID. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00471">471</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00476">476</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4391,7 +4392,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userIDstr. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00372">372</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00377">377</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4408,7 +4409,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of isTranslator. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00416">416</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00421">421</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4425,7 +4426,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of language. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00117">117</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00122">122</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4442,7 +4443,7 @@ Inheritance diagram for User:</div>
 
 <p>Map containing the property "status". </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00307">307</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00312">312</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4459,7 +4460,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of listedCount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00183">183</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00188">188</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4476,7 +4477,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userLocation. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00526">526</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00531">531</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4493,7 +4494,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userName. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00172">172</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00177">177</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4510,7 +4511,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of notificationsEnabled. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00438">438</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00443">443</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4527,7 +4528,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of backgroundColor. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00205">205</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00210">210</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4544,7 +4545,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of backgroundURL. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00128">128</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00133">133</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4561,7 +4562,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of backgroundURLhttps. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00405">405</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00410">410</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4578,7 +4579,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of backgroundTile. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00249">249</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00254">254</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4595,7 +4596,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of avatarURL. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00227">227</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00232">232</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4612,7 +4613,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of avatarURLhttps. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00460">460</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00465">465</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4629,7 +4630,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of linkColor. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00150">150</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00155">155</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4646,7 +4647,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of sidebarBorderColor. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00361">361</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00366">366</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4663,7 +4664,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of sidebarColor. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00282">282</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00287">287</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4680,7 +4681,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of textColor. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00515">515</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00520">520</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4697,7 +4698,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of useBackgroundImage. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00449">449</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00454">454</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4714,7 +4715,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of protectedAccount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00139">139</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00144">144</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4731,7 +4732,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of screenName. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00293">293</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00298">298</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4748,7 +4749,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of showAllInlineMedia. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00383">383</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00388">388</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4765,7 +4766,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of lastTweet. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00304">304</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00309">309</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4782,7 +4783,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of tweetsCount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00260">260</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00265">265</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4799,7 +4800,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of timeZone. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00493">493</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00498">498</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4816,7 +4817,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of userURL. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00161">161</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00166">166</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4833,7 +4834,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of timeZoneOffset. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00194">194</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00199">199</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4850,7 +4851,7 @@ Inheritance diagram for User:</div>
 
 <p>Serializable form of verifiedAccount. </p>
 
-<p>Definition at line <a class="el" href="user_8hpp_source.html#l00482">482</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
+<p>Definition at line <a class="el" href="user_8hpp_source.html#l00487">487</a> of file <a class="el" href="user_8hpp_source.html">user.hpp</a>.</p>
 
 </div>
 </div>
@@ -4873,7 +4874,7 @@ Inheritance diagram for User:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:28 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:29 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

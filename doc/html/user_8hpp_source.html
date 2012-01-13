@@ -119,7 +119,7 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QDate&gt;</span>
 <a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QColor&gt;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="tweet_8hpp.html" title="Header of Tweet.">tweet.hpp</a>&quot;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="tweet_8hpp.html" title="Implementation of Tweet.">tweet.hpp</a>&quot;</span>
 <a name="l00033"></a>00033 
 <a name="l00036"></a><a class="code" href="class_user.html">00036</a> <span class="keyword">class </span><a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>
 <a name="l00037"></a>00037 {
@@ -140,7 +140,7 @@ window.onload = initDynSections;
 <a name="l00067"></a>00067                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c" title="Serialization declaration.">initSystem</a>();
 <a name="l00068"></a>00068 
 <a name="l00069"></a>00069         <span class="keyword">private</span>:
-<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a ReynTweetsConfiguration.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
+<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075                 <span class="comment">// Friends serialization operators</span>
 <a name="l00076"></a>00076 
@@ -148,580 +148,585 @@ window.onload = initDynSections;
 <a name="l00083"></a>00083 
 <a name="l00089"></a>00089                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_user.html#a801d8c1afe538e7ee510f599be808ca2" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <span class="keyword">private</span>:
-<a name="l00092"></a>00092                 <span class="comment">// Properties</span>
-<a name="l00095"></a>00095 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
-<a name="l00096"></a>00096 
-<a name="l00099"></a>00099                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c" title="Updating all the properties.">updateAllProperties</a>();
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101                 <span class="comment">// contributors_enabled</span>
-<a name="l00104"></a>00104 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a80d1c20bdf15c01aee05b33694e9a4a6" title="Serializable form of contributorsEnabled.">contributors_enabled</a>
-<a name="l00105"></a>00105                                    READ <a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa" title="Getter on contributorsEnabled.">isContributorsEnabled</a>
-<a name="l00106"></a><a class="code" href="class_user.html#a80d1c20bdf15c01aee05b33694e9a4a6">00106</a>                                    WRITE <a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4" title="Setter on contributorsEnabled.">setContributorsEnabled</a>)
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108                 
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a32203b27d16ae1013246a6a17fc57b21" title="Updating the property contributors_enabled.">updateContributorsEnabled</a>();
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112                 <span class="comment">// lang</span>
-<a name="l00115"></a>00115 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a372859c5f21832eb3568978775474207" title="Serializable form of language.">lang</a>
-<a name="l00116"></a>00116                                    READ <a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8" title="Getter on lang.">getLang</a>
-<a name="l00117"></a><a class="code" href="class_user.html#a372859c5f21832eb3568978775474207">00117</a>                                    WRITE <a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14" title="Setter on lang.">setLang</a>)
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119                 
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a04d67a4e1b8a64fae12dec4d9362e3e9" title="Updating the property lang.">updateLang</a>();
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123                 <span class="comment">// profile_background_image_url</span>
-<a name="l00126"></a>00126 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a808fb7a66d886dce6cb50ebe9ef4021e" title="Serializable form of backgroundURL.">profile_background_image_url</a>
-<a name="l00127"></a>00127                                    READ <a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19" title="Getter on backgroundURL.">getProfileBackgroundImageURL</a>
-<a name="l00128"></a><a class="code" href="class_user.html#a808fb7a66d886dce6cb50ebe9ef4021e">00128</a>                                    WRITE <a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef" title="Setter on backgroundURL.">setProfileBackgroundImageURL</a>)
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130                 
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aba5117b1b456f3868df51013b736b2d4" title="Updating the property profile_background_image_url.">updateProfileBackgroundImageURL</a>();
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134                 <span class="comment">// protected</span>
-<a name="l00137"></a>00137 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <span class="keyword">protected</span>
-<a name="l00138"></a>00138                                    READ <a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056" title="Getter on protected.">isProtected</a>
-<a name="l00139"></a><a class="code" href="class_user.html#a3a0be7422d7e76a9a9e27d09d986d5a8">00139</a>                                    WRITE <a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16" title="Setter on protected.">setProtected</a>)
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141                 
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a942fa51f4cfe7795f25df67de9d29db7" title="Updating the property protected.">updateProtected</a>();
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145                 <span class="comment">// profile_link_color</span>
-<a name="l00148"></a>00148 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#a6baa387506312ec30b356af4166b7bae" title="Serializable form of linkColor.">profile_link_color</a>
-<a name="l00149"></a>00149                                    READ <a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c" title="Getter on linkColor.">getProfileLinkColor</a>
-<a name="l00150"></a><a class="code" href="class_user.html#a6baa387506312ec30b356af4166b7bae">00150</a>                                    WRITE <a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41" title="Setter on linkColor.">setProfileLinkColor</a>)
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152                 
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a45e37bc4938e7ef053e9b7cf0e4df2e0" title="Updating the property profile_link_color.">updateProfileLinkColor</a>();
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156                 <span class="comment">// url</span>
-<a name="l00159"></a>00159 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ab1ed358ba11491cfa34908b8cfbd4470" title="Serializable form of userURL.">url</a>
-<a name="l00160"></a>00160                                    READ <a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223" title="Getter on url.">getURL</a>
-<a name="l00161"></a><a class="code" href="class_user.html#ab1ed358ba11491cfa34908b8cfbd4470">00161</a>                                    WRITE <a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed" title="Setter on url.">setURL</a>)
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163                 
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aca2e60c5aeee02bfee39257fb4f41fe2" title="Updating the property url.">updateURL</a>();
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167                 <span class="comment">// name</span>
-<a name="l00170"></a>00170 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ac26c2c8e14676f999ecd7aeaf8cff25f" title="Serializable form of userName.">name</a>
-<a name="l00171"></a>00171                                    READ <a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9" title="Getter on name.">getName</a>
-<a name="l00172"></a><a class="code" href="class_user.html#ac26c2c8e14676f999ecd7aeaf8cff25f">00172</a>                                    WRITE <a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7" title="Setter on name.">setName</a>)
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174                 
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a242ae71ac18e45624f80c8dddfa71339" title="Updating the property name.">updateName</a>();
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178                 <span class="comment">// listed_count</span>
-<a name="l00181"></a>00181 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a8a5c85980a9fe045c5fda3596c2c8ae1" title="Serializable form of listedCount.">listed_count</a>
-<a name="l00182"></a>00182                                    READ <a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed" title="Getter on listedCount.">getListedCount</a>
-<a name="l00183"></a><a class="code" href="class_user.html#a8a5c85980a9fe045c5fda3596c2c8ae1">00183</a>                                    WRITE <a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb" title="Setter on listedCount.">setListedCount</a>)
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185                 
-<a name="l00186"></a>00186 
-<a name="l00187"></a>00187                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aaf7efabd8db348bf942900141034df7f" title="Updating the property listed_count.">updateListedCount</a>();
-<a name="l00188"></a>00188 
-<a name="l00189"></a>00189                 <span class="comment">// utc_offset</span>
-<a name="l00192"></a>00192 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a1693f9181ea024e4c73140822f64834b" title="Serializable form of timeZoneOffset.">utc_offset</a>
-<a name="l00193"></a>00193                                    READ <a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0" title="Getter on timeZoneOffset.">getUTCoffset</a>
-<a name="l00194"></a><a class="code" href="class_user.html#a1693f9181ea024e4c73140822f64834b">00194</a>                                    WRITE <a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc" title="Setter on timeZoneOffset.">setUTCoffset</a>)
-<a name="l00195"></a>00195 
-<a name="l00196"></a>00196                 
-<a name="l00197"></a>00197 
-<a name="l00198"></a>00198                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6d9b232cf9830408f46fbc367a147694" title="Updating the property utc_offset.">updateUTCoffset</a>();
-<a name="l00199"></a>00199 
-<a name="l00200"></a>00200                 <span class="comment">// profile_background_color</span>
-<a name="l00203"></a>00203 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#ae1d9c5b2db7283a19b67af92c666781a" title="Serializable form of backgroundColor.">profile_background_color</a>
-<a name="l00204"></a>00204                                    READ <a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52" title="Getter on backgroundColor.">getProfileBackgroundColor</a>
-<a name="l00205"></a><a class="code" href="class_user.html#ae1d9c5b2db7283a19b67af92c666781a">00205</a>                                    WRITE <a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8" title="Setter on backgroundColor.">setProfileBackgroundColor</a>)
-<a name="l00206"></a>00206 
-<a name="l00207"></a>00207                 
-<a name="l00208"></a>00208 
-<a name="l00209"></a>00209                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab74ea628d0251e2504e66538e5015d60" title="Updating the property profile_background_color.">updateProfileBackgroundColor</a>();
-<a name="l00210"></a>00210 
-<a name="l00211"></a>00211                 <span class="comment">// followers_count</span>
-<a name="l00214"></a>00214 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a49f88edae1f53afc8b477ab0aaabae28" title="Serializable form of followersCount.">followers_count</a>
-<a name="l00215"></a>00215                                    READ <a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa" title="Getter on followersCount.">getFollowersCount</a>
-<a name="l00216"></a><a class="code" href="class_user.html#a49f88edae1f53afc8b477ab0aaabae28">00216</a>                                    WRITE <a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0" title="Setter on followersCount.">setFollowersCount</a>)
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218                 
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa6f5c2537769e4e1f5baf1756cb1cf76" title="Updating the property followers_count.">updateFollowersCount</a>();
-<a name="l00221"></a>00221 
-<a name="l00222"></a>00222                 <span class="comment">// profile_image_url</span>
-<a name="l00225"></a>00225 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a7df7e0c6534131305087cb9b378e618a" title="Serializable form of avatarURL.">profile_image_url</a>
-<a name="l00226"></a>00226                                    READ <a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d" title="Getter on avatarURL.">getProfileImageURL</a>
-<a name="l00227"></a><a class="code" href="class_user.html#a7df7e0c6534131305087cb9b378e618a">00227</a>                                    WRITE <a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea" title="Setter on avatarURL.">setProfileImageURL</a>)
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229                 
-<a name="l00230"></a>00230 
-<a name="l00231"></a>00231                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac599aa1fd7d440089d8d5d352450c68e" title="Updating the property profile_image_url.">updateProfileImageURL</a>();
-<a name="l00232"></a>00232 
-<a name="l00233"></a>00233                 <span class="comment">// description</span>
-<a name="l00236"></a>00236 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#abb3dead42ec25138b837106fb14b17fa" title="Serializable form of userDescription.">description</a>
-<a name="l00237"></a>00237                                    READ <a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e" title="Getter on description.">getDescription</a>
-<a name="l00238"></a><a class="code" href="class_user.html#abb3dead42ec25138b837106fb14b17fa">00238</a>                                    WRITE <a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a" title="Setter on description.">setDescription</a>)
-<a name="l00239"></a>00239 
-<a name="l00240"></a>00240                 
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af0386919960cdbba238dd04ac41a2ada" title="Updating the property description.">updateDescription</a>();
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244                 <span class="comment">// profile_background_tile</span>
-<a name="l00247"></a>00247 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a161a8b614e98dbe3cce9ef39bb0830f2" title="Serializable form of backgroundTile.">profile_background_tile</a>
-<a name="l00248"></a>00248                                    READ <a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426" title="Getter on backgroundTile.">isProfileBackgroundTile</a>
-<a name="l00249"></a><a class="code" href="class_user.html#a161a8b614e98dbe3cce9ef39bb0830f2">00249</a>                                    WRITE <a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04" title="Setter on backgroundTile.">setProfileBackgroundTile</a>)
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251                 
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3e24d1f29c5dea0053dc6ed8227a80dc" title="Updating the property profile_background_tile.">updateProfileBackgroundTile</a>();
-<a name="l00254"></a>00254 
-<a name="l00255"></a>00255                 <span class="comment">// statuses_count</span>
-<a name="l00258"></a>00258 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a6b3bc5657316b6a9f719a2a0c202f485" title="Serializable form of tweetsCount.">statuses_count</a>
-<a name="l00259"></a>00259                                    READ <a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e" title="Getter on tweetsCount.">getStatusesCount</a>
-<a name="l00260"></a><a class="code" href="class_user.html#a6b3bc5657316b6a9f719a2a0c202f485">00260</a>                                    WRITE <a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526" title="Setter on tweetsCount.">setStatusesCount</a>)
-<a name="l00261"></a>00261 
-<a name="l00262"></a>00262                 
-<a name="l00263"></a>00263 
-<a name="l00264"></a>00264                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9af88f882beb0c4e9625845b0faf3f6e" title="Updating the property statuses_count.">updateStatusesCount</a>();
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266                 <span class="comment">// created_at</span>
-<a name="l00269"></a>00269 <span class="comment"></span>                Q_PROPERTY(QDate <a class="code" href="class_user.html#a6bafdac540347d533a6ee7da065fafa3" title="Serializable form of createdAt.">created_at</a>
-<a name="l00270"></a>00270                                    READ <a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906" title="Getter on createdAt.">getCreatedAt</a>
-<a name="l00271"></a><a class="code" href="class_user.html#a6bafdac540347d533a6ee7da065fafa3">00271</a>                                    WRITE <a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da" title="Setter on createdAt.">setCreatedAt</a>)
-<a name="l00272"></a>00272 
-<a name="l00273"></a>00273                 
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9b8f7a0c948ce55077941be47948ab25" title="Updating the property created_at.">updateCreatedAt</a>();
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277                 <span class="comment">// profile_sidebar_fill_color</span>
-<a name="l00280"></a>00280 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#a72680b04487155ccfcc41e7498aa56c9" title="Serializable form of sidebarColor.">profile_sidebar_fill_color</a>
-<a name="l00281"></a>00281                                    READ <a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904" title="Getter on sidebarColor.">getProfileSidebarFillColor</a>
-<a name="l00282"></a><a class="code" href="class_user.html#a72680b04487155ccfcc41e7498aa56c9">00282</a>                                    WRITE <a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719" title="Setter on sidebarColor.">setProfileSidebarFillColor</a>)
-<a name="l00283"></a>00283 
-<a name="l00284"></a>00284                 
-<a name="l00285"></a>00285 
-<a name="l00286"></a>00286                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a8286170b66f0670d245da7f0b2bd65c7" title="Updating the property profile_sidebar_fill_color.">updateProfileSidebarFillColor</a>();
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288                 <span class="comment">// screen_name</span>
-<a name="l00291"></a>00291 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a97b78b70e4a04441ed843bc168ff44d3" title="Serializable form of screenName.">screen_name</a>
-<a name="l00292"></a>00292                                    READ <a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24" title="Getter on screenName.">getScreenName</a>
-<a name="l00293"></a><a class="code" href="class_user.html#a97b78b70e4a04441ed843bc168ff44d3">00293</a>                                    WRITE <a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a" title="Setter on screenName.">setScreenName</a>)
-<a name="l00294"></a>00294 
-<a name="l00295"></a>00295                 
-<a name="l00296"></a>00296 
-<a name="l00297"></a>00297                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4b88e86e2302218e21bf952e218e63f8" title="Updating the property screen_name.">updateScreenName</a>();
-<a name="l00298"></a>00298 
-<a name="l00299"></a>00299                 <span class="comment">// status</span>
-<a name="l00302"></a>00302 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e" title="Serializable form of lastTweet.">status</a>
-<a name="l00303"></a>00303                                    READ <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>
-<a name="l00304"></a><a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e">00304</a>                                    WRITE <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>)
-<a name="l00305"></a>00305 
-<a name="l00306"></a>00306                 
-<a name="l00307"></a><a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0">00307</a>                 QVariantMap <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>;
-<a name="l00308"></a>00308 
-<a name="l00312"></a>00312                 QVariantMap <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>();
+<a name="l00091"></a>00091 
+<a name="l00093"></a>00093         <span class="comment">// Properties management //</span>
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096         <span class="keyword">protected</span>:
+<a name="l00097"></a>00097                 <span class="comment">// Properties</span>
+<a name="l00100"></a>00100 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
+<a name="l00101"></a>00101 
+<a name="l00104"></a>00104                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106                 <span class="comment">// contributors_enabled</span>
+<a name="l00109"></a>00109 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a80d1c20bdf15c01aee05b33694e9a4a6" title="Serializable form of contributorsEnabled.">contributors_enabled</a>
+<a name="l00110"></a>00110                                    READ <a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa" title="Getter on contributorsEnabled.">isContributorsEnabled</a>
+<a name="l00111"></a><a class="code" href="class_user.html#a80d1c20bdf15c01aee05b33694e9a4a6">00111</a>                                    WRITE <a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4" title="Setter on contributorsEnabled.">setContributorsEnabled</a>)
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113                 
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a32203b27d16ae1013246a6a17fc57b21" title="Updating the property contributors_enabled.">updateContributorsEnabled</a>();
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117                 <span class="comment">// lang</span>
+<a name="l00120"></a>00120 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a372859c5f21832eb3568978775474207" title="Serializable form of language.">lang</a>
+<a name="l00121"></a>00121                                    READ <a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8" title="Getter on lang.">getLang</a>
+<a name="l00122"></a><a class="code" href="class_user.html#a372859c5f21832eb3568978775474207">00122</a>                                    WRITE <a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14" title="Setter on lang.">setLang</a>)
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124                 
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a04d67a4e1b8a64fae12dec4d9362e3e9" title="Updating the property lang.">updateLang</a>();
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128                 <span class="comment">// profile_background_image_url</span>
+<a name="l00131"></a>00131 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a808fb7a66d886dce6cb50ebe9ef4021e" title="Serializable form of backgroundURL.">profile_background_image_url</a>
+<a name="l00132"></a>00132                                    READ <a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19" title="Getter on backgroundURL.">getProfileBackgroundImageURL</a>
+<a name="l00133"></a><a class="code" href="class_user.html#a808fb7a66d886dce6cb50ebe9ef4021e">00133</a>                                    WRITE <a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef" title="Setter on backgroundURL.">setProfileBackgroundImageURL</a>)
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135                 
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aba5117b1b456f3868df51013b736b2d4" title="Updating the property profile_background_image_url.">updateProfileBackgroundImageURL</a>();
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139                 <span class="comment">// protected</span>
+<a name="l00142"></a>00142 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <span class="keyword">protected</span>
+<a name="l00143"></a>00143                                    READ <a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056" title="Getter on protected.">isProtected</a>
+<a name="l00144"></a><a class="code" href="class_user.html#a3a0be7422d7e76a9a9e27d09d986d5a8">00144</a>                                    WRITE <a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16" title="Setter on protected.">setProtected</a>)
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146                 
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a942fa51f4cfe7795f25df67de9d29db7" title="Updating the property protected.">updateProtected</a>();
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150                 <span class="comment">// profile_link_color</span>
+<a name="l00153"></a>00153 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#a6baa387506312ec30b356af4166b7bae" title="Serializable form of linkColor.">profile_link_color</a>
+<a name="l00154"></a>00154                                    READ <a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c" title="Getter on linkColor.">getProfileLinkColor</a>
+<a name="l00155"></a><a class="code" href="class_user.html#a6baa387506312ec30b356af4166b7bae">00155</a>                                    WRITE <a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41" title="Setter on linkColor.">setProfileLinkColor</a>)
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157                 
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a45e37bc4938e7ef053e9b7cf0e4df2e0" title="Updating the property profile_link_color.">updateProfileLinkColor</a>();
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161                 <span class="comment">// url</span>
+<a name="l00164"></a>00164 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ab1ed358ba11491cfa34908b8cfbd4470" title="Serializable form of userURL.">url</a>
+<a name="l00165"></a>00165                                    READ <a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223" title="Getter on url.">getURL</a>
+<a name="l00166"></a><a class="code" href="class_user.html#ab1ed358ba11491cfa34908b8cfbd4470">00166</a>                                    WRITE <a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed" title="Setter on url.">setURL</a>)
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168                 
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aca2e60c5aeee02bfee39257fb4f41fe2" title="Updating the property url.">updateURL</a>();
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172                 <span class="comment">// name</span>
+<a name="l00175"></a>00175 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ac26c2c8e14676f999ecd7aeaf8cff25f" title="Serializable form of userName.">name</a>
+<a name="l00176"></a>00176                                    READ <a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9" title="Getter on name.">getName</a>
+<a name="l00177"></a><a class="code" href="class_user.html#ac26c2c8e14676f999ecd7aeaf8cff25f">00177</a>                                    WRITE <a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7" title="Setter on name.">setName</a>)
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179                 
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a242ae71ac18e45624f80c8dddfa71339" title="Updating the property name.">updateName</a>();
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183                 <span class="comment">// listed_count</span>
+<a name="l00186"></a>00186 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a8a5c85980a9fe045c5fda3596c2c8ae1" title="Serializable form of listedCount.">listed_count</a>
+<a name="l00187"></a>00187                                    READ <a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed" title="Getter on listedCount.">getListedCount</a>
+<a name="l00188"></a><a class="code" href="class_user.html#a8a5c85980a9fe045c5fda3596c2c8ae1">00188</a>                                    WRITE <a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb" title="Setter on listedCount.">setListedCount</a>)
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190                 
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aaf7efabd8db348bf942900141034df7f" title="Updating the property listed_count.">updateListedCount</a>();
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194                 <span class="comment">// utc_offset</span>
+<a name="l00197"></a>00197 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a1693f9181ea024e4c73140822f64834b" title="Serializable form of timeZoneOffset.">utc_offset</a>
+<a name="l00198"></a>00198                                    READ <a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0" title="Getter on timeZoneOffset.">getUTCoffset</a>
+<a name="l00199"></a><a class="code" href="class_user.html#a1693f9181ea024e4c73140822f64834b">00199</a>                                    WRITE <a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc" title="Setter on timeZoneOffset.">setUTCoffset</a>)
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201                 
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6d9b232cf9830408f46fbc367a147694" title="Updating the property utc_offset.">updateUTCoffset</a>();
+<a name="l00204"></a>00204 
+<a name="l00205"></a>00205                 <span class="comment">// profile_background_color</span>
+<a name="l00208"></a>00208 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#ae1d9c5b2db7283a19b67af92c666781a" title="Serializable form of backgroundColor.">profile_background_color</a>
+<a name="l00209"></a>00209                                    READ <a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52" title="Getter on backgroundColor.">getProfileBackgroundColor</a>
+<a name="l00210"></a><a class="code" href="class_user.html#ae1d9c5b2db7283a19b67af92c666781a">00210</a>                                    WRITE <a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8" title="Setter on backgroundColor.">setProfileBackgroundColor</a>)
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212                 
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab74ea628d0251e2504e66538e5015d60" title="Updating the property profile_background_color.">updateProfileBackgroundColor</a>();
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216                 <span class="comment">// followers_count</span>
+<a name="l00219"></a>00219 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a49f88edae1f53afc8b477ab0aaabae28" title="Serializable form of followersCount.">followers_count</a>
+<a name="l00220"></a>00220                                    READ <a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa" title="Getter on followersCount.">getFollowersCount</a>
+<a name="l00221"></a><a class="code" href="class_user.html#a49f88edae1f53afc8b477ab0aaabae28">00221</a>                                    WRITE <a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0" title="Setter on followersCount.">setFollowersCount</a>)
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223                 
+<a name="l00224"></a>00224 
+<a name="l00225"></a>00225                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa6f5c2537769e4e1f5baf1756cb1cf76" title="Updating the property followers_count.">updateFollowersCount</a>();
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227                 <span class="comment">// profile_image_url</span>
+<a name="l00230"></a>00230 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a7df7e0c6534131305087cb9b378e618a" title="Serializable form of avatarURL.">profile_image_url</a>
+<a name="l00231"></a>00231                                    READ <a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d" title="Getter on avatarURL.">getProfileImageURL</a>
+<a name="l00232"></a><a class="code" href="class_user.html#a7df7e0c6534131305087cb9b378e618a">00232</a>                                    WRITE <a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea" title="Setter on avatarURL.">setProfileImageURL</a>)
+<a name="l00233"></a>00233 
+<a name="l00234"></a>00234                 
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac599aa1fd7d440089d8d5d352450c68e" title="Updating the property profile_image_url.">updateProfileImageURL</a>();
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238                 <span class="comment">// description</span>
+<a name="l00241"></a>00241 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#abb3dead42ec25138b837106fb14b17fa" title="Serializable form of userDescription.">description</a>
+<a name="l00242"></a>00242                                    READ <a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e" title="Getter on description.">getDescription</a>
+<a name="l00243"></a><a class="code" href="class_user.html#abb3dead42ec25138b837106fb14b17fa">00243</a>                                    WRITE <a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a" title="Setter on description.">setDescription</a>)
+<a name="l00244"></a>00244 
+<a name="l00245"></a>00245                 
+<a name="l00246"></a>00246 
+<a name="l00247"></a>00247                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af0386919960cdbba238dd04ac41a2ada" title="Updating the property description.">updateDescription</a>();
+<a name="l00248"></a>00248 
+<a name="l00249"></a>00249                 <span class="comment">// profile_background_tile</span>
+<a name="l00252"></a>00252 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a161a8b614e98dbe3cce9ef39bb0830f2" title="Serializable form of backgroundTile.">profile_background_tile</a>
+<a name="l00253"></a>00253                                    READ <a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426" title="Getter on backgroundTile.">isProfileBackgroundTile</a>
+<a name="l00254"></a><a class="code" href="class_user.html#a161a8b614e98dbe3cce9ef39bb0830f2">00254</a>                                    WRITE <a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04" title="Setter on backgroundTile.">setProfileBackgroundTile</a>)
+<a name="l00255"></a>00255 
+<a name="l00256"></a>00256                 
+<a name="l00257"></a>00257 
+<a name="l00258"></a>00258                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3e24d1f29c5dea0053dc6ed8227a80dc" title="Updating the property profile_background_tile.">updateProfileBackgroundTile</a>();
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260                 <span class="comment">// statuses_count</span>
+<a name="l00263"></a>00263 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a6b3bc5657316b6a9f719a2a0c202f485" title="Serializable form of tweetsCount.">statuses_count</a>
+<a name="l00264"></a>00264                                    READ <a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e" title="Getter on tweetsCount.">getStatusesCount</a>
+<a name="l00265"></a><a class="code" href="class_user.html#a6b3bc5657316b6a9f719a2a0c202f485">00265</a>                                    WRITE <a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526" title="Setter on tweetsCount.">setStatusesCount</a>)
+<a name="l00266"></a>00266 
+<a name="l00267"></a>00267                 
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9af88f882beb0c4e9625845b0faf3f6e" title="Updating the property statuses_count.">updateStatusesCount</a>();
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271                 <span class="comment">// created_at</span>
+<a name="l00274"></a>00274 <span class="comment"></span>                Q_PROPERTY(QDate <a class="code" href="class_user.html#a6bafdac540347d533a6ee7da065fafa3" title="Serializable form of createdAt.">created_at</a>
+<a name="l00275"></a>00275                                    READ <a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906" title="Getter on createdAt.">getCreatedAt</a>
+<a name="l00276"></a><a class="code" href="class_user.html#a6bafdac540347d533a6ee7da065fafa3">00276</a>                                    WRITE <a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da" title="Setter on createdAt.">setCreatedAt</a>)
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278                 
+<a name="l00279"></a>00279 
+<a name="l00280"></a>00280                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9b8f7a0c948ce55077941be47948ab25" title="Updating the property created_at.">updateCreatedAt</a>();
+<a name="l00281"></a>00281 
+<a name="l00282"></a>00282                 <span class="comment">// profile_sidebar_fill_color</span>
+<a name="l00285"></a>00285 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#a72680b04487155ccfcc41e7498aa56c9" title="Serializable form of sidebarColor.">profile_sidebar_fill_color</a>
+<a name="l00286"></a>00286                                    READ <a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904" title="Getter on sidebarColor.">getProfileSidebarFillColor</a>
+<a name="l00287"></a><a class="code" href="class_user.html#a72680b04487155ccfcc41e7498aa56c9">00287</a>                                    WRITE <a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719" title="Setter on sidebarColor.">setProfileSidebarFillColor</a>)
+<a name="l00288"></a>00288 
+<a name="l00289"></a>00289                 
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a8286170b66f0670d245da7f0b2bd65c7" title="Updating the property profile_sidebar_fill_color.">updateProfileSidebarFillColor</a>();
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293                 <span class="comment">// screen_name</span>
+<a name="l00296"></a>00296 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a97b78b70e4a04441ed843bc168ff44d3" title="Serializable form of screenName.">screen_name</a>
+<a name="l00297"></a>00297                                    READ <a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24" title="Getter on screenName.">getScreenName</a>
+<a name="l00298"></a><a class="code" href="class_user.html#a97b78b70e4a04441ed843bc168ff44d3">00298</a>                                    WRITE <a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a" title="Setter on screenName.">setScreenName</a>)
+<a name="l00299"></a>00299 
+<a name="l00300"></a>00300                 
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4b88e86e2302218e21bf952e218e63f8" title="Updating the property screen_name.">updateScreenName</a>();
+<a name="l00303"></a>00303 
+<a name="l00304"></a>00304                 <span class="comment">// status</span>
+<a name="l00307"></a>00307 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e" title="Serializable form of lastTweet.">status</a>
+<a name="l00308"></a>00308                                    READ <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>
+<a name="l00309"></a><a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e">00309</a>                                    WRITE <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>)
+<a name="l00310"></a>00310 
+<a name="l00311"></a>00311                 
+<a name="l00312"></a><a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0">00312</a>                 QVariantMap <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>;
 <a name="l00313"></a>00313 
-<a name="l00317"></a>00317                 <span class="keywordtype">void</span> setStatus(QVariantMap statusMap);
+<a name="l00317"></a>00317                 QVariantMap <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>();
 <a name="l00318"></a>00318 
-<a name="l00321"></a>00321                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f" title="Updating the property status.">updateStatus</a>();
-<a name="l00322"></a>00322 
-<a name="l00323"></a>00323                 <span class="comment">// geo_enabled</span>
-<a name="l00326"></a>00326 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a41e2088179dd4f81007f6ec08e55fa2a" title="Serializable form of geoEnabled.">geo_enabled</a>
-<a name="l00327"></a>00327                                    READ <a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee" title="Getter on geoEnabled.">isGeoEnabled</a>
-<a name="l00328"></a><a class="code" href="class_user.html#a41e2088179dd4f81007f6ec08e55fa2a">00328</a>                                    WRITE <a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff" title="Setter on geoEnabled.">setGeoEnabled</a>)
-<a name="l00329"></a>00329 
-<a name="l00332"></a>00332                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0bab68aff4d75047a1a8d704451c4e08" title="Updating the property geo_enabled.">updateGeoEnabled</a>();
-<a name="l00333"></a>00333 
-<a name="l00334"></a>00334                 <span class="comment">// default_profile_image</span>
-<a name="l00337"></a>00337 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#ae73853aaeb954445206d18f6ab071837" title="Serializable form of defaultProfileImage.">default_profile_image</a>
-<a name="l00338"></a>00338                                    READ <a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d" title="Getter on defaultProfileImage.">isDefaultProfileImage</a>
-<a name="l00339"></a><a class="code" href="class_user.html#ae73853aaeb954445206d18f6ab071837">00339</a>                                    WRITE <a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1" title="Setter on defaultProfileImage.">setDefaultProfileImage</a>)
-<a name="l00340"></a>00340 
-<a name="l00343"></a>00343                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6fc60680e063fa95f5107cb40b1f0fb3" title="Updating the property default_profile_image.">updateDefaultProfileImage</a>();
-<a name="l00344"></a>00344 
-<a name="l00345"></a>00345                 <span class="comment">// friends_count</span>
-<a name="l00348"></a>00348 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a3642f59dfad778c69c5d48db64af1a01" title="Serializable form of friendsCount.">friends_count</a>
-<a name="l00349"></a>00349                                    READ <a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771" title="Getter on friendsCount.">getFriendsCount</a>
-<a name="l00350"></a><a class="code" href="class_user.html#a3642f59dfad778c69c5d48db64af1a01">00350</a>                                    WRITE <a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8" title="Setter on friendsCount.">setFriendsCount</a>)
-<a name="l00351"></a>00351 
-<a name="l00354"></a>00354                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af9e7ce6818f31fc088c2f2b9e7ef9a6d" title="Updating the property friends_count.">updateFriendsCount</a>();
-<a name="l00355"></a>00355 
-<a name="l00356"></a>00356                 <span class="comment">// profile_sidebar_border_color</span>
-<a name="l00359"></a>00359 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#af8809eb83aad818be8ba46f42980ecc4" title="Serializable form of sidebarBorderColor.">profile_sidebar_border_color</a>
-<a name="l00360"></a>00360                                    READ <a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d" title="Getter on sidebarBorderColor.">getProfileSidebarBorderColor</a>
-<a name="l00361"></a><a class="code" href="class_user.html#af8809eb83aad818be8ba46f42980ecc4">00361</a>                                    WRITE <a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6" title="Setter on sidebarBorderColor.">setProfileSidebarBorderColor</a>)
-<a name="l00362"></a>00362 
-<a name="l00365"></a>00365                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4c0195fa5d2676b4a50c64b44d3d741d" title="Updating the property profile_sidebar_border_color.">updateProfileSidebarBorderColor</a>();
-<a name="l00366"></a>00366 
-<a name="l00367"></a>00367                 <span class="comment">// id_str</span>
-<a name="l00370"></a>00370 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ab93c5689f313cdf45fb2f2d571c714f8" title="Serializable form of userIDstr.">id_str</a>
-<a name="l00371"></a>00371                                    READ <a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59" title="Getter on IDstr.">getIDstr</a>
-<a name="l00372"></a><a class="code" href="class_user.html#ab93c5689f313cdf45fb2f2d571c714f8">00372</a>                                    WRITE <a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50" title="Setter on IDstr.">setIDstr</a>)
-<a name="l00373"></a>00373 
-<a name="l00376"></a>00376                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab13e536b026c262f34c569ed8eedacbb" title="Updating the property id_str.">updateIDstr</a>();
-<a name="l00377"></a>00377 
-<a name="l00378"></a>00378                 <span class="comment">// show_all_inline_media</span>
-<a name="l00381"></a>00381 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a7e248afe0b101759f39a8d8736dfdf56" title="Serializable form of showAllInlineMedia.">show_all_inline_media</a>
-<a name="l00382"></a>00382                                    READ <a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171" title="Getter on showAllInlineMedia.">isShowAllInlineMedia</a>
-<a name="l00383"></a><a class="code" href="class_user.html#a7e248afe0b101759f39a8d8736dfdf56">00383</a>                                    WRITE <a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f" title="Setter on showAllInlineMedia.">setShowAllInlineMedia</a>)
-<a name="l00384"></a>00384 
-<a name="l00387"></a>00387                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0fce05b770ca3d5d2b03ada4ee1797da" title="Updating the property show_all_inline_media.">updateShowAllInlineMedia</a>();
-<a name="l00388"></a>00388 
-<a name="l00389"></a>00389                 <span class="comment">// follow_request_sent</span>
-<a name="l00392"></a>00392 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a62542270df93bb4be8edb540e1c918a7" title="Serializable form of followRequestSent.">follow_request_sent</a>
-<a name="l00393"></a>00393                                    READ <a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65" title="Getter on followRequestSent.">isFollowRequestSent</a>
-<a name="l00394"></a><a class="code" href="class_user.html#a62542270df93bb4be8edb540e1c918a7">00394</a>                                    WRITE <a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462" title="Setter on followRequestSent.">setFollowRequestSent</a>)
-<a name="l00395"></a>00395 
-<a name="l00398"></a>00398                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab26d685c13842cde39836592019f82af" title="Updating the property follow_request_sent.">updateFollowRequestSent</a>();
-<a name="l00399"></a>00399 
-<a name="l00400"></a>00400                 <span class="comment">// profile_background_image_url_https</span>
-<a name="l00403"></a>00403 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a67076faea811c3777fec397f7d200ce4" title="Serializable form of backgroundURLhttps.">profile_background_image_url_https</a>
-<a name="l00404"></a>00404                                    READ <a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce" title="Getter on backgroundURLhttps.">getProfileBackgroundImageURLhttps</a>
-<a name="l00405"></a><a class="code" href="class_user.html#a67076faea811c3777fec397f7d200ce4">00405</a>                                    WRITE <a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3" title="Setter on backgroundURLhttps.">setProfileBackgroundImageURLhttps</a>)
-<a name="l00406"></a>00406 
-<a name="l00409"></a>00409                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7469bb10470e6b5e167c88cbb24c2ebb" title="Updating the property profile_background_image_url_https.">updateProfileBackgroundImageURLhttps</a>();
-<a name="l00410"></a>00410 
-<a name="l00411"></a>00411                 <span class="comment">// is_translator</span>
-<a name="l00414"></a>00414 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a27d4cf27cc53d1f8c9fcd2ebd88d3ff0" title="Serializable form of isTranslator.">is_translator</a>
-<a name="l00415"></a>00415                                    READ <a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f" title="Getter on isTranslator.">isTranslator</a>
-<a name="l00416"></a><a class="code" href="class_user.html#a27d4cf27cc53d1f8c9fcd2ebd88d3ff0">00416</a>                                    WRITE <a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6" title="Setter on isTranslator.">setTranslator</a>)
-<a name="l00417"></a>00417 
-<a name="l00420"></a>00420                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa98c9d152aa63049e8058fb65ed5a9ea" title="Updating the property is_translator.">updateTranslator</a>();
-<a name="l00421"></a>00421 
-<a name="l00422"></a>00422                 <span class="comment">// default_profile</span>
-<a name="l00425"></a>00425 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#ae4f393d034ac7874b9a030b6dd9ed7ad" title="Serializable form of defaultProfile.">default_profile</a>
-<a name="l00426"></a>00426                                    READ <a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e" title="Getter on defaultProfile.">isDefaultProfile</a>
-<a name="l00427"></a><a class="code" href="class_user.html#ae4f393d034ac7874b9a030b6dd9ed7ad">00427</a>                                    WRITE <a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119" title="Setter on defaultProfile.">setDefaultProfile</a>)
-<a name="l00428"></a>00428 
-<a name="l00431"></a>00431                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a404bc20460370d64827848137f8fe5df" title="Updating the property default_profile.">updateDefaultProfile</a>();
-<a name="l00432"></a>00432 
-<a name="l00433"></a>00433                 <span class="comment">// notifications</span>
-<a name="l00436"></a>00436 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a252ff2f075e3c413e52b27470c941be5" title="Serializable form of notificationsEnabled.">notifications</a>
-<a name="l00437"></a>00437                                    READ <a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a" title="Getter on notifications.">isNotifications</a>
-<a name="l00438"></a><a class="code" href="class_user.html#a252ff2f075e3c413e52b27470c941be5">00438</a>                                    WRITE <a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb" title="Setter on notifications.">setNotifications</a>)
-<a name="l00439"></a>00439 
-<a name="l00442"></a>00442                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af594ff874f2da1f57fcb177015e32823" title="Updating the property notifications.">updateNotifications</a>();
-<a name="l00443"></a>00443 
-<a name="l00444"></a>00444                 <span class="comment">// profile_use_background_image</span>
-<a name="l00447"></a>00447 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a1f01af9c9ea62457a42503941d0e0cd4" title="Serializable form of useBackgroundImage.">profile_use_background_image</a>
-<a name="l00448"></a>00448                                    READ <a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22" title="Getter on useBackgroundImage.">isProfileUseBackgroundImage</a>
-<a name="l00449"></a><a class="code" href="class_user.html#a1f01af9c9ea62457a42503941d0e0cd4">00449</a>                                    WRITE <a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1" title="Setter on useBackgroundImage.">setProfileUseBackgroundImage</a>)
-<a name="l00450"></a>00450 
-<a name="l00453"></a>00453                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a265b1ba60d6da22e7efc1dcc1356b7af" title="Updating the property profile_use_background_image.">updateProfileUseBackgroundImage</a>();
-<a name="l00454"></a>00454 
-<a name="l00455"></a>00455                 <span class="comment">// profile_image_url_https</span>
-<a name="l00458"></a>00458 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#abbd62151d3301019f5b5d9b2c6b48aa4" title="Serializable form of avatarURLhttps.">profile_image_url_https</a>
-<a name="l00459"></a>00459                                    READ <a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240" title="Getter on avatarURLhttps.">getProfileImageURLhttps</a>
-<a name="l00460"></a><a class="code" href="class_user.html#abbd62151d3301019f5b5d9b2c6b48aa4">00460</a>                                    WRITE <a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750" title="Setter on avatarURLhttps.">setProfileImageURLhttps</a>)
-<a name="l00461"></a>00461 
-<a name="l00464"></a>00464                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a95d37b8d52bfc01f66aa499e4448ea37" title="Updating the property profile_image_url_https.">updateProfileImageURLhttps</a>();
-<a name="l00465"></a>00465 
-<a name="l00466"></a>00466                 <span class="comment">// id</span>
-<a name="l00469"></a>00469 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <span class="keywordtype">id</span>
-<a name="l00470"></a>00470                                    READ <a class="code" href="class_user.html#adce159ebd006321c4bfc869998064e7f" title="Getter on ID.">getID</a>
-<a name="l00471"></a><a class="code" href="class_user.html#aac799cfbb4c8d4ef6634007d8bb4a18a">00471</a>                                    WRITE <a class="code" href="class_user.html#a1ddc3cc277ed53f42e914c182fff5226" title="Setter on ID.">setID</a>)
-<a name="l00472"></a>00472 
-<a name="l00475"></a>00475                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359" title="Updating the property id.">updateID</a>();
-<a name="l00476"></a>00476 
-<a name="l00477"></a>00477                 <span class="comment">// verified</span>
-<a name="l00480"></a>00480 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5800f62eba1e4560543009a3a29fa697" title="Serializable form of verifiedAccount.">verified</a>
-<a name="l00481"></a>00481                                    READ <a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a" title="Getter on verified.">isVerified</a>
-<a name="l00482"></a><a class="code" href="class_user.html#a5800f62eba1e4560543009a3a29fa697">00482</a>                                    WRITE <a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672" title="Setter on verified.">setVerified</a>)
-<a name="l00483"></a>00483 
-<a name="l00486"></a>00486                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a34d8260aad3ca4d262fe855c783d2c5f" title="Updating the property verified.">updateVerified</a>();
-<a name="l00487"></a>00487 
-<a name="l00488"></a>00488                 <span class="comment">// time_zone</span>
-<a name="l00491"></a>00491 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a4d81d31d0f4a1eae16e5047a4093928f" title="Serializable form of timeZone.">time_zone</a>
-<a name="l00492"></a>00492                                    READ <a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0" title="Getter on timeZone.">getTimeZone</a>
-<a name="l00493"></a><a class="code" href="class_user.html#a4d81d31d0f4a1eae16e5047a4093928f">00493</a>                                    WRITE <a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833" title="Setter on timeZone.">setTimeZone</a>)
-<a name="l00494"></a>00494 
-<a name="l00497"></a>00497                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a320e2c7c7f27919b8dde7db5722cacae" title="Updating the property time_zone.">updateTimeZone</a>();
-<a name="l00498"></a>00498 
-<a name="l00499"></a>00499                 <span class="comment">// favourites_count</span>
-<a name="l00502"></a>00502 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#ac887b1c38bebcc90a706c01229149348" title="Serializable form of favouritesCount.">favourites_count</a>
-<a name="l00503"></a>00503                                    READ <a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955" title="Getter on favoritesCount.">getFavouritesCount</a>
-<a name="l00504"></a><a class="code" href="class_user.html#ac887b1c38bebcc90a706c01229149348">00504</a>                                    WRITE <a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56" title="Setter on favoritesCount.">setFavouritesCount</a>)
-<a name="l00505"></a>00505 
-<a name="l00508"></a>00508                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#acab4af3846198e13459bd929c2621e27" title="Updating the property favourites_count.">updateFavouritesCount</a>();
-<a name="l00509"></a>00509 
-<a name="l00510"></a>00510                 <span class="comment">// profile_text_color</span>
-<a name="l00513"></a>00513 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#ab86a6b8ce890333d2d57db5290474b58" title="Serializable form of textColor.">profile_text_color</a>
-<a name="l00514"></a>00514                                    READ <a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7" title="Getter on textColor.">getProfileTextColor</a>
-<a name="l00515"></a><a class="code" href="class_user.html#ab86a6b8ce890333d2d57db5290474b58">00515</a>                                    WRITE <a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68" title="Setter on textColor.">setProfileTextColor</a>)
-<a name="l00516"></a>00516 
-<a name="l00519"></a>00519                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9abbff2fbbcf2b6d2e6ea00cc9703ad3" title="Updating the property profile_text_color.">updateProfileTextColor</a>();
-<a name="l00520"></a>00520 
-<a name="l00521"></a>00521                 <span class="comment">// location</span>
-<a name="l00524"></a>00524 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#af12b62282f29d8bdefbe68be69f6825c" title="Serializable form of userLocation.">location</a>
-<a name="l00525"></a>00525                                    READ <a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f" title="Getter on location.">getLocation</a>
-<a name="l00526"></a><a class="code" href="class_user.html#af12b62282f29d8bdefbe68be69f6825c">00526</a>                                    WRITE <a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db" title="Setter on location.">setLocation</a>)
-<a name="l00527"></a>00527 
-<a name="l00530"></a>00530                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a688dbd486fb06df8b9c7613518aa1996" title="Updating the property location.">updateLocation</a>();
-<a name="l00531"></a>00531 
-<a name="l00533"></a>00533         <span class="comment">// User management //</span>
-<a name="l00535"></a>00535 <span class="comment"></span>
-<a name="l00536"></a>00536         <a class="code" href="class_user.html#a3a0be7422d7e76a9a9e27d09d986d5a8" title="Serializable form of protectedAccount.">protected</a>:
-<a name="l00537"></a>00537                 <span class="comment">// User ID</span>
-<a name="l00538"></a>00538 
-<a name="l00540"></a><a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8">00540</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a2763d16d115f2a3be14689c378b434c8" title="User ID.">userID</a>;
-<a name="l00541"></a>00541 
-<a name="l00543"></a><a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab">00543</a>                 QString <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>;
+<a name="l00322"></a>00322                 <span class="keywordtype">void</span> setStatus(QVariantMap statusMap);
+<a name="l00323"></a>00323 
+<a name="l00326"></a>00326                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f" title="Updating the property status.">updateStatus</a>();
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328                 <span class="comment">// geo_enabled</span>
+<a name="l00331"></a>00331 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a41e2088179dd4f81007f6ec08e55fa2a" title="Serializable form of geoEnabled.">geo_enabled</a>
+<a name="l00332"></a>00332                                    READ <a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee" title="Getter on geoEnabled.">isGeoEnabled</a>
+<a name="l00333"></a><a class="code" href="class_user.html#a41e2088179dd4f81007f6ec08e55fa2a">00333</a>                                    WRITE <a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff" title="Setter on geoEnabled.">setGeoEnabled</a>)
+<a name="l00334"></a>00334 
+<a name="l00337"></a>00337                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0bab68aff4d75047a1a8d704451c4e08" title="Updating the property geo_enabled.">updateGeoEnabled</a>();
+<a name="l00338"></a>00338 
+<a name="l00339"></a>00339                 <span class="comment">// default_profile_image</span>
+<a name="l00342"></a>00342 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#ae73853aaeb954445206d18f6ab071837" title="Serializable form of defaultProfileImage.">default_profile_image</a>
+<a name="l00343"></a>00343                                    READ <a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d" title="Getter on defaultProfileImage.">isDefaultProfileImage</a>
+<a name="l00344"></a><a class="code" href="class_user.html#ae73853aaeb954445206d18f6ab071837">00344</a>                                    WRITE <a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1" title="Setter on defaultProfileImage.">setDefaultProfileImage</a>)
+<a name="l00345"></a>00345 
+<a name="l00348"></a>00348                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6fc60680e063fa95f5107cb40b1f0fb3" title="Updating the property default_profile_image.">updateDefaultProfileImage</a>();
+<a name="l00349"></a>00349 
+<a name="l00350"></a>00350                 <span class="comment">// friends_count</span>
+<a name="l00353"></a>00353 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#a3642f59dfad778c69c5d48db64af1a01" title="Serializable form of friendsCount.">friends_count</a>
+<a name="l00354"></a>00354                                    READ <a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771" title="Getter on friendsCount.">getFriendsCount</a>
+<a name="l00355"></a><a class="code" href="class_user.html#a3642f59dfad778c69c5d48db64af1a01">00355</a>                                    WRITE <a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8" title="Setter on friendsCount.">setFriendsCount</a>)
+<a name="l00356"></a>00356 
+<a name="l00359"></a>00359                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af9e7ce6818f31fc088c2f2b9e7ef9a6d" title="Updating the property friends_count.">updateFriendsCount</a>();
+<a name="l00360"></a>00360 
+<a name="l00361"></a>00361                 <span class="comment">// profile_sidebar_border_color</span>
+<a name="l00364"></a>00364 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#af8809eb83aad818be8ba46f42980ecc4" title="Serializable form of sidebarBorderColor.">profile_sidebar_border_color</a>
+<a name="l00365"></a>00365                                    READ <a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d" title="Getter on sidebarBorderColor.">getProfileSidebarBorderColor</a>
+<a name="l00366"></a><a class="code" href="class_user.html#af8809eb83aad818be8ba46f42980ecc4">00366</a>                                    WRITE <a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6" title="Setter on sidebarBorderColor.">setProfileSidebarBorderColor</a>)
+<a name="l00367"></a>00367 
+<a name="l00370"></a>00370                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4c0195fa5d2676b4a50c64b44d3d741d" title="Updating the property profile_sidebar_border_color.">updateProfileSidebarBorderColor</a>();
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372                 <span class="comment">// id_str</span>
+<a name="l00375"></a>00375 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#ab93c5689f313cdf45fb2f2d571c714f8" title="Serializable form of userIDstr.">id_str</a>
+<a name="l00376"></a>00376                                    READ <a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59" title="Getter on IDstr.">getIDstr</a>
+<a name="l00377"></a><a class="code" href="class_user.html#ab93c5689f313cdf45fb2f2d571c714f8">00377</a>                                    WRITE <a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50" title="Setter on IDstr.">setIDstr</a>)
+<a name="l00378"></a>00378 
+<a name="l00381"></a>00381                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab13e536b026c262f34c569ed8eedacbb" title="Updating the property id_str.">updateIDstr</a>();
+<a name="l00382"></a>00382 
+<a name="l00383"></a>00383                 <span class="comment">// show_all_inline_media</span>
+<a name="l00386"></a>00386 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a7e248afe0b101759f39a8d8736dfdf56" title="Serializable form of showAllInlineMedia.">show_all_inline_media</a>
+<a name="l00387"></a>00387                                    READ <a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171" title="Getter on showAllInlineMedia.">isShowAllInlineMedia</a>
+<a name="l00388"></a><a class="code" href="class_user.html#a7e248afe0b101759f39a8d8736dfdf56">00388</a>                                    WRITE <a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f" title="Setter on showAllInlineMedia.">setShowAllInlineMedia</a>)
+<a name="l00389"></a>00389 
+<a name="l00392"></a>00392                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0fce05b770ca3d5d2b03ada4ee1797da" title="Updating the property show_all_inline_media.">updateShowAllInlineMedia</a>();
+<a name="l00393"></a>00393 
+<a name="l00394"></a>00394                 <span class="comment">// follow_request_sent</span>
+<a name="l00397"></a>00397 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a62542270df93bb4be8edb540e1c918a7" title="Serializable form of followRequestSent.">follow_request_sent</a>
+<a name="l00398"></a>00398                                    READ <a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65" title="Getter on followRequestSent.">isFollowRequestSent</a>
+<a name="l00399"></a><a class="code" href="class_user.html#a62542270df93bb4be8edb540e1c918a7">00399</a>                                    WRITE <a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462" title="Setter on followRequestSent.">setFollowRequestSent</a>)
+<a name="l00400"></a>00400 
+<a name="l00403"></a>00403                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab26d685c13842cde39836592019f82af" title="Updating the property follow_request_sent.">updateFollowRequestSent</a>();
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405                 <span class="comment">// profile_background_image_url_https</span>
+<a name="l00408"></a>00408 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a67076faea811c3777fec397f7d200ce4" title="Serializable form of backgroundURLhttps.">profile_background_image_url_https</a>
+<a name="l00409"></a>00409                                    READ <a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce" title="Getter on backgroundURLhttps.">getProfileBackgroundImageURLhttps</a>
+<a name="l00410"></a><a class="code" href="class_user.html#a67076faea811c3777fec397f7d200ce4">00410</a>                                    WRITE <a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3" title="Setter on backgroundURLhttps.">setProfileBackgroundImageURLhttps</a>)
+<a name="l00411"></a>00411 
+<a name="l00414"></a>00414                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7469bb10470e6b5e167c88cbb24c2ebb" title="Updating the property profile_background_image_url_https.">updateProfileBackgroundImageURLhttps</a>();
+<a name="l00415"></a>00415 
+<a name="l00416"></a>00416                 <span class="comment">// is_translator</span>
+<a name="l00419"></a>00419 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a27d4cf27cc53d1f8c9fcd2ebd88d3ff0" title="Serializable form of isTranslator.">is_translator</a>
+<a name="l00420"></a>00420                                    READ <a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f" title="Getter on isTranslator.">isTranslator</a>
+<a name="l00421"></a><a class="code" href="class_user.html#a27d4cf27cc53d1f8c9fcd2ebd88d3ff0">00421</a>                                    WRITE <a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6" title="Setter on isTranslator.">setTranslator</a>)
+<a name="l00422"></a>00422 
+<a name="l00425"></a>00425                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa98c9d152aa63049e8058fb65ed5a9ea" title="Updating the property is_translator.">updateTranslator</a>();
+<a name="l00426"></a>00426 
+<a name="l00427"></a>00427                 <span class="comment">// default_profile</span>
+<a name="l00430"></a>00430 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#ae4f393d034ac7874b9a030b6dd9ed7ad" title="Serializable form of defaultProfile.">default_profile</a>
+<a name="l00431"></a>00431                                    READ <a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e" title="Getter on defaultProfile.">isDefaultProfile</a>
+<a name="l00432"></a><a class="code" href="class_user.html#ae4f393d034ac7874b9a030b6dd9ed7ad">00432</a>                                    WRITE <a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119" title="Setter on defaultProfile.">setDefaultProfile</a>)
+<a name="l00433"></a>00433 
+<a name="l00436"></a>00436                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a404bc20460370d64827848137f8fe5df" title="Updating the property default_profile.">updateDefaultProfile</a>();
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438                 <span class="comment">// notifications</span>
+<a name="l00441"></a>00441 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a252ff2f075e3c413e52b27470c941be5" title="Serializable form of notificationsEnabled.">notifications</a>
+<a name="l00442"></a>00442                                    READ <a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a" title="Getter on notifications.">isNotifications</a>
+<a name="l00443"></a><a class="code" href="class_user.html#a252ff2f075e3c413e52b27470c941be5">00443</a>                                    WRITE <a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb" title="Setter on notifications.">setNotifications</a>)
+<a name="l00444"></a>00444 
+<a name="l00447"></a>00447                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af594ff874f2da1f57fcb177015e32823" title="Updating the property notifications.">updateNotifications</a>();
+<a name="l00448"></a>00448 
+<a name="l00449"></a>00449                 <span class="comment">// profile_use_background_image</span>
+<a name="l00452"></a>00452 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a1f01af9c9ea62457a42503941d0e0cd4" title="Serializable form of useBackgroundImage.">profile_use_background_image</a>
+<a name="l00453"></a>00453                                    READ <a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22" title="Getter on useBackgroundImage.">isProfileUseBackgroundImage</a>
+<a name="l00454"></a><a class="code" href="class_user.html#a1f01af9c9ea62457a42503941d0e0cd4">00454</a>                                    WRITE <a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1" title="Setter on useBackgroundImage.">setProfileUseBackgroundImage</a>)
+<a name="l00455"></a>00455 
+<a name="l00458"></a>00458                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a265b1ba60d6da22e7efc1dcc1356b7af" title="Updating the property profile_use_background_image.">updateProfileUseBackgroundImage</a>();
+<a name="l00459"></a>00459 
+<a name="l00460"></a>00460                 <span class="comment">// profile_image_url_https</span>
+<a name="l00463"></a>00463 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#abbd62151d3301019f5b5d9b2c6b48aa4" title="Serializable form of avatarURLhttps.">profile_image_url_https</a>
+<a name="l00464"></a>00464                                    READ <a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240" title="Getter on avatarURLhttps.">getProfileImageURLhttps</a>
+<a name="l00465"></a><a class="code" href="class_user.html#abbd62151d3301019f5b5d9b2c6b48aa4">00465</a>                                    WRITE <a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750" title="Setter on avatarURLhttps.">setProfileImageURLhttps</a>)
+<a name="l00466"></a>00466 
+<a name="l00469"></a>00469                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a95d37b8d52bfc01f66aa499e4448ea37" title="Updating the property profile_image_url_https.">updateProfileImageURLhttps</a>();
+<a name="l00470"></a>00470 
+<a name="l00471"></a>00471                 <span class="comment">// id</span>
+<a name="l00474"></a>00474 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">long</span> <span class="keywordtype">id</span>
+<a name="l00475"></a>00475                                    READ <a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2" title="Getter on ID.">getID</a>
+<a name="l00476"></a><a class="code" href="class_user.html#aac799cfbb4c8d4ef6634007d8bb4a18a">00476</a>                                    WRITE <a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb" title="Setter on ID.">setID</a>)
+<a name="l00477"></a>00477 
+<a name="l00480"></a>00480                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359" title="Updating the property id.">updateID</a>();
+<a name="l00481"></a>00481 
+<a name="l00482"></a>00482                 <span class="comment">// verified</span>
+<a name="l00485"></a>00485 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5800f62eba1e4560543009a3a29fa697" title="Serializable form of verifiedAccount.">verified</a>
+<a name="l00486"></a>00486                                    READ <a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a" title="Getter on verified.">isVerified</a>
+<a name="l00487"></a><a class="code" href="class_user.html#a5800f62eba1e4560543009a3a29fa697">00487</a>                                    WRITE <a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672" title="Setter on verified.">setVerified</a>)
+<a name="l00488"></a>00488 
+<a name="l00491"></a>00491                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a34d8260aad3ca4d262fe855c783d2c5f" title="Updating the property verified.">updateVerified</a>();
+<a name="l00492"></a>00492 
+<a name="l00493"></a>00493                 <span class="comment">// time_zone</span>
+<a name="l00496"></a>00496 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#a4d81d31d0f4a1eae16e5047a4093928f" title="Serializable form of timeZone.">time_zone</a>
+<a name="l00497"></a>00497                                    READ <a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0" title="Getter on timeZone.">getTimeZone</a>
+<a name="l00498"></a><a class="code" href="class_user.html#a4d81d31d0f4a1eae16e5047a4093928f">00498</a>                                    WRITE <a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833" title="Setter on timeZone.">setTimeZone</a>)
+<a name="l00499"></a>00499 
+<a name="l00502"></a>00502                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a320e2c7c7f27919b8dde7db5722cacae" title="Updating the property time_zone.">updateTimeZone</a>();
+<a name="l00503"></a>00503 
+<a name="l00504"></a>00504                 <span class="comment">// favourites_count</span>
+<a name="l00507"></a>00507 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_user.html#ac887b1c38bebcc90a706c01229149348" title="Serializable form of favouritesCount.">favourites_count</a>
+<a name="l00508"></a>00508                                    READ <a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955" title="Getter on favoritesCount.">getFavouritesCount</a>
+<a name="l00509"></a><a class="code" href="class_user.html#ac887b1c38bebcc90a706c01229149348">00509</a>                                    WRITE <a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56" title="Setter on favoritesCount.">setFavouritesCount</a>)
+<a name="l00510"></a>00510 
+<a name="l00513"></a>00513                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#acab4af3846198e13459bd929c2621e27" title="Updating the property favourites_count.">updateFavouritesCount</a>();
+<a name="l00514"></a>00514 
+<a name="l00515"></a>00515                 <span class="comment">// profile_text_color</span>
+<a name="l00518"></a>00518 <span class="comment"></span>                Q_PROPERTY(QColor <a class="code" href="class_user.html#ab86a6b8ce890333d2d57db5290474b58" title="Serializable form of textColor.">profile_text_color</a>
+<a name="l00519"></a>00519                                    READ <a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7" title="Getter on textColor.">getProfileTextColor</a>
+<a name="l00520"></a><a class="code" href="class_user.html#ab86a6b8ce890333d2d57db5290474b58">00520</a>                                    WRITE <a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68" title="Setter on textColor.">setProfileTextColor</a>)
+<a name="l00521"></a>00521 
+<a name="l00524"></a>00524                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9abbff2fbbcf2b6d2e6ea00cc9703ad3" title="Updating the property profile_text_color.">updateProfileTextColor</a>();
+<a name="l00525"></a>00525 
+<a name="l00526"></a>00526                 <span class="comment">// location</span>
+<a name="l00529"></a>00529 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user.html#af12b62282f29d8bdefbe68be69f6825c" title="Serializable form of userLocation.">location</a>
+<a name="l00530"></a>00530                                    READ <a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f" title="Getter on location.">getLocation</a>
+<a name="l00531"></a><a class="code" href="class_user.html#af12b62282f29d8bdefbe68be69f6825c">00531</a>                                    WRITE <a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db" title="Setter on location.">setLocation</a>)
+<a name="l00532"></a>00532 
+<a name="l00535"></a>00535                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a688dbd486fb06df8b9c7613518aa1996" title="Updating the property location.">updateLocation</a>();
+<a name="l00536"></a>00536 
+<a name="l00537"></a>00537 
+<a name="l00539"></a>00539         <span class="comment">// User management //</span>
+<a name="l00541"></a>00541 <span class="comment"></span>
+<a name="l00542"></a>00542         <a class="code" href="class_user.html#a3a0be7422d7e76a9a9e27d09d986d5a8" title="Serializable form of protectedAccount.">protected</a>:
+<a name="l00543"></a>00543                 <span class="comment">// User ID</span>
 <a name="l00544"></a>00544 
-<a name="l00545"></a>00545                 <span class="comment">// Identity of the user</span>
-<a name="l00546"></a>00546 
-<a name="l00548"></a><a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6">00548</a>                 QString <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
-<a name="l00549"></a>00549 
-<a name="l00551"></a><a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33">00551</a>                 QString <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>;
+<a name="l00546"></a><a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09">00546</a>                 <span class="keywordtype">long</span> <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>;
+<a name="l00547"></a>00547 
+<a name="l00549"></a><a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab">00549</a>                 QString <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>;
+<a name="l00550"></a>00550 
+<a name="l00551"></a>00551                 <span class="comment">// Identity of the user</span>
 <a name="l00552"></a>00552 
-<a name="l00554"></a><a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b">00554</a>                 QString <a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a>;
+<a name="l00554"></a><a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6">00554</a>                 QString <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
 <a name="l00555"></a>00555 
-<a name="l00557"></a><a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd">00557</a>                 QString <a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a>;
+<a name="l00557"></a><a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33">00557</a>                 QString <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>;
 <a name="l00558"></a>00558 
-<a name="l00560"></a><a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81">00560</a>                 QString <a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a>;
+<a name="l00560"></a><a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b">00560</a>                 QString <a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a>;
 <a name="l00561"></a>00561 
-<a name="l00562"></a>00562                 <span class="comment">// Avatar</span>
-<a name="l00563"></a>00563 
-<a name="l00565"></a><a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426">00565</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a>;
-<a name="l00566"></a>00566 
-<a name="l00568"></a><a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279">00568</a>                 QString <a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a>;
+<a name="l00563"></a><a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd">00563</a>                 QString <a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a>;
+<a name="l00564"></a>00564 
+<a name="l00566"></a><a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81">00566</a>                 QString <a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a>;
+<a name="l00567"></a>00567 
+<a name="l00568"></a>00568                 <span class="comment">// Avatar</span>
 <a name="l00569"></a>00569 
-<a name="l00571"></a><a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864">00571</a>                 QString <a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a>;
+<a name="l00571"></a><a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426">00571</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a>;
 <a name="l00572"></a>00572 
-<a name="l00573"></a>00573                 <span class="comment">// User statistics</span>
-<a name="l00574"></a>00574 
-<a name="l00576"></a><a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca">00576</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a>;
-<a name="l00577"></a>00577 
-<a name="l00579"></a><a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397">00579</a>                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00574"></a><a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279">00574</a>                 QString <a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a>;
+<a name="l00575"></a>00575 
+<a name="l00577"></a><a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864">00577</a>                 QString <a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a>;
+<a name="l00578"></a>00578 
+<a name="l00579"></a>00579                 <span class="comment">// User statistics</span>
 <a name="l00580"></a>00580 
-<a name="l00582"></a><a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535">00582</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a>;
+<a name="l00582"></a><a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca">00582</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a>;
 <a name="l00583"></a>00583 
-<a name="l00585"></a><a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0">00585</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a>;
+<a name="l00585"></a><a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397">00585</a>                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
 <a name="l00586"></a>00586 
-<a name="l00588"></a><a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10">00588</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a>;
+<a name="l00588"></a><a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535">00588</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a>;
 <a name="l00589"></a>00589 
-<a name="l00591"></a><a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c">00591</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a>;
+<a name="l00591"></a><a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0">00591</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a>;
 <a name="l00592"></a>00592 
-<a name="l00593"></a>00593                 <span class="comment">// Theme</span>
-<a name="l00594"></a>00594 
-<a name="l00596"></a><a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450">00596</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a>;
-<a name="l00597"></a>00597 
-<a name="l00599"></a><a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b">00599</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a>;
+<a name="l00594"></a><a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10">00594</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a>;
+<a name="l00595"></a>00595 
+<a name="l00597"></a><a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c">00597</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a>;
+<a name="l00598"></a>00598 
+<a name="l00599"></a>00599                 <span class="comment">// Theme</span>
 <a name="l00600"></a>00600 
-<a name="l00602"></a><a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840">00602</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a>;
+<a name="l00602"></a><a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450">00602</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a>;
 <a name="l00603"></a>00603 
-<a name="l00605"></a><a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38">00605</a>                 QString <a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a>;
+<a name="l00605"></a><a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b">00605</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a>;
 <a name="l00606"></a>00606 
-<a name="l00608"></a><a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051">00608</a>                 QString <a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a>;
+<a name="l00608"></a><a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840">00608</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a>;
 <a name="l00609"></a>00609 
-<a name="l00611"></a><a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43">00611</a>                 QColor <a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a>;
+<a name="l00611"></a><a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38">00611</a>                 QString <a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a>;
 <a name="l00612"></a>00612 
-<a name="l00614"></a><a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb">00614</a>                 QColor <a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a>;
+<a name="l00614"></a><a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051">00614</a>                 QString <a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a>;
 <a name="l00615"></a>00615 
-<a name="l00617"></a><a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9">00617</a>                 QColor <a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a>;
+<a name="l00617"></a><a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43">00617</a>                 QColor <a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a>;
 <a name="l00618"></a>00618 
-<a name="l00621"></a><a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1">00621</a>                 QColor <a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a>;
-<a name="l00622"></a>00622 
-<a name="l00624"></a><a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d">00624</a>                 QColor <a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a>;
-<a name="l00625"></a>00625 
-<a name="l00626"></a>00626                 <span class="comment">// Location</span>
-<a name="l00627"></a>00627 
-<a name="l00629"></a><a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77">00629</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a>;
-<a name="l00630"></a>00630 
-<a name="l00632"></a><a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178">00632</a>                 QString <a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a>;
+<a name="l00620"></a><a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb">00620</a>                 QColor <a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a>;
+<a name="l00621"></a>00621 
+<a name="l00623"></a><a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9">00623</a>                 QColor <a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a>;
+<a name="l00624"></a>00624 
+<a name="l00627"></a><a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1">00627</a>                 QColor <a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a>;
+<a name="l00628"></a>00628 
+<a name="l00630"></a><a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d">00630</a>                 QColor <a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a>;
+<a name="l00631"></a>00631 
+<a name="l00632"></a>00632                 <span class="comment">// Location</span>
 <a name="l00633"></a>00633 
-<a name="l00634"></a>00634                 <span class="comment">// Other parameters</span>
-<a name="l00635"></a>00635 
-<a name="l00637"></a><a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254">00637</a>                 QDate <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>;
-<a name="l00638"></a>00638 
-<a name="l00640"></a><a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71">00640</a>                 QString <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>;
+<a name="l00635"></a><a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77">00635</a>                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a>;
+<a name="l00636"></a>00636 
+<a name="l00638"></a><a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178">00638</a>                 QString <a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a>;
+<a name="l00639"></a>00639 
+<a name="l00640"></a>00640                 <span class="comment">// Other parameters</span>
 <a name="l00641"></a>00641 
-<a name="l00643"></a><a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576">00643</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>;
+<a name="l00643"></a><a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254">00643</a>                 QDate <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>;
 <a name="l00644"></a>00644 
-<a name="l00647"></a><a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354">00647</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
-<a name="l00648"></a>00648 
-<a name="l00650"></a><a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a">00650</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>;
-<a name="l00651"></a>00651 
-<a name="l00654"></a><a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99">00654</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>;
-<a name="l00655"></a>00655 
-<a name="l00657"></a><a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207">00657</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>;
-<a name="l00658"></a>00658 
-<a name="l00659"></a>00659                 <span class="comment">// Miscanellous</span>
-<a name="l00660"></a>00660 
-<a name="l00662"></a><a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9">00662</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a>;
-<a name="l00663"></a>00663 
-<a name="l00665"></a><a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a">00665</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a>;
+<a name="l00646"></a><a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71">00646</a>                 QString <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>;
+<a name="l00647"></a>00647 
+<a name="l00649"></a><a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576">00649</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>;
+<a name="l00650"></a>00650 
+<a name="l00653"></a><a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354">00653</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
+<a name="l00654"></a>00654 
+<a name="l00656"></a><a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a">00656</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>;
+<a name="l00657"></a>00657 
+<a name="l00660"></a><a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99">00660</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>;
+<a name="l00661"></a>00661 
+<a name="l00663"></a><a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207">00663</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>;
+<a name="l00664"></a>00664 
+<a name="l00665"></a>00665                 <span class="comment">// Miscanellous</span>
 <a name="l00666"></a>00666 
-<a name="l00668"></a><a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba">00668</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a>;
+<a name="l00668"></a><a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9">00668</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a>;
 <a name="l00669"></a>00669 
-<a name="l00670"></a>00670         public:
-<a name="l00671"></a>00671                 <span class="comment">// Getter and setters</span>
+<a name="l00671"></a><a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a">00671</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a>;
 <a name="l00672"></a>00672 
-<a name="l00676"></a>00676                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa" title="Getter on contributorsEnabled.">isContributorsEnabled</a>();
-<a name="l00677"></a>00677 
-<a name="l00681"></a>00681                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4" title="Setter on contributorsEnabled.">setContributorsEnabled</a>(<span class="keywordtype">bool</span> newContributorsEnabled);
-<a name="l00682"></a>00682 
-<a name="l00686"></a>00686                 QString <a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8" title="Getter on lang.">getLang</a>();
-<a name="l00687"></a>00687 
-<a name="l00691"></a>00691                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14" title="Setter on lang.">setLang</a>(QString newLang);
-<a name="l00692"></a>00692 
-<a name="l00696"></a>00696                 QString <a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19" title="Getter on backgroundURL.">getProfileBackgroundImageURL</a>();
-<a name="l00697"></a>00697 
-<a name="l00701"></a>00701                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef" title="Setter on backgroundURL.">setProfileBackgroundImageURL</a>(QString newBackgroundURL);
-<a name="l00702"></a>00702 
-<a name="l00706"></a>00706                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056" title="Getter on protected.">isProtected</a>();
-<a name="l00707"></a>00707 
-<a name="l00711"></a>00711                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16" title="Setter on protected.">setProtected</a>(<span class="keywordtype">bool</span> newProtected);
-<a name="l00712"></a>00712 
-<a name="l00716"></a>00716                 QColor <a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c" title="Getter on linkColor.">getProfileLinkColor</a>();
-<a name="l00717"></a>00717 
-<a name="l00721"></a>00721                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41" title="Setter on linkColor.">setProfileLinkColor</a>(QColor newLinkColor);
-<a name="l00722"></a>00722 
-<a name="l00726"></a>00726                 QString <a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223" title="Getter on url.">getURL</a>();
-<a name="l00727"></a>00727 
-<a name="l00731"></a>00731                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed" title="Setter on url.">setURL</a>(QString newURL);
-<a name="l00732"></a>00732 
-<a name="l00736"></a>00736                 QString <a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9" title="Getter on name.">getName</a>();
-<a name="l00737"></a>00737 
-<a name="l00741"></a>00741                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7" title="Setter on name.">setName</a>(QString newName);
-<a name="l00742"></a>00742 
-<a name="l00746"></a>00746                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed" title="Getter on listedCount.">getListedCount</a>();
-<a name="l00747"></a>00747 
-<a name="l00751"></a>00751                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb" title="Setter on listedCount.">setListedCount</a>(<span class="keywordtype">int</span> newListedCount);
-<a name="l00752"></a>00752 
-<a name="l00756"></a>00756                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0" title="Getter on timeZoneOffset.">getUTCoffset</a>();
-<a name="l00757"></a>00757 
-<a name="l00761"></a>00761                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc" title="Setter on timeZoneOffset.">setUTCoffset</a>(<span class="keywordtype">int</span> newTimeZoneOffset);
-<a name="l00762"></a>00762 
-<a name="l00766"></a>00766                 QColor <a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52" title="Getter on backgroundColor.">getProfileBackgroundColor</a>();
-<a name="l00767"></a>00767 
-<a name="l00771"></a>00771                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8" title="Setter on backgroundColor.">setProfileBackgroundColor</a>(QColor newBackgroundColor);
-<a name="l00772"></a>00772 
-<a name="l00776"></a>00776                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa" title="Getter on followersCount.">getFollowersCount</a>();
-<a name="l00777"></a>00777 
-<a name="l00781"></a>00781                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0" title="Setter on followersCount.">setFollowersCount</a>(<span class="keywordtype">int</span> newFollowersCount);
-<a name="l00782"></a>00782 
-<a name="l00786"></a>00786                 QString <a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d" title="Getter on avatarURL.">getProfileImageURL</a>();
-<a name="l00787"></a>00787 
-<a name="l00791"></a>00791                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea" title="Setter on avatarURL.">setProfileImageURL</a>(QString newAvatarURL);
-<a name="l00792"></a>00792 
-<a name="l00796"></a>00796                 QString <a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e" title="Getter on description.">getDescription</a>();
-<a name="l00797"></a>00797 
-<a name="l00801"></a>00801                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a" title="Setter on description.">setDescription</a>(QString newDescription);
-<a name="l00802"></a>00802 
-<a name="l00806"></a>00806                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426" title="Getter on backgroundTile.">isProfileBackgroundTile</a>();
-<a name="l00807"></a>00807 
-<a name="l00811"></a>00811                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04" title="Setter on backgroundTile.">setProfileBackgroundTile</a>(<span class="keywordtype">bool</span> newBackgroundTile);
-<a name="l00812"></a>00812 
-<a name="l00816"></a>00816                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e" title="Getter on tweetsCount.">getStatusesCount</a>();
-<a name="l00817"></a>00817 
-<a name="l00821"></a>00821                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526" title="Setter on tweetsCount.">setStatusesCount</a>(<span class="keywordtype">int</span> newTweetsCount);
-<a name="l00822"></a>00822 
-<a name="l00826"></a>00826                 QDate <a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906" title="Getter on createdAt.">getCreatedAt</a>();
-<a name="l00827"></a>00827 
-<a name="l00831"></a>00831                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da" title="Setter on createdAt.">setCreatedAt</a>(QDate newDate);
-<a name="l00832"></a>00832 
-<a name="l00836"></a>00836                 QColor <a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904" title="Getter on sidebarColor.">getProfileSidebarFillColor</a>();
-<a name="l00837"></a>00837 
-<a name="l00841"></a>00841                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719" title="Setter on sidebarColor.">setProfileSidebarFillColor</a>(QColor newSidebarColor);
-<a name="l00842"></a>00842 
-<a name="l00846"></a>00846                 QString <a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24" title="Getter on screenName.">getScreenName</a>();
-<a name="l00847"></a>00847 
-<a name="l00851"></a>00851                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a" title="Setter on screenName.">setScreenName</a>(QString newScreenName);
-<a name="l00852"></a>00852 
-<a name="l00856"></a>00856                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c" title="Getter on the last tweet written by the user.">getLastTweet</a>();
-<a name="l00857"></a>00857 
-<a name="l00861"></a>00861                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d" title="Setter on the last tweet written by the user.">setLastTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet);
-<a name="l00862"></a>00862 
-<a name="l00866"></a>00866                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee" title="Getter on geoEnabled.">isGeoEnabled</a>();
-<a name="l00867"></a>00867 
-<a name="l00871"></a>00871                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff" title="Setter on geoEnabled.">setGeoEnabled</a>(<span class="keywordtype">bool</span> newGeoEnabled);
-<a name="l00872"></a>00872 
-<a name="l00876"></a>00876                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d" title="Getter on defaultProfileImage.">isDefaultProfileImage</a>();
-<a name="l00877"></a>00877 
-<a name="l00881"></a>00881                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1" title="Setter on defaultProfileImage.">setDefaultProfileImage</a>(<span class="keywordtype">bool</span> newDefaultProfileImage);
-<a name="l00882"></a>00882 
-<a name="l00886"></a>00886                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771" title="Getter on friendsCount.">getFriendsCount</a>();
-<a name="l00887"></a>00887 
-<a name="l00891"></a>00891                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8" title="Setter on friendsCount.">setFriendsCount</a>(<span class="keywordtype">int</span> newfriendsCount);
-<a name="l00892"></a>00892 
-<a name="l00896"></a>00896                 QColor <a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d" title="Getter on sidebarBorderColor.">getProfileSidebarBorderColor</a>();
-<a name="l00897"></a>00897 
-<a name="l00901"></a>00901                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6" title="Setter on sidebarBorderColor.">setProfileSidebarBorderColor</a>(QColor newSidebarBorderColor);
-<a name="l00902"></a>00902 
-<a name="l00906"></a>00906                 QString <a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59" title="Getter on IDstr.">getIDstr</a>();
-<a name="l00907"></a>00907 
-<a name="l00911"></a>00911                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50" title="Setter on IDstr.">setIDstr</a>(QString newID);
-<a name="l00912"></a>00912 
-<a name="l00916"></a>00916                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171" title="Getter on showAllInlineMedia.">isShowAllInlineMedia</a>();
-<a name="l00917"></a>00917 
-<a name="l00921"></a>00921                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f" title="Setter on showAllInlineMedia.">setShowAllInlineMedia</a>(<span class="keywordtype">bool</span> newShowAllInlineMedia);
-<a name="l00922"></a>00922 
-<a name="l00926"></a>00926                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65" title="Getter on followRequestSent.">isFollowRequestSent</a>();
-<a name="l00927"></a>00927 
-<a name="l00931"></a>00931                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462" title="Setter on followRequestSent.">setFollowRequestSent</a>(<span class="keywordtype">bool</span> newFollowRequestSent);
-<a name="l00932"></a>00932 
-<a name="l00936"></a>00936                 QString <a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce" title="Getter on backgroundURLhttps.">getProfileBackgroundImageURLhttps</a>();
-<a name="l00937"></a>00937 
-<a name="l00941"></a>00941                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3" title="Setter on backgroundURLhttps.">setProfileBackgroundImageURLhttps</a>(QString newBackgroundURL);
-<a name="l00942"></a>00942 
-<a name="l00946"></a>00946                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f" title="Getter on isTranslator.">isTranslator</a>();
-<a name="l00947"></a>00947 
-<a name="l00951"></a>00951                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6" title="Setter on isTranslator.">setTranslator</a>(<span class="keywordtype">bool</span> newTranslator);
-<a name="l00952"></a>00952 
-<a name="l00956"></a>00956                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e" title="Getter on defaultProfile.">isDefaultProfile</a>();
-<a name="l00957"></a>00957 
-<a name="l00961"></a>00961                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119" title="Setter on defaultProfile.">setDefaultProfile</a>(<span class="keywordtype">bool</span> newDefaultProfile);
-<a name="l00962"></a>00962 
-<a name="l00966"></a>00966                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a" title="Getter on notifications.">isNotifications</a>();
-<a name="l00967"></a>00967 
-<a name="l00971"></a>00971                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb" title="Setter on notifications.">setNotifications</a>(<span class="keywordtype">bool</span> newNotifications);
-<a name="l00972"></a>00972 
-<a name="l00976"></a>00976                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22" title="Getter on useBackgroundImage.">isProfileUseBackgroundImage</a>();
-<a name="l00977"></a>00977 
-<a name="l00981"></a>00981                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1" title="Setter on useBackgroundImage.">setProfileUseBackgroundImage</a>(<span class="keywordtype">bool</span> newUseBackgroundImage);
-<a name="l00982"></a>00982 
-<a name="l00986"></a>00986                 QString <a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240" title="Getter on avatarURLhttps.">getProfileImageURLhttps</a>();
-<a name="l00987"></a>00987 
-<a name="l00991"></a>00991                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750" title="Setter on avatarURLhttps.">setProfileImageURLhttps</a>(QString newAvatarURL);
-<a name="l00992"></a>00992 
-<a name="l00996"></a>00996                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#adce159ebd006321c4bfc869998064e7f" title="Getter on ID.">getID</a>();
-<a name="l00997"></a>00997 
-<a name="l01001"></a>01001                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a1ddc3cc277ed53f42e914c182fff5226" title="Setter on ID.">setID</a>(<span class="keywordtype">int</span> newID);
-<a name="l01002"></a>01002 
-<a name="l01006"></a>01006                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a" title="Getter on verified.">isVerified</a>();
-<a name="l01007"></a>01007 
-<a name="l01011"></a>01011                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672" title="Setter on verified.">setVerified</a>(<span class="keywordtype">bool</span> newVerified);
-<a name="l01012"></a>01012 
-<a name="l01016"></a>01016                 QString <a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0" title="Getter on timeZone.">getTimeZone</a>();
-<a name="l01017"></a>01017 
-<a name="l01021"></a>01021                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833" title="Setter on timeZone.">setTimeZone</a>(QString newTimeZone);
-<a name="l01022"></a>01022 
-<a name="l01026"></a>01026                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955" title="Getter on favoritesCount.">getFavouritesCount</a>();
-<a name="l01027"></a>01027 
-<a name="l01031"></a>01031                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56" title="Setter on favoritesCount.">setFavouritesCount</a>(<span class="keywordtype">int</span> newFavoritesCount);
-<a name="l01032"></a>01032 
-<a name="l01036"></a>01036                 QColor <a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7" title="Getter on textColor.">getProfileTextColor</a>();
-<a name="l01037"></a>01037 
-<a name="l01041"></a>01041                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68" title="Setter on textColor.">setProfileTextColor</a>(QColor newTextColor);
-<a name="l01042"></a>01042 
-<a name="l01046"></a>01046                 QString <a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f" title="Getter on location.">getLocation</a>();
-<a name="l01047"></a>01047 
-<a name="l01051"></a>01051                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db" title="Setter on location.">setLocation</a>(QString newLocation);
-<a name="l01052"></a>01052 };
-<a name="l01053"></a>01053 
-<a name="l01054"></a>01054 <span class="comment">// Serialization of User</span>
-<a name="l01055"></a>01055 Q_DECLARE_METATYPE(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>)
+<a name="l00674"></a><a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba">00674</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a>;
+<a name="l00675"></a>00675 
+<a name="l00676"></a>00676 
+<a name="l00678"></a>00678         <span class="comment">// Getter and setters //</span>
+<a name="l00680"></a>00680 <span class="comment"></span>
+<a name="l00681"></a>00681         public:
+<a name="l00685"></a>00685                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa" title="Getter on contributorsEnabled.">isContributorsEnabled</a>();
+<a name="l00686"></a>00686 
+<a name="l00690"></a>00690                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4" title="Setter on contributorsEnabled.">setContributorsEnabled</a>(<span class="keywordtype">bool</span> newContributorsEnabled);
+<a name="l00691"></a>00691 
+<a name="l00695"></a>00695                 QString <a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8" title="Getter on lang.">getLang</a>();
+<a name="l00696"></a>00696 
+<a name="l00700"></a>00700                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14" title="Setter on lang.">setLang</a>(QString newLang);
+<a name="l00701"></a>00701 
+<a name="l00705"></a>00705                 QString <a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19" title="Getter on backgroundURL.">getProfileBackgroundImageURL</a>();
+<a name="l00706"></a>00706 
+<a name="l00710"></a>00710                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef" title="Setter on backgroundURL.">setProfileBackgroundImageURL</a>(QString newBackgroundURL);
+<a name="l00711"></a>00711 
+<a name="l00715"></a>00715                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056" title="Getter on protected.">isProtected</a>();
+<a name="l00716"></a>00716 
+<a name="l00720"></a>00720                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16" title="Setter on protected.">setProtected</a>(<span class="keywordtype">bool</span> newProtected);
+<a name="l00721"></a>00721 
+<a name="l00725"></a>00725                 QColor <a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c" title="Getter on linkColor.">getProfileLinkColor</a>();
+<a name="l00726"></a>00726 
+<a name="l00730"></a>00730                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41" title="Setter on linkColor.">setProfileLinkColor</a>(QColor newLinkColor);
+<a name="l00731"></a>00731 
+<a name="l00735"></a>00735                 QString <a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223" title="Getter on url.">getURL</a>();
+<a name="l00736"></a>00736 
+<a name="l00740"></a>00740                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed" title="Setter on url.">setURL</a>(QString newURL);
+<a name="l00741"></a>00741 
+<a name="l00745"></a>00745                 QString <a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9" title="Getter on name.">getName</a>();
+<a name="l00746"></a>00746 
+<a name="l00750"></a>00750                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7" title="Setter on name.">setName</a>(QString newName);
+<a name="l00751"></a>00751 
+<a name="l00755"></a>00755                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed" title="Getter on listedCount.">getListedCount</a>();
+<a name="l00756"></a>00756 
+<a name="l00760"></a>00760                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb" title="Setter on listedCount.">setListedCount</a>(<span class="keywordtype">int</span> newListedCount);
+<a name="l00761"></a>00761 
+<a name="l00765"></a>00765                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0" title="Getter on timeZoneOffset.">getUTCoffset</a>();
+<a name="l00766"></a>00766 
+<a name="l00770"></a>00770                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc" title="Setter on timeZoneOffset.">setUTCoffset</a>(<span class="keywordtype">int</span> newTimeZoneOffset);
+<a name="l00771"></a>00771 
+<a name="l00775"></a>00775                 QColor <a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52" title="Getter on backgroundColor.">getProfileBackgroundColor</a>();
+<a name="l00776"></a>00776 
+<a name="l00780"></a>00780                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8" title="Setter on backgroundColor.">setProfileBackgroundColor</a>(QColor newBackgroundColor);
+<a name="l00781"></a>00781 
+<a name="l00785"></a>00785                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa" title="Getter on followersCount.">getFollowersCount</a>();
+<a name="l00786"></a>00786 
+<a name="l00790"></a>00790                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0" title="Setter on followersCount.">setFollowersCount</a>(<span class="keywordtype">int</span> newFollowersCount);
+<a name="l00791"></a>00791 
+<a name="l00795"></a>00795                 QString <a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d" title="Getter on avatarURL.">getProfileImageURL</a>();
+<a name="l00796"></a>00796 
+<a name="l00800"></a>00800                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea" title="Setter on avatarURL.">setProfileImageURL</a>(QString newAvatarURL);
+<a name="l00801"></a>00801 
+<a name="l00805"></a>00805                 QString <a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e" title="Getter on description.">getDescription</a>();
+<a name="l00806"></a>00806 
+<a name="l00810"></a>00810                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a" title="Setter on description.">setDescription</a>(QString newDescription);
+<a name="l00811"></a>00811 
+<a name="l00815"></a>00815                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426" title="Getter on backgroundTile.">isProfileBackgroundTile</a>();
+<a name="l00816"></a>00816 
+<a name="l00820"></a>00820                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04" title="Setter on backgroundTile.">setProfileBackgroundTile</a>(<span class="keywordtype">bool</span> newBackgroundTile);
+<a name="l00821"></a>00821 
+<a name="l00825"></a>00825                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e" title="Getter on tweetsCount.">getStatusesCount</a>();
+<a name="l00826"></a>00826 
+<a name="l00830"></a>00830                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526" title="Setter on tweetsCount.">setStatusesCount</a>(<span class="keywordtype">int</span> newTweetsCount);
+<a name="l00831"></a>00831 
+<a name="l00835"></a>00835                 QDate <a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906" title="Getter on createdAt.">getCreatedAt</a>();
+<a name="l00836"></a>00836 
+<a name="l00840"></a>00840                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da" title="Setter on createdAt.">setCreatedAt</a>(QDate newDate);
+<a name="l00841"></a>00841 
+<a name="l00845"></a>00845                 QColor <a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904" title="Getter on sidebarColor.">getProfileSidebarFillColor</a>();
+<a name="l00846"></a>00846 
+<a name="l00850"></a>00850                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719" title="Setter on sidebarColor.">setProfileSidebarFillColor</a>(QColor newSidebarColor);
+<a name="l00851"></a>00851 
+<a name="l00855"></a>00855                 QString <a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24" title="Getter on screenName.">getScreenName</a>();
+<a name="l00856"></a>00856 
+<a name="l00860"></a>00860                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a" title="Setter on screenName.">setScreenName</a>(QString newScreenName);
+<a name="l00861"></a>00861 
+<a name="l00865"></a>00865                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c" title="Getter on the last tweet written by the user.">getLastTweet</a>();
+<a name="l00866"></a>00866 
+<a name="l00870"></a>00870                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d" title="Setter on the last tweet written by the user.">setLastTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet);
+<a name="l00871"></a>00871 
+<a name="l00875"></a>00875                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee" title="Getter on geoEnabled.">isGeoEnabled</a>();
+<a name="l00876"></a>00876 
+<a name="l00880"></a>00880                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff" title="Setter on geoEnabled.">setGeoEnabled</a>(<span class="keywordtype">bool</span> newGeoEnabled);
+<a name="l00881"></a>00881 
+<a name="l00885"></a>00885                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d" title="Getter on defaultProfileImage.">isDefaultProfileImage</a>();
+<a name="l00886"></a>00886 
+<a name="l00890"></a>00890                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1" title="Setter on defaultProfileImage.">setDefaultProfileImage</a>(<span class="keywordtype">bool</span> newDefaultProfileImage);
+<a name="l00891"></a>00891 
+<a name="l00895"></a>00895                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771" title="Getter on friendsCount.">getFriendsCount</a>();
+<a name="l00896"></a>00896 
+<a name="l00900"></a>00900                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8" title="Setter on friendsCount.">setFriendsCount</a>(<span class="keywordtype">int</span> newfriendsCount);
+<a name="l00901"></a>00901 
+<a name="l00905"></a>00905                 QColor <a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d" title="Getter on sidebarBorderColor.">getProfileSidebarBorderColor</a>();
+<a name="l00906"></a>00906 
+<a name="l00910"></a>00910                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6" title="Setter on sidebarBorderColor.">setProfileSidebarBorderColor</a>(QColor newSidebarBorderColor);
+<a name="l00911"></a>00911 
+<a name="l00915"></a>00915                 QString <a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59" title="Getter on IDstr.">getIDstr</a>();
+<a name="l00916"></a>00916 
+<a name="l00920"></a>00920                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50" title="Setter on IDstr.">setIDstr</a>(QString newID);
+<a name="l00921"></a>00921 
+<a name="l00925"></a>00925                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171" title="Getter on showAllInlineMedia.">isShowAllInlineMedia</a>();
+<a name="l00926"></a>00926 
+<a name="l00930"></a>00930                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f" title="Setter on showAllInlineMedia.">setShowAllInlineMedia</a>(<span class="keywordtype">bool</span> newShowAllInlineMedia);
+<a name="l00931"></a>00931 
+<a name="l00935"></a>00935                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65" title="Getter on followRequestSent.">isFollowRequestSent</a>();
+<a name="l00936"></a>00936 
+<a name="l00940"></a>00940                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462" title="Setter on followRequestSent.">setFollowRequestSent</a>(<span class="keywordtype">bool</span> newFollowRequestSent);
+<a name="l00941"></a>00941 
+<a name="l00945"></a>00945                 QString <a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce" title="Getter on backgroundURLhttps.">getProfileBackgroundImageURLhttps</a>();
+<a name="l00946"></a>00946 
+<a name="l00950"></a>00950                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3" title="Setter on backgroundURLhttps.">setProfileBackgroundImageURLhttps</a>(QString newBackgroundURL);
+<a name="l00951"></a>00951 
+<a name="l00955"></a>00955                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f" title="Getter on isTranslator.">isTranslator</a>();
+<a name="l00956"></a>00956 
+<a name="l00960"></a>00960                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6" title="Setter on isTranslator.">setTranslator</a>(<span class="keywordtype">bool</span> newTranslator);
+<a name="l00961"></a>00961 
+<a name="l00965"></a>00965                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e" title="Getter on defaultProfile.">isDefaultProfile</a>();
+<a name="l00966"></a>00966 
+<a name="l00970"></a>00970                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119" title="Setter on defaultProfile.">setDefaultProfile</a>(<span class="keywordtype">bool</span> newDefaultProfile);
+<a name="l00971"></a>00971 
+<a name="l00975"></a>00975                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a" title="Getter on notifications.">isNotifications</a>();
+<a name="l00976"></a>00976 
+<a name="l00980"></a>00980                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb" title="Setter on notifications.">setNotifications</a>(<span class="keywordtype">bool</span> newNotifications);
+<a name="l00981"></a>00981 
+<a name="l00985"></a>00985                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22" title="Getter on useBackgroundImage.">isProfileUseBackgroundImage</a>();
+<a name="l00986"></a>00986 
+<a name="l00990"></a>00990                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1" title="Setter on useBackgroundImage.">setProfileUseBackgroundImage</a>(<span class="keywordtype">bool</span> newUseBackgroundImage);
+<a name="l00991"></a>00991 
+<a name="l00995"></a>00995                 QString <a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240" title="Getter on avatarURLhttps.">getProfileImageURLhttps</a>();
+<a name="l00996"></a>00996 
+<a name="l01000"></a>01000                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750" title="Setter on avatarURLhttps.">setProfileImageURLhttps</a>(QString newAvatarURL);
+<a name="l01001"></a>01001 
+<a name="l01005"></a>01005                 <span class="keywordtype">long</span> <a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2" title="Getter on ID.">getID</a>();
+<a name="l01006"></a>01006 
+<a name="l01010"></a>01010                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb" title="Setter on ID.">setID</a>(<span class="keywordtype">long</span> newID);
+<a name="l01011"></a>01011 
+<a name="l01015"></a>01015                 <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a" title="Getter on verified.">isVerified</a>();
+<a name="l01016"></a>01016 
+<a name="l01020"></a>01020                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672" title="Setter on verified.">setVerified</a>(<span class="keywordtype">bool</span> newVerified);
+<a name="l01021"></a>01021 
+<a name="l01025"></a>01025                 QString <a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0" title="Getter on timeZone.">getTimeZone</a>();
+<a name="l01026"></a>01026 
+<a name="l01030"></a>01030                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833" title="Setter on timeZone.">setTimeZone</a>(QString newTimeZone);
+<a name="l01031"></a>01031 
+<a name="l01035"></a>01035                 <span class="keywordtype">int</span> <a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955" title="Getter on favoritesCount.">getFavouritesCount</a>();
+<a name="l01036"></a>01036 
+<a name="l01040"></a>01040                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56" title="Setter on favoritesCount.">setFavouritesCount</a>(<span class="keywordtype">int</span> newFavoritesCount);
+<a name="l01041"></a>01041 
+<a name="l01045"></a>01045                 QColor <a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7" title="Getter on textColor.">getProfileTextColor</a>();
+<a name="l01046"></a>01046 
+<a name="l01050"></a>01050                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68" title="Setter on textColor.">setProfileTextColor</a>(QColor newTextColor);
+<a name="l01051"></a>01051 
+<a name="l01055"></a>01055                 QString <a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f" title="Getter on location.">getLocation</a>();
 <a name="l01056"></a>01056 
-<a name="l01062"></a>01062 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
-<a name="l01063"></a>01063 
-<a name="l01069"></a>01069 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
-<a name="l01070"></a>01070 
-<a name="l01071"></a>01071 <span class="preprocessor">#endif // USER_HPP</span>
+<a name="l01060"></a>01060                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db" title="Setter on location.">setLocation</a>(QString newLocation);
+<a name="l01061"></a>01061 };
+<a name="l01062"></a>01062 
+<a name="l01063"></a>01063 <span class="comment">// Serialization of User</span>
+<a name="l01064"></a>01064 Q_DECLARE_METATYPE(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>)
+<a name="l01065"></a>01065 
+<a name="l01071"></a>01071 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
+<a name="l01072"></a>01072 
+<a name="l01078"></a>01078 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
+<a name="l01079"></a>01079 
+<a name="l01080"></a>01080 <span class="preprocessor">#endif // USER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -737,7 +742,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

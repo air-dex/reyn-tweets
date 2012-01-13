@@ -161,19 +161,19 @@ window.onload = initDynSections;
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <span class="comment">// Reading the property p_userAccount</span>
-<a name="l00078"></a><a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494">00078</a> QVariantMap <a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494" title="Reading the property p_userAccount.">ReynTweetsConfiguration::getUserAccountProperty</a>() {
+<a name="l00078"></a><a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494">00078</a> QVariantMap <a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494" title="Reading the property user_account.">ReynTweetsConfiguration::getUserAccountProperty</a>() {
 <a name="l00079"></a>00079         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#afb23b3fbea785832406ae6c9ced19967" title="Representation of the property p_userAccount.">userAccountProperty</a>;
 <a name="l00080"></a>00080 }
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 <span class="comment">// Writing the property p_userAccount</span>
-<a name="l00083"></a><a class="code" href="class_reyn_tweets_configuration.html#a859a45ccc9f5979d73775e3f4af5f083">00083</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a859a45ccc9f5979d73775e3f4af5f083" title="Writing the property p_userAccount.">ReynTweetsConfiguration::setUserAccountProperty</a>(QVariantMap accountMap) {
+<a name="l00083"></a><a class="code" href="class_reyn_tweets_configuration.html#a859a45ccc9f5979d73775e3f4af5f083">00083</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a859a45ccc9f5979d73775e3f4af5f083" title="Writing the property user_account.">ReynTweetsConfiguration::setUserAccountProperty</a>(QVariantMap accountMap) {
 <a name="l00084"></a>00084         <a class="code" href="class_reyn_tweets_configuration.html#afb23b3fbea785832406ae6c9ced19967" title="Representation of the property p_userAccount.">userAccountProperty</a> = accountMap;
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087 <span class="comment">// Updating the property p_userAccount</span>
 <a name="l00088"></a><a class="code" href="class_reyn_tweets_configuration.html#a1fc47924d786573cf4f2dfec1663ec21">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a1fc47924d786573cf4f2dfec1663ec21" title="Updating the property p_userAccount.">ReynTweetsConfiguration::updateUserAccountProperty</a>() {
 <a name="l00089"></a>00089         <span class="comment">// Updating the property</span>
-<a name="l00090"></a>00090         setProperty(<span class="stringliteral">&quot;p_userAccount&quot;</span>, QVariant(<a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>()));
+<a name="l00090"></a>00090         setProperty(<span class="stringliteral">&quot;user_account&quot;</span>, QVariant(<a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>()));
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093 
@@ -236,7 +236,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

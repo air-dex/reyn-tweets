@@ -125,9 +125,14 @@ window.onload = initDynSections;
 <a name="l00043"></a>00043                 <span class="keyword">virtual</span> QVariantMap <a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>();
 <a name="l00044"></a>00044 
 <a name="l00049"></a>00049                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap</a>(QVariantMap map);
-<a name="l00050"></a>00050 };
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#endif // REYNTWEETSSERIALIZABLE_HPP</span>
+<a name="l00050"></a>00050 
+<a name="l00056"></a>00056                 <span class="keyword">static</span> QVariantList <a class="code" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78" title="Converting a list of serializables into a QVariantList serializable by QJSON.">toVariantList</a>(QList&lt;ReynTweetsSerializable&gt; serializables);
+<a name="l00057"></a>00057 <span class="comment">/*</span>
+<a name="l00063"></a>00063 <span class="comment">                static QList&lt;ReynTweetsSerializable&gt; fillWithList(QVariantList serializables);</span>
+<a name="l00064"></a>00064 <span class="comment">//*/</span>
+<a name="l00065"></a>00065 };
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="preprocessor">#endif // REYNTWEETSSERIALIZABLE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -143,7 +148,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

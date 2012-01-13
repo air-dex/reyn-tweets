@@ -99,10 +99,16 @@ Inheritance diagram for ReynTweetsSerializable:</div>
  <div class="center">
   <img src="class_reyn_tweets_serializable.png" usemap="#ReynTweetsSerializable_map" alt=""/>
   <map id="ReynTweetsSerializable_map" name="ReynTweetsSerializable_map">
-<area href="class_reyn_tweets_configuration.html" alt="ReynTweetsConfiguration" shape="rect" coords="0,56,156,80"/>
-<area href="class_tweet.html" alt="Tweet" shape="rect" coords="166,56,322,80"/>
-<area href="class_user.html" alt="User" shape="rect" coords="332,56,488,80"/>
-<area href="class_user_account.html" alt="UserAccount" shape="rect" coords="498,56,654,80"/>
+<area href="class_hashtag.html" alt="Hashtag" shape="rect" coords="166,56,322,80"/>
+<area href="class_media_size.html" alt="MediaSize" shape="rect" coords="166,112,322,136"/>
+<area href="class_media_sizes.html" alt="MediaSizes" shape="rect" coords="166,168,322,192"/>
+<area href="class_reyn_tweets_configuration.html" alt="ReynTweetsConfiguration" shape="rect" coords="166,224,322,248"/>
+<area href="class_tweet.html" alt="Tweet" shape="rect" coords="166,280,322,304"/>
+<area href="class_tweet_entities.html" alt="TweetEntities" shape="rect" coords="166,336,322,360"/>
+<area href="class_u_r_l_entity.html" alt="URLEntity" shape="rect" coords="166,392,322,416"/>
+<area href="class_user.html" alt="User" shape="rect" coords="166,448,322,472"/>
+<area href="class_user_account.html" alt="UserAccount" shape="rect" coords="166,504,322,528"/>
+<area href="class_user_mention.html" alt="UserMention" shape="rect" coords="166,560,322,584"/>
 </map>
  </div>
 </div>
@@ -114,6 +120,9 @@ Inheritance diagram for ReynTweetsSerializable:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling a <a class="el" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a> object with the informations contained in the map.  <a href="#af22da764be6a4ce24af15bddc7227d58"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35">toMap</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting the object into a QVariantMap.  <a href="#a90fa140d46ade35acab8016d5837cc35"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78">toVariantList</a> (QList&lt; <a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a> &gt; serializables)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a list of serializables into a QVariantList serializable by QJSON.  <a href="#a2272d2094d2622a33aa9bbf0cb6e4a78"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Abstract class to represent classes which are serializable. It converts the object into a QVariantMap which are serializable by QJSON (<code><a class="el" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap()</a>;</code>) and vice versa (<code><a class="el" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap()</a>;</code>). Here are two default methods using the QObjectHelper class of QJSON. </p>
@@ -144,7 +153,7 @@ Inheritance diagram for ReynTweetsSerializable:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntweetsserializable_8cpp_source.html#l00033">33</a> of file <a class="el" href="reyntweetsserializable_8cpp_source.html">reyntweetsserializable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsserializable_8cpp_source.html#l00034">34</a> of file <a class="el" href="reyntweetsserializable_8cpp_source.html">reyntweetsserializable.cpp</a>.</p>
 
 </div>
 </div>
@@ -166,7 +175,36 @@ Inheritance diagram for ReynTweetsSerializable:</div>
 <p>Converting the object into a QVariantMap. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A QVariantMap containing all the informations. </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsserializable_8cpp_source.html#l00028">28</a> of file <a class="el" href="reyntweetsserializable_8cpp_source.html">reyntweetsserializable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsserializable_8cpp_source.html#l00029">29</a> of file <a class="el" href="reyntweetsserializable_8cpp_source.html">reyntweetsserializable.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2272d2094d2622a33aa9bbf0cb6e4a78"></a><!-- doxytag: member="ReynTweetsSerializable::toVariantList" ref="a2272d2094d2622a33aa9bbf0cb6e4a78" args="(QList&lt; ReynTweetsSerializable &gt; serializables)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static QVariantList ReynTweetsSerializable::toVariantList </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; <a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a> &gt;&nbsp;</td>
+          <td class="paramname"> <em>serializables</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converting a list of serializables into a QVariantList serializable by QJSON. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>serializables</em>&nbsp;</td><td>List to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QVariantList </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntweetsserializable_8cpp_source.html#l00039">39</a> of file <a class="el" href="reyntweetsserializable_8cpp_source.html">reyntweetsserializable.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +227,7 @@ Inheritance diagram for ReynTweetsSerializable:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:28 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:28 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

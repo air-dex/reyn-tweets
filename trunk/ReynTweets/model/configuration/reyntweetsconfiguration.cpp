@@ -87,7 +87,7 @@ void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
 // Updating the property p_userAccount
 void ReynTweetsConfiguration::updateUserAccountProperty() {
 	// Updating the property
-	setProperty("p_userAccount", QVariant(userAccount.toMap()));
+	setProperty("user_account", QVariant(userAccount.toMap()));
 }
 
 

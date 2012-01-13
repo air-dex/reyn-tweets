@@ -67,7 +67,7 @@ class MediaSizes : public ReynTweetsSerializable
 
 		// Friends serialization operators
 
-		/// @fn friend QDataStream & operator<<(QDataStream & out, const MediaSizes & size);
+		/// @fn friend QDataStream & operator<<(QDataStream & out, const MediaSizes & sizes);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
 		/// @param sizes Object to put in the stream

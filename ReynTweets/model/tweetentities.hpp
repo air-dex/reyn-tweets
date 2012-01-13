@@ -221,7 +221,7 @@ class TweetEntities : public ReynTweetsSerializable
 	///////////////
 
 	public:
-		/// @fn QVariantList QList<Media>();
+		/// @fn QList<Media> getMedia();
 		/// @brief Reading medias
 		/// @return medias
 		QList<Media> getMedia();
@@ -282,9 +282,9 @@ QDataStream & operator>>(QDataStream & in, TweetEntities & entities);
 //////////
 // Util //
 //////////
-/// @fn static QList<T> fillWithList(QVariantList entities);
-/// @brief Converting a QVariantList serialized by QJSON into a list of entities.
-/// @param T Type of entities
+/// @fn template <class T> QList<T> fillWithList(QVariantList entities);
+/// @brief Converting a QVariantList serialized by QJSON into a list of
+/// entities whose class is represented by the template parameter T.
 /// @param entities List to convert
 /// @return The corresponding list of entities
 template <class T>

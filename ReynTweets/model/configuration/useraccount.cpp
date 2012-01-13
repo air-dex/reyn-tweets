@@ -88,14 +88,12 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 // Properties management //
 ///////////////////////////
 
-/// @fn void fillWithPropertiesMaps();
-/// @brief Filling serializable fields with thecorresponding  property maps
+// Filling serializable fields with thecorresponding  property maps
 void UserAccount::fillWithPropertiesMaps() {
 	UserAccount.fillWithMap(userMap);
 }
 
-/// @fn void updateAllProperties();
-/// @brief Updating all the properties
+// Updating all the properties
 void UserAccount::updateAllProperties() {
 	updateAccessTokenProperty();
 	updateTokenSecretProperty();

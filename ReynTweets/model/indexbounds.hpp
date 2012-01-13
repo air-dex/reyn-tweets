@@ -106,7 +106,7 @@ class IndexBounds : public QObject
 
 		/// @fn void setMin(int newMin);
 		/// @brief Setter on min
-		/// @param newResize New value for min
+		/// @param newMin New value for min
 		int setMin(int newMin);
 
 		/// @fn int getMax();
@@ -116,7 +116,7 @@ class IndexBounds : public QObject
 
 		/// @fn void setMax(int newMax);
 		/// @brief Setter on max
-		/// @param newResize New value for max
+		/// @param newMax New value for max
 		void setMax(int newMax);
 
 		/// @fn QVariantList toVariantList();

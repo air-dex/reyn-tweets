@@ -174,7 +174,7 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 		/// @return resizeMedia
 		Resize getResize();
 
-		/// @fn void setResizeProperty(Resize newResize);
+		/// @fn void setResize(Resize newResize);
 		/// @brief Setter on resizeMedia
 		/// @param newResize New value for resizeProperty
 		void setResize(Resize newResize);

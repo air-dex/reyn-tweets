@@ -214,7 +214,7 @@ class Tweet : public ReynTweetsSerializable
 			/// @return userMap
 			QVariantMap getUserMap();
 
-			/// @fn void setUsersMap(QVariantMap newUserMap);
+			/// @fn void setUserMap(QVariantMap newUserMap);
 			/// @brief Writing the property user
 			/// @param newUserMap New value for user
 			void setUserMap(QVariantMap newUserMap);

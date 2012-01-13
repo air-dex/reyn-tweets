@@ -42,7 +42,7 @@ class UserMention : public ReynTweetsSerializable
 		/// @brief Constructor
 		UserMention();
 
-		/// @fn virtual ~URLEntity();
+		/// @fn virtual ~UserMention();
 		/// @brief Destructor
 		virtual ~UserMention();
 

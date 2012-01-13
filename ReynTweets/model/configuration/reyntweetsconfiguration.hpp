@@ -99,9 +99,9 @@ class ReynTweetsConfiguration : public ReynTweetsSerializable
 		void fillWithPropertiesMaps();
 
 		// User account
-		/// @property p_userAccount
+		/// @property user_account
 		/// @brief Serializable form of the account
-		Q_PROPERTY(QVariantMap p_userAccount
+		Q_PROPERTY(QVariantMap user_account
 				   READ getUserAccountProperty
 				   WRITE setUserAccountProperty)
 
@@ -109,12 +109,12 @@ class ReynTweetsConfiguration : public ReynTweetsSerializable
 		QVariantMap userAccountProperty;
 
 		/// @fn QVariantMap getUserAccountProperty();
-		/// @brief Reading the property p_userAccount
+		/// @brief Reading the property user_account
 		/// @return The user account
 		QVariantMap getUserAccountProperty();
 
 		/// @fn void setUserAccountProperty(QVariantMap account);
-		/// @brief Writing the property p_userAccount
+		/// @brief Writing the property user_account
 		/// @param account New value for the account
 		void setUserAccountProperty(QVariantMap accountMap);
 

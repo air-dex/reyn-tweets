@@ -222,7 +222,7 @@ window.onload = initDynSections;
 <a name="l00132"></a>00132         <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> ua;
 <a name="l00133"></a>00133         ua.<a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>(<span class="stringliteral">&quot;tocredaccess&quot;</span>);
 <a name="l00134"></a>00134         ua.<a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>(<span class="stringliteral">&quot;tokensecret&quot;</span>);
-<a name="l00135"></a>00135         ua.<a class="code" href="class_user_account.html#a9379e414c4c7216e00e11af530d43144" title="Setter on the user.">setUser</a>(<span class="stringliteral">&quot;@air_dex&quot;</span>);
+<a name="l00135"></a>00135         ua.<a class="code" href="class_user_account.html#ab4305853cf2219e8983f21bba6fc0dfb" title="Setter on the user.">setUser</a>(<span class="stringliteral">&quot;@air_dex&quot;</span>);
 <a name="l00136"></a>00136 
 <a name="l00137"></a>00137         <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> conf;
 <a name="l00138"></a>00138         qDebug(<span class="stringliteral">&quot;La propriete p_userAccount avant son affectation :&quot;</span>);
@@ -279,14 +279,14 @@ window.onload = initDynSections;
 <a name="l00189"></a>00189         qDebug(<span class="stringliteral">&quot;Le nouveau user account de la conf :&quot;</span>);
 <a name="l00190"></a>00190         qDebug(QByteArray(<span class="stringliteral">&quot;AccessToken : &quot;</span>).append(conf2.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
 <a name="l00191"></a>00191         qDebug(QByteArray(<span class="stringliteral">&quot;TokenSecret : &quot;</span>).append(conf2.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
-<a name="l00192"></a>00192         qDebug(QByteArray(<span class="stringliteral">&quot;User : &quot;</span>).append(conf2.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#a79f83ffb445f03b1e290107d8c5e1357" title="Getter on the user.">getUser</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
+<a name="l00192"></a>00192         qDebug(QByteArray(<span class="stringliteral">&quot;User : &quot;</span>).append(conf2.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#acf74667e5d2ad77dbe26bf61f5e79993" title="Getter on the user.">getUser</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
 <a name="l00193"></a>00193 }
 <a name="l00194"></a>00194 
 <a name="l00195"></a><a class="code" href="class_test_widget.html#ada80e66f3cfb7fbdd36dadc188f6a2d0">00195</a> <span class="keywordtype">void</span> <a class="code" href="class_test_widget.html#ada80e66f3cfb7fbdd36dadc188f6a2d0">TestWidget::serialUASlot</a>() {
 <a name="l00196"></a>00196         <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> ua;
 <a name="l00197"></a>00197         ua.<a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>(<span class="stringliteral">&quot;tocredaccess&quot;</span>);
 <a name="l00198"></a>00198         ua.<a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>(<span class="stringliteral">&quot;tokensecret&quot;</span>);
-<a name="l00199"></a>00199         ua.<a class="code" href="class_user_account.html#a9379e414c4c7216e00e11af530d43144" title="Setter on the user.">setUser</a>(<span class="stringliteral">&quot;@air_dex&quot;</span>);
+<a name="l00199"></a>00199         ua.<a class="code" href="class_user_account.html#ab4305853cf2219e8983f21bba6fc0dfb" title="Setter on the user.">setUser</a>(<span class="stringliteral">&quot;@air_dex&quot;</span>);
 <a name="l00200"></a>00200 
 <a name="l00201"></a>00201         <span class="comment">// Sérialiszation de l&#39;user account</span>
 <a name="l00202"></a>00202         QVariant uaVariant = qVariantFromValue(ua);
@@ -322,7 +322,7 @@ window.onload = initDynSections;
 <a name="l00232"></a>00232         qDebug(<span class="stringliteral">&quot;Le nouveau user account :&quot;</span>);
 <a name="l00233"></a>00233         qDebug(QByteArray(<span class="stringliteral">&quot;AccessToken : &quot;</span>).append(ua2.<a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
 <a name="l00234"></a>00234         qDebug(QByteArray(<span class="stringliteral">&quot;TokenSecret : &quot;</span>).append(ua2.<a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
-<a name="l00235"></a>00235         qDebug(QByteArray(<span class="stringliteral">&quot;User : &quot;</span>).append(ua2.<a class="code" href="class_user_account.html#a79f83ffb445f03b1e290107d8c5e1357" title="Getter on the user.">getUser</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
+<a name="l00235"></a>00235         qDebug(QByteArray(<span class="stringliteral">&quot;User : &quot;</span>).append(ua2.<a class="code" href="class_user_account.html#acf74667e5d2ad77dbe26bf61f5e79993" title="Getter on the user.">getUser</a>()).append(<span class="charliteral">&#39;.&#39;</span>).data());
 <a name="l00236"></a>00236 }
 <a name="l00237"></a>00237 
 </pre></div></div>
@@ -340,7 +340,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:24 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

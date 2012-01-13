@@ -91,6 +91,8 @@ window.onload = initDynSections;
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
       <li><a href="functions_rela.html"><span>Related&nbsp;Functions</span></a></li>
     </ul>
@@ -104,6 +106,7 @@ window.onload = initDynSections;
       <li><a href="functions_func_0x65.html#index_e"><span>e</span></a></li>
       <li><a href="functions_func_0x66.html#index_f"><span>f</span></a></li>
       <li><a href="functions_func_0x67.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_func_0x68.html#index_h"><span>h</span></a></li>
       <li><a href="functions_func_0x69.html#index_i"><span>i</span></a></li>
       <li><a href="functions_func_0x6b.html#index_k"><span>k</span></a></li>
       <li><a href="functions_func_0x6c.html#index_l"><span>l</span></a></li>
@@ -125,7 +128,16 @@ window.onload = initDynSections;
 <li>recopie()
 : <a class="el" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761">ReynTweetsConfiguration</a>
 , <a class="el" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6">UserAccount</a>
+, <a class="el" href="class_index_bounds.html#a25cfcbff18354837cab833e22ffd5281">IndexBounds</a>
+, <a class="el" href="class_tweet.html#ac6b6dafe560c50d36217c3dedfbfb75c">Tweet</a>
+, <a class="el" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d">TweetEntities</a>
+, <a class="el" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346">Media</a>
+, <a class="el" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">URLEntity</a>
 , <a class="el" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">User</a>
+, <a class="el" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9">Hashtag</a>
+, <a class="el" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399">MediaSize</a>
+, <a class="el" href="class_user_mention.html#a7223e44d4e86c1183367dc0cb8db886c">UserMention</a>
+, <a class="el" href="class_media_sizes.html#a248cf2a1f8bc9afccf261d23b999fa0b">MediaSizes</a>
 </li>
 <li>removeRequest()
 : <a class="el" href="class_requester_manager.html#ac1adbd4583c50bc75c281d1e0e15de6a">RequesterManager</a>
@@ -134,8 +146,8 @@ window.onload = initDynSections;
 : <a class="el" href="class_reyn_twitter_calls.html#a17e8805c13f5767d2facbbb3562ad14b">ReynTwitterCalls</a>
 </li>
 <li>requestDone()
-: <a class="el" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d">GenericRequester</a>
-, <a class="el" href="class_twitter_communicator.html#a3557b08e67b3e2cc72b6d047f3778cf7">TwitterCommunicator</a>
+: <a class="el" href="class_twitter_communicator.html#a3557b08e67b3e2cc72b6d047f3778cf7">TwitterCommunicator</a>
+, <a class="el" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d">GenericRequester</a>
 </li>
 <li>RequesterManager()
 : <a class="el" href="class_requester_manager.html#ac8607fe8b8f7b37b907d4b92342a9849">RequesterManager</a>
@@ -161,14 +173,17 @@ window.onload = initDynSections;
 , <a class="el" href="class_reyn_twitter_calls.html#a54e30146e3b00633b8bfed0cb0640ed0">ReynTwitterCalls</a>
 , <a class="el" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45">OAuthProcess</a>
 </li>
+<li>resize2String()
+: <a class="el" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6">MediaSize</a>
+</li>
 <li>ResultWrapper()
-: <a class="el" href="class_result_wrapper.html#a7b6fffd28ced8879951f8f09945b5fce">ResultWrapper</a>
+: <a class="el" href="class_result_wrapper.html#a03070c620da4dd8dd7fe3a9af64b6ca2">ResultWrapper</a>
 </li>
 <li>rewriteAsBool()
 : <a class="el" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b">OAuthParser</a>
 </li>
 <li>ReynTweetsConfiguration()
-: <a class="el" href="class_reyn_tweets_configuration.html#af6fab0a076bbf6c2bc1b217734a211a2">ReynTweetsConfiguration</a>
+: <a class="el" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90">ReynTweetsConfiguration</a>
 </li>
 <li>ReynTweetsWidget()
 : <a class="el" href="class_reyn_tweets_widget.html#aa1c1ba3a2e3632a3f8d3fbb538fae6a4">ReynTweetsWidget</a>
@@ -195,7 +210,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:25 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:26 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

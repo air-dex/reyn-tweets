@@ -112,17 +112,39 @@ window.onload = initDynSections;
 <a name="l00022"></a>00022 <span class="comment">*/</span>
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QJson/QObjectHelper&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="comment">// Converting the object into a QVariantMap</span>
-<a name="l00028"></a><a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35">00028</a> QVariantMap <a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">ReynTweetsSerializable::toMap</a>() {
-<a name="l00029"></a>00029         <span class="keywordflow">return</span> QJson::QObjectHelper::qobject2qvariant(<span class="keyword">this</span>);
-<a name="l00030"></a>00030 }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="comment">// Filling a ReynTweetsSerializable object with the informations</span>
-<a name="l00033"></a><a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58">00033</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">ReynTweetsSerializable::fillWithMap</a>(QVariantMap map) {
-<a name="l00034"></a>00034         QJson::QObjectHelper::qvariant2qobject(map, <span class="keyword">this</span>);
-<a name="l00035"></a>00035 }
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QList&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="comment">// Converting the object into a QVariantMap</span>
+<a name="l00029"></a><a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35">00029</a> QVariantMap <a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">ReynTweetsSerializable::toMap</a>() {
+<a name="l00030"></a>00030         <span class="keywordflow">return</span> QJson::QObjectHelper::qobject2qvariant(<span class="keyword">this</span>);
+<a name="l00031"></a>00031 }
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="comment">// Filling a ReynTweetsSerializable object with the informations</span>
+<a name="l00034"></a><a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58">00034</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">ReynTweetsSerializable::fillWithMap</a>(QVariantMap map) {
+<a name="l00035"></a>00035         QJson::QObjectHelper::qvariant2qobject(map, <span class="keyword">this</span>);
+<a name="l00036"></a>00036 }
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">// Converting a list of serializables into a QVariantList</span>
+<a name="l00039"></a><a class="code" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78">00039</a> QVariantList <a class="code" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78" title="Converting a list of serializables into a QVariantList serializable by QJSON.">ReynTweetsSerializable::toVariantList</a>(QList&lt;ReynTweetsSerializable&gt; serializables) {
+<a name="l00040"></a>00040         QVariantList res;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042         <span class="keywordflow">for</span> (QList&lt;ReynTweetsSerializable&gt;::iterator it = serializables.begin();
+<a name="l00043"></a>00043                  it != serializables.end();
+<a name="l00044"></a>00044                  ++it)
+<a name="l00045"></a>00045         {
+<a name="l00046"></a>00046                 <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a> serializable = *it;
+<a name="l00047"></a>00047                 res.append(qVariantFromValue(serializable));
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <span class="keywordflow">return</span> res;
+<a name="l00051"></a>00051 }
+<a name="l00052"></a>00052 <span class="comment">/*</span>
+<a name="l00053"></a>00053 <span class="comment">// Converting a QVariantList into a list of ReynTweetsSerializable</span>
+<a name="l00054"></a>00054 <span class="comment">QList&lt;ReynTweetsSerializable&gt; ReynTweetsSerializable::fillWithList(QVariantList serializables) {</span>
+<a name="l00055"></a>00055 <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">}</span>
+<a name="l00057"></a>00057 <span class="comment">//*/</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -138,7 +160,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jan 11 04:41:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

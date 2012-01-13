@@ -126,8 +126,8 @@ class UserAccount : public ReynTweetsSerializable
 		/// @property twitter_user
 		/// @brief Twitter user
 		Q_PROPERTY(QVariantMap twitter_user
-				   READ getUser
-				   WRITE setUser)
+				   READ getUserMap
+				   WRITE setUserMap)
 
 		/// @brief Map with the user
 		QVariantMap userMap;

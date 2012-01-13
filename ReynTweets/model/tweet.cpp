@@ -107,6 +107,8 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 
 	// Updating the entities and the user
 	tweet.fillWithPropertiesMaps();
+
+	return in;
 }
 
 

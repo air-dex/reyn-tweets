@@ -81,6 +81,8 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 
 	// Updating the user
 	account.fillWithPropertiesMaps();
+
+	return in;
 }
 
 

@@ -35,6 +35,43 @@ void ReynTweetsSerializable::fillWithMap(QVariantMap map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
 }
 
+
+//////////
+// Util //
+//////////
+// Converting a QVariantList serialized by QJSON into a list of entities.
+template <class T>
+QList<T> fillWithList(QVariantList entities) {
+	QList<T> res;
+
+	for (QVariantList::Iterator it = entities.begin();
+		 it != entities.end();
+		 ++it) {
+		QVariant v = *it;
+		T entity = qVariantValue(v);
+		res.append(entity);
+	}
+
+	return res;
+}
+
+// Converting a list of serializables into a QVariantList
+template <class T>
+QVariantList toVariantList(QList<T> serializables) {
+	QVariantList res;
+
+	for (QList<T>::iterator it = serializables.begin();
+		 it != serializables.end();
+		 ++it)
+	{
+		T serializable = *it;
+		res.append(qVariantFromValue(serializable));
+	}
+
+	return res;
+}
+
+/*
 // Converting a list of serializables into a QVariantList
 QVariantList ReynTweetsSerializable::toVariantList(QList<ReynTweetsSerializable> serializables) {
 	QVariantList res;
@@ -49,7 +86,7 @@ QVariantList ReynTweetsSerializable::toVariantList(QList<ReynTweetsSerializable>
 
 	return res;
 }
-/*
+
 // Converting a QVariantList into a list of ReynTweetsSerializable
 QList<ReynTweetsSerializable> ReynTweetsSerializable::fillWithList(QVariantList serializables) {
 

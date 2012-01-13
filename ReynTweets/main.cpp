@@ -37,6 +37,7 @@ void initReynTweetsSystem() {
 	Hashtag::initSystem();
 	UserMention::initSystem();
 	TweetEntities::initSystem();
+	UserInfos::initSystem();
 	Tweet::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();

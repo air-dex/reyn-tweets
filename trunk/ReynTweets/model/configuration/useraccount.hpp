@@ -29,6 +29,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QVariant>
 #include "../reyntweetsserializable.hpp"
+#include "../user.hpp"
 
 /// @class UserAccount
 /// @brief User account.
@@ -91,11 +92,18 @@ class UserAccount : public ReynTweetsSerializable
 
 	private:
 		// Properties
+		/// @fn void fillWithPropertiesMaps();
+		/// @brief Filling serializable fields with thecorresponding  property maps
+		void fillWithPropertiesMaps();
+
+		/// @fn void updateAllProperties();
+		/// @brief Updating all the properties
+		void updateAllProperties();
 
 		// Access Token
-		/// @property p_user
+		/// @property access_token
 		/// @brief Access token
-		Q_PROPERTY(QByteArray p_accessToken
+		Q_PROPERTY(QByteArray access_token
 				   READ getAccessToken
 				   WRITE setAccessToken)
 
@@ -104,9 +112,9 @@ class UserAccount : public ReynTweetsSerializable
 		void updateAccessTokenProperty();
 
 		// Token Secret
-		/// @property p_tokenSecret
+		/// @property token_secret
 		/// @brief Token secret
-		Q_PROPERTY(QByteArray p_tokenSecret
+		Q_PROPERTY(QByteArray token_secret
 				   READ getTokenSecret
 				   WRITE setTokenSecret)
 
@@ -115,11 +123,24 @@ class UserAccount : public ReynTweetsSerializable
 		void updateTokenSecretProperty();
 
 		// User
-		/// @property p_user
+		/// @property twitter_user
 		/// @brief Twitter user
-		Q_PROPERTY(QString p_user
+		Q_PROPERTY(QVariantMap twitter_user
 				   READ getUser
 				   WRITE setUser)
+
+		/// @brief Map with the user
+		QVariantMap userMap;
+
+		/// @fn QVariantMap getUserMap();
+		/// @brief Reading the property twitter_user
+		/// @return userMap
+		QVariantMap getUserMap();
+
+		/// @fn void setUsersMap(QVariantMap newUserMap);
+		/// @brief Writing the property twitter_user
+		/// @param newUserMap New value for twitter_user
+		void setUserMap(QVariantMap newUserMap);
 
 		/// @fn void updateUserProperty();
 		/// @brief Updates the property p_user
@@ -129,6 +150,16 @@ class UserAccount : public ReynTweetsSerializable
 	//////////////////////////////
 	// Configuration management //
 	//////////////////////////////
+
+	protected:
+		/// @brief Access token
+		QByteArray accessToken;
+
+		/// @brief Token Secret
+		QByteArray tokenSecret;
+
+		/// @brief User of the account
+		User user;
 
 	public:
 		/// @fn QByteArray getAccessToken();
@@ -151,25 +182,15 @@ class UserAccount : public ReynTweetsSerializable
 		/// @param secret The new token secret
 		void setTokenSecret(QByteArray secret);
 
-		/// @fn QString getUser();
+		/// @fn User getUser();
 		/// @brief Getter on the user
 		/// @return The user
-		QString getUser();
+		User getUser();
 
 		/// @fn void setUser(QString u);
 		/// @brief Setter on the user
 		/// @param u The new user
-		void setUser(QString u);
-
-	protected:
-		/// @brief Access token
-		QByteArray accessToken;
-
-		/// @brief Token Secret
-		QByteArray tokenSecret;
-
-		/// @brief Twitter User
-		QString user;
+		void setUser(User u);
 };
 
 // Serialization of UserAccount

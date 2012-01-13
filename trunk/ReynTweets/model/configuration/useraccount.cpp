@@ -32,11 +32,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 UserAccount::UserAccount() :
 	accessToken(""),
 	tokenSecret(""),
-	user("")
+	user()
 {
-	updateAccessTokenProperty();
-	updateTokenSecretProperty();
-	updateUserProperty();
+	updateAllProperties();
 }
 
 // Destructor
@@ -56,11 +54,9 @@ const UserAccount & UserAccount::operator=(const UserAccount & account) {
 // Recopying a UserAccount
 void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
-	updateAccessTokenProperty();
 	tokenSecret = account.tokenSecret;
-	updateTokenSecretProperty();
 	user = account.user;
-	updateUserProperty();
+	updateAllProperties();
 }
 
 // Serialization declaration
@@ -81,7 +77,10 @@ QDataStream & operator<<(QDataStream & out, const UserAccount & account) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserAccount & account) {
-	return jsonStreamingIn(in, account);
+	jsonStreamingIn(in, account);
+
+	// Updating the user
+	account.fillWithPropertiesMaps();
 }
 
 
@@ -89,19 +88,43 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 // Properties management //
 ///////////////////////////
 
+/// @fn void fillWithPropertiesMaps();
+/// @brief Filling serializable fields with thecorresponding  property maps
+void UserAccount::fillWithPropertiesMaps() {
+	UserAccount.fillWithMap(userMap);
+}
+
+/// @fn void updateAllProperties();
+/// @brief Updating all the properties
+void UserAccount::updateAllProperties() {
+	updateAccessTokenProperty();
+	updateTokenSecretProperty();
+	updateUserProperty();
+}
+
 // Updates the property p_accessToken
 void UserAccount::updateAccessTokenProperty() {
-	setProperty("p_accessToken", accessToken);
+	setProperty("access_token", QVariant(accessToken));
 }
 
 // Updates the property p_tokenScret
 void UserAccount::updateTokenSecretProperty() {
-	setProperty("p_tokenSecret", tokenSecret);
+	setProperty("token_secret", QVariant(tokenSecret));
+}
+
+// Reading the property twitter_user
+QVariantMap UserAccount::getUserMap() {
+	return userMap;
+}
+
+// Writing the property twitter_user
+void UserAccount::setUserMap(QVariantMap newUserMap) {
+	userMap = newUserMap;
 }
 
 // Updates the property p_user
 void UserAccount::updateUserProperty() {
-	setProperty("p_user", user);
+	setUserMap(user.toMap());
 }
 
 
@@ -130,11 +153,12 @@ void UserAccount::setTokenSecret(QByteArray secret) {
 }
 
 // Getter on user
-QString UserAccount::getUser() {
+User UserAccount::getUser() {
 	return user;
 }
 
 // Setter on user
-void UserAccount::setUser(QString u) {
+void UserAccount::setUser(User u) {
 	user = u;
+	updateUserProperty();
 }

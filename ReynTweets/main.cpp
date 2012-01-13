@@ -26,6 +26,28 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTranslator>
 #include "ui/mainwindow.hpp"
 
+/// @fn void initReynTweetsSystem();
+/// @brief Initializes all the serializable classes
+void initReynTweetsSystem() {
+	IndexBounds::initSystem();
+	MediaSize::initSystem();
+	MediaSizes::initSystem();
+	Media::initSystem();
+	URLEntity::initSystem();
+	Hashtag::initSystem();
+	UserMention::initSystem();
+	TweetEntities::initSystem();
+	Tweet::initSystem();
+	User::initSystem();
+	UserAccount::initSystem();
+	ReynTweetsConfiguration::initSystem();
+}
+
+/// @fn int main(int argc, char *argv[]);
+/// @brief Main function. Entry point of the program
+/// @param argc Number of arguments
+/// @param argv List of arguments
+/// @return The result of the execution.
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
@@ -34,8 +56,7 @@ int main(int argc, char *argv[])
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 
 	// Init for serialization
-	UserAccount::initSystem();
-	ReynTweetsConfiguration::initSystem();
+	initReynTweetsSystem();
 
 	// Program in French
 /*

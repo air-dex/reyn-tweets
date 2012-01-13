@@ -24,9 +24,10 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWEET_HPP
 #define TWEET_HPP
 
+#include <QDate>
 #include "reyntweetsserializable.hpp"
 #include "tweetentities.hpp"
-#include "user.hpp"
+#include "userinfos.hpp"
 
 /// @class Tweet
 /// @brief Model of a tweet
@@ -49,13 +50,13 @@ class Tweet : public ReynTweetsSerializable
 
 			/// @fn Tweet(const Tweet & tweet);
 			/// @brief Copy constructor
-			/// @param tweet User to copy
+			/// @param tweet Tweet to copy
 			Tweet(const Tweet & tweet);
 
 			/// @fn const Tweet & operator=(const Tweet & tweet);
 			/// @brief Affectation
-			/// @param tweet User to copy
-			/// @return Copy of the original configuration
+			/// @param tweet Tweet to copy
+			/// @return Copy of the original tweet
 			const Tweet & operator=(const Tweet & tweet);
 
 			/// @fn static void initSystem();
@@ -376,7 +377,7 @@ class Tweet : public ReynTweetsSerializable
 			// Tweet sources
 
 			/// @brief User who posted the tweet
-			User profile;
+			UserInfos profile;
 
 			/// @brief Creation date of the tweet
 			QDate createdAt;
@@ -507,15 +508,15 @@ class Tweet : public ReynTweetsSerializable
 
 			// user
 
-			/// @fn User getUser();
+			/// @fn UserInfos getUser();
 			/// @brief Reading user
 			/// @return profile
-			User getUser();
+			UserInfos getUser();
 
-			/// @fn void setUser(User newValue);
+			/// @fn void setUser(UserInfos newValue);
 			/// @brief Writing user
 			/// @param newValue New value for user
-			void setUser(User newValue);
+			void setUser(UserInfos newValue);
 
 			// retweeted
 

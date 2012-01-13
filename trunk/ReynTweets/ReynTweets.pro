@@ -71,6 +71,7 @@ SOURCES += \
 	model/usermention.cpp \
 	model/hashtag.cpp \
 	model/tweetentities.cpp \
+	model/userinfos.cpp \
 	model/tweet.cpp \
 	model/user.cpp \
 	model/configuration/useraccount.cpp \
@@ -118,6 +119,7 @@ HEADERS  += \
 	model/usermention.hpp \
 	model/hashtag.hpp \
 	model/tweetentities.hpp \
+	model/userinfos.hpp \
 	model/tweet.hpp \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \

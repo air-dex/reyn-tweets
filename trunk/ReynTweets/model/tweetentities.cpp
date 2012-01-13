@@ -127,7 +127,7 @@ void TweetEntities::setMediaList(QVariantList newMediaList) {
 
 // Updating the property media
 void TweetEntities::updateMedia() {
-	setMediaList(ReynTweetsSerializable::toVariantList(medias));
+	setMediaList(toVariantList<Media>(medias));
 }
 
 // Reading the property urls
@@ -142,7 +142,7 @@ void TweetEntities::setURLList(QVariantList newURLList) {
 
 // Updating the property urls
 void TweetEntities::updateURLs() {
-	setURLList(ReynTweetsSerializable::toVariantList(tweetURLs));
+	setURLList(toVariantList<URLEntity>(tweetURLs));
 }
 
 // Reading the property user_mentions
@@ -157,7 +157,7 @@ void TweetEntities::setUserMentionsList(QVariantList newUserMentionsList) {
 
 // Updating the property user_mentions
 void TweetEntities::updateUserMentions() {
-	setUserMentionsList(ReynTweetsSerializable::toVariantList(userMentions));
+	setUserMentionsList(toVariantList<UserMention>(userMentions));
 }
 
 // Reading the property hashtags
@@ -172,7 +172,7 @@ void TweetEntities::setHashtagsList(QVariantList newHashtagsList) {
 
 // Updating the property hashtags
 void TweetEntities::updateHashtags() {
-	setHashtagsList(ReynTweetsSerializable::toVariantList(tweetHashtags));
+	setHashtagsList(toVariantList<Hashtag>(tweetHashtags));
 }
 
 
@@ -223,24 +223,3 @@ void TweetEntities::setHashtagsList(QList<Hashtag> newHashtags) {
 	tweetHashtags = newHashtags;
 	updateHashtags();
 }
-
-
-//////////
-// Util //
-//////////
-// Converting a QVariantList serialized by QJSON into a list of entities.
-template <class T>
-QList<T> fillWithList(QVariantList entities) {
-	QList<T> res;
-
-	for (QVariantList::Iterator it = entities.begin();
-		 it != entities.end();
-		 ++it) {
-		QVariant v = *it;
-		T entity = qVariantValue(v);
-		res.append(entity);
-	}
-
-	return res;
-}
-

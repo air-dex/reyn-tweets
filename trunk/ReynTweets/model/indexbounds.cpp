@@ -22,6 +22,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "indexbounds.hpp"
+#include "reyntweetsserializable.hpp"
 
 // Constructor
 IndexBounds::IndexBounds() :
@@ -57,7 +58,8 @@ void IndexBounds::recopie(const IndexBounds & indexes) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
-	out << indexes.toVariantList();
+	QVariantList list = indexes.toVariantList();
+	out << list;
 	return out;
 }
 
@@ -89,7 +91,7 @@ int IndexBounds::getMin() {
 }
 
 // Setter on min
-int IndexBounds::setMin(int newMin) {
+void IndexBounds::setMin(int newMin) {
 	min = newMin;
 	sort();
 }
@@ -106,7 +108,7 @@ void IndexBounds::setMax(int newMax) {
 }
 
 // Converting the bounds into a QVariantList
-QVariantList IndexBounds::toVariantList() {
+QVariantList IndexBounds::toVariantList() const {
 	QVariantList res;
 	res.append(QVariant(min));
 	res.append(QVariant(max));

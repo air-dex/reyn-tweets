@@ -52,7 +52,7 @@ MediaSizes::MediaSizes(const MediaSizes & sizes) {
 }
 
 // Affectation
-const MediaSizes & MediaSizes::operator=(const MediaSizes & size) {
+const MediaSizes & MediaSizes::operator=(const MediaSizes & sizes) {
 	recopie(sizes);
 	return *this;
 }

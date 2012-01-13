@@ -328,11 +328,11 @@ void Tweet::setInReplyToStatusIDstr(QString newValue) {
 }
 
 // user
-User Tweet::getUser() {
+UserInfos Tweet::getUser() {
 	return profile;
 }
 
-void Tweet::setUser(User newValue) {
+void Tweet::setUser(UserInfos newValue) {
 	profile = newValue;
 	updateUser();
 }

@@ -90,7 +90,7 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 
 // Filling serializable fields with thecorresponding  property maps
 void UserAccount::fillWithPropertiesMaps() {
-	UserAccount.fillWithMap(userMap);
+	user.fillWithMap(userMap);
 }
 
 // Updating all the properties

@@ -72,16 +72,16 @@ void UserMention::recopie(const UserMention & mention) {
 }
 
 // Output stream operator for serialization
-friend QDataStream & operator<<(QDataStream & out, const UserMention & mention) {
+QDataStream & operator<<(QDataStream & out, const UserMention & mention) {
 	return jsonStreamingOut(out, mention);
 }
 
 // Input stream operator for serialization
-friend QDataStream & operator>>(QDataStream & in, UserMention & mention) {
+QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 	jsonStreamingIn(in, mention);
 
 	// Updating indexes
-	entity.fillWithPropertiesMaps();
+	mention.fillWithPropertiesMaps();
 
 	return in;
 }

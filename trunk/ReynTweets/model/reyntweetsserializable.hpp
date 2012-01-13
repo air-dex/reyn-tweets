@@ -47,14 +47,14 @@ class ReynTweetsSerializable : public QObject
 		/// contained in the map.
 		/// @param map The map
 		virtual void fillWithMap(QVariantMap map);
-
+/*
 		/// @fn static QVariantList toVariantList(QList<ReynTweetsSerializable> serializables);
 		/// @brief Converting a list of serializables into a QVariantList
 		/// serializable by QJSON.
 		/// @param serializables List to convert
 		/// @return The corresponding QVariantList
 		static QVariantList toVariantList(QList<ReynTweetsSerializable> serializables);
-/*
+
 		/// @fn static QList<ReynTweetsSerializable> fillWithList(QVariantList serializables);
 		/// @brief Converting a QVariantList serialized by QJSON into a list of
 		/// ReynTweetsSerializable.
@@ -62,6 +62,26 @@ class ReynTweetsSerializable : public QObject
 		/// @return The corresponding list of ReynTweetsSerializable
 		static QList<ReynTweetsSerializable> fillWithList(QVariantList serializables);
 //*/
+
 };
+
+//////////
+// Util //
+//////////
+/// @fn template <class T> QList<T> fillWithList(QVariantList entities);
+/// @brief Converting a QVariantList serialized by QJSON into a list of
+/// entities whose class is represented by the template parameter T.
+/// @param entities List to convert
+/// @return The corresponding list of entities
+template <class T>
+QList<T> fillWithList(QVariantList entities);
+
+/// @fn QVariantList toVariantList(QList<ReynTweetsSerializable> serializables);
+/// @brief Converting a list of serializables into a QVariantList
+/// serializable by QJSON.
+/// @param serializables List to convert
+/// @return The corresponding QVariantList
+template <class T>
+QVariantList toVariantList(QList<T> serializables);
 
 #endif // REYNTWEETSSERIALIZABLE_HPP

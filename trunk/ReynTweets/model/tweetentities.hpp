@@ -279,15 +279,4 @@ QDataStream & operator<<(QDataStream & out, const TweetEntities & entities);
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, TweetEntities & entities);
 
-//////////
-// Util //
-//////////
-/// @fn template <class T> QList<T> fillWithList(QVariantList entities);
-/// @brief Converting a QVariantList serialized by QJSON into a list of
-/// entities whose class is represented by the template parameter T.
-/// @param entities List to convert
-/// @return The corresponding list of entities
-template <class T>
-QList<T> fillWithList(QVariantList entities);
-
 #endif // TWEETENTITIES_HPP

@@ -61,7 +61,7 @@ class Media : public URLEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
-	private:
+	protected:
 		/// @fn void recopie(const Media & media);
 		/// @brief Copy of a Media
 		/// @param media Media to copy

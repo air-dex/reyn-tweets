@@ -60,7 +60,7 @@ class URLEntity : public ReynTweetsSerializable
 		/// @brief Serialization declaration
 		static void initSystem();
 
-	private:
+	protected:
 		/// @fn void recopie(const URLEntity & entity);
 		/// @brief Copy of a URLEntity
 		/// @param entity URLEntity to copy

@@ -42,7 +42,7 @@ class Hashtag : public ReynTweetsSerializable
 		/// @brief Constructor
 		Hashtag();
 
-		/// @fn virtual ~URLEntity();
+		/// @fn virtual ~Hashtag();
 		/// @brief Destructor
 		virtual ~Hashtag();
 
@@ -54,7 +54,7 @@ class Hashtag : public ReynTweetsSerializable
 		/// @fn const Hashtag & operator=(const Hashtag & hashtag);
 		/// @brief Affectation
 		/// @param hashtag Hashtag to copy
-		/// @return Copy of the original entity
+		/// @return Copy of the original hashtag
 		const Hashtag & operator=(const Hashtag & hashtag);
 
 		/// @fn static void initSystem();
@@ -150,13 +150,13 @@ class Hashtag : public ReynTweetsSerializable
 
 	public:
 		/// @fn QString getText();
-		/// @brief Reading extractedURL
-		/// @return extractedURL
+		/// @brief Reading hashText
+		/// @return hashText
 		QString getText();
 
-		/// @fn void setText(QString newURL);
-		/// @brief Writing extractedURL
-		/// @param newText New value for extractedURL
+		/// @fn void setText(QString newText);
+		/// @brief Writing hashText
+		/// @param newText New value for hashText
 		void setText(QString newText);
 
 		/// @fn IndexBounds getIndexes();

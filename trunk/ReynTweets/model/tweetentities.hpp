@@ -177,8 +177,8 @@ class TweetEntities : public ReynTweetsSerializable
 		/// @property hashtags
 		/// @brief Hashtags in the tweet
 		Q_PROPERTY(QVariantList hashtags
-				   READ getList
-				   WRITE setList)
+				   READ getHashtagsList
+				   WRITE setHashtagsList)
 
 		/// @brief List of hashtags under the form of maps.
 		QVariantList hashtagsList;

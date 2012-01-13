@@ -999,4 +999,21 @@ class UserInfos : public ReynTweetsSerializable
 
 };
 
+// Serialization of UserInfos
+Q_DECLARE_METATYPE(UserInfos)
+
+/// @fn QDataStream & operator<<(QDataStream & out, const UserInfos & user);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param user Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const UserInfos & user);
+
+/// @fn QDataStream & operator>>(QDataStream & in, UserInfos & user);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param user Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, UserInfos & user);
+
 #endif // USERINFOS_HPP

@@ -129,10 +129,12 @@ void TestWidget::endAllowRT(OAuthProcessResult res) {
 }
 
 void TestWidget::serialConfSlot() {
+	User u;
+	u.setScreenName("@air_dex");
 	UserAccount ua;
 	ua.setAccessToken("tocredaccess");
 	ua.setTokenSecret("tokensecret");
-	ua.setUser("@air_dex");
+	ua.setUser(u);
 
 	ReynTweetsConfiguration conf;
 	qDebug("La propriete p_userAccount avant son affectation :");
@@ -189,14 +191,16 @@ void TestWidget::serialConfSlot() {
 	qDebug("Le nouveau user account de la conf :");
 	qDebug(QByteArray("AccessToken : ").append(conf2.getUserAccount().getAccessToken()).append('.').data());
 	qDebug(QByteArray("TokenSecret : ").append(conf2.getUserAccount().getTokenSecret()).append('.').data());
-	qDebug(QByteArray("User : ").append(conf2.getUserAccount().getUser()).append('.').data());
+	qDebug(QByteArray("User : ").append(conf2.getUserAccount().getUser().getScreenName()).append('.').data());
 }
 
 void TestWidget::serialUASlot() {
+	User u;
+	u.setScreenName("air_dex");
 	UserAccount ua;
 	ua.setAccessToken("tocredaccess");
 	ua.setTokenSecret("tokensecret");
-	ua.setUser("@air_dex");
+	ua.setUser(u);
 
 	// Sérialiszation de l'user account
 	QVariant uaVariant = qVariantFromValue(ua);
@@ -232,6 +236,6 @@ void TestWidget::serialUASlot() {
 	qDebug("Le nouveau user account :");
 	qDebug(QByteArray("AccessToken : ").append(ua2.getAccessToken()).append('.').data());
 	qDebug(QByteArray("TokenSecret : ").append(ua2.getTokenSecret()).append('.').data());
-	qDebug(QByteArray("User : ").append(ua2.getUser()).append('.').data());
+	qDebug(QByteArray("User : ").append(ua2.getUser().getScreenName()).append('.').data());
 }
 

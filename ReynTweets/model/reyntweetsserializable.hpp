@@ -54,13 +54,14 @@ class ReynTweetsSerializable : public QObject
 		/// @param serializables List to convert
 		/// @return The corresponding QVariantList
 		static QVariantList toVariantList(QList<ReynTweetsSerializable> serializables);
-
+/*
 		/// @fn static QList<ReynTweetsSerializable> fillWithList(QVariantList serializables);
 		/// @brief Converting a QVariantList serialized by QJSON into a list of
 		/// ReynTweetsSerializable.
 		/// @param serializables List to convert
 		/// @return The corresponding list of ReynTweetsSerializable
 		static QList<ReynTweetsSerializable> fillWithList(QVariantList serializables);
+//*/
 };
 
 #endif // REYNTWEETSSERIALIZABLE_HPP

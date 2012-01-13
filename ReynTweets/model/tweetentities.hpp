@@ -118,7 +118,7 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @fn void setMediaList(QVariantList newMediaList);
 		/// @brief Writing the property media
-		/// @param mediaList New value for the property media
+		/// @param newMediaList New value for the property media
 		void setMediaList(QVariantList newMediaList);
 
 		/// @fn void updateMedia();
@@ -214,6 +214,52 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @brief Hashtags
 		QList<Hashtag> tweetHashtags;
+
+
+	///////////////
+	// Accessors //
+	///////////////
+
+	public:
+		/// @fn QVariantList QList<Media>();
+		/// @brief Reading medias
+		/// @return medias
+		QList<Media> getMedia();
+
+		/// @fn void setMedia(QList<Media> newMedia);
+		/// @brief Writing medias
+		/// @param newMedia New value for medias
+		void setMedia(QList<Media> newMedia);
+
+		/// @fn QList<URLEntity> getURLs();
+		/// @brief Reading tweetURLs
+		/// @return tweetURLs
+		QList<URLEntity> getURLs();
+
+		/// @fn void setURLs(QList<URLEntity> newURLs);
+		/// @brief Writing tweetURLs
+		/// @param newURLs New value for tweetURLs
+		void setURLs(QList<URLEntity> newURLs);
+
+		/// @fn QList<UserMention> getUserMentions();
+		/// @brief Reading userMentions
+		/// @return userMentions
+		QList<UserMention> getUserMentions();
+
+		/// @fn void setUserMentions(QList<UserMention> newUserMentions);
+		/// @brief Writing userMentions
+		/// @param newUserMentions New value for userMentions
+		void setUserMentions(QList<UserMention> newUserMentions);
+
+		/// @fn QList<Hashtag> getHashtags();
+		/// @brief Reading tweetHashtags
+		/// @return tweetHashtags
+		QList<Hashtag> getHashtags();
+
+		/// @fn void setHashtagsList(QList<Hashtag> newHashtags);
+		/// @brief Writing tweetHashtags
+		/// @param newHashtags New value for tweetHashtags
+		void setHashtagsList(QList<Hashtag> newHashtags);
 };
 
 // Serialization of TweetEntities
@@ -232,5 +278,16 @@ QDataStream & operator<<(QDataStream & out, const TweetEntities & entities);
 /// @param entities Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, TweetEntities & entities);
+
+//////////
+// Util //
+//////////
+/// @fn static QList<T> fillWithList(QVariantList entities);
+/// @brief Converting a QVariantList serialized by QJSON into a list of entities.
+/// @param T Type of entities
+/// @param entities List to convert
+/// @return The corresponding list of entities
+template <class T>
+QList<T> fillWithList(QVariantList entities);
 
 #endif // TWEETENTITIES_HPP

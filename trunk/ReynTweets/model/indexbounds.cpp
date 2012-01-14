@@ -26,6 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 IndexBounds::IndexBounds() :
+	QObject(),
 	min(0),
 	max(0)
 {}
@@ -123,3 +124,8 @@ void IndexBounds::fillWithVariant(QVariantList variantList) {
 	bound = variantList.at(1);
 	setMax(bound.toInt());
 }
+
+// Syncing members and properties
+
+void IndexBounds::syncProperties() {}
+void IndexBounds::syncMembers() {}

@@ -26,6 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
 #include "reyntweetsmappable.hpp"
+#include "reyntweetsserializablelist.hpp"
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet

@@ -52,7 +52,7 @@ class ReynTweetsSerializable
 		/// @brief Syncing members with properties to serialize.
 		virtual void syncMembers() = 0;
 
-		/// @fn virtual void syncProperties();
+		/// @fn virtual void syncProperties() = 0;
 		/// @brief Syncing properties to serialize with the corresponding members.
 		virtual void syncProperties() = 0;
 };

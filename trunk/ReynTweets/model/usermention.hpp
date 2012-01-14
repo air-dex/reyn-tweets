@@ -26,6 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
 #include "reyntweetsmappable.hpp"
+#include "reyntweetsserializablelist.hpp"
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
@@ -247,5 +248,8 @@ QDataStream & operator<<(QDataStream & out, const UserMention & mention);
 /// @param mention Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, UserMention & mention);
+
+
+typedef ReynTweetsSerializableList<UserMention> UserMentionList;
 
 #endif // USERMENTION_HPP

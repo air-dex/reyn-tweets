@@ -29,12 +29,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include <QObject>
 #include <QVariant>
-#include "../reyntweetsserializable.hpp"
+#include "../reyntweetsmappable.hpp"
 #include "useraccount.hpp"
 
 /// @class ReynTweetsConfiguration
 /// @brief Configuration of Reyn Tweets
-class ReynTweetsConfiguration : public ReynTweetsSerializable
+class ReynTweetsConfiguration : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -92,11 +92,18 @@ class ReynTweetsConfiguration : public ReynTweetsSerializable
 		friend QDataStream & operator>>(QDataStream & in,
 										ReynTweetsConfiguration & configuration);
 
-	private:
-		// Properties
+	////////////////
+	// Properties //
+	////////////////
+
+	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
+
+		/// @fn void fillWithPropertiesMaps();
+		/// @brief Filling serializable fields with thecorresponding  property maps
+		void syncProperties();
 
 		// User account
 		/// @property user_account
@@ -105,7 +112,7 @@ class ReynTweetsConfiguration : public ReynTweetsSerializable
 				   READ getUserAccountProperty
 				   WRITE setUserAccountProperty)
 
-		/// @brief Representation of the property p_userAccount
+		/// @brief Representation of the property user_account
 		QVariantMap userAccountProperty;
 
 		/// @fn QVariantMap getUserAccountProperty();
@@ -119,8 +126,12 @@ class ReynTweetsConfiguration : public ReynTweetsSerializable
 		void setUserAccountProperty(QVariantMap accountMap);
 
 		/// @fn void updateUserAccountProperty();
+		/// @brief Updating the property user_account
+		void syncUserAccountProperty();
+
+		/// @fn void updateUserAccountProperty();
 		/// @brief Updating the property p_userAccount
-		void updateUserAccountProperty();
+		void syncUserAccountMember();
 
 
 	//////////////////////////////

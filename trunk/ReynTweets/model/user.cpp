@@ -34,7 +34,7 @@ User::User() :
 	lastTweetMap(),
 	lastTweet()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -63,7 +63,7 @@ void User::initSystem() {
 void User::recopie(const User & user) {
 	UserInfos::recopie(user);
 	lastTweet = user.lastTweet;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Friends serialization operators
@@ -78,7 +78,7 @@ QDataStream & operator>>(QDataStream & in, User & user) {
 	jsonStreamingIn(in, user);
 
 	// Filling the user account
-	user.fillWithPropertiesMaps();
+	user.syncMembers();
 
 	return in;
 }
@@ -89,15 +89,15 @@ QDataStream & operator>>(QDataStream & in, User & user) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void User::fillWithPropertiesMaps() {
-	UserInfos::fillWithPropertiesMaps();
-	lastTweet.fillWithMap(lastTweetMap);
+void User::syncMembers() {
+	UserInfos::syncMembers();
+	syncStatusMember();
 }
 
 // Updating all the properties
-void User::updateAllProperties() {
-	UserInfos::updateAllProperties();
-	updateStatus();
+void User::syncProperties() {
+	UserInfos::syncProperties();
+	syncStatusProperty();
 }
 
 // Reading the "status" property
@@ -111,8 +111,13 @@ void User::setStatus(QVariantMap statusMap) {
 }
 
 // Updating the property status
-void User::updateStatus() {
-	setProperty("status", QVariant(lastTweet.toMap()));
+void User::syncStatusProperty() {
+	setStatus(lastTweet.toVariant());
+}
+
+// Updating the property status
+void User::syncStatusMember() {
+	lastTweet.fillWithVariant(lastTweetMap);
 }
 
 
@@ -128,5 +133,5 @@ Tweet User::getLastTweet() {
 // Setter on the last tweet written by the user
 void User::setLastTweet(Tweet newLastTweet) {
 	lastTweet = newLastTweet;
-	updateStatus();		// Updating the map
+	syncStatusProperty();		// Updating the map
 }

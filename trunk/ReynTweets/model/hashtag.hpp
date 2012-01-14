@@ -25,11 +25,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define HASHTAG_HPP
 
 #include "indexbounds.hpp"
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet
-class Hashtag : public ReynTweetsSerializable
+class Hashtag : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -90,11 +90,11 @@ class Hashtag : public ReynTweetsSerializable
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// text
 		/// @property text
@@ -102,10 +102,6 @@ class Hashtag : public ReynTweetsSerializable
 		Q_PROPERTY(QString text
 				   READ getText
 				   WRITE setText)
-
-		/// @fn void updateText();
-		/// @brief Updating the property text
-		void updateText();
 
 		// indices
 		/// @property indices
@@ -129,7 +125,11 @@ class Hashtag : public ReynTweetsSerializable
 
 		/// @fn void updateIndices();
 		/// @brief Updating the property indices
-		void updateIndices();
+		void syncIndicesProperty();
+
+		/// @fn void updateIndices();
+		/// @brief Updating the property indices
+		void syncIndicesMember();
 
 
 	////////////////////////

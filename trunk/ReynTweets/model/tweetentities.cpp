@@ -30,7 +30,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 TweetEntities::TweetEntities() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	mediaList(),
 	urlsList(),
 	userMentionsList(),
@@ -40,7 +40,7 @@ TweetEntities::TweetEntities() :
 	userMentions(),
 	tweetHashtags()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -69,7 +69,7 @@ void TweetEntities::recopie(const TweetEntities & entities) {
 	tweetURLs = entities.tweetURLs;
 	userMentions = entities.userMentions;
 	tweetHashtags = entities.tweetHashtags;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -82,7 +82,7 @@ QDataStream & operator>>(QDataStream & in, TweetEntities & entities) {
 	jsonStreamingIn(in, entities);
 
 	// Updating entities
-	entities.fillWithPropertiesMaps();
+	entities.syncMembers();
 
 	return in;
 }
@@ -93,26 +93,19 @@ QDataStream & operator>>(QDataStream & in, TweetEntities & entities) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void TweetEntities::fillWithPropertiesMaps() {
-	// Updating medias
-	medias = fillWithList<Media>(mediaList);
-
-	// Updating tweetURLs
-	tweetURLs = fillWithList<URLEntity>(urlsList);
-
-	// Updating userMentions
-	userMentions = fillWithList<UserMention>(userMentionsList);
-
-	// Updating tweetHashtags
-	tweetHashtags = fillWithList<Hashtag>(hashtagsList);
+void TweetEntities::syncMembers() {
+	syncMediaMember();
+	syncUrlsMember();
+	syncUserMentionsMember();
+	syncHashtagsMember();
 }
 
 // Updating all the properties
-void TweetEntities::updateAllProperties() {
-	updateMedia();
-	updateURLs();
-	updateUserMentions();
-	updateHashtags();
+void TweetEntities::syncProperties() {
+	syncMediaProperty();
+	syncUrlsProperty();
+	syncUserMentionsProperty();
+	syncHashtagsProperty();
 }
 
 // Reading the property media
@@ -126,8 +119,13 @@ void TweetEntities::setMediaList(QVariantList newMediaList) {
 }
 
 // Updating the property media
-void TweetEntities::updateMedia() {
+void TweetEntities::syncMediaProperty() {
 	setMediaList(toVariantList<Media>(medias));
+}
+
+// Updating the property media
+void TweetEntities::syncMediaMember() {
+	medias = fillWithList<Media>(mediaList);
 }
 
 // Reading the property urls
@@ -141,8 +139,13 @@ void TweetEntities::setURLList(QVariantList newURLList) {
 }
 
 // Updating the property urls
-void TweetEntities::updateURLs() {
+void TweetEntities::syncUrlsProperty() {
 	setURLList(toVariantList<URLEntity>(tweetURLs));
+}
+
+// Updating the property urls
+void TweetEntities::syncUrlsMember() {
+	tweetURLs = fillWithList<URLEntity>(urlsList);
 }
 
 // Reading the property user_mentions
@@ -156,8 +159,13 @@ void TweetEntities::setUserMentionsList(QVariantList newUserMentionsList) {
 }
 
 // Updating the property user_mentions
-void TweetEntities::updateUserMentions() {
+void TweetEntities::syncUserMentionsProperty() {
 	setUserMentionsList(toVariantList<UserMention>(userMentions));
+}
+
+// Updating the property user_mentions
+void TweetEntities::syncUserMentionsMember() {
+	userMentions = fillWithList<UserMention>(userMentionsList);
 }
 
 // Reading the property hashtags
@@ -171,8 +179,13 @@ void TweetEntities::setHashtagsList(QVariantList newHashtagsList) {
 }
 
 // Updating the property hashtags
-void TweetEntities::updateHashtags() {
+void TweetEntities::syncHashtagsProperty() {
 	setHashtagsList(toVariantList<Hashtag>(tweetHashtags));
+}
+
+// Updating the property hashtags
+void TweetEntities::syncHashtagsMember() {
+	tweetHashtags = fillWithList<Hashtag>(hashtagsList);
 }
 
 
@@ -188,7 +201,7 @@ QList<Media> TweetEntities::getMedia() {
 // Writing medias
 void TweetEntities::setMedia(QList<Media> newMedia) {
 	medias = newMedia;
-	updateMedia();
+	syncMediaProperty();
 }
 
 // Reading tweetURLs
@@ -199,7 +212,7 @@ QList<URLEntity> TweetEntities::getURLs() {
 // Writing tweetURLs
 void TweetEntities::setURLs(QList<URLEntity> newURLs) {
 	tweetURLs = newURLs;
-	updateURLs();
+	syncUrlsProperty();
 }
 
 // Reading userMentions
@@ -210,7 +223,7 @@ QList<UserMention> TweetEntities::getUserMentions() {
 // Writing userMentions
 void TweetEntities::setUserMentions(QList<UserMention> newUserMentions) {
 	userMentions = newUserMentions;
-	updateUserMentions();
+	syncUserMentionsProperty();
 }
 
 // Reading tweetHashtags
@@ -221,5 +234,5 @@ QList<Hashtag> TweetEntities::getHashtags() {
 // Writing tweetHashtags
 void TweetEntities::setHashtagsList(QList<Hashtag> newHashtags) {
 	tweetHashtags = newHashtags;
-	updateHashtags();
+	syncHashtagsProperty();
 }

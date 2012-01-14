@@ -30,14 +30,14 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 URLEntity::URLEntity() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	indexList(),
 	extractedURL(""),
 	displayedURL(""),
 	expandedURL(""),
 	indexes()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -66,7 +66,7 @@ void URLEntity::recopie(const URLEntity & entity) {
 	displayedURL = entity.displayedURL;
 	expandedURL = entity.expandedURL;
 	indexes = entity.indexes;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 	jsonStreamingIn(in, entity);
 
 	// Updating indexes
-	entity.fillWithPropertiesMaps();
+	entity.syncMembers();
 
 	return in;
 }
@@ -89,31 +89,13 @@ QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void URLEntity::fillWithPropertiesMaps() {
-	indexes.fillWithVariantList(indexList);
+void URLEntity::syncMembers() {
+	syncIndicesMember();
 }
 
 // Updating all the properties
-void URLEntity::updateAllProperties() {
-	updateURL();
-	updateDisplayedURL();
-	updateExpandedURL();
-	updateIndices();
-}
-
-// Updating the property url
-void URLEntity::updateURL() {
-	setProperty("url", QVariant(extractedURL));
-}
-
-// Updating the property displayed_url
-void URLEntity::updateDisplayedURL() {
-	setProperty("displayed_url", QVariant(displayedURL));
-}
-
-// Updating the property expanded_url
-void URLEntity::updateExpandedURL() {
-	setProperty("expanded_url", QVariant(expandedURL));
+void URLEntity::syncProperties() {
+	syncIndicesProperty();
 }
 
 // Reading method for the property indices
@@ -127,8 +109,13 @@ void URLEntity::setIndices(QVariantList newIndexList) {
 }
 
 // Updating the property indices
-void URLEntity::updateIndices() {
-	setProperty("indices", QVariant(indexes.toVariantList()));
+void URLEntity::syncIndicesProperty() {
+	indexList = indexes.toVariant();
+}
+
+// Updating the property indices
+void URLEntity::syncIndicesMember() {
+	indexes.fillWithVariant(indexList);
 }
 
 
@@ -174,5 +161,5 @@ IndexBounds URLEntity::getIndexes() {
 // Writing indexes
 void URLEntity::setIndexes(IndexBounds newIndexes) {
 	indexes = newIndexes;
-	updateIndices();
+	syncIndicesProperty();
 }

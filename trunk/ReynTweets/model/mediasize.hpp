@@ -25,9 +25,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define MEDIASIZE_HPP
 
 #include <QSize>
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
-class MediaSize : public ReynTweetsSerializable, public QSize
+class MediaSize : public ReynTweetsMappable, public QSize
 {
 	Q_OBJECT
 
@@ -119,11 +119,11 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		/// @property w
 		/// @brief Width
@@ -158,7 +158,11 @@ class MediaSize : public ReynTweetsSerializable, public QSize
 
 		/// @fn void updateResize();
 		/// @brief Updating the property resize
-		void updateResize();
+		void syncResizeProperty();
+
+		/// @fn void updateResize();
+		/// @brief Updating resizeMedia
+		void syncResizeMember();
 
 	/////////////////////
 	// Size management //

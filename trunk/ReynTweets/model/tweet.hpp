@@ -25,13 +25,13 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define TWEET_HPP
 
 #include <QDate>
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 #include "tweetentities.hpp"
 #include "userinfos.hpp"
 
 /// @class Tweet
 /// @brief Model of a tweet
-class Tweet : public ReynTweetsSerializable
+class Tweet : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -93,11 +93,11 @@ class Tweet : public ReynTweetsSerializable
 		protected:
 			/// @fn void fillWithPropertiesMaps();
 			/// @brief Filling serializable fields with thecorresponding  property maps
-			void fillWithPropertiesMaps();
+			void syncMembers();
 
 			/// @fn void updateAllProperties();
 			/// @brief Updating all the properties
-			void updateAllProperties();
+			void syncProperties();
 
 			// entities
 			/// @property entities
@@ -121,7 +121,11 @@ class Tweet : public ReynTweetsSerializable
 
 			/// @fn void updateEntities();
 			/// @brief Updating the property entities
-			void updateEntities();
+			void syncEntitiesProperty();
+
+			/// @fn void updateEntities();
+			/// @brief Updating the property entities
+			void syncEntitiesMember();
 
 			// in_reply_to_user_id
 			/// @property in_reply_to_user_id
@@ -130,20 +134,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ getInReplyToUserID
 					   WRITE setInReplyToUserID)
 
-			/// @fn void updateInReplyToUserID();
-			/// @brief Updating the property in_reply_to_user_id
-			void updateInReplyToUserID();
-
 			// truncated
 			/// @property truncated
 			/// @brief Is the tweet truncated ?
 			Q_PROPERTY(bool truncated
 					   READ isTruncated
 					   WRITE setTruncated)
-
-			/// @fn void updateTruncated();
-			/// @brief Updating the property truncated
-			void updateTruncated();
 
 			// favorited
 			/// @property favorited
@@ -152,20 +148,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ isFavorited
 					   WRITE setFavorited)
 
-			/// @fn void updateFavorited();
-			/// @brief Updating the property favorited
-			void updateFavorited();
-
 			// retweet_count
 			/// @property retweet_count
 			/// @brief How many times the tweet has been retweeted ?
 			Q_PROPERTY(int retweet_count
 					   READ getRetweetCount
 					   WRITE setRetweetCount)
-
-			/// @fn void updateRetweetCount();
-			/// @brief Updating the property retweet_count
-			void updateRetweetCount();
 
 			// in_reply_to_screen_name
 			/// @property in_reply_to_screen_name
@@ -174,10 +162,6 @@ class Tweet : public ReynTweetsSerializable
 					   READ getInReplyToScreenName
 					   WRITE setInReplyToScreenName)
 
-			/// @fn void updateInReplyToScreenName();
-			/// @brief Updating the property in_reply_to_screen_name
-			void updateInReplyToScreenName();
-
 			// created_at
 			/// @property created_at
 			/// @brief Serializable form of createdAt
@@ -185,20 +169,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ getCreatedAt
 					   WRITE setCreatedAt)
 
-			/// @fn void updateCreatedAt();
-			/// @brief Updating the property created_at
-			void updateCreatedAt();
-
 			// in_reply_to_status_id_str
 			/// @property in_reply_to_status_id_str
 			/// @brief String form of in_reply_to_status_id
 			Q_PROPERTY(QString in_reply_to_status_id_str
 					   READ getInReplyToStatusIDstr
 					   WRITE setInReplyToStatusIDstr)
-
-			/// @fn void updateInReplyToStatusIDstr();
-			/// @brief Updating the property in_reply_to_status_id_str
-			void updateInReplyToStatusIDstr();
 
 			// user
 			/// @property user
@@ -222,7 +198,11 @@ class Tweet : public ReynTweetsSerializable
 
 			/// @fn void updateUser();
 			/// @brief Updating the property user
-			void updateUser();
+			void syncUserProperty();
+
+			/// @fn void updateUser();
+			/// @brief Updating the property user
+			void syncUserMember();
 
 			// retweeted
 			/// @property retweeted
@@ -231,20 +211,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ isRetweeted
 					   WRITE setRetweeted)
 
-			/// @fn void updateRetweeted();
-			/// @brief Updating the property retweeted
-			void updateRetweeted();
-
 			// in_reply_to_user_id_str
 			/// @property in_reply_to_user_id_str
 			/// @brief String version of in_reply_to_user_id
 			Q_PROPERTY(QString in_reply_to_user_id_str
 					   READ getInReplyToUserIDstr
 					   WRITE setInReplyToUserIDstr)
-
-			/// @fn void updateInReplyToUserIDstr();
-			/// @brief Updating the property in_reply_to_user_id_str
-			void updateInReplyToUserIDstr();
 
 			// id_str
 			/// @property id_str
@@ -253,20 +225,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ getIDstr
 					   WRITE setIDstr)
 
-			/// @fn void updateIDstr();
-			/// @brief Updating the property id_str
-			void updateIDstr();
-
 			// source
 			/// @property source
 			/// @brief Source of the tweet (Twitter client)
 			Q_PROPERTY(QString source
 					   READ getSource
 					   WRITE setSource)
-
-			/// @fn void updateSource();
-			/// @brief Updating the property source
-			void updateSource();
 
 			// id
 			/// @property id
@@ -275,20 +239,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ getID
 					   WRITE setID)
 
-			/// @fn void updateID();
-			/// @brief Updating the property id
-			void updateID();
-
 			// in_reply_to_status_id
 			/// @property in_reply_to_status_id
 			/// @brief Property corresponding to replyToTweetID
 			Q_PROPERTY(long in_reply_to_status_id
 					   READ getInReplyToStatusID
 					   WRITE setInReplyToStatusID)
-
-			/// @fn void updateInReplyToStatusID();
-			/// @brief Updating the property in_reply_to_status_id
-			void updateInReplyToStatusID();
 
 			// text
 			/// @property text
@@ -297,20 +253,12 @@ class Tweet : public ReynTweetsSerializable
 					   READ getText
 					   WRITE setText)
 
-			/// @fn void updateText();
-			/// @brief Updating the property text
-			void updateText();
-
 			// sensible
 			/// @property sensible
 			/// @brief Is the content of the tweet sensible
 			Q_PROPERTY(bool sensible
 					   READ isSensible
 					   WRITE setSensible)
-
-			/// @fn void updateSensible();
-			/// @brief Updating the property sensible
-			void updateSensible();
 
 			/*
 			 * Properties that are not here :

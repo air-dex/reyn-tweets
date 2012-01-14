@@ -30,12 +30,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 Hashtag::Hashtag() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	indexList(),
 	hashText(),
 	indexes()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -62,7 +62,7 @@ void Hashtag::initSystem() {
 void Hashtag::recopie(const Hashtag & hashtag) {
 	hashText = hashtag.hashText;
 	indexes = hashtag.indexes;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -75,7 +75,7 @@ QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
 	jsonStreamingIn(in, hashtag);
 
 	// Updating indexes
-	hashtag.fillWithPropertiesMaps();
+	hashtag.syncMembers();
 
 	return in;
 }
@@ -85,19 +85,13 @@ QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
 ///////////////////////////
 
 // Filling serializable fields with the corresponding property maps
-void Hashtag::fillWithPropertiesMaps() {
-	indexes.fillWithVariantList(indexList);
+void Hashtag::syncMembers() {
+	syncIndicesMember();
 }
 
 // Updating all the properties
-void Hashtag::updateAllProperties() {
-	updateText();
-	updateIndices();
-}
-
-// Updating the property text
-void Hashtag::updateText() {
-	setProperty("text", QVariant(hashText));
+void Hashtag::syncProperties() {
+	syncIndicesProperty();
 }
 
 // Reading method for the property indices
@@ -111,8 +105,13 @@ void Hashtag::setIndices(QVariantList newIndexList) {
 }
 
 // Updating the property indices
-void Hashtag::updateIndices() {
-	setProperty("indices", QVariant(indexes.toVariantList()));
+void Hashtag::syncIndicesProperty() {
+	setIndices(indexes.toVariant());
+}
+
+// Updating the property indices
+void Hashtag::syncIndicesMember() {
+	indexes.fillWithVariant(indexList);
 }
 
 

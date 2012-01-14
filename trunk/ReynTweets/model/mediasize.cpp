@@ -30,12 +30,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 MediaSize::MediaSize() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	QSize(0,0),
 	resizeProperty(""),
 	resizeMedia(NULL_RESIZE)
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -57,7 +57,7 @@ void MediaSize::recopie(const MediaSize & size) {
 	setWidth(size.width());
 	setHeight(size.height());
 	resizeMedia = size.resizeMedia;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Serialization declaration
@@ -76,7 +76,7 @@ QDataStream & operator>>(QDataStream & in, MediaSize & size) {
 	jsonStreamingIn(in, size);
 
 	// Updating resizeMedia
-	size.fillWithPropertiesMaps();
+	size.syncMembers();
 
 	return in;
 }
@@ -87,13 +87,18 @@ QDataStream & operator>>(QDataStream & in, MediaSize & size) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void MediaSize::fillWithPropertiesMaps() {
+void MediaSize::syncMembers() {
+	syncResizeMember();
+}
+
+// Updating resizeMedia
+void MediaSize::syncResizeMember() {
 	resizeMedia = string2Resize(resizeProperty);
 }
 
 // Updating all the properties
-void MediaSize::updateAllProperties() {
-	updateResize();
+void MediaSize::syncProperties() {
+	syncResizeProperty();
 }
 
 // Reading method for resize
@@ -107,8 +112,9 @@ void MediaSize::setResizeProperty(QString newResize) {
 }
 
 // Updating the property resize
-void MediaSize::updateResize() {
-	setProperty("resize", QVariant(resize2String(resizeMedia)));
+void MediaSize::syncResizeProperty() {
+	setResizeProperty(resize2String(resizeMedia));
+//	setProperty("resize", QVariant(resize2String(resizeMedia)));
 }
 
 
@@ -154,5 +160,5 @@ MediaSize::Resize MediaSize::getResize() {
 // Setter on resizeMedia
 void MediaSize::setResize(MediaSize::Resize newResize) {
 	resizeMedia = newResize;
-	updateResize();
+	syncResizeProperty();
 }

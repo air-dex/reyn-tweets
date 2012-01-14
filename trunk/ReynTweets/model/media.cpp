@@ -39,7 +39,7 @@ Media::Media() :
 	mediaType(""),
 	mediaSizes()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -71,7 +71,7 @@ void Media::recopie(const Media & media) {
 	mediaURLhttps = media.mediaURLhttps;
 	mediaType = media.mediaType;
 	mediaSizes = media.mediaSizes;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -84,7 +84,7 @@ QDataStream & operator>>(QDataStream & in, Media & media) {
 	jsonStreamingIn(in, media);
 
 	// Updating mediaSizes
-	media.fillWithPropertiesMaps();
+	media.syncMembers();
 
 	return in;
 }
@@ -95,45 +95,15 @@ QDataStream & operator>>(QDataStream & in, Media & media) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void Media::fillWithPropertiesMaps() {
-	URLEntity::fillWithPropertiesMaps();	// Don't forget the base class !
-	mediaSizes.fillWithMap(sizesMap);
+void Media::syncMembers() {
+	URLEntity::syncMembers();	// Don't forget the base class !
+	syncSizesMember();
 }
 
 // Updating all the properties
-void Media::updateAllProperties() {
-	URLEntity::updateAllProperties();	// Don't forget the base class !
-	updateID();
-	updateIDstr();
-	updateMediaURL();
-	updateMediaURLhttps();
-	updateType();
-	updateSizes();
-}
-
-// Updating the property id
-void Media::updateID() {
-	setProperty("id", QVariant(mediaID));
-}
-
-// Updating the property id_str
-void Media::updateIDstr() {
-	setProperty("id_str", QVariant(mediaIDstr));
-}
-
-// Updating the property media_url
-void Media::updateMediaURL() {
-	setProperty("media_url", QVariant(mediaURL));
-}
-
-// Updating the property media_url_https
-void Media::updateMediaURLhttps() {
-	setProperty("media_url_https", QVariant(mediaURLhttps));
-}
-
-// Updating the property type
-void Media::updateType() {
-	setProperty("type", QVariant(mediaType));
+void Media::syncProperties() {
+	URLEntity::syncProperties();	// Don't forget the base class !
+	syncSizesProperty();
 }
 
 // Reading method for the property sizes
@@ -147,8 +117,13 @@ void Media::setSizesProperty(QVariantMap newMap) {
 }
 
 // Updating the property sizes
-void Media::updateSizes() {
-	setProperty("sizes", QVariant(mediaSizes.toMap()));
+void Media::syncSizesProperty() {
+	setSizesProperty(mediaSizes.toVariant());
+}
+
+// Updating the property sizes
+void Media::syncSizesMember() {
+	mediaSizes.fillWithVariant(sizesMap);
 }
 
 
@@ -214,5 +189,5 @@ MediaSizes Media::getSizes() {
 // Writing mediaSizes
 void Media::setSizes(MediaSizes newSizes) {
 	mediaSizes = newSizes;
-	updateSizes();
+	syncSizesProperty();
 }

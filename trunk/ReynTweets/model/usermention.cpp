@@ -30,7 +30,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 UserMention::UserMention() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	indexList(),
 	userID(-1),
 	userIDstr("-1"),
@@ -38,7 +38,7 @@ UserMention::UserMention() :
 	userName(""),
 	indexes()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -68,7 +68,7 @@ void UserMention::recopie(const UserMention & mention) {
 	screenName = mention.screenName;
 	userName = mention.userName;
 	indexes = mention.indexes;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -81,7 +81,7 @@ QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 	jsonStreamingIn(in, mention);
 
 	// Updating indexes
-	mention.fillWithPropertiesMaps();
+	mention.syncMembers();
 
 	return in;
 }
@@ -92,37 +92,13 @@ QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void UserMention::fillWithPropertiesMaps() {
-	indexes.fillWithVariantList(indexList);
+void UserMention::syncMembers() {
+	syncIndicesMember();
 }
 
 // Updating all the properties
-void UserMention::updateAllProperties() {
-	updateID();
-	updateIDstr();
-	updateScreenName();
-	updateName();
-	updateIndices();
-}
-
-// Updating the property id
-void UserMention::updateID() {
-	setProperty("id", QVariant(userID));
-}
-
-// Updating the property id_str
-void UserMention::updateIDstr() {
-	setProperty("id_str", QVariant(userIDstr));
-}
-
-// Updating the property screen_name
-void UserMention::updateScreenName() {
-	setProperty("screen_name", QVariant(screenName));
-}
-
-// Updating the property name
-void UserMention::updateName() {
-	setProperty("name", QVariant(userName));
+void UserMention::syncProperties() {
+	syncIndicesProperty();
 }
 
 // Reading method for the property indices
@@ -136,8 +112,13 @@ void UserMention::setIndices(QVariantList newIndexList) {
 }
 
 // Updating the property indices
-void UserMention::updateIndices() {
-	setProperty("indices", QVariant(indexes.toVariantList()));
+void UserMention::syncIndicesProperty() {
+	setIndices(indexes.toVariant());
+}
+
+// Updating the property indices
+void UserMention::syncIndicesMember() {
+	indexes.fillWithVariant(indexList);
 }
 
 
@@ -193,5 +174,5 @@ IndexBounds UserMention::getIndexes() {
 // Writing indexes
 void UserMention::setIndexes(IndexBounds newIndexes) {
 	indexes = newIndexes;
-	updateIndices();
+	syncIndicesProperty();
 }

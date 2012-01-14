@@ -31,10 +31,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 ReynTweetsConfiguration::ReynTweetsConfiguration() :
+	ReynTweetsMappable(),
 	userAccountProperty(),
 	userAccount()
 {
-	updateUserAccountProperty();
+	syncProperties();
 }
 
 // Destructor
@@ -54,7 +55,7 @@ const ReynTweetsConfiguration & ReynTweetsConfiguration::operator=(const ReynTwe
 // Copy of a ReynTweetsConfiguration
 void ReynTweetsConfiguration::recopie(const ReynTweetsConfiguration & configuration) {
 	userAccount = configuration.userAccount;
-	updateUserAccountProperty();
+	syncProperties();
 }
 
 // Serialization declaration
@@ -69,9 +70,15 @@ void ReynTweetsConfiguration::initSystem() {
 ///////////////////////////
 
 // Filling serializable fields with the corresponding property maps
-void ReynTweetsConfiguration::fillWithPropertiesMaps() {
+void ReynTweetsConfiguration::syncMembers() {
+	syncUserAccountMember();
+}
+
+// Filling serializable fields with the corresponding property maps
+void ReynTweetsConfiguration::syncProperties() {
+	syncUserAccountProperty();
 	// Filling the user account
-	userAccount.fillWithMap(userAccountProperty);
+	userAccount.fillWithVariant(userAccountProperty);
 }
 
 // Reading the property p_userAccount
@@ -85,9 +92,13 @@ void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
 }
 
 // Updating the property p_userAccount
-void ReynTweetsConfiguration::updateUserAccountProperty() {
-	// Updating the property
-	setProperty("user_account", QVariant(userAccount.toMap()));
+void ReynTweetsConfiguration::syncUserAccountProperty() {
+	userAccountProperty = userAccount.toVariant();
+}
+
+// Updating the property p_userAccount
+void ReynTweetsConfiguration::syncUserAccountMember() {
+	userAccount.fillWithVariant(userAccountProperty);
 }
 
 
@@ -109,7 +120,7 @@ QDataStream & operator>>(QDataStream & in,
 	jsonStreamingIn(in, configuration);
 
 	// Filling the user account
-	configuration.fillWithPropertiesMaps();
+	configuration.syncMembers();
 
 	return in;
 }
@@ -139,5 +150,5 @@ UserAccount ReynTweetsConfiguration::getUserAccount() {
 // Setter on userAccount
 void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
-	updateUserAccountProperty();
+	syncUserAccountProperty();
 }

@@ -15,6 +15,9 @@ Où en est Reyn Tweets ?
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
     * Automatisation de la génération de documentation.
+  * Modèle de données
+    * Modèle d'un tweet et de ses sous composants
+    * Modèle d'un user
 
 
 == Ce qui reste à faire ==
@@ -30,6 +33,9 @@ Où en est Reyn Tweets ?
     # Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
   # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
+    # Mettre à jour la doc' de ce qui a déjà été fait.
+    # Modèle d'une timeline
+    # Faire du rangement dans les classes de modèle
   # Documentation :
     # Approfondir la documentation
     # Publication quelque part (Google Sites ?)

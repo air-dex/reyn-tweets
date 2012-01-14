@@ -32,21 +32,29 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// converts the object into a QVariantMap which are serializable by QJSON
 /// (<code>toMap();</code>) and vice versa (<code>fillWithMap();</code>).
 /// Here are two default methods using the QObjectHelper class of QJSON.
+template <class V>
 class ReynTweetsSerializable : public QObject
 {
-	Q_OBJECT
-
 	public:
-		/// @fn virtual QVariantMap toMap();
+		/// @fn virtual V toVariant() const = 0;
 		/// @brief Converting the object into a QVariantMap
 		/// @return A QVariantMap containing all the informations.
-		virtual QVariantMap toMap();
+		virtual V toVariant() const = 0;
 
-		/// @fn virtual void fillWithMap(QVariantMap map);
+		/// @fn virtual void fillWithVariant(V map) = 0;
 		/// @brief Filling a ReynTweetsSerializable object with the informations
 		/// contained in the map.
 		/// @param map The map
-		virtual void fillWithMap(QVariantMap map);
+		virtual void fillWithVariant(V map) = 0;
+
+		/// @fn virtual void syncMembers();
+		/// @brief Syncing members with properties to serialize.
+		virtual void syncMembers();
+
+		/// @fn virtual void syncProperties();
+		/// @brief Syncing properties to serialize with the corresponding members.
+		virtual void syncProperties();
+
 /*
 		/// @fn static QVariantList toVariantList(QList<ReynTweetsSerializable> serializables);
 		/// @brief Converting a list of serializables into a QVariantList

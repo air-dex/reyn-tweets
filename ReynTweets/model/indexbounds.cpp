@@ -58,7 +58,7 @@ void IndexBounds::recopie(const IndexBounds & indexes) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
-	QVariantList list = indexes.toVariantList();
+	QVariantList list = indexes.toVariant();
 	out << list;
 	return out;
 }
@@ -67,7 +67,7 @@ QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
 QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
 	QVariantList list;
 	in >> list;
-	indexes.fillWithVariantList(list);
+	indexes.fillWithVariant(list);
 	return in;
 }
 
@@ -108,7 +108,7 @@ void IndexBounds::setMax(int newMax) {
 }
 
 // Converting the bounds into a QVariantList
-QVariantList IndexBounds::toVariantList() const {
+QVariantList IndexBounds::toVariant() const {
 	QVariantList res;
 	res.append(QVariant(min));
 	res.append(QVariant(max));
@@ -116,9 +116,10 @@ QVariantList IndexBounds::toVariantList() const {
 }
 
 // Filling the object with a QVariantList
-void IndexBounds::fillWithVariantList(QVariantList variantList) {
-	QVariant bound1 = variantList.at(0);
-	QVariant bound2 = variantList.at(1);
-	setMin(bound1.toInt());
-	setMax(bound2.toInt());
+void IndexBounds::fillWithVariant(QVariantList variantList) {
+	QVariant bound = variantList.at(0);
+	setMin(bound.toInt());
+
+	bound = variantList.at(1);
+	setMax(bound.toInt());
 }

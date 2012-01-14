@@ -5,12 +5,12 @@
 #include <QString>
 #include <QDate>
 #include <QColor>
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
 /// @class UserInfos
 /// @brief Twitter profile without its last tweet. This class was introduced
 /// in order to avoid cyclic dependencies between the classes User and Tweet.
-class UserInfos : public ReynTweetsSerializable
+class UserInfos : public ReynTweetsMappable
 {
 	Q_OBJECT
 	//////////////////////////////
@@ -72,11 +72,11 @@ class UserInfos : public ReynTweetsSerializable
 		// Properties
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// contributors_enabled
 		/// @property contributors_enabled
@@ -85,20 +85,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isContributorsEnabled
 				   WRITE setContributorsEnabled)
 
-		/// @fn void updateContributorsEnabled();
-		/// @brief Updating the property contributors_enabled
-		void updateContributorsEnabled();
-
 		// lang
 		/// @property lang
 		/// @brief Serializable form of language
 		Q_PROPERTY(QString lang
 				   READ getLang
 				   WRITE setLang)
-
-		/// @fn void updateLang();
-		/// @brief Updating the property lang
-		void updateLang();
 
 		// profile_background_image_url
 		/// @property profile_background_image_url
@@ -107,20 +99,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getProfileBackgroundImageURL
 				   WRITE setProfileBackgroundImageURL)
 
-		/// @fn void updateProfileBackgroundImageURL();
-		/// @brief Updating the property profile_background_image_url
-		void updateProfileBackgroundImageURL();
-
 		// protected
 		/// @property protected
 		/// @brief Serializable form of protectedAccount
 		Q_PROPERTY(bool protected
 				   READ isProtected
 				   WRITE setProtected)
-
-		/// @fn void updateProtected();
-		/// @brief Updating the property protected
-		void updateProtected();
 
 		// profile_link_color
 		/// @property profile_link_color
@@ -129,20 +113,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getProfileLinkColor
 				   WRITE setProfileLinkColor)
 
-		/// @fn void updateProfileLinkColor();
-		/// @brief Updating the property profile_link_color
-		void updateProfileLinkColor();
-
 		// url
 		/// @property url
 		/// @brief Serializable form of userURL
 		Q_PROPERTY(QString url
 				   READ getURL
 				   WRITE setURL)
-
-		/// @fn void updateURL();
-		/// @brief Updating the property url
-		void updateURL();
 
 		// name
 		/// @property name
@@ -151,20 +127,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getName
 				   WRITE setName)
 
-		/// @fn void updateName();
-		/// @brief Updating the property name
-		void updateName();
-
 		// listed_count
 		/// @property listed_count
 		/// @brief Serializable form of listedCount
 		Q_PROPERTY(int listed_count
 				   READ getListedCount
 				   WRITE setListedCount)
-
-		/// @fn void updateListedCount();
-		/// @brief Updating the property listed_count
-		void updateListedCount();
 
 		// utc_offset
 		/// @property utc_offset
@@ -173,20 +141,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getUTCoffset
 				   WRITE setUTCoffset)
 
-		/// @fn void updateUTCoffset();
-		/// @brief Updating the property utc_offset
-		void updateUTCoffset();
-
 		// profile_background_color
 		/// @property profile_background_color
 		/// @brief Serializable form of backgroundColor
 		Q_PROPERTY(QColor profile_background_color
 				   READ getProfileBackgroundColor
 				   WRITE setProfileBackgroundColor)
-
-		/// @fn void updateProfileBackgroundColor();
-		/// @brief Updating the property profile_background_color
-		void updateProfileBackgroundColor();
 
 		// followers_count
 		/// @property followers_count
@@ -195,20 +155,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getFollowersCount
 				   WRITE setFollowersCount)
 
-		/// @fn void updateFollowersCount();
-		/// @brief Updating the property followers_count
-		void updateFollowersCount();
-
 		// profile_image_url
 		/// @property profile_image_url
 		/// @brief Serializable form of avatarURL
 		Q_PROPERTY(QString profile_image_url
 				   READ getProfileImageURL
 				   WRITE setProfileImageURL)
-
-		/// @fn void updateProfileImageURL();
-		/// @brief Updating the property profile_image_url
-		void updateProfileImageURL();
 
 		// description
 		/// @property description
@@ -217,20 +169,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getDescription
 				   WRITE setDescription)
 
-		/// @fn void updateDescription();
-		/// @brief Updating the property description
-		void updateDescription();
-
 		// profile_background_tile
 		/// @property profile_background_tile
 		/// @brief Serializable form of backgroundTile
 		Q_PROPERTY(bool profile_background_tile
 				   READ isProfileBackgroundTile
 				   WRITE setProfileBackgroundTile)
-
-		/// @fn void updateProfileBackgroundTile();
-		/// @brief Updating the property profile_background_tile
-		void updateProfileBackgroundTile();
 
 		// statuses_count
 		/// @property statuses_count
@@ -239,20 +183,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getStatusesCount
 				   WRITE setStatusesCount)
 
-		/// @fn void updateStatusesCount();
-		/// @brief Updating the property statuses_count
-		void updateStatusesCount();
-
 		// created_at
 		/// @property created_at
 		/// @brief Serializable form of createdAt
 		Q_PROPERTY(QDate created_at
 				   READ getCreatedAt
 				   WRITE setCreatedAt)
-
-		/// @fn void updateCreatedAt();
-		/// @brief Updating the property created_at
-		void updateCreatedAt();
 
 		// profile_sidebar_fill_color
 		/// @property profile_sidebar_fill_color
@@ -261,20 +197,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getProfileSidebarFillColor
 				   WRITE setProfileSidebarFillColor)
 
-		/// @fn void updateProfileSidebarFillColor();
-		/// @brief Updating the property profile_sidebar_fill_color
-		void updateProfileSidebarFillColor();
-
 		// screen_name
 		/// @property screen_name
 		/// @brief Serializable form of screenName
 		Q_PROPERTY(QString screen_name
 				   READ getScreenName
 				   WRITE setScreenName)
-
-		/// @fn void updateScreenName();
-		/// @brief Updating the property screen_name
-		void updateScreenName();
 
 		// geo_enabled
 		/// @property geo_enabled
@@ -283,20 +211,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isGeoEnabled
 				   WRITE setGeoEnabled)
 
-		/// @fn void updateGeoEnabled();
-		/// @brief Updating the property geo_enabled
-		void updateGeoEnabled();
-
 		// default_profile_image
 		/// @property default_profile_image
 		/// @brief Serializable form of defaultProfileImage
 		Q_PROPERTY(bool default_profile_image
 				   READ isDefaultProfileImage
 				   WRITE setDefaultProfileImage)
-
-		/// @fn void updateDefaultProfileImage();
-		/// @brief Updating the property default_profile_image
-		void updateDefaultProfileImage();
 
 		// friends_count
 		/// @property friends_count
@@ -305,20 +225,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getFriendsCount
 				   WRITE setFriendsCount)
 
-		/// @fn void updateFriendsCount();
-		/// @brief Updating the property friends_count
-		void updateFriendsCount();
-
 		// profile_sidebar_border_color
 		/// @property profile_sidebar_border_color
 		/// @brief Serializable form of sidebarBorderColor
 		Q_PROPERTY(QColor profile_sidebar_border_color
 				   READ getProfileSidebarBorderColor
 				   WRITE setProfileSidebarBorderColor)
-
-		/// @fn void updateProfileSidebarBorderColor();
-		/// @brief Updating the property profile_sidebar_border_color
-		void updateProfileSidebarBorderColor();
 
 		// id_str
 		/// @property id_str
@@ -327,20 +239,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getIDstr
 				   WRITE setIDstr)
 
-		/// @fn void updateIDstr();
-		/// @brief Updating the property id_str
-		void updateIDstr();
-
 		// show_all_inline_media
 		/// @property show_all_inline_media
 		/// @brief Serializable form of showAllInlineMedia
 		Q_PROPERTY(bool show_all_inline_media
 				   READ isShowAllInlineMedia
 				   WRITE setShowAllInlineMedia)
-
-		/// @fn void updateShowAllInlineMedia();
-		/// @brief Updating the property show_all_inline_media
-		void updateShowAllInlineMedia();
 
 		// follow_request_sent
 		/// @property follow_request_sent
@@ -349,20 +253,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isFollowRequestSent
 				   WRITE setFollowRequestSent)
 
-		/// @fn void updateFollowRequestSent();
-		/// @brief Updating the property follow_request_sent
-		void updateFollowRequestSent();
-
 		// profile_background_image_url_https
 		/// @property profile_background_image_url_https
 		/// @brief Serializable form of backgroundURLhttps
 		Q_PROPERTY(QString profile_background_image_url_https
 				   READ getProfileBackgroundImageURLhttps
 				   WRITE setProfileBackgroundImageURLhttps)
-
-		/// @fn void updateProfileBackgroundImageURLhttps();
-		/// @brief Updating the property profile_background_image_url_https
-		void updateProfileBackgroundImageURLhttps();
 
 		// is_translator
 		/// @property is_translator
@@ -371,20 +267,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isTranslator
 				   WRITE setTranslator)
 
-		/// @fn void updateTranslator();
-		/// @brief Updating the property is_translator
-		void updateTranslator();
-
 		// default_profile
 		/// @property default_profile
 		/// @brief Serializable form of defaultProfile
 		Q_PROPERTY(bool default_profile
 				   READ isDefaultProfile
 				   WRITE setDefaultProfile)
-
-		/// @fn void updateDefaultProfile();
-		/// @brief Updating the property default_profile
-		void updateDefaultProfile();
 
 		// notifications
 		/// @property notifications
@@ -393,20 +281,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isNotifications
 				   WRITE setNotifications)
 
-		/// @fn void updateNotifications();
-		/// @brief Updating the property notifications
-		void updateNotifications();
-
 		// profile_use_background_image
 		/// @property profile_use_background_image
 		/// @brief Serializable form of useBackgroundImage
 		Q_PROPERTY(bool profile_use_background_image
 				   READ isProfileUseBackgroundImage
 				   WRITE setProfileUseBackgroundImage)
-
-		/// @fn void updateProfileUseBackgroundImage();
-		/// @brief Updating the property profile_use_background_image
-		void updateProfileUseBackgroundImage();
 
 		// profile_image_url_https
 		/// @property profile_image_url_https
@@ -415,20 +295,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getProfileImageURLhttps
 				   WRITE setProfileImageURLhttps)
 
-		/// @fn void updateProfileImageURLhttps();
-		/// @brief Updating the property profile_image_url_https
-		void updateProfileImageURLhttps();
-
 		// id
 		/// @property id
 		/// @brief Serializable form of userID
 		Q_PROPERTY(long id
 				   READ getID
 				   WRITE setID)
-
-		/// @fn void updateID();
-		/// @brief Updating the property id
-		void updateID();
 
 		// verified
 		/// @property verified
@@ -437,20 +309,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ isVerified
 				   WRITE setVerified)
 
-		/// @fn void updateVerified();
-		/// @brief Updating the property verified
-		void updateVerified();
-
 		// time_zone
 		/// @property time_zone
 		/// @brief Serializable form of timeZone
 		Q_PROPERTY(QString time_zone
 				   READ getTimeZone
 				   WRITE setTimeZone)
-
-		/// @fn void updateTimeZone();
-		/// @brief Updating the property time_zone
-		void updateTimeZone();
 
 		// favourites_count
 		/// @property favourites_count
@@ -459,10 +323,6 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getFavouritesCount
 				   WRITE setFavouritesCount)
 
-		/// @fn void updateFavouritesCount();
-		/// @brief Updating the property favourites_count
-		void updateFavouritesCount();
-
 		// profile_text_color
 		/// @property profile_text_color
 		/// @brief Serializable form of textColor
@@ -470,20 +330,12 @@ class UserInfos : public ReynTweetsSerializable
 				   READ getProfileTextColor
 				   WRITE setProfileTextColor)
 
-		/// @fn void updateProfileTextColor();
-		/// @brief Updating the property profile_text_color
-		void updateProfileTextColor();
-
 		// location
 		/// @property location
 		/// @brief Serializable form of userLocation
 		Q_PROPERTY(QString location
 				   READ getLocation
 				   WRITE setLocation)
-
-		/// @fn void updateLocation();
-		/// @brief Updating the property location
-		void updateLocation();
 
 
 	/////////////////////

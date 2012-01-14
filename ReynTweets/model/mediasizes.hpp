@@ -25,9 +25,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define MEDIASIZES_HPP
 
 #include "mediasize.hpp"
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
-class MediaSizes : public ReynTweetsSerializable
+class MediaSizes : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -88,11 +88,11 @@ class MediaSizes : public ReynTweetsSerializable
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// Large size
 		/// @property large
@@ -116,7 +116,11 @@ class MediaSizes : public ReynTweetsSerializable
 
 		/// @fn void updateLarge();
 		/// @brief Updating the property large
-		void updateLarge();
+		void syncLargeProperty();
+
+		/// @fn void updateLarge();
+		/// @brief Updating the property large
+		void syncLargeMember();
 
 		// Medium size
 		/// @property medium
@@ -140,7 +144,11 @@ class MediaSizes : public ReynTweetsSerializable
 
 		/// @fn void updateMedium();
 		/// @brief Updating the property medium
-		void updateMedium();
+		void syncMediumProperty();
+
+		/// @fn void updateMedium();
+		/// @brief Updating the property medium
+		void syncMediumMember();
 
 		// Small size
 		/// @property small
@@ -164,7 +172,11 @@ class MediaSizes : public ReynTweetsSerializable
 
 		/// @fn void updateSmall();
 		/// @brief Updating the property small
-		void updateSmall();
+		void syncSmallProperty();
+
+		/// @fn void updateSmall();
+		/// @brief Updating the property small
+		void syncSmallMember();
 
 		// Thumb size
 		/// @property thumb
@@ -188,7 +200,11 @@ class MediaSizes : public ReynTweetsSerializable
 
 		/// @fn void updateThumb();
 		/// @brief Updating the property thumb
-		void updateThumb();
+		void syncThumbProperty();
+
+		/// @fn void updateThumb();
+		/// @brief Updating the property thumb
+		void syncThumbMember();
 
 
 	/////////////////

@@ -21,17 +21,24 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QJson/QObjectHelper>
-#include <QList>
 #include "reyntweetsserializable.hpp"
 
+// Syncing members with properties to serialize.
+template <class V>
+void ReynTweetsSerializable<V>::syncMembers() {}
+
+// Syncing properties to serialize with the corresponding members.
+template <class V>
+void ReynTweetsSerializable<V>::syncProperties() {}
+
+/*
 // Converting the object into a QVariantMap
-QVariantMap ReynTweetsSerializable::toMap() {
+V ReynTweetsSerializable::toVariant() {
 	return QJson::QObjectHelper::qobject2qvariant(this);
 }
 
 // Filling a ReynTweetsSerializable object with the informations
-void ReynTweetsSerializable::fillWithMap(QVariantMap map) {
+void ReynTweetsSerializable::fillWithMap(V map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
 }
 

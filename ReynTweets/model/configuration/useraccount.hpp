@@ -28,12 +28,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
-#include "../reyntweetsserializable.hpp"
+#include "../reyntweetsmappable.hpp"
 #include "../user.hpp"
 
 /// @class UserAccount
 /// @brief User account.
-class UserAccount : public ReynTweetsSerializable
+class UserAccount : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -94,11 +94,11 @@ class UserAccount : public ReynTweetsSerializable
 		// Properties
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// Access Token
 		/// @property access_token
@@ -107,20 +107,12 @@ class UserAccount : public ReynTweetsSerializable
 				   READ getAccessToken
 				   WRITE setAccessToken)
 
-		/// @fn void updateAccessTokenProperty();
-		/// @brief Updates the property p_accessToken
-		void updateAccessTokenProperty();
-
 		// Token Secret
 		/// @property token_secret
 		/// @brief Token secret
 		Q_PROPERTY(QByteArray token_secret
 				   READ getTokenSecret
 				   WRITE setTokenSecret)
-
-		/// @fn void updateTokenSecretProperty();
-		/// @brief Updates the property p_tokenScret
-		void updateTokenSecretProperty();
 
 		// User
 		/// @property twitter_user
@@ -144,7 +136,11 @@ class UserAccount : public ReynTweetsSerializable
 
 		/// @fn void updateUserProperty();
 		/// @brief Updates the property p_user
-		void updateUserProperty();
+		void syncUserProperty();
+
+		/// @fn void updateUserProperty();
+		/// @brief Updates the property p_user
+		void syncUserMember();
 
 
 	//////////////////////////////

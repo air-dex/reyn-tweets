@@ -97,11 +97,11 @@ class User : public UserInfos
 		// Properties
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// status
 		/// @property status
@@ -125,7 +125,11 @@ class User : public UserInfos
 
 		/// @fn void updateStatus();
 		/// @brief Updating the property status
-		void updateStatus();
+		void syncStatusProperty();
+
+		/// @fn void updateStatus();
+		/// @brief Updating the property status
+		void syncStatusMember();
 
 
 	/////////////////////

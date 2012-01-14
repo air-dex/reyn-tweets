@@ -27,13 +27,13 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include "hashtag.hpp"
 #include "media.hpp"
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 #include "urlentity.hpp"
 #include "usermention.hpp"
 
 /// @class TweetEntities
 /// @brief Entities of a tweet, such as its hashtags, its mentions and its URLs.
-class TweetEntities : public ReynTweetsSerializable
+class TweetEntities : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -95,11 +95,11 @@ class TweetEntities : public ReynTweetsSerializable
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// media
 		/// @property media
@@ -123,7 +123,11 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @fn void updateMedia();
 		/// @brief Updating the property media
-		void updateMedia();
+		void syncMediaProperty();
+
+		/// @fn void updateMedia();
+		/// @brief Updating the property media
+		void syncMediaMember();
 
 		// urls
 		/// @property urls
@@ -147,7 +151,11 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @fn void updateURLs();
 		/// @brief Updating the property urls
-		void updateURLs();
+		void syncUrlsProperty();
+
+		/// @fn void updateURLs();
+		/// @brief Updating the property urls
+		void syncUrlsMember();
 
 		// user_mentions
 		/// @property user_mentions
@@ -171,7 +179,11 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @fn void updateUserMentions();
 		/// @brief Updating the property user_mentions
-		void updateUserMentions();
+		void syncUserMentionsProperty();
+
+		/// @fn void updateUserMentions();
+		/// @brief Updating the property user_mentions
+		void syncUserMentionsMember();
 
 		// hashtags
 		/// @property hashtags
@@ -195,7 +207,11 @@ class TweetEntities : public ReynTweetsSerializable
 
 		/// @fn void updateHashtags();
 		/// @brief Updating the property hashtags
-		void updateHashtags();
+		void syncHashtagsProperty();
+
+		/// @fn void updateHashtags();
+		/// @brief Updating the property hashtags
+		void syncHashtagsMember();
 
 
 	//////////////

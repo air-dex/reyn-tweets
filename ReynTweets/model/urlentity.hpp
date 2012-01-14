@@ -26,9 +26,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QString>
 #include "indexbounds.hpp"
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
-class URLEntity : public ReynTweetsSerializable
+class URLEntity : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -89,11 +89,11 @@ class URLEntity : public ReynTweetsSerializable
 	protected:
 		/// @fn virtual void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		virtual void fillWithPropertiesMaps();
+		virtual void syncMembers();
 
 		/// @fn virtual void updateAllProperties();
 		/// @brief Updating all the properties
-		virtual void updateAllProperties();
+		virtual void syncProperties();
 
 		// url
 		/// @property url
@@ -102,10 +102,6 @@ class URLEntity : public ReynTweetsSerializable
 				   READ getURL
 				   WRITE setURL)
 
-		/// @fn void updateURL();
-		/// @brief Updating the property url
-		void updateURL();
-
 		// displayed_url
 		/// @property displayed_url
 		/// @brief Displayed URL
@@ -113,20 +109,12 @@ class URLEntity : public ReynTweetsSerializable
 				   READ getDisplayedURL
 				   WRITE setDisplayedURL)
 
-		/// @fn void updateDisplayedURL();
-		/// @brief Updating the property displayed_url
-		void updateDisplayedURL();
-
 		// expanded_url
 		/// @property expanded_url
 		/// @brief Expanded URL
 		Q_PROPERTY(QString expanded_url
 				   READ getExpandedURL
 				   WRITE setExpandedURL)
-
-		/// @fn void updateExpandedURL();
-		/// @brief Updating the property expanded_url
-		void updateExpandedURL();
 
 		// indices
 		/// @property indices
@@ -150,7 +138,11 @@ class URLEntity : public ReynTweetsSerializable
 
 		/// @fn void updateIndices();
 		/// @brief Updating the property indices
-		void updateIndices();
+		void syncIndicesProperty();
+
+		/// @fn void updateIndices();
+		/// @brief Updating the property indices
+		void syncIndicesMember();
 
 
 	////////////////////

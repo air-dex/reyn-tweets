@@ -7,7 +7,7 @@
 
 // Default constructor
 UserInfos::UserInfos() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	userID(-1),
 	userIDstr("-1"),
 	screenName(""),
@@ -46,16 +46,14 @@ UserInfos::UserInfos() :
 	showAllInlineMedia(false),
 	notificationsEnabled(false)
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
 UserInfos::~UserInfos() {}
 
 // Copy constructor
-UserInfos::UserInfos(const UserInfos & user) :
-	ReynTweetsSerializable()
-{
+UserInfos::UserInfos(const UserInfos & user) {
 	recopie(user);
 }
 
@@ -110,7 +108,7 @@ void UserInfos::recopie(const UserInfos & user) {
 	followRequestSent = user.followRequestSent;
 	showAllInlineMedia = user.showAllInlineMedia;
 	notificationsEnabled = user.notificationsEnabled;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Friends serialization operators
@@ -125,7 +123,7 @@ QDataStream & operator>>(QDataStream & in, UserInfos & user) {
 	jsonStreamingIn(in, user);
 
 	// Filling the user account
-	user.fillWithPropertiesMaps();
+	user.syncMembers();
 
 	return in;
 }
@@ -136,233 +134,10 @@ QDataStream & operator>>(QDataStream & in, UserInfos & user) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void UserInfos::fillWithPropertiesMaps() {}
+void UserInfos::syncMembers() {}
 
 // Updating all the properties
-void UserInfos::updateAllProperties() {
-	updateContributorsEnabled();
-	updateCreatedAt();
-	updateDescription();
-	updateDefaultProfileImage();
-	updateDefaultProfile();
-	updateFollowersCount();
-	updateFriendsCount();
-	updateFollowRequestSent();
-	updateFavouritesCount();
-	updateGeoEnabled();
-	updateIDstr();
-	updateID();
-	updateLang();
-	updateListedCount();
-	updateLocation();
-	updateName();
-	updateNotifications();
-	updateProfileBackgroundImageURL();
-	updateProfileLinkColor();
-	updateProfileBackgroundColor();
-	updateProfileImageURL();
-	updateProfileBackgroundTile();
-	updateProfileSidebarFillColor();
-	updateProfileSidebarBorderColor();
-	updateProfileBackgroundImageURLhttps();
-	updateProfileUseBackgroundImage();
-	updateProfileImageURLhttps();
-	updateProfileTextColor();
-	updateProtected();
-	updateStatusesCount();
-	updateScreenName();
-	updateShowAllInlineMedia();
-	updateTranslator();
-	updateTimeZone();
-	updateURL();
-	updateUTCoffset();
-	updateVerified();
-}
-
-// Updating the property contributors_enabled
-void UserInfos::updateContributorsEnabled() {
-	setProperty("contributors_enabled", QVariant(contributorsEnabled));
-}
-
-// Updating the property lang
-void UserInfos::updateLang() {
-	setProperty("lang", QVariant(language));
-}
-
-// Updating the property profile_background_image_url
-void UserInfos::updateProfileBackgroundImageURL() {
-	setProperty("profile_background_image_url", QVariant(backgroundURL));
-}
-
-// Updating the property protected
-void UserInfos::updateProtected() {
-	setProperty("protected", QVariant(protectedAccount));
-}
-
-// Updating the property profile_link_color
-void UserInfos::updateProfileLinkColor() {
-	setProperty("profile_link_color", QVariant(linkColor));
-}
-
-// Updating the property url
-void UserInfos::updateURL() {
-	setProperty("url", QVariant(userURL));
-}
-
-// Updating the property name
-void UserInfos::updateName() {
-	setProperty("name", QVariant(userName));
-}
-
-// Updating the property listed_count
-void UserInfos::updateListedCount() {
-	setProperty("listed_count", QVariant(listsCount));
-}
-
-// Updating the property utc_offset
-void UserInfos::updateUTCoffset() {
-	setProperty("utc_offset", QVariant(timeZoneOffset));
-}
-
-// Updating the property profile_background_color
-void UserInfos::updateProfileBackgroundColor() {
-	setProperty("profile_background_color", QVariant(backgroundColor));
-}
-
-// Updating the property followers_count
-void UserInfos::updateFollowersCount() {
-	setProperty("followers_count", QVariant(followersCount));
-}
-
-// Updating the property profile_image_url
-void UserInfos::updateProfileImageURL() {
-	setProperty("profile_image_url", QVariant(avatarURL));
-}
-
-// Updating the property description
-void UserInfos::updateDescription() {
-	setProperty("description", QVariant(userDescription));
-}
-
-// Updating the property profile_background_tile
-void UserInfos::updateProfileBackgroundTile() {
-	setProperty("profile_background_tile", QVariant(backgroundTile));
-}
-
-// Updating the property statuses_count
-void UserInfos::updateStatusesCount() {
-	setProperty("statuses_count", QVariant(tweetsCount));
-}
-
-// Updating the property created_at
-void UserInfos::updateCreatedAt() {
-	setProperty("created_at", QVariant(createdAt));
-}
-
-// Updating the property profile_sidebar_fill_color
-void UserInfos::updateProfileSidebarFillColor() {
-	setProperty("profile_sidebar_fill_color", QVariant(sidebarColor));
-}
-
-// Updating the property screen_name
-void UserInfos::updateScreenName() {
-	setProperty("screen_name", QVariant(screenName));
-}
-
-// Updating the property geo_enabled
-void UserInfos::updateGeoEnabled() {
-	setProperty("geo_enabled", QVariant(geotaggingEnabled));
-}
-
-// Updating the property default_profile_image
-void UserInfos::updateDefaultProfileImage() {
-	setProperty("default_profile_image", QVariant(defaultProfileImage));
-}
-
-// Updating the property friends_count
-void UserInfos::updateFriendsCount() {
-	setProperty("friends_count", QVariant(friendsCount));
-}
-
-// Updating the property profile_sidebar_border_color
-void UserInfos::updateProfileSidebarBorderColor() {
-	setProperty("profile_sidebar_border_color", QVariant(sidebarBorderColor));
-}
-
-// Updating the property id_str
-void UserInfos::updateIDstr() {
-	setProperty("id_str", QVariant(userIDstr));
-}
-
-// Updating the property show_all_inline_media
-void UserInfos::updateShowAllInlineMedia() {
-	setProperty("show_all_inline_media", QVariant(showAllInlineMedia));
-}
-
-// Updating the property follow_request_sent
-void UserInfos::updateFollowRequestSent() {
-	setProperty("follow_request_sent", QVariant(followRequestSent));
-}
-
-// Updating the property profile_background_image_url_https
-void UserInfos::updateProfileBackgroundImageURLhttps() {
-	setProperty("profile_background_image_url_https", QVariant(backgroundURLhttps));
-}
-
-// Updating the property is_translator
-void UserInfos::updateTranslator() {
-	setProperty("is_translator", QVariant(twitterTranslator));
-}
-
-// Updating the property default_profile
-void UserInfos::updateDefaultProfile() {
-	setProperty("default_profile", QVariant(defaultProfile));
-}
-
-// Updating the property notifications
-void UserInfos::updateNotifications() {
-	setProperty("notifications", QVariant(notificationsEnabled));
-}
-
-// Updating the property profile_use_background_image
-void UserInfos::updateProfileUseBackgroundImage() {
-	setProperty("profile_use_background_image", QVariant(useBackgroundImage));
-}
-
-// Updating the property profile_image_url_https
-void UserInfos::updateProfileImageURLhttps() {
-	setProperty("profile_image_url_https", QVariant(avatarURLhttps));
-}
-
-// Updating the property id
-void UserInfos::updateID() {
-	setProperty("id", QVariant(userID));
-}
-
-// Updating the property verified
-void UserInfos::updateVerified() {
-	setProperty("verified", QVariant(verifiedAccount));
-}
-
-// Updating the property time_zone
-void UserInfos::updateTimeZone() {
-	setProperty("time_zone", QVariant(timeZone));
-}
-
-// Updating the property favourites_count
-void UserInfos::updateFavouritesCount() {
-	setProperty("favourites_count", QVariant(favoritesCount));
-}
-
-// Updating the property profile_text_color
-void UserInfos::updateProfileTextColor() {
-	setProperty("profile_text_color", QVariant(textColor));
-}
-
-// Updating the property location
-void UserInfos::updateLocation() {
-	setProperty("location", QVariant(userLocation));
-}
+void UserInfos::syncProperties() {}
 
 
 /////////////////////////

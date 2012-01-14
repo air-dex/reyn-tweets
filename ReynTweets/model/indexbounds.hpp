@@ -27,8 +27,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
+#include "reyntweetsserializable.hpp"
 
-class IndexBounds : public QObject
+class IndexBounds : public ReynTweetsSerializable<QVariantList>
 {
 	Q_OBJECT
 
@@ -122,12 +123,12 @@ class IndexBounds : public QObject
 		/// @fn QVariantList toVariantList() const;
 		/// @brief Converting the bounds into a QVariantList
 		/// @return The QVariant List with the bounds in two QVariant objects.
-		QVariantList toVariantList() const;
+		QVariantList toVariant() const;
 
 		/// @fn void fillWithVariantList(QVariantList variantList);
 		/// @brief Filling the object with a QVariantList
 		/// @param variantList The QVariantList.
-		void fillWithVariantList(QVariantList variantList);
+		void fillWithVariant(QVariantList variantList);
 };
 
 // Serialization of IndexBounds

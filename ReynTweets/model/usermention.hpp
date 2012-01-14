@@ -25,11 +25,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define USERMENTION_HPP
 
 #include "indexbounds.hpp"
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
-class UserMention : public ReynTweetsSerializable
+class UserMention : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -90,11 +90,11 @@ class UserMention : public ReynTweetsSerializable
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// id
 		/// @property id
@@ -103,20 +103,12 @@ class UserMention : public ReynTweetsSerializable
 				   READ getID
 				   WRITE setID)
 
-		/// @fn void updateID();
-		/// @brief Updating the property id
-		void updateID();
-
 		// id_str
 		/// @property id_str
 		/// @brief String version of id
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr)
-
-		/// @fn void updateIDstr();
-		/// @brief Updating the property url
-		void updateIDstr();
 
 		// screen_name
 		/// @property screen_name
@@ -125,20 +117,12 @@ class UserMention : public ReynTweetsSerializable
 				   READ getScreenName
 				   WRITE setScreenName)
 
-		/// @fn void updateScreenName();
-		/// @brief Updating the property screen_name
-		void updateScreenName();
-
 		// name
 		/// @property name
 		/// @brief User full name
 		Q_PROPERTY(QString name
 				   READ getName
 				   WRITE setName)
-
-		/// @fn void updateName();
-		/// @brief Updating the property name
-		void updateName();
 
 		// indices
 		/// @property indices
@@ -162,7 +146,11 @@ class UserMention : public ReynTweetsSerializable
 
 		/// @fn void updateIndices();
 		/// @brief Updating the property indices
-		void updateIndices();
+		void syncIndicesProperty();
+
+		/// @fn void updateIndices();
+		/// @brief Updating the property indices
+		void syncIndicesMember();
 
 
 	////////////////////////

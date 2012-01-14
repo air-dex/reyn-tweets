@@ -30,11 +30,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 UserAccount::UserAccount() :
+	ReynTweetsMappable(),
 	accessToken(""),
 	tokenSecret(""),
 	user()
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -56,7 +57,7 @@ void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
 	tokenSecret = account.tokenSecret;
 	user = account.user;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Serialization declaration
@@ -80,7 +81,7 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 	jsonStreamingIn(in, account);
 
 	// Updating the user
-	account.fillWithPropertiesMaps();
+	account.syncMembers();
 
 	return in;
 }
@@ -91,25 +92,13 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 ///////////////////////////
 
 // Filling serializable fields with thecorresponding  property maps
-void UserAccount::fillWithPropertiesMaps() {
-	user.fillWithMap(userMap);
+void UserAccount::syncMembers() {
+	syncUserMember();
 }
 
 // Updating all the properties
-void UserAccount::updateAllProperties() {
-	updateAccessTokenProperty();
-	updateTokenSecretProperty();
-	updateUserProperty();
-}
-
-// Updates the property p_accessToken
-void UserAccount::updateAccessTokenProperty() {
-	setProperty("access_token", QVariant(accessToken));
-}
-
-// Updates the property p_tokenScret
-void UserAccount::updateTokenSecretProperty() {
-	setProperty("token_secret", QVariant(tokenSecret));
+void UserAccount::syncProperties() {
+	syncUserProperty();
 }
 
 // Reading the property twitter_user
@@ -123,8 +112,13 @@ void UserAccount::setUserMap(QVariantMap newUserMap) {
 }
 
 // Updates the property p_user
-void UserAccount::updateUserProperty() {
-	setUserMap(user.toMap());
+void UserAccount::syncUserProperty() {
+	setUserMap(user.toVariant());
+}
+
+// Updates the property p_user
+void UserAccount::syncUserMember() {
+	user.fillWithVariant(userMap);
 }
 
 
@@ -160,5 +154,5 @@ User UserAccount::getUser() {
 // Setter on user
 void UserAccount::setUser(User u) {
 	user = u;
-	updateUserProperty();
+	syncUserProperty();
 }

@@ -90,11 +90,11 @@ class Media : public URLEntity
 	protected:
 		/// @fn void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		void fillWithPropertiesMaps();
+		void syncMembers();
 
 		/// @fn void updateAllProperties();
 		/// @brief Updating all the properties
-		void updateAllProperties();
+		void syncProperties();
 
 		// id
 		/// @property id
@@ -103,20 +103,12 @@ class Media : public URLEntity
 				   READ getID
 				   WRITE setID)
 
-		/// @fn void updateID();
-		/// @brief Updating the property id
-		void updateID();
-
 		// id_str
 		/// @property id_str
 		/// @brief String version of id
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr)
-
-		/// @fn void updateIDstr();
-		/// @brief Updating the property id_str
-		void updateIDstr();
 
 		// media_url
 		/// @property media_url
@@ -125,10 +117,6 @@ class Media : public URLEntity
 				   READ getMediaURL
 				   WRITE setMediaURL)
 
-		/// @fn void updateMediaURL();
-		/// @brief Updating the property media_url
-		void updateMediaURL();
-
 		// media_url_https
 		/// @property media_url_https
 		/// @brief HTTPS version of media_url
@@ -136,20 +124,12 @@ class Media : public URLEntity
 				   READ getMediaURLhttps
 				   WRITE setMediaURLhttps)
 
-		/// @fn void updateMediaURLhttps();
-		/// @brief Updating the property media_url_https
-		void updateMediaURLhttps();
-
 		// type
 		/// @property type
 		/// @brief Media type
 		Q_PROPERTY(QString type
 				   READ getType
 				   WRITE setType)
-
-		/// @fn void updateType();
-		/// @brief Updating the property type
-		void updateType();
 
 		// sizes
 		/// @property sizes
@@ -173,7 +153,11 @@ class Media : public URLEntity
 
 		/// @fn void updateSizes();
 		/// @brief Updating the property sizes
-		void updateSizes();
+		void syncSizesProperty();
+
+		/// @fn void updateSizes();
+		/// @brief Updating the property sizes
+		void syncSizesMember();
 
 
 	//////////////////////

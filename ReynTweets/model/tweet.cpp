@@ -30,7 +30,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Default constructor
 Tweet::Tweet() :
-	ReynTweetsSerializable(),
+	ReynTweetsMappable(),
 	entitiesMap(),
 	userMap(),
 	tweetID(-1),
@@ -51,7 +51,7 @@ Tweet::Tweet() :
 	sourceClient(""),
 	truncatedTweet(false)
 {
-	updateAllProperties();
+	syncProperties();
 }
 
 // Destructor
@@ -93,7 +93,7 @@ void Tweet::recopie(const Tweet & tweet) {
 	createdAt = tweet.createdAt;
 	sourceClient = tweet.sourceClient;
 	truncatedTweet = tweet.truncatedTweet;
-	updateAllProperties();
+	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -106,7 +106,7 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 	jsonStreamingIn(in, tweet);
 
 	// Updating the entities and the user
-	tweet.fillWithPropertiesMaps();
+	tweet.syncMembers();
 
 	return in;
 }
@@ -117,33 +117,15 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 ///////////////////////////
 
 // Filling serializable fields with the corresponding property maps
-void Tweet::fillWithPropertiesMaps() {
-	// entities
-	tweetEntities.fillWithMap(entitiesMap);
-
-	// user
-	profile.fillWithMap(userMap);
+void Tweet::syncMembers() {
+	syncEntitiesMember();
+	syncUserMember();
 }
 
 // Updating all the properties
-void Tweet::updateAllProperties() {
-	updateID();
-	updateIDstr();
-	updateEntities();
-	updateText();
-	updateSensible();
-	updateRetweeted();
-	updateRetweetCount();
-	updateFavorited();
-	updateInReplyToScreenName();
-	updateInReplyToUserID();
-	updateInReplyToUserIDstr();
-	updateInReplyToStatusID();
-	updateInReplyToStatusIDstr();
-	updateUser();
-	updateCreatedAt();
-	updateSource();
-	updateTruncated();
+void Tweet::syncProperties() {
+	syncEntitiesProperty();
+	syncUserProperty();
 }
 
 // Reading the property entities
@@ -157,43 +139,13 @@ void Tweet::setEntitiesMap(QVariantMap newEntityMap) {
 }
 
 // Updating the property entities
-void Tweet::updateEntities() {
-	setEntitiesMap(tweetEntities.toMap());
+void Tweet::syncEntitiesProperty() {
+	setEntitiesMap(tweetEntities.toVariant());
 }
 
-// Updating the property in_reply_to_user_id
-void Tweet::updateInReplyToUserID() {
-	setProperty("in_reply_to_user_id", QVariant(replyToUserID));
-}
-
-// Updating the property truncated
-void Tweet::updateTruncated() {
-	setProperty("truncated", QVariant(truncatedTweet));
-}
-
-// Updating the property favorited
-void Tweet::updateFavorited() {
-	setProperty("favorited", QVariant(favoritedTweet));
-}
-
-// Updating the property retweet_count
-void Tweet::updateRetweetCount() {
-	setProperty("retweet_count", QVariant(retweetCount));
-}
-
-// Updating the property in_reply_to_screen_name
-void Tweet::updateInReplyToScreenName() {
-	setProperty("in_reply_to_screen_name", QVariant(replyToScreenName));
-}
-
-// Updating the property created_at
-void Tweet::updateCreatedAt() {
-	setProperty("created_at", QVariant(createdAt));
-}
-
-// Updating the property in_reply_to_status_id_str
-void Tweet::updateInReplyToStatusIDstr() {
-	setProperty("in_reply_to_status_id_str", QVariant(replyToTweetIDstr));
+// Updating the property entities
+void Tweet::syncEntitiesMember() {
+	tweetEntities.fillWithVariant(entitiesMap);
 }
 
 // Reading the property user
@@ -207,48 +159,13 @@ void Tweet::setUserMap(QVariantMap newUserMap) {
 }
 
 // Updating the property user
-void Tweet::updateUser() {
-	setUserMap(profile.toMap());
+void Tweet::syncUserProperty() {
+	setUserMap(profile.toVariant());
 }
 
-// Updating the property retweeted
-void Tweet::updateRetweeted() {
-	setProperty("retweeted", QVariant(retweetedTweet));
-}
-
-// Updating the property in_reply_to_user_id_str
-void Tweet::updateInReplyToUserIDstr() {
-	setProperty("in_reply_to_user_id_str", QVariant(replyToUserIDstr));
-}
-
-// Updating the property id_str
-void Tweet::updateIDstr() {
-	setProperty("id_str", QVariant(tweetIDstr));
-}
-
-// Updating the property source
-void Tweet::updateSource() {
-	setProperty("source", QVariant(sourceClient));
-}
-
-// Updating the property id
-void Tweet::updateID() {
-	setProperty("id", QVariant(tweetID));
-}
-
-// Updating the property in_reply_to_status_id
-void Tweet::updateInReplyToStatusID() {
-	setProperty("in_reply_to_status_id", QVariant(replyToTweetID));
-}
-
-// Updating the property text
-void Tweet::updateText() {
-	setProperty("text", QVariant(tweet));
-}
-
-// Updating the property sensible
-void Tweet::updateSensible() {
-	setProperty("sensible", QVariant(sensibleTweet));
+// Updating the property user
+void Tweet::syncUserMember() {
+	profile.fillWithVariant(userMap);
 }
 
 
@@ -263,7 +180,7 @@ TweetEntities Tweet::getEntities() {
 
 void Tweet::setEntities(TweetEntities newValue) {
 	tweetEntities = newValue;
-	updateEntities();
+	syncEntitiesProperty();
 }
 
 // in_reply_to_user_id
@@ -336,7 +253,7 @@ UserInfos Tweet::getUser() {
 
 void Tweet::setUser(UserInfos newValue) {
 	profile = newValue;
-	updateUser();
+	syncUserProperty();
 }
 
 // retweeted

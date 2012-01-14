@@ -27,6 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "indexbounds.hpp"
 #include "reyntweetsmappable.hpp"
+#include "reyntweetsserializablelist.hpp"
 
 class URLEntity : public ReynTweetsMappable
 {
@@ -225,5 +226,10 @@ QDataStream & operator<<(QDataStream & out, const URLEntity & entity);
 /// @param entity Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, URLEntity & entity);
+
+
+typedef ReynTweetsSerializableList<URLEntity> URLEntityList;
+
+
 
 #endif // URLENTITY_HPP

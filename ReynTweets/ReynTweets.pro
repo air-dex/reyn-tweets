@@ -62,10 +62,10 @@ SOURCES += \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
-	model/reyntweetsserializable.cpp \
-	model/reyntweetsserializablelisthelper.cpp \
-	model/indexbounds.cpp \
+#	model/reyntweetsserializable.cpp \
+	model/reyntweetsserializablelist.cpp \
 	model/reyntweetsmappable.cpp \
+	model/indexbounds.cpp \
 	model/mediasize.cpp \
 	model/mediasizes.cpp \
 	model/media.cpp \
@@ -84,7 +84,10 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+	model/hashtaglist.cpp \
+	model/reyntweetslistable.cpp \
+    model/reyntweetsserializablelist.tpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -113,7 +116,7 @@ HEADERS  += \
 	connection/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
 	model/reyntweetsserializable.hpp \
-	model/reyntweetsserializablelisthelper.hpp \
+	model/reyntweetsserializablelist.hpp \
 	model/reyntweetsmappable.hpp \
 	model/indexbounds.hpp \
 	model/mediasize.hpp \
@@ -134,7 +137,9 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+	model/hashtaglist.hpp \
+	model/reyntweetslistable.hpp
 
 
 OTHER_FILES = \

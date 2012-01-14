@@ -25,11 +25,13 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define TWEETENTITIES_HPP
 
 #include <QList>
-#include "hashtag.hpp"
+#include "hashtaglist.hpp"
 #include "media.hpp"
 #include "reyntweetsmappable.hpp"
 #include "urlentity.hpp"
 #include "usermention.hpp"
+#include "reyntweetsserializablelist.tpp"
+
 
 /// @class TweetEntities
 /// @brief Entities of a tweet, such as its hashtags, its mentions and its URLs.
@@ -220,16 +222,16 @@ class TweetEntities : public ReynTweetsMappable
 
 	protected:
 		/// @brief Medias
-		QList<Media> medias;
+		MediaList medias;
 
 		/// @brief URLs
-		QList<URLEntity> tweetURLs;
+		URLEntityList tweetURLs;
 
 		/// @brief User mentions
-		QList<UserMention> userMentions;
+		UserMentionList userMentions;
 
 		/// @brief Hashtags
-		QList<Hashtag> tweetHashtags;
+		HashtagList tweetHashtags;
 
 
 	///////////////
@@ -237,45 +239,45 @@ class TweetEntities : public ReynTweetsMappable
 	///////////////
 
 	public:
-		/// @fn QList<Media> getMedia();
+		/// @fn MediaList getMedia();
 		/// @brief Reading medias
 		/// @return medias
-		QList<Media> getMedia();
+		MediaList getMedia();
 
-		/// @fn void setMedia(QList<Media> newMedia);
+		/// @fn void setMedia(MediaList newMedia);
 		/// @brief Writing medias
 		/// @param newMedia New value for medias
-		void setMedia(QList<Media> newMedia);
+		void setMedia(MediaList newMedia);
 
-		/// @fn QList<URLEntity> getURLs();
+		/// @fn URLEntityList getURLs();
 		/// @brief Reading tweetURLs
 		/// @return tweetURLs
-		QList<URLEntity> getURLs();
+		URLEntityList getURLs();
 
-		/// @fn void setURLs(QList<URLEntity> newURLs);
+		/// @fn void setURLs(URLEntityList newURLs);
 		/// @brief Writing tweetURLs
 		/// @param newURLs New value for tweetURLs
-		void setURLs(QList<URLEntity> newURLs);
+		void setURLs(URLEntityList newURLs);
 
-		/// @fn QList<UserMention> getUserMentions();
+		/// @fn UserMentionList getUserMentions();
 		/// @brief Reading userMentions
 		/// @return userMentions
-		QList<UserMention> getUserMentions();
+		UserMentionList getUserMentions();
 
-		/// @fn void setUserMentions(QList<UserMention> newUserMentions);
+		/// @fn void setUserMentions(UserMentionList newUserMentions);
 		/// @brief Writing userMentions
 		/// @param newUserMentions New value for userMentions
-		void setUserMentions(QList<UserMention> newUserMentions);
+		void setUserMentions(UserMentionList newUserMentions);
 
-		/// @fn QList<Hashtag> getHashtags();
+		/// @fn HashtagList getHashtags();
 		/// @brief Reading tweetHashtags
 		/// @return tweetHashtags
-		QList<Hashtag> getHashtags();
+		HashtagList getHashtags();
 
-		/// @fn void setHashtagsList(QList<Hashtag> newHashtags);
+		/// @fn void setHashtagsList(HashtagList newHashtags);
 		/// @brief Writing tweetHashtags
 		/// @param newHashtags New value for tweetHashtags
-		void setHashtagsList(QList<Hashtag> newHashtags);
+		void setHashtagsList(HashtagList newHashtags);
 };
 
 // Serialization of TweetEntities

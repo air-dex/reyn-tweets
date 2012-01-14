@@ -21,7 +21,6 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "reyntweetsserializablelisthelper.hpp"
 #include "tweetentities.hpp"
 #include "../tools/utils.hpp"
 
@@ -121,12 +120,12 @@ void TweetEntities::setMediaList(QVariantList newMediaList) {
 
 // Updating the property media
 void TweetEntities::syncMediaProperty() {
-	mediaList = ReynTweetsSerializableListHelper<Media>::toVariantList(medias);
+	mediaList = medias.toVariant();
 }
 
 // Updating the property media
 void TweetEntities::syncMediaMember() {
-	medias = ReynTweetsSerializableListHelper<Media>::fillWithList(mediaList);
+	medias.fillWithVariant(mediaList);
 }
 
 // Reading the property urls
@@ -141,12 +140,12 @@ void TweetEntities::setURLList(QVariantList newURLList) {
 
 // Updating the property urls
 void TweetEntities::syncUrlsProperty() {
-	urlsList = ReynTweetsSerializableListHelper<URLEntity>::toVariantList(tweetURLs);
+	urlsList = tweetURLs.toVariant();
 }
 
 // Updating the property urls
 void TweetEntities::syncUrlsMember() {
-	tweetURLs = ReynTweetsSerializableListHelper<URLEntity>::fillWithList(urlsList);
+	tweetURLs.fillWithVariant(urlsList);
 }
 
 // Reading the property user_mentions
@@ -161,12 +160,12 @@ void TweetEntities::setUserMentionsList(QVariantList newUserMentionsList) {
 
 // Updating the property user_mentions
 void TweetEntities::syncUserMentionsProperty() {
-	userMentionsList = ReynTweetsSerializableListHelper<UserMention>::toVariantList(userMentions);
+	userMentionsList = userMentions.toVariant();
 }
 
 // Updating the property user_mentions
 void TweetEntities::syncUserMentionsMember() {
-	userMentions = ReynTweetsSerializableListHelper<UserMention>::fillWithList(userMentionsList);
+	userMentions.fillWithVariant(userMentionsList);
 }
 
 // Reading the property hashtags
@@ -181,12 +180,12 @@ void TweetEntities::setHashtagsList(QVariantList newHashtagsList) {
 
 // Updating the property hashtags
 void TweetEntities::syncHashtagsProperty() {
-	hashtagsList = ReynTweetsSerializableListHelper<Hashtag>::toVariantList(tweetHashtags);
+	hashtagsList = tweetHashtags.toVariant();
 }
 
 // Updating the property hashtags
 void TweetEntities::syncHashtagsMember() {
-	tweetHashtags = ReynTweetsSerializableListHelper<Hashtag>::fillWithList(hashtagsList);
+	tweetHashtags.fillWithVariant(hashtagsList);
 }
 
 
@@ -195,45 +194,45 @@ void TweetEntities::syncHashtagsMember() {
 ///////////////
 
 // Reading medias
-QList<Media> TweetEntities::getMedia() {
+MediaList TweetEntities::getMedia() {
 	return medias;
 }
 
 // Writing medias
-void TweetEntities::setMedia(QList<Media> newMedia) {
+void TweetEntities::setMedia(MediaList newMedia) {
 	medias = newMedia;
 	syncMediaProperty();
 }
 
 // Reading tweetURLs
-QList<URLEntity> TweetEntities::getURLs() {
+URLEntityList TweetEntities::getURLs() {
 	return tweetURLs;
 }
 
 // Writing tweetURLs
-void TweetEntities::setURLs(QList<URLEntity> newURLs) {
+void TweetEntities::setURLs(URLEntityList newURLs) {
 	tweetURLs = newURLs;
 	syncUrlsProperty();
 }
 
 // Reading userMentions
-QList<UserMention> TweetEntities::getUserMentions() {
+UserMentionList TweetEntities::getUserMentions() {
 	return userMentions;
 }
 
 // Writing userMentions
-void TweetEntities::setUserMentions(QList<UserMention> newUserMentions) {
+void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
 	userMentions = newUserMentions;
 	syncUserMentionsProperty();
 }
 
 // Reading tweetHashtags
-QList<Hashtag> TweetEntities::getHashtags() {
+HashtagList TweetEntities::getHashtags() {
 	return tweetHashtags;
 }
 
 // Writing tweetHashtags
-void TweetEntities::setHashtagsList(QList<Hashtag> newHashtags) {
+void TweetEntities::setHashtagsList(HashtagList newHashtags) {
 	tweetHashtags = newHashtags;
 	syncHashtagsProperty();
 }

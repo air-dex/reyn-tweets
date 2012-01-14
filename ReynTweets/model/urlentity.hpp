@@ -89,11 +89,11 @@ class URLEntity : public ReynTweetsMappable
 	protected:
 		/// @fn virtual void fillWithPropertiesMaps();
 		/// @brief Filling serializable fields with thecorresponding  property maps
-		virtual void syncMembers();
+		void syncMembers();
 
 		/// @fn virtual void updateAllProperties();
 		/// @brief Updating all the properties
-		virtual void syncProperties();
+		void syncProperties();
 
 		// url
 		/// @property url

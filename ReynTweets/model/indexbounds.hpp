@@ -29,7 +29,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
 
-class IndexBounds : public ReynTweetsSerializable<QVariantList>
+class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
 {
 	Q_OBJECT
 
@@ -61,7 +61,17 @@ class IndexBounds : public ReynTweetsSerializable<QVariantList>
 		/// @brief Serialization declaration
 		static void initSystem();
 
-	private:
+		/// @fn QVariantList toVariantList() const;
+		/// @brief Converting the bounds into a QVariantList
+		/// @return The QVariant List with the bounds in two QVariant objects.
+		QVariantList toVariant() const;
+
+		/// @fn void fillWithVariantList(QVariantList variantList);
+		/// @brief Filling the object with a QVariantList
+		/// @param variantList The QVariantList.
+		void fillWithVariant(QVariantList variantList);
+
+	protected:
 		/// @fn void recopie(const IndexBounds & indexes);
 		/// @brief Copy of a IndexBounds
 		/// @param indexes IndexBounds to copy
@@ -82,6 +92,10 @@ class IndexBounds : public ReynTweetsSerializable<QVariantList>
 		/// @param indexes Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, IndexBounds & indexes);
+
+	protected:
+		void syncProperties();
+		void syncMembers();
 
 
 	////////////////////////
@@ -119,16 +133,6 @@ class IndexBounds : public ReynTweetsSerializable<QVariantList>
 		/// @brief Setter on max
 		/// @param newMax New value for max
 		void setMax(int newMax);
-
-		/// @fn QVariantList toVariantList() const;
-		/// @brief Converting the bounds into a QVariantList
-		/// @return The QVariant List with the bounds in two QVariant objects.
-		QVariantList toVariant() const;
-
-		/// @fn void fillWithVariantList(QVariantList variantList);
-		/// @brief Filling the object with a QVariantList
-		/// @param variantList The QVariantList.
-		void fillWithVariant(QVariantList variantList);
 };
 
 // Serialization of IndexBounds

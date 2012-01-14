@@ -1,12 +1,14 @@
 #ifndef REYNTWEETSMAPPABLE_HPP
 #define REYNTWEETSMAPPABLE_HPP
 
+#include <QObject>
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
 
-class ReynTweetsMappable : public ReynTweetsSerializable<QVariantMap>
+class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVariantMap>
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		/// @fn virtual QVariantMap toMap() const;
 		/// @brief Converting the object into a QVariantMap
@@ -18,11 +20,6 @@ class ReynTweetsMappable : public ReynTweetsSerializable<QVariantMap>
 		/// contained in the map.
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
-
-	signals:
-
-	public slots:
-
 };
 
 #endif // REYNTWEETSMAPPABLE_HPP

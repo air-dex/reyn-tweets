@@ -89,11 +89,11 @@ class Media : public URLEntity
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -152,12 +152,12 @@ class Media : public URLEntity
 		/// @param newMap New value for the property sizes
 		void setSizesProperty(QVariantMap newMap);
 
-		/// @fn void updateSizes();
+		/// @fn void syncSizesProperty();
 		/// @brief Updating the property sizes
 		void syncSizesProperty();
 
-		/// @fn void updateSizes();
-		/// @brief Updating the property sizes
+		/// @fn void syncSizesMember();
+		/// @brief Updating the mediaSizes member
 		void syncSizesMember();
 
 
@@ -268,7 +268,9 @@ QDataStream & operator<<(QDataStream & out, const Media & media);
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Media & media);
 
-//template class ReynTweetsSerializableList<Media>;
+
+/// @typedef ReynTweetsSerializableList<Media> MediaList;
+/// @brief Shortcut for lists of Media objects
 typedef ReynTweetsSerializableList<Media> MediaList;
 
 #endif // MEDIA_HPP

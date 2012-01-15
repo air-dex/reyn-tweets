@@ -89,11 +89,11 @@ class UserMention : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -145,12 +145,12 @@ class UserMention : public ReynTweetsMappable
 		/// @param newIndexList New value for the property indices
 		void setIndices(QVariantList newIndexList);
 
-		/// @fn void updateIndices();
+		/// @fn void syncIndicesProperty();
 		/// @brief Updating the property indices
 		void syncIndicesProperty();
 
-		/// @fn void updateIndices();
-		/// @brief Updating the property indices
+		/// @fn void syncIndicesMember();
+		/// @brief Updating the indexes attribute
 		void syncIndicesMember();
 
 
@@ -250,6 +250,8 @@ QDataStream & operator<<(QDataStream & out, const UserMention & mention);
 QDataStream & operator>>(QDataStream & in, UserMention & mention);
 
 
+/// @typedef ReynTweetsSerializableList<UserMention> UserMentionList;
+/// @brief Shortcut for lists of UserMention objects
 typedef ReynTweetsSerializableList<UserMention> UserMentionList;
 
 #endif // USERMENTION_HPP

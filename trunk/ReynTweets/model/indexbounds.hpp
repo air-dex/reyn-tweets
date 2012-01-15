@@ -1,5 +1,5 @@
-/// @file tweet.hpp
-/// @brief Implementation of Tweet
+/// @file indexbounds.hpp
+/// @brief Implementation of IndexBounds
 /// @author Romain Ducher
 
 /*
@@ -27,8 +27,10 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsserializablelist.hpp"
 
+/// @class IndexBounds
+/// @brief Indices of an entity in a tweet.
 class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
 {
 	Q_OBJECT
@@ -61,12 +63,12 @@ class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
 		/// @brief Serialization declaration
 		static void initSystem();
 
-		/// @fn QVariantList toVariantList() const;
+		/// @fn QVariantList toVariant() const;
 		/// @brief Converting the bounds into a QVariantList
 		/// @return The QVariant List with the bounds in two QVariant objects.
 		QVariantList toVariant() const;
 
-		/// @fn void fillWithVariantList(QVariantList variantList);
+		/// @fn void fillWithVariant(QVariantList variantList);
 		/// @brief Filling the object with a QVariantList
 		/// @param variantList The QVariantList.
 		void fillWithVariant(QVariantList variantList);
@@ -92,10 +94,6 @@ class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
 		/// @param indexes Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, IndexBounds & indexes);
-
-	protected:
-		void syncProperties();
-		void syncMembers();
 
 
 	////////////////////////

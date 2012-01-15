@@ -52,7 +52,8 @@ typedef QMap<QString, QString> ArgsMap;
 
 
 /// @class TwitterCommunicator
-/// @brief Class managing communication with the Twitter API.<br/>
+/// @brief Class managing communication with the Twitter API.
+///
 /// A Twitter Communicator needs the URL of the service, GET and POST arguments.
 /// It will doing the request and storing it in a QByteArray containing the
 /// response. <strong>The content of the QByteArray is not parsed.</strong>

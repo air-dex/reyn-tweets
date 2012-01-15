@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file urlentity.cpp
+/// @brief Implementation of URLEntity
 /// @author Romain Ducher
 
 /*

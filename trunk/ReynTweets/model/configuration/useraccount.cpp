@@ -1,4 +1,4 @@
-/// @file useraccount.hpp
+/// @file useraccount.cpp
 /// @brief Implementation of UserAccount
 /// @author Romain Ducher
 

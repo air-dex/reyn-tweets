@@ -97,12 +97,12 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncProperties();
+		/// @brief Updating all the properties
 		void syncProperties();
 
 		// User account
@@ -125,12 +125,12 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		/// @param account New value for the account
 		void setUserAccountProperty(QVariantMap accountMap);
 
-		/// @fn void updateUserAccountProperty();
+		/// @fn void syncUserAccountProperty();
 		/// @brief Updating the property user_account
 		void syncUserAccountProperty();
 
-		/// @fn void updateUserAccountProperty();
-		/// @brief Updating the property p_userAccount
+		/// @fn void syncUserAccountMember();
+		/// @brief Updating the userAccount member
 		void syncUserAccountMember();
 
 

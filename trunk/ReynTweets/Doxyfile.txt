@@ -29,7 +29,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = ReynTweets
+PROJECT_NAME           = Reyn Tweets
 PROJECT_NUMBER         = 0.1dev
 OUTPUT_DIRECTORY       = ../doc
 CREATE_SUBDIRS         = NO
@@ -131,6 +131,7 @@ FILE_PATTERNS          = *.c \
 						 *.cc \
 						 *.cxx \
 						 *.cpp \
+						 *.tpp \
 						 *.c++ \
 						 *.d \
 						 *.java \

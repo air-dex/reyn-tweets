@@ -1,5 +1,5 @@
-/// @file tweet.hpp
-/// @brief Header of Tweet
+/// @file urlentity.hpp
+/// @brief Header of URLEntity
 /// @author Romain Ducher
 
 /*
@@ -29,6 +29,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "reyntweetsmappable.hpp"
 #include "reyntweetsserializablelist.hpp"
 
+/// @class URLEntity
+/// @brief URL in a tweet
 class URLEntity : public ReynTweetsMappable
 {
 	Q_OBJECT
@@ -53,7 +55,7 @@ class URLEntity : public ReynTweetsMappable
 
 		/// @fn const URLEntity & operator=(const URLEntity & entity);
 		/// @brief Affectation
-		/// @param entity User to copy
+		/// @param entity Entity to copy
 		/// @return Copy of the original entity
 		const URLEntity & operator=(const URLEntity & entity);
 
@@ -88,11 +90,11 @@ class URLEntity : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn virtual void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn virtual void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -137,12 +139,12 @@ class URLEntity : public ReynTweetsMappable
 		/// @param newIndexList New value for the property indices
 		void setIndices(QVariantList newIndexList);
 
-		/// @fn void updateIndices();
+		/// @fn void syncIndicesProperty();
 		/// @brief Updating the property indices
 		void syncIndicesProperty();
 
-		/// @fn void updateIndices();
-		/// @brief Updating the property indices
+		/// @fn void syncIndicesMember();
+		/// @brief Updating the indexes attribute
 		void syncIndicesMember();
 
 
@@ -228,6 +230,8 @@ QDataStream & operator<<(QDataStream & out, const URLEntity & entity);
 QDataStream & operator>>(QDataStream & in, URLEntity & entity);
 
 
+/// @typedef ReynTweetsSerializableList<URLEntity> HashtagList;
+/// @brief Shortcut for lists of URLEntity objects
 typedef ReynTweetsSerializableList<URLEntity> URLEntityList;
 
 

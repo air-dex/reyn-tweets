@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file hashtag.cpp
+/// @brief Implementation of Hashtag
 /// @author Romain Ducher
 
 /*

@@ -89,11 +89,11 @@ class Hashtag : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -124,12 +124,12 @@ class Hashtag : public ReynTweetsMappable
 		/// @param newIndexList New value for the property indices
 		void setIndices(QVariantList newIndexList);
 
-		/// @fn void updateIndices();
+		/// @fn void syncIndicesProperty();
 		/// @brief Updating the property indices
 		void syncIndicesProperty();
 
-		/// @fn void updateIndices();
-		/// @brief Updating the property indices
+		/// @fn void syncIndicesMember();
+		/// @brief Updating the indexes attribute
 		void syncIndicesMember();
 
 
@@ -187,5 +187,10 @@ QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
 /// @param hashtag Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
+
+
+/// @typedef ReynTweetsSerializableList<Hashtag> HashtagList;
+/// @brief Shortcut for lists of Hashtag objects
+typedef ReynTweetsSerializableList<Hashtag> HashtagList;
 
 #endif // HASHTAG_HPP

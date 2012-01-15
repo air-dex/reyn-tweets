@@ -29,7 +29,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @class ResultWrapper
 /// @brief Class containg result of requests (field "result") and the QObject
-/// which asks for it (field "asker"). Only the sender of the request is allowed
+/// which asks for it (field "asker").
+///
+/// Only the sender of the request is allowed
 /// to have access to the result. It has to give its memory address in order to
 /// prove that it is the real sender of the request.
 class ResultWrapper

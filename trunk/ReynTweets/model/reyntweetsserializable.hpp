@@ -24,37 +24,25 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef REYNTWEETSSERIALIZABLE_HPP
 #define REYNTWEETSSERIALIZABLE_HPP
 
-#include <QObject>
 #include <QVariant>
 
 /// @class ReynTweetsSerializable
-/// @brief Abstract class to represent classes which are serializable. It
-/// converts the object into a QVariantMap which are serializable by QJSON
-/// (<code>toMap();</code>) and vice versa (<code>fillWithMap();</code>).
-/// Here are two default methods using the QObjectHelper class of QJSON.
+/// @brief Class for objects that needs an equivalent serializable by QJSON.
+/// @param V Type of the equivalent serializable by QJSON.
 template <class V>
 class ReynTweetsSerializable
 {
 	public:
 		/// @fn virtual V toVariant() const = 0;
-		/// @brief Converting the object into a QVariantMap
-		/// @return A QVariantMap containing all the informations.
+		/// @brief Converting the object into its equivalent.
+		/// @return The corresponding equivalent.
 		virtual V toVariant() const = 0;
 
 		/// @fn virtual void fillWithVariant(V map) = 0;
-		/// @brief Filling a ReynTweetsSerializable object with the informations
+		/// @brief Filling a ReynTweetsSerializable object with an equivalent.
 		/// contained in the map.
-		/// @param map The map
+		/// @param map The equivalent
 		virtual void fillWithVariant(V map) = 0;
-
-	protected:
-		/// @fn virtual void syncMembers() = 0;
-		/// @brief Syncing members with properties to serialize.
-		virtual void syncMembers() = 0;
-
-		/// @fn virtual void syncProperties() = 0;
-		/// @brief Syncing properties to serialize with the corresponding members.
-		virtual void syncProperties() = 0;
 };
 
 #endif // REYNTWEETSSERIALIZABLE_HPP

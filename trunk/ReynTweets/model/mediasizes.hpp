@@ -27,6 +27,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "mediasize.hpp"
 #include "reyntweetsmappable.hpp"
 
+/// @class MediaSizes
+/// @brief Different sizes possible for a Media object
 class MediaSizes : public ReynTweetsMappable
 {
 	Q_OBJECT
@@ -46,12 +48,12 @@ class MediaSizes : public ReynTweetsMappable
 
 		/// @fn MediaSizes(const MediaSizes & sizes);
 		/// @brief Copy constructor
-		/// @param sizes User to copy
+		/// @param sizes Sizes to copy
 		MediaSizes(const MediaSizes & sizes);
 
 		/// @fn const MediaSizes & operator=(const MediaSizes & sizes);
 		/// @brief Affectation
-		/// @param sizes User to copy
+		/// @param sizes Sizes to copy
 		/// @return Copy of the original media sizes
 		const MediaSizes & operator=(const MediaSizes & size);
 
@@ -86,11 +88,11 @@ class MediaSizes : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -114,12 +116,12 @@ class MediaSizes : public ReynTweetsMappable
 		/// @param newLargeMap New value for the property large
 		void setLarge(QVariantMap newLargeMap);
 
-		/// @fn void updateLarge();
+		/// @fn void syncLargeProperty();
 		/// @brief Updating the property large
 		void syncLargeProperty();
 
-		/// @fn void updateLarge();
-		/// @brief Updating the property large
+		/// @fn void syncLargeMember();
+		/// @brief Updating the largeSize member
 		void syncLargeMember();
 
 		// Medium size
@@ -142,12 +144,12 @@ class MediaSizes : public ReynTweetsMappable
 		/// @param newMediumMap New value for the property medium
 		void setMedium(QVariantMap newMediumMap);
 
-		/// @fn void updateMedium();
+		/// @fn void syncMediumProperty();
 		/// @brief Updating the property medium
 		void syncMediumProperty();
 
-		/// @fn void updateMedium();
-		/// @brief Updating the property medium
+		/// @fn void syncMediumMember();
+		/// @brief Updating the mediumSize member
 		void syncMediumMember();
 
 		// Small size
@@ -170,12 +172,12 @@ class MediaSizes : public ReynTweetsMappable
 		/// @param newSmallMap New value for the property small
 		void setSmall(QVariantMap newSmallMap);
 
-		/// @fn void updateSmall();
+		/// @fn void syncSmallProperty();
 		/// @brief Updating the property small
 		void syncSmallProperty();
 
-		/// @fn void updateSmall();
-		/// @brief Updating the property small
+		/// @fn void syncSmallMember();
+		/// @brief Updating the smallSize member
 		void syncSmallMember();
 
 		// Thumb size
@@ -198,12 +200,12 @@ class MediaSizes : public ReynTweetsMappable
 		/// @param newThumbMap New value for the property thumb
 		void setThumb(QVariantMap newThumbMap);
 
-		/// @fn void updateThumb();
+		/// @fn void syncThumbProperty();
 		/// @brief Updating the property thumb
 		void syncThumbProperty();
 
-		/// @fn void updateThumb();
-		/// @brief Updating the property thumb
+		/// @fn void syncThumbMember();
+		/// @brief Updating the thumbSize member
 		void syncThumbMember();
 
 

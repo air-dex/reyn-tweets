@@ -1,5 +1,5 @@
-/// @file tweet.cpp
-/// @brief Implementation of Tweet
+/// @file indexbounds.cpp
+/// @brief Implementation of IndexBounds
 /// @author Romain Ducher
 
 /*
@@ -68,7 +68,10 @@ QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
 QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
 	QVariantList list;
 	in >> list;
+
+	// Filling the object
 	indexes.fillWithVariant(list);
+
 	return in;
 }
 
@@ -124,8 +127,3 @@ void IndexBounds::fillWithVariant(QVariantList variantList) {
 	bound = variantList.at(1);
 	setMax(bound.toInt());
 }
-
-// Syncing members and properties
-
-void IndexBounds::syncProperties() {}
-void IndexBounds::syncMembers() {}

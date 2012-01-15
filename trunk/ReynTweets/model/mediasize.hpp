@@ -27,6 +27,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QSize>
 #include "reyntweetsmappable.hpp"
 
+/// @class MediaSize
+/// @brief Size for a Media object
 class MediaSize : public ReynTweetsMappable, public QSize
 {
 	Q_OBJECT
@@ -77,12 +79,12 @@ class MediaSize : public ReynTweetsMappable, public QSize
 
 		/// @fn MediaSize(const MediaSize & size);
 		/// @brief Copy constructor
-		/// @param size User to copy
+		/// @param size Size to copy
 		MediaSize(const MediaSize & size);
 
 		/// @fn const MediaSize & operator=(const MediaSize & size);
 		/// @brief Affectation
-		/// @param size User to copy
+		/// @param size Size to copy
 		/// @return Copy of the original media size
 		const MediaSize & operator=(const MediaSize & size);
 
@@ -117,26 +119,29 @@ class MediaSize : public ReynTweetsMappable, public QSize
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
+		// w
 		/// @property w
 		/// @brief Width
 		Q_PROPERTY(int w
 				   READ width
 				   WRITE setWidth)
 
+		// h
 		/// @property h
 		/// @brief Height
 		Q_PROPERTY(int h
 				   READ height
 				   WRITE setHeight)
 
+		// resize
 		/// @property resize
 		/// @brief How the media is resized. It is the String form of resizeMedia.
 		Q_PROPERTY(QString resize
@@ -156,11 +161,11 @@ class MediaSize : public ReynTweetsMappable, public QSize
 		/// @param newResize New value for resizeProperty
 		void setResizeProperty(QString newResize);
 
-		/// @fn void updateResize();
+		/// @fn void syncResizeProperty();
 		/// @brief Updating the property resize
 		void syncResizeProperty();
 
-		/// @fn void updateResize();
+		/// @fn void syncResizeMember();
 		/// @brief Updating resizeMedia
 		void syncResizeMember();
 

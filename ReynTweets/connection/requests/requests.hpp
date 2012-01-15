@@ -29,5 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "oauth/postauthorizerequester.hpp"
 #include "oauth/requesttokenrequester.hpp"
 #include "searches/searchrequester.hpp"
+#include "tweets/showtweetrequester.hpp"
+#include "users/showuserrequester.hpp"
 
 #endif // REQUESTS_HPP

@@ -21,7 +21,6 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QJson/Parser>
 #include "searchrequester.hpp"
 
 // Constructor
@@ -30,7 +29,7 @@ SearchRequester::SearchRequester(QString q) :
 	query(q)
 {}
 
-// Virtual method building getParameters
+// Building getParameters
 void SearchRequester::buildGETParameters() {
 	getParameters.insert("q", query);
 }

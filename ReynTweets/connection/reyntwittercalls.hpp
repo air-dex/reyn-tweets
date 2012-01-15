@@ -148,6 +148,42 @@ class ReynTwitterCalls : public QObject
 		/// @brief Method for getting an access token
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/access_token
 		void accessToken();
+
+
+		////////////
+		// Tweets //
+		////////////
+
+		/// @fn void showTweet(long tweetID,
+		///					   bool entities = true,
+		///					   bool trimUser = false);
+		/// @brief Showing a tweet
+		/// @param tweetID ID of the tweet
+		/// @param entities Include Tweet Entities in th reply ?
+		/// @param trimUser Return only user IDs instead of all the values ?
+		/// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
+		void showTweet(long tweetID,
+					   bool entities = true,
+					   bool trimUser = false);
+
+
+		///////////
+		// Users //
+		///////////
+
+		/// @fn void showUser(long userID, bool entities = true);
+		/// @brief Showing a user identified by its ID
+		/// @param userID ID of the user
+		/// @param entities Include Tweet Entities in th reply ?
+		/// @see https://dev.twitter.com/docs/api/1/get/users/show
+		void showUser(long userID, bool entities = true);
+
+		/// @fn void void showUser(QString screenName, bool entities = true);
+		/// @brief Showing a user identified by its screen name
+		/// @param screenName User's screen name
+		/// @param entities Include Tweet Entities in th reply ?
+		/// @see https://dev.twitter.com/docs/api/1/get/users/show
+		void showUser(QString screenName, bool entities = true);
 };
 
 #endif // REYNTWITTERCALLS_HPP

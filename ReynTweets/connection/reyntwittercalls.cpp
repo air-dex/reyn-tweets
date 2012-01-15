@@ -141,3 +141,37 @@ void ReynTwitterCalls::accessToken() {
 void ReynTwitterCalls::resetTokens() {
 	oauthManager.resetTokens();
 }
+
+
+////////////
+// Tweets //
+////////////
+
+// Showing a tweet
+void ReynTwitterCalls::showTweet(long tweetID, bool entities, bool trimUser) {
+	ShowTweetRequester * requester = new ShowTweetRequester(tweetID,
+															entities,
+															trimUser);
+	executeRequest(requester);
+}
+
+
+///////////
+// Users //
+///////////
+
+// Showing a user identified by its ID
+void ReynTwitterCalls::showUser(long userID, bool entities) {
+	ShowUserRequester * requester = new ShowUserRequester(oauthManager,
+														  userID,
+														  entities);
+	executeRequest(requester);
+}
+
+// Showing a user identified by its screen name
+void ReynTwitterCalls::showUser(QString screenName, bool entities) {
+	ShowUserRequester * requester = new ShowUserRequester(oauthManager,
+														  screenName,
+														  entities);
+	executeRequest(requester);
+}

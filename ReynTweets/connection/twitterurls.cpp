@@ -29,16 +29,16 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // OAuth //
 ///////////
 
-/// @brief URL for getting a request token
+// Getting a request token
 QString TwitterURL::REQUEST_TOKEN_URL = QString::fromUtf8("https://api.twitter.com/oauth/request_token");
 
-/// @brief URL for authorizing the application
+// Authorizing the application
 QString TwitterURL::AUTHORIZE_URL = QString::fromUtf8("https://api.twitter.com/oauth/authorize");
 
-/// @brief URL for authentication
+// Authentication
 QString TwitterURL::AUTHENTICATE_URL = QString::fromUtf8("https://api.twitter.com/oauth/authenticate");
 
-/// @brief URL for getting an access token
+// Getting an access token
 QString TwitterURL::ACCESS_TOKEN_URL = QString::fromUtf8("https://api.twitter.com/oauth/access_token");
 
 
@@ -46,5 +46,21 @@ QString TwitterURL::ACCESS_TOKEN_URL = QString::fromUtf8("https://api.twitter.co
 // Searches //
 //////////////
 
-/// @brief URL for a search request
+// Search request
 QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/search.json");
+
+
+////////////
+// Tweets //
+////////////
+
+// Getting informations about a given tweet
+QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/show.json");
+
+
+///////////
+// Users //
+///////////
+
+// Getting informations about a given user
+QString TwitterURL::SHOW_USER_URL = QString::fromUtf8("https://api.twitter.com/1/users/show.json");

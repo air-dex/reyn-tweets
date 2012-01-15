@@ -80,6 +80,11 @@ bool ouBien(bool a, bool b) {
 	return  a && !b || !a && b;
 }
 
+// Converting a bool into a QString
+QString boolInString(bool b) {
+	return b ? "true" : "false";
+}
+
 
 ////////////////////
 // JSON Streaming //

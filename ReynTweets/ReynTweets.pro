@@ -83,7 +83,9 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    connection/requests/tweets/showtweetrequester.cpp \
+    connection/requests/users/showuserrequester.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -134,7 +136,9 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+    connection/requests/tweets/showtweetrequester.hpp \
+    connection/requests/users/showuserrequester.hpp
 
 
 OTHER_FILES = \

@@ -88,14 +88,27 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>IndexBounds Class Reference</h1><!-- doxytag: class="IndexBounds" -->
+<h1>IndexBounds Class Reference</h1><!-- doxytag: class="IndexBounds" --><!-- doxytag: inherits="ReynTweetsSerializable&lt; QVariantList &gt;" -->
+<p>Indices of an entity in a tweet.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for IndexBounds:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="class_index_bounds.png" usemap="#IndexBounds_map" alt=""/>
+  <map id="IndexBounds_map" name="IndexBounds_map">
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantList &gt;" shape="rect" coords="0,0,240,24"/>
+</map>
+ </div>
+</div>
 
 <p><a href="class_index_bounds-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#ac799bde3809968db70b4e76a2c98a164">fillWithVariantList</a> (QVariantList variantList)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling the object with a QVariantList.  <a href="#ac799bde3809968db70b4e76a2c98a164"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a">fillWithVariant</a> (QVariantList variantList)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling the object with a QVariantList.  <a href="#a2b3a769d8763b93260769fdd95f3ff7a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a247890fe22344ae430ae3f44ebca3600">getMax</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on max.  <a href="#a247890fe22344ae430ae3f44ebca3600"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a4118c15cdacfeea8909463d61c66b2ca">getMin</a> ()</td></tr>
@@ -108,16 +121,18 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affectation.  <a href="#aa8f58587be4c3d3368b35622b47b93f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#aefe59df4f12fc7811e70708b28327d16">setMax</a> (int newMax)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on max.  <a href="#aefe59df4f12fc7811e70708b28327d16"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#aee8dd4b219e983c0592d31e0745600ab">setMin</a> (int newMin)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#aee8dd4b219e983c0592d31e0745600ab">setMin</a> (int newMin)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on min.  <a href="#aee8dd4b219e983c0592d31e0745600ab"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a21e3baf31a2d5c1182baa0a85fc0b3cb">toVariantList</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting the bounds into a QVariantList.  <a href="#a21e3baf31a2d5c1182baa0a85fc0b3cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756">toVariant</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting the bounds into a QVariantList.  <a href="#a2fbe0bd60e7291bc321f59465e105756"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a3972e0a793ec93f93b5391e0e2b31973">~IndexBounds</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a3972e0a793ec93f93b5391e0e2b31973"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#ad1af563a33f17d410b57c88af67d633b">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#ad1af563a33f17d410b57c88af67d633b"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a25cfcbff18354837cab833e22ffd5281">recopie</a> (const <a class="el" href="class_index_bounds.html">IndexBounds</a> &amp;indexes)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a>.  <a href="#a25cfcbff18354837cab833e22ffd5281"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#ab7265f3d18b26544d03b6884b5413e58">sort</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sorting the min and the max.  <a href="#ab7265f3d18b26544d03b6884b5413e58"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
@@ -125,9 +140,6 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Maximum bound.  <a href="#aee7395428850f09c2162a784552eafdc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#acd8ecb1437d368d2b723458ae3687005">min</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Minimum bound.  <a href="#acd8ecb1437d368d2b723458ae3687005"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a25cfcbff18354837cab833e22ffd5281">recopie</a> (const <a class="el" href="class_index_bounds.html">IndexBounds</a> &amp;indexes)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_index_bounds.html">IndexBounds</a>.  <a href="#a25cfcbff18354837cab833e22ffd5281"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_bounds.html#a056b61fb38d89e218196de48111e1229">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_index_bounds.html">IndexBounds</a> &amp;indexes)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#a056b61fb38d89e218196de48111e1229"></a><br/></td></tr>
@@ -135,8 +147,9 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Input stream operator for serialization.  <a href="#a6ce4526fde9d8e25e2c879ff2bacb3e5"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Indices of an entity in a tweet. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00031">31</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00034">34</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abf6d1ff93faa3af10ac6ca964e8abc08"></a><!-- doxytag: member="IndexBounds::IndexBounds" ref="abf6d1ff93faa3af10ac6ca964e8abc08" args="()" -->
 <div class="memitem">
@@ -155,7 +168,7 @@ window.onload = initDynSections;
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00027">27</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00028">28</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -176,7 +189,7 @@ window.onload = initDynSections;
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00033">33</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00035">35</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,27 +212,27 @@ window.onload = initDynSections;
 <p>Copy constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html">IndexBounds</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> to copy </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00036">36</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00038">38</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac799bde3809968db70b4e76a2c98a164"></a><!-- doxytag: member="IndexBounds::fillWithVariantList" ref="ac799bde3809968db70b4e76a2c98a164" args="(QVariantList variantList)" -->
+<a class="anchor" id="a2b3a769d8763b93260769fdd95f3ff7a"></a><!-- doxytag: member="IndexBounds::fillWithVariant" ref="a2b3a769d8763b93260769fdd95f3ff7a" args="(QVariantList variantList)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void IndexBounds::fillWithVariantList </td>
+          <td class="memname">void IndexBounds::fillWithVariant </td>
           <td>(</td>
           <td class="paramtype">QVariantList&nbsp;</td>
           <td class="paramname"> <em>variantList</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -233,7 +246,9 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00117">117</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_serializable.html#a86901c3fe1d9f12d7b87731967b00df1">ReynTweetsSerializable&lt; QVariantList &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00123">123</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -255,7 +270,7 @@ window.onload = initDynSections;
 <p>Getter on max. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>max </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00098">98</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00104">104</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +292,7 @@ window.onload = initDynSections;
 <p>Getter on min. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>min </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00087">87</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00093">93</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +313,7 @@ window.onload = initDynSections;
 
 <p>Serialization declaration. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00047">47</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00049">49</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -321,13 +336,13 @@ window.onload = initDynSections;
 <p>Affectation. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html">IndexBounds</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> to copy </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original indexes </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00041">41</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00043">43</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,21 +356,21 @@ window.onload = initDynSections;
           <td class="paramtype">const <a class="el" href="class_index_bounds.html">IndexBounds</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>indexes</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Copy of a <a class="el" href="class_index_bounds.html">IndexBounds</a>. </p>
+<p>Copy of a <a class="el" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html">IndexBounds</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>indexes</em>&nbsp;</td><td><a class="el" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> to copy </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00053">53</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00055">55</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -383,7 +398,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00103">103</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00109">109</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,7 +426,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00092">92</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00098">98</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -432,20 +447,20 @@ window.onload = initDynSections;
 
 <p>Sorting the min and the max. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00078">78</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00084">84</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a21e3baf31a2d5c1182baa0a85fc0b3cb"></a><!-- doxytag: member="IndexBounds::toVariantList" ref="a21e3baf31a2d5c1182baa0a85fc0b3cb" args="()" -->
+<a class="anchor" id="a2fbe0bd60e7291bc321f59465e105756"></a><!-- doxytag: member="IndexBounds::toVariant" ref="a2fbe0bd60e7291bc321f59465e105756" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QVariantList IndexBounds::toVariantList </td>
+          <td class="memname">QVariantList IndexBounds::toVariant </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -454,7 +469,9 @@ window.onload = initDynSections;
 <p>Converting the bounds into a QVariantList. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The QVariant List with the bounds in two QVariant objects. </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00109">109</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_serializable.html#a797bd90cfd77baec5dd968161002d9b4">ReynTweetsSerializable&lt; QVariantList &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00115">115</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -494,7 +511,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00059">59</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00061">61</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -533,7 +550,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00065">65</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8cpp_source.html#l00068">68</a> of file <a class="el" href="indexbounds_8cpp_source.html">indexbounds.cpp</a>.</p>
 
 </div>
 </div>
@@ -551,7 +568,7 @@ window.onload = initDynSections;
 
 <p>Maximum bound. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00095">95</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00108">108</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
 
 </div>
 </div>
@@ -568,7 +585,7 @@ window.onload = initDynSections;
 
 <p>Minimum bound. </p>
 
-<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00092">92</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
+<p>Definition at line <a class="el" href="indexbounds_8hpp_source.html#l00105">105</a> of file <a class="el" href="indexbounds_8hpp_source.html">indexbounds.hpp</a>.</p>
 
 </div>
 </div>
@@ -591,7 +608,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:27 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:20 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

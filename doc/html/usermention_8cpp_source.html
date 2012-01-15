@@ -118,7 +118,7 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">// Constructor</span>
 <a name="l00032"></a><a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5">00032</a> <a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5" title="Constructor.">UserMention::UserMention</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>(),
+<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
 <a name="l00034"></a>00034         indexList(),
 <a name="l00035"></a>00035         userID(-1),
 <a name="l00036"></a>00036         userIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
@@ -126,7 +126,7 @@ window.onload = initDynSections;
 <a name="l00038"></a>00038         userName(<span class="stringliteral">&quot;&quot;</span>),
 <a name="l00039"></a>00039         indexes()
 <a name="l00040"></a>00040 {
-<a name="l00041"></a>00041         <a class="code" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00041"></a>00041         <a class="code" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d" title="Updating all the properties.">syncProperties</a>();
 <a name="l00042"></a>00042 }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="comment">// Destructor</span>
@@ -156,20 +156,20 @@ window.onload = initDynSections;
 <a name="l00068"></a>00068         <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a> = mention.<a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
 <a name="l00069"></a>00069         <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a> = mention.<a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
 <a name="l00070"></a>00070         <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a> = mention.<a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>;
-<a name="l00071"></a>00071         <a class="code" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00071"></a>00071         <a class="code" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d" title="Updating all the properties.">syncProperties</a>();
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00075"></a><a class="code" href="usermention_8hpp.html#ae807a3997af377b3e3262696b5c3af93">00075</a> <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
+<a name="l00075"></a><a class="code" href="usermention_8hpp.html#ae807a3997af377b3e3262696b5c3af93">00075</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
 <a name="l00076"></a>00076         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, mention);
 <a name="l00077"></a>00077 }
 <a name="l00078"></a>00078 
 <a name="l00079"></a>00079 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00080"></a><a class="code" href="usermention_8hpp.html#a6706ad0f34d75249857f0c34ee8fc07d">00080</a> <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
+<a name="l00080"></a><a class="code" href="usermention_8hpp.html#a6706ad0f34d75249857f0c34ee8fc07d">00080</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
 <a name="l00081"></a>00081         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, mention);
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083         <span class="comment">// Updating indexes</span>
-<a name="l00084"></a>00084         entity.fillWithPropertiesMaps();
+<a name="l00084"></a>00084         mention.<a class="code" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6" title="Updating the field members.">syncMembers</a>();
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086         <span class="keywordflow">return</span> in;
 <a name="l00087"></a>00087 }
@@ -178,107 +178,88 @@ window.onload = initDynSections;
 <a name="l00091"></a>00091 <span class="comment">// Properties management //</span>
 <a name="l00093"></a>00093 <span class="comment"></span>
 <a name="l00094"></a>00094 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
-<a name="l00095"></a><a class="code" href="class_user_mention.html#a018cd858da1c29b1d5021f545bd450d0">00095</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a018cd858da1c29b1d5021f545bd450d0" title="Filling serializable fields with thecorresponding property maps.">UserMention::fillWithPropertiesMaps</a>() {
-<a name="l00096"></a>00096         <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#ac799bde3809968db70b4e76a2c98a164" title="Filling the object with a QVariantList.">fillWithVariantList</a>(<a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>);
+<a name="l00095"></a><a class="code" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6">00095</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6" title="Updating the field members.">UserMention::syncMembers</a>() {
+<a name="l00096"></a>00096         <a class="code" href="class_user_mention.html#ac542b6becefc7f384f9ba0a93eeeef1c" title="Updating the indexes attribute.">syncIndicesMember</a>();
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 
 <a name="l00099"></a>00099 <span class="comment">// Updating all the properties</span>
-<a name="l00100"></a><a class="code" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d" title="Updating all the properties.">UserMention::updateAllProperties</a>() {
-<a name="l00101"></a>00101         <a class="code" href="class_user_mention.html#abf23cb1157f0daa0b287cbc35376da4b" title="Updating the property id.">updateID</a>();
-<a name="l00102"></a>00102         <a class="code" href="class_user_mention.html#a5fd66edb0e304418784186cd2d29653a" title="Updating the property url.">updateIDstr</a>();
-<a name="l00103"></a>00103         <a class="code" href="class_user_mention.html#a798daee17bb46298f37ce4b482821004" title="Updating the property screen_name.">updateScreenName</a>();
-<a name="l00104"></a>00104         <a class="code" href="class_user_mention.html#ac050e17b9cd951a033ecd835f5fda943" title="Updating the property name.">updateName</a>();
-<a name="l00105"></a>00105         <a class="code" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05" title="Updating the property indices.">updateIndices</a>();
-<a name="l00106"></a>00106 }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="comment">// Updating the property id</span>
-<a name="l00109"></a><a class="code" href="class_user_mention.html#abf23cb1157f0daa0b287cbc35376da4b">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#abf23cb1157f0daa0b287cbc35376da4b" title="Updating the property id.">UserMention::updateID</a>() {
-<a name="l00110"></a>00110         setProperty(<span class="stringliteral">&quot;id&quot;</span>, QVariant(<a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>));
-<a name="l00111"></a>00111 }
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="comment">// Updating the property id_str</span>
-<a name="l00114"></a><a class="code" href="class_user_mention.html#a5fd66edb0e304418784186cd2d29653a">00114</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a5fd66edb0e304418784186cd2d29653a" title="Updating the property url.">UserMention::updateIDstr</a>() {
-<a name="l00115"></a>00115         setProperty(<span class="stringliteral">&quot;id_str&quot;</span>, QVariant(<a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>));
-<a name="l00116"></a>00116 }
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="comment">// Updating the property screen_name</span>
-<a name="l00119"></a><a class="code" href="class_user_mention.html#a798daee17bb46298f37ce4b482821004">00119</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a798daee17bb46298f37ce4b482821004" title="Updating the property screen_name.">UserMention::updateScreenName</a>() {
-<a name="l00120"></a>00120         setProperty(<span class="stringliteral">&quot;screen_name&quot;</span>, QVariant(<a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>));
-<a name="l00121"></a>00121 }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="comment">// Updating the property name</span>
-<a name="l00124"></a><a class="code" href="class_user_mention.html#ac050e17b9cd951a033ecd835f5fda943">00124</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ac050e17b9cd951a033ecd835f5fda943" title="Updating the property name.">UserMention::updateName</a>() {
-<a name="l00125"></a>00125         setProperty(<span class="stringliteral">&quot;name&quot;</span>, QVariant(<a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>));
-<a name="l00126"></a>00126 }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 <span class="comment">// Reading method for the property indices</span>
-<a name="l00129"></a><a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7">00129</a> QVariantList <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">UserMention::getIndices</a>() {
-<a name="l00130"></a>00130         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>;
-<a name="l00131"></a>00131 }
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="comment">// Writing method for the property indices</span>
-<a name="l00134"></a><a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9">00134</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9" title="Writing method for the property indices.">UserMention::setIndices</a>(QVariantList newIndexList) {
-<a name="l00135"></a>00135         <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a> = newIndexList;
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="comment">// Updating the property indices</span>
-<a name="l00139"></a><a class="code" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05">00139</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05" title="Updating the property indices.">UserMention::updateIndices</a>() {
-<a name="l00140"></a>00140         setProperty(<span class="stringliteral">&quot;indices&quot;</span>, QVariant(<a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a21e3baf31a2d5c1182baa0a85fc0b3cb" title="Converting the bounds into a QVariantList.">toVariantList</a>()));
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
+<a name="l00100"></a><a class="code" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d" title="Updating all the properties.">UserMention::syncProperties</a>() {
+<a name="l00101"></a>00101         <a class="code" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00102"></a>00102 }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="comment">// Reading method for the property indices</span>
+<a name="l00105"></a><a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7">00105</a> QVariantList <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">UserMention::getIndices</a>() {
+<a name="l00106"></a>00106         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">// Writing method for the property indices</span>
+<a name="l00110"></a><a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9" title="Writing method for the property indices.">UserMention::setIndices</a>(QVariantList newIndexList) {
+<a name="l00111"></a>00111         <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a> = newIndexList;
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="comment">// Updating the property indices</span>
+<a name="l00115"></a><a class="code" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40" title="Updating the property indices.">UserMention::syncIndicesProperty</a>() {
+<a name="l00116"></a>00116         <a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9" title="Writing method for the property indices.">setIndices</a>(<a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>());
+<a name="l00117"></a>00117 }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="comment">// Updating the property indices</span>
+<a name="l00120"></a><a class="code" href="class_user_mention.html#ac542b6becefc7f384f9ba0a93eeeef1c">00120</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ac542b6becefc7f384f9ba0a93eeeef1c" title="Updating the indexes attribute.">UserMention::syncIndicesMember</a>() {
+<a name="l00121"></a>00121         <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(<a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>);
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 
+<a name="l00126"></a>00126 <span class="comment">// Getter and setters //</span>
+<a name="l00128"></a>00128 <span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment">// Reading userID</span>
+<a name="l00130"></a><a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c">00130</a> <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">UserMention::getID</a>() {
+<a name="l00131"></a>00131         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
+<a name="l00132"></a>00132 }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="comment">// Writing userID</span>
+<a name="l00135"></a><a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae">00135</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">UserMention::setID</a>(<span class="keywordtype">long</span> newID) {
+<a name="l00136"></a>00136         <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a> = newID;
+<a name="l00137"></a>00137 }
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 <span class="comment">// Reading userIDstr</span>
+<a name="l00140"></a><a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833">00140</a> QString <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">UserMention::getIDstr</a>() {
+<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>;
+<a name="l00142"></a>00142 }
 <a name="l00143"></a>00143 
-<a name="l00145"></a>00145 <span class="comment">// Getter and setters //</span>
-<a name="l00147"></a>00147 <span class="comment"></span>
-<a name="l00148"></a>00148 <span class="comment">// Reading userID</span>
-<a name="l00149"></a><a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c">00149</a> <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">UserMention::getID</a>() {
-<a name="l00150"></a>00150         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
-<a name="l00151"></a>00151 }
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153 <span class="comment">// Writing userID</span>
-<a name="l00154"></a><a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae">00154</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">UserMention::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00155"></a>00155         <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a> = newID;
-<a name="l00156"></a>00156 }
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158 <span class="comment">// Reading userIDstr</span>
-<a name="l00159"></a><a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833">00159</a> QString <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">UserMention::getIDstr</a>() {
-<a name="l00160"></a>00160         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>;
-<a name="l00161"></a>00161 }
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 <span class="comment">// Writing userIDstr</span>
-<a name="l00164"></a><a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e">00164</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">UserMention::setIDstr</a>(QString newID) {
-<a name="l00165"></a>00165         <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a> = newID;
-<a name="l00166"></a>00166 }
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168 <span class="comment">// Reading method for screenName</span>
-<a name="l00169"></a><a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e">00169</a> QString <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">UserMention::getScreenName</a>() {
-<a name="l00170"></a>00170         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
-<a name="l00171"></a>00171 }
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173 <span class="comment">// Writing displayedURL</span>
-<a name="l00174"></a><a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e">00174</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">UserMention::setScreenName</a>(QString newScreenName) {
-<a name="l00175"></a>00175         <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a> = newScreenName;
-<a name="l00176"></a>00176 }
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 <span class="comment">// Reading method for userName</span>
-<a name="l00179"></a><a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d">00179</a> QString <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">UserMention::getName</a>() {
-<a name="l00180"></a>00180         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
-<a name="l00181"></a>00181 }
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 <span class="comment">// Writing method for userName</span>
-<a name="l00184"></a><a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2">00184</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">UserMention::setName</a>(QString newName) {
-<a name="l00185"></a>00185         <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a> = newName;
-<a name="l00186"></a>00186 }
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188 <span class="comment">// Reading indexes</span>
-<a name="l00189"></a><a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25">00189</a> <a class="code" href="class_index_bounds.html">IndexBounds</a> <a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25" title="Reading indexes.">UserMention::getIndexes</a>() {
-<a name="l00190"></a>00190         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>;
-<a name="l00191"></a>00191 }
-<a name="l00192"></a>00192 
-<a name="l00193"></a>00193 <span class="comment">// Writing indexes</span>
-<a name="l00194"></a><a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86">00194</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86" title="Writing indexes.">UserMention::setIndexes</a>(<a class="code" href="class_index_bounds.html">IndexBounds</a> newIndexes) {
-<a name="l00195"></a>00195         <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a> = newIndexes;
-<a name="l00196"></a>00196         <a class="code" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05" title="Updating the property indices.">updateIndices</a>();
-<a name="l00197"></a>00197 }
+<a name="l00144"></a>00144 <span class="comment">// Writing userIDstr</span>
+<a name="l00145"></a><a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e">00145</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">UserMention::setIDstr</a>(QString newID) {
+<a name="l00146"></a>00146         <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a> = newID;
+<a name="l00147"></a>00147 }
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 <span class="comment">// Reading method for screenName</span>
+<a name="l00150"></a><a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e">00150</a> QString <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">UserMention::getScreenName</a>() {
+<a name="l00151"></a>00151         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
+<a name="l00152"></a>00152 }
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 <span class="comment">// Writing displayedURL</span>
+<a name="l00155"></a><a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e">00155</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">UserMention::setScreenName</a>(QString newScreenName) {
+<a name="l00156"></a>00156         <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a> = newScreenName;
+<a name="l00157"></a>00157 }
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 <span class="comment">// Reading method for userName</span>
+<a name="l00160"></a><a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d">00160</a> QString <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">UserMention::getName</a>() {
+<a name="l00161"></a>00161         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
+<a name="l00162"></a>00162 }
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="comment">// Writing method for userName</span>
+<a name="l00165"></a><a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">UserMention::setName</a>(QString newName) {
+<a name="l00166"></a>00166         <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a> = newName;
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="comment">// Reading indexes</span>
+<a name="l00170"></a><a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25">00170</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25" title="Reading indexes.">UserMention::getIndexes</a>() {
+<a name="l00171"></a>00171         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>;
+<a name="l00172"></a>00172 }
+<a name="l00173"></a>00173 
+<a name="l00174"></a>00174 <span class="comment">// Writing indexes</span>
+<a name="l00175"></a><a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86">00175</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86" title="Writing indexes.">UserMention::setIndexes</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
+<a name="l00176"></a>00176         <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a> = newIndexes;
+<a name="l00177"></a>00177         <a class="code" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00178"></a>00178 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -294,7 +275,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

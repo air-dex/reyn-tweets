@@ -115,135 +115,143 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define MEDIASIZES_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="mediasize_8hpp.html" title="Header of MediaSize.">mediasize.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsmappable_8hpp.html" title="Header of ReynTweetsMappable.">reyntweetsmappable.hpp</a>&quot;</span>
 <a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="class_media_sizes.html">00030</a> <span class="keyword">class </span><a class="code" href="class_media_sizes.html">MediaSizes</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>
-<a name="l00031"></a>00031 {
-<a name="l00032"></a>00032         Q_OBJECT
-<a name="l00033"></a>00033 
-<a name="l00035"></a>00035         <span class="comment">// Serialization management //</span>
-<a name="l00037"></a>00037 <span class="comment"></span>
-<a name="l00038"></a>00038         <span class="keyword">public</span>:
-<a name="l00041"></a>00041                 <a class="code" href="class_media_sizes.html#a60dcab3c9538b4051fea6bd52529aebe" title="Constructor.">MediaSizes</a>();
-<a name="l00042"></a>00042 
-<a name="l00045"></a>00045                 <span class="keyword">virtual</span> <a class="code" href="class_media_sizes.html#a5e7736cab5ac110cd02846831bf81d36" title="Destructor.">~MediaSizes</a>();
-<a name="l00046"></a>00046 
-<a name="l00050"></a>00050                 <a class="code" href="class_media_sizes.html#a60dcab3c9538b4051fea6bd52529aebe" title="Constructor.">MediaSizes</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00051"></a>00051 
-<a name="l00056"></a>00056                 <span class="keyword">const</span> <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; <a class="code" href="class_media_sizes.html#a69fab8dbb4adfa12ff586d694982fbba" title="Affectation.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; size);
-<a name="l00057"></a>00057 
-<a name="l00060"></a>00060                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ae0eb7cf3c3957974a12cf69919573af2" title="Serialization declaration.">initSystem</a>();
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keyword">private</span>:
-<a name="l00066"></a>00066                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a248cf2a1f8bc9afccf261d23b999fa0b" title="Copy of a MediaSizes.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068                 <span class="comment">// Friends serialization operators</span>
+<a name="l00032"></a><a class="code" href="class_media_sizes.html">00032</a> <span class="keyword">class </span><a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>
+<a name="l00033"></a>00033 {
+<a name="l00034"></a>00034         Q_OBJECT
+<a name="l00035"></a>00035 
+<a name="l00037"></a>00037         <span class="comment">// Serialization management //</span>
+<a name="l00039"></a>00039 <span class="comment"></span>
+<a name="l00040"></a>00040         <span class="keyword">public</span>:
+<a name="l00043"></a>00043                 <a class="code" href="class_media_sizes.html#a60dcab3c9538b4051fea6bd52529aebe" title="Constructor.">MediaSizes</a>();
+<a name="l00044"></a>00044 
+<a name="l00047"></a>00047                 <span class="keyword">virtual</span> <a class="code" href="class_media_sizes.html#a5e7736cab5ac110cd02846831bf81d36" title="Destructor.">~MediaSizes</a>();
+<a name="l00048"></a>00048 
+<a name="l00052"></a>00052                 <a class="code" href="class_media_sizes.html#a60dcab3c9538b4051fea6bd52529aebe" title="Constructor.">MediaSizes</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
+<a name="l00053"></a>00053 
+<a name="l00058"></a>00058                 <span class="keyword">const</span> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; <a class="code" href="class_media_sizes.html#a69fab8dbb4adfa12ff586d694982fbba" title="Affectation.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; size);
+<a name="l00059"></a>00059 
+<a name="l00062"></a>00062                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ae0eb7cf3c3957974a12cf69919573af2" title="Serialization declaration.">initSystem</a>();
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="keyword">private</span>:
+<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a248cf2a1f8bc9afccf261d23b999fa0b" title="Copy of a MediaSizes.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
 <a name="l00069"></a>00069 
-<a name="l00075"></a>00075                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_media_sizes.html#abfa081cabafd9ada7e943f46eb684c05" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00076"></a>00076 
-<a name="l00082"></a>00082                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_media_sizes.html#a6e70ac55eda9c1ca03e2dd1e244cab7f" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00083"></a>00083 
-<a name="l00085"></a>00085         <span class="comment">// Properties management //</span>
-<a name="l00087"></a>00087 <span class="comment"></span>
-<a name="l00088"></a>00088         <span class="keyword">protected</span>:
-<a name="l00091"></a>00091                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#af42d57798cb0f7b3bb6e67005428c3df" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
-<a name="l00092"></a>00092 
-<a name="l00095"></a>00095                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a57bfe53d3a88720cb44de6595d1157de" title="Updating all the properties.">updateAllProperties</a>();
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097                 <span class="comment">// Large size</span>
-<a name="l00100"></a>00100 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ac0bb4d7a861af4373d231dc5f3ac7c31" title="Large size for a media.">large</a>
-<a name="l00101"></a>00101                                    READ <a class="code" href="class_media_sizes.html#a561241b0fb809115559fa603eeab4e64" title="Reading method for the property large.">getLarge</a>
-<a name="l00102"></a><a class="code" href="class_media_sizes.html#ac0bb4d7a861af4373d231dc5f3ac7c31">00102</a>                                    WRITE <a class="code" href="class_media_sizes.html#a658d7d0513d74c157217d45b3332b7e6" title="Writing method for the property large.">setLarge</a>)
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104                 
-<a name="l00105"></a><a class="code" href="class_media_sizes.html#ade5d5c5e73b7c4f87d8b4f0f9c8d01b2">00105</a>                 QVariantMap <a class="code" href="class_media_sizes.html#ade5d5c5e73b7c4f87d8b4f0f9c8d01b2" title="Representation of the property large.">largeMap</a>;
-<a name="l00106"></a>00106 
-<a name="l00110"></a>00110                 QVariantMap <a class="code" href="class_media_sizes.html#a561241b0fb809115559fa603eeab4e64" title="Reading method for the property large.">getLarge</a>();
-<a name="l00111"></a>00111 
-<a name="l00115"></a>00115                 <span class="keywordtype">void</span> setLarge(QVariantMap newLargeMap);
-<a name="l00116"></a>00116 
-<a name="l00119"></a>00119                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ae942cdd55ef695bd2f3d7c81816c9891" title="Updating the property large.">updateLarge</a>();
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121                 <span class="comment">// Medium size</span>
-<a name="l00124"></a>00124 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ad7c77376f129c13f505f33849c7f5204" title="Large size for a media.">medium</a>
-<a name="l00125"></a>00125                                    READ <a class="code" href="class_media_sizes.html#a6736121cf1a19354e580e62dafc71933" title="Reading method for the property medium.">getMedium</a>
-<a name="l00126"></a><a class="code" href="class_media_sizes.html#ad7c77376f129c13f505f33849c7f5204">00126</a>                                    WRITE <a class="code" href="class_media_sizes.html#ad6f2cca0a84b739e7cd4a7bb7959f608" title="Writing method for the property medium.">setMedium</a>)
-<a name="l00127"></a>00127 
-<a name="l00129"></a><a class="code" href="class_media_sizes.html#a5e420bc18139116fd6f4ae6fde45c2bf">00129</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a5e420bc18139116fd6f4ae6fde45c2bf" title="Representation of the property medium.">mediumMap</a>;
-<a name="l00130"></a>00130 
-<a name="l00134"></a>00134                 QVariantMap <a class="code" href="class_media_sizes.html#a6736121cf1a19354e580e62dafc71933" title="Reading method for the property medium.">getMedium</a>();
-<a name="l00135"></a>00135 
-<a name="l00139"></a>00139                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ad6f2cca0a84b739e7cd4a7bb7959f608" title="Writing method for the property medium.">setMedium</a>(QVariantMap newMediumMap);
-<a name="l00140"></a>00140 
-<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#aa044eb958d916deef24b72c47b7b7d8c" title="Updating the property medium.">updateMedium</a>();
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145                 <span class="comment">// Small size</span>
-<a name="l00148"></a>00148 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ac8b959b5621b7bb0116429a15d040893" title="Large size for a media.">small</a>
-<a name="l00149"></a>00149                                    READ <a class="code" href="class_media_sizes.html#a95d42b15b68cec683fd00d0eda189fea" title="Reading method for the property small.">getSmall</a>
-<a name="l00150"></a><a class="code" href="class_media_sizes.html#ac8b959b5621b7bb0116429a15d040893">00150</a>                                    WRITE <a class="code" href="class_media_sizes.html#a91631b301b94f6a2c1e3a93e52c236b8" title="Writing method for the property small.">setSmall</a>)
-<a name="l00151"></a>00151 
-<a name="l00153"></a><a class="code" href="class_media_sizes.html#a011315d98cb61da32b196b7d28a5c03b">00153</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a011315d98cb61da32b196b7d28a5c03b" title="Representation of the property small.">smallMap</a>;
+<a name="l00070"></a>00070                 <span class="comment">// Friends serialization operators</span>
+<a name="l00071"></a>00071 
+<a name="l00077"></a>00077                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_media_sizes.html#abfa081cabafd9ada7e943f46eb684c05" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
+<a name="l00078"></a>00078 
+<a name="l00084"></a>00084                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_media_sizes.html#a6e70ac55eda9c1ca03e2dd1e244cab7f" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
+<a name="l00085"></a>00085 
+<a name="l00087"></a>00087         <span class="comment">// Properties management //</span>
+<a name="l00089"></a>00089 <span class="comment"></span>
+<a name="l00090"></a>00090         <span class="keyword">protected</span>:
+<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a2283f29a77e22d1fda5e4af5a13ea8db" title="Updating the field members.">syncMembers</a>();
+<a name="l00094"></a>00094 
+<a name="l00097"></a>00097                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a0a0378c546b94ed55e2bfb3d009ba40f" title="Updating all the properties.">syncProperties</a>();
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099                 <span class="comment">// Large size</span>
+<a name="l00102"></a>00102 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ac0bb4d7a861af4373d231dc5f3ac7c31" title="Large size for a media.">large</a>
+<a name="l00103"></a>00103                                    READ <a class="code" href="class_media_sizes.html#a561241b0fb809115559fa603eeab4e64" title="Reading method for the property large.">getLarge</a>
+<a name="l00104"></a><a class="code" href="class_media_sizes.html#ac0bb4d7a861af4373d231dc5f3ac7c31">00104</a>                                    WRITE <a class="code" href="class_media_sizes.html#a658d7d0513d74c157217d45b3332b7e6" title="Writing method for the property large.">setLarge</a>)
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106                 
+<a name="l00107"></a><a class="code" href="class_media_sizes.html#ade5d5c5e73b7c4f87d8b4f0f9c8d01b2">00107</a>                 QVariantMap <a class="code" href="class_media_sizes.html#ade5d5c5e73b7c4f87d8b4f0f9c8d01b2" title="Representation of the property large.">largeMap</a>;
+<a name="l00108"></a>00108 
+<a name="l00112"></a>00112                 QVariantMap <a class="code" href="class_media_sizes.html#a561241b0fb809115559fa603eeab4e64" title="Reading method for the property large.">getLarge</a>();
+<a name="l00113"></a>00113 
+<a name="l00117"></a>00117                 <span class="keywordtype">void</span> setLarge(QVariantMap newLargeMap);
+<a name="l00118"></a>00118 
+<a name="l00121"></a>00121                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a6dfefcfe59d4fa8ae0d60ddb27f28aa5" title="Updating the property large.">syncLargeProperty</a>();
+<a name="l00122"></a>00122 
+<a name="l00125"></a>00125                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a88d8926d3efd4c985a4ef3b0a8eef393" title="Updating the largeSize member.">syncLargeMember</a>();
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127                 <span class="comment">// Medium size</span>
+<a name="l00130"></a>00130 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ad7c77376f129c13f505f33849c7f5204" title="Large size for a media.">medium</a>
+<a name="l00131"></a>00131                                    READ <a class="code" href="class_media_sizes.html#a6736121cf1a19354e580e62dafc71933" title="Reading method for the property medium.">getMedium</a>
+<a name="l00132"></a><a class="code" href="class_media_sizes.html#ad7c77376f129c13f505f33849c7f5204">00132</a>                                    WRITE <a class="code" href="class_media_sizes.html#ad6f2cca0a84b739e7cd4a7bb7959f608" title="Writing method for the property medium.">setMedium</a>)
+<a name="l00133"></a>00133 
+<a name="l00135"></a><a class="code" href="class_media_sizes.html#a5e420bc18139116fd6f4ae6fde45c2bf">00135</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a5e420bc18139116fd6f4ae6fde45c2bf" title="Representation of the property medium.">mediumMap</a>;
+<a name="l00136"></a>00136 
+<a name="l00140"></a>00140                 QVariantMap <a class="code" href="class_media_sizes.html#a6736121cf1a19354e580e62dafc71933" title="Reading method for the property medium.">getMedium</a>();
+<a name="l00141"></a>00141 
+<a name="l00145"></a>00145                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ad6f2cca0a84b739e7cd4a7bb7959f608" title="Writing method for the property medium.">setMedium</a>(QVariantMap newMediumMap);
+<a name="l00146"></a>00146 
+<a name="l00149"></a>00149                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a7032cbf82c6ec9dad7504656630b5065" title="Updating the property medium.">syncMediumProperty</a>();
+<a name="l00150"></a>00150 
+<a name="l00153"></a>00153                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a2f6b2ee6021a5564cd403e24e5c22543" title="Updating the mediumSize member.">syncMediumMember</a>();
 <a name="l00154"></a>00154 
-<a name="l00158"></a>00158                 QVariantMap <a class="code" href="class_media_sizes.html#a95d42b15b68cec683fd00d0eda189fea" title="Reading method for the property small.">getSmall</a>();
-<a name="l00159"></a>00159 
-<a name="l00163"></a>00163                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a91631b301b94f6a2c1e3a93e52c236b8" title="Writing method for the property small.">setSmall</a>(QVariantMap newSmallMap);
+<a name="l00155"></a>00155                 <span class="comment">// Small size</span>
+<a name="l00158"></a>00158 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#ac8b959b5621b7bb0116429a15d040893" title="Large size for a media.">small</a>
+<a name="l00159"></a>00159                                    READ <a class="code" href="class_media_sizes.html#a95d42b15b68cec683fd00d0eda189fea" title="Reading method for the property small.">getSmall</a>
+<a name="l00160"></a><a class="code" href="class_media_sizes.html#ac8b959b5621b7bb0116429a15d040893">00160</a>                                    WRITE <a class="code" href="class_media_sizes.html#a91631b301b94f6a2c1e3a93e52c236b8" title="Writing method for the property small.">setSmall</a>)
+<a name="l00161"></a>00161 
+<a name="l00163"></a><a class="code" href="class_media_sizes.html#a011315d98cb61da32b196b7d28a5c03b">00163</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a011315d98cb61da32b196b7d28a5c03b" title="Representation of the property small.">smallMap</a>;
 <a name="l00164"></a>00164 
-<a name="l00167"></a>00167                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a1185f27d318bb89dbd70163fc15b6af1" title="Updating the property small.">updateSmall</a>();
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169                 <span class="comment">// Thumb size</span>
-<a name="l00172"></a>00172 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#a13c642176fb243a26233530abd2a2e25" title="Large size for a media.">thumb</a>
-<a name="l00173"></a>00173                                    READ <a class="code" href="class_media_sizes.html#a9bd21ca0382bc26d4fb1473982571a2b" title="Reading method for the property thumb.">getThumb</a>
-<a name="l00174"></a><a class="code" href="class_media_sizes.html#a13c642176fb243a26233530abd2a2e25">00174</a>                                    WRITE <a class="code" href="class_media_sizes.html#ac6ff8cf10b233cfa8c9ab70511cd6004" title="Writing method for the property thumb.">setThumb</a>)
-<a name="l00175"></a>00175 
-<a name="l00177"></a><a class="code" href="class_media_sizes.html#a154d6c00a8aef662333c15534cbaab33">00177</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a154d6c00a8aef662333c15534cbaab33" title="Representation of the property thumb.">thumbMap</a>;
+<a name="l00168"></a>00168                 QVariantMap <a class="code" href="class_media_sizes.html#a95d42b15b68cec683fd00d0eda189fea" title="Reading method for the property small.">getSmall</a>();
+<a name="l00169"></a>00169 
+<a name="l00173"></a>00173                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a91631b301b94f6a2c1e3a93e52c236b8" title="Writing method for the property small.">setSmall</a>(QVariantMap newSmallMap);
+<a name="l00174"></a>00174 
+<a name="l00177"></a>00177                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#acd5aa9635edba000ddc66d36c6b4e416" title="Updating the property small.">syncSmallProperty</a>();
 <a name="l00178"></a>00178 
-<a name="l00182"></a>00182                 QVariantMap <a class="code" href="class_media_sizes.html#a9bd21ca0382bc26d4fb1473982571a2b" title="Reading method for the property thumb.">getThumb</a>();
-<a name="l00183"></a>00183 
-<a name="l00187"></a>00187                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ac6ff8cf10b233cfa8c9ab70511cd6004" title="Writing method for the property thumb.">setThumb</a>(QVariantMap newThumbMap);
-<a name="l00188"></a>00188 
-<a name="l00191"></a>00191                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a108ba5d121ddc3081252a4d2170306e9" title="Updating the property thumb.">updateThumb</a>();
+<a name="l00181"></a>00181                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#af991ad27c3c59c89cdf45c872830cf24" title="Updating the smallSize member.">syncSmallMember</a>();
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183                 <span class="comment">// Thumb size</span>
+<a name="l00186"></a>00186 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_media_sizes.html#a13c642176fb243a26233530abd2a2e25" title="Large size for a media.">thumb</a>
+<a name="l00187"></a>00187                                    READ <a class="code" href="class_media_sizes.html#a9bd21ca0382bc26d4fb1473982571a2b" title="Reading method for the property thumb.">getThumb</a>
+<a name="l00188"></a><a class="code" href="class_media_sizes.html#a13c642176fb243a26233530abd2a2e25">00188</a>                                    WRITE <a class="code" href="class_media_sizes.html#ac6ff8cf10b233cfa8c9ab70511cd6004" title="Writing method for the property thumb.">setThumb</a>)
+<a name="l00189"></a>00189 
+<a name="l00191"></a><a class="code" href="class_media_sizes.html#a154d6c00a8aef662333c15534cbaab33">00191</a>                 QVariantMap <a class="code" href="class_media_sizes.html#a154d6c00a8aef662333c15534cbaab33" title="Representation of the property thumb.">thumbMap</a>;
 <a name="l00192"></a>00192 
-<a name="l00193"></a>00193 
-<a name="l00195"></a>00195         <span class="comment">// Media sizes //</span>
-<a name="l00197"></a>00197 <span class="comment"></span>
-<a name="l00198"></a>00198         protected:
-<a name="l00200"></a><a class="code" href="class_media_sizes.html#aded3b2b99f57f315e2d24bd79068a659">00200</a>                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#aded3b2b99f57f315e2d24bd79068a659" title="Large size.">largeSize</a>;
-<a name="l00201"></a>00201 
-<a name="l00203"></a><a class="code" href="class_media_sizes.html#a11eee2960df621c1f8ae3266a23b5a8a">00203</a>                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#a11eee2960df621c1f8ae3266a23b5a8a" title="Medium size.">mediumSize</a>;
-<a name="l00204"></a>00204 
-<a name="l00206"></a><a class="code" href="class_media_sizes.html#aa41e2ce87f9285bc16e3a972b8d00014">00206</a>                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#aa41e2ce87f9285bc16e3a972b8d00014" title="Small size.">smallSize</a>;
-<a name="l00207"></a>00207 
-<a name="l00209"></a><a class="code" href="class_media_sizes.html#a21746f456f37da5bffc6c773db818ad3">00209</a>                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#a21746f456f37da5bffc6c773db818ad3" title="Thumb size.">thumbSize</a>;
+<a name="l00196"></a>00196                 QVariantMap <a class="code" href="class_media_sizes.html#a9bd21ca0382bc26d4fb1473982571a2b" title="Reading method for the property thumb.">getThumb</a>();
+<a name="l00197"></a>00197 
+<a name="l00201"></a>00201                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ac6ff8cf10b233cfa8c9ab70511cd6004" title="Writing method for the property thumb.">setThumb</a>(QVariantMap newThumbMap);
+<a name="l00202"></a>00202 
+<a name="l00205"></a>00205                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a3441abd1fe3528e2be68a313162afbaf" title="Updating the property thumb.">syncThumbProperty</a>();
+<a name="l00206"></a>00206 
+<a name="l00209"></a>00209                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a76bf0b022324b62883dd9358e09b1088" title="Updating the thumbSize member.">syncThumbMember</a>();
 <a name="l00210"></a>00210 
 <a name="l00211"></a>00211 
-<a name="l00213"></a>00213         <span class="comment">// Getter and setters //</span>
+<a name="l00213"></a>00213         <span class="comment">// Media sizes //</span>
 <a name="l00215"></a>00215 <span class="comment"></span>
-<a name="l00216"></a>00216         public:
-<a name="l00220"></a>00220                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#a43698371a1ae0f56c72083a94d114fc8" title="Reading method for largeSize.">getLargeSize</a>();
-<a name="l00221"></a>00221 
-<a name="l00225"></a>00225                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ae1f034449960bb40786128aabb2d58d4" title="Writing method for largeSize.">setLargeSize</a>(<a class="code" href="class_media_size.html">MediaSize</a> newLargeSize);
-<a name="l00226"></a>00226 
-<a name="l00230"></a>00230                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#aa3d8823d1dd36365d6e999e16be5978e" title="Reading method for mediumSize.">getMediumSize</a>();
-<a name="l00231"></a>00231 
-<a name="l00235"></a>00235                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ac14b6e68feb94e5c920d20553a3b97a2" title="Writing method for mediumSize.">setMediumSize</a>(<a class="code" href="class_media_size.html">MediaSize</a> newMediumSize);
-<a name="l00236"></a>00236 
-<a name="l00240"></a>00240                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#a8fa0c1a9c2d3ac5b2d36b0e38af98690" title="Reading method smallSize.">getSmallSize</a>();
-<a name="l00241"></a>00241 
-<a name="l00245"></a>00245                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#aa3c6d099dead7396a3d293a35bcaa0ce" title="Writing method for smallSize.">setSmallSize</a>(<a class="code" href="class_media_size.html">MediaSize</a> newSmallSize);
-<a name="l00246"></a>00246 
-<a name="l00250"></a>00250                 <a class="code" href="class_media_size.html">MediaSize</a> <a class="code" href="class_media_sizes.html#ad1bf179ee3bd5feceb131221eec0d40b" title="Reading method for thumbSize.">getThumbSize</a>();
-<a name="l00251"></a>00251 
-<a name="l00255"></a>00255                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a02d31e41772f8a90115a25af98490610" title="Writing method for thumbSize.">setThumbSize</a>(<a class="code" href="class_media_size.html">MediaSize</a> newThumbSize);
-<a name="l00256"></a>00256 };
-<a name="l00257"></a>00257 
-<a name="l00258"></a>00258 <span class="comment">// Serialization of MediaSizes</span>
-<a name="l00259"></a>00259 Q_DECLARE_METATYPE(<a class="code" href="class_media_sizes.html">MediaSizes</a>)
-<a name="l00260"></a>00260 
-<a name="l00266"></a>00266 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00267"></a>00267 
-<a name="l00273"></a>00273 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_media_sizes.html">MediaSizes</a> &amp; sizes);
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275 <span class="preprocessor">#endif // MEDIASIZES_HPP</span>
+<a name="l00216"></a>00216         protected:
+<a name="l00218"></a><a class="code" href="class_media_sizes.html#aded3b2b99f57f315e2d24bd79068a659">00218</a>                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#aded3b2b99f57f315e2d24bd79068a659" title="Large size.">largeSize</a>;
+<a name="l00219"></a>00219 
+<a name="l00221"></a><a class="code" href="class_media_sizes.html#a11eee2960df621c1f8ae3266a23b5a8a">00221</a>                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#a11eee2960df621c1f8ae3266a23b5a8a" title="Medium size.">mediumSize</a>;
+<a name="l00222"></a>00222 
+<a name="l00224"></a><a class="code" href="class_media_sizes.html#aa41e2ce87f9285bc16e3a972b8d00014">00224</a>                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#aa41e2ce87f9285bc16e3a972b8d00014" title="Small size.">smallSize</a>;
+<a name="l00225"></a>00225 
+<a name="l00227"></a><a class="code" href="class_media_sizes.html#a21746f456f37da5bffc6c773db818ad3">00227</a>                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#a21746f456f37da5bffc6c773db818ad3" title="Thumb size.">thumbSize</a>;
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229 
+<a name="l00231"></a>00231         <span class="comment">// Getter and setters //</span>
+<a name="l00233"></a>00233 <span class="comment"></span>
+<a name="l00234"></a>00234         public:
+<a name="l00238"></a>00238                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#a43698371a1ae0f56c72083a94d114fc8" title="Reading method for largeSize.">getLargeSize</a>();
+<a name="l00239"></a>00239 
+<a name="l00243"></a>00243                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ae1f034449960bb40786128aabb2d58d4" title="Writing method for largeSize.">setLargeSize</a>(<a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> newLargeSize);
+<a name="l00244"></a>00244 
+<a name="l00248"></a>00248                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#aa3d8823d1dd36365d6e999e16be5978e" title="Reading method for mediumSize.">getMediumSize</a>();
+<a name="l00249"></a>00249 
+<a name="l00253"></a>00253                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#ac14b6e68feb94e5c920d20553a3b97a2" title="Writing method for mediumSize.">setMediumSize</a>(<a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> newMediumSize);
+<a name="l00254"></a>00254 
+<a name="l00258"></a>00258                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#a8fa0c1a9c2d3ac5b2d36b0e38af98690" title="Reading method smallSize.">getSmallSize</a>();
+<a name="l00259"></a>00259 
+<a name="l00263"></a>00263                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#aa3c6d099dead7396a3d293a35bcaa0ce" title="Writing method for smallSize.">setSmallSize</a>(<a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> newSmallSize);
+<a name="l00264"></a>00264 
+<a name="l00268"></a>00268                 <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> <a class="code" href="class_media_sizes.html#ad1bf179ee3bd5feceb131221eec0d40b" title="Reading method for thumbSize.">getThumbSize</a>();
+<a name="l00269"></a>00269 
+<a name="l00273"></a>00273                 <span class="keywordtype">void</span> <a class="code" href="class_media_sizes.html#a02d31e41772f8a90115a25af98490610" title="Writing method for thumbSize.">setThumbSize</a>(<a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> newThumbSize);
+<a name="l00274"></a>00274 };
+<a name="l00275"></a>00275 
+<a name="l00276"></a>00276 <span class="comment">// Serialization of MediaSizes</span>
+<a name="l00277"></a>00277 Q_DECLARE_METATYPE(<a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a>)
+<a name="l00278"></a>00278 
+<a name="l00284"></a>00284 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
+<a name="l00285"></a>00285 
+<a name="l00291"></a>00291 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> &amp; sizes);
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293 <span class="preprocessor">#endif // MEDIASIZES_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -259,7 +267,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

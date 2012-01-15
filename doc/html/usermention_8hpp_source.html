@@ -114,140 +114,130 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef USERMENTION_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define USERMENTION_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="indexbounds_8hpp.html">indexbounds.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
-<a name="l00029"></a>00029 
-<a name="l00032"></a><a class="code" href="class_user_mention.html">00032</a> <span class="keyword">class </span><a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034         Q_OBJECT
-<a name="l00035"></a>00035 
-<a name="l00037"></a>00037         <span class="comment">// Serialization management //</span>
-<a name="l00039"></a>00039 <span class="comment"></span>
-<a name="l00040"></a>00040         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5" title="Constructor.">UserMention</a>();
-<a name="l00044"></a>00044 
-<a name="l00047"></a>00047                 <span class="keyword">virtual</span> <a class="code" href="class_user_mention.html#a735290c4eec02ce960facab61310e774" title="Destructor.">~UserMention</a>();
-<a name="l00048"></a>00048 
-<a name="l00052"></a>00052                 <a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5" title="Constructor.">UserMention</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00053"></a>00053 
-<a name="l00058"></a>00058                 <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; <a class="code" href="class_user_mention.html#a650a62bd2b795ff9e1a62da900ec837f" title="Affectation.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00059"></a>00059 
-<a name="l00062"></a>00062                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a5975da80709e8161e25d5afee1aceb21" title="Serialization declaration.">initSystem</a>();
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064         <span class="keyword">private</span>:
-<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a7223e44d4e86c1183367dc0cb8db886c" title="Copy of a User Mention.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070                 <span class="comment">// Friends serialization operators</span>
-<a name="l00071"></a>00071 
-<a name="l00077"></a>00077                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_user_mention.html#a2fdaa3524280505a33b01e086d3c5fb1" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00078"></a>00078 
-<a name="l00084"></a>00084                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_user_mention.html#ab3a33c901b6cf7c3fb358255e69c0a73" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00085"></a>00085 
-<a name="l00087"></a>00087         <span class="comment">// Properties management //</span>
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090         <span class="keyword">protected</span>:
-<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a018cd858da1c29b1d5021f545bd450d0" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
-<a name="l00094"></a>00094 
-<a name="l00097"></a>00097                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d" title="Updating all the properties.">updateAllProperties</a>();
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099                 <span class="comment">// id</span>
-<a name="l00102"></a>00102 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">long</span> <span class="keywordtype">id</span>
-<a name="l00103"></a>00103                                    READ <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">getID</a>
-<a name="l00104"></a><a class="code" href="class_user_mention.html#a06060f588219c90242b47d6ac3bc5219">00104</a>                                    WRITE <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">setID</a>)
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106                 
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#abf23cb1157f0daa0b287cbc35376da4b" title="Updating the property id.">updateID</a>();
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110                 <span class="comment">// id_str</span>
-<a name="l00113"></a>00113 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#a118036292197b97b37182489df3f0d72" title="String version of id.">id_str</a>
-<a name="l00114"></a>00114                                    READ <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">getIDstr</a>
-<a name="l00115"></a><a class="code" href="class_user_mention.html#a118036292197b97b37182489df3f0d72">00115</a>                                    WRITE <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">setIDstr</a>)
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117                 
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a5fd66edb0e304418784186cd2d29653a" title="Updating the property url.">updateIDstr</a>();
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="indexbounds_8hpp.html" title="Implementation of IndexBounds.">indexbounds.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsmappable_8hpp.html" title="Header of ReynTweetsMappable.">reyntweetsmappable.hpp</a>&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializablelist_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializablelist.hpp</a>&quot;</span>
+<a name="l00030"></a>00030 
+<a name="l00033"></a><a class="code" href="class_user_mention.html">00033</a> <span class="keyword">class </span><a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035         Q_OBJECT
+<a name="l00036"></a>00036 
+<a name="l00038"></a>00038         <span class="comment">// Serialization management //</span>
+<a name="l00040"></a>00040 <span class="comment"></span>
+<a name="l00041"></a>00041         <span class="keyword">public</span>:
+<a name="l00044"></a>00044                 <a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5" title="Constructor.">UserMention</a>();
+<a name="l00045"></a>00045 
+<a name="l00048"></a>00048                 <span class="keyword">virtual</span> <a class="code" href="class_user_mention.html#a735290c4eec02ce960facab61310e774" title="Destructor.">~UserMention</a>();
+<a name="l00049"></a>00049 
+<a name="l00053"></a>00053                 <a class="code" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5" title="Constructor.">UserMention</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00054"></a>00054 
+<a name="l00059"></a>00059                 <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; <a class="code" href="class_user_mention.html#a650a62bd2b795ff9e1a62da900ec837f" title="Affectation.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00060"></a>00060 
+<a name="l00063"></a>00063                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a5975da80709e8161e25d5afee1aceb21" title="Serialization declaration.">initSystem</a>();
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="keyword">private</span>:
+<a name="l00069"></a>00069                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a7223e44d4e86c1183367dc0cb8db886c" title="Copy of a User Mention.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071                 <span class="comment">// Friends serialization operators</span>
+<a name="l00072"></a>00072 
+<a name="l00078"></a>00078                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_user_mention.html#a2fdaa3524280505a33b01e086d3c5fb1" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00079"></a>00079 
+<a name="l00085"></a>00085                 <span class="keyword">friend</span> QDataStream &amp; <a class="code" href="class_user_mention.html#ab3a33c901b6cf7c3fb358255e69c0a73" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00086"></a>00086 
+<a name="l00088"></a>00088         <span class="comment">// Properties management //</span>
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091         <span class="keyword">protected</span>:
+<a name="l00094"></a>00094                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6" title="Updating the field members.">syncMembers</a>();
+<a name="l00095"></a>00095 
+<a name="l00098"></a>00098                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d" title="Updating all the properties.">syncProperties</a>();
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100                 <span class="comment">// id</span>
+<a name="l00103"></a>00103 <span class="comment"></span>                Q_PROPERTY(<span class="keywordtype">long</span> <span class="keywordtype">id</span>
+<a name="l00104"></a>00104                                    READ <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">getID</a>
+<a name="l00105"></a><a class="code" href="class_user_mention.html#a06060f588219c90242b47d6ac3bc5219">00105</a>                                    WRITE <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">setID</a>)
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107                 <span class="comment">// id_str</span>
+<a name="l00110"></a>00110 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#a118036292197b97b37182489df3f0d72" title="String version of id.">id_str</a>
+<a name="l00111"></a>00111                                    READ <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">getIDstr</a>
+<a name="l00112"></a><a class="code" href="class_user_mention.html#a118036292197b97b37182489df3f0d72">00112</a>                                    WRITE <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">setIDstr</a>)
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114                 <span class="comment">// screen_name</span>
+<a name="l00117"></a>00117 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#afe91671bcdda373511165084e142a43d" title="Screen name.">screen_name</a>
+<a name="l00118"></a>00118                                    READ <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">getScreenName</a>
+<a name="l00119"></a><a class="code" href="class_user_mention.html#afe91671bcdda373511165084e142a43d">00119</a>                                    WRITE <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">setScreenName</a>)
 <a name="l00120"></a>00120 
-<a name="l00121"></a>00121                 <span class="comment">// screen_name</span>
-<a name="l00124"></a>00124 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#afe91671bcdda373511165084e142a43d" title="Screen name.">screen_name</a>
-<a name="l00125"></a>00125                                    READ <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">getScreenName</a>
-<a name="l00126"></a><a class="code" href="class_user_mention.html#afe91671bcdda373511165084e142a43d">00126</a>                                    WRITE <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">setScreenName</a>)
+<a name="l00121"></a>00121                 <span class="comment">// name</span>
+<a name="l00124"></a>00124 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#aa00c99cb2e40d9bc14055b92149188c9" title="User full name.">name</a>
+<a name="l00125"></a>00125                                    READ <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">getName</a>
+<a name="l00126"></a><a class="code" href="class_user_mention.html#aa00c99cb2e40d9bc14055b92149188c9">00126</a>                                    WRITE <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">setName</a>)
 <a name="l00127"></a>00127 
-<a name="l00128"></a>00128                 
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a798daee17bb46298f37ce4b482821004" title="Updating the property screen_name.">updateScreenName</a>();
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132                 <span class="comment">// name</span>
-<a name="l00135"></a>00135 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_user_mention.html#aa00c99cb2e40d9bc14055b92149188c9" title="User full name.">name</a>
-<a name="l00136"></a>00136                                    READ <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">getName</a>
-<a name="l00137"></a><a class="code" href="class_user_mention.html#aa00c99cb2e40d9bc14055b92149188c9">00137</a>                                    WRITE <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">setName</a>)
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139                 
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ac050e17b9cd951a033ecd835f5fda943" title="Updating the property name.">updateName</a>();
+<a name="l00128"></a>00128                 <span class="comment">// indices</span>
+<a name="l00131"></a>00131 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_user_mention.html#aac40dff11fe108d3b156f045e1a6eb28" title="Indexes.">indices</a>
+<a name="l00132"></a>00132                                    READ <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">getIndices</a>
+<a name="l00133"></a><a class="code" href="class_user_mention.html#aac40dff11fe108d3b156f045e1a6eb28">00133</a>                                    WRITE <a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9" title="Writing method for the property indices.">setIndices</a>)
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135                 
+<a name="l00136"></a><a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3">00136</a>                 QVariantList <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>;
+<a name="l00137"></a>00137 
+<a name="l00141"></a>00141                 QVariantList <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">getIndices</a>();
 <a name="l00142"></a>00142 
-<a name="l00143"></a>00143                 <span class="comment">// indices</span>
-<a name="l00146"></a>00146 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_user_mention.html#aac40dff11fe108d3b156f045e1a6eb28" title="Indexes.">indices</a>
-<a name="l00147"></a>00147                                    READ <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">getIndices</a>
-<a name="l00148"></a><a class="code" href="class_user_mention.html#aac40dff11fe108d3b156f045e1a6eb28">00148</a>                                    WRITE <a class="code" href="class_user_mention.html#a49017655b3afec6edbb55045f19a3de9" title="Writing method for the property indices.">setIndices</a>)
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150                 
-<a name="l00151"></a><a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3">00151</a>                 QVariantList <a class="code" href="class_user_mention.html#a9e58495ec370552de11d550db6f188c3" title="Representation of the property indices.">indexList</a>;
-<a name="l00152"></a>00152 
-<a name="l00156"></a>00156                 QVariantList <a class="code" href="class_user_mention.html#a42b48c76b1748938e7f7ac5c4508fba7" title="Reading method for the property indices.">getIndices</a>();
-<a name="l00157"></a>00157 
-<a name="l00161"></a>00161                 <span class="keywordtype">void</span> setIndices(QVariantList newIndexList);
-<a name="l00162"></a>00162 
-<a name="l00165"></a>00165                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05" title="Updating the property indices.">updateIndices</a>();
-<a name="l00166"></a>00166 
+<a name="l00146"></a>00146                 <span class="keywordtype">void</span> setIndices(QVariantList newIndexList);
+<a name="l00147"></a>00147 
+<a name="l00150"></a>00150                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00151"></a>00151 
+<a name="l00154"></a>00154                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ac542b6becefc7f384f9ba0a93eeeef1c" title="Updating the indexes attribute.">syncIndicesMember</a>();
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 
+<a name="l00158"></a>00158         <span class="comment">// Mention management //</span>
+<a name="l00160"></a>00160 <span class="comment"></span>
+<a name="l00161"></a>00161         protected:
+<a name="l00163"></a><a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a">00163</a>                 <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
+<a name="l00164"></a>00164 
+<a name="l00166"></a><a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835">00166</a>                 QString <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>;
 <a name="l00167"></a>00167 
-<a name="l00169"></a>00169         <span class="comment">// Mention management //</span>
-<a name="l00171"></a>00171 <span class="comment"></span>
-<a name="l00172"></a>00172         protected:
-<a name="l00174"></a><a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a">00174</a>                 <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
-<a name="l00175"></a>00175 
-<a name="l00177"></a><a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835">00177</a>                 QString <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>;
-<a name="l00178"></a>00178 
-<a name="l00180"></a><a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880">00180</a>                 QString <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
-<a name="l00181"></a>00181 
-<a name="l00183"></a><a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08">00183</a>                 QString <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
-<a name="l00184"></a>00184 
-<a name="l00186"></a><a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de">00186</a>                 <a class="code" href="class_index_bounds.html">IndexBounds</a> <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>;
+<a name="l00169"></a><a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880">00169</a>                 QString <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
+<a name="l00170"></a>00170 
+<a name="l00172"></a><a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08">00172</a>                 QString <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
+<a name="l00173"></a>00173 
+<a name="l00175"></a><a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de">00175</a>                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de" title="Indexes of the mention in the tweet.">indexes</a>;
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177 
+<a name="l00179"></a>00179         <span class="comment">// Getter and setters //</span>
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00182"></a>00182         public:
+<a name="l00186"></a>00186                 <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">getID</a>();
 <a name="l00187"></a>00187 
-<a name="l00188"></a>00188 
-<a name="l00190"></a>00190         <span class="comment">// Getter and setters //</span>
-<a name="l00192"></a>00192 <span class="comment"></span>
-<a name="l00193"></a>00193         public:
-<a name="l00197"></a>00197                 <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">getID</a>();
-<a name="l00198"></a>00198 
-<a name="l00202"></a>00202                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">setID</a>(<span class="keywordtype">long</span> newID);
-<a name="l00203"></a>00203 
-<a name="l00207"></a>00207                 QString <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">getIDstr</a>();
-<a name="l00208"></a>00208 
-<a name="l00212"></a>00212                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">setIDstr</a>(QString newID);
-<a name="l00213"></a>00213 
-<a name="l00217"></a>00217                 QString <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">getScreenName</a>();
-<a name="l00218"></a>00218 
-<a name="l00222"></a>00222                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">setScreenName</a>(QString newScreenName);
-<a name="l00223"></a>00223 
-<a name="l00227"></a>00227                 QString <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">getName</a>();
-<a name="l00228"></a>00228 
-<a name="l00232"></a>00232                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">setName</a>(QString newName);
-<a name="l00233"></a>00233 
-<a name="l00237"></a>00237                 <a class="code" href="class_index_bounds.html">IndexBounds</a> <a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25" title="Reading indexes.">getIndexes</a>();
-<a name="l00238"></a>00238 
-<a name="l00242"></a>00242                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86" title="Writing indexes.">setIndexes</a>(<a class="code" href="class_index_bounds.html">IndexBounds</a> newIndexes);
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244 };
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246 <span class="comment">// Serialization of UserMention</span>
-<a name="l00247"></a>00247 Q_DECLARE_METATYPE(<a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a>)
-<a name="l00248"></a>00248 
-<a name="l00254"></a>00254 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00255"></a>00255 
-<a name="l00261"></a>00261 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263 <span class="preprocessor">#endif // USERMENTION_HPP</span>
+<a name="l00191"></a>00191                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">setID</a>(<span class="keywordtype">long</span> newID);
+<a name="l00192"></a>00192 
+<a name="l00196"></a>00196                 QString <a class="code" href="class_user_mention.html#a23f000f8b4ca16c5d87e4aecf828b833" title="Reading userIDstr.">getIDstr</a>();
+<a name="l00197"></a>00197 
+<a name="l00201"></a>00201                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aaaf57e6abe9fe1476d871d175338cb8e" title="Writing userIDstr.">setIDstr</a>(QString newID);
+<a name="l00202"></a>00202 
+<a name="l00206"></a>00206                 QString <a class="code" href="class_user_mention.html#a453c7ddc278170a5a3a44a33bcf1555e" title="Reading method for screenName.">getScreenName</a>();
+<a name="l00207"></a>00207 
+<a name="l00211"></a>00211                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e" title="Writing displayedURL.">setScreenName</a>(QString newScreenName);
+<a name="l00212"></a>00212 
+<a name="l00216"></a>00216                 QString <a class="code" href="class_user_mention.html#a1d50668e9ec3417ec5fdb3ea7bc9e25d" title="Reading method for userName.">getName</a>();
+<a name="l00217"></a>00217 
+<a name="l00221"></a>00221                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2" title="Writing method for userName.">setName</a>(QString newName);
+<a name="l00222"></a>00222 
+<a name="l00226"></a>00226                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_user_mention.html#a1c56a8c0adf18cb9fcd475623b0cda25" title="Reading indexes.">getIndexes</a>();
+<a name="l00227"></a>00227 
+<a name="l00231"></a>00231                 <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#aa98495118f750bc466554a50b43a4f86" title="Writing indexes.">setIndexes</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes);
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233 };
+<a name="l00234"></a>00234 
+<a name="l00235"></a>00235 <span class="comment">// Serialization of UserMention</span>
+<a name="l00236"></a>00236 Q_DECLARE_METATYPE(<a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a>)
+<a name="l00237"></a>00237 
+<a name="l00243"></a>00243 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00244"></a>00244 
+<a name="l00250"></a>00250 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention);
+<a name="l00251"></a>00251 
+<a name="l00252"></a>00252 
+<a name="l00255"></a><a class="code" href="usermention_8hpp.html#acb0dff1d8a6f188c842e6bdb548a5d96">00255</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html">UserMentionList</a>;
+<a name="l00256"></a>00256 
+<a name="l00257"></a>00257 <span class="preprocessor">#endif // USERMENTION_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -263,7 +253,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

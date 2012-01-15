@@ -91,12 +91,12 @@ window.onload = initDynSections;
 <h1>tweetentities.hpp File Reference</h1>
 <p>Header of <a class="el" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a>.  
 <a href="#_details">More...</a></p>
-<code>#include &lt;QList&gt;</code><br/>
 <code>#include &quot;<a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="media_8hpp_source.html">media.hpp</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="reyntweetsserializable_8hpp_source.html">reyntweetsserializable.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="reyntweetsmappable_8hpp_source.html">reyntweetsmappable.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="reyntweetsserializablelist_8tpp_source.html">reyntweetsserializablelist.tpp</a>&quot;</code><br/>
 
 <p><a href="tweetentities_8hpp_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -104,9 +104,6 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html">TweetEntities</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Entities of a tweet, such as its hashtags, its mentions and its URLs.  <a href="class_tweet_entities.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">QList&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="tweetentities_8hpp.html#a67d6a95bde75b41b8b2d4897300ff7d4">fillWithList</a> (QVariantList entities)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a QVariantList serialized by QJSON into a list of entities whose class is represented by the template parameter T.  <a href="#a67d6a95bde75b41b8b2d4897300ff7d4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tweetentities_8hpp.html#af780627bae9b95a29d8d40f14dbb90de">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;entities)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#af780627bae9b95a29d8d40f14dbb90de"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="tweetentities_8hpp.html#a6d57684a9e058f162c57da7406f57e22">operator&gt;&gt;</a> (QDataStream &amp;in, <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;entities)</td></tr>
@@ -118,37 +115,6 @@ window.onload = initDynSections;
 
 <p>Definition in file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a67d6a95bde75b41b8b2d4897300ff7d4"></a><!-- doxytag: member="tweetentities.hpp::fillWithList" ref="a67d6a95bde75b41b8b2d4897300ff7d4" args="(QVariantList entities)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt;T&gt; fillWithList </td>
-          <td>(</td>
-          <td class="paramtype">QVariantList&nbsp;</td>
-          <td class="paramname"> <em>entities</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Converting a QVariantList serialized by QJSON into a list of entities whose class is represented by the template parameter T. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>entities</em>&nbsp;</td><td>List to convert </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding list of entities </dd></dl>
-
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00233">233</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="af780627bae9b95a29d8d40f14dbb90de"></a><!-- doxytag: member="tweetentities.hpp::operator&lt;&lt;" ref="af780627bae9b95a29d8d40f14dbb90de" args="(QDataStream &amp;out, const TweetEntities &amp;entities)" -->
 <div class="memitem">
 <div class="memproto">
@@ -242,7 +208,7 @@ template&lt;class T &gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:25 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:18 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

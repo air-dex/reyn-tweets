@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>UserAccount Class Reference</h1><!-- doxytag: class="UserAccount" --><!-- doxytag: inherits="ReynTweetsSerializable" -->
+<h1>UserAccount Class Reference</h1><!-- doxytag: class="UserAccount" --><!-- doxytag: inherits="ReynTweetsMappable" -->
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> account.  
 <a href="#_details">More...</a></p>
 
@@ -99,7 +99,8 @@ Inheritance diagram for UserAccount:</div>
  <div class="center">
   <img src="class_user_account.png" usemap="#UserAccount_map" alt=""/>
   <map id="UserAccount_map" name="UserAccount_map">
-<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable" shape="rect" coords="0,0,146,24"/>
+<area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
  </div>
 </div>
@@ -125,12 +126,10 @@ Inheritance diagram for UserAccount:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the user.  <a href="#ab4305853cf2219e8983f21bba6fc0dfb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a1319301d23168fa9fe744bd71b126044">setUserMap</a> (QVariantMap newUserMap)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the property twitter_user.  <a href="#a1319301d23168fa9fe744bd71b126044"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a0d293295b59d384d401636fd2e96c3bb">updateAccessTokenProperty</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the property p_accessToken.  <a href="#a0d293295b59d384d401636fd2e96c3bb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#aebd9a9dfbe51960516317c5fbdd9b7a6">updateTokenSecretProperty</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the property p_tokenScret.  <a href="#aebd9a9dfbe51960516317c5fbdd9b7a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#ad799193a8e85b22316ea6d9308bb5308">updateUserProperty</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the property p_user.  <a href="#ad799193a8e85b22316ea6d9308bb5308"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#ab8c47359d892bd9be101cb80a20fe42e">syncUserMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the user member.  <a href="#ab8c47359d892bd9be101cb80a20fe42e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a983d16956b8f34460e9f64ee9800b91d">syncUserProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the property twitter_user.  <a href="#a983d16956b8f34460e9f64ee9800b91d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a39c1c4d0463f90f5b095ee38d24b30f8">UserAccount</a> (const <a class="el" href="class_user_account.html">UserAccount</a> &amp;account)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#a39c1c4d0463f90f5b095ee38d24b30f8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a558b12d52cf7c5b807532aaf38e779c0">UserAccount</a> ()</td></tr>
@@ -157,12 +156,12 @@ Inheritance diagram for UserAccount:</div>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#ada55f44faa411cfb8af8adecbe955789">userMap</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Map with the user.  <a href="#ada55f44faa411cfb8af8adecbe955789"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#af2fd631ebd18536cbe28da6e8bc553fc">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#af2fd631ebd18536cbe28da6e8bc553fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6">recopie</a> (const <a class="el" href="class_user_account.html">UserAccount</a> &amp;account)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_user_account.html" title="User account.">UserAccount</a>.  <a href="#a8add17168c7b105784537b3b012ea5a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#aaa4c2c40c249b8983d0f522b78c8a4e3">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#aaa4c2c40c249b8983d0f522b78c8a4e3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a4c5810940d8d567ce6fa8d52b4266cc6">syncMembers</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the field members.  <a href="#a4c5810940d8d567ce6fa8d52b4266cc6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#a2a142346125e17e80061d6f6650eb1eb">syncProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a2a142346125e17e80061d6f6650eb1eb"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_account.html#ac3921530c2396cb8d08d927880129eaa">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_user_account.html">UserAccount</a> &amp;account)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#ac3921530c2396cb8d08d927880129eaa"></a><br/></td></tr>
@@ -212,7 +211,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00041">41</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00042">42</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,32 +239,11 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00044">44</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00045">45</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af2fd631ebd18536cbe28da6e8bc553fc"></a><!-- doxytag: member="UserAccount::fillWithPropertiesMaps" ref="af2fd631ebd18536cbe28da6e8bc553fc" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UserAccount::fillWithPropertiesMaps </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Filling serializable fields with thecorresponding property maps. </p>
-
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00092">92</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a17f9cd52136e3964e80f1958e3d24cf5"></a><!-- doxytag: member="UserAccount::getAccessToken" ref="a17f9cd52136e3964e80f1958e3d24cf5" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +262,7 @@ Inheritance diagram for UserAccount:</div>
 <p>Getter on the access token. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The access token </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00134">134</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00130">130</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +284,7 @@ Inheritance diagram for UserAccount:</div>
 <p>Getter on the secret token. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The secret token </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00144">144</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00140">140</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +306,7 @@ Inheritance diagram for UserAccount:</div>
 <p>Getter on the user. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The user </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00154">154</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00150">150</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -350,7 +328,7 @@ Inheritance diagram for UserAccount:</div>
 <p>Reading the property twitter_user. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMap </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00114">114</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00105">105</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,7 +349,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Serialization declaration. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00063">63</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00064">64</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -400,7 +378,7 @@ Inheritance diagram for UserAccount:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original account </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00049">49</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00050">50</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +406,7 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00055">55</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00056">56</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,7 +434,7 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00139">139</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00135">135</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -484,7 +462,7 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00149">149</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00145">145</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,7 +490,7 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00159">159</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00155">155</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,41 +518,43 @@ Inheritance diagram for UserAccount:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00119">119</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00110">110</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0d293295b59d384d401636fd2e96c3bb"></a><!-- doxytag: member="UserAccount::updateAccessTokenProperty" ref="a0d293295b59d384d401636fd2e96c3bb" args="()" -->
+<a class="anchor" id="a4c5810940d8d567ce6fa8d52b4266cc6"></a><!-- doxytag: member="UserAccount::syncMembers" ref="a4c5810940d8d567ce6fa8d52b4266cc6" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserAccount::updateAccessTokenProperty </td>
+          <td class="memname">void UserAccount::syncMembers </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [private, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updates the property p_accessToken. </p>
+<p>Updating the field members. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00104">104</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00095">95</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaa4c2c40c249b8983d0f522b78c8a4e3"></a><!-- doxytag: member="UserAccount::updateAllProperties" ref="aaa4c2c40c249b8983d0f522b78c8a4e3" args="()" -->
+<a class="anchor" id="a2a142346125e17e80061d6f6650eb1eb"></a><!-- doxytag: member="UserAccount::syncProperties" ref="a2a142346125e17e80061d6f6650eb1eb" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserAccount::updateAllProperties </td>
+          <td class="memname">void UserAccount::syncProperties </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [private, virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -582,16 +562,18 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Updating all the properties. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00097">97</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00100">100</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aebd9a9dfbe51960516317c5fbdd9b7a6"></a><!-- doxytag: member="UserAccount::updateTokenSecretProperty" ref="aebd9a9dfbe51960516317c5fbdd9b7a6" args="()" -->
+<a class="anchor" id="ab8c47359d892bd9be101cb80a20fe42e"></a><!-- doxytag: member="UserAccount::syncUserMember" ref="ab8c47359d892bd9be101cb80a20fe42e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserAccount::updateTokenSecretProperty </td>
+          <td class="memname">void UserAccount::syncUserMember </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -601,18 +583,18 @@ Inheritance diagram for UserAccount:</div>
 </div>
 <div class="memdoc">
 
-<p>Updates the property p_tokenScret. </p>
+<p>Updates the user member. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00109">109</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00120">120</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad799193a8e85b22316ea6d9308bb5308"></a><!-- doxytag: member="UserAccount::updateUserProperty" ref="ad799193a8e85b22316ea6d9308bb5308" args="()" -->
+<a class="anchor" id="a983d16956b8f34460e9f64ee9800b91d"></a><!-- doxytag: member="UserAccount::syncUserProperty" ref="a983d16956b8f34460e9f64ee9800b91d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserAccount::updateUserProperty </td>
+          <td class="memname">void UserAccount::syncUserProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -622,9 +604,9 @@ Inheritance diagram for UserAccount:</div>
 </div>
 <div class="memdoc">
 
-<p>Updates the property p_user. </p>
+<p>Updates the property twitter_user. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00124">124</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00115">115</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -664,7 +646,7 @@ Inheritance diagram for UserAccount:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00074">74</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00075">75</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -703,7 +685,7 @@ Inheritance diagram for UserAccount:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00079">79</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8cpp_source.html#l00080">80</a> of file <a class="el" href="useraccount_8cpp_source.html">useraccount.cpp</a>.</p>
 
 </div>
 </div>
@@ -721,7 +703,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Access token. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00156">156</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00152">152</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -738,7 +720,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Token Secret. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00159">159</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00155">155</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -755,7 +737,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> of the account. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00162">162</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00158">158</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -790,7 +772,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Token secret. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00119">119</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00115">115</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -807,7 +789,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Twitter user. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00130">130</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00122">122</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -824,7 +806,7 @@ Inheritance diagram for UserAccount:</div>
 
 <p>Map with the user. </p>
 
-<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00133">133</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
+<p>Definition at line <a class="el" href="useraccount_8hpp_source.html#l00125">125</a> of file <a class="el" href="useraccount_8hpp_source.html">useraccount.hpp</a>.</p>
 
 </div>
 </div>
@@ -847,7 +829,7 @@ Inheritance diagram for UserAccount:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:29 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

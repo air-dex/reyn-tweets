@@ -114,25 +114,18 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef REYNTWEETSSERIALIZABLE_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNTWEETSSERIALIZABLE_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QVariant&gt;</span>
-<a name="l00029"></a>00029 
-<a name="l00035"></a><a class="code" href="class_reyn_tweets_serializable.html">00035</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a> : <span class="keyword">public</span> QObject
-<a name="l00036"></a>00036 {
-<a name="l00037"></a>00037         Q_OBJECT
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <span class="keyword">virtual</span> QVariantMap <a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>();
-<a name="l00044"></a>00044 
-<a name="l00049"></a>00049                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap</a>(QVariantMap map);
-<a name="l00050"></a>00050 
-<a name="l00056"></a>00056                 <span class="keyword">static</span> QVariantList <a class="code" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78" title="Converting a list of serializables into a QVariantList serializable by QJSON.">toVariantList</a>(QList&lt;ReynTweetsSerializable&gt; serializables);
-<a name="l00057"></a>00057 <span class="comment">/*</span>
-<a name="l00063"></a>00063 <span class="comment">                static QList&lt;ReynTweetsSerializable&gt; fillWithList(QVariantList serializables);</span>
-<a name="l00064"></a>00064 <span class="comment">//*/</span>
-<a name="l00065"></a>00065 };
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="preprocessor">#endif // REYNTWEETSSERIALIZABLE_HPP</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QVariant&gt;</span>
+<a name="l00028"></a>00028 
+<a name="l00032"></a>00032 <span class="keyword">template</span> &lt;<span class="keyword">class</span> V&gt;
+<a name="l00033"></a><a class="code" href="class_reyn_tweets_serializable.html">00033</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035         <span class="keyword">public</span>:
+<a name="l00039"></a>00039                 <span class="keyword">virtual</span> V <a class="code" href="class_reyn_tweets_serializable.html#a797bd90cfd77baec5dd968161002d9b4" title="Converting the object into its equivalent.">toVariant</a>() <span class="keyword">const</span> = 0;
+<a name="l00040"></a>00040 
+<a name="l00045"></a>00045                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable.html#a86901c3fe1d9f12d7b87731967b00df1" title="Filling a ReynTweetsSerializable object with an equivalent. contained in the map...">fillWithVariant</a>(V map) = 0;
+<a name="l00046"></a>00046 };
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 <span class="preprocessor">#endif // REYNTWEETSSERIALIZABLE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -148,7 +141,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

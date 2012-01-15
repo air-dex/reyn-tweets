@@ -88,7 +88,10 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>MediaSize Class Reference</h1><!-- doxytag: class="MediaSize" --><!-- doxytag: inherits="ReynTweetsSerializable" -->
+<h1>MediaSize Class Reference</h1><!-- doxytag: class="MediaSize" --><!-- doxytag: inherits="ReynTweetsMappable" -->
+<p>Size for a <a class="el" href="class_media.html" title="Media in a tweet.">Media</a> object.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MediaSize:</div>
@@ -96,7 +99,8 @@ Inheritance diagram for MediaSize:</div>
  <div class="center">
   <img src="class_media_size.png" usemap="#MediaSize_map" alt=""/>
   <map id="MediaSize_map" name="MediaSize_map">
-<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable" shape="rect" coords="0,0,146,24"/>
+<area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
  </div>
 </div>
@@ -128,18 +132,20 @@ Inheritance diagram for MediaSize:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for resize.  <a href="#a23a98cecc6972cf8ba11ba1cb05e1cc3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7">Resize</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b">string2Resize</a> (QString resizeString)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Conversion of a QString into a Resize enum.  <a href="#a6ec2c58b34b79868ff74e03f7d3a267b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#ae3c7b1803d2fdcaf3ddd5de954899e79">updateResize</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property resize.  <a href="#ae3c7b1803d2fdcaf3ddd5de954899e79"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#ad2d4fc42bf3fb54e668541636f666d4a">syncResizeMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating resizeMedia.  <a href="#ad2d4fc42bf3fb54e668541636f666d4a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#ad2f0a0bf35d7fcea25add8580d872b20">syncResizeProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property resize.  <a href="#ad2f0a0bf35d7fcea25add8580d872b20"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a59e09bcc64663c66cf8200b2640f15f8">~MediaSize</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a59e09bcc64663c66cf8200b2640f15f8"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#abb76ed0b5e6bff313090636f6015e1e5"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a1c51c1efe704a90dd54df31f58fa1e14">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#a1c51c1efe704a90dd54df31f58fa1e14"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#ab456e3896baf2a7457647aeeac9e083f">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#ab456e3896baf2a7457647aeeac9e083f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a5c827ed87074f5e8016b5bb4dfe1f618">syncMembers</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the field members.  <a href="#a5c827ed87074f5e8016b5bb4dfe1f618"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a016046458c4baac7f98679e9200d9775">syncProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a016046458c4baac7f98679e9200d9775"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7">Resize</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8">resizeMedia</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How the media is resized.  <a href="#a7c5de6ee4be0e070bfedf7dd09db24d8"></a><br/></td></tr>
@@ -154,7 +160,7 @@ Inheritance diagram for MediaSize:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Width.  <a href="#a253d746d3770a01f8c8d5c6cb7f4ffa9"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399">recopie</a> (const <a class="el" href="class_media_size.html">MediaSize</a> &amp;size)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_media_size.html">MediaSize</a>.  <a href="#a7d0181b4c8916aeefa58be1887f50399"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_media_size.html" title="Size for a Media object.">MediaSize</a>.  <a href="#a7d0181b4c8916aeefa58be1887f50399"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_media_size.html#a906459d2c35708503940e2a38c85bb31">operator&lt;&lt;</a> (QDataStream &amp;out, const <a class="el" href="class_media_size.html">MediaSize</a> &amp;size)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for serialization.  <a href="#a906459d2c35708503940e2a38c85bb31"></a><br/></td></tr>
@@ -162,8 +168,9 @@ Inheritance diagram for MediaSize:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Input stream operator for serialization.  <a href="#af717f5e3cb6ef1481cd9f9f192afc6c8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Size for a <a class="el" href="class_media.html" title="Media in a tweet.">Media</a> object. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00030">30</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00032">32</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="ad8860ae58fffe1de2eddc4ec738bc0f7"></a><!-- doxytag: member="MediaSize::Resize" ref="ad8860ae58fffe1de2eddc4ec738bc0f7" args="" -->
 <div class="memitem">
@@ -191,7 +198,7 @@ Inheritance diagram for MediaSize:</div>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00041">41</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00043">43</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -257,7 +264,7 @@ Inheritance diagram for MediaSize:</div>
 <p>Copy constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -267,27 +274,6 @@ Inheritance diagram for MediaSize:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a1c51c1efe704a90dd54df31f58fa1e14"></a><!-- doxytag: member="MediaSize::fillWithPropertiesMaps" ref="a1c51c1efe704a90dd54df31f58fa1e14" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MediaSize::fillWithPropertiesMaps </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Filling serializable fields with thecorresponding property maps. </p>
-
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00090">90</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a21c642f46261a2d3725340dc2a2fa328"></a><!-- doxytag: member="MediaSize::getResize" ref="a21c642f46261a2d3725340dc2a2fa328" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -303,7 +289,7 @@ Inheritance diagram for MediaSize:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00150">150</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00156">156</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +314,7 @@ Inheritance diagram for MediaSize:</div>
 <dd>
 resizeMedia </dd></dl>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00100">100</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00105">105</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +358,7 @@ resizeMedia </dd></dl>
 <p>Affectation. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>Size to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -398,10 +384,10 @@ resizeMedia </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>Copy of a <a class="el" href="class_media_size.html">MediaSize</a>. </p>
+<p>Copy of a <a class="el" href="class_media_size.html" title="Size for a Media object.">MediaSize</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td><a class="el" href="class_media_size.html">MediaSize</a> to copy </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td><a class="el" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -435,7 +421,7 @@ resizeMedia </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QString value. </dd></dl>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00120">120</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00126">126</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -463,7 +449,7 @@ resizeMedia </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00155">155</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00161">161</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,7 +477,7 @@ resizeMedia </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00105">105</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00110">110</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -520,20 +506,43 @@ resizeMedia </dd></dl>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding Resize enum value. </dd></dl>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00134">134</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00140">140</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab456e3896baf2a7457647aeeac9e083f"></a><!-- doxytag: member="MediaSize::updateAllProperties" ref="ab456e3896baf2a7457647aeeac9e083f" args="()" -->
+<a class="anchor" id="a5c827ed87074f5e8016b5bb4dfe1f618"></a><!-- doxytag: member="MediaSize::syncMembers" ref="a5c827ed87074f5e8016b5bb4dfe1f618" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MediaSize::updateAllProperties </td>
+          <td class="memname">void MediaSize::syncMembers </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating the field members. </p>
+
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00090">90</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a016046458c4baac7f98679e9200d9775"></a><!-- doxytag: member="MediaSize::syncProperties" ref="a016046458c4baac7f98679e9200d9775" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MediaSize::syncProperties </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -541,16 +550,39 @@ resizeMedia </dd></dl>
 
 <p>Updating all the properties. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00095">95</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00100">100</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae3c7b1803d2fdcaf3ddd5de954899e79"></a><!-- doxytag: member="MediaSize::updateResize" ref="ae3c7b1803d2fdcaf3ddd5de954899e79" args="()" -->
+<a class="anchor" id="ad2d4fc42bf3fb54e668541636f666d4a"></a><!-- doxytag: member="MediaSize::syncResizeMember" ref="ad2d4fc42bf3fb54e668541636f666d4a" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MediaSize::updateResize </td>
+          <td class="memname">void MediaSize::syncResizeMember </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating resizeMedia. </p>
+
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00095">95</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2f0a0bf35d7fcea25add8580d872b20"></a><!-- doxytag: member="MediaSize::syncResizeProperty" ref="ad2f0a0bf35d7fcea25add8580d872b20" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MediaSize::syncResizeProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -562,7 +594,7 @@ resizeMedia </dd></dl>
 
 <p>Updating the property resize. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00110">110</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8cpp_source.html#l00115">115</a> of file <a class="el" href="mediasize_8cpp_source.html">mediasize.cpp</a>.</p>
 
 </div>
 </div>
@@ -659,7 +691,7 @@ resizeMedia </dd></dl>
 
 <p>How the media is resized. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00169">169</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00178">178</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +709,7 @@ resizeMedia </dd></dl>
 
 <p>Height. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00138">138</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00142">142</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -694,7 +726,7 @@ resizeMedia </dd></dl>
 
 <p>How the media is resized. It is the String form of resizeMedia. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00144">144</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00149">149</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -711,7 +743,7 @@ resizeMedia </dd></dl>
 
 <p>Representation of resize. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00147">147</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00152">152</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -728,7 +760,7 @@ resizeMedia </dd></dl>
 
 <p>Width. </p>
 
-<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00132">132</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
+<p>Definition at line <a class="el" href="mediasize_8hpp_source.html#l00135">135</a> of file <a class="el" href="mediasize_8hpp_source.html">mediasize.hpp</a>.</p>
 
 </div>
 </div>
@@ -751,7 +783,7 @@ resizeMedia </dd></dl>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:27 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

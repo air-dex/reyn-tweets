@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>Hashtag Class Reference</h1><!-- doxytag: class="Hashtag" --><!-- doxytag: inherits="ReynTweetsSerializable" -->
+<h1>Hashtag Class Reference</h1><!-- doxytag: class="Hashtag" --><!-- doxytag: inherits="ReynTweetsMappable" -->
 <p><a class="el" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> in a tweet.  
 <a href="#_details">More...</a></p>
 
@@ -99,7 +99,8 @@ Inheritance diagram for Hashtag:</div>
  <div class="center">
   <img src="class_hashtag.png" usemap="#Hashtag_map" alt=""/>
   <map id="Hashtag_map" name="Hashtag_map">
-<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable" shape="rect" coords="0,0,146,24"/>
+<area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
  </div>
 </div>
@@ -125,20 +126,20 @@ Inheritance diagram for Hashtag:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for the property indices.  <a href="#ad3afeb06d584580e477b7691aa5b18cf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">setText</a> (QString newText)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing hashText.  <a href="#a3e095cc558f6936fa244a3057edafa54"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a006c8091050d47c29ecef09838e2a592">updateIndices</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property indices.  <a href="#a006c8091050d47c29ecef09838e2a592"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a0785320ca52c1af2f00ab2603ae6a893">updateText</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property text.  <a href="#a0785320ca52c1af2f00ab2603ae6a893"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a9a6a6fc8649e5e6c4b8612dfeeee3836">syncIndicesMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the indexes attribute.  <a href="#a9a6a6fc8649e5e6c4b8612dfeeee3836"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a87df080969f66acf3319ce88ff481ff1">syncIndicesProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property indices.  <a href="#a87df080969f66acf3319ce88ff481ff1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6">~Hashtag</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a466f9aadd5b1f8346ed55adb04bd2db6"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#a3ecb0cad855d8de83cd20bdedc6fcdba"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#acc4ec592cb3933fd4c8135b667eef296">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#acc4ec592cb3933fd4c8135b667eef296"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a938d80dd22cd356f26a54035fc7fb919">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a938d80dd22cd356f26a54035fc7fb919"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a36180985f54c66b530f6e6da14ef4394">syncMembers</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the field members.  <a href="#a36180985f54c66b530f6e6da14ef4394"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b">syncProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#aaf09beebfc06653b407920def1c9490b"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15">hashText</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Text of the tag.  <a href="#abce13e7a50c6463547dde3cec9d04e15"></a><br/></td></tr>
@@ -163,7 +164,7 @@ Inheritance diagram for Hashtag:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> in a tweet. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00032">32</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00033">33</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a365a6c955054b6bbfc9b3e4b1ba84c0f"></a><!-- doxytag: member="Hashtag::Hashtag" ref="a365a6c955054b6bbfc9b3e4b1ba84c0f" args="()" -->
 <div class="memitem">
@@ -236,27 +237,6 @@ Inheritance diagram for Hashtag:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="acc4ec592cb3933fd4c8135b667eef296"></a><!-- doxytag: member="Hashtag::fillWithPropertiesMaps" ref="acc4ec592cb3933fd4c8135b667eef296" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Hashtag::fillWithPropertiesMaps </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Filling serializable fields with thecorresponding property maps. </p>
-
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00088">88</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a011e83cb5c62d2d30e81bfa51fc90fbf"></a><!-- doxytag: member="Hashtag::getIndexes" ref="a011e83cb5c62d2d30e81bfa51fc90fbf" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -275,7 +255,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Reading indexes. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>indexes </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00134">134</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00133">133</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +277,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Reading method for the property indices. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>indexList </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00104">104</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00098">98</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -319,7 +299,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Reading hashText. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>hashText </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00124">124</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00123">123</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -425,7 +405,7 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00139">139</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00138">138</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -453,7 +433,7 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00109">109</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00103">103</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -481,37 +461,37 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00129">129</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00128">128</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a938d80dd22cd356f26a54035fc7fb919"></a><!-- doxytag: member="Hashtag::updateAllProperties" ref="a938d80dd22cd356f26a54035fc7fb919" args="()" -->
+<a class="anchor" id="a9a6a6fc8649e5e6c4b8612dfeeee3836"></a><!-- doxytag: member="Hashtag::syncIndicesMember" ref="a9a6a6fc8649e5e6c4b8612dfeeee3836" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Hashtag::updateAllProperties </td>
+          <td class="memname">void Hashtag::syncIndicesMember </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updating all the properties. </p>
+<p>Updating the indexes attribute. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00093">93</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00113">113</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a006c8091050d47c29ecef09838e2a592"></a><!-- doxytag: member="Hashtag::updateIndices" ref="a006c8091050d47c29ecef09838e2a592" args="()" -->
+<a class="anchor" id="a87df080969f66acf3319ce88ff481ff1"></a><!-- doxytag: member="Hashtag::syncIndicesProperty" ref="a87df080969f66acf3319ce88ff481ff1" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Hashtag::updateIndices </td>
+          <td class="memname">void Hashtag::syncIndicesProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -523,28 +503,53 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Updating the property indices. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00114">114</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00108">108</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0785320ca52c1af2f00ab2603ae6a893"></a><!-- doxytag: member="Hashtag::updateText" ref="a0785320ca52c1af2f00ab2603ae6a893" args="()" -->
+<a class="anchor" id="a36180985f54c66b530f6e6da14ef4394"></a><!-- doxytag: member="Hashtag::syncMembers" ref="a36180985f54c66b530f6e6da14ef4394" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Hashtag::updateText </td>
+          <td class="memname">void Hashtag::syncMembers </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updating the property text. </p>
+<p>Updating the field members. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00099">99</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00088">88</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf09beebfc06653b407920def1c9490b"></a><!-- doxytag: member="Hashtag::syncProperties" ref="aaf09beebfc06653b407920def1c9490b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hashtag::syncProperties </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating all the properties. </p>
+
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00093">93</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -641,7 +646,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the tag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00141">141</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00142">142</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -658,7 +663,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Indexes of the hashtag in the tweet. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00144">144</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00145">145</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +681,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Representation of the property thumb. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00118">118</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00115">115</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -693,7 +698,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Indexes. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00115">115</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00112">112</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -710,7 +715,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the hashtag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00104">104</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +738,7 @@ Inheritance diagram for Hashtag:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:27 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:20 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -126,10 +126,10 @@ window.onload = initDynSections;
 <a name="l00036"></a>00036         parseOK = <span class="keyword">true</span>;
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038         <span class="comment">// Split the couples of arguments</span>
-<a name="l00039"></a>00039         QList&lt;QByteArray&gt; arguments = data.split(<span class="charliteral">&#39;&amp;&#39;</span>);
+<a name="l00039"></a>00039         <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> arguments = data.split(<span class="charliteral">&#39;&amp;&#39;</span>);
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041         <span class="keywordflow">foreach</span> (QByteArray argument, arguments) {
-<a name="l00042"></a>00042                 QList&lt;QByteArray&gt; couple = argument.split(<span class="charliteral">&#39;=&#39;</span>);
+<a name="l00042"></a>00042                 <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> couple = argument.split(<span class="charliteral">&#39;=&#39;</span>);
 <a name="l00043"></a>00043                 <span class="keywordtype">bool</span> validCouple = couple.length() == 2 || argument.isEmpty();
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045                 <span class="comment">// Ensures that there is a name and a value</span>
@@ -233,7 +233,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

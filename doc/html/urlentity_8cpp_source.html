@@ -111,33 +111,33 @@ window.onload = initDynSections;
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00022"></a>00022 <span class="comment">*/</span>
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="urlentity_8hpp.html">urlentity.hpp</a>&quot;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="urlentity_8hpp.html" title="Header of URLEntity.">urlentity.hpp</a>&quot;</span>
 <a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
 <a name="l00026"></a>00026 
 <a name="l00028"></a>00028 <span class="comment">// Serialization management //</span>
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">// Constructor</span>
 <a name="l00032"></a><a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195">00032</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>(),
+<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
 <a name="l00034"></a>00034         indexList(),
 <a name="l00035"></a>00035         extractedURL(<span class="stringliteral">&quot;&quot;</span>),
 <a name="l00036"></a>00036         displayedURL(<span class="stringliteral">&quot;&quot;</span>),
 <a name="l00037"></a>00037         expandedURL(<span class="stringliteral">&quot;&quot;</span>),
 <a name="l00038"></a>00038         indexes()
 <a name="l00039"></a>00039 {
-<a name="l00040"></a>00040         <a class="code" href="class_u_r_l_entity.html#acd90aa2ef071a4f6611725959e51179a" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00040"></a>00040         <a class="code" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102" title="Updating all the properties.">syncProperties</a>();
 <a name="l00041"></a>00041 }
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="comment">// Destructor</span>
 <a name="l00044"></a><a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7">00044</a> <a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7" title="Destructor.">URLEntity::~URLEntity</a>() {}
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="comment">// Copy constructor</span>
-<a name="l00047"></a><a class="code" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">00047</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; entity) {
+<a name="l00047"></a><a class="code" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">00047</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
 <a name="l00048"></a>00048         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051 <span class="comment">// Affectation</span>
-<a name="l00052"></a><a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">00052</a> <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; <a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d" title="Affectation.">URLEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; entity) {
+<a name="l00052"></a><a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">00052</a> <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; <a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d" title="Affectation.">URLEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
 <a name="l00053"></a>00053         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
 <a name="l00054"></a>00054         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00055"></a>00055 }
@@ -149,25 +149,25 @@ window.onload = initDynSections;
 <a name="l00061"></a>00061 }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 <span class="comment">// Copy of a URLEntity</span>
-<a name="l00064"></a><a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">URLEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; entity) {
+<a name="l00064"></a><a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">URLEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
 <a name="l00065"></a>00065         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
 <a name="l00066"></a>00066         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
 <a name="l00067"></a>00067         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
 <a name="l00068"></a>00068         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = entity.<a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
-<a name="l00069"></a>00069         <a class="code" href="class_u_r_l_entity.html#acd90aa2ef071a4f6611725959e51179a" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00069"></a>00069         <a class="code" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102" title="Updating all the properties.">syncProperties</a>();
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00073"></a><a class="code" href="urlentity_8hpp.html#a4963466848463a021d0ffa5b5d53d9da">00073</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; entity) {
+<a name="l00073"></a><a class="code" href="urlentity_8hpp.html#a4963466848463a021d0ffa5b5d53d9da">00073</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
 <a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, entity);
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00078"></a><a class="code" href="urlentity_8hpp.html#afc50d01e1fb1f6971c69850c2bb0069b">00078</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html">URLEntity</a> &amp; entity) {
+<a name="l00078"></a><a class="code" href="urlentity_8hpp.html#afc50d01e1fb1f6971c69850c2bb0069b">00078</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
 <a name="l00079"></a>00079         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, entity);
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081         <span class="comment">// Updating indexes</span>
-<a name="l00082"></a>00082         entity.<a class="code" href="class_u_r_l_entity.html#ad2980283d159845ad0e3fda094434fdd" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
+<a name="l00082"></a>00082         entity.<a class="code" href="class_u_r_l_entity.html#aa96ed9e866b2b976549da62d6d3a0853" title="Updating the field members.">syncMembers</a>();
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084         <span class="keywordflow">return</span> in;
 <a name="l00085"></a>00085 }
@@ -175,91 +175,78 @@ window.onload = initDynSections;
 <a name="l00088"></a>00088 <span class="comment">// Properties management //</span>
 <a name="l00090"></a>00090 <span class="comment"></span>
 <a name="l00091"></a>00091 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
-<a name="l00092"></a><a class="code" href="class_u_r_l_entity.html#ad2980283d159845ad0e3fda094434fdd">00092</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ad2980283d159845ad0e3fda094434fdd" title="Filling serializable fields with thecorresponding property maps.">URLEntity::fillWithPropertiesMaps</a>() {
-<a name="l00093"></a>00093         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#ac799bde3809968db70b4e76a2c98a164" title="Filling the object with a QVariantList.">fillWithVariantList</a>(<a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a>);
+<a name="l00092"></a><a class="code" href="class_u_r_l_entity.html#aa96ed9e866b2b976549da62d6d3a0853">00092</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa96ed9e866b2b976549da62d6d3a0853" title="Updating the field members.">URLEntity::syncMembers</a>() {
+<a name="l00093"></a>00093         <a class="code" href="class_u_r_l_entity.html#ac588cff18b04865d88c2db226f00a28f" title="Updating the indexes attribute.">syncIndicesMember</a>();
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
 <a name="l00096"></a>00096 <span class="comment">// Updating all the properties</span>
-<a name="l00097"></a><a class="code" href="class_u_r_l_entity.html#acd90aa2ef071a4f6611725959e51179a">00097</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#acd90aa2ef071a4f6611725959e51179a" title="Updating all the properties.">URLEntity::updateAllProperties</a>() {
-<a name="l00098"></a>00098         <a class="code" href="class_u_r_l_entity.html#af60d07d1f30269827026bb9a0616671c" title="Updating the property url.">updateURL</a>();
-<a name="l00099"></a>00099         <a class="code" href="class_u_r_l_entity.html#a44fbb28030563e01b38490658db9d803" title="Updating the property displayed_url.">updateDisplayedURL</a>();
-<a name="l00100"></a>00100         <a class="code" href="class_u_r_l_entity.html#af22b7915b8b9903e506c04f393b144c2" title="Updating the property expanded_url.">updateExpandedURL</a>();
-<a name="l00101"></a>00101         <a class="code" href="class_u_r_l_entity.html#ada31f2db413b6b5aff6de433b1dd22c7" title="Updating the property indices.">updateIndices</a>();
-<a name="l00102"></a>00102 }
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="comment">// Updating the property url</span>
-<a name="l00105"></a><a class="code" href="class_u_r_l_entity.html#af60d07d1f30269827026bb9a0616671c">00105</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#af60d07d1f30269827026bb9a0616671c" title="Updating the property url.">URLEntity::updateURL</a>() {
-<a name="l00106"></a>00106         setProperty(<span class="stringliteral">&quot;url&quot;</span>, QVariant(<a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>));
-<a name="l00107"></a>00107 }
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="comment">// Updating the property displayed_url</span>
-<a name="l00110"></a><a class="code" href="class_u_r_l_entity.html#a44fbb28030563e01b38490658db9d803">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a44fbb28030563e01b38490658db9d803" title="Updating the property displayed_url.">URLEntity::updateDisplayedURL</a>() {
-<a name="l00111"></a>00111         setProperty(<span class="stringliteral">&quot;displayed_url&quot;</span>, QVariant(<a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>));
-<a name="l00112"></a>00112 }
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="comment">// Updating the property expanded_url</span>
-<a name="l00115"></a><a class="code" href="class_u_r_l_entity.html#af22b7915b8b9903e506c04f393b144c2">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#af22b7915b8b9903e506c04f393b144c2" title="Updating the property expanded_url.">URLEntity::updateExpandedURL</a>() {
-<a name="l00116"></a>00116         setProperty(<span class="stringliteral">&quot;expanded_url&quot;</span>, QVariant(<a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>));
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119 <span class="comment">// Reading method for the property indices</span>
-<a name="l00120"></a><a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f">00120</a> QVariantList <a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f" title="Reading method for the property indices.">URLEntity::getIndices</a>() {
-<a name="l00121"></a>00121         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a>;
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="comment">// Writing method for the property indices</span>
-<a name="l00125"></a><a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f">00125</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(QVariantList newIndexList) {
-<a name="l00126"></a>00126         <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a> = newIndexList;
-<a name="l00127"></a>00127 }
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129 <span class="comment">// Updating the property indices</span>
-<a name="l00130"></a><a class="code" href="class_u_r_l_entity.html#ada31f2db413b6b5aff6de433b1dd22c7">00130</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ada31f2db413b6b5aff6de433b1dd22c7" title="Updating the property indices.">URLEntity::updateIndices</a>() {
-<a name="l00131"></a>00131         setProperty(<span class="stringliteral">&quot;indices&quot;</span>, QVariant(<a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a21e3baf31a2d5c1182baa0a85fc0b3cb" title="Converting the bounds into a QVariantList.">toVariantList</a>()));
-<a name="l00132"></a>00132 }
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 
-<a name="l00136"></a>00136 <span class="comment">// Getter and setters //</span>
-<a name="l00138"></a>00138 <span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">// Reading extractedURL</span>
-<a name="l00140"></a><a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd">00140</a> QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">URLEntity::getURL</a>() {
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
-<a name="l00142"></a>00142 }
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="comment">// Writing extractedURL</span>
-<a name="l00145"></a><a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">00145</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">URLEntity::setURL</a>(QString newURL) {
-<a name="l00146"></a>00146         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = newURL;
-<a name="l00147"></a>00147 }
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="comment">// Reading method for displayedURL</span>
-<a name="l00150"></a><a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">00150</a> QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">URLEntity::getDisplayedURL</a>() {
-<a name="l00151"></a>00151         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
-<a name="l00152"></a>00152 }
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 <span class="comment">// Writing displayedURL</span>
-<a name="l00155"></a><a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf">00155</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">URLEntity::setDisplayedURL</a>(QString newURL) {
-<a name="l00156"></a>00156         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = newURL;
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="comment">// Reading method for expandedURL</span>
-<a name="l00160"></a><a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">00160</a> QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">URLEntity::getExpandedURL</a>() {
-<a name="l00161"></a>00161         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
-<a name="l00162"></a>00162 }
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164 <span class="comment">// Writing method for expandedURL</span>
-<a name="l00165"></a><a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">URLEntity::setExpandedURL</a>(QString newURL) {
-<a name="l00166"></a>00166         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = newURL;
-<a name="l00167"></a>00167 }
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169 <span class="comment">// Reading indexes</span>
-<a name="l00170"></a><a class="code" href="class_u_r_l_entity.html#a37eb4f09f10ac6bf5e6ce8d856780fcc">00170</a> <a class="code" href="class_index_bounds.html">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#a37eb4f09f10ac6bf5e6ce8d856780fcc" title="Reading indexes.">URLEntity::getIndexes</a>() {
-<a name="l00171"></a>00171         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
-<a name="l00172"></a>00172 }
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174 <span class="comment">// Writing indexes</span>
-<a name="l00175"></a><a class="code" href="class_u_r_l_entity.html#a7d631599bbf98a7b85b2ce5d19bad149">00175</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a7d631599bbf98a7b85b2ce5d19bad149" title="Writing indexes.">URLEntity::setIndexes</a>(<a class="code" href="class_index_bounds.html">IndexBounds</a> newIndexes) {
-<a name="l00176"></a>00176         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = newIndexes;
-<a name="l00177"></a>00177         <a class="code" href="class_u_r_l_entity.html#ada31f2db413b6b5aff6de433b1dd22c7" title="Updating the property indices.">updateIndices</a>();
-<a name="l00178"></a>00178 }
+<a name="l00097"></a><a class="code" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102">00097</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102" title="Updating all the properties.">URLEntity::syncProperties</a>() {
+<a name="l00098"></a>00098         <a class="code" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="comment">// Reading method for the property indices</span>
+<a name="l00102"></a><a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f">00102</a> QVariantList <a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f" title="Reading method for the property indices.">URLEntity::getIndices</a>() {
+<a name="l00103"></a>00103         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a>;
+<a name="l00104"></a>00104 }
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="comment">// Writing method for the property indices</span>
+<a name="l00107"></a><a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f">00107</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(QVariantList newIndexList) {
+<a name="l00108"></a>00108         <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a> = newIndexList;
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="comment">// Updating the property indices</span>
+<a name="l00112"></a><a class="code" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b">00112</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b" title="Updating the property indices.">URLEntity::syncIndicesProperty</a>() {
+<a name="l00113"></a>00113         <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a> = <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
+<a name="l00114"></a>00114 }
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 <span class="comment">// Updating the property indices</span>
+<a name="l00117"></a><a class="code" href="class_u_r_l_entity.html#ac588cff18b04865d88c2db226f00a28f">00117</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac588cff18b04865d88c2db226f00a28f" title="Updating the indexes attribute.">URLEntity::syncIndicesMember</a>() {
+<a name="l00118"></a>00118         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(<a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a>);
+<a name="l00119"></a>00119 }
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 
+<a name="l00123"></a>00123 <span class="comment">// Getter and setters //</span>
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">// Reading extractedURL</span>
+<a name="l00127"></a><a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd">00127</a> QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">URLEntity::getURL</a>() {
+<a name="l00128"></a>00128         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
+<a name="l00129"></a>00129 }
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 <span class="comment">// Writing extractedURL</span>
+<a name="l00132"></a><a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">00132</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">URLEntity::setURL</a>(QString newURL) {
+<a name="l00133"></a>00133         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = newURL;
+<a name="l00134"></a>00134 }
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="comment">// Reading method for displayedURL</span>
+<a name="l00137"></a><a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">00137</a> QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">URLEntity::getDisplayedURL</a>() {
+<a name="l00138"></a>00138         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
+<a name="l00139"></a>00139 }
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="comment">// Writing displayedURL</span>
+<a name="l00142"></a><a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf">00142</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">URLEntity::setDisplayedURL</a>(QString newURL) {
+<a name="l00143"></a>00143         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = newURL;
+<a name="l00144"></a>00144 }
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 <span class="comment">// Reading method for expandedURL</span>
+<a name="l00147"></a><a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">00147</a> QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">URLEntity::getExpandedURL</a>() {
+<a name="l00148"></a>00148         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="comment">// Writing method for expandedURL</span>
+<a name="l00152"></a><a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">00152</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">URLEntity::setExpandedURL</a>(QString newURL) {
+<a name="l00153"></a>00153         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = newURL;
+<a name="l00154"></a>00154 }
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 <span class="comment">// Reading indexes</span>
+<a name="l00157"></a><a class="code" href="class_u_r_l_entity.html#a37eb4f09f10ac6bf5e6ce8d856780fcc">00157</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#a37eb4f09f10ac6bf5e6ce8d856780fcc" title="Reading indexes.">URLEntity::getIndexes</a>() {
+<a name="l00158"></a>00158         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
+<a name="l00159"></a>00159 }
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 <span class="comment">// Writing indexes</span>
+<a name="l00162"></a><a class="code" href="class_u_r_l_entity.html#a7d631599bbf98a7b85b2ce5d19bad149">00162</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a7d631599bbf98a7b85b2ce5d19bad149" title="Writing indexes.">URLEntity::setIndexes</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
+<a name="l00163"></a>00163         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = newIndexes;
+<a name="l00164"></a>00164         <a class="code" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00165"></a>00165 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -275,7 +262,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -37,7 +37,7 @@ TweetEntities::TweetEntities() :
 	hashtagsList(),
 	medias(),
 	tweetURLs(),
-	userMentions(),
+	mentions(),
 	tweetHashtags()
 {
 	syncProperties();
@@ -67,7 +67,7 @@ void TweetEntities::initSystem() {
 void TweetEntities::recopie(const TweetEntities & entities) {
 	medias = entities.medias;
 	tweetURLs = entities.tweetURLs;
-	userMentions = entities.userMentions;
+	mentions = entities.mentions;
 	tweetHashtags = entities.tweetHashtags;
 	syncProperties();
 }
@@ -160,12 +160,12 @@ void TweetEntities::setUserMentionsList(QVariantList newUserMentionsList) {
 
 // Updating the property user_mentions
 void TweetEntities::syncUserMentionsProperty() {
-	userMentionsList = userMentions.toVariant();
+	userMentionsList = mentions.toVariant();
 }
 
 // Updating the property user_mentions
 void TweetEntities::syncUserMentionsMember() {
-	userMentions.fillWithVariant(userMentionsList);
+	mentions.fillWithVariant(userMentionsList);
 }
 
 // Reading the property hashtags
@@ -217,12 +217,12 @@ void TweetEntities::setURLs(URLEntityList newURLs) {
 
 // Reading userMentions
 UserMentionList TweetEntities::getUserMentions() {
-	return userMentions;
+	return mentions;
 }
 
 // Writing userMentions
 void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
-	userMentions = newUserMentions;
+	mentions = newUserMentions;
 	syncUserMentionsProperty();
 }
 
@@ -232,7 +232,7 @@ HashtagList TweetEntities::getHashtags() {
 }
 
 // Writing tweetHashtags
-void TweetEntities::setHashtagsList(HashtagList newHashtags) {
+void TweetEntities::setHashtags(HashtagList newHashtags) {
 	tweetHashtags = newHashtags;
 	syncHashtagsProperty();
 }

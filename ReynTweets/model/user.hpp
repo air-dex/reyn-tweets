@@ -24,11 +24,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef USER_HPP
 #define USER_HPP
 
-#include <QObject>
-#include <QString>
-#include <QDate>
-#include <QColor>
-#include "reyntweetsserializable.hpp"
+#include "reyntweetsserializablelist.hpp"
 #include "tweet.hpp"
 
 /// @class User
@@ -95,11 +91,11 @@ class User : public UserInfos
 
 	protected:
 		// Properties
-		/// @fn void fillWithPropertiesMaps();
+		/// @fn void syncMembers();
 		/// @brief Filling serializable fields with thecorresponding  property maps
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -123,12 +119,12 @@ class User : public UserInfos
 		/// @param statusMap The new value of the property
 		void setStatus(QVariantMap statusMap);
 
-		/// @fn void updateStatus();
+		/// @fn void syncStatusProperty();
 		/// @brief Updating the property status
 		void syncStatusProperty();
 
-		/// @fn void updateStatus();
-		/// @brief Updating the property status
+		/// @fn void syncStatusMember();
+		/// @brief Updating the lastTweet member
 		void syncStatusMember();
 
 
@@ -173,5 +169,10 @@ QDataStream & operator<<(QDataStream & out, const User & user);
 /// @param user Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, User & user);
+
+
+/// @typedef ReynTweetsSerializableList<User> UserList;
+/// @brief Shortcut for lists of users
+typedef ReynTweetsSerializableList<User> UserList;
 
 #endif // USER_HPP

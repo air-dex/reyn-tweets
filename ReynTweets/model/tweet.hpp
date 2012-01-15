@@ -1,5 +1,5 @@
 /// @file tweet.hpp
-/// @brief Header of Tweet
+/// @brief Header of Tweet and definition of a Timeline.
 /// @author Romain Ducher
 
 /*
@@ -91,11 +91,11 @@ class Tweet : public ReynTweetsMappable
 		///////////////////////////
 
 		protected:
-			/// @fn void fillWithPropertiesMaps();
-			/// @brief Filling serializable fields with thecorresponding  property maps
+			/// @fn void syncMembers();
+			/// @brief Updating the field members
 			void syncMembers();
 
-			/// @fn void updateAllProperties();
+			/// @fn void syncProperties();
 			/// @brief Updating all the properties
 			void syncProperties();
 
@@ -119,12 +119,12 @@ class Tweet : public ReynTweetsMappable
 			/// @param newEntityMap New value for entities
 			void setEntitiesMap(QVariantMap newEntityMap);
 
-			/// @fn void updateEntities();
+			/// @fn void syncEntitiesProperty();
 			/// @brief Updating the property entities
 			void syncEntitiesProperty();
 
-			/// @fn void updateEntities();
-			/// @brief Updating the property entities
+			/// @fn void syncEntitiesMember();
+			/// @brief Updating the tweetEntities member
 			void syncEntitiesMember();
 
 			// in_reply_to_user_id
@@ -196,12 +196,12 @@ class Tweet : public ReynTweetsMappable
 			/// @param newUserMap New value for user
 			void setUserMap(QVariantMap newUserMap);
 
-			/// @fn void updateUser();
+			/// @fn void syncUserProperty();
 			/// @brief Updating the property user
 			void syncUserProperty();
 
-			/// @fn void updateUser();
-			/// @brief Updating the property user
+			/// @fn void syncUserMember();
+			/// @brief Updating the profile member
 			void syncUserMember();
 
 			// retweeted
@@ -359,7 +359,6 @@ class Tweet : public ReynTweetsMappable
 
 		public:
 			// entities
-
 			/// @fn TweetEntities getEntities();
 			/// @brief Reading entities
 			/// @return tweetEntities
@@ -371,7 +370,6 @@ class Tweet : public ReynTweetsMappable
 			void setEntities(TweetEntities newValue);
 
 			// in_reply_to_user_id
-
 			/// @fn long getInReplyToUserID();
 			/// @brief Reading in_reply_to_user_id
 			/// @return replyToUserID
@@ -383,7 +381,6 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToUserID(long newValue);
 
 			// truncated
-
 			/// @fn bool isTruncated();
 			/// @brief Reading truncated
 			/// @return truncatedTweet
@@ -395,7 +392,6 @@ class Tweet : public ReynTweetsMappable
 			void setTruncated(bool newValue);
 
 			// favorited
-
 			/// @fn bool isFavorited();
 			/// @brief Reading favorited
 			/// @return favoritedTweet
@@ -407,7 +403,6 @@ class Tweet : public ReynTweetsMappable
 			void setFavorited(bool newValue);
 
 			// retweet_count
-
 			/// @fn int getRetweetCount();
 			/// @brief Reading retweet_count
 			/// @return retweetCount
@@ -419,7 +414,6 @@ class Tweet : public ReynTweetsMappable
 			void setRetweetCount(int newValue);
 
 			// in_reply_to_screen_name
-
 			/// @fn QString getInReplyToScreenName();
 			/// @brief Reading in_reply_to_screen_name
 			/// @return replyToScreenName
@@ -431,7 +425,6 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToScreenName(QString newValue);
 
 			// created_at
-
 			/// @fn QDate getCreatedAt();
 			/// @brief Reading created_at
 			/// @return createdAt
@@ -443,7 +436,6 @@ class Tweet : public ReynTweetsMappable
 			void setCreatedAt(QDate newValue);
 
 			// in_reply_to_status_id_str
-
 			/// @fn QString getInReplyToStatusIDstr();
 			/// @brief Reading in_reply_to_status_id_str
 			/// @return replyToTweetIDstr
@@ -455,7 +447,6 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToStatusIDstr(QString newValue);
 
 			// user
-
 			/// @fn UserInfos getUser();
 			/// @brief Reading user
 			/// @return profile
@@ -467,7 +458,6 @@ class Tweet : public ReynTweetsMappable
 			void setUser(UserInfos newValue);
 
 			// retweeted
-
 			/// @fn bool isRetweeted();
 			/// @brief Reading retweeted
 			/// @return retweetedTweet
@@ -479,7 +469,6 @@ class Tweet : public ReynTweetsMappable
 			void setRetweeted(bool newValue);
 
 			// in_reply_to_user_id_str
-
 			/// @fn QString getInReplyToUserIDstr();
 			/// @brief Reading in_reply_to_user_id_str
 			/// @return replyToUserIDstr
@@ -491,7 +480,6 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToUserIDstr(QString newValue);
 
 			// id_str
-
 			/// @fn QString getIDstr();
 			/// @brief Reading id_str
 			/// @return tweetIDstr
@@ -503,7 +491,6 @@ class Tweet : public ReynTweetsMappable
 			void setIDstr(QString newValue);
 
 			// source
-
 			/// @fn QString getSource();
 			/// @brief Reading source
 			/// @return sourceClient
@@ -515,7 +502,6 @@ class Tweet : public ReynTweetsMappable
 			void setSource(QString newValue);
 
 			// id
-
 			/// @fn long getID();
 			/// @brief Reading
 			/// @return tweetID
@@ -527,7 +513,6 @@ class Tweet : public ReynTweetsMappable
 			void setID(long newValue);
 
 			// in_reply_to_status_id
-
 			/// @fn long getInReplyToStatusID();
 			/// @brief Reading in_reply_to_status_id
 			/// @return replyToTweetID
@@ -539,7 +524,6 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToStatusID(long newValue);
 
 			// text
-
 			/// @fn QString getText();
 			/// @brief Reading text
 			/// @return tweet
@@ -551,7 +535,6 @@ class Tweet : public ReynTweetsMappable
 			void setText(QString newValue);
 
 			// sensible
-
 			/// @fn bool isSensible();
 			/// @brief Reading sensible
 			/// @return sensibleTweet
@@ -579,5 +562,10 @@ QDataStream & operator<<(QDataStream & out, const Tweet & tweet);
 /// @param tweet Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Tweet & tweet);
+
+
+/// @typedef ReynTweetsSerializableList<Tweet> Timeline;
+/// @brief Definition of a timeline : a list of tweets.
+typedef ReynTweetsSerializableList<Tweet> Timeline;
 
 #endif // TWEET_HPP

@@ -24,8 +24,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWEETENTITIES_HPP
 #define TWEETENTITIES_HPP
 
-#include <QList>
-#include "hashtaglist.hpp"
+#include "hashtag.hpp"
 #include "media.hpp"
 #include "reyntweetsmappable.hpp"
 #include "urlentity.hpp"
@@ -95,11 +94,11 @@ class TweetEntities : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 
@@ -123,12 +122,12 @@ class TweetEntities : public ReynTweetsMappable
 		/// @param newMediaList New value for the property media
 		void setMediaList(QVariantList newMediaList);
 
-		/// @fn void updateMedia();
+		/// @fn void syncMediaProperty();
 		/// @brief Updating the property media
 		void syncMediaProperty();
 
-		/// @fn void updateMedia();
-		/// @brief Updating the property media
+		/// @fn void syncMediaMember();
+		/// @brief Updating the medias member
 		void syncMediaMember();
 
 		// urls
@@ -151,12 +150,12 @@ class TweetEntities : public ReynTweetsMappable
 		/// @param newURLList New value for the property urls
 		void setURLList(QVariantList newURLList);
 
-		/// @fn void updateURLs();
+		/// @fn void syncUrlsProperty();
 		/// @brief Updating the property urls
 		void syncUrlsProperty();
 
-		/// @fn void updateURLs();
-		/// @brief Updating the property urls
+		/// @fn void syncUrlsMember();
+		/// @brief Updating the tweetURLs member
 		void syncUrlsMember();
 
 		// user_mentions
@@ -179,12 +178,12 @@ class TweetEntities : public ReynTweetsMappable
 		/// @param newUserMentionsList New value for the property user_mentions
 		void setUserMentionsList(QVariantList newUserMentionsList);
 
-		/// @fn void updateUserMentions();
+		/// @fn void syncUserMentionsProperty();
 		/// @brief Updating the property user_mentions
 		void syncUserMentionsProperty();
 
-		/// @fn void updateUserMentions();
-		/// @brief Updating the property user_mentions
+		/// @fn void syncUserMentionsMember();
+		/// @brief Updating the mentions member
 		void syncUserMentionsMember();
 
 		// hashtags
@@ -207,12 +206,12 @@ class TweetEntities : public ReynTweetsMappable
 		/// @param newHashtagsList New value for the property hashtags
 		void setHashtagsList(QVariantList newHashtagsList);
 
-		/// @fn void updateHashtags();
+		/// @fn void syncHashtagsProperty();
 		/// @brief Updating the property hashtags
 		void syncHashtagsProperty();
 
-		/// @fn void updateHashtags();
-		/// @brief Updating the property hashtags
+		/// @fn void syncHashtagsMember();
+		/// @brief Updating the tweetHashtags member
 		void syncHashtagsMember();
 
 
@@ -228,7 +227,7 @@ class TweetEntities : public ReynTweetsMappable
 		URLEntityList tweetURLs;
 
 		/// @brief User mentions
-		UserMentionList userMentions;
+		UserMentionList mentions;
 
 		/// @brief Hashtags
 		HashtagList tweetHashtags;
@@ -274,10 +273,10 @@ class TweetEntities : public ReynTweetsMappable
 		/// @return tweetHashtags
 		HashtagList getHashtags();
 
-		/// @fn void setHashtagsList(HashtagList newHashtags);
+		/// @fn void setHashtags(HashtagList newHashtags);
 		/// @brief Writing tweetHashtags
 		/// @param newHashtags New value for tweetHashtags
-		void setHashtagsList(HashtagList newHashtags);
+		void setHashtags(HashtagList newHashtags);
 };
 
 // Serialization of TweetEntities

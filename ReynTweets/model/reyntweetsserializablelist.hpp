@@ -1,39 +1,56 @@
+/// @file reyntweetsserializablelist.hpp
+/// @brief Header of ReynTweetsSerializable
+/// @author Romain Ducher
+
+/*
+Copyright 2012 Romain Ducher
+
+This file is part of Reyn Tweets.
+
+Reyn Tweets is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Reyn Tweets is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef REYNTWEETSSERIALIZABLELIST_HPP
 #define REYNTWEETSSERIALIZABLELIST_HPP
 
 #include <QList>
 #include <QVariant>
-#include "reyntweetslistable.hpp"
-//#include "reyntweetsserializable.hpp"
+#include "reyntweetsserializable.hpp"
 
+/// @class ReynTweetsSerializableList
+/// @brief Class for object that needs to be converted into a QVariantList.
+///
+/// In practice, these objects will be lists of ReynTweetsSerializable objects
+/// whose type is represented by the template type S.
+/// @param S Type of a ReynTweetsSerializable object.
 template <class S>
-class ReynTweetsSerializableList : public ReynTweetsListable, public QList<S>
+class ReynTweetsSerializableList : public ReynTweetsSerializable<QVariantList>, public QList<S>
 {
 	public:
 		/// @fn ReynTweetsSerializableList();
 		/// @brief Constructor
 		ReynTweetsSerializableList();
-		virtual ~ReynTweetsSerializableList();
-		ReynTweetsSerializableList(const ReynTweetsSerializableList<S> & list);
-		const ReynTweetsSerializableList<S> & operator=(const ReynTweetsSerializableList<S> & list);
 
-		/// @fn QList<S> fillWithList(QVariantList entities);
-		/// @brief Converting a QVariantList serialized by QJSON into a list of
-		/// entities whose class is represented by the template parameter T.
-		/// @param entities List to convert
-		/// @return The corresponding list of entities
+		/// @fn virtual void fillWithVariant(QVariantList entities);
+		/// @brief Filling the list with the contentnt of a QVariantList
+		/// @param entities The QVariantList
 		virtual void fillWithVariant(QVariantList entities);
 
-		/// @fn QVariantList toVariantList(QList<S> serializables);
-		/// @brief Converting a list of serializables into a QVariantList
-		/// serializable by QJSON.
-		/// @param serializables List to convert
-		/// @return The corresponding QVariantList
+		/// @fn virtual QVariantList toVariant() const;
+		/// @brief Converting the list of serializables into a QVariantList.
+		/// @return The corresponding QVariantList.
 		virtual QVariantList toVariant() const;
-
-	protected:
-		virtual void syncProperties();
-		virtual void syncMembers();
 };
 
 #endif // REYNTWEETSSERIALIZABLELIST_HPP

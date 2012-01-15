@@ -1,3 +1,26 @@
+/// @file userinfos.hpp
+/// @brief Header of UserInfos
+/// @author Romain Ducher
+
+/*
+Copyright 2012 Romain Ducher
+
+This file is part of Reyn Tweets.
+
+Reyn Tweets is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Reyn Tweets is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef USERINFOS_HPP
 #define USERINFOS_HPP
 
@@ -56,7 +79,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @return The stream with the object
 		friend QDataStream & operator<<(QDataStream & out, const UserInfos & user);
 
-		/// @fn friend QDataStream & operator>>(QDataStream & in, User & user);
+		/// @fn friend QDataStream & operator>>(QDataStream & in, UserInfos & user);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param user Object to put in the stream
@@ -70,11 +93,11 @@ class UserInfos : public ReynTweetsMappable
 
 	protected:
 		// Properties
-		/// @fn void fillWithPropertiesMaps();
-		/// @brief Filling serializable fields with thecorresponding  property maps
+		/// @fn void syncMembers();
+		/// @brief Updating the field members
 		void syncMembers();
 
-		/// @fn void updateAllProperties();
+		/// @fn void syncProperties();
 		/// @brief Updating all the properties
 		void syncProperties();
 

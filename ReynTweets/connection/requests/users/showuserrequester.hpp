@@ -56,9 +56,6 @@ class ShowUserRequester : public AuthenticationRequester
 		// Way of identification //
 		///////////////////////////
 
-		/// @brief How the user is identified
-		IdentificationWay idWay;
-
 		/// @enum IdentificationWay
 		/// @brief How the user is identified ?
 		enum IdentificationWay {
@@ -68,6 +65,10 @@ class ShowUserRequester : public AuthenticationRequester
 			/// @brief With a screen name
 			SCREEN_NAME
 		};
+
+		/// @brief How the user is identified
+		IdentificationWay idWay;
+
 
 		////////////////
 		// Parameters //

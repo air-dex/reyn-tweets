@@ -59,6 +59,8 @@ SOURCES += \
 	connection/requests/oauth/authorizerequester.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
+	connection/requests/tweets/showtweetrequester.cpp \
+	connection/requests/users/showuserrequester.cpp \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
@@ -83,9 +85,7 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp \
-    connection/requests/tweets/showtweetrequester.cpp \
-    connection/requests/users/showuserrequester.cpp
+	main.cpp
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -109,6 +109,8 @@ HEADERS  += \
 	connection/requests/oauth/authorizerequester.hpp \
 	connection/requests/oauth/postauthorizerequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
+	connection/requests/tweets/showtweetrequester.hpp \
+	connection/requests/users/showuserrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/requestinfos.hpp \
 	connection/requestermanager.hpp \
@@ -136,9 +138,7 @@ HEADERS  += \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp \
-    connection/requests/tweets/showtweetrequester.hpp \
-    connection/requests/users/showuserrequester.hpp
+	ui/mainwindow.hpp
 
 
 OTHER_FILES = \

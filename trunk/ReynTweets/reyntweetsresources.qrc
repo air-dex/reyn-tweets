@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>resources/Logo Reyn Tweets.svg</file>
+    </qresource>
+</RCC>

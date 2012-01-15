@@ -1,9 +1,9 @@
-/// @file reyntweetswidget.cpp
-/// @brief Implementation of ReynTweetsWidget
+/// @file reyncore.cpp
+/// @brief Implementation of ReynCore
 /// @author Romain Ducher
 
 /*
-Copyright 2011 Romain Ducher
+Copyright 2012 Romain Ducher
 
 This file is part of Reyn Tweets.
 
@@ -18,14 +18,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "reyntweetswidget.hpp"
+#include "reyncore.hpp"
 
-ReynTweetsWidget::ReynTweetsWidget() :
-	QWidget(),
-	reyn(),
-	authenticationWidget()
-{
-}
+// Constructor
+ReynCore::ReynCore() :
+	QObject()
+{}

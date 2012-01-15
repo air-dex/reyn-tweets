@@ -26,6 +26,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTranslator>
 #include "ui/mainwindow.hpp"
 
+// Including the widget for tests
+//*
+#ifndef Q_OS_SYMBIAN
+#include "ui/testwidget.hpp"
+#endif
+//*/
+
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
@@ -67,19 +74,25 @@ int main(int argc, char *argv[])
 //*/
 
 	// Defalult idiom : local idiom
-//*
 	QString locale = QLocale::system().name().section('_', 0, 0);
 	QTranslator translator;
 	translator.load(QString("reyntweets_") + locale);
 	a.installTranslator(&translator);
-//*/
 
 	MainWindow w;
 
 	#if defined(Q_OS_SYMBIAN)
 		w.showMaximized();
-	#else
-		// Pour le moment, on ne fait que passer ici
+	#else // For Windows and Linux
+
+		// Insert a widget for tests purposes
+		//*
+		TestWidget tw;
+		QDockWidget dock("Tests", &w);
+		dock.setWidget(&tw);
+		w.addDockWidget(Qt::LeftDockWidgetArea, &dock);
+		//*/
+
 		w.show();
 	#endif
 

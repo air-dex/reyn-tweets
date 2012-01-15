@@ -138,17 +138,6 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	// Configuration management //
 	//////////////////////////////
 
-	public:
-		/// @fn UserAccount getUserAccount();
-		/// @brief Getter on the user account
-		/// @return The user account
-		UserAccount getUserAccount();
-
-		/// @fn void setUserAccount(UserAccount account);
-		/// @brief Setter on the user account
-		/// @param account New value for the account
-		void setUserAccount(UserAccount account);
-
 	protected:
 		/// @brief Consumer Key
 		static QByteArray REYN_TWEETS_CONSUMER_KEY;
@@ -158,6 +147,32 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 
 		/// @brief Twitter Account
 		UserAccount userAccount;
+
+
+	/////////////////////////
+	// Getters and setters //
+	/////////////////////////
+
+	public:
+		/// @fn static QByteArray getConsumerKey();
+		/// @brief Getting the consumer key
+		/// @return The consumer key
+		static QByteArray getConsumerKey();
+
+		/// @fn static QByteArray getConsumerSecret();
+		/// @brief Getting the consumer secret
+		/// @return The consumer secret
+		static QByteArray getConsumerSecret();
+
+		/// @fn UserAccount getUserAccount();
+		/// @brief Getter on the user account
+		/// @return The user account
+		UserAccount getUserAccount();
+
+		/// @fn void setUserAccount(UserAccount account);
+		/// @brief Setter on the user account
+		/// @param account New value for the account
+		void setUserAccount(UserAccount account);
 };
 
 // Serialization of ReynTweetsConfiguration

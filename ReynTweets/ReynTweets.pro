@@ -30,7 +30,12 @@
 # Common configuration #
 #----------------------#
 
-QT       += core gui network webkit
+QT += \
+	core \
+	gui \
+	network \
+	webkit \
+	declarative
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -83,6 +88,7 @@ SOURCES += \
 	controls/reyncore.cpp \
 	ui/authentication/loginwidget.cpp \
 	ui/authentication/oauthwidget.cpp \
+	ui/launchingwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
@@ -139,6 +145,7 @@ HEADERS  += \
 	controls/reyncore.hpp \
 	ui/authentication/loginwidget.hpp \
 	ui/authentication/oauthwidget.hpp \
+	ui/launchingwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
 	ui/mainwindow.hpp
@@ -153,6 +160,7 @@ OTHER_FILES = \
 	reyntweets_fr.ts \
 	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
+	resources/Logo Reyn Tweets.png \
 	ui/launchingWidget.qml
 
 #--------------#

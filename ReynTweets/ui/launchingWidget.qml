@@ -31,20 +31,22 @@ Rectangle {
 	// Logo with the name and the icon
 	Column {
 		id: program_logo
-		y: height
 		width: main_screen.width/3
-		height: (reyn_tweets_icon.height + program_name_label.height)*5/4
+		height: reyn_tweets_icon.height + program_name_label.height
+		spacing: height/3
+		anchors.verticalCenterOffset: bottom.height
+		anchors.verticalCenter: parent.verticalCenter
 		anchors.horizontalCenterOffset: 0
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		Image {
 			id: reyn_tweets_icon
-			width: main_screen.width/3
-			height: 100
+			width: 5 * main_screen.width /8
+			fillMode: Image.PreserveAspectFit
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.top: parent.top
 			anchors.topMargin: 0
-			source: "qrc:/qtquickplugin/images/template_image.png"
+			source: "../resources/Logo Reyn Tweets PNG.png"
 		}
 
 		Text {
@@ -56,7 +58,7 @@ Rectangle {
 			font.family: "Ubuntu"
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: 32
+			font.pixelSize: 36
 		}
 	}
 

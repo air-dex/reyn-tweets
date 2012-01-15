@@ -141,6 +141,7 @@ OTHER_FILES = \
 	reyntweets_en.ts \
 	reyntweets_fr.ts \
 	Doxyfile.txt \
+	../doc/eraseDoc.bat \
 	doxygen_log.txt
 
 #--------------#

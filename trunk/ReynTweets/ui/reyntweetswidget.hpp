@@ -26,8 +26,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVBoxLayout>
 #include <QWidget>
-#include "../controls/reyncore.hpp"
+#include "ui/launchingwidget.hpp"
 #include "ui/authentication/oauthwidget.hpp"
+#include "../controls/reyncore.hpp"
 
 /// @class ReynTweetsWidget
 /// @brief Main Widget of Reyn Tweets.
@@ -50,6 +51,9 @@ class ReynTweetsWidget : public QWidget
 
 		/// @brief Widget for authentication
 		OAuthWidget authenticationWidget;
+
+		/// @brief Widget displayed while Reyn Tweets is launched
+		LaunchingWidget launchingScreen;
 };
 
 #endif // REYNTWEETSWIDGET_HPP

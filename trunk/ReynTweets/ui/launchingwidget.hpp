@@ -1,9 +1,9 @@
-/// @file reyntweetswidget.cpp
-/// @brief Implementation of ReynTweetsWidget
-/// @author Romain Ducher
+/// @file launchingWidget.qml
+/// @brief Header of LaunchingWidget
+/// @author Romain DUCHER
 
 /*
-Copyright 2011 Romain Ducher
+Copyright 2012 Romain Ducher
 
 This file is part of Reyn Tweets.
 
@@ -18,18 +18,27 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "reyntweetswidget.hpp"
+#ifndef LAUNCHINGWIDGET_HPP
+#define LAUNCHINGWIDGET_HPP
 
-ReynTweetsWidget::ReynTweetsWidget() :
-	QWidget(),
-	reyn(),
-	authenticationWidget(),
-	launchingScreen()
+#include <QDeclarativeView>
+
+/// @class LaunchingWidget
+/// @brief Widget displayed while Reyn Tweets is launched
+class LaunchingWidget : public QDeclarativeView
 {
-	// Showing the launching screen
+	Q_OBJECT
 
-	// Loading configuration
-}
+	public:
+		LaunchingWidget();
+
+	signals:
+
+	public slots:
+
+};
+
+#endif // LAUNCHINGWIDGET_HPP

@@ -26,22 +26,30 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVBoxLayout>
 #include <QWidget>
-#include "testwidget.hpp"
-#include "../model/configuration/reyntweetsconfiguration.hpp"
+#include "../controls/reyncore.hpp"
+#include "ui/authentication/oauthwidget.hpp"
 
 /// @class ReynTweetsWidget
 /// @brief Main Widget of Reyn Tweets.
 class ReynTweetsWidget : public QWidget
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
-		explicit ReynTweetsWidget(QWidget *parent = 0);
-		TestWidget tw;
-		QVBoxLayout lay;
+		/// @fn ReynTweetsWidget();
+		/// @brief Constructor
+		ReynTweetsWidget();
 
 	signals:
 
 	public slots:
+
+	protected:
+		/// @brief Main controller
+		ReynCore reyn;
+
+		/// @brief Widget for authentication
+		OAuthWidget authenticationWidget;
 };
 
 #endif // REYNTWEETSWIDGET_HPP

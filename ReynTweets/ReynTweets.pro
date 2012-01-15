@@ -80,12 +80,14 @@ SOURCES += \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
 	controls/oauthprocess.cpp \
+	controls/reyncore.cpp \
 	ui/authentication/loginwidget.cpp \
 	ui/authentication/oauthwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
 	main.cpp
+
 
 HEADERS  += \
 	tools/utils.hpp \
@@ -134,6 +136,7 @@ HEADERS  += \
 	model/configuration/reyntweetsconfiguration.hpp \
 	controls/oauthprocessresult.hpp \
 	controls/oauthprocess.hpp \
+	controls/reyncore.hpp \
 	ui/authentication/loginwidget.hpp \
 	ui/authentication/oauthwidget.hpp \
 	ui/testwidget.hpp \
@@ -141,12 +144,16 @@ HEADERS  += \
 	ui/mainwindow.hpp
 
 
+RESOURCES += \
+	reyntweetsresources.qrc
+
+
 OTHER_FILES = \
 	reyntweets_en.ts \
 	reyntweets_fr.ts \
 	Doxyfile.txt \
-	../doc/eraseDoc.bat \
-	doxygen_log.txt
+	resources/Logo Reyn Tweets.svg \
+	ui/launchingWidget.qml
 
 #--------------#
 # Translations #

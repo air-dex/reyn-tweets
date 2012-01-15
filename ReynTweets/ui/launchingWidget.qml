@@ -1,0 +1,98 @@
+/// @file launchingWidget.qml
+/// @brief Widget displayed at the beginning of the program
+/// @author Romain DUCHER
+
+/*
+Copyright 2012 Romain Ducher
+
+This file is part of Reyn Tweets.
+
+Reyn Tweets is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Reyn Tweets is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+import QtQuick 1.1
+
+Rectangle {
+	id: main_screen
+	width: 360
+	height: 640
+
+	// Logo with the name and the icon
+	Column {
+		id: program_logo
+		y: height
+		width: main_screen.width/3
+		height: (reyn_tweets_icon.height + program_name_label.height)*5/4
+		anchors.horizontalCenterOffset: 0
+		anchors.horizontalCenter: parent.horizontalCenter
+
+		Image {
+			id: reyn_tweets_icon
+			width: main_screen.width/3
+			height: 100
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.top: parent.top
+			anchors.topMargin: 0
+			source: "qrc:/qtquickplugin/images/template_image.png"
+		}
+
+		Text {
+			id: program_name_label
+			text: "Reyn Tweets"
+			font.bold: true
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.bottom: parent.bottom
+			font.family: "Ubuntu"
+			verticalAlignment: Text.AlignVCenter
+			horizontalAlignment: Text.AlignHCenter
+			font.pixelSize: 32
+		}
+	}
+
+	// Copyright and website of the application
+	Column {
+		id: bottom
+		width: 200
+		height: (copyright.height + website.height)*5/4
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.bottom: parent.bottom
+		anchors.bottomMargin: height/2
+
+		Text {
+			id: copyright
+			text: "(C) 2012 Romain DUCHER (@air_dex)"
+			font.family: "Ubuntu"
+			font.bold: false
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.top: parent.top
+			anchors.topMargin: 0
+			verticalAlignment: Text.AlignVCenter
+			horizontalAlignment: Text.AlignHCenter
+			font.pixelSize: 14
+		}
+
+		Text {
+			id: website
+			text: qsTr("Website : http://code.google.com/p/reyn-tweeets")
+			font.family: "Ubuntu"
+			font.bold: false
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.bottom: parent.bottom
+			anchors.bottomMargin: 0
+			horizontalAlignment: Text.AlignHCenter
+			verticalAlignment: Text.AlignVCenter
+			font.pixelSize: 14
+		}
+	}
+}

@@ -53,6 +53,22 @@ namespace TwitterURL
 
 	/// @brief URL for a search request
 	extern QString SEARCH_URL;
+
+
+	////////////
+	// Tweets //
+	////////////
+
+	/// @brief URL for getting informations about a given tweet
+	extern QString SHOW_TWEET_URL;
+
+
+	///////////
+	// Users //
+	///////////
+
+	/// @brief URL for getting informations about a given user
+	extern QString SHOW_USER_URL;
 }
 
 #endif // TWITTERURLS_HPP

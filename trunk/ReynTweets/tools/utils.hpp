@@ -47,11 +47,17 @@ QString hmacSha1(QByteArray key, QByteArray baseString);
 /// @return The corresponding QString
 QString requestTypeToString(RequestType type);
 
-/// @fn ouBien(bool a, bool b);
-/// @brief Logical XOR :<code>a XOR b == a && !b || !a && b</code>
+/// @fn bool ouBien(bool a, bool b);
+/// @brief Logical XOR : <code>a XOR b == a && !b || !a && b</code>
 /// @param a 1st bool
 /// @param b 2nd bool
 bool ouBien(bool a, bool b);
+
+/// @fn QString boolInString(bool b);
+/// @brief Converting a bool into a QString
+/// @param b The boolean
+/// @return The corresponding QString
+QString boolInString(bool b);
 
 
 ////////////////////

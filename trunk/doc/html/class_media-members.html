@@ -94,8 +94,7 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156">expanded_url</a></td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94">expandedURL</a></td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6">extractedURL</a></td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58">fillWithMap</a>(QVariantMap map)</td><td><a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a14fac0a0790de82cbacbb716c06dbda0">fillWithPropertiesMaps</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8">fillWithVariant</a>(QVariantMap map)</td><td><a class="el" href="class_reyn_tweets_mappable.html">ReynTweetsMappable</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">getDisplayedURL</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">getExpandedURL</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a3c055756806c1e911a79c350f82e03f9">getID</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
@@ -125,10 +124,13 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d">mediaURL</a></td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef">mediaURLhttps</a></td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#ad01fb244cb26cafe33b1f867687c69fa">operator&lt;&lt;</a>(QDataStream &amp;out, const Media &amp;media)</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [friend]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a5c67107b7487c9b517dfc638c7c61525">URLEntity::operator&lt;&lt;</a>(QDataStream &amp;out, const URLEntity &amp;entity)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td><code> [friend]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a03face8d833577ddb63c3e677e4a5094">operator=</a>(const Media &amp;media)</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">URLEntity::operator=</a>(const URLEntity &amp;entity)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a19be25848710723651f341c591e84d25">operator&gt;&gt;</a>(QDataStream &amp;in, Media &amp;media)</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [friend]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346">recopie</a>(const Media &amp;media)</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a1fb97fe8d7d0d3cbf05ed73894dc3987">URLEntity::operator&gt;&gt;</a>(QDataStream &amp;in, URLEntity &amp;entity)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td><code> [friend]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346">recopie</a>(const Media &amp;media)</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">URLEntity::recopie</a>(const URLEntity &amp;entity)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf">setDisplayedURL</a>(QString newURL)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">setExpandedURL</a>(QString newURL)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca">setID</a>(long newID)</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
@@ -143,20 +145,14 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">setURL</a>(QString newURL)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a481f011e8f51e084d02702f83e871640">sizes</a></td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634">sizesMap</a></td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35">toMap</a>()</td><td><a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_reyn_tweets_serializable.html#a2272d2094d2622a33aa9bbf0cb6e4a78">toVariantList</a>(QList&lt; ReynTweetsSerializable &gt; serializables)</td><td><a class="el" href="class_reyn_tweets_serializable.html">ReynTweetsSerializable</a></td><td><code> [static]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#ac588cff18b04865d88c2db226f00a28f">syncIndicesMember</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b">syncIndicesProperty</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee">syncMembers</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e">syncProperties</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_media.html#aa1756623eba979c9d5a6d3481df7393a">syncSizesMember</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_media.html#a21b26c7ffcbbe29a94e031c2265eefb1">syncSizesProperty</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d">toVariant</a>() const </td><td><a class="el" href="class_reyn_tweets_mappable.html">ReynTweetsMappable</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_media.html#a159f48f6aad4b5115a62cb23032c55c3">type</a></td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a">updateAllProperties</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td><code> [protected, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a44fbb28030563e01b38490658db9d803">updateDisplayedURL</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#af22b7915b8b9903e506c04f393b144c2">updateExpandedURL</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#adbe9765bf90a88a593cad6d665c7d6e1">updateID</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a3a4b9a6b7100be3272d7b5675e69747d">updateIDstr</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#ada31f2db413b6b5aff6de433b1dd22c7">updateIndices</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a3ad08dc52448ae081a22a42d8b48595d">updateMediaURL</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a747a0e2dcec4114a85adcb2ae48f545e">updateMediaURLhttps</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a34ea7f550f7ed120566ab27cfca4b828">updateSizes</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_media.html#a4aaabea95781266a215752202e39bb6a">updateType</a>()</td><td><a class="el" href="class_media.html">Media</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#af60d07d1f30269827026bb9a0616671c">updateURL</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607">url</a></td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195">URLEntity</a>()</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">URLEntity</a>(const URLEntity &amp;entity)</td><td><a class="el" href="class_u_r_l_entity.html">URLEntity</a></td><td></td></tr>
@@ -177,7 +173,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:27 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

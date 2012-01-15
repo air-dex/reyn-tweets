@@ -118,7 +118,7 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">// Constructor</span>
 <a name="l00032"></a><a class="code" href="class_media.html#a6e2ee1b8da6d724fb40a00ff4101d2df">00032</a> <a class="code" href="class_media.html#a6e2ee1b8da6d724fb40a00ff4101d2df" title="Constructor.">Media::Media</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_u_r_l_entity.html">URLEntity</a>(),
+<a name="l00033"></a>00033         <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>(),
 <a name="l00034"></a>00034         sizesMap(),
 <a name="l00035"></a>00035         mediaID(-1),
 <a name="l00036"></a>00036         mediaIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
@@ -127,7 +127,7 @@ window.onload = initDynSections;
 <a name="l00039"></a>00039         mediaType(<span class="stringliteral">&quot;&quot;</span>),
 <a name="l00040"></a>00040         mediaSizes()
 <a name="l00041"></a>00041 {
-<a name="l00042"></a>00042         <a class="code" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00042"></a>00042         <a class="code" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e" title="Updating all the properties.">syncProperties</a>();
 <a name="l00043"></a>00043 }
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="comment">// Destructor</span>
@@ -159,7 +159,7 @@ window.onload = initDynSections;
 <a name="l00071"></a>00071         <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a> = media.<a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a>;
 <a name="l00072"></a>00072         <a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a> = media.<a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a>;
 <a name="l00073"></a>00073         <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a> = media.<a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>;
-<a name="l00074"></a>00074         <a class="code" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00074"></a>00074         <a class="code" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e" title="Updating all the properties.">syncProperties</a>();
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <span class="comment">// Output stream operator for serialization</span>
@@ -172,7 +172,7 @@ window.onload = initDynSections;
 <a name="l00084"></a>00084         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, media);
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086         <span class="comment">// Updating mediaSizes</span>
-<a name="l00087"></a>00087         media.<a class="code" href="class_media.html#a14fac0a0790de82cbacbb716c06dbda0" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
+<a name="l00087"></a>00087         media.<a class="code" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee" title="Updating the field members.">syncMembers</a>();
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089         <span class="keywordflow">return</span> in;
 <a name="l00090"></a>00090 }
@@ -181,125 +181,100 @@ window.onload = initDynSections;
 <a name="l00094"></a>00094 <span class="comment">// Properties management //</span>
 <a name="l00096"></a>00096 <span class="comment"></span>
 <a name="l00097"></a>00097 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
-<a name="l00098"></a><a class="code" href="class_media.html#a14fac0a0790de82cbacbb716c06dbda0">00098</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a14fac0a0790de82cbacbb716c06dbda0" title="Filling serializable fields with thecorresponding property maps.">Media::fillWithPropertiesMaps</a>() {
-<a name="l00099"></a>00099         <a class="code" href="class_media.html#a14fac0a0790de82cbacbb716c06dbda0" title="Filling serializable fields with thecorresponding property maps.">URLEntity::fillWithPropertiesMaps</a>();    <span class="comment">// Don&#39;t forget the base class !</span>
-<a name="l00100"></a>00100         <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>.<a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap</a>(<a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a>);
+<a name="l00098"></a><a class="code" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee">00098</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee" title="Updating the field members.">Media::syncMembers</a>() {
+<a name="l00099"></a>00099         <a class="code" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee" title="Updating the field members.">URLEntity::syncMembers</a>();       <span class="comment">// Don&#39;t forget the base class !</span>
+<a name="l00100"></a>00100         <a class="code" href="class_media.html#aa1756623eba979c9d5a6d3481df7393a" title="Updating the mediaSizes member.">syncSizesMember</a>();
 <a name="l00101"></a>00101 }
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103 <span class="comment">// Updating all the properties</span>
-<a name="l00104"></a><a class="code" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a">00104</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a" title="Updating all the properties.">Media::updateAllProperties</a>() {
-<a name="l00105"></a>00105         <a class="code" href="class_media.html#ad03cd0601ae19060bde9e7710ce3186a" title="Updating all the properties.">URLEntity::updateAllProperties</a>();       <span class="comment">// Don&#39;t forget the base class !</span>
-<a name="l00106"></a>00106         <a class="code" href="class_media.html#adbe9765bf90a88a593cad6d665c7d6e1" title="Updating the property id.">updateID</a>();
-<a name="l00107"></a>00107         <a class="code" href="class_media.html#a3a4b9a6b7100be3272d7b5675e69747d" title="Updating the property id_str.">updateIDstr</a>();
-<a name="l00108"></a>00108         <a class="code" href="class_media.html#a3ad08dc52448ae081a22a42d8b48595d" title="Updating the property media_url.">updateMediaURL</a>();
-<a name="l00109"></a>00109         <a class="code" href="class_media.html#a747a0e2dcec4114a85adcb2ae48f545e" title="Updating the property media_url_https.">updateMediaURLhttps</a>();
-<a name="l00110"></a>00110         <a class="code" href="class_media.html#a4aaabea95781266a215752202e39bb6a" title="Updating the property type.">updateType</a>();
-<a name="l00111"></a>00111         <a class="code" href="class_media.html#a34ea7f550f7ed120566ab27cfca4b828" title="Updating the property sizes.">updateSizes</a>();
+<a name="l00104"></a><a class="code" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e">00104</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e" title="Updating all the properties.">Media::syncProperties</a>() {
+<a name="l00105"></a>00105         <a class="code" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e" title="Updating all the properties.">URLEntity::syncProperties</a>();    <span class="comment">// Don&#39;t forget the base class !</span>
+<a name="l00106"></a>00106         <a class="code" href="class_media.html#a21b26c7ffcbbe29a94e031c2265eefb1" title="Updating the property sizes.">syncSizesProperty</a>();
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">// Reading method for the property sizes</span>
+<a name="l00110"></a><a class="code" href="class_media.html#add451307c874705ffb01120c8fc4fc9d">00110</a> QVariantMap <a class="code" href="class_media.html#add451307c874705ffb01120c8fc4fc9d" title="Reading method for the property sizes.">Media::getSizesProperty</a>() {
+<a name="l00111"></a>00111         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a>;
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="comment">// Updating the property id</span>
-<a name="l00115"></a><a class="code" href="class_media.html#adbe9765bf90a88a593cad6d665c7d6e1">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#adbe9765bf90a88a593cad6d665c7d6e1" title="Updating the property id.">Media::updateID</a>() {
-<a name="l00116"></a>00116         setProperty(<span class="stringliteral">&quot;id&quot;</span>, QVariant(<a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a>));
+<a name="l00114"></a>00114 <span class="comment">// Writing method for the property sizes</span>
+<a name="l00115"></a><a class="code" href="class_media.html#a3e5ecd11636fc728694c4a9ecd2c8e51">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3e5ecd11636fc728694c4a9ecd2c8e51" title="Writing method for the property sizes.">Media::setSizesProperty</a>(QVariantMap newMap) {
+<a name="l00116"></a>00116         <a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a> = newMap;
 <a name="l00117"></a>00117 }
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119 <span class="comment">// Updating the property id_str</span>
-<a name="l00120"></a><a class="code" href="class_media.html#a3a4b9a6b7100be3272d7b5675e69747d">00120</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3a4b9a6b7100be3272d7b5675e69747d" title="Updating the property id_str.">Media::updateIDstr</a>() {
-<a name="l00121"></a>00121         setProperty(<span class="stringliteral">&quot;id_str&quot;</span>, QVariant(<a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a>));
+<a name="l00119"></a>00119 <span class="comment">// Updating the property sizes</span>
+<a name="l00120"></a><a class="code" href="class_media.html#a21b26c7ffcbbe29a94e031c2265eefb1">00120</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a21b26c7ffcbbe29a94e031c2265eefb1" title="Updating the property sizes.">Media::syncSizesProperty</a>() {
+<a name="l00121"></a>00121         <a class="code" href="class_media.html#a3e5ecd11636fc728694c4a9ecd2c8e51" title="Writing method for the property sizes.">setSizesProperty</a>(<a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>());
 <a name="l00122"></a>00122 }
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="comment">// Updating the property media_url</span>
-<a name="l00125"></a><a class="code" href="class_media.html#a3ad08dc52448ae081a22a42d8b48595d">00125</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3ad08dc52448ae081a22a42d8b48595d" title="Updating the property media_url.">Media::updateMediaURL</a>() {
-<a name="l00126"></a>00126         setProperty(<span class="stringliteral">&quot;media_url&quot;</span>, QVariant(<a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a>));
+<a name="l00124"></a>00124 <span class="comment">// Updating the property sizes</span>
+<a name="l00125"></a><a class="code" href="class_media.html#aa1756623eba979c9d5a6d3481df7393a">00125</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#aa1756623eba979c9d5a6d3481df7393a" title="Updating the mediaSizes member.">Media::syncSizesMember</a>() {
+<a name="l00126"></a>00126         <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(<a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a>);
 <a name="l00127"></a>00127 }
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129 <span class="comment">// Updating the property media_url_https</span>
-<a name="l00130"></a><a class="code" href="class_media.html#a747a0e2dcec4114a85adcb2ae48f545e">00130</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a747a0e2dcec4114a85adcb2ae48f545e" title="Updating the property media_url_https.">Media::updateMediaURLhttps</a>() {
-<a name="l00131"></a>00131         setProperty(<span class="stringliteral">&quot;media_url_https&quot;</span>, QVariant(<a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a>));
-<a name="l00132"></a>00132 }
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 <span class="comment">// Updating the property type</span>
-<a name="l00135"></a><a class="code" href="class_media.html#a4aaabea95781266a215752202e39bb6a">00135</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a4aaabea95781266a215752202e39bb6a" title="Updating the property type.">Media::updateType</a>() {
-<a name="l00136"></a>00136         setProperty(<span class="stringliteral">&quot;type&quot;</span>, QVariant(<a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a>));
+<a name="l00129"></a>00129 
+<a name="l00131"></a>00131 <span class="comment">// Getter and setters //</span>
+<a name="l00133"></a>00133 <span class="comment"></span>
+<a name="l00134"></a>00134 <span class="comment">// Reading mediaID</span>
+<a name="l00135"></a><a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9">00135</a> <span class="keywordtype">long</span> <a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9" title="Reading mediaID.">Media::getID</a>() {
+<a name="l00136"></a>00136         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a>;
 <a name="l00137"></a>00137 }
 <a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="comment">// Reading method for the property sizes</span>
-<a name="l00140"></a><a class="code" href="class_media.html#add451307c874705ffb01120c8fc4fc9d">00140</a> QVariantMap <a class="code" href="class_media.html#add451307c874705ffb01120c8fc4fc9d" title="Reading method for the property sizes.">Media::getSizesProperty</a>() {
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a>;
+<a name="l00139"></a>00139 <span class="comment">// Writing mediaID</span>
+<a name="l00140"></a><a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca">00140</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca" title="Writing mediaID.">Media::setID</a>(<span class="keywordtype">long</span> newID) {
+<a name="l00141"></a>00141         <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a> = newID;
 <a name="l00142"></a>00142 }
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="comment">// Writing method for the property sizes</span>
-<a name="l00145"></a><a class="code" href="class_media.html#a3e5ecd11636fc728694c4a9ecd2c8e51">00145</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3e5ecd11636fc728694c4a9ecd2c8e51" title="Writing method for the property sizes.">Media::setSizesProperty</a>(QVariantMap newMap) {
-<a name="l00146"></a>00146         <a class="code" href="class_media.html#a643912dbab8c95dd8233612eb1b5d634" title="Representation of the property sizes.">sizesMap</a> = newMap;
+<a name="l00144"></a>00144 <span class="comment">// Reading mediaIDstr</span>
+<a name="l00145"></a><a class="code" href="class_media.html#af2850717e4d7f989d68d65bc2dc57c88">00145</a> QString <a class="code" href="class_media.html#af2850717e4d7f989d68d65bc2dc57c88" title="Reading mediaIDstr.">Media::getIDstr</a>() {
+<a name="l00146"></a>00146         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a>;
 <a name="l00147"></a>00147 }
 <a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="comment">// Updating the property sizes</span>
-<a name="l00150"></a><a class="code" href="class_media.html#a34ea7f550f7ed120566ab27cfca4b828">00150</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a34ea7f550f7ed120566ab27cfca4b828" title="Updating the property sizes.">Media::updateSizes</a>() {
-<a name="l00151"></a>00151         setProperty(<span class="stringliteral">&quot;sizes&quot;</span>, QVariant(<a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>.<a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>()));
+<a name="l00149"></a>00149 <span class="comment">// Writing mediaIDstr</span>
+<a name="l00150"></a><a class="code" href="class_media.html#a9d045bb7394ec5a0d380c1fab67c912f">00150</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a9d045bb7394ec5a0d380c1fab67c912f" title="Writing mediaIDstr.">Media::setIDstr</a>(QString newID) {
+<a name="l00151"></a>00151         <a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a> = newID;
 <a name="l00152"></a>00152 }
 <a name="l00153"></a>00153 
-<a name="l00154"></a>00154 
-<a name="l00156"></a>00156 <span class="comment">// Getter and setters //</span>
-<a name="l00158"></a>00158 <span class="comment"></span>
-<a name="l00159"></a>00159 <span class="comment">// Reading mediaID</span>
-<a name="l00160"></a><a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9">00160</a> <span class="keywordtype">long</span> <a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9" title="Reading mediaID.">Media::getID</a>() {
-<a name="l00161"></a>00161         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a>;
+<a name="l00154"></a>00154 <span class="comment">// Reading method for mediaURL</span>
+<a name="l00155"></a><a class="code" href="class_media.html#a4a2de24fe0c5aa0399d37d271e2738db">00155</a> QString <a class="code" href="class_media.html#a4a2de24fe0c5aa0399d37d271e2738db" title="Reading method for mediaURL.">Media::getMediaURL</a>() {
+<a name="l00156"></a>00156         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a>;
+<a name="l00157"></a>00157 }
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 <span class="comment">// Writing mediaURL</span>
+<a name="l00160"></a><a class="code" href="class_media.html#a3feaa9ca7984c1b6f2efe7329cde5d49">00160</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3feaa9ca7984c1b6f2efe7329cde5d49" title="Writing mediaURL.">Media::setMediaURL</a>(QString newMediaURL) {
+<a name="l00161"></a>00161         <a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a> = newMediaURL;
 <a name="l00162"></a>00162 }
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164 <span class="comment">// Writing mediaID</span>
-<a name="l00165"></a><a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca" title="Writing mediaID.">Media::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00166"></a>00166         <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a> = newID;
+<a name="l00164"></a>00164 <span class="comment">// Reading method for mediaURLhttps</span>
+<a name="l00165"></a><a class="code" href="class_media.html#a8f190c66f7adeffc7fa2f4dad1a42e32">00165</a> QString <a class="code" href="class_media.html#a8f190c66f7adeffc7fa2f4dad1a42e32" title="Reading method for mediaURLhttps.">Media::getMediaURLhttps</a>() {
+<a name="l00166"></a>00166         <span class="keywordflow">return</span> <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a>;
 <a name="l00167"></a>00167 }
 <a name="l00168"></a>00168 
-<a name="l00169"></a>00169 <span class="comment">// Reading mediaIDstr</span>
-<a name="l00170"></a><a class="code" href="class_media.html#af2850717e4d7f989d68d65bc2dc57c88">00170</a> QString <a class="code" href="class_media.html#af2850717e4d7f989d68d65bc2dc57c88" title="Reading mediaIDstr.">Media::getIDstr</a>() {
-<a name="l00171"></a>00171         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a>;
+<a name="l00169"></a>00169 <span class="comment">// Writing method for mediaURLhttps</span>
+<a name="l00170"></a><a class="code" href="class_media.html#acaed48900a0309866473a45dfb82f1f1">00170</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#acaed48900a0309866473a45dfb82f1f1" title="Writing method for mediaURLhttps.">Media::setMediaURLhttps</a>(QString newMediaURL) {
+<a name="l00171"></a>00171         <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a> = newMediaURL;
 <a name="l00172"></a>00172 }
 <a name="l00173"></a>00173 
-<a name="l00174"></a>00174 <span class="comment">// Writing mediaIDstr</span>
-<a name="l00175"></a><a class="code" href="class_media.html#a9d045bb7394ec5a0d380c1fab67c912f">00175</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a9d045bb7394ec5a0d380c1fab67c912f" title="Writing mediaIDstr.">Media::setIDstr</a>(QString newID) {
-<a name="l00176"></a>00176         <a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a> = newID;
+<a name="l00174"></a>00174 <span class="comment">// Reading method for mediaType</span>
+<a name="l00175"></a><a class="code" href="class_media.html#acf0b324ca1abf5daae20197dd14d0d02">00175</a> QString <a class="code" href="class_media.html#acf0b324ca1abf5daae20197dd14d0d02" title="Reading method for mediaType.">Media::getType</a>() {
+<a name="l00176"></a>00176         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a>;
 <a name="l00177"></a>00177 }
 <a name="l00178"></a>00178 
-<a name="l00179"></a>00179 <span class="comment">// Reading method for mediaURL</span>
-<a name="l00180"></a><a class="code" href="class_media.html#a4a2de24fe0c5aa0399d37d271e2738db">00180</a> QString <a class="code" href="class_media.html#a4a2de24fe0c5aa0399d37d271e2738db" title="Reading method for mediaURL.">Media::getMediaURL</a>() {
-<a name="l00181"></a>00181         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a>;
+<a name="l00179"></a>00179 <span class="comment">// Writing method for mediaType</span>
+<a name="l00180"></a><a class="code" href="class_media.html#abae458f0f2abb22ff0e32b787c943d3f">00180</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#abae458f0f2abb22ff0e32b787c943d3f" title="Writing method for mediaType.">Media::setType</a>(QString newType) {
+<a name="l00181"></a>00181         <a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a> = newType;
 <a name="l00182"></a>00182 }
 <a name="l00183"></a>00183 
-<a name="l00184"></a>00184 <span class="comment">// Writing mediaURL</span>
-<a name="l00185"></a><a class="code" href="class_media.html#a3feaa9ca7984c1b6f2efe7329cde5d49">00185</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a3feaa9ca7984c1b6f2efe7329cde5d49" title="Writing mediaURL.">Media::setMediaURL</a>(QString newMediaURL) {
-<a name="l00186"></a>00186         <a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a> = newMediaURL;
+<a name="l00184"></a>00184 <span class="comment">// Reading mediaSizes</span>
+<a name="l00185"></a><a class="code" href="class_media.html#a4bc92ae08a9d5083031577c1231a39fa">00185</a> <a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> <a class="code" href="class_media.html#a4bc92ae08a9d5083031577c1231a39fa" title="Reading mediaSizes.">Media::getSizes</a>() {
+<a name="l00186"></a>00186         <span class="keywordflow">return</span> <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>;
 <a name="l00187"></a>00187 }
 <a name="l00188"></a>00188 
-<a name="l00189"></a>00189 <span class="comment">// Reading method for mediaURLhttps</span>
-<a name="l00190"></a><a class="code" href="class_media.html#a8f190c66f7adeffc7fa2f4dad1a42e32">00190</a> QString <a class="code" href="class_media.html#a8f190c66f7adeffc7fa2f4dad1a42e32" title="Reading method for mediaURLhttps.">Media::getMediaURLhttps</a>() {
-<a name="l00191"></a>00191         <span class="keywordflow">return</span> <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a>;
-<a name="l00192"></a>00192 }
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194 <span class="comment">// Writing method for mediaURLhttps</span>
-<a name="l00195"></a><a class="code" href="class_media.html#acaed48900a0309866473a45dfb82f1f1">00195</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#acaed48900a0309866473a45dfb82f1f1" title="Writing method for mediaURLhttps.">Media::setMediaURLhttps</a>(QString newMediaURL) {
-<a name="l00196"></a>00196         <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a> = newMediaURL;
-<a name="l00197"></a>00197 }
-<a name="l00198"></a>00198 
-<a name="l00199"></a>00199 <span class="comment">// Reading method for mediaType</span>
-<a name="l00200"></a><a class="code" href="class_media.html#acf0b324ca1abf5daae20197dd14d0d02">00200</a> QString <a class="code" href="class_media.html#acf0b324ca1abf5daae20197dd14d0d02" title="Reading method for mediaType.">Media::getType</a>() {
-<a name="l00201"></a>00201         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a>;
-<a name="l00202"></a>00202 }
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204 <span class="comment">// Writing method for mediaType</span>
-<a name="l00205"></a><a class="code" href="class_media.html#abae458f0f2abb22ff0e32b787c943d3f">00205</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#abae458f0f2abb22ff0e32b787c943d3f" title="Writing method for mediaType.">Media::setType</a>(QString newType) {
-<a name="l00206"></a>00206         <a class="code" href="class_media.html#a654950277429a87d0816abbbb71f173f" title="Type of the media.">mediaType</a> = newType;
-<a name="l00207"></a>00207 }
-<a name="l00208"></a>00208 
-<a name="l00209"></a>00209 <span class="comment">// Reading mediaSizes</span>
-<a name="l00210"></a><a class="code" href="class_media.html#a4bc92ae08a9d5083031577c1231a39fa">00210</a> <a class="code" href="class_media_sizes.html">MediaSizes</a> <a class="code" href="class_media.html#a4bc92ae08a9d5083031577c1231a39fa" title="Reading mediaSizes.">Media::getSizes</a>() {
-<a name="l00211"></a>00211         <span class="keywordflow">return</span> <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a>;
-<a name="l00212"></a>00212 }
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="comment">// Writing mediaSizes</span>
-<a name="l00215"></a><a class="code" href="class_media.html#a03ddce24e570eeab8dc89edb0ca86a24">00215</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a03ddce24e570eeab8dc89edb0ca86a24" title="Writing mediaSizes.">Media::setSizes</a>(<a class="code" href="class_media_sizes.html">MediaSizes</a> newSizes) {
-<a name="l00216"></a>00216         <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a> = newSizes;
-<a name="l00217"></a>00217         <a class="code" href="class_media.html#a34ea7f550f7ed120566ab27cfca4b828" title="Updating the property sizes.">updateSizes</a>();
-<a name="l00218"></a>00218 }
+<a name="l00189"></a>00189 <span class="comment">// Writing mediaSizes</span>
+<a name="l00190"></a><a class="code" href="class_media.html#a03ddce24e570eeab8dc89edb0ca86a24">00190</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a03ddce24e570eeab8dc89edb0ca86a24" title="Writing mediaSizes.">Media::setSizes</a>(<a class="code" href="class_media_sizes.html" title="Different sizes possible for a Media object.">MediaSizes</a> newSizes) {
+<a name="l00191"></a>00191         <a class="code" href="class_media.html#ae83624bfb6e523c9f1165be929c6706c" title="Media sizes.">mediaSizes</a> = newSizes;
+<a name="l00192"></a>00192         <a class="code" href="class_media.html#a21b26c7ffcbbe29a94e031c2265eefb1" title="Updating the property sizes.">syncSizesProperty</a>();
+<a name="l00193"></a>00193 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -315,7 +290,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -118,765 +118,107 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">// Default constructor</span>
 <a name="l00032"></a><a class="code" href="class_user.html#a4a0137053e591fbb79d9057dd7d2283d">00032</a> <a class="code" href="class_user.html#a4a0137053e591fbb79d9057dd7d2283d" title="Default constructor.">User::User</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>(),
+<a name="l00033"></a>00033         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a>(),
 <a name="l00034"></a>00034         lastTweetMap(),
-<a name="l00035"></a>00035         userID(-1),
-<a name="l00036"></a>00036         userIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
-<a name="l00037"></a>00037         screenName(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00038"></a>00038         userName(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00039"></a>00039         userDescription(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00040"></a>00040         userURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00041"></a>00041         userLocation(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00042"></a>00042         defaultProfileImage(true),
-<a name="l00043"></a>00043         avatarURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00044"></a>00044         avatarURLhttps(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00045"></a>00045         tweetsCount(0),
-<a name="l00046"></a>00046         lastTweet(),
-<a name="l00047"></a>00047         friendsCount(0),
-<a name="l00048"></a>00048         followersCount(0),
-<a name="l00049"></a>00049         favoritesCount(0),
-<a name="l00050"></a>00050         listsCount(0),
-<a name="l00051"></a>00051         defaultProfile(true),
-<a name="l00052"></a>00052         useBackgroundImage(true),
-<a name="l00053"></a>00053         backgroundTile(false),
-<a name="l00054"></a>00054         backgroundURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00055"></a>00055         backgroundURLhttps(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00056"></a>00056         backgroundColor(Qt::white),
-<a name="l00057"></a>00057         textColor(Qt::black),
-<a name="l00058"></a>00058         linkColor(Qt::blue),
-<a name="l00059"></a>00059         sidebarColor(Qt::cyan),
-<a name="l00060"></a>00060         sidebarBorderColor(Qt::darkCyan),
-<a name="l00061"></a>00061         timeZoneOffset(0),
-<a name="l00062"></a>00062         timeZone(<span class="stringliteral">&quot;London&quot;</span>),
-<a name="l00063"></a>00063         createdAt(),
-<a name="l00064"></a>00064         language(<span class="stringliteral">&quot;en&quot;</span>),
-<a name="l00065"></a>00065         protectedAccount(false),
-<a name="l00066"></a>00066         geotaggingEnabled(false),
-<a name="l00067"></a>00067         verifiedAccount(false),
-<a name="l00068"></a>00068         contributorsEnabled(false),
-<a name="l00069"></a>00069         twitterTranslator(false),
-<a name="l00070"></a>00070         followRequestSent(false),
-<a name="l00071"></a>00071         showAllInlineMedia(false),
-<a name="l00072"></a>00072         notificationsEnabled(false)
-<a name="l00073"></a>00073 {
-<a name="l00074"></a>00074         <a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c" title="Updating all the properties.">updateAllProperties</a>();
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="comment">// Destructor</span>
-<a name="l00078"></a><a class="code" href="class_user.html#ac00b72ad64eb4149f7b21b9f5468c2b2">00078</a> <a class="code" href="class_user.html#ac00b72ad64eb4149f7b21b9f5468c2b2" title="Destructor.">User::~User</a>() {}
+<a name="l00035"></a>00035         lastTweet()
+<a name="l00036"></a>00036 {
+<a name="l00037"></a>00037         <a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2" title="Updating all the properties.">syncProperties</a>();
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="comment">// Destructor</span>
+<a name="l00041"></a><a class="code" href="class_user.html#ac00b72ad64eb4149f7b21b9f5468c2b2">00041</a> <a class="code" href="class_user.html#ac00b72ad64eb4149f7b21b9f5468c2b2" title="Destructor.">User::~User</a>() {}
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="comment">// Copy constructor</span>
+<a name="l00044"></a><a class="code" href="class_user.html#aa93176c0f05349bc8daf0c6074fcb929">00044</a> <a class="code" href="class_user.html#a4a0137053e591fbb79d9057dd7d2283d" title="Default constructor.">User::User</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) :
+<a name="l00045"></a>00045         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a>()
+<a name="l00046"></a>00046 {
+<a name="l00047"></a>00047         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// Affectation operator</span>
+<a name="l00051"></a><a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557">00051</a> <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; <a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557" title="Affectation.">User::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
+<a name="l00052"></a>00052         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
+<a name="l00053"></a>00053         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00054"></a>00054 }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="comment">// Serialization declaration</span>
+<a name="l00057"></a><a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c" title="Serialization declaration.">User::initSystem</a>() {
+<a name="l00058"></a>00058         qRegisterMetaTypeStreamOperators&lt;User&gt;(<span class="stringliteral">&quot;User&quot;</span>);
+<a name="l00059"></a>00059         qMetaTypeId&lt;User&gt;();
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="comment">// Copy of a User</span>
+<a name="l00063"></a><a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">00063</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">User::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
+<a name="l00064"></a>00064         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">UserInfos::recopie</a>(user);
+<a name="l00065"></a>00065         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = user.<a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00066"></a>00066         <a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2" title="Updating all the properties.">syncProperties</a>();
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="comment">// Friends serialization operators</span>
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00072"></a><a class="code" href="user_8hpp.html#a3e6ed0ba71014677473d8e6a0df745d6">00072</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
+<a name="l00073"></a>00073         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, user);
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00077"></a><a class="code" href="user_8hpp.html#aecf5cd8b5440b1c3bec9f631ad22b878">00077</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
+<a name="l00078"></a>00078         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, user);
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="comment">// Copy constructor</span>
-<a name="l00081"></a><a class="code" href="class_user.html#aa93176c0f05349bc8daf0c6074fcb929">00081</a> <a class="code" href="class_user.html#a4a0137053e591fbb79d9057dd7d2283d" title="Default constructor.">User::User</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) :
-<a name="l00082"></a>00082         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>()
-<a name="l00083"></a>00083 {
-<a name="l00084"></a>00084         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
-<a name="l00085"></a>00085 }
+<a name="l00080"></a>00080         <span class="comment">// Filling the user account</span>
+<a name="l00081"></a>00081         user.<a class="code" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b" title="Filling serializable fields with thecorresponding property maps.">syncMembers</a>();
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083         <span class="keywordflow">return</span> in;
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="comment">// Affectation operator</span>
-<a name="l00088"></a><a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557">00088</a> <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; <a class="code" href="class_user.html#ac149cc2510476b4b075fb75a7c265557" title="Affectation.">User::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00089"></a>00089         <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">recopie</a>(user);
-<a name="l00090"></a>00090         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00091"></a>00091 }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 <span class="comment">// Serialization declaration</span>
-<a name="l00094"></a><a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c">00094</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c" title="Serialization declaration.">User::initSystem</a>() {
-<a name="l00095"></a>00095         qRegisterMetaTypeStreamOperators&lt;User&gt;(<span class="stringliteral">&quot;User&quot;</span>);
-<a name="l00096"></a>00096         qMetaTypeId&lt;User&gt;();
-<a name="l00097"></a>00097 }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="comment">// Copy of a User</span>
-<a name="l00100"></a><a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a121965d8a86a0cbfe685c40991af6696" title="Copy of a User.">User::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00101"></a>00101         <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a> = user.<a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>;
-<a name="l00102"></a>00102         <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a> = user.<a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>;
-<a name="l00103"></a>00103         <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a> = user.<a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
-<a name="l00104"></a>00104         <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a> = user.<a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>;
-<a name="l00105"></a>00105         <a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a> = user.<a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a>;
-<a name="l00106"></a>00106         <a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a> = user.<a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a>;
-<a name="l00107"></a>00107         <a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a> = user.<a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a>;
-<a name="l00108"></a>00108         <a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a> = user.<a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a>;
-<a name="l00109"></a>00109         <a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a> = user.<a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a>;
-<a name="l00110"></a>00110         <a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a> = user.<a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a>;
-<a name="l00111"></a>00111         <a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a> = user.<a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a>;
-<a name="l00112"></a>00112         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = user.<a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
-<a name="l00113"></a>00113         <a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a> = user.<a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a>;
-<a name="l00114"></a>00114         <a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a> = user.<a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a>;
-<a name="l00115"></a>00115         <a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a> = user.<a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a>;
-<a name="l00116"></a>00116         <a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a> = user.<a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a>;
-<a name="l00117"></a>00117         <a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a> = user.<a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a>;
-<a name="l00118"></a>00118         <a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a> = user.<a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a>;
-<a name="l00119"></a>00119         <a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a> = user.<a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a>;
-<a name="l00120"></a>00120         <a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a> = user.<a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a>;
-<a name="l00121"></a>00121         <a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a> = user.<a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a>;
-<a name="l00122"></a>00122         <a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a> = user.<a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a>;
-<a name="l00123"></a>00123         <a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a> = user.<a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a>;
-<a name="l00124"></a>00124         <a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a> = user.<a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a>;
-<a name="l00125"></a>00125         <a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a> = user.<a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a>;
-<a name="l00126"></a>00126         <a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a> = user.<a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a>;
-<a name="l00127"></a>00127         <a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a> = user.<a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a>;
-<a name="l00128"></a>00128         <a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a> = user.<a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a>;
-<a name="l00129"></a>00129         <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a> = user.<a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>;
-<a name="l00130"></a>00130         <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a> = user.<a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>;
-<a name="l00131"></a>00131         <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a> = user.<a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>;
-<a name="l00132"></a>00132         <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a> = user.<a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
-<a name="l00133"></a>00133         <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a> = user.<a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>;
-<a name="l00134"></a>00134         <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a> = user.<a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>;
-<a name="l00135"></a>00135         <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a> = user.<a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>;
-<a name="l00136"></a>00136         <a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a> = user.<a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a>;
-<a name="l00137"></a>00137         <a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a> = user.<a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a>;
-<a name="l00138"></a>00138         <a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a> = user.<a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a>;
-<a name="l00139"></a>00139         <a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c" title="Updating all the properties.">updateAllProperties</a>();
-<a name="l00140"></a>00140 }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142 <span class="comment">// Friends serialization operators</span>
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00145"></a><a class="code" href="user_8hpp.html#a3e6ed0ba71014677473d8e6a0df745d6">00145</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00146"></a>00146         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, user);
-<a name="l00147"></a>00147 }
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00150"></a><a class="code" href="user_8hpp.html#aecf5cd8b5440b1c3bec9f631ad22b878">00150</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00151"></a>00151         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, user);
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153         <span class="comment">// Filling the user account</span>
-<a name="l00154"></a>00154         user.<a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156         <span class="keywordflow">return</span> in;
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 
-<a name="l00161"></a>00161 <span class="comment">// Properties management //</span>
-<a name="l00163"></a>00163 <span class="comment"></span>
-<a name="l00164"></a>00164 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
-<a name="l00165"></a><a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be">00165</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3838a20d812f92861e4144d2c947e4be" title="Filling serializable fields with thecorresponding property maps.">User::fillWithPropertiesMaps</a>() {
-<a name="l00166"></a>00166         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_serializable.html#af22da764be6a4ce24af15bddc7227d58" title="Filling a ReynTweetsSerializable object with the informations contained in the map...">fillWithMap</a>(<a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>);
-<a name="l00167"></a>00167 }
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169 <span class="comment">// Updating all the properties</span>
-<a name="l00170"></a><a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c">00170</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a999d5248427a109a4121d60d7f5a6a0c" title="Updating all the properties.">User::updateAllProperties</a>() {
-<a name="l00171"></a>00171         <a class="code" href="class_user.html#a32203b27d16ae1013246a6a17fc57b21" title="Updating the property contributors_enabled.">updateContributorsEnabled</a>();
-<a name="l00172"></a>00172         <a class="code" href="class_user.html#a9b8f7a0c948ce55077941be47948ab25" title="Updating the property created_at.">updateCreatedAt</a>();
-<a name="l00173"></a>00173         <a class="code" href="class_user.html#af0386919960cdbba238dd04ac41a2ada" title="Updating the property description.">updateDescription</a>();
-<a name="l00174"></a>00174         <a class="code" href="class_user.html#a6fc60680e063fa95f5107cb40b1f0fb3" title="Updating the property default_profile_image.">updateDefaultProfileImage</a>();
-<a name="l00175"></a>00175         <a class="code" href="class_user.html#a404bc20460370d64827848137f8fe5df" title="Updating the property default_profile.">updateDefaultProfile</a>();
-<a name="l00176"></a>00176         <a class="code" href="class_user.html#aa6f5c2537769e4e1f5baf1756cb1cf76" title="Updating the property followers_count.">updateFollowersCount</a>();
-<a name="l00177"></a>00177         <a class="code" href="class_user.html#af9e7ce6818f31fc088c2f2b9e7ef9a6d" title="Updating the property friends_count.">updateFriendsCount</a>();
-<a name="l00178"></a>00178         <a class="code" href="class_user.html#ab26d685c13842cde39836592019f82af" title="Updating the property follow_request_sent.">updateFollowRequestSent</a>();
-<a name="l00179"></a>00179         <a class="code" href="class_user.html#acab4af3846198e13459bd929c2621e27" title="Updating the property favourites_count.">updateFavouritesCount</a>();
-<a name="l00180"></a>00180         <a class="code" href="class_user.html#a0bab68aff4d75047a1a8d704451c4e08" title="Updating the property geo_enabled.">updateGeoEnabled</a>();
-<a name="l00181"></a>00181         <a class="code" href="class_user.html#ab13e536b026c262f34c569ed8eedacbb" title="Updating the property id_str.">updateIDstr</a>();
-<a name="l00182"></a>00182         <a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359" title="Updating the property id.">updateID</a>();
-<a name="l00183"></a>00183         <a class="code" href="class_user.html#a04d67a4e1b8a64fae12dec4d9362e3e9" title="Updating the property lang.">updateLang</a>();
-<a name="l00184"></a>00184         <a class="code" href="class_user.html#aaf7efabd8db348bf942900141034df7f" title="Updating the property listed_count.">updateListedCount</a>();
-<a name="l00185"></a>00185         <a class="code" href="class_user.html#a688dbd486fb06df8b9c7613518aa1996" title="Updating the property location.">updateLocation</a>();
-<a name="l00186"></a>00186         <a class="code" href="class_user.html#a242ae71ac18e45624f80c8dddfa71339" title="Updating the property name.">updateName</a>();
-<a name="l00187"></a>00187         <a class="code" href="class_user.html#af594ff874f2da1f57fcb177015e32823" title="Updating the property notifications.">updateNotifications</a>();
-<a name="l00188"></a>00188         <a class="code" href="class_user.html#aba5117b1b456f3868df51013b736b2d4" title="Updating the property profile_background_image_url.">updateProfileBackgroundImageURL</a>();
-<a name="l00189"></a>00189         <a class="code" href="class_user.html#a45e37bc4938e7ef053e9b7cf0e4df2e0" title="Updating the property profile_link_color.">updateProfileLinkColor</a>();
-<a name="l00190"></a>00190         <a class="code" href="class_user.html#ab74ea628d0251e2504e66538e5015d60" title="Updating the property profile_background_color.">updateProfileBackgroundColor</a>();
-<a name="l00191"></a>00191         <a class="code" href="class_user.html#ac599aa1fd7d440089d8d5d352450c68e" title="Updating the property profile_image_url.">updateProfileImageURL</a>();
-<a name="l00192"></a>00192         <a class="code" href="class_user.html#a3e24d1f29c5dea0053dc6ed8227a80dc" title="Updating the property profile_background_tile.">updateProfileBackgroundTile</a>();
-<a name="l00193"></a>00193         <a class="code" href="class_user.html#a8286170b66f0670d245da7f0b2bd65c7" title="Updating the property profile_sidebar_fill_color.">updateProfileSidebarFillColor</a>();
-<a name="l00194"></a>00194         <a class="code" href="class_user.html#a4c0195fa5d2676b4a50c64b44d3d741d" title="Updating the property profile_sidebar_border_color.">updateProfileSidebarBorderColor</a>();
-<a name="l00195"></a>00195         <a class="code" href="class_user.html#a7469bb10470e6b5e167c88cbb24c2ebb" title="Updating the property profile_background_image_url_https.">updateProfileBackgroundImageURLhttps</a>();
-<a name="l00196"></a>00196         <a class="code" href="class_user.html#a265b1ba60d6da22e7efc1dcc1356b7af" title="Updating the property profile_use_background_image.">updateProfileUseBackgroundImage</a>();
-<a name="l00197"></a>00197         <a class="code" href="class_user.html#a95d37b8d52bfc01f66aa499e4448ea37" title="Updating the property profile_image_url_https.">updateProfileImageURLhttps</a>();
-<a name="l00198"></a>00198         <a class="code" href="class_user.html#a9abbff2fbbcf2b6d2e6ea00cc9703ad3" title="Updating the property profile_text_color.">updateProfileTextColor</a>();
-<a name="l00199"></a>00199         <a class="code" href="class_user.html#a942fa51f4cfe7795f25df67de9d29db7" title="Updating the property protected.">updateProtected</a>();
-<a name="l00200"></a>00200         <a class="code" href="class_user.html#a9af88f882beb0c4e9625845b0faf3f6e" title="Updating the property statuses_count.">updateStatusesCount</a>();
-<a name="l00201"></a>00201         <a class="code" href="class_user.html#a4b88e86e2302218e21bf952e218e63f8" title="Updating the property screen_name.">updateScreenName</a>();
-<a name="l00202"></a>00202         <a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f" title="Updating the property status.">updateStatus</a>();
-<a name="l00203"></a>00203         <a class="code" href="class_user.html#a0fce05b770ca3d5d2b03ada4ee1797da" title="Updating the property show_all_inline_media.">updateShowAllInlineMedia</a>();
-<a name="l00204"></a>00204         <a class="code" href="class_user.html#aa98c9d152aa63049e8058fb65ed5a9ea" title="Updating the property is_translator.">updateTranslator</a>();
-<a name="l00205"></a>00205         <a class="code" href="class_user.html#a320e2c7c7f27919b8dde7db5722cacae" title="Updating the property time_zone.">updateTimeZone</a>();
-<a name="l00206"></a>00206         <a class="code" href="class_user.html#aca2e60c5aeee02bfee39257fb4f41fe2" title="Updating the property url.">updateURL</a>();
-<a name="l00207"></a>00207         <a class="code" href="class_user.html#a6d9b232cf9830408f46fbc367a147694" title="Updating the property utc_offset.">updateUTCoffset</a>();
-<a name="l00208"></a>00208         <a class="code" href="class_user.html#a34d8260aad3ca4d262fe855c783d2c5f" title="Updating the property verified.">updateVerified</a>();
-<a name="l00209"></a>00209 }
-<a name="l00210"></a>00210 
-<a name="l00211"></a>00211 <span class="comment">// Updating the property contributors_enabled</span>
-<a name="l00212"></a><a class="code" href="class_user.html#a32203b27d16ae1013246a6a17fc57b21">00212</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a32203b27d16ae1013246a6a17fc57b21" title="Updating the property contributors_enabled.">User::updateContributorsEnabled</a>() {
-<a name="l00213"></a>00213         setProperty(<span class="stringliteral">&quot;contributors_enabled&quot;</span>, QVariant(<a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>));
-<a name="l00214"></a>00214 }
-<a name="l00215"></a>00215 
-<a name="l00216"></a>00216 <span class="comment">// Updating the property lang</span>
-<a name="l00217"></a><a class="code" href="class_user.html#a04d67a4e1b8a64fae12dec4d9362e3e9">00217</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a04d67a4e1b8a64fae12dec4d9362e3e9" title="Updating the property lang.">User::updateLang</a>() {
-<a name="l00218"></a>00218         setProperty(<span class="stringliteral">&quot;lang&quot;</span>, QVariant(<a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>));
-<a name="l00219"></a>00219 }
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221 <span class="comment">// Updating the property profile_background_image_url</span>
-<a name="l00222"></a><a class="code" href="class_user.html#aba5117b1b456f3868df51013b736b2d4">00222</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aba5117b1b456f3868df51013b736b2d4" title="Updating the property profile_background_image_url.">User::updateProfileBackgroundImageURL</a>() {
-<a name="l00223"></a>00223         setProperty(<span class="stringliteral">&quot;profile_background_image_url&quot;</span>, QVariant(<a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a>));
-<a name="l00224"></a>00224 }
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226 <span class="comment">// Updating the property protected</span>
-<a name="l00227"></a><a class="code" href="class_user.html#a942fa51f4cfe7795f25df67de9d29db7">00227</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a942fa51f4cfe7795f25df67de9d29db7" title="Updating the property protected.">User::updateProtected</a>() {
-<a name="l00228"></a>00228         setProperty(<span class="stringliteral">&quot;protected&quot;</span>, QVariant(<a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>));
-<a name="l00229"></a>00229 }
-<a name="l00230"></a>00230 
-<a name="l00231"></a>00231 <span class="comment">// Updating the property profile_link_color</span>
-<a name="l00232"></a><a class="code" href="class_user.html#a45e37bc4938e7ef053e9b7cf0e4df2e0">00232</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a45e37bc4938e7ef053e9b7cf0e4df2e0" title="Updating the property profile_link_color.">User::updateProfileLinkColor</a>() {
-<a name="l00233"></a>00233         setProperty(<span class="stringliteral">&quot;profile_link_color&quot;</span>, QVariant(<a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a>));
-<a name="l00234"></a>00234 }
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236 <span class="comment">// Updating the property url</span>
-<a name="l00237"></a><a class="code" href="class_user.html#aca2e60c5aeee02bfee39257fb4f41fe2">00237</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aca2e60c5aeee02bfee39257fb4f41fe2" title="Updating the property url.">User::updateURL</a>() {
-<a name="l00238"></a>00238         setProperty(<span class="stringliteral">&quot;url&quot;</span>, QVariant(<a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a>));
-<a name="l00239"></a>00239 }
-<a name="l00240"></a>00240 
-<a name="l00241"></a>00241 <span class="comment">// Updating the property name</span>
-<a name="l00242"></a><a class="code" href="class_user.html#a242ae71ac18e45624f80c8dddfa71339">00242</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a242ae71ac18e45624f80c8dddfa71339" title="Updating the property name.">User::updateName</a>() {
-<a name="l00243"></a>00243         setProperty(<span class="stringliteral">&quot;name&quot;</span>, QVariant(<a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>));
-<a name="l00244"></a>00244 }
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246 <span class="comment">// Updating the property listed_count</span>
-<a name="l00247"></a><a class="code" href="class_user.html#aaf7efabd8db348bf942900141034df7f">00247</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aaf7efabd8db348bf942900141034df7f" title="Updating the property listed_count.">User::updateListedCount</a>() {
-<a name="l00248"></a>00248         setProperty(<span class="stringliteral">&quot;listed_count&quot;</span>, QVariant(<a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a>));
-<a name="l00249"></a>00249 }
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251 <span class="comment">// Updating the property utc_offset</span>
-<a name="l00252"></a><a class="code" href="class_user.html#a6d9b232cf9830408f46fbc367a147694">00252</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6d9b232cf9830408f46fbc367a147694" title="Updating the property utc_offset.">User::updateUTCoffset</a>() {
-<a name="l00253"></a>00253         setProperty(<span class="stringliteral">&quot;utc_offset&quot;</span>, QVariant(<a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a>));
-<a name="l00254"></a>00254 }
-<a name="l00255"></a>00255 
-<a name="l00256"></a>00256 <span class="comment">// Updating the property profile_background_color</span>
-<a name="l00257"></a><a class="code" href="class_user.html#ab74ea628d0251e2504e66538e5015d60">00257</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab74ea628d0251e2504e66538e5015d60" title="Updating the property profile_background_color.">User::updateProfileBackgroundColor</a>() {
-<a name="l00258"></a>00258         setProperty(<span class="stringliteral">&quot;profile_background_color&quot;</span>, QVariant(<a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a>));
-<a name="l00259"></a>00259 }
-<a name="l00260"></a>00260 
-<a name="l00261"></a>00261 <span class="comment">// Updating the property followers_count</span>
-<a name="l00262"></a><a class="code" href="class_user.html#aa6f5c2537769e4e1f5baf1756cb1cf76">00262</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa6f5c2537769e4e1f5baf1756cb1cf76" title="Updating the property followers_count.">User::updateFollowersCount</a>() {
-<a name="l00263"></a>00263         setProperty(<span class="stringliteral">&quot;followers_count&quot;</span>, QVariant(<a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a>));
-<a name="l00264"></a>00264 }
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266 <span class="comment">// Updating the property profile_image_url</span>
-<a name="l00267"></a><a class="code" href="class_user.html#ac599aa1fd7d440089d8d5d352450c68e">00267</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac599aa1fd7d440089d8d5d352450c68e" title="Updating the property profile_image_url.">User::updateProfileImageURL</a>() {
-<a name="l00268"></a>00268         setProperty(<span class="stringliteral">&quot;profile_image_url&quot;</span>, QVariant(<a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a>));
-<a name="l00269"></a>00269 }
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271 <span class="comment">// Updating the property description</span>
-<a name="l00272"></a><a class="code" href="class_user.html#af0386919960cdbba238dd04ac41a2ada">00272</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af0386919960cdbba238dd04ac41a2ada" title="Updating the property description.">User::updateDescription</a>() {
-<a name="l00273"></a>00273         setProperty(<span class="stringliteral">&quot;description&quot;</span>, QVariant(<a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a>));
-<a name="l00274"></a>00274 }
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276 <span class="comment">// Updating the property profile_background_tile</span>
-<a name="l00277"></a><a class="code" href="class_user.html#a3e24d1f29c5dea0053dc6ed8227a80dc">00277</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3e24d1f29c5dea0053dc6ed8227a80dc" title="Updating the property profile_background_tile.">User::updateProfileBackgroundTile</a>() {
-<a name="l00278"></a>00278         setProperty(<span class="stringliteral">&quot;profile_background_tile&quot;</span>, QVariant(<a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a>));
-<a name="l00279"></a>00279 }
-<a name="l00280"></a>00280 
-<a name="l00281"></a>00281 <span class="comment">// Updating the property statuses_count</span>
-<a name="l00282"></a><a class="code" href="class_user.html#a9af88f882beb0c4e9625845b0faf3f6e">00282</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9af88f882beb0c4e9625845b0faf3f6e" title="Updating the property statuses_count.">User::updateStatusesCount</a>() {
-<a name="l00283"></a>00283         setProperty(<span class="stringliteral">&quot;statuses_count&quot;</span>, QVariant(<a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a>));
-<a name="l00284"></a>00284 }
-<a name="l00285"></a>00285 
-<a name="l00286"></a>00286 <span class="comment">// Updating the property created_at</span>
-<a name="l00287"></a><a class="code" href="class_user.html#a9b8f7a0c948ce55077941be47948ab25">00287</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9b8f7a0c948ce55077941be47948ab25" title="Updating the property created_at.">User::updateCreatedAt</a>() {
-<a name="l00288"></a>00288         setProperty(<span class="stringliteral">&quot;created_at&quot;</span>, QVariant(<a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>));
-<a name="l00289"></a>00289 }
-<a name="l00290"></a>00290 
-<a name="l00291"></a>00291 <span class="comment">// Updating the property profile_sidebar_fill_color</span>
-<a name="l00292"></a><a class="code" href="class_user.html#a8286170b66f0670d245da7f0b2bd65c7">00292</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a8286170b66f0670d245da7f0b2bd65c7" title="Updating the property profile_sidebar_fill_color.">User::updateProfileSidebarFillColor</a>() {
-<a name="l00293"></a>00293         setProperty(<span class="stringliteral">&quot;profile_sidebar_fill_color&quot;</span>, QVariant(<a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a>));
-<a name="l00294"></a>00294 }
-<a name="l00295"></a>00295 
-<a name="l00296"></a>00296 <span class="comment">// Updating the property screen_name</span>
-<a name="l00297"></a><a class="code" href="class_user.html#a4b88e86e2302218e21bf952e218e63f8">00297</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4b88e86e2302218e21bf952e218e63f8" title="Updating the property screen_name.">User::updateScreenName</a>() {
-<a name="l00298"></a>00298         setProperty(<span class="stringliteral">&quot;screen_name&quot;</span>, QVariant(<a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>));
-<a name="l00299"></a>00299 }
-<a name="l00300"></a>00300 
-<a name="l00301"></a>00301 <span class="comment">// Reading the &quot;status&quot; property</span>
-<a name="l00302"></a><a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5">00302</a> QVariantMap <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">User::getStatus</a>() {
-<a name="l00303"></a>00303         <span class="keywordflow">return</span> <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>;
-<a name="l00304"></a>00304 }
-<a name="l00305"></a>00305 
-<a name="l00306"></a>00306 <span class="comment">// Writing the status property</span>
-<a name="l00307"></a><a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331">00307</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(QVariantMap statusMap) {
-<a name="l00308"></a>00308         <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a> = statusMap;
-<a name="l00309"></a>00309 }
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311 <span class="comment">// Updating the property status</span>
-<a name="l00312"></a><a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f">00312</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f" title="Updating the property status.">User::updateStatus</a>() {
-<a name="l00313"></a>00313         setProperty(<span class="stringliteral">&quot;status&quot;</span>, QVariant(<a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_serializable.html#a90fa140d46ade35acab8016d5837cc35" title="Converting the object into a QVariantMap.">toMap</a>()));
-<a name="l00314"></a>00314 }
-<a name="l00315"></a>00315 
-<a name="l00316"></a>00316 <span class="comment">// Updating the property geo_enabled</span>
-<a name="l00317"></a><a class="code" href="class_user.html#a0bab68aff4d75047a1a8d704451c4e08">00317</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0bab68aff4d75047a1a8d704451c4e08" title="Updating the property geo_enabled.">User::updateGeoEnabled</a>() {
-<a name="l00318"></a>00318         setProperty(<span class="stringliteral">&quot;geo_enabled&quot;</span>, QVariant(<a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>));
-<a name="l00319"></a>00319 }
-<a name="l00320"></a>00320 
-<a name="l00321"></a>00321 <span class="comment">// Updating the property default_profile_image</span>
-<a name="l00322"></a><a class="code" href="class_user.html#a6fc60680e063fa95f5107cb40b1f0fb3">00322</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6fc60680e063fa95f5107cb40b1f0fb3" title="Updating the property default_profile_image.">User::updateDefaultProfileImage</a>() {
-<a name="l00323"></a>00323         setProperty(<span class="stringliteral">&quot;default_profile_image&quot;</span>, QVariant(<a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a>));
-<a name="l00324"></a>00324 }
-<a name="l00325"></a>00325 
-<a name="l00326"></a>00326 <span class="comment">// Updating the property friends_count</span>
-<a name="l00327"></a><a class="code" href="class_user.html#af9e7ce6818f31fc088c2f2b9e7ef9a6d">00327</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af9e7ce6818f31fc088c2f2b9e7ef9a6d" title="Updating the property friends_count.">User::updateFriendsCount</a>() {
-<a name="l00328"></a>00328         setProperty(<span class="stringliteral">&quot;friends_count&quot;</span>, QVariant(<a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a>));
-<a name="l00329"></a>00329 }
-<a name="l00330"></a>00330 
-<a name="l00331"></a>00331 <span class="comment">// Updating the property profile_sidebar_border_color</span>
-<a name="l00332"></a><a class="code" href="class_user.html#a4c0195fa5d2676b4a50c64b44d3d741d">00332</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a4c0195fa5d2676b4a50c64b44d3d741d" title="Updating the property profile_sidebar_border_color.">User::updateProfileSidebarBorderColor</a>() {
-<a name="l00333"></a>00333         setProperty(<span class="stringliteral">&quot;profile_sidebar_border_color&quot;</span>, QVariant(<a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a>));
-<a name="l00334"></a>00334 }
-<a name="l00335"></a>00335 
-<a name="l00336"></a>00336 <span class="comment">// Updating the property id_str</span>
-<a name="l00337"></a><a class="code" href="class_user.html#ab13e536b026c262f34c569ed8eedacbb">00337</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab13e536b026c262f34c569ed8eedacbb" title="Updating the property id_str.">User::updateIDstr</a>() {
-<a name="l00338"></a>00338         setProperty(<span class="stringliteral">&quot;id_str&quot;</span>, QVariant(<a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>));
-<a name="l00339"></a>00339 }
-<a name="l00340"></a>00340 
-<a name="l00341"></a>00341 <span class="comment">// Updating the property show_all_inline_media</span>
-<a name="l00342"></a><a class="code" href="class_user.html#a0fce05b770ca3d5d2b03ada4ee1797da">00342</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0fce05b770ca3d5d2b03ada4ee1797da" title="Updating the property show_all_inline_media.">User::updateShowAllInlineMedia</a>() {
-<a name="l00343"></a>00343         setProperty(<span class="stringliteral">&quot;show_all_inline_media&quot;</span>, QVariant(<a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a>));
-<a name="l00344"></a>00344 }
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346 <span class="comment">// Updating the property follow_request_sent</span>
-<a name="l00347"></a><a class="code" href="class_user.html#ab26d685c13842cde39836592019f82af">00347</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab26d685c13842cde39836592019f82af" title="Updating the property follow_request_sent.">User::updateFollowRequestSent</a>() {
-<a name="l00348"></a>00348         setProperty(<span class="stringliteral">&quot;follow_request_sent&quot;</span>, QVariant(<a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a>));
-<a name="l00349"></a>00349 }
-<a name="l00350"></a>00350 
-<a name="l00351"></a>00351 <span class="comment">// Updating the property profile_background_image_url_https</span>
-<a name="l00352"></a><a class="code" href="class_user.html#a7469bb10470e6b5e167c88cbb24c2ebb">00352</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7469bb10470e6b5e167c88cbb24c2ebb" title="Updating the property profile_background_image_url_https.">User::updateProfileBackgroundImageURLhttps</a>() {
-<a name="l00353"></a>00353         setProperty(<span class="stringliteral">&quot;profile_background_image_url_https&quot;</span>, QVariant(<a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a>));
-<a name="l00354"></a>00354 }
-<a name="l00355"></a>00355 
-<a name="l00356"></a>00356 <span class="comment">// Updating the property is_translator</span>
-<a name="l00357"></a><a class="code" href="class_user.html#aa98c9d152aa63049e8058fb65ed5a9ea">00357</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aa98c9d152aa63049e8058fb65ed5a9ea" title="Updating the property is_translator.">User::updateTranslator</a>() {
-<a name="l00358"></a>00358         setProperty(<span class="stringliteral">&quot;is_translator&quot;</span>, QVariant(<a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>));
-<a name="l00359"></a>00359 }
-<a name="l00360"></a>00360 
-<a name="l00361"></a>00361 <span class="comment">// Updating the property default_profile</span>
-<a name="l00362"></a><a class="code" href="class_user.html#a404bc20460370d64827848137f8fe5df">00362</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a404bc20460370d64827848137f8fe5df" title="Updating the property default_profile.">User::updateDefaultProfile</a>() {
-<a name="l00363"></a>00363         setProperty(<span class="stringliteral">&quot;default_profile&quot;</span>, QVariant(<a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a>));
-<a name="l00364"></a>00364 }
-<a name="l00365"></a>00365 
-<a name="l00366"></a>00366 <span class="comment">// Updating the property notifications</span>
-<a name="l00367"></a><a class="code" href="class_user.html#af594ff874f2da1f57fcb177015e32823">00367</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af594ff874f2da1f57fcb177015e32823" title="Updating the property notifications.">User::updateNotifications</a>() {
-<a name="l00368"></a>00368         setProperty(<span class="stringliteral">&quot;notifications&quot;</span>, QVariant(<a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a>));
-<a name="l00369"></a>00369 }
-<a name="l00370"></a>00370 
-<a name="l00371"></a>00371 <span class="comment">// Updating the property profile_use_background_image</span>
-<a name="l00372"></a><a class="code" href="class_user.html#a265b1ba60d6da22e7efc1dcc1356b7af">00372</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a265b1ba60d6da22e7efc1dcc1356b7af" title="Updating the property profile_use_background_image.">User::updateProfileUseBackgroundImage</a>() {
-<a name="l00373"></a>00373         setProperty(<span class="stringliteral">&quot;profile_use_background_image&quot;</span>, QVariant(<a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a>));
-<a name="l00374"></a>00374 }
-<a name="l00375"></a>00375 
-<a name="l00376"></a>00376 <span class="comment">// Updating the property profile_image_url_https</span>
-<a name="l00377"></a><a class="code" href="class_user.html#a95d37b8d52bfc01f66aa499e4448ea37">00377</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a95d37b8d52bfc01f66aa499e4448ea37" title="Updating the property profile_image_url_https.">User::updateProfileImageURLhttps</a>() {
-<a name="l00378"></a>00378         setProperty(<span class="stringliteral">&quot;profile_image_url_https&quot;</span>, QVariant(<a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a>));
-<a name="l00379"></a>00379 }
-<a name="l00380"></a>00380 
-<a name="l00381"></a>00381 <span class="comment">// Updating the property id</span>
-<a name="l00382"></a><a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359">00382</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ad886b76c4366001a3695fbbe41d14359" title="Updating the property id.">User::updateID</a>() {
-<a name="l00383"></a>00383         setProperty(<span class="stringliteral">&quot;id&quot;</span>, QVariant(<a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>));
-<a name="l00384"></a>00384 }
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386 <span class="comment">// Updating the property verified</span>
-<a name="l00387"></a><a class="code" href="class_user.html#a34d8260aad3ca4d262fe855c783d2c5f">00387</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a34d8260aad3ca4d262fe855c783d2c5f" title="Updating the property verified.">User::updateVerified</a>() {
-<a name="l00388"></a>00388         setProperty(<span class="stringliteral">&quot;verified&quot;</span>, QVariant(<a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>));
-<a name="l00389"></a>00389 }
-<a name="l00390"></a>00390 
-<a name="l00391"></a>00391 <span class="comment">// Updating the property time_zone</span>
-<a name="l00392"></a><a class="code" href="class_user.html#a320e2c7c7f27919b8dde7db5722cacae">00392</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a320e2c7c7f27919b8dde7db5722cacae" title="Updating the property time_zone.">User::updateTimeZone</a>() {
-<a name="l00393"></a>00393         setProperty(<span class="stringliteral">&quot;time_zone&quot;</span>, QVariant(<a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a>));
-<a name="l00394"></a>00394 }
-<a name="l00395"></a>00395 
-<a name="l00396"></a>00396 <span class="comment">// Updating the property favourites_count</span>
-<a name="l00397"></a><a class="code" href="class_user.html#acab4af3846198e13459bd929c2621e27">00397</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#acab4af3846198e13459bd929c2621e27" title="Updating the property favourites_count.">User::updateFavouritesCount</a>() {
-<a name="l00398"></a>00398         setProperty(<span class="stringliteral">&quot;favourites_count&quot;</span>, QVariant(<a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a>));
-<a name="l00399"></a>00399 }
-<a name="l00400"></a>00400 
-<a name="l00401"></a>00401 <span class="comment">// Updating the property profile_text_color</span>
-<a name="l00402"></a><a class="code" href="class_user.html#a9abbff2fbbcf2b6d2e6ea00cc9703ad3">00402</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a9abbff2fbbcf2b6d2e6ea00cc9703ad3" title="Updating the property profile_text_color.">User::updateProfileTextColor</a>() {
-<a name="l00403"></a>00403         setProperty(<span class="stringliteral">&quot;profile_text_color&quot;</span>, QVariant(<a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a>));
-<a name="l00404"></a>00404 }
-<a name="l00405"></a>00405 
-<a name="l00406"></a>00406 <span class="comment">// Updating the property location</span>
-<a name="l00407"></a><a class="code" href="class_user.html#a688dbd486fb06df8b9c7613518aa1996">00407</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a688dbd486fb06df8b9c7613518aa1996" title="Updating the property location.">User::updateLocation</a>() {
-<a name="l00408"></a>00408         setProperty(<span class="stringliteral">&quot;location&quot;</span>, QVariant(<a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a>));
-<a name="l00409"></a>00409 }
-<a name="l00410"></a>00410 
-<a name="l00411"></a>00411 
-<a name="l00413"></a>00413 <span class="comment">// Getters and setters //</span>
-<a name="l00415"></a>00415 <span class="comment"></span>
-<a name="l00416"></a>00416 <span class="comment">// Getter on contributorsEnabled</span>
-<a name="l00417"></a><a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa">00417</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a6c3139eed87f7546c5483f942f7db9aa" title="Getter on contributorsEnabled.">User::isContributorsEnabled</a>() {
-<a name="l00418"></a>00418         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a>;
-<a name="l00419"></a>00419 }
-<a name="l00420"></a>00420 
-<a name="l00421"></a>00421 <span class="comment">// Setter on contributorsEnabled</span>
-<a name="l00422"></a><a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4">00422</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17d3c5679cccec9a6b1fda3b2cf0d0f4" title="Setter on contributorsEnabled.">User::setContributorsEnabled</a>(<span class="keywordtype">bool</span> newContributorsEnabled) {
-<a name="l00423"></a>00423         <a class="code" href="class_user.html#a001ea24d9e856181e2d6fef8d58cea99" title="Is the contributors feature enable for the user ?">contributorsEnabled</a> = newContributorsEnabled;
-<a name="l00424"></a>00424 }
-<a name="l00425"></a>00425 
-<a name="l00426"></a>00426 <span class="comment">// Getter on lang</span>
-<a name="l00427"></a><a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8">00427</a> QString <a class="code" href="class_user.html#aebf46b2242e73ce1351173b078c02ee8" title="Getter on lang.">User::getLang</a>() {
-<a name="l00428"></a>00428         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a>;
-<a name="l00429"></a>00429 }
-<a name="l00430"></a>00430 
-<a name="l00431"></a>00431 <span class="comment">// Setter on lang</span>
-<a name="l00432"></a><a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14">00432</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac75369267fe9334a7cf44c2255955e14" title="Setter on lang.">User::setLang</a>(QString newLang) {
-<a name="l00433"></a>00433         <a class="code" href="class_user.html#a2d93af35dc0be227dbf3d2ceb0b4bc71" title="User&amp;#39;s idiom.">language</a> = newLang;
-<a name="l00434"></a>00434 }
-<a name="l00435"></a>00435 
-<a name="l00436"></a>00436 <span class="comment">// Getter on backgroundURL</span>
-<a name="l00437"></a><a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19">00437</a> QString <a class="code" href="class_user.html#a80e9c1f0befff930f63b114d0a157e19" title="Getter on backgroundURL.">User::getProfileBackgroundImageURL</a>() {
-<a name="l00438"></a>00438         <span class="keywordflow">return</span> <a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a>;
-<a name="l00439"></a>00439 }
-<a name="l00440"></a>00440 
-<a name="l00441"></a>00441 <span class="comment">// Setter on backgroundURL</span>
-<a name="l00442"></a><a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef">00442</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a28f8c345568e1ea848b90ed986144cef" title="Setter on backgroundURL.">User::setProfileBackgroundImageURL</a>(QString newBackgroundURL) {
-<a name="l00443"></a>00443         <a class="code" href="class_user.html#adff49946f84fba9f19652a9b1a0eff38" title="URL of the user&amp;#39;s background.">backgroundURL</a> = newBackgroundURL;
-<a name="l00444"></a>00444 }
-<a name="l00445"></a>00445 
-<a name="l00446"></a>00446 <span class="comment">// Getter on protected</span>
-<a name="l00447"></a><a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056">00447</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af0c4f89b139ec6310ef9ae6e4f995056" title="Getter on protected.">User::isProtected</a>() {
-<a name="l00448"></a>00448         <span class="keywordflow">return</span> <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a>;
-<a name="l00449"></a>00449 }
-<a name="l00450"></a>00450 
-<a name="l00451"></a>00451 <span class="comment">// Setter on protected</span>
-<a name="l00452"></a><a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16">00452</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#add8e3e2a0d5487fb19b4963f8a6b0b16" title="Setter on protected.">User::setProtected</a>(<span class="keywordtype">bool</span> newProtected) {
-<a name="l00453"></a>00453         <a class="code" href="class_user.html#ab473bbf8f2609c43cfe9605c20e6a576" title="Boolean indicating if the user protects its account.">protectedAccount</a> = newProtected;
-<a name="l00454"></a>00454 }
-<a name="l00455"></a>00455 
-<a name="l00456"></a>00456 <span class="comment">// Getter on linkColor</span>
-<a name="l00457"></a><a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c">00457</a> QColor <a class="code" href="class_user.html#a3377c13d47c2230613077140d78b863c" title="Getter on linkColor.">User::getProfileLinkColor</a>() {
-<a name="l00458"></a>00458         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a>;
-<a name="l00459"></a>00459 }
-<a name="l00460"></a>00460 
-<a name="l00461"></a>00461 <span class="comment">// Setter on linkColor</span>
-<a name="l00462"></a><a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41">00462</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af5024dc8bf6edca8497a0a124064bc41" title="Setter on linkColor.">User::setProfileLinkColor</a>(QColor newLinkColor) {
-<a name="l00463"></a>00463         <a class="code" href="class_user.html#a2a82e0580a90035d1c37f5ae4b0c85c9" title="Color of links in the Twitter Timeline.">linkColor</a> = newLinkColor;
-<a name="l00464"></a>00464 }
-<a name="l00465"></a>00465 
-<a name="l00466"></a>00466 <span class="comment">// Getter on url</span>
-<a name="l00467"></a><a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223">00467</a> QString <a class="code" href="class_user.html#a140d77dbf78df6079d507a0e61ce1223" title="Getter on url.">User::getURL</a>() {
-<a name="l00468"></a>00468         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a>;
-<a name="l00469"></a>00469 }
-<a name="l00470"></a>00470 
-<a name="l00471"></a>00471 <span class="comment">// Setter on url</span>
-<a name="l00472"></a><a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed">00472</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a223b6be68beef78d4ffec87c24b574ed" title="Setter on url.">User::setURL</a>(QString newURL) {
-<a name="l00473"></a>00473         <a class="code" href="class_user.html#a9967c2ba0a24a37f921fc607367f41bd" title="URL of the user.">userURL</a> = newURL;
-<a name="l00474"></a>00474 }
-<a name="l00475"></a>00475 
-<a name="l00476"></a>00476 <span class="comment">// Getter on name</span>
-<a name="l00477"></a><a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9">00477</a> QString <a class="code" href="class_user.html#a08223b0b137e3fc264d94f2d746a4fc9" title="Getter on name.">User::getName</a>() {
-<a name="l00478"></a>00478         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a>;
-<a name="l00479"></a>00479 }
-<a name="l00480"></a>00480 
-<a name="l00481"></a>00481 <span class="comment">// Setter on name</span>
-<a name="l00482"></a><a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7">00482</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#aea24e3fceca3c2b7ce14a4dd484b00d7" title="Setter on name.">User::setName</a>(QString newName) {
-<a name="l00483"></a>00483         <a class="code" href="class_user.html#a988e934d7cd24db852eaacbb9d6b8e33" title="User&amp;#39;s name.">userName</a> = newName;
-<a name="l00484"></a>00484 }
-<a name="l00485"></a>00485 
-<a name="l00486"></a>00486 <span class="comment">// Getter on listedCount</span>
-<a name="l00487"></a><a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed">00487</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#a777d2f92cd0cc1098a10ffdd5d727bed" title="Getter on listedCount.">User::getListedCount</a>() {
-<a name="l00488"></a>00488         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a>;
-<a name="l00489"></a>00489 }
-<a name="l00490"></a>00490 
-<a name="l00491"></a>00491 <span class="comment">// Setter on listedCount</span>
-<a name="l00492"></a><a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb">00492</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00ac8643bb6b1c0f2a2325375c4e95fb" title="Setter on listedCount.">User::setListedCount</a>(<span class="keywordtype">int</span> newListedCount) {
-<a name="l00493"></a>00493         <a class="code" href="class_user.html#a0baa5f0145686e67e7f6a478f2bd4b7c" title="Number of lists.">listsCount</a> = newListedCount;
-<a name="l00494"></a>00494 }
-<a name="l00495"></a>00495 
-<a name="l00496"></a>00496 <span class="comment">// Getter on timeZoneOffset</span>
-<a name="l00497"></a><a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0">00497</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#a1fa86a477232506b02aa558b1e2b3de0" title="Getter on timeZoneOffset.">User::getUTCoffset</a>() {
-<a name="l00498"></a>00498         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a>;
-<a name="l00499"></a>00499 }
-<a name="l00500"></a>00500 
-<a name="l00501"></a>00501 <span class="comment">// Setter on timeZoneOffset</span>
-<a name="l00502"></a><a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc">00502</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226213290760f83ff234905210f0fadc" title="Setter on timeZoneOffset.">User::setUTCoffset</a>(<span class="keywordtype">int</span> newTimeZoneOffset) {
-<a name="l00503"></a>00503         <a class="code" href="class_user.html#a96dd38d9aba1fa7521e2da9461e20a77" title="Time zone.">timeZoneOffset</a> = newTimeZoneOffset;
-<a name="l00504"></a>00504 }
-<a name="l00505"></a>00505 
-<a name="l00506"></a>00506 <span class="comment">// Getter on backgroundColor</span>
-<a name="l00507"></a><a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52">00507</a> QColor <a class="code" href="class_user.html#ad5cae81e9fde7adb97cda5e972447b52" title="Getter on backgroundColor.">User::getProfileBackgroundColor</a>() {
-<a name="l00508"></a>00508         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a>;
-<a name="l00509"></a>00509 }
-<a name="l00510"></a>00510 
-<a name="l00511"></a>00511 <span class="comment">// Setter on backgroundColor</span>
-<a name="l00512"></a><a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8">00512</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a164286747e4398380e0b57eb6ed9edc8" title="Setter on backgroundColor.">User::setProfileBackgroundColor</a>(QColor newBackgroundColor) {
-<a name="l00513"></a>00513         <a class="code" href="class_user.html#a2405d665be566bb89a04011273e46c43" title="Background color.">backgroundColor</a> = newBackgroundColor;
-<a name="l00514"></a>00514 }
-<a name="l00515"></a>00515 
-<a name="l00516"></a>00516 <span class="comment">// Getter on followersCount</span>
-<a name="l00517"></a><a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa">00517</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#ac7786a9c75ee9af8f329932730111aaa" title="Getter on followersCount.">User::getFollowersCount</a>() {
-<a name="l00518"></a>00518         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a>;
-<a name="l00519"></a>00519 }
-<a name="l00520"></a>00520 
-<a name="l00521"></a>00521 <span class="comment">// Setter on followersCount</span>
-<a name="l00522"></a><a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0">00522</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a748a972b1995c784fd73b8aff96565b0" title="Setter on followersCount.">User::setFollowersCount</a>(<span class="keywordtype">int</span> newFollowersCount) {
-<a name="l00523"></a>00523         <a class="code" href="class_user.html#a25d773071580f6dad9fcceca9a1b60d0" title="Number of followers.">followersCount</a> = newFollowersCount;
-<a name="l00524"></a>00524 }
-<a name="l00525"></a>00525 
-<a name="l00526"></a>00526 <span class="comment">// Getter on avatarURL</span>
-<a name="l00527"></a><a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d">00527</a> QString <a class="code" href="class_user.html#a11b1c83225041023d416c05d097d6a9d" title="Getter on avatarURL.">User::getProfileImageURL</a>() {
-<a name="l00528"></a>00528         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a>;
-<a name="l00529"></a>00529 }
-<a name="l00530"></a>00530 
-<a name="l00531"></a>00531 <span class="comment">// Setter on avatarURL</span>
-<a name="l00532"></a><a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea">00532</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac6b9c3c38f74c5f748c5577bb3ecc0ea" title="Setter on avatarURL.">User::setProfileImageURL</a>(QString newAvatarURL) {
-<a name="l00533"></a>00533         <a class="code" href="class_user.html#a71a5cbd8c221112b7af2c3214bbdc279" title="URL of the user&amp;#39;s avatar.">avatarURL</a> = newAvatarURL;
-<a name="l00534"></a>00534 }
-<a name="l00535"></a>00535 
-<a name="l00536"></a>00536 <span class="comment">// Getter on description</span>
-<a name="l00537"></a><a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e">00537</a> QString <a class="code" href="class_user.html#ab227e213aae64103c18edf4aee737e5e" title="Getter on description.">User::getDescription</a>() {
-<a name="l00538"></a>00538         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a>;
-<a name="l00539"></a>00539 }
-<a name="l00540"></a>00540 
-<a name="l00541"></a>00541 <span class="comment">// Setter on description</span>
-<a name="l00542"></a><a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a">00542</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a226dba4a98df84800b93e9a7543dab2a" title="Setter on description.">User::setDescription</a>(QString newDescription) {
-<a name="l00543"></a>00543         <a class="code" href="class_user.html#a4e053470229c9113efa847f4104ebe0b" title="Description.">userDescription</a> = newDescription;
-<a name="l00544"></a>00544 }
-<a name="l00545"></a>00545 
-<a name="l00546"></a>00546 <span class="comment">// Getter on backgroundTile</span>
-<a name="l00547"></a><a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426">00547</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aefd309ef15ea90e5435d3ed29d125426" title="Getter on backgroundTile.">User::isProfileBackgroundTile</a>() {
-<a name="l00548"></a>00548         <span class="keywordflow">return</span> <a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a>;
-<a name="l00549"></a>00549 }
-<a name="l00550"></a>00550 
-<a name="l00551"></a>00551 <span class="comment">// Setter on backgroundTile</span>
-<a name="l00552"></a><a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04">00552</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af617b006042d24606098e8a75e846f04" title="Setter on backgroundTile.">User::setProfileBackgroundTile</a>(<span class="keywordtype">bool</span> newBackgroundTile) {
-<a name="l00553"></a>00553         <a class="code" href="class_user.html#abf13bf2e0ff037d18e9b1013ed3ad840" title="Is the background repeated as a tile (&amp;quot;mosaïque&amp;quot; in French) ?">backgroundTile</a> = newBackgroundTile;
-<a name="l00554"></a>00554 }
-<a name="l00555"></a>00555 
-<a name="l00556"></a>00556 <span class="comment">// Getter on tweetsCount</span>
-<a name="l00557"></a><a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e">00557</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#aafbf1961e46303dcad8e342d880e625e" title="Getter on tweetsCount.">User::getStatusesCount</a>() {
-<a name="l00558"></a>00558         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a>;
-<a name="l00559"></a>00559 }
-<a name="l00560"></a>00560 
-<a name="l00561"></a>00561 <span class="comment">// Setter on tweetsCount</span>
-<a name="l00562"></a><a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526">00562</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a5b93ddec46bd93655cf34a4a23c65526" title="Setter on tweetsCount.">User::setStatusesCount</a>(<span class="keywordtype">int</span> newTweetsCount) {
-<a name="l00563"></a>00563         <a class="code" href="class_user.html#a30867e8c30e12fa9f75383c6643de8ca" title="Number of tweets.">tweetsCount</a> = newTweetsCount;
-<a name="l00564"></a>00564 }
-<a name="l00565"></a>00565 
-<a name="l00566"></a>00566 <span class="comment">// Getter on createdAt</span>
-<a name="l00567"></a><a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906">00567</a> QDate <a class="code" href="class_user.html#a3f2987f9e2380fee849d465452e27906" title="Getter on createdAt.">User::getCreatedAt</a>() {
-<a name="l00568"></a>00568         <span class="keywordflow">return</span> <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a>;
-<a name="l00569"></a>00569 }
-<a name="l00570"></a>00570 
-<a name="l00571"></a>00571 <span class="comment">// Setter on createdAt</span>
-<a name="l00572"></a><a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da">00572</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3c35f487e077b9c8d4a84b90ebc4d4da" title="Setter on createdAt.">User::setCreatedAt</a>(QDate newDate) {
-<a name="l00573"></a>00573         <a class="code" href="class_user.html#ae671df9acbbfd371a9917e3c19dc0254" title="Date when the account was created.">createdAt</a> = newDate;
-<a name="l00574"></a>00574 }
-<a name="l00575"></a>00575 
-<a name="l00576"></a>00576 <span class="comment">// Getter on sidebarColor</span>
-<a name="l00577"></a><a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904">00577</a> QColor <a class="code" href="class_user.html#ac2c2e8b5ef9e48131380f65c2b58d904" title="Getter on sidebarColor.">User::getProfileSidebarFillColor</a>() {
-<a name="l00578"></a>00578         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a>;
-<a name="l00579"></a>00579 }
-<a name="l00580"></a>00580 
-<a name="l00581"></a>00581 <span class="comment">// Setter on sidebarColor</span>
-<a name="l00582"></a><a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719">00582</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a2ac13518c330f5d406245744864aa719" title="Setter on sidebarColor.">User::setProfileSidebarFillColor</a>(QColor newSidebarColor) {
-<a name="l00583"></a>00583         <a class="code" href="class_user.html#a9ecf44442688cdd32b9e2a281e230de1" title="Color of sidebar panels. For example, these panels are on your right when you watch...">sidebarColor</a> = newSidebarColor;
-<a name="l00584"></a>00584 }
-<a name="l00585"></a>00585 
-<a name="l00586"></a>00586 <span class="comment">// Getter on screenName</span>
-<a name="l00587"></a><a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24">00587</a> QString <a class="code" href="class_user.html#a69a4f1c94dbf50c7512685706eaadb24" title="Getter on screenName.">User::getScreenName</a>() {
-<a name="l00588"></a>00588         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
-<a name="l00589"></a>00589 }
-<a name="l00590"></a>00590 
-<a name="l00591"></a>00591 <span class="comment">// Setter on screenName</span>
-<a name="l00592"></a><a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a">00592</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ac79627faf1392f6af53c9f669b8b456a" title="Setter on screenName.">User::setScreenName</a>(QString newScreenName) {
-<a name="l00593"></a>00593         <a class="code" href="class_user.html#a415bfab16cf83085fa77874839f946b6" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a> = newScreenName;
-<a name="l00594"></a>00594 }
-<a name="l00595"></a>00595 
-<a name="l00596"></a>00596 <span class="comment">// Getter on the last tweet written by the user</span>
-<a name="l00597"></a><a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c">00597</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c" title="Getter on the last tweet written by the user.">User::getLastTweet</a>() {
-<a name="l00598"></a>00598         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
-<a name="l00599"></a>00599 }
-<a name="l00600"></a>00600 
-<a name="l00601"></a>00601 <span class="comment">// Setter on the last tweet written by the user</span>
-<a name="l00602"></a><a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d">00602</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d" title="Setter on the last tweet written by the user.">User::setLastTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet) {
-<a name="l00603"></a>00603         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = newLastTweet;
-<a name="l00604"></a>00604         <a class="code" href="class_user.html#a22e872cf6ec7d04413147dbf54d1a24f" title="Updating the property status.">updateStatus</a>();         <span class="comment">// Updating the map</span>
-<a name="l00605"></a>00605 }
-<a name="l00606"></a>00606 
-<a name="l00607"></a>00607 <span class="comment">// Getter on geoEnabled</span>
-<a name="l00608"></a><a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee">00608</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a39683c3b058561e39bb981cfe6647fee" title="Getter on geoEnabled.">User::isGeoEnabled</a>() {
-<a name="l00609"></a>00609         <span class="keywordflow">return</span> <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a>;
-<a name="l00610"></a>00610 }
-<a name="l00611"></a>00611 
-<a name="l00612"></a>00612 <span class="comment">// Setter on geoEnabled</span>
-<a name="l00613"></a><a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff">00613</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a862fabb8b07883976bb35ed47c8c34ff" title="Setter on geoEnabled.">User::setGeoEnabled</a>(<span class="keywordtype">bool</span> newGeoEnabled) {
-<a name="l00614"></a>00614         <a class="code" href="class_user.html#ad22fbc8124a71c3667dac9dc87ae1354" title="Boolean indicating if the user gives a geolocalisation by default to its tweets.">geotaggingEnabled</a> = newGeoEnabled;
-<a name="l00615"></a>00615 }
-<a name="l00616"></a>00616 
-<a name="l00617"></a>00617 <span class="comment">// Getter on defaultProfileImage</span>
-<a name="l00618"></a><a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d">00618</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#aa73779cd930271e41649f7ad8b94565d" title="Getter on defaultProfileImage.">User::isDefaultProfileImage</a>() {
-<a name="l00619"></a>00619         <span class="keywordflow">return</span> <a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a>;
-<a name="l00620"></a>00620 }
-<a name="l00621"></a>00621 
-<a name="l00622"></a>00622 <span class="comment">// Setter on defaultProfileImage</span>
-<a name="l00623"></a><a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1">00623</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5a3411aa82f3a3c90e9f60010e0b0d1" title="Setter on defaultProfileImage.">User::setDefaultProfileImage</a>(<span class="keywordtype">bool</span> newDefaultProfileImage) {
-<a name="l00624"></a>00624         <a class="code" href="class_user.html#af41b66becdddb40525954590bfd3f426" title="Boolean indicating if the profile image is the default image.">defaultProfileImage</a> = newDefaultProfileImage;
-<a name="l00625"></a>00625 }
-<a name="l00626"></a>00626 
-<a name="l00627"></a>00627 <span class="comment">// Getter on friendsCount</span>
-<a name="l00628"></a><a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771">00628</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#a69cd2c2c13cfa4a2bd7939871fdae771" title="Getter on friendsCount.">User::getFriendsCount</a>() {
-<a name="l00629"></a>00629         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a>;
-<a name="l00630"></a>00630 }
-<a name="l00631"></a>00631 
-<a name="l00632"></a>00632 <span class="comment">// Setter on friendsCount</span>
-<a name="l00633"></a><a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8">00633</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a17699685bc82dceca44b9c27d3540ae8" title="Setter on friendsCount.">User::setFriendsCount</a>(<span class="keywordtype">int</span> newfriendsCount) {
-<a name="l00634"></a>00634         <a class="code" href="class_user.html#a0b6015d1d43f0b5689b4cda5386d4535" title="Number of friends (people followed by the user).">friendsCount</a> = newfriendsCount;
-<a name="l00635"></a>00635 }
-<a name="l00636"></a>00636 
-<a name="l00637"></a>00637 <span class="comment">// Getter on sidebarBorderColor</span>
-<a name="l00638"></a><a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d">00638</a> QColor <a class="code" href="class_user.html#a2ee7687bdf46e93d0a3a3085c3437f1d" title="Getter on sidebarBorderColor.">User::getProfileSidebarBorderColor</a>() {
-<a name="l00639"></a>00639         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a>;
-<a name="l00640"></a>00640 }
-<a name="l00641"></a>00641 
-<a name="l00642"></a>00642 <span class="comment">// Setter on sidebarBorderColor</span>
-<a name="l00643"></a><a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6">00643</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a3318c0b549add90bf803bbfb659999a6" title="Setter on sidebarBorderColor.">User::setProfileSidebarBorderColor</a>(QColor newSidebarBorderColor) {
-<a name="l00644"></a>00644         <a class="code" href="class_user.html#a2369d1eb1a6ee957d3195a35b335e78d" title="Color of the border of sidebar panels.">sidebarBorderColor</a> = newSidebarBorderColor;
-<a name="l00645"></a>00645 }
-<a name="l00646"></a>00646 
-<a name="l00647"></a>00647 <span class="comment">// Getter on IDstr</span>
-<a name="l00648"></a><a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59">00648</a> QString <a class="code" href="class_user.html#a34234f88f4038d77a9d33d4f24ea7c59" title="Getter on IDstr.">User::getIDstr</a>() {
-<a name="l00649"></a>00649         <span class="keywordflow">return</span> <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a>;
-<a name="l00650"></a>00650 }
-<a name="l00651"></a>00651 
-<a name="l00652"></a>00652 <span class="comment">// Setter on IDstr</span>
-<a name="l00653"></a><a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50">00653</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab7408be442e1f05daf0891a495ea0b50" title="Setter on IDstr.">User::setIDstr</a>(QString newID) {
-<a name="l00654"></a>00654         <a class="code" href="class_user.html#aa9f7d9634258de4e47685936ba8612ab" title="User ID (String version).">userIDstr</a> = newID;
-<a name="l00655"></a>00655 }
-<a name="l00656"></a>00656 
-<a name="l00657"></a>00657 <span class="comment">// Getter on showAllInlineMedia</span>
-<a name="l00658"></a><a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171">00658</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#adf463c6ab3f263e266a343cf0de87171" title="Getter on showAllInlineMedia.">User::isShowAllInlineMedia</a>() {
-<a name="l00659"></a>00659         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a>;
-<a name="l00660"></a>00660 }
-<a name="l00661"></a>00661 
-<a name="l00662"></a>00662 <span class="comment">// Setter on showAllInlineMedia</span>
-<a name="l00663"></a><a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f">00663</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a643d8192f367ff9c14fb625da25a8b7f" title="Setter on showAllInlineMedia.">User::setShowAllInlineMedia</a>(<span class="keywordtype">bool</span> newShowAllInlineMedia) {
-<a name="l00664"></a>00664         <a class="code" href="class_user.html#a8b3b33a653a4584dbc9cb5cf29798a9a" title="show_all_inline_media">showAllInlineMedia</a> = newShowAllInlineMedia;
-<a name="l00665"></a>00665 }
-<a name="l00666"></a>00666 
-<a name="l00667"></a>00667 <span class="comment">// Getter on followRequestSent</span>
-<a name="l00668"></a><a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65">00668</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af06f2bd4620fa996a64e13074f46ae65" title="Getter on followRequestSent.">User::isFollowRequestSent</a>() {
-<a name="l00669"></a>00669         <span class="keywordflow">return</span> <a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a>;
-<a name="l00670"></a>00670 }
-<a name="l00671"></a>00671 
-<a name="l00672"></a>00672 <span class="comment">// Setter on followRequestSent</span>
-<a name="l00673"></a><a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462">00673</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a095d1f03da5ece0c363d00553faff462" title="Setter on followRequestSent.">User::setFollowRequestSent</a>(<span class="keywordtype">bool</span> newFollowRequestSent) {
-<a name="l00674"></a>00674         <a class="code" href="class_user.html#aa4e163389b20daddcddf9a4a268413e9" title="follow_request_sent">followRequestSent</a> = newFollowRequestSent;
-<a name="l00675"></a>00675 }
-<a name="l00676"></a>00676 
-<a name="l00677"></a>00677 <span class="comment">// Getter on backgroundURLhttps</span>
-<a name="l00678"></a><a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce">00678</a> QString <a class="code" href="class_user.html#a2a3acbf8ac125ef5af2afef6522471ce" title="Getter on backgroundURLhttps.">User::getProfileBackgroundImageURLhttps</a>() {
-<a name="l00679"></a>00679         <span class="keywordflow">return</span> <a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a>;
-<a name="l00680"></a>00680 }
-<a name="l00681"></a>00681 
-<a name="l00682"></a>00682 <span class="comment">// Setter on backgroundURLhttps</span>
-<a name="l00683"></a><a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3">00683</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab5cdeaf200e54d7318857bcb0caccbd3" title="Setter on backgroundURLhttps.">User::setProfileBackgroundImageURLhttps</a>(QString newBackgroundURL) {
-<a name="l00684"></a>00684         <a class="code" href="class_user.html#aede0a329f6d0a90c0b46608f12e9f051" title="URL of the user&amp;#39;s background (HTTPS version).">backgroundURLhttps</a> = newBackgroundURL;
-<a name="l00685"></a>00685 }
-<a name="l00686"></a>00686 
-<a name="l00687"></a>00687 <span class="comment">// Getter on isTranslator</span>
-<a name="l00688"></a><a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f">00688</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a9ed7986cb192932d42c2be11dc13571f" title="Getter on isTranslator.">User::isTranslator</a>() {
-<a name="l00689"></a>00689         <span class="keywordflow">return</span> <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a>;
-<a name="l00690"></a>00690 }
-<a name="l00691"></a>00691 
-<a name="l00692"></a>00692 <span class="comment">// Setter on isTranslator</span>
-<a name="l00693"></a><a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6">00693</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af75dcb2ba8f66fc04f9d5b62dcf8bfb6" title="Setter on isTranslator.">User::setTranslator</a>(<span class="keywordtype">bool</span> newTranslator) {
-<a name="l00694"></a>00694         <a class="code" href="class_user.html#ac4fb48c12712ee3d32fc2d56a43f1207" title="Indicates if the user is a Twitter translator.">twitterTranslator</a> = newTranslator;
-<a name="l00695"></a>00695 }
-<a name="l00696"></a>00696 
-<a name="l00697"></a>00697 <span class="comment">// Getter on defaultProfile</span>
-<a name="l00698"></a><a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e">00698</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a977cf96a93d8a662775ea3ff6da6ba8e" title="Getter on defaultProfile.">User::isDefaultProfile</a>() {
-<a name="l00699"></a>00699         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a>;
-<a name="l00700"></a>00700 }
-<a name="l00701"></a>00701 
-<a name="l00702"></a>00702 <span class="comment">// Setter on defaultProfile</span>
-<a name="l00703"></a><a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119">00703</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a6da8eb46571570dfa474d8c10d91a119" title="Setter on defaultProfile.">User::setDefaultProfile</a>(<span class="keywordtype">bool</span> newDefaultProfile) {
-<a name="l00704"></a>00704         <a class="code" href="class_user.html#a270f06f0188d5ddce16e42fdc3b0e450" title="Is it the default profile ?">defaultProfile</a> = newDefaultProfile;
-<a name="l00705"></a>00705 }
-<a name="l00706"></a>00706 
-<a name="l00707"></a>00707 <span class="comment">// Getter on notifications</span>
-<a name="l00708"></a><a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a">00708</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a5d62f287a8fcbb83bd03a0f439a3a96a" title="Getter on notifications.">User::isNotifications</a>() {
-<a name="l00709"></a>00709         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a>;
-<a name="l00710"></a>00710 }
-<a name="l00711"></a>00711 
-<a name="l00712"></a>00712 <span class="comment">// Setter on notifications</span>
-<a name="l00713"></a><a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb">00713</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7943ac6db7ccf2af661ad8c2573e29fb" title="Setter on notifications.">User::setNotifications</a>(<span class="keywordtype">bool</span> newNotifications) {
-<a name="l00714"></a>00714         <a class="code" href="class_user.html#a98cd95ee20319c2d0e52f43a22bd47ba" title="Receive notifications from a user (by mobile phone).">notificationsEnabled</a> = newNotifications;
-<a name="l00715"></a>00715 }
-<a name="l00716"></a>00716 
-<a name="l00717"></a>00717 <span class="comment">// Getter on useBackgroundImage</span>
-<a name="l00718"></a><a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22">00718</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#a385fe8b0576f0170f18222eb8d350c22" title="Getter on useBackgroundImage.">User::isProfileUseBackgroundImage</a>() {
-<a name="l00719"></a>00719         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a>;
-<a name="l00720"></a>00720 }
-<a name="l00721"></a>00721 
-<a name="l00722"></a>00722 <span class="comment">// Setter on useBackgroundImage</span>
-<a name="l00723"></a><a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1">00723</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a00bb96e4b19af046b98a4710c64898f1" title="Setter on useBackgroundImage.">User::setProfileUseBackgroundImage</a>(<span class="keywordtype">bool</span> newUseBackgroundImage) {
-<a name="l00724"></a>00724         <a class="code" href="class_user.html#a2488ea641f9b1f41ced202c4e98cb37b" title="Boolean indicating if the user has got a background image.">useBackgroundImage</a> = newUseBackgroundImage;
-<a name="l00725"></a>00725 }
-<a name="l00726"></a>00726 
-<a name="l00727"></a>00727 <span class="comment">// Getter on avatarURLhttps</span>
-<a name="l00728"></a><a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240">00728</a> QString <a class="code" href="class_user.html#af034d740d5a2498e9d35a63a5f03d240" title="Getter on avatarURLhttps.">User::getProfileImageURLhttps</a>() {
-<a name="l00729"></a>00729         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a>;
-<a name="l00730"></a>00730 }
-<a name="l00731"></a>00731 
-<a name="l00732"></a>00732 <span class="comment">// Setter on avatarURLhttps</span>
-<a name="l00733"></a><a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750">00733</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a82b38a8f8957c948b6a76c7420d2e750" title="Setter on avatarURLhttps.">User::setProfileImageURLhttps</a>(QString newAvatarURL) {
-<a name="l00734"></a>00734         <a class="code" href="class_user.html#a134df2837496290d9a3f22af3f2f0864" title="URL of the user&amp;#39;s avatar (HTTPS version).">avatarURLhttps</a> = newAvatarURL;
-<a name="l00735"></a>00735 }
-<a name="l00736"></a>00736 
-<a name="l00737"></a>00737 <span class="comment">// Getter on ID</span>
-<a name="l00738"></a><a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2">00738</a> <span class="keywordtype">long</span> <a class="code" href="class_user.html#a76d1a8514ccde75b2e4106e996113bb2" title="Getter on ID.">User::getID</a>() {
-<a name="l00739"></a>00739         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a>;
-<a name="l00740"></a>00740 }
-<a name="l00741"></a>00741 
-<a name="l00742"></a>00742 <span class="comment">// Setter on ID</span>
-<a name="l00743"></a><a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb">00743</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a7850666c3ceeefa5462bccc3c343e3fb" title="Setter on ID.">User::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00744"></a>00744         <a class="code" href="class_user.html#a0628594a5c552515b615aad83d0cbc09" title="User ID.">userID</a> = newID;
-<a name="l00745"></a>00745 }
-<a name="l00746"></a>00746 
-<a name="l00747"></a>00747 <span class="comment">// Getter on verified</span>
-<a name="l00748"></a><a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a">00748</a> <span class="keywordtype">bool</span> <a class="code" href="class_user.html#af7803e03b61054679b16870a8c8f341a" title="Getter on verified.">User::isVerified</a>() {
-<a name="l00749"></a>00749         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a>;
-<a name="l00750"></a>00750 }
-<a name="l00751"></a>00751 
-<a name="l00752"></a>00752 <span class="comment">// Setter on verified</span>
-<a name="l00753"></a><a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672">00753</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0122893d42edb562375c947db4c5e672" title="Setter on verified.">User::setVerified</a>(<span class="keywordtype">bool</span> newVerified) {
-<a name="l00754"></a>00754         <a class="code" href="class_user.html#a5d087893d302e29aefdce41ec744646a" title="Boolean indicating if the account is verified.">verifiedAccount</a> = newVerified;
-<a name="l00755"></a>00755 }
-<a name="l00756"></a>00756 
-<a name="l00757"></a>00757 <span class="comment">// Getter on timeZone</span>
-<a name="l00758"></a><a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0">00758</a> QString <a class="code" href="class_user.html#aa0fb65240c21d99c878320ff8e0620a0" title="Getter on timeZone.">User::getTimeZone</a>() {
-<a name="l00759"></a>00759         <span class="keywordflow">return</span> <a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a>;
-<a name="l00760"></a>00760 }
-<a name="l00761"></a>00761 
-<a name="l00762"></a>00762 <span class="comment">// Setter on timeZone</span>
-<a name="l00763"></a><a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833">00763</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a066715a79e3bd8dd21645473f1729833" title="Setter on timeZone.">User::setTimeZone</a>(QString newTimeZone) {
-<a name="l00764"></a>00764         <a class="code" href="class_user.html#aff1061a690af52fb11d6cfd940a51178" title="Name of the user&amp;#39;s time zone.">timeZone</a> = newTimeZone;
-<a name="l00765"></a>00765 }
-<a name="l00766"></a>00766 
-<a name="l00767"></a>00767 <span class="comment">// Getter on favoritesCount</span>
-<a name="l00768"></a><a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955">00768</a> <span class="keywordtype">int</span> <a class="code" href="class_user.html#ad6dfc3ca5227fa13aae3e5504b4c9955" title="Getter on favoritesCount.">User::getFavouritesCount</a>() {
-<a name="l00769"></a>00769         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a>;
-<a name="l00770"></a>00770 }
-<a name="l00771"></a>00771 
-<a name="l00772"></a>00772 <span class="comment">// Setter on favoritesCount</span>
-<a name="l00773"></a><a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56">00773</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a53036e607a7bfcde2692d514ecbb3b56" title="Setter on favoritesCount.">User::setFavouritesCount</a>(<span class="keywordtype">int</span> newFavoritesCount) {
-<a name="l00774"></a>00774         <a class="code" href="class_user.html#a2c3729d7ca0e44fa41c5158db6904f10" title="Number of favorites tweets.">favoritesCount</a> = newFavoritesCount;
-<a name="l00775"></a>00775 }
-<a name="l00776"></a>00776 
-<a name="l00777"></a>00777 <span class="comment">// Getter on textColor</span>
-<a name="l00778"></a><a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7">00778</a> QColor <a class="code" href="class_user.html#a5597dc0711710b0917385a89f2503fa7" title="Getter on textColor.">User::getProfileTextColor</a>() {
-<a name="l00779"></a>00779         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a>;
-<a name="l00780"></a>00780 }
-<a name="l00781"></a>00781 
-<a name="l00782"></a>00782 <span class="comment">// Setter on textColor</span>
-<a name="l00783"></a><a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68">00783</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a977ede717090819b624f97661ae8ac68" title="Setter on textColor.">User::setProfileTextColor</a>(QColor newTextColor) {
-<a name="l00784"></a>00784         <a class="code" href="class_user.html#a22daf2e37bc3fa4a5b0a1a7d87c85afb" title="Color of text in the Twitter Timeline.">textColor</a> = newTextColor;
-<a name="l00785"></a>00785 }
-<a name="l00786"></a>00786 
-<a name="l00787"></a>00787 <span class="comment">// Getter on location</span>
-<a name="l00788"></a><a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f">00788</a> QString <a class="code" href="class_user.html#aea91bfb22101d98455556e288406973f" title="Getter on location.">User::getLocation</a>() {
-<a name="l00789"></a>00789         <span class="keywordflow">return</span> <a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a>;
-<a name="l00790"></a>00790 }
-<a name="l00791"></a>00791 
-<a name="l00792"></a>00792 <span class="comment">// Setter on location</span>
-<a name="l00793"></a><a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db">00793</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#ab9990ecb69969139e97a152ff0fa27db" title="Setter on location.">User::setLocation</a>(QString newLocation) {
-<a name="l00794"></a>00794         <a class="code" href="class_user.html#af947ab7029b48bd3018275b8ee132b81" title="Location as reported by the user.">userLocation</a> = newLocation;
-<a name="l00795"></a>00795 }
+<a name="l00088"></a>00088 <span class="comment">// Properties management //</span>
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
+<a name="l00092"></a><a class="code" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b">00092</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b" title="Filling serializable fields with thecorresponding property maps.">User::syncMembers</a>() {
+<a name="l00093"></a>00093         <a class="code" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b" title="Filling serializable fields with thecorresponding property maps.">UserInfos::syncMembers</a>();
+<a name="l00094"></a>00094         <a class="code" href="class_user.html#adfd64279528ffc43cbd380934be56f2f" title="Updating the lastTweet member.">syncStatusMember</a>();
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="comment">// Updating all the properties</span>
+<a name="l00098"></a><a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2">00098</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2" title="Updating all the properties.">User::syncProperties</a>() {
+<a name="l00099"></a>00099         <a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2" title="Updating all the properties.">UserInfos::syncProperties</a>();
+<a name="l00100"></a>00100         <a class="code" href="class_user.html#a1bf335e6a9cae9aa2d841a2537749ccb" title="Updating the property status.">syncStatusProperty</a>();
+<a name="l00101"></a>00101 }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="comment">// Reading the &quot;status&quot; property</span>
+<a name="l00104"></a><a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5">00104</a> QVariantMap <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">User::getStatus</a>() {
+<a name="l00105"></a>00105         <span class="keywordflow">return</span> <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>;
+<a name="l00106"></a>00106 }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 <span class="comment">// Writing the status property</span>
+<a name="l00109"></a><a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(QVariantMap statusMap) {
+<a name="l00110"></a>00110         <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a> = statusMap;
+<a name="l00111"></a>00111 }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="comment">// Updating the property status</span>
+<a name="l00114"></a><a class="code" href="class_user.html#a1bf335e6a9cae9aa2d841a2537749ccb">00114</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a1bf335e6a9cae9aa2d841a2537749ccb" title="Updating the property status.">User::syncStatusProperty</a>() {
+<a name="l00115"></a>00115         <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>(<a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>());
+<a name="l00116"></a>00116 }
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 <span class="comment">// Updating the property status</span>
+<a name="l00119"></a><a class="code" href="class_user.html#adfd64279528ffc43cbd380934be56f2f">00119</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#adfd64279528ffc43cbd380934be56f2f" title="Updating the lastTweet member.">User::syncStatusMember</a>() {
+<a name="l00120"></a>00120         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(<a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>);
+<a name="l00121"></a>00121 }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 
+<a name="l00125"></a>00125 <span class="comment">// Getters and setters //</span>
+<a name="l00127"></a>00127 <span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">// Getter on the last tweet written by the user</span>
+<a name="l00129"></a><a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c">00129</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c" title="Getter on the last tweet written by the user.">User::getLastTweet</a>() {
+<a name="l00130"></a>00130         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00131"></a>00131 }
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="comment">// Setter on the last tweet written by the user</span>
+<a name="l00134"></a><a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d">00134</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d" title="Setter on the last tweet written by the user.">User::setLastTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet) {
+<a name="l00135"></a>00135         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = newLastTweet;
+<a name="l00136"></a>00136         <a class="code" href="class_user.html#a1bf335e6a9cae9aa2d841a2537749ccb" title="Updating the property status.">syncStatusProperty</a>();           <span class="comment">// Updating the map</span>
+<a name="l00137"></a>00137 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -892,7 +234,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

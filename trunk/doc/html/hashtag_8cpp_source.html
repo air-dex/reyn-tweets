@@ -118,12 +118,12 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">// Constructor</span>
 <a name="l00032"></a><a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f">00032</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_serializable.html" title="Abstract class to represent classes which are serializable. It converts the object...">ReynTweetsSerializable</a>(),
+<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
 <a name="l00034"></a>00034         indexList(),
 <a name="l00035"></a>00035         hashText(),
 <a name="l00036"></a>00036         indexes()
 <a name="l00037"></a>00037 {
-<a name="l00038"></a>00038         <a class="code" href="class_hashtag.html#a938d80dd22cd356f26a54035fc7fb919" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00038"></a>00038         <a class="code" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b" title="Updating all the properties.">syncProperties</a>();
 <a name="l00039"></a>00039 }
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041 <span class="comment">// Destructor</span>
@@ -150,7 +150,7 @@ window.onload = initDynSections;
 <a name="l00062"></a><a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9">00062</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">Hashtag::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
 <a name="l00063"></a>00063         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = hashtag.<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
 <a name="l00064"></a>00064         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a> = hashtag.<a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00065"></a>00065         <a class="code" href="class_hashtag.html#a938d80dd22cd356f26a54035fc7fb919" title="Updating all the properties.">updateAllProperties</a>();
+<a name="l00065"></a>00065         <a class="code" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b" title="Updating all the properties.">syncProperties</a>();
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068 <span class="comment">// Output stream operator for serialization</span>
@@ -163,7 +163,7 @@ window.onload = initDynSections;
 <a name="l00075"></a>00075         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, hashtag);
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077         <span class="comment">// Updating indexes</span>
-<a name="l00078"></a>00078         hashtag.<a class="code" href="class_hashtag.html#acc4ec592cb3933fd4c8135b667eef296" title="Filling serializable fields with thecorresponding property maps.">fillWithPropertiesMaps</a>();
+<a name="l00078"></a>00078         hashtag.<a class="code" href="class_hashtag.html#a36180985f54c66b530f6e6da14ef4394" title="Updating the field members.">syncMembers</a>();
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080         <span class="keywordflow">return</span> in;
 <a name="l00081"></a>00081 }
@@ -171,58 +171,57 @@ window.onload = initDynSections;
 <a name="l00084"></a>00084 <span class="comment">// Properties management //</span>
 <a name="l00086"></a>00086 <span class="comment"></span>
 <a name="l00087"></a>00087 <span class="comment">// Filling serializable fields with the corresponding property maps</span>
-<a name="l00088"></a><a class="code" href="class_hashtag.html#acc4ec592cb3933fd4c8135b667eef296">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#acc4ec592cb3933fd4c8135b667eef296" title="Filling serializable fields with thecorresponding property maps.">Hashtag::fillWithPropertiesMaps</a>() {
-<a name="l00089"></a>00089         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#ac799bde3809968db70b4e76a2c98a164" title="Filling the object with a QVariantList.">fillWithVariantList</a>(<a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a>);
+<a name="l00088"></a><a class="code" href="class_hashtag.html#a36180985f54c66b530f6e6da14ef4394">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a36180985f54c66b530f6e6da14ef4394" title="Updating the field members.">Hashtag::syncMembers</a>() {
+<a name="l00089"></a>00089         <a class="code" href="class_hashtag.html#a9a6a6fc8649e5e6c4b8612dfeeee3836" title="Updating the indexes attribute.">syncIndicesMember</a>();
 <a name="l00090"></a>00090 }
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092 <span class="comment">// Updating all the properties</span>
-<a name="l00093"></a><a class="code" href="class_hashtag.html#a938d80dd22cd356f26a54035fc7fb919">00093</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a938d80dd22cd356f26a54035fc7fb919" title="Updating all the properties.">Hashtag::updateAllProperties</a>() {
-<a name="l00094"></a>00094         <a class="code" href="class_hashtag.html#a0785320ca52c1af2f00ab2603ae6a893" title="Updating the property text.">updateText</a>();
-<a name="l00095"></a>00095         <a class="code" href="class_hashtag.html#a006c8091050d47c29ecef09838e2a592" title="Updating the property indices.">updateIndices</a>();
-<a name="l00096"></a>00096 }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="comment">// Updating the property text</span>
-<a name="l00099"></a><a class="code" href="class_hashtag.html#a0785320ca52c1af2f00ab2603ae6a893">00099</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a0785320ca52c1af2f00ab2603ae6a893" title="Updating the property text.">Hashtag::updateText</a>() {
-<a name="l00100"></a>00100         setProperty(<span class="stringliteral">&quot;text&quot;</span>, QVariant(<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>));
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="comment">// Reading method for the property indices</span>
-<a name="l00104"></a><a class="code" href="class_hashtag.html#a0b87edcb252eb44d9e7abad1119b7d5a">00104</a> QVariantList <a class="code" href="class_hashtag.html#a0b87edcb252eb44d9e7abad1119b7d5a" title="Reading method for the property indices.">Hashtag::getIndices</a>() {
-<a name="l00105"></a>00105         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a>;
-<a name="l00106"></a>00106 }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="comment">// Writing method for the property indices</span>
-<a name="l00109"></a><a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf" title="Writing method for the property indices.">Hashtag::setIndices</a>(QVariantList newIndexList) {
-<a name="l00110"></a>00110         <a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a> = newIndexList;
-<a name="l00111"></a>00111 }
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="comment">// Updating the property indices</span>
-<a name="l00114"></a><a class="code" href="class_hashtag.html#a006c8091050d47c29ecef09838e2a592">00114</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a006c8091050d47c29ecef09838e2a592" title="Updating the property indices.">Hashtag::updateIndices</a>() {
-<a name="l00115"></a>00115         setProperty(<span class="stringliteral">&quot;indices&quot;</span>, QVariant(<a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a21e3baf31a2d5c1182baa0a85fc0b3cb" title="Converting the bounds into a QVariantList.">toVariantList</a>()));
-<a name="l00116"></a>00116 }
+<a name="l00093"></a><a class="code" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b">00093</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b" title="Updating all the properties.">Hashtag::syncProperties</a>() {
+<a name="l00094"></a>00094         <a class="code" href="class_hashtag.html#a87df080969f66acf3319ce88ff481ff1" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="comment">// Reading method for the property indices</span>
+<a name="l00098"></a><a class="code" href="class_hashtag.html#a0b87edcb252eb44d9e7abad1119b7d5a">00098</a> QVariantList <a class="code" href="class_hashtag.html#a0b87edcb252eb44d9e7abad1119b7d5a" title="Reading method for the property indices.">Hashtag::getIndices</a>() {
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a>;
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="comment">// Writing method for the property indices</span>
+<a name="l00103"></a><a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf">00103</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf" title="Writing method for the property indices.">Hashtag::setIndices</a>(QVariantList newIndexList) {
+<a name="l00104"></a>00104         <a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a> = newIndexList;
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 <span class="comment">// Updating the property indices</span>
+<a name="l00108"></a><a class="code" href="class_hashtag.html#a87df080969f66acf3319ce88ff481ff1">00108</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a87df080969f66acf3319ce88ff481ff1" title="Updating the property indices.">Hashtag::syncIndicesProperty</a>() {
+<a name="l00109"></a>00109         <a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf" title="Writing method for the property indices.">setIndices</a>(<a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>());
+<a name="l00110"></a>00110 }
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="comment">// Updating the property indices</span>
+<a name="l00113"></a><a class="code" href="class_hashtag.html#a9a6a6fc8649e5e6c4b8612dfeeee3836">00113</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a9a6a6fc8649e5e6c4b8612dfeeee3836" title="Updating the indexes attribute.">Hashtag::syncIndicesMember</a>() {
+<a name="l00114"></a>00114         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(<a class="code" href="class_hashtag.html#a9e6635ea6d4d5af34a1018d62059a6d7" title="Representation of the property thumb.">indexList</a>);
+<a name="l00115"></a>00115 }
+<a name="l00116"></a>00116 
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 
-<a name="l00120"></a>00120 <span class="comment">// Getter and setters //</span>
-<a name="l00122"></a>00122 <span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">// Reading hashText</span>
-<a name="l00124"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00124</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
-<a name="l00125"></a>00125         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00126"></a>00126 }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 <span class="comment">// Writing hashText</span>
-<a name="l00129"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00129</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
-<a name="l00130"></a>00130         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
-<a name="l00131"></a>00131 }
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="comment">// Reading indexes</span>
-<a name="l00134"></a><a class="code" href="class_hashtag.html#a011e83cb5c62d2d30e81bfa51fc90fbf">00134</a> <a class="code" href="class_index_bounds.html">IndexBounds</a> <a class="code" href="class_hashtag.html#a011e83cb5c62d2d30e81bfa51fc90fbf" title="Reading indexes.">Hashtag::getIndexes</a>() {
-<a name="l00135"></a>00135         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="comment">// Writing indexes</span>
-<a name="l00139"></a><a class="code" href="class_hashtag.html#a6c47c531ae94ed8ba9ff7589795734fe">00139</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a6c47c531ae94ed8ba9ff7589795734fe" title="Writing indexes.">Hashtag::setIndexes</a>(<a class="code" href="class_index_bounds.html">IndexBounds</a> newIndexes) {
-<a name="l00140"></a>00140         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a> = newIndexes;
-<a name="l00141"></a>00141 }
+<a name="l00119"></a>00119 <span class="comment">// Getter and setters //</span>
+<a name="l00121"></a>00121 <span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment">// Reading hashText</span>
+<a name="l00123"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00123</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
+<a name="l00124"></a>00124         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
+<a name="l00125"></a>00125 }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 <span class="comment">// Writing hashText</span>
+<a name="l00128"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00128</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
+<a name="l00129"></a>00129         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
+<a name="l00130"></a>00130 }
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <span class="comment">// Reading indexes</span>
+<a name="l00133"></a><a class="code" href="class_hashtag.html#a011e83cb5c62d2d30e81bfa51fc90fbf">00133</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_hashtag.html#a011e83cb5c62d2d30e81bfa51fc90fbf" title="Reading indexes.">Hashtag::getIndexes</a>() {
+<a name="l00134"></a>00134         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>;
+<a name="l00135"></a>00135 }
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="comment">// Writing indexes</span>
+<a name="l00138"></a><a class="code" href="class_hashtag.html#a6c47c531ae94ed8ba9ff7589795734fe">00138</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a6c47c531ae94ed8ba9ff7589795734fe" title="Writing indexes.">Hashtag::setIndexes</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
+<a name="l00139"></a>00139         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a> = newIndexes;
+<a name="l00140"></a>00140 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -238,7 +237,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

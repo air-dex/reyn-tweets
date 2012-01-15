@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>TweetEntities Class Reference</h1><!-- doxytag: class="TweetEntities" --><!-- doxytag: inherits="ReynTweetsSerializable" -->
+<h1>TweetEntities Class Reference</h1><!-- doxytag: class="TweetEntities" --><!-- doxytag: inherits="ReynTweetsMappable" -->
 <p>Entities of a tweet, such as its hashtags, its mentions and its URLs.  
 <a href="#_details">More...</a></p>
 
@@ -99,7 +99,8 @@ Inheritance diagram for TweetEntities:</div>
  <div class="center">
   <img src="class_tweet_entities.png" usemap="#TweetEntities_map" alt=""/>
   <map id="TweetEntities_map" name="TweetEntities_map">
-<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable" shape="rect" coords="0,0,146,24"/>
+<area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
  </div>
 </div>
@@ -107,71 +108,79 @@ Inheritance diagram for TweetEntities:</div>
 <p><a href="class_tweet_entities-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_hashtag.html">Hashtag</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ab28877ae354cf0e3b58709e489960c51">getHashtags</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading tweetHashtags.  <a href="#ab28877ae354cf0e3b58709e489960c51"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829">getHashtags</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading tweetHashtags.  <a href="#abd4c4ec1576282e48b5ae14000213829"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a4ab718675846a595b29253846a0e1ca2">getHashtagsList</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property hashtags.  <a href="#a4ab718675846a595b29253846a0e1ca2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_media.html">Media</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a25a5738262197044c97410907f10743c">getMedia</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading medias.  <a href="#a25a5738262197044c97410907f10743c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a09dd37d90686ee974ee171c4767bd368">getMedia</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading medias.  <a href="#a09dd37d90686ee974ee171c4767bd368"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#acce6028e1fcc237c88c17f1aa244c648">getMediaList</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property media.  <a href="#acce6028e1fcc237c88c17f1aa244c648"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ae10df052d97d6b9cfc33d9226ee1cefc">getURLList</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property urls.  <a href="#ae10df052d97d6b9cfc33d9226ee1cefc"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ad807c660a2742cd2107395ac2deefb04">getURLs</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading tweetURLs.  <a href="#ad807c660a2742cd2107395ac2deefb04"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_user_mention.html">UserMention</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a9350cb6ac34f111a3774864c3ed7f871">getUserMentions</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading userMentions.  <a href="#a9350cb6ac34f111a3774864c3ed7f871"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a894464b1eea9e04de629e9c701c1203f">getURLs</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading tweetURLs.  <a href="#a894464b1eea9e04de629e9c701c1203f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5">getUserMentions</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading userMentions.  <a href="#a497b00669527ed66515d80f48e9a1ed5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a4ab8fd7440e50e31d90aa18e55665e25">getUserMentionsList</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property user_mentions.  <a href="#a4ab8fd7440e50e31d90aa18e55665e25"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a6ae8a70d5f1a17e1f694da02a51cfc32">operator=</a> (const <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;entities)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affectation.  <a href="#a6ae8a70d5f1a17e1f694da02a51cfc32"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a7fa5d30c9f7f94bb8678408d179c6db6">setHashtagsList</a> (QList&lt; <a class="el" href="class_hashtag.html">Hashtag</a> &gt; newHashtags)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing tweetHashtags.  <a href="#a7fa5d30c9f7f94bb8678408d179c6db6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a791dbcdc5043c45bd34ad277053bcc66">setHashtags</a> (<a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a> newHashtags)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing tweetHashtags.  <a href="#a791dbcdc5043c45bd34ad277053bcc66"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a406a28cb189c352f5afb0d3e87cd1dfb">setHashtagsList</a> (QVariantList newHashtagsList)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the property hashtags.  <a href="#a406a28cb189c352f5afb0d3e87cd1dfb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a88798febe2efa6a97ec162050408442e">setMedia</a> (QList&lt; <a class="el" href="class_media.html">Media</a> &gt; newMedia)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing medias.  <a href="#a88798febe2efa6a97ec162050408442e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#aeec527f3f4dd71c0f49b56301cf9e2c0">setMedia</a> (<a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a> newMedia)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing medias.  <a href="#aeec527f3f4dd71c0f49b56301cf9e2c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a3bcca2052d88daec9d266b7f9096bd98">setMediaList</a> (QVariantList newMediaList)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the property media.  <a href="#a3bcca2052d88daec9d266b7f9096bd98"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a00c483934d910ec0cec02dafecea9578">setURLList</a> (QVariantList newURLList)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the property urls.  <a href="#a00c483934d910ec0cec02dafecea9578"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#af3e9bd8c7402828cf68fe0862015c4df">setURLs</a> (QList&lt; <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &gt; newURLs)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing tweetURLs.  <a href="#af3e9bd8c7402828cf68fe0862015c4df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a9ca0dbc9daa0c47c5c667cca530d5084">setUserMentions</a> (QList&lt; <a class="el" href="class_user_mention.html">UserMention</a> &gt; newUserMentions)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing userMentions.  <a href="#a9ca0dbc9daa0c47c5c667cca530d5084"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ac367465cbe63489b3347c4a2fcfcbbc6">setURLs</a> (<a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a> newURLs)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing tweetURLs.  <a href="#ac367465cbe63489b3347c4a2fcfcbbc6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a9dd524289a4d72e8a1995900c324629f">setUserMentions</a> (<a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a> newUserMentions)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing userMentions.  <a href="#a9dd524289a4d72e8a1995900c324629f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a07f7f1ebdb7d66ae15c97214f8186985">setUserMentionsList</a> (QVariantList newUserMentionsList)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the property user_mentions.  <a href="#a07f7f1ebdb7d66ae15c97214f8186985"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#acf7980ea921c8e51ebb4e4c2ee6d2df0">syncHashtagsMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the tweetHashtags member.  <a href="#acf7980ea921c8e51ebb4e4c2ee6d2df0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a9a1255aa311e15e83e6fc4c318c4afee">syncHashtagsProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property hashtags.  <a href="#a9a1255aa311e15e83e6fc4c318c4afee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a3fa8bb9758d126a712e72f08374521dd">syncMediaMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the medias member.  <a href="#a3fa8bb9758d126a712e72f08374521dd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#af959e8902b7eeb60e2d00ef9c165040e">syncMediaProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property media.  <a href="#af959e8902b7eeb60e2d00ef9c165040e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a53310d98f11a69dad7be959eb0587bd9">syncUrlsMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the tweetURLs member.  <a href="#a53310d98f11a69dad7be959eb0587bd9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#af25b8d5fb20f858b07112f805b399a7d">syncUrlsProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property urls.  <a href="#af25b8d5fb20f858b07112f805b399a7d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a50d373fbbd456f692ebb77216d02349a">syncUserMentionsMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the mentions member.  <a href="#a50d373fbbd456f692ebb77216d02349a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a0db7146471709e8bf824a82b18007b5d">syncUserMentionsProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property user_mentions.  <a href="#a0db7146471709e8bf824a82b18007b5d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#acfa5df862abf1428eaf8dbb372b08b77">TweetEntities</a> (const <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;entities)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#acfa5df862abf1428eaf8dbb372b08b77"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5">TweetEntities</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a1f3e259578d170d807fb1d66dcfa52a5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a34e05c688ffc2d00edfc9c0f9287fb95">updateHashtags</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property hashtags.  <a href="#a34e05c688ffc2d00edfc9c0f9287fb95"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#aed685f7dd64c84306302a2eb2f255441">updateMedia</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property media.  <a href="#aed685f7dd64c84306302a2eb2f255441"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a4cbbb4494d9dd3d00066ae97e235eba6">updateURLs</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property urls.  <a href="#a4cbbb4494d9dd3d00066ae97e235eba6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a3cc7c013aca0b95ec1f303d479e6ddc3">updateUserMentions</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property user_mentions.  <a href="#a3cc7c013aca0b95ec1f303d479e6ddc3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#af7738e66d7d5e3a6eea5c8f2ad42d64f">~TweetEntities</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#af7738e66d7d5e3a6eea5c8f2ad42d64f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#ad570eb2f5f2cc339b9a5b2d026ccacc9"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a63c2c28bfa0a94df9f06a24a82fca7d2">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#a63c2c28bfa0a94df9f06a24a82fca7d2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ab7516496d04a7e7482eb2a8986025114">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#ab7516496d04a7e7482eb2a8986025114"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a605860e94b464775825bddd5abdc0e20">syncMembers</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the field members.  <a href="#a605860e94b464775825bddd5abdc0e20"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a716c6dd33809525785f53e1c90b840d6">syncProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a716c6dd33809525785f53e1c90b840d6"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_media.html">Media</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a06383a08a688aa2626ecf124779e3208">medias</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Medias.  <a href="#a06383a08a688aa2626ecf124779e3208"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_hashtag.html">Hashtag</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a8750e894817a60a88c60415b531ec6f9">tweetHashtags</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Hashtags.  <a href="#a8750e894817a60a88c60415b531ec6f9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ad32f1cb2dd971f754bdab7ed7aedbe35">tweetURLs</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URLs.  <a href="#ad32f1cb2dd971f754bdab7ed7aedbe35"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_user_mention.html">UserMention</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a890b1c2d78c86822fa447a2f9f30d8e1">userMentions</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> mentions.  <a href="#a890b1c2d78c86822fa447a2f9f30d8e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda">medias</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Medias.  <a href="#a0b5d57a4cece8be70ed90063219ddfda"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1">mentions</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> mentions.  <a href="#ab12dee9441ff3243b561c77ab3382ed1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66">tweetHashtags</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Hashtags.  <a href="#a09865730eaa32f4195589cd69362bd66"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200">tweetURLs</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URLs.  <a href="#a08b58d917bf14ae34f26b2ff4e5af200"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a895dcaba48e6933e7b945c5506a29da0">hashtags</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Hashtags in the tweet.  <a href="#a895dcaba48e6933e7b945c5506a29da0"></a><br/></td></tr>
@@ -201,7 +210,7 @@ Inheritance diagram for TweetEntities:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Entities of a tweet, such as its hashtags, its mentions and its URLs. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00036">36</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00037">37</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1f3e259578d170d807fb1d66dcfa52a5"></a><!-- doxytag: member="TweetEntities::TweetEntities" ref="a1f3e259578d170d807fb1d66dcfa52a5" args="()" -->
 <div class="memitem">
@@ -274,33 +283,12 @@ Inheritance diagram for TweetEntities:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a63c2c28bfa0a94df9f06a24a82fca7d2"></a><!-- doxytag: member="TweetEntities::fillWithPropertiesMaps" ref="a63c2c28bfa0a94df9f06a24a82fca7d2" args="()" -->
+<a class="anchor" id="abd4c4ec1576282e48b5ae14000213829"></a><!-- doxytag: member="TweetEntities::getHashtags" ref="abd4c4ec1576282e48b5ae14000213829" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::fillWithPropertiesMaps </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Filling serializable fields with thecorresponding property maps. </p>
-
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00096">96</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab28877ae354cf0e3b58709e489960c51"></a><!-- doxytag: member="TweetEntities::getHashtags" ref="ab28877ae354cf0e3b58709e489960c51" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt; <a class="el" href="class_hashtag.html">Hashtag</a> &gt; TweetEntities::getHashtags </td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a> TweetEntities::getHashtags </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -313,7 +301,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading tweetHashtags. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetHashtags </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00217">217</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00230">230</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -335,16 +323,16 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property hashtags. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>hashtagsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00164">164</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00172">172</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a25a5738262197044c97410907f10743c"></a><!-- doxytag: member="TweetEntities::getMedia" ref="a25a5738262197044c97410907f10743c" args="()" -->
+<a class="anchor" id="a09dd37d90686ee974ee171c4767bd368"></a><!-- doxytag: member="TweetEntities::getMedia" ref="a09dd37d90686ee974ee171c4767bd368" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; <a class="el" href="class_media.html">Media</a> &gt; TweetEntities::getMedia </td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a> TweetEntities::getMedia </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -357,7 +345,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading medias. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>medias </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00184">184</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00197">197</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +367,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property media. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>mediaList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00119">119</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00112">112</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,16 +389,16 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property urls. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>urlsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00134">134</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00132">132</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad807c660a2742cd2107395ac2deefb04"></a><!-- doxytag: member="TweetEntities::getURLs" ref="ad807c660a2742cd2107395ac2deefb04" args="()" -->
+<a class="anchor" id="a894464b1eea9e04de629e9c701c1203f"></a><!-- doxytag: member="TweetEntities::getURLs" ref="a894464b1eea9e04de629e9c701c1203f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &gt; TweetEntities::getURLs </td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a> TweetEntities::getURLs </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -423,16 +411,16 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading tweetURLs. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetURLs </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00195">195</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00208">208</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9350cb6ac34f111a3774864c3ed7f871"></a><!-- doxytag: member="TweetEntities::getUserMentions" ref="a9350cb6ac34f111a3774864c3ed7f871" args="()" -->
+<a class="anchor" id="a497b00669527ed66515d80f48e9a1ed5"></a><!-- doxytag: member="TweetEntities::getUserMentions" ref="a497b00669527ed66515d80f48e9a1ed5" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; <a class="el" href="class_user_mention.html">UserMention</a> &gt; TweetEntities::getUserMentions </td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a> TweetEntities::getUserMentions </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -445,7 +433,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading userMentions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMentions </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00206">206</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00219">219</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +455,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property user_mentions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMentionsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00149">149</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00152">152</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,14 +537,14 @@ Inheritance diagram for TweetEntities:</div>
 
 </div>
 </div>
-<a class="anchor" id="a7fa5d30c9f7f94bb8678408d179c6db6"></a><!-- doxytag: member="TweetEntities::setHashtagsList" ref="a7fa5d30c9f7f94bb8678408d179c6db6" args="(QList&lt; Hashtag &gt; newHashtags)" -->
+<a class="anchor" id="a791dbcdc5043c45bd34ad277053bcc66"></a><!-- doxytag: member="TweetEntities::setHashtags" ref="a791dbcdc5043c45bd34ad277053bcc66" args="(HashtagList newHashtags)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::setHashtagsList </td>
+          <td class="memname">void TweetEntities::setHashtags </td>
           <td>(</td>
-          <td class="paramtype">QList&lt; <a class="el" href="class_hashtag.html">Hashtag</a> &gt;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a>&nbsp;</td>
           <td class="paramname"> <em>newHashtags</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -573,7 +561,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00222">222</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00235">235</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -601,18 +589,18 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00169">169</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00177">177</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a88798febe2efa6a97ec162050408442e"></a><!-- doxytag: member="TweetEntities::setMedia" ref="a88798febe2efa6a97ec162050408442e" args="(QList&lt; Media &gt; newMedia)" -->
+<a class="anchor" id="aeec527f3f4dd71c0f49b56301cf9e2c0"></a><!-- doxytag: member="TweetEntities::setMedia" ref="aeec527f3f4dd71c0f49b56301cf9e2c0" args="(MediaList newMedia)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void TweetEntities::setMedia </td>
           <td>(</td>
-          <td class="paramtype">QList&lt; <a class="el" href="class_media.html">Media</a> &gt;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a>&nbsp;</td>
           <td class="paramname"> <em>newMedia</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -629,7 +617,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00189">189</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00202">202</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +645,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00124">124</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00117">117</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -685,18 +673,18 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00139">139</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00137">137</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af3e9bd8c7402828cf68fe0862015c4df"></a><!-- doxytag: member="TweetEntities::setURLs" ref="af3e9bd8c7402828cf68fe0862015c4df" args="(QList&lt; URLEntity &gt; newURLs)" -->
+<a class="anchor" id="ac367465cbe63489b3347c4a2fcfcbbc6"></a><!-- doxytag: member="TweetEntities::setURLs" ref="ac367465cbe63489b3347c4a2fcfcbbc6" args="(URLEntityList newURLs)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void TweetEntities::setURLs </td>
           <td>(</td>
-          <td class="paramtype">QList&lt; <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &gt;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a>&nbsp;</td>
           <td class="paramname"> <em>newURLs</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -713,18 +701,18 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00200">200</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00213">213</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9ca0dbc9daa0c47c5c667cca530d5084"></a><!-- doxytag: member="TweetEntities::setUserMentions" ref="a9ca0dbc9daa0c47c5c667cca530d5084" args="(QList&lt; UserMention &gt; newUserMentions)" -->
+<a class="anchor" id="a9dd524289a4d72e8a1995900c324629f"></a><!-- doxytag: member="TweetEntities::setUserMentions" ref="a9dd524289a4d72e8a1995900c324629f" args="(UserMentionList newUserMentions)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void TweetEntities::setUserMentions </td>
           <td>(</td>
-          <td class="paramtype">QList&lt; <a class="el" href="class_user_mention.html">UserMention</a> &gt;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a>&nbsp;</td>
           <td class="paramname"> <em>newUserMentions</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -741,7 +729,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00211">211</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00224">224</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -769,37 +757,37 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00154">154</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00157">157</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab7516496d04a7e7482eb2a8986025114"></a><!-- doxytag: member="TweetEntities::updateAllProperties" ref="ab7516496d04a7e7482eb2a8986025114" args="()" -->
+<a class="anchor" id="acf7980ea921c8e51ebb4e4c2ee6d2df0"></a><!-- doxytag: member="TweetEntities::syncHashtagsMember" ref="acf7980ea921c8e51ebb4e4c2ee6d2df0" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::updateAllProperties </td>
+          <td class="memname">void TweetEntities::syncHashtagsMember </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updating all the properties. </p>
+<p>Updating the tweetHashtags member. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00111">111</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00187">187</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a34e05c688ffc2d00edfc9c0f9287fb95"></a><!-- doxytag: member="TweetEntities::updateHashtags" ref="a34e05c688ffc2d00edfc9c0f9287fb95" args="()" -->
+<a class="anchor" id="a9a1255aa311e15e83e6fc4c318c4afee"></a><!-- doxytag: member="TweetEntities::syncHashtagsProperty" ref="a9a1255aa311e15e83e6fc4c318c4afee" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::updateHashtags </td>
+          <td class="memname">void TweetEntities::syncHashtagsProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -811,16 +799,37 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Updating the property hashtags. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00174">174</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00182">182</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aed685f7dd64c84306302a2eb2f255441"></a><!-- doxytag: member="TweetEntities::updateMedia" ref="aed685f7dd64c84306302a2eb2f255441" args="()" -->
+<a class="anchor" id="a3fa8bb9758d126a712e72f08374521dd"></a><!-- doxytag: member="TweetEntities::syncMediaMember" ref="a3fa8bb9758d126a712e72f08374521dd" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::updateMedia </td>
+          <td class="memname">void TweetEntities::syncMediaMember </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating the medias member. </p>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00127">127</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af959e8902b7eeb60e2d00ef9c165040e"></a><!-- doxytag: member="TweetEntities::syncMediaProperty" ref="af959e8902b7eeb60e2d00ef9c165040e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::syncMediaProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -832,16 +841,83 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Updating the property media. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00129">129</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00122">122</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4cbbb4494d9dd3d00066ae97e235eba6"></a><!-- doxytag: member="TweetEntities::updateURLs" ref="a4cbbb4494d9dd3d00066ae97e235eba6" args="()" -->
+<a class="anchor" id="a605860e94b464775825bddd5abdc0e20"></a><!-- doxytag: member="TweetEntities::syncMembers" ref="a605860e94b464775825bddd5abdc0e20" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::updateURLs </td>
+          <td class="memname">void TweetEntities::syncMembers </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating the field members. </p>
+
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00096">96</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a716c6dd33809525785f53e1c90b840d6"></a><!-- doxytag: member="TweetEntities::syncProperties" ref="a716c6dd33809525785f53e1c90b840d6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::syncProperties </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating all the properties. </p>
+
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00104">104</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a53310d98f11a69dad7be959eb0587bd9"></a><!-- doxytag: member="TweetEntities::syncUrlsMember" ref="a53310d98f11a69dad7be959eb0587bd9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::syncUrlsMember </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating the tweetURLs member. </p>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00147">147</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af25b8d5fb20f858b07112f805b399a7d"></a><!-- doxytag: member="TweetEntities::syncUrlsProperty" ref="af25b8d5fb20f858b07112f805b399a7d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::syncUrlsProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -853,16 +929,37 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Updating the property urls. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00144">144</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00142">142</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3cc7c013aca0b95ec1f303d479e6ddc3"></a><!-- doxytag: member="TweetEntities::updateUserMentions" ref="a3cc7c013aca0b95ec1f303d479e6ddc3" args="()" -->
+<a class="anchor" id="a50d373fbbd456f692ebb77216d02349a"></a><!-- doxytag: member="TweetEntities::syncUserMentionsMember" ref="a50d373fbbd456f692ebb77216d02349a" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TweetEntities::updateUserMentions </td>
+          <td class="memname">void TweetEntities::syncUserMentionsMember </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Updating the mentions member. </p>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00167">167</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0db7146471709e8bf824a82b18007b5d"></a><!-- doxytag: member="TweetEntities::syncUserMentionsProperty" ref="a0db7146471709e8bf824a82b18007b5d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::syncUserMentionsProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -874,7 +971,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Updating the property user_mentions. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00159">159</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00162">162</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -958,12 +1055,12 @@ Inheritance diagram for TweetEntities:</div>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a06383a08a688aa2626ecf124779e3208"></a><!-- doxytag: member="TweetEntities::medias" ref="a06383a08a688aa2626ecf124779e3208" args="" -->
+<a class="anchor" id="a0b5d57a4cece8be70ed90063219ddfda"></a><!-- doxytag: member="TweetEntities::medias" ref="a0b5d57a4cece8be70ed90063219ddfda" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt;<a class="el" href="class_media.html">Media</a>&gt; <a class="el" href="class_tweet_entities.html#a06383a08a688aa2626ecf124779e3208">TweetEntities::medias</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">MediaList</a> <a class="el" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda">TweetEntities::medias</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -971,50 +1068,16 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Medias. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00207">207</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00224">224</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8750e894817a60a88c60415b531ec6f9"></a><!-- doxytag: member="TweetEntities::tweetHashtags" ref="a8750e894817a60a88c60415b531ec6f9" args="" -->
+<a class="anchor" id="ab12dee9441ff3243b561c77ab3382ed1"></a><!-- doxytag: member="TweetEntities::mentions" ref="ab12dee9441ff3243b561c77ab3382ed1" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt;<a class="el" href="class_hashtag.html">Hashtag</a>&gt; <a class="el" href="class_tweet_entities.html#a8750e894817a60a88c60415b531ec6f9">TweetEntities::tweetHashtags</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Hashtags. </p>
-
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00216">216</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad32f1cb2dd971f754bdab7ed7aedbe35"></a><!-- doxytag: member="TweetEntities::tweetURLs" ref="ad32f1cb2dd971f754bdab7ed7aedbe35" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt;<a class="el" href="class_u_r_l_entity.html">URLEntity</a>&gt; <a class="el" href="class_tweet_entities.html#ad32f1cb2dd971f754bdab7ed7aedbe35">TweetEntities::tweetURLs</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>URLs. </p>
-
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00210">210</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a890b1c2d78c86822fa447a2f9f30d8e1"></a><!-- doxytag: member="TweetEntities::userMentions" ref="a890b1c2d78c86822fa447a2f9f30d8e1" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QList&lt;<a class="el" href="class_user_mention.html">UserMention</a>&gt; <a class="el" href="class_tweet_entities.html#a890b1c2d78c86822fa447a2f9f30d8e1">TweetEntities::userMentions</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">UserMentionList</a> <a class="el" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1">TweetEntities::mentions</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -1022,7 +1085,41 @@ Inheritance diagram for TweetEntities:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> mentions. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00213">213</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00230">230</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a09865730eaa32f4195589cd69362bd66"></a><!-- doxytag: member="TweetEntities::tweetHashtags" ref="a09865730eaa32f4195589cd69362bd66" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">HashtagList</a> <a class="el" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66">TweetEntities::tweetHashtags</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Hashtags. </p>
+
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00233">233</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08b58d917bf14ae34f26b2ff4e5af200"></a><!-- doxytag: member="TweetEntities::tweetURLs" ref="a08b58d917bf14ae34f26b2ff4e5af200" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_reyn_tweets_serializable_list.html">URLEntityList</a> <a class="el" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200">TweetEntities::tweetURLs</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>URLs. </p>
+
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00227">227</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1040,7 +1137,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Hashtags in the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00181">181</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00194">194</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1057,7 +1154,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>List of hashtags under the form of maps. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00184">184</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00197">197</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1171,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Medias. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00109">109</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00110">110</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1188,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>List of Medias under the form of maps. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00112">112</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00113">113</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1108,7 +1205,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>URLs written in the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00133">133</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00138">138</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1125,7 +1222,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>List of urls under the form of maps. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00136">136</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00141">141</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1239,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>Users mentionned in the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00157">157</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00166">166</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1256,7 @@ Inheritance diagram for TweetEntities:</div>
 
 <p>List of user mentions under the form of maps. </p>
 
-<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00160">160</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8hpp_source.html#l00169">169</a> of file <a class="el" href="tweetentities_8hpp_source.html">tweetentities.hpp</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1279,7 @@ Inheritance diagram for TweetEntities:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:29 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

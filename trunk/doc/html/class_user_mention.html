@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>UserMention Class Reference</h1><!-- doxytag: class="UserMention" --><!-- doxytag: inherits="ReynTweetsSerializable" -->
+<h1>UserMention Class Reference</h1><!-- doxytag: class="UserMention" --><!-- doxytag: inherits="ReynTweetsMappable" -->
 <p>Mention of a user in a tweet.  
 <a href="#_details">More...</a></p>
 
@@ -99,7 +99,8 @@ Inheritance diagram for UserMention:</div>
  <div class="center">
   <img src="class_user_mention.png" usemap="#UserMention_map" alt=""/>
   <map id="UserMention_map" name="UserMention_map">
-<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable" shape="rect" coords="0,0,146,24"/>
+<area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
+<area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
  </div>
 </div>
@@ -133,16 +134,10 @@ Inheritance diagram for UserMention:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for userName.  <a href="#a4b9238679ed45f4fe417c3130b035cc2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e">setScreenName</a> (QString newScreenName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing displayedURL.  <a href="#a75620b4dc09388edda21d01c25a1ba3e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#abf23cb1157f0daa0b287cbc35376da4b">updateID</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property id.  <a href="#abf23cb1157f0daa0b287cbc35376da4b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a5fd66edb0e304418784186cd2d29653a">updateIDstr</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property url.  <a href="#a5fd66edb0e304418784186cd2d29653a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#abcbe87eec712a86ed5f703128b8d8f05">updateIndices</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property indices.  <a href="#abcbe87eec712a86ed5f703128b8d8f05"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#ac050e17b9cd951a033ecd835f5fda943">updateName</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property name.  <a href="#ac050e17b9cd951a033ecd835f5fda943"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a798daee17bb46298f37ce4b482821004">updateScreenName</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property screen_name.  <a href="#a798daee17bb46298f37ce4b482821004"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#ac542b6becefc7f384f9ba0a93eeeef1c">syncIndicesMember</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the indexes attribute.  <a href="#ac542b6becefc7f384f9ba0a93eeeef1c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a0097443689c33bec6de1469b6f8c2c40">syncIndicesProperty</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the property indices.  <a href="#a0097443689c33bec6de1469b6f8c2c40"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a72da7b377df99a74ddcc65b9a3d55971">UserMention</a> (const <a class="el" href="class_user_mention.html">UserMention</a> &amp;mention)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#a72da7b377df99a74ddcc65b9a3d55971"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#ab0deedafc4ae0176447375cfcb2f0ce5">UserMention</a> ()</td></tr>
@@ -153,10 +148,10 @@ Inheritance diagram for UserMention:</div>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a5975da80709e8161e25d5afee1aceb21">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#a5975da80709e8161e25d5afee1aceb21"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a018cd858da1c29b1d5021f545bd450d0">fillWithPropertiesMaps</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling serializable fields with thecorresponding property maps.  <a href="#a018cd858da1c29b1d5021f545bd450d0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a15679dd6a6bcffb7700146e82a88805d">updateAllProperties</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#a15679dd6a6bcffb7700146e82a88805d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6">syncMembers</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the field members.  <a href="#a9222c4737f64a0501496a3ed163b4bf6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d">syncProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating all the properties.  <a href="#ab7c569921fd3a5b93444d9d90765897d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_user_mention.html#a464700e7fae00f2d08b3dfcec38f91de">indexes</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexes of the mention in the tweet.  <a href="#a464700e7fae00f2d08b3dfcec38f91de"></a><br/></td></tr>
@@ -193,7 +188,7 @@ Inheritance diagram for UserMention:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Mention of a user in a tweet. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00032">32</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00033">33</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab0deedafc4ae0176447375cfcb2f0ce5"></a><!-- doxytag: member="UserMention::UserMention" ref="ab0deedafc4ae0176447375cfcb2f0ce5" args="()" -->
 <div class="memitem">
@@ -266,27 +261,6 @@ Inheritance diagram for UserMention:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a018cd858da1c29b1d5021f545bd450d0"></a><!-- doxytag: member="UserMention::fillWithPropertiesMaps" ref="a018cd858da1c29b1d5021f545bd450d0" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UserMention::fillWithPropertiesMaps </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Filling serializable fields with thecorresponding property maps. </p>
-
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00095">95</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="afcb7248ef8235cd0823bf39cb11cda5c"></a><!-- doxytag: member="UserMention::getID" ref="afcb7248ef8235cd0823bf39cb11cda5c" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -305,7 +279,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading userID. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userID </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00149">149</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00130">130</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +301,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading userIDstr. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userIDstr </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00159">159</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00140">140</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +323,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading indexes. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>indexes </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00189">189</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00170">170</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,7 +345,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading method for the property indices. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>indexList </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00129">129</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00105">105</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +367,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading method for userName. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userName </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00179">179</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00160">160</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -415,7 +389,7 @@ Inheritance diagram for UserMention:</div>
 <p>Reading method for screenName. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>screenName </dd></dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00169">169</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00150">150</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +495,7 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00154">154</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00135">135</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,7 +523,7 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00164">164</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00145">145</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -577,7 +551,7 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00194">194</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00175">175</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -605,7 +579,7 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00134">134</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00110">110</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -633,7 +607,7 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00184">184</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00165">165</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -661,37 +635,16 @@ Inheritance diagram for UserMention:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00174">174</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00155">155</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a15679dd6a6bcffb7700146e82a88805d"></a><!-- doxytag: member="UserMention::updateAllProperties" ref="a15679dd6a6bcffb7700146e82a88805d" args="()" -->
+<a class="anchor" id="ac542b6becefc7f384f9ba0a93eeeef1c"></a><!-- doxytag: member="UserMention::syncIndicesMember" ref="ac542b6becefc7f384f9ba0a93eeeef1c" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserMention::updateAllProperties </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Updating all the properties. </p>
-
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00100">100</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abf23cb1157f0daa0b287cbc35376da4b"></a><!-- doxytag: member="UserMention::updateID" ref="abf23cb1157f0daa0b287cbc35376da4b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UserMention::updateID </td>
+          <td class="memname">void UserMention::syncIndicesMember </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -701,39 +654,18 @@ Inheritance diagram for UserMention:</div>
 </div>
 <div class="memdoc">
 
-<p>Updating the property id. </p>
+<p>Updating the indexes attribute. </p>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00109">109</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00120">120</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5fd66edb0e304418784186cd2d29653a"></a><!-- doxytag: member="UserMention::updateIDstr" ref="a5fd66edb0e304418784186cd2d29653a" args="()" -->
+<a class="anchor" id="a0097443689c33bec6de1469b6f8c2c40"></a><!-- doxytag: member="UserMention::syncIndicesProperty" ref="a0097443689c33bec6de1469b6f8c2c40" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserMention::updateIDstr </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Updating the property url. </p>
-
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00114">114</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abcbe87eec712a86ed5f703128b8d8f05"></a><!-- doxytag: member="UserMention::updateIndices" ref="abcbe87eec712a86ed5f703128b8d8f05" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UserMention::updateIndices </td>
+          <td class="memname">void UserMention::syncIndicesProperty </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -745,49 +677,53 @@ Inheritance diagram for UserMention:</div>
 
 <p>Updating the property indices. </p>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00139">139</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00115">115</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac050e17b9cd951a033ecd835f5fda943"></a><!-- doxytag: member="UserMention::updateName" ref="ac050e17b9cd951a033ecd835f5fda943" args="()" -->
+<a class="anchor" id="a9222c4737f64a0501496a3ed163b4bf6"></a><!-- doxytag: member="UserMention::syncMembers" ref="a9222c4737f64a0501496a3ed163b4bf6" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserMention::updateName </td>
+          <td class="memname">void UserMention::syncMembers </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updating the property name. </p>
+<p>Updating the field members. </p>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00124">124</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00095">95</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a798daee17bb46298f37ce4b482821004"></a><!-- doxytag: member="UserMention::updateScreenName" ref="a798daee17bb46298f37ce4b482821004" args="()" -->
+<a class="anchor" id="ab7c569921fd3a5b93444d9d90765897d"></a><!-- doxytag: member="UserMention::syncProperties" ref="ab7c569921fd3a5b93444d9d90765897d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UserMention::updateScreenName </td>
+          <td class="memname">void UserMention::syncProperties </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Updating the property screen_name. </p>
+<p>Updating all the properties. </p>
 
-<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00119">119</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
+<p>Implements <a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">ReynTweetsMappable</a>.</p>
+
+<p>Definition at line <a class="el" href="usermention_8cpp_source.html#l00100">100</a> of file <a class="el" href="usermention_8cpp_source.html">usermention.cpp</a>.</p>
 
 </div>
 </div>
@@ -884,7 +820,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>Indexes of the mention in the tweet. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00186">186</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00175">175</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -901,7 +837,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>Screen name of the user. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00180">180</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00169">169</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -918,7 +854,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>UserID. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00174">174</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00163">163</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +871,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>String version of userID. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00177">177</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00166">166</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -952,7 +888,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>User's name. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00183">183</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00172">172</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -970,7 +906,7 @@ Inheritance diagram for UserMention:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> id. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00104">104</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00105">105</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -987,7 +923,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>String version of id. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00115">115</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00112">112</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +940,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>Representation of the property indices. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00151">151</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00136">136</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -1021,7 +957,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>Indexes. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00148">148</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00133">133</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -1038,7 +974,7 @@ Inheritance diagram for UserMention:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> full name. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00137">137</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00126">126</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -1055,7 +991,7 @@ Inheritance diagram for UserMention:</div>
 
 <p>Screen name. </p>
 
-<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00126">126</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
+<p>Definition at line <a class="el" href="usermention_8hpp_source.html#l00119">119</a> of file <a class="el" href="usermention_8hpp_source.html">usermention.hpp</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +1014,7 @@ Inheritance diagram for UserMention:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jan 13 04:10:29 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -25,6 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define REYNCORE_HPP
 
 #include <QObject>
+#include "launchresult.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
 
 /// @class ReynCore
@@ -54,6 +55,15 @@ class ReynCore : public QObject
 		void saveConfiguration();
 
 	signals:
+		/// @fn void authenticationRequired();
+		/// @brief Signal sent if the application has to be authorized again
+		/// (in order to get new access tokens, for example).
+		void authenticationRequired();
+
+		/// @fn void authenticationOK(bool authOK);
+		/// @brief Signal sent at the end of the authentication to indicate
+		/// if it was successful or not.
+		void launchEnded(LaunchResult authOK);
 
 	public slots:
 

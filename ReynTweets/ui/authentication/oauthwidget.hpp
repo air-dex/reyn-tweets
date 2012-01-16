@@ -25,7 +25,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define OAUTHWIDGET_HPP
 
 #include <QWidget>
-#include <QVBoxLayout>
 #include "loginwidget.hpp"
 #include "../../controls/oauthprocess.hpp"
 
@@ -121,9 +120,6 @@ class OAuthWidget : public QWidget
 		LoginWidget loginWidget;
 
 	private:
-		/// @brief Layout of the widget
-		QVBoxLayout layout;
-
 		/// @fn void killOAuthProcess();
 		/// @brief Killing the OAuth Authentication Flow
 		void killOAuthProcess();

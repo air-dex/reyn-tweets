@@ -28,11 +28,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 OAuthWidget::OAuthWidget(QWidget *parent) :
 	QWidget(parent),
 	authenticationFlow(0),
-	loginWidget(),
-	layout()
+	loginWidget()
 {
 	loginWidget.setVisible(false);
-	setLayout(&layout);
 
 	// Wiring
 
@@ -113,8 +111,8 @@ void OAuthWidget::allowReynTweets() {
 	} else {
 		// Critical error -> Abort the process.
 		QMessageBox::critical(this,
-							  QObject::trUtf8("Error during the authentication process"),
-							  QObject::trUtf8("Error while launching the authentication process. Authentication ended."));
+							  OAuthWidget::trUtf8("Error during the authentication process"),
+							  OAuthWidget::trUtf8("Error while launching the authentication process. Authentication ended."));
 		emit authenticationFinished(ERROR_PROCESS);
 	}
 }
@@ -125,19 +123,19 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 
 	if (fatalError) {
 		// Critical error -> Abort the process.
-		message.append(QObject::trUtf8("\nEnd of the authentication process."));
+		message.append(OAuthWidget::trUtf8("\nEnd of the authentication process."));
 
 		QMessageBox::critical(this,
-							  QObject::trUtf8("Error during the authentication process"),
-							  QObject::trUtf8(message.toUtf8().data()));
+							  OAuthWidget::trUtf8("Error during the authentication process"),
+							  OAuthWidget::trUtf8(message.toUtf8().data()));
 		endAuthentication(ERROR_PROCESS);
 	} else {
 		// The error is not critical. The process can be resumed.
-		message.append(QObject::trUtf8("\nWould you like to resume the authentication process ?"));
+		message.append(OAuthWidget::trUtf8("\nWould you like to resume the authentication process ?"));
 
 		QMessageBox::StandardButton userResponse = QMessageBox::warning(this,
-																		QObject::trUtf8("Hitch in the authentication process"),
-																		QObject::trUtf8(message.toUtf8().data()),
+																		OAuthWidget::trUtf8("Hitch in the authentication process"),
+																		OAuthWidget::trUtf8(message.toUtf8().data()),
 																		QMessageBox::Yes | QMessageBox::No,
 																		QMessageBox::Yes);
 		if (QMessageBox::Yes == userResponse) {
@@ -148,8 +146,8 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 		} else {
 			// Abort the process
 			QMessageBox::information(this,
-									 QObject::trUtf8("End of the authentication process"),
-									 QObject::trUtf8("Authentication ended"));
+									 OAuthWidget::trUtf8("End of the authentication process"),
+									 OAuthWidget::trUtf8("Authentication ended"));
 			endAuthentication(ERROR_PROCESS);
 		}
 	}

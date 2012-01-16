@@ -144,12 +144,12 @@ QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSett
 
 // Getting the consumer key
 QByteArray ReynTweetsConfiguration::getConsumerKey() {
-	return REYN_TWEETS_CONSUMER_KEY.fromBase64();
+	return QByteArray::fromBase64(REYN_TWEETS_CONSUMER_KEY);
 }
 
 // Getting the consumer secret
 QByteArray ReynTweetsConfiguration::getConsumerSecret() {
-	return REYN_TWEETS_CONSUMER_SECRET.fromBase64();
+	return QByteArray::fromBase64(REYN_TWEETS_CONSUMER_SECRET);
 }
 
 // Getter on userAccount

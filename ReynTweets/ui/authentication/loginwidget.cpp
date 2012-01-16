@@ -26,22 +26,22 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 LoginWidget::LoginWidget(QWidget *parent) :
 	QWidget(parent),
 	widgetLayout(),
-	credentialsErrorMessage(QObject::trUtf8("<strong style=\"color:red\">Username or password invalid. Try again.</strong>")),
+	credentialsErrorMessage(LoginWidget::trUtf8("<strong style=\"color:red\">Username or password invalid. Try again.</strong>")),
 	formLayout(),
 	loginLineEdit(),
 	passwordLineEdit(),
-	passwordCheckBox(QObject::trUtf8("Show password")),
+	passwordCheckBox(LoginWidget::trUtf8("Show password")),
 	buttonsLayout(),
-	authorizeButton(QObject::trUtf8("Authorize")),
-	denyButton(QObject::trUtf8("No thanks"))
+	authorizeButton(LoginWidget::trUtf8("Authorize")),
+	denyButton(LoginWidget::trUtf8("No thanks"))
 {
 	// Building the UI
 	credentialsErrorMessage.setVisible(false);
 
 	// Password form
 	passwordLineEdit.setEchoMode(QLineEdit::Password);
-	formLayout.addRow(QObject::trUtf8("Username or email:"), &loginLineEdit);
-	formLayout.addRow(QObject::trUtf8("Password:"), &passwordLineEdit);
+	formLayout.addRow(LoginWidget::trUtf8("Username or email:"), &loginLineEdit);
+	formLayout.addRow(LoginWidget::trUtf8("Password:"), &passwordLineEdit);
 	passwordCheckBox.setTristate(false);
 	formLayout.addRow(&passwordCheckBox);
 

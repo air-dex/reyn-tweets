@@ -1,4 +1,4 @@
-/// @file launchingWidget.qml
+/// @file launchingWidget.hpp
 /// @brief Header of LaunchingWidget
 /// @author Romain DUCHER
 
@@ -25,20 +25,33 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define LAUNCHINGWIDGET_HPP
 
 #include <QDeclarativeView>
+#include <QVBoxLayout>
+#include "authentication/oauthwidget.hpp"
 
 /// @class LaunchingWidget
 /// @brief Widget displayed while Reyn Tweets is launched
-class LaunchingWidget : public QDeclarativeView
+///
+/// An OAuthWidget is included if an authentication is required while launching
+/// the program. A LoginWidget popup could be displayed in this case.
+class LaunchingWidget : public QWidget
 {
 	Q_OBJECT
 
 	public:
-		LaunchingWidget();
+		/// @fn LaunchingWidget(OAuthWidget & authWidget);
+		/// @brief Constructor
+		/// @param authWidget OAuthWidget for authentication
+		LaunchingWidget(OAuthWidget & authWidget);
 
-	signals:
+	protected:
+		/// @brief Layout of the widget
+		QVBoxLayout layout;
 
-	public slots:
+		/// @brief What is displayed while the configuration is launching
+		QDeclarativeView splashScreen;
 
+		/// @brief Widget for authentication
+		OAuthWidget & authenticationWidget;
 };
 
 #endif // LAUNCHINGWIDGET_HPP

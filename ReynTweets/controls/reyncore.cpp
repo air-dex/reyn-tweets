@@ -21,9 +21,54 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QFile>
 #include "reyncore.hpp"
 
 // Constructor
 ReynCore::ReynCore() :
-	QObject()
+	QObject(),
+	configuration()
 {}
+
+//////////////////////////////
+// Configuration management //
+//////////////////////////////
+
+// Loading the configuartion from the configuration file
+void ReynCore::loadConfiguration() {
+	// Opening the configuration file
+	QFile confFile("conf/ReynTweets.conf");
+
+	if (!confFile.exists()) {
+		emit launchEnded(CONFIGURATION_FILE_UNKNOWN);
+		return;
+	}
+
+	bool openOK = confFile.open(QFile::ReadOnly);
+
+	if (!openOK) {
+		emit launchEnded(CONFIGURATION_FILE_NOT_OPEN);
+		return;
+	}
+
+	// Launching the configuration
+	QDataStream readStream(&confFile);
+	QVariant confVariant;
+
+	readStream >> confVariant;
+	confFile.close();
+
+	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
+		// The content of the file cannot be converted into a configuration.
+		emit launchEnded(LOADING_CONFIGURATION_ERROR);
+		return;
+	}
+
+	configuration = qVariantValue<ReynTweetsConfiguration>(confVariant);
+	emit launchEnded(LAUNCH_SUCCESSFUL);
+}
+
+// Saving the configuartion in the configuration file
+void ReynCore::saveConfiguration() {
+
+}

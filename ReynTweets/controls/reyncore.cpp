@@ -23,6 +23,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 #include "reyncore.hpp"
+#include "../connection/reyntwittercalls.hpp"
 
 // Constructor
 ReynCore::ReynCore() :
@@ -36,19 +37,21 @@ ReynCore::ReynCore() :
 
 // Loading the configuartion from the configuration file
 void ReynCore::loadConfiguration() {
+	emit launchEnded(loadConfigurationPrivate());
+}
+
+// Loading the configuartion from the configuration file
+LaunchResult ReynCore::loadConfigurationPrivate() {
 	// Opening the configuration file
 	QFile confFile("conf/ReynTweets.conf");
 
 	if (!confFile.exists()) {
-		emit launchEnded(CONFIGURATION_FILE_UNKNOWN);
-		return;
+		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	bool openOK = confFile.open(QFile::ReadOnly);
-
 	if (!openOK) {
-		emit launchEnded(CONFIGURATION_FILE_NOT_OPEN);
-		return;
+		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 	// Launching the configuration
@@ -60,15 +63,47 @@ void ReynCore::loadConfiguration() {
 
 	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
 		// The content of the file cannot be converted into a configuration.
-		emit launchEnded(LOADING_CONFIGURATION_ERROR);
-		return;
+		return LOADING_CONFIGURATION_ERROR;
 	}
 
 	configuration = qVariantValue<ReynTweetsConfiguration>(confVariant);
-	emit launchEnded(LAUNCH_SUCCESSFUL);
+	fillOAuthManager();
+	return LAUNCH_SUCCESSFUL;
 }
 
 // Saving the configuartion in the configuration file
 void ReynCore::saveConfiguration() {
+	emit saveConfEnded(saveConfigurationPrivate());
+}
 
+// Saving the configuartion in the configuration file
+SaveConfResult ReynCore::saveConfigurationPrivate() {
+	// Opening the configuration file
+	QFile confFile("conf/ReynTweets.conf");
+
+	if (!confFile.exists()) {
+		return CONFIGURATION_FILE_UNKNOWN;
+	}
+
+	bool openOK = confFile.open(QFile::WriteOnly);
+	if (!openOK) {
+		return CONFIGURATION_FILE_NOT_OPEN;
+	}
+
+	// Launching the configuration
+	QDataStream readStream(&confFile);
+	QVariant confVariant = qVariantFromValue(configuration);
+
+	readStream << confVariant;
+	confFile.close();
+
+	return SAVE_SUCCESSFUL;
+}
+
+// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+void ReynCore::fillOAuthManager() {
+	ReynTwitterCalls::setNewTokens(configuration.getUserAccount().getAccessToken(),
+								   configuration.getUserAccount().getTokenSecret(),
+								   ReynTweetsConfiguration::getConsumerKey(),
+								   ReynTweetsConfiguration::getConsumerSecret());
 }

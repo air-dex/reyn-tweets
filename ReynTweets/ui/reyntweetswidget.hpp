@@ -54,8 +54,12 @@ class ReynTweetsWidget : public QWidget
 		void authenticationRequired();
 
 		/// @fn void launchOK(LaunchResult launchOK);
-		/// @brief Slot executed at the end of the launched
+		/// @brief Slot executed at the end of the launch process
 		void launchOK(LaunchResult launchOK);
+
+		/// @fn void saveOK(SaveConfResult saveOK);
+		/// @brief Slot executed after saving the configuration
+		void saveOK(SaveConfResult saveOK);
 
 	protected:
 		/// @brief Main controller

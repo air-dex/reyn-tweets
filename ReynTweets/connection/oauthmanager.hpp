@@ -70,6 +70,16 @@ class OAuthManager
 		/// @return The callback URL
 		QString getCallbackUrl();
 
+		/// @fn void setConsumerKey(QByteArray clientKey);
+		/// @brief Setter on the consumer key
+		/// @param clientKey New consumer key
+		void setConsumerKey(QByteArray clientKey);
+
+		/// @fn void setConsumerSecret(QByteArray clientSecret);
+		/// @brief Setter on the consumer secret
+		/// @param clientSecret New consumer secret
+		void setConsumerSecret(QByteArray clientSecret);
+
 		/// @fn QByteArray getOAuthToken();
 		/// @brief Getter on the OAuth Token
 		/// @return The OAuth Token

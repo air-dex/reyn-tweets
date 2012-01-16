@@ -34,7 +34,7 @@ OAuthProcess::~OAuthProcess() {}
 
 // Resetting the tokens.
 void OAuthProcess::resetTokens() {
-	twitter.resetTokens();
+	ReynTwitterCalls::resetTokens();
 }
 
 

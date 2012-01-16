@@ -1,5 +1,5 @@
-/// @file launchingWidget.cpp
-/// @brief Implementation of LaunchingWidget
+/// @file launchresult.qml
+/// @brief Header of LaunchingWidget
 /// @author Romain DUCHER
 
 /*
@@ -21,15 +21,23 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "launchingwidget.hpp"
+#ifndef LAUNCHRESULT_HPP
+#define LAUNCHRESULT_HPP
 
-LaunchingWidget::LaunchingWidget(OAuthWidget & authWidget) :
-	QWidget(),
-	layout(),
-	splashScreen(QUrl::fromLocalFile("ui/qml/launchingWidget.qml")),
-	authenticationWidget(authWidget)
-{
-	layout.addWidget(&splashScreen);
-	layout.addWidget(&authenticationWidget);
-	setLayout(&layout);
-}
+/// @enum LaunchResult
+/// @brief Enum indicating the result of the launching of Reyn Tweets.
+enum LaunchResult {
+	/// @brief The launching was successful
+	LAUNCH_SUCCESSFUL,
+
+	/// @brief The configuration file does not exist
+	CONFIGURATION_FILE_UNKNOWN,
+
+	/// @brief The configuration file cannot be opened
+	CONFIGURATION_FILE_NOT_OPEN,
+
+	/// @brief The configuration cannot be launched
+	LOADING_CONFIGURATION_ERROR
+};
+
+#endif // LAUNCHRESULT_HPP

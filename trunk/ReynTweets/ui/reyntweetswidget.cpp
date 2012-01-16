@@ -21,15 +21,98 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QApplication>
+#include <QMessageBox>
 #include "reyntweetswidget.hpp"
 
+// Constructor
 ReynTweetsWidget::ReynTweetsWidget() :
 	QWidget(),
 	reyn(),
+	layout(),
 	authenticationWidget(),
-	launchingScreen()
+	launchingScreen(authenticationWidget),
+	mock("Yeah ! It's Reyn time !")
 {
-	// Showing the launching screen
+	// UI design
+	layout.addWidget(&launchingScreen);
+	setLayout(&layout);
+
+	// Wiring
+	connect(&reyn, SIGNAL(authenticationRequired()),
+			this, SLOT(authenticationRequired()));
+	connect(&reyn, SIGNAL(launchEnded(LaunchResult)),
+			this, SLOT(launchEnded(LaunchResult)));
 
 	// Loading configuration
+	reyn.loadConfiguration();
+}
+
+// Destructor
+ReynTweetsWidget::~ReynTweetsWidget() {
+	// Unwiring
+	disconnect(&reyn, SIGNAL(authenticationRequired()),
+			   this, SLOT(authenticationRequired()));
+	disconnect(&reyn, SIGNAL(launchEnded(LaunchResult)),
+			   this, SLOT(launchEnded(LaunchResult)));
+}
+
+
+///////////////////////////////
+// Authentication management //
+///////////////////////////////
+
+/// @fn void authenticationRequired();
+/// @brief Signal sent if the application has to be authorized again
+/// (in order to get new access tokens, for example).
+void ReynTweetsWidget::authenticationRequired() {
+	authenticationWidget.allowReynTweets();
+}
+
+/// @fn void authenticationOK(bool authOK);
+/// @brief Signal sent at the end of the authentication to indicate
+/// if it was successful or not.
+void ReynTweetsWidget::launchOK(LaunchResult launchOK) {
+	QString errorMsg = "";
+
+	switch (launchOK) {
+		case LAUNCH_SUCCESSFUL:
+			// The application was launched correctly. You can tweet now.
+
+			// Removing the launching screen
+			layout.removeWidget(&launchingScreen);
+
+			// Inserting the panel to tweet (mocked for the moment)
+			layout.addWidget(&mock);
+			return;
+
+		case CONFIGURATION_FILE_UNKNOWN:
+			errorMsg = ReynTweetsWidget::trUtf8("Configuration file does not exist.");
+			break;
+
+		case CONFIGURATION_FILE_NOT_OPEN:
+			errorMsg = ReynTweetsWidget::trUtf8("Configuration file cannot be opened.");
+			break;
+
+		case LOADING_CONFIGURATION_ERROR:
+			errorMsg = ReynTweetsWidget::trUtf8("Configuration cannot be loaded.");
+			break;
+
+		default:
+			errorMsg = ReynTweetsWidget::trUtf8("Unknown problem");
+			break;
+	}
+
+	QString displayedMessage = ReynTweetsWidget::trUtf8("A problem occured while launching the application:");
+
+	displayedMessage.append('\n');
+	displayedMessage.append(errorMsg);
+	displayedMessage.append('\n');
+	displayedMessage.append(ReynTweetsWidget::trUtf8("Reyn Tweets will quit."));
+
+	// Error while launching the app. Abort
+	QMessageBox::critical(this,
+						  ReynTweetsWidget::trUtf8("Error while launching the application"),
+						  displayedMessage);
+	qApp->quit();
 }

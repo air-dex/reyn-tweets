@@ -148,7 +148,8 @@ HEADERS  += \
 	ui/launchingwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+	controls/launchresult.hpp
 
 
 RESOURCES += \
@@ -161,30 +162,55 @@ OTHER_FILES = \
 	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
 	resources/Logo Reyn Tweets.png \
-	ui/launchingWidget.qml
+	ui/qml/launchingWidget.qml \
+	QMLIntegration.pri
+
+
+#-----------------#
+# QML Integration #
+#-----------------#
+
+# Add more folders to ship with the application, here
+
+# QML files
+qml_files.source = ui/qml
+qml_files.target = ui
+
+# Resources
+resource.source = resources
+resource.target = .
+
+# Configuration files
+conf_files.source = conf
+conf_files.target = .
+
+DEPLOYMENTFOLDERS = qml_files resource conf_files
+
+# QML deployment. Do not touch
+include(QMLIntegration.pri)
+qtcAddDeployment()
+
 
 #--------------#
 # Translations #
 #--------------#
 
-TRANSLATIONS = \
-	reyntweets_en.ts \ # English
-	reyntweets_fr.ts \ # French
+TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 
 #-------------------------------#
 # Symbian special configuration #
 #-------------------------------#
 
-#CONFIG += mobility
-#MOBILITY =
-#
-#symbian {
-#    TARGET.UID3 = 0xe348d5de
-#    # TARGET.CAPABILITY +=
-#    TARGET.EPOCSTACKSIZE = 0x14000
-#    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
-#}
+CONFIG += mobility
+MOBILITY =
+
+symbian {
+	TARGET.UID3 = 0xe348d5de
+	# TARGET.CAPABILITY +=
+	TARGET.EPOCSTACKSIZE = 0x14000
+	TARGET.EPOCHEAPSIZE = 0x020000 0x800000
+}
 
 
 #-------#

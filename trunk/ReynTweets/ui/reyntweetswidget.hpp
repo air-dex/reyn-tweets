@@ -41,19 +41,39 @@ class ReynTweetsWidget : public QWidget
 		/// @brief Constructor
 		ReynTweetsWidget();
 
+		/// @fn ~ReynTweetsWidget();
+		/// @brief Destructor
+		~ReynTweetsWidget();
+
 	signals:
 
 	public slots:
+		/// @fn void authenticationRequired();
+		/// @brief Slot executed if an authentication to Twitter is required
+		/// for the application
+		void authenticationRequired();
+
+		/// @fn void launchOK(LaunchResult launchOK);
+		/// @brief Slot executed at the end of the launched
+		void launchOK(LaunchResult launchOK);
 
 	protected:
 		/// @brief Main controller
 		ReynCore reyn;
+
+		// UI components
+
+		/// @brief Layout of the widget
+		QVBoxLayout layout;
 
 		/// @brief Widget for authentication
 		OAuthWidget authenticationWidget;
 
 		/// @brief Widget displayed while Reyn Tweets is launched
 		LaunchingWidget launchingScreen;
+
+		/// @brief Mock for "a normal execution"
+		QLabel mock;
 };
 
 #endif // REYNTWEETSWIDGET_HPP

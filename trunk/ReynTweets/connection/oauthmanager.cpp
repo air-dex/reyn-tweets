@@ -58,6 +58,16 @@ QString OAuthManager::getCallbackUrl() {
 	return callbackUrl;
 }
 
+// Setter on the consumer key
+void OAuthManager::setConsumerKey(QByteArray clientKey) {
+	consumerKey = clientKey.toBase64();
+}
+
+// Setter on the consumer secret
+void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
+	consumerSecret = clientSecret.toBase64();
+}
+
 // Getter on the OAuth Token
 QByteArray OAuthManager::getOAuthToken() {
 	return QByteArray::fromBase64(oauthToken);

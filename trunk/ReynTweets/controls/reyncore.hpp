@@ -60,16 +60,38 @@ class ReynCore : public QObject
 		/// (in order to get new access tokens, for example).
 		void authenticationRequired();
 
-		/// @fn void authenticationOK(bool authOK);
+		/// @fn void authenticationOK(LaunchResult authOK);
 		/// @brief Signal sent at the end of the authentication to indicate
 		/// if it was successful or not.
+		/// @param authOK How the launching process ended
 		void launchEnded(LaunchResult authOK);
+
+		/// @fn void saveConfEnded(SaveConfResult saveOK);
+		/// @brief Signal sent after saving the configuration
+		/// @param saveOK How the save process ended
+		void saveConfEnded(SaveConfResult saveOK);
 
 	public slots:
 
 	protected:
 		/// @brief Configuration of the program
 		ReynTweetsConfiguration configuration;
+
+		/// @fn void fillOAuthManager();
+		/// @brief Filling the authentication manager of the ReynTwitterCalls
+		/// with the right credentials
+		void fillOAuthManager();
+
+	private:
+		/// @fn LaunchResult loadConfigurationPrivate();
+		/// @brief Loading the configuartion from the configuration file
+		/// @return How the launching process ended
+		LaunchResult loadConfigurationPrivate();
+
+		/// @fn SaveConfResult saveConfigurationPrivate();
+		/// @brief Saving the configuartion in the configuration file
+		/// @return How the save process ended
+		SaveConfResult saveConfigurationPrivate();
 };
 
 #endif // REYNCORE_HPP

@@ -24,14 +24,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "reyntwittercalls.hpp"
 #include "requests/requests.hpp"
 
-//////////////////////////
-// Singleton management //
-//////////////////////////
-
 // Static components
 RequesterManager ReynTwitterCalls::requesterManager = RequesterManager();
 
-/// @brief OAuth information
+// OAuth information
 OAuthManager ReynTwitterCalls::oauthManager = OAuthManager();
 
 // Protected constructor
@@ -140,6 +136,18 @@ void ReynTwitterCalls::accessToken() {
 // Resetting the credentials to connect to Twitter
 void ReynTwitterCalls::resetTokens() {
 	oauthManager.resetTokens();
+}
+
+// Setting new credentials to connect to Twitter
+void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
+									QByteArray tokenSecret,
+									QByteArray consumerKey,
+									QByteArray consumerSecret)
+{
+	oauthManager.setOAuthToken(accessToken);
+	oauthManager.setOAuthSecret(tokenSecret);
+	oauthManager.setConsumerKey(consumerKey);
+	oauthManager.setConsumerSecret(consumerSecret);
 }
 
 

@@ -40,4 +40,17 @@ enum LaunchResult {
 	LOADING_CONFIGURATION_ERROR
 };
 
+/// @enum SaveConfResult
+/// @brief Enum indicating if saving the configuration was successful.
+enum SaveConfResult {
+	/// @brief The launching was successful
+	SAVE_SUCCESSFUL,
+
+	/// @brief The configuration file does not exist
+	CONFIGURATION_FILE_UNKNOWN,
+
+	/// @brief The configuration file cannot be opened
+	CONFIGURATION_FILE_NOT_OPEN
+};
+
 #endif // LAUNCHRESULT_HPP

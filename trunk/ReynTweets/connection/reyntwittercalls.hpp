@@ -117,10 +117,24 @@ class ReynTwitterCalls : public QObject
 		// OAuth //
 		///////////
 
-		/// @fn void resetTokens();
+		/// @fn static void resetTokens();
 		/// @brief Resetting the tokens. A full new OAuth authentication process
 		/// has to be launch to get tokens and for authentication in requests
-		void resetTokens();
+		static void resetTokens();
+
+		/// @fn static void setNewTokens(QByteArray accessToken,
+		///								 QByteArray tokenSecret,
+		///								 QByteArray consumerKey = ReynTweetsSettings::CONSUMER_KEY,
+		///								 QByteArray consumerSecret = ReynTweetsSettings::CONSUMER_SECRET);
+		/// @brief Giving new tokens to the oauthManager
+		/// @param accessToken New access token
+		/// @param tokenSecret New token secret
+		/// @param consumerKey New consumer key
+		/// @param consumerSecret New consumer secret
+		static void setNewTokens(QByteArray accessToken,
+								 QByteArray tokenSecret,
+								 QByteArray consumerKey = ReynTweetsSettings::CONSUMER_KEY,
+								 QByteArray consumerSecret = ReynTweetsSettings::CONSUMER_SECRET);
 
 		/// @fn void requestToken();
 		/// @brief Method for getting a request token

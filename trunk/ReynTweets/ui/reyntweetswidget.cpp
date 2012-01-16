@@ -43,6 +43,8 @@ ReynTweetsWidget::ReynTweetsWidget() :
 			this, SLOT(authenticationRequired()));
 	connect(&reyn, SIGNAL(launchEnded(LaunchResult)),
 			this, SLOT(launchEnded(LaunchResult)));
+	connect(&reyn, SIGNAL(saveConfEnded(SaveConfResult)),
+			this, SLOT(saveOK(SaveConfResult)));
 
 	// Loading configuration
 	reyn.loadConfiguration();
@@ -55,6 +57,8 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 			   this, SLOT(authenticationRequired()));
 	disconnect(&reyn, SIGNAL(launchEnded(LaunchResult)),
 			   this, SLOT(launchEnded(LaunchResult)));
+	disconnect(&reyn, SIGNAL(saveConfEnded(SaveConfResult)),
+			   this, SLOT(saveOK(SaveConfResult)));
 }
 
 
@@ -62,16 +66,12 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 // Authentication management //
 ///////////////////////////////
 
-/// @fn void authenticationRequired();
-/// @brief Signal sent if the application has to be authorized again
-/// (in order to get new access tokens, for example).
+// An authentication to Twitter is required for the application
 void ReynTweetsWidget::authenticationRequired() {
 	authenticationWidget.allowReynTweets();
 }
 
-/// @fn void authenticationOK(bool authOK);
-/// @brief Signal sent at the end of the authentication to indicate
-/// if it was successful or not.
+// End of launch process
 void ReynTweetsWidget::launchOK(LaunchResult launchOK) {
 	QString errorMsg = "";
 
@@ -113,6 +113,42 @@ void ReynTweetsWidget::launchOK(LaunchResult launchOK) {
 	// Error while launching the app. Abort
 	QMessageBox::critical(this,
 						  ReynTweetsWidget::trUtf8("Error while launching the application"),
+						  displayedMessage);
+	qApp->quit();
+}
+
+// After saving the configuration
+void ReynTweetsWidget::saveOK(SaveConfResult saveOK) {
+	QString errorMsg = "";
+
+	switch (saveOK) {
+		case SAVE_SUCCESSFUL:
+			// The application was saved correctly
+			return;
+
+		case CONFIGURATION_FILE_UNKNOWN:
+			errorMsg = ReynTweetsWidget::trUtf8("Configuration file does not exist.");
+			break;
+
+		case CONFIGURATION_FILE_NOT_OPEN:
+			errorMsg = ReynTweetsWidget::trUtf8("Configuration file cannot be opened.");
+			break;
+
+		default:
+			errorMsg = ReynTweetsWidget::trUtf8("Unknown problem");
+			break;
+	}
+
+	QString displayedMessage = ReynTweetsWidget::trUtf8("A problem occured while saving the application:");
+
+	displayedMessage.append('\n');
+	displayedMessage.append(errorMsg);
+	displayedMessage.append('\n');
+	displayedMessage.append(ReynTweetsWidget::trUtf8("Reyn Tweets will quit."));
+
+	// Error while saving the app. Abort
+	QMessageBox::critical(this,
+						  ReynTweetsWidget::trUtf8("Error while saving the application"),
 						  displayedMessage);
 	qApp->quit();
 }

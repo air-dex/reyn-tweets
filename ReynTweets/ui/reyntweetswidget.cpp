@@ -44,6 +44,13 @@ ReynTweetsWidget::ReynTweetsWidget() :
 			this, SLOT(launchOK(LaunchResult)));
 	connect(&reyn, SIGNAL(saveConfEnded(SaveConfResult)),
 			this, SLOT(saveOK(SaveConfResult)));
+	connect(&authenticationWidget, SIGNAL(authenticationFinished(OAuthProcessResult,
+																 QByteArray,QByteArray,
+																 long,QString)),
+			this, SLOT(endOAuthAuthenticationFlow(OAuthProcessResult,
+												  QByteArray,QByteArray,
+												  long,QString))
+			);
 
 	// Loading configuration
 	reyn.loadConfiguration();
@@ -58,6 +65,13 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 			   this, SLOT(launchEnded(LaunchResult)));
 	disconnect(&reyn, SIGNAL(saveConfEnded(SaveConfResult)),
 			   this, SLOT(saveOK(SaveConfResult)));
+	disconnect(&authenticationWidget, SIGNAL(authenticationFinished(OAuthProcessResult,
+																	QByteArray,QByteArray,
+																	long,QString)),
+			   this, SLOT(endOAuthAuthenticationFlow(OAuthProcessResult,
+													 QByteArray,QByteArray,
+													 long,QString))
+			   );
 }
 
 // Displaying a QMessageBox announcing a critical problem
@@ -110,6 +124,8 @@ void ReynTweetsWidget::authenticationRequired() {
 
 // End of authentication
 void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResult,
+												  QByteArray accessToken,
+												  QByteArray tokenSecret,
 												  long userID,
 												  QString screenName)
 {
@@ -118,7 +134,7 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 
 	switch (processResult) {
 		case AUTHORIZED:
-			// Reyn Tweets is authorized. Welcom the user and upload the account with him.
+			// Reyn Tweets is authorized. Welcome the user and upload the account with him.
 			welcomeMessage = "@";
 			welcomeMessage.append(screenName);
 			welcomeMessage.append(ReynTweetsWidget::trUtf8(" can go to Twitter with Reyn Tweets now. Have fun with Reyn Tweets!"));
@@ -126,7 +142,8 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 			QMessageBox::information(this,
 									 ReynTweetsWidget::trUtf8("Welcome to Reyn Tweets"),
 									 welcomeMessage);
-			reyn.updateConfAfterAuth(userID, screenName);
+			reyn.updateConfAfterAuth(accessToken, tokenSecret,
+									 userID, screenName);
 			return;
 
 		case DENIED:

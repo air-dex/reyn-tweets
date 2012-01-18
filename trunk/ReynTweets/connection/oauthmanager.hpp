@@ -80,40 +80,55 @@ class OAuthManager
 		/// @param clientSecret New consumer secret
 		void setConsumerSecret(QByteArray clientSecret);
 
-		/// @fn QByteArray getOAuthToken();
-		/// @brief Getter on the OAuth Token
+		/// @fn QByteArray getClearOAuthToken();
+		/// @brief Getting the clear OAuth Token
 		/// @return The OAuth Token
-		QByteArray getOAuthToken();
+		QByteArray getClearOAuthToken();
 
 		/// @fn void setOAuthToken(QByteArray authToken);
 		/// @brief Setter on the OAuth token
 		/// @param authToken The new value of the OAuth token
 		void setOAuthToken(QByteArray authToken);
 
+		/// @fn void setOAuthToken(QByteArray authToken);
+		/// @brief Setter on the OAuth token
+		/// @param authToken The new value of the OAuth token
+		void setOAuthToken(QByteArray authToken);
+
+		/// @fn void setClearOAuthToken(QByteArray authToken);
+		/// @brief Setting the OAuth token with its clear value
+		/// @param authToken The new value of the OAuth token
+		void setClearOAuthToken(QByteArray authToken);
+
 		/// @fn void setOAuthSecret(QByteArray oauthSecret);
 		/// @brief Setter on the OAuth secret
 		/// @param oauthSecret The new value of the OAuth secret
 		void setOAuthSecret(QByteArray authSecret);
 
-		/// @fn QByteArray getVerifier();
+		/// @fn void setClearOAuthSecret(QByteArray oauthSecret);
+		/// @brief Setter on the OAuth secret with its clear value
+		/// @param oauthSecret The new value of the OAuth secret
+		void setClearOAuthSecret(QByteArray authSecret);
+
+		/// @fn QByteArray getClearVerifier();
 		/// @brief Getter on the verifier
 		/// @return The verifier
-		QByteArray getVerifier();
+		QByteArray getClearVerifier();
 
-		/// @fn void setVerifier(QByteArray verifier);
+		/// @fn void setClearVerifier(QByteArray verifier);
 		/// @brief Setter on the verifier
 		/// @param verifier The new verifier
-		void setVerifier(QByteArray verifier);
+		void setClearVerifier(QByteArray verifier);
 
-		/// @fn QByteArray getAuthenticityToken();
+		/// @fn QByteArray getClearAuthenticityToken();
 		/// @brief Getter on the Authenticity Token
 		/// @return The Authenticity Token
-		QByteArray getAuthenticityToken();
+		QByteArray getClearAuthenticityToken();
 
-		/// @fn void setAuthenticityToken(QByteArray authToken);
+		/// @fn void setClearAuthenticityToken(QByteArray authToken);
 		/// @brief Setter on the Authenticity Token
 		/// @param authToken The new value of the Authenticity Token
-		void setAuthenticityToken(QByteArray authToken);
+		void setClearAuthenticityToken(QByteArray authToken);
 
 		/// @fn QString getDeny();
 		/// @brief Getter on the deny tag

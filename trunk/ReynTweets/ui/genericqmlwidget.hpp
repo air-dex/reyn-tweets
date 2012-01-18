@@ -1,5 +1,5 @@
-/// @file launchingWidget.cpp
-/// @brief Implementation of LaunchingWidget
+/// @file genericqmlwidget.hpp
+/// @brief Header of GenericQMLWidget
 /// @author Romain DUCHER
 
 /*
@@ -21,14 +21,30 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "launchingwidget.hpp"
+#ifndef GENERICQMLWIDGET_HPP
+#define GENERICQMLWIDGET_HPP
 
-LaunchingWidget::LaunchingWidget(OAuthWidget & authWidget) :
-	GenericQMLWidget("ui/qml/launchingWidget.qml"),
-	layout(),
-	authenticationWidget(authWidget)
+#include <QDeclarativeComponent>
+#include <QDeclarativeEngine>
+#include <QDeclarativeView>
+#include <QWidget>
+
+class GenericQMLWidget : public QWidget
 {
-	layout.addWidget(&qmlView);
-	layout.addWidget(&authenticationWidget);
-	setLayout(&layout);
-}
+	Q_OBJECT
+
+	public:
+		/// @fn GenericQMLWidget(QString source);
+		/// @brief Construtor
+		/// @param source QML source file
+		GenericQMLWidget(QString source);
+
+	protected:
+		/// @brief Component ncapsulating what a QML file defines
+		QDeclarativeComponent qmlComponent;
+
+		/// @brief A view containing what to show
+		QDeclarativeView qmlView;
+};
+
+#endif // GENERICQMLWIDGET_HPP

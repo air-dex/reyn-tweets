@@ -60,47 +60,47 @@ QString OAuthManager::getCallbackUrl() {
 
 // Setter on the consumer key
 void OAuthManager::setConsumerKey(QByteArray clientKey) {
-	consumerKey = clientKey.toBase64();
+	consumerKey = clientKey;
 }
 
 // Setter on the consumer secret
 void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
-	consumerSecret = clientSecret.toBase64();
+	consumerSecret = clientSecret;
 }
 
 // Getter on the OAuth Token
 QByteArray OAuthManager::getOAuthToken() {
-	return QByteArray::fromBase64(oauthToken);
+	return oauthToken;
 }
 
 // Setter on the OAuth token
 void OAuthManager::setOAuthToken(QByteArray authToken) {
-	oauthToken = authToken.toBase64();
+	oauthToken = authToken;
 }
 
 // Setter on the OAuth secret
 void OAuthManager::setOAuthSecret(QByteArray authSecret) {
-	oauthSecret = authSecret.toBase64();
+	oauthSecret = authSecret;
 }
 
 // Getter on the verifier
 QByteArray OAuthManager::getVerifier() {
-	return QByteArray::fromBase64(oauthVerifier);
+	return oauthVerifier;
 }
 
 // Setter on the verifier
 void OAuthManager::setVerifier(QByteArray verifier) {
-	oauthVerifier = verifier.toBase64();
+	oauthVerifier = verifier;
 }
 
 // Getter on the Authenticity Token
 QByteArray OAuthManager::getAuthenticityToken() {
-	return QByteArray::fromBase64(authenticityToken);
+	return authenticityToken;
 }
 
 // Setter on the Authenticity Token
 void OAuthManager::setAuthenticityToken(QByteArray authToken) {
-	authenticityToken = authToken.toBase64();
+	authenticityToken = authToken;
 }
 
 // Getter on the deny tag

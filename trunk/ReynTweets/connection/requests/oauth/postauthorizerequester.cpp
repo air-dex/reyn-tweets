@@ -41,10 +41,11 @@ PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 
 // Building postParameters
 void PostAuthorizeRequester::buildPOSTParameters() {
-	postParameters.insert("authenticity_token",
-						  QString::fromAscii(oauthManager.getAuthenticityToken()));
-	postParameters.insert("oauth_token",
-						  QString::fromAscii(oauthManager.getOAuthToken().data()));
+	QByteArray token = QByteArray::fromBase64(oauthManager.getAuthenticityToken());
+	postParameters.insert("authenticity_token", QString::fromAscii(token.data()));
+
+	token = QByteArray::fromBase64(oauthManager.getOAuthToken());
+	getParameters.insert("oauth_token", QString::fromAscii(token.data()));
 
 	postParameters.insert("session[username_or_email]", login);
 	postParameters.insert("session[password]", password);
@@ -133,7 +134,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 
 							// Writing the verifier
 							if (treatmentOK) {
-								oauthManager.setVerifier(codeTag.toPlainText().toAscii());
+								oauthManager.setVerifier(codeTag.toPlainText().toAscii().toBase64());
 								parsedResults.insert("denied", QVariant(false));
 								parsedResults.insert("rightCredentials", QVariant(true));
 							} else {
@@ -189,7 +190,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 																	  errTreatment);
 						parseOK = parseOK && treatmentOK;
 						errorMsg.append(errTreatment);
-						oauthManager.setOAuthToken(extractedCredential.toString().toAscii());
+						oauthManager.setOAuthToken(extractedCredential.toByteArray().toBase64());
 
 						// Extracting the "oauth_verifier" parameter
 						extractedCredential = parser.extractParameter(resultMap,
@@ -198,7 +199,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 																	  errTreatment);
 						parseOK = parseOK && treatmentOK;
 						errorMsg.append(errTreatment);
-						oauthManager.setVerifier(extractedCredential.toString().toAscii());
+						oauthManager.setVerifier(extractedCredential.toByteArray().toBase64());
 					} else {
 						// Error according to the observations done for the process
 						errorMsg.append("&lt;div class=\"happy notice callback\"&gt; HTML tag expected.\n");

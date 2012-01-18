@@ -37,8 +37,9 @@ AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager) :
 
 // Building POST Parameters
 void AccessTokenRequester::buildPOSTParameters() {
+	QByteArray verifier = QByteArray::fromBase64(oauthManager.getVerifier());
 	postParameters.insert("oauth_verifier",
-						  QString::fromAscii(oauthManager.getVerifier()));
+						  QString::fromAscii(verifier.data()));
 }
 
 // Parse the raw results of the request.
@@ -67,7 +68,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
 	qDebug(QByteArray("Access Token : ").append(extractedCredential.toString().toAscii()).data());
-	oauthManager.setOAuthToken(extractedCredential.toString().toAscii());
+	oauthManager.setOAuthToken(extractedCredential.toByteArray().toBase64());
 
 	// Put back in the map because the configuration needs it.
 	resultMap.insert("oauth_token", extractedCredential);
@@ -81,7 +82,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
 	qDebug(QByteArray("Token Secret : ").append(extractedCredential.toString().toAscii()).data());
-	oauthManager.setOAuthSecret(extractedCredential.toString().toAscii());
+	oauthManager.setOAuthSecret(extractedCredential.toByteArray().toBase64());
 
 	// Put back in the map because the configuration needs it.
 	resultMap.insert("oauth_token_secret", extractedCredential);

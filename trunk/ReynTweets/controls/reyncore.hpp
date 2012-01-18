@@ -26,6 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QObject>
 #include "launchresult.hpp"
+#include "../connection/reyntwittercalls.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
 
 /// @class ReynCore
@@ -42,6 +43,16 @@ class ReynCore : public QObject
 		/// @brief Constructor
 		ReynCore();
 
+		///////////////////////////////
+		// Authentication management //
+		///////////////////////////////
+
+		/// @fn void checkTokens();
+		/// @brief Checks if the access tokens seem legit. If not, it sends an
+		/// authenticationRequired(); signal to the ReynTweetsWidget to start
+		/// an authentication process.
+		void checkTokens();
+
 		//////////////////////////////
 		// Configuration management //
 		//////////////////////////////
@@ -50,15 +61,40 @@ class ReynCore : public QObject
 		/// @brief Loading the configuartion from the configuration file
 		void loadConfiguration();
 
+		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
+		///								 QByteArray tokenSecret = "",
+		///								 long id,
+		///								 QString screenName);
+		/// @brief Uploading the configuration after an authentication process
+		///
+		/// It will consist in updating the user with the id or the screen name
+		/// given by the process.
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param id ID of the user
+		/// @param screenName Screen name of the user
+		void updateConfAfterAuth(QByteArray accessToken,
+								 QByteArray tokenSecret,
+								 long id,
+								 QString screenName);
+
 		/// @fn void saveConfiguration();
 		/// @brief Saving the configuartion in the configuration file
 		void saveConfiguration();
 
 	signals:
+		///////////////////////////////
+		// Authentication management //
+		///////////////////////////////
+
 		/// @fn void authenticationRequired();
 		/// @brief Signal sent if the application has to be authorized again
 		/// (in order to get new access tokens, for example).
 		void authenticationRequired();
+
+		//////////////////////////////
+		// Configuration management //
+		//////////////////////////////
 
 		/// @fn void authenticationOK(LaunchResult authOK);
 		/// @brief Signal sent at the end of the authentication to indicate
@@ -72,8 +108,15 @@ class ReynCore : public QObject
 		void saveConfEnded(SaveConfResult saveOK);
 
 	public slots:
+		/// @fn void getUser(ResultWrapper res);
+		/// @brief Getting a user after requesting it to Twitter
+		/// @param res Result of the request
+		void getUser(ResultWrapper res);
 
 	protected:
+		/// @brief Entity calling Twitter
+		ReynTwitterCalls twitter;
+
 		/// @brief Configuration of the program
 		ReynTweetsConfiguration configuration;
 
@@ -83,6 +126,20 @@ class ReynCore : public QObject
 		void fillOAuthManager();
 
 	private:
+		///////////////////////////////
+		// Authentication management //
+		///////////////////////////////
+
+		/// @fn bool isValidToken(QByteArray token);
+		/// @brief Determining if a token seems legit
+		/// @param token Token to analyze
+		/// @return True if the token seems valid, false otherwise
+		bool isValidToken(QByteArray token);
+
+		//////////////////////////////
+		// Configuration management //
+		//////////////////////////////
+
 		/// @fn LaunchResult loadConfigurationPrivate();
 		/// @brief Loading the configuartion from the configuration file
 		/// @return How the launching process ended

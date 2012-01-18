@@ -47,10 +47,10 @@ enum SaveConfResult {
 	SAVE_SUCCESSFUL,
 
 	/// @brief The configuration file does not exist
-	CONFIGURATION_FILE_UNKNOWN,
+	CONFIGURATION_BACKUP_FILE_UNKNOWN,
 
 	/// @brief The configuration file cannot be opened
-	CONFIGURATION_FILE_NOT_OPEN
+	CONFIGURATION_BACKUP_FILE_NOT_OPEN
 };
 
 #endif // LAUNCHRESULT_HPP

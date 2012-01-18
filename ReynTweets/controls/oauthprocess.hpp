@@ -73,10 +73,23 @@ class OAuthProcess : public QObject
 		/// @param errorMsg Message describing the error
 		void errorProcess(bool fatalError, QString errorMsg);
 
-		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult);
+		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult,
+		///										   QByteArray accessToken = "",
+		///										   QByteArray tokenSecret = "",
+		///										   long userID = -1,
+		///										   QString screenName = "");
 		/// @brief Signal sent when the authentication process ends.
 		/// @param processResult Value indicating how the OAuth process has ended.
-		void authenticationProcessFinished(OAuthProcessResult processResult);
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param userID ID of the user who has just authorized the application
+		/// @param screenName Screen name of the user who has just authorized
+		/// the application.
+		void authenticationProcessFinished(OAuthProcessResult processResult,
+										   QByteArray accessToken = "",
+										   QByteArray tokenSecret = "",
+										   long userID = -1,
+										   QString screenName = "");
 
 	private:
 		/// @fn void requestToken();

@@ -24,6 +24,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REYNTWEETSWIDGET_HPP
 #define REYNTWEETSWIDGET_HPP
 
+#include <QMessageBox>
 #include <QVBoxLayout>
 #include <QWidget>
 #include "ui/launchingwidget.hpp"
@@ -48,10 +49,36 @@ class ReynTweetsWidget : public QWidget
 	signals:
 
 	public slots:
+		///////////////////////////////
+		// Authentication management //
+		///////////////////////////////
+
 		/// @fn void authenticationRequired();
 		/// @brief Slot executed if an authentication to Twitter is required
 		/// for the application
 		void authenticationRequired();
+
+		/// @fn void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
+		///										QByteArray accessToken = "",
+		///										QByteArray tokenSecret = "",
+		///										long userID = -1,
+		///										QString screenName = "");
+		/// @brief Slot executed after an OAuth Authentication processus
+		/// @param processResult Value indicating how the OAuth process has ended.
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param userID ID of the user who has just authorized the application
+		/// @param screenName Screen name of the user who has just authorized
+		/// the application.
+		void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
+										QByteArray accessToken = "",
+										QByteArray tokenSecret = "",
+										long userID = -1,
+										QString screenName = "");
+
+		//////////////////////////////
+		// Configuration management //
+		//////////////////////////////
 
 		/// @fn void launchOK(LaunchResult launchOK);
 		/// @brief Slot executed at the end of the launch process
@@ -78,6 +105,26 @@ class ReynTweetsWidget : public QWidget
 
 		/// @brief Mock for "a normal execution"
 		QLabel mock;
+
+	private:
+		/// @fn void criticalPopup(QString title, QString announce, QString problem);
+		/// @brief Displaying a QMessageBox announcing a critical problem
+		/// @param title Title of the popup
+		/// @param announce Announcing what happened
+		/// @param problem Description of the problem
+		void criticalPopup(QString title, QString announce, QString problem);
+
+		/// @fn QMessageBox::StandardButton questionPopup(QString title,
+		///												  QString announce,
+		///												  QString question);
+		/// @brief Displaying a QMessageBox for asking a question
+		/// @param title Title of the popup
+		/// @param announce Announcing what happened
+		/// @param question Question asked in the popup
+		/// @return Yes or No, depending on where the user will click
+		QMessageBox::StandardButton questionPopup(QString title,
+												  QString announce,
+												  QString question);
 };
 
 #endif // REYNTWEETSWIDGET_HPP

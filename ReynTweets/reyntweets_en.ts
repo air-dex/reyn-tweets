@@ -78,42 +78,109 @@ Would you like to resume the authentication process ?</source>
 <context>
     <name>ReynTweetsWidget</name>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="90"/>
+        <location filename="ui/reyntweetswidget.cpp" line="185"/>
+        <location filename="ui/reyntweetswidget.cpp" line="216"/>
         <source>Configuration file does not exist.</source>
         <oldsource>Configuration file does not exist</oldsource>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="94"/>
+        <location filename="ui/reyntweetswidget.cpp" line="189"/>
+        <location filename="ui/reyntweetswidget.cpp" line="220"/>
         <source>Configuration file cannot be opened.</source>
         <oldsource>Configuration file cannot be opened</oldsource>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="98"/>
+        <location filename="ui/reyntweetswidget.cpp" line="193"/>
         <source>Configuration cannot be loaded.</source>
         <oldsource>Configuration cannot be loaded</oldsource>
         <translation>Configuration cannot be loaded.</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="102"/>
+        <location filename="ui/reyntweetswidget.cpp" line="157"/>
+        <location filename="ui/reyntweetswidget.cpp" line="197"/>
+        <location filename="ui/reyntweetswidget.cpp" line="224"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="106"/>
+        <location filename="ui/reyntweetswidget.cpp" line="202"/>
         <source>A problem occured while launching the application:</source>
         <translation>A problem occured while launching the application:</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="111"/>
+        <location filename="ui/reyntweetswidget.cpp" line="74"/>
         <source>Reyn Tweets will quit.</source>
         <translation>Reyn Tweets will quit.</translation>
     </message>
     <message>
-        <location filename="ui/reyntweetswidget.cpp" line="115"/>
+        <location filename="ui/reyntweetswidget.cpp" line="123"/>
+        <source> can go to Twitter with Reyn Tweets now. Have fun with Reyn Tweets!</source>
+        <oldsource> can go to Twitter with Reyn Tweets now. Have fun with Reyn Tweets.</oldsource>
+        <translation> can go to Twitter with Reyn Tweets now. Have fun with Reyn Tweets on Twitter!</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="126"/>
+        <source>Welcome to Reyn Tweets</source>
+        <translation>Welcome to Reyn Tweets</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="133"/>
+        <source>End of the authentication process</source>
+        <translation>End of the authentication process</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="134"/>
+        <source>Reyn Tweets was not authorized. You will not be able to use the application correctly.</source>
+        <translation>Reyn Tweets was not authorized. You will not be able to use the application correctly.</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="135"/>
+        <source>Would you like to authorize the application again ?</source>
+        <translation>Would you like to authorize the application again ?</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="144"/>
+        <source>Error during the authentication process</source>
+        <translation>Error during the authentication process</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="145"/>
+        <source>An error occured during the authentication process.</source>
+        <translation>An error occured during the authentication process.</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="146"/>
+        <source>Would you like to try to authorize the application again ?</source>
+        <translation>Would you like to try to authorize the application again ?</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="155"/>
+        <source>Error while authorizing the application</source>
+        <translation>Error while authorizing the application</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="156"/>
+        <source>A problem occured during authentication:</source>
+        <translation>A problem occured during authentication:</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="201"/>
         <source>Error while launching the application</source>
         <translation>Error while launching the application</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="228"/>
+        <source>Error while saving the parameters</source>
+        <oldsource>Error while saving the application</oldsource>
+        <translation>Error while saving the parameters</translation>
+    </message>
+    <message>
+        <location filename="ui/reyntweetswidget.cpp" line="229"/>
+        <source>A problem occured while saving the parameters of Reyn Tweets:</source>
+        <oldsource>A problem occured while saving the application:</oldsource>
+        <translation>A problem occured while saving the parameters of Reyn Tweets:</translation>
     </message>
 </context>
 </TS>

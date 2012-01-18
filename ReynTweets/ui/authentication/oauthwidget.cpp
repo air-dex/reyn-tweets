@@ -102,8 +102,13 @@ void OAuthWidget::allowReynTweets() {
 				authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
 		connect(this, SIGNAL(denyReynTweets(QString,QString)),
 				authenticationFlow, SLOT(denyReynTweets(QString,QString)));
-		connect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult)),
-				this, SLOT(endAuthentication(OAuthProcessResult)));
+		connect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult,
+																		 QByteArray,QByteArray,
+																		 long,QString)),
+				this, SLOT(endAuthentication(OAuthProcessResult,
+											 QByteArray,QByteArray,
+											 long,QString))
+				);
 		connect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 				this, SLOT(errorProcess(bool,QString)));
 
@@ -168,8 +173,13 @@ void OAuthWidget::killOAuthProcess() {
 			   authenticationFlow, SLOT(authorizeReynTweets(QString,QString)));
 	disconnect(this, SIGNAL(denyReynTweets(QString,QString)),
 			   authenticationFlow, SLOT(denyReynTweets(QString,QString)));
-	disconnect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult)),
-			   this, SLOT(endAuthentication(OAuthProcessResult)));
+	disconnect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult,
+																		QByteArray,QByteArray,
+																		long,QString)),
+			   this, SLOT(endAuthentication(OAuthProcessResult,
+											QByteArray,QByteArray,
+											long,QString))
+			   );
 	disconnect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 			   this, SLOT(errorProcess(bool,QString)));
 
@@ -178,12 +188,21 @@ void OAuthWidget::killOAuthProcess() {
 }
 
 // End of authentication
-void OAuthWidget::endAuthentication(OAuthProcessResult processResult) {
+void OAuthWidget::endAuthentication(OAuthProcessResult processResult,
+									QByteArray accessToken,
+									QByteArray tokenSecret,
+									long userID,
+									QString screenName)
+{
 	killOAuthProcess();
-	qDebug("fin de l'OAuth Authentication Flow");
+	qDebug("Fin de l'OAuth Authentication Flow");
 
 	// Transmitting the result
-	emit authenticationFinished(processResult);
+	emit authenticationFinished(processResult,
+								accessToken,
+								tokenSecret,
+								userID,
+								screenName);
 }
 
 

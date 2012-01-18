@@ -257,10 +257,22 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	ErrorType errorType = result.getErrorType();
 
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_ERROR: {
 			// The authentication process is ended.
-			emit authenticationProcessFinished(AUTHORIZED);
-			break;
+
+			// Extract the different values
+			QVariantMap resultMap = result.getParsedResult().toMap();
+			QByteArray accessToken = resultMap.value("oauth_token").toByteArray();
+			QByteArray tokenSecret = resultMap.value("oauth_token_secret").toByteArray();
+			long userID = resultMap.value("user_id").toLong(); // À corriger
+			QString screenName = resultMap.value("screen_name").toString();
+
+			emit authenticationProcessFinished(AUTHORIZED,
+											   accessToken,
+											   tokenSecret,
+											   userID,
+											   screenName);
+		}break;
 
 		case API_CALL: {
 			// Retrieving network informations

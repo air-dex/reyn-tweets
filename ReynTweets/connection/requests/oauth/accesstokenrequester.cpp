@@ -67,6 +67,9 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	errorMsg.append(treatmentErrorMsg);
 	oauthManager.setOAuthToken(extractedCredential.toString().toAscii());
 
+	// Put back in the map because the configuration needs it.
+	resultMap.insert("oauth_token", extractedCredential);
+
 
 	// Extracting the "oauth_token_secret" parameter
 	extractedCredential = parser.extractParameter(resultMap,
@@ -76,6 +79,9 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
 	oauthManager.setOAuthSecret(extractedCredential.toString().toAscii());
+
+	// Put back in the map because the configuration needs it.
+	resultMap.insert("oauth_token_secret", extractedCredential);
 
 
 	// Ensures that the two remaining arguments are "user_id" and "screen_name"

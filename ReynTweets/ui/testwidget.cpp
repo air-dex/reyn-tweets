@@ -129,27 +129,28 @@ void TestWidget::endAllowRT(OAuthProcessResult res) {
 }
 
 void TestWidget::serialConfSlot() {
+	/*
 	User u;
 	u.setScreenName("@air_dex");
 	UserAccount ua;
 	ua.setAccessToken("tocredaccess");
 	ua.setTokenSecret("tokensecret");
 	ua.setUser(u);
-
+//*/
 	ReynTweetsConfiguration conf;
-	qDebug("La propriete p_userAccount avant son affectation :");
-	QVariantMap uaInConf = conf.property("p_userAccount").toMap();
+	qDebug("La propriete user_account avant son affectation :");
+	QVariantMap uaInConf = conf.property("user_account").toMap();
 	foreach (QString cle, uaInConf.keys()) {
 		QVariant v = uaInConf.value(cle);
 		qDebug(QByteArray("Cle : ").append(cle).data());
 		qDebug(QByteArray("Valeur : ").append(v.toString()).data());
 	}
 
-	conf.setUserAccount(ua);
+//	conf.setUserAccount(ua);
 
 	// Pour voir
-	qDebug("La propriete p_userAccount avant sa serialisation :");
-	uaInConf = conf.property("p_userAccount").toMap();
+	qDebug("La propriete user_account avant sa serialisation :");
+	uaInConf = conf.property("user_account").toMap();
 	foreach (QString cle, uaInConf.keys()) {
 		QVariant v = uaInConf.value(cle);
 		qDebug(QByteArray("Cle : ").append(cle).data());

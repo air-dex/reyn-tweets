@@ -60,10 +60,23 @@ class OAuthWidget : public QWidget
 		/// @param password User password
 		void denyReynTweets(QString login, QString password);
 
-		/// @fn void authenticationFinished(OAuthProcessResult processResult);
+		/// @fn void authenticationFinished(OAuthProcessResult processResult,
+		///									QByteArray accessToken = "",
+		///									QByteArray tokenSecret = "",
+		///									long userID = -1,
+		///									QString screenName = "");
 		/// @brief Signal sent when the authentication is finished
 		/// @param processResult Value indicating how the OAuth process has ended.
-		void authenticationFinished(OAuthProcessResult processResult);
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param userID ID of the user who has just authorized the application
+		/// @param screenName Screen name of the user who has just authorized
+		/// the application.
+		void authenticationFinished(OAuthProcessResult processResult,
+									QByteArray accessToken = "",
+									QByteArray tokenSecret = "",
+									long userID = -1,
+									QString screenName = "");
 
 		/// @fn void credentialsOK(bool ok);
 		/// @brief Signal sent to show or to hide an error message telling
@@ -93,10 +106,23 @@ class OAuthWidget : public QWidget
 		/// @param errorMsg Message describing the error
 		void errorProcess(bool fatalError, QString errorMsg);
 
-		/// @fn void endAuthentication(OAuthProcessResult processResult);
+		/// @fn void endAuthentication(OAuthProcessResult processResult,
+		///							   QByteArray accessToken = "",
+		///							   QByteArray tokenSecret = "",
+		///							   long userID = -1,
+		///							   QString screenName = "");
 		/// @brief Slot executed at the end of the authentication.
 		/// @param processResult Value indicating how the OAuth process has ended.
-		void endAuthentication(OAuthProcessResult processResult);
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param userID ID of the user who has just authorized the application
+		/// @param screenName Screen name of the user who has just authorized
+		/// the application.
+		void endAuthentication(OAuthProcessResult processResult,
+							   QByteArray accessToken = "",
+							   QByteArray tokenSecret = "",
+							   long userID = -1,
+							   QString screenName = "");
 
 	protected slots:
 		/////////////////////

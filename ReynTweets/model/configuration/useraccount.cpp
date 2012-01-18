@@ -128,22 +128,22 @@ void UserAccount::syncUserMember() {
 
 // Getter on accessToken
 QByteArray UserAccount::getAccessToken() {
-	return accessToken;
+	return QByteArray::fromBase64(accessToken);
 }
 
 // Setter on accessToken
 void UserAccount::setAccessToken(QByteArray token) {
-	accessToken = token;
+	accessToken = token.toBase64();
 }
 
 // Getter on tokenSecret
 QByteArray UserAccount::getTokenSecret() {
-	return tokenSecret;
+	return QByteArray::fromBase64(tokenSecret);
 }
 
 // Setter on tokenSecret
 void UserAccount::setTokenSecret(QByteArray secret) {
-	tokenSecret = secret;
+	tokenSecret = secret.toBase64();
 }
 
 // Getter on user

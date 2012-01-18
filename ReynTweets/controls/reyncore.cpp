@@ -23,11 +23,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 #include "reyncore.hpp"
-#include "../connection/reyntwittercalls.hpp"
 
 // Constructor
 ReynCore::ReynCore() :
 	QObject(),
+	twitter(this),
 	configuration()
 {}
 
@@ -82,12 +82,12 @@ SaveConfResult ReynCore::saveConfigurationPrivate() {
 	QFile confFile("conf/ReynTweets.conf");
 
 	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
+		return CONFIGURATION_BACKUP_FILE_UNKNOWN;
 	}
 
 	bool openOK = confFile.open(QFile::WriteOnly);
 	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
+		return CONFIGURATION_BACKUP_FILE_NOT_OPEN;
 	}
 
 	// Launching the configuration
@@ -106,4 +106,99 @@ void ReynCore::fillOAuthManager() {
 								   configuration.getUserAccount().getTokenSecret(),
 								   ReynTweetsConfiguration::getConsumerKey(),
 								   ReynTweetsConfiguration::getConsumerSecret());
+}
+
+// Uploading the configuration after an authentication process
+void ReynCore::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, long id, QString) {
+	// Updating the tokens
+	UserAccount account = configuration.getUserAccount();
+	account.setAccessToken(accessToken);
+	account.setTokenSecret(tokenSecret);
+	configuration.setUserAccount(account);
+
+	// Getting informations about the user behind the account
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(getUser(ResultWrapper)));
+	twitter.showUser(id);
+}
+
+// Getting a user after requesting it to Twitter
+void ReynCore::getUser(ResultWrapper res) {
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(getUser(ResultWrapper)));
+
+	RequestResult result = res.accessResult(this);
+	ErrorType errorType = result.getErrorType();
+
+	switch (errorType) {
+		case NO_ERROR: {
+				// Get user, put it in the conf and save
+			QVariantMap parsedResults = result.getParsedResult().toMap();
+			User u;
+			u.fillWithVariant(parsedResults);
+			UserAccount account = configuration.getUserAccount();
+			account.setUser(u);
+			configuration.setUserAccount(account);
+			saveConfiguration();
+		}break;
+
+		case API_CALL: {
+			// Retrieving network informations
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
+
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		case OAUTH_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getParsingErrorMessage());
+			emit errorProcess(false, errorMsg);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage()).append(".\n");
+			emit errorProcess(true, errorMessage);
+		}break;
+	}
+}
+
+
+///////////////////////////////
+// Authentication management //
+///////////////////////////////
+
+// Checks if the access tokens seem legit.
+void ReynCore::checkTokens() {
+	if (!(isValidToken(configuration.getUserAccount().getAccessToken())
+		  && isValidToken(configuration.getUserAccount().getTokenSecret())))
+	{
+		emit authenticationRequired();
+	}
+}
+
+// Determining if a token seems legit
+bool ReynCore::isValidToken(QByteArray token) {
+	// Right tokens == Tokens not empty
+
+	// Step 1 : Base 64 form not null or empty
+	if (token.isNull() || token.isEmpty()) {
+		return false;
+	}
+
+	// Step 2 : Clear form not null or empty
+	QByteArray clearToken = QByteArray::fromBase64(token);
+
+	return !(clearToken.isNull() || clearToken.isEmpty());
 }

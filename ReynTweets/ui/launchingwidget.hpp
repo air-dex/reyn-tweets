@@ -24,16 +24,18 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef LAUNCHINGWIDGET_HPP
 #define LAUNCHINGWIDGET_HPP
 
-#include <QDeclarativeView>
 #include <QVBoxLayout>
 #include "authentication/oauthwidget.hpp"
+#include "genericqmlwidget.hpp"
 
 /// @class LaunchingWidget
-/// @brief Widget displayed while Reyn Tweets is launched
+/// @brief Widget displayed while Reyn Tweets is launched.
 ///
 /// An OAuthWidget is included if an authentication is required while launching
 /// the program. A LoginWidget popup could be displayed in this case.
-class LaunchingWidget : public QWidget
+///
+/// The qmlView is here a splash screen for welcoming the user.
+class LaunchingWidget : public GenericQMLWidget
 {
 	Q_OBJECT
 
@@ -46,9 +48,6 @@ class LaunchingWidget : public QWidget
 	protected:
 		/// @brief Layout of the widget
 		QVBoxLayout layout;
-
-		/// @brief What is displayed while the configuration is launching
-		QDeclarativeView splashScreen;
 
 		/// @brief Widget for authentication
 		OAuthWidget & authenticationWidget;

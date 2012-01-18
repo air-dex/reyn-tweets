@@ -1,5 +1,5 @@
-/// @file launchingWidget.cpp
-/// @brief Implementation of LaunchingWidget
+/// @file genericqmlwidget.cpp
+/// @brief Implementation of GenericQMLWidget
 /// @author Romain DUCHER
 
 /*
@@ -21,14 +21,15 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "launchingwidget.hpp"
+#include <QGraphicsObject>
+#include "genericqmlwidget.hpp"
 
-LaunchingWidget::LaunchingWidget(OAuthWidget & authWidget) :
-	GenericQMLWidget("ui/qml/launchingWidget.qml"),
-	layout(),
-	authenticationWidget(authWidget)
+GenericQMLWidget::GenericQMLWidget(QString source) :
+	QWidget(),
+	qmlComponent(new QDeclarativeEngine(), QUrl::fromLocalFile(source)),
+	qmlView()
 {
-	layout.addWidget(&qmlView);
-	layout.addWidget(&authenticationWidget);
-	setLayout(&layout);
+	QGraphicsObject * qmlObject = qobject_cast<QGraphicsObject *>(qmlComponent.create());
+	QGraphicsScene * widgetScene = qmlView.scene();
+	widgetScene->addItem(qmlObject);
 }

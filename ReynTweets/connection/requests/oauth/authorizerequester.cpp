@@ -36,8 +36,8 @@ AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
-	getParameters.insert("oauth_token",
-						 QString::fromAscii(oauthManager.getOAuthToken().data()));
+	QByteArray token = QByteArray::fromBase64(oauthManager.getOAuthToken());
+	getParameters.insert("oauth_token", QString::fromAscii(token.data()));
 }
 
 // Parsing results
@@ -85,11 +85,11 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 			// Is a parameter found ?
 			if (!authenticityTokenFound && inputName == "authenticity_token") {
 				// The authenticity token is found !
-				oauthManager.setAuthenticityToken(inputValue.toAscii());
+				oauthManager.setAuthenticityToken(inputValue.toAscii().toBase64());
 				authenticityTokenFound = true;
 			} else if (!oauthTokenFound && inputName == "oauth_token") {
 				// The oauth token is found (WTF) !
-				oauthManager.setOAuthToken(inputValue.toAscii());
+				oauthManager.setOAuthToken(inputValue.toAscii().toBase64());
 				oauthTokenFound = true;
 			} else if (!denyFound && inputName == "deny") {
 				// The deny value is found !

@@ -92,7 +92,8 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    ui/genericqmlwidget.cpp
 
 
 HEADERS  += \
@@ -149,7 +150,8 @@ HEADERS  += \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
 	ui/mainwindow.hpp \
-	controls/launchresult.hpp
+	controls/launchresult.hpp \
+    ui/genericqmlwidget.hpp
 
 
 RESOURCES += \

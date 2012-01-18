@@ -155,21 +155,21 @@ void ReynCore::getUser(ResultWrapper res) {
 					.append(" :\n")
 					.append(result.getErrorMessage())
 					.append(".\n");
-			emit errorProcess(false, errorMsg);
+//			emit errorProcess(false, errorMsg);
 		}break;
 
 		case OAUTH_PARSING: {
 			// Building error message
 			QString errorMsg = "Parsing error :\n";
 			errorMsg.append(result.getParsingErrorMessage());
-			emit errorProcess(false, errorMsg);
+//			emit errorProcess(false, errorMsg);
 		}break;
 
 		default: {
 			// Unexpected problem. Abort.
 			QString errorMessage = "Unexpected problem :\n";
 			errorMessage.append(result.getErrorMessage()).append(".\n");
-			emit errorProcess(true, errorMessage);
+//			emit errorProcess(true, errorMessage);
 		}break;
 	}
 }

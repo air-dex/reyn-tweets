@@ -53,6 +53,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	QString treatmentErrorMsg = "";
 
 
+	qDebug("Access Token Request :");
 	// Parsing
 	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
 	errorMsg.append(treatmentErrorMsg);
@@ -65,6 +66,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
+	qDebug(QByteArray("Access Token : ").append(extractedCredential.toString().toAscii()).data());
 	oauthManager.setOAuthToken(extractedCredential.toString().toAscii());
 
 	// Put back in the map because the configuration needs it.
@@ -78,14 +80,17 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
+	qDebug(QByteArray("Token Secret : ").append(extractedCredential.toString().toAscii()).data());
 	oauthManager.setOAuthSecret(extractedCredential.toString().toAscii());
 
 	// Put back in the map because the configuration needs it.
 	resultMap.insert("oauth_token_secret", extractedCredential);
 
 
-	// Ensures that the two remaining arguments are "user_id" and "screen_name"
-	treatmentOK = resultMap.size() == 2
+	// Ensures that there were not any additionnal arguments.
+	treatmentOK = resultMap.size() == 4
+			&& resultMap.contains("oauth_token")
+			&& resultMap.contains("oauth_token_secret")
 			&& resultMap.contains("user_id")
 			&& resultMap.contains("screen_name");
 	parseOK = parseOK && treatmentOK;
@@ -93,6 +98,8 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	// Listing all the unexpected parameters
 	if (!treatmentOK) {
 		QList<QString> argNames = resultMap.keys();
+		argNames.removeOne("oauth_token");
+		argNames.removeOne("oauth_token_secret");
 		argNames.removeOne("user_id");
 		argNames.removeOne("screen_name");
 		foreach (QString argName, argNames) {

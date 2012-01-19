@@ -91,41 +91,22 @@ class Tweet : public ReynTweetsMappable
 		///////////////////////////
 
 		protected:
-			/// @fn void syncMembers();
-			/// @brief Updating the field members
-			void syncMembers();
-
-			/// @fn void syncProperties();
-			/// @brief Updating all the properties
-			void syncProperties();
-
 			// entities
 			/// @property entities
 			/// @brief Tweet Entities
 			Q_PROPERTY(QVariantMap entities
-					   READ getEntitiesMap
-					   WRITE setEntitiesMap)
+					   READ getEntitiesProperty
+					   WRITE setEntities)
 
-			/// @brief Map of entities
-			QVariantMap entitiesMap;
-
-			/// @fn QVariantMap getEntitiesMap();
+			/// @fn QVariantMap getEntitiesProperty();
 			/// @brief Reading the property entities
 			/// @return entitiesMap
-			QVariantMap getEntitiesMap();
+			QVariantMap getEntitiesProperty();
 
-			/// @fn void setEntitiesMap(QVariantMap newEntityMap);
+			/// @fn void setEntities(QVariantMap newEntityMap);
 			/// @brief Writing the property entities
 			/// @param newEntityMap New value for entities
-			void setEntitiesMap(QVariantMap newEntityMap);
-
-			/// @fn void syncEntitiesProperty();
-			/// @brief Updating the property entities
-			void syncEntitiesProperty();
-
-			/// @fn void syncEntitiesMember();
-			/// @brief Updating the tweetEntities member
-			void syncEntitiesMember();
+			void setEntities(QVariantMap newEntityMap);
 
 			// in_reply_to_user_id
 			/// @property in_reply_to_user_id
@@ -180,29 +161,18 @@ class Tweet : public ReynTweetsMappable
 			/// @property user
 			/// @brief User who wrote the tweet
 			Q_PROPERTY(QVariantMap user
-					   READ getUserMap
-					   WRITE setUserMap)
+					   READ getUserProperty
+					   WRITE setUser)
 
-			/// @brief User under the form of a map
-			QVariantMap userMap;
-
-			/// @fn QVariantMap getUserMap();
+			/// @fn QVariantMap getUserProperty();
 			/// @brief Reading the property user
 			/// @return userMap
-			QVariantMap getUserMap();
+			QVariantMap getUserProperty();
 
-			/// @fn void setUserMap(QVariantMap newUserMap);
+			/// @fn void setUser(QVariantMap newUserMap);
 			/// @brief Writing the property user
 			/// @param newUserMap New value for user
-			void setUserMap(QVariantMap newUserMap);
-
-			/// @fn void syncUserProperty();
-			/// @brief Updating the property user
-			void syncUserProperty();
-
-			/// @fn void syncUserMember();
-			/// @brief Updating the profile member
-			void syncUserMember();
+			void setUser(QVariantMap newUserMap);
 
 			// retweeted
 			/// @property retweeted

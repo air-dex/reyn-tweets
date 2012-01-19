@@ -68,9 +68,7 @@ UserInfos::UserInfos() :
 	followRequestSent(false),
 	showAllInlineMedia(false),
 	notificationsEnabled(false)
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 UserInfos::~UserInfos() {}
@@ -131,7 +129,6 @@ void UserInfos::recopie(const UserInfos & user) {
 	followRequestSent = user.followRequestSent;
 	showAllInlineMedia = user.showAllInlineMedia;
 	notificationsEnabled = user.notificationsEnabled;
-	syncProperties();
 }
 
 // Friends serialization operators
@@ -143,12 +140,7 @@ QDataStream & operator<<(QDataStream & out, const UserInfos & user) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserInfos & user) {
-	jsonStreamingIn(in, user);
-
-	// Filling the user account
-	user.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, user);
 }
 
 
@@ -156,11 +148,55 @@ QDataStream & operator>>(QDataStream & in, UserInfos & user) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void UserInfos::syncMembers() {}
+// Read profile_link_color
+QString UserInfos::getProfileLinkColorProperty() {
+	return linkColor.name();
+}
 
-// Updating all the properties
-void UserInfos::syncProperties() {}
+// Write profile_link_color
+void UserInfos::setProfileLinkColor(QString newLinkColor) {
+	linkColor = string2color(newLinkColor);
+}
+
+// Read profile_background_color
+QString UserInfos::getProfileBackgroundColorProperty() {
+	return backgroundColor.name();
+}
+
+// Write profile_background_color
+void UserInfos::setProfileBackgroundColor(QString newBackgroundColor) {
+	backgroundColor = string2color(newBackgroundColor);
+}
+
+// Read profile_sidebar_fill_color
+QString UserInfos::getProfileSidebarFillColorProperty() {
+	return sidebarColor.name();
+}
+
+// Write profile_sidebar_fill_color
+void UserInfos::setProfileSidebarFillColor(QString newSidebarColor) {
+	sidebarColor = string2color(newSidebarColor);
+}
+
+// Read profile_sidebar_border_color
+QString UserInfos::getProfileSidebarBorderColorProperty() {
+	return sidebarBorderColor.name();
+}
+
+// Write profile_sidebar_border_color
+void UserInfos::setProfileSidebarBorderColor(QString newSidebarBorderColor) {
+	sidebarBorderColor = string2color(newSidebarBorderColor);
+}
+
+// Read profile_text_color
+QString UserInfos::getProfileTextColorProperty() {
+	return textColor.name();
+}
+
+// Write profile_text_color
+void UserInfos::setProfileTextColor(QString newTextColor) {
+	textColor = string2color(newTextColor);
+}
 
 
 /////////////////////////

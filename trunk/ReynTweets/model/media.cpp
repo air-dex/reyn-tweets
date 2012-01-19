@@ -31,16 +31,13 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 Media::Media() :
 	URLEntity(),
-	sizesMap(),
 	mediaID(-1),
 	mediaIDstr("-1"),
 	mediaURL(""),
 	mediaURLhttps(""),
 	mediaType(""),
 	mediaSizes()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 Media::~Media() {}
@@ -71,7 +68,6 @@ void Media::recopie(const Media & media) {
 	mediaURLhttps = media.mediaURLhttps;
 	mediaType = media.mediaType;
 	mediaSizes = media.mediaSizes;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -81,12 +77,7 @@ QDataStream & operator<<(QDataStream & out, const Media & media) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Media & media) {
-	jsonStreamingIn(in, media);
-
-	// Updating mediaSizes
-	media.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, media);
 }
 
 
@@ -94,36 +85,14 @@ QDataStream & operator>>(QDataStream & in, Media & media) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void Media::syncMembers() {
-	URLEntity::syncMembers();	// Don't forget the base class !
-	syncSizesMember();
-}
-
-// Updating all the properties
-void Media::syncProperties() {
-	URLEntity::syncProperties();	// Don't forget the base class !
-	syncSizesProperty();
-}
-
 // Reading method for the property sizes
 QVariantMap Media::getSizesProperty() {
-	return sizesMap;
+	return mediaSizes.toVariant();
 }
 
 // Writing method for the property sizes
-void Media::setSizesProperty(QVariantMap newMap) {
-	sizesMap = newMap;
-}
-
-// Updating the property sizes
-void Media::syncSizesProperty() {
-	setSizesProperty(mediaSizes.toVariant());
-}
-
-// Updating the property sizes
-void Media::syncSizesMember() {
-	mediaSizes.fillWithVariant(sizesMap);
+void Media::setSizes(QVariantMap newMap) {
+	mediaSizes.fillWithVariant(newMap);
 }
 
 
@@ -189,5 +158,4 @@ MediaSizes Media::getSizes() {
 // Writing mediaSizes
 void Media::setSizes(MediaSizes newSizes) {
 	mediaSizes = newSizes;
-	syncSizesProperty();
 }

@@ -85,6 +85,17 @@ QString boolInString(bool b) {
 	return b ? "true" : "false";
 }
 
+// Converting a String into a QColor.
+QColor string2color(QString coloredString) {
+	// Add a '#' at the beginning if not present
+	static QChar sharp('#');
+	if (!coloredString.startsWith(sharp)) {
+		coloredString.prepend(sharp);
+	}
+
+	return QColor(coloredString);
+}
+
 
 ////////////////////
 // JSON Streaming //

@@ -89,14 +89,6 @@ class Media : public URLEntity
 	///////////////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// id
 		/// @property id
 		/// @brief User id
@@ -137,10 +129,7 @@ class Media : public URLEntity
 		/// @brief Different sizes for the media
 		Q_PROPERTY(QVariantMap sizes
 				   READ getSizesProperty
-				   WRITE setSizesProperty)
-
-		/// @brief Representation of the property sizes
-		QVariantMap sizesMap;
+				   WRITE setSizes)
 
 		/// @fn QVariantList getSizesProperty();
 		/// @brief Reading method for the property sizes
@@ -150,15 +139,7 @@ class Media : public URLEntity
 		/// @fn void setSizesProperty(QVariantMap newMap);
 		/// @brief Writing method for the property sizes
 		/// @param newMap New value for the property sizes
-		void setSizesProperty(QVariantMap newMap);
-
-		/// @fn void syncSizesProperty();
-		/// @brief Updating the property sizes
-		void syncSizesProperty();
-
-		/// @fn void syncSizesMember();
-		/// @brief Updating the mediaSizes member
-		void syncSizesMember();
+		void setSizes(QVariantMap newMap);
 
 
 	//////////////////////

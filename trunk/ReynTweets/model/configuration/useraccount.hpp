@@ -91,15 +91,6 @@ class UserAccount : public ReynTweetsMappable
 										UserAccount & account);
 
 	private:
-		// Properties
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// Access Token
 		/// @property access_token
 		/// @brief Access token
@@ -118,29 +109,18 @@ class UserAccount : public ReynTweetsMappable
 		/// @property twitter_user
 		/// @brief Twitter user
 		Q_PROPERTY(QVariantMap twitter_user
-				   READ getUserMap
-				   WRITE setUserMap)
+				   READ getUserProperty
+				   WRITE setUser)
 
-		/// @brief Map with the user
-		QVariantMap userMap;
-
-		/// @fn QVariantMap getUserMap();
+		/// @fn QVariantMap getUserProperty();
 		/// @brief Reading the property twitter_user
 		/// @return userMap
-		QVariantMap getUserMap();
+		QVariantMap getUserProperty();
 
-		/// @fn void setUserMap(QVariantMap newUserMap);
+		/// @fn void setUser(QVariantMap newUserMap);
 		/// @brief Writing the property twitter_user
 		/// @param newUserMap New value for twitter_user
-		void setUserMap(QVariantMap newUserMap);
-
-		/// @fn void syncUserProperty();
-		/// @brief Updates the property twitter_user
-		void syncUserProperty();
-
-		/// @fn void syncUserMember();
-		/// @brief Updates the user member
-		void syncUserMember();
+		void setUser(QVariantMap newUserMap);
 
 
 	//////////////////////////////

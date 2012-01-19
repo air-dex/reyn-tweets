@@ -88,125 +88,73 @@ class MediaSizes : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// Large size
 		/// @property large
 		/// @brief Large size for a media
 		Q_PROPERTY(QVariantMap large
-				   READ getLarge
+				   READ getLargeProperty
 				   WRITE setLarge)
 
-		/// @brief Representation of the property large
-		QVariantMap largeMap;
-
-		/// @fn QVariantMap getLarge();
+		/// @fn QVariantMap getLargeProperty();
 		/// @brief Reading method for the property large
 		/// @return largeMap
-		QVariantMap getLarge();
+		QVariantMap getLargeProperty();
 
 		/// @fn void setLarge(QVariantMap newLargeMap);
 		/// @brief Writing method for the property large
 		/// @param newLargeMap New value for the property large
 		void setLarge(QVariantMap newLargeMap);
 
-		/// @fn void syncLargeProperty();
-		/// @brief Updating the property large
-		void syncLargeProperty();
-
-		/// @fn void syncLargeMember();
-		/// @brief Updating the largeSize member
-		void syncLargeMember();
-
 		// Medium size
 		/// @property medium
 		/// @brief Large size for a media
 		Q_PROPERTY(QVariantMap medium
-				   READ getMedium
+				   READ getMediumProperty
 				   WRITE setMedium)
 
-		/// @brief Representation of the property medium
-		QVariantMap mediumMap;
-
-		/// @fn QVariantMap getMedium();
+		/// @fn QVariantMap getMediumProperty();
 		/// @brief Reading method for the property medium
 		/// @return mediumMap
-		QVariantMap getMedium();
+		QVariantMap getMediumProperty();
 
 		/// @fn void setMedium(QVariantMap newMediumMap);
 		/// @brief Writing method for the property medium
 		/// @param newMediumMap New value for the property medium
 		void setMedium(QVariantMap newMediumMap);
 
-		/// @fn void syncMediumProperty();
-		/// @brief Updating the property medium
-		void syncMediumProperty();
-
-		/// @fn void syncMediumMember();
-		/// @brief Updating the mediumSize member
-		void syncMediumMember();
-
 		// Small size
 		/// @property small
 		/// @brief Large size for a media
 		Q_PROPERTY(QVariantMap small
-				   READ getSmall
+				   READ getSmallProperty
 				   WRITE setSmall)
 
-		/// @brief Representation of the property small
-		QVariantMap smallMap;
-
-		/// @fn QVariantMap getSmall();
+		/// @fn QVariantMap getSmallProperty();
 		/// @brief Reading method for the property small
 		/// @return smallMap
-		QVariantMap getSmall();
+		QVariantMap getSmallProperty();
 
 		/// @fn void setSmall(QVariantMap newSmallMap);
 		/// @brief Writing method for the property small
 		/// @param newSmallMap New value for the property small
 		void setSmall(QVariantMap newSmallMap);
 
-		/// @fn void syncSmallProperty();
-		/// @brief Updating the property small
-		void syncSmallProperty();
-
-		/// @fn void syncSmallMember();
-		/// @brief Updating the smallSize member
-		void syncSmallMember();
-
 		// Thumb size
 		/// @property thumb
 		/// @brief Large size for a media
 		Q_PROPERTY(QVariantMap thumb
-				   READ getThumb
+				   READ getThumbProperty
 				   WRITE setThumb)
 
-		/// @brief Representation of the property thumb
-		QVariantMap thumbMap;
-
-		/// @fn QVariantMap getThumb();
+		/// @fn QVariantMap getThumbProperty();
 		/// @brief Reading method for the property thumb
 		/// @return thumbMap
-		QVariantMap getThumb();
+		QVariantMap getThumbProperty();
 
 		/// @fn void setThumb(QVariantMap newThumbMap);
 		/// @brief Writing method for the property thumb
 		/// @param newThumbMap New value for the property thumb
 		void setThumb(QVariantMap newThumbMap);
-
-		/// @fn void syncThumbProperty();
-		/// @brief Updating the property thumb
-		void syncThumbProperty();
-
-		/// @fn void syncThumbMember();
-		/// @brief Updating the thumbSize member
-		void syncThumbMember();
 
 
 	/////////////////
@@ -232,45 +180,45 @@ class MediaSizes : public ReynTweetsMappable
 	////////////////////////
 
 	public:
-		/// @fn MediaSize getLargeSize();
+		/// @fn MediaSize getLarge();
 		/// @brief Reading method for largeSize
 		/// @return largeSize
-		MediaSize getLargeSize();
+		MediaSize getLarge();
 
-		/// @fn void setLargeSize(MediaSize newLargeSize);
+		/// @fn void setLarge(MediaSize newLargeSize);
 		/// @brief Writing method for largeSize
 		/// @param newLargeSize New value for largeSize
-		void setLargeSize(MediaSize newLargeSize);
+		void setLarge(MediaSize newLargeSize);
 
-		/// @fn MediaSize getMediumSize();
+		/// @fn MediaSize getMedium();
 		/// @brief Reading method for mediumSize
 		/// @return mediumSize
-		MediaSize getMediumSize();
+		MediaSize getMedium();
 
-		/// @fn void setMediumSize(MediaSize newMediumSize);
+		/// @fn void setMedium(MediaSize newMediumSize);
 		/// @brief Writing method for mediumSize
 		/// @param newMediumSize New value for mediumSize
-		void setMediumSize(MediaSize newMediumSize);
+		void setMedium(MediaSize newMediumSize);
 
-		/// @fn MediaSize getSmallSize();
+		/// @fn MediaSize getSmall();
 		/// @brief Reading method smallSize
 		/// @return smallSize
-		MediaSize getSmallSize();
+		MediaSize getSmall();
 
-		/// @fn void setSmallSize(MediaSize newSmallSize);
+		/// @fn void setSmall(MediaSize newSmallSize);
 		/// @brief Writing method for smallSize
 		/// @param newSmallSize New value for smallSize
-		void setSmallSize(MediaSize newSmallSize);
+		void setSmall(MediaSize newSmallSize);
 
-		/// @fn MediaSize getThumbSize();
+		/// @fn MediaSize getThumb();
 		/// @brief Reading method for thumbSize
 		/// @return thumbSize
-		MediaSize getThumbSize();
+		MediaSize getThumb();
 
-		/// @fn void setThumbSize(MediaSize newThumbSize);
+		/// @fn void setThumb(MediaSize newThumbSize);
 		/// @brief Writing method for thumbSize
 		/// @param newThumbSize New value for thumbSize
-		void setThumbSize(MediaSize newThumbSize);
+		void setThumb(MediaSize newThumbSize);
 };
 
 // Serialization of MediaSizes

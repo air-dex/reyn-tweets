@@ -89,14 +89,6 @@ class UserMention : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// id
 		/// @property id
 		/// @brief User id
@@ -129,29 +121,18 @@ class UserMention : public ReynTweetsMappable
 		/// @property indices
 		/// @brief Indexes
 		Q_PROPERTY(QVariantList indices
-				   READ getIndices
+				   READ getIndicesProperty
 				   WRITE setIndices)
 
-		/// @brief Representation of the property indices
-		QVariantList indexList;
-
-		/// @fn QVariantList getIndices();
+		/// @fn QVariantList getIndicesProperty();
 		/// @brief Reading method for the property indices
 		/// @return indexList
-		QVariantList getIndices();
+		QVariantList getIndicesProperty();
 
 		/// @fn void setIndices(QVariantList newIndexList);
 		/// @brief Writing method for the property indices
 		/// @param newIndexList New value for the property indices
 		void setIndices(QVariantList newIndexList);
-
-		/// @fn void syncIndicesProperty();
-		/// @brief Updating the property indices
-		void syncIndicesProperty();
-
-		/// @fn void syncIndicesMember();
-		/// @brief Updating the indexes attribute
-		void syncIndicesMember();
 
 
 	////////////////////////
@@ -220,15 +201,15 @@ class UserMention : public ReynTweetsMappable
 		/// @param newName New value for userName
 		void setName(QString newName);
 
-		/// @fn IndexBounds getIndexes();
+		/// @fn IndexBounds getIndices();
 		/// @brief Reading indexes
 		/// @return indexes
-		IndexBounds getIndexes();
+		IndexBounds getIndices();
 
-		/// @fn void setIndexes(IndexBounds newIndexes);
+		/// @fn void setIndices(IndexBounds newIndexes);
 		/// @brief Writing indexes
 		/// @param newIndexes New value for indexes
-		void setIndexes(IndexBounds newIndexes);
+		void setIndices(IndexBounds newIndexes);
 
 };
 

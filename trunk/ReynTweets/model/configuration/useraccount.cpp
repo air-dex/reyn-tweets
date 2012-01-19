@@ -34,9 +34,7 @@ UserAccount::UserAccount() :
 	accessToken(""),
 	tokenSecret(""),
 	user()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 UserAccount::~UserAccount() {}
@@ -57,7 +55,6 @@ void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
 	tokenSecret = account.tokenSecret;
 	user = account.user;
-	syncProperties();
 }
 
 // Serialization declaration
@@ -78,12 +75,7 @@ QDataStream & operator<<(QDataStream & out, const UserAccount & account) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserAccount & account) {
-	jsonStreamingIn(in, account);
-
-	// Updating the user
-	account.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, account);
 }
 
 
@@ -91,34 +83,14 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void UserAccount::syncMembers() {
-	syncUserMember();
-}
-
-// Updating all the properties
-void UserAccount::syncProperties() {
-	syncUserProperty();
-}
-
 // Reading the property twitter_user
-QVariantMap UserAccount::getUserMap() {
-	return userMap;
+QVariantMap UserAccount::getUserProperty() {
+	return user.toVariant();
 }
 
 // Writing the property twitter_user
-void UserAccount::setUserMap(QVariantMap newUserMap) {
-	userMap = newUserMap;
-}
-
-// Updates the property p_user
-void UserAccount::syncUserProperty() {
-	setUserMap(user.toVariant());
-}
-
-// Updates the property p_user
-void UserAccount::syncUserMember() {
-	user.fillWithVariant(userMap);
+void UserAccount::setUser(QVariantMap newUserMap) {
+	user.fillWithVariant(newUserMap);
 }
 
 
@@ -154,5 +126,4 @@ User UserAccount::getUser() {
 // Setter on user
 void UserAccount::setUser(User u) {
 	user = u;
-	syncUserProperty();
 }

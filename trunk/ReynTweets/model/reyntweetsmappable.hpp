@@ -31,30 +31,30 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @class ReynTweetsMappable
 /// @brief Serializable objects that needed to be converted into a QVariantMap.
 ///
-/// In practice, QJSON often parses replies in QVariantMaps whose keys are
-/// the name of the different fields of the replies. The values corresponding to
+/// In practice, QJSON parses replies in QVariantMaps whose keys are the name
+/// of the different fields of the replies. The values corresponding to
 /// the fields are stocked in QVariant objects. Complex field values are stored
 /// in QVariantLists or QVariantMaps.
 ///
-/// But ReynTweets do not manipulate QVariantMaps with fields but complex objects
-/// with values which gets a meaning (ex. : a tweet with a text (string), an ID
-/// (number), a writer. Not a QVariantMap with fields named "text", "id" or
-/// "user"). Informations needed by these objects are stored in the QVariantMaps
-/// made by QJSON so the QVariantMaps have to be converted in these complex
-/// objects. Moreover, the objects may be serialized and QJSON can only
+/// But ReynTweets do not manipulate QVariantMaps with fields but complex model
+/// objects with values which get a meaning, just like a tweet with a text
+/// (string), an ID(number), a writer. Not a QVariantMap with fields named
+/// "text", "id" or "user". Informations needed by these objects are stored
+/// in the QVariantMaps made by QJSON. As a consequence, the QVariantMaps
+/// replies have to be converted in these model objects.<br/>
+/// Moreover, the model objects may be serialized and QJSON can only
 /// manipulate simple types or QVariantMaps (or QVariantLists for lists with
 /// things whose type can be manipulated by QJSON). That's why the complex
-/// objects needs to be converted into QVariantMaps.
+/// model objects needs to be converted into QVariantMaps.
 ///
 /// In the complex objects, the fields of QVariantMaps are stocked in QObject
 /// properties which are represented by class members. Types of the class
 /// members are the type of the QVariant value of the field.
 ///
 /// However, some properties gets a particular meaning and cannot be represented
-/// with a simple type manipulable by QJSON. These fields get an equivalent member
-/// (often a ReynTweetsSerializable - the class was made for them) that are
-/// synced with their corresponding properties via two methods called <code>
-/// syncMembers()</code> and <code>syncProperties()</code>.
+/// with a simple type manipulable by QJSON. These fields get an equivalent
+/// member (often a ReynTweetsSerializable - the class was made for them) that
+/// corresponds to a QVariantList or a QVariantMap property.
 class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVariantMap>
 {
 	Q_OBJECT
@@ -70,15 +70,6 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// contained in a map.
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
-
-	protected:
-		/// @fn virtual void syncMembers() = 0;
-		/// @brief Syncing members with properties to serialize.
-		virtual void syncMembers() = 0;
-
-		/// @fn virtual void syncProperties() = 0;
-		/// @brief Syncing properties to serialize with the corresponding members.
-		virtual void syncProperties() = 0;
 };
 
 #endif // REYNTWEETSMAPPABLE_HPP

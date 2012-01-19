@@ -90,42 +90,22 @@ class User : public UserInfos
 	///////////////////////////
 
 	protected:
-		// Properties
-		/// @fn void syncMembers();
-		/// @brief Filling serializable fields with thecorresponding  property maps
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// status
 		/// @property status
 		/// @brief Serializable form of lastTweet
 		Q_PROPERTY(QVariantMap status
-				   READ getStatus
+				   READ getStatusProperty
 				   WRITE setStatus)
 
-		/// @brief Map containing the property "status"
-		QVariantMap lastTweetMap;
-
-		/// @fn QVariantMap getStatus();
+		/// @fn QVariantMap getStatusProperty();
 		/// @brief Reading the "status" property
 		/// @return lastTweetMap
-		QVariantMap getStatus();
+		QVariantMap getStatusProperty();
 
 		/// @fn void setStatus(QVariantMap statusMap);
 		/// @brief Writing the status property
 		/// @param statusMap The new value of the property
 		void setStatus(QVariantMap statusMap);
-
-		/// @fn void syncStatusProperty();
-		/// @brief Updating the property status
-		void syncStatusProperty();
-
-		/// @fn void syncStatusMember();
-		/// @brief Updating the lastTweet member
-		void syncStatusMember();
 
 
 	/////////////////////
@@ -142,15 +122,15 @@ class User : public UserInfos
 	////////////////////////
 
 	public:
-		/// @fn Tweet getLastTweet();
+		/// @fn Tweet getStatus();
 		/// @brief Getter on the last tweet written by the user
 		/// @return The value of the last tweet written by the user
-		Tweet getLastTweet();
+		Tweet getStatus();
 
-		/// @fn void setLastTweet(Tweet newLastTweet);
+		/// @fn void setStatus(Tweet newLastTweet);
 		/// @brief Setter on the last tweet written by the user
 		/// @param newLastTweet The new value of the last tweet written by the user
-		void setLastTweet(Tweet newLastTweet);
+		void setStatus(Tweet newLastTweet);
 };
 
 // Serialization of User

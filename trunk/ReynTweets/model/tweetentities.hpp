@@ -94,125 +94,73 @@ class TweetEntities : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// media
 		/// @property media
 		/// @brief Medias
 		Q_PROPERTY(QVariantList media
-				   READ getMediaList
-				   WRITE setMediaList)
+				   READ getMediaProperty
+				   WRITE setMedia)
 
-		/// @brief List of Medias under the form of maps.
-		QVariantList mediaList;
-
-		/// @fn QVariantList getMediaList();
+		/// @fn QVariantList getMediaProperty();
 		/// @brief Reading the property media
 		/// @return mediaList
-		QVariantList getMediaList();
+		QVariantList getMediaProperty();
 
-		/// @fn void setMediaList(QVariantList newMediaList);
+		/// @fn void setMedia(QVariantList newMediaList);
 		/// @brief Writing the property media
 		/// @param newMediaList New value for the property media
-		void setMediaList(QVariantList newMediaList);
-
-		/// @fn void syncMediaProperty();
-		/// @brief Updating the property media
-		void syncMediaProperty();
-
-		/// @fn void syncMediaMember();
-		/// @brief Updating the medias member
-		void syncMediaMember();
+		void setMedia(QVariantList newMediaList);
 
 		// urls
 		/// @property urls
 		/// @brief URLs written in the tweet
 		Q_PROPERTY(QVariantList urls
-				   READ getURLList
-				   WRITE setURLList)
-
-		/// @brief List of urls under the form of maps.
-		QVariantList urlsList;
+				   READ getURLsProperty
+				   WRITE setURLs)
 
 		/// @fn QVariantList getURLList();
 		/// @brief Reading the property urls
 		/// @return urlsList
-		QVariantList getURLList();
+		QVariantList getURLsProperty();
 
-		/// @fn void setURLList(QVariantList newURLList);
+		/// @fn void setURLs(QVariantList newURLList);
 		/// @brief Writing the property urls
 		/// @param newURLList New value for the property urls
-		void setURLList(QVariantList newURLList);
-
-		/// @fn void syncUrlsProperty();
-		/// @brief Updating the property urls
-		void syncUrlsProperty();
-
-		/// @fn void syncUrlsMember();
-		/// @brief Updating the tweetURLs member
-		void syncUrlsMember();
+		void setURLs(QVariantList newURLList);
 
 		// user_mentions
 		/// @property user_mentions
 		/// @brief Users mentionned in the tweet
 		Q_PROPERTY(QVariantList user_mentions
-				   READ getUserMentionsList
-				   WRITE setUserMentionsList)
+				   READ getUserMentionsProperty
+				   WRITE setUserMentions)
 
-		/// @brief List of user mentions under the form of maps.
-		QVariantList userMentionsList;
-
-		/// @fn QVariantList getUserMentionsList();
+		/// @fn QVariantList getUserMentionsProperty();
 		/// @brief Reading the property user_mentions
 		/// @return userMentionsList
-		QVariantList getUserMentionsList();
+		QVariantList getUserMentionsProperty();
 
-		/// @fn void setUserMentionsList(QVariantList newUserMentionsList);
+		/// @fn void setUserMentions(QVariantList newUserMentionsList);
 		/// @brief Writing the property user_mentions
 		/// @param newUserMentionsList New value for the property user_mentions
-		void setUserMentionsList(QVariantList newUserMentionsList);
-
-		/// @fn void syncUserMentionsProperty();
-		/// @brief Updating the property user_mentions
-		void syncUserMentionsProperty();
-
-		/// @fn void syncUserMentionsMember();
-		/// @brief Updating the mentions member
-		void syncUserMentionsMember();
+		void setUserMentions(QVariantList newUserMentionsList);
 
 		// hashtags
 		/// @property hashtags
 		/// @brief Hashtags in the tweet
 		Q_PROPERTY(QVariantList hashtags
-				   READ getHashtagsList
-				   WRITE setHashtagsList)
+				   READ getHashtagsProperty
+				   WRITE setHashtags)
 
-		/// @brief List of hashtags under the form of maps.
-		QVariantList hashtagsList;
-
-		/// @fn QVariantList getHashtagsList();
+		/// @fn QVariantList getHashtagsProperty();
 		/// @brief Reading the property hashtags
 		/// @return hashtagsList
-		QVariantList getHashtagsList();
+		QVariantList getHashtagsProperty();
 
-		/// @fn void setHashtagsList(QVariantList newHashtagsList);
+		/// @fn void setHashtags(QVariantList newHashtagsList);
 		/// @brief Writing the property hashtags
 		/// @param newHashtagsList New value for the property hashtags
-		void setHashtagsList(QVariantList newHashtagsList);
-
-		/// @fn void syncHashtagsProperty();
-		/// @brief Updating the property hashtags
-		void syncHashtagsProperty();
-
-		/// @fn void syncHashtagsMember();
-		/// @brief Updating the tweetHashtags member
-		void syncHashtagsMember();
+		void setHashtags(QVariantList newHashtagsList);
 
 
 	//////////////

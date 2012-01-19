@@ -116,22 +116,22 @@ window.onload = initDynSections;
 <a name="l00026"></a><a class="code" href="class_login_widget.html#af56cb02760e85bf52f759687c2304e86">00026</a> <a class="code" href="class_login_widget.html#af56cb02760e85bf52f759687c2304e86" title="Constructor.">LoginWidget::LoginWidget</a>(QWidget *parent) :
 <a name="l00027"></a>00027         QWidget(parent),
 <a name="l00028"></a>00028         widgetLayout(),
-<a name="l00029"></a>00029         credentialsErrorMessage(QObject::trUtf8(<span class="stringliteral">&quot;&lt;strong style=\&quot;color:red\&quot;&gt;Username or password invalid. Try again.&lt;/strong&gt;&quot;</span>)),
+<a name="l00029"></a>00029         credentialsErrorMessage(<a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a>::trUtf8(<span class="stringliteral">&quot;&lt;strong style=\&quot;color:red\&quot;&gt;Username or password invalid. Try again.&lt;/strong&gt;&quot;</span>)),
 <a name="l00030"></a>00030         formLayout(),
 <a name="l00031"></a>00031         loginLineEdit(),
 <a name="l00032"></a>00032         passwordLineEdit(),
-<a name="l00033"></a>00033         passwordCheckBox(QObject::trUtf8(<span class="stringliteral">&quot;Show password&quot;</span>)),
+<a name="l00033"></a>00033         passwordCheckBox(<a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a>::trUtf8(<span class="stringliteral">&quot;Show password&quot;</span>)),
 <a name="l00034"></a>00034         buttonsLayout(),
-<a name="l00035"></a>00035         authorizeButton(QObject::trUtf8(<span class="stringliteral">&quot;Authorize&quot;</span>)),
-<a name="l00036"></a>00036         denyButton(QObject::trUtf8(<span class="stringliteral">&quot;No thanks&quot;</span>))
+<a name="l00035"></a>00035         authorizeButton(<a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a>::trUtf8(<span class="stringliteral">&quot;Authorize&quot;</span>)),
+<a name="l00036"></a>00036         denyButton(<a class="code" href="class_login_widget.html" title="Widget asking to the user its name (or email) and its password to authorize request...">LoginWidget</a>::trUtf8(<span class="stringliteral">&quot;No thanks&quot;</span>))
 <a name="l00037"></a>00037 {
 <a name="l00038"></a>00038         <span class="comment">// Building the UI</span>
 <a name="l00039"></a>00039         <a class="code" href="class_login_widget.html#ac0a2a6a0ee63835481c9dcb339483c70" title="Message for bad credentials.">credentialsErrorMessage</a>.setVisible(<span class="keyword">false</span>);
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041         <span class="comment">// Password form</span>
 <a name="l00042"></a>00042         <a class="code" href="class_login_widget.html#a26261178c9fc8613099e62b48e831156" title="LineEdit for the password field.">passwordLineEdit</a>.setEchoMode(QLineEdit::Password);
-<a name="l00043"></a>00043         <a class="code" href="class_login_widget.html#a687b0232badf50c762bd9891f8160bc8" title="Layout of the form.">formLayout</a>.addRow(QObject::trUtf8(<span class="stringliteral">&quot;Username or email:&quot;</span>), &amp;<a class="code" href="class_login_widget.html#a6829b401f157b7ac2fc3a75a507def18" title="LineEdit for the login field.">loginLineEdit</a>);
-<a name="l00044"></a>00044         <a class="code" href="class_login_widget.html#a687b0232badf50c762bd9891f8160bc8" title="Layout of the form.">formLayout</a>.addRow(QObject::trUtf8(<span class="stringliteral">&quot;Password:&quot;</span>), &amp;<a class="code" href="class_login_widget.html#a26261178c9fc8613099e62b48e831156" title="LineEdit for the password field.">passwordLineEdit</a>);
+<a name="l00043"></a>00043         <a class="code" href="class_login_widget.html#a687b0232badf50c762bd9891f8160bc8" title="Layout of the form.">formLayout</a>.addRow(LoginWidget::trUtf8(<span class="stringliteral">&quot;Username or email:&quot;</span>), &amp;<a class="code" href="class_login_widget.html#a6829b401f157b7ac2fc3a75a507def18" title="LineEdit for the login field.">loginLineEdit</a>);
+<a name="l00044"></a>00044         <a class="code" href="class_login_widget.html#a687b0232badf50c762bd9891f8160bc8" title="Layout of the form.">formLayout</a>.addRow(LoginWidget::trUtf8(<span class="stringliteral">&quot;Password:&quot;</span>), &amp;<a class="code" href="class_login_widget.html#a26261178c9fc8613099e62b48e831156" title="LineEdit for the password field.">passwordLineEdit</a>);
 <a name="l00045"></a>00045         <a class="code" href="class_login_widget.html#aa5c8f9f7fe7e65b68432360c56683e02" title="Checkbox to see the password while writing it.">passwordCheckBox</a>.setTristate(<span class="keyword">false</span>);
 <a name="l00046"></a>00046         <a class="code" href="class_login_widget.html#a687b0232badf50c762bd9891f8160bc8" title="Layout of the form.">formLayout</a>.addRow(&amp;<a class="code" href="class_login_widget.html#aa5c8f9f7fe7e65b68432360c56683e02" title="Checkbox to see the password while writing it.">passwordCheckBox</a>);
 <a name="l00047"></a>00047 
@@ -226,7 +226,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -111,16 +111,229 @@ window.onload = initDynSections;
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00022"></a>00022 <span class="comment">*/</span>
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetswidget_8hpp.html" title="Header of ReynTweetsWidget.">reyntweetswidget.hpp</a>&quot;</span>
-<a name="l00025"></a>00025 
-<a name="l00026"></a><a class="code" href="class_reyn_tweets_widget.html#aa1c1ba3a2e3632a3f8d3fbb538fae6a4">00026</a> <a class="code" href="class_reyn_tweets_widget.html#aa1c1ba3a2e3632a3f8d3fbb538fae6a4">ReynTweetsWidget::ReynTweetsWidget</a>(QWidget *parent) :
-<a name="l00027"></a>00027         QWidget(parent),
-<a name="l00028"></a>00028         tw(),
-<a name="l00029"></a>00029         lay()
-<a name="l00030"></a>00030 {
-<a name="l00031"></a>00031         <a class="code" href="class_reyn_tweets_widget.html#ae89dd93faf266aaf3aeaef2ff5348636">lay</a>.addWidget(&amp;<a class="code" href="class_reyn_tweets_widget.html#ada5e931fc1fbb9d3fc6db3304a4123b8">tw</a>);
-<a name="l00032"></a>00032         setLayout(&amp;<a class="code" href="class_reyn_tweets_widget.html#ae89dd93faf266aaf3aeaef2ff5348636">lay</a>);
-<a name="l00033"></a>00033 }
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QApplication&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetswidget_8hpp.html" title="Header of ReynTweetsWidget.">reyntweetswidget.hpp</a>&quot;</span>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="comment">// Constructor</span>
+<a name="l00028"></a><a class="code" href="class_reyn_tweets_widget.html#a4c86b8ddc01a43ef9e671a76204fec29">00028</a> <a class="code" href="class_reyn_tweets_widget.html#a4c86b8ddc01a43ef9e671a76204fec29" title="Constructor.">ReynTweetsWidget::ReynTweetsWidget</a>() :
+<a name="l00029"></a>00029         QWidget(),
+<a name="l00030"></a>00030         reyn(),
+<a name="l00031"></a>00031         layout(),
+<a name="l00032"></a>00032         authenticationWidget(),
+<a name="l00033"></a>00033         launchingScreen(authenticationWidget),
+<a name="l00034"></a>00034         mock(<span class="stringliteral">&quot;Yeah ! It&#39;s Reyn time !&quot;</span>)
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036         <span class="comment">// UI design</span>
+<a name="l00037"></a>00037         <a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>.addWidget(&amp;<a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc" title="Widget displayed while Reyn Tweets is launched.">launchingScreen</a>);
+<a name="l00038"></a>00038         setLayout(&amp;<a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>);
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040         <span class="comment">// Wiring</span>
+<a name="l00041"></a>00041         connect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(<a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>()),
+<a name="l00042"></a>00042                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>()));
+<a name="l00043"></a>00043         connect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(launchEnded(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a>)),
+<a name="l00044"></a>00044                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a>)));
+<a name="l00045"></a>00045         connect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(saveConfEnded(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)),
+<a name="l00046"></a>00046                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)));
+<a name="l00047"></a>00047         connect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>, SIGNAL(authenticationFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00048"></a>00048                                                                                                                                  QByteArray,QByteArray,
+<a name="l00049"></a>00049                                                                                                                                  <span class="keywordtype">long</span>,QString)),
+<a name="l00050"></a>00050                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00051"></a>00051                                                                                                   QByteArray,QByteArray,
+<a name="l00052"></a>00052                                                                                                   <span class="keywordtype">long</span>,QString))
+<a name="l00053"></a>00053                         );
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="comment">// Loading configuration</span>
+<a name="l00056"></a>00056         <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>.<a class="code" href="class_reyn_core.html#a863c8b749fa081ed9db209d59fc07eee" title="Loading the configuartion from the configuration file.">loadConfiguration</a>();
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="comment">// Destructor</span>
+<a name="l00060"></a><a class="code" href="class_reyn_tweets_widget.html#ae4ef4b8a2ff3671969b97306bb261c02">00060</a> <a class="code" href="class_reyn_tweets_widget.html#ae4ef4b8a2ff3671969b97306bb261c02" title="Destructor.">ReynTweetsWidget::~ReynTweetsWidget</a>() {
+<a name="l00061"></a>00061         <span class="comment">// Unwiring</span>
+<a name="l00062"></a>00062         disconnect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(<a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>()),
+<a name="l00063"></a>00063                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>()));
+<a name="l00064"></a>00064         disconnect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(launchEnded(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a>)),
+<a name="l00065"></a>00065                            <span class="keyword">this</span>, SLOT(launchEnded(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a>)));
+<a name="l00066"></a>00066         disconnect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>, SIGNAL(saveConfEnded(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)),
+<a name="l00067"></a>00067                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)));
+<a name="l00068"></a>00068         disconnect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>, SIGNAL(authenticationFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00069"></a>00069                                                                                                                                         QByteArray,QByteArray,
+<a name="l00070"></a>00070                                                                                                                                         <span class="keywordtype">long</span>,QString)),
+<a name="l00071"></a>00071                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00072"></a>00072                                                                                                          QByteArray,QByteArray,
+<a name="l00073"></a>00073                                                                                                          <span class="keywordtype">long</span>,QString))
+<a name="l00074"></a>00074                            );
+<a name="l00075"></a>00075 }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="comment">// Displaying a QMessageBox announcing a critical problem</span>
+<a name="l00078"></a><a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009">00078</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">ReynTweetsWidget::criticalPopup</a>(QString title,
+<a name="l00079"></a>00079                                                                          QString announce,
+<a name="l00080"></a>00080                                                                          QString problem)
+<a name="l00081"></a>00081 {
+<a name="l00082"></a>00082         <span class="comment">// Building the message displayed in the popup</span>
+<a name="l00083"></a>00083         QString displayedMessage = announce;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085         displayedMessage.append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00086"></a>00086         displayedMessage.append(problem);
+<a name="l00087"></a>00087         displayedMessage.append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00088"></a>00088         displayedMessage.append(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Reyn Tweets will quit.&quot;</span>));
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <span class="comment">// Displaying the error</span>
+<a name="l00091"></a>00091         QMessageBox::critical(<span class="keyword">this</span>,
+<a name="l00092"></a>00092                                                   title,
+<a name="l00093"></a>00093                                                   displayedMessage);
+<a name="l00094"></a>00094         qApp-&gt;quit();
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="comment">// Displaying a QMessageBox for asking a question</span>
+<a name="l00098"></a><a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677">00098</a> QMessageBox::StandardButton <a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677" title="Displaying a QMessageBox for asking a question.">ReynTweetsWidget::questionPopup</a>(QString title,
+<a name="l00099"></a>00099                                                                                                                         QString announce,
+<a name="l00100"></a>00100                                                                                                                         QString question)
+<a name="l00101"></a>00101 {
+<a name="l00102"></a>00102         <span class="comment">// Building the message displayed in the popup</span>
+<a name="l00103"></a>00103         QString displayedMessage = announce;
+<a name="l00104"></a>00104         displayedMessage.append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00105"></a>00105         displayedMessage.append(question);
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107         <span class="comment">// Displaying the error</span>
+<a name="l00108"></a>00108         <span class="keywordflow">return</span> QMessageBox::question(<span class="keyword">this</span>,
+<a name="l00109"></a>00109                                                                  title,
+<a name="l00110"></a>00110                                                                  displayedMessage,
+<a name="l00111"></a>00111                                                                  QMessageBox::Yes | QMessageBox::No);
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 
+<a name="l00116"></a>00116 <span class="comment">// Authentication management //</span>
+<a name="l00118"></a>00118 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">// An authentication to Twitter is required for the application</span>
+<a name="l00120"></a><a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3">00120</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">ReynTweetsWidget::authenticationRequired</a>() {
+<a name="l00121"></a>00121         <a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>.<a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 <span class="comment">// End of authentication</span>
+<a name="l00126"></a><a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba">00126</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">ReynTweetsWidget::endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
+<a name="l00127"></a>00127                                                                                                   QByteArray accessToken,
+<a name="l00128"></a>00128                                                                                                   QByteArray tokenSecret,
+<a name="l00129"></a>00129                                                                                                   <span class="keywordtype">long</span> userID,
+<a name="l00130"></a>00130                                                                                                   QString screenName)
+<a name="l00131"></a>00131 {
+<a name="l00132"></a>00132         QMessageBox::StandardButton questionButton;
+<a name="l00133"></a>00133         QString welcomeMessage;
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135         <span class="keywordflow">switch</span> (processResult) {
+<a name="l00136"></a>00136                 <span class="keywordflow">case</span> <a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>:
+<a name="l00137"></a>00137                         <span class="comment">// Reyn Tweets is authorized. Welcome the user and upload the account with him.</span>
+<a name="l00138"></a>00138                         welcomeMessage = <span class="stringliteral">&quot;@&quot;</span>;
+<a name="l00139"></a>00139                         welcomeMessage.append(screenName);
+<a name="l00140"></a>00140                         welcomeMessage.append(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot; can go to Twitter with Reyn Tweets now. Have fun with Reyn Tweets!&quot;</span>));
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142                         QMessageBox::information(<span class="keyword">this</span>,
+<a name="l00143"></a>00143                                                                          ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Welcome to Reyn Tweets&quot;</span>),
+<a name="l00144"></a>00144                                                                          welcomeMessage);
+<a name="l00145"></a>00145                         <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>.<a class="code" href="class_reyn_core.html#abd325c82fabebe9d4baa97cda128b7ee" title="Uploading the configuration after an authentication process.">updateConfAfterAuth</a>(accessToken, tokenSecret,
+<a name="l00146"></a>00146                                                                          userID, screenName);
+<a name="l00147"></a>00147                         <span class="keywordflow">return</span>;
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149                 <span class="keywordflow">case</span> <a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>:
+<a name="l00150"></a>00150                         <span class="comment">// Reyn Tweets was not authorized.</span>
+<a name="l00151"></a>00151                         questionButton = <a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677" title="Displaying a QMessageBox for asking a question.">questionPopup</a>(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;End of the authentication process&quot;</span>),
+<a name="l00152"></a>00152                                                                                    ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Reyn Tweets was not authorized. You will not be able to use the application correctly.&quot;</span>),
+<a name="l00153"></a>00153                                                                                    ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Would you like to authorize the application again ?&quot;</span>));
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155                         <span class="keywordflow">if</span> (QMessageBox::Yes == questionButton) {
+<a name="l00156"></a>00156                                 <a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>.<a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
+<a name="l00157"></a>00157                         }
+<a name="l00158"></a>00158                         <span class="keywordflow">return</span>;
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160                 <span class="keywordflow">case</span> <a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a2b9b8c42ea25d7fd47fecead6b2de0ba" title="An error occured during the process.">ERROR_PROCESS</a>:
+<a name="l00161"></a>00161                         <span class="comment">// Want to restart ?</span>
+<a name="l00162"></a>00162                         questionButton = <a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677" title="Displaying a QMessageBox for asking a question.">questionPopup</a>(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Error during the authentication process&quot;</span>),
+<a name="l00163"></a>00163                                                                                    ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;An error occured during the authentication process.&quot;</span>),
+<a name="l00164"></a>00164                                                                                    ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Would you like to try to authorize the application again ?&quot;</span>));
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166                         <span class="keywordflow">if</span> (QMessageBox::Yes == questionButton) {
+<a name="l00167"></a>00167                                 <a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>.<a class="code" href="class_o_auth_widget.html#a2ce615ad19236974aa5e588a4e6d9835" title="Allowing Reyn Tweets to use your Twitter account.">allowReynTweets</a>();
+<a name="l00168"></a>00168                         }
+<a name="l00169"></a>00169                         <span class="keywordflow">return</span>;
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171                 <span class="keywordflow">default</span>:
+<a name="l00172"></a>00172                         <span class="comment">// Unknown problem. Abort.</span>
+<a name="l00173"></a>00173                         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">criticalPopup</a>(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Error while authorizing the application&quot;</span>),
+<a name="l00174"></a>00174                                                                  ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;A problem occured during authentication:&quot;</span>),
+<a name="l00175"></a>00175                                                                  ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Unknown problem&quot;</span>));
+<a name="l00176"></a>00176         }
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178         <span class="comment">// Asking what to do</span>
+<a name="l00179"></a>00179 }
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 
+<a name="l00183"></a>00183 <span class="comment">// Configuration management //</span>
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">// End of launch process</span>
+<a name="l00187"></a><a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00">00187</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">ReynTweetsWidget::launchOK</a>(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a> launchOK) {
+<a name="l00188"></a>00188         QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190         <span class="keywordflow">switch</span> (launchOK) {
+<a name="l00191"></a>00191                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557ba2488d65779594ac26a8792db423fee5a" title="The launching was successful.">LAUNCH_SUCCESSFUL</a>:
+<a name="l00192"></a>00192                         <span class="comment">// The application was launched correctly. You can tweet now.</span>
+<a name="l00193"></a>00193                         <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>.<a class="code" href="class_reyn_core.html#a93c24614dbefe32f2a3eaa64d98b85c8" title="Checks if the access tokens seem legit. If not, it sends an authenticationRequired();...">checkTokens</a>();
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195                         <span class="comment">// Removing the launching screen</span>
+<a name="l00196"></a>00196                         <a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc" title="Widget displayed while Reyn Tweets is launched.">launchingScreen</a>.hide();
+<a name="l00197"></a>00197                         <a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>.removeWidget(&amp;<a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc" title="Widget displayed while Reyn Tweets is launched.">launchingScreen</a>);
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199                         <span class="comment">// Inserting the panel to tweet (mocked for the moment)</span>
+<a name="l00200"></a>00200                         <a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>.addWidget(&amp;<a class="code" href="class_reyn_tweets_widget.html#af639ed84fd52cb38bf5ed50f7f402a5d" title="Mock for &amp;quot;a normal execution&amp;quot;.">mock</a>);
+<a name="l00201"></a>00201                         <span class="keywordflow">return</span>;
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557bab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>:
+<a name="l00204"></a>00204                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Configuration file does not exist.&quot;</span>);
+<a name="l00205"></a>00205                         <span class="keywordflow">break</span>;
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557ba1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>:
+<a name="l00208"></a>00208                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Configuration file cannot be opened.&quot;</span>);
+<a name="l00209"></a>00209                         <span class="keywordflow">break</span>;
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557baeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>:
+<a name="l00212"></a>00212                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Configuration cannot be loaded.&quot;</span>);
+<a name="l00213"></a>00213                         <span class="keywordflow">break</span>;
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215                 <span class="keywordflow">default</span>:
+<a name="l00216"></a>00216                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Unknown problem&quot;</span>);
+<a name="l00217"></a>00217                         <span class="keywordflow">break</span>;
+<a name="l00218"></a>00218         }
+<a name="l00219"></a>00219 
+<a name="l00220"></a>00220         <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">criticalPopup</a>(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Error while launching the application&quot;</span>),
+<a name="l00221"></a>00221                                   ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;A problem occured while launching the application:&quot;</span>),
+<a name="l00222"></a>00222                                   errorMsg);
+<a name="l00223"></a>00223 }
+<a name="l00224"></a>00224 
+<a name="l00225"></a>00225 <span class="comment">// After saving the configuration</span>
+<a name="l00226"></a><a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf">00226</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">ReynTweetsWidget::saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a> saveOK) {
+<a name="l00227"></a>00227         QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229         <span class="keywordflow">switch</span> (saveOK) {
+<a name="l00230"></a>00230                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1a7480b219c93cd86d42a7d4652b86edc6" title="The launching was successful.">SAVE_SUCCESSFUL</a>:
+<a name="l00231"></a>00231                         <span class="comment">// The application was saved correctly</span>
+<a name="l00232"></a>00232                         <span class="keywordflow">return</span>;
+<a name="l00233"></a>00233 
+<a name="l00234"></a>00234                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1a382b406407b61c72f55bc4701d2922d3" title="The configuration file does not exist.">CONFIGURATION_BACKUP_FILE_UNKNOWN</a>:
+<a name="l00235"></a>00235                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Configuration file does not exist.&quot;</span>);
+<a name="l00236"></a>00236                         <span class="keywordflow">break</span>;
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238                 <span class="keywordflow">case</span> <a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1a60828f760310a60416b74877226f7bc5" title="The configuration file cannot be opened.">CONFIGURATION_BACKUP_FILE_NOT_OPEN</a>:
+<a name="l00239"></a>00239                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Configuration file cannot be opened.&quot;</span>);
+<a name="l00240"></a>00240                         <span class="keywordflow">break</span>;
+<a name="l00241"></a>00241 
+<a name="l00242"></a>00242                 <span class="keywordflow">default</span>:
+<a name="l00243"></a>00243                         errorMsg = ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Unknown problem&quot;</span>);
+<a name="l00244"></a>00244                         <span class="keywordflow">break</span>;
+<a name="l00245"></a>00245         }
+<a name="l00246"></a>00246 
+<a name="l00247"></a>00247         <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">criticalPopup</a>(ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Error while saving the parameters&quot;</span>),
+<a name="l00248"></a>00248                                   ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;A problem occured while saving the parameters of Reyn Tweets:&quot;</span>),
+<a name="l00249"></a>00249                                   errorMsg);
+<a name="l00250"></a>00250 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -136,7 +349,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:17 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:55 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

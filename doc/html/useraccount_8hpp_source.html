@@ -149,72 +149,69 @@ window.onload = initDynSections;
 <a name="l00091"></a>00091                                                                                 <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account);
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093         <span class="keyword">private</span>:
-<a name="l00094"></a>00094                 <span class="comment">// Properties</span>
-<a name="l00097"></a>00097 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a4c5810940d8d567ce6fa8d52b4266cc6" title="Updating the field members.">syncMembers</a>();
-<a name="l00098"></a>00098 
-<a name="l00101"></a>00101                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a2a142346125e17e80061d6f6650eb1eb" title="Updating all the properties.">syncProperties</a>();
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103                 <span class="comment">// Access Token</span>
-<a name="l00106"></a>00106 <span class="comment"></span>                Q_PROPERTY(QByteArray <a class="code" href="class_user_account.html#a1c09d51c15d0f0188318affa967dfd32" title="Access token.">access_token</a>
-<a name="l00107"></a>00107                                    READ <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>
-<a name="l00108"></a><a class="code" href="class_user_account.html#a1c09d51c15d0f0188318affa967dfd32">00108</a>                                    WRITE <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>)
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110                 <span class="comment">// Token Secret</span>
-<a name="l00113"></a>00113 <span class="comment"></span>                Q_PROPERTY(QByteArray <a class="code" href="class_user_account.html#a221d64cb2ce1676550d6f78613c07f07" title="Token secret.">token_secret</a>
-<a name="l00114"></a>00114                                    READ <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>
-<a name="l00115"></a><a class="code" href="class_user_account.html#a221d64cb2ce1676550d6f78613c07f07">00115</a>                                    WRITE <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>)
+<a name="l00094"></a>00094                 <span class="comment">// Access Token</span>
+<a name="l00097"></a>00097 <span class="comment"></span>                Q_PROPERTY(QByteArray <a class="code" href="class_user_account.html#a1c09d51c15d0f0188318affa967dfd32" title="Access token.">access_token</a>
+<a name="l00098"></a>00098                                    READ <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>
+<a name="l00099"></a><a class="code" href="class_user_account.html#a1c09d51c15d0f0188318affa967dfd32">00099</a>                                    WRITE <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>)
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101                 <span class="comment">// Token Secret</span>
+<a name="l00104"></a>00104 <span class="comment"></span>                Q_PROPERTY(QByteArray <a class="code" href="class_user_account.html#a221d64cb2ce1676550d6f78613c07f07" title="Token secret.">token_secret</a>
+<a name="l00105"></a>00105                                    READ <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>
+<a name="l00106"></a><a class="code" href="class_user_account.html#a221d64cb2ce1676550d6f78613c07f07">00106</a>                                    WRITE <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>)
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108                 <span class="comment">// User</span>
+<a name="l00111"></a>00111 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user_account.html#a0bcd6b517fe8102edfe6cc9a5a5b9451" title="Twitter user.">twitter_user</a>
+<a name="l00112"></a>00112                                    READ <a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d" title="Reading the property twitter_user.">getUserProperty</a>
+<a name="l00113"></a><a class="code" href="class_user_account.html#a0bcd6b517fe8102edfe6cc9a5a5b9451">00113</a>                                    WRITE <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">setUser</a>)
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115                 
 <a name="l00116"></a>00116 
-<a name="l00117"></a>00117                 <span class="comment">// User</span>
-<a name="l00120"></a>00120 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user_account.html#a0bcd6b517fe8102edfe6cc9a5a5b9451" title="Twitter user.">twitter_user</a>
-<a name="l00121"></a>00121                                    READ <a class="code" href="class_user_account.html#af5a3ec66ba45f4b4a1822ef188dd5f0d" title="Reading the property twitter_user.">getUserMap</a>
-<a name="l00122"></a><a class="code" href="class_user_account.html#a0bcd6b517fe8102edfe6cc9a5a5b9451">00122</a>                                    WRITE <a class="code" href="class_user_account.html#a1319301d23168fa9fe744bd71b126044" title="Writing the property twitter_user.">setUserMap</a>)
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124                 
-<a name="l00125"></a><a class="code" href="class_user_account.html#ada55f44faa411cfb8af8adecbe955789">00125</a>                 QVariantMap <a class="code" href="class_user_account.html#ada55f44faa411cfb8af8adecbe955789" title="Map with the user.">userMap</a>;
-<a name="l00126"></a>00126 
-<a name="l00130"></a>00130                 QVariantMap <a class="code" href="class_user_account.html#af5a3ec66ba45f4b4a1822ef188dd5f0d" title="Reading the property twitter_user.">getUserMap</a>();
-<a name="l00131"></a>00131 
-<a name="l00135"></a>00135                 <span class="keywordtype">void</span> setUserMap(QVariantMap newUserMap);
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118                 QVariantMap <a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d" title="Reading the property twitter_user.">getUserProperty</a>();
+<a name="l00119"></a>00119 
+<a name="l00123"></a>00123                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">setUser</a>(QVariantMap newUserMap);
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 
+<a name="l00127"></a>00127         <span class="comment">// Configuration management //</span>
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130         <span class="keyword">protected</span>:
+<a name="l00132"></a><a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991">00132</a>                 QByteArray <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
+<a name="l00133"></a>00133 
+<a name="l00135"></a><a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567">00135</a>                 QByteArray <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
 <a name="l00136"></a>00136 
-<a name="l00139"></a>00139                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a983d16956b8f34460e9f64ee9800b91d" title="Updates the property twitter_user.">syncUserProperty</a>();
-<a name="l00140"></a>00140 
-<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#ab8c47359d892bd9be101cb80a20fe42e" title="Updates the user member.">syncUserMember</a>();
-<a name="l00144"></a>00144 
+<a name="l00138"></a><a class="code" href="class_user_account.html#a5a1138f60b3af203e58c0cb6a871ba5a">00138</a>                 <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> <a class="code" href="class_user_account.html#a5a1138f60b3af203e58c0cb6a871ba5a" title="User of the account.">user</a>;
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140         <span class="keyword">public</span>:
+<a name="l00144"></a>00144                 QByteArray <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>();
 <a name="l00145"></a>00145 
-<a name="l00147"></a>00147         <span class="comment">// Configuration management //</span>
-<a name="l00149"></a>00149 <span class="comment"></span>
-<a name="l00150"></a>00150         protected:
-<a name="l00152"></a><a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991">00152</a>                 QByteArray <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
-<a name="l00153"></a>00153 
-<a name="l00155"></a><a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567">00155</a>                 QByteArray <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
-<a name="l00156"></a>00156 
-<a name="l00158"></a><a class="code" href="class_user_account.html#a5a1138f60b3af203e58c0cb6a871ba5a">00158</a>                 <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> <a class="code" href="class_user_account.html#a5a1138f60b3af203e58c0cb6a871ba5a" title="User of the account.">user</a>;
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160         public:
-<a name="l00164"></a>00164                 QByteArray <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">getAccessToken</a>();
+<a name="l00149"></a>00149                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>(QByteArray token);
+<a name="l00150"></a>00150 
+<a name="l00154"></a>00154                 QByteArray <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>();
+<a name="l00155"></a>00155 
+<a name="l00159"></a>00159                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>(QByteArray secret);
+<a name="l00160"></a>00160 
+<a name="l00164"></a>00164                 <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> <a class="code" href="class_user_account.html#acf74667e5d2ad77dbe26bf61f5e79993" title="Getter on the user.">getUser</a>();
 <a name="l00165"></a>00165 
-<a name="l00169"></a>00169                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">setAccessToken</a>(QByteArray token);
-<a name="l00170"></a>00170 
-<a name="l00174"></a>00174                 QByteArray <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">getTokenSecret</a>();
+<a name="l00169"></a>00169                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">setUser</a>(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> u);
+<a name="l00170"></a>00170 };
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172 <span class="comment">// Serialization of UserAccount</span>
+<a name="l00173"></a>00173 Q_DECLARE_METATYPE(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a>)
+<a name="l00174"></a>00174 
 <a name="l00175"></a>00175 
-<a name="l00179"></a>00179                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">setTokenSecret</a>(QByteArray secret);
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179 
 <a name="l00180"></a>00180 
-<a name="l00184"></a>00184                 <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> <a class="code" href="class_user_account.html#acf74667e5d2ad77dbe26bf61f5e79993" title="Getter on the user.">getUser</a>();
-<a name="l00185"></a>00185 
-<a name="l00189"></a>00189                 <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#ab4305853cf2219e8983f21bba6fc0dfb" title="Setter on the user.">setUser</a>(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> u);
-<a name="l00190"></a>00190 };
-<a name="l00191"></a>00191 
-<a name="l00192"></a>00192 <span class="comment">// Serialization of UserAccount</span>
-<a name="l00193"></a>00193 Q_DECLARE_METATYPE(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a>)
-<a name="l00194"></a>00194 
-<a name="l00201"></a>00201 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out,
-<a name="l00202"></a>00202                                                  const <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account);
-<a name="l00203"></a>00203 
-<a name="l00210"></a>00210 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in,
-<a name="l00211"></a>00211                                                  <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account);
-<a name="l00212"></a>00212 
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="preprocessor">#endif // USERACCOUNT_HPP</span>
+<a name="l00181"></a>00181 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out,
+<a name="l00182"></a>00182                                                  const <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account);
+<a name="l00183"></a>00183 
+<a name="l00190"></a>00190 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in,
+<a name="l00191"></a>00191                                                  <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account);
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194 <span class="preprocessor">#endif // USERACCOUNT_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -230,7 +227,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

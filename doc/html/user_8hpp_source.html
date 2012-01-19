@@ -148,53 +148,49 @@ window.onload = initDynSections;
 <a name="l00089"></a>00089         <span class="comment">// Properties management //</span>
 <a name="l00091"></a>00091 <span class="comment"></span>
 <a name="l00092"></a>00092         <span class="keyword">protected</span>:
-<a name="l00093"></a>00093                 <span class="comment">// Properties</span>
-<a name="l00096"></a>00096 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b" title="Filling serializable fields with thecorresponding property maps.">syncMembers</a>();
-<a name="l00097"></a>00097 
-<a name="l00100"></a>00100                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2" title="Updating all the properties.">syncProperties</a>();
+<a name="l00093"></a>00093                 <span class="comment">// status</span>
+<a name="l00096"></a>00096 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e" title="Serializable form of lastTweet.">status</a>
+<a name="l00097"></a>00097                                    READ <a class="code" href="class_user.html#a72bc757fe1c98b401af815fe10648530" title="Reading the &amp;quot;status&amp;quot; property.">getStatusProperty</a>
+<a name="l00098"></a><a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e">00098</a>                                    WRITE <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>)
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100                 
 <a name="l00101"></a>00101 
-<a name="l00102"></a>00102                 <span class="comment">// status</span>
-<a name="l00105"></a>00105 <span class="comment"></span>                Q_PROPERTY(QVariantMap <a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e" title="Serializable form of lastTweet.">status</a>
-<a name="l00106"></a>00106                                    READ <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>
-<a name="l00107"></a><a class="code" href="class_user.html#a8233659e638df9076488e72cffbc6d5e">00107</a>                                    WRITE <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>)
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109                 
-<a name="l00110"></a><a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0">00110</a>                 QVariantMap <a class="code" href="class_user.html#abf74a8455a2799bb3adaa0eb00a073d0" title="Map containing the property &amp;quot;status&amp;quot;.">lastTweetMap</a>;
-<a name="l00111"></a>00111 
-<a name="l00115"></a>00115                 QVariantMap <a class="code" href="class_user.html#a15a3c0024110c4829b597fbd6fd293a5" title="Reading the &amp;quot;status&amp;quot; property.">getStatus</a>();
-<a name="l00116"></a>00116 
-<a name="l00120"></a>00120                 <span class="keywordtype">void</span> setStatus(QVariantMap statusMap);
-<a name="l00121"></a>00121 
-<a name="l00124"></a>00124                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a1bf335e6a9cae9aa2d841a2537749ccb" title="Updating the property status.">syncStatusProperty</a>();
-<a name="l00125"></a>00125 
-<a name="l00128"></a>00128                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#adfd64279528ffc43cbd380934be56f2f" title="Updating the lastTweet member.">syncStatusMember</a>();
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103                 QVariantMap <a class="code" href="class_user.html#a72bc757fe1c98b401af815fe10648530" title="Reading the &amp;quot;status&amp;quot; property.">getStatusProperty</a>();
+<a name="l00104"></a>00104 
+<a name="l00108"></a>00108                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>(QVariantMap statusMap);
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 
+<a name="l00112"></a>00112         <span class="comment">// User management //</span>
+<a name="l00114"></a>00114 <span class="comment"></span>
+<a name="l00115"></a>00115         <span class="keyword">protected</span>:
+<a name="l00117"></a><a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397">00117</a>                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 
+<a name="l00121"></a>00121         <span class="comment">// Getter and setters //</span>
+<a name="l00123"></a>00123 <span class="comment"></span>
+<a name="l00124"></a>00124         <span class="keyword">public</span>:
+<a name="l00128"></a>00128                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#ab3551117943ebe5f4b880b06d64e8ad3" title="Getter on the last tweet written by the user.">getStatus</a>();
 <a name="l00129"></a>00129 
-<a name="l00130"></a>00130 
-<a name="l00132"></a>00132         <span class="comment">// User management //</span>
-<a name="l00134"></a>00134 <span class="comment"></span>
-<a name="l00135"></a>00135         <a class="code" href="class_user_infos.html#a60ecb8a3fc03d33aa7f45abbca48aac5" title="Serializable form of protectedAccount.">protected</a>:
-<a name="l00137"></a><a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397">00137</a>                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00133"></a>00133                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">setStatus</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet);
+<a name="l00134"></a>00134 };
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="comment">// Serialization of User</span>
+<a name="l00137"></a>00137 Q_DECLARE_METATYPE(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>)
 <a name="l00138"></a>00138 
 <a name="l00139"></a>00139 
-<a name="l00141"></a>00141         <span class="comment">// Getter and setters //</span>
-<a name="l00143"></a>00143 <span class="comment"></span>
-<a name="l00144"></a>00144         public:
-<a name="l00148"></a>00148                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#a47b64594df8a21d6ffd3772d89d43d7c" title="Getter on the last tweet written by the user.">getLastTweet</a>();
-<a name="l00149"></a>00149 
-<a name="l00153"></a>00153                 <span class="keywordtype">void</span> <a class="code" href="class_user.html#a364a2df12d8c9c3b17da66f49376ab7d" title="Setter on the last tweet written by the user.">setLastTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet);
-<a name="l00154"></a>00154 };
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 <span class="comment">// Serialization of User</span>
-<a name="l00157"></a>00157 Q_DECLARE_METATYPE(<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>)
-<a name="l00158"></a>00158 
-<a name="l00164"></a>00164 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
-<a name="l00165"></a>00165 
-<a name="l00171"></a>00171 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173 
-<a name="l00176"></a><a class="code" href="user_8hpp.html#aeba36289663d5159ce39409fa0c5599b">00176</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">UserList</a>;
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 <span class="preprocessor">#endif // USER_HPP</span>
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
+<a name="l00145"></a>00145 
+<a name="l00151"></a>00151 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user);
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 
+<a name="l00156"></a><a class="code" href="user_8hpp.html#aeba36289663d5159ce39409fa0c5599b">00156</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_user.html" title="Person who uses Twitter.">User</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">UserList</a>;
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 <span class="preprocessor">#endif // USER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -210,7 +206,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

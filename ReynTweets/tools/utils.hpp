@@ -66,8 +66,8 @@ QString boolInString(bool b);
 ///
 /// This function was written because of Twitter which forgets the '#'
 /// character before the hexadecimal code under the form 'RRGGBB'.
-/// @param coloredString The string with the 'RRGGBB' format.
-/// @return The corresponding color : #RRGGBB
+/// @param coloredString The string with the RRGGBB format.
+/// @return The corresponding color : &#135;RRGGBB
 QColor string2color(QString coloredString);
 
 

@@ -111,19 +111,18 @@ window.onload = initDynSections;
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00022"></a>00022 <span class="comment">*/</span>
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QJson/Parser&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="searchrequester_8hpp.html" title="Header of SearchRequester.">searchrequester.hpp</a>&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="comment">// Constructor</span>
-<a name="l00028"></a><a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c">00028</a> <a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c" title="Constructor.">SearchRequester::SearchRequester</a>(QString q) :
-<a name="l00029"></a>00029         <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for a search request.">SEARCH_URL</a>),
-<a name="l00030"></a>00030         query(q)
-<a name="l00031"></a>00031 {}
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033 <span class="comment">// Virtual method building getParameters</span>
-<a name="l00034"></a><a class="code" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d">00034</a> <span class="keywordtype">void</span> <a class="code" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d" title="Building getParameters.">SearchRequester::buildGETParameters</a>() {
-<a name="l00035"></a>00035         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;q&quot;</span>, <a class="code" href="class_search_requester.html#adfcafce0485095b3d3f6a86db5250fdb" title="Query made by the user.">query</a>);
-<a name="l00036"></a>00036 }
+<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="searchrequester_8hpp.html" title="Header of SearchRequester.">searchrequester.hpp</a>&quot;</span>
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="comment">// Constructor</span>
+<a name="l00027"></a><a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c">00027</a> <a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c" title="Constructor.">SearchRequester::SearchRequester</a>(QString q) :
+<a name="l00028"></a>00028         <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for a search request.">SEARCH_URL</a>),
+<a name="l00029"></a>00029         query(q)
+<a name="l00030"></a>00030 {}
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="comment">// Building getParameters</span>
+<a name="l00033"></a><a class="code" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d">00033</a> <span class="keywordtype">void</span> <a class="code" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d" title="Building getParameters.">SearchRequester::buildGETParameters</a>() {
+<a name="l00034"></a>00034         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;q&quot;</span>, <a class="code" href="class_search_requester.html#adfcafce0485095b3d3f6a86db5250fdb" title="Query made by the user.">query</a>);
+<a name="l00035"></a>00035 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -139,7 +138,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

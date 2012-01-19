@@ -120,130 +120,99 @@ window.onload = initDynSections;
 <a name="l00032"></a><a class="code" href="class_media_size.html#a7252a0954525f0db09533a3827ec076d">00032</a> <a class="code" href="class_media_size.html#a7252a0954525f0db09533a3827ec076d" title="Constructor.">MediaSize::MediaSize</a>() :
 <a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
 <a name="l00034"></a>00034         QSize(0,0),
-<a name="l00035"></a>00035         resizeProperty(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00036"></a>00036         resizeMedia(NULL_RESIZE)
-<a name="l00037"></a>00037 {
-<a name="l00038"></a>00038         <a class="code" href="class_media_size.html#a016046458c4baac7f98679e9200d9775" title="Updating all the properties.">syncProperties</a>();
-<a name="l00039"></a>00039 }
+<a name="l00035"></a>00035         resizeMedia(NULL_RESIZE)
+<a name="l00036"></a>00036 {}
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">// Destructor</span>
+<a name="l00039"></a><a class="code" href="class_media_size.html#a59e09bcc64663c66cf8200b2640f15f8">00039</a> <a class="code" href="class_media_size.html#a59e09bcc64663c66cf8200b2640f15f8" title="Destructor.">MediaSize::~MediaSize</a>() {}
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="comment">// Destructor</span>
-<a name="l00042"></a><a class="code" href="class_media_size.html#a59e09bcc64663c66cf8200b2640f15f8">00042</a> <a class="code" href="class_media_size.html#a59e09bcc64663c66cf8200b2640f15f8" title="Destructor.">MediaSize::~MediaSize</a>() {}
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="comment">// Copy constructor</span>
-<a name="l00045"></a><a class="code" href="class_media_size.html#a66b2a6473e17d98b312cd48a82b1a33b">00045</a> <a class="code" href="class_media_size.html#a7252a0954525f0db09533a3827ec076d" title="Constructor.">MediaSize::MediaSize</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
-<a name="l00046"></a>00046         <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">recopie</a>(size);
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="comment">// Affectation</span>
-<a name="l00050"></a><a class="code" href="class_media_size.html#a88f81cd9a1c90e91f1a335ab33b7d438">00050</a> <span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; <a class="code" href="class_media_size.html#a88f81cd9a1c90e91f1a335ab33b7d438" title="Affectation.">MediaSize::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
-<a name="l00051"></a>00051         <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">recopie</a>(size);
-<a name="l00052"></a>00052         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="comment">// Copy of a MediaSize</span>
-<a name="l00056"></a><a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399">00056</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">MediaSize::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
-<a name="l00057"></a>00057         setWidth(size.width());
-<a name="l00058"></a>00058         setHeight(size.height());
-<a name="l00059"></a>00059         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = size.<a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>;
-<a name="l00060"></a>00060         <a class="code" href="class_media_size.html#a016046458c4baac7f98679e9200d9775" title="Updating all the properties.">syncProperties</a>();
-<a name="l00061"></a>00061 }
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="comment">// Serialization declaration</span>
-<a name="l00064"></a><a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5" title="Serialization declaration.">MediaSize::initSystem</a>() {
-<a name="l00065"></a>00065         qRegisterMetaTypeStreamOperators&lt;MediaSize&gt;(<span class="stringliteral">&quot;MediaSize&quot;</span>);
-<a name="l00066"></a>00066         qMetaTypeId&lt;MediaSize&gt;();
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00070"></a><a class="code" href="mediasize_8hpp.html#a65b8e5a3679f0508044c5081314fd088">00070</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
-<a name="l00071"></a>00071         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, size);
-<a name="l00072"></a>00072 }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00075"></a><a class="code" href="mediasize_8hpp.html#a7673588b962c4f2015dce8efcf4f8c45">00075</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
-<a name="l00076"></a>00076         <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, size);
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078         <span class="comment">// Updating resizeMedia</span>
-<a name="l00079"></a>00079         size.<a class="code" href="class_media_size.html#a5c827ed87074f5e8016b5bb4dfe1f618" title="Updating the field members.">syncMembers</a>();
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081         <span class="keywordflow">return</span> in;
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
+<a name="l00041"></a>00041 <span class="comment">// Copy constructor</span>
+<a name="l00042"></a><a class="code" href="class_media_size.html#a66b2a6473e17d98b312cd48a82b1a33b">00042</a> <a class="code" href="class_media_size.html#a7252a0954525f0db09533a3827ec076d" title="Constructor.">MediaSize::MediaSize</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
+<a name="l00043"></a>00043         <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">recopie</a>(size);
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="comment">// Affectation</span>
+<a name="l00047"></a><a class="code" href="class_media_size.html#a88f81cd9a1c90e91f1a335ab33b7d438">00047</a> <span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; <a class="code" href="class_media_size.html#a88f81cd9a1c90e91f1a335ab33b7d438" title="Affectation.">MediaSize::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
+<a name="l00048"></a>00048         <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">recopie</a>(size);
+<a name="l00049"></a>00049         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00050"></a>00050 }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="comment">// Copy of a MediaSize</span>
+<a name="l00053"></a><a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399">00053</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a7d0181b4c8916aeefa58be1887f50399" title="Copy of a MediaSize.">MediaSize::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
+<a name="l00054"></a>00054         setWidth(size.width());
+<a name="l00055"></a>00055         setHeight(size.height());
+<a name="l00056"></a>00056         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = size.<a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>;
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="comment">// Serialization declaration</span>
+<a name="l00060"></a><a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5">00060</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5" title="Serialization declaration.">MediaSize::initSystem</a>() {
+<a name="l00061"></a>00061         qRegisterMetaTypeStreamOperators&lt;MediaSize&gt;(<span class="stringliteral">&quot;MediaSize&quot;</span>);
+<a name="l00062"></a>00062         qMetaTypeId&lt;MediaSize&gt;();
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00066"></a><a class="code" href="mediasize_8hpp.html#a65b8e5a3679f0508044c5081314fd088">00066</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
+<a name="l00067"></a>00067         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, size);
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00071"></a><a class="code" href="mediasize_8hpp.html#a7673588b962c4f2015dce8efcf4f8c45">00071</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_media_size.html" title="Size for a Media object.">MediaSize</a> &amp; size) {
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, size);
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00077"></a>00077 <span class="comment">// Properties management //</span>
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">// Reading method for resize</span>
+<a name="l00081"></a><a class="code" href="class_media_size.html#ac8a20a1e3417a9c9e215e304fdf40a57">00081</a> QString <a class="code" href="class_media_size.html#ac8a20a1e3417a9c9e215e304fdf40a57" title="Reading method for resize.">MediaSize::getResizeProperty</a>() {
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6" title="Conversion of a Resize into a QString.">resize2String</a>(<a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>);
+<a name="l00083"></a>00083 }
 <a name="l00084"></a>00084 
-<a name="l00086"></a>00086 <span class="comment">// Properties management //</span>
-<a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">// Filling serializable fields with thecorresponding  property maps</span>
-<a name="l00090"></a><a class="code" href="class_media_size.html#a5c827ed87074f5e8016b5bb4dfe1f618">00090</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a5c827ed87074f5e8016b5bb4dfe1f618" title="Updating the field members.">MediaSize::syncMembers</a>() {
-<a name="l00091"></a>00091         <a class="code" href="class_media_size.html#ad2d4fc42bf3fb54e668541636f666d4a" title="Updating resizeMedia.">syncResizeMember</a>();
-<a name="l00092"></a>00092 }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="comment">// Updating resizeMedia</span>
-<a name="l00095"></a><a class="code" href="class_media_size.html#ad2d4fc42bf3fb54e668541636f666d4a">00095</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#ad2d4fc42bf3fb54e668541636f666d4a" title="Updating resizeMedia.">MediaSize::syncResizeMember</a>() {
-<a name="l00096"></a>00096         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = <a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b" title="Conversion of a QString into a Resize enum.">string2Resize</a>(<a class="code" href="class_media_size.html#a1d8fb35be7c77c12063525df98ce0dc1" title="Representation of resize.">resizeProperty</a>);
-<a name="l00097"></a>00097 }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="comment">// Updating all the properties</span>
-<a name="l00100"></a><a class="code" href="class_media_size.html#a016046458c4baac7f98679e9200d9775">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a016046458c4baac7f98679e9200d9775" title="Updating all the properties.">MediaSize::syncProperties</a>() {
-<a name="l00101"></a>00101         <a class="code" href="class_media_size.html#ad2f0a0bf35d7fcea25add8580d872b20" title="Updating the property resize.">syncResizeProperty</a>();
-<a name="l00102"></a>00102 }
+<a name="l00085"></a>00085 <span class="comment">// Writing method for resize</span>
+<a name="l00086"></a><a class="code" href="class_media_size.html#ab9359057303f9622f747e0554746ba10">00086</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#ab9359057303f9622f747e0554746ba10" title="Writing method for resize.">MediaSize::setResize</a>(QString newResize) {
+<a name="l00087"></a>00087         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = <a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b" title="Conversion of a QString into a Resize enum.">string2Resize</a>(newResize);
+<a name="l00088"></a>00088 }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 
+<a name="l00092"></a>00092 <span class="comment">// Resize enum //</span>
+<a name="l00094"></a>00094 <span class="comment"></span>
+<a name="l00095"></a>00095 <span class="comment">// Conversion of a Resize into a QString.</span>
+<a name="l00096"></a><a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6">00096</a> QString <a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6" title="Conversion of a Resize into a QString.">MediaSize::resize2String</a>(<a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> resizeValue) {
+<a name="l00097"></a>00097         <span class="keywordflow">switch</span> (resizeValue) {
+<a name="l00098"></a>00098                 <span class="keywordflow">case</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a667707adaf326bca68031f55d0c53aa3" title="The media is cropped.">CROP</a>:
+<a name="l00099"></a>00099                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;crop&quot;</span>;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101                 <span class="keywordflow">case</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a6a39640794a6bce06d0c034083035634" title="The media is fit.">FIT</a>:
+<a name="l00102"></a>00102                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;fit&quot;</span>;
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="comment">// Reading method for resize</span>
-<a name="l00105"></a><a class="code" href="class_media_size.html#ac8a20a1e3417a9c9e215e304fdf40a57">00105</a> QString <a class="code" href="class_media_size.html#ac8a20a1e3417a9c9e215e304fdf40a57" title="Reading method for resize.">MediaSize::getResizeProperty</a>() {
-<a name="l00106"></a>00106         <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#a1d8fb35be7c77c12063525df98ce0dc1" title="Representation of resize.">resizeProperty</a>;
+<a name="l00104"></a>00104                 <span class="keywordflow">default</span>:
+<a name="l00105"></a>00105                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00106"></a>00106         }
 <a name="l00107"></a>00107 }
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="comment">// Writing method for resize</span>
-<a name="l00110"></a><a class="code" href="class_media_size.html#a23a98cecc6972cf8ba11ba1cb05e1cc3">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a23a98cecc6972cf8ba11ba1cb05e1cc3" title="Writing method for resize.">MediaSize::setResizeProperty</a>(QString newResize) {
-<a name="l00111"></a>00111         <a class="code" href="class_media_size.html#a1d8fb35be7c77c12063525df98ce0dc1" title="Representation of resize.">resizeProperty</a> = newResize;
-<a name="l00112"></a>00112 }
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 <span class="comment">// Updating the property resize</span>
-<a name="l00115"></a><a class="code" href="class_media_size.html#ad2f0a0bf35d7fcea25add8580d872b20">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#ad2f0a0bf35d7fcea25add8580d872b20" title="Updating the property resize.">MediaSize::syncResizeProperty</a>() {
-<a name="l00116"></a>00116         <a class="code" href="class_media_size.html#a23a98cecc6972cf8ba11ba1cb05e1cc3" title="Writing method for resize.">setResizeProperty</a>(<a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6" title="Conversion of a Resize into a QString.">resize2String</a>(<a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>));
-<a name="l00117"></a>00117 <span class="comment">//      setProperty(&quot;resize&quot;, QVariant(resize2String(resizeMedia)));</span>
+<a name="l00109"></a>00109 <span class="comment">// Conversion of a QString into a Resize enum.</span>
+<a name="l00110"></a><a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b">00110</a> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> <a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b" title="Conversion of a QString into a Resize enum.">MediaSize::string2Resize</a>(QString resizeString) {
+<a name="l00111"></a>00111         <span class="keywordflow">if</span> (resizeString == <span class="stringliteral">&quot;crop&quot;</span>) {
+<a name="l00112"></a>00112                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a667707adaf326bca68031f55d0c53aa3" title="The media is cropped.">CROP</a>;
+<a name="l00113"></a>00113         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (resizeString == <span class="stringliteral">&quot;fit&quot;</span>) {
+<a name="l00114"></a>00114                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a6a39640794a6bce06d0c034083035634" title="The media is fit.">FIT</a>;
+<a name="l00115"></a>00115         } <span class="keywordflow">else</span> {
+<a name="l00116"></a>00116                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a04817dcc4ad4d6056b8f4087af21488c" title="Invalid resize.">NULL_RESIZE</a>;
+<a name="l00117"></a>00117         }
 <a name="l00118"></a>00118 }
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120 
-<a name="l00122"></a>00122 <span class="comment">// Resize enum //</span>
+<a name="l00122"></a>00122 <span class="comment">// Size management //</span>
 <a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">// Conversion of a Resize into a QString.</span>
-<a name="l00126"></a><a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6">00126</a> QString <a class="code" href="class_media_size.html#aa34975a22c528b197ced48f5f06776c6" title="Conversion of a Resize into a QString.">MediaSize::resize2String</a>(<a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> resizeValue) {
-<a name="l00127"></a>00127         <span class="keywordflow">switch</span> (resizeValue) {
-<a name="l00128"></a>00128                 <span class="keywordflow">case</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a667707adaf326bca68031f55d0c53aa3" title="The media is cropped.">CROP</a>:
-<a name="l00129"></a>00129                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;crop&quot;</span>;
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131                 <span class="keywordflow">case</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a6a39640794a6bce06d0c034083035634" title="The media is fit.">FIT</a>:
-<a name="l00132"></a>00132                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;fit&quot;</span>;
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134                 <span class="keywordflow">default</span>:
-<a name="l00135"></a>00135                         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00136"></a>00136         }
-<a name="l00137"></a>00137 }
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="comment">// Conversion of a QString into a Resize enum.</span>
-<a name="l00140"></a><a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b">00140</a> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> <a class="code" href="class_media_size.html#a6ec2c58b34b79868ff74e03f7d3a267b" title="Conversion of a QString into a Resize enum.">MediaSize::string2Resize</a>(QString resizeString) {
-<a name="l00141"></a>00141         <span class="keywordflow">if</span> (resizeString == <span class="stringliteral">&quot;crop&quot;</span>) {
-<a name="l00142"></a>00142                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a667707adaf326bca68031f55d0c53aa3" title="The media is cropped.">CROP</a>;
-<a name="l00143"></a>00143         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (resizeString == <span class="stringliteral">&quot;fit&quot;</span>) {
-<a name="l00144"></a>00144                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a6a39640794a6bce06d0c034083035634" title="The media is fit.">FIT</a>;
-<a name="l00145"></a>00145         } <span class="keywordflow">else</span> {
-<a name="l00146"></a>00146                 <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7a04817dcc4ad4d6056b8f4087af21488c" title="Invalid resize.">NULL_RESIZE</a>;
-<a name="l00147"></a>00147         }
-<a name="l00148"></a>00148 }
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00152"></a>00152 <span class="comment">// Size management //</span>
-<a name="l00154"></a>00154 <span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">// Getter on resizeMedia</span>
-<a name="l00156"></a><a class="code" href="class_media_size.html#a21c642f46261a2d3725340dc2a2fa328">00156</a> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> <a class="code" href="class_media_size.html#a21c642f46261a2d3725340dc2a2fa328">MediaSize::getResize</a>() {
-<a name="l00157"></a>00157         <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>;
-<a name="l00158"></a>00158 }
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160 <span class="comment">// Setter on resizeMedia</span>
-<a name="l00161"></a><a class="code" href="class_media_size.html#a0899dfc9b80f8d957ae322f8503f3bbf">00161</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#a0899dfc9b80f8d957ae322f8503f3bbf" title="Setter on resizeMedia.">MediaSize::setResize</a>(<a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> newResize) {
-<a name="l00162"></a>00162         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = newResize;
-<a name="l00163"></a>00163         <a class="code" href="class_media_size.html#ad2f0a0bf35d7fcea25add8580d872b20" title="Updating the property resize.">syncResizeProperty</a>();
-<a name="l00164"></a>00164 }
+<a name="l00125"></a>00125 <span class="comment">// Getter on resizeMedia</span>
+<a name="l00126"></a><a class="code" href="class_media_size.html#a21c642f46261a2d3725340dc2a2fa328">00126</a> <a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> <a class="code" href="class_media_size.html#a21c642f46261a2d3725340dc2a2fa328">MediaSize::getResize</a>() {
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a>;
+<a name="l00128"></a>00128 }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="comment">// Setter on resizeMedia</span>
+<a name="l00131"></a><a class="code" href="class_media_size.html#a0899dfc9b80f8d957ae322f8503f3bbf">00131</a> <span class="keywordtype">void</span> <a class="code" href="class_media_size.html#ab9359057303f9622f747e0554746ba10" title="Writing method for resize.">MediaSize::setResize</a>(<a class="code" href="class_media_size.html#ad8860ae58fffe1de2eddc4ec738bc0f7" title="Enum indicating how the media is resized for a given size.">MediaSize::Resize</a> newResize) {
+<a name="l00132"></a>00132         <a class="code" href="class_media_size.html#a7c5de6ee4be0e070bfedf7dd09db24d8" title="How the media is resized.">resizeMedia</a> = newResize;
+<a name="l00133"></a>00133 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -259,7 +228,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

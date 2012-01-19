@@ -149,286 +149,281 @@ window.onload = initDynSections;
 <a name="l00090"></a>00090                 <span class="comment">// Properties management //</span>
 <a name="l00092"></a>00092 <span class="comment"></span>
 <a name="l00093"></a>00093                 <span class="keyword">protected</span>:
-<a name="l00096"></a>00096                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad63f70c3f889275aa341b22cb5854bfe" title="Updating the field members.">syncMembers</a>();
-<a name="l00097"></a>00097 
-<a name="l00100"></a>00100                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a7a676dd3b67d7fb2461ea0b44489e537" title="Updating all the properties.">syncProperties</a>();
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102                         <span class="comment">// entities</span>
-<a name="l00105"></a>00105 <span class="comment"></span>                        Q_PROPERTY(QVariantMap <a class="code" href="class_tweet.html#a4c7e95d72795b5e4d851d639dca5e61c" title="Tweet Entities.">entities</a>
-<a name="l00106"></a>00106                                            READ <a class="code" href="class_tweet.html#a194cba2afe1ddd96f7d0962030dddf4b" title="Reading the property entities.">getEntitiesMap</a>
-<a name="l00107"></a><a class="code" href="class_tweet.html#a4c7e95d72795b5e4d851d639dca5e61c">00107</a>                                            WRITE <a class="code" href="class_tweet.html#a3246229a20d12f3888e2b9a4d6799108" title="Writing the property entities.">setEntitiesMap</a>)
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109                         
-<a name="l00110"></a><a class="code" href="class_tweet.html#a58d8b7686fcaa6cd5af6a7d06b74079f">00110</a>                         QVariantMap <a class="code" href="class_tweet.html#a58d8b7686fcaa6cd5af6a7d06b74079f" title="Map of entities.">entitiesMap</a>;
-<a name="l00111"></a>00111 
-<a name="l00115"></a>00115                         QVariantMap <a class="code" href="class_tweet.html#a194cba2afe1ddd96f7d0962030dddf4b" title="Reading the property entities.">getEntitiesMap</a>();
-<a name="l00116"></a>00116 
-<a name="l00120"></a>00120                         <span class="keywordtype">void</span> setEntitiesMap(QVariantMap newEntityMap);
-<a name="l00121"></a>00121 
-<a name="l00124"></a>00124                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad1120c0c3673c62535530263c31e913f" title="Updating the property entities.">syncEntitiesProperty</a>();
-<a name="l00125"></a>00125 
-<a name="l00128"></a>00128                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af1e0b8a8d0ec7ef5cb1102e82a1407e9" title="Updating the tweetEntities member.">syncEntitiesMember</a>();
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130                         <span class="comment">// in_reply_to_user_id</span>
-<a name="l00133"></a>00133 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a0167cc1ca68d04a4ae9ae6c9850ce75a" title="Property corresponding to replyToUserID.">in_reply_to_user_id</a>
-<a name="l00134"></a>00134                                            READ <a class="code" href="class_tweet.html#a5c2f1f6d9472979d434baffb7dd5494c" title="Reading in_reply_to_user_id.">getInReplyToUserID</a>
-<a name="l00135"></a><a class="code" href="class_tweet.html#a0167cc1ca68d04a4ae9ae6c9850ce75a">00135</a>                                            WRITE <a class="code" href="class_tweet.html#a96cc758fe28548a5f5701ed6863d24f9" title="Writing in_reply_to_user_id.">setInReplyToUserID</a>)
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137                         <span class="comment">// truncated</span>
-<a name="l00140"></a>00140 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#af871aa53b153e7003d6cb311ee5d5e87" title="Is the tweet truncated ?">truncated</a>
-<a name="l00141"></a>00141                                            READ <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">isTruncated</a>
-<a name="l00142"></a><a class="code" href="class_tweet.html#af871aa53b153e7003d6cb311ee5d5e87">00142</a>                                            WRITE <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">setTruncated</a>)
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144                         <span class="comment">// favorited</span>
-<a name="l00147"></a>00147 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#aa7d13f8ea4a655ea16399e9ab35f545e" title="Is the tweet favorited ?">favorited</a>
-<a name="l00148"></a>00148                                            READ <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">isFavorited</a>
-<a name="l00149"></a><a class="code" href="class_tweet.html#aa7d13f8ea4a655ea16399e9ab35f545e">00149</a>                                            WRITE <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>)
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151                         <span class="comment">// retweet_count</span>
-<a name="l00154"></a>00154 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a60702e4f9832fedc73f5779f2324e0b9" title="How many times the tweet has been retweeted ?">retweet_count</a>
-<a name="l00155"></a>00155                                            READ <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">getRetweetCount</a>
-<a name="l00156"></a><a class="code" href="class_tweet.html#a60702e4f9832fedc73f5779f2324e0b9">00156</a>                                            WRITE <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">setRetweetCount</a>)
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158                         <span class="comment">// in_reply_to_screen_name</span>
-<a name="l00161"></a>00161 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a87fabe0967c8a6dafdcfbfcf36a4f9e4" title="Screen name corresponding to the user ID in_reply_to_user_id.">in_reply_to_screen_name</a>
-<a name="l00162"></a>00162                                            READ <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">getInReplyToScreenName</a>
-<a name="l00163"></a><a class="code" href="class_tweet.html#a87fabe0967c8a6dafdcfbfcf36a4f9e4">00163</a>                                            WRITE <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">setInReplyToScreenName</a>)
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165                         <span class="comment">// created_at</span>
-<a name="l00168"></a>00168 <span class="comment"></span>                        Q_PROPERTY(QDate <a class="code" href="class_tweet.html#a4ffcdff96d2e732f231f4dd38e3fe845" title="Serializable form of createdAt.">created_at</a>
-<a name="l00169"></a>00169                                            READ <a class="code" href="class_tweet.html#ac3ffaf08e367b884fa8855b570bcaf29" title="Reading created_at.">getCreatedAt</a>
-<a name="l00170"></a><a class="code" href="class_tweet.html#a4ffcdff96d2e732f231f4dd38e3fe845">00170</a>                                            WRITE <a class="code" href="class_tweet.html#a15a520b2d7d902191118ea6da58b9062" title="Writing created_at.">setCreatedAt</a>)
+<a name="l00094"></a>00094                         <span class="comment">// entities</span>
+<a name="l00097"></a>00097 <span class="comment"></span>                        Q_PROPERTY(QVariantMap <a class="code" href="class_tweet.html#a4c7e95d72795b5e4d851d639dca5e61c" title="Tweet Entities.">entities</a>
+<a name="l00098"></a>00098                                            READ <a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61" title="Reading the property entities.">getEntitiesProperty</a>
+<a name="l00099"></a><a class="code" href="class_tweet.html#a4c7e95d72795b5e4d851d639dca5e61c">00099</a>                                            WRITE <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">setEntities</a>)
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101                         
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104                         QVariantMap <a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61" title="Reading the property entities.">getEntitiesProperty</a>();
+<a name="l00105"></a>00105 
+<a name="l00109"></a>00109                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">setEntities</a>(QVariantMap newEntityMap);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111                         <span class="comment">// in_reply_to_user_id</span>
+<a name="l00114"></a>00114 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a0167cc1ca68d04a4ae9ae6c9850ce75a" title="Property corresponding to replyToUserID.">in_reply_to_user_id</a>
+<a name="l00115"></a>00115                                            READ <a class="code" href="class_tweet.html#a5c2f1f6d9472979d434baffb7dd5494c" title="Reading in_reply_to_user_id.">getInReplyToUserID</a>
+<a name="l00116"></a><a class="code" href="class_tweet.html#a0167cc1ca68d04a4ae9ae6c9850ce75a">00116</a>                                            WRITE <a class="code" href="class_tweet.html#a96cc758fe28548a5f5701ed6863d24f9" title="Writing in_reply_to_user_id.">setInReplyToUserID</a>)
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118                         <span class="comment">// truncated</span>
+<a name="l00121"></a>00121 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#af871aa53b153e7003d6cb311ee5d5e87" title="Is the tweet truncated ?">truncated</a>
+<a name="l00122"></a>00122                                            READ <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">isTruncated</a>
+<a name="l00123"></a><a class="code" href="class_tweet.html#af871aa53b153e7003d6cb311ee5d5e87">00123</a>                                            WRITE <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">setTruncated</a>)
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125                         <span class="comment">// favorited</span>
+<a name="l00128"></a>00128 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#aa7d13f8ea4a655ea16399e9ab35f545e" title="Is the tweet favorited ?">favorited</a>
+<a name="l00129"></a>00129                                            READ <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">isFavorited</a>
+<a name="l00130"></a><a class="code" href="class_tweet.html#aa7d13f8ea4a655ea16399e9ab35f545e">00130</a>                                            WRITE <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>)
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132                         <span class="comment">// retweet_count</span>
+<a name="l00135"></a>00135 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a60702e4f9832fedc73f5779f2324e0b9" title="How many times the tweet has been retweeted ?">retweet_count</a>
+<a name="l00136"></a>00136                                            READ <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">getRetweetCount</a>
+<a name="l00137"></a><a class="code" href="class_tweet.html#a60702e4f9832fedc73f5779f2324e0b9">00137</a>                                            WRITE <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">setRetweetCount</a>)
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139                         <span class="comment">// in_reply_to_screen_name</span>
+<a name="l00142"></a>00142 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a87fabe0967c8a6dafdcfbfcf36a4f9e4" title="Screen name corresponding to the user ID in_reply_to_user_id.">in_reply_to_screen_name</a>
+<a name="l00143"></a>00143                                            READ <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">getInReplyToScreenName</a>
+<a name="l00144"></a><a class="code" href="class_tweet.html#a87fabe0967c8a6dafdcfbfcf36a4f9e4">00144</a>                                            WRITE <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">setInReplyToScreenName</a>)
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146                         <span class="comment">// created_at</span>
+<a name="l00149"></a>00149 <span class="comment"></span>                        Q_PROPERTY(QDate <a class="code" href="class_tweet.html#a4ffcdff96d2e732f231f4dd38e3fe845" title="Serializable form of createdAt.">created_at</a>
+<a name="l00150"></a>00150                                            READ <a class="code" href="class_tweet.html#ac3ffaf08e367b884fa8855b570bcaf29" title="Reading created_at.">getCreatedAt</a>
+<a name="l00151"></a><a class="code" href="class_tweet.html#a4ffcdff96d2e732f231f4dd38e3fe845">00151</a>                                            WRITE <a class="code" href="class_tweet.html#a15a520b2d7d902191118ea6da58b9062" title="Writing created_at.">setCreatedAt</a>)
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153                         <span class="comment">// in_reply_to_status_id_str</span>
+<a name="l00156"></a>00156 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a69c67f071eb565d95769954436dd9599" title="String form of in_reply_to_status_id.">in_reply_to_status_id_str</a>
+<a name="l00157"></a>00157                                            READ <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">getInReplyToStatusIDstr</a>
+<a name="l00158"></a><a class="code" href="class_tweet.html#a69c67f071eb565d95769954436dd9599">00158</a>                                            WRITE <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">setInReplyToStatusIDstr</a>)
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160                         <span class="comment">// user</span>
+<a name="l00163"></a>00163 <span class="comment"></span>                        Q_PROPERTY(QVariantMap <a class="code" href="class_tweet.html#a3ea6605c20bfbe89c428f3805c45c654" title="User who wrote the tweet.">user</a>
+<a name="l00164"></a>00164                                            READ <a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb" title="Reading the property user.">getUserProperty</a>
+<a name="l00165"></a><a class="code" href="class_tweet.html#a3ea6605c20bfbe89c428f3805c45c654">00165</a>                                            WRITE <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">setUser</a>)
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167                         
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170                         QVariantMap <a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb" title="Reading the property user.">getUserProperty</a>();
 <a name="l00171"></a>00171 
-<a name="l00172"></a>00172                         <span class="comment">// in_reply_to_status_id_str</span>
-<a name="l00175"></a>00175 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a69c67f071eb565d95769954436dd9599" title="String form of in_reply_to_status_id.">in_reply_to_status_id_str</a>
-<a name="l00176"></a>00176                                            READ <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">getInReplyToStatusIDstr</a>
-<a name="l00177"></a><a class="code" href="class_tweet.html#a69c67f071eb565d95769954436dd9599">00177</a>                                            WRITE <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">setInReplyToStatusIDstr</a>)
-<a name="l00178"></a>00178 
-<a name="l00179"></a>00179                         <span class="comment">// user</span>
-<a name="l00182"></a>00182 <span class="comment"></span>                        Q_PROPERTY(QVariantMap <a class="code" href="class_tweet.html#a3ea6605c20bfbe89c428f3805c45c654" title="User who wrote the tweet.">user</a>
-<a name="l00183"></a>00183                                            READ <a class="code" href="class_tweet.html#ae239109825d67524406c550b4d0639ad" title="Reading the property user.">getUserMap</a>
-<a name="l00184"></a><a class="code" href="class_tweet.html#a3ea6605c20bfbe89c428f3805c45c654">00184</a>                                            WRITE <a class="code" href="class_tweet.html#a48eae372a1a3a8681ee6d9de7a684f84" title="Writing the property user.">setUserMap</a>)
-<a name="l00185"></a>00185 
-<a name="l00187"></a><a class="code" href="class_tweet.html#a3be8c6c63a2e5c45963b7558daccdf31">00187</a>                         QVariantMap <a class="code" href="class_tweet.html#a3be8c6c63a2e5c45963b7558daccdf31" title="User under the form of a map.">userMap</a>;
-<a name="l00188"></a>00188 
-<a name="l00192"></a>00192                         QVariantMap <a class="code" href="class_tweet.html#ae239109825d67524406c550b4d0639ad" title="Reading the property user.">getUserMap</a>();
-<a name="l00193"></a>00193 
-<a name="l00197"></a>00197                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a48eae372a1a3a8681ee6d9de7a684f84" title="Writing the property user.">setUserMap</a>(QVariantMap newUserMap);
-<a name="l00198"></a>00198 
-<a name="l00201"></a>00201                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5d9fe22e5c362511d628066e8e3897d6" title="Updating the property user.">syncUserProperty</a>();
-<a name="l00202"></a>00202 
-<a name="l00205"></a>00205                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a6489e797faf5038d908d208119fc6316" title="Updating the profile member.">syncUserMember</a>();
-<a name="l00206"></a>00206 
-<a name="l00207"></a>00207                         <span class="comment">// retweeted</span>
-<a name="l00210"></a>00210 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#adb6931fa01c8dabbd51bd596bd117c31" title="Is the tweet retweeted ?">retweeted</a>
-<a name="l00211"></a>00211                                            READ <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">isRetweeted</a>
-<a name="l00212"></a><a class="code" href="class_tweet.html#adb6931fa01c8dabbd51bd596bd117c31">00212</a>                                            WRITE <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>)
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214                         <span class="comment">// in_reply_to_user_id_str</span>
-<a name="l00217"></a>00217 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a254ba3874396cba386297f6c3eba7daa" title="String version of in_reply_to_user_id.">in_reply_to_user_id_str</a>
-<a name="l00218"></a>00218                                            READ <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">getInReplyToUserIDstr</a>
-<a name="l00219"></a><a class="code" href="class_tweet.html#a254ba3874396cba386297f6c3eba7daa">00219</a>                                            WRITE <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">setInReplyToUserIDstr</a>)
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221                         <span class="comment">// id_str</span>
-<a name="l00224"></a>00224 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#aa39111155fe8904607575160a5827b8d" title="String version of the tweet ID.">id_str</a>
-<a name="l00225"></a>00225                                            READ <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">getIDstr</a>
-<a name="l00226"></a><a class="code" href="class_tweet.html#aa39111155fe8904607575160a5827b8d">00226</a>                                            WRITE <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">setIDstr</a>)
-<a name="l00227"></a>00227 
-<a name="l00228"></a>00228                         <span class="comment">// source</span>
-<a name="l00231"></a>00231 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#ab31911a8ac0748fa137b7fabb674f528" title="Source of the tweet (Twitter client).">source</a>
-<a name="l00232"></a>00232                                            READ <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">getSource</a>
-<a name="l00233"></a><a class="code" href="class_tweet.html#ab31911a8ac0748fa137b7fabb674f528">00233</a>                                            WRITE <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">setSource</a>)
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235                         <span class="comment">// id</span>
-<a name="l00238"></a>00238 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <span class="keywordtype">id</span>
-<a name="l00239"></a>00239                                            READ <a class="code" href="class_tweet.html#a95dc68db15b9af8974aba95fbfff7e0a" title="Reading.">getID</a>
-<a name="l00240"></a><a class="code" href="class_tweet.html#a123188ffd6117e742e762747c1450226">00240</a>                                            WRITE <a class="code" href="class_tweet.html#a1d3ec4c904565ab3209fc3bb81c925ef" title="Writing id.">setID</a>)
+<a name="l00175"></a>00175                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">setUser</a>(QVariantMap newUserMap);
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177                         <span class="comment">// retweeted</span>
+<a name="l00180"></a>00180 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#adb6931fa01c8dabbd51bd596bd117c31" title="Is the tweet retweeted ?">retweeted</a>
+<a name="l00181"></a>00181                                            READ <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">isRetweeted</a>
+<a name="l00182"></a><a class="code" href="class_tweet.html#adb6931fa01c8dabbd51bd596bd117c31">00182</a>                                            WRITE <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>)
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184                         <span class="comment">// in_reply_to_user_id_str</span>
+<a name="l00187"></a>00187 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a254ba3874396cba386297f6c3eba7daa" title="String version of in_reply_to_user_id.">in_reply_to_user_id_str</a>
+<a name="l00188"></a>00188                                            READ <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">getInReplyToUserIDstr</a>
+<a name="l00189"></a><a class="code" href="class_tweet.html#a254ba3874396cba386297f6c3eba7daa">00189</a>                                            WRITE <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">setInReplyToUserIDstr</a>)
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191                         <span class="comment">// id_str</span>
+<a name="l00194"></a>00194 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#aa39111155fe8904607575160a5827b8d" title="String version of the tweet ID.">id_str</a>
+<a name="l00195"></a>00195                                            READ <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">getIDstr</a>
+<a name="l00196"></a><a class="code" href="class_tweet.html#aa39111155fe8904607575160a5827b8d">00196</a>                                            WRITE <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">setIDstr</a>)
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198                         <span class="comment">// source</span>
+<a name="l00201"></a>00201 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#ab31911a8ac0748fa137b7fabb674f528" title="Source of the tweet (Twitter client).">source</a>
+<a name="l00202"></a>00202                                            READ <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">getSource</a>
+<a name="l00203"></a><a class="code" href="class_tweet.html#ab31911a8ac0748fa137b7fabb674f528">00203</a>                                            WRITE <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">setSource</a>)
+<a name="l00204"></a>00204 
+<a name="l00205"></a>00205                         <span class="comment">// id</span>
+<a name="l00208"></a>00208 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <span class="keywordtype">id</span>
+<a name="l00209"></a>00209                                            READ <a class="code" href="class_tweet.html#a95dc68db15b9af8974aba95fbfff7e0a" title="Reading.">getID</a>
+<a name="l00210"></a><a class="code" href="class_tweet.html#a123188ffd6117e742e762747c1450226">00210</a>                                            WRITE <a class="code" href="class_tweet.html#a1d3ec4c904565ab3209fc3bb81c925ef" title="Writing id.">setID</a>)
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212                         <span class="comment">// in_reply_to_status_id</span>
+<a name="l00215"></a>00215 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a7c38454046406590fee4859d14fc773f" title="Property corresponding to replyToTweetID.">in_reply_to_status_id</a>
+<a name="l00216"></a>00216                                            READ <a class="code" href="class_tweet.html#adba385775577af48e9f003135f8ab2a5" title="Reading in_reply_to_status_id.">getInReplyToStatusID</a>
+<a name="l00217"></a><a class="code" href="class_tweet.html#a7c38454046406590fee4859d14fc773f">00217</a>                                            WRITE <a class="code" href="class_tweet.html#acafa9e3126b88deee691ef7a7bbfab90" title="Writing in_reply_to_status_id.">setInReplyToStatusID</a>)
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219                         <span class="comment">// text</span>
+<a name="l00222"></a>00222 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a9c26c4c96f18f25dfc52832313cdc0b5" title="Content of the tweet (the famous 140 characters).">text</a>
+<a name="l00223"></a>00223                                            READ <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">getText</a>
+<a name="l00224"></a><a class="code" href="class_tweet.html#a9c26c4c96f18f25dfc52832313cdc0b5">00224</a>                                            WRITE <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">setText</a>)
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226                         <span class="comment">// sensible</span>
+<a name="l00229"></a>00229 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a1b81ea75eba2cf01fe4a791ad9b89f77" title="Is the content of the tweet sensible.">sensible</a>
+<a name="l00230"></a>00230                                            READ <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">isSensible</a>
+<a name="l00231"></a><a class="code" href="class_tweet.html#a1b81ea75eba2cf01fe4a791ad9b89f77">00231</a>                                            WRITE <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">setSensible</a>)
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233                         <span class="comment">/*</span>
+<a name="l00234"></a>00234 <span class="comment">                         * Properties that are not here :</span>
+<a name="l00235"></a>00235 <span class="comment">                         * - place</span>
+<a name="l00236"></a>00236 <span class="comment">                         * - geo</span>
+<a name="l00237"></a>00237 <span class="comment">                         * - coordinates</span>
+<a name="l00238"></a>00238 <span class="comment">                         * - contributors</span>
+<a name="l00239"></a>00239 <span class="comment">                         */</span>
+<a name="l00240"></a>00240 
 <a name="l00241"></a>00241 
-<a name="l00242"></a>00242                         <span class="comment">// in_reply_to_status_id</span>
-<a name="l00245"></a>00245 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a7c38454046406590fee4859d14fc773f" title="Property corresponding to replyToTweetID.">in_reply_to_status_id</a>
-<a name="l00246"></a>00246                                            READ <a class="code" href="class_tweet.html#adba385775577af48e9f003135f8ab2a5" title="Reading in_reply_to_status_id.">getInReplyToStatusID</a>
-<a name="l00247"></a><a class="code" href="class_tweet.html#a7c38454046406590fee4859d14fc773f">00247</a>                                            WRITE <a class="code" href="class_tweet.html#acafa9e3126b88deee691ef7a7bbfab90" title="Writing in_reply_to_status_id.">setInReplyToStatusID</a>)
-<a name="l00248"></a>00248 
-<a name="l00249"></a>00249                         <span class="comment">// text</span>
-<a name="l00252"></a>00252 <span class="comment"></span>                        Q_PROPERTY(QString <a class="code" href="class_tweet.html#a9c26c4c96f18f25dfc52832313cdc0b5" title="Content of the tweet (the famous 140 characters).">text</a>
-<a name="l00253"></a>00253                                            READ <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">getText</a>
-<a name="l00254"></a><a class="code" href="class_tweet.html#a9c26c4c96f18f25dfc52832313cdc0b5">00254</a>                                            WRITE <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">setText</a>)
+<a name="l00242"></a>00242                 
+<a name="l00243"></a>00243                 <span class="comment">// Tweet management //</span>
+<a name="l00245"></a>00245 <span class="comment"></span>
+<a name="l00246"></a>00246                 <span class="keyword">protected</span>:
+<a name="l00247"></a>00247                         <span class="comment">// Tweet identity</span>
+<a name="l00249"></a><a class="code" href="class_tweet.html#a93d71beca31a83acb1a4b388954e17e9">00249</a> <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a93d71beca31a83acb1a4b388954e17e9" title="ID of the tweet.">tweetID</a>;
+<a name="l00250"></a>00250 
+<a name="l00252"></a><a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49">00252</a>                         QString <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254                         <span class="comment">// Tweet content</span>
 <a name="l00255"></a>00255 
-<a name="l00256"></a>00256                         <span class="comment">// sensible</span>
-<a name="l00259"></a>00259 <span class="comment"></span>                        Q_PROPERTY(<span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a1b81ea75eba2cf01fe4a791ad9b89f77" title="Is the content of the tweet sensible.">sensible</a>
-<a name="l00260"></a>00260                                            READ <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">isSensible</a>
-<a name="l00261"></a><a class="code" href="class_tweet.html#a1b81ea75eba2cf01fe4a791ad9b89f77">00261</a>                                            WRITE <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">setSensible</a>)
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263                         <span class="comment">/*</span>
-<a name="l00264"></a>00264 <span class="comment">                         * Properties that are not here :</span>
-<a name="l00265"></a>00265 <span class="comment">                         * - place</span>
-<a name="l00266"></a>00266 <span class="comment">                         * - geo</span>
-<a name="l00267"></a>00267 <span class="comment">                         * - coordinates</span>
-<a name="l00268"></a>00268 <span class="comment">                         * - contributors</span>
-<a name="l00269"></a>00269 <span class="comment">                         */</span>
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271 
-<a name="l00273"></a>00273                 <span class="comment">// Tweet management //</span>
-<a name="l00275"></a>00275 <span class="comment"></span>
-<a name="l00276"></a>00276                 protected:
-<a name="l00277"></a>00277                         <span class="comment">// Tweet identity</span>
-<a name="l00279"></a><a class="code" href="class_tweet.html#a93d71beca31a83acb1a4b388954e17e9">00279</a> <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a93d71beca31a83acb1a4b388954e17e9" title="ID of the tweet.">tweetID</a>;
-<a name="l00280"></a>00280 
-<a name="l00282"></a><a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49">00282</a>                         QString <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
-<a name="l00283"></a>00283 
-<a name="l00284"></a>00284                         <span class="comment">// Tweet content</span>
+<a name="l00257"></a><a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78">00257</a>                         <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
+<a name="l00258"></a>00258 
+<a name="l00260"></a><a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02">00260</a>                         QString <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
+<a name="l00261"></a>00261 
+<a name="l00263"></a><a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802">00263</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
+<a name="l00264"></a>00264 
+<a name="l00265"></a>00265                         <span class="comment">// Retweet management</span>
+<a name="l00266"></a>00266 
+<a name="l00268"></a><a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d">00268</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
+<a name="l00269"></a>00269 
+<a name="l00271"></a><a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895">00271</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273                         <span class="comment">// Favorite management</span>
+<a name="l00274"></a>00274 
+<a name="l00276"></a><a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6">00276</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278                         <span class="comment">// Reply management</span>
+<a name="l00279"></a>00279 
+<a name="l00281"></a><a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37">00281</a>                         QString <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
+<a name="l00282"></a>00282 
+<a name="l00284"></a><a class="code" href="class_tweet.html#af415eda685ec91150c2893dab1f712e7">00284</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#af415eda685ec91150c2893dab1f712e7" title="ID of the user which the tweet replies.">replyToUserID</a>;
 <a name="l00285"></a>00285 
-<a name="l00287"></a><a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78">00287</a>                         <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
+<a name="l00287"></a><a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c">00287</a>                         QString <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
 <a name="l00288"></a>00288 
-<a name="l00290"></a><a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02">00290</a>                         QString tweet;
+<a name="l00290"></a><a class="code" href="class_tweet.html#a7875bbee19a7b9d4b6832d48878f54c6">00290</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a7875bbee19a7b9d4b6832d48878f54c6" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
 <a name="l00291"></a>00291 
-<a name="l00293"></a><a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802">00293</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
+<a name="l00293"></a><a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3">00293</a>                         QString <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
 <a name="l00294"></a>00294 
-<a name="l00295"></a>00295                         <span class="comment">// Retweet management</span>
+<a name="l00295"></a>00295                         <span class="comment">// Tweet sources</span>
 <a name="l00296"></a>00296 
-<a name="l00298"></a><a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d">00298</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
+<a name="l00298"></a><a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561">00298</a>                         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
 <a name="l00299"></a>00299 
-<a name="l00301"></a><a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895">00301</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
+<a name="l00301"></a><a class="code" href="class_tweet.html#aae0f58a0491337068d204f12385dc3f7">00301</a>                         QDate <a class="code" href="class_tweet.html#aae0f58a0491337068d204f12385dc3f7" title="Creation date of the tweet.">createdAt</a>;
 <a name="l00302"></a>00302 
-<a name="l00303"></a>00303                         <span class="comment">// Favorite management</span>
-<a name="l00304"></a>00304 
-<a name="l00306"></a><a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6">00306</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
-<a name="l00307"></a>00307 
-<a name="l00308"></a>00308                         <span class="comment">// Reply management</span>
-<a name="l00309"></a>00309 
-<a name="l00311"></a><a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37">00311</a>                         QString <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
-<a name="l00312"></a>00312 
-<a name="l00314"></a><a class="code" href="class_tweet.html#af415eda685ec91150c2893dab1f712e7">00314</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#af415eda685ec91150c2893dab1f712e7" title="ID of the user which the tweet replies.">replyToUserID</a>;
-<a name="l00315"></a>00315 
-<a name="l00317"></a><a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c">00317</a>                         QString <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
-<a name="l00318"></a>00318 
-<a name="l00320"></a><a class="code" href="class_tweet.html#a7875bbee19a7b9d4b6832d48878f54c6">00320</a>                         <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a7875bbee19a7b9d4b6832d48878f54c6" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
+<a name="l00304"></a><a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507">00304</a>                         QString <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306                         <span class="comment">// Contributors, geolocalisation and places : NOT FOR THE MOMENT</span>
+<a name="l00307"></a>00307         <span class="comment">/*</span>
+<a name="l00309"></a>00309 <span class="comment">                        QString contributors;</span>
+<a name="l00310"></a>00310 <span class="comment"></span>
+<a name="l00312"></a>00312 <span class="comment">                        QString coordinates;</span>
+<a name="l00313"></a>00313 <span class="comment"></span>
+<a name="l00315"></a>00315 <span class="comment">                        QString geo;</span>
+<a name="l00316"></a>00316 <span class="comment"></span>
+<a name="l00318"></a>00318 <span class="comment">                        QString place;</span>
+<a name="l00319"></a>00319 <span class="comment">        //*/</span>
+<a name="l00320"></a>00320                         <span class="comment">// Miscanellous</span>
 <a name="l00321"></a>00321 
-<a name="l00323"></a><a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3">00323</a>                         QString <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
+<a name="l00323"></a><a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a">00323</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
 <a name="l00324"></a>00324 
-<a name="l00325"></a>00325                         <span class="comment">// Tweet sources</span>
-<a name="l00326"></a>00326 
-<a name="l00328"></a><a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561">00328</a>                         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
-<a name="l00329"></a>00329 
-<a name="l00331"></a><a class="code" href="class_tweet.html#aae0f58a0491337068d204f12385dc3f7">00331</a>                         QDate <a class="code" href="class_tweet.html#aae0f58a0491337068d204f12385dc3f7" title="Creation date of the tweet.">createdAt</a>;
-<a name="l00332"></a>00332 
-<a name="l00334"></a><a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507">00334</a>                         QString <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
-<a name="l00335"></a>00335 
-<a name="l00336"></a>00336                         <span class="comment">// Contributors, geolocalisation and places : NOT FOR THE MOMENT</span>
-<a name="l00337"></a>00337         <span class="comment">/*</span>
-<a name="l00339"></a>00339 <span class="comment">                        QString contributors;</span>
-<a name="l00340"></a>00340 <span class="comment"></span>
-<a name="l00342"></a>00342 <span class="comment">                        QString coordinates;</span>
-<a name="l00343"></a>00343 <span class="comment"></span>
-<a name="l00345"></a>00345 <span class="comment">                        QString geo;</span>
-<a name="l00346"></a>00346 <span class="comment"></span>
-<a name="l00348"></a>00348 <span class="comment">                        QString place;</span>
-<a name="l00349"></a>00349 <span class="comment">        //*/</span>
-<a name="l00350"></a>00350                         <span class="comment">// Miscanellous</span>
-<a name="l00351"></a>00351 
-<a name="l00353"></a><a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a">00353</a>                         <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
-<a name="l00354"></a>00354 
-<a name="l00355"></a>00355 
-<a name="l00357"></a>00357                 <span class="comment">// Getters and setters //</span>
-<a name="l00359"></a>00359 <span class="comment"></span>
-<a name="l00360"></a>00360                 public:
-<a name="l00361"></a>00361                         <span class="comment">// entities</span>
-<a name="l00365"></a>00365 <span class="comment"></span>                        <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">getEntities</a>();
-<a name="l00366"></a>00366 
-<a name="l00370"></a>00370                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a240a0e4799b2722f18137a66dbec6540" title="Writing entities.">setEntities</a>(<a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> newValue);
-<a name="l00371"></a>00371 
-<a name="l00372"></a>00372                         <span class="comment">// in_reply_to_user_id</span>
-<a name="l00376"></a>00376 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a5c2f1f6d9472979d434baffb7dd5494c" title="Reading in_reply_to_user_id.">getInReplyToUserID</a>();
-<a name="l00377"></a>00377 
-<a name="l00381"></a>00381                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a96cc758fe28548a5f5701ed6863d24f9" title="Writing in_reply_to_user_id.">setInReplyToUserID</a>(<span class="keywordtype">long</span> newValue);
-<a name="l00382"></a>00382 
-<a name="l00383"></a>00383                         <span class="comment">// truncated</span>
-<a name="l00387"></a>00387 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">isTruncated</a>();
-<a name="l00388"></a>00388 
-<a name="l00392"></a>00392                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">setTruncated</a>(<span class="keywordtype">bool</span> newValue);
-<a name="l00393"></a>00393 
-<a name="l00394"></a>00394                         <span class="comment">// favorited</span>
-<a name="l00398"></a>00398 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">isFavorited</a>();
-<a name="l00399"></a>00399 
-<a name="l00403"></a>00403                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keywordtype">bool</span> newValue);
-<a name="l00404"></a>00404 
-<a name="l00405"></a>00405                         <span class="comment">// retweet_count</span>
-<a name="l00409"></a>00409 <span class="comment"></span>                        <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">getRetweetCount</a>();
-<a name="l00410"></a>00410 
-<a name="l00414"></a>00414                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">setRetweetCount</a>(<span class="keywordtype">int</span> newValue);
-<a name="l00415"></a>00415 
-<a name="l00416"></a>00416                         <span class="comment">// in_reply_to_screen_name</span>
-<a name="l00420"></a>00420 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">getInReplyToScreenName</a>();
-<a name="l00421"></a>00421 
-<a name="l00425"></a>00425                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">setInReplyToScreenName</a>(QString newValue);
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427                         <span class="comment">// created_at</span>
-<a name="l00431"></a>00431 <span class="comment"></span>                        QDate <a class="code" href="class_tweet.html#ac3ffaf08e367b884fa8855b570bcaf29" title="Reading created_at.">getCreatedAt</a>();
-<a name="l00432"></a>00432 
-<a name="l00436"></a>00436                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a15a520b2d7d902191118ea6da58b9062" title="Writing created_at.">setCreatedAt</a>(QDate newValue);
-<a name="l00437"></a>00437 
-<a name="l00438"></a>00438                         <span class="comment">// in_reply_to_status_id_str</span>
-<a name="l00442"></a>00442 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">getInReplyToStatusIDstr</a>();
-<a name="l00443"></a>00443 
-<a name="l00447"></a>00447                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">setInReplyToStatusIDstr</a>(QString newValue);
-<a name="l00448"></a>00448 
-<a name="l00449"></a>00449                         <span class="comment">// user</span>
-<a name="l00453"></a>00453 <span class="comment"></span>                        <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c" title="Reading user.">getUser</a>();
-<a name="l00454"></a>00454 
-<a name="l00458"></a>00458                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a706f2d7b449f3ed2e3f4e2a1390cf487" title="Writing user.">setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> newValue);
-<a name="l00459"></a>00459 
-<a name="l00460"></a>00460                         <span class="comment">// retweeted</span>
-<a name="l00464"></a>00464 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">isRetweeted</a>();
-<a name="l00465"></a>00465 
-<a name="l00469"></a>00469                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>(<span class="keywordtype">bool</span> newValue);
-<a name="l00470"></a>00470 
-<a name="l00471"></a>00471                         <span class="comment">// in_reply_to_user_id_str</span>
-<a name="l00475"></a>00475 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">getInReplyToUserIDstr</a>();
-<a name="l00476"></a>00476 
-<a name="l00480"></a>00480                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">setInReplyToUserIDstr</a>(QString newValue);
-<a name="l00481"></a>00481 
-<a name="l00482"></a>00482                         <span class="comment">// id_str</span>
-<a name="l00486"></a>00486 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">getIDstr</a>();
-<a name="l00487"></a>00487 
-<a name="l00491"></a>00491                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">setIDstr</a>(QString newValue);
-<a name="l00492"></a>00492 
-<a name="l00493"></a>00493                         <span class="comment">// source</span>
-<a name="l00497"></a>00497 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">getSource</a>();
-<a name="l00498"></a>00498 
-<a name="l00502"></a>00502                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">setSource</a>(QString newValue);
-<a name="l00503"></a>00503 
-<a name="l00504"></a>00504                         <span class="comment">// id</span>
-<a name="l00508"></a>00508 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a95dc68db15b9af8974aba95fbfff7e0a" title="Reading.">getID</a>();
-<a name="l00509"></a>00509 
-<a name="l00513"></a>00513                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1d3ec4c904565ab3209fc3bb81c925ef" title="Writing id.">setID</a>(<span class="keywordtype">long</span> newValue);
-<a name="l00514"></a>00514 
-<a name="l00515"></a>00515                         <span class="comment">// in_reply_to_status_id</span>
-<a name="l00519"></a>00519 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#adba385775577af48e9f003135f8ab2a5" title="Reading in_reply_to_status_id.">getInReplyToStatusID</a>();
-<a name="l00520"></a>00520 
-<a name="l00524"></a>00524                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#acafa9e3126b88deee691ef7a7bbfab90" title="Writing in_reply_to_status_id.">setInReplyToStatusID</a>(<span class="keywordtype">long</span> newValue);
+<a name="l00325"></a>00325 
+<a name="l00327"></a>00327                 <span class="comment">// Getters and setters //</span>
+<a name="l00329"></a>00329 <span class="comment"></span>
+<a name="l00330"></a>00330                 <span class="keyword">public</span>:
+<a name="l00331"></a>00331                         <span class="comment">// entities</span>
+<a name="l00335"></a>00335 <span class="comment"></span>                        <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">getEntities</a>();
+<a name="l00336"></a>00336 
+<a name="l00340"></a>00340                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">setEntities</a>(<a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> newValue);
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342                         <span class="comment">// in_reply_to_user_id</span>
+<a name="l00346"></a>00346 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a5c2f1f6d9472979d434baffb7dd5494c" title="Reading in_reply_to_user_id.">getInReplyToUserID</a>();
+<a name="l00347"></a>00347 
+<a name="l00351"></a>00351                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a96cc758fe28548a5f5701ed6863d24f9" title="Writing in_reply_to_user_id.">setInReplyToUserID</a>(<span class="keywordtype">long</span> newValue);
+<a name="l00352"></a>00352 
+<a name="l00353"></a>00353                         <span class="comment">// truncated</span>
+<a name="l00357"></a>00357 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">isTruncated</a>();
+<a name="l00358"></a>00358 
+<a name="l00362"></a>00362                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">setTruncated</a>(<span class="keywordtype">bool</span> newValue);
+<a name="l00363"></a>00363 
+<a name="l00364"></a>00364                         <span class="comment">// favorited</span>
+<a name="l00368"></a>00368 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">isFavorited</a>();
+<a name="l00369"></a>00369 
+<a name="l00373"></a>00373                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keywordtype">bool</span> newValue);
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375                         <span class="comment">// retweet_count</span>
+<a name="l00379"></a>00379 <span class="comment"></span>                        <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">getRetweetCount</a>();
+<a name="l00380"></a>00380 
+<a name="l00384"></a>00384                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">setRetweetCount</a>(<span class="keywordtype">int</span> newValue);
+<a name="l00385"></a>00385 
+<a name="l00386"></a>00386                         <span class="comment">// in_reply_to_screen_name</span>
+<a name="l00390"></a>00390 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">getInReplyToScreenName</a>();
+<a name="l00391"></a>00391 
+<a name="l00395"></a>00395                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">setInReplyToScreenName</a>(QString newValue);
+<a name="l00396"></a>00396 
+<a name="l00397"></a>00397                         <span class="comment">// created_at</span>
+<a name="l00401"></a>00401 <span class="comment"></span>                        QDate <a class="code" href="class_tweet.html#ac3ffaf08e367b884fa8855b570bcaf29" title="Reading created_at.">getCreatedAt</a>();
+<a name="l00402"></a>00402 
+<a name="l00406"></a>00406                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a15a520b2d7d902191118ea6da58b9062" title="Writing created_at.">setCreatedAt</a>(QDate newValue);
+<a name="l00407"></a>00407 
+<a name="l00408"></a>00408                         <span class="comment">// in_reply_to_status_id_str</span>
+<a name="l00412"></a>00412 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">getInReplyToStatusIDstr</a>();
+<a name="l00413"></a>00413 
+<a name="l00417"></a>00417                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">setInReplyToStatusIDstr</a>(QString newValue);
+<a name="l00418"></a>00418 
+<a name="l00419"></a>00419                         <span class="comment">// user</span>
+<a name="l00423"></a>00423 <span class="comment"></span>                        <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c" title="Reading user.">getUser</a>();
+<a name="l00424"></a>00424 
+<a name="l00428"></a>00428                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> newValue);
+<a name="l00429"></a>00429 
+<a name="l00430"></a>00430                         <span class="comment">// retweeted</span>
+<a name="l00434"></a>00434 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">isRetweeted</a>();
+<a name="l00435"></a>00435 
+<a name="l00439"></a>00439                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>(<span class="keywordtype">bool</span> newValue);
+<a name="l00440"></a>00440 
+<a name="l00441"></a>00441                         <span class="comment">// in_reply_to_user_id_str</span>
+<a name="l00445"></a>00445 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">getInReplyToUserIDstr</a>();
+<a name="l00446"></a>00446 
+<a name="l00450"></a>00450                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">setInReplyToUserIDstr</a>(QString newValue);
+<a name="l00451"></a>00451 
+<a name="l00452"></a>00452                         <span class="comment">// id_str</span>
+<a name="l00456"></a>00456 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">getIDstr</a>();
+<a name="l00457"></a>00457 
+<a name="l00461"></a>00461                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">setIDstr</a>(QString newValue);
+<a name="l00462"></a>00462 
+<a name="l00463"></a>00463                         <span class="comment">// source</span>
+<a name="l00467"></a>00467 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">getSource</a>();
+<a name="l00468"></a>00468 
+<a name="l00472"></a>00472                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">setSource</a>(QString newValue);
+<a name="l00473"></a>00473 
+<a name="l00474"></a>00474                         <span class="comment">// id</span>
+<a name="l00478"></a>00478 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#a95dc68db15b9af8974aba95fbfff7e0a" title="Reading.">getID</a>();
+<a name="l00479"></a>00479 
+<a name="l00483"></a>00483                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1d3ec4c904565ab3209fc3bb81c925ef" title="Writing id.">setID</a>(<span class="keywordtype">long</span> newValue);
+<a name="l00484"></a>00484 
+<a name="l00485"></a>00485                         <span class="comment">// in_reply_to_status_id</span>
+<a name="l00489"></a>00489 <span class="comment"></span>                        <span class="keywordtype">long</span> <a class="code" href="class_tweet.html#adba385775577af48e9f003135f8ab2a5" title="Reading in_reply_to_status_id.">getInReplyToStatusID</a>();
+<a name="l00490"></a>00490 
+<a name="l00494"></a>00494                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#acafa9e3126b88deee691ef7a7bbfab90" title="Writing in_reply_to_status_id.">setInReplyToStatusID</a>(<span class="keywordtype">long</span> newValue);
+<a name="l00495"></a>00495 
+<a name="l00496"></a>00496                         <span class="comment">// text</span>
+<a name="l00500"></a>00500 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">getText</a>();
+<a name="l00501"></a>00501 
+<a name="l00505"></a>00505                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">setText</a>(QString newValue);
+<a name="l00506"></a>00506 
+<a name="l00507"></a>00507                         <span class="comment">// sensible</span>
+<a name="l00511"></a>00511 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">isSensible</a>();
+<a name="l00512"></a>00512 
+<a name="l00516"></a>00516                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">setSensible</a>(<span class="keywordtype">bool</span> newValue);
+<a name="l00517"></a>00517 };
+<a name="l00518"></a>00518 
+<a name="l00519"></a>00519 <span class="comment">// Serialization of Tweet</span>
+<a name="l00520"></a>00520 Q_DECLARE_METATYPE(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>)
+<a name="l00521"></a>00521 
+<a name="l00522"></a>00522 
+<a name="l00523"></a>00523 
+<a name="l00524"></a>00524 
 <a name="l00525"></a>00525 
-<a name="l00526"></a>00526                         <span class="comment">// text</span>
-<a name="l00530"></a>00530 <span class="comment"></span>                        QString <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">getText</a>();
-<a name="l00531"></a>00531 
-<a name="l00535"></a>00535                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">setText</a>(QString newValue);
+<a name="l00526"></a>00526 
+<a name="l00527"></a>00527 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet);
+<a name="l00528"></a>00528 
+<a name="l00534"></a>00534 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet);
+<a name="l00535"></a>00535 
 <a name="l00536"></a>00536 
-<a name="l00537"></a>00537                         <span class="comment">// sensible</span>
-<a name="l00541"></a>00541 <span class="comment"></span>                        <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">isSensible</a>();
-<a name="l00542"></a>00542 
-<a name="l00546"></a>00546                         <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">setSensible</a>(<span class="keywordtype">bool</span> newValue);
-<a name="l00547"></a>00547 };
-<a name="l00548"></a>00548 
-<a name="l00549"></a>00549 <span class="comment">// Serialization of Tweet</span>
-<a name="l00550"></a>00550 Q_DECLARE_METATYPE(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>)
-<a name="l00551"></a>00551 
-<a name="l00557"></a>00557 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet);
-<a name="l00558"></a>00558 
-<a name="l00564"></a>00564 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet);
-<a name="l00565"></a>00565 
-<a name="l00566"></a>00566 
-<a name="l00569"></a><a class="code" href="tweet_8hpp.html#aa97042421ec8827ca4070c5eb5308917">00569</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">Timeline</a>;
-<a name="l00570"></a>00570 
-<a name="l00571"></a>00571 <span class="preprocessor">#endif // TWEET_HPP</span>
+<a name="l00539"></a><a class="code" href="tweet_8hpp.html#aa97042421ec8827ca4070c5eb5308917">00539</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">Timeline</a>;
+<a name="l00540"></a>00540 
+<a name="l00541"></a>00541 <span class="preprocessor">#endif // TWEET_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -444,7 +439,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

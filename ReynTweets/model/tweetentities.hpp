@@ -118,7 +118,7 @@ class TweetEntities : public ReynTweetsMappable
 				   READ getURLsProperty
 				   WRITE setURLs)
 
-		/// @fn QVariantList getURLList();
+		/// @fn QVariantList getURLsProperty();
 		/// @brief Reading the property urls
 		/// @return urlsList
 		QVariantList getURLsProperty();

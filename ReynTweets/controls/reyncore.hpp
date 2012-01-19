@@ -96,7 +96,7 @@ class ReynCore : public QObject
 		// Configuration management //
 		//////////////////////////////
 
-		/// @fn void authenticationOK(LaunchResult authOK);
+		/// @fn void launchEnded(LaunchResult authOK);
 		/// @brief Signal sent at the end of the authentication to indicate
 		/// if it was successful or not.
 		/// @param authOK How the launching process ended

@@ -136,7 +136,7 @@ class Media : public URLEntity
 		/// @return sizesMap
 		QVariantMap getSizesProperty();
 
-		/// @fn void setSizesProperty(QVariantMap newMap);
+		/// @fn void setSizes(QVariantMap newMap);
 		/// @brief Writing method for the property sizes
 		/// @param newMap New value for the property sizes
 		void setSizes(QVariantMap newMap);

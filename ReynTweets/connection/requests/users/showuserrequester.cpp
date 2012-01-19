@@ -36,7 +36,7 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 {}
 
 // Constructor with the screen name
-ShowUserRequester::ShowUserRequester(OAuthManager authManager,
+ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 QString name,
 									 bool entities) :
 	AuthenticationRequester(GET, TwitterURL::SHOW_USER_URL, authManager),

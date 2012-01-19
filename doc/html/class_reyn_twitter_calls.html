@@ -111,14 +111,23 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">POST <a class="el" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">authorize()</a> requests to allow or to deny the application.  <a href="#a4de550600e72c8500d44808c859c3706"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe">requestToken</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for getting a request token.  <a href="#af5187deb05c40a44fbf021e8f29634fe"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a54e30146e3b00633b8bfed0cb0640ed0">resetTokens</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests.  <a href="#a54e30146e3b00633b8bfed0cb0640ed0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a3d734925a7ae27acf494808bb1d4f16a">ReynTwitterCalls</a> (QObject *requester)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a3d734925a7ae27acf494808bb1d4f16a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e">search</a> (QString q)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method that launch searches.  <a href="#a1841d6eed5d2b649684dc6be704a660e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a32de35be82bdcb550e627a21cfa1a297">showTweet</a> (long tweetID, bool entities=true, bool trimUser=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a tweet.  <a href="#a32de35be82bdcb550e627a21cfa1a297"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">showUser</a> (QString screenName, bool entities=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its screen name.  <a href="#ab14d60a28ed2cd1d9b460f697c1c02b2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#abd5edd0e2820eebe99c32bd7b4afdc39">showUser</a> (long userID, bool entities=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its ID.  <a href="#abd5edd0e2820eebe99c32bd7b4afdc39"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a672e5f4bd86d25343f911f304aef04b6">~ReynTwitterCalls</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a672e5f4bd86d25343f911f304aef04b6"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e">resetTokens</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests.  <a href="#a788fdbb512df28f578f1e4733c5c192e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe">setNewTokens</a> (QByteArray accessToken, QByteArray tokenSecret, QByteArray consumerKey=<a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a>, QByteArray consumerSecret=<a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a>)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Giving new tokens to the oauthManager.  <a href="#a471cb15774ef12fc78823673461ffbfe"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab">requestDemander</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">QObject that asks for the request.  <a href="#ab42d1b335c0dcb6f09347782ed57dcab"></a><br/></td></tr>
@@ -166,7 +175,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00038">38</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00034">34</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -187,7 +196,7 @@ window.onload = initDynSections;
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00044">44</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00040">40</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -210,7 +219,7 @@ window.onload = initDynSections;
 <p>Method for getting an access token. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/post/oauth/access_token">https://dev.twitter.com/docs/api/1/post/oauth/access_token</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00135">135</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00131">131</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -238,7 +247,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00054">54</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00050">50</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -260,7 +269,7 @@ window.onload = initDynSections;
 <p>Method for authorizing request Tokens. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/oauth/authorize">https://dev.twitter.com/docs/api/1/get/oauth/authorize</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00120">120</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00116">116</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -289,7 +298,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The wrapper of the request result </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00080">80</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00076">76</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +319,7 @@ window.onload = initDynSections;
 
 <p>Slot executed when a requester has finished its work. </p>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00072">72</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00068">68</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +347,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00091">91</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00087">87</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -383,7 +392,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00126">126</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00122">122</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,7 +420,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00063">63</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00059">59</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,20 +442,20 @@ window.onload = initDynSections;
 <p>Method for getting a request token. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/post/oauth/request_token">https://dev.twitter.com/docs/api/1/post/oauth/request_token</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00114">114</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00110">110</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a54e30146e3b00633b8bfed0cb0640ed0"></a><!-- doxytag: member="ReynTwitterCalls::resetTokens" ref="a54e30146e3b00633b8bfed0cb0640ed0" args="()" -->
+<a class="anchor" id="a788fdbb512df28f578f1e4733c5c192e"></a><!-- doxytag: member="ReynTwitterCalls::resetTokens" ref="a788fdbb512df28f578f1e4733c5c192e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ReynTwitterCalls::resetTokens </td>
+          <td class="memname">static void ReynTwitterCalls::resetTokens </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -454,7 +463,7 @@ window.onload = initDynSections;
 
 <p>Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests. </p>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00141">141</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00137">137</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -483,7 +492,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/search">https://dev.twitter.com/docs/api/1/get/search</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00104">104</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00100">100</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -510,6 +519,182 @@ window.onload = initDynSections;
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a471cb15774ef12fc78823673461ffbfe"></a><!-- doxytag: member="ReynTwitterCalls::setNewTokens" ref="a471cb15774ef12fc78823673461ffbfe" args="(QByteArray accessToken, QByteArray tokenSecret, QByteArray consumerKey=ReynTweetsSettings::CONSUMER_KEY, QByteArray consumerSecret=ReynTweetsSettings::CONSUMER_SECRET)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ReynTwitterCalls::setNewTokens </td>
+          <td>(</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>tokenSecret</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>consumerKey</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>consumerSecret</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a></code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Giving new tokens to the oauthManager. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>accessToken</em>&nbsp;</td><td>New access token </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>tokenSecret</em>&nbsp;</td><td>New token secret </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>consumerKey</em>&nbsp;</td><td>New consumer key </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>consumerSecret</em>&nbsp;</td><td>New consumer secret </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00142">142</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a32de35be82bdcb550e627a21cfa1a297"></a><!-- doxytag: member="ReynTwitterCalls::showTweet" ref="a32de35be82bdcb550e627a21cfa1a297" args="(long tweetID, bool entities=true, bool trimUser=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynTwitterCalls::showTweet </td>
+          <td>(</td>
+          <td class="paramtype">long&nbsp;</td>
+          <td class="paramname"> <em>tweetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>entities</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>trimUser</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Showing a tweet. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>tweetID</em>&nbsp;</td><td>ID of the tweet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>entities</em>&nbsp;</td><td>Include <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in th reply ? </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trimUser</em>&nbsp;</td><td>Return only user IDs instead of all the values ? </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid">https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00159">159</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab14d60a28ed2cd1d9b460f697c1c02b2"></a><!-- doxytag: member="ReynTwitterCalls::showUser" ref="ab14d60a28ed2cd1d9b460f697c1c02b2" args="(QString screenName, bool entities=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void void ReynTwitterCalls::showUser </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>screenName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>entities</em> = <code>true</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Showing a user identified by its screen name. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>screenName</em>&nbsp;</td><td>User's screen name </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>entities</em>&nbsp;</td><td>Include <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in th reply ? </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/users/show">https://dev.twitter.com/docs/api/1/get/users/show</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00180">180</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd5edd0e2820eebe99c32bd7b4afdc39"></a><!-- doxytag: member="ReynTwitterCalls::showUser" ref="abd5edd0e2820eebe99c32bd7b4afdc39" args="(long userID, bool entities=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynTwitterCalls::showUser </td>
+          <td>(</td>
+          <td class="paramtype">long&nbsp;</td>
+          <td class="paramname"> <em>userID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>entities</em> = <code>true</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Showing a user identified by its ID. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>userID</em>&nbsp;</td><td>ID of the user </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>entities</em>&nbsp;</td><td>Include <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in th reply ? </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/users/show">https://dev.twitter.com/docs/api/1/get/users/show</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00172">172</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -584,7 +769,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

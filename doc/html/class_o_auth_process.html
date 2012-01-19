@@ -110,8 +110,8 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a13a6ef4f0ced8efc25eeca55e001e20f">requestTokenDemanded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Treatments after the request for Request Tokens.  <a href="#a13a6ef4f0ced8efc25eeca55e001e20f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Signals</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ae367ea50bfc040bf14d60e7ce147b608">authenticationProcessFinished</a> (<a class="el" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228">OAuthProcessResult</a> processResult)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent when the authentication process ends.  <a href="#ae367ea50bfc040bf14d60e7ce147b608"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#adf8312f3ce6298fcf22c70ac79d5754b">authenticationProcessFinished</a> (<a class="el" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228">OAuthProcessResult</a> processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, long userID=-1, QString screenName=&quot;&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent when the authentication process ends.  <a href="#adf8312f3ce6298fcf22c70ac79d5754b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ab6dbe9e6dbfe57cb47e724b3c12b383d">credentialsOK</a> (bool ok)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent to show or to hide an error message telling the user if the credentials he gave were right.  <a href="#ab6dbe9e6dbfe57cb47e724b3c12b383d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03">errorProcess</a> (bool fatalError, QString errorMsg)</td></tr>
@@ -235,7 +235,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="ae367ea50bfc040bf14d60e7ce147b608"></a><!-- doxytag: member="OAuthProcess::authenticationProcessFinished" ref="ae367ea50bfc040bf14d60e7ce147b608" args="(OAuthProcessResult processResult)" -->
+<a class="anchor" id="adf8312f3ce6298fcf22c70ac79d5754b"></a><!-- doxytag: member="OAuthProcess::authenticationProcessFinished" ref="adf8312f3ce6298fcf22c70ac79d5754b" args="(OAuthProcessResult processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, long userID=&#45;1, QString screenName=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -243,9 +243,36 @@ window.onload = initDynSections;
           <td class="memname">void OAuthProcess::authenticationProcessFinished </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228">OAuthProcessResult</a>&nbsp;</td>
-          <td class="paramname"> <em>processResult</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [signal]</code></td>
+          <td class="paramname"> <em>processResult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>accessToken</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>tokenSecret</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&nbsp;</td>
+          <td class="paramname"> <em>userID</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>screenName</em> = <code>&quot;&quot;</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [signal]</code></td>
         </tr>
       </table>
 </div>
@@ -255,6 +282,10 @@ window.onload = initDynSections;
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>processResult</em>&nbsp;</td><td>Value indicating how the OAuth process has ended. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>accessToken</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> access token </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>tokenSecret</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> token secret </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>userID</em>&nbsp;</td><td>ID of the user who has just authorized the application </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>screenName</em>&nbsp;</td><td>Screen name of the user who has just authorized the application. </td></tr>
   </table>
   </dd>
 </dl>
@@ -607,7 +638,7 @@ window.onload = initDynSections;
 
 <p>Entity calling Twitter. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00140">140</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00153">153</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +661,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:05 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

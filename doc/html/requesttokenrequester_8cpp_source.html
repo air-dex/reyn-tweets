@@ -147,7 +147,7 @@ window.onload = initDynSections;
 <a name="l00057"></a>00057                                                                                                   treatmentErrorMsg);
 <a name="l00058"></a>00058         parseOK = parseOK &amp;&amp; treatmentOK;
 <a name="l00059"></a>00059         errorMsg.append(treatmentErrorMsg);
-<a name="l00060"></a>00060         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#aefc7fd2f62d37cb76344c8aad561f8c0" title="Setter on the OAuth token.">setOAuthToken</a>(extractedCredential.toString().toAscii());
+<a name="l00060"></a>00060         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(extractedCredential.toByteArray());
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063         <span class="comment">// Extracting the &quot;oauth_token_secret&quot; parameter</span>
@@ -157,7 +157,7 @@ window.onload = initDynSections;
 <a name="l00067"></a>00067                                                                                                   treatmentErrorMsg);
 <a name="l00068"></a>00068         parseOK = parseOK &amp;&amp; treatmentOK;
 <a name="l00069"></a>00069         errorMsg.append(treatmentErrorMsg);
-<a name="l00070"></a>00070         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#af89cb1fd781c76d8ae373f7a2db680e4" title="Setter on the OAuth secret.">setOAuthSecret</a>(extractedCredential.toString().toAscii());
+<a name="l00070"></a>00070         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4" title="Setter on the OAuth secret.">setOAuthSecret</a>(extractedCredential.toByteArray());
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073         <span class="comment">// Rewriting the &quot;oauth_callback_confirmed&quot; parameter as a boolean</span>
@@ -207,7 +207,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

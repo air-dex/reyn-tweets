@@ -30,14 +30,14 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 class ShowUserRequester : public AuthenticationRequester
 {
 	public:
-		/// @fn ShowUserRequester(OAuthManager authManager,
+		/// @fn ShowUserRequester(OAuthManager & authManager,
 		///						  long id,
 		///						  bool entities = true);
 		/// @brief Constructor with the user ID
 		/// @param authManager OAuthManager for authentication
 		/// @param id User ID
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(OAuthManager authManager,
+		ShowUserRequester(OAuthManager & authManager,
 						  long id,
 						  bool entities = true);
 

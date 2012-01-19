@@ -26,14 +26,16 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define UTILS_HPP
 
 #include <QByteArray>
+#include <QColor>
 #include <QDataStream>
 #include <QString>
 #include "../connection/requesttype.hpp"
 
 /// @fn QString hmacSha1(QByteArray key, QByteArray baseString);
-/// @brief HMAC-SHA1 algorithm for signatures. Its implementation for
-/// Reyn Tweets was found on the <a href="http://developer.qt.nokia.com/">
-/// Qt Developer Network</a> here :
+/// @brief HMAC-SHA1 algorithm for signatures.
+///
+/// Its implementation for Reyn Tweets was found on the
+/// <a href="http://developer.qt.nokia.com/">Qt Developer Network</a> here :
 /// <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">
 /// http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.
 /// @param key Key for signature
@@ -58,6 +60,15 @@ bool ouBien(bool a, bool b);
 /// @param b The boolean
 /// @return The corresponding QString
 QString boolInString(bool b);
+
+/// @fn QColor string2color(QString coloredString);
+/// @brief Converting a String into a QColor.
+///
+/// This function was written because of Twitter which forgets the '#'
+/// character before the hexadecimal code under the form 'RRGGBB'.
+/// @param coloredString The string with the 'RRGGBB' format.
+/// @return The corresponding color : #RRGGBB
+QColor string2color(QString coloredString);
 
 
 ////////////////////

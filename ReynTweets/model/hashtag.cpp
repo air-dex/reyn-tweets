@@ -31,12 +31,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 Hashtag::Hashtag() :
 	ReynTweetsMappable(),
-	indexList(),
 	hashText(),
 	indexes()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 Hashtag::~Hashtag() {}
@@ -62,7 +59,6 @@ void Hashtag::initSystem() {
 void Hashtag::recopie(const Hashtag & hashtag) {
 	hashText = hashtag.hashText;
 	indexes = hashtag.indexes;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -72,46 +68,22 @@ QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
-	jsonStreamingIn(in, hashtag);
-
-	// Updating indexes
-	hashtag.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, hashtag);
 }
+
 
 ///////////////////////////
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with the corresponding property maps
-void Hashtag::syncMembers() {
-	syncIndicesMember();
-}
-
-// Updating all the properties
-void Hashtag::syncProperties() {
-	syncIndicesProperty();
-}
-
 // Reading method for the property indices
-QVariantList Hashtag::getIndices() {
-	return indexList;
+QVariantList Hashtag::getIndicesProperty() {
+	return indexes.toVariant();
 }
 
 // Writing method for the property indices
 void Hashtag::setIndices(QVariantList newIndexList) {
-	indexList = newIndexList;
-}
-
-// Updating the property indices
-void Hashtag::syncIndicesProperty() {
-	setIndices(indexes.toVariant());
-}
-
-// Updating the property indices
-void Hashtag::syncIndicesMember() {
-	indexes.fillWithVariant(indexList);
+	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -130,11 +102,11 @@ void Hashtag::setText(QString newText) {
 }
 
 // Reading indexes
-IndexBounds Hashtag::getIndexes() {
+IndexBounds Hashtag::getIndices() {
 	return indexes;
 }
 
 // Writing indexes
-void Hashtag::setIndexes(IndexBounds newIndexes) {
+void Hashtag::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
 }

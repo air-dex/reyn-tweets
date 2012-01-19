@@ -132,9 +132,19 @@ class UserInfos : public ReynTweetsMappable
 		// profile_link_color
 		/// @property profile_link_color
 		/// @brief Serializable form of linkColor
-		Q_PROPERTY(QColor profile_link_color
-				   READ getProfileLinkColor
+		Q_PROPERTY(QString profile_link_color
+				   READ getProfileLinkColorProperty
 				   WRITE setProfileLinkColor)
+
+		/// @fn QString getProfileLinkColorProperty();
+		/// @brief Reading profile_link_color
+		/// @return The value of linkColor
+		QString getProfileLinkColorProperty();
+
+		/// @fn void setProfileLinkColor(QString newLinkColor);
+		/// @brief Writing profile_link_color
+		/// @param newLinkColor The new value of linkColor
+		void setProfileLinkColor(QString newLinkColor);
 
 		// url
 		/// @property url
@@ -167,9 +177,19 @@ class UserInfos : public ReynTweetsMappable
 		// profile_background_color
 		/// @property profile_background_color
 		/// @brief Serializable form of backgroundColor
-		Q_PROPERTY(QColor profile_background_color
-				   READ getProfileBackgroundColor
+		Q_PROPERTY(QString profile_background_color
+				   READ getProfileBackgroundColorProperty
 				   WRITE setProfileBackgroundColor)
+
+		/// @fn QString getProfileBackgroundColorProperty();
+		/// @brief Reading profile_background_color
+		/// @return The value of backgroundColor
+		QString getProfileBackgroundColorProperty();
+
+		/// @fn void setProfileBackgroundColor(QString newBackgroundColor);
+		/// @brief Writing profile_background_color
+		/// @param newBackgroundColor The new value of profile_background_color
+		void setProfileBackgroundColor(QString newBackgroundColor);
 
 		// followers_count
 		/// @property followers_count
@@ -216,9 +236,19 @@ class UserInfos : public ReynTweetsMappable
 		// profile_sidebar_fill_color
 		/// @property profile_sidebar_fill_color
 		/// @brief Serializable form of sidebarColor
-		Q_PROPERTY(QColor profile_sidebar_fill_color
-				   READ getProfileSidebarFillColor
+		Q_PROPERTY(QString profile_sidebar_fill_color
+				   READ getProfileSidebarFillColorProperty
 				   WRITE setProfileSidebarFillColor)
+
+		/// @fn QString getProfileSidebarFillColorProperty();
+		/// @brief Reading profile_sidebar_fill_color
+		/// @return The value of sidebarColor
+		QString getProfileSidebarFillColorProperty();
+
+		/// @fn void setProfileSidebarFillColor(QString newSidebarColor);
+		/// @brief Writing profile_sidebar_fill_color
+		/// @param newSidebarColor The new value of sidebarColor
+		void setProfileSidebarFillColor(QString newSidebarColor);
 
 		// screen_name
 		/// @property screen_name
@@ -251,9 +281,19 @@ class UserInfos : public ReynTweetsMappable
 		// profile_sidebar_border_color
 		/// @property profile_sidebar_border_color
 		/// @brief Serializable form of sidebarBorderColor
-		Q_PROPERTY(QColor profile_sidebar_border_color
-				   READ getProfileSidebarBorderColor
+		Q_PROPERTY(QString profile_sidebar_border_color
+				   READ getProfileSidebarBorderColorProperty
 				   WRITE setProfileSidebarBorderColor)
+
+		/// @fn QString getProfileSidebarBorderColorProperty();
+		/// @brief Reading profile_sidebar_border_color
+		/// @return The value of sidebarBorderColor
+		QString getProfileSidebarBorderColorProperty();
+
+		/// @fn void setProfileSidebarBorderColor(QString newSidebarBorderColor);
+		/// @brief Writing profile_sidebar_border_color
+		/// @param newSidebarBorderColor The new value of sidebarBorderColor
+		void setProfileSidebarBorderColor(QString newSidebarBorderColor);
 
 		// id_str
 		/// @property id_str
@@ -349,9 +389,19 @@ class UserInfos : public ReynTweetsMappable
 		// profile_text_color
 		/// @property profile_text_color
 		/// @brief Serializable form of textColor
-		Q_PROPERTY(QColor profile_text_color
-				   READ getProfileTextColor
+		Q_PROPERTY(QString profile_text_color
+				   READ getProfileTextColorProperty
 				   WRITE setProfileTextColor)
+
+		/// @fn QString getProfileTextColorProperty();
+		/// @brief Reading profile_text_color
+		/// @return The value of textColor
+		QString getProfileTextColorProperty();
+
+		/// @fn void setProfileTextColor(QString newTextColor);
+		/// @brief Writing profile_text_color
+		/// @param newTextColor The new value of textColor
+		void setProfileTextColor(QString newTextColor);
 
 		// location
 		/// @property location

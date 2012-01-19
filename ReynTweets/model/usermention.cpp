@@ -31,15 +31,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 UserMention::UserMention() :
 	ReynTweetsMappable(),
-	indexList(),
 	userID(-1),
 	userIDstr("-1"),
 	screenName(""),
 	userName(""),
 	indexes()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 UserMention::~UserMention() {}
@@ -68,7 +65,6 @@ void UserMention::recopie(const UserMention & mention) {
 	screenName = mention.screenName;
 	userName = mention.userName;
 	indexes = mention.indexes;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -78,12 +74,7 @@ QDataStream & operator<<(QDataStream & out, const UserMention & mention) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMention & mention) {
-	jsonStreamingIn(in, mention);
-
-	// Updating indexes
-	mention.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, mention);
 }
 
 
@@ -91,34 +82,14 @@ QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void UserMention::syncMembers() {
-	syncIndicesMember();
-}
-
-// Updating all the properties
-void UserMention::syncProperties() {
-	syncIndicesProperty();
-}
-
 // Reading method for the property indices
-QVariantList UserMention::getIndices() {
-	return indexList;
+QVariantList UserMention::getIndicesProperty() {
+	return indexes.toVariant();
 }
 
 // Writing method for the property indices
 void UserMention::setIndices(QVariantList newIndexList) {
-	indexList = newIndexList;
-}
-
-// Updating the property indices
-void UserMention::syncIndicesProperty() {
-	setIndices(indexes.toVariant());
-}
-
-// Updating the property indices
-void UserMention::syncIndicesMember() {
-	indexes.fillWithVariant(indexList);
+	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -167,12 +138,11 @@ void UserMention::setName(QString newName) {
 }
 
 // Reading indexes
-IndexBounds UserMention::getIndexes() {
+IndexBounds UserMention::getIndices() {
 	return indexes;
 }
 
 // Writing indexes
-void UserMention::setIndexes(IndexBounds newIndexes) {
+void UserMention::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
-	syncIndicesProperty();
 }

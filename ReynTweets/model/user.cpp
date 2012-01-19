@@ -31,11 +31,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Default constructor
 User::User() :
 	UserInfos(),
-	lastTweetMap(),
 	lastTweet()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 User::~User() {}
@@ -63,7 +60,6 @@ void User::initSystem() {
 void User::recopie(const User & user) {
 	UserInfos::recopie(user);
 	lastTweet = user.lastTweet;
-	syncProperties();
 }
 
 // Friends serialization operators
@@ -75,12 +71,7 @@ QDataStream & operator<<(QDataStream & out, const User & user) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, User & user) {
-	jsonStreamingIn(in, user);
-
-	// Filling the user account
-	user.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, user);
 }
 
 
@@ -88,36 +79,14 @@ QDataStream & operator>>(QDataStream & in, User & user) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void User::syncMembers() {
-	UserInfos::syncMembers();
-	syncStatusMember();
-}
-
-// Updating all the properties
-void User::syncProperties() {
-	UserInfos::syncProperties();
-	syncStatusProperty();
-}
-
 // Reading the "status" property
-QVariantMap User::getStatus() {
-	return lastTweetMap;
+QVariantMap User::getStatusProperty() {
+	return lastTweet.toVariant();
 }
 
 // Writing the status property
 void User::setStatus(QVariantMap statusMap) {
-	lastTweetMap = statusMap;
-}
-
-// Updating the property status
-void User::syncStatusProperty() {
-	setStatus(lastTweet.toVariant());
-}
-
-// Updating the property status
-void User::syncStatusMember() {
-	lastTweet.fillWithVariant(lastTweetMap);
+	lastTweet.fillWithVariant(statusMap);
 }
 
 
@@ -126,12 +95,11 @@ void User::syncStatusMember() {
 /////////////////////////
 
 // Getter on the last tweet written by the user
-Tweet User::getLastTweet() {
+Tweet User::getStatus() {
 	return lastTweet;
 }
 
 // Setter on the last tweet written by the user
-void User::setLastTweet(Tweet newLastTweet) {
+void User::setStatus(Tweet newLastTweet) {
 	lastTweet = newLastTweet;
-	syncStatusProperty();		// Updating the map
 }

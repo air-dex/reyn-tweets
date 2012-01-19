@@ -31,17 +31,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 MediaSizes::MediaSizes() :
 	ReynTweetsMappable(),
-	largeMap(),
-	mediumMap(),
-	smallMap(),
-	thumbMap(),
 	largeSize(),
 	mediumSize(),
 	smallSize(),
 	thumbSize()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 MediaSizes::~MediaSizes() {}
@@ -69,7 +63,6 @@ void MediaSizes::recopie(const MediaSizes & sizes) {
 	mediumSize = sizes.mediumSize;
 	smallSize = sizes.smallSize;
 	thumbSize = sizes.thumbSize;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -79,12 +72,7 @@ QDataStream & operator<<(QDataStream & out, const MediaSizes & sizes) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaSizes & sizes) {
-	jsonStreamingIn(in, sizes);
-
-	// Updating resizeMedia
-	sizes.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, sizes);
 }
 
 
@@ -92,100 +80,44 @@ QDataStream & operator>>(QDataStream & in, MediaSizes & sizes) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void MediaSizes::syncMembers() {
-	syncLargeMember();
-	syncMediumMember();
-	syncSmallMember();
-	syncThumbMember();
-}
-
-// Updating all the properties
-void MediaSizes::syncProperties() {
-	syncLargeProperty();
-	syncMediumProperty();
-	syncSmallProperty();
-	syncThumbProperty();
-}
-
 // Reading method for the property large
-QVariantMap MediaSizes::getLarge() {
-	return largeMap;
+QVariantMap MediaSizes::getLargeProperty() {
+	return largeSize.toVariant();
 }
 
 // Writing method for the property large
 void MediaSizes::setLarge(QVariantMap newLargeMap) {
-	largeMap = newLargeMap;
-}
-
-// Updating the property large
-void MediaSizes::syncLargeProperty() {
-	setLarge(largeSize.toVariant());
-}
-
-// Updating the property large
-void MediaSizes::syncLargeMember() {
-	largeSize.fillWithVariant(largeMap);
+	largeSize.fillWithVariant(newLargeMap);
 }
 
 // Reading method for the property medium
-QVariantMap MediaSizes::getMedium() {
-	return mediumMap;
+QVariantMap MediaSizes::getMediumProperty() {
+	return mediumSize.toVariant();
 }
 
 // Writing method for the property medium
 void MediaSizes::setMedium(QVariantMap newMediumMap) {
-	mediumMap = newMediumMap;
-}
-
-// Updating the property medium
-void MediaSizes::syncMediumProperty() {
-	setMedium(mediumSize.toVariant());
-}
-
-// Updating the property medium
-void MediaSizes::syncMediumMember() {
-	mediumSize.fillWithVariant(mediumMap);
+	mediumSize.fillWithVariant(newMediumMap);
 }
 
 // Reading method for the property small
-QVariantMap MediaSizes::getSmall() {
-	return smallMap;
+QVariantMap MediaSizes::getSmallProperty() {
+	return smallSize.toVariant();
 }
 
 // Writing method for the property small
 void MediaSizes::setSmall(QVariantMap newSmallMap) {
-	smallMap = newSmallMap;
-}
-
-// Updating the property small
-void MediaSizes::syncSmallProperty() {
-	setSmall(smallSize.toVariant());
-}
-
-// Updating the property small
-void MediaSizes::syncSmallMember() {
-	smallSize.fillWithVariant(smallMap);
+	smallSize.fillWithVariant(newSmallMap);
 }
 
 // Reading method for the property thumb
-QVariantMap MediaSizes::getThumb() {
-	return thumbMap;
+QVariantMap MediaSizes::getThumbProperty() {
+	return thumbSize.toVariant();
 }
 
 // Writing method for the property thumb
 void MediaSizes::setThumb(QVariantMap newThumbMap) {
-	thumbMap = newThumbMap;
-}
-
-// Updating the property thumb
-void MediaSizes::syncThumbProperty() {
-	setThumb(thumbSize.toVariant());
-}
-
-// Updating the property thumb
-void MediaSizes::syncThumbMember() {
-	thumbSize.fillWithVariant(thumbMap);
+	thumbSize.fillWithVariant(newThumbMap);
 }
 
 
@@ -194,45 +126,41 @@ void MediaSizes::syncThumbMember() {
 ////////////////////////
 
 // Reading method for largeSize
-MediaSize MediaSizes::getLargeSize() {
+MediaSize MediaSizes::getLarge() {
 	return largeSize;
 }
 
 // Writing method for largeSize
-void MediaSizes::setLargeSize(MediaSize newLargeSize) {
+void MediaSizes::setLarge(MediaSize newLargeSize) {
 	largeSize = newLargeSize;
-	syncLargeProperty();
 }
 
 // Reading method for mediumSize
-MediaSize MediaSizes::getMediumSize() {
+MediaSize MediaSizes::getMedium() {
 	return mediumSize;
 }
 
 // Writing method for mediumSize
-void MediaSizes::setMediumSize(MediaSize newMediumSize) {
+void MediaSizes::setMedium(MediaSize newMediumSize) {
 	mediumSize = newMediumSize;
-	syncMediumProperty();
 }
 
 // Reading method smallSize
-MediaSize MediaSizes::getSmallSize() {
+MediaSize MediaSizes::getSmall() {
 	return smallSize;
 }
 
 // Writing method for smallSize
-void MediaSizes::setSmallSize(MediaSize newSmallSize) {
+void MediaSizes::setSmall(MediaSize newSmallSize) {
 	smallSize = newSmallSize;
-	syncSmallProperty();
 }
 
 // Reading method for thumbSize
-MediaSize MediaSizes::getThumbSize() {
+MediaSize MediaSizes::getThumb() {
 	return thumbSize;
 }
 
 // Writing method for thumbSize
-void MediaSizes::setThumbSize(MediaSize newThumbSize) {
+void MediaSizes::setThumb(MediaSize newThumbSize) {
 	thumbSize = newThumbSize;
-	syncThumbProperty();
 }

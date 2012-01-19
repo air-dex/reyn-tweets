@@ -32,11 +32,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 MediaSize::MediaSize() :
 	ReynTweetsMappable(),
 	QSize(0,0),
-	resizeProperty(""),
 	resizeMedia(NULL_RESIZE)
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 MediaSize::~MediaSize() {}
@@ -57,7 +54,6 @@ void MediaSize::recopie(const MediaSize & size) {
 	setWidth(size.width());
 	setHeight(size.height());
 	resizeMedia = size.resizeMedia;
-	syncProperties();
 }
 
 // Serialization declaration
@@ -73,12 +69,7 @@ QDataStream & operator<<(QDataStream & out, const MediaSize & size) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaSize & size) {
-	jsonStreamingIn(in, size);
-
-	// Updating resizeMedia
-	size.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, size);
 }
 
 
@@ -86,35 +77,14 @@ QDataStream & operator>>(QDataStream & in, MediaSize & size) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void MediaSize::syncMembers() {
-	syncResizeMember();
-}
-
-// Updating resizeMedia
-void MediaSize::syncResizeMember() {
-	resizeMedia = string2Resize(resizeProperty);
-}
-
-// Updating all the properties
-void MediaSize::syncProperties() {
-	syncResizeProperty();
-}
-
 // Reading method for resize
 QString MediaSize::getResizeProperty() {
-	return resizeProperty;
+	return resize2String(resizeMedia);
 }
 
 // Writing method for resize
-void MediaSize::setResizeProperty(QString newResize) {
-	resizeProperty = newResize;
-}
-
-// Updating the property resize
-void MediaSize::syncResizeProperty() {
-	setResizeProperty(resize2String(resizeMedia));
-//	setProperty("resize", QVariant(resize2String(resizeMedia)));
+void MediaSize::setResize(QString newResize) {
+	resizeMedia = string2Resize(newResize);
 }
 
 
@@ -160,5 +130,4 @@ MediaSize::Resize MediaSize::getResize() {
 // Setter on resizeMedia
 void MediaSize::setResize(MediaSize::Resize newResize) {
 	resizeMedia = newResize;
-	syncResizeProperty();
 }

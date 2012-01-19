@@ -31,8 +31,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Default constructor
 Tweet::Tweet() :
 	ReynTweetsMappable(),
-	entitiesMap(),
-	userMap(),
 	tweetID(-1),
 	tweetIDstr("-1"),
 	tweetEntities(),
@@ -50,9 +48,7 @@ Tweet::Tweet() :
 	createdAt(),
 	sourceClient(""),
 	truncatedTweet(false)
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 Tweet::~Tweet() {}
@@ -93,7 +89,6 @@ void Tweet::recopie(const Tweet & tweet) {
 	createdAt = tweet.createdAt;
 	sourceClient = tweet.sourceClient;
 	truncatedTweet = tweet.truncatedTweet;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -103,12 +98,7 @@ QDataStream & operator<<(QDataStream & out, const Tweet & tweet) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
-	jsonStreamingIn(in, tweet);
-
-	// Updating the entities and the user
-	tweet.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, tweet);
 }
 
 
@@ -116,56 +106,24 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with the corresponding property maps
-void Tweet::syncMembers() {
-	syncEntitiesMember();
-	syncUserMember();
-}
-
-// Updating all the properties
-void Tweet::syncProperties() {
-	syncEntitiesProperty();
-	syncUserProperty();
-}
-
 // Reading the property entities
-QVariantMap Tweet::getEntitiesMap() {
-	return entitiesMap;
+QVariantMap Tweet::getEntitiesProperty() {
+	return tweetEntities.toVariant();
 }
 
 // Writing the property entities
-void Tweet::setEntitiesMap(QVariantMap newEntityMap) {
-	entitiesMap = newEntityMap;
-}
-
-// Updating the property entities
-void Tweet::syncEntitiesProperty() {
-	setEntitiesMap(tweetEntities.toVariant());
-}
-
-// Updating the property entities
-void Tweet::syncEntitiesMember() {
-	tweetEntities.fillWithVariant(entitiesMap);
+void Tweet::setEntities(QVariantMap newEntityMap) {
+	tweetEntities.fillWithVariant(newEntityMap);
 }
 
 // Reading the property user
-QVariantMap Tweet::getUserMap() {
-	return userMap;
+QVariantMap Tweet::getUserProperty() {
+	return profile.toVariant();
 }
 
 // Writing the property user
-void Tweet::setUserMap(QVariantMap newUserMap) {
-	userMap = newUserMap;
-}
-
-// Updating the property user
-void Tweet::syncUserProperty() {
-	setUserMap(profile.toVariant());
-}
-
-// Updating the property user
-void Tweet::syncUserMember() {
-	profile.fillWithVariant(userMap);
+void Tweet::setUser(QVariantMap newUserMap) {
+	profile.fillWithVariant(newUserMap);
 }
 
 
@@ -180,7 +138,6 @@ TweetEntities Tweet::getEntities() {
 
 void Tweet::setEntities(TweetEntities newValue) {
 	tweetEntities = newValue;
-	syncEntitiesProperty();
 }
 
 // in_reply_to_user_id
@@ -253,7 +210,6 @@ UserInfos Tweet::getUser() {
 
 void Tweet::setUser(UserInfos newValue) {
 	profile = newValue;
-	syncUserProperty();
 }
 
 // retweeted

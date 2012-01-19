@@ -119,14 +119,6 @@ class MediaSize : public ReynTweetsMappable, public QSize
 	///////////////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// w
 		/// @property w
 		/// @brief Width
@@ -146,28 +138,17 @@ class MediaSize : public ReynTweetsMappable, public QSize
 		/// @brief How the media is resized. It is the String form of resizeMedia.
 		Q_PROPERTY(QString resize
 				   READ getResizeProperty
-				   WRITE setResizeProperty)
-
-		/// @brief Representation of resize
-		QString resizeProperty;
+				   WRITE setResize)
 
 		/// @fn QString getResizeProperty();
 		/// @brief Reading method for resize
 		/// @return resizeProperty
 		QString getResizeProperty();
 
-		/// @fn void setResizeProperty(QString newResize);
+		/// @fn void setResize(QString newResize);
 		/// @brief Writing method for resize
 		/// @param newResize New value for resizeProperty
-		void setResizeProperty(QString newResize);
-
-		/// @fn void syncResizeProperty();
-		/// @brief Updating the property resize
-		void syncResizeProperty();
-
-		/// @fn void syncResizeMember();
-		/// @brief Updating resizeMedia
-		void syncResizeMember();
+		void setResize(QString newResize);
 
 	/////////////////////
 	// Size management //

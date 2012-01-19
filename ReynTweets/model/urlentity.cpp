@@ -31,14 +31,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 URLEntity::URLEntity() :
 	ReynTweetsMappable(),
-	indexList(),
 	extractedURL(""),
 	displayedURL(""),
 	expandedURL(""),
 	indexes()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 URLEntity::~URLEntity() {}
@@ -66,7 +63,6 @@ void URLEntity::recopie(const URLEntity & entity) {
 	displayedURL = entity.displayedURL;
 	expandedURL = entity.expandedURL;
 	indexes = entity.indexes;
-	syncProperties();
 }
 
 // Output stream operator for serialization
@@ -76,46 +72,21 @@ QDataStream & operator<<(QDataStream & out, const URLEntity & entity) {
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
-	jsonStreamingIn(in, entity);
-
-	// Updating indexes
-	entity.syncMembers();
-
-	return in;
+	return jsonStreamingIn(in, entity);
 }
 
 ///////////////////////////
 // Properties management //
 ///////////////////////////
 
-// Filling serializable fields with thecorresponding  property maps
-void URLEntity::syncMembers() {
-	syncIndicesMember();
-}
-
-// Updating all the properties
-void URLEntity::syncProperties() {
-	syncIndicesProperty();
-}
-
 // Reading method for the property indices
-QVariantList URLEntity::getIndices() {
-	return indexList;
+QVariantList URLEntity::getIndicesProperty() {
+	return indexes.toVariant();
 }
 
 // Writing method for the property indices
 void URLEntity::setIndices(QVariantList newIndexList) {
-	indexList = newIndexList;
-}
-
-// Updating the property indices
-void URLEntity::syncIndicesProperty() {
-	indexList = indexes.toVariant();
-}
-
-// Updating the property indices
-void URLEntity::syncIndicesMember() {
-	indexes.fillWithVariant(indexList);
+	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -154,12 +125,11 @@ void URLEntity::setExpandedURL(QString newURL) {
 }
 
 // Reading indexes
-IndexBounds URLEntity::getIndexes() {
+IndexBounds URLEntity::getIndices() {
 	return indexes;
 }
 
 // Writing indexes
-void URLEntity::setIndexes(IndexBounds newIndexes) {
+void URLEntity::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
-	syncIndicesProperty();
 }

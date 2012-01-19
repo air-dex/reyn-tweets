@@ -34,9 +34,7 @@ ReynTweetsConfiguration::ReynTweetsConfiguration() :
 	ReynTweetsMappable(),
 	userAccountProperty(),
 	userAccount()
-{
-	syncProperties();
-}
+{}
 
 // Destructor
 ReynTweetsConfiguration::~ReynTweetsConfiguration() {}
@@ -55,50 +53,12 @@ const ReynTweetsConfiguration & ReynTweetsConfiguration::operator=(const ReynTwe
 // Copy of a ReynTweetsConfiguration
 void ReynTweetsConfiguration::recopie(const ReynTweetsConfiguration & configuration) {
 	userAccount = configuration.userAccount;
-	syncProperties();
 }
 
 // Serialization declaration
 void ReynTweetsConfiguration::initSystem() {
 	qRegisterMetaTypeStreamOperators<ReynTweetsConfiguration>("ReynTweetsConfiguration");
 	qMetaTypeId<ReynTweetsConfiguration>();
-}
-
-
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Filling serializable fields with the corresponding property maps
-void ReynTweetsConfiguration::syncMembers() {
-	syncUserAccountMember();
-}
-
-// Filling serializable fields with the corresponding property maps
-void ReynTweetsConfiguration::syncProperties() {
-	syncUserAccountProperty();
-	// Filling the user account
-	userAccount.fillWithVariant(userAccountProperty);
-}
-
-// Reading the property p_userAccount
-QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
-	return userAccountProperty;
-}
-
-// Writing the property p_userAccount
-void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
-	userAccountProperty = accountMap;
-}
-
-// Updating the property p_userAccount
-void ReynTweetsConfiguration::syncUserAccountProperty() {
-	userAccountProperty = userAccount.toVariant();
-}
-
-// Updating the property p_userAccount
-void ReynTweetsConfiguration::syncUserAccountMember() {
-	userAccount.fillWithVariant(userAccountProperty);
 }
 
 
@@ -117,12 +77,22 @@ QDataStream & operator<<(QDataStream & out,
 QDataStream & operator>>(QDataStream & in,
 						 ReynTweetsConfiguration & configuration)
 {
-	jsonStreamingIn(in, configuration);
+	return jsonStreamingIn(in, configuration);
+}
 
-	// Filling the user account
-	configuration.syncMembers();
 
-	return in;
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Reading the property p_userAccount
+QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
+	return userAccount.toVariant();
+}
+
+// Writing the property p_userAccount
+void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
+	userAccount.fillWithVariant(accountMap);
 }
 
 
@@ -160,5 +130,4 @@ UserAccount ReynTweetsConfiguration::getUserAccount() {
 // Setter on userAccount
 void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
-	syncUserAccountProperty();
 }

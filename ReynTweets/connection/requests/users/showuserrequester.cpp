@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "../../../tools/utils.hpp"
 
 // Constructor with the user ID
-ShowUserRequester::ShowUserRequester(OAuthManager authManager,
+ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 long id,
 									 bool entities) :
 	AuthenticationRequester(GET, TwitterURL::SHOW_USER_URL, authManager),

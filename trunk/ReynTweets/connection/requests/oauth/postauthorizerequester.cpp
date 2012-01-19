@@ -42,9 +42,9 @@ PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 // Building postParameters
 void PostAuthorizeRequester::buildPOSTParameters() {
 	postParameters.insert("authenticity_token",
-						  QString::fromAscii(oauthManager.getClearAuthenticityToken().data()));
+						  QString::fromAscii(oauthManager.getAuthenticityToken().data()));
 	getParameters.insert("oauth_token",
-						 QString::fromAscii(oauthManager.getClearOAuthToken().data()));
+						 QString::fromAscii(oauthManager.getOAuthToken().data()));
 
 	postParameters.insert("session[username_or_email]", login);
 	postParameters.insert("session[password]", password);
@@ -133,7 +133,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 
 							// Writing the verifier
 							if (treatmentOK) {
-								oauthManager.setClearVerifier(codeTag.toPlainText().toAscii());
+								oauthManager.setVerifier(codeTag.toPlainText().toAscii());
 								parsedResults.insert("denied", QVariant(false));
 								parsedResults.insert("rightCredentials", QVariant(true));
 							} else {
@@ -189,7 +189,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 																	  errTreatment);
 						parseOK = parseOK && treatmentOK;
 						errorMsg.append(errTreatment);
-						oauthManager.setClearOAuthToken(extractedCredential.toByteArray());
+						oauthManager.setOAuthToken(extractedCredential.toByteArray());
 
 						// Extracting the "oauth_verifier" parameter
 						extractedCredential = parser.extractParameter(resultMap,
@@ -198,7 +198,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 																	  errTreatment);
 						parseOK = parseOK && treatmentOK;
 						errorMsg.append(errTreatment);
-						oauthManager.setClearVerifier(extractedCredential.toByteArray());
+						oauthManager.setVerifier(extractedCredential.toByteArray());
 					} else {
 						// Error according to the observations done for the process
 						errorMsg.append("&lt;div class=\"happy notice callback\"&gt; HTML tag expected.\n");

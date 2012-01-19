@@ -144,7 +144,7 @@ void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
 									QByteArray consumerKey,
 									QByteArray consumerSecret)
 {
-	oauthManager.setOAuthToken(accessToken);
+	oauthManager.setOAuthToken(accessToken, false);
 	oauthManager.setOAuthSecret(tokenSecret);
 	oauthManager.setConsumerKey(consumerKey);
 	oauthManager.setConsumerSecret(consumerSecret);

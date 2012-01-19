@@ -127,7 +127,7 @@ window.onload = initDynSections;
 <a name="l00037"></a>00037 <span class="comment">// Building GET Parameters</span>
 <a name="l00038"></a><a class="code" href="class_authorize_requester.html#a04997f5c1dad90e7313204daf8e2d397">00038</a> <span class="keywordtype">void</span> <a class="code" href="class_authorize_requester.html#a04997f5c1dad90e7313204daf8e2d397" title="Method building GET Parameters.">AuthorizeRequester::buildGETParameters</a>() {
 <a name="l00039"></a>00039         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;oauth_token&quot;</span>,
-<a name="l00040"></a>00040                                                  QString::fromAscii(<a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a24a1e564bf3602e3ce2090e673156171" title="Getter on the OAuth Token.">getOAuthToken</a>().data()));
+<a name="l00040"></a>00040                                                  QString::fromAscii(<a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#acec92b2355ae874ec4a5893250d2a682" title="Getting the OAuth Token.">getOAuthToken</a>().data()));
 <a name="l00041"></a>00041 }
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043 <span class="comment">// Parsing results</span>
@@ -179,7 +179,7 @@ window.onload = initDynSections;
 <a name="l00089"></a>00089                                 authenticityTokenFound = <span class="keyword">true</span>;
 <a name="l00090"></a>00090                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!oauthTokenFound &amp;&amp; inputName == <span class="stringliteral">&quot;oauth_token&quot;</span>) {
 <a name="l00091"></a>00091                                 <span class="comment">// The oauth token is found (WTF) !</span>
-<a name="l00092"></a>00092                                 <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#aefc7fd2f62d37cb76344c8aad561f8c0" title="Setter on the OAuth token.">setOAuthToken</a>(inputValue.toAscii());
+<a name="l00092"></a>00092                                 <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(inputValue.toAscii());
 <a name="l00093"></a>00093                                 oauthTokenFound = <span class="keyword">true</span>;
 <a name="l00094"></a>00094                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!denyFound &amp;&amp; inputName == <span class="stringliteral">&quot;deny&quot;</span>) {
 <a name="l00095"></a>00095                                 <span class="comment">// The deny value is found !</span>
@@ -233,7 +233,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -124,7 +124,7 @@ window.onload = initDynSections;
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="comment">// Resetting the tokens.</span>
 <a name="l00036"></a><a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45">00036</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">OAuthProcess::resetTokens</a>() {
-<a name="l00037"></a>00037         <a class="code" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e" title="Entity calling Twitter.">twitter</a>.<a class="code" href="class_reyn_twitter_calls.html#a54e30146e3b00633b8bfed0cb0640ed0" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00037"></a>00037         <a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">ReynTwitterCalls::resetTokens</a>();
 <a name="l00038"></a>00038 }
 <a name="l00039"></a>00039 
 <a name="l00040"></a>00040 
@@ -284,7 +284,7 @@ window.onload = initDynSections;
 <a name="l00196"></a>00196 
 <a name="l00197"></a>00197                                         <span class="keywordflow">if</span> (resultMap.value(<span class="stringliteral">&quot;denied&quot;</span>).toBool()) {
 <a name="l00198"></a>00198                                                 <span class="comment">// Reyn Tweets is denied. The process ends.</span>
-<a name="l00199"></a>00199                                                 emit <a class="code" href="class_o_auth_process.html#ae367ea50bfc040bf14d60e7ce147b608" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>);
+<a name="l00199"></a>00199                                                 emit <a class="code" href="class_o_auth_process.html#adf8312f3ce6298fcf22c70ac79d5754b" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>);
 <a name="l00200"></a>00200                                         } <span class="keywordflow">else</span> {
 <a name="l00201"></a>00201                                                 <span class="comment">// Request tokens are authorized. Let&#39;s get access tokens.</span>
 <a name="l00202"></a>00202                                                 <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a>();
@@ -345,42 +345,54 @@ window.onload = initDynSections;
 <a name="l00257"></a>00257         <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType = result.<a class="code" href="class_request_result.html#a8c0701616a77999e3fa9ac6829261c67" title="Getter on requestSuccessful.">getErrorType</a>();
 <a name="l00258"></a>00258 
 <a name="l00259"></a>00259         <span class="keywordflow">switch</span> (errorType) {
-<a name="l00260"></a>00260                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>:
+<a name="l00260"></a>00260                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>: {
 <a name="l00261"></a>00261                         <span class="comment">// The authentication process is ended.</span>
-<a name="l00262"></a>00262                         emit <a class="code" href="class_o_auth_process.html#ae367ea50bfc040bf14d60e7ce147b608" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>);
-<a name="l00263"></a>00263                         <span class="keywordflow">break</span>;
-<a name="l00264"></a>00264 
-<a name="l00265"></a>00265                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54" title="Code indicating that there were an error while calling the Twitter API.">API_CALL</a>: {
-<a name="l00266"></a>00266                         <span class="comment">// Retrieving network informations</span>
-<a name="l00267"></a>00267                         <span class="keywordtype">int</span> httpCode = result.<a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542" title="Getter on httpCode.">getHttpCode</a>();
-<a name="l00268"></a>00268                         QString httpReason = result.<a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93" title="Getter on httpReason.">getHttpReason</a>();
+<a name="l00262"></a>00262 
+<a name="l00263"></a>00263                         <span class="comment">// Extract the different values</span>
+<a name="l00264"></a>00264                         QVariantMap resultMap = result.<a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0" title="Getter on real results.">getParsedResult</a>().toMap();
+<a name="l00265"></a>00265                         QByteArray <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a> = resultMap.value(<span class="stringliteral">&quot;oauth_token&quot;</span>).toByteArray();
+<a name="l00266"></a>00266                         QByteArray tokenSecret = resultMap.value(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>).toByteArray();
+<a name="l00267"></a>00267                         <span class="keywordtype">long</span> userID = resultMap.value(<span class="stringliteral">&quot;user_id&quot;</span>).toString().toLong();
+<a name="l00268"></a>00268                         QString screenName = resultMap.value(<span class="stringliteral">&quot;screen_name&quot;</span>).toString();
 <a name="l00269"></a>00269 
-<a name="l00270"></a>00270                         <span class="comment">// Building error message</span>
-<a name="l00271"></a>00271                         QString errorMsg = <span class="stringliteral">&quot;Network error &quot;</span>;
-<a name="l00272"></a>00272                         errorMsg.append(QString::number(httpCode))
-<a name="l00273"></a>00273                                         .append(<span class="stringliteral">&quot; : &quot;</span>)
-<a name="l00274"></a>00274                                         .append(httpReason)
-<a name="l00275"></a>00275                                         .append(<span class="stringliteral">&quot; :\n&quot;</span>)
-<a name="l00276"></a>00276                                         .append(result.<a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">getErrorMessage</a>())
-<a name="l00277"></a>00277                                         .append(<span class="stringliteral">&quot;.\n&quot;</span>);
-<a name="l00278"></a>00278                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">false</span>, errorMsg);
-<a name="l00279"></a>00279                 }<span class="keywordflow">break</span>;
-<a name="l00280"></a>00280 
-<a name="l00281"></a>00281                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2cf4c616514a232dd94f4f8f465cdb74" title="Code indicating that there was an error while parsing results under the form arg1=val1&amp;amp;arg2=val2...">OAUTH_PARSING</a>: {
+<a name="l00270"></a>00270                         emit <a class="code" href="class_o_auth_process.html#adf8312f3ce6298fcf22c70ac79d5754b" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>,
+<a name="l00271"></a>00271                                                                                            accessToken,
+<a name="l00272"></a>00272                                                                                            tokenSecret,
+<a name="l00273"></a>00273                                                                                            userID,
+<a name="l00274"></a>00274                                                                                            screenName);
+<a name="l00275"></a>00275                 }<span class="keywordflow">break</span>;
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54" title="Code indicating that there were an error while calling the Twitter API.">API_CALL</a>: {
+<a name="l00278"></a>00278                         <span class="comment">// Retrieving network informations</span>
+<a name="l00279"></a>00279                         <span class="keywordtype">int</span> httpCode = result.<a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542" title="Getter on httpCode.">getHttpCode</a>();
+<a name="l00280"></a>00280                         QString httpReason = result.<a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93" title="Getter on httpReason.">getHttpReason</a>();
+<a name="l00281"></a>00281 
 <a name="l00282"></a>00282                         <span class="comment">// Building error message</span>
-<a name="l00283"></a>00283                         QString errorMsg = <span class="stringliteral">&quot;Parsing error :\n&quot;</span>;
-<a name="l00284"></a>00284                         errorMsg.append(result.<a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3" title="Getter on the parsing error message.">getParsingErrorMessage</a>());
-<a name="l00285"></a>00285                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">false</span>, errorMsg);
-<a name="l00286"></a>00286                 }<span class="keywordflow">break</span>;
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288                 <span class="keywordflow">default</span>: {
-<a name="l00289"></a>00289                         <span class="comment">// Unexpected problem. Abort.</span>
-<a name="l00290"></a>00290                         QString errorMessage = <span class="stringliteral">&quot;Unexpected problem :\n&quot;</span>;
-<a name="l00291"></a>00291                         errorMessage.append(result.<a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">getErrorMessage</a>()).append(<span class="stringliteral">&quot;.\n&quot;</span>);
-<a name="l00292"></a>00292                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">true</span>, errorMessage);
-<a name="l00293"></a>00293                 }<span class="keywordflow">break</span>;
-<a name="l00294"></a>00294         }
-<a name="l00295"></a>00295 }
+<a name="l00283"></a>00283                         QString errorMsg = <span class="stringliteral">&quot;Network error &quot;</span>;
+<a name="l00284"></a>00284                         errorMsg.append(QString::number(httpCode))
+<a name="l00285"></a>00285                                         .append(<span class="stringliteral">&quot; : &quot;</span>)
+<a name="l00286"></a>00286                                         .append(httpReason)
+<a name="l00287"></a>00287                                         .append(<span class="stringliteral">&quot; :\n&quot;</span>)
+<a name="l00288"></a>00288                                         .append(result.<a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">getErrorMessage</a>())
+<a name="l00289"></a>00289                                         .append(<span class="stringliteral">&quot;.\n&quot;</span>);
+<a name="l00290"></a>00290                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">false</span>, errorMsg);
+<a name="l00291"></a>00291                 }<span class="keywordflow">break</span>;
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2cf4c616514a232dd94f4f8f465cdb74" title="Code indicating that there was an error while parsing results under the form arg1=val1&amp;amp;arg2=val2...">OAUTH_PARSING</a>: {
+<a name="l00294"></a>00294                         <span class="comment">// Building error message</span>
+<a name="l00295"></a>00295                         QString errorMsg = <span class="stringliteral">&quot;Parsing error :\n&quot;</span>;
+<a name="l00296"></a>00296                         errorMsg.append(result.<a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3" title="Getter on the parsing error message.">getParsingErrorMessage</a>());
+<a name="l00297"></a>00297                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">false</span>, errorMsg);
+<a name="l00298"></a>00298                 }<span class="keywordflow">break</span>;
+<a name="l00299"></a>00299 
+<a name="l00300"></a>00300                 <span class="keywordflow">default</span>: {
+<a name="l00301"></a>00301                         <span class="comment">// Unexpected problem. Abort.</span>
+<a name="l00302"></a>00302                         QString errorMessage = <span class="stringliteral">&quot;Unexpected problem :\n&quot;</span>;
+<a name="l00303"></a>00303                         errorMessage.append(result.<a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">getErrorMessage</a>()).append(<span class="stringliteral">&quot;.\n&quot;</span>);
+<a name="l00304"></a>00304                         emit <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keyword">true</span>, errorMessage);
+<a name="l00305"></a>00305                 }<span class="keywordflow">break</span>;
+<a name="l00306"></a>00306         }
+<a name="l00307"></a>00307 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -396,7 +408,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

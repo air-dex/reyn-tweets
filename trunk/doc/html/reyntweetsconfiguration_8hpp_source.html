@@ -176,29 +176,36 @@ window.onload = initDynSections;
 <a name="l00136"></a>00136 
 <a name="l00138"></a>00138         <span class="comment">// Configuration management //</span>
 <a name="l00140"></a>00140 <span class="comment"></span>
-<a name="l00141"></a>00141         public:
-<a name="l00145"></a>00145                 <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>();
-<a name="l00146"></a>00146 
-<a name="l00150"></a>00150                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a5288f81262b86ad67b24997f852b8353" title="Setter on the user account.">setUserAccount</a>(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account);
+<a name="l00141"></a>00141         protected:
+<a name="l00143"></a><a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e">00143</a>                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">REYN_TWEETS_CONSUMER_KEY</a>;
+<a name="l00144"></a>00144 
+<a name="l00146"></a><a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48">00146</a>                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">REYN_TWEETS_CONSUMER_SECRET</a>;
+<a name="l00147"></a>00147 
+<a name="l00149"></a><a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514">00149</a>                 <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
+<a name="l00150"></a>00150 
 <a name="l00151"></a>00151 
-<a name="l00152"></a>00152         protected:
-<a name="l00154"></a><a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e">00154</a>                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">REYN_TWEETS_CONSUMER_KEY</a>;
-<a name="l00155"></a>00155 
-<a name="l00157"></a><a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48">00157</a>                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">REYN_TWEETS_CONSUMER_SECRET</a>;
-<a name="l00158"></a>00158 
-<a name="l00160"></a><a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514">00160</a>                 <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
-<a name="l00161"></a>00161 };
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 <span class="comment">// Serialization of ReynTweetsConfiguration</span>
-<a name="l00164"></a>00164 Q_DECLARE_METATYPE(<a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a>)
-<a name="l00165"></a>00165 
-<a name="l00172"></a>00172 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out,
-<a name="l00173"></a>00173                                                  const <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration);
-<a name="l00174"></a>00174 
-<a name="l00181"></a>00181 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in,
-<a name="l00182"></a>00182                                                  <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration);
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184 <span class="preprocessor">#endif // REYNTWEETSCONFIGURATION_HPP</span>
+<a name="l00153"></a>00153         <span class="comment">// Getters and setters //</span>
+<a name="l00155"></a>00155 <span class="comment"></span>
+<a name="l00156"></a>00156         public:
+<a name="l00160"></a>00160                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f" title="Getting the consumer key.">getConsumerKey</a>();
+<a name="l00161"></a>00161 
+<a name="l00165"></a>00165                 static QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e" title="Getting the consumer secret.">getConsumerSecret</a>();
+<a name="l00166"></a>00166 
+<a name="l00170"></a>00170                 <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>();
+<a name="l00171"></a>00171 
+<a name="l00175"></a>00175                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a5288f81262b86ad67b24997f852b8353" title="Setter on the user account.">setUserAccount</a>(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account);
+<a name="l00176"></a>00176 };
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 <span class="comment">// Serialization of ReynTweetsConfiguration</span>
+<a name="l00179"></a>00179 Q_DECLARE_METATYPE(<a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a>)
+<a name="l00180"></a>00180 
+<a name="l00187"></a>00187 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out,
+<a name="l00188"></a>00188                                                  const <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration);
+<a name="l00189"></a>00189 
+<a name="l00196"></a>00196 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in,
+<a name="l00197"></a>00197                                                  <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration);
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199 <span class="preprocessor">#endif // REYNTWEETSCONFIGURATION_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -214,7 +221,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:15 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

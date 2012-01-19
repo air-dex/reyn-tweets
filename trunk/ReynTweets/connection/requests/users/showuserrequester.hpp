@@ -41,13 +41,14 @@ class ShowUserRequester : public AuthenticationRequester
 						  long id,
 						  bool entities = true);
 
-		/// @fn ShowUserRequester(OAuthManager authManager,
+		/// @fn ShowUserRequester(OAuthManager & authManager,
 		///						  QString name,
 		///						  bool entities = true);
 		/// @brief Constructor with the screen name
+		/// @param authManager OAuthManager for authentication
 		/// @param name Screen name
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(OAuthManager authManager,
+		ShowUserRequester(OAuthManager & authManager,
 						  QString name,
 						  bool entities = true);
 

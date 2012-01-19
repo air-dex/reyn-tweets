@@ -148,87 +148,84 @@ window.onload = initDynSections;
 <a name="l00089"></a>00089         <span class="comment">// Properties management //</span>
 <a name="l00091"></a>00091 <span class="comment"></span>
 <a name="l00092"></a>00092         <span class="keyword">protected</span>:
-<a name="l00095"></a>00095                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa96ed9e866b2b976549da62d6d3a0853" title="Updating the field members.">syncMembers</a>();
-<a name="l00096"></a>00096 
-<a name="l00099"></a>00099                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102" title="Updating all the properties.">syncProperties</a>();
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101                 <span class="comment">// url</span>
-<a name="l00104"></a>00104 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607" title="Extracted URL.">url</a>
-<a name="l00105"></a>00105                                    READ <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">getURL</a>
-<a name="l00106"></a><a class="code" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607">00106</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">setURL</a>)
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108                 <span class="comment">// displayed_url</span>
-<a name="l00111"></a>00111 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a89b0bd3d9bd2482dee784c18ba282832" title="Displayed URL.">displayed_url</a>
-<a name="l00112"></a>00112                                    READ <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">getDisplayedURL</a>
-<a name="l00113"></a><a class="code" href="class_u_r_l_entity.html#a89b0bd3d9bd2482dee784c18ba282832">00113</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">setDisplayedURL</a>)
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115                 <span class="comment">// expanded_url</span>
-<a name="l00118"></a>00118 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156" title="Expanded URL.">expanded_url</a>
-<a name="l00119"></a>00119                                    READ <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">getExpandedURL</a>
-<a name="l00120"></a><a class="code" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156">00120</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">setExpandedURL</a>)
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122                 <span class="comment">// indices</span>
-<a name="l00125"></a>00125 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_u_r_l_entity.html#aa81bc84943d7d42f35bcf4ef6d215784" title="Indexes.">indices</a>
-<a name="l00126"></a>00126                                    READ <a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f" title="Reading method for the property indices.">getIndices</a>
-<a name="l00127"></a><a class="code" href="class_u_r_l_entity.html#aa81bc84943d7d42f35bcf4ef6d215784">00127</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">setIndices</a>)
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129                 
-<a name="l00130"></a><a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3">00130</a>                 QVariantList <a class="code" href="class_u_r_l_entity.html#a5fdc4de6ecec4adcdc837d8ffc4683c3" title="Representation of the property thumb.">indexList</a>;
+<a name="l00093"></a>00093                 <span class="comment">// url</span>
+<a name="l00096"></a>00096 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607" title="Extracted URL.">url</a>
+<a name="l00097"></a>00097                                    READ <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">getURL</a>
+<a name="l00098"></a><a class="code" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607">00098</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">setURL</a>)
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100                 <span class="comment">// displayed_url</span>
+<a name="l00103"></a>00103 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a89b0bd3d9bd2482dee784c18ba282832" title="Displayed URL.">displayed_url</a>
+<a name="l00104"></a>00104                                    READ <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">getDisplayedURL</a>
+<a name="l00105"></a><a class="code" href="class_u_r_l_entity.html#a89b0bd3d9bd2482dee784c18ba282832">00105</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">setDisplayedURL</a>)
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107                 <span class="comment">// expanded_url</span>
+<a name="l00110"></a>00110 <span class="comment"></span>                Q_PROPERTY(QString <a class="code" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156" title="Expanded URL.">expanded_url</a>
+<a name="l00111"></a>00111                                    READ <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">getExpandedURL</a>
+<a name="l00112"></a><a class="code" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156">00112</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">setExpandedURL</a>)
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114                 <span class="comment">// indices</span>
+<a name="l00117"></a>00117 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_u_r_l_entity.html#aa81bc84943d7d42f35bcf4ef6d215784" title="Indexes.">indices</a>
+<a name="l00118"></a>00118                                    READ <a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6" title="Reading method for the property indices.">getIndicesProperty</a>
+<a name="l00119"></a><a class="code" href="class_u_r_l_entity.html#aa81bc84943d7d42f35bcf4ef6d215784">00119</a>                                    WRITE <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">setIndices</a>)
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121                 
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124                 QVariantList <a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6" title="Reading method for the property indices.">getIndicesProperty</a>();
+<a name="l00125"></a>00125 
+<a name="l00129"></a>00129                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">setIndices</a>(QVariantList newIndexList);
+<a name="l00130"></a>00130 
 <a name="l00131"></a>00131 
-<a name="l00135"></a>00135                 QVariantList <a class="code" href="class_u_r_l_entity.html#a07b4babbcafd9d92366c89d722c7dd9f" title="Reading method for the property indices.">getIndices</a>();
-<a name="l00136"></a>00136 
-<a name="l00140"></a>00140                 <span class="keywordtype">void</span> setIndices(QVariantList newIndexList);
-<a name="l00141"></a>00141 
-<a name="l00144"></a>00144                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a9733e42baaf1c17aa0e5f4514e61242b" title="Updating the property indices.">syncIndicesProperty</a>();
+<a name="l00133"></a>00133         <span class="comment">// URL management //</span>
+<a name="l00135"></a>00135 <span class="comment"></span>
+<a name="l00136"></a>00136         <span class="keyword">protected</span>:
+<a name="l00138"></a><a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6">00138</a>                 QString <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
+<a name="l00139"></a>00139 
+<a name="l00141"></a><a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b">00141</a>                 QString <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
+<a name="l00142"></a>00142 
+<a name="l00144"></a><a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94">00144</a>                 QString <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
 <a name="l00145"></a>00145 
-<a name="l00148"></a>00148                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac588cff18b04865d88c2db226f00a28f" title="Updating the indexes attribute.">syncIndicesMember</a>();
+<a name="l00147"></a><a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6">00147</a>                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
+<a name="l00148"></a>00148 
 <a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00152"></a>00152         <span class="comment">// URL management //</span>
-<a name="l00154"></a>00154 <span class="comment"></span>
-<a name="l00155"></a>00155         protected:
-<a name="l00157"></a><a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6">00157</a>                 QString <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
-<a name="l00158"></a>00158 
-<a name="l00160"></a><a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b">00160</a>                 QString <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
-<a name="l00161"></a>00161 
-<a name="l00163"></a><a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94">00163</a>                 QString <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
+<a name="l00151"></a>00151         <span class="comment">// Getter and setters //</span>
+<a name="l00153"></a>00153 <span class="comment"></span>
+<a name="l00154"></a>00154         <span class="keyword">public</span>:
+<a name="l00158"></a>00158                 QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">getURL</a>();
+<a name="l00159"></a>00159 
+<a name="l00163"></a>00163                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">setURL</a>(QString newURL);
 <a name="l00164"></a>00164 
-<a name="l00166"></a><a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6">00166</a>                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168 
-<a name="l00170"></a>00170         <span class="comment">// Getter and setters //</span>
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173         public:
-<a name="l00177"></a>00177                 QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">getURL</a>();
-<a name="l00178"></a>00178 
-<a name="l00182"></a>00182                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">setURL</a>(QString newURL);
-<a name="l00183"></a>00183 
-<a name="l00187"></a>00187                 QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">getDisplayedURL</a>();
-<a name="l00188"></a>00188 
-<a name="l00192"></a>00192                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">setDisplayedURL</a>(QString newURL);
-<a name="l00193"></a>00193 
-<a name="l00197"></a>00197                 QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">getExpandedURL</a>();
+<a name="l00168"></a>00168                 QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">getDisplayedURL</a>();
+<a name="l00169"></a>00169 
+<a name="l00173"></a>00173                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">setDisplayedURL</a>(QString newURL);
+<a name="l00174"></a>00174 
+<a name="l00178"></a>00178                 QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">getExpandedURL</a>();
+<a name="l00179"></a>00179 
+<a name="l00183"></a>00183                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">setExpandedURL</a>(QString newURL);
+<a name="l00184"></a>00184 
+<a name="l00188"></a>00188                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c" title="Reading indexes.">getIndices</a>();
+<a name="l00189"></a>00189 
+<a name="l00193"></a>00193                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes);
+<a name="l00194"></a>00194 };
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196 <span class="comment">// Serialization of MediaSizes</span>
+<a name="l00197"></a>00197 Q_DECLARE_METATYPE(<a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>)
 <a name="l00198"></a>00198 
-<a name="l00202"></a>00202                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">setExpandedURL</a>(QString newURL);
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202 
 <a name="l00203"></a>00203 
-<a name="l00207"></a>00207                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#a37eb4f09f10ac6bf5e6ce8d856780fcc" title="Reading indexes.">getIndexes</a>();
-<a name="l00208"></a>00208 
-<a name="l00212"></a>00212                 <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a7d631599bbf98a7b85b2ce5d19bad149" title="Writing indexes.">setIndexes</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes);
-<a name="l00213"></a>00213 };
-<a name="l00214"></a>00214 
-<a name="l00215"></a>00215 <span class="comment">// Serialization of MediaSizes</span>
-<a name="l00216"></a>00216 Q_DECLARE_METATYPE(<a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>)
+<a name="l00204"></a>00204 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity);
+<a name="l00205"></a>00205 
+<a name="l00211"></a>00211 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity);
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213 
+<a name="l00216"></a><a class="code" href="urlentity_8hpp.html#a811f732746e492bf2ee51122ccd0eadf">00216</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">URLEntityList</a>;
 <a name="l00217"></a>00217 
-<a name="l00223"></a>00223 QDataStream &amp; operator&lt;&lt;(QDataStream &amp; out, const <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity);
-<a name="l00224"></a>00224 
-<a name="l00230"></a>00230 QDataStream &amp; operator&gt;&gt;(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity);
-<a name="l00231"></a>00231 
-<a name="l00232"></a>00232 
-<a name="l00235"></a><a class="code" href="urlentity_8hpp.html#a811f732746e492bf2ee51122ccd0eadf">00235</a> typedef <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a>&lt;<a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>&gt; <a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">URLEntityList</a>;
-<a name="l00236"></a>00236 
-<a name="l00237"></a>00237 
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239 <span class="preprocessor">#endif // URLENTITY_HPP</span>
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219 
+<a name="l00220"></a>00220 <span class="preprocessor">#endif // URLENTITY_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -244,7 +241,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

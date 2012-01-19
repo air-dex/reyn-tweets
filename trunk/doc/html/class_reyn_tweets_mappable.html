@@ -121,18 +121,14 @@ Inheritance diagram for ReynTweetsMappable:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling a serializable object with the informations contained in a map.  <a href="#afcd6b562a33e4b8d9edf8145cdaa58d8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d">toVariant</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting the object into a QVariantMap.  <a href="#a88cff280495661b2e368f1cff5c2ba5d"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac">syncMembers</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syncing members with properties to serialize.  <a href="#a37dc2ed6ad65937f9ea193f0f7899cac"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95">syncProperties</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syncing properties to serialize with the corresponding members.  <a href="#a2c952af759b573e2346b4c87c3fdef95"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Serializable objects that needed to be converted into a QVariantMap. </p>
-<p>In practice, QJSON often parses replies in QVariantMaps whose keys are the name of the different fields of the replies. The values corresponding to the fields are stocked in QVariant objects. Complex field values are stored in QVariantLists or QVariantMaps.</p>
-<p>But ReynTweets do not manipulate QVariantMaps with fields but complex objects with values which gets a meaning (ex. : a tweet with a text (string), an ID (number), a writer. Not a QVariantMap with fields named "text", "id" or "user"). Informations needed by these objects are stored in the QVariantMaps made by QJSON so the QVariantMaps have to be converted in these complex objects. Moreover, the objects may be serialized and QJSON can only manipulate simple types or QVariantMaps (or QVariantLists for lists with things whose type can be manipulated by QJSON). That's why the complex objects needs to be converted into QVariantMaps.</p>
+<p>In practice, QJSON parses replies in QVariantMaps whose keys are the name of the different fields of the replies. The values corresponding to the fields are stocked in QVariant objects. Complex field values are stored in QVariantLists or QVariantMaps.</p>
+<p>But ReynTweets do not manipulate QVariantMaps with fields but complex model objects with values which get a meaning, just like a tweet with a text (string), an ID(number), a writer. Not a QVariantMap with fields named "text", "id" or "user". Informations needed by these objects are stored in the QVariantMaps made by QJSON. As a consequence, the QVariantMaps replies have to be converted in these model objects.<br/>
+ Moreover, the model objects may be serialized and QJSON can only manipulate simple types or QVariantMaps (or QVariantLists for lists with things whose type can be manipulated by QJSON). That's why the complex model objects needs to be converted into QVariantMaps.</p>
 <p>In the complex objects, the fields of QVariantMaps are stocked in QObject properties which are represented by class members. Types of the class members are the type of the QVariant value of the field.</p>
-<p>However, some properties gets a particular meaning and cannot be represented with a simple type manipulable by QJSON. These fields get an equivalent member (often a <a class="el" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a> - the class was made for them) that are synced with their corresponding properties via two methods called <code> <a class="el" href="class_reyn_tweets_mappable.html#a37dc2ed6ad65937f9ea193f0f7899cac" title="Syncing members with properties to serialize.">syncMembers()</a></code> and <code><a class="el" href="class_reyn_tweets_mappable.html#a2c952af759b573e2346b4c87c3fdef95" title="Syncing properties to serialize with the corresponding members.">syncProperties()</a></code>. </p>
+<p>However, some properties gets a particular meaning and cannot be represented with a simple type manipulable by QJSON. These fields get an equivalent member (often a <a class="el" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a> - the class was made for them) that corresponds to a QVariantList or a QVariantMap property. </p>
 
 <p>Definition at line <a class="el" href="reyntweetsmappable_8hpp_source.html#l00058">58</a> of file <a class="el" href="reyntweetsmappable_8hpp_source.html">reyntweetsmappable.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
@@ -163,48 +159,6 @@ Inheritance diagram for ReynTweetsMappable:</div>
 <p>Implements <a class="el" href="class_reyn_tweets_serializable.html#a86901c3fe1d9f12d7b87731967b00df1">ReynTweetsSerializable&lt; QVariantMap &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="reyntweetsmappable_8cpp_source.html#l00033">33</a> of file <a class="el" href="reyntweetsmappable_8cpp_source.html">reyntweetsmappable.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a37dc2ed6ad65937f9ea193f0f7899cac"></a><!-- doxytag: member="ReynTweetsMappable::syncMembers" ref="a37dc2ed6ad65937f9ea193f0f7899cac" args="()=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReynTweetsMappable::syncMembers </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected, pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Syncing members with properties to serialize. </p>
-
-<p>Implemented in <a class="el" href="class_reyn_tweets_configuration.html#a35742b2d0664b06198ba2a1afd0613da">ReynTweetsConfiguration</a>, <a class="el" href="class_user_account.html#a4c5810940d8d567ce6fa8d52b4266cc6">UserAccount</a>, <a class="el" href="class_hashtag.html#a36180985f54c66b530f6e6da14ef4394">Hashtag</a>, <a class="el" href="class_media.html#a73b9877bb39eb5eda9c78d68f7a1daee">Media</a>, <a class="el" href="class_media_size.html#a5c827ed87074f5e8016b5bb4dfe1f618">MediaSize</a>, <a class="el" href="class_media_sizes.html#a2283f29a77e22d1fda5e4af5a13ea8db">MediaSizes</a>, <a class="el" href="class_tweet.html#ad63f70c3f889275aa341b22cb5854bfe">Tweet</a>, <a class="el" href="class_tweet_entities.html#a605860e94b464775825bddd5abdc0e20">TweetEntities</a>, <a class="el" href="class_u_r_l_entity.html#aa96ed9e866b2b976549da62d6d3a0853">URLEntity</a>, <a class="el" href="class_user.html#a97e7e13da2de4a5cab4198dc8d96272b">User</a>, <a class="el" href="class_user_infos.html#acdaadb716e8cf70ac261382a22997ac2">UserInfos</a>, and <a class="el" href="class_user_mention.html#a9222c4737f64a0501496a3ed163b4bf6">UserMention</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2c952af759b573e2346b4c87c3fdef95"></a><!-- doxytag: member="ReynTweetsMappable::syncProperties" ref="a2c952af759b573e2346b4c87c3fdef95" args="()=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReynTweetsMappable::syncProperties </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected, pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Syncing properties to serialize with the corresponding members. </p>
-
-<p>Implemented in <a class="el" href="class_reyn_tweets_configuration.html#a445ae0f24b667aa19544557e1c42b5a9">ReynTweetsConfiguration</a>, <a class="el" href="class_user_account.html#a2a142346125e17e80061d6f6650eb1eb">UserAccount</a>, <a class="el" href="class_hashtag.html#aaf09beebfc06653b407920def1c9490b">Hashtag</a>, <a class="el" href="class_media.html#a88cd3cf3715837858a249d38ae92db5e">Media</a>, <a class="el" href="class_media_size.html#a016046458c4baac7f98679e9200d9775">MediaSize</a>, <a class="el" href="class_media_sizes.html#a0a0378c546b94ed55e2bfb3d009ba40f">MediaSizes</a>, <a class="el" href="class_tweet.html#a7a676dd3b67d7fb2461ea0b44489e537">Tweet</a>, <a class="el" href="class_tweet_entities.html#a716c6dd33809525785f53e1c90b840d6">TweetEntities</a>, <a class="el" href="class_u_r_l_entity.html#a905e818a2dbf42249c01564365216102">URLEntity</a>, <a class="el" href="class_user.html#a0b035d37b4907d05602bd95602c4baa2">User</a>, <a class="el" href="class_user_infos.html#a49544f91f6d93c003a980c0667a6a6a9">UserInfos</a>, and <a class="el" href="class_user_mention.html#ab7c569921fd3a5b93444d9d90765897d">UserMention</a>.</p>
 
 </div>
 </div>
@@ -251,7 +205,7 @@ Inheritance diagram for ReynTweetsMappable:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -120,7 +120,7 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 <span class="comment">// HMAC-SHA1 algorithm for signatures.</span>
-<a name="l00033"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00033</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found...">hmacSha1</a>(QByteArray key, QByteArray baseString) {
+<a name="l00033"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00033</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures.">hmacSha1</a>(QByteArray key, QByteArray baseString) {
 <a name="l00034"></a>00034         <span class="keywordtype">int</span> blockSize = 64; <span class="comment">// HMAC-SHA-1 block size, defined in SHA-1 standard</span>
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036         <span class="keywordflow">if</span> (key.length() &gt; blockSize) {
@@ -166,41 +166,57 @@ window.onload = initDynSections;
 <a name="l00076"></a>00076 }
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 <span class="comment">// Exclusive OR</span>
-<a name="l00079"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00079</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#adf962ce37dadd55a872a51c1e554193d" title="Logical XOR :a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
+<a name="l00079"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00079</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#a8d07c7275f142aa6d74f95a134f8a863" title="Logical XOR : a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
 <a name="l00080"></a>00080         <span class="keywordflow">return</span>  a &amp;&amp; !b || !a &amp;&amp; b;
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00085"></a>00085 <span class="comment">// JSON Streaming //</span>
-<a name="l00087"></a>00087 <span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00089"></a><a class="code" href="utils_8hpp.html#a060e8578c6b3529a70a785950f60a2b8">00089</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream) {
-<a name="l00090"></a>00090         <span class="comment">// Converting the object into a JSON file</span>
-<a name="l00091"></a>00091         QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&amp;objectToStream);
-<a name="l00092"></a>00092         QJson::Serializer serializer;
-<a name="l00093"></a>00093         QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <span class="comment">// Putting it in the stream</span>
-<a name="l00096"></a>00096         out &lt;&lt; jsonedAccount;
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098         <span class="keywordflow">return</span> out;
-<a name="l00099"></a>00099 }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00102"></a><a class="code" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">00102</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream) {
-<a name="l00103"></a>00103         QByteArray jsonedAccount = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00104"></a>00104         in &gt;&gt; jsonedAccount;
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106         QJson::Parser parser;
-<a name="l00107"></a>00107         <span class="keywordtype">bool</span> parseOK;
-<a name="l00108"></a>00108         QVariant accountVariant = parser.parse(jsonedAccount, &amp;parseOK);
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <span class="keywordflow">if</span> (parseOK) {
-<a name="l00111"></a>00111                 QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &amp;objectToStream);
-<a name="l00112"></a>00112         }
+<a name="l00083"></a>00083 <span class="comment">// Converting a bool into a QString</span>
+<a name="l00084"></a><a class="code" href="utils_8hpp.html#a116f736d8b7083822a97783b1e85c052">00084</a> QString <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<span class="keywordtype">bool</span> b) {
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> b ? <span class="stringliteral">&quot;true&quot;</span> : <span class="stringliteral">&quot;false&quot;</span>;
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="comment">// Converting a String into a QColor.</span>
+<a name="l00089"></a><a class="code" href="utils_8hpp.html#a6544a05f2ef240fa28d87dcb9971f9db">00089</a> QColor <a class="code" href="utils_8cpp.html#a6544a05f2ef240fa28d87dcb9971f9db" title="Converting a String into a QColor.">string2color</a>(QString coloredString) {
+<a name="l00090"></a>00090         <span class="comment">// Add a &#39;#&#39; at the beginning if not present</span>
+<a name="l00091"></a>00091         <span class="keyword">static</span> QChar sharp(<span class="charliteral">&#39;#&#39;</span>);
+<a name="l00092"></a>00092         <span class="keywordflow">if</span> (!coloredString.startsWith(sharp)) {
+<a name="l00093"></a>00093                 coloredString.prepend(sharp);
+<a name="l00094"></a>00094         }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> QColor(coloredString);
+<a name="l00097"></a>00097 }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00101"></a>00101 <span class="comment">// JSON Streaming //</span>
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00105"></a><a class="code" href="utils_8hpp.html#a060e8578c6b3529a70a785950f60a2b8">00105</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream) {
+<a name="l00106"></a>00106         <span class="comment">// Converting the object into a JSON file</span>
+<a name="l00107"></a>00107         QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&amp;objectToStream);
+<a name="l00108"></a>00108         QJson::Serializer serializer;
+<a name="l00109"></a>00109         QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111         <span class="comment">// Putting it in the stream</span>
+<a name="l00112"></a>00112         out &lt;&lt; jsonedAccount;
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114         <span class="keywordflow">return</span> in;
+<a name="l00114"></a>00114         <span class="keywordflow">return</span> out;
 <a name="l00115"></a>00115 }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00118"></a><a class="code" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">00118</a> QDataStream &amp; <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream) {
+<a name="l00119"></a>00119         QByteArray jsonedAccount = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00120"></a>00120         in &gt;&gt; jsonedAccount;
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         QJson::Parser parser;
+<a name="l00123"></a>00123         <span class="keywordtype">bool</span> parseOK;
+<a name="l00124"></a>00124         QVariant accountVariant = parser.parse(jsonedAccount, &amp;parseOK);
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126         <span class="keywordflow">if</span> (parseOK) {
+<a name="l00127"></a>00127                 QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &amp;objectToStream);
+<a name="l00128"></a>00128         }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130         <span class="keywordflow">return</span> in;
+<a name="l00131"></a>00131 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -216,7 +232,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

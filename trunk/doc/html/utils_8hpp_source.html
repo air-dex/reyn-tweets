@@ -116,24 +116,29 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 <span class="preprocessor"></span><span class="preprocessor">#define UTILS_HPP</span>
 <a name="l00027"></a>00027 <span class="preprocessor"></span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QByteArray&gt;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QDataStream&gt;</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QString&gt;</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;../connection/requesttype.hpp&quot;</span>
-<a name="l00032"></a>00032 
-<a name="l00042"></a>00042 QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures. Its implementation for Reyn Tweets was found...">hmacSha1</a>(QByteArray key, QByteArray baseString);
-<a name="l00043"></a>00043 
-<a name="l00048"></a>00048 QString <a class="code" href="utils_8cpp.html#a7761eeb958785fd8489d741e7abf3281" title="Converting a RequestType into a QString.">requestTypeToString</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type);
-<a name="l00049"></a>00049 
-<a name="l00054"></a>00054 <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#adf962ce37dadd55a872a51c1e554193d" title="Logical XOR :a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b);
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 
-<a name="l00058"></a>00058 <span class="comment">// JSON Streaming //</span>
-<a name="l00060"></a>00060 <span class="comment"></span>
-<a name="l00066"></a>00066 QDataStream &amp; <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream);
-<a name="l00067"></a>00067 
-<a name="l00073"></a>00073 QDataStream &amp; <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream);
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="preprocessor">#endif // UTILS_HPP</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QColor&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QDataStream&gt;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;QString&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;../connection/requesttype.hpp&quot;</span>
+<a name="l00033"></a>00033 
+<a name="l00044"></a>00044 QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures.">hmacSha1</a>(QByteArray key, QByteArray baseString);
+<a name="l00045"></a>00045 
+<a name="l00050"></a>00050 QString <a class="code" href="utils_8cpp.html#a7761eeb958785fd8489d741e7abf3281" title="Converting a RequestType into a QString.">requestTypeToString</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type);
+<a name="l00051"></a>00051 
+<a name="l00056"></a>00056 <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#a8d07c7275f142aa6d74f95a134f8a863" title="Logical XOR : a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b);
+<a name="l00057"></a>00057 
+<a name="l00062"></a>00062 QString <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<span class="keywordtype">bool</span> b);
+<a name="l00063"></a>00063 
+<a name="l00071"></a>00071 QColor <a class="code" href="utils_8cpp.html#a6544a05f2ef240fa28d87dcb9971f9db" title="Converting a String into a QColor.">string2color</a>(QString coloredString);
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 
+<a name="l00075"></a>00075 <span class="comment">// JSON Streaming //</span>
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00083"></a>00083 QDataStream &amp; <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream);
+<a name="l00084"></a>00084 
+<a name="l00090"></a>00090 QDataStream &amp; <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream);
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="preprocessor">#endif // UTILS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -149,7 +154,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jan 15 04:29:16 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -1,5 +1,5 @@
-/// @file launchresult.qml
-/// @brief Header of LaunchingWidget
+/// @file launchresult.hpp
+/// @brief Header of LaunchingWidget and SaveConfResult
 /// @author Romain DUCHER
 
 /*

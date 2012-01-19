@@ -12,6 +12,13 @@ Où en est Reyn Tweets ?
   * Fix du crash sur le lancement de Reyn Tweets après la refonte de RequestResult (issue 8).
   * Passage à QtCreator 2.4.0 : vérifier qu'il n'y a pas eu de problèmes.
   * _Authentification avec OAuth :_ [https://code.google.com/p/reyn-tweets/wiki/OAuthWork?ts=1325950615&updated=OAuthWork]
+  * Sauvegarde des données d'une utilisation sur l'autre
+    * Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
+    * Mise en place d'une architecture pour ça.
+    * Coder
+  * UI quand on arrive sur l'application :
+    * Ecrans d'autorisation à manipuler le compte Twitter.
+    * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
     * Automatisation de la génération de documentation.
@@ -26,14 +33,10 @@ Où en est Reyn Tweets ?
 == Ce qui reste à faire ==
 
   # Sauvegarde des données d'une utilisation sur l'autre
-    # Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
     # Chargement des données dans l'application et leur sauvegarde.
-    # Mise en place d'une architecture pour ça.
-    # Coder
     # Tester
   # UI quand on arrive sur l'application :
-    # Ecrans d'autorisation à manipuler le compte Twitter.
-    # Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
+    # Rendre le tout plus ergonomique, avec moins de popups, par exemple.
   # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
     # Faire du rangement dans les classes de modèle
@@ -46,5 +49,8 @@ Où en est Reyn Tweets ?
     # Rendre la popup de login modale
   # Portage sur Symbian
   # Revue de code
-    # TwitterCommunicator pour requêtes authentifiées
+    # TwitterCommunicator pour requêtes authentifiées (issue 33)
+    # Remontage des tokens (issue 46)
+    # Sérialisation et requesters (issue 44)
+    # ... (cf. bug reporter)
   # Releaser

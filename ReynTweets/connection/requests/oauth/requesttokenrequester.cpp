@@ -57,7 +57,7 @@ QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsin
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	oauthManager.setClearOAuthToken(extractedCredential.toByteArray());
+	oauthManager.setOAuthToken(extractedCredential.toByteArray());
 
 
 	// Extracting the "oauth_token_secret" parameter
@@ -67,7 +67,7 @@ QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsin
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	oauthManager.setClearOAuthSecret(extractedCredential.toByteArray());
+	oauthManager.setOAuthSecret(extractedCredential.toByteArray());
 
 
 	// Rewriting the "oauth_callback_confirmed" parameter as a boolean

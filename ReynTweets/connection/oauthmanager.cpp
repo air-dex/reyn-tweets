@@ -69,47 +69,37 @@ void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
 }
 
 // Getter on the OAuth Token
-QByteArray OAuthManager::getClearOAuthToken() {
-	return QByteArray::fromBase64(oauthToken);
+QByteArray OAuthManager::getOAuthToken(bool isClear) {
+	return isClear ? QByteArray::fromBase64(oauthToken) : oauthToken;
 }
 
 // Setter on the OAuth token
-void OAuthManager::setOAuthToken(QByteArray authToken) {
-	oauthToken = authToken;
-}
-
-// Setter on the OAuth token
-void OAuthManager::setClearOAuthToken(QByteArray authToken) {
-	oauthToken = authToken.toBase64();
+void OAuthManager::setOAuthToken(QByteArray authToken, bool isClear) {
+	oauthToken = isClear ? authToken.toBase64() : authToken;
 }
 
 // Setter on the OAuth secret
-void OAuthManager::setOAuthSecret(QByteArray authSecret) {
-	oauthSecret = authSecret;
-}
-
-// Setter on the OAuth secret
-void OAuthManager::setClearOAuthSecret(QByteArray authSecret) {
-	oauthSecret = authSecret.toBase64();
+void OAuthManager::setOAuthSecret(QByteArray authSecret, bool isClear) {
+	oauthSecret = isClear ? authSecret.toBase64() : authSecret;
 }
 
 // Getter on the verifier
-QByteArray OAuthManager::getClearVerifier() {
-	return QByteArray::fromBase64(oauthVerifier);
+QByteArray OAuthManager::getVerifier(bool isClear) {
+	return isClear ? QByteArray::fromBase64(oauthVerifier) : oauthVerifier;
 }
 
 // Setter on the verifier
-void OAuthManager::setClearVerifier(QByteArray verifier) {
+void OAuthManager::setVerifier(QByteArray verifier) {
 	oauthVerifier = verifier.toBase64();
 }
 
 // Getter on the Authenticity Token
-QByteArray OAuthManager::getClearAuthenticityToken() {
-	return QByteArray::fromBase64(authenticityToken);
+QByteArray OAuthManager::getAuthenticityToken(bool isClear) {
+	return isClear ? QByteArray::fromBase64(authenticityToken) : authenticityToken;
 }
 
 // Setter on the Authenticity Token
-void OAuthManager::setClearAuthenticityToken(QByteArray authToken) {
+void OAuthManager::setAuthenticityToken(QByteArray authToken) {
 	authenticityToken = authToken.toBase64();
 }
 

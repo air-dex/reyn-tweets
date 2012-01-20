@@ -1,5 +1,5 @@
 /// @file hashtaglist.cpp
-/// @brief Specialisations for HashtagList
+/// @brief Implementation of HashtagList
 /// @author Romain Ducher
 
 /*
@@ -23,10 +23,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "hashtaglist.hpp"
 
-/////////////
-// Coplien //
-/////////////
-
 // Constructor
 HashtagList::HashtagList() :
 	ReynTweetsListable<Hashtag>()
@@ -48,33 +44,18 @@ const HashtagList & HashtagList::operator=(const HashtagList & list) {
 	return *this;
 }
 
-QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-	out << serializedListable;
-
-	return out;
-}
-
+// Serialization initialization
 void HashtagList::initSystem() {
 	qRegisterMetaTypeStreamOperators<HashtagList>("HashtagList");
 	qMetaTypeId<HashtagList>();
 }
 
+// Output stream operator for serialization
+QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
+	return jsonStreamingOut<Hashtag>(out, list);
+}
+
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, HashtagList & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
-
-	return in;
+	return jsonStreamingIn<Hashtag>(in, list);
 }

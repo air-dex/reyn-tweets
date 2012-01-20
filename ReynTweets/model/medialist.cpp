@@ -1,5 +1,5 @@
 /// @file medialist.cpp
-/// @brief Specialisations for Medialist
+/// @brief Implementation of Medialist
 /// @author Romain Ducher
 
 /*
@@ -23,10 +23,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "medialist.hpp"
 
-/////////////
-// Coplien //
-/////////////
-
 // Constructor
 MediaList::MediaList() :
 	ReynTweetsListable<Media>()
@@ -48,33 +44,18 @@ const MediaList & MediaList::operator=(const MediaList & list) {
 	return *this;
 }
 
+// Serialization initialization
 void MediaList::initSystem() {
 	qRegisterMetaTypeStreamOperators<MediaList>("MediaList");
 	qMetaTypeId<MediaList>();
 }
 
+// Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaList & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-	out << serializedListable;
-
-	return out;
+	return jsonStreamingOut<Media>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaList & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
-
-	return in;
+	return jsonStreamingIn<Media>(in, list);
 }

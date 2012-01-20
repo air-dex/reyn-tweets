@@ -98,8 +98,7 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp \
-	model/listablestreamoperators.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -139,21 +138,16 @@ HEADERS  += \
 	model/mediasizes.hpp \
 	model/urlentity.hpp \
 	model/urlentitylist.hpp \
-	model/urlentitylist.tpp \
 	model/media.hpp \
 	model/medialist.hpp \
-	model/medialist.tpp \
 	model/usermention.hpp \
 	model/usermentionlist.hpp \
-	model/usermentionlist.tpp \
 	model/hashtag.hpp \
 	model/hashtaglist.hpp \
-	model/hashtaglist.tpp \
 	model/tweetentities.hpp \
 	model/userinfos.hpp \
 	model/tweet.hpp \
 	model/timeline.hpp \
-	model/timeline.tpp \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \

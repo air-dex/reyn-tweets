@@ -1,5 +1,5 @@
 /// @file timeline.cpp
-/// @brief Specialisations for Timeline
+/// @brief Implementation of Timeline
 /// @author Romain Ducher
 
 /*
@@ -22,16 +22,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "timeline.hpp"
-/*
-template <>
-void systemDeclaration<Tweet>() {
-	systemDeclaration<Tweet>("Timeline");
-}
-//*/
-
-/////////////
-// Coplien //
-/////////////
 
 // Constructor
 Timeline::Timeline() :
@@ -54,33 +44,18 @@ const Timeline & Timeline::operator=(const Timeline & list) {
 	return *this;
 }
 
+// Serialization initialization
 void Timeline::initSystem() {
 	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
 	qMetaTypeId<Timeline>();
 }
 
+// Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Timeline & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-	out << serializedListable;
-
-	return out;
+	return jsonStreamingOut<Tweet>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Timeline & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
-
-	return in;
+	return jsonStreamingIn<Tweet>(in, list);
 }

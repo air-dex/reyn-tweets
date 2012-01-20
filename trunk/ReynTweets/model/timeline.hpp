@@ -26,7 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVariant>
 #include "tweet.hpp"
-#include "reyntweetsserializablelist.hpp"
+#include "reyntweetsserializablelist.tpp"
 
 
 /// @typedef ReynTweetsSerializableList<Tweet> Timeline;
@@ -35,6 +35,7 @@ typedef ReynTweetsListable<Tweet> Timeline;
 
 Q_DECLARE_METATYPE(Timeline)
 
-void Timeline::initSystem();
+template <>
+void systemDeclaration<Tweet>();
 
 #endif // TIMELINE_HPP

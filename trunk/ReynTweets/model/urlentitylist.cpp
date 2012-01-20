@@ -22,9 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "urlentitylist.hpp"
-#include "reyntweetsserializablelist.tpp"
 
-void URLEntityList::initSystem() {
-	qRegisterMetaTypeStreamOperators<URLEntityList>("URLEntityList");
-	qMetaTypeId<URLEntityList>();
+template <>
+void systemDeclaration<URLEntity>() {
+	systemDeclaration<URLEntity>("URLEntityList");
 }

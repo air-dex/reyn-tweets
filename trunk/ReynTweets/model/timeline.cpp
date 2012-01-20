@@ -22,9 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "timeline.hpp"
-#include "reyntweetsserializablelist.tpp"
 
-void ReynTweetsListable<Timeline>::initSystem() {
-	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
-	qMetaTypeId<Timeline>();
+template <>
+void systemDeclaration<Tweet>() {
+	systemDeclaration<Tweet>("Timeline");
 }

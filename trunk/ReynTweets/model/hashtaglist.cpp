@@ -21,10 +21,9 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "reyntweetsserializablelist.tpp"
 #include "hashtaglist.hpp"
 
-void ReynTweetsListable<Hashtag>::initSystem() {
-	qRegisterMetaTypeStreamOperators<HashtagList>("HashtagList");
-	qMetaTypeId<HashtagList>();
+template <>
+void systemDeclaration<Hashtag>() {
+	systemDeclaration<Hashtag>("HashtagList");
 }

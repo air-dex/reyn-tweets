@@ -37,7 +37,7 @@ ReynTweetsListable<S>::ReynTweetsListable() :
 
 // Destructor
 template <class S>
-virtual ReynTweetsListable<S>::~ReynTweetsListable() {}
+ReynTweetsListable<S>::~ReynTweetsListable() {}
 
 // Copy constructor
 template <class S>
@@ -49,7 +49,7 @@ ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
 
 // Affrection operator
 template <class S>
-const ReynTweetsListable & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
+const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
 	recopie(list);
 	return *this;
 }
@@ -76,7 +76,17 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 // Serialization declaration
 template <class S>
 void ReynTweetsListable<S>::initSystem() {
-	qRegisterMetaTypeStreamOperators<ReynTweetsListable<S> >("ReynTweetsSerializable");
+	systemDeclaration<S>();
+}
+
+template <class S>
+void systemDeclaration() {
+	systemDeclaration<S>("ReynTweetsSerializable");
+}
+
+template <class S>
+void systemDeclaration(const char * serialName) {
+	qRegisterMetaTypeStreamOperators<ReynTweetsListable<S> >(serialName);
 	qMetaTypeId<ReynTweetsListable<S> >();
 }
 

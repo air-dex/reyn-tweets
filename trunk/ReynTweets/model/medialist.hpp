@@ -26,7 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVariant>
 #include "media.hpp"
-#include "reyntweetsserializablelist.hpp"
+#include "reyntweetsserializablelist.tpp"
 
 
 /// @typedef ReynTweetsListable<Media> MediaList;
@@ -35,6 +35,7 @@ typedef ReynTweetsListable<Media> MediaList;
 
 Q_DECLARE_METATYPE(MediaList)
 
-void MediaList::initSystem();
+template <>
+void systemDeclaration<Media>();
 
 #endif // MEDIALIST_HPP

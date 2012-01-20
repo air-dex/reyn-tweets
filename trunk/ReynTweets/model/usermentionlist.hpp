@@ -26,7 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVariant>
 #include "usermention.hpp"
-#include "reyntweetsserializablelist.hpp"
+#include "reyntweetsserializablelist.tpp"
 
 
 /// @typedef ReynTweetsSerializableList<UserMention> UserMentionList;
@@ -35,6 +35,7 @@ typedef ReynTweetsListable<UserMention> UserMentionList;
 
 Q_DECLARE_METATYPE(UserMentionList)
 
-void UserMentionList::initSystem();
+template <>
+void systemDeclaration<UserMention>();
 
 #endif // USERMENTIONLIST_HPP

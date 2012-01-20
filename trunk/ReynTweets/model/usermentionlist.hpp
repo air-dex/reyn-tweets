@@ -28,11 +28,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "usermention.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-/*
-/// @typedef ReynTweetsSerializableList<UserMention> UserMentionList;
-/// @brief Shortcut for lists of UserMention objects
-typedef ReynTweetsListable<UserMention> UserMentionList;
-//*/
+/// @class UserMentionList
+/// @brief List of user mentions
 class UserMentionList : public ReynTweetsListable<UserMention>
 {
 	public:

@@ -1,5 +1,5 @@
 /// @file usermentionlist.cpp
-/// @brief Specialisations for UserMentionList
+/// @brief Implementation of UserMentionList
 /// @author Romain Ducher
 
 /*
@@ -23,10 +23,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "usermentionlist.hpp"
 
-/////////////
-// Coplien //
-/////////////
-
 // Constructor
 UserMentionList::UserMentionList() :
 	ReynTweetsListable<UserMention>()
@@ -48,33 +44,18 @@ const UserMentionList & UserMentionList::operator=(const UserMentionList & list)
 	return *this;
 }
 
+// Serialization initialization
 void UserMentionList::initSystem() {
 	qRegisterMetaTypeStreamOperators<UserMentionList>("UserMentionList");
 	qMetaTypeId<UserMentionList>();
 }
 
+// Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMentionList & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-	out << serializedListable;
-
-	return out;
+	return jsonStreamingOut<UserMention>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMentionList & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
-
-	return in;
+	return jsonStreamingIn<UserMention>(in, list);
 }

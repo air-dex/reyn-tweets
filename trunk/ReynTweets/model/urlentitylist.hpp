@@ -28,11 +28,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "urlentity.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-/*
-/// @typedef ReynTweetsListable<URLEntity> HashtagList;
-/// @brief Shortcut for lists of URLEntity objects
-typedef ReynTweetsListable<URLEntity> URLEntityList;
-//*/
+/// @class URLEntityList
+/// @brief List of URL Entities
 class URLEntityList : public ReynTweetsListable<URLEntity>
 {
 	public:

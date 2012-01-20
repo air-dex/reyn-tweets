@@ -74,7 +74,7 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 ///////////////////////////
 
 template <class S>
-QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list) {
+QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list) {
 	// Serialize the QVariantList form of the listable and putting it in the stream.
 	QJson::Serializer serializer;
 	QByteArray serializedListable = serializer.serialize(list.toVariant());
@@ -86,7 +86,7 @@ QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list) 
 
 // Input stream operator for serialization
 template <class S>
-QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list) {
+QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list) {
 	QByteArray jsonedListable= "";
 	in >> jsonedListable;
 

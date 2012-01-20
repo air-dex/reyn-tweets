@@ -1,5 +1,5 @@
 /// @file urlentitylist.cpp
-/// @brief Specialisations for URLEntityList
+/// @brief Implementation of URLEntityList
 /// @author Romain Ducher
 
 /*
@@ -23,10 +23,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "urlentitylist.hpp"
 
-/////////////
-// Coplien //
-/////////////
-
 // Constructor
 URLEntityList::URLEntityList() :
 	ReynTweetsListable<URLEntity>()
@@ -48,33 +44,18 @@ const URLEntityList & URLEntityList::operator=(const URLEntityList & list) {
 	return *this;
 }
 
+// Serialization initialization
 void URLEntityList::initSystem() {
 	qRegisterMetaTypeStreamOperators<URLEntityList>("URLEntityList");
 	qMetaTypeId<URLEntityList>();
 }
 
+// Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntityList & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-	out << serializedListable;
-
-	return out;
+	return jsonStreamingOut<URLEntity>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntityList & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
-
-	return in;
+	return jsonStreamingIn<URLEntity>(in, list);
 }

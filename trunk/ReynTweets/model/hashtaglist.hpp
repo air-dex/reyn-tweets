@@ -1,5 +1,5 @@
 /// @file hashtaglist.hpp
-/// @brief Header of Hashtag
+/// @brief Header of HashtagList
 /// @author Romain Ducher
 
 /*
@@ -27,12 +27,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QVariant>
 #include "hashtag.hpp"
 #include "reyntweetsserializablelist.tpp"
-/*
-/// @typedef ReynTweetsListable<Hashtag> HashtagList;
-/// @brief Shortcut for lists of Hashtag objects
-typedef ReynTweetsListable<Hashtag> HashtagList;
-//*/
 
+/// @class HashtagList
+/// @brief Lists of Hashtags
 class HashtagList : public ReynTweetsListable<Hashtag>
 {
 	public:

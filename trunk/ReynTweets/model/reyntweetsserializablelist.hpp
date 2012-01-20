@@ -71,42 +71,22 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 		/// @brief Copy of a ReynTweetsListable
 		/// @param list ReynTweetsListable to copy
 		virtual void recopie(const ReynTweetsListable<S> &list);
-
-		// Friends serialization operators
-
-		/// @fn friend QDataStream & operator<<(QDataStream & out,
-		///										const ReynTweetsListable<S> & list);
-		/// @brief Output stream operator for serialization
-		/// @param out The output stream
-		/// @param list Object to put in the stream
-		/// @return The stream with the object
-		friend QDataStream & operator<<(QDataStream & out,
-										const ReynTweetsListable<S> & list);
-
-		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										ReynTweetsListable<S> & list);
-		/// @brief Input stream operator for serialization
-		/// @param in The input stream
-		/// @param list Object to put in the stream
-		/// @return The stream with the object
-		friend QDataStream & operator>>(QDataStream & in,
-										ReynTweetsListable<S> & list);
 };
 
-/// @fn QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
+/// @fn QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
 /// @param list Object to put in the stream
 /// @return The stream with the object
 template <class S>
-QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
+QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list);
 
-/// @fn QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
+/// @fn QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param list Object to put in the stream
 /// @return The stream with the object
 template <class S>
-QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
+QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list);
 
 #endif // REYNTWEETSLISTABLE_HPP

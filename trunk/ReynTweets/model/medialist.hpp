@@ -28,11 +28,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "media.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-/*
-/// @typedef ReynTweetsListable<Media> MediaList;
-/// @brief Shortcut for lists of Media objects
-typedef ReynTweetsListable<Media> MediaList;
-//*/
+/// @class MediaList
+/// @brief List of Medias
 class MediaList : public ReynTweetsListable<Media>
 {
 	public:

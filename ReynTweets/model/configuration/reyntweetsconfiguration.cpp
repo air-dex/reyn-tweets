@@ -32,7 +32,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Default constructor
 ReynTweetsConfiguration::ReynTweetsConfiguration() :
 	ReynTweetsMappable(),
-	userAccountProperty(),
 	userAccount()
 {}
 
@@ -91,7 +90,7 @@ QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
 }
 
 // Writing the property p_userAccount
-void ReynTweetsConfiguration::setUserAccountProperty(QVariantMap accountMap) {
+void ReynTweetsConfiguration::setUserAccount(QVariantMap accountMap) {
 	userAccount.fillWithVariant(accountMap);
 }
 

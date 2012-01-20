@@ -97,41 +97,22 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	////////////////
 
 	protected:
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// User account
 		/// @property user_account
 		/// @brief Serializable form of the account
 		Q_PROPERTY(QVariantMap user_account
 				   READ getUserAccountProperty
-				   WRITE setUserAccountProperty)
-
-		/// @brief Representation of the property user_account
-		QVariantMap userAccountProperty;
+				   WRITE setUserAccount)
 
 		/// @fn QVariantMap getUserAccountProperty();
 		/// @brief Reading the property user_account
 		/// @return The user account
 		QVariantMap getUserAccountProperty();
 
-		/// @fn void setUserAccountProperty(QVariantMap account);
+		/// @fn void setUserAccount(QVariantMap account);
 		/// @brief Writing the property user_account
 		/// @param account New value for the account
-		void setUserAccountProperty(QVariantMap accountMap);
-
-		/// @fn void syncUserAccountProperty();
-		/// @brief Updating the property user_account
-		void syncUserAccountProperty();
-
-		/// @fn void syncUserAccountMember();
-		/// @brief Updating the userAccount member
-		void syncUserAccountMember();
+		void setUserAccount(QVariantMap accountMap);
 
 
 	//////////////////////////////

@@ -31,7 +31,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class IndexBounds
 /// @brief Indices of an entity in a tweet.
-class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
+class IndexBounds : public ReynTweetsListable<int>
 {
 	Q_OBJECT
 

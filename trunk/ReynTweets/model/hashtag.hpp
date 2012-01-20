@@ -26,7 +26,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
 #include "reyntweetsmappable.hpp"
-#include "reyntweetsserializablelist.hpp"
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet
@@ -97,11 +96,11 @@ class Hashtag : public ReynTweetsMappable
 				   WRITE setText)
 
 		// indices
-		/// @property indices
-		/// @brief Indexes
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices)
+//		/// @property indices
+//		/// @brief Indexes
+//		Q_PROPERTY(QVariantList indices
+//				   READ getIndicesProperty
+//				   WRITE setIndices)
 
 		/// @fn QVariantList getIndicesProperty();
 		/// @brief Reading method for the property indices
@@ -168,10 +167,5 @@ QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag);
 /// @param hashtag Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Hashtag & hashtag);
-
-
-/// @typedef ReynTweetsSerializableList<Hashtag> HashtagList;
-/// @brief Shortcut for lists of Hashtag objects
-typedef ReynTweetsSerializableList<Hashtag> HashtagList;
 
 #endif // HASHTAG_HPP

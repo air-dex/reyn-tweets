@@ -26,7 +26,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "mediasizes.hpp"
 #include "urlentity.hpp"
-#include "reyntweetsserializablelist.hpp"
 
 /// @class Media
 /// @brief Media in a tweet.
@@ -248,10 +247,5 @@ QDataStream & operator<<(QDataStream & out, const Media & media);
 /// @param media Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Media & media);
-
-
-/// @typedef ReynTweetsSerializableList<Media> MediaList;
-/// @brief Shortcut for lists of Media objects
-typedef ReynTweetsSerializableList<Media> MediaList;
 
 #endif // MEDIA_HPP

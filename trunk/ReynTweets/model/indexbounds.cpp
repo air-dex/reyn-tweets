@@ -26,7 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 IndexBounds::IndexBounds() :
-	QObject(),
+	ReynTweetsListable<int>(),
 	min(0),
 	max(0)
 {}

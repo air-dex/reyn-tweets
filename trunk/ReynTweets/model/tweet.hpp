@@ -533,9 +533,4 @@ QDataStream & operator<<(QDataStream & out, const Tweet & tweet);
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, Tweet & tweet);
 
-
-/// @typedef ReynTweetsSerializableList<Tweet> Timeline;
-/// @brief Definition of a timeline : a list of tweets.
-typedef ReynTweetsSerializableList<Tweet> Timeline;
-
 #endif // TWEET_HPP

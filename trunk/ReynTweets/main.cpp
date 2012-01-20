@@ -25,7 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QLocale>
 #include <QTranslator>
 #include "ui/mainwindow.hpp"
-#include "model/timeline.hpp"
+//#include "model/timeline.hpp"
 
 // Including the widget for tests
 //*
@@ -51,7 +51,7 @@ void initReynTweetsSystem() {
 	TweetEntities::initSystem();
 	UserInfos::initSystem();
 	Tweet::initSystem();
-	Timeline::initSystem();
+//	Timeline::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();
 	ReynTweetsConfiguration::initSystem();

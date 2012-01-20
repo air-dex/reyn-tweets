@@ -22,8 +22,65 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "timeline.hpp"
-
+/*
 template <>
 void systemDeclaration<Tweet>() {
 	systemDeclaration<Tweet>("Timeline");
+}
+//*/
+
+/////////////
+// Coplien //
+/////////////
+
+// Constructor
+Timeline::Timeline() :
+	ReynTweetsListable<Tweet>()
+{}
+
+// Destructor
+Timeline::~Timeline() {}
+
+// Copy constructor
+Timeline::Timeline(const Timeline & list) :
+	ReynTweetsListable<Tweet>()
+{
+	recopie(list);
+}
+
+// Affrection operator
+const Timeline & Timeline::operator=(const Timeline & list) {
+	recopie(list);
+	return *this;
+}
+
+void Timeline::initSystem() {
+	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
+	qMetaTypeId<Timeline>();
+}
+
+QDataStream & operator<<(QDataStream & out, const Timeline & list) {
+	// Serialize the QVariantList form of the listable and putting it in the stream.
+	QJson::Serializer serializer;
+	QByteArray serializedListable = serializer.serialize(list.toVariant());
+
+	out << serializedListable;
+
+	return out;
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, Timeline & list) {
+	QByteArray jsonedListable= "";
+	in >> jsonedListable;
+
+	QJson::Parser parser;
+	bool parseOK;
+	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
+
+	if (parseOK) {
+		list.fillWithVariant(listableVariant.toList());
+	}
+
+	return in;
 }

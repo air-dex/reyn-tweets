@@ -73,24 +73,6 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 // Serialization streams //
 ///////////////////////////
 
-// Serialization declaration
-template <class S>
-void ReynTweetsListable<S>::initSystem() {
-	systemDeclaration<S>();
-}
-
-template <class S>
-void systemDeclaration() {
-	systemDeclaration<S>("ReynTweetsSerializable");
-}
-
-template <class S>
-void systemDeclaration(const char * serialName) {
-	qRegisterMetaTypeStreamOperators<ReynTweetsListable<S> >(serialName);
-	qMetaTypeId<ReynTweetsListable<S> >();
-}
-
-// Output stream operator for serialization
 template <class S>
 QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list) {
 	// Serialize the QVariantList form of the listable and putting it in the stream.
@@ -118,7 +100,6 @@ QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list) {
 
 	return in;
 }
-
 
 ////////////////////////
 // Variant conversion //

@@ -23,7 +23,58 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "urlentitylist.hpp"
 
-template <>
-void systemDeclaration<URLEntity>() {
-	systemDeclaration<URLEntity>("URLEntityList");
+/////////////
+// Coplien //
+/////////////
+
+// Constructor
+URLEntityList::URLEntityList() :
+	ReynTweetsListable<URLEntity>()
+{}
+
+// Destructor
+URLEntityList::~URLEntityList() {}
+
+// Copy constructor
+URLEntityList::URLEntityList(const URLEntityList & list) :
+	ReynTweetsListable<URLEntity>()
+{
+	recopie(list);
+}
+
+// Affrection operator
+const URLEntityList & URLEntityList::operator=(const URLEntityList & list) {
+	recopie(list);
+	return *this;
+}
+
+void URLEntityList::initSystem() {
+	qRegisterMetaTypeStreamOperators<URLEntityList>("URLEntityList");
+	qMetaTypeId<URLEntityList>();
+}
+
+QDataStream & operator<<(QDataStream & out, const URLEntityList & list) {
+	// Serialize the QVariantList form of the listable and putting it in the stream.
+	QJson::Serializer serializer;
+	QByteArray serializedListable = serializer.serialize(list.toVariant());
+
+	out << serializedListable;
+
+	return out;
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, URLEntityList & list) {
+	QByteArray jsonedListable= "";
+	in >> jsonedListable;
+
+	QJson::Parser parser;
+	bool parseOK;
+	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
+
+	if (parseOK) {
+		list.fillWithVariant(listableVariant.toList());
+	}
+
+	return in;
 }

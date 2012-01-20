@@ -28,14 +28,73 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "usermention.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-
+/*
 /// @typedef ReynTweetsSerializableList<UserMention> UserMentionList;
 /// @brief Shortcut for lists of UserMention objects
 typedef ReynTweetsListable<UserMention> UserMentionList;
+//*/
+class UserMentionList : public ReynTweetsListable<UserMention>
+{
+	public:
+		/// @fn UserMentionList();
+		/// @brief Constructor
+		UserMentionList();
 
+		/// @fn virtual ~UserMentionList();
+		/// @brief Destructor
+		virtual ~UserMentionList();
+
+		/// @fn UserMentionList(const UserMentionList & list);
+		/// @brief Copy constructor
+		/// @param list UserMentionList to copy
+		UserMentionList(const UserMentionList & list);
+
+		/// @fn const UserMentionList & operator=(const UserMentionList & list);
+		/// @brief Affrection operator
+		/// @param list UserMentionList to affect
+		const UserMentionList & operator=(const UserMentionList & list);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const UserMentionList & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const UserMentionList & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										UserMentionList & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										UserMentionList & list);
+};
+
+// Serialization of UserMentionList
 Q_DECLARE_METATYPE(UserMentionList)
 
-template <>
-void systemDeclaration<UserMention>();
+/// @fn QDataStream & operator<<(QDataStream & out, const UserMentionList & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const UserMentionList & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, UserMentionList & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, UserMentionList & list);
 
 #endif // USERMENTIONLIST_HPP

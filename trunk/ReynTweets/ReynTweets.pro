@@ -98,7 +98,8 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+	model/listablestreamoperators.cpp
 
 
 HEADERS  += \

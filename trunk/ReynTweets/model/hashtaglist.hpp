@@ -27,14 +27,74 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QVariant>
 #include "hashtag.hpp"
 #include "reyntweetsserializablelist.tpp"
-
+/*
 /// @typedef ReynTweetsListable<Hashtag> HashtagList;
 /// @brief Shortcut for lists of Hashtag objects
 typedef ReynTweetsListable<Hashtag> HashtagList;
+//*/
 
+class HashtagList : public ReynTweetsListable<Hashtag>
+{
+	public:
+		/// @fn HashtagList();
+		/// @brief Constructor
+		HashtagList();
+
+		/// @fn virtual ~HashtagList();
+		/// @brief Destructor
+		virtual ~HashtagList();
+
+		/// @fn HashtagList(const HashtagList & list);
+		/// @brief Copy constructor
+		/// @param list HashtagList to copy
+		HashtagList(const HashtagList & list);
+
+		/// @fn const HashtagList & operator=(const HashtagList & list);
+		/// @brief Affrection operator
+		/// @param list HashtagList to affect
+		const HashtagList & operator=(const HashtagList & list);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const ReynTweetsListable<S> & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const HashtagList & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										ReynTweetsListable<S> & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										HashtagList & list);
+};
+
+// Serialization of HashtagList
 Q_DECLARE_METATYPE(HashtagList)
 
-template <>
-void systemDeclaration<Hashtag>();
+/// @fn QDataStream & operator<<(QDataStream & out, const HashtagList & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const HashtagList & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, HashtagList & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, HashtagList & list);
 
 #endif // HASHTAGLIST_HPP

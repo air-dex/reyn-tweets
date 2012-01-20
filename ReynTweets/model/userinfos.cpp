@@ -514,12 +514,12 @@ void UserInfos::setProfileImageURLhttps(QString newAvatarURL) {
 }
 
 // Getter on ID
-long UserInfos::getID() {
+qlonglong UserInfos::getID() {
 	return userID;
 }
 
 // Setter on ID
-void UserInfos::setID(long newID) {
+void UserInfos::setID(qlonglong newID) {
 	userID = newID;
 }
 

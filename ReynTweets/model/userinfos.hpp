@@ -92,15 +92,6 @@ class UserInfos : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		// Properties
-		/// @fn void syncMembers();
-		/// @brief Updating the field members
-		void syncMembers();
-
-		/// @fn void syncProperties();
-		/// @brief Updating all the properties
-		void syncProperties();
-
 		// contributors_enabled
 		/// @property contributors_enabled
 		/// @brief Serializable form of contributorsEnabled
@@ -361,7 +352,7 @@ class UserInfos : public ReynTweetsMappable
 		// id
 		/// @property id
 		/// @brief Serializable form of userID
-		Q_PROPERTY(long id
+		Q_PROPERTY(qlonglong id
 				   READ getID
 				   WRITE setID)
 
@@ -419,7 +410,7 @@ class UserInfos : public ReynTweetsMappable
 		// User ID
 
 		/// @brief User ID
-		long userID;
+		qlonglong userID;
 
 		/// @brief User ID (String version)
 		QString userIDstr;
@@ -862,15 +853,15 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newAvatarURL The new value of avatarURLhttps
 		void setProfileImageURLhttps(QString newAvatarURL);
 
-		/// @fn long getID();
+		/// @fn qlonglong getID();
 		/// @brief Getter on ID
 		/// @return The value of ID
-		long getID();
+		qlonglong getID();
 
-		/// @fn void setID(long newID);
+		/// @fn void setID(qlonglong newID);
 		/// @brief Setter on ID
 		/// @param newID The new value of ID
-		void setID(long newID);
+		void setID(qlonglong newID);
 
 		/// @fn bool isVerified();
 		/// @brief Getter on verified

@@ -141,11 +141,11 @@ void Tweet::setEntities(TweetEntities newValue) {
 }
 
 // in_reply_to_user_id
-long Tweet::getInReplyToUserID() {
+qlonglong Tweet::getInReplyToUserID() {
 	return replyToUserID;
 }
 
-void Tweet::setInReplyToUserID(long newValue) {
+void Tweet::setInReplyToUserID(qlonglong newValue) {
 	replyToUserID = newValue;
 }
 
@@ -249,20 +249,20 @@ void Tweet::setSource(QString newValue) {
 }
 
 // id
-long Tweet::getID() {
+qlonglong Tweet::getID() {
 	return tweetID;
 }
 
-void Tweet::setID(long newValue) {
+void Tweet::setID(qlonglong newValue) {
 	tweetID = newValue;
 }
 
 // in_reply_to_status_id
-long Tweet::getInReplyToStatusID() {
+qlonglong Tweet::getInReplyToStatusID() {
 	return replyToTweetID;
 }
 
-void Tweet::setInReplyToStatusID(long newValue) {
+void Tweet::setInReplyToStatusID(qlonglong newValue) {
 	replyToTweetID = newValue;
 }
 

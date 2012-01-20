@@ -98,12 +98,12 @@ void UserMention::setIndices(QVariantList newIndexList) {
 ////////////////////////
 
 // Reading userID
-long UserMention::getID() {
+qlonglong UserMention::getID() {
 	return userID;
 }
 
 // Writing userID
-void UserMention::setID(long newID) {
+void UserMention::setID(qlonglong newID) {
 	userID = newID;
 }
 

@@ -31,14 +31,14 @@ class ShowUserRequester : public AuthenticationRequester
 {
 	public:
 		/// @fn ShowUserRequester(OAuthManager & authManager,
-		///						  long id,
+		///						  qlonglong id,
 		///						  bool entities = true);
 		/// @brief Constructor with the user ID
 		/// @param authManager OAuthManager for authentication
 		/// @param id User ID
 		/// @param entities Include entities in the last tweet of the user ?
 		ShowUserRequester(OAuthManager & authManager,
-						  long id,
+						  qlonglong id,
 						  bool entities = true);
 
 		/// @fn ShowUserRequester(OAuthManager & authManager,
@@ -76,7 +76,7 @@ class ShowUserRequester : public AuthenticationRequester
 		////////////////
 
 		/// @brief ID of the user
-		long userID;
+		qlonglong userID;
 
 		/// @brief Boolean indicating if entities of a tweet have to be included
 		/// in the reply

@@ -111,7 +111,7 @@ class Tweet : public ReynTweetsMappable
 			// in_reply_to_user_id
 			/// @property in_reply_to_user_id
 			/// @brief Property corresponding to replyToUserID
-			Q_PROPERTY(long in_reply_to_user_id
+			Q_PROPERTY(qlonglong in_reply_to_user_id
 					   READ getInReplyToUserID
 					   WRITE setInReplyToUserID)
 
@@ -205,14 +205,14 @@ class Tweet : public ReynTweetsMappable
 			// id
 			/// @property id
 			/// @brief Tweet ID
-			Q_PROPERTY(long id
+			Q_PROPERTY(qlonglong id
 					   READ getID
 					   WRITE setID)
 
 			// in_reply_to_status_id
 			/// @property in_reply_to_status_id
 			/// @brief Property corresponding to replyToTweetID
-			Q_PROPERTY(long in_reply_to_status_id
+			Q_PROPERTY(qlonglong in_reply_to_status_id
 					   READ getInReplyToStatusID
 					   WRITE setInReplyToStatusID)
 
@@ -246,7 +246,7 @@ class Tweet : public ReynTweetsMappable
 		protected:
 			// Tweet identity
 			/// @brief ID of the tweet
-			long tweetID;
+			qlonglong tweetID;
 
 			/// @brief String version of tweetID
 			QString tweetIDstr;
@@ -281,13 +281,13 @@ class Tweet : public ReynTweetsMappable
 			QString replyToScreenName;
 
 			/// @brief ID of the user which the tweet replies
-			int replyToUserID;
+			qlonglong replyToUserID;
 
 			/// @brief String version of replyToUserID
 			QString replyToUserIDstr;
 
 			/// @brief ID of the tweet which the tweet replies
-			int replyToTweetID;
+			qlonglong replyToTweetID;
 
 			/// @brief String version of replyToTweetID
 			QString replyToTweetIDstr;
@@ -340,15 +340,15 @@ class Tweet : public ReynTweetsMappable
 			void setEntities(TweetEntities newValue);
 
 			// in_reply_to_user_id
-			/// @fn long getInReplyToUserID();
+			/// @fn qlonglong getInReplyToUserID();
 			/// @brief Reading in_reply_to_user_id
 			/// @return replyToUserID
-			long getInReplyToUserID();
+			qlonglong getInReplyToUserID();
 
-			/// @fn void setInReplyToUserID(long newValue);
+			/// @fn void setInReplyToUserID(qlonglong newValue);
 			/// @brief Writing in_reply_to_user_id
 			/// @param newValue New value for in_reply_to_user_id
-			void setInReplyToUserID(long newValue);
+			void setInReplyToUserID(qlonglong newValue);
 
 			// truncated
 			/// @fn bool isTruncated();
@@ -472,26 +472,26 @@ class Tweet : public ReynTweetsMappable
 			void setSource(QString newValue);
 
 			// id
-			/// @fn long getID();
+			/// @fn qlonglong getID();
 			/// @brief Reading
 			/// @return tweetID
-			long getID();
+			qlonglong getID();
 
-			/// @fn void setID(long newValue);
+			/// @fn void setID(qlonglong newValue);
 			/// @brief Writing id
 			/// @param newValue New value for id
-			void setID(long newValue);
+			void setID(qlonglong newValue);
 
 			// in_reply_to_status_id
-			/// @fn long getInReplyToStatusID();
+			/// @fn qlonglong getInReplyToStatusID();
 			/// @brief Reading in_reply_to_status_id
 			/// @return replyToTweetID
-			long getInReplyToStatusID();
+			qlonglong getInReplyToStatusID();
 
-			/// @fn void setInReplyToStatusID(long newValue);
+			/// @fn void setInReplyToStatusID(qlonglong newValue);
 			/// @brief Writing in_reply_to_status_id
 			/// @param newValue New value for in_reply_to_status_id
-			void setInReplyToStatusID(long newValue);
+			void setInReplyToStatusID(qlonglong newValue);
 
 			// text
 			/// @fn QString getText();

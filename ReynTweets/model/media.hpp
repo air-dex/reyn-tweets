@@ -92,7 +92,7 @@ class Media : public URLEntity
 		// id
 		/// @property id
 		/// @brief User id
-		Q_PROPERTY(long id
+		Q_PROPERTY(qlonglong id
 				   READ getID
 				   WRITE setID)
 
@@ -148,7 +148,7 @@ class Media : public URLEntity
 
 	protected:
 		/// @brief ID of the media
-		long mediaID;
+		qlonglong mediaID;
 
 		/// @brief String version of mediaID
 		QString mediaIDstr;
@@ -171,15 +171,15 @@ class Media : public URLEntity
 	////////////////////////
 
 	public:
-		/// @fn long getID();
+		/// @fn qlonglong getID();
 		/// @brief Reading mediaID
 		/// @return mediaID
-		long getID();
+		qlonglong getID();
 
-		/// @fn void setID(long newID);
+		/// @fn void setID(qlonglong newID);
 		/// @brief Writing mediaID
 		/// @param newID New value for mediaID
-		void setID(long newID);
+		void setID(qlonglong newID);
 
 		/// @fn QString getIDstr();
 		/// @brief Reading mediaIDstr

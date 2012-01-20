@@ -168,7 +168,7 @@ class ReynTwitterCalls : public QObject
 		// Tweets //
 		////////////
 
-		/// @fn void showTweet(long tweetID,
+		/// @fn void showTweet(qlonglong tweetID,
 		///					   bool entities = true,
 		///					   bool trimUser = false);
 		/// @brief Showing a tweet
@@ -176,7 +176,7 @@ class ReynTwitterCalls : public QObject
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param trimUser Return only user IDs instead of all the values ?
 		/// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
-		void showTweet(long tweetID,
+		void showTweet(qlonglong tweetID,
 					   bool entities = true,
 					   bool trimUser = false);
 
@@ -185,12 +185,12 @@ class ReynTwitterCalls : public QObject
 		// Users //
 		///////////
 
-		/// @fn void showUser(long userID, bool entities = true);
+		/// @fn void showUser(qlonglong userID, bool entities = true);
 		/// @brief Showing a user identified by its ID
 		/// @param userID ID of the user
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @see https://dev.twitter.com/docs/api/1/get/users/show
-		void showUser(long userID, bool entities = true);
+		void showUser(qlonglong userID, bool entities = true);
 
 		/// @fn void void showUser(QString screenName, bool entities = true);
 		/// @brief Showing a user identified by its screen name

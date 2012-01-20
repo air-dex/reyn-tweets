@@ -92,7 +92,7 @@ class UserMention : public ReynTweetsMappable
 		// id
 		/// @property id
 		/// @brief User id
-		Q_PROPERTY(long id
+		Q_PROPERTY(qlonglong id
 				   READ getID
 				   WRITE setID)
 
@@ -141,7 +141,7 @@ class UserMention : public ReynTweetsMappable
 
 	protected:
 		/// @brief UserID
-		long userID;
+		qlonglong userID;
 
 		/// @brief String version of userID
 		QString userIDstr;
@@ -161,15 +161,15 @@ class UserMention : public ReynTweetsMappable
 	////////////////////////
 
 	public:
-		/// @fn long getID();
+		/// @fn qlonglong getID();
 		/// @brief Reading userID
 		/// @return userID
-		long getID();
+		qlonglong getID();
 
-		/// @fn void setID(long newID);
+		/// @fn void setID(qlonglong newID);
 		/// @brief Writing userID
 		/// @param newID New value for userID
-		void setID(long newID);
+		void setID(qlonglong newID);
 
 		/// @fn QString getIDstr();
 		/// @brief Reading userIDstr

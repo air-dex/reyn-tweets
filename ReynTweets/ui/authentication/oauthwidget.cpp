@@ -191,7 +191,7 @@ void OAuthWidget::killOAuthProcess() {
 void OAuthWidget::endAuthentication(OAuthProcessResult processResult,
 									QByteArray accessToken,
 									QByteArray tokenSecret,
-									long userID,
+									qlonglong userID,
 									QString screenName)
 {
 	killOAuthProcess();

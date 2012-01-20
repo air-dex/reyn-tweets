@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "../../../tools/utils.hpp"
 
 // Constructor
-ShowTweetRequester::ShowTweetRequester(long id,
+ShowTweetRequester::ShowTweetRequester(qlonglong id,
 									   bool entities,
 									   bool userIdsOnly) :
 	GenericRequester(GET, TwitterURL::SHOW_TWEET_URL),

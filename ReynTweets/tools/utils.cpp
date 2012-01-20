@@ -106,7 +106,7 @@ QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream
 	// Converting the object into a JSON file
 	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream);
 	QJson::Serializer serializer;
-	QByteArray jsonedAccount = serializer.serialize(QVariant(accountMap));
+	QByteArray jsonedAccount = serializer.serialize(accountMap);
 
 	// Putting it in the stream
 	out << jsonedAccount;

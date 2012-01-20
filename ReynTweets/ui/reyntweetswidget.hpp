@@ -47,8 +47,6 @@ class ReynTweetsWidget : public QWidget
 		~ReynTweetsWidget();
 
 	signals:
-		void updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret,
-								 long userID, QString screenName);
 
 	public slots:
 		///////////////////////////////
@@ -75,7 +73,7 @@ class ReynTweetsWidget : public QWidget
 		void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
 										QByteArray accessToken = "",
 										QByteArray tokenSecret = "",
-										long userID = -1,
+										qlonglong userID = -1,
 										QString screenName = "");
 
 		//////////////////////////////

@@ -61,7 +61,7 @@ class ReynTweetsWidget : public QWidget
 		/// @fn void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
 		///										QByteArray accessToken = "",
 		///										QByteArray tokenSecret = "",
-		///										long userID = -1,
+		///										qlonglong userID = -1,
 		///										QString screenName = "");
 		/// @brief Slot executed after an OAuth Authentication processus
 		/// @param processResult Value indicating how the OAuth process has ended.

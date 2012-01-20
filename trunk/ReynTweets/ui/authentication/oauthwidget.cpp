@@ -103,11 +103,11 @@ void OAuthWidget::allowReynTweets() {
 		connect(this, SIGNAL(denyReynTweets(QString,QString)),
 				authenticationFlow, SLOT(denyReynTweets(QString,QString)));
 		connect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult,
-																		 QByteArray,QByteArray,
-																		 long,QString)),
+																		 QByteArray, QByteArray,
+																		 qlonglong, QString)),
 				this, SLOT(endAuthentication(OAuthProcessResult,
-											 QByteArray,QByteArray,
-											 long,QString))
+											 QByteArray, QByteArray,
+											 qlonglong, QString))
 				);
 		connect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 				this, SLOT(errorProcess(bool,QString)));
@@ -174,11 +174,11 @@ void OAuthWidget::killOAuthProcess() {
 	disconnect(this, SIGNAL(denyReynTweets(QString,QString)),
 			   authenticationFlow, SLOT(denyReynTweets(QString,QString)));
 	disconnect(authenticationFlow, SIGNAL(authenticationProcessFinished(OAuthProcessResult,
-																		QByteArray,QByteArray,
-																		long,QString)),
+																		QByteArray, QByteArray,
+																		qlonglong, QString)),
 			   this, SLOT(endAuthentication(OAuthProcessResult,
-											QByteArray,QByteArray,
-											long,QString))
+											QByteArray, QByteArray,
+											qlonglong, QString))
 			   );
 	disconnect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 			   this, SLOT(errorProcess(bool,QString)));

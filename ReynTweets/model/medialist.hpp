@@ -28,14 +28,73 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "media.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-
+/*
 /// @typedef ReynTweetsListable<Media> MediaList;
 /// @brief Shortcut for lists of Media objects
 typedef ReynTweetsListable<Media> MediaList;
+//*/
+class MediaList : public ReynTweetsListable<Media>
+{
+	public:
+		/// @fn MediaList();
+		/// @brief Constructor
+		MediaList();
 
+		/// @fn virtual ~MediaList();
+		/// @brief Destructor
+		virtual ~MediaList();
+
+		/// @fn MediaList(const MediaList & list);
+		/// @brief Copy constructor
+		/// @param list MediaList to copy
+		MediaList(const MediaList & list);
+
+		/// @fn const MediaList & operator=(const MediaList & list);
+		/// @brief Affrection operator
+		/// @param list MediaList to affect
+		const MediaList & operator=(const MediaList & list);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const MediaList & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const MediaList & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										MediaList & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										MediaList & list);
+};
+
+// Serialization of MediaList
 Q_DECLARE_METATYPE(MediaList)
 
-template <>
-void systemDeclaration<Media>();
+/// @fn QDataStream & operator<<(QDataStream & out, const MediaList & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const MediaList & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, MediaList & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, MediaList & list);
 
 #endif // MEDIALIST_HPP

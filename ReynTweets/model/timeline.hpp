@@ -28,14 +28,73 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "tweet.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-
+/*
 /// @typedef ReynTweetsSerializableList<Tweet> Timeline;
 /// @brief Definition of a timeline : a list of tweets.
 typedef ReynTweetsListable<Tweet> Timeline;
+//*/
+class Timeline : public ReynTweetsListable<Tweet>
+{
+	public:
+		/// @fn Timeline();
+		/// @brief Constructor
+		Timeline();
 
+		/// @fn virtual ~Timeline();
+		/// @brief Destructor
+		virtual ~Timeline();
+
+		/// @fn Timeline(const Timeline & list);
+		/// @brief Copy constructor
+		/// @param list Timeline to copy
+		Timeline(const Timeline & list);
+
+		/// @fn const Timeline & operator=(const Timeline & list);
+		/// @brief Affrection operator
+		/// @param list Timeline to affect
+		const Timeline & operator=(const Timeline & list);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const Timeline & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const Timeline & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										Timeline & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										Timeline & list);
+};
+
+// Serialization of Timeline
 Q_DECLARE_METATYPE(Timeline)
 
-template <>
-void systemDeclaration<Tweet>();
+/// @fn QDataStream & operator<<(QDataStream & out, const Timeline & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const Timeline & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, Timeline & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, Timeline & list);
 
 #endif // TIMELINE_HPP

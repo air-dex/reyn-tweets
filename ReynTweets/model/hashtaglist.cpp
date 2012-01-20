@@ -23,7 +23,58 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "hashtaglist.hpp"
 
-template <>
-void systemDeclaration<Hashtag>() {
-	systemDeclaration<Hashtag>("HashtagList");
+/////////////
+// Coplien //
+/////////////
+
+// Constructor
+HashtagList::HashtagList() :
+	ReynTweetsListable<Hashtag>()
+{}
+
+// Destructor
+HashtagList::~HashtagList() {}
+
+// Copy constructor
+HashtagList::HashtagList(const HashtagList & list) :
+	ReynTweetsListable<Hashtag>()
+{
+	recopie(list);
+}
+
+// Affrection operator
+const HashtagList & HashtagList::operator=(const HashtagList & list) {
+	recopie(list);
+	return *this;
+}
+
+QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
+	// Serialize the QVariantList form of the listable and putting it in the stream.
+	QJson::Serializer serializer;
+	QByteArray serializedListable = serializer.serialize(list.toVariant());
+
+	out << serializedListable;
+
+	return out;
+}
+
+void HashtagList::initSystem() {
+	qRegisterMetaTypeStreamOperators<HashtagList>("HashtagList");
+	qMetaTypeId<HashtagList>();
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, HashtagList & list) {
+	QByteArray jsonedListable= "";
+	in >> jsonedListable;
+
+	QJson::Parser parser;
+	bool parseOK;
+	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
+
+	if (parseOK) {
+		list.fillWithVariant(listableVariant.toList());
+	}
+
+	return in;
 }

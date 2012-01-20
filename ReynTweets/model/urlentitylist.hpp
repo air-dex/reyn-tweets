@@ -28,14 +28,73 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "urlentity.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-
+/*
 /// @typedef ReynTweetsListable<URLEntity> HashtagList;
 /// @brief Shortcut for lists of URLEntity objects
 typedef ReynTweetsListable<URLEntity> URLEntityList;
+//*/
+class URLEntityList : public ReynTweetsListable<URLEntity>
+{
+	public:
+		/// @fn URLEntityList();
+		/// @brief Constructor
+		URLEntityList();
 
+		/// @fn virtual ~URLEntityList();
+		/// @brief Destructor
+		virtual ~URLEntityList();
+
+		/// @fn URLEntityList(const URLEntityList & list);
+		/// @brief Copy constructor
+		/// @param list URLEntityList to copy
+		URLEntityList(const URLEntityList & list);
+
+		/// @fn const URLEntityList & operator=(const URLEntityList & list);
+		/// @brief Affrection operator
+		/// @param list URLEntityList to affect
+		const URLEntityList & operator=(const URLEntityList & list);
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const URLEntityList & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const URLEntityList & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										URLEntityList & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										URLEntityList & list);
+};
+
+// Serialization of URLEntityList
 Q_DECLARE_METATYPE(URLEntityList)
 
-template <>
-void systemDeclaration<URLEntity>();
+/// @fn QDataStream & operator<<(QDataStream & out, const URLEntityList & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator<<(QDataStream & out, const URLEntityList & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, URLEntityList & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+QDataStream & operator>>(QDataStream & in, URLEntityList & list);
 
 #endif // URLENTITYLIST_HPP

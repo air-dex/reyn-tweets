@@ -25,6 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define HASHTAGLIST_TPP
 
 #include "hashtaglist.hpp"
+#include "listablestreamoperators.cpp"
 #include "hashtaglist.cpp"
 
 #endif // HASHTAGLIST_TPP

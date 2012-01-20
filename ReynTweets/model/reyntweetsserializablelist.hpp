@@ -51,10 +51,10 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 		/// @param list ReynTweetsSerializableList to copy
 		ReynTweetsListable(const ReynTweetsListable<S> & list);
 
-		/// @fn virtual const ReynTweetsListable & operator=(const ReynTweetsListable & list);
+		/// @fn const ReynTweetsListable & operator=(const ReynTweetsListable & list);
 		/// @brief Affrection operator
 		/// @param list ReynTweetsListable to affect
-		virtual const ReynTweetsListable & operator=(const ReynTweetsListable<S> & list);
+		const ReynTweetsListable & operator=(const ReynTweetsListable<S> & list);
 
 		/// @fn virtual void fillWithVariant(QVariantList entities);
 		/// @brief Filling the list with the contentnt of a QVariantList
@@ -66,15 +66,11 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 		/// @return The corresponding QVariantList.
 		virtual QVariantList toVariant() const;
 
-		/// @fn static void initSystem();
-		/// @brief Serialization declaration
-		static void initSystem();
-
 	protected:
 		/// @fn void recopie(const ReynTweetsListable<S> & list);
 		/// @brief Copy of a ReynTweetsListable
 		/// @param list ReynTweetsListable to copy
-		void recopie(const ReynTweetsListable<S> &list);
+		virtual void recopie(const ReynTweetsListable<S> &list);
 
 		// Friends serialization operators
 
@@ -97,9 +93,6 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 										ReynTweetsListable<S> & list);
 };
 
-// Serialization of ReynTweetsListable
-//Q_DECLARE_METATYPE(ReynTweetsListable)
-
 /// @fn QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
@@ -115,11 +108,5 @@ QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
 /// @return The stream with the object
 template <class S>
 QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
-
-template <class S>
-void systemDeclaration();
-
-template <class S>
-void systemDeclaration(const char * serialName);
 
 #endif // REYNTWEETSLISTABLE_HPP

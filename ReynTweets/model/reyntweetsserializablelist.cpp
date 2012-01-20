@@ -68,6 +68,42 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 	}
 }
 
+////////////////////////
+// Variant conversion //
+////////////////////////
+
+// Converting a QVariantList serialized by QJSON into a list of entities.
+template <class S>
+void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
+	empty();
+
+	for (QVariantList::Iterator it = entities.begin();
+		 it != entities.end();
+		 ++it)
+	{
+		QVariant v = *it;
+		S entity;
+		entity.fillWithVariant(v.toMap());
+		append(entity);
+	}
+}
+
+// Converting a list of serializables into a QVariantList
+template <class S>
+QVariantList ReynTweetsListable<S>::toVariant() const {
+	QVariantList res;
+
+	for (ReynTweetsListable<S>::const_iterator it = begin();
+		 it != end();
+		 ++it)
+	{
+		S serializable = *it;
+		res.append(serializable.toVariant());
+	}
+
+	return res;
+}
+
 
 ///////////////////////////
 // Serialization streams //
@@ -100,38 +136,20 @@ QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list) {
 
 	return in;
 }
+/*
+/// @fn QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<ReynTweetsMappables> & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+template <>
+QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<ReynTweetsMappable> & list);
 
-////////////////////////
-// Variant conversion //
-////////////////////////
-
-// Converting a QVariantList serialized by QJSON into a list of entities.
-template <class S>
-void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
-	empty();
-
-	for (QVariantList::Iterator it = entities.begin();
-		 it != entities.end();
-		 ++it)
-	{
-		QVariant v = *it;
-		S entity = qVariantValue<S>(v);
-		append(entity);
-	}
-}
-
-// Converting a list of serializables into a QVariantList
-template <class S>
-QVariantList ReynTweetsListable<S>::toVariant() const {
-	QVariantList res;
-
-	for (QList<S>::const_iterator it = this->begin();
-		 it != end();
-		 ++it)
-	{
-		S serializable = *it;
-		res.append(qVariantFromValue(serializable));
-	}
-
-	return res;
-}
+/// @fn QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+template <>
+QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<ReynTweetsMappable> & list);
+//*/

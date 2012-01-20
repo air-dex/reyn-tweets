@@ -21,26 +21,40 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef REYNTWEETSSERIALIZABLELIST_HPP
-#define REYNTWEETSSERIALIZABLELIST_HPP
+#ifndef REYNTWEETSLISTABLE_HPP
+#define REYNTWEETSLISTABLE_HPP
 
 #include <QList>
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
 
-/// @class ReynTweetsSerializableList
+/// @class ReynTweetsListable
 /// @brief Class for object that needs to be converted into a QVariantList.
 ///
 /// In practice, these objects will be lists of ReynTweetsSerializable objects
 /// whose type is represented by the template type S.
 /// @param S Type of a ReynTweetsSerializable object.
 template <class S>
-class ReynTweetsSerializableList : public ReynTweetsSerializable<QVariantList>, public QList<S>
+class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public QList<S>
 {
 	public:
-		/// @fn ReynTweetsSerializableList();
+		/// @fn ReynTweetsListable();
 		/// @brief Constructor
-		ReynTweetsSerializableList();
+		ReynTweetsListable();
+
+		/// @fn virtual ~ReynTweetsListable();
+		/// @brief Destructor
+		virtual ~ReynTweetsListable();
+
+		/// @fn ReynTweetsListable(const ReynTweetsListable & list);
+		/// @brief Copy constructor
+		/// @param list ReynTweetsSerializableList to copy
+		ReynTweetsListable(const ReynTweetsListable<S> & list);
+
+		/// @fn virtual const ReynTweetsListable & operator=(const ReynTweetsListable & list);
+		/// @brief Affrection operator
+		/// @param list ReynTweetsListable to affect
+		virtual const ReynTweetsListable & operator=(const ReynTweetsListable<S> & list);
 
 		/// @fn virtual void fillWithVariant(QVariantList entities);
 		/// @brief Filling the list with the contentnt of a QVariantList
@@ -51,6 +65,55 @@ class ReynTweetsSerializableList : public ReynTweetsSerializable<QVariantList>, 
 		/// @brief Converting the list of serializables into a QVariantList.
 		/// @return The corresponding QVariantList.
 		virtual QVariantList toVariant() const;
+
+		/// @fn static void initSystem();
+		/// @brief Serialization declaration
+		static void initSystem();
+
+	protected:
+		/// @fn void recopie(const ReynTweetsListable<S> & list);
+		/// @brief Copy of a ReynTweetsListable
+		/// @param list ReynTweetsListable to copy
+		void recopie(const ReynTweetsListable<S> &list);
+
+		// Friends serialization operators
+
+		/// @fn friend QDataStream & operator<<(QDataStream & out,
+		///										const ReynTweetsListable<S> & list);
+		/// @brief Output stream operator for serialization
+		/// @param out The output stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator<<(QDataStream & out,
+										const ReynTweetsListable<S> & list);
+
+		/// @fn friend QDataStream & operator>>(QDataStream & in,
+		///										ReynTweetsListable<S> & list);
+		/// @brief Input stream operator for serialization
+		/// @param in The input stream
+		/// @param list Object to put in the stream
+		/// @return The stream with the object
+		friend QDataStream & operator>>(QDataStream & in,
+										ReynTweetsListable<S> & list);
 };
 
-#endif // REYNTWEETSSERIALIZABLELIST_HPP
+// Serialization of ReynTweetsListable
+//Q_DECLARE_METATYPE(ReynTweetsListable)
+
+/// @fn QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
+/// @brief Output stream operator for serialization
+/// @param out The output stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+template <class S>
+QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
+
+/// @fn QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
+/// @brief Input stream operator for serialization
+/// @param in The input stream
+/// @param list Object to put in the stream
+/// @return The stream with the object
+template <class S>
+QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
+
+#endif // REYNTWEETSLISTABLE_HPP

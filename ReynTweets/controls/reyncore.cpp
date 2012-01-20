@@ -90,6 +90,11 @@ SaveConfResult ReynCore::saveConfigurationPrivate() {
 		return CONFIGURATION_BACKUP_FILE_NOT_OPEN;
 	}
 
+	// Choix dans la date
+	QDate userdate = configuration.getUserAccount().getUser().getCreatedAt();
+	qDebug("Choix dans la date :");
+	qDebug(userdate.toString().toAscii());
+
 	// Launching the configuration
 	QDataStream readStream(&confFile);
 	QVariant confVariant = qVariantFromValue(configuration);

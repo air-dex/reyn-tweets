@@ -24,12 +24,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWEETENTITIES_HPP
 #define TWEETENTITIES_HPP
 
-#include "hashtag.hpp"
-#include "media.hpp"
+#include "hashtaglist.tpp"
+#include "medialist.tpp"
 #include "reyntweetsmappable.hpp"
-#include "urlentity.hpp"
-#include "usermention.hpp"
-#include "reyntweetsserializablelist.tpp"
+#include "urlentitylist.tpp"
+#include "usermentionlist.tpp"
 
 
 /// @class TweetEntities
@@ -95,11 +94,11 @@ class TweetEntities : public ReynTweetsMappable
 
 	protected:
 		// media
-		/// @property media
-		/// @brief Medias
-		Q_PROPERTY(QVariantList media
-				   READ getMediaProperty
-				   WRITE setMedia)
+//		/// @property media
+//		/// @brief Medias
+//		Q_PROPERTY(QVariantList media
+//				   READ getMediaProperty
+//				   WRITE setMedia)
 
 		/// @fn QVariantList getMediaProperty();
 		/// @brief Reading the property media

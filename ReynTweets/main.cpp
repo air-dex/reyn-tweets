@@ -40,12 +40,17 @@ void initReynTweetsSystem() {
 	MediaSize::initSystem();
 	MediaSizes::initSystem();
 	Media::initSystem();
+	MediaList::initSystem();
 	URLEntity::initSystem();
+	URLEntityList::initSystem();
 	Hashtag::initSystem();
+	HashtagList::initSystem();
 	UserMention::initSystem();
+	UserMentionList::initSystem();
 	TweetEntities::initSystem();
 	UserInfos::initSystem();
 	Tweet::initSystem();
+	Timeline::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();
 	ReynTweetsConfiguration::initSystem();

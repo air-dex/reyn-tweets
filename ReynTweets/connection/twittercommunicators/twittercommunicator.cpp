@@ -267,5 +267,5 @@ void TwitterCommunicator::extractHttpStatuses(QNetworkReply * reply) {
 
 	// Extract return reason
 	httpStatus = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
-	httpReturnReason = QString(httpStatus.toByteArray());
+	httpReturnReason = QString::fromAscii(httpStatus.toByteArray());
 }

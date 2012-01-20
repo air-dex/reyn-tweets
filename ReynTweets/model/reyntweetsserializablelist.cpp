@@ -21,17 +21,102 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <QJson/Parser>
+#include <QJson/Serializer>
 #include "reyntweetsserializablelist.hpp"
+
+/////////////
+// Coplien //
+/////////////
 
 // Constructor
 template <class S>
-ReynTweetsSerializableList<S>::ReynTweetsSerializableList() :
+ReynTweetsListable<S>::ReynTweetsListable() :
 	QList<S>()
 {}
 
+// Destructor
+template <class S>
+virtual ReynTweetsListable<S>::~ReynTweetsListable() {}
+
+// Copy constructor
+template <class S>
+ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
+	QList<S>()
+{
+	recopie(list);
+}
+
+// Affrection operator
+template <class S>
+const ReynTweetsListable & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
+	recopie(list);
+	return *this;
+}
+
+// Copy of a ReynTweetsListable
+template <class S>
+void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
+	empty();
+
+	for (ReynTweetsListable<S>::const_iterator it = list.begin();
+		 it != list.end();
+		 ++it)
+	{
+		S serializable = *it;
+		append(serializable);
+	}
+}
+
+
+///////////////////////////
+// Serialization streams //
+///////////////////////////
+
+// Serialization declaration
+template <class S>
+void ReynTweetsListable<S>::initSystem() {
+	qRegisterMetaTypeStreamOperators<ReynTweetsListable<S> >("ReynTweetsSerializable");
+	qMetaTypeId<ReynTweetsListable<S> >();
+}
+
+// Output stream operator for serialization
+template <class S>
+QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list) {
+	// Serialize the QVariantList form of the listable and putting it in the stream.
+	QJson::Serializer serializer;
+	QByteArray serializedListable = serializer.serialize(list.toVariant());
+
+	out << serializedListable;
+
+	return out;
+}
+
+// Input stream operator for serialization
+template <class S>
+QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list) {
+	QByteArray jsonedListable= "";
+	in >> jsonedListable;
+
+	QJson::Parser parser;
+	bool parseOK;
+	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
+
+	if (parseOK) {
+		list.fillWithVariant(listableVariant.toList());
+	}
+
+	return in;
+}
+
+
+////////////////////////
+// Variant conversion //
+////////////////////////
+
 // Converting a QVariantList serialized by QJSON into a list of entities.
 template <class S>
-void ReynTweetsSerializableList<S>::fillWithVariant(QVariantList entities) {
+void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
 	empty();
 
 	for (QVariantList::Iterator it = entities.begin();
@@ -46,7 +131,7 @@ void ReynTweetsSerializableList<S>::fillWithVariant(QVariantList entities) {
 
 // Converting a list of serializables into a QVariantList
 template <class S>
-QVariantList ReynTweetsSerializableList<S>::toVariant() const {
+QVariantList ReynTweetsListable<S>::toVariant() const {
 	QVariantList res;
 
 	for (QList<S>::const_iterator it = this->begin();

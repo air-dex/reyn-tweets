@@ -75,12 +75,17 @@ SOURCES += \
 	model/mediasize.cpp \
 	model/mediasizes.cpp \
 	model/media.cpp \
+	model/medialist.cpp \
 	model/urlentity.cpp \
+	model/urlentitylist.cpp \
 	model/usermention.cpp \
+	model/usermentionlist.cpp \
 	model/hashtag.cpp \
+	model/hashtaglist.cpp \
 	model/tweetentities.cpp \
 	model/userinfos.cpp \
 	model/tweet.cpp \
+	model/timeline.cpp \
 	model/user.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
@@ -88,12 +93,12 @@ SOURCES += \
 	controls/reyncore.cpp \
 	ui/authentication/loginwidget.cpp \
 	ui/authentication/oauthwidget.cpp \
+	ui/genericqmlwidget.cpp \
 	ui/launchingwidget.cpp \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp \
-    ui/genericqmlwidget.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -132,26 +137,36 @@ HEADERS  += \
 	model/mediasize.hpp \
 	model/mediasizes.hpp \
 	model/urlentity.hpp \
+	model/urlentitylist.hpp \
+	model/urlentitylist.tpp \
 	model/media.hpp \
+	model/medialist.hpp \
+	model/medialist.tpp \
 	model/usermention.hpp \
+	model/usermentionlist.hpp \
+	model/usermentionlist.tpp \
 	model/hashtag.hpp \
+	model/hashtaglist.hpp \
+	model/hashtaglist.tpp \
 	model/tweetentities.hpp \
 	model/userinfos.hpp \
 	model/tweet.hpp \
+	model/timeline.hpp \
+	model/timeline.tpp \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \
 	controls/oauthprocessresult.hpp \
 	controls/oauthprocess.hpp \
+	controls/launchresult.hpp \
 	controls/reyncore.hpp \
 	ui/authentication/loginwidget.hpp \
 	ui/authentication/oauthwidget.hpp \
+	ui/genericqmlwidget.hpp \
 	ui/launchingwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp \
-	controls/launchresult.hpp \
-    ui/genericqmlwidget.hpp
+	ui/mainwindow.hpp
 
 
 RESOURCES += \

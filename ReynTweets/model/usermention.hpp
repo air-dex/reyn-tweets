@@ -26,7 +26,6 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
 #include "reyntweetsmappable.hpp"
-#include "reyntweetsserializablelist.hpp"
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
@@ -118,11 +117,11 @@ class UserMention : public ReynTweetsMappable
 				   WRITE setName)
 
 		// indices
-		/// @property indices
-		/// @brief Indexes
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices)
+//		/// @property indices
+//		/// @brief Indexes
+//		Q_PROPERTY(QVariantList indices
+//				   READ getIndicesProperty
+//				   WRITE setIndices)
 
 		/// @fn QVariantList getIndicesProperty();
 		/// @brief Reading method for the property indices
@@ -229,10 +228,5 @@ QDataStream & operator<<(QDataStream & out, const UserMention & mention);
 /// @param mention Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in, UserMention & mention);
-
-
-/// @typedef ReynTweetsSerializableList<UserMention> UserMentionList;
-/// @brief Shortcut for lists of UserMention objects
-typedef ReynTweetsSerializableList<UserMention> UserMentionList;
 
 #endif // USERMENTION_HPP

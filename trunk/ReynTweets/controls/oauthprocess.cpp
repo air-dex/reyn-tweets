@@ -264,7 +264,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			QVariantMap resultMap = result.getParsedResult().toMap();
 			QByteArray accessToken = resultMap.value("oauth_token").toByteArray();
 			QByteArray tokenSecret = resultMap.value("oauth_token_secret").toByteArray();
-			long userID = resultMap.value("user_id").toString().toLong();
+			qlonglong userID = resultMap.value("user_id").toLongLong();
 			QString screenName = resultMap.value("screen_name").toString();
 
 			emit authenticationProcessFinished(AUTHORIZED,

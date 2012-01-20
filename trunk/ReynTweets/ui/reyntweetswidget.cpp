@@ -46,10 +46,10 @@ ReynTweetsWidget::ReynTweetsWidget() :
 			this, SLOT(saveOK(SaveConfResult)));
 	connect(&authenticationWidget, SIGNAL(authenticationFinished(OAuthProcessResult,
 																 QByteArray,QByteArray,
-																 long,QString)),
+																 qlonglong,QString)),
 			this, SLOT(endOAuthAuthenticationFlow(OAuthProcessResult,
 												  QByteArray,QByteArray,
-												  long,QString))
+												  qlonglong,QString))
 			);
 
 	// Loading configuration
@@ -67,10 +67,10 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 			   this, SLOT(saveOK(SaveConfResult)));
 	disconnect(&authenticationWidget, SIGNAL(authenticationFinished(OAuthProcessResult,
 																	QByteArray,QByteArray,
-																	long,QString)),
+																	qlonglong,QString)),
 			   this, SLOT(endOAuthAuthenticationFlow(OAuthProcessResult,
 													 QByteArray,QByteArray,
-													 long,QString))
+													 qlonglong,QString))
 			   );
 }
 
@@ -126,7 +126,7 @@ void ReynTweetsWidget::authenticationRequired() {
 void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResult,
 												  QByteArray accessToken,
 												  QByteArray tokenSecret,
-												  long userID,
+												  qlonglong userID,
 												  QString screenName)
 {
 	QMessageBox::StandardButton questionButton;

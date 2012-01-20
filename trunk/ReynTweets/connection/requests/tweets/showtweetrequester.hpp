@@ -31,20 +31,20 @@ class ShowTweetRequester : public GenericRequester
 	Q_OBJECT
 
 	public:
-		/// @fn ShowTweetRequester(long id,
+		/// @fn ShowTweetRequester(qlonglong id,
 		///						   bool entities = true,
 		///						   bool userIdsOnly = false);
 		/// @brief Constructor
 		/// @param id ID of the tweet
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param userIdsOnly Return only user IDs instead of all the values ?
-		ShowTweetRequester(long tweetID,
+		ShowTweetRequester(qlonglong iD,
 						   bool entities = true,
 						   bool userIdsOnly = false);
 
 	protected:
 		/// @brief ID of the tweet
-		long tweetID;
+		qlonglong tweetID;
 
 		/// @brief Boolean indicating if entities of a tweet have to be included
 		/// in the reply

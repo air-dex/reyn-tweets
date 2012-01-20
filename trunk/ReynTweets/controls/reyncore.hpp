@@ -63,7 +63,7 @@ class ReynCore : public QObject
 
 		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
 		///								 QByteArray tokenSecret = "",
-		///								 long id,
+		///								 qlonglong id,
 		///								 QString screenName);
 		/// @brief Uploading the configuration after an authentication process
 		///
@@ -75,7 +75,7 @@ class ReynCore : public QObject
 		/// @param screenName Screen name of the user
 		void updateConfAfterAuth(QByteArray accessToken,
 								 QByteArray tokenSecret,
-								 long id,
+								 qlonglong id,
 								 QString screenName);
 
 		/// @fn void saveConfiguration();

@@ -109,7 +109,7 @@ void ReynCore::fillOAuthManager() {
 }
 
 // Uploading the configuration after an authentication process
-void ReynCore::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, long id, QString) {
+void ReynCore::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString) {
 	// Updating the tokens
 	UserAccount account = configuration.getUserAccount();
 	account.setAccessToken(accessToken);

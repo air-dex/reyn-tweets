@@ -101,12 +101,12 @@ void Media::setSizes(QVariantMap newMap) {
 ////////////////////////
 
 // Reading mediaID
-long Media::getID() {
+qlonglong Media::getID() {
 	return mediaID;
 }
 
 // Writing mediaID
-void Media::setID(long newID) {
+void Media::setID(qlonglong newID) {
 	mediaID = newID;
 }
 

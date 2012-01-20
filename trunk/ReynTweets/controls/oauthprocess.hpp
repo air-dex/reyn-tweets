@@ -76,7 +76,7 @@ class OAuthProcess : public QObject
 		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult,
 		///										   QByteArray accessToken = "",
 		///										   QByteArray tokenSecret = "",
-		///										   long userID = -1,
+		///										   qlonglong userID = -1,
 		///										   QString screenName = "");
 		/// @brief Signal sent when the authentication process ends.
 		/// @param processResult Value indicating how the OAuth process has ended.
@@ -88,7 +88,7 @@ class OAuthProcess : public QObject
 		void authenticationProcessFinished(OAuthProcessResult processResult,
 										   QByteArray accessToken = "",
 										   QByteArray tokenSecret = "",
-										   long userID = -1,
+										   qlonglong userID = -1,
 										   QString screenName = "");
 
 	private:

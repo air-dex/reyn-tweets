@@ -156,7 +156,7 @@ void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
 ////////////
 
 // Showing a tweet
-void ReynTwitterCalls::showTweet(long tweetID, bool entities, bool trimUser) {
+void ReynTwitterCalls::showTweet(qlonglong tweetID, bool entities, bool trimUser) {
 	ShowTweetRequester * requester = new ShowTweetRequester(tweetID,
 															entities,
 															trimUser);
@@ -169,7 +169,7 @@ void ReynTwitterCalls::showTweet(long tweetID, bool entities, bool trimUser) {
 ///////////
 
 // Showing a user identified by its ID
-void ReynTwitterCalls::showUser(long userID, bool entities) {
+void ReynTwitterCalls::showUser(qlonglong userID, bool entities) {
 	ShowUserRequester * requester = new ShowUserRequester(oauthManager,
 														  userID,
 														  entities);

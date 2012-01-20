@@ -63,7 +63,7 @@ class OAuthWidget : public QWidget
 		/// @fn void authenticationFinished(OAuthProcessResult processResult,
 		///									QByteArray accessToken = "",
 		///									QByteArray tokenSecret = "",
-		///									long userID = -1,
+		///									qlonglong userID = -1,
 		///									QString screenName = "");
 		/// @brief Signal sent when the authentication is finished
 		/// @param processResult Value indicating how the OAuth process has ended.
@@ -75,7 +75,7 @@ class OAuthWidget : public QWidget
 		void authenticationFinished(OAuthProcessResult processResult,
 									QByteArray accessToken = "",
 									QByteArray tokenSecret = "",
-									long userID = -1,
+									qlonglong userID = -1,
 									QString screenName = "");
 
 		/// @fn void credentialsOK(bool ok);
@@ -109,7 +109,7 @@ class OAuthWidget : public QWidget
 		/// @fn void endAuthentication(OAuthProcessResult processResult,
 		///							   QByteArray accessToken = "",
 		///							   QByteArray tokenSecret = "",
-		///							   long userID = -1,
+		///							   qlonglong userID = -1,
 		///							   QString screenName = "");
 		/// @brief Slot executed at the end of the authentication.
 		/// @param processResult Value indicating how the OAuth process has ended.
@@ -121,7 +121,7 @@ class OAuthWidget : public QWidget
 		void endAuthentication(OAuthProcessResult processResult,
 							   QByteArray accessToken = "",
 							   QByteArray tokenSecret = "",
-							   long userID = -1,
+							   qlonglong userID = -1,
 							   QString screenName = "");
 
 	protected slots:

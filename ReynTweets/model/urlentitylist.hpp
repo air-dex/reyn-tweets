@@ -26,7 +26,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QVariant>
 #include "urlentity.hpp"
-#include "reyntweetsserializablelist.hpp"
+#include "reyntweetsserializablelist.tpp"
 
 
 /// @typedef ReynTweetsListable<URLEntity> HashtagList;
@@ -35,6 +35,7 @@ typedef ReynTweetsListable<URLEntity> URLEntityList;
 
 Q_DECLARE_METATYPE(URLEntityList)
 
-void URLEntityList::initSystem();
+template <>
+void systemDeclaration<URLEntity>();
 
 #endif // URLENTITYLIST_HPP

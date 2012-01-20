@@ -22,9 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "medialist.hpp"
-#include "reyntweetsserializablelist.tpp"
 
-void MediaList::initSystem() {
-	qRegisterMetaTypeStreamOperators<MediaList>("MediaList");
-	qMetaTypeId<MediaList>();
+template <>
+void systemDeclaration<Media>() {
+	systemDeclaration<Media>("MediaList");
 }

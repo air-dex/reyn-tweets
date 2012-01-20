@@ -34,6 +34,7 @@ typedef ReynTweetsListable<Hashtag> HashtagList;
 
 Q_DECLARE_METATYPE(HashtagList)
 
-void HashtagList::initSystem();
+template <>
+void systemDeclaration<Hashtag>();
 
 #endif // HASHTAGLIST_HPP

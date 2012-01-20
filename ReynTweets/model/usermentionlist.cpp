@@ -22,9 +22,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "usermentionlist.hpp"
-#include "reyntweetsserializablelist.tpp"
 
-void UserMentionList::initSystem() {
-	qRegisterMetaTypeStreamOperators<UserMentionList>("UserMentionList");
-	qMetaTypeId<UserMentionList>();
+template <>
+void systemDeclaration<UserMention>() {
+	systemDeclaration<UserMention>("UserMentionList");
 }

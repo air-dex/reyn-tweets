@@ -116,4 +116,10 @@ QDataStream & operator<<(QDataStream & out, const ReynTweetsListable<S> & list);
 template <class S>
 QDataStream & operator>>(QDataStream & in, ReynTweetsListable<S> & list);
 
+template <class S>
+void systemDeclaration();
+
+template <class S>
+void systemDeclaration(const char * serialName);
+
 #endif // REYNTWEETSLISTABLE_HPP

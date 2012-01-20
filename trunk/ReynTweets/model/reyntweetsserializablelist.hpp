@@ -27,6 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
+#include "reyntweetsmappable.hpp"
 
 /// @class ReynTweetsListable
 /// @brief Class for object that needs to be converted into a QVariantList.
@@ -72,6 +73,10 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 		/// @param list ReynTweetsListable to copy
 		virtual void recopie(const ReynTweetsListable<S> &list);
 };
+
+/////////////
+// Streams //
+/////////////
 
 /// @fn QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list);
 /// @brief Output stream operator for serialization

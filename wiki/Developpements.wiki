@@ -14,8 +14,10 @@ Où en est Reyn Tweets ?
   * _Authentification avec OAuth :_ [https://code.google.com/p/reyn-tweets/wiki/OAuthWork?ts=1325950615&updated=OAuthWork]
   * Sauvegarde des données d'une utilisation sur l'autre
     * Sérialisation des tokens existants pour être réutilisés d'une utilisation du logiciel à l'autre.
+    * Chargement des données dans l'application et leur sauvegarde.
     * Mise en place d'une architecture pour ça.
     * Coder
+    * Tester
   * UI quand on arrive sur l'application :
     * Ecrans d'autorisation à manipuler le compte Twitter.
     * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
@@ -33,12 +35,12 @@ Où en est Reyn Tweets ?
 == Ce qui reste à faire ==
 
   # Sauvegarde des données d'une utilisation sur l'autre
-    # Chargement des données dans l'application et leur sauvegarde.
-    # Tester
+    # Résoudre le bug des dates (issue 51).
   # UI quand on arrive sur l'application :
     # Rendre le tout plus ergonomique, avec moins de popups, par exemple.
   # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
+    # Renommer le fichier des fichiers de la classe ReynTweetsListable
     # Faire du rangement dans les classes de modèle
   # Documentation :
     # Approfondir la documentation

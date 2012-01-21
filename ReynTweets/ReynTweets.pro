@@ -196,7 +196,7 @@ resource.target = .
 conf_files.source = conf
 conf_files.target = .
 
-DEPLOYMENTFOLDERS = qml_files resource conf_files
+DEPLOYMENTFOLDERS = qml_files resource #conf_files
 
 # QML deployment. Do not touch
 include(QMLIntegration.pri)

@@ -27,6 +27,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "../authenticationrequester.hpp"
 
+/// @class ShowUserRequester
+/// @brief Requester for getting details about a user identified by its ID
+/// or its screen name.
 class ShowUserRequester : public AuthenticationRequester
 {
 	public:

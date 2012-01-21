@@ -28,11 +28,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "tweet.hpp"
 #include "reyntweetsserializablelist.tpp"
 
-/*
-/// @typedef ReynTweetsSerializableList<Tweet> Timeline;
-/// @brief Definition of a timeline : a list of tweets.
-typedef ReynTweetsListable<Tweet> Timeline;
-//*/
+/// @class Timeline
+/// @brief Definition of a Twitter timeline : a list of tweets.
 class Timeline : public ReynTweetsListable<Tweet>
 {
 	public:

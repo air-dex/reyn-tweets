@@ -345,7 +345,7 @@ window.onload = initDynSections;
 <a name="l00267"></a>00267 
 <a name="l00268"></a>00268         <span class="comment">// Extract return reason</span>
 <a name="l00269"></a>00269         httpStatus = reply-&gt;attribute(QNetworkRequest::HttpReasonPhraseAttribute);
-<a name="l00270"></a>00270         <a class="code" href="class_twitter_communicator.html#aba0f71b4a0d29318ab9cbc62fb327513" title="HTTP return reason.">httpReturnReason</a> = QString(httpStatus.toByteArray());
+<a name="l00270"></a>00270         <a class="code" href="class_twitter_communicator.html#aba0f71b4a0d29318ab9cbc62fb327513" title="HTTP return reason.">httpReturnReason</a> = QString::fromAscii(httpStatus.toByteArray());
 <a name="l00271"></a>00271 }
 </pre></div></div>
 <!--- window showing the filter options -->
@@ -362,7 +362,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:52 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

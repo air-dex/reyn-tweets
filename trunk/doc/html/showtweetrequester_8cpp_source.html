@@ -115,7 +115,7 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../../../tools/utils.hpp&quot;</span>
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="comment">// Constructor</span>
-<a name="l00028"></a><a class="code" href="class_show_tweet_requester.html#a636d2bc8c49724a3ff62b36fd0b9057a">00028</a> <a class="code" href="class_show_tweet_requester.html#a636d2bc8c49724a3ff62b36fd0b9057a" title="Constructor.">ShowTweetRequester::ShowTweetRequester</a>(<span class="keywordtype">long</span> <span class="keywordtype">id</span>,
+<a name="l00028"></a><a class="code" href="class_show_tweet_requester.html#a010c37349a1d7b9675cd107f051512cd">00028</a> <a class="code" href="class_show_tweet_requester.html#a010c37349a1d7b9675cd107f051512cd" title="Constructor.">ShowTweetRequester::ShowTweetRequester</a>(qlonglong <span class="keywordtype">id</span>,
 <a name="l00029"></a>00029                                                                            <span class="keywordtype">bool</span> entities,
 <a name="l00030"></a>00030                                                                            <span class="keywordtype">bool</span> userIdsOnly) :
 <a name="l00031"></a>00031         <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL for getting informations about a given tweet.">SHOW_TWEET_URL</a>),
@@ -126,7 +126,7 @@ window.onload = initDynSections;
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 <span class="comment">// Virtual method building getParameters</span>
 <a name="l00038"></a><a class="code" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d">00038</a> <span class="keywordtype">void</span> <a class="code" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d" title="Building getParameters.">ShowTweetRequester::buildGETParameters</a>() {
-<a name="l00039"></a>00039         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;id&quot;</span>, QString::number(<a class="code" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4" title="ID of the tweet.">tweetID</a>));
+<a name="l00039"></a>00039         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;id&quot;</span>, QString::number(<a class="code" href="class_show_tweet_requester.html#a39722b8433c41ec879de37e09c77536f" title="ID of the tweet.">tweetID</a>));
 <a name="l00040"></a>00040         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_entities&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_show_tweet_requester.html#ad45aa0234e4291ccfff9afdf9926dd67" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>));
 <a name="l00041"></a>00041         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;trim_user&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388" title="When this value is set to true, only the id and id_str values of the user are returned...">trimUser</a>));
 <a name="l00042"></a>00042 }
@@ -145,7 +145,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

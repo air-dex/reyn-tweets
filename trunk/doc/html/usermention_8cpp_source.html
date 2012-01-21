@@ -148,7 +148,7 @@ window.onload = initDynSections;
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 <span class="comment">// Copy of a User Mention</span>
 <a name="l00062"></a><a class="code" href="class_user_mention.html#a7223e44d4e86c1183367dc0cb8db886c">00062</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a7223e44d4e86c1183367dc0cb8db886c" title="Copy of a User Mention.">UserMention::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
-<a name="l00063"></a>00063         <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a> = mention.<a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
+<a name="l00063"></a>00063         <a class="code" href="class_user_mention.html#a5b2d0766f41dfc27c726732087523df6" title="UserID.">userID</a> = mention.<a class="code" href="class_user_mention.html#a5b2d0766f41dfc27c726732087523df6" title="UserID.">userID</a>;
 <a name="l00064"></a>00064         <a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a> = mention.<a class="code" href="class_user_mention.html#a272ece302d1f9fef4964b5ee5a840835" title="String version of userID.">userIDstr</a>;
 <a name="l00065"></a>00065         <a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a> = mention.<a class="code" href="class_user_mention.html#a40a370d58595a3d69242e554a1901880" title="Screen name of the user.">screenName</a>;
 <a name="l00066"></a>00066         <a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a> = mention.<a class="code" href="class_user_mention.html#a6d8b1fde70cbc8e7429a2619fc7c3d08" title="User&amp;#39;s name.">userName</a>;
@@ -157,12 +157,12 @@ window.onload = initDynSections;
 <a name="l00069"></a>00069 
 <a name="l00070"></a>00070 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00071"></a><a class="code" href="usermention_8hpp.html#ae807a3997af377b3e3262696b5c3af93">00071</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
-<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, mention);
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, mention);
 <a name="l00073"></a>00073 }
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00076"></a><a class="code" href="usermention_8hpp.html#a6706ad0f34d75249857f0c34ee8fc07d">00076</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_mention.html" title="Mention of a user in a tweet.">UserMention</a> &amp; mention) {
-<a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, mention);
+<a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, mention);
 <a name="l00078"></a>00078 }
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 
@@ -182,13 +182,13 @@ window.onload = initDynSections;
 <a name="l00097"></a>00097 <span class="comment">// Getter and setters //</span>
 <a name="l00099"></a>00099 <span class="comment"></span>
 <a name="l00100"></a>00100 <span class="comment">// Reading userID</span>
-<a name="l00101"></a><a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c">00101</a> <span class="keywordtype">long</span> <a class="code" href="class_user_mention.html#afcb7248ef8235cd0823bf39cb11cda5c" title="Reading userID.">UserMention::getID</a>() {
-<a name="l00102"></a>00102         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a>;
+<a name="l00101"></a><a class="code" href="class_user_mention.html#aed5ef2ab4167842e0f7ff1023e6f6087">00101</a> qlonglong <a class="code" href="class_user_mention.html#aed5ef2ab4167842e0f7ff1023e6f6087" title="Reading userID.">UserMention::getID</a>() {
+<a name="l00102"></a>00102         <span class="keywordflow">return</span> <a class="code" href="class_user_mention.html#a5b2d0766f41dfc27c726732087523df6" title="UserID.">userID</a>;
 <a name="l00103"></a>00103 }
 <a name="l00104"></a>00104 
 <a name="l00105"></a>00105 <span class="comment">// Writing userID</span>
-<a name="l00106"></a><a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae">00106</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#ae7bbf5fda7957d5040d11af0356128ae" title="Writing userID.">UserMention::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00107"></a>00107         <a class="code" href="class_user_mention.html#afcb6b6ab202a1a85ae6b6614f3ab060a" title="UserID.">userID</a> = newID;
+<a name="l00106"></a><a class="code" href="class_user_mention.html#a5723f3100b4c48dc548f0079b5af35aa">00106</a> <span class="keywordtype">void</span> <a class="code" href="class_user_mention.html#a5723f3100b4c48dc548f0079b5af35aa" title="Writing userID.">UserMention::setID</a>(qlonglong newID) {
+<a name="l00107"></a>00107         <a class="code" href="class_user_mention.html#a5b2d0766f41dfc27c726732087523df6" title="UserID.">userID</a> = newID;
 <a name="l00108"></a>00108 }
 <a name="l00109"></a>00109 
 <a name="l00110"></a>00110 <span class="comment">// Reading userIDstr</span>
@@ -245,7 +245,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

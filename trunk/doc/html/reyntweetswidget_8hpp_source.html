@@ -131,48 +131,46 @@ window.onload = initDynSections;
 <a name="l00047"></a>00047                 <a class="code" href="class_reyn_tweets_widget.html#ae4ef4b8a2ff3671969b97306bb261c02" title="Destructor.">~ReynTweetsWidget</a>();
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049         signals:
-<a name="l00050"></a>00050                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a4a45d3086d77dde2a4ddbf278778bbd9">updateConfAfterAuth</a>(QByteArray accessToken, QByteArray tokenSecret,
-<a name="l00051"></a>00051                                                                  <span class="keywordtype">long</span> userID, QString screenName);
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <span class="keyword">public</span> slots:
-<a name="l00055"></a>00055                 <span class="comment">// Authentication management //</span>
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00061"></a>00061                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>();
-<a name="l00062"></a>00062 
-<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
-<a name="l00076"></a>00076                                                                                 QByteArray accessToken = <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00077"></a>00077                                                                                 QByteArray tokenSecret = <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00078"></a>00078                                                                                 <span class="keywordtype">long</span> userID = -1,
-<a name="l00079"></a>00079                                                                                 QString screenName = <span class="stringliteral">&quot;&quot;</span>);
-<a name="l00080"></a>00080 
-<a name="l00082"></a>00082                 <span class="comment">// Configuration management //</span>
-<a name="l00084"></a>00084 <span class="comment"></span>
-<a name="l00087"></a>00087                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a> <a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">launchOK</a>);
-<a name="l00088"></a>00088 
-<a name="l00091"></a>00091                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a> <a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>);
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <span class="keyword">protected</span>:
-<a name="l00095"></a><a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744">00095</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         <span class="keyword">public</span> slots:
+<a name="l00053"></a>00053                 <span class="comment">// Authentication management //</span>
+<a name="l00055"></a>00055 <span class="comment"></span>
+<a name="l00059"></a>00059                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3" title="Slot executed if an authentication to Twitter is required for the application.">authenticationRequired</a>();
+<a name="l00060"></a>00060 
+<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
+<a name="l00074"></a>00074                                                                                 QByteArray accessToken = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00075"></a>00075                                                                                 QByteArray tokenSecret = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00076"></a>00076                                                                                 qlonglong userID = -1,
+<a name="l00077"></a>00077                                                                                 QString screenName = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00078"></a>00078 
+<a name="l00080"></a>00080                 <span class="comment">// Configuration management //</span>
+<a name="l00082"></a>00082 <span class="comment"></span>
+<a name="l00085"></a>00085                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a> <a class="code" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00" title="Slot executed at the end of the launch process.">launchOK</a>);
+<a name="l00086"></a>00086 
+<a name="l00089"></a>00089                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a> <a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>);
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="keyword">protected</span>:
+<a name="l00093"></a><a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744">00093</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095                 <span class="comment">// UI components</span>
 <a name="l00096"></a>00096 
-<a name="l00097"></a>00097                 <span class="comment">// UI components</span>
-<a name="l00098"></a>00098 
-<a name="l00100"></a><a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb">00100</a>                 QVBoxLayout <a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>;
-<a name="l00101"></a>00101 
-<a name="l00103"></a><a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6">00103</a>                 <a class="code" href="class_o_auth_widget.html" title="View for the OAuth process execution.">OAuthWidget</a> <a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>;
-<a name="l00104"></a>00104 
-<a name="l00106"></a><a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc">00106</a>                 <a class="code" href="class_launching_widget.html" title="Widget displayed while Reyn Tweets is launched.">LaunchingWidget</a> <a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc" title="Widget displayed while Reyn Tweets is launched.">launchingScreen</a>;
-<a name="l00107"></a>00107 
-<a name="l00109"></a><a class="code" href="class_reyn_tweets_widget.html#af639ed84fd52cb38bf5ed50f7f402a5d">00109</a>                 QLabel <a class="code" href="class_reyn_tweets_widget.html#af639ed84fd52cb38bf5ed50f7f402a5d" title="Mock for &amp;quot;a normal execution&amp;quot;.">mock</a>;
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111         <span class="keyword">private</span>:
-<a name="l00117"></a>00117                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">criticalPopup</a>(QString title, QString announce, QString problem);
-<a name="l00118"></a>00118 
-<a name="l00127"></a>00127                 QMessageBox::StandardButton <a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677" title="Displaying a QMessageBox for asking a question.">questionPopup</a>(QString title,
-<a name="l00128"></a>00128                                                                                                   QString announce,
-<a name="l00129"></a>00129                                                                                                   QString question);
-<a name="l00130"></a>00130 };
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="preprocessor">#endif // REYNTWEETSWIDGET_HPP</span>
+<a name="l00098"></a><a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb">00098</a>                 QVBoxLayout <a class="code" href="class_reyn_tweets_widget.html#aeed6f2b1a9f68f02ec11d05c4fb364cb" title="Layout of the widget.">layout</a>;
+<a name="l00099"></a>00099 
+<a name="l00101"></a><a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6">00101</a>                 <a class="code" href="class_o_auth_widget.html" title="View for the OAuth process execution.">OAuthWidget</a> <a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>;
+<a name="l00102"></a>00102 
+<a name="l00104"></a><a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc">00104</a>                 <a class="code" href="class_launching_widget.html" title="Widget displayed while Reyn Tweets is launched.">LaunchingWidget</a> <a class="code" href="class_reyn_tweets_widget.html#a145fbee60a71e56e3885991ee0c6ddfc" title="Widget displayed while Reyn Tweets is launched.">launchingScreen</a>;
+<a name="l00105"></a>00105 
+<a name="l00107"></a><a class="code" href="class_reyn_tweets_widget.html#af639ed84fd52cb38bf5ed50f7f402a5d">00107</a>                 QLabel <a class="code" href="class_reyn_tweets_widget.html#af639ed84fd52cb38bf5ed50f7f402a5d" title="Mock for &amp;quot;a normal execution&amp;quot;.">mock</a>;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109         <span class="keyword">private</span>:
+<a name="l00115"></a>00115                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a2f6fbc8aaee80286d55c16fc570dd009" title="Displaying a QMessageBox announcing a critical problem.">criticalPopup</a>(QString title, QString announce, QString problem);
+<a name="l00116"></a>00116 
+<a name="l00125"></a>00125                 QMessageBox::StandardButton <a class="code" href="class_reyn_tweets_widget.html#af1da7809d6adcf1004b29fb82d247677" title="Displaying a QMessageBox for asking a question.">questionPopup</a>(QString title,
+<a name="l00126"></a>00126                                                                                                   QString announce,
+<a name="l00127"></a>00127                                                                                                   QString question);
+<a name="l00128"></a>00128 };
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="preprocessor">#endif // REYNTWEETSWIDGET_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -188,7 +186,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:55 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

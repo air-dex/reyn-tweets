@@ -154,12 +154,12 @@ window.onload = initDynSections;
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00068"></a><a class="code" href="user_8hpp.html#a3e6ed0ba71014677473d8e6a0df745d6">00068</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00069"></a>00069         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, user);
+<a name="l00069"></a>00069         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, user);
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00073"></a><a class="code" href="user_8hpp.html#aecf5cd8b5440b1c3bec9f631ad22b878">00073</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> &amp; user) {
-<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, user);
+<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, user);
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 
@@ -167,26 +167,29 @@ window.onload = initDynSections;
 <a name="l00081"></a>00081 <span class="comment"></span>
 <a name="l00082"></a>00082 <span class="comment">// Reading the &quot;status&quot; property</span>
 <a name="l00083"></a><a class="code" href="class_user.html#a72bc757fe1c98b401af815fe10648530">00083</a> QVariantMap <a class="code" href="class_user.html#a72bc757fe1c98b401af815fe10648530" title="Reading the &amp;quot;status&amp;quot; property.">User::getStatusProperty</a>() {
-<a name="l00084"></a>00084         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="comment">// Writing the status property</span>
-<a name="l00088"></a><a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(QVariantMap statusMap) {
-<a name="l00089"></a>00089         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(statusMap);
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
-<a name="l00094"></a>00094 <span class="comment">// Getters and setters //</span>
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">// Getter on the last tweet written by the user</span>
-<a name="l00098"></a><a class="code" href="class_user.html#ab3551117943ebe5f4b880b06d64e8ad3">00098</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#ab3551117943ebe5f4b880b06d64e8ad3" title="Getter on the last tweet written by the user.">User::getStatus</a>() {
-<a name="l00099"></a>00099         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
-<a name="l00100"></a>00100 }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="comment">// Setter on the last tweet written by the user</span>
-<a name="l00103"></a><a class="code" href="class_user.html#a0e461039b3f90b75fe0399396035e2cc">00103</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet) {
-<a name="l00104"></a>00104         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = newLastTweet;
-<a name="l00105"></a>00105 }
+<a name="l00084"></a>00084         <span class="comment">// Return an empty QVariantMap for a default tweet to avoid stack problems</span>
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0" title="Reading.">getID</a>() == -1 ?
+<a name="l00086"></a>00086                                 QVariantMap()
+<a name="l00087"></a>00087                           : <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00088"></a>00088 }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="comment">// Writing the status property</span>
+<a name="l00091"></a><a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(QVariantMap statusMap) {
+<a name="l00092"></a>00092         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(statusMap);
+<a name="l00093"></a>00093 }
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 
+<a name="l00097"></a>00097 <span class="comment">// Getters and setters //</span>
+<a name="l00099"></a>00099 <span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment">// Getter on the last tweet written by the user</span>
+<a name="l00101"></a><a class="code" href="class_user.html#ab3551117943ebe5f4b880b06d64e8ad3">00101</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_user.html#ab3551117943ebe5f4b880b06d64e8ad3" title="Getter on the last tweet written by the user.">User::getStatus</a>() {
+<a name="l00102"></a>00102         <span class="keywordflow">return</span> <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a>;
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="comment">// Setter on the last tweet written by the user</span>
+<a name="l00106"></a><a class="code" href="class_user.html#a0e461039b3f90b75fe0399396035e2cc">00106</a> <span class="keywordtype">void</span> <a class="code" href="class_user.html#af4747cd1087044e83cbd7425fb144331" title="Writing the status property.">User::setStatus</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newLastTweet) {
+<a name="l00107"></a>00107         <a class="code" href="class_user.html#a95b2276896abf1a21096ea07c62c7397" title="Last tweet posted by the user.">lastTweet</a> = newLastTweet;
+<a name="l00108"></a>00108 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -202,7 +205,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

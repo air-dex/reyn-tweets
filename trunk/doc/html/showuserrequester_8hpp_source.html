@@ -117,41 +117,41 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QString&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../authenticationrequester.hpp&quot;</span>
 <a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="class_show_user_requester.html">00030</a> <span class="keyword">class </span><a class="code" href="class_show_user_requester.html">ShowUserRequester</a> : <span class="keyword">public</span> <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>
-<a name="l00031"></a>00031 {
-<a name="l00032"></a>00032         <span class="keyword">public</span>:
-<a name="l00040"></a>00040                 <a class="code" href="class_show_user_requester.html#adc6a2152e52f1fea3c6d2176c33da954" title="Constructor with the user ID.">ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
-<a name="l00041"></a>00041                                                   <span class="keywordtype">long</span> <span class="keywordtype">id</span>,
-<a name="l00042"></a>00042                                                   <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00043"></a>00043 
-<a name="l00051"></a>00051                 <a class="code" href="class_show_user_requester.html#adc6a2152e52f1fea3c6d2176c33da954" title="Constructor with the user ID.">ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
-<a name="l00052"></a>00052                                                   QString name,
-<a name="l00053"></a>00053                                                   <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055         <span class="keyword">protected</span>:
-<a name="l00057"></a>00057                 <span class="comment">// Way of identification //</span>
-<a name="l00059"></a>00059 <span class="comment"></span>
-<a name="l00062"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">00062</a>                 <span class="keyword">enum</span> <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5" title="How the user is identified ?">IdentificationWay</a> {
-<a name="l00064"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee">00064</a>                         <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee" title="With an ID.">ID</a>,
-<a name="l00065"></a>00065 
-<a name="l00067"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28">00067</a>                         <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28" title="With a screen name.">SCREEN_NAME</a>
-<a name="l00068"></a>00068                 };
-<a name="l00069"></a>00069 
-<a name="l00071"></a><a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">00071</a>                 <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5" title="How the user is identified ?">IdentificationWay</a> <a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a>;
+<a name="l00033"></a><a class="code" href="class_show_user_requester.html">00033</a> <span class="keyword">class </span><a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> : <span class="keyword">public</span> <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035         <span class="keyword">public</span>:
+<a name="l00043"></a>00043                 <a class="code" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6" title="Constructor with the user ID.">ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
+<a name="l00044"></a>00044                                                   qlonglong <span class="keywordtype">id</span>,
+<a name="l00045"></a>00045                                                   <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00046"></a>00046 
+<a name="l00054"></a>00054                 <a class="code" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6" title="Constructor with the user ID.">ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
+<a name="l00055"></a>00055                                                   QString name,
+<a name="l00056"></a>00056                                                   <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058         <span class="keyword">protected</span>:
+<a name="l00060"></a>00060                 <span class="comment">// Way of identification //</span>
+<a name="l00062"></a>00062 <span class="comment"></span>
+<a name="l00065"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">00065</a>                 <span class="keyword">enum</span> <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5" title="How the user is identified ?">IdentificationWay</a> {
+<a name="l00067"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee">00067</a>                         <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee" title="With an ID.">ID</a>,
+<a name="l00068"></a>00068 
+<a name="l00070"></a><a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28">00070</a>                         <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28" title="With a screen name.">SCREEN_NAME</a>
+<a name="l00071"></a>00071                 };
 <a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00075"></a>00075                 <span class="comment">// Parameters //</span>
-<a name="l00077"></a>00077 <span class="comment"></span>
-<a name="l00079"></a><a class="code" href="class_show_user_requester.html#a015105194e534738b116dda1028661fd">00079</a>                 <span class="keywordtype">long</span> <a class="code" href="class_show_user_requester.html#a015105194e534738b116dda1028661fd" title="ID of the user.">userID</a>;
-<a name="l00080"></a>00080 
-<a name="l00083"></a><a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453">00083</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>;
-<a name="l00084"></a>00084 
-<a name="l00087"></a><a class="code" href="class_show_user_requester.html#a0c73954ad0133b9e8f1ab67e6037d1e1">00087</a>                 QString <a class="code" href="class_show_user_requester.html#a0c73954ad0133b9e8f1ab67e6037d1e1" title="When this value is set to true, only the id and id_str values of the user are returned...">screenName</a>;
-<a name="l00088"></a>00088 
-<a name="l00091"></a>00091                 <span class="keywordtype">void</span> <a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d" title="Building getParameters.">buildGETParameters</a>();
-<a name="l00092"></a>00092 };
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="preprocessor">#endif // SHOWUSERREQUESTER_HPP</span>
+<a name="l00074"></a><a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">00074</a>                 <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5" title="How the user is identified ?">IdentificationWay</a> <a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a>;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00078"></a>00078                 <span class="comment">// Parameters //</span>
+<a name="l00080"></a>00080 <span class="comment"></span>
+<a name="l00082"></a><a class="code" href="class_show_user_requester.html#a9a0ca0fefec324420d6f1ae1c64f51a3">00082</a>                 qlonglong <a class="code" href="class_show_user_requester.html#a9a0ca0fefec324420d6f1ae1c64f51a3" title="ID of the user.">userID</a>;
+<a name="l00083"></a>00083 
+<a name="l00086"></a><a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453">00086</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>;
+<a name="l00087"></a>00087 
+<a name="l00090"></a><a class="code" href="class_show_user_requester.html#a0c73954ad0133b9e8f1ab67e6037d1e1">00090</a>                 QString <a class="code" href="class_show_user_requester.html#a0c73954ad0133b9e8f1ab67e6037d1e1" title="When this value is set to true, only the id and id_str values of the user are returned...">screenName</a>;
+<a name="l00091"></a>00091 
+<a name="l00094"></a>00094                 <span class="keywordtype">void</span> <a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d" title="Building getParameters.">buildGETParameters</a>();
+<a name="l00095"></a>00095 };
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif // SHOWUSERREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -167,7 +167,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -89,6 +89,9 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>ShowTweetRequester Class Reference</h1><!-- doxytag: class="ShowTweetRequester" --><!-- doxytag: inherits="GenericRequester" -->
+<p>Requester for getting details about a tweet identified by its ID.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ShowTweetRequester:</div>
@@ -104,8 +107,8 @@ Inheritance diagram for ShowTweetRequester:</div>
 <p><a href="class_show_tweet_requester-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a636d2bc8c49724a3ff62b36fd0b9057a">ShowTweetRequester</a> (long <a class="el" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4">tweetID</a>, bool entities=true, bool userIdsOnly=false)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a636d2bc8c49724a3ff62b36fd0b9057a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a010c37349a1d7b9675cd107f051512cd">ShowTweetRequester</a> (qlonglong iD, bool entities=true, bool userIdsOnly=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a010c37349a1d7b9675cd107f051512cd"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d">buildGETParameters</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building getParameters.  <a href="#a5f5903f2faf869aace11897ffbbcb80d"></a><br/></td></tr>
@@ -114,21 +117,22 @@ Inheritance diagram for ShowTweetRequester:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boolean indicating if entities of a tweet have to be included in the reply.  <a href="#ad45aa0234e4291ccfff9afdf9926dd67"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388">trimUser</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">When this value is set to true, only the id and id_str values of the user are returned.  <a href="#a008f1575e53dbe5f280800ce7622c388"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4">tweetID</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ID of the tweet.  <a href="#a4d9b72c0b48e2bec904f06105fbae8f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">qlonglong&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_tweet_requester.html#a39722b8433c41ec879de37e09c77536f">tweetID</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ID of the tweet.  <a href="#a39722b8433c41ec879de37e09c77536f"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Requester for getting details about a tweet identified by its ID. </p>
 
-<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00029">29</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00031">31</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a636d2bc8c49724a3ff62b36fd0b9057a"></a><!-- doxytag: member="ShowTweetRequester::ShowTweetRequester" ref="a636d2bc8c49724a3ff62b36fd0b9057a" args="(long tweetID, bool entities=true, bool userIdsOnly=false)" -->
+<a class="anchor" id="a010c37349a1d7b9675cd107f051512cd"></a><!-- doxytag: member="ShowTweetRequester::ShowTweetRequester" ref="a010c37349a1d7b9675cd107f051512cd" args="(qlonglong iD, bool entities=true, bool userIdsOnly=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ShowTweetRequester::ShowTweetRequester </td>
           <td>(</td>
-          <td class="paramtype">long&nbsp;</td>
+          <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>id</em>, </td>
         </tr>
         <tr>
@@ -204,7 +208,7 @@ Inheritance diagram for ShowTweetRequester:</div>
 
 <p>Boolean indicating if entities of a tweet have to be included in the reply. </p>
 
-<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00051">51</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00053">53</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -221,16 +225,16 @@ Inheritance diagram for ShowTweetRequester:</div>
 
 <p>When this value is set to true, only the id and id_str values of the user are returned. </p>
 
-<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00055">55</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00057">57</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4d9b72c0b48e2bec904f06105fbae8f4"></a><!-- doxytag: member="ShowTweetRequester::tweetID" ref="a4d9b72c0b48e2bec904f06105fbae8f4" args="" -->
+<a class="anchor" id="a39722b8433c41ec879de37e09c77536f"></a><!-- doxytag: member="ShowTweetRequester::tweetID" ref="a39722b8433c41ec879de37e09c77536f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long <a class="el" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4">ShowTweetRequester::tweetID</a><code> [protected]</code></td>
+          <td class="memname">qlonglong <a class="el" href="class_show_tweet_requester.html#a39722b8433c41ec879de37e09c77536f">ShowTweetRequester::tweetID</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -238,7 +242,7 @@ Inheritance diagram for ShowTweetRequester:</div>
 
 <p>ID of the tweet. </p>
 
-<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00047">47</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showtweetrequester_8hpp_source.html#l00049">49</a> of file <a class="el" href="showtweetrequester_8hpp_source.html">showtweetrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -261,7 +265,7 @@ Inheritance diagram for ShowTweetRequester:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:07 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:30 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

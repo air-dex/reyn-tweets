@@ -115,8 +115,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a16208dc0a4b840d18f8f175a3f730e25"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#ab07552586c2d0870f1f405bd22be7124">saveConfiguration</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Saving the configuartion in the configuration file.  <a href="#ab07552586c2d0870f1f405bd22be7124"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#abd325c82fabebe9d4baa97cda128b7ee">updateConfAfterAuth</a> (QByteArray accessToken, QByteArray tokenSecret, long id, QString screenName)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Uploading the configuration after an authentication process.  <a href="#abd325c82fabebe9d4baa97cda128b7ee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a7d3f5347668ef460c2c5cd86c1e914cd">updateConfAfterAuth</a> (QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString screenName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Uploading the configuration after an authentication process.  <a href="#a7d3f5347668ef460c2c5cd86c1e914cd"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#aba0d24027c9af6bea1b75a60abb9e640">fillOAuthManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Filling the authentication manager of the <a class="el" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> with the right credentials.  <a href="#aba0d24027c9af6bea1b75a60abb9e640"></a><br/></td></tr>
@@ -197,7 +197,7 @@ window.onload = initDynSections;
 
 <p>Checks if the access tokens seem legit. If not, it sends an <a class="el" href="class_reyn_core.html#aa1f137675ebe526c6725bf91a699e4ef" title="Signal sent if the application has to be authorized again (in order to get new access...">authenticationRequired()</a>; signal to the <a class="el" href="class_reyn_tweets_widget.html" title="Main Widget of Reyn Tweets.">ReynTweetsWidget</a> to start an authentication process. </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00183">183</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00188">188</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -218,7 +218,7 @@ window.onload = initDynSections;
 
 <p>Filling the authentication manager of the <a class="el" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> with the right credentials. </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00104">104</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00109">109</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +246,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00126">126</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00131">131</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,7 +275,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if the token seems valid, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00192">192</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00197">197</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -417,7 +417,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="abd325c82fabebe9d4baa97cda128b7ee"></a><!-- doxytag: member="ReynCore::updateConfAfterAuth" ref="abd325c82fabebe9d4baa97cda128b7ee" args="(QByteArray accessToken, QByteArray tokenSecret, long id, QString screenName)" -->
+<a class="anchor" id="a7d3f5347668ef460c2c5cd86c1e914cd"></a><!-- doxytag: member="ReynCore::updateConfAfterAuth" ref="a7d3f5347668ef460c2c5cd86c1e914cd" args="(QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString screenName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -436,7 +436,7 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">long&nbsp;</td>
+          <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>id</em>, </td>
         </tr>
         <tr>
@@ -466,7 +466,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00112">112</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00117">117</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -524,7 +524,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:05 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:29 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

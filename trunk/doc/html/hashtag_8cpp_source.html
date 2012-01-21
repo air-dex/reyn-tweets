@@ -151,12 +151,12 @@ window.onload = initDynSections;
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00065"></a><a class="code" href="hashtag_8hpp.html#a0a442fd08a2c5a74eb8e41c57338f67d">00065</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00066"></a>00066         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, hashtag);
+<a name="l00066"></a>00066         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, hashtag);
 <a name="l00067"></a>00067 }
 <a name="l00068"></a>00068 
 <a name="l00069"></a>00069 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00070"></a><a class="code" href="hashtag_8hpp.html#a9b2437f5cedf935bf42d671830a3fc9c">00070</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00071"></a>00071         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, hashtag);
+<a name="l00071"></a>00071         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, hashtag);
 <a name="l00072"></a>00072 }
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 
@@ -209,7 +209,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

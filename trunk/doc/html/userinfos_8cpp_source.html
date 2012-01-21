@@ -180,7 +180,7 @@ window.onload = initDynSections;
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093 <span class="comment">// Copy of a User</span>
 <a name="l00094"></a><a class="code" href="class_user_infos.html#a73d006c89294ac73afb4c5c97db842de">00094</a> <span class="keywordtype">void</span> <a class="code" href="class_user_infos.html#a73d006c89294ac73afb4c5c97db842de" title="Copy of a User.">UserInfos::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> &amp; user) {
-<a name="l00095"></a>00095         <a class="code" href="class_user_infos.html#a1f621ba5858c95a4177a09da93354ca7" title="User ID.">userID</a> = user.<a class="code" href="class_user_infos.html#a1f621ba5858c95a4177a09da93354ca7" title="User ID.">userID</a>;
+<a name="l00095"></a>00095         <a class="code" href="class_user_infos.html#abb570c2f5a2e1501f8ff001fdea76677" title="User ID.">userID</a> = user.<a class="code" href="class_user_infos.html#abb570c2f5a2e1501f8ff001fdea76677" title="User ID.">userID</a>;
 <a name="l00096"></a>00096         <a class="code" href="class_user_infos.html#a91ee22f3e13773ebd5efb6d3384cb815" title="User ID (String version).">userIDstr</a> = user.<a class="code" href="class_user_infos.html#a91ee22f3e13773ebd5efb6d3384cb815" title="User ID (String version).">userIDstr</a>;
 <a name="l00097"></a>00097         <a class="code" href="class_user_infos.html#aa88b552042eb222da1ef5d95ac174385" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a> = user.<a class="code" href="class_user_infos.html#aa88b552042eb222da1ef5d95ac174385" title="Screen name (&amp;quot;toto&amp;quot; in &amp;quot;@toto&amp;quot;, for example).">screenName</a>;
 <a name="l00098"></a>00098         <a class="code" href="class_user_infos.html#ae5d99a7a69d9d1798fc8b84673903090" title="User&amp;#39;s name.">userName</a> = user.<a class="code" href="class_user_infos.html#ae5d99a7a69d9d1798fc8b84673903090" title="User&amp;#39;s name.">userName</a>;
@@ -223,12 +223,12 @@ window.onload = initDynSections;
 <a name="l00135"></a>00135 
 <a name="l00136"></a>00136 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00137"></a><a class="code" href="userinfos_8hpp.html#af6b325cfb9edbfabe7d8a7b3f501bc9a">00137</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> &amp; user) {
-<a name="l00138"></a>00138         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, user);
+<a name="l00138"></a>00138         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, user);
 <a name="l00139"></a>00139 }
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00142"></a><a class="code" href="userinfos_8hpp.html#a30d3ccdc97aee62cf9240b278bea41dd">00142</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> &amp; user) {
-<a name="l00143"></a>00143         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, user);
+<a name="l00143"></a>00143         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, user);
 <a name="l00144"></a>00144 }
 <a name="l00145"></a>00145 
 <a name="l00146"></a>00146 
@@ -598,13 +598,13 @@ window.onload = initDynSections;
 <a name="l00514"></a>00514 }
 <a name="l00515"></a>00515 
 <a name="l00516"></a>00516 <span class="comment">// Getter on ID</span>
-<a name="l00517"></a><a class="code" href="class_user_infos.html#abac3e1989a640d8666d231dfa4b0efbe">00517</a> <span class="keywordtype">long</span> <a class="code" href="class_user_infos.html#abac3e1989a640d8666d231dfa4b0efbe" title="Getter on ID.">UserInfos::getID</a>() {
-<a name="l00518"></a>00518         <span class="keywordflow">return</span> <a class="code" href="class_user_infos.html#a1f621ba5858c95a4177a09da93354ca7" title="User ID.">userID</a>;
+<a name="l00517"></a><a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8">00517</a> qlonglong <a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">UserInfos::getID</a>() {
+<a name="l00518"></a>00518         <span class="keywordflow">return</span> <a class="code" href="class_user_infos.html#abb570c2f5a2e1501f8ff001fdea76677" title="User ID.">userID</a>;
 <a name="l00519"></a>00519 }
 <a name="l00520"></a>00520 
 <a name="l00521"></a>00521 <span class="comment">// Setter on ID</span>
-<a name="l00522"></a><a class="code" href="class_user_infos.html#ae85023cccc382584cd886339dfddcdda">00522</a> <span class="keywordtype">void</span> <a class="code" href="class_user_infos.html#ae85023cccc382584cd886339dfddcdda" title="Setter on ID.">UserInfos::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00523"></a>00523         <a class="code" href="class_user_infos.html#a1f621ba5858c95a4177a09da93354ca7" title="User ID.">userID</a> = newID;
+<a name="l00522"></a><a class="code" href="class_user_infos.html#ad3e900cd7248779c4d503540f9061769">00522</a> <span class="keywordtype">void</span> <a class="code" href="class_user_infos.html#ad3e900cd7248779c4d503540f9061769" title="Setter on ID.">UserInfos::setID</a>(qlonglong newID) {
+<a name="l00523"></a>00523         <a class="code" href="class_user_infos.html#abb570c2f5a2e1501f8ff001fdea76677" title="User ID.">userID</a> = newID;
 <a name="l00524"></a>00524 }
 <a name="l00525"></a>00525 
 <a name="l00526"></a>00526 <span class="comment">// Getter on verified</span>
@@ -671,7 +671,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

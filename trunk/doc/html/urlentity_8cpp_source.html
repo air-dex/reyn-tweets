@@ -155,12 +155,12 @@ window.onload = initDynSections;
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00069"></a><a class="code" href="urlentity_8hpp.html#a4963466848463a021d0ffa5b5d53d9da">00069</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, entity);
+<a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, entity);
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00074"></a><a class="code" href="urlentity_8hpp.html#afc50d01e1fb1f6971c69850c2bb0069b">00074</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, entity);
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, entity);
 <a name="l00076"></a>00076 }
 <a name="l00077"></a>00077 
 <a name="l00079"></a>00079 <span class="comment">// Properties management //</span>
@@ -232,7 +232,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -116,27 +116,27 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../genericrequester.hpp&quot;</span>
 <a name="l00028"></a>00028 
-<a name="l00029"></a><a class="code" href="class_show_tweet_requester.html">00029</a> <span class="keyword">class </span><a class="code" href="class_show_tweet_requester.html">ShowTweetRequester</a> : <span class="keyword">public</span> <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>
-<a name="l00030"></a>00030 {
-<a name="l00031"></a>00031         Q_OBJECT
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033         <span class="keyword">public</span>:
-<a name="l00041"></a>00041                 <a class="code" href="class_show_tweet_requester.html#a636d2bc8c49724a3ff62b36fd0b9057a" title="Constructor.">ShowTweetRequester</a>(<span class="keywordtype">long</span> <a class="code" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4" title="ID of the tweet.">tweetID</a>,
-<a name="l00042"></a>00042                                                    <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
-<a name="l00043"></a>00043                                                    <span class="keywordtype">bool</span> userIdsOnly = <span class="keyword">false</span>);
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <span class="keyword">protected</span>:
-<a name="l00047"></a><a class="code" href="class_show_tweet_requester.html#a4d9b72c0b48e2bec904f06105fbae8f4">00047</a>                 <span class="keywordtype">long</span> tweetID;
-<a name="l00048"></a>00048 
-<a name="l00051"></a><a class="code" href="class_show_tweet_requester.html#ad45aa0234e4291ccfff9afdf9926dd67">00051</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_tweet_requester.html#ad45aa0234e4291ccfff9afdf9926dd67" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>;
-<a name="l00052"></a>00052 
-<a name="l00055"></a><a class="code" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388">00055</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388" title="When this value is set to true, only the id and id_str values of the user are returned...">trimUser</a>;
-<a name="l00056"></a>00056 
-<a name="l00059"></a>00059                 <span class="keywordtype">void</span> <a class="code" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d" title="Building getParameters.">buildGETParameters</a>();
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 };
+<a name="l00031"></a><a class="code" href="class_show_tweet_requester.html">00031</a> <span class="keyword">class </span><a class="code" href="class_show_tweet_requester.html" title="Requester for getting details about a tweet identified by its ID.">ShowTweetRequester</a> : <span class="keyword">public</span> <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>
+<a name="l00032"></a>00032 {
+<a name="l00033"></a>00033         Q_OBJECT
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035         <span class="keyword">public</span>:
+<a name="l00043"></a>00043                 <a class="code" href="class_show_tweet_requester.html#a010c37349a1d7b9675cd107f051512cd" title="Constructor.">ShowTweetRequester</a>(qlonglong iD,
+<a name="l00044"></a>00044                                                    <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
+<a name="l00045"></a>00045                                                    <span class="keywordtype">bool</span> userIdsOnly = <span class="keyword">false</span>);
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="keyword">protected</span>:
+<a name="l00049"></a><a class="code" href="class_show_tweet_requester.html#a39722b8433c41ec879de37e09c77536f">00049</a>                 qlonglong <a class="code" href="class_show_tweet_requester.html#a39722b8433c41ec879de37e09c77536f" title="ID of the tweet.">tweetID</a>;
+<a name="l00050"></a>00050 
+<a name="l00053"></a><a class="code" href="class_show_tweet_requester.html#ad45aa0234e4291ccfff9afdf9926dd67">00053</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_tweet_requester.html#ad45aa0234e4291ccfff9afdf9926dd67" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>;
+<a name="l00054"></a>00054 
+<a name="l00057"></a><a class="code" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388">00057</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_show_tweet_requester.html#a008f1575e53dbe5f280800ce7622c388" title="When this value is set to true, only the id and id_str values of the user are returned...">trimUser</a>;
+<a name="l00058"></a>00058 
+<a name="l00061"></a>00061                 <span class="keywordtype">void</span> <a class="code" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d" title="Building getParameters.">buildGETParameters</a>();
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063 <span class="preprocessor">#endif // SHOWTWEETREQUESTER_HPP</span>
+<a name="l00063"></a>00063 };
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="preprocessor">#endif // SHOWTWEETREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -152,7 +152,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

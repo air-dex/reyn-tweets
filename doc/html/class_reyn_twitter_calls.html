@@ -115,12 +115,12 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a3d734925a7ae27acf494808bb1d4f16a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e">search</a> (QString q)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method that launch searches.  <a href="#a1841d6eed5d2b649684dc6be704a660e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a32de35be82bdcb550e627a21cfa1a297">showTweet</a> (long tweetID, bool entities=true, bool trimUser=false)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a tweet.  <a href="#a32de35be82bdcb550e627a21cfa1a297"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9">showTweet</a> (qlonglong tweetID, bool entities=true, bool trimUser=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a tweet.  <a href="#aab389cf2f9969a500e39c30d678daff9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">showUser</a> (QString screenName, bool entities=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its screen name.  <a href="#ab14d60a28ed2cd1d9b460f697c1c02b2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#abd5edd0e2820eebe99c32bd7b4afdc39">showUser</a> (long userID, bool entities=true)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its ID.  <a href="#abd5edd0e2820eebe99c32bd7b4afdc39"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a">showUser</a> (qlonglong userID, bool entities=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its ID.  <a href="#a4b2d791da49e7b507ab829dd0598093a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a672e5f4bd86d25343f911f304aef04b6">~ReynTwitterCalls</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a672e5f4bd86d25343f911f304aef04b6"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
@@ -574,14 +574,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a32de35be82bdcb550e627a21cfa1a297"></a><!-- doxytag: member="ReynTwitterCalls::showTweet" ref="a32de35be82bdcb550e627a21cfa1a297" args="(long tweetID, bool entities=true, bool trimUser=false)" -->
+<a class="anchor" id="aab389cf2f9969a500e39c30d678daff9"></a><!-- doxytag: member="ReynTwitterCalls::showTweet" ref="aab389cf2f9969a500e39c30d678daff9" args="(qlonglong tweetID, bool entities=true, bool trimUser=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ReynTwitterCalls::showTweet </td>
           <td>(</td>
-          <td class="paramtype">long&nbsp;</td>
+          <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>tweetID</em>, </td>
         </tr>
         <tr>
@@ -659,14 +659,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="abd5edd0e2820eebe99c32bd7b4afdc39"></a><!-- doxytag: member="ReynTwitterCalls::showUser" ref="abd5edd0e2820eebe99c32bd7b4afdc39" args="(long userID, bool entities=true)" -->
+<a class="anchor" id="a4b2d791da49e7b507ab829dd0598093a"></a><!-- doxytag: member="ReynTwitterCalls::showUser" ref="a4b2d791da49e7b507ab829dd0598093a" args="(qlonglong userID, bool entities=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ReynTwitterCalls::showUser </td>
           <td>(</td>
-          <td class="paramtype">long&nbsp;</td>
+          <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>userID</em>, </td>
         </tr>
         <tr>
@@ -769,7 +769,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:06 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:30 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -136,10 +136,10 @@ window.onload = initDynSections;
 <a name="l00046"></a>00046                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)));
 <a name="l00047"></a>00047         connect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>, SIGNAL(authenticationFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
 <a name="l00048"></a>00048                                                                                                                                  QByteArray,QByteArray,
-<a name="l00049"></a>00049                                                                                                                                  <span class="keywordtype">long</span>,QString)),
-<a name="l00050"></a>00050                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00049"></a>00049                                                                                                                                  qlonglong,QString)),
+<a name="l00050"></a>00050                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
 <a name="l00051"></a>00051                                                                                                   QByteArray,QByteArray,
-<a name="l00052"></a>00052                                                                                                   <span class="keywordtype">long</span>,QString))
+<a name="l00052"></a>00052                                                                                                   qlonglong,QString))
 <a name="l00053"></a>00053                         );
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055         <span class="comment">// Loading configuration</span>
@@ -157,10 +157,10 @@ window.onload = initDynSections;
 <a name="l00067"></a>00067                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf" title="Slot executed after saving the configuration.">saveOK</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a>)));
 <a name="l00068"></a>00068         disconnect(&amp;<a class="code" href="class_reyn_tweets_widget.html#a50caefc0b486ce5c329580d2fb0021c6" title="Widget for authentication.">authenticationWidget</a>, SIGNAL(authenticationFinished(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
 <a name="l00069"></a>00069                                                                                                                                         QByteArray,QByteArray,
-<a name="l00070"></a>00070                                                                                                                                         <span class="keywordtype">long</span>,QString)),
-<a name="l00071"></a>00071                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
+<a name="l00070"></a>00070                                                                                                                                         qlonglong,QString)),
+<a name="l00071"></a>00071                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef" title="Slot executed after an OAuth Authentication processus.">endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a>,
 <a name="l00072"></a>00072                                                                                                          QByteArray,QByteArray,
-<a name="l00073"></a>00073                                                                                                          <span class="keywordtype">long</span>,QString))
+<a name="l00073"></a>00073                                                                                                          qlonglong,QString))
 <a name="l00074"></a>00074                            );
 <a name="l00075"></a>00075 }
 <a name="l00076"></a>00076 
@@ -211,10 +211,10 @@ window.onload = initDynSections;
 <a name="l00123"></a>00123 
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125 <span class="comment">// End of authentication</span>
-<a name="l00126"></a><a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba">00126</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba" title="Slot executed after an OAuth Authentication processus.">ReynTweetsWidget::endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
+<a name="l00126"></a><a class="code" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef">00126</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef" title="Slot executed after an OAuth Authentication processus.">ReynTweetsWidget::endOAuthAuthenticationFlow</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
 <a name="l00127"></a>00127                                                                                                   QByteArray accessToken,
 <a name="l00128"></a>00128                                                                                                   QByteArray tokenSecret,
-<a name="l00129"></a>00129                                                                                                   <span class="keywordtype">long</span> userID,
+<a name="l00129"></a>00129                                                                                                   qlonglong userID,
 <a name="l00130"></a>00130                                                                                                   QString screenName)
 <a name="l00131"></a>00131 {
 <a name="l00132"></a>00132         QMessageBox::StandardButton questionButton;
@@ -230,7 +230,7 @@ window.onload = initDynSections;
 <a name="l00142"></a>00142                         QMessageBox::information(<span class="keyword">this</span>,
 <a name="l00143"></a>00143                                                                          ReynTweetsWidget::trUtf8(<span class="stringliteral">&quot;Welcome to Reyn Tweets&quot;</span>),
 <a name="l00144"></a>00144                                                                          welcomeMessage);
-<a name="l00145"></a>00145                         <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>.<a class="code" href="class_reyn_core.html#abd325c82fabebe9d4baa97cda128b7ee" title="Uploading the configuration after an authentication process.">updateConfAfterAuth</a>(accessToken, tokenSecret,
+<a name="l00145"></a>00145                         <a class="code" href="class_reyn_tweets_widget.html#a117e316940a38cbf504e65a61b509744" title="Main controller.">reyn</a>.<a class="code" href="class_reyn_core.html#a7d3f5347668ef460c2c5cd86c1e914cd" title="Uploading the configuration after an authentication process.">updateConfAfterAuth</a>(accessToken, tokenSecret,
 <a name="l00146"></a>00146                                                                          userID, screenName);
 <a name="l00147"></a>00147                         <span class="keywordflow">return</span>;
 <a name="l00148"></a>00148 
@@ -349,7 +349,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:55 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:23 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

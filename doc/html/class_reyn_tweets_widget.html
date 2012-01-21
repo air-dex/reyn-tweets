@@ -99,14 +99,12 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Public Slots</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a958cdd8fbf1efadf618653ae153f87c3">authenticationRequired</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed if an authentication to Twitter is required for the application.  <a href="#a958cdd8fbf1efadf618653ae153f87c3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a805fd928e03faabc5a6818130bee86ba">endOAuthAuthenticationFlow</a> (<a class="el" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228">OAuthProcessResult</a> processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, long userID=-1, QString screenName=&quot;&quot;)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed after an OAuth Authentication processus.  <a href="#a805fd928e03faabc5a6818130bee86ba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a2ff5fd4aee1303c75b3bae5e697616ef">endOAuthAuthenticationFlow</a> (<a class="el" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228">OAuthProcessResult</a> processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, qlonglong userID=-1, QString screenName=&quot;&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed after an OAuth Authentication processus.  <a href="#a2ff5fd4aee1303c75b3bae5e697616ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a913dd28878c83e5945b7ef5714a90c00">launchOK</a> (<a class="el" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b">LaunchResult</a> launchOK)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed at the end of the launch process.  <a href="#a913dd28878c83e5945b7ef5714a90c00"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#aa1c8e6055bcc306d7de23a93136bdfbf">saveOK</a> (<a class="el" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1">SaveConfResult</a> saveOK)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed after saving the configuration.  <a href="#aa1c8e6055bcc306d7de23a93136bdfbf"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Signals</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a4a45d3086d77dde2a4ddbf278778bbd9">updateConfAfterAuth</a> (QByteArray accessToken, QByteArray tokenSecret, long userID, QString screenName)</td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_widget.html#a4c86b8ddc01a43ef9e671a76204fec29">ReynTweetsWidget</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a4c86b8ddc01a43ef9e671a76204fec29"></a><br/></td></tr>
@@ -243,7 +241,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a805fd928e03faabc5a6818130bee86ba"></a><!-- doxytag: member="ReynTweetsWidget::endOAuthAuthenticationFlow" ref="a805fd928e03faabc5a6818130bee86ba" args="(OAuthProcessResult processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, long userID=&#45;1, QString screenName=&quot;&quot;)" -->
+<a class="anchor" id="a2ff5fd4aee1303c75b3bae5e697616ef"></a><!-- doxytag: member="ReynTweetsWidget::endOAuthAuthenticationFlow" ref="a2ff5fd4aee1303c75b3bae5e697616ef" args="(OAuthProcessResult processResult, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, qlonglong userID=&#45;1, QString screenName=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -268,7 +266,7 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">long&nbsp;</td>
+          <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>userID</em> = <code>-1</code>, </td>
         </tr>
         <tr>
@@ -392,45 +390,6 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a4a45d3086d77dde2a4ddbf278778bbd9"></a><!-- doxytag: member="ReynTweetsWidget::updateConfAfterAuth" ref="a4a45d3086d77dde2a4ddbf278778bbd9" args="(QByteArray accessToken, QByteArray tokenSecret, long userID, QString screenName)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ReynTweetsWidget::updateConfAfterAuth </td>
-          <td>(</td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>accessToken</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>tokenSecret</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">long&nbsp;</td>
-          <td class="paramname"> <em>userID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>screenName</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [signal]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="a50caefc0b486ce5c329580d2fb0021c6"></a><!-- doxytag: member="ReynTweetsWidget::authenticationWidget" ref="a50caefc0b486ce5c329580d2fb0021c6" args="" -->
 <div class="memitem">
@@ -445,7 +404,7 @@ window.onload = initDynSections;
 
 <p>Widget for authentication. </p>
 
-<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00103">103</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00101">101</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +421,7 @@ window.onload = initDynSections;
 
 <p>Widget displayed while Reyn Tweets is launched. </p>
 
-<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00106">106</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00104">104</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +438,7 @@ window.onload = initDynSections;
 
 <p>Layout of the widget. </p>
 
-<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00100">100</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00098">98</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -496,7 +455,7 @@ window.onload = initDynSections;
 
 <p>Mock for "a normal execution". </p>
 
-<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00109">109</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00107">107</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -513,7 +472,7 @@ window.onload = initDynSections;
 
 <p>Main controller. </p>
 
-<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00095">95</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetswidget_8hpp_source.html#l00093">93</a> of file <a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -536,7 +495,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:11:06 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:30 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

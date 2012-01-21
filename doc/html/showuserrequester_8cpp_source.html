@@ -115,8 +115,8 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../../../tools/utils.hpp&quot;</span>
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="comment">// Constructor with the user ID</span>
-<a name="l00028"></a><a class="code" href="class_show_user_requester.html#adc6a2152e52f1fea3c6d2176c33da954">00028</a> <a class="code" href="class_show_user_requester.html#adc6a2152e52f1fea3c6d2176c33da954" title="Constructor with the user ID.">ShowUserRequester::ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
-<a name="l00029"></a>00029                                                                          <span class="keywordtype">long</span> <span class="keywordtype">id</span>,
+<a name="l00028"></a><a class="code" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6">00028</a> <a class="code" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6" title="Constructor with the user ID.">ShowUserRequester::ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
+<a name="l00029"></a>00029                                                                          qlonglong <span class="keywordtype">id</span>,
 <a name="l00030"></a>00030                                                                          <span class="keywordtype">bool</span> entities) :
 <a name="l00031"></a>00031         <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL for getting informations about a given user.">SHOW_USER_URL</a>, authManager),
 <a name="l00032"></a>00032         idWay(ID),
@@ -126,7 +126,7 @@ window.onload = initDynSections;
 <a name="l00036"></a>00036 {}
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 <span class="comment">// Constructor with the screen name</span>
-<a name="l00039"></a><a class="code" href="class_show_user_requester.html#acf4b5c6507806a53606578682d132ba4">00039</a> <a class="code" href="class_show_user_requester.html#adc6a2152e52f1fea3c6d2176c33da954" title="Constructor with the user ID.">ShowUserRequester::ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
+<a name="l00039"></a><a class="code" href="class_show_user_requester.html#acf4b5c6507806a53606578682d132ba4">00039</a> <a class="code" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6" title="Constructor with the user ID.">ShowUserRequester::ShowUserRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp; authManager,
 <a name="l00040"></a>00040                                                                          QString name,
 <a name="l00041"></a>00041                                                                          <span class="keywordtype">bool</span> entities) :
 <a name="l00042"></a>00042         <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL for getting informations about a given user.">SHOW_USER_URL</a>, authManager),
@@ -139,7 +139,7 @@ window.onload = initDynSections;
 <a name="l00049"></a>00049 <span class="comment">// Building getParameters</span>
 <a name="l00050"></a><a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d">00050</a> <span class="keywordtype">void</span> <a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d" title="Building getParameters.">ShowUserRequester::buildGETParameters</a>() {
 <a name="l00051"></a>00051         <span class="keywordflow">if</span> (<a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a> == <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee" title="With an ID.">ID</a>) {
-<a name="l00052"></a>00052                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;id&quot;</span>, QString::number(<a class="code" href="class_show_user_requester.html#a015105194e534738b116dda1028661fd" title="ID of the user.">userID</a>));
+<a name="l00052"></a>00052                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;id&quot;</span>, QString::number(<a class="code" href="class_show_user_requester.html#a9a0ca0fefec324420d6f1ae1c64f51a3" title="ID of the user.">userID</a>));
 <a name="l00053"></a>00053         }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_entities&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>));
@@ -164,7 +164,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

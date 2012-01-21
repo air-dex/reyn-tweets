@@ -150,7 +150,7 @@ window.onload = initDynSections;
 <a name="l00062"></a>00062 <span class="comment">// Copy of a Media</span>
 <a name="l00063"></a><a class="code" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346">00063</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346" title="Copy of a Media.">Media::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_media.html" title="Media in a tweet.">Media</a> &amp; media) {
 <a name="l00064"></a>00064         <a class="code" href="class_media.html#a5873f2c5781c2eef5a489a7bae804346" title="Copy of a Media.">URLEntity::recopie</a>(media);      <span class="comment">// Don&#39;t forget the base class !</span>
-<a name="l00065"></a>00065         <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a> = media.<a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a>;
+<a name="l00065"></a>00065         <a class="code" href="class_media.html#aba3dde137cde74bdae45317654f9a270" title="ID of the media.">mediaID</a> = media.<a class="code" href="class_media.html#aba3dde137cde74bdae45317654f9a270" title="ID of the media.">mediaID</a>;
 <a name="l00066"></a>00066         <a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a> = media.<a class="code" href="class_media.html#a4a1e7500372f2a2384b6f935894b119b" title="String version of mediaID.">mediaIDstr</a>;
 <a name="l00067"></a>00067         <a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a> = media.<a class="code" href="class_media.html#a820d0e1d9ef07c2573c9a8617bfb2e0d" title="Media URL.">mediaURL</a>;
 <a name="l00068"></a>00068         <a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a> = media.<a class="code" href="class_media.html#abe3aa1ef17a1a6721166e79a195401ef" title="Media URL (HTTPS version).">mediaURLhttps</a>;
@@ -160,12 +160,12 @@ window.onload = initDynSections;
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 <span class="comment">// Output stream operator for serialization</span>
 <a name="l00074"></a><a class="code" href="media_8hpp.html#aa3f63338c7ab9ee77258d7464990ad6b">00074</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_media.html" title="Media in a tweet.">Media</a> &amp; media) {
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#acf619ad37c4138e1d040869dbb323fc7" title="Output stream operator for JSON serialization.">jsonStreamingOut</a>(out, media);
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, media);
 <a name="l00076"></a>00076 }
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 <span class="comment">// Input stream operator for serialization</span>
 <a name="l00079"></a><a class="code" href="media_8hpp.html#abdbc9e57f8944d5e0e202b6bb59ca618">00079</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_media.html" title="Media in a tweet.">Media</a> &amp; media) {
-<a name="l00080"></a>00080         <span class="keywordflow">return</span> <a class="code" href="utils_8cpp.html#a238e1abfe41c75c5f96cb89d0175bb34" title="Input stream operator for JSON serialization.">jsonStreamingIn</a>(in, media);
+<a name="l00080"></a>00080         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, media);
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083 
@@ -185,13 +185,13 @@ window.onload = initDynSections;
 <a name="l00100"></a>00100 <span class="comment">// Getter and setters //</span>
 <a name="l00102"></a>00102 <span class="comment"></span>
 <a name="l00103"></a>00103 <span class="comment">// Reading mediaID</span>
-<a name="l00104"></a><a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9">00104</a> <span class="keywordtype">long</span> <a class="code" href="class_media.html#a3c055756806c1e911a79c350f82e03f9" title="Reading mediaID.">Media::getID</a>() {
-<a name="l00105"></a>00105         <span class="keywordflow">return</span> <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a>;
+<a name="l00104"></a><a class="code" href="class_media.html#ad80dfc56091847d7b925236cb59f630c">00104</a> qlonglong <a class="code" href="class_media.html#ad80dfc56091847d7b925236cb59f630c" title="Reading mediaID.">Media::getID</a>() {
+<a name="l00105"></a>00105         <span class="keywordflow">return</span> <a class="code" href="class_media.html#aba3dde137cde74bdae45317654f9a270" title="ID of the media.">mediaID</a>;
 <a name="l00106"></a>00106 }
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 <span class="comment">// Writing mediaID</span>
-<a name="l00109"></a><a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#acaa3b7b44adf68538b8587124ab68aca" title="Writing mediaID.">Media::setID</a>(<span class="keywordtype">long</span> newID) {
-<a name="l00110"></a>00110         <a class="code" href="class_media.html#a77501f7410e3744b62f7ba923b5b3399" title="ID of the media.">mediaID</a> = newID;
+<a name="l00109"></a><a class="code" href="class_media.html#ae9442cd6635867a430dc3ee8f4f7beff">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_media.html#ae9442cd6635867a430dc3ee8f4f7beff" title="Writing mediaID.">Media::setID</a>(qlonglong newID) {
+<a name="l00110"></a>00110         <a class="code" href="class_media.html#aba3dde137cde74bdae45317654f9a270" title="ID of the media.">mediaID</a> = newID;
 <a name="l00111"></a>00111 }
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113 <span class="comment">// Reading mediaIDstr</span>
@@ -258,7 +258,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

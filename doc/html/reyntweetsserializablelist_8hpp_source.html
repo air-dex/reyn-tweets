@@ -111,25 +111,43 @@ window.onload = initDynSections;
 <a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00022"></a>00022 <span class="comment">*/</span>
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#ifndef REYNTWEETSSERIALIZABLELIST_HPP</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNTWEETSSERIALIZABLELIST_HPP</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#ifndef REYNTWEETSLISTABLE_HPP</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNTWEETSLISTABLE_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QList&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QVariant&gt;</span>
 <a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
-<a name="l00030"></a>00030 
-<a name="l00037"></a>00037 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
-<a name="l00038"></a><a class="code" href="class_reyn_tweets_serializable_list.html">00038</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_serializable_list.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsSerializableList</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>&lt;QVariantList&gt;, <span class="keyword">public</span> <a class="code" href="class_q_list.html">QList</a>&lt;S&gt;
-<a name="l00039"></a>00039 {
-<a name="l00040"></a>00040         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <a class="code" href="class_reyn_tweets_serializable_list.html#a076b1839a56444d377fa83d2139c3c02" title="Constructor.">ReynTweetsSerializableList</a>();
-<a name="l00044"></a>00044 
-<a name="l00048"></a>00048                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_serializable_list.html#ad6d775ed41f2831469f1c39d0e6002d8" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(QVariantList entities);
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsmappable_8hpp.html" title="Header of ReynTweetsMappable.">reyntweetsmappable.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 
+<a name="l00038"></a>00038 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
+<a name="l00039"></a><a class="code" href="class_reyn_tweets_listable.html">00039</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable</a> : <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>&lt;QVariantList&gt;, <span class="keyword">public</span> <a class="code" href="class_q_list.html">QList</a>&lt;S&gt;
+<a name="l00040"></a>00040 {
+<a name="l00041"></a>00041         <span class="keyword">public</span>:
+<a name="l00044"></a>00044                 <a class="code" href="class_reyn_tweets_listable.html#ade72a8c9a1efac7731b001526133f740" title="Constructor.">ReynTweetsListable</a>();
+<a name="l00045"></a>00045 
+<a name="l00048"></a>00048                 <span class="keyword">virtual</span> <a class="code" href="class_reyn_tweets_listable.html#ab7e0553360bea752be3abd1da3360fb8" title="Destructor.">~ReynTweetsListable</a>();
 <a name="l00049"></a>00049 
-<a name="l00053"></a>00053                 <span class="keyword">virtual</span> QVariantList <a class="code" href="class_reyn_tweets_serializable_list.html#aff00f44d771871fed8cb3a555c16b5c5" title="Converting the list of serializables into a QVariantList.">toVariant</a>() <span class="keyword">const</span>;
-<a name="l00054"></a>00054 };
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif // REYNTWEETSSERIALIZABLELIST_HPP</span>
+<a name="l00053"></a>00053                 <a class="code" href="class_reyn_tweets_listable.html#ade72a8c9a1efac7731b001526133f740" title="Constructor.">ReynTweetsListable</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp; list);
+<a name="l00054"></a>00054 
+<a name="l00058"></a>00058                 <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable</a> &amp; <a class="code" href="class_reyn_tweets_listable.html#a806e7a57fac0719a47216629b596d78e" title="Affrection operator.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp; list);
+<a name="l00059"></a>00059 
+<a name="l00063"></a>00063                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(QVariantList entities);
+<a name="l00064"></a>00064 
+<a name="l00068"></a>00068                 <span class="keyword">virtual</span> QVariantList <a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>() <span class="keyword">const</span>;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         <span class="keyword">protected</span>:
+<a name="l00074"></a>00074                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_listable.html#a0fbfb6b62a8ad4b4ab7217ca0296ea38" title="Copy of a ReynTweetsListable.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp;list);
+<a name="l00075"></a>00075 };
+<a name="l00076"></a>00076 
+<a name="l00078"></a>00078 <span class="comment">// Streams //</span>
+<a name="l00080"></a>00080 <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
+<a name="l00087"></a>00087 QDataStream &amp; <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp; list);
+<a name="l00088"></a>00088 
+<a name="l00094"></a>00094 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
+<a name="l00095"></a>00095 QDataStream &amp; <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(QDataStream &amp; in, <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp; list);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif // REYNTWEETSLISTABLE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -145,7 +163,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

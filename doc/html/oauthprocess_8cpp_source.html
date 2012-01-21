@@ -284,7 +284,7 @@ window.onload = initDynSections;
 <a name="l00196"></a>00196 
 <a name="l00197"></a>00197                                         <span class="keywordflow">if</span> (resultMap.value(<span class="stringliteral">&quot;denied&quot;</span>).toBool()) {
 <a name="l00198"></a>00198                                                 <span class="comment">// Reyn Tweets is denied. The process ends.</span>
-<a name="l00199"></a>00199                                                 emit <a class="code" href="class_o_auth_process.html#adf8312f3ce6298fcf22c70ac79d5754b" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>);
+<a name="l00199"></a>00199                                                 emit <a class="code" href="class_o_auth_process.html#a9ab12ae52d7c13df047642c4d7af63b0" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>);
 <a name="l00200"></a>00200                                         } <span class="keywordflow">else</span> {
 <a name="l00201"></a>00201                                                 <span class="comment">// Request tokens are authorized. Let&#39;s get access tokens.</span>
 <a name="l00202"></a>00202                                                 <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a>();
@@ -352,10 +352,10 @@ window.onload = initDynSections;
 <a name="l00264"></a>00264                         QVariantMap resultMap = result.<a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0" title="Getter on real results.">getParsedResult</a>().toMap();
 <a name="l00265"></a>00265                         QByteArray <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a> = resultMap.value(<span class="stringliteral">&quot;oauth_token&quot;</span>).toByteArray();
 <a name="l00266"></a>00266                         QByteArray tokenSecret = resultMap.value(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>).toByteArray();
-<a name="l00267"></a>00267                         <span class="keywordtype">long</span> userID = resultMap.value(<span class="stringliteral">&quot;user_id&quot;</span>).toString().toLong();
+<a name="l00267"></a>00267                         qlonglong userID = resultMap.value(<span class="stringliteral">&quot;user_id&quot;</span>).toLongLong();
 <a name="l00268"></a>00268                         QString screenName = resultMap.value(<span class="stringliteral">&quot;screen_name&quot;</span>).toString();
 <a name="l00269"></a>00269 
-<a name="l00270"></a>00270                         emit <a class="code" href="class_o_auth_process.html#adf8312f3ce6298fcf22c70ac79d5754b" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>,
+<a name="l00270"></a>00270                         emit <a class="code" href="class_o_auth_process.html#a9ab12ae52d7c13df047642c4d7af63b0" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>,
 <a name="l00271"></a>00271                                                                                            accessToken,
 <a name="l00272"></a>00272                                                                                            tokenSecret,
 <a name="l00273"></a>00273                                                                                            userID,
@@ -408,7 +408,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:52 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

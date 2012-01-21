@@ -111,72 +111,78 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QLocale&gt;</span>
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QTranslator&gt;</span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="mainwindow_8hpp.html" title="Header of MainWindow.  Revisions older than r113 are in /trunk/ReynTweets.">ui/mainwindow.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 <span class="comment">// Including the widget for tests</span>
-<a name="l00030"></a>00030 <span class="comment">//*</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#ifndef Q_OS_SYMBIAN</span>
-<a name="l00032"></a>00032 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="testwidget_8hpp.html" title="Header for TestWidget.">ui/testwidget.hpp</a>&quot;</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#endif</span>
-<a name="l00034"></a>00034 <span class="preprocessor"></span><span class="comment">//*/</span>
-<a name="l00035"></a>00035 
-<a name="l00038"></a><a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298">00038</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298" title="Initializes all the serializable classes.">initReynTweetsSystem</a>() {
-<a name="l00039"></a>00039         <a class="code" href="class_index_bounds.html#ad1af563a33f17d410b57c88af67d633b" title="Serialization declaration.">IndexBounds::initSystem</a>();
-<a name="l00040"></a>00040         <a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5" title="Serialization declaration.">MediaSize::initSystem</a>();
-<a name="l00041"></a>00041         <a class="code" href="class_media_sizes.html#ae0eb7cf3c3957974a12cf69919573af2" title="Serialization declaration.">MediaSizes::initSystem</a>();
-<a name="l00042"></a>00042         <a class="code" href="class_media.html#a557a47cc076c3854074ed4367e011c86" title="Serialization declaration.">Media::initSystem</a>();
-<a name="l00043"></a>00043         <a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767" title="Serialization declaration.">URLEntity::initSystem</a>();
-<a name="l00044"></a>00044         <a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba" title="Serialization declaration.">Hashtag::initSystem</a>();
-<a name="l00045"></a>00045         <a class="code" href="class_user_mention.html#a5975da80709e8161e25d5afee1aceb21" title="Serialization declaration.">UserMention::initSystem</a>();
-<a name="l00046"></a>00046         <a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9" title="Serialization declaration.">TweetEntities::initSystem</a>();
-<a name="l00047"></a>00047         <a class="code" href="class_user_infos.html#a3fd2a8c375c3ff6a25b2db052ae32150" title="Serialization declaration.">UserInfos::initSystem</a>();
-<a name="l00048"></a>00048         <a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7" title="Serialization declaration.">Tweet::initSystem</a>();
-<a name="l00049"></a>00049         <a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c" title="Serialization declaration.">User::initSystem</a>();
-<a name="l00050"></a>00050         <a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851" title="Serialization declaration.">UserAccount::initSystem</a>();
-<a name="l00051"></a>00051         <a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7" title="Serialization declaration.">ReynTweetsConfiguration::initSystem</a>();
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00059"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00059</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function. Entry point of the program.">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
-<a name="l00060"></a>00060 {
-<a name="l00061"></a>00061         QApplication a(argc, argv);
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         <span class="comment">// Init the random generator used for generating nonces</span>
-<a name="l00064"></a>00064         qsrand(QDateTime::currentMSecsSinceEpoch());
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066         <span class="comment">// Init for serialization</span>
-<a name="l00067"></a>00067         <a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298" title="Initializes all the serializable classes.">initReynTweetsSystem</a>();
+<a name="l00028"></a>00028 <span class="comment">//#include &quot;model/timeline.hpp&quot;</span>
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 <span class="comment">// Including the widget for tests</span>
+<a name="l00031"></a>00031 <span class="comment">//*</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#ifndef Q_OS_SYMBIAN</span>
+<a name="l00033"></a>00033 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="testwidget_8hpp.html" title="Header for TestWidget.">ui/testwidget.hpp</a>&quot;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#endif</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="comment">//*/</span>
+<a name="l00036"></a>00036 
+<a name="l00039"></a><a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298">00039</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298" title="Initializes all the serializable classes.">initReynTweetsSystem</a>() {
+<a name="l00040"></a>00040         <a class="code" href="class_index_bounds.html#ad1af563a33f17d410b57c88af67d633b" title="Serialization declaration.">IndexBounds::initSystem</a>();
+<a name="l00041"></a>00041         <a class="code" href="class_media_size.html#abb76ed0b5e6bff313090636f6015e1e5" title="Serialization declaration.">MediaSize::initSystem</a>();
+<a name="l00042"></a>00042         <a class="code" href="class_media_sizes.html#ae0eb7cf3c3957974a12cf69919573af2" title="Serialization declaration.">MediaSizes::initSystem</a>();
+<a name="l00043"></a>00043         <a class="code" href="class_media.html#a557a47cc076c3854074ed4367e011c86" title="Serialization declaration.">Media::initSystem</a>();
+<a name="l00044"></a>00044         <a class="code" href="class_media_list.html#a37d5cdb3e0bc82dbf7336098511211b4" title="Serialization declaration.">MediaList::initSystem</a>();
+<a name="l00045"></a>00045         <a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767" title="Serialization declaration.">URLEntity::initSystem</a>();
+<a name="l00046"></a>00046         <a class="code" href="class_u_r_l_entity_list.html#a6dcc47b89b08aa5cbb14cede83a8cab0" title="Serialization declaration.">URLEntityList::initSystem</a>();
+<a name="l00047"></a>00047         <a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba" title="Serialization declaration.">Hashtag::initSystem</a>();
+<a name="l00048"></a>00048         <a class="code" href="class_hashtag_list.html#a4e22d6bf3ac3c20d2ad85514faf8d05c" title="Serialization declaration.">HashtagList::initSystem</a>();
+<a name="l00049"></a>00049         <a class="code" href="class_user_mention.html#a5975da80709e8161e25d5afee1aceb21" title="Serialization declaration.">UserMention::initSystem</a>();
+<a name="l00050"></a>00050         <a class="code" href="class_user_mention_list.html#a6c1ca2290e7d6a64a2323e38530435f0" title="Serialization declaration.">UserMentionList::initSystem</a>();
+<a name="l00051"></a>00051         <a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9" title="Serialization declaration.">TweetEntities::initSystem</a>();
+<a name="l00052"></a>00052         <a class="code" href="class_user_infos.html#a3fd2a8c375c3ff6a25b2db052ae32150" title="Serialization declaration.">UserInfos::initSystem</a>();
+<a name="l00053"></a>00053         <a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7" title="Serialization declaration.">Tweet::initSystem</a>();
+<a name="l00054"></a>00054 <span class="comment">//      Timeline::initSystem();</span>
+<a name="l00055"></a>00055         <a class="code" href="class_user.html#a6bf0bce103007fa6ac523381e5df853c" title="Serialization declaration.">User::initSystem</a>();
+<a name="l00056"></a>00056         <a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851" title="Serialization declaration.">UserAccount::initSystem</a>();
+<a name="l00057"></a>00057         <a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7" title="Serialization declaration.">ReynTweetsConfiguration::initSystem</a>();
+<a name="l00058"></a>00058 }
+<a name="l00059"></a>00059 
+<a name="l00065"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00065</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="Main function. Entry point of the program.">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<a name="l00066"></a>00066 {
+<a name="l00067"></a>00067         QApplication a(argc, argv);
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069         <span class="comment">// Program in French</span>
-<a name="l00070"></a>00070 <span class="comment">/*</span>
-<a name="l00071"></a>00071 <span class="comment">        QTranslator translator;</span>
-<a name="l00072"></a>00072 <span class="comment">        translator.load(&quot;reyntweets_fr&quot;);</span>
-<a name="l00073"></a>00073 <span class="comment">        a.installTranslator(&amp;translator);</span>
-<a name="l00074"></a>00074 <span class="comment">//*/</span>
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076         <span class="comment">// Defalult idiom : local idiom</span>
-<a name="l00077"></a>00077         QString locale = QLocale::system().name().section(<span class="charliteral">&#39;_&#39;</span>, 0, 0);
-<a name="l00078"></a>00078         QTranslator translator;
-<a name="l00079"></a>00079         translator.load(QString(<span class="stringliteral">&quot;reyntweets_&quot;</span>) + locale);
-<a name="l00080"></a>00080         a.installTranslator(&amp;translator);
+<a name="l00069"></a>00069         <span class="comment">// Init the random generator used for generating nonces</span>
+<a name="l00070"></a>00070         qsrand(QDateTime::currentMSecsSinceEpoch());
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072         <span class="comment">// Init for serialization</span>
+<a name="l00073"></a>00073         <a class="code" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298" title="Initializes all the serializable classes.">initReynTweetsSystem</a>();
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075         <span class="comment">// Program in French</span>
+<a name="l00076"></a>00076 <span class="comment">/*</span>
+<a name="l00077"></a>00077 <span class="comment">        QTranslator translator;</span>
+<a name="l00078"></a>00078 <span class="comment">        translator.load(&quot;reyntweets_fr&quot;);</span>
+<a name="l00079"></a>00079 <span class="comment">        a.installTranslator(&amp;translator);</span>
+<a name="l00080"></a>00080 <span class="comment">//*/</span>
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082         <a class="code" href="class_main_window.html" title="Main window of the program. All the functionnalities are in its central widget whose...">MainWindow</a> w;
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">        #if defined(Q_OS_SYMBIAN)</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span>                w.showMaximized();
-<a name="l00086"></a>00086 <span class="preprocessor">        #else // For Windows and Linux</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span>
-<a name="l00088"></a>00088                 <span class="comment">// Insert a widget for tests purposes</span>
-<a name="l00089"></a>00089                 <span class="comment">//*</span>
-<a name="l00090"></a>00090                 <a class="code" href="class_test_widget.html" title="QWidget for testing functionnalities.">TestWidget</a> tw;
-<a name="l00091"></a>00091                 QDockWidget dock(<span class="stringliteral">&quot;Tests&quot;</span>, &amp;w);
-<a name="l00092"></a>00092                 dock.setWidget(&amp;tw);
-<a name="l00093"></a>00093                 w.addDockWidget(Qt::LeftDockWidgetArea, &amp;dock);
-<a name="l00094"></a>00094                 <span class="comment">//*/</span>
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096                 w.show();
-<a name="l00097"></a>00097 <span class="preprocessor">        #endif</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span>
-<a name="l00099"></a>00099         <span class="keywordflow">return</span> a.exec();
-<a name="l00100"></a>00100 }
+<a name="l00082"></a>00082         <span class="comment">// Defalult idiom : local idiom</span>
+<a name="l00083"></a>00083         QString locale = QLocale::system().name().section(<span class="charliteral">&#39;_&#39;</span>, 0, 0);
+<a name="l00084"></a>00084         QTranslator translator;
+<a name="l00085"></a>00085         translator.load(QString(<span class="stringliteral">&quot;reyntweets_&quot;</span>) + locale);
+<a name="l00086"></a>00086         a.installTranslator(&amp;translator);
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088         <a class="code" href="class_main_window.html" title="Main window of the program. All the functionnalities are in its central widget whose...">MainWindow</a> w;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="preprocessor">        #if defined(Q_OS_SYMBIAN)</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span>                w.showMaximized();
+<a name="l00092"></a>00092 <span class="preprocessor">        #else // For Windows and Linux</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span>
+<a name="l00094"></a>00094                 <span class="comment">// Insert a widget for tests purposes</span>
+<a name="l00095"></a>00095                 <span class="comment">//*</span>
+<a name="l00096"></a>00096                 <a class="code" href="class_test_widget.html" title="QWidget for testing functionnalities.">TestWidget</a> tw;
+<a name="l00097"></a>00097                 QDockWidget dock(<span class="stringliteral">&quot;Tests&quot;</span>, &amp;w);
+<a name="l00098"></a>00098                 dock.setWidget(&amp;tw);
+<a name="l00099"></a>00099                 w.addDockWidget(Qt::LeftDockWidgetArea, &amp;dock);
+<a name="l00100"></a>00100                 <span class="comment">//*/</span>
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102                 w.show();
+<a name="l00103"></a>00103 <span class="preprocessor">        #endif</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span>
+<a name="l00105"></a>00105         <span class="keywordflow">return</span> a.exec();
+<a name="l00106"></a>00106 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -192,7 +198,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jan 19 04:10:53 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

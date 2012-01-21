@@ -64,10 +64,10 @@ class Tweet : public ReynTweetsMappable
 			static void initSystem();
 
 		private:
-			/// @fn void recopie(const Tweet & tweet);
+			/// @fn void recopie(const Tweet & status);
 			/// @brief Copy of a tweet
-			/// @param tweet Tweet to copy
-			void recopie(const Tweet & tweet);
+			/// @param status Tweet to copy
+			void recopie(const Tweet & status);
 
 			// Friends serialization operators
 
@@ -230,6 +230,23 @@ class Tweet : public ReynTweetsMappable
 					   READ isSensible
 					   WRITE setSensible)
 
+			// retweeted_status
+			/// @property retweeted_status
+			/// @brief Serializable form of retweetedTweet
+			Q_PROPERTY(QVariantMap retweeted_status
+					   READ getRetweetedStatusProperty
+					   WRITE setRetweetedStatus)
+
+			/// @fn QVariantMap getRetweetedStatusProperty();
+			/// @brief Reading retweeted_status
+			/// @return lastTweetMap
+			QVariantMap getRetweetedStatusProperty();
+
+			/// @fn void setRetweetedStatus(QVariantMap statusMap);
+			/// @brief Writing retweeted_status
+			/// @param statusMap The new value of the property
+			void setRetweetedStatus(QVariantMap statusMap);
+
 			/*
 			 * Properties that are not here :
 			 * - place
@@ -269,6 +286,11 @@ class Tweet : public ReynTweetsMappable
 
 			/// @brief Number of retweets of this tweet
 			int retweetCount;
+
+			/// @brief Initial tweet if the tweet is retweeted
+			///
+			/// It is a pointer on a tweet to avoir the compiler error C2460.
+			Tweet * retweetSource;
 
 			// Favorite management
 
@@ -514,6 +536,17 @@ class Tweet : public ReynTweetsMappable
 			/// @brief Writing sensible
 			/// @param newValue New value for sensible
 			void setSensible(bool newValue);
+
+			// retweeted_status
+			/// @fn Tweet getRetweetedStatus();
+			/// @brief Reading retweeted_status
+			/// @return lastTweetMap
+			Tweet getRetweetedStatus();
+
+			/// @fn void setRetweetedStatus(Tweet retweet);
+			/// @brief Writing retweeted_status
+			/// @param retweet The new value of the property
+			void setRetweetedStatus(Tweet retweet);
 };
 
 // Serialization of Tweet

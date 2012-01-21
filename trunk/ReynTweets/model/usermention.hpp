@@ -117,11 +117,11 @@ class UserMention : public ReynTweetsMappable
 				   WRITE setName)
 
 		// indices
-//		/// @property indices
-//		/// @brief Indexes
-//		Q_PROPERTY(QVariantList indices
-//				   READ getIndicesProperty
-//				   WRITE setIndices)
+		/// @property indices
+		/// @brief Indexes
+		Q_PROPERTY(QVariantList indices
+				   READ getIndicesProperty
+				   WRITE setIndices)
 
 		/// @fn QVariantList getIndicesProperty();
 		/// @brief Reading method for the property indices

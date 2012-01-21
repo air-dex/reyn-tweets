@@ -81,7 +81,10 @@ QDataStream & operator>>(QDataStream & in, User & user) {
 
 // Reading the "status" property
 QVariantMap User::getStatusProperty() {
-	return lastTweet.toVariant();
+	// Return an empty QVariantMap for a default tweet to avoid stack problems
+	return lastTweet.getID() == -1 ?
+				QVariantMap()
+			  : lastTweet.toVariant();
 }
 
 // Writing the status property

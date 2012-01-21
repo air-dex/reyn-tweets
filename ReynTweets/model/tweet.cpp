@@ -38,6 +38,7 @@ Tweet::Tweet() :
 	sensibleTweet(false),
 	retweetedTweet(false),
 	retweetCount(0),
+	retweetSource(0),
 	favoritedTweet(false),
 	replyToScreenName(""),
 	replyToUserID(-1),
@@ -51,10 +52,18 @@ Tweet::Tweet() :
 {}
 
 // Destructor
-Tweet::~Tweet() {}
+Tweet::~Tweet() {
+	if (retweetSource) {
+		delete retweetSource;
+		retweetSource = 0;
+	}
+}
 
 // Copy constructor
-Tweet::Tweet(const Tweet & tweet) {
+Tweet::Tweet(const Tweet & tweet) :
+	ReynTweetsMappable(),
+	retweetSource(0)
+{
 	recopie(tweet);
 }
 
@@ -71,24 +80,38 @@ void Tweet::initSystem() {
 }
 
 // Copy of a Tweet
-void Tweet::recopie(const Tweet & tweet) {
-	tweetID = tweet.tweetID;
-	tweetIDstr = tweet.tweetIDstr;
-	tweetEntities = tweet.tweetEntities;
-	this->tweet = tweet.tweet;
-	sensibleTweet = tweet.sensibleTweet;
-	retweetedTweet = tweet.retweetedTweet;
-	retweetCount = tweet.retweetCount;
-	favoritedTweet = tweet.favoritedTweet;
-	replyToScreenName = tweet.replyToScreenName;
-	replyToUserID = tweet.replyToUserID;
-	replyToUserIDstr = tweet.replyToUserIDstr;
-	replyToTweetID = tweet.replyToTweetID;
-	replyToTweetIDstr = tweet.replyToTweetIDstr;
-	profile = tweet.profile;
-	createdAt = tweet.createdAt;
-	sourceClient = tweet.sourceClient;
-	truncatedTweet = tweet.truncatedTweet;
+void Tweet::recopie(const Tweet & status) {
+	tweetID = status.tweetID;
+	tweetIDstr = status.tweetIDstr;
+	tweetEntities = status.tweetEntities;
+	tweet = status.tweet;
+	sensibleTweet = status.sensibleTweet;
+	retweetedTweet = status.retweetedTweet;
+	retweetCount = status.retweetCount;
+	favoritedTweet = status.favoritedTweet;
+	replyToScreenName = status.replyToScreenName;
+	replyToUserID = status.replyToUserID;
+	replyToUserIDstr = status.replyToUserIDstr;
+	replyToTweetID = status.replyToTweetID;
+	replyToTweetIDstr = status.replyToTweetIDstr;
+	profile = status.profile;
+	createdAt = status.createdAt;
+	sourceClient = status.sourceClient;
+	truncatedTweet = status.truncatedTweet;
+
+
+	// Recopying retweetedTweet
+
+	// Setting the old value to NULL
+	if (retweetSource) {
+		delete retweetSource;
+		retweetSource = 0;
+	}
+
+	// Recopying the new value if it's not NULL
+	if (status.retweetSource) {
+		retweetSource = new Tweet(*(status.retweetSource));
+	}
 }
 
 // Output stream operator for serialization
@@ -124,6 +147,27 @@ QVariantMap Tweet::getUserProperty() {
 // Writing the property user
 void Tweet::setUser(QVariantMap newUserMap) {
 	profile.fillWithVariant(newUserMap);
+}
+
+// Reading retweeted_status
+QVariantMap Tweet::getRetweetedStatusProperty() {
+	if (retweetSource) {
+		// Return an empty QVariantMap for a default tweet to avoid stack problems
+		return retweetSource->tweetID == -1 ?
+					QVariantMap()
+				  : retweetSource->toVariant();
+	} else {
+		return QVariantMap();
+	}
+}
+
+// Writing retweeted_status
+void Tweet::setRetweetedStatus(QVariantMap statusMap) {
+	if (!retweetSource) {
+		retweetSource = new Tweet();
+	}
+
+	retweetSource->fillWithVariant(statusMap);
 }
 
 
@@ -282,4 +326,19 @@ bool Tweet::isSensible() {
 
 void Tweet::setSensible(bool newValue) {
 	sensibleTweet = newValue;
+}
+
+// retweeted_status
+Tweet Tweet::getRetweetedStatus() {
+	return retweetSource ?
+				*retweetSource
+			  : Tweet();
+}
+
+void Tweet::setRetweetedStatus(Tweet retweet) {
+	if (retweetSource) {
+		delete retweetSource;
+	}
+
+	retweetSource = new Tweet(retweet);
 }

@@ -117,8 +117,8 @@ void ReynCore::fillOAuthManager() {
 void ReynCore::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString) {
 	// Updating the tokens
 	UserAccount account = configuration.getUserAccount();
-	account.setAccessToken(accessToken);
-	account.setTokenSecret(tokenSecret);
+	account.setAccessToken(accessToken.toBase64());
+	account.setTokenSecret(tokenSecret.toBase64());
 	configuration.setUserAccount(account);
 
 	// Getting informations about the user behind the account

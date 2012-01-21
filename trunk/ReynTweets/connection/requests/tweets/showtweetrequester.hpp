@@ -26,6 +26,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "../genericrequester.hpp"
 
+/// @class ShowTweetRequester
+/// @brief Requester for getting details about a tweet identified by its ID.
 class ShowTweetRequester : public GenericRequester
 {
 	Q_OBJECT

@@ -29,6 +29,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDeclarativeView>
 #include <QWidget>
 
+/// @class GenericQMLWidget
+/// @brief Generic class for using QML scripts for widgets.
 class GenericQMLWidget : public QWidget
 {
 	Q_OBJECT

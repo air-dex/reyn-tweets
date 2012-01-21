@@ -59,7 +59,7 @@ class HashtagList : public ReynTweetsListable<Hashtag>
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,
-		///										const ReynTweetsListable<S> & list);
+		///										const HashtagList & list);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
 		/// @param list Object to put in the stream
@@ -68,7 +68,7 @@ class HashtagList : public ReynTweetsListable<Hashtag>
 										const HashtagList & list);
 
 		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										ReynTweetsListable<S> & list);
+		///										HashtagList & list);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param list Object to put in the stream

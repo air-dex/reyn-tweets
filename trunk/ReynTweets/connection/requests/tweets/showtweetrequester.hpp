@@ -28,6 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class ShowTweetRequester
 /// @brief Requester for getting details about a tweet identified by its ID.
+/// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
 class ShowTweetRequester : public GenericRequester
 {
 	Q_OBJECT

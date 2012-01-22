@@ -25,6 +25,14 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // NB : QString::fromUtf8(); is used to avoid problem with character conversion.
 
+//////////////
+// Accounts //
+//////////////
+
+// Verify credentials
+QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twitter.com/1/account/verify_credentials.json");
+
+
 ///////////
 // OAuth //
 ///////////

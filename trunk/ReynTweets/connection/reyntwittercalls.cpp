@@ -96,6 +96,23 @@ void ReynTwitterCalls::executeRequest(GenericRequester * requester) {
 // Request launchers //
 ///////////////////////
 
+//////////////
+// Accounts //
+//////////////
+
+// Verifying credentials
+void ReynTwitterCalls::verifyCredentials(bool entities, bool skipStatus) {
+	VerifyCredentialsRequester * requester = new VerifyCredentialsRequester(oauthManager,
+																			entities,
+																			skipStatus);
+	executeRequest(requester);
+}
+
+
+//////////////
+// Searches //
+//////////////
+
 // Method that launch searches
 void ReynTwitterCalls::search(QString q) {
 	SearchRequester * requester = new SearchRequester(q);

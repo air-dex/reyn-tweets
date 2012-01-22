@@ -67,6 +67,7 @@ SOURCES += \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
+	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
@@ -127,6 +128,7 @@ HEADERS  += \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
+	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/requestinfos.hpp \
 	connection/requestermanager.hpp \

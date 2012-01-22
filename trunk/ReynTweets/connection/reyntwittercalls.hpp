@@ -103,6 +103,18 @@ class ReynTwitterCalls : public QObject
 
 	public:
 		//////////////
+		// Accounts //
+		//////////////
+
+		/// @fn void verifyCredentials(bool entities, bool skipStatus);
+		/// @brief Verifying credentials
+		/// @param entities Include Tweet Entities in th reply ?
+		/// @param skipStatus Include the last tweet written by the user ?
+		/// @see https://api.twitter.com/1/account/verify_credentials.json
+		void verifyCredentials(bool entities, bool skipStatus);
+
+
+		//////////////
 		// Searches //
 		//////////////
 

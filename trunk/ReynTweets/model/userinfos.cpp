@@ -354,12 +354,12 @@ void UserInfos::setStatusesCount(int newTweetsCount) {
 }
 
 // Getter on createdAt
-QDate UserInfos::getCreatedAt() {
+ReynTweetsDateTime UserInfos::getCreatedAt() {
 	return createdAt;
 }
 
 // Setter on createdAt
-void UserInfos::setCreatedAt(QDate newDate) {
+void UserInfos::setCreatedAt(ReynTweetsDateTime newDate) {
 	createdAt = newDate;
 }
 

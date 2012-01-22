@@ -26,8 +26,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QObject>
 #include <QString>
-#include <QDate>
 #include <QColor>
+#include "../tools/reyntweetsdatetime.hpp"
 #include "reyntweetsmappable.hpp"
 
 /// @class UserInfos
@@ -220,7 +220,7 @@ class UserInfos : public ReynTweetsMappable
 		// created_at
 		/// @property created_at
 		/// @brief Serializable form of createdAt
-		Q_PROPERTY(QDate created_at
+		Q_PROPERTY(ReynTweetsDateTime created_at
 				   READ getCreatedAt
 				   WRITE setCreatedAt)
 
@@ -504,7 +504,7 @@ class UserInfos : public ReynTweetsMappable
 		// Other parameters
 
 		/// @brief Date when the account was created
-		QDate createdAt;
+		ReynTweetsDateTime createdAt;
 
 		/// @brief User's idiom
 		QString language;
@@ -693,15 +693,15 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTweetsCount The new value of tweetsCount
 		void setStatusesCount(int newTweetsCount);
 
-		/// @fn QDate getCreatedAt();
+		/// @fn ReynTweetsDateTime getCreatedAt();
 		/// @brief Getter on createdAt
 		/// @return The value of createdAt
-		QDate getCreatedAt();
+		ReynTweetsDateTime getCreatedAt();
 
-		/// @fn void setCreatedAt(QDate newDate);
+		/// @fn void setCreatedAt(ReynTweetsDateTime newDate);
 		/// @brief Setter on createdAt
 		/// @param newDate The new value of createdAt
-		void setCreatedAt(QDate newDate);
+		void setCreatedAt(ReynTweetsDateTime newDate);
 
 		/// @fn QColor getProfileSidebarFillColor();
 		/// @brief Getter on sidebarColor

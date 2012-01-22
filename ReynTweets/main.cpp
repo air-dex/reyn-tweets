@@ -37,7 +37,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
-	ReynTweetsDateTime::initSystem();
 	IndexBounds::initSystem();
 	MediaSize::initSystem();
 	MediaSizes::initSystem();

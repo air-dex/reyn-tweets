@@ -30,12 +30,7 @@
 # Common configuration #
 #----------------------#
 
-QT += \
-	core \
-	gui \
-	network \
-	webkit \
-	declarative
+QT += core gui network webkit declarative
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -100,7 +95,8 @@ SOURCES += \
 	ui/testwidget.cpp \
 	ui/reyntweetswidget.cpp \
 	ui/mainwindow.cpp \
-	main.cpp
+	main.cpp \
+    ui/qmlviewer.cpp
 
 
 HEADERS  += \
@@ -165,7 +161,9 @@ HEADERS  += \
 	ui/launchingwidget.hpp \
 	ui/testwidget.hpp \
 	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp
+	ui/mainwindow.hpp \
+    tools/qmldebug.hpp \
+    ui/qmlviewer.hpp
 
 
 RESOURCES += \
@@ -180,31 +178,6 @@ OTHER_FILES = \
 	resources/Logo Reyn Tweets.png \
 	ui/qml/launchingWidget.qml \
 	QMLIntegration.pri
-
-
-#-----------------#
-# QML Integration #
-#-----------------#
-
-# Add more folders to ship with the application, here
-
-# QML files
-qml_files.source = ui/qml
-qml_files.target = ui
-
-# Resources
-resource.source = resources
-resource.target = .
-
-# Configuration files
-conf_files.source = conf
-conf_files.target = .
-
-DEPLOYMENTFOLDERS = qml_files resource conf_files
-
-# QML deployment. Do not touch
-include(QMLIntegration.pri)
-qtcAddDeployment()
 
 
 #--------------#
@@ -223,7 +196,7 @@ MOBILITY =
 
 symbian {
 	TARGET.UID3 = 0xe348d5de
-	# TARGET.CAPABILITY +=
+	TARGET.CAPABILITY += NetworkServices
 	TARGET.EPOCSTACKSIZE = 0x14000
 	TARGET.EPOCHEAPSIZE = 0x020000 0x800000
 }
@@ -255,3 +228,29 @@ win32 {
 #	INCLUDEPATH += c:\Libs\Qjson\include
 #	LIBS += -Lc:\Libs\Qjson\lib -lqjson
 #}
+
+
+#-----------------#
+# QML Integration #
+#-----------------#
+
+# Add more folders to ship with the application, here
+
+# QML files
+qml_files.source = ui/qml
+qml_files.target = ui
+
+# Resources
+resource.source = resources
+resource.target = .
+
+# Configuration files
+conf_files.source = conf
+conf_files.target = .
+
+DEPLOYMENTFOLDERS = qml_files resource conf_files
+
+# QML deployment. Do not touch
+DEFINES += QMLJSDEBUGGER
+include(QMLIntegration.pri)
+qtcAddDeployment()

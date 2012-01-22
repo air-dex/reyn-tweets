@@ -22,12 +22,15 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "verifycredentialsrequester.hpp"
+#include "../../../tools/utils.hpp"
 
 // Constructor
 VerifyCredentialsRequester::VerifyCredentialsRequester(OAuthManager & authManager,
 													   bool entities,
 													   bool skipLastTweet) :
-	AuthenticationRequester(GET, TwitterURL::VERIFY_CREDENTIALS_URL, authManager),
+	AuthenticationRequester(GET,
+							TwitterURL::VERIFY_CREDENTIALS_URL,
+							authManager),
 	includeEntities(entities),
 	skipStatus(skipLastTweet)
 {}

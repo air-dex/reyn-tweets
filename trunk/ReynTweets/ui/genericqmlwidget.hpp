@@ -28,6 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDeclarativeEngine>
 #include <QDeclarativeView>
 #include <QWidget>
+#include "qmlviewer.hpp"
 
 /// @class GenericQMLWidget
 /// @brief Generic class for using QML scripts for widgets.
@@ -46,7 +47,7 @@ class GenericQMLWidget : public QWidget
 		QDeclarativeComponent qmlComponent;
 
 		/// @brief A view containing what to show
-		QDeclarativeView qmlView;
+		QMLViewer qmlView;
 };
 
 #endif // GENERICQMLWIDGET_HPP

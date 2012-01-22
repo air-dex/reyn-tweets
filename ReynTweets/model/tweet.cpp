@@ -139,6 +139,16 @@ void Tweet::setEntities(QVariantMap newEntityMap) {
 	tweetEntities.fillWithVariant(newEntityMap);
 }
 
+// Reading created_at
+QString Tweet::getCreatedAtProperty() {
+	return createdAt.toString();
+}
+
+// Writing created_at
+void Tweet::setCreatedAt(QString newDate) {
+	createdAt.setDate(newDate);
+}
+
 // Reading the property user
 QVariantMap Tweet::getUserProperty() {
 	return profile.toVariant();

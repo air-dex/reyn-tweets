@@ -173,6 +173,16 @@ QString UserInfos::getProfileSidebarFillColorProperty() {
 	return sidebarColor.name();
 }
 
+// Reading created_at
+QString UserInfos::getCreatedAtProperty() {
+	return createdAt.toString();
+}
+
+// Writing created_at
+void UserInfos::setCreatedAt(QString newDate) {
+	createdAt.setDate(newDate);
+}
+
 // Write profile_sidebar_fill_color
 void UserInfos::setProfileSidebarFillColor(QString newSidebarColor) {
 	sidebarColor = string2color(newSidebarColor);

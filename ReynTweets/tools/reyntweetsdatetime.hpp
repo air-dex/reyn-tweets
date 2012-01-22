@@ -30,22 +30,22 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @class ReynTweetsDateTime
 /// @brief Special date class for Reyn Tweets.
 ///
-/// During request, Twitter returns dates whose format is not recognized by
-/// the QDateTime class to build its objects. As a consequence, dates cannot
-/// be serialized. This class was made to solve this problem.
-///
-/// Conversions
+/// During requests, Twitter APIs returns dates whose date format is not
+/// standard and not the default date format used by Qt to build its QDateTime
+/// objects (which is not standard too). The ReynTweetsDateTime class was made
+/// to avoid problems while parsing Twitter dates representation.
 /// @see https://code.google.com/p/reyn-tweets/issues/detail?id=51
-class ReynTweetsDateTime
+class ReynTweetsDateTime : public QDateTime
 {
-	//////////////////////////////
-	// Serailization management //
-	//////////////////////////////
-
 	public:
 		/// @fn ReynTweetsDateTime();
 		/// @brief Default constructor
 		ReynTweetsDateTime();
+
+		/// @fn ReynTweetsDateTime(QString stringDate);
+		/// @brief Building a date with a QString representation
+		/// @param stringDate The string to parse
+		explicit ReynTweetsDateTime(QString stringDate);
 
 		/// @fn virtual ~ReynTweetsDateTime();
 		/// @brief Destructor
@@ -55,105 +55,56 @@ class ReynTweetsDateTime
 		/// @brief Copy constructor
 		ReynTweetsDateTime(const ReynTweetsDateTime & date);
 
+		/// @fn ReynTweetsDateTime(const QDateTime & date);
+		/// @brief Copying a QDateTime
+		explicit ReynTweetsDateTime(const QDateTime & date);
+
+		/// @fn const ReynTweetsDateTime & operator=(const QDateTime & date);
+		/// @brief Affectation of a QDateTime
+		const ReynTweetsDateTime & operator=(const QDateTime & date);
+
 		/// @fn const ReynTweetsDateTime & operator=(const ReynTweetsDateTime & date);
-		/// @brief Affectation
+		/// @brief Affectation of a ReynTweetsDateTime
 		const ReynTweetsDateTime & operator=(const ReynTweetsDateTime & date);
 
-		/// @fn static void initSystem();
-		/// @brief Serialization declaration
-		static void initSystem();
-
-	protected:
-		/// @fn void recopie(const ReynTweetsDateTime & date);
-		/// @brief Recopying a date
-		void recopie(const ReynTweetsDateTime & date);
-
-		/// @fn QDataStream & operator<<(QDataStream & out, const ReynTweetsDateTime & date);
-		/// @brief Output stream operator for serialization
-		/// @param out The output stream
-		/// @param date Object to put in the stream
-		/// @return The stream with the object
-		friend QDataStream & operator<<(QDataStream & out, const ReynTweetsDateTime & date);
-
-		/// @fn QDataStream & operator>>(QDataStream & in, ReynTweetsDateTime & date);
-		/// @brief Input stream operator for serialization
-		/// @param in The input stream
-		/// @param date Object to put in the stream
-		/// @return The stream with the object
-		friend QDataStream & operator>>(QDataStream & in, ReynTweetsDateTime & date);
-
-
-	/////////////////////
-	// Date management //
-	/////////////////////
-
-	public:
-		/// @fn ReynTweetsDateTime(QString stringDate);
-		/// @brief Parsing a string to build the date
-		/// @param stringDate The string to parse
-		ReynTweetsDateTime(QString stringDate);
-
-		/// @fn ReynTweetsDateTime(QDateTime date);
-		/// @brief Copying a QDateTime
-		ReynTweetsDateTime(QDateTime date);
-/*
-		/// @fn operator QString();
-		/// @brief Conversion to QString
-		operator QString();
-//*/
-		/// @fn operator QDateTime();
-		/// @brief Conversion to QDateTime
-		operator QDateTime();
-
-		/// @fn QString toString() const;
-		/// @brief String representation
-		QString toString() const;
-
-		/// @fn void setRestFormat();
-		/// @brief Setting the date format of REST API as the default date format.
-		void setRestFormat();
-
-		/// @fn void setSearchFormat();
-		/// @brief Setting the date format of REST API as the default date format.
-		void setSearchFormat();
-
-	protected:
-		/// @fn void parsingDate(QString & stringDate);
+		/// @fn void setDate(QString & stringDate);
 		/// @brief Core method for parsing the QString representation
 		/// @param stringDate The string to parse
-		void parsingDate(QString & stringDate);
+		void setDate(QString stringDate);
 
-		/// @brief The date
-		QDateTime datetime;
+		/// @fn QString toString() const;
+		/// @brief String representation of the string with a standard ISO 8601
+		/// date format.
+		QString toString() const;
 
-		/// @brief Date format
-		QString format;
+	protected:
+		/// @fn bool parseTwitterDate(QString dateStr, QString format);
+		/// @brief Parsing a QDateTime in a QString with a given format
+		/// @param dateStr String with the date
+		/// @param format Format of the date. In practice it is a date format
+		/// adapted for dates returned by Twitter.
+		/// @return True if the date is valid, false otherwise.
+		bool parseTwitterDate(QString dateStr, QString format);
 
 		/// @brief Date format in Twitter Search API
+		///
+		/// Twitter Search API returns dates with this format : <code>
+		/// ddd, dd MMM yyyy hh:mm:ss +0000</code>. But Qt cannot parse names
+		/// of days and months correctly, especially for non-English languages.
+		/// That's why the date format used to parse is without the name of the
+		/// day and with the English name of the month returned by Twitter
+		/// converted into its numerical value.
 		static QString SEARCH_FORMAT;
 
 		/// @brief Date format in the Twitter REST API
+		///
+		/// Twitter REST API returns dates with this format : <code>
+		/// ddd MMM dd hh:mm:ss +0000 yyyy</code>. But Qt cannot parse names
+		/// of days and months correctly, especially for non-English languages.
+		/// That's why the date format used to parse is without the name of the
+		/// day and with the English name of the month returned by Twitter
+		/// converted into its numerical value.
 		static QString REST_FORMAT;
-
-		/// @brief Adviced date format in Twitter requests
-		static QString REQUEST_FORMAT;
 };
-
-// Serialization of ReynTweetsDateTime
-Q_DECLARE_METATYPE(ReynTweetsDateTime)
-
-/// @fn QDataStream & operator<<(QDataStream & out, const ReynTweetsDateTime & date);
-/// @brief Output stream operator for serialization
-/// @param out The output stream
-/// @param date Object to put in the stream
-/// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const ReynTweetsDateTime & date);
-
-/// @fn QDataStream & operator>>(QDataStream & in, ReynTweetsDateTime & date);
-/// @brief Input stream operator for serialization
-/// @param in The input stream
-/// @param date Object to put in the stream
-/// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, ReynTweetsDateTime & date);
 
 #endif // REYNTWEETSDATETIME_HPP

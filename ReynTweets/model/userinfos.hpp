@@ -220,9 +220,19 @@ class UserInfos : public ReynTweetsMappable
 		// created_at
 		/// @property created_at
 		/// @brief Serializable form of createdAt
-		Q_PROPERTY(ReynTweetsDateTime created_at
-				   READ getCreatedAt
+		Q_PROPERTY(QString created_at
+				   READ getCreatedAtProperty
 				   WRITE setCreatedAt)
+
+		/// @fn QString getCreatedAtProperty();
+		/// @brief Reading created_at
+		/// @return The value of createdAt
+		QString getCreatedAtProperty();
+
+		/// @fn void setCreatedAt(QString newDate);
+		/// @brief Writing created_at
+		/// @param newDate The new value of createdAt
+		void setCreatedAt(QString newDate);
 
 		// profile_sidebar_fill_color
 		/// @property profile_sidebar_fill_color

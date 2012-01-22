@@ -91,7 +91,7 @@ SaveConfResult ReynCore::saveConfigurationPrivate() {
 	}
 
 	// Choix dans la date
-	QDate userdate = configuration.getUserAccount().getUser().getCreatedAt();
+	ReynTweetsDateTime userdate = configuration.getUserAccount().getUser().getCreatedAt();
 	qDebug("Choix dans la date :");
 	qDebug(userdate.toString().toAscii());
 

@@ -37,6 +37,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
+	ReynTweetsDateTime::initSystem();
 	IndexBounds::initSystem();
 	MediaSize::initSystem();
 	MediaSizes::initSystem();
@@ -71,6 +72,16 @@ int main(int argc, char *argv[])
 
 	// Init for serialization
 	initReynTweetsSystem();
+
+	QDateTime date = QDateTime::currentDateTime();
+	ReynTweetsDateTime d2(date);
+	QVariant v(d2);
+
+	if (v.canConvert<QString>()) {
+		qDebug("You hou !");
+	} else {
+		qDebug("D'oh !");
+	}
 
 	// Program in French
 /*

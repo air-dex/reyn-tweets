@@ -47,6 +47,7 @@ TEMPLATE = app
 
 SOURCES += \
 	tools/utils.cpp \
+	tools/reyntweetsdatetime.cpp \
 	tools/parsers/htmlparser.cpp \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
@@ -103,6 +104,7 @@ SOURCES += \
 
 HEADERS  += \
 	tools/utils.hpp \
+	tools/reyntweetsdatetime.hpp \
 	tools/parsers/genericparser.hpp \
 	tools/parsers/htmlparser.hpp \
 	tools/parsers/jsonparser.hpp \
@@ -196,7 +198,7 @@ resource.target = .
 conf_files.source = conf
 conf_files.target = .
 
-DEPLOYMENTFOLDERS = qml_files resource #conf_files
+DEPLOYMENTFOLDERS = qml_files resource conf_files
 
 # QML deployment. Do not touch
 include(QMLIntegration.pri)

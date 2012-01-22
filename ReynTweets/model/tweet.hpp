@@ -24,7 +24,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TWEET_HPP
 #define TWEET_HPP
 
-#include <QDate>
+#include "../tools/reyntweetsdatetime.hpp"
 #include "reyntweetsmappable.hpp"
 #include "tweetentities.hpp"
 #include "userinfos.hpp"
@@ -146,7 +146,7 @@ class Tweet : public ReynTweetsMappable
 			// created_at
 			/// @property created_at
 			/// @brief Serializable form of createdAt
-			Q_PROPERTY(QDate created_at
+			Q_PROPERTY(ReynTweetsDateTime created_at
 					   READ getCreatedAt
 					   WRITE setCreatedAt)
 
@@ -320,7 +320,7 @@ class Tweet : public ReynTweetsMappable
 			UserInfos profile;
 
 			/// @brief Creation date of the tweet
-			QDate createdAt;
+			ReynTweetsDateTime createdAt;
 
 			/// @brief Client used to post this tweet, just like Reyn Tweets. ;-)
 			QString sourceClient;
@@ -417,15 +417,15 @@ class Tweet : public ReynTweetsMappable
 			void setInReplyToScreenName(QString newValue);
 
 			// created_at
-			/// @fn QDate getCreatedAt();
+			/// @fn ReynTweetsDateTime getCreatedAt();
 			/// @brief Reading created_at
 			/// @return createdAt
-			QDate getCreatedAt();
+			ReynTweetsDateTime getCreatedAt();
 
-			/// @fn void setCreatedAt(QDate newValue);
+			/// @fn void setCreatedAt(ReynTweetsDateTime newValue);
 			/// @brief Writing created_at
 			/// @param newValue New value for created_at
-			void setCreatedAt(QDate newValue);
+			void setCreatedAt(ReynTweetsDateTime newValue);
 
 			// in_reply_to_status_id_str
 			/// @fn QString getInReplyToStatusIDstr();

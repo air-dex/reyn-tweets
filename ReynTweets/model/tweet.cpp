@@ -230,11 +230,11 @@ void Tweet::setInReplyToScreenName(QString newValue) {
 }
 
 // created_at
-QDate Tweet::getCreatedAt() {
+ReynTweetsDateTime Tweet::getCreatedAt() {
 	return createdAt;
 }
 
-void Tweet::setCreatedAt(QDate newValue) {
+void Tweet::setCreatedAt(ReynTweetsDateTime newValue) {
 	createdAt = newValue;
 }
 

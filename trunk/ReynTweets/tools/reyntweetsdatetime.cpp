@@ -29,9 +29,6 @@ QString ReynTweetsDateTime::REST_FORMAT = "M dd hh:mm:ss +0000 yyyy";
 // Date format in the Twitter REST API
 QString ReynTweetsDateTime::SEARCH_FORMAT = ", dd M yyyy hh:mm:ss +0000";
 
-// Adviced date format in Twitter requests
-QString ReynTweetsDateTime::REQUEST_FORMAT = "yyyy-MM-dd";
-
 
 //////////////////////////////
 // Serailization management //
@@ -90,8 +87,8 @@ void ReynTweetsDateTime::setDate(QString stringDate) {
 
 	// Trying ISO8601 date format
 	*this = QDateTime::fromString(stringDate, Qt::ISODate);
-	if (datetime.isValid()) {
-		datetime.setTimeSpec(Qt::UTC);
+	if (isValid()) {
+		setTimeSpec(Qt::UTC);
 		return;
 	}
 
@@ -102,7 +99,7 @@ void ReynTweetsDateTime::setDate(QString stringDate) {
 
 // String representation of the date
 QString ReynTweetsDateTime::toString() const {
-	return toString("ddd MMM dd hh:mm:ss +0000 yyyy");
+	return QDateTime::toString(Qt::ISODate);
 }
 
 bool ReynTweetsDateTime::parseTwitterDate(QString dateStr, QString format) {

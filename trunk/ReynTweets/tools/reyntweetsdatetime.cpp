@@ -24,10 +24,10 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "reyntweetsdatetime.hpp"
 
 // Date format in Twitter Search API
-QString ReynTweetsDateTime::SEARCH_FORMAT = "ddd, dd MMM yyyy hh:mm:ss +0000";
+QString ReynTweetsDateTime::REST_FORMAT = "M dd hh:mm:ss +0000 yyyy";
 
 // Date format in the Twitter REST API
-QString ReynTweetsDateTime::REST_FORMAT = "ddd MMM dd hh:mm:ss +0000 yyyy";
+QString ReynTweetsDateTime::SEARCH_FORMAT = ", dd M yyyy hh:mm:ss +0000";
 
 // Adviced date format in Twitter requests
 QString ReynTweetsDateTime::REQUEST_FORMAT = "yyyy-MM-dd";
@@ -39,112 +39,101 @@ QString ReynTweetsDateTime::REQUEST_FORMAT = "yyyy-MM-dd";
 
 // Default constructor
 ReynTweetsDateTime::ReynTweetsDateTime() :
-	datetime(),
-	format(REST_FORMAT)
+	QDateTime()
+{}
+
+// Parsing a string to build the date
+ReynTweetsDateTime::ReynTweetsDateTime(QString stringDate) :
+	QDateTime()
+{
+	setDate(stringDate);
+}
+
+// Copying a QDateTime
+ReynTweetsDateTime::ReynTweetsDateTime(const QDateTime & date) :
+	QDateTime(date)
 {}
 
 // Destructor
 ReynTweetsDateTime::~ReynTweetsDateTime() {}
 
 // Copy constructor
-ReynTweetsDateTime::ReynTweetsDateTime(const ReynTweetsDateTime & date) {
-	recopie(date);
-}
+ReynTweetsDateTime::ReynTweetsDateTime(const ReynTweetsDateTime & date) :
+	QDateTime(date)
+{}
 
 // Affectation
 const ReynTweetsDateTime & ReynTweetsDateTime::operator=(const ReynTweetsDateTime & date) {
-	recopie(date);
+	QDateTime::operator=(date);
 	return *this;
 }
 
-// Recopying a date
-void ReynTweetsDateTime::recopie(const ReynTweetsDateTime & date) {
-	datetime = date.datetime;
-	format = date.format;
-}
-
-// Serialization declaration
-void ReynTweetsDateTime::initSystem() {
-	qRegisterMetaType<ReynTweetsDateTime>("ReynTweetsDateTime");
-	qMetaTypeId<ReynTweetsDateTime>();
-}
-
-// Output stream operator
-QDataStream & operator<<(QDataStream & out, const ReynTweetsDateTime & date) {
-	out << date.toString();
-	return out;
-}
-
-// Input stream operator
-QDataStream & operator>>(QDataStream & in, ReynTweetsDateTime & date) {
-	QString dateString = "";
-
-	in >> dateString;
-	date.parsingDate(dateString);
-	return in;
-}
-
-/////////////////////
-// Cast management //
-/////////////////////
-
-// Parsing a string to build the date
-ReynTweetsDateTime::ReynTweetsDateTime(QString stringDate) {
-	parsingDate(stringDate);
-}
-
-// Copying a QDateTime
-ReynTweetsDateTime::ReynTweetsDateTime(QDateTime date) :
-	datetime(date),
-	format(REST_FORMAT)
-{}
-/*
-// Conversion to QString
-ReynTweetsDateTime::operator QString() {
-	return this->toString();
-}
-//*/
-// Conversion to QDateTime
-ReynTweetsDateTime::operator QDateTime() {
-	return datetime;
-}
-
-// Setting the date format of REST API as the default date format.
-void ReynTweetsDateTime::setRestFormat() {
-	format = REST_FORMAT;
-}
-
-// Setting the date format of REST API as the default date format.
-void ReynTweetsDateTime::setSearchFormat() {
-	format = SEARCH_FORMAT;
+// Affectation
+const ReynTweetsDateTime & ReynTweetsDateTime::operator=(const QDateTime & date) {
+	QDateTime::operator=(date);
+	return *this;
 }
 
 // Core method for parsing the QString representation
-void ReynTweetsDateTime::parsingDate(QString & stringDate) {
+void ReynTweetsDateTime::setDate(QString stringDate) {
 	// Trying different date formats
 
 	// Trying REST_FORMAT.
-	datetime = QDateTime::fromString(stringDate, REST_FORMAT);
-
-	if (datetime.isValid()) {
-		// That was the right format !
-		format = REST_FORMAT;
+	if (parseTwitterDate(stringDate, REST_FORMAT)) {
 		return;
 	}
 
 	// This was not REST_FORMAT. Trying SEARCH_FORMAT.
-	datetime = QDateTime::fromString(stringDate, SEARCH_FORMAT);
-
-	if (datetime.isValid()) {
-		// That was the right format !
-		format = SEARCH_FORMAT;
-	} else {
-		// Unknown format. Trying a default conversion.
-		datetime = QDateTime::fromString(stringDate);
+	if (parseTwitterDate(stringDate, SEARCH_FORMAT)) {
+		return;
 	}
+
+	// Trying ISO8601 date format
+	*this = QDateTime::fromString(stringDate, Qt::ISODate);
+	if (datetime.isValid()) {
+		datetime.setTimeSpec(Qt::UTC);
+		return;
+	}
+
+	// Unknown format. Trying a default conversion.
+	*this = QDateTime::fromString(stringDate);
+	*this = toUTC();
 }
 
 // String representation of the date
 QString ReynTweetsDateTime::toString() const {
-	return datetime.toString(format);
+	return toString("ddd MMM dd hh:mm:ss +0000 yyyy");
 }
+
+bool ReynTweetsDateTime::parseTwitterDate(QString dateStr, QString format) {
+	QList<QString> months;
+	months.append("Jan");
+	months.append("Feb");
+	months.append("Mar");
+	months.append("Apr");
+	months.append("May");
+	months.append("Jun");
+	months.append("Jul");
+	months.append("Aug");
+	months.append("Sep");
+	months.append("Oct");
+	months.append("Nov");
+	months.append("Dec");
+
+	// Remove the day of week at the beginning
+	dateStr = dateStr.right(dateStr.size() - 3);
+
+	// Changing the month
+	for (int month = 0; month < 12; ++month) {
+		dateStr.replace(months.at(month), QString::number(month + 1));
+	}
+
+	dateStr = dateStr.simplified();
+	*this = QDateTime::fromString(dateStr, format);
+
+	// Parameters of Datetime
+	setTimeSpec(Qt::UTC);
+
+	return isValid();
+}
+

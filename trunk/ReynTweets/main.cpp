@@ -73,16 +73,6 @@ int main(int argc, char *argv[])
 	// Init for serialization
 	initReynTweetsSystem();
 
-	QDateTime date = QDateTime::currentDateTime();
-	ReynTweetsDateTime d2(date);
-	QVariant v(d2);
-
-	if (v.canConvert<QString>()) {
-		qDebug("You hou !");
-	} else {
-		qDebug("D'oh !");
-	}
-
 	// Program in French
 /*
 	QTranslator translator;

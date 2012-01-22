@@ -28,6 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class AccessTokenRequester
 /// @brief Requester for getting OAuth access tokens
+/// @see https://dev.twitter.com/docs/api/1/post/oauth/access_token
 class AccessTokenRequester : public OAuthRequester
 {
 	Q_OBJECT
@@ -44,12 +45,16 @@ class AccessTokenRequester : public OAuthRequester
 		void buildPOSTParameters();
 
 		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
-		/// @brief Method that will parse the raw results of the request. For
-		/// this kind of request, results look like :<br/>
+		/// @brief Method that will parse the raw results of the request.
+		///
+		/// For this kind of request, results look like :<br/><code>
 		/// oauth_token=value of the access token&
 		/// oauth_token_secret=value of the token secret&
 		/// user_id=id of the user&
 		/// screen_name=screen name
+		/// </code><br/>
+		/// <strong>Warning : tokens value are not encrypted in the parsed
+		/// map that contains results.</strong>
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about

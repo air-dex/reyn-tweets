@@ -42,7 +42,7 @@ class ReynTweetsDateTime : public QDateTime
 		/// @brief Default constructor
 		ReynTweetsDateTime();
 
-		/// @fn ReynTweetsDateTime(QString stringDate);
+		/// @fn explicit ReynTweetsDateTime(QString stringDate);
 		/// @brief Building a date with a QString representation
 		/// @param stringDate The string to parse
 		explicit ReynTweetsDateTime(QString stringDate);
@@ -55,7 +55,7 @@ class ReynTweetsDateTime : public QDateTime
 		/// @brief Copy constructor
 		ReynTweetsDateTime(const ReynTweetsDateTime & date);
 
-		/// @fn ReynTweetsDateTime(const QDateTime & date);
+		/// @fn explicit ReynTweetsDateTime(const QDateTime & date);
 		/// @brief Copying a QDateTime
 		explicit ReynTweetsDateTime(const QDateTime & date);
 

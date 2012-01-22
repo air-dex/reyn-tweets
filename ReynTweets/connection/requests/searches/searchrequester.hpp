@@ -28,6 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @class SearchRequester
 /// @brief Requester for searches
+/// @see https://dev.twitter.com/docs/api/1/get/search
 class SearchRequester : public GenericRequester
 {
 	Q_OBJECT

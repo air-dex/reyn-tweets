@@ -102,6 +102,7 @@ QString ReynTweetsDateTime::toString() const {
 	return QDateTime::toString(Qt::ISODate);
 }
 
+// Parsing the string date
 bool ReynTweetsDateTime::parseTwitterDate(QString dateStr, QString format) {
 	QList<QString> months;
 	months.append("Jan");
@@ -133,4 +134,3 @@ bool ReynTweetsDateTime::parseTwitterDate(QString dateStr, QString format) {
 
 	return isValid();
 }
-

@@ -53,7 +53,6 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 	QString treatmentErrorMsg = "";
 
 
-	qDebug("Access Token Request :");
 	// Parsing
 	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
 	errorMsg.append(treatmentErrorMsg);
@@ -66,7 +65,6 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	qDebug(QByteArray("Access Token : ").append(extractedCredential.toString().toAscii()).data());
 	oauthManager.setOAuthToken(extractedCredential.toByteArray());
 
 	// Put back in the map because the configuration needs it.
@@ -80,7 +78,6 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 												  treatmentErrorMsg);
 	parseOK = parseOK && treatmentOK;
 	errorMsg.append(treatmentErrorMsg);
-	qDebug(QByteArray("Token Secret : ").append(extractedCredential.toString().toAscii()).data());
 	oauthManager.setOAuthSecret(extractedCredential.toByteArray());
 
 	// Put back in the map because the configuration needs it.

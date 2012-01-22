@@ -28,6 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 /// @class RequestTokenRequester
 /// @brief Class managing requests with the Twitter API about OAuth
+/// @see https://dev.twitter.com/docs/api/1/post/oauth/request_token
 class RequestTokenRequester : public OAuthRequester
 {
 	Q_OBJECT

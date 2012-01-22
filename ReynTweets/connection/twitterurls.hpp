@@ -30,20 +30,28 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief Namespace containing all the Twitter API URLs.
 namespace TwitterURL
 {
+	/////////////
+	// Account //
+	/////////////
+
+	/// @brief URL to verify if credentials are right
+	extern QString VERIFY_CREDENTIALS_URL;
+
+
 	///////////
 	// OAuth //
 	///////////
 
-	/// @brief URL for getting a request token
+	/// @brief URL to get request tokens
 	extern QString REQUEST_TOKEN_URL;
 
-	/// @brief URL for authorizing the application
+	/// @brief URL to authorize the application
 	extern QString AUTHORIZE_URL;
 
 	/// @brief URL for authentication
 	extern QString AUTHENTICATE_URL;
 
-	/// @brief URL for getting an access token
+	/// @brief URL to get access tokens
 	extern QString ACCESS_TOKEN_URL;
 
 
@@ -51,7 +59,7 @@ namespace TwitterURL
 	// Searches //
 	//////////////
 
-	/// @brief URL for a search request
+	/// @brief URL for search requests
 	extern QString SEARCH_URL;
 
 
@@ -59,7 +67,7 @@ namespace TwitterURL
 	// Tweets //
 	////////////
 
-	/// @brief URL for getting informations about a given tweet
+	/// @brief URL to get informations about a given tweet
 	extern QString SHOW_TWEET_URL;
 
 
@@ -67,7 +75,7 @@ namespace TwitterURL
 	// Users //
 	///////////
 
-	/// @brief URL for getting informations about a given user
+	/// @brief URL to get informations about a given user
 	extern QString SHOW_USER_URL;
 }
 

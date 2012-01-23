@@ -56,6 +56,26 @@ void initReynTweetsSystem() {
 	ReynTweetsConfiguration::initSystem();
 }
 
+void loadTranslation(QApplication & a) {
+	// Program in French
+/*
+	QTranslator translator;
+	translator.load("reyntweets_fr");
+	translator.load("reyntweets_qml_launching_widget_fr");
+	a.installTranslator(&translator);
+//*/
+
+	// Defalult idiom : local idiom
+	QString locale = QLocale::system().name().section('_', 0, 0);
+	QTranslator translator;
+
+	// Loading translation files
+	translator.load(QString("reyntweets_") + locale);
+	translator.load(QString("reyntweets_qml_launching_widget_") + locale);
+
+	a.installTranslator(&translator);
+}
+
 /// @fn int main(int argc, char *argv[]);
 /// @brief Main function. Entry point of the program
 /// @param argc Number of arguments
@@ -71,18 +91,8 @@ int main(int argc, char *argv[])
 	// Init for serialization
 	initReynTweetsSystem();
 
-	// Program in French
-/*
-	QTranslator translator;
-	translator.load("reyntweets_fr");
-	a.installTranslator(&translator);
-//*/
-
-	// Defalult idiom : local idiom
-	QString locale = QLocale::system().name().section('_', 0, 0);
-	QTranslator translator;
-	translator.load(QString("reyntweets_") + locale);
-	a.installTranslator(&translator);
+	// Loading translation files
+	loadTranslation(a);
 
 	MainWindow w;
 

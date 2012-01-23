@@ -34,6 +34,7 @@ Où en est Reyn Tweets ?
 
 == Ce qui reste à faire ==
 
+  # Portage QML de l'application (exécuter avec du QML au lieu de Qt)
   # Sauvegarde des données d'une utilisation sur l'autre
     # Résoudre le bug des dates (issue 51).
   # UI quand on arrive sur l'application :

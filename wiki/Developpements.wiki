@@ -30,11 +30,12 @@ Où en est Reyn Tweets ?
     * Modèle d'un tweet et de ses sous composants (Tweet Entities)
     * Modèle d'une timeline
     * Mettre à jour la doc' de ce qui a déjà été fait.
+  * Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
 
 
 == Ce qui reste à faire ==
 
-  # Portage QML de l'application (exécuter avec du QML au lieu de Qt)
+  # Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
   # Sauvegarde des données d'une utilisation sur l'autre
     # Résoudre le bug des dates (issue 51).
   # UI quand on arrive sur l'application :

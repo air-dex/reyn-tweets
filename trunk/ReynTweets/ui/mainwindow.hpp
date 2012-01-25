@@ -45,6 +45,10 @@ class MainWindow : public QMainWindow
 		/// @brief Destructor
 		~MainWindow();
 
+		/// @fn void startReynTweets();
+		/// @brief Starting the application
+		void startReynTweets();
+
 	protected:
 		/// @brief Central widget which is the heart of the application
 		ReynTweetsWidget reynTweets;

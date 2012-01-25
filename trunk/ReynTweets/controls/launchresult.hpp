@@ -1,5 +1,5 @@
-/// @file launchresult.hpp
-/// @brief Header of LaunchingWidget and SaveConfResult
+/// @file coreresults.hpp
+/// @brief Header with enums indicating how ReynCore treatments have ended.
 /// @author Romain DUCHER
 
 /*
@@ -21,14 +21,14 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef LAUNCHRESULT_HPP
-#define LAUNCHRESULT_HPP
+#ifndef CORERESULTS_HPP
+#define CORERESULTS_HPP
 
-/// @enum LaunchResult
-/// @brief Enum indicating the result of the launching of Reyn Tweets.
-enum LaunchResult {
+/// @enum CoreResults
+/// @brief Unified error for all the possible ends of all treatments
+enum CoreResult {
 	/// @brief The launching was successful
-	LAUNCH_SUCCESSFUL,
+	LOAD_CONFIGURATION_SUCCESSFUL,
 
 	/// @brief The configuration file does not exist
 	CONFIGURATION_FILE_UNKNOWN,
@@ -37,20 +37,31 @@ enum LaunchResult {
 	CONFIGURATION_FILE_NOT_OPEN,
 
 	/// @brief The configuration cannot be launched
-	LOADING_CONFIGURATION_ERROR
-};
+	LOADING_CONFIGURATION_ERROR,
 
-/// @enum SaveConfResult
-/// @brief Enum indicating if saving the configuration was successful.
-enum SaveConfResult {
 	/// @brief The launching was successful
 	SAVE_SUCCESSFUL,
 
-	/// @brief The configuration file does not exist
-	CONFIGURATION_BACKUP_FILE_UNKNOWN,
+	/// @brief Credentials were right
+	TOKENS_OK,
 
-	/// @brief The configuration file cannot be opened
-	CONFIGURATION_BACKUP_FILE_NOT_OPEN
+	/// @brief Credentials were wrong
+	TOKENS_NOT_AUTHORIZED,
+
+	/// @brief Rate limit was hit
+	RATE_LIMITED,
+
+	/// @brief Twitter got problems (Twitter return code looking like 5xx)
+	TWITTER_DOWN,
+
+	/// @brief The request ends with an unknown problem
+	UNKNOWN_PROBLEM,
+
+	/// @brief There were an error while parsing results
+	PARSE_ERROR,
+
+	/// @brief The user was wrong
+	WRONG_USER
 };
 
-#endif // LAUNCHRESULT_HPP
+#endif // CORERESULTS_HPP

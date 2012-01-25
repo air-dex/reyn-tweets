@@ -22,22 +22,47 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
 import QtQuick 1.1
-//import Qt 4.7
+import ReynTweetsControls 0.1
 
 Rectangle {
 	id: main_screen
 	width: 360
 	height: 640
 
+	Component.onCompleted: {
+		// Wiring for the end of the launching process
+		control.launchEnded.connect(main_screen.endLaunch)
+		control.launchReynTweets()
+	}
+
+	/// @brief Signal sent after launching the application
+	signal endLaunch(bool launchOK, string errMsg, bool fatal)
+
+	////////////////////////
+	// Control management //
+	////////////////////////
+
+	LaunchingControl {
+		id: control
+	}
+/*
+	LaunchingInfos {
+		id: infos
+	}
+//*/
+
+	//////////////////////////
+	// Design of the Widget //
+	//////////////////////////
+
 	// Logo with the name and the icon
 	Column {
 		id: program_logo
 		width: main_screen.width/3
-		height: reyn_tweets_icon.height + program_name_label.height
-		spacing: height/2
+		//height: reyn_tweets_icon.height + program_name_label.height
+		spacing: (reyn_tweets_icon.height + program_name_label.height)/6
 		anchors.verticalCenterOffset: -bottom.height
 		anchors.verticalCenter: parent.verticalCenter
-		anchors.horizontalCenterOffset: 0
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		Image {
@@ -66,8 +91,9 @@ Rectangle {
 	// Copyright and website of the application
 	Column {
 		id: bottom
-		width: 200
-		height: (copyright.height + website.height)*5/4
+		width: main_screen.width
+		spacing: (copyright.height + website.height) / 4
+
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: height/2
@@ -79,7 +105,6 @@ Rectangle {
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.top: parent.top
-			anchors.topMargin: 0
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 			font.pixelSize: 14
@@ -92,7 +117,6 @@ Rectangle {
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.bottom: parent.bottom
-			anchors.bottomMargin: 0
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 			font.pixelSize: 14

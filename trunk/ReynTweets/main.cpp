@@ -24,7 +24,10 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include "qmlapplicationviewer.h"
 #include "ui/mainwindow.hpp"
+#include "controls/launchingcontrol.hpp"
+#include "controls/launchinginfos.hpp"
 
 // Including the widget for tests
 //*
@@ -56,6 +59,13 @@ void initReynTweetsSystem() {
 	ReynTweetsConfiguration::initSystem();
 }
 
+/// @fn void declareReynTweetsControls();
+/// @brief Declares all the controls used by QML widgets
+void declareReynTweetsControls() {
+	LaunchingControl::declareQML();
+	//LaunchingInfos::declareQML();
+}
+
 void loadTranslation(QApplication & a) {
 	// Program in French
 /*
@@ -76,40 +86,73 @@ void loadTranslation(QApplication & a) {
 	a.installTranslator(&translator);
 }
 
-/// @fn int main(int argc, char *argv[]);
+/// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
 /// @brief Main function. Entry point of the program
 /// @param argc Number of arguments
 /// @param argv List of arguments
 /// @return The result of the execution.
-int main(int argc, char *argv[])
-{
-	QApplication a(argc, argv);
+Q_DECL_EXPORT int main(int argc, char *argv[])
+{//*
+	QScopedPointer<QApplication> app(createApplication(argc, argv));
 
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 
 	// Init for serialization
 	initReynTweetsSystem();
+	declareReynTweetsControls();
 
 	// Loading translation files
-	loadTranslation(a);
+	loadTranslation(*app);
 
-	MainWindow w;
-
-	#if defined(Q_OS_SYMBIAN)
-		w.showMaximized();
-	#else // For Windows and Linux
-
-		// Insert a widget for tests purposes
-		//*
-		TestWidget tw;
-		QDockWidget dock("Tests", &w);
-		dock.setWidget(&tw);
-		w.addDockWidget(Qt::LeftDockWidgetArea, &dock);
-		//*/
-
-		w.show();
+	// Init Main QML file
+	#ifdef Q_OS_WIN32
+		QLatin1String mainQMLFile("ui/qml/main_desktop.qml");
+	#endif
+	#ifdef Q_OS_LINUX
+		QLatin1String mainQMLFile("ui/qml/main_desktop.qml");
+	#endif
+	#ifdef Q_OS_SYMBIAN
+		QLatin1String mainQMLFile("ui/qml/main_symbian.qml");
 	#endif
 
-	return a.exec();
+	QmlApplicationViewer viewer;
+	viewer.setMainQmlFile(mainQMLFile);
+	viewer.showExpanded();
+
+	return app->exec();
+//*/
+	/*
+	QApplication a(argc, argv);
+
+		// Init the random generator used for generating nonces
+		qsrand(QDateTime::currentMSecsSinceEpoch());
+
+		// Init for serialization
+		initReynTweetsSystem();
+
+		// Loading translation files
+		loadTranslation(a);
+
+		MainWindow w;
+
+		#if defined(Q_OS_SYMBIAN)
+			w.showMaximized();
+		#else // For Windows and Linux
+
+			// Insert a widget for tests purposes
+			//*
+			TestWidget tw;
+			QDockWidget dock("Tests", &w);
+			dock.setWidget(&tw);
+			w.addDockWidget(Qt::LeftDockWidgetArea, &dock);
+			//*/
+/*
+			w.show();
+		#endif
+
+		w.startReynTweets();
+
+		return a.exec();
+		//*/
 }

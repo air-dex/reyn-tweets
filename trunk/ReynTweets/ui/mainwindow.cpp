@@ -36,3 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
 // Destructor
 MainWindow::~MainWindow()
 {}
+
+// Launching Reyn Tweets
+void MainWindow::startReynTweets() {
+	reynTweets.startReynTweets();
+}

@@ -46,9 +46,18 @@ class ReynTweetsWidget : public QWidget
 		/// @brief Destructor
 		~ReynTweetsWidget();
 
+		/// @fn void startReynTweets();
+		/// @brief Starting the application
+		void startReynTweets();
+
 	signals:
 
 	public slots:
+		/// @fn void verifyTokensEnded(CoreResults verifyOK);
+		/// @brief Slot executed after verifying credentials
+		/// @param verifyOK How the verification ended
+		void verifyTokensEnded(CoreResult verifyOK);
+
 		///////////////////////////////
 		// Authentication management //
 		///////////////////////////////
@@ -82,11 +91,11 @@ class ReynTweetsWidget : public QWidget
 
 		/// @fn void launchOK(LaunchResult launchOK);
 		/// @brief Slot executed at the end of the launch process
-		void launchOK(LaunchResult launchOK);
+		void launchOK(CoreResult launchOK);
 
 		/// @fn void saveOK(SaveConfResult saveOK);
 		/// @brief Slot executed after saving the configuration
-		void saveOK(SaveConfResult saveOK);
+		void saveOK(CoreResult saveOK);
 
 	protected:
 		/// @brief Main controller

@@ -83,6 +83,11 @@ class ReynCore : public QObject
 		void saveConfiguration();
 
 	signals:
+		/// @fn void verifyTokensEnded(CoreResult verifyOK);
+		/// @brief Signal sent after verifying credentials
+		/// @param verifyOK How the verification ended
+		void verifyTokensEnded(CoreResult verifyOK);
+
 		///////////////////////////////
 		// Authentication management //
 		///////////////////////////////
@@ -96,18 +101,23 @@ class ReynCore : public QObject
 		// Configuration management //
 		//////////////////////////////
 
-		/// @fn void launchEnded(LaunchResult authOK);
+		/// @fn void launchEnded(CoreResult authOK);
 		/// @brief Signal sent at the end of the authentication to indicate
 		/// if it was successful or not.
 		/// @param authOK How the launching process ended
-		void launchEnded(LaunchResult authOK);
+		void loadConfigurationEnded(CoreResult authOK);
 
-		/// @fn void saveConfEnded(SaveConfResult saveOK);
+		/// @fn void saveConfEnded(CoreResuls saveOK);
 		/// @brief Signal sent after saving the configuration
 		/// @param saveOK How the save process ended
-		void saveConfEnded(SaveConfResult saveOK);
+		void saveConfEnded(CoreResult saveOK);
 
 	public slots:
+		/// @fn void verifyCredentialsEnded(ResultWrapper res);
+		/// @brief Slot executed after verifying credentials.
+		/// @param res Result of the request
+		void verifyCredentialsEnded(ResultWrapper res);
+
 		/// @fn void getUser(ResultWrapper res);
 		/// @brief Getting a user after requesting it to Twitter
 		/// @param res Result of the request
@@ -140,15 +150,15 @@ class ReynCore : public QObject
 		// Configuration management //
 		//////////////////////////////
 
-		/// @fn LaunchResult loadConfigurationPrivate();
+		/// @fn CoreResult loadConfigurationPrivate();
 		/// @brief Loading the configuartion from the configuration file
 		/// @return How the launching process ended
-		LaunchResult loadConfigurationPrivate();
+		CoreResult loadConfigurationPrivate();
 
-		/// @fn SaveConfResult saveConfigurationPrivate();
+		/// @fn CoreResult saveConfigurationPrivate();
 		/// @brief Saving the configuartion in the configuration file
 		/// @return How the save process ended
-		SaveConfResult saveConfigurationPrivate();
+		CoreResult saveConfigurationPrivate();
 };
 
 #endif // REYNCORE_HPP

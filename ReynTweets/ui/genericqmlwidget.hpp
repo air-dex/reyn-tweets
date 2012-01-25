@@ -27,7 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QDeclarativeComponent>
 #include <QDeclarativeEngine>
 #include <QDeclarativeView>
-#include <QWidget>
+//#include <QWidget>
 #include "qmlviewer.hpp"
 
 /// @class GenericQMLWidget
@@ -47,7 +47,7 @@ class GenericQMLWidget : public QWidget
 		QDeclarativeComponent qmlComponent;
 
 		/// @brief A view containing what to show
-		QMLViewer qmlView;
+		QDeclarativeView qmlView;
 };
 
 #endif // GENERICQMLWIDGET_HPP

@@ -37,11 +37,11 @@ ReynCore::ReynCore() :
 
 // Loading the configuartion from the configuration file
 void ReynCore::loadConfiguration() {
-	emit launchEnded(loadConfigurationPrivate());
+	emit loadConfigurationEnded(loadConfigurationPrivate());
 }
 
 // Loading the configuartion from the configuration file
-LaunchResult ReynCore::loadConfigurationPrivate() {
+CoreResult ReynCore::loadConfigurationPrivate() {
 	// Opening the configuration file
 	QFile confFile("conf/ReynTweets.conf");
 
@@ -68,7 +68,7 @@ LaunchResult ReynCore::loadConfigurationPrivate() {
 
 	configuration = qVariantValue<ReynTweetsConfiguration>(confVariant);
 	fillOAuthManager();
-	return LAUNCH_SUCCESSFUL;
+	return LOAD_CONFIGURATION_SUCCESSFUL;
 }
 
 // Saving the configuartion in the configuration file
@@ -77,17 +77,17 @@ void ReynCore::saveConfiguration() {
 }
 
 // Saving the configuartion in the configuration file
-SaveConfResult ReynCore::saveConfigurationPrivate() {
+CoreResult ReynCore::saveConfigurationPrivate() {
 	// Opening the configuration file
 	QFile confFile("conf/ReynTweets.conf");
 
 	if (!confFile.exists()) {
-		return CONFIGURATION_BACKUP_FILE_UNKNOWN;
+		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	bool openOK = confFile.open(QFile::WriteOnly);
 	if (!openOK) {
-		return CONFIGURATION_BACKUP_FILE_NOT_OPEN;
+		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 	// Choix dans la date
@@ -137,11 +137,11 @@ void ReynCore::getUser(ResultWrapper res) {
 
 	switch (errorType) {
 		case NO_ERROR: {
-				// Get user, put it in the conf and save
+			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.getParsedResult().toMap();
 			User u;
 			u.fillWithVariant(parsedResults);
-			UserAccount account = configuration.getUserAccount();
+			UserAccount & account = configuration.getUserAccount();
 			account.setUser(u);
 			configuration.setUserAccount(account);
 			saveConfiguration();
@@ -186,11 +186,104 @@ void ReynCore::getUser(ResultWrapper res) {
 
 // Checks if the access tokens seem legit.
 void ReynCore::checkTokens() {
-	if (!(isValidToken(configuration.getUserAccount().getAccessToken())
-		  && isValidToken(configuration.getUserAccount().getTokenSecret())))
-	{
-		emit authenticationRequired();
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(verifyCredentialsEnded(ResultWrapper)));
+	twitter.verifyCredentials(true, true);
+}
+
+// Slot executed after verifying credentials.
+void ReynCore::verifyCredentialsEnded(ResultWrapper res) {
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
+
+	RequestResult result = res.accessResult(this);
+	int httpCode = result.getHttpCode();
+
+	switch (httpCode) {
+		case 200: {
+			// Credentials were right a priori. Ensures that the user is the right one.
+			QVariantMap userMap = result.getParsedResult().toMap();
+			User userOfCredentials;
+			userOfCredentials.fillWithVariant(userMap);
+			UserAccount & account = configuration.getUserAccount();
+			User confUser = account.getUser();
+			bool rightUser = confUser.getID() == userOfCredentials.getID();
+			CoreResult res = rightUser ?
+						TOKENS_OK
+					  : WRONG_USER;
+			if (rightUser) {
+				account.setUser(userOfCredentials);
+			}
+			emit verifyTokensEnded(res);
+		}break;
+
+		case 401:
+			// Credentials were wrong
+			emit verifyTokensEnded(TOKENS_NOT_AUTHORIZED);
+			break;
+
+		case 420:
+			// Rate limited
+			emit verifyTokensEnded(RATE_LIMITED);
+			break;
+
+		default:
+			if (httpCode / 100 == 5) {
+				// Return code is 5xx -> Twitter problem
+				emit verifyTokensEnded(TWITTER_DOWN);
+			} else {
+				// Unknown problem
+				emit verifyTokensEnded(UNKNOWN_PROBLEM);
+			}
+			break;
 	}
+
+	/*
+	ErrorType errorType = result.getErrorType();
+
+	switch (errorType) {
+		case NO_ERROR: {
+				// Get user, put it in the conf and save
+			QVariantMap parsedResults = result.getParsedResult().toMap();
+			User u;
+			u.fillWithVariant(parsedResults);
+			UserAccount account = configuration.getUserAccount();
+			account.setUser(u);
+			configuration.setUserAccount(account);
+			saveConfiguration();
+		}break;
+
+		case API_CALL: {
+			// Retrieving network informations
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
+
+			// Building error message
+			QString errorMsg = "Network error ";
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
+//			emit errorProcess(false, errorMsg);
+		}break;
+
+		case OAUTH_PARSING: {
+			// Building error message
+			QString errorMsg = "Parsing error :\n";
+			errorMsg.append(result.getParsingErrorMessage());
+//			emit errorProcess(false, errorMsg);
+		}break;
+
+		default: {
+			// Unexpected problem. Abort.
+			QString errorMessage = "Unexpected problem :\n";
+			errorMessage.append(result.getErrorMessage()).append(".\n");
+//			emit errorProcess(true, errorMessage);
+		}break;
+	}
+	//*/
 }
 
 // Determining if a token seems legit

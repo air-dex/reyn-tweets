@@ -51,9 +51,6 @@ ReynTweetsWidget::ReynTweetsWidget() :
 												  QByteArray,QByteArray,
 												  qlonglong,QString))
 			);
-
-	// Loading configuration
-	reyn.loadConfiguration();
 }
 
 // Destructor
@@ -72,6 +69,12 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 													 QByteArray,QByteArray,
 													 qlonglong,QString))
 			   );
+}
+
+// Launching Reyn Tweets
+void ReynTweetsWidget::startReynTweets() {
+	// Loading configuration
+	reyn.loadConfiguration();
 }
 
 // Displaying a QMessageBox announcing a critical problem
@@ -109,6 +112,38 @@ QMessageBox::StandardButton ReynTweetsWidget::questionPopup(QString title,
 								 title,
 								 displayedMessage,
 								 QMessageBox::Yes | QMessageBox::No);
+}
+
+
+/// @fn void verityTokensEnded(CoreResults verifyOK);
+/// @brief Slot executed after verifying credentials
+/// @param verifyOK How the verification ended
+void ReynTweetsWidget::verifyTokensEnded(CoreResult verifyOK) {
+	switch (verifyOK) {
+		case TOKENS_OK:
+			// Credentials were right
+			break;
+
+		case TOKENS_NOT_AUTHORIZED:
+			// Credentials were wrong
+			break;
+
+		case RATE_LIMITED:
+			// Rate limited
+			break;
+
+		case TWITTER_DOWN:
+			// Twitter problem
+			break;
+
+		case UNKNOWN_PROBLEM:
+			// Unknown problem
+			break;
+
+		default:
+			// Unexpected result
+			break;
+	}
 }
 
 
@@ -184,20 +219,22 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 //////////////////////////////
 
 // End of launch process
-void ReynTweetsWidget::launchOK(LaunchResult launchOK) {
+void ReynTweetsWidget::launchOK(CoreResult launchOK) {
 	QString errorMsg = "";
 
 	switch (launchOK) {
-		case LAUNCH_SUCCESSFUL:
-			// The application was launched correctly. You can tweet now.
+		case LOAD_CONFIGURATION_SUCCESSFUL:
+			// The configuration was loaded correctly. Let's check the credentials
 			reyn.checkTokens();
 
+			/*
 			// Removing the launching screen
 			launchingScreen.hide();
 			layout.removeWidget(&launchingScreen);
 
 			// Inserting the panel to tweet (mocked for the moment)
 			layout.addWidget(&mock);
+			//*/
 			return;
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -223,7 +260,7 @@ void ReynTweetsWidget::launchOK(LaunchResult launchOK) {
 }
 
 // After saving the configuration
-void ReynTweetsWidget::saveOK(SaveConfResult saveOK) {
+void ReynTweetsWidget::saveOK(CoreResult saveOK) {
 	QString errorMsg = "";
 
 	switch (saveOK) {
@@ -231,11 +268,11 @@ void ReynTweetsWidget::saveOK(SaveConfResult saveOK) {
 			// The application was saved correctly
 			return;
 
-		case CONFIGURATION_BACKUP_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_UNKNOWN:
 			errorMsg = ReynTweetsWidget::trUtf8("Configuration file does not exist.");
 			break;
 
-		case CONFIGURATION_BACKUP_FILE_NOT_OPEN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 			errorMsg = ReynTweetsWidget::trUtf8("Configuration file cannot be opened.");
 			break;
 

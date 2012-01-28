@@ -1,0 +1,23 @@
+#labels Architecture
+=Architecture de Reyn Tweets :=
+
+Les 7 couches de l'architecture de Reyn Tweets :
+
+  # *Interface utilisateur*
+    * _Vues QML_ : UI de l'application. Elles sont écrites en QML (c'est même la seule partie du programme en QML).
+  # *Logique de l'application*
+    * _Contrôles_ : classes C++ servant d'intermédiaire entre les vues QML et le reste du programme :
+      * Ils reçoivent les notifications des vues QML et les traduisent en actions à réaliser par l'application.
+      * Ils reçoivent les résultats des actions demandées et assurent la mise à jour des vues QML.
+    * _Core_ : partie centrale de Reyn Tweets symbolisée par une classe unique, le ReynCore. Il gère la configuration et les actions à réaliser par l'application.
+    * _Processes_ : classes symbolisant les actions à réaliser. Pour cela, ils doivent souvent demander des informations à Twitter.
+  # *Communication avec Twitter*
+    * _Twitter Calls_ : classe générique recensant les appels unitaires à l'API de Twitter. C'est l'équivalent du Reyn Core pour les appels à Twitter. Les calls sont eux aussi symbolisés par une classe unique, les ReynTwitterCalls. Ils gèrent également les paramètres d'authentification auprès de Twitter via un OAuth Manager (classe OAuthManager).
+      * Lors d'une demande, ils invoquent des requesters chargés d'appeler Twitter.
+      * Lors de la réponse, ils récupèrent les résultats des requesters et les encapsulent dans des ResultsWrappers afin que les processes ne récupèrent pas de mauvais résultats.
+    * _Requesters_ : classes symbolisant un appel unitaire à Twitter. Ils sont les équivalent des processes logique dans la connexion à Twitter.
+      * Lors d'une demande, ils trient les arguments GET et POST à passer à Twitter et demandent au communicators de lancer la requête
+      * Lors de la réponse, ils parsent les résultats bruts renvoyés par Twitter et les encapsulent dans des objets de typ RequestResult.
+    * _Communicators_ : entités chargées de communiquer directement avec l'API de Twitter.
+      * Lors d'une demande, ils préparent les requêtes HTTP à envoyer à Twitter et les lancent via un QNetworkAccessManager.
+      * Lors de la réponse, ils extraient les résultats bruts de la requête (code HTTP, contenu de la réponse, etc.).

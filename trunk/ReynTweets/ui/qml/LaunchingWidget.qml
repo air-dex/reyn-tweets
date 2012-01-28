@@ -45,11 +45,6 @@ Rectangle {
 	LaunchingControl {
 		id: control
 	}
-/*
-	LaunchingInfos {
-		id: infos
-	}
-//*/
 
 	//////////////////////////
 	// Design of the Widget //

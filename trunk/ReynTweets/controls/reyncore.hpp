@@ -47,11 +47,7 @@ class ReynCore : public QObject
 		// Authentication management //
 		///////////////////////////////
 
-		/// @fn void checkTokens();
-		/// @brief Checks if the access tokens seem legit. If not, it sends an
-		/// authenticationRequired(); signal to the ReynTweetsWidget to start
-		/// an authentication process.
-		void checkTokens();
+		void allowReynTweets();
 
 		//////////////////////////////
 		// Configuration management //
@@ -60,6 +56,12 @@ class ReynCore : public QObject
 		/// @fn void loadConfiguration();
 		/// @brief Loading the configuartion from the configuration file
 		void loadConfiguration();
+
+		/// @fn void checkTokens();
+		/// @brief Checks if the access tokens seem legit. If not, it sends an
+		/// authenticationRequired(); signal to the ReynTweetsWidget to start
+		/// an authentication process.
+		void checkTokens();
 
 		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
 		///								 QByteArray tokenSecret = "",
@@ -83,11 +85,6 @@ class ReynCore : public QObject
 		void saveConfiguration();
 
 	signals:
-		/// @fn void verifyTokensEnded(CoreResult verifyOK);
-		/// @brief Signal sent after verifying credentials
-		/// @param verifyOK How the verification ended
-		void verifyTokensEnded(CoreResult verifyOK);
-
 		///////////////////////////////
 		// Authentication management //
 		///////////////////////////////
@@ -107,12 +104,21 @@ class ReynCore : public QObject
 		/// @param authOK How the launching process ended
 		void loadConfigurationEnded(CoreResult authOK);
 
+		/// @fn void verifyTokensEnded(CoreResult verifyOK);
+		/// @brief Signal sent after verifying credentials
+		/// @param verifyOK How the verification ended
+		void verifyTokensEnded(CoreResult verifyOK);
+
 		/// @fn void saveConfEnded(CoreResuls saveOK);
 		/// @brief Signal sent after saving the configuration
 		/// @param saveOK How the save process ended
 		void saveConfEnded(CoreResult saveOK);
 
 	public slots:
+		//////////////////////////////
+		// Configuration management //
+		//////////////////////////////
+
 		/// @fn void verifyCredentialsEnded(ResultWrapper res);
 		/// @brief Slot executed after verifying credentials.
 		/// @param res Result of the request

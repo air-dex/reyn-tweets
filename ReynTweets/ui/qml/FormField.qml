@@ -15,7 +15,7 @@ Rectangle {
 	property string legend: qsTr("text")
 
 	/// @brief Default text in the input
-	property string field_text: qsTr("")
+	property string field_text: field.text
 
 	id: form_field
 	property int spacing: 10
@@ -48,7 +48,7 @@ Rectangle {
 
 		TextInput {
 			id: field
-			text: field_text
+			text: qsTr("")
 			anchors.leftMargin: parent.radius
 			anchors.rightMargin: parent.radius
 			anchors.bottomMargin: parent.radius

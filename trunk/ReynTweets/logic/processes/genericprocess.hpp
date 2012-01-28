@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QUuid>
+#include "processresult.hpp"
 
 class GenericProcess : public QObject
 {
@@ -12,9 +13,13 @@ class GenericProcess : public QObject
 
 		QUuid getProcessUUID();
 
+		virtual void startProcess() = 0;
+
+	signals:
+		void processEnded(ProcessResult res);
+
 	protected:
 		QUuid processUuid;
-
 };
 
 #endif // GENERICPROCESS_HPP

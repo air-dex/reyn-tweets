@@ -25,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define REYNCORE_HPP
 
 #include <QObject>
-#include "launchresult.hpp"
+#include "coreresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
 #include "oauthprocess.hpp"
@@ -41,10 +41,62 @@ class ReynCore : public QObject
 {
 	Q_OBJECT
 
+	//////////////////////////////////
+	// Core management of the class //
+	//////////////////////////////////
+
 	public:
 		/// @fn ReynCore();
 		/// @brief Constructor
 		ReynCore();
+
+		/// @fn ~ReynCore();
+		/// @brief Destructor
+		~ReynCore();
+
+	signals:
+		/// @fn void sendResult(ResultWrapper res);
+		/// @brief Signal emitted to the QObject that sends the request
+		/// @param res Result of a request
+		void sendResult(ResultWrapper res);
+
+	public slots:
+		/// @fn void endRequest();
+		/// @brief Slot executed when a requester has finished its work
+		void endRequest();
+
+	protected:
+		/// @brief QObject that asks for the request
+		QObject * requestDemander;
+
+		/// @brief Process manager
+		static ProcessManager processManager;
+
+	private:
+		/// @fn void addProcess(GenericProcess * requester);
+		/// @brief Adding a requester to the requester manager
+		/// @param requester Address of the requester
+		void addProcess(GenericProcess * requester);
+
+		/// @fn void removeProcess(GenericProcess * requester);
+		/// @brief Removing a requester of the requester manager
+		/// @param requester Address of the requester
+		void removeProcess(GenericProcess * requester);
+
+		/// @fn ResultSender buildResultSender(GenericProcess * endedRequest);
+		/// @brief Method that builds the wrapper of a result
+		/// @param endedRequest Ended request that contaons the result
+		/// @return The wrapper of the request result
+		ResultWrapper buildResultSender(GenericRequester * endedRequest);
+
+		/// @fn inline void executeProcess(GenericProcess * requester);
+		/// @brief Inline method for executing requests
+		/// @param requester The requester
+		inline void executeProcess(GenericProcess * requester);
+
+
+
+	public:
 
 		//////////////////////////////
 		// Configuration management //
@@ -135,14 +187,8 @@ class ReynCore : public QObject
 		void allowReynTweets();
 
 	protected:
-		/// @brief Entity calling Twitter
-		ReynTwitterCalls twitter;
-
 		/// @brief Configuration of the program
 		static ReynTweetsConfiguration configuration;
-
-		/// @brief Process manager
-		static ProcessManager processManager;
 
 		/// @brief OAuthProcess
 		OAuthProcess process;

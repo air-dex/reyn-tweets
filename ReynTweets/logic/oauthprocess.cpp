@@ -25,7 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 // Constructor
 OAuthProcess::OAuthProcess() :
-	QObject(),
+	GenericProcess(),
 	twitter(this)
 {}
 

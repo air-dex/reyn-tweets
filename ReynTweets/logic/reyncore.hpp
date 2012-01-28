@@ -28,6 +28,9 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "launchresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
+#include "oauthprocess.hpp"
+#include "genericprocess.hpp"
+#include "processes/processmanager.hpp"
 
 /// @class ReynCore
 /// @brief Heart of Reyn Tweets.
@@ -42,12 +45,6 @@ class ReynCore : public QObject
 		/// @fn ReynCore();
 		/// @brief Constructor
 		ReynCore();
-
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
-		void allowReynTweets();
 
 		//////////////////////////////
 		// Configuration management //
@@ -129,12 +126,26 @@ class ReynCore : public QObject
 		/// @param res Result of the request
 		void getUser(ResultWrapper res);
 
+		///////////////////////////////
+		// Authentication management //
+		///////////////////////////////
+
+		/// @fn void allowReynTweets();
+		/// @brief Allowing Reyn Tweets
+		void allowReynTweets();
+
 	protected:
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;
 
 		/// @brief Configuration of the program
-		ReynTweetsConfiguration configuration;
+		static ReynTweetsConfiguration configuration;
+
+		/// @brief Process manager
+		static ProcessManager processManager;
+
+		/// @brief OAuthProcess
+		OAuthProcess process;
 
 		/// @fn void fillOAuthManager();
 		/// @brief Filling the authentication manager of the ReynTwitterCalls

@@ -237,53 +237,6 @@ void ReynCore::verifyCredentialsEnded(ResultWrapper res) {
 			}
 			break;
 	}
-
-	/*
-	ErrorType errorType = result.getErrorType();
-
-	switch (errorType) {
-		case NO_ERROR: {
-				// Get user, put it in the conf and save
-			QVariantMap parsedResults = result.getParsedResult().toMap();
-			User u;
-			u.fillWithVariant(parsedResults);
-			UserAccount account = configuration.getUserAccount();
-			account.setUser(u);
-			configuration.setUserAccount(account);
-			saveConfiguration();
-		}break;
-
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
-			// Building error message
-			QString errorMsg = "Network error ";
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append(".\n");
-//			emit errorProcess(false, errorMsg);
-		}break;
-
-		case OAUTH_PARSING: {
-			// Building error message
-			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getParsingErrorMessage());
-//			emit errorProcess(false, errorMsg);
-		}break;
-
-		default: {
-			// Unexpected problem. Abort.
-			QString errorMessage = "Unexpected problem :\n";
-			errorMessage.append(result.getErrorMessage()).append(".\n");
-//			emit errorProcess(true, errorMessage);
-		}break;
-	}
-	//*/
 }
 
 // Determining if a token seems legit
@@ -299,4 +252,8 @@ bool ReynCore::isValidToken(QByteArray token) {
 	QByteArray clearToken = QByteArray::fromBase64(token);
 
 	return !(clearToken.isNull() || clearToken.isEmpty());
+}
+
+void ReynCore::allowReynTweets() {
+	//
 }

@@ -184,7 +184,8 @@ HEADERS  += \
 	logic/processes/processresult.hpp \
 	logic/processes/processmanager.hpp \
 	logic/processes/processwrapper.hpp \
-    logic/processes/launchingprocess.hpp
+    logic/processes/launchingprocess.hpp \
+    logic/processes/processes.hpp
 
 
 RESOURCES += \

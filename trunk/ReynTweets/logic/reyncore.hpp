@@ -48,7 +48,7 @@ class ReynCore : public QObject
 	public:
 		/// @fn ReynCore();
 		/// @brief Constructor
-		ReynCore();
+		ReynCore(QObject * actionRequester);
 
 		/// @fn ~ReynCore();
 		/// @brief Destructor

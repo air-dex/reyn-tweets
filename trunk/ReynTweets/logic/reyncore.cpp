@@ -21,17 +21,25 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <QFile>
 #include "reyncore.hpp"
+#include "processes/processes.hpp"
 
 // Constructor
-ReynCore::ReynCore() :
+ReynCore::ReynCore(QObject * actionRequester) :
 	QObject(),
-	configuration()
+	requestDemander(actionRequester)
 {}
 
 // Destructor
-ReynCore::~ReynCore() {}
+ReynCore::~ReynCore() {
+	requestDemander = 0;
+}
+
+// Configuration
+ReynTweetsConfiguration ReynCore::configuration = ReynTweetsConfiguration();
+
+// Process manager
+ProcessManager ReynCore::processManager = ProcessManager();
 
 
 /////////////////////
@@ -82,6 +90,24 @@ void ReynCore::executeProcess(GenericProcess * process) {
 		addProcess(process);
 		process->startProcess();
 	}
+}
+
+
+////////////////////////
+// Actions to realize //
+////////////////////////
+
+void ReynCore::launchReynTweets() {
+	LaunchingProcess * process = new LaunchingProcess(configuration);
+
+	// Special wiring if authentication needed
+	// TODO
+
+	executeProcess(process);
+}
+
+void ReynCore::allowReynTweets() {
+	//
 }
 
 
@@ -153,8 +179,4 @@ void ReynCore::getUser(ResultWrapper res) {
 //			emit errorProcess(true, errorMessage);
 		}break;
 	}
-}
-
-void ReynCore::allowReynTweets() {
-	//
 }

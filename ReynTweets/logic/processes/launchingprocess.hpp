@@ -12,8 +12,13 @@ class LaunchingProcess : public GenericProcess
 {
 		Q_OBJECT
 	public:
+		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf);
+		/// @brief Constructor
+		/// @param conf Configuration of Reyn Tweets
 		LaunchingProcess(ReynTweetsConfiguration & conf);
 
+		/// @fn void startProcess();
+		/// @brief Starting the process
 		void startProcess();
 
 		/// @fn void loadConfiguration();
@@ -48,7 +53,6 @@ class LaunchingProcess : public GenericProcess
 		void checkTokens();
 
 	signals:
-
 		/// @fn void launchEnded(CoreResult authOK);
 		/// @brief Signal sent at the end of the authentication to indicate
 		/// if it was successful or not.
@@ -121,6 +125,10 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Saving the configuartion in the configuration file
 		/// @return How the save process ended
 		CoreResult saveConfigurationPrivate();
+
+		ProcessResult buildResult(bool processOK,
+								  QString errMsg = "",
+								  bool isFatal = false);
 };
 
 #endif // LAUNCHINGPROCESS_HPP

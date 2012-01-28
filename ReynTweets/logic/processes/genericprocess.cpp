@@ -2,10 +2,14 @@
 
 GenericProcess::GenericProcess() :
 	QObject(),
-	processUuid(QUuid::createUuid())
-{
-}
+	processUuid(QUuid::createUuid()),
+	processResult()
+{}
 
 QUuid GenericProcess::getProcessUUID() {
 	return processUuid;
+}
+
+ProcessResult GenericProcess::getProcessResult() {
+	return processResult;
 }

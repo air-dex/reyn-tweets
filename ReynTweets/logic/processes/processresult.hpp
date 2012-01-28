@@ -1,18 +1,23 @@
 #ifndef PROCESSRESULT_HPP
 #define PROCESSRESULT_HPP
 
-#include <QObject>
+#include <QString>
+#include <QVariantMap>
 
-class ProcessResult : public QObject
-{
-		Q_OBJECT
-	public:
-		explicit ProcessResult(QObject *parent = 0);
-		
-	signals:
-		
-	public slots:
-		
+/// @struct ProcessResult
+/// @brief
+struct ProcessResult {
+	/// @brief Boolean indicating if the process ended successfully
+	bool processOK;
+
+	/// @brief Error message
+	QString errorMsg;
+
+	/// @brief Results
+	QVariantMap results;
+
+	/// @brief Boolean indicating if the error is fatal
+	bool fatalError;
 };
 
 #endif // PROCESSRESULT_HPP

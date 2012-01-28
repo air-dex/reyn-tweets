@@ -26,11 +26,11 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QObject>
 #include "coreresult.hpp"
-#include "../connection/reyntwittercalls.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
 #include "oauthprocess.hpp"
 #include "genericprocess.hpp"
 #include "processes/processmanager.hpp"
+#include "processes/processwrapper.hpp"
 
 /// @class ReynCore
 /// @brief Heart of Reyn Tweets.
@@ -55,15 +55,15 @@ class ReynCore : public QObject
 		~ReynCore();
 
 	signals:
-		/// @fn void sendResult(ResultWrapper res);
-		/// @brief Signal emitted to the QObject that sends the request
-		/// @param res Result of a request
-		void sendResult(ResultWrapper res);
+		/// @fn void sendResult(ProcessWrapper res);
+		/// @brief Signal emitted to the QObject that requests the process
+		/// @param res Result of a process
+		void sendResult(ProcessWrapper res);
 
 	public slots:
 		/// @fn void endRequest();
 		/// @brief Slot executed when a requester has finished its work
-		void endRequest();
+		void endProcess();
 
 	protected:
 		/// @brief QObject that asks for the request
@@ -72,46 +72,51 @@ class ReynCore : public QObject
 		/// @brief Process manager
 		static ProcessManager processManager;
 
+		/// @brief Configuration of the program
+		static ReynTweetsConfiguration configuration;
+
 	private:
-		/// @fn void addProcess(GenericProcess * requester);
+		/// @fn void addProcess(GenericProcess * process);
 		/// @brief Adding a requester to the requester manager
 		/// @param requester Address of the requester
-		void addProcess(GenericProcess * requester);
+		void addProcess(GenericProcess * process);
 
-		/// @fn void removeProcess(GenericProcess * requester);
+		/// @fn void removeProcess(GenericProcess * process);
 		/// @brief Removing a requester of the requester manager
 		/// @param requester Address of the requester
-		void removeProcess(GenericProcess * requester);
+		void removeProcess(GenericProcess * process);
 
-		/// @fn ResultSender buildResultSender(GenericProcess * endedRequest);
+		/// @fn ProcessWrapper buildResultSender(GenericProcess * endedProcess);
 		/// @brief Method that builds the wrapper of a result
 		/// @param endedRequest Ended request that contaons the result
 		/// @return The wrapper of the request result
-		ResultWrapper buildResultSender(GenericRequester * endedRequest);
+		ProcessWrapper buildResultSender(GenericRequester * endedProcess);
 
-		/// @fn inline void executeProcess(GenericProcess * requester);
+		/// @fn inline void executeProcess(GenericProcess * process);
 		/// @brief Inline method for executing requests
 		/// @param requester The requester
-		inline void executeProcess(GenericProcess * requester);
+		inline void executeProcess(GenericProcess * process);
 
 
+	////////////////////////
+	// Actions to realize //
+	////////////////////////
 
 	public:
+		/// @fn void launchReynTweets();
+		/// @brief Launching the app
+		void launchReynTweets();
 
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
+		/// @fn void allowReynTweets();
+		/// @brief Allowing Reyn Tweets
+		void allowReynTweets();
 
-		/// @fn void loadConfiguration();
-		/// @brief Loading the configuartion from the configuration file
-		void loadConfiguration();
 
-		/// @fn void checkTokens();
-		/// @brief Checks if the access tokens seem legit. If not, it sends an
-		/// authenticationRequired(); signal to the ReynTweetsWidget to start
-		/// an authentication process.
-		void checkTokens();
+	//////////
+	// Misc //
+	//////////
 
+	public:
 		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
 		///								 QByteArray tokenSecret = "",
 		///								 qlonglong id,
@@ -129,99 +134,17 @@ class ReynCore : public QObject
 								 qlonglong id,
 								 QString screenName);
 
-		/// @fn void saveConfiguration();
-		/// @brief Saving the configuartion in the configuration file
-		void saveConfiguration();
-
 	signals:
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
 		/// @fn void authenticationRequired();
 		/// @brief Signal sent if the application has to be authorized again
 		/// (in order to get new access tokens, for example).
 		void authenticationRequired();
 
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
-
-		/// @fn void launchEnded(CoreResult authOK);
-		/// @brief Signal sent at the end of the authentication to indicate
-		/// if it was successful or not.
-		/// @param authOK How the launching process ended
-		void loadConfigurationEnded(CoreResult authOK);
-
-		/// @fn void verifyTokensEnded(CoreResult verifyOK);
-		/// @brief Signal sent after verifying credentials
-		/// @param verifyOK How the verification ended
-		void verifyTokensEnded(CoreResult verifyOK);
-
-		/// @fn void saveConfEnded(CoreResuls saveOK);
-		/// @brief Signal sent after saving the configuration
-		/// @param saveOK How the save process ended
-		void saveConfEnded(CoreResult saveOK);
-
 	public slots:
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
-
-		/// @fn void verifyCredentialsEnded(ResultWrapper res);
-		/// @brief Slot executed after verifying credentials.
-		/// @param res Result of the request
-		void verifyCredentialsEnded(ResultWrapper res);
-
 		/// @fn void getUser(ResultWrapper res);
 		/// @brief Getting a user after requesting it to Twitter
 		/// @param res Result of the request
 		void getUser(ResultWrapper res);
-
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
-		/// @fn void allowReynTweets();
-		/// @brief Allowing Reyn Tweets
-		void allowReynTweets();
-
-	protected:
-		/// @brief Configuration of the program
-		static ReynTweetsConfiguration configuration;
-
-		/// @brief OAuthProcess
-		OAuthProcess process;
-
-		/// @fn void fillOAuthManager();
-		/// @brief Filling the authentication manager of the ReynTwitterCalls
-		/// with the right credentials
-		void fillOAuthManager();
-
-	private:
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
-		/// @fn bool isValidToken(QByteArray token);
-		/// @brief Determining if a token seems legit
-		/// @param token Token to analyze
-		/// @return True if the token seems valid, false otherwise
-		bool isValidToken(QByteArray token);
-
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
-
-		/// @fn CoreResult loadConfigurationPrivate();
-		/// @brief Loading the configuartion from the configuration file
-		/// @return How the launching process ended
-		CoreResult loadConfigurationPrivate();
-
-		/// @fn CoreResult saveConfigurationPrivate();
-		/// @brief Saving the configuartion in the configuration file
-		/// @return How the save process ended
-		CoreResult saveConfigurationPrivate();
 };
 
 #endif // REYNCORE_HPP

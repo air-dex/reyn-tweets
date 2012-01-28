@@ -27,91 +27,67 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 ReynCore::ReynCore() :
 	QObject(),
-	twitter(this),
 	configuration()
 {}
 
-//////////////////////////////
-// Configuration management //
-//////////////////////////////
+// Destructor
+ReynCore::~ReynCore() {}
 
-// Loading the configuartion from the configuration file
-void ReynCore::loadConfiguration() {
-	emit loadConfigurationEnded(loadConfigurationPrivate());
+
+/////////////////////
+// Core management //
+/////////////////////
+
+// Adding a requester to the requester manager
+void ReynCore::addProcess(GenericProcess * process) {
+	if (process) {
+		connect(process, SIGNAL(processEnded()),
+				this, SLOT(endProcess()));
+		processManager.addProcess(process);
+	}
 }
 
-// Loading the configuartion from the configuration file
-CoreResult ReynCore::loadConfigurationPrivate() {
-	// Opening the configuration file
-	QFile confFile("conf/ReynTweets.conf");
-
-	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
+// Removing a requester of the requester manager
+void ReynCore::removeProcess(GenericProcess * process) {
+	if (process) {
+		disconnect(process, SIGNAL(processEnded()),
+				   this, SLOT(endProcess()));
+		processManager.removeProcess(process);
 	}
-
-	bool openOK = confFile.open(QFile::ReadOnly);
-	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
-	}
-
-	// Launching the configuration
-	QDataStream readStream(&confFile);
-	QVariant confVariant;
-
-	readStream >> confVariant;
-	confFile.close();
-
-	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
-		// The content of the file cannot be converted into a configuration.
-		return LOADING_CONFIGURATION_ERROR;
-	}
-
-	configuration = qVariantValue<ReynTweetsConfiguration>(confVariant);
-	fillOAuthManager();
-	return LOAD_CONFIGURATION_SUCCESSFUL;
 }
 
-// Saving the configuartion in the configuration file
-void ReynCore::saveConfiguration() {
-	emit saveConfEnded(saveConfigurationPrivate());
+// Slot executed when a requester has finished its work
+void ReynCore::endProcess() {
+	// Getting the process
+	GenericProcess * process = qobject_cast<GenericProcess *>(sender());
+	ProcessWrapper result = buildResultSender(process);
+	removeProcess(process);
+	emit sendResult(result);
 }
 
-// Saving the configuartion in the configuration file
-CoreResult ReynCore::saveConfigurationPrivate() {
-	// Opening the configuration file
-	QFile confFile("conf/ReynTweets.conf");
-
-	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
+// Method that builds the wrapper of a result
+ProcessWrapper ReynCore::buildResultSender(GenericRequester * endedProcess) {
+	if (endedProcess) {
+		ProcessInfos & procInfos = processManager.getProcessInfos(endedProcess->getUuid());
+		return ProcessWrapper(procInfos.asker,
+							  procInfos.process->getRequestResult());
+	} else {
+		return ProcessWrapper();
 	}
+}
 
-	bool openOK = confFile.open(QFile::WriteOnly);
-	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
+// Inline method for executing processes
+void ReynCore::executeProcess(GenericProcess * process) {
+	if (process) {
+		addProcess(process);
+		process->startProcess();
 	}
-
-	// Choix dans la date
-	ReynTweetsDateTime userdate = configuration.getUserAccount().getUser().getCreatedAt();
-	qDebug("Choix dans la date :");
-	qDebug(userdate.toString().toAscii());
-
-	// Launching the configuration
-	QDataStream readStream(&confFile);
-	QVariant confVariant = qVariantFromValue(configuration);
-
-	readStream << confVariant;
-	confFile.close();
-
-	return SAVE_SUCCESSFUL;
 }
 
-// Filling the OAuth manager of the ReynTwitterCalls with right credentials
-void ReynCore::fillOAuthManager() {
-	ReynTwitterCalls::setNewTokens(configuration.getUserAccount().getAccessToken(),
-								   configuration.getUserAccount().getTokenSecret(),
-								   ReynTweetsConfiguration::getConsumerKey(),
-								   ReynTweetsConfiguration::getConsumerSecret());
-}
+
+//////////
+// Misc //
+//////////
 
 // Uploading the configuration after an authentication process
 void ReynCore::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString) {
@@ -177,81 +153,6 @@ void ReynCore::getUser(ResultWrapper res) {
 //			emit errorProcess(true, errorMessage);
 		}break;
 	}
-}
-
-
-///////////////////////////////
-// Authentication management //
-///////////////////////////////
-
-// Checks if the access tokens seem legit.
-void ReynCore::checkTokens() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(verifyCredentialsEnded(ResultWrapper)));
-	twitter.verifyCredentials(true, true);
-}
-
-// Slot executed after verifying credentials.
-void ReynCore::verifyCredentialsEnded(ResultWrapper res) {
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
-
-	RequestResult result = res.accessResult(this);
-	int httpCode = result.getHttpCode();
-
-	switch (httpCode) {
-		case 200: {
-			// Credentials were right a priori. Ensures that the user is the right one.
-			QVariantMap userMap = result.getParsedResult().toMap();
-			User userOfCredentials;
-			userOfCredentials.fillWithVariant(userMap);
-			UserAccount & account = configuration.getUserAccount();
-			User confUser = account.getUser();
-			bool rightUser = confUser.getID() == userOfCredentials.getID();
-			CoreResult res = rightUser ?
-						TOKENS_OK
-					  : WRONG_USER;
-			if (rightUser) {
-				account.setUser(userOfCredentials);
-			}
-			emit verifyTokensEnded(res);
-		}break;
-
-		case 401:
-			// Credentials were wrong
-			emit verifyTokensEnded(TOKENS_NOT_AUTHORIZED);
-			break;
-
-		case 420:
-			// Rate limited
-			emit verifyTokensEnded(RATE_LIMITED);
-			break;
-
-		default:
-			if (httpCode / 100 == 5) {
-				// Return code is 5xx -> Twitter problem
-				emit verifyTokensEnded(TWITTER_DOWN);
-			} else {
-				// Unknown problem
-				emit verifyTokensEnded(UNKNOWN_PROBLEM);
-			}
-			break;
-	}
-}
-
-// Determining if a token seems legit
-bool ReynCore::isValidToken(QByteArray token) {
-	// Right tokens == Tokens not empty
-
-	// Step 1 : Base 64 form not null or empty
-	if (token.isNull() || token.isEmpty()) {
-		return false;
-	}
-
-	// Step 2 : Clear form not null or empty
-	QByteArray clearToken = QByteArray::fromBase64(token);
-
-	return !(clearToken.isNull() || clearToken.isEmpty());
 }
 
 void ReynCore::allowReynTweets() {

@@ -88,8 +88,8 @@ void LaunchingProcess::loadOK(CoreResult loadRes) {
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	// TODO
-	emit launchEnded(false, errorMsg, true);
+	processResult = buildResult(false, errorMsg, true);
+	emit processEnded();
 }
 
 
@@ -152,21 +152,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	}
 }
 
-// Determining if a token seems legit
-bool LaunchingProcess::isValidToken(QByteArray token) {
-	// Right tokens == Tokens not empty
-
-	// Step 1 : Base 64 form not null or empty
-	if (token.isNull() || token.isEmpty()) {
-		return false;
-	}
-
-	// Step 2 : Clear form not null or empty
-	QByteArray clearToken = QByteArray::fromBase64(token);
-
-	return !(clearToken.isNull() || clearToken.isEmpty());
-}
-
 void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 	QString errorMsg = "";
 	bool isFatal = false;
@@ -213,18 +198,13 @@ void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 	}
 
 	// Telling the component wat happens
-	// TODO
-	emit launchEnded(false, errorMsg, isFatal);
+	processResult = buildResult(false, errorMsg, isFatal);
+	emit processEnded();
 }
 
 
-/////////////////////////////////////////////////////
-// Step 3 : verifying if the user is the right one //
-/////////////////////////////////////////////////////
-
-
 ////////////////////////////////////////////////////
-// Step 4 : updating and saving the configuration //
+// Step 3 : updating and saving the configuration //
 ////////////////////////////////////////////////////
 
 // Saving the configuartion in the configuration file
@@ -262,13 +242,13 @@ CoreResult LaunchingProcess::saveConfigurationPrivate() {
 }
 
 void LaunchingProcess::saveOK(CoreResult saveRes) {
-	// TODO
 	QString errorMsg = "";
 
 	switch (saveRes) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			emit launchEnded(true);
+			processResult = buildResult(true);
+			emit processEnded();
 			return;
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -285,7 +265,8 @@ void LaunchingProcess::saveOK(CoreResult saveRes) {
 	}
 
 	// Telling the component that there were a problem
-	emit launchEnded(false, errorMsg, true);
+	processResult = buildResult(false, errorMsg, true);
+	emit processEnded();
 }
 
 
@@ -301,77 +282,31 @@ void LaunchingProcess::fillOAuthManager() {
 								   ReynTweetsConfiguration::getConsumerSecret());
 }
 
-// Uploading the configuration after an authentication process
-void LaunchingProcess::updateConfAfterAuth(QByteArray accessToken, QByteArray tokenSecret, qlonglong id, QString) {
-	// Updating the tokens
-	UserAccount account = configuration.getUserAccount();
-	account.setAccessToken(accessToken.toBase64());
-	account.setTokenSecret(tokenSecret.toBase64());
-	configuration.setUserAccount(account);
+// Building the process results
+ProcessResult LaunchingProcess::buildResult(bool processOK,
+											QString errMsg,
+											bool isFatal) {
+	ProcessResult res;
 
-	// Getting informations about the user behind the account
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(getUser(ResultWrapper)));
-	twitter.showUser(id);
+	res.processOK = processOK;
+	res.errorMsg = errMsg;
+	res.fatalError = isFatal;
+	res.results = QVariantMap();
+
+	return res;
 }
 
-// Getting a user after requesting it to Twitter
-void LaunchingProcess::getUser(ResultWrapper res) {
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(getUser(ResultWrapper)));
+// Determining if a token seems legit
+bool LaunchingProcess::isValidToken(QByteArray token) {
+	// Right tokens == Tokens not empty
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
-
-	switch (errorType) {
-		case NO_ERROR: {
-			// Get user, put it in the conf and save
-			QVariantMap parsedResults = result.getParsedResult().toMap();
-			User u;
-			u.fillWithVariant(parsedResults);
-			UserAccount & account = configuration.getUserAccount();
-			account.setUser(u);
-			configuration.setUserAccount(account);
-			saveConfiguration();
-		}break;
-
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
-			// Building error message
-			QString errorMsg = "Network error ";
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append(".\n");
-//			emit errorProcess(false, errorMsg);
-		}break;
-
-		case OAUTH_PARSING: {
-			// Building error message
-			QString errorMsg = "Parsing error :\n";
-			errorMsg.append(result.getParsingErrorMessage());
-//			emit errorProcess(false, errorMsg);
-		}break;
-
-		default: {
-			// Unexpected problem. Abort.
-			QString errorMessage = "Unexpected problem :\n";
-			errorMessage.append(result.getErrorMessage()).append(".\n");
-//			emit errorProcess(true, errorMessage);
-		}break;
+	// Step 1 : Base 64 form not null or empty
+	if (token.isNull() || token.isEmpty()) {
+		return false;
 	}
-}
 
+	// Step 2 : Clear form not null or empty
+	QByteArray clearToken = QByteArray::fromBase64(token);
 
-///////////////////////////////
-// Authentication management //
-///////////////////////////////
-
-void LaunchingProcess::allowReynTweets() {
-	//
+	return !(clearToken.isNull() || clearToken.isEmpty());
 }

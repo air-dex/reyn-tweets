@@ -27,7 +27,6 @@ class ProcessManager : protected QMap<QUuid, ProcessInfos>
 		/// @brief Removing a process from the manager
 		/// @param processUuid UUID of the process
 		void removeProcess(QUuid processUuid);
-
 };
 
 #endif // PROCESSMANAGER_HPP

@@ -13,13 +13,17 @@ class GenericProcess : public QObject
 
 		QUuid getProcessUUID();
 
+		ProcessResult getProcessResult();
+
 		virtual void startProcess() = 0;
 
 	signals:
-		void processEnded(ProcessResult res);
+		void processEnded();
 
 	protected:
 		QUuid processUuid;
+
+		ProcessResult processResult;
 };
 
 #endif // GENERICPROCESS_HPP

@@ -2,6 +2,62 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US">
 <context>
+    <name>LaunchingControl</name>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="56"/>
+        <location filename="controls/launchingcontrol.cpp" line="139"/>
+        <source>Configuration file does not exist.</source>
+        <translation type="unfinished">Configuration file does not exist.</translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="60"/>
+        <location filename="controls/launchingcontrol.cpp" line="143"/>
+        <source>Configuration file cannot be opened.</source>
+        <translation type="unfinished">Configuration file cannot be opened.</translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="64"/>
+        <source>Configuration cannot be loaded.</source>
+        <translation type="unfinished">Configuration cannot be loaded.</translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="69"/>
+        <location filename="controls/launchingcontrol.cpp" line="147"/>
+        <source>Unknown problem</source>
+        <translation type="unfinished">Unknown problem</translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="92"/>
+        <source>The user was not the right one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="98"/>
+        <source>Tokens for authentication to Twitter were wrong.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="103"/>
+        <source>You reach the authentication rate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="108"/>
+        <source>Twitter is down.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="113"/>
+        <source>Unknown prolem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="controls/launchingcontrol.cpp" line="119"/>
+        <source>Unexpected result</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoginWidget</name>
     <message>
         <location filename="ui/authentication/loginwidget.cpp" line="29"/>

@@ -227,3 +227,36 @@ win32 {
 #	INCLUDEPATH += $${QJSON_PATH}/include
 #	LIBS += -L$${QJSON_PATH}/lib -lqjson
 #}
+
+
+#---------------------------#
+# Qt Components for Desktop #
+#---------------------------#
+
+# Qt Components for Desktop (http://qt.gitorious.org/qt-components/desktop)
+# is a library with QML Components for desktop. It is under LGPL license (v2.1).
+# QMLCOMP_DESKTOP_PATH is the location of QJSON in the system.
+
+#win32 {
+#	QMLCOMP_DESKTOP_PATH = C:\\Libs\\QtComponentsForDesktop
+#	INCLUDEPATH += $${QMLCOMP_DESKTOP_PATH}\\include
+#	debug {
+#		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\debug -lstyleplugin
+#	}
+#	release {
+#		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\release -lstyleplugin
+#	}
+#
+#}
+
+#linux {
+#	QMLCOMP_DESKTOP_PATH = C:\\Libs\\QtComponentsForDesktop
+#	INCLUDEPATH += $${QMLCOMP_DESKTOP_PATH}\\include
+#	debug {
+#		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\debug -lstyleplugin
+#	}
+#	release {
+#		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\release -lstyleplugin
+#	}
+#
+#}

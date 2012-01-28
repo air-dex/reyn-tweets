@@ -28,6 +28,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui/mainwindow.hpp"
 #include "controls/launchingcontrol.hpp"
 #include "controls/launchinginfos.hpp"
+#include "controls/logincontrol.hpp"
 
 // Including the widget for tests
 //*
@@ -63,6 +64,7 @@ void initReynTweetsSystem() {
 /// @brief Declares all the controls used by QML widgets
 void declareReynTweetsControls() {
 	LaunchingControl::declareQML();
+	LoginControl::declareQML();
 	//LaunchingInfos::declareQML();
 }
 

@@ -101,6 +101,7 @@ SOURCES += \
 #	ui/genericactionpane.cpp \
 	#ui/ratelimitedactionpane.cpp
  #   controls/launchinginfos.cpp
+    controls/logincontrol.cpp
 
 
 HEADERS  += \
@@ -172,6 +173,7 @@ HEADERS  += \
 #	ui/genericactionpane.hpp \
 #	ui/ratelimitedactionpane.hpp
   #  controls/launchinginfos.hpp
+    controls/logincontrol.hpp
 
 
 RESOURCES += \

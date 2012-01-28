@@ -27,11 +27,7 @@ void LaunchingControl::declareQML() {
 									  0, 1,
 									  "LaunchingControl");
 }
-/*
-void LaunchingControl::endLaunch(CoreResult res) {
-	emit launchEnded(res);
-}
-//*/
+
 // Starting ReynTweets
 void LaunchingControl::launchReynTweets() {
 	reyn.loadConfiguration();

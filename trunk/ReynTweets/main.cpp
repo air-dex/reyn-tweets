@@ -26,9 +26,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QTranslator>
 #include "qmlapplicationviewer.h"
 #include "ui/mainwindow.hpp"
-#include "controls/launchingcontrol.hpp"
-#include "controls/launchinginfos.hpp"
-#include "controls/logincontrol.hpp"
+#include "logic/launchingcontrol.hpp"
+#include "logic/launchinginfos.hpp"
+#include "logic/logincontrol.hpp"
 
 // Including the widget for tests
 //*

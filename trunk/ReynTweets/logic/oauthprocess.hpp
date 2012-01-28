@@ -24,13 +24,13 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef OAUTHPROCESS_HPP
 #define OAUTHPROCESS_HPP
 
-#include <QObject>
+#include "genericprocess.hpp"
 #include "oauthprocessresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 
 /// @class OAuthProcess
 /// @brief Controller for the execution of the Twitter's OAuth Authentication Flow
-class OAuthProcess : public QObject
+class OAuthProcess : public GenericProcess
 {
 	Q_OBJECT
 

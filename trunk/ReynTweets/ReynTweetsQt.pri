@@ -86,9 +86,9 @@ SOURCES += \
 	model/user.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
-	controls/oauthprocess.cpp \
-	controls/reyncore.cpp \
-	controls/launchingcontrol.cpp \
+	logic/oauthprocess.cpp \
+	logic/reyncore.cpp \
+	logic/launchingcontrol.cpp \
 	ui/authentication/loginwidget.cpp \
 	ui/authentication/oauthwidget.cpp \
 	ui/genericqmlwidget.cpp \
@@ -100,8 +100,12 @@ SOURCES += \
 #	ui/qmlviewer.cpp \
 #	ui/genericactionpane.cpp \
 	#ui/ratelimitedactionpane.cpp
- #   controls/launchinginfos.cpp
-    controls/logincontrol.cpp
+ #   logic/launchinginfos.cpp
+	logic/logincontrol.cpp \
+	logic/genericprocess.cpp \
+	logic/processresult.cpp \
+	logic/processes/processmanager.cpp \
+	logic/processwrapper.cpp
 
 
 HEADERS  += \
@@ -156,11 +160,11 @@ HEADERS  += \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \
-	controls/oauthprocessresult.hpp \
-	controls/oauthprocess.hpp \
-	controls/launchresult.hpp \
-	controls/reyncore.hpp \
-	controls/launchingcontrol.hpp \
+	logic/oauthprocessresult.hpp \
+	logic/oauthprocess.hpp \
+	logic/launchresult.hpp \
+	logic/reyncore.hpp \
+	logic/launchingcontrol.hpp \
 	ui/authentication/loginwidget.hpp \
 	ui/authentication/oauthwidget.hpp \
 	ui/genericqmlwidget.hpp \
@@ -172,8 +176,13 @@ HEADERS  += \
 #	ui/qmlviewer.hpp \
 #	ui/genericactionpane.hpp \
 #	ui/ratelimitedactionpane.hpp
-  #  controls/launchinginfos.hpp
-    controls/logincontrol.hpp
+  #  logic/launchinginfos.hpp
+	logic/logincontrol.hpp \
+	logic/processes/processinfos.hpp \
+	logic/genericprocess.hpp \
+	logic/processresult.hpp \
+	logic/processes/processmanager.hpp \
+	logic/processwrapper.hpp
 
 
 RESOURCES += \

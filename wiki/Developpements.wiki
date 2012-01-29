@@ -18,6 +18,7 @@ Où en est Reyn Tweets ?
     * Mise en place d'une architecture pour ça.
     * Coder
     * Tester
+    * Résoudre le bug des dates (issue 51) -> Fait avec une classe spéciale ReynTweetsDateTime.
   * UI quand on arrive sur l'application :
     * Ecrans d'autorisation à manipuler le compte Twitter.
     * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
@@ -30,12 +31,12 @@ Où en est Reyn Tweets ?
     * Modèle d'un tweet et de ses sous composants (Tweet Entities)
     * Modèle d'une timeline
     * Mettre à jour la doc' de ce qui a déjà été fait.
-  * Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
+  * Interface graphique (UI)
+    *Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
 
 
 == Ce qui reste à faire ==
 
-  # Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
   # Sauvegarde des données d'une utilisation sur l'autre
     # Résoudre le bug des dates (issue 51).
   # UI quand on arrive sur l'application :
@@ -45,16 +46,18 @@ Où en est Reyn Tweets ?
     # Renommer le fichier des fichiers de la classe ReynTweetsListable
     # Faire du rangement dans les classes de modèle
   # Documentation :
+    # Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement
     # Approfondir la documentation
+    # Faire de la documentation technique non Doxygen. À voir si tout est mis dans le wiki ou pas. Une page existe déjà pour l'architecture ([https://code.google.com/p/reyn-tweets/wiki/Architecture]).
     # Publication quelque part (Google Sites ?)
   # Implémentation des fonctionnalités de base.
   # Interface graphique (UI).
-    # Intégration de l'OAuthWidget dans l'application
-    # Rendre la popup de login modale
+    # Finir pour le lancement de l'application
   # Portage sur Symbian
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées (issue 33)
-    # Remontage des tokens (issue 46)
     # Sérialisation et requesters (issue 44)
+    # Remontage des tokens (issue 46)
+    # Composants graphique non faits manu militari sur desktop (issue 56)
     # ... (cf. bug reporter)
   # Releaser

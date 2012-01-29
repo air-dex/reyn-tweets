@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QVariantMap>
+#include "../coreresult.hpp"
 
 /// @struct ProcessResult
 /// @brief
@@ -18,6 +19,9 @@ struct ProcessResult {
 
 	/// @brief Boolean indicating if the error is fatal
 	bool fatalError;
+
+	/// @brief Information about how the process ended
+	CoreResult processIssue;
 };
 
 #endif // PROCESSRESULT_HPP

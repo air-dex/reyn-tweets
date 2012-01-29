@@ -26,7 +26,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWidget>
 #include "loginwidget.hpp"
-#include "../../controls/oauthprocess.hpp"
+#include "../../logic/processes/oauthprocess.hpp"
 
 /// @class OAuthWidget
 /// @brief View for the OAuth process execution

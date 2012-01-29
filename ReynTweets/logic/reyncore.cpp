@@ -97,6 +97,7 @@ void ReynCore::executeProcess(GenericProcess * process) {
 // Actions to realize //
 ////////////////////////
 
+// Launching the app
 void ReynCore::launchReynTweets() {
 	LaunchingProcess * process = new LaunchingProcess(configuration);
 
@@ -106,6 +107,7 @@ void ReynCore::launchReynTweets() {
 	executeProcess(process);
 }
 
+// Allowing Reyn Tweets
 void ReynCore::allowReynTweets() {
 	//
 }

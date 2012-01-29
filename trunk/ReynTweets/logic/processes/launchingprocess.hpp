@@ -5,6 +5,7 @@
 #include "../../model/configuration/reyntweetsconfiguration.hpp"
 #include "../../connection/reyntwittercalls.hpp"
 #include "../coreresult.hpp"
+#include "processwrapper.hpp"
 
 /// @class LaunchingProcess
 /// @brief Process executed to launch the application
@@ -64,6 +65,11 @@ class LaunchingProcess : public GenericProcess
 		/// @param verifyOK How the verification ended
 		void verifyTokensEnded(CoreResult verifyOK);
 
+		/// @fn void authenticationRequired();
+		/// @brief Signal sent if the application has to be authorized again
+		/// (in order to get new access tokens, for example).
+		void authenticationRequired();
+
 		/// @fn void saveConfEnded(CoreResuls saveOK);
 		/// @brief Signal sent after saving the configuration
 		/// @param saveOK How the save process ended
@@ -90,9 +96,10 @@ class LaunchingProcess : public GenericProcess
 		// Authentication management //
 		///////////////////////////////
 
-		/// @fn void allowReynTweets();
-		/// @brief Allowing Reyn Tweets
-		void allowReynTweets();
+		/// @fn authenticationIssue(ProcessWrapper res);
+		/// @brief What happened while authorizing Reyn Tweets
+		/// @param res Process result
+		void authenticationIssue(ProcessWrapper res);
 
 	protected:
 		/// @brief Entity calling Twitter
@@ -126,9 +133,10 @@ class LaunchingProcess : public GenericProcess
 		/// @return How the save process ended
 		CoreResult saveConfigurationPrivate();
 
-		ProcessResult buildResult(bool processOK,
-								  QString errMsg = "",
-								  bool isFatal = false);
+		void buildResult(bool processOK,
+						 CoreResult issue,
+						 QString errMsg = "",
+						 bool isFatal = false);
 };
 
 #endif // LAUNCHINGPROCESS_HPP

@@ -13,5 +13,5 @@ ProcessWrapper::ProcessWrapper(QObject * requestSender, RequestResult requestRes
 
 // Method to access to the result
 ProcessResult ProcessWrapper::accessResult(QObject * demanderAdress) {
-	return (demanderAdress == asker) ? result : ProcessResult();
+	return (demanderAdress == asker) ? result : WRONG_PROCESS_RESULT;
 }

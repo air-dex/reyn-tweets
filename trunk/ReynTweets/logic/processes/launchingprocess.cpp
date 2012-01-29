@@ -1,3 +1,4 @@
+#include <QFile>
 #include "launchingprocess.hpp"
 
 LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
@@ -172,6 +173,7 @@ void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
+			emit authenticationRequired();
 			break;
 
 		case RATE_LIMITED:
@@ -203,6 +205,51 @@ void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 }
 
 
+////////////////////////////////////////////////
+// Step 2bis : authenticating the application //
+////////////////////////////////////////////////
+
+// What happened while authorizing Reyn Tweets
+void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
+	ProcessResult result = res.accessResult(this);
+
+	if (result == WRONG_PROCESS_RESULT) {
+		return;
+	}
+
+	CoreResult authIssue = result.processIssue;
+
+	switch (authIssue) {
+		case AUTHORIZED:
+			break;
+
+		case DENIED:
+			break;
+
+		case RATE_LIMITED:
+			break;
+
+		case TWITTER_DOWN:
+			break;
+
+		case TOKENS_NOT_AUTHORIZED:
+			break;
+
+		case NO_TOKENS:
+			break;
+
+		case PARSE_ERROR:
+			break;
+
+		case UNKNOWN_PROBLEM:
+			break;
+
+		default:
+			break;
+	}
+}
+
+
 ////////////////////////////////////////////////////
 // Step 3 : updating and saving the configuration //
 ////////////////////////////////////////////////////
@@ -225,11 +272,6 @@ CoreResult LaunchingProcess::saveConfigurationPrivate() {
 	if (!openOK) {
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
-
-	// Choix dans la date
-	ReynTweetsDateTime userdate = configuration.getUserAccount().getUser().getCreatedAt();
-	qDebug("Choix dans la date :");
-	qDebug(userdate.toString().toAscii());
 
 	// Launching the configuration
 	QDataStream readStream(&confFile);
@@ -283,17 +325,16 @@ void LaunchingProcess::fillOAuthManager() {
 }
 
 // Building the process results
-ProcessResult LaunchingProcess::buildResult(bool processOK,
-											QString errMsg,
-											bool isFatal) {
-	ProcessResult res;
-
-	res.processOK = processOK;
-	res.errorMsg = errMsg;
-	res.fatalError = isFatal;
-	res.results = QVariantMap();
-
-	return res;
+void LaunchingProcess::buildResult(bool processOK,
+								   CoreResult issue,
+								   QString errMsg,
+								   bool isFatal)
+{
+	processResult.processOK = processOK;
+	processResult.processIssue = issue;
+	processResult.errorMsg = errMsg;
+	processResult.fatalError = isFatal;
+	processResult.results = QVariantMap();
 }
 
 // Determining if a token seems legit

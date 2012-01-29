@@ -51,7 +51,7 @@ void ReynCore::addProcess(GenericProcess * process) {
 	if (process) {
 		connect(process, SIGNAL(processEnded()),
 				this, SLOT(endProcess()));
-		processManager.addProcess(process);
+		processManager.addProcess(requestDemander, process);
 	}
 }
 
@@ -102,14 +102,96 @@ void ReynCore::launchReynTweets() {
 	LaunchingProcess * process = new LaunchingProcess(configuration);
 
 	// Special wiring if authentication needed
-	// TODO
+	connect(process, SIGNAL(authenticationRequired()),
+			this, SLOT(authenticationNeeded()));
+	connect(this, SIGNAL(sendResult(ProcessWrapper)),
+			process, SLOT(authenticationIssue(ProcessWrapper)));
 
 	executeProcess(process);
 }
 
 // Allowing Reyn Tweets
 void ReynCore::allowReynTweets() {
-	//
+	OAuthProcess * process = new OAuthProcess();
+
+	// Special wiring
+
+	// Process giving informations about user credentials
+	connect(process, SIGNAL(userCredentialsRequired()),
+			this, SLOT(userCredentialsRequired()));
+	connect(process, SIGNAL(credentialsOK(bool)),
+			this, SLOT(credentialsOK(bool)));
+
+	// User telling the process if he want to authorize or to deny Reyn Tweets
+	connect(this, SIGNAL(authorize(QString,QString)),
+			process, SLOT(authorizeReynTweets(QString,QString)));
+	connect(this, SIGNAL(deny(QString,QString)),
+			process, SLOT(denyReynTweets(QString,QString)));
+
+	executeProcess(process);
+}
+
+
+////////////////////
+// Special wiring //
+////////////////////
+
+// OAuth process giving informations about user credentials
+
+// Executed when an OAuthProcess send its userCredentialsRequired() signal.
+void ReynCore::userCredentialsRequired() {
+	emit userCredentialsNeeded();
+}
+
+// Telling the user whether credentials given by it are right.
+void ReynCore::credentialsOK(bool credsOK) {
+	emit credentialsValid(credsOK);
+}
+
+
+// Authorize or deny
+
+// Allowing Reyn Tweets to use the Twitter account :)
+void ReynCore::authorizeReynTweets(QString login, QString password) {
+	emit authorize(login, password);
+}
+
+// Denying Reyn Tweets :(
+void ReynCore::denyReynTweets(QString login, QString password) {
+	emit deny(login, password);
+}
+
+
+// Authentication required
+
+// Asking for an authentication
+void ReynCore::authenticationNeeded() {
+	GenericProcess * askingProcess = qobject_cast<GenericProcess *>(sender());
+
+	OAuthProcess * authenticationProcess = new OAuthProcess;
+
+	// Traditional wiring for the end of the process
+	connect(authenticationProcess, SIGNAL(processEnded()),
+			this, SLOT(endProcess()));
+
+	// The QObject asking for the authentication is askingProcess, not requestDemander
+	processManager.addProcess(askingProcess, authenticationProcess);
+
+	// Special wiring
+
+	// Process giving informations about user credentials
+	connect(process, SIGNAL(userCredentialsRequired()),
+			this, SLOT(userCredentialsRequired()));
+	connect(process, SIGNAL(credentialsOK(bool)),
+			this, SLOT(credentialsOK(bool)));
+
+	// User telling the process if he want to authorize or to deny Reyn Tweets
+	connect(this, SIGNAL(authorize(QString,QString)),
+			process, SLOT(authorizeReynTweets(QString,QString)));
+	connect(this, SIGNAL(deny(QString,QString)),
+			process, SLOT(denyReynTweets(QString,QString)));
+
+	authenticationProcess->startProcess();
 }
 
 

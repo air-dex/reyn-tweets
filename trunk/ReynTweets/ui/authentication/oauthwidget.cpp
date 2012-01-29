@@ -112,7 +112,7 @@ void OAuthWidget::allowReynTweets() {
 		connect(authenticationFlow, SIGNAL(errorProcess(bool,QString)),
 				this, SLOT(errorProcess(bool,QString)));
 
-		authenticationFlow->startAuthentication();
+		authenticationFlow->startProcess();
 	} else {
 		// Critical error -> Abort the process.
 		QMessageBox::critical(this,

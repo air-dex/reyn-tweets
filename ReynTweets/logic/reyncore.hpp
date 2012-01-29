@@ -77,24 +77,24 @@ class ReynCore : public QObject
 
 	private:
 		/// @fn void addProcess(GenericProcess * process);
-		/// @brief Adding a requester to the requester manager
-		/// @param requester Address of the requester
+		/// @brief Adding a process to the process manager
+		/// @param process Address of the requester
 		void addProcess(GenericProcess * process);
 
 		/// @fn void removeProcess(GenericProcess * process);
-		/// @brief Removing a requester of the requester manager
-		/// @param requester Address of the requester
+		/// @brief Removing a process of the process manager
+		/// @param process Address of the process
 		void removeProcess(GenericProcess * process);
 
 		/// @fn ProcessWrapper buildResultSender(GenericProcess * endedProcess);
 		/// @brief Method that builds the wrapper of a result
-		/// @param endedRequest Ended request that contaons the result
-		/// @return The wrapper of the request result
+		/// @param endedProcess Ended process that contains the result
+		/// @return The wrapper of the process result
 		ProcessWrapper buildResultSender(GenericRequester * endedProcess);
 
 		/// @fn inline void executeProcess(GenericProcess * process);
-		/// @brief Inline method for executing requests
-		/// @param requester The requester
+		/// @brief Inline method for executing processes
+		/// @param process The process
 		inline void executeProcess(GenericProcess * process);
 
 
@@ -110,6 +110,81 @@ class ReynCore : public QObject
 		/// @fn void allowReynTweets();
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
+
+
+	////////////////////
+	// Special wiring //
+	////////////////////
+
+	signals:
+		//////////////////////////////////////////////////////////////
+		// OAuth process giving informations about user credentials //
+		//////////////////////////////////////////////////////////////
+
+		/// @fn void userCredentialsNeeded();
+		/// @brief Transmitting the userCredentialsRequired() signal of
+		/// a given OAuthProcess.
+		void userCredentialsNeeded();
+
+		/// @fn void credentialsValid(bool credsOK);
+		/// @brief Telling the user whether credentials given by it are right.
+		/// @param credsOK Boolean indicating if credentials are right (true).
+		void credentialsValid(bool credsOK);
+
+		///////////////////////
+		// Authorize or deny //
+		///////////////////////
+
+		/// @fn void authorize(QString login, QString password);
+		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void authorize(QString login, QString password);
+
+		/// @fn void deny(QString login, QString password);
+		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void deny(QString login, QString password);
+
+	public slots:
+		//////////////////////////////////////////////////////////////
+		// OAuth process giving informations about user credentials //
+		//////////////////////////////////////////////////////////////
+
+		/// @fn void userCredentialsRequired();
+		/// @brief Executed when an OAuthProcess send its
+		/// userCredentialsRequired() signal.
+		void userCredentialsRequired();
+
+		/// @fn void credentialsOK(bool credsOK);
+		/// @brief Telling the user whether credentials given by it are right.
+		/// @param credsOK Boolean indicating if credentials are right (true).
+		void credentialsOK(bool credsOK);
+
+		///////////////////////
+		// Authorize or deny //
+		///////////////////////
+
+		/// @fn void authorizeReynTweets(QString login, QString password);
+		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void authorizeReynTweets(QString login, QString password);
+
+		/// @fn void denyReynTweets(QString login, QString password);
+		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
+		/// @param login User login, i.e. its username or its email.
+		/// @param password User password
+		void denyReynTweets(QString login, QString password);
+
+		/////////////////////////////
+		// Authentication required //
+		/////////////////////////////
+
+		/// @fn void authenticationNeeded();
+		/// @brief Asking for an authentication
+		void authenticationNeeded();
 
 
 	//////////
@@ -133,12 +208,6 @@ class ReynCore : public QObject
 								 QByteArray tokenSecret,
 								 qlonglong id,
 								 QString screenName);
-
-	signals:
-		/// @fn void authenticationRequired();
-		/// @brief Signal sent if the application has to be authorized again
-		/// (in order to get new access tokens, for example).
-		void authenticationRequired();
 
 	public slots:
 		/// @fn void getUser(ResultWrapper res);

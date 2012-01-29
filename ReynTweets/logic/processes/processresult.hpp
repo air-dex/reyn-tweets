@@ -24,4 +24,7 @@ struct ProcessResult {
 	CoreResult processIssue;
 };
 
+/// @brief An invalid process result
+extern ProcessResult WRONG_PROCESS_RESULT;
+
 #endif // PROCESSRESULT_HPP

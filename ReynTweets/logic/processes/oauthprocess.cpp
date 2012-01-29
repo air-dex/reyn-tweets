@@ -37,13 +37,34 @@ void OAuthProcess::resetTokens() {
 	ReynTwitterCalls::resetTokens();
 }
 
+// Building the result of the process
+void OAuthProcess::buildResult(bool processOK,
+							   CoreResult issue,
+							   QString errMsg, bool isFatal,
+							   QByteArray accessToken, QByteArray tokenSecret,
+							   qlonglong userID, QString screenName)
+{
+	processResult.processOK = processOK;
+	processResult.processIssue = issue;
+	processResult.errorMsg = errMsg;
+	processResult.fatalError = isFatal;
+
+	QVariantMap resultMap;
+	resultMap.insert("access_token", qVariantFromValue(accessToken));
+	resultMap.insert("token_secret", qVariantFromValue(tokenSecret));
+	resultMap.insert("user_id", qVariantFromValue(userID));
+	resultMap.insert("screen_name", qVariantFromValue(screenName));
+
+	processResult.results = resultMap;
+}
+
 
 ///////////////////////////////
 // OAuth Authentication flow //
 ///////////////////////////////
 
 // Starting the OAuth authentication flow
-void OAuthProcess::startAuthentication() {
+void OAuthProcess::startProcess() {
 	requestToken();
 }
 
@@ -155,6 +176,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case NO_ERROR:
 			// The user can give its credentials now
+			emit userCredentialsRequired();
 			emit loginPanelVisible(true);
 			return;
 
@@ -258,7 +280,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 					}
 				}
 
-				return;
+				return;		// The process does not fail for the moment
 			} else {
 				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.\n");
 				isFatal = true;
@@ -410,25 +432,4 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
 	emit processEnded();
-}
-
-// Building the result of the process
-void OAuthProcess::buildResult(bool processOK,
-							   CoreResult issue,
-							   QString errMsg, bool isFatal,
-							   QByteArray accessToken, QByteArray tokenSecret,
-							   qlonglong userID, QString screenName)
-{
-	processResult.processOK = processOK;
-	processResult.processIssue = issue;
-	processResult.errorMsg = errMsg;
-	processResult.fatalError = isFatal;
-
-	QVariantMap resultMap;
-	resultMap.insert("access_token", qVariantFromValue(accessToken));
-	resultMap.insert("token_secret", qVariantFromValue(tokenSecret));
-	resultMap.insert("user_id", qVariantFromValue(userID));
-	resultMap.insert("screen_name", qVariantFromValue(screenName));
-
-	processResult.results = resultMap;
 }

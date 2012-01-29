@@ -43,9 +43,9 @@ class OAuthProcess : public GenericProcess
 		/// @brief Destructor
 		~OAuthProcess();
 
-		/// @fn void startAuthentication();
-		/// @brief Starting the OAuth authentication flow
-		void startAuthentication();
+		/// @fn void startProcess();
+		/// @brief Starting the OAuth Authentication flow
+		void startProcess();
 
 		/// @fn void resetTokens();
 		/// @brief Resetting the tokens. A full new OAuth authentication process
@@ -54,6 +54,10 @@ class OAuthProcess : public GenericProcess
 
 
 	signals:
+		/// @fn void userCredentialsNeeded();
+		/// @brief Signal sent when the process requires user credentials
+		void userCredentialsRequired();
+
 		/// @fn void loginPanelVisible(bool visible);
 		/// @brief Signal sent to show or to hide the browser
 		/// @param visible Boolean indicating if the browser has to be visible.

@@ -21,12 +21,16 @@ You should have received a copy of the GNU Lesser General Public License
 along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CORERESULTS_HPP
-#define CORERESULTS_HPP
+#ifndef CORERESULT_HPP
+#define CORERESULT_HPP
 
-/// @enum CoreResults
+/// @enum CoreResult
 /// @brief Unified error for all the possible ends of all treatments
 enum CoreResult {
+	//////////////////////////////////////////////////
+	// Results while manipulating the configuration //
+	//////////////////////////////////////////////////
+
 	/// @brief The launching was successful
 	LOAD_CONFIGURATION_SUCCESSFUL,
 
@@ -42,11 +46,38 @@ enum CoreResult {
 	/// @brief The launching was successful
 	SAVE_SUCCESSFUL,
 
+
+	////////////////////////////
+	// Ends with token issues //
+	////////////////////////////
+
 	/// @brief Credentials were right
 	TOKENS_OK,
 
 	/// @brief Credentials were wrong
 	TOKENS_NOT_AUTHORIZED,
+
+	/// @brief Not obtained tokens (OAuth Authentication Flow)
+	NO_TOKENS,
+
+
+	////////////////
+	// OAuth ends //
+	////////////////
+
+	/// @brief The application is authorized
+	AUTHORIZED,
+
+	/// @brief The application is denied
+	DENIED,
+
+	/// @brief Unexpected redirection during POST authorizing
+	POST_AUTHORIZING_FAIL,
+
+
+	/////////////////////////////////////////////////
+	// Problems linked to Twitter requests problem //
+	/////////////////////////////////////////////////
 
 	/// @brief Rate limit was hit
 	RATE_LIMITED,
@@ -60,8 +91,12 @@ enum CoreResult {
 	/// @brief There were an error while parsing results
 	PARSE_ERROR,
 
+
+	//////////
+	// Misc //
+	//////////
 	/// @brief The user was wrong
 	WRONG_USER
 };
 
-#endif // CORERESULTS_HPP
+#endif // CORERESULT_HPP

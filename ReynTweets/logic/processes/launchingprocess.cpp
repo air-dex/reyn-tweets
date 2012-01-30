@@ -67,8 +67,7 @@ void LaunchingProcess::loadOK(CoreResult loadRes) {
 	switch (loadRes) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
-			checkTokens();
-			return;
+			return checkTokens();
 
 		case CONFIGURATION_FILE_UNKNOWN:
 			errorMsg = LaunchingProcess::trUtf8("Configuration file does not exist.");
@@ -85,11 +84,12 @@ void LaunchingProcess::loadOK(CoreResult loadRes) {
 		default:
 			// Unknown problem.
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
+			loadRes = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	processResult = buildResult(false, errorMsg, true);
+	buildResult(false, loadRes, errorMsg, true);
 	emit processEnded();
 }
 
@@ -160,21 +160,21 @@ void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 	switch (verifyRes) {
 		case TOKENS_OK:
 			// Credentials were right.
-			saveConfiguration();
-			return;
+			return saveConfiguration();
 
 		case WRONG_USER:
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
-			break;
+			emit authenticationRequired();
+			return;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
 			emit authenticationRequired();
-			break;
+			return;
 
 		case RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
@@ -188,19 +188,20 @@ void LaunchingProcess::verifyOK(CoreResult verifyRes) {
 
 		case UNKNOWN_PROBLEM:
 			// Unknown problem. Abort ?
-			errorMsg = LaunchingProcess::trUtf8("Unknown prolem");
+			errorMsg = LaunchingProcess::trUtf8("Unknown prolem.");
 			isFatal = true;
 			break;
 
 		default:
 			// Unexpected result. Abort.
-			errorMsg = LaunchingProcess::trUtf8("Unexpected result");
+			errorMsg = LaunchingProcess::trUtf8("Unexpected result.");
 			isFatal = true;
+			verifyRes = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Telling the component wat happens
-	processResult = buildResult(false, errorMsg, isFatal);
+	buildResult(false, verifyRes, errorMsg, isFatal);
 	emit processEnded();
 }
 
@@ -218,35 +219,170 @@ void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
 	}
 
 	CoreResult authIssue = result.processIssue;
+	QString errorMsg = "";
+	bool isFatal;
+	bool processOK;
 
 	switch (authIssue) {
-		case AUTHORIZED:
-			break;
+		case AUTHORIZED: {
+			// Download the user then save
+
+			// Extract the different values
+			QVariantMap resultMap = result.results;
+			QByteArray accessToken = resultMap.value("access_token").toByteArray();
+			QByteArray tokenSecret = resultMap.value("token_secret").toByteArray();
+			qlonglong userID = resultMap.value("user_id").toLongLong();
+			QString screenName = resultMap.value("screen_name").toString();
+
+			updateConfiguration(accessToken, tokenSecret, userID, screenName);
+		}return;
 
 		case DENIED:
+			// Try again later or quit
+			processOK = true;
+			errorMsg = LaunchingProcess::trUtf8("Reyn Tweets was not authorized to use your Twitter account.");
+			isFatal = false;
 			break;
 
 		case RATE_LIMITED:
+			// Try again later
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("You reach the Twitter rate.");
+			isFatal = false;
 			break;
 
 		case TWITTER_DOWN:
+			// Try again later
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Twitter seems down.");
+			isFatal = false;
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
+			// Quit
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Tokens seem wrong.");
+			isFatal = true;
 			break;
 
 		case NO_TOKENS:
+			// Quit
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Twitter did not give any token.");
+			isFatal = true;
 			break;
 
 		case PARSE_ERROR:
+			// Quit
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Internal error while parsing Twitter results.");
+			isFatal = true;
 			break;
 
 		case UNKNOWN_PROBLEM:
+			// Quit
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Problem unknown");
+			isFatal = true;
 			break;
 
 		default:
+			// Quit
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Unexpected end.");
+			isFatal = true;
+			authIssue = UNKNOWN_PROBLEM;
 			break;
 	}
+
+	// Failed end
+	buildResult(processOK, authIssue, errorMsg, isFatal);
+	emit processEnded();
+}
+
+// Uploading the configuration with the authentified user after an authentication process
+void LaunchingProcess::updateConfiguration(QByteArray accessToken,
+										   QByteArray tokenSecret,
+										   qlonglong id, QString)
+{
+	// Updating the tokens
+	UserAccount & account = configuration.getUserAccount();
+	account.setAccessToken(accessToken.toBase64());
+	account.setTokenSecret(tokenSecret.toBase64());
+
+	// Getting informations about the user behind the account
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(retrieveUserEnded(ResultWrapper)));
+	twitter.showUser(id);
+}
+
+// Updating a user after requesting it to Twitter
+void LaunchingProcess::retrieveUserEnded(ResultWrapper res) {
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(retrieveUserEnded(ResultWrapper)));
+
+	RequestResult result = res.accessResult(this);
+	ErrorType errorType = result.getErrorType();
+
+	CoreResult issue;
+	QString errorMsg = "";
+	bool isFatal = true;
+
+	switch (errorType) {
+		case NO_ERROR: {
+			// Get user, put it in the conf and save
+			QVariantMap parsedResults = result.getParsedResult().toMap();
+			User u;
+			u.fillWithVariant(parsedResults);
+			UserAccount & account = configuration.getUserAccount();
+			account.setUser(u);
+			saveConfiguration();
+		}return;
+
+		case API_CALL: {
+			// Retrieving network informations
+			int httpCode = result.getHttpCode();
+			QString httpReason = result.getHttpReason();
+
+			// Building error message
+			errorMsg = LaunchingProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(httpReason)
+					.append(" :\n")
+					.append(result.getErrorMessage())
+					.append(".\n");
+
+			// Looking for specific value of the return code
+			if (httpCode / 100 == 5) {
+				issue = TWITTER_DOWN;
+			} else if (httpCode == 420) {
+				issue = RATE_LIMITED;
+			} else {
+				issue = NO_TOKENS;
+			}
+
+			isFatal = false;
+		}break;
+
+		case OAUTH_PARSING:
+			// Building error message
+			errorMsg = LaunchingProcess::trUtf8("Parsing error :\n");
+			errorMsg.append(result.getParsingErrorMessage());
+			issue = PARSE_ERROR;
+			break;
+
+		default:
+			// Unexpected problem. Abort.
+			errorMsg = LaunchingProcess::trUtf8("Unexpected problem :\n");
+			errorMsg.append(result.getErrorMessage()).append(".\n");
+			issue = UNKNOWN_PROBLEM;
+			break;
+	}
+
+	// Failed end
+	buildResult(false, issue, errorMsg, isFatal);
+	emit processEnded();
 }
 
 
@@ -337,17 +473,3 @@ void LaunchingProcess::buildResult(bool processOK,
 	processResult.results = QVariantMap();
 }
 
-// Determining if a token seems legit
-bool LaunchingProcess::isValidToken(QByteArray token) {
-	// Right tokens == Tokens not empty
-
-	// Step 1 : Base 64 form not null or empty
-	if (token.isNull() || token.isEmpty()) {
-		return false;
-	}
-
-	// Step 2 : Clear form not null or empty
-	QByteArray clearToken = QByteArray::fromBase64(token);
-
-	return !(clearToken.isNull() || clearToken.isEmpty());
-}

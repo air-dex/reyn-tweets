@@ -11,7 +11,8 @@
 /// @brief Process executed to launch the application
 class LaunchingProcess : public GenericProcess
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf);
 		/// @brief Constructor
@@ -21,37 +22,6 @@ class LaunchingProcess : public GenericProcess
 		/// @fn void startProcess();
 		/// @brief Starting the process
 		void startProcess();
-
-		/// @fn void loadConfiguration();
-		/// @brief Loading the configuartion from the configuration file
-		void loadConfiguration();
-
-		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
-		///								 QByteArray tokenSecret = "",
-		///								 qlonglong id,
-		///								 QString screenName);
-		/// @brief Uploading the configuration after an authentication process
-		///
-		/// It will consist in updating the user with the id or the screen name
-		/// given by the process.
-		/// @param accessToken User access token
-		/// @param tokenSecret User token secret
-		/// @param id ID of the user
-		/// @param screenName Screen name of the user
-		void updateConfAfterAuth(QByteArray accessToken,
-								 QByteArray tokenSecret,
-								 qlonglong id,
-								 QString screenName);
-
-		/// @fn void saveConfiguration();
-		/// @brief Saving the configuartion in the configuration file
-		void saveConfiguration();
-
-		/// @fn void checkTokens();
-		/// @brief Checks if the access tokens seem legit. If not, it sends an
-		/// authenticationRequired(); signal to the ReynTweetsWidget to start
-		/// an authentication process.
-		void checkTokens();
 
 	signals:
 		/// @fn void launchEnded(CoreResult authOK);
@@ -76,6 +46,9 @@ class LaunchingProcess : public GenericProcess
 		void saveConfEnded(CoreResult saveOK);
 
 	public slots:
+		/// @fn void loadOK(CoreResult loadRes);
+		/// @brief Slot executed after trying to load the configuration.
+		/// @param loadRes Enum describing how it ends
 		void loadOK(CoreResult loadRes);
 
 		/// @fn void verifyCredentialsEnded(ResultWrapper res);
@@ -83,23 +56,26 @@ class LaunchingProcess : public GenericProcess
 		/// @param res Result of the request
 		void verifyCredentialsEnded(ResultWrapper res);
 
+		/// @fn void verifyOK(CoreResult verifyRes);
+		/// @brief Slot executed after asking Twitter REST API if the
+		/// credentials were right.
+		/// @param verifyRes Enum describing how it ends
 		void verifyOK(CoreResult verifyRes);
-
-		void saveOK(CoreResult saveRes);
-
-		/// @fn void getUser(ResultWrapper res);
-		/// @brief Getting a user after requesting it to Twitter
-		/// @param res Result of the request
-		void getUser(ResultWrapper res);
-
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
 
 		/// @fn authenticationIssue(ProcessWrapper res);
 		/// @brief What happened while authorizing Reyn Tweets
 		/// @param res Process result
 		void authenticationIssue(ProcessWrapper res);
+
+		/// @fn void retrieveUserEnded(ResultWrapper res);
+		/// @brief Getting a user after requesting it to Twitter
+		/// @param res Result of the request
+		void retrieveUserEnded(ResultWrapper res);
+
+		/// @fn void saveOK(CoreResult saveRes);
+		/// @brief Slot executed after trying to save the configuration.
+		/// @param saveRes Enum describing how it ends
+		void saveOK(CoreResult saveRes);
 
 	protected:
 		/// @brief Entity calling Twitter
@@ -109,34 +85,65 @@ class LaunchingProcess : public GenericProcess
 		ReynTweetsConfiguration & configuration;
 
 	private:
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
-		/// @fn bool isValidToken(QByteArray token);
-		/// @brief Determining if a token seems legit
-		/// @param token Token to analyze
-		/// @return True if the token seems valid, false otherwise
-		bool isValidToken(QByteArray token);
-
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
+		/// @fn void loadConfiguration();
+		/// @brief Loading the configuartion from the configuration file
+		void loadConfiguration();
 
 		/// @fn CoreResult loadConfigurationPrivate();
 		/// @brief Loading the configuartion from the configuration file
 		/// @return How the launching process ended
 		CoreResult loadConfigurationPrivate();
 
+		/// @fn void checkTokens();
+		/// @brief Checks if the access tokens seem legit. If not, it sends an
+		/// authenticationRequired(); signal to the ReynTweetsWidget to start
+		/// an authentication process.
+		void checkTokens();
+
+		/// @fn void updateConfiguration(QByteArray accessToken = "",
+		///								 QByteArray tokenSecret = "",
+		///								 qlonglong id,
+		///								 QString screenName);
+		/// @brief Uploading the configuration after an authentication process
+		///
+		/// It will consist in updating the user with the id or the screen name
+		/// given by the process.
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param id ID of the user
+		/// @param screenName Screen name of the user
+		void updateConfiguration(QByteArray accessToken,
+								 QByteArray tokenSecret,
+								 qlonglong id,
+								 QString screenName);
+
+		/// @fn void saveConfiguration();
+		/// @brief Saving the configuartion in the configuration file
+		void saveConfiguration();
+
 		/// @fn CoreResult saveConfigurationPrivate();
 		/// @brief Saving the configuartion in the configuration file
 		/// @return How the save process ended
 		CoreResult saveConfigurationPrivate();
 
+		/// @fn void buildResult(bool processOK,
+		///						 CoreResult issue,
+		///						 QString errMsg = "",
+		///						 bool isFatal = false);
+		/// @brief Building process results
+		/// @param processOK Did the process end successfully ?
+		/// @param issue Enum value describing how it ended.
+		/// @param errMsg Error message
+		/// @param isFatal Is the issue fatal (i.e. requiring to abort
+		/// the application) ?
 		void buildResult(bool processOK,
 						 CoreResult issue,
 						 QString errMsg = "",
 						 bool isFatal = false);
+
+		/// @fn void fillOAuthManager();
+		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		void fillOAuthManager();
 };
 
 #endif // LAUNCHINGPROCESS_HPP

@@ -185,35 +185,6 @@ class ReynCore : public QObject
 		/// @fn void authenticationNeeded();
 		/// @brief Asking for an authentication
 		void authenticationNeeded();
-
-
-	//////////
-	// Misc //
-	//////////
-
-	public:
-		/// @fn void updateConfAfterAuth(QByteArray accessToken = "",
-		///								 QByteArray tokenSecret = "",
-		///								 qlonglong id,
-		///								 QString screenName);
-		/// @brief Uploading the configuration after an authentication process
-		///
-		/// It will consist in updating the user with the id or the screen name
-		/// given by the process.
-		/// @param accessToken User access token
-		/// @param tokenSecret User token secret
-		/// @param id ID of the user
-		/// @param screenName Screen name of the user
-		void updateConfAfterAuth(QByteArray accessToken,
-								 QByteArray tokenSecret,
-								 qlonglong id,
-								 QString screenName);
-
-	public slots:
-		/// @fn void getUser(ResultWrapper res);
-		/// @brief Getting a user after requesting it to Twitter
-		/// @param res Result of the request
-		void getUser(ResultWrapper res);
 };
 
 #endif // REYNCORE_HPP

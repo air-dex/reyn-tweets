@@ -24,27 +24,12 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 
+/// @class LaunchingWidget
+/// @brief Component used to launch the app
 Rectangle {
 	id: main_screen
 	width: 360
 	height: 640
-
-	Component.onCompleted: {
-		// Wiring for the end of the launching process
-		control.launchEnded.connect(main_screen.endLaunch)
-		control.launchReynTweets()
-	}
-
-	/// @brief Signal sent after launching the application
-	signal endLaunch(bool launchOK, string errMsg, bool fatal)
-
-	////////////////////////
-	// Control management //
-	////////////////////////
-
-	LaunchingControl {
-		id: control
-	}
 
 	//////////////////////////
 	// Design of the Widget //
@@ -116,5 +101,39 @@ Rectangle {
 			verticalAlignment: Text.AlignVCenter
 			font.pixelSize: 14
 		}
+	}
+
+	// Popup displayed if the user has to enter its credentials
+	LoginComponent {
+		id: login_popup
+		anchors.left: parent.left
+		anchors.leftMargin: main_screen.margin
+		anchors.right: parent.right
+		anchors.rightMargin: main_screen.margin
+		z: 2
+		anchors.verticalCenter: parent.verticalCenter
+	}
+
+	////////////////////////////
+	// Back office management //
+	////////////////////////////
+
+	/// @brief Signal sent after launching the application
+	signal endLaunch(bool launchOK, string errMsg, bool fatal)
+
+	/// @brief Control behind the component
+	LaunchingControl {
+		id: control
+		loginControl: login_popup.getControl();
+	}
+
+	// Launching the application
+	function launchReynTweets() {
+		control.launchReynTweets()
+	}
+
+	Component.onCompleted: {
+		// Wiring for the end of the launching process
+		control.launchEnded.connect(main_screen.endLaunch)
 	}
 }

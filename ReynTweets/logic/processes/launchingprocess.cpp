@@ -420,30 +420,35 @@ CoreResult LaunchingProcess::saveConfigurationPrivate() {
 }
 
 void LaunchingProcess::saveOK(CoreResult saveRes) {
+	bool processOK = false;
+	CoreResult finalIssue = saveRes;
 	QString errorMsg = "";
+	bool isFatal = true;
 
 	switch (saveRes) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			processResult = buildResult(true);
-			emit processEnded();
-			return;
+			processOK = true;
+			finalIssue = PROCESS_OK;
+			isFatal = false;
+			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
-			errorMsg = LaunchingControl::trUtf8("Configuration file does not exist.");
+			errorMsg = LaunchingProcess::trUtf8("Configuration file does not exist.");
 			break;
 
 		case CONFIGURATION_FILE_NOT_OPEN:
-			errorMsg = LaunchingControl::trUtf8("Configuration file cannot be opened.");
+			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
 			break;
 
 		default:
-			errorMsg = LaunchingControl::trUtf8("Unknown problem");
+			finalIssue = UNKNOWN_PROBLEM;
+			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
 			break;
 	}
 
-	// Telling the component that there were a problem
-	processResult = buildResult(false, errorMsg, true);
+	// Ending the process
+	buildResult(processOK, finalIssue, errorMsg, isFatal);
 	emit processEnded();
 }
 

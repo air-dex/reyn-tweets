@@ -2,11 +2,13 @@
 #define LAUNCHINGCONTROL_HPP
 
 #include <QObject>
-#include "reyncore.hpp"
+#include "logincontrol.hpp"
+#include "../reyncore.hpp"
 
 class LaunchingControl : public QObject
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		/// @fn LaunchingControl();
 		/// @brief Constructor
@@ -15,6 +17,13 @@ class LaunchingControl : public QObject
 		/// @fn static void declareQML();
 		/// @brief Declaring to the QML system
 		static void declareQML();
+
+		LoginControl getLoginControl();
+
+		void setLoginControl(LoginControl ctrl);
+
+		void wiring();
+		void unwiring();
 
 	signals:
 		/// @fn void launchEnded(bool launchOK,
@@ -30,58 +39,20 @@ class LaunchingControl : public QObject
 		/// @brief Lauching Reyn Tweets
 		void launchReynTweets();
 
-		/// @fn void launchOK(CoreResult launchOK);
+		/// @fn void launchOK(ProcessWrapper res);
 		/// @brief Slot executed at the end of the launch process
-		void loadOK(CoreResult loadOK);
+		void launchOK(ProcessWrapper res);
 
-		/// @fn void verifyTokensEnded(CoreResults verifyOK);
-		/// @brief Slot executed after verifying credentials
-		/// @param verifyOK How the verification ended
-		void verifyTokensEnded(CoreResult verifyOK);
-
-		/// @fn void saveOK(CoreResult saveOK);
-		/// @brief Slot executed after saving the configuration
-		void saveOK(CoreResult saveOK);
-
-/*
-		void endLaunch(CoreResult res);
-
-		///////////////////////////////
-		// Authentication management //
-		///////////////////////////////
-
-		/// @fn void authenticationRequired();
-		/// @brief Slot executed if an authentication to Twitter is required
-		/// for the application
-		void authenticationRequired();
-
-		/// @fn void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
-		///										QByteArray accessToken = "",
-		///										QByteArray tokenSecret = "",
-		///										qlonglong userID = -1,
-		///										QString screenName = "");
-		/// @brief Slot executed after an OAuth Authentication processus
-		/// @param processResult Value indicating how the OAuth process has ended.
-		/// @param accessToken User access token
-		/// @param tokenSecret User token secret
-		/// @param userID ID of the user who has just authorized the application
-		/// @param screenName Screen name of the user who has just authorized
-		/// the application.
-		void endOAuthAuthenticationFlow(OAuthProcessResult processResult,
-										QByteArray accessToken = "",
-										QByteArray tokenSecret = "",
-										qlonglong userID = -1,
-										QString screenName = "");
-
-		//////////////////////////////
-		// Configuration management //
-		//////////////////////////////
-//*/
 	protected:
 		/// @brief Core of the application
 		ReynCore reyn;
 
+		Q_PROPERTY(LoginControl loginControl
+				   READ getLoginControl
+				   WRITE setLoginControl)
+
 		/// @brief Launching informations
+		LoginControl control;
 };
 
 #endif // LAUNCHINGCONTROL_HPP

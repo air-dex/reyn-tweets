@@ -27,6 +27,10 @@ Rectangle {
 		onInvalidCredentials: login_component.state = "invalid_password"
 	}
 
+	function getControl() {
+		return control;
+	}
+
 	signal authorize(string username, string password)
 	signal deny(string username, string password)
 

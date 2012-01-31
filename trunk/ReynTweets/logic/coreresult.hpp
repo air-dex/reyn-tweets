@@ -95,6 +95,10 @@ enum CoreResult {
 	//////////
 	// Misc //
 	//////////
+
+	/// @brief Process ended successfully
+	PROCESS_OK,
+
 	/// @brief The user was wrong
 	WRONG_USER
 };

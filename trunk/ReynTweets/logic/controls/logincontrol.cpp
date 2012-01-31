@@ -7,11 +7,20 @@ LoginControl::LoginControl() :
 	reyn()
 {}
 
+// Constructor
+LoginControl::~LoginControl() {}
+
+// Constructor
+LoginControl::LoginControl(const LoginControl & control) :
+	QObject(control.parent()),
+	reyn(control.reyn)
+{}
+
 // Declaring to the QML components
 void LoginControl::declareQML() {
 	qmlRegisterType<LoginControl>("ReynTweetsControls",
-									  0, 1,
-									  "LoginControl");
+								  0, 1,
+								  "LoginControl");
 }
 
 // Warnig the user that the credentials were wrong

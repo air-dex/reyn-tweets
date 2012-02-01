@@ -29,6 +29,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QList>
 #include <QObject>
 #include <QVariant>
+#include "../../logic/coreresult.hpp"
 #include "../reyntweetsmappable.hpp"
 #include "useraccount.hpp"
 
@@ -119,6 +120,17 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	// Configuration management //
 	//////////////////////////////
 
+	public:
+		/// @fn CoreResult load();
+		/// @brief Loading the configuration from its file
+		/// @return A value depending on what happened
+		CoreResult load();
+
+		/// @fn CoreResult save();
+		/// @brief Writing the configuration in its file
+		/// @return A value depending on what happened
+		CoreResult save();
+
 	protected:
 		/// @brief Consumer Key
 		static QByteArray REYN_TWEETS_CONSUMER_KEY;
@@ -128,6 +140,12 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 
 		/// @brief Twitter Account
 		UserAccount userAccount;
+
+		/// @brief
+		// oauth manager ?
+
+		/// @brief Configuration file name
+		static QString CONFIGURATION_NAMEFILE;
 
 
 	/////////////////////////

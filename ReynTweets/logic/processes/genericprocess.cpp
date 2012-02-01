@@ -13,3 +13,7 @@ QUuid GenericProcess::getProcessUUID() {
 ProcessResult GenericProcess::getProcessResult() {
 	return processResult;
 }
+
+void GenericProcess::endProcess() {
+	emit processEnded();
+}

@@ -7,7 +7,7 @@ LaunchingControl::LaunchingControl() :
 	reyn(),
 	control()
 {
-	wiring();
+	allowWiring();
 }
 
 // Declaring to the QML components
@@ -19,8 +19,19 @@ void LaunchingControl::declareQML() {
 
 // Starting ReynTweets
 void LaunchingControl::launchReynTweets() {
+	// Connection for the end of the launch process
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(launchOK(ProcessWrapper)));
+
 	reyn.loadConfiguration();
 }
+
+// Allowing Reyn Tweets to use a Twitter Account
+void LaunchingControl::allowReynTweets() {
+	allowWiring();
+	reyn.allowReynTweets();
+}
+
 
 LoginControl LaunchingControl::getLoginControl() {
 	return control;
@@ -29,14 +40,10 @@ LoginControl LaunchingControl::getLoginControl() {
 void LaunchingControl::setLoginControl(LoginControl ctrl) {
 	unwiring();
 	control = ctrl;
-	wiring();
+	allowWiring();
 }
 
-void LaunchingControl::wiring() {
-	// Connection for the end of the launch process
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(launchOK(ProcessWrapper)));
-
+void LaunchingControl::allowWiring() {
 	// Telling the user that its credentials are required
 	connect(&reyn, SIGNAL(userCredentialsNeeded()),
 			&control, SLOT(credentialsNeeded()));
@@ -53,10 +60,6 @@ void LaunchingControl::wiring() {
 }
 
 void LaunchingControl::unwiring() {
-	// Connection for the end of the launch process
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(launchOK(ProcessWrapper)));
-
 	// Telling the user that its credentials are required
 	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
 			   &control, SLOT(credentialsNeeded()));
@@ -72,7 +75,6 @@ void LaunchingControl::unwiring() {
 			   &control, SLOT(validCredentials(bool)));
 }
 
-
 //////////////////////////////
 // Configuration management //
 //////////////////////////////
@@ -86,10 +88,14 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		return;
 	}
 
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(launchOK(ProcessWrapper)));
+
 	CoreResult issue = result.processIssue;
 
 	switch (issue) {
-		case PROCESS_OK:
+		case LAUNCH_SUCCESSFUL:
 			// Process successful
 			break;
 
@@ -102,6 +108,14 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 			// Twitter does not respond.
 			break;
 
+		// An authentication is needed
+		case TOKENS_NOT_AUTHORIZED:
+			break;
+
+		case WRONG_USER:
+			// Expected user for the tokens is not in the configuration
+			break;
+
 		// Problems with configuration file
 		case CONFIGURATION_FILE_UNKNOWN:
 			break;
@@ -109,22 +123,66 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		case CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
-		case PARSE_ERROR:
-			// Error while parsing Twitter results
+		case LOADING_CONFIGURATION_ERROR:
 			break;
 
-		case DENIED:
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
 			break;
 
+		default:
+			break;
+	}
+}
+
+// After an authentication, if needed.
+void LaunchingControl::allowOK(ProcessWrapper res) {
+	ProcessResult result = res.accessResult(this);
+
+	// The result was not for the object. Stop the treatment.
+	if (WRONG_PROCESS_RESULT == result) {
+		return;
+	}
+
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(launchOK(ProcessWrapper)));
+
+	CoreResult issue = result.processIssue;
+
+	switch (issue) {
+		case LAUNCH_SUCCESSFUL:
+			// Process successful
+			break;
+
+		// Problems that can be solved trying later
+		case RATE_LIMITED:
+			// The user reached rates.
+			break;
+
+		case TWITTER_DOWN:
+			// Twitter does not respond.
+			break;
+
+		// An authentication is needed
 		case TOKENS_NOT_AUTHORIZED:
+			break;
+
+		case WRONG_USER:
+			// Expected user for the tokens is not in the configuration
+			break;
+
+		// Problems with configuration file
+		case CONFIGURATION_FILE_UNKNOWN:
+			break;
+
+		case CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		case LOADING_CONFIGURATION_ERROR:
 			break;
 
-		case NO_TOKENS:
-			break;
-
+		// Unknown ends
 		case UNKNOWN_PROBLEM:
 			break;
 

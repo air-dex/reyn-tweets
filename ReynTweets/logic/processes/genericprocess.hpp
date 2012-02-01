@@ -24,6 +24,8 @@ class GenericProcess : public QObject
 		QUuid processUuid;
 
 		ProcessResult processResult;
+
+		virtual void endProcess();
 };
 
 #endif // GENERICPROCESS_HPP

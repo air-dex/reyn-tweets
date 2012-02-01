@@ -106,7 +106,8 @@ SOURCES += \
 	logic/processes/processresult.cpp \
 	logic/processes/processmanager.cpp \
 	logic/processes/processwrapper.cpp \
-    logic/processes/launchingprocess.cpp
+	logic/processes/launchingprocess.cpp \
+	logic/processes/allowprocess.cpp
 
 
 HEADERS  += \
@@ -184,8 +185,9 @@ HEADERS  += \
 	logic/processes/processresult.hpp \
 	logic/processes/processmanager.hpp \
 	logic/processes/processwrapper.hpp \
-    logic/processes/launchingprocess.hpp \
-    logic/processes/processes.hpp
+	logic/processes/launchingprocess.hpp \
+	logic/processes/processes.hpp \
+	logic/processes/allowprocess.hpp
 
 
 RESOURCES += \

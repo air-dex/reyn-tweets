@@ -72,7 +72,7 @@ enum CoreResult {
 	DENIED,
 
 	/// @brief Unexpected redirection during POST authorizing
-	POST_AUTHORIZING_FAIL,
+	POST_AUTHORIZING_FAILED,
 
 
 	/////////////////////////////////////////////////
@@ -92,12 +92,20 @@ enum CoreResult {
 	PARSE_ERROR,
 
 
+	////////////////////////////
+	// Launching process ends //
+	////////////////////////////
+
+	/// @brief Process ended successfully
+	LAUNCH_SUCCESSFUL,
+
+	/// @brief An authentication to Twitter is required
+	AUTHENTICATION_REQUIRED,
+
+
 	//////////
 	// Misc //
 	//////////
-
-	/// @brief Process ended successfully
-	PROCESS_OK,
 
 	/// @brief The user was wrong
 	WRONG_USER

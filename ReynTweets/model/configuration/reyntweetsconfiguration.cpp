@@ -105,6 +105,9 @@ QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSetting
 // Consumer Secret
 QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::CONSUMER_SECRET;
 
+// Configuration namefile
+QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf";
+
 
 
 //////////////////////////////
@@ -129,4 +132,59 @@ UserAccount ReynTweetsConfiguration::getUserAccount() {
 // Setter on userAccount
 void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
+}
+
+// Loading the configuration
+CoreResult ReynTweetsConfiguration::load() {
+	// Opening the configuration file
+	QFile confFile(CONFIGURATION_NAMEFILE);
+
+	if (!confFile.exists()) {
+		return CONFIGURATION_FILE_UNKNOWN;
+	}
+
+	bool openOK = confFile.open(QFile::ReadOnly);
+	if (!openOK) {
+		return CONFIGURATION_FILE_NOT_OPEN;
+	}
+
+	// Launching the configuration
+	QDataStream readStream(&confFile);
+	QVariant confVariant;
+
+	readStream >> confVariant;
+	confFile.close();
+
+	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
+		// The content of the file cannot be converted into a configuration.
+		return LOADING_CONFIGURATION_ERROR;
+	}
+
+	*this = qVariantValue<ReynTweetsConfiguration>(confVariant);
+	//fillOAuthManager();
+	return LOAD_CONFIGURATION_SUCCESSFUL;
+}
+
+// Saving the configuration
+CoreResult ReynTweetsConfiguration::save() {
+	// Opening the configuration file
+	QFile confFile(CONFIGURATION_NAMEFILE);
+
+	if (!confFile.exists()) {
+		return CONFIGURATION_FILE_UNKNOWN;
+	}
+
+	bool openOK = confFile.open(QFile::WriteOnly);
+	if (!openOK) {
+		return CONFIGURATION_FILE_NOT_OPEN;
+	}
+
+	// Saving the configuration
+	QDataStream readStream(&confFile);
+	QVariant confVariant = qVariantFromValue(*this);
+
+	readStream << confVariant;
+	confFile.close();
+
+	return SAVE_SUCCESSFUL;
 }

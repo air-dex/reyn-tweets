@@ -22,9 +22,6 @@ class LaunchingControl : public QObject
 
 		void setLoginControl(LoginControl ctrl);
 
-		void wiring();
-		void unwiring();
-
 	signals:
 		/// @fn void launchEnded(bool launchOK,
 		///						 QString errorMsg = "",
@@ -43,16 +40,36 @@ class LaunchingControl : public QObject
 		/// @brief Slot executed at the end of the launch process
 		void launchOK(ProcessWrapper res);
 
+		/// @fn void allowOK(ProcessWrapper res);
+		/// @brief Slot executed after an authentication, if needed.
+		void allowOK(ProcessWrapper res);
+
 	protected:
 		/// @brief Core of the application
 		ReynCore reyn;
 
+		/// @property loginControl
+		/// @brief Control behind the authentication popup
 		Q_PROPERTY(LoginControl loginControl
 				   READ getLoginControl
 				   WRITE setLoginControl)
 
 		/// @brief Launching informations
 		LoginControl control;
+
+	private:
+		/// @fn void allowWiring();
+		/// @brief Wiring for a potential authentication process
+		void allowWiring();
+
+		/// @fn void allowUnwiring();
+		/// @brief Disconnect what was connected while executing
+		/// <code>allowWiring();</code>.
+		void allowUnwiring();
+
+		/// @fn void allowReynTweets();
+		/// @brief Allowing Reyn Tweets to use a Twitter Account
+		void allowReynTweets();
 };
 
 #endif // LAUNCHINGCONTROL_HPP

@@ -150,7 +150,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
+	endProcess();
 }
 
 // Authorize the request tokens
@@ -227,7 +227,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
+	endProcess();
 }
 
 // Allowing Reyn Tweets :)
@@ -284,7 +284,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			} else {
 				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.\n");
 				isFatal = true;
-				issue = POST_AUTHORIZING_FAIL;
+				issue = POST_AUTHORIZING_FAILED;
 				emit errorProcess(true, errorMsg);
 			}
 		}break;
@@ -337,7 +337,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
+	endProcess();
 }
 
 // Demanding an Access Token
@@ -382,7 +382,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 						"", false,
 						accessToken, tokenSecret,
 						userID, screenName);
-			emit processEnded();
+			endProcess();
 		}return;
 
 		case API_CALL: {
@@ -431,5 +431,5 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
+	endProcess();
 }

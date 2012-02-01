@@ -5,15 +5,7 @@ LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
 	GenericProcess(),
 	twitter(this),
 	configuration(conf)
-{
-	// Wiring between the different steps of the process
-	connect(this, SIGNAL(loadConfigurationEnded(CoreResult)),
-			this, SLOT(loadOK(CoreResult)));
-	connect(this, SIGNAL(verifyTokensEnded(CoreResult)),
-			this, SLOT(verifyOK(CoreResult)));
-	connect(this, SIGNAL(saveConfEnded(CoreResult)),
-			this, SLOT(saveOK(CoreResult)));
-}
+{}
 
 // Starting the process
 void LaunchingProcess::startProcess() {
@@ -27,46 +19,14 @@ void LaunchingProcess::startProcess() {
 
 // Loading the configuartion from the configuration file
 void LaunchingProcess::loadConfiguration() {
-	emit loadConfigurationEnded(loadConfigurationPrivate());
-}
+	CoreResult loadIssue = configuration.load();
 
-// Loading the configuartion from the configuration file
-CoreResult LaunchingProcess::loadConfigurationPrivate() {
-	// Opening the configuration file
-	QFile confFile("conf/ReynTweets.conf");
-
-	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
-	}
-
-	bool openOK = confFile.open(QFile::ReadOnly);
-	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
-	}
-
-	// Launching the configuration
-	QDataStream readStream(&confFile);
-	QVariant confVariant;
-
-	readStream >> confVariant;
-	confFile.close();
-
-	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
-		// The content of the file cannot be converted into a configuration.
-		return LOADING_CONFIGURATION_ERROR;
-	}
-
-	configuration = qVariantValue<ReynTweetsConfiguration>(confVariant);
-	fillOAuthManager();
-	return LOAD_CONFIGURATION_SUCCESSFUL;
-}
-
-void LaunchingProcess::loadOK(CoreResult loadRes) {
 	QString errorMsg = "";
 
-	switch (loadRes) {
+	switch (loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
+			fillOAuthManager();
 			return checkTokens();
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -84,13 +44,13 @@ void LaunchingProcess::loadOK(CoreResult loadRes) {
 		default:
 			// Unknown problem.
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
-			loadRes = UNKNOWN_PROBLEM;
+			loadIssue = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	buildResult(false, loadRes, errorMsg, true);
-	emit processEnded();
+	buildResult(false, loadIssue, errorMsg, true);
+	endProcess();
 }
 
 
@@ -110,8 +70,11 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
 
+	// Analysing the Twitter request
+
 	RequestResult result = res.accessResult(this);
 	int httpCode = result.getHttpCode();
+	CoreResult verifyIssue;
 
 	switch (httpCode) {
 		case 200: {
@@ -122,87 +85,94 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			UserAccount & account = configuration.getUserAccount();
 			User confUser = account.getUser();
 			bool rightUser = confUser.getID() == userOfCredentials.getID();
-			CoreResult res = rightUser ?
-						TOKENS_OK
-					  : WRONG_USER;
+			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;
 			if (rightUser) {
 				account.setUser(userOfCredentials);
 			}
-			emit verifyTokensEnded(res);
+			emit verifyTokensEnded(verifyIssue);
 		}break;
 
 		case 401:
 			// Credentials were wrong
-			emit verifyTokensEnded(TOKENS_NOT_AUTHORIZED);
+			verifyIssue = TOKENS_NOT_AUTHORIZED;
 			break;
 
 		case 420:
 			// Rate limited
-			emit verifyTokensEnded(RATE_LIMITED);
+			verifyIssue = RATE_LIMITED;
 			break;
 
 		default:
-			if (httpCode / 100 == 5) {
-				// Return code is 5xx -> Twitter problem
-				emit verifyTokensEnded(TWITTER_DOWN);
-			} else {
-				// Unknown problem
-				emit verifyTokensEnded(UNKNOWN_PROBLEM);
-			}
+			// Return == 5xx -> Twitter problem. Unknown problem otherwise.
+			verifyIssue = (httpCode / 100 == 5) ?
+						TWITTER_DOWN
+					  : UNKNOWN_PROBLEM;
 			break;
 	}
-}
 
-void LaunchingProcess::verifyOK(CoreResult verifyRes) {
+
+	// Continuing the process
+
+	bool processOK;
 	QString errorMsg = "";
-	bool isFatal = false;
+	bool isFatal;
 
-	switch (verifyRes) {
+	switch (verifyIssue) {
 		case TOKENS_OK:
-			// Credentials were right.
+			// Credentials were right. You can save configuration now.
 			return saveConfiguration();
 
 		case WRONG_USER:
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
+			processOK = true;
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
+			isFatal = false;
 			emit authenticationRequired();
-			return;
+			break;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
+			processOK = true;
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
+			isFatal = false;
 			emit authenticationRequired();
-			return;
+			break;
 
 		case RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
+			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate.");
+			isFatal = false;
 			break;
 
 		case TWITTER_DOWN:
 			// Twitter problem Asking the user to try later.
+			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Twitter is down.");
+			isFatal = false;
 			break;
 
 		case UNKNOWN_PROBLEM:
 			// Unknown problem. Abort ?
+			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Unknown prolem.");
 			isFatal = true;
 			break;
 
 		default:
 			// Unexpected result. Abort.
+			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Unexpected result.");
 			isFatal = true;
-			verifyRes = UNKNOWN_PROBLEM;
+			verifyIssue = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Telling the component wat happens
-	buildResult(false, verifyRes, errorMsg, isFatal);
-	emit processEnded();
+	buildResult(processOK, verifyIssue, errorMsg, isFatal);
+	endProcess();
 }
 
 
@@ -300,91 +270,6 @@ void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
 	emit processEnded();
 }
 
-// Uploading the configuration with the authentified user after an authentication process
-void LaunchingProcess::updateConfiguration(QByteArray accessToken,
-										   QByteArray tokenSecret,
-										   qlonglong id, QString)
-{
-	// Updating the tokens
-	UserAccount & account = configuration.getUserAccount();
-	account.setAccessToken(accessToken.toBase64());
-	account.setTokenSecret(tokenSecret.toBase64());
-
-	// Getting informations about the user behind the account
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(retrieveUserEnded(ResultWrapper)));
-	twitter.showUser(id);
-}
-
-// Updating a user after requesting it to Twitter
-void LaunchingProcess::retrieveUserEnded(ResultWrapper res) {
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(retrieveUserEnded(ResultWrapper)));
-
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
-
-	CoreResult issue;
-	QString errorMsg = "";
-	bool isFatal = true;
-
-	switch (errorType) {
-		case NO_ERROR: {
-			// Get user, put it in the conf and save
-			QVariantMap parsedResults = result.getParsedResult().toMap();
-			User u;
-			u.fillWithVariant(parsedResults);
-			UserAccount & account = configuration.getUserAccount();
-			account.setUser(u);
-			saveConfiguration();
-		}return;
-
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
-			// Building error message
-			errorMsg = LaunchingProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append(".\n");
-
-			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
-
-			isFatal = false;
-		}break;
-
-		case OAUTH_PARSING:
-			// Building error message
-			errorMsg = LaunchingProcess::trUtf8("Parsing error :\n");
-			errorMsg.append(result.getParsingErrorMessage());
-			issue = PARSE_ERROR;
-			break;
-
-		default:
-			// Unexpected problem. Abort.
-			errorMsg = LaunchingProcess::trUtf8("Unexpected problem :\n");
-			errorMsg.append(result.getErrorMessage()).append(".\n");
-			issue = UNKNOWN_PROBLEM;
-			break;
-	}
-
-	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
-}
-
 
 ////////////////////////////////////////////////////
 // Step 3 : updating and saving the configuration //
@@ -392,44 +277,16 @@ void LaunchingProcess::retrieveUserEnded(ResultWrapper res) {
 
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
-	emit saveConfEnded(saveConfigurationPrivate());
-}
-
-// Saving the configuartion in the configuration file
-CoreResult LaunchingProcess::saveConfigurationPrivate() {
-	// Opening the configuration file
-	QFile confFile("conf/ReynTweets.conf");
-
-	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
-	}
-
-	bool openOK = confFile.open(QFile::WriteOnly);
-	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
-	}
-
-	// Launching the configuration
-	QDataStream readStream(&confFile);
-	QVariant confVariant = qVariantFromValue(configuration);
-
-	readStream << confVariant;
-	confFile.close();
-
-	return SAVE_SUCCESSFUL;
-}
-
-void LaunchingProcess::saveOK(CoreResult saveRes) {
+	CoreResult saveIssue = configuration.save();
 	bool processOK = false;
-	CoreResult finalIssue = saveRes;
 	QString errorMsg = "";
 	bool isFatal = true;
 
-	switch (saveRes) {
+	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
 			processOK = true;
-			finalIssue = PROCESS_OK;
+			saveIssue = LAUNCH_SUCCESSFUL;
 			isFatal = false;
 			break;
 
@@ -442,14 +299,14 @@ void LaunchingProcess::saveOK(CoreResult saveRes) {
 			break;
 
 		default:
-			finalIssue = UNKNOWN_PROBLEM;
+			saveIssue = UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
 			break;
 	}
 
 	// Ending the process
-	buildResult(processOK, finalIssue, errorMsg, isFatal);
-	emit processEnded();
+	buildResult(processOK, saveIssue, errorMsg, isFatal);
+	endProcess();
 }
 
 

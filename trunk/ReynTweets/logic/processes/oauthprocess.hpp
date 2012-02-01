@@ -108,14 +108,14 @@ class OAuthProcess : public GenericProcess
 		/// @brief Demanding an Access Token
 		void accessToken();
 
-		void buildResult(bool processOK,
-						 CoreResult issue,
-						 QString errMsg = "",
-						 bool isFatal = false,
-						 QByteArray accessToken = "",
-						 QByteArray tokenSecret = "",
-						 qlonglong userID = -1,
-						 QString screenName = "");
+		virtual void buildResult(bool processOK,
+								 CoreResult issue,
+								 QString errMsg = "",
+								 bool isFatal = false,
+								 QByteArray accessToken = "",
+								 QByteArray tokenSecret = "",
+								 qlonglong userID = -1,
+								 QString screenName = "");
 
 
 	public slots:

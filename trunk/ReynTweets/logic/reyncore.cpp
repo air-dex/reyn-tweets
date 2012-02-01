@@ -100,19 +100,33 @@ void ReynCore::executeProcess(GenericProcess * process) {
 // Launching the app
 void ReynCore::launchReynTweets() {
 	LaunchingProcess * process = new LaunchingProcess(configuration);
+	executeProcess(process);
+}
 
-	// Special wiring if authentication needed
-	connect(process, SIGNAL(authenticationRequired()),
-			this, SLOT(authenticationNeeded()));
-	connect(this, SIGNAL(sendResult(ProcessWrapper)),
-			process, SLOT(authenticationIssue(ProcessWrapper)));
+// Allowing Reyn Tweets
+void ReynCore::authorizeReynTweets() {
+	OAuthProcess * process = new OAuthProcess();
+
+	// Special wiring
+
+	// Process giving informations about user credentials
+	connect(process, SIGNAL(userCredentialsRequired()),
+			this, SLOT(userCredentialsRequired()));
+	connect(process, SIGNAL(credentialsOK(bool)),
+			this, SLOT(credentialsOK(bool)));
+
+	// User telling the process if he want to authorize or to deny Reyn Tweets
+	connect(this, SIGNAL(authorize(QString,QString)),
+			process, SLOT(authorizeReynTweets(QString,QString)));
+	connect(this, SIGNAL(deny(QString,QString)),
+			process, SLOT(denyReynTweets(QString,QString)));
 
 	executeProcess(process);
 }
 
 // Allowing Reyn Tweets
 void ReynCore::allowReynTweets() {
-	OAuthProcess * process = new OAuthProcess();
+	AllowProcess * process = new AllowProcess(configuration);
 
 	// Special wiring
 
@@ -159,37 +173,4 @@ void ReynCore::authorizeReynTweets(QString login, QString password) {
 // Denying Reyn Tweets :(
 void ReynCore::denyReynTweets(QString login, QString password) {
 	emit deny(login, password);
-}
-
-
-// Authentication required
-
-// Asking for an authentication
-void ReynCore::authenticationNeeded() {
-	GenericProcess * askingProcess = qobject_cast<GenericProcess *>(sender());
-
-	OAuthProcess * authenticationProcess = new OAuthProcess;
-
-	// Traditional wiring for the end of the process
-	connect(authenticationProcess, SIGNAL(processEnded()),
-			this, SLOT(endProcess()));
-
-	// The QObject asking for the authentication is askingProcess, not requestDemander
-	processManager.addProcess(askingProcess, authenticationProcess);
-
-	// Special wiring
-
-	// Process giving informations about user credentials
-	connect(process, SIGNAL(userCredentialsRequired()),
-			this, SLOT(userCredentialsRequired()));
-	connect(process, SIGNAL(credentialsOK(bool)),
-			this, SLOT(credentialsOK(bool)));
-
-	// User telling the process if he want to authorize or to deny Reyn Tweets
-	connect(this, SIGNAL(authorize(QString,QString)),
-			process, SLOT(authorizeReynTweets(QString,QString)));
-	connect(this, SIGNAL(deny(QString,QString)),
-			process, SLOT(denyReynTweets(QString,QString)));
-
-	authenticationProcess->startProcess();
 }

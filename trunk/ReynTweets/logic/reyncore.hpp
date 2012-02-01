@@ -107,6 +107,10 @@ class ReynCore : public QObject
 		/// @brief Launching the app
 		void launchReynTweets();
 
+		/// @fn void authorizeReynTweets();
+		/// @brief Authorizing Reyn Tweets (not saving the configuration after).
+		void authorizeReynTweets();
+
 		/// @fn void allowReynTweets();
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
@@ -177,14 +181,6 @@ class ReynCore : public QObject
 		/// @param login User login, i.e. its username or its email.
 		/// @param password User password
 		void denyReynTweets(QString login, QString password);
-
-		/////////////////////////////
-		// Authentication required //
-		/////////////////////////////
-
-		/// @fn void authenticationNeeded();
-		/// @brief Asking for an authentication
-		void authenticationNeeded();
 };
 
 #endif // REYNCORE_HPP

@@ -3,5 +3,6 @@
 
 #include "launchingprocess.hpp"
 #include "oauthprocess.hpp"
+#include "allowprocess.hpp"
 
 #endif // PROCESSES_HPP

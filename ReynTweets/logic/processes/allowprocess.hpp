@@ -44,7 +44,6 @@ class AllowProcess : public OAuthProcess
 								 QByteArray tokenSecret,
 								 qlonglong id,
 								 QString screenName);
-
 };
 
 #endif // ALLOWPROCESS_HPP

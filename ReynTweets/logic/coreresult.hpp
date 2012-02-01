@@ -96,11 +96,19 @@ enum CoreResult {
 	// Launching process ends //
 	////////////////////////////
 
-	/// @brief Process ended successfully
+	/// @brief LaunchingProcess ended successfully
 	LAUNCH_SUCCESSFUL,
 
 	/// @brief An authentication to Twitter is required
 	AUTHENTICATION_REQUIRED,
+
+
+	//////////////////////////
+	// Allowing process end //
+	//////////////////////////
+
+	/// @brief AllowProcess ended successfully
+	ALLOW_SUCCESSFUL,
 
 
 	//////////

@@ -17,6 +17,9 @@ void AllowProcess::endProcess() {
 		bool anticipatedEnd = !processResult.processOK
 				|| processResult.processOK && processResult.processIssue == DENIED;
 
+		processResult.results.value("is_authorized",
+									processResult.processIssue == AUTHORIZED);
+
 		if (anticipatedEnd) {
 			emit processEnded();
 		} else {
@@ -129,7 +132,7 @@ void AllowProcess::saveConfiguration() {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
 			processOK = true;
-			saveIssue = LAUNCH_SUCCESSFUL;
+			saveIssue = ALLOW_SUCCESSFUL;
 			isFatal = false;
 			break;
 
@@ -142,7 +145,6 @@ void AllowProcess::saveConfiguration() {
 			break;
 
 		default:
-			saveIssue = UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
 			break;
 	}

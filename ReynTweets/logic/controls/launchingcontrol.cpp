@@ -99,6 +99,10 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 			// Process successful
 			break;
 
+		case AUTHENTICATION_REQUIRED:
+			// An authentication is needed
+			return allowReynTweets();
+
 		// Problems that can be solved trying later
 		case RATE_LIMITED:
 			// The user reached rates.
@@ -106,14 +110,6 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 
 		case TWITTER_DOWN:
 			// Twitter does not respond.
-			break;
-
-		// An authentication is needed
-		case TOKENS_NOT_AUTHORIZED:
-			break;
-
-		case WRONG_USER:
-			// Expected user for the tokens is not in the configuration
 			break;
 
 		// Problems with configuration file
@@ -151,8 +147,12 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	CoreResult issue = result.processIssue;
 
 	switch (issue) {
-		case LAUNCH_SUCCESSFUL:
+		case ALLOW_SUCCESSFUL:
 			// Process successful
+			break;
+
+		case DENIED:
+			// Process successful but Reyn Tweets was denied :(
 			break;
 
 		// Problems that can be solved trying later
@@ -164,12 +164,17 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 			// Twitter does not respond.
 			break;
 
-		// An authentication is needed
+		// Problems during process
 		case TOKENS_NOT_AUTHORIZED:
 			break;
 
-		case WRONG_USER:
-			// Expected user for the tokens is not in the configuration
+		case PARSE_ERROR:
+			break;
+
+		case POST_AUTHORIZING_FAILED:
+			break;
+
+		case NO_TOKENS:
 			break;
 
 		// Problems with configuration file
@@ -177,9 +182,6 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 			break;
 
 		case CONFIGURATION_FILE_NOT_OPEN:
-			break;
-
-		case LOADING_CONFIGURATION_ERROR:
 			break;
 
 		// Unknown ends

@@ -71,7 +71,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
 
 	// Analysing the Twitter request
-
 	RequestResult result = res.accessResult(this);
 	int httpCode = result.getHttpCode();
 	CoreResult verifyIssue;
@@ -111,8 +110,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	}
 
 
-	// Continuing the process
-
+	// Keeping on launching Reyn Tweets
 	bool processOK;
 	QString errorMsg = "";
 	bool isFatal;
@@ -126,6 +124,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
 			processOK = true;
+			verifyIssue = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
 			isFatal = false;
 			emit authenticationRequired();
@@ -135,6 +134,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
 			processOK = true;
+			verifyIssue = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
 			isFatal = false;
 			emit authenticationRequired();
@@ -166,7 +166,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Unexpected result.");
 			isFatal = true;
-			verifyIssue = UNKNOWN_PROBLEM;
 			break;
 	}
 
@@ -261,7 +260,6 @@ void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
 			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Unexpected end.");
 			isFatal = true;
-			authIssue = UNKNOWN_PROBLEM;
 			break;
 	}
 

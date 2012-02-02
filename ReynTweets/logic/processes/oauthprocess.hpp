@@ -61,7 +61,7 @@ class OAuthProcess : public GenericProcess
 		/// @fn void loginPanelVisible(bool visible);
 		/// @brief Signal sent to show or to hide the browser
 		/// @param visible Boolean indicating if the browser has to be visible.
-		void loginPanelVisible(bool visible);
+		void loginPanelVisible(bool visible);	// DEPRECATED
 
 		/// @fn void credentialsOK(bool ok);
 		/// @brief Signal sent to show or to hide an error message telling
@@ -75,7 +75,7 @@ class OAuthProcess : public GenericProcess
 		/// @param fatalError Boolean indicating if the error is fatal for
 		/// the process.
 		/// @param errorMsg Message describing the error
-		void errorProcess(bool fatalError, QString errorMsg);
+		void errorProcess(bool fatalError, QString errorMsg);	// DEPRECATED
 
 		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult,
 		///										   QByteArray accessToken = "",
@@ -93,7 +93,7 @@ class OAuthProcess : public GenericProcess
 										   QByteArray accessToken = "",
 										   QByteArray tokenSecret = "",
 										   qlonglong userID = -1,
-										   QString screenName = "");
+										   QString screenName = "");	// DEPRECATED
 
 	private:
 		/// @fn void requestToken();
@@ -108,6 +108,7 @@ class OAuthProcess : public GenericProcess
 		/// @brief Demanding an Access Token
 		void accessToken();
 
+	protected:
 		virtual void buildResult(bool processOK,
 								 CoreResult issue,
 								 QString errMsg = "",

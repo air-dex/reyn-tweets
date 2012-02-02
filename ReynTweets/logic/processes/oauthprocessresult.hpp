@@ -28,13 +28,13 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 /// @brief Result of the OAuth Process
 enum OAuthProcessResult {
 	/// @brief The application is authorized
-	AUTHORIZED,
+	RT_AUTHORIZED,
 
 	/// @brief The application is denied
-	DENIED,
+	RT_DENIED,
 
 	/// @brief An error occured during the process
-	ERROR_PROCESS
+	RT_ERROR_PROCESS
 };
 
 #endif // OAUTHPROCESSRESULT_HPP

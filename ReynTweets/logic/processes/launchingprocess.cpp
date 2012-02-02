@@ -88,7 +88,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			if (rightUser) {
 				account.setUser(userOfCredentials);
 			}
-			emit verifyTokensEnded(verifyIssue);
 		}break;
 
 		case 401:
@@ -174,7 +173,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	endProcess();
 }
 
-
+/*
 ////////////////////////////////////////////////
 // Step 2bis : authenticating the application //
 ////////////////////////////////////////////////
@@ -267,7 +266,7 @@ void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
 	buildResult(processOK, authIssue, errorMsg, isFatal);
 	emit processEnded();
 }
-
+//*/
 
 ////////////////////////////////////////////////////
 // Step 3 : updating and saving the configuration //

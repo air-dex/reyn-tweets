@@ -27,7 +27,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 // Constructor
 ReynTweetsWidget::ReynTweetsWidget() :
 	QWidget(),
-	reyn(),
+	reyn(this),
 	layout(),
 	authenticationWidget(),
 	launchingScreen(authenticationWidget),
@@ -74,7 +74,7 @@ ReynTweetsWidget::~ReynTweetsWidget() {
 // Launching Reyn Tweets
 void ReynTweetsWidget::startReynTweets() {
 	// Loading configuration
-	reyn.loadConfiguration();
+	reyn.launchReynTweets();
 }
 
 // Displaying a QMessageBox announcing a critical problem
@@ -168,7 +168,7 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 	QString welcomeMessage;
 
 	switch (processResult) {
-		case AUTHORIZED:
+		case RT_AUTHORIZED:
 			// Reyn Tweets is authorized. Welcome the user and upload the account with him.
 			welcomeMessage = "@";
 			welcomeMessage.append(screenName);
@@ -177,11 +177,13 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 			QMessageBox::information(this,
 									 ReynTweetsWidget::trUtf8("Welcome to Reyn Tweets"),
 									 welcomeMessage);
+			/*
 			reyn.updateConfAfterAuth(accessToken, tokenSecret,
 									 userID, screenName);
+									 //*/
 			return;
 
-		case DENIED:
+		case RT_DENIED:
 			// Reyn Tweets was not authorized.
 			questionButton = questionPopup(ReynTweetsWidget::trUtf8("End of the authentication process"),
 										   ReynTweetsWidget::trUtf8("Reyn Tweets was not authorized. You will not be able to use the application correctly."),
@@ -192,7 +194,7 @@ void ReynTweetsWidget::endOAuthAuthenticationFlow(OAuthProcessResult processResu
 			}
 			return;
 
-		case ERROR_PROCESS:
+		case RT_ERROR_PROCESS:
 			// Want to restart ?
 			questionButton = questionPopup(ReynTweetsWidget::trUtf8("Error during the authentication process"),
 										   ReynTweetsWidget::trUtf8("An error occured during the authentication process."),
@@ -225,7 +227,7 @@ void ReynTweetsWidget::launchOK(CoreResult launchOK) {
 	switch (launchOK) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
-			reyn.checkTokens();
+			//reyn.checkTokens();
 
 			/*
 			// Removing the launching screen

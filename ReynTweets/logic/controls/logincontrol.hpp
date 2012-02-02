@@ -3,11 +3,12 @@
 
 #include <QObject>
 #include <QVariant>
-#include "reyncore.hpp"
+#include "../reyncore.hpp"
 
 class LoginControl : public QObject
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		/// @fn LoginControl();
 		/// @brief Constructor
@@ -21,19 +22,19 @@ class LoginControl : public QObject
 		/// @brief Constructor
 		LoginControl(const LoginControl & control);
 
+		const LoginControl & operator =(const LoginControl & control);
+
 		/// @fn static void declareQML();
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
 	signals:
-		void showComponent();
 		void invalidCredentials();
 		void authorize(QString username, QString password);
 		void deny(QString username, QString password);
 
 	public slots:
-		void credentialsNeeded();
-		void validCredentials(bool valid);
+		void wrongCredentials();
 		void authorizeReynTweets(QString username, QString password);
 		void denyReynTweets(QString username, QString password);
 

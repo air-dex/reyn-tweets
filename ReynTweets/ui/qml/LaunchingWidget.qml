@@ -118,6 +118,25 @@ Rectangle {
 	// Back office management //
 	////////////////////////////
 
+	states: [
+		State {
+			name: "LoginPopupVisible"
+
+			PropertyChanges {
+				target: login_popup
+				visible: true
+			}
+		},
+		State {
+			name: "LoginPopupInvisible"
+
+			PropertyChanges {
+				target: login_popup
+				visible: false
+			}
+		}
+	]
+
 	/// @brief Signal sent after launching the application
 	signal endLaunch(bool launchOK, string errMsg, bool fatal)
 
@@ -127,13 +146,23 @@ Rectangle {
 		loginControl: login_popup.getControl();
 	}
 
+	Component.onCompleted: {
+		// Wiring
+
+		// Displaying login_popup or not
+		control.showLoginPopup.connect(setLoginPopupVisible)
+
+		//End of the launching process
+		control.launchEnded.connect(main_screen.endLaunch)
+	}
+
 	// Launching the application
 	function launchReynTweets() {
 		control.launchReynTweets()
 	}
 
-	Component.onCompleted: {
-		// Wiring for the end of the launching process
-		control.launchEnded.connect(main_screen.endLaunch)
+	function setLoginPopupVisible(visible) {
+		var newState = visible ? "LoginPopupVisible" : "LoginPopupInvisible";
+		main_screen.state = newState;
 	}
 }

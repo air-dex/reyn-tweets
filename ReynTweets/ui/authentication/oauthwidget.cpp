@@ -118,7 +118,7 @@ void OAuthWidget::allowReynTweets() {
 		QMessageBox::critical(this,
 							  OAuthWidget::trUtf8("Error during the authentication process"),
 							  OAuthWidget::trUtf8("Error while launching the authentication process. Authentication ended."));
-		emit authenticationFinished(ERROR_PROCESS);
+		emit authenticationFinished(RT_ERROR_PROCESS);
 	}
 }
 
@@ -133,7 +133,7 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 		QMessageBox::critical(this,
 							  OAuthWidget::trUtf8("Error during the authentication process"),
 							  OAuthWidget::trUtf8(message.toUtf8().data()));
-		endAuthentication(ERROR_PROCESS);
+		endAuthentication(RT_ERROR_PROCESS);
 	} else {
 		// The error is not critical. The process can be resumed.
 		message.append(OAuthWidget::trUtf8("\nWould you like to resume the authentication process ?"));
@@ -153,7 +153,7 @@ void OAuthWidget::errorProcess(bool fatalError, QString errorMsg) {
 			QMessageBox::information(this,
 									 OAuthWidget::trUtf8("End of the authentication process"),
 									 OAuthWidget::trUtf8("Authentication ended"));
-			endAuthentication(ERROR_PROCESS);
+			endAuthentication(RT_ERROR_PROCESS);
 		}
 	}
 }

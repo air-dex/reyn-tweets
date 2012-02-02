@@ -27,8 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include "coreresult.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
-#include "oauthprocess.hpp"
-#include "genericprocess.hpp"
+#include "processes/genericprocess.hpp"
 #include "processes/processmanager.hpp"
 #include "processes/processwrapper.hpp"
 
@@ -54,6 +53,10 @@ class ReynCore : public QObject
 		/// @brief Destructor
 		~ReynCore();
 
+		ReynCore(const ReynCore & heart);
+
+		const ReynCore & operator=(const ReynCore & heart);
+
 	signals:
 		/// @fn void sendResult(ProcessWrapper res);
 		/// @brief Signal emitted to the QObject that requests the process
@@ -76,6 +79,8 @@ class ReynCore : public QObject
 		static ReynTweetsConfiguration configuration;
 
 	private:
+		void recopie(const ReynCore & heart);
+
 		/// @fn void addProcess(GenericProcess * process);
 		/// @brief Adding a process to the process manager
 		/// @param process Address of the requester
@@ -90,7 +95,7 @@ class ReynCore : public QObject
 		/// @brief Method that builds the wrapper of a result
 		/// @param endedProcess Ended process that contains the result
 		/// @return The wrapper of the process result
-		ProcessWrapper buildResultSender(GenericRequester * endedProcess);
+		ProcessWrapper buildResultSender(GenericProcess * endedProcess);
 
 		/// @fn inline void executeProcess(GenericProcess * process);
 		/// @brief Inline method for executing processes

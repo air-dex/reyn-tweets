@@ -177,7 +177,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 		case NO_ERROR:
 			// The user can give its credentials now
 			emit userCredentialsRequired();
-			emit loginPanelVisible(true);
+			emit loginPanelVisible(true);	// DEPRECATED
 			return;
 
 		case API_CALL: {
@@ -267,11 +267,11 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 				emit credentialsOK(rightCrdentials);
 
 				if (rightCrdentials) {
-					emit loginPanelVisible(false);
+					emit loginPanelVisible(false);	// DEPRECATED
 
 					if (resultMap.value("denied").toBool()) {
 						// Reyn Tweets is denied. The process ends.
-						emit authenticationProcessFinished(DENIED);	// Deprecated
+						emit authenticationProcessFinished(RT_DENIED);	// Deprecated
 						buildResult(true, DENIED);
 						emit processEnded();
 					} else {
@@ -371,7 +371,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			qlonglong userID = resultMap.value("user_id").toLongLong();
 			QString screenName = resultMap.value("screen_name").toString();
 
-			emit authenticationProcessFinished(AUTHORIZED,
+			emit authenticationProcessFinished(RT_AUTHORIZED,
 											   accessToken,
 											   tokenSecret,
 											   userID,

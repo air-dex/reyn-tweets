@@ -2,7 +2,7 @@
 #define PROCESSWRAPPER_HPP
 
 #include <QObject>
-#include <processresult.hpp>
+#include "processresult.hpp"
 
 class ProcessWrapper
 {

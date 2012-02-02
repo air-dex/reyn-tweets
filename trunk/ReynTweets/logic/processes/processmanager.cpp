@@ -6,8 +6,8 @@ ProcessManager::ProcessManager() :
 {}
 
 // Getter on process informationsr
-ProcessInfos & ProcessManager::getRequestInfos(QUuid processtUuid) {
-	return value(processtUuid);
+ProcessInfos & ProcessManager::getProcessInfos(QUuid processtUuid) {
+	return (*this)[processtUuid];
 }
 
 // Storing a process

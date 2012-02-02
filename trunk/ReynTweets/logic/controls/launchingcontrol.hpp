@@ -31,6 +31,13 @@ class LaunchingControl : public QObject
 						 QString errorMsg = "",
 						 bool isFatal = false);
 
+		/// @fn void showLoginPopup(bool popupVisible);
+		/// @brief Signal sent to modify the visibility of the popup used to
+		/// ask the user to give its credentials.
+		/// @param popupVisible Boolean indicating if the popup has to be
+		/// shown or hidden.
+		void showLoginPopup(bool popupVisible);
+
 	public slots:
 		/// @fn void launchReynTweets();
 		/// @brief Lauching Reyn Tweets
@@ -40,9 +47,13 @@ class LaunchingControl : public QObject
 		/// @brief Slot executed at the end of the launch process
 		void launchOK(ProcessWrapper res);
 
+		void validCredentials(bool valid);
+
 		/// @fn void allowOK(ProcessWrapper res);
 		/// @brief Slot executed after an authentication, if needed.
 		void allowOK(ProcessWrapper res);
+
+		void credentialsNeeded();
 
 	protected:
 		/// @brief Core of the application

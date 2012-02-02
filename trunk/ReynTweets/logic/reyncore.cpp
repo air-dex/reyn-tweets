@@ -35,6 +35,19 @@ ReynCore::~ReynCore() {
 	requestDemander = 0;
 }
 
+ReynCore::ReynCore(const ReynCore & heart) {
+	recopie(heart);
+}
+
+const ReynCore & ReynCore::operator=(const ReynCore & heart) {
+	recopie(heart);
+	return *this;
+}
+
+void ReynCore::recopie(const ReynCore & heart) {
+	requestDemander = heart.requestDemander;
+}
+
 // Configuration
 ReynTweetsConfiguration ReynCore::configuration = ReynTweetsConfiguration();
 
@@ -60,7 +73,7 @@ void ReynCore::removeProcess(GenericProcess * process) {
 	if (process) {
 		disconnect(process, SIGNAL(processEnded()),
 				   this, SLOT(endProcess()));
-		processManager.removeProcess(process);
+		processManager.removeProcess(process->getProcessUUID());
 	}
 }
 
@@ -74,11 +87,11 @@ void ReynCore::endProcess() {
 }
 
 // Method that builds the wrapper of a result
-ProcessWrapper ReynCore::buildResultSender(GenericRequester * endedProcess) {
+ProcessWrapper ReynCore::buildResultSender(GenericProcess * endedProcess) {
 	if (endedProcess) {
-		ProcessInfos & procInfos = processManager.getProcessInfos(endedProcess->getUuid());
+		ProcessInfos & procInfos = processManager.getProcessInfos(endedProcess->getProcessUUID());
 		return ProcessWrapper(procInfos.asker,
-							  procInfos.process->getRequestResult());
+							  procInfos.process->getProcessResult());
 	} else {
 		return ProcessWrapper();
 	}

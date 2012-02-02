@@ -16,8 +16,8 @@ Rectangle {
 	radius: 5
 	opacity: 0.800
 
-	// Wiring
 	Component.onCompleted: {
+		// Wiring for authorizing or denying the application
 		authorize.connect(control.authorizeReynTweets)
 		deny.connect(control.denyReynTweets)
 	}

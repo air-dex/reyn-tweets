@@ -110,13 +110,13 @@ void TestWidget::endAllowRT(OAuthProcessResult res) {
 	QString texte;
 
 	switch (res) {
-		case AUTHORIZED:
+		case RT_AUTHORIZED:
 			texte = "Reyn Tweets a été autorisé :D";
 			break;
-		case DENIED:
+		case RT_DENIED:
 			texte = "Reyn Tweets a été refusé :'(";
 			break;
-		case ERROR_PROCESS:
+		case RT_ERROR_PROCESS:
 			texte = "Erreur pendant OAuth";
 			break;
 		default:

@@ -82,7 +82,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			QString httpReason = result.getHttpReason();
 
 			// Building error message
-			errorMsg = LaunchingProcess::trUtf8("Network error ");
+			errorMsg = AllowProcess::trUtf8("Network error ");
 			errorMsg.append(QString::number(httpCode))
 					.append(" : ")
 					.append(httpReason)
@@ -104,14 +104,14 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 
 		case OAUTH_PARSING:
 			// Building error message
-			errorMsg = LaunchingProcess::trUtf8("Parsing error :\n");
+			errorMsg = AllowProcess::trUtf8("Parsing error :\n");
 			errorMsg.append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = LaunchingProcess::trUtf8("Unexpected problem :\n");
+			errorMsg = AllowProcess::trUtf8("Unexpected problem :\n");
 			errorMsg.append(result.getErrorMessage()).append(".\n");
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -137,15 +137,15 @@ void AllowProcess::saveConfiguration() {
 			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file does not exist.");
+			errorMsg = AllowProcess::trUtf8("Configuration file does not exist.");
 			break;
 
 		case CONFIGURATION_FILE_NOT_OPEN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
+			errorMsg = AllowProcess::trUtf8("Configuration file cannot be opened.");
 			break;
 
 		default:
-			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
+			errorMsg = AllowProcess::trUtf8("Unknown problem");
 			break;
 	}
 

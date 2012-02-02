@@ -27,4 +27,6 @@ struct ProcessResult {
 /// @brief An invalid process result
 extern ProcessResult WRONG_PROCESS_RESULT;
 
+ProcessResult initWrongProcessResult();
+
 #endif // PROCESSRESULT_HPP

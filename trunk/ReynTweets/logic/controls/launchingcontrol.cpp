@@ -4,7 +4,7 @@
 // Constructor
 LaunchingControl::LaunchingControl() :
 	QObject(),
-	reyn(),
+	reyn(this),
 	control()
 {
 	allowWiring();
@@ -23,7 +23,7 @@ void LaunchingControl::launchReynTweets() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(launchOK(ProcessWrapper)));
 
-	reyn.loadConfiguration();
+	reyn.launchReynTweets();
 }
 
 // Allowing Reyn Tweets to use a Twitter Account
@@ -38,7 +38,7 @@ LoginControl LaunchingControl::getLoginControl() {
 }
 
 void LaunchingControl::setLoginControl(LoginControl ctrl) {
-	unwiring();
+	allowUnwiring();
 	control = ctrl;
 	allowWiring();
 }
@@ -46,23 +46,23 @@ void LaunchingControl::setLoginControl(LoginControl ctrl) {
 void LaunchingControl::allowWiring() {
 	// Telling the user that its credentials are required
 	connect(&reyn, SIGNAL(userCredentialsNeeded()),
-			&control, SLOT(credentialsNeeded()));
+			this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
 	connect(&control, SIGNAL(authorize(QString,QString)),
 			&reyn, SLOT(authorizeReynTweets(QString,QString)));
 	connect(&control, SIGNAL(deny(QString,QString)),
-			&reyn, SLOT(denyReynTweets(QString,QString)));
+			this, SLOT(denyReynTweets(QString,QString)));
 
 	// When credentials given by the user are right or wrong
 	connect(&reyn, SIGNAL(credentialsValid(bool)),
-			&control, SLOT(validCredentials(bool)));
+			this, SLOT(validCredentials(bool)));
 }
 
-void LaunchingControl::unwiring() {
+void LaunchingControl::allowUnwiring() {
 	// Telling the user that its credentials are required
 	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
-			   &control, SLOT(credentialsNeeded()));
+			   this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
 	disconnect(&control, SIGNAL(authorize(QString,QString)),
@@ -72,7 +72,7 @@ void LaunchingControl::unwiring() {
 
 	// When credentials given by the user are right or wrong
 	disconnect(&reyn, SIGNAL(credentialsValid(bool)),
-			   &control, SLOT(validCredentials(bool)));
+			   this, SLOT(validCredentials(bool)));
 }
 
 //////////////////////////////
@@ -84,7 +84,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (WRONG_PROCESS_RESULT == result) {
+	if ("Invalid asker" == result.errorMsg) {
 		return;
 	}
 
@@ -136,7 +136,7 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (WRONG_PROCESS_RESULT == result) {
+	if ("Invalid asker" == result.errorMsg) {
 		return;
 	}
 
@@ -191,4 +191,19 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 		default:
 			break;
 	}
+}
+
+void LaunchingControl::validCredentials(bool valid) {
+	if (valid) {
+		// Hiding the login popup
+		emit showLoginPopup(false);
+	} else {
+		// Informing the user that the credentials are wrong
+		control.wrongCredentials();
+	}
+}
+
+void LaunchingControl::credentialsNeeded() {
+	// Displaying the popup to enter credentials
+	emit showLoginPopup(true);
 }

@@ -29,7 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QWidget>
 #include "ui/launchingwidget.hpp"
 #include "ui/authentication/oauthwidget.hpp"
-#include "../controls/reyncore.hpp"
+#include "../logic/reyncore.hpp"
 
 /// @class ReynTweetsWidget
 /// @brief Main Widget of Reyn Tweets.

@@ -6,7 +6,7 @@ ProcessWrapper::ProcessWrapper() :
 {}
 
 // Constructor
-ProcessWrapper::ProcessWrapper(QObject * requestSender, RequestResult requestResult) :
+ProcessWrapper::ProcessWrapper(QObject * requestSender, ProcessResult requestResult) :
 	asker(requestSender),
 	result(requestResult)
 {}

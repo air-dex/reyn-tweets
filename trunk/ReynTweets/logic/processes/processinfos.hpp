@@ -2,7 +2,7 @@
 #define PROCESSINFOS_HPP
 
 #include <QObject>
-#include "../genericprocess.hpp"
+#include "genericprocess.hpp"
 
 struct ProcessInfos {
 	QObject * asker;

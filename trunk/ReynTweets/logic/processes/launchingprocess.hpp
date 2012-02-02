@@ -34,12 +34,12 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Slot executed after verifying credentials.
 		/// @param res Result of the request
 		void verifyCredentialsEnded(ResultWrapper res);
-
+/*
 		/// @fn authenticationIssue(ProcessWrapper res);
 		/// @brief What happened while authorizing Reyn Tweets
 		/// @param res Process result
 		void authenticationIssue(ProcessWrapper res);
-
+//*/
 	protected:
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;

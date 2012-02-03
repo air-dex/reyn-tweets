@@ -28,6 +28,9 @@ void LaunchingControl::launchReynTweets() {
 
 // Allowing Reyn Tweets to use a Twitter Account
 void LaunchingControl::allowReynTweets() {
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(allowOK(ProcessWrapper)));
+
 	allowWiring();
 	reyn.allowReynTweets();
 }
@@ -38,9 +41,7 @@ LoginControl * LaunchingControl::getLoginControl() {
 }
 
 void LaunchingControl::setLoginControl(LoginControl * ctrl) {
-	allowUnwiring();
 	control = ctrl;
-	allowWiring();
 }
 
 void LaunchingControl::allowWiring() {
@@ -143,7 +144,9 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 
 	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(launchOK(ProcessWrapper)));
+			   this, SLOT(allowOK(ProcessWrapper)));
+
+	allowUnwiring();
 
 	CoreResult issue = result.processIssue;
 

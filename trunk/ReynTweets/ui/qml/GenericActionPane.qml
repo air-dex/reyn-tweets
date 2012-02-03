@@ -1,5 +1,6 @@
 import QtQuick 1.1
 
+// Pane with one button
 Rectangle {
 	/// @brief Text of the pane
 	property string pane_text: qsTr("Yeah ! It's Reyn time !")
@@ -27,7 +28,7 @@ Rectangle {
 	id: action_pane
 	width: 360
 	height: description_action.height + spacing + action_button.height
- color: "#a4a4a4"
+	color: "#a4a4a4"
 	radius: pane_radius
 	opacity: 0.800
 
@@ -44,7 +45,7 @@ Rectangle {
 	}
 
 	// Custom button
-	Button {
+	RTButton {
 		id: action_button
 		button_text: action_pane.button_text
 		anchors.right: parent.right

@@ -157,6 +157,7 @@ Rectangle {
 
 	RTButton {
 		id: deny_button
+		anchors.right: login_component.right
 		anchors.rightMargin: margin
 		anchors.bottomMargin: margin
 		anchors.bottom: parent.bottom

@@ -97,36 +97,29 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	switch (issue) {
 		case LAUNCH_SUCCESSFUL:
 			// Process successful
+			emit launchEnded(true);
 			break;
 
 		case AUTHENTICATION_REQUIRED:
-			// An authentication is needed
+			// An authentication is needed. So let's do it!
 			return allowReynTweets();
 
 		// Problems that can be solved trying later
-		case RATE_LIMITED:
-			// The user reached rates.
-			break;
-
-		case TWITTER_DOWN:
-			// Twitter does not respond.
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+			emit launchEnded(false, result.errorMsg, false);
 			break;
 
 		// Problems with configuration file
 		case CONFIGURATION_FILE_UNKNOWN:
-			break;
-
 		case CONFIGURATION_FILE_NOT_OPEN:
-			break;
-
 		case LOADING_CONFIGURATION_ERROR:
-			break;
 
 		// Unknown ends
 		case UNKNOWN_PROBLEM:
-			break;
 
 		default:
+			emit launchEnded(false, result.errorMsg, true);
 			break;
 	}
 }
@@ -149,46 +142,32 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	switch (issue) {
 		case ALLOW_SUCCESSFUL:
 			// Process successful
+			emit launchEnded(true);
 			break;
 
-		case DENIED:
-			// Process successful but Reyn Tweets was denied :(
-			break;
+		case DENIED:	// Process successful but Reyn Tweets was denied :(
 
 		// Problems that can be solved trying later
-		case RATE_LIMITED:
-			// The user reached rates.
-			break;
-
-		case TWITTER_DOWN:
-			// Twitter does not respond.
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+			emit launchEnded(false, result.errorMsg, false);
 			break;
 
 		// Problems during process
 		case TOKENS_NOT_AUTHORIZED:
-			break;
-
 		case PARSE_ERROR:
-			break;
-
 		case POST_AUTHORIZING_FAILED:
-			break;
-
 		case NO_TOKENS:
-			break;
 
 		// Problems with configuration file
 		case CONFIGURATION_FILE_UNKNOWN:
-			break;
-
 		case CONFIGURATION_FILE_NOT_OPEN:
-			break;
 
 		// Unknown ends
 		case UNKNOWN_PROBLEM:
-			break;
 
 		default:
+			emit launchEnded(false, result.errorMsg, true);
 			break;
 	}
 }

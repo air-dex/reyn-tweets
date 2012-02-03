@@ -1,4 +1,3 @@
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
 import QtQuick 1.1
 
 GenericActionPane {
@@ -9,7 +8,7 @@ GenericActionPane {
 	property string left_button_text: qsTr("Leave it to Reyn !")
 
 	/// @brief Text of the right button
-	property int right_button_text: qsTr("Here we go... LARIAT !")
+	property string right_button_text: qsTr("Here we go... LARIAT !")
 
 	/// @brief Value for marges
 	property int margin_value: 5
@@ -34,7 +33,7 @@ GenericActionPane {
 
 	id: two_buttons_pane
 	width: 360
-	height: description_action.height + spacing + action_button.height
+	height: description_action.height + spacing + left_button.height
 	color: "#a4a4a4"
 	radius: pane_radius
 	opacity: 0.800

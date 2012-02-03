@@ -161,7 +161,7 @@ Rectangle {
 		left_button_text: qsTr("Yes")
 		onActLeft: {
 			deny_pane.visible = false;
-			abort_pane.pane_text = qsTr("Reyn Tweets will abort since it cannot use your Twitter account");
+			abort_pane.pane_text = qsTr("Reyn Tweets will quit. Bye bye !");
 			abort_pane.visible = true;
 		}
 
@@ -228,7 +228,7 @@ Rectangle {
 			if (errMsg == qsTr("Reyn Tweets was denied.")) {
 				pane = deny_pane;
 				messageDisplayed = errMsg
-						+ qsTr("Are you sure that you do not want to use Reyn Tweets with your Twitter account ?");
+						+ qsTr("\nAre you sure that you do not want to use Reyn Tweets with your Twitter account ?");
 			} else {
 				// Display warning popup to ask the user to try again or to quit.
 				pane = try_again_pane;

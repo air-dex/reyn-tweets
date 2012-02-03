@@ -114,6 +114,37 @@ Rectangle {
 		anchors.verticalCenter: parent.verticalCenter
 	}
 
+	// Popup to make the user quit the application
+	QuitPane {
+		id: abort_pane
+		z: 3
+		width: main_screen.width - 2* main_screen.margin
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
+	}
+
+	// Popup to try again
+	TwoButtonsActionPane {
+		id: try_again_pane
+		z: 3
+		width: main_screen.width - 2* main_screen.margin
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
+
+		// Left button
+		left_button_text: qsTr("Try again")
+		onActLeft: {
+			main_screen.state = "TryAgainPopupInvisible";
+			control.launchReynTweets();
+		}
+
+		// Right button
+		right_button_text: qsTr("Quit")
+		onActRight: Qt.quit();
+	}
+
 	////////////////////////////
 	// Back office management //
 	////////////////////////////
@@ -132,6 +163,30 @@ Rectangle {
 
 			PropertyChanges {
 				target: login_popup
+				visible: false
+			}
+		},
+		State {
+			name: "AbortPopupVisible"
+
+			PropertyChanges {
+				target: abort_pane
+				visible: true
+			}
+		},
+		State {
+			name: "TryAgainPopupVisible"
+
+			PropertyChanges {
+				target: try_again_pane
+				visible: true
+			}
+		},
+		State {
+			name: "TryAgainPopupInvisible"
+
+			PropertyChanges {
+				target: try_again_pane
 				visible: false
 			}
 		}
@@ -153,7 +208,7 @@ Rectangle {
 		control.showLoginPopup.connect(setLoginPopupVisible)
 
 		//End of the launching process
-		control.launchEnded.connect(main_screen.endLaunch)
+		control.launchEnded.connect(afterLaunching)
 	}
 
 	// Launching the application
@@ -164,5 +219,28 @@ Rectangle {
 	function setLoginPopupVisible(visible) {
 		var newState = visible ? "LoginPopupVisible" : "LoginPopupInvisible";
 		main_screen.state = newState;
+	}
+
+	// What happened after the launching processus
+	function afterLaunching(endOK, errMsg, fatal) {
+		var messageDisplayed = "";
+
+		if (endOK) {	// Successful end
+			// Go to the next step
+		} else if (fatal) {		// Bad and fatal error. Show the quit pane.
+			// Show the quit pane.
+			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:\n\n")
+					+ errMsg
+					+ qsTr("\n\nThe application will quit.");
+			abort_pane.pane_text = messageDisplayed;
+			main_screen.state = "AbortPopupVisible";
+		} else {	// Bad end but not fatal.
+			// Display warning popup to ask the user to try again or to quit.
+			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
+					+ errMsg
+					+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
+			try_again_pane.pane_text = messageDisplayed;
+			main_screen.state = "TryAgainPopupVisible";
+		}
 	}
 }

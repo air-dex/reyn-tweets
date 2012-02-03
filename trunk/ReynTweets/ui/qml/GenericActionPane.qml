@@ -22,7 +22,7 @@ Rectangle {
 
 	Component.onCompleted: {
 		// Wiring
-		act.connect(action_button.click)
+		action_button.click.connect(act)
 	}
 
 	id: action_pane
@@ -34,6 +34,7 @@ Rectangle {
 
 	Text {
 		id: description_action
+		width: action_pane.width - 2* action_pane.margin_value
 		text: action_pane.pane_text
 		font.family: "Ubuntu"
 		verticalAlignment: Text.AlignVCenter
@@ -42,6 +43,7 @@ Rectangle {
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
 		font.pixelSize: 14
+		elide: Text.ElideRight
 	}
 
 	// Custom button

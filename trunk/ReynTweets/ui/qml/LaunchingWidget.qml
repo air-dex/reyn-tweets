@@ -140,12 +140,12 @@ Rectangle {
 		left_button_text: qsTr("Try again")
 		onActLeft: {
 			try_again_pane.visible = false;
-			launchReynTweets();
+			main_screen.launchReynTweets();
 		}
 
 		// Right button
 		right_button_text: qsTr("Quit")
-		onActRight: Qt.quit();
+		onActRight: { Qt.quit(); }
 	}
 
 	////////////////////////////
@@ -183,6 +183,14 @@ Rectangle {
 
 	// What happened after the launching processus
 	function afterLaunching(endOK, errMsg, fatal) {
+		var endMsg = endOK ? "Bonne fin" : "Mauvaise fin";
+		console.log(endMsg);
+		var fatalMsg = fatal ? "Fin fatale" : "Fin réversible";
+		console.log(fatalMsg);
+		console.log("Message d'erreur : ")
+		console.log(errMsg)
+
+
 		var pane;	// Pane where a message will be displayed
 		var messageDisplayed = "";
 
@@ -196,12 +204,18 @@ Rectangle {
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:\n\n")
 					+ errMsg
 					+ qsTr("\n\nThe application will quit.");
+
+			console.log("Message affiché :");
+			console.log(messageDisplayed);
 		} else {	// Bad end but not fatal.
 			// Display warning popup to ask the user to try again or to quit.
 			pane = try_again_pane;
 			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
 					+ errMsg
 					+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
+
+			console.log("Message affiché :");
+			console.log(messageDisplayed);
 		}
 
 		pane.pane_text = messageDisplayed;

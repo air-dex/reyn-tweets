@@ -64,9 +64,4 @@ Rectangle {
 		anchors.fill: parent
 		onClicked: button.click()
 	}
-
-	// Wiring between the Mouse Area and the click() signal of the button
-	Component.onCompleted: {
-		click_area.clicked.connect(button.click)
-	}
 }

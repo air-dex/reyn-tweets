@@ -1,6 +1,6 @@
 import QtQuick 1.1
 
-GenericActionPane {
+Rectangle {
 	/// @brief Text of the pane
 	property string pane_text: qsTr("Yeah ! It's Reyn time !")
 
@@ -27,8 +27,8 @@ GenericActionPane {
 
 	Component.onCompleted: {
 		// Wiring
-		actLeft.connect(left_button.click)
-		actRight.connect(right_button.click)
+		left_button.click.connect(actLeft)
+		right_button.click.connect(actRight)
 	}
 
 	id: two_buttons_pane
@@ -40,14 +40,16 @@ GenericActionPane {
 
 	Text {
 		id: description_action
+		width: two_buttons_pane.width - 2* two_buttons_pane.margin_value
 		text: two_buttons_pane.pane_text
+		wrapMode: Text.WordWrap
 		font.family: "Ubuntu"
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft
-		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
 		font.pixelSize: 14
+		elide: Text.ElideRight
 	}
 
 	// Left button

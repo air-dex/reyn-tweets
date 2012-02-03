@@ -106,7 +106,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	switch (issue) {
 		case LAUNCH_SUCCESSFUL:
 			// Process successful
-			emit launchEnded(true);
+			emit launchEnded(true, QString(), false);
 			break;
 
 		case AUTHENTICATION_REQUIRED:
@@ -153,7 +153,7 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	switch (issue) {
 		case ALLOW_SUCCESSFUL:
 			// Process successful
-			emit launchEnded(true);
+			emit launchEnded(true, QString(), false);
 			break;
 
 		case DENIED:	// Process successful but Reyn Tweets was denied :(

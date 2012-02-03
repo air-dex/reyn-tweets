@@ -145,7 +145,32 @@ Rectangle {
 
 		// Right button
 		right_button_text: qsTr("Quit")
-		onActRight: { Qt.quit(); }
+		onActRight: Qt.quit();
+	}
+
+	// Popup after denying ReynTweets
+	TwoButtonsActionPane {
+		id: deny_pane
+		z: 3
+		width: main_screen.width - 2* main_screen.margin
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
+
+		// Left button
+		left_button_text: qsTr("Yes")
+		onActLeft: {
+			deny_pane.visible = false;
+			abort_pane.pane_text = qsTr("Reyn Tweets will abort since it cannot use your Twitter account");
+			abort_pane.visible = true;
+		}
+
+		// Right button
+		right_button_text: qsTr("No")
+		onActRight: {
+			deny_pane.visible = false;
+			main_screen.launchReynTweets();
+		}
 	}
 
 	////////////////////////////
@@ -183,14 +208,6 @@ Rectangle {
 
 	// What happened after the launching processus
 	function afterLaunching(endOK, errMsg, fatal) {
-		var endMsg = endOK ? "Bonne fin" : "Mauvaise fin";
-		console.log(endMsg);
-		var fatalMsg = fatal ? "Fin fatale" : "Fin réversible";
-		console.log(fatalMsg);
-		console.log("Message d'erreur : ")
-		console.log(errMsg)
-
-
 		var pane;	// Pane where a message will be displayed
 		var messageDisplayed = "";
 
@@ -198,24 +215,27 @@ Rectangle {
 			// Go to the next step
 			endLaunch.send();
 			return;
-		} else if (fatal) {		// Bad and fatal error. Show the quit pane.
-			// Show the quit pane.
+		} else if (fatal) {
+			// Bad and fatal error. Show the quit pane.
 			pane = abort_pane;
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:\n\n")
 					+ errMsg
 					+ qsTr("\n\nThe application will quit.");
+		} else {
+			// Bad end but not fatal.
 
-			console.log("Message affiché :");
-			console.log(messageDisplayed);
-		} else {	// Bad end but not fatal.
-			// Display warning popup to ask the user to try again or to quit.
-			pane = try_again_pane;
-			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
-					+ errMsg
-					+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
-
-			console.log("Message affiché :");
-			console.log(messageDisplayed);
+			// Is it because Reyn Tweets was denied ?
+			if (errMsg == qsTr("Reyn Tweets was denied.")) {
+				pane = deny_pane;
+				messageDisplayed = errMsg
+						+ qsTr("Are you sure that you do not want to use Reyn Tweets with your Twitter account ?");
+			} else {
+				// Display warning popup to ask the user to try again or to quit.
+				pane = try_again_pane;
+				messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
+						+ errMsg
+						+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
+			}
 		}
 
 		pane.pane_text = messageDisplayed;

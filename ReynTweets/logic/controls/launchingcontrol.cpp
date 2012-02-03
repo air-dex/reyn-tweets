@@ -148,6 +148,7 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 
 	allowUnwiring();
 
+	QString displayMessage = result.errorMsg;
 	CoreResult issue = result.processIssue;
 
 	switch (issue) {
@@ -156,12 +157,14 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 			emit launchEnded(true, QString(), false);
 			break;
 
-		case DENIED:	// Process successful but Reyn Tweets was denied :(
+		case DENIED:
+			// Process successful but Reyn Tweets was denied :(
+			displayMessage = LaunchingControl::trUtf8("Reyn Tweets was denied.");
 
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
-			emit launchEnded(false, result.errorMsg, false);
+			emit launchEnded(false, displayMessage, false);
 			break;
 
 		// Problems during process
@@ -178,7 +181,7 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 		case UNKNOWN_PROBLEM:
 
 		default:
-			emit launchEnded(false, result.errorMsg, true);
+			emit launchEnded(false, displayMessage, false);
 			break;
 	}
 }

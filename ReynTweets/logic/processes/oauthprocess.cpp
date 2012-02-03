@@ -117,7 +117,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 					.append(httpReason)
 					.append(" :\n")
 					.append(result.getErrorMessage())
-					.append(".\n");
+					.append('.');
 			emit errorProcess(false, errorMsg);
 
 			// Looking for specific value of the return code
@@ -141,7 +141,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append(".\n");
+			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			emit errorProcess(true, errorMsg);
@@ -192,7 +192,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 					.append(httpReason)
 					.append(" :\n")
 					.append(result.getErrorMessage())
-					.append(".\n");
+					.append('.');
 			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
@@ -218,7 +218,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append(".\n");
+			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			emit errorProcess(true, errorMsg);
@@ -301,7 +301,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 					.append(httpReason)
 					.append(" :\n")
 					.append(result.getErrorMessage())
-					.append(".\n");
+					.append('.');
 			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
@@ -328,7 +328,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage());
+			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			emit errorProcess(true, errorMsg);
@@ -397,7 +397,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 					.append(httpReason)
 					.append(" :\n")
 					.append(result.getErrorMessage())
-					.append(".\n");
+					.append('.');
 			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
@@ -422,7 +422,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append(".\n");
+			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			emit errorProcess(true, errorMsg);

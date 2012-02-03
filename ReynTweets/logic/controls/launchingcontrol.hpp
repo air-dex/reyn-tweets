@@ -28,8 +28,8 @@ class LaunchingControl : public QObject
 		///						 bool isFatal = false);
 		/// @brief Signal sent after launching
 		void launchEnded(bool launchOK,
-						 QString errorMsg = "",
-						 bool isFatal = false);
+						 QString errorMsg,
+						 bool isFatal);
 
 		/// @fn void showLoginPopup(bool popupVisible);
 		/// @brief Signal sent to modify the visibility of the popup used to

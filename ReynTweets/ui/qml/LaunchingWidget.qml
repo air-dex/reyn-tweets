@@ -108,12 +108,13 @@ Rectangle {
 	// Popup displayed if the user has to enter its credentials
 	LoginPane {
 		id: login_popup
+		z: 2
 		anchors.left: parent.left
 		anchors.leftMargin: main_screen.margin
 		anchors.right: parent.right
 		anchors.rightMargin: main_screen.margin
-		z: 2
 		anchors.verticalCenter: parent.verticalCenter
+		visible: false
 	}
 
 	// Popup to make the user quit the application

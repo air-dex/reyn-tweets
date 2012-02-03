@@ -5,7 +5,7 @@
 LaunchingControl::LaunchingControl() :
 	QObject(),
 	reyn(this),
-	control()
+	control(0)
 {
 	allowWiring();
 }
@@ -33,26 +33,30 @@ void LaunchingControl::allowReynTweets() {
 }
 
 
-LoginControl LaunchingControl::getLoginControl() {
+LoginControl * LaunchingControl::getLoginControl() {
 	return control;
 }
 
-void LaunchingControl::setLoginControl(LoginControl ctrl) {
+void LaunchingControl::setLoginControl(LoginControl * ctrl) {
 	allowUnwiring();
 	control = ctrl;
 	allowWiring();
 }
 
 void LaunchingControl::allowWiring() {
+	if (!control) {
+		return;
+	}
+
 	// Telling the user that its credentials are required
 	connect(&reyn, SIGNAL(userCredentialsNeeded()),
 			this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
-	connect(&control, SIGNAL(authorize(QString,QString)),
+	connect(control, SIGNAL(authorize(QString,QString)),
 			&reyn, SLOT(authorizeReynTweets(QString,QString)));
-	connect(&control, SIGNAL(deny(QString,QString)),
-			this, SLOT(denyReynTweets(QString,QString)));
+	connect(control, SIGNAL(deny(QString,QString)),
+			&reyn, SLOT(denyReynTweets(QString,QString)));
 
 	// When credentials given by the user are right or wrong
 	connect(&reyn, SIGNAL(credentialsValid(bool)),
@@ -60,14 +64,18 @@ void LaunchingControl::allowWiring() {
 }
 
 void LaunchingControl::allowUnwiring() {
+	if (!control) {
+		return;
+	}
+
 	// Telling the user that its credentials are required
 	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
 			   this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
-	disconnect(&control, SIGNAL(authorize(QString,QString)),
+	disconnect(control, SIGNAL(authorize(QString,QString)),
 			   &reyn, SLOT(authorizeReynTweets(QString,QString)));
-	disconnect(&control, SIGNAL(deny(QString,QString)),
+	disconnect(control, SIGNAL(deny(QString,QString)),
 			   &reyn, SLOT(denyReynTweets(QString,QString)));
 
 	// When credentials given by the user are right or wrong
@@ -178,7 +186,7 @@ void LaunchingControl::validCredentials(bool valid) {
 		emit showLoginPopup(false);
 	} else {
 		// Informing the user that the credentials are wrong
-		control.wrongCredentials();
+		control->wrongCredentials();
 	}
 }
 

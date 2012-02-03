@@ -35,6 +35,8 @@ Rectangle {
 	// Design of the Widget //
 	//////////////////////////
 
+	property int margin: 5
+
 	// Logo with the name and the icon
 	Column {
 		id: program_logo
@@ -104,7 +106,7 @@ Rectangle {
 	}
 
 	// Popup displayed if the user has to enter its credentials
-	LoginComponent {
+	LoginPane {
 		id: login_popup
 		anchors.left: parent.left
 		anchors.leftMargin: main_screen.margin
@@ -136,8 +138,8 @@ Rectangle {
 		// Left button
 		left_button_text: qsTr("Try again")
 		onActLeft: {
-			main_screen.state = "TryAgainPopupInvisible";
-			control.launchReynTweets();
+			try_again_pane.visible = false;
+			launchReynTweets();
 		}
 
 		// Right button
@@ -149,56 +151,13 @@ Rectangle {
 	// Back office management //
 	////////////////////////////
 
-	states: [
-		State {
-			name: "LoginPopupVisible"
-
-			PropertyChanges {
-				target: login_popup
-				visible: true
-			}
-		},
-		State {
-			name: "LoginPopupInvisible"
-
-			PropertyChanges {
-				target: login_popup
-				visible: false
-			}
-		},
-		State {
-			name: "AbortPopupVisible"
-
-			PropertyChanges {
-				target: abort_pane
-				visible: true
-			}
-		},
-		State {
-			name: "TryAgainPopupVisible"
-
-			PropertyChanges {
-				target: try_again_pane
-				visible: true
-			}
-		},
-		State {
-			name: "TryAgainPopupInvisible"
-
-			PropertyChanges {
-				target: try_again_pane
-				visible: false
-			}
-		}
-	]
-
 	/// @brief Signal sent after launching the application
-	signal endLaunch(bool launchOK, string errMsg, bool fatal)
+	signal endLaunch
 
 	/// @brief Control behind the component
 	LaunchingControl {
 		id: control
-		loginControl: login_popup.getControl();
+		loginControl: login_popup.ctrl
 	}
 
 	Component.onCompleted: {
@@ -216,31 +175,35 @@ Rectangle {
 		control.launchReynTweets()
 	}
 
+	// Showing / hiding the login popup
 	function setLoginPopupVisible(visible) {
-		var newState = visible ? "LoginPopupVisible" : "LoginPopupInvisible";
-		main_screen.state = newState;
+		login_popup.visible = visible;
 	}
 
 	// What happened after the launching processus
 	function afterLaunching(endOK, errMsg, fatal) {
+		var pane;	// Pane where a message will be displayed
 		var messageDisplayed = "";
 
 		if (endOK) {	// Successful end
 			// Go to the next step
+			endLaunch.send();
+			return;
 		} else if (fatal) {		// Bad and fatal error. Show the quit pane.
 			// Show the quit pane.
+			pane = abort_pane;
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:\n\n")
 					+ errMsg
 					+ qsTr("\n\nThe application will quit.");
-			abort_pane.pane_text = messageDisplayed;
-			main_screen.state = "AbortPopupVisible";
 		} else {	// Bad end but not fatal.
 			// Display warning popup to ask the user to try again or to quit.
+			pane = try_again_pane;
 			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
 					+ errMsg
 					+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
-			try_again_pane.pane_text = messageDisplayed;
-			main_screen.state = "TryAgainPopupVisible";
 		}
+
+		pane.pane_text = messageDisplayed;
+		pane.visible = true;
 	}
 }

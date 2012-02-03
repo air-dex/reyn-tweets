@@ -18,9 +18,9 @@ class LaunchingControl : public QObject
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
-		LoginControl getLoginControl();
+		LoginControl * getLoginControl();
 
-		void setLoginControl(LoginControl ctrl);
+		void setLoginControl(LoginControl * ctrl);
 
 	signals:
 		/// @fn void launchEnded(bool launchOK,
@@ -61,12 +61,12 @@ class LaunchingControl : public QObject
 
 		/// @property loginControl
 		/// @brief Control behind the authentication popup
-		Q_PROPERTY(LoginControl loginControl
+		Q_PROPERTY(LoginControl * loginControl
 				   READ getLoginControl
 				   WRITE setLoginControl)
 
 		/// @brief Launching informations
-		LoginControl control;
+		LoginControl * control;
 
 	private:
 		/// @fn void allowWiring();

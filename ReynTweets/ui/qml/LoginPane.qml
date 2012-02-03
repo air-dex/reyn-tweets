@@ -1,3 +1,5 @@
+// revisions < r220 : nom = LoginComponent.qml
+
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 import "jstools.js" as Tools
@@ -8,6 +10,14 @@ Rectangle {
 	property int spacing: 5
 
 	property int min_height: form_column.height + show_password_row.height + 2*margin + 2*spacing + auth_button.height
+
+	property LoginControl ctrl: control
+
+	function getHeight() {
+		return login_component.height == min_height ?
+					min_height + spacing + invalid_password_text.height
+				  : min_height;
+	}
 
 	id: login_component
 	width: 360
@@ -91,7 +101,7 @@ Rectangle {
 		}
 	}
 
-	// Row to show (or hide) the password
+	// Row to show (or to hide) the password
 	Row {
 		id: show_password_row
 		height: legend.height
@@ -117,7 +127,7 @@ Rectangle {
 			anchors.bottomMargin: 0
 			anchors.top: parent.top
 			anchors.topMargin: 0
-			color:  password_field.clear_field ? hide_color : show_color
+			color:  password_field.clear_field ? show_color : hide_color
 			border.width: 1
 			border.color: "#000000"
 			radius: 5
@@ -126,11 +136,7 @@ Rectangle {
 				id: toggle
 				anchors.fill: parent
 				onClicked: {
-					if (password_field.clear_field) {
-						login_component.state = "password_visible";
-					} else {
-						login_component.state = "password_invisible";
-					}
+					password_field.clear_field = !password_field.clear_field
 				}
 			}
 		}
@@ -168,20 +174,6 @@ Rectangle {
 	// States of the Component
 	states: [
 		State {
-			name: "password_visible"
-			PropertyChanges {
-				target: password_field
-				clear_field : false
-			}
-		},
-		State {
-			name: "password_invisible"
-			PropertyChanges {
-				target: password_field
-				clear_field : true
-			}
-		},
-		State {
 			name: "invalid_password"
 			PropertyChanges {
 				target: invalid_password_text
@@ -196,9 +188,7 @@ Rectangle {
 
 			PropertyChanges {
 				target: login_component
-				height: login_component.height == min_height ?
-							min_height + spacing + invalid_password_text.height
-						  : min_height
+				height: min_height + spacing + invalid_password_text.height
 			}
 		}
 	]

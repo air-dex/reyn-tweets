@@ -78,4 +78,4 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-	ui/qml/LoginComponent.qml
+    ui/qml/LoginPane.qml

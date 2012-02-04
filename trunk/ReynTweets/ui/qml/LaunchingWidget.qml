@@ -198,6 +198,7 @@ Rectangle {
 
 	// Launching the application
 	function launchReynTweets() {
+		login_popup.state = "UnknownValidity"
 		control.launchReynTweets()
 	}
 
@@ -213,7 +214,7 @@ Rectangle {
 
 		if (endOK) {	// Successful end
 			// Go to the next step
-			endLaunch.send();
+			main_screen.endLaunch();
 			return;
 		} else if (fatal) {
 			// Bad and fatal error. Show the quit pane.
@@ -228,7 +229,7 @@ Rectangle {
 			if (errMsg == qsTr("Reyn Tweets was denied.")) {
 				pane = deny_pane;
 				messageDisplayed = errMsg
-						+ qsTr("\nAre you sure that you do not want to use Reyn Tweets with your Twitter account ?");
+						+ qsTr("\n\nAre you sure that you do not want to use Reyn Tweets with your Twitter account ?");
 			} else {
 				// Display warning popup to ask the user to try again or to quit.
 				pane = try_again_pane;

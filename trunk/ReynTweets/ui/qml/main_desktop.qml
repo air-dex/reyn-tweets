@@ -39,6 +39,11 @@ Rectangle {
 		State {
 			name: "Tweeting"
 
+			PropertyChanges {
+				target: splash_screen
+				visible: false
+			}
+
 		   PropertyChanges {
 			   target: mockup
 			   visible: true

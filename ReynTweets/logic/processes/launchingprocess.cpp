@@ -62,7 +62,7 @@ void LaunchingProcess::loadConfiguration() {
 void LaunchingProcess::checkTokens() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(verifyCredentialsEnded(ResultWrapper)));
-	twitter.verifyCredentials(true, true);
+	twitter.verifyCredentials(false, true);
 }
 
 // Slot executed after verifying credentials.
@@ -81,7 +81,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			QVariantMap userMap = result.getParsedResult().toMap();
 			User userOfCredentials;
 			userOfCredentials.fillWithVariant(userMap);
-			UserAccount & account = configuration.getUserAccount();
+			UserAccount account = configuration.getUserAccount();
 			User confUser = account.getUser();
 			bool rightUser = confUser.getID() == userOfCredentials.getID();
 			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;

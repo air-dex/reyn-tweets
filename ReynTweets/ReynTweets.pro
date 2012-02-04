@@ -52,7 +52,7 @@ resource.target = .
 conf_files.source = conf
 conf_files.target = .
 
-DEPLOYMENTFOLDERS = qml_files resource conf_files
+DEPLOYMENTFOLDERS = qml_files resource #conf_files
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -78,4 +78,4 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    ui/qml/LoginPane.qml
+	ui/qml/LoginPane.qml

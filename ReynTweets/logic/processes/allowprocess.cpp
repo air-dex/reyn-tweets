@@ -46,6 +46,7 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 	UserAccount & account = configuration.getUserAccount();
 	account.setAccessToken(accessToken.toBase64());
 	account.setTokenSecret(tokenSecret.toBase64());
+	configuration.setUserAccount(account);
 
 	// Getting informations about the user behind the account
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -73,6 +74,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			u.fillWithVariant(parsedResults);
 			UserAccount & account = configuration.getUserAccount();
 			account.setUser(u);
+			configuration.setUserAccount(account);
 			saveConfiguration();
 		}return;
 

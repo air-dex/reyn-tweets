@@ -65,6 +65,7 @@ void OAuthProcess::buildResult(bool processOK,
 
 // Starting the OAuth authentication flow
 void OAuthProcess::startProcess() {
+	resetTokens();		// Doing it from scratch by erasing the old tokens
 	requestToken();
 }
 

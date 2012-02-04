@@ -14,12 +14,12 @@ Rectangle {
 	property LoginControl ctrl: control
 
 	function getHeight() {
-		return login_component.height == min_height ?
+		return login_pane.height == min_height ?
 					min_height + spacing + invalid_password_text.height
 				  : min_height;
 	}
 
-	id: login_component
+	id: login_pane
 	width: 360
 	height: min_height
 	color: "#cacaca"
@@ -34,7 +34,7 @@ Rectangle {
 
 	LoginControl {
 		id: control
-		onInvalidCredentials: login_component.state = "invalid_password"
+		onInvalidCredentials: login_pane.state = "invalid_password"
 	}
 
 	function getControl() {
@@ -69,14 +69,14 @@ Rectangle {
 		anchors.leftMargin: margin
 		anchors.right: parent.right
 		anchors.left: parent.left
-		spacing: login_component.spacing
+		spacing: login_pane.spacing
 		height: login_field.height + form_column.spacing + password_field.height
 		anchors.topMargin: margin
 		anchors.top: parent.top
 
 		FormField {
 			id: login_field
-			color: login_component.color
+			color: login_pane.color
 			clear_field: true
 			anchors.right: parent.right
 			anchors.left: parent.left
@@ -89,7 +89,7 @@ Rectangle {
 
 		FormField {
 			id: password_field
-			color: login_component.color
+			color: login_pane.color
 			clear_field: false
 			anchors.left: parent.left
 			anchors.right: parent.right
@@ -110,8 +110,8 @@ Rectangle {
 		anchors.rightMargin: margin
 		anchors.right: parent.right
 		anchors.top: form_column.bottom
-		anchors.topMargin: login_component.spacing
-		spacing: login_component.margin
+		anchors.topMargin: login_pane.spacing
+		spacing: login_pane.margin
 
 		// Clickable check box
 		Rectangle {
@@ -163,7 +163,7 @@ Rectangle {
 
 	RTButton {
 		id: deny_button
-		anchors.right: login_component.right
+		anchors.right: login_pane.right
 		anchors.rightMargin: margin
 		anchors.bottomMargin: margin
 		anchors.bottom: parent.bottom
@@ -187,8 +187,26 @@ Rectangle {
 			}
 
 			PropertyChanges {
-				target: login_component
+				target: login_pane
 				height: min_height + spacing + invalid_password_text.height
+			}
+		},
+		State {
+			name: "UnknownValidity"
+			PropertyChanges {
+				target: invalid_password_text
+				visible: false
+			}
+
+			PropertyChanges {
+				target: form_column
+				anchors.topMargin: spacing
+				anchors.top: login_pane.top
+			}
+
+			PropertyChanges {
+				target: login_pane
+				height: min_height
 			}
 		}
 	]

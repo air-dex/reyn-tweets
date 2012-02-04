@@ -43,7 +43,7 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 									   qlonglong id, QString)
 {
 	// Updating the tokens
-	UserAccount & account = configuration.getUserAccount();
+	UserAccount account = configuration.getUserAccount();
 	account.setAccessToken(accessToken.toBase64());
 	account.setTokenSecret(tokenSecret.toBase64());
 	configuration.setUserAccount(account);
@@ -72,7 +72,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			QVariantMap parsedResults = result.getParsedResult().toMap();
 			User u;
 			u.fillWithVariant(parsedResults);
-			UserAccount & account = configuration.getUserAccount();
+			UserAccount account = configuration.getUserAccount();
 			account.setUser(u);
 			configuration.setUserAccount(account);
 			saveConfiguration();

@@ -25,9 +25,15 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define OAUTHMANAGER_HPP
 
 #include <QByteArray>
+#include <QMap>
 #include <QString>
 #include "reyntweetssettings.hpp"
 #include "requesttype.hpp"
+
+/// @typedef QMap<QString, QString> ArgsMap
+/// @brief Convinience to designate QMaps that contains arguments
+typedef QMap<QString, QString> ArgsMap;
+
 
 /// @class OAuthManager
 /// @brief Class managing OAuth authentication to Twitter. For the security,
@@ -139,8 +145,8 @@ class OAuthManager
 
 		/// @fn QByteArray getAuthorizationHeader(RequestType type,
 		///										  QString baseURL,
-		///										  QString getDatas,
-		///										  QString postDatas,
+		///										  ArgsMap getDatas,
+		///										  ArgsMap postDatas,
 		///										  bool oauthTokenNeeded,
 		///										  bool callbackUrlNeeded,
 		///										  bool oauthVerifierNeeded);
@@ -150,17 +156,17 @@ class OAuthManager
 		/// @param baseURL URL for the request
 		/// @param getDatas GET arguments of the request
 		/// @param postDatas POST arguments of the request
-		/// @param oauthTokenNeeded Boolean indicationg that the oauth_token
-		/// is requested for the header.
-		/// @param callbackUrlNeeded Boolean indicationg that the oauth_callback
-		/// is requested for the header.
-		/// @param oauthVerifierNeeded Boolean indicationg that the oauth_verifier
-		/// is requested for the header.
+		/// @param oauthTokenNeeded Boolean indicating whether
+		/// the oauth_token is required for the header.
+		/// @param callbackUrlNeeded Boolean indicating whether
+		/// the oauth_callback is required for the header.
+		/// @param oauthVerifierNeeded Boolean indicating whether
+		/// the oauth_verifier is required for the header.
 		/// @return Value of the "Authorization" header.
 		QByteArray getAuthorizationHeader(RequestType type,
 										  QString baseURL,
-										  QString getDatas,
-										  QString postDatas,
+										  ArgsMap getDatas,
+										  ArgsMap postDatas,
 										  bool oauthTokenNeeded,
 										  bool callbackUrlNeeded,
 										  bool oauthVerifierNeeded);
@@ -220,8 +226,8 @@ class OAuthManager
 
 		/// @fn QString signDatas(RequestType type,
 		///						  QString baseURL,
-		///						  QString getDatas,
-		///						  QString postDatas,
+		///						  ArgsMap getDatas,
+		///						  ArgsMap postDatas,
 		///						  QString nonce,
 		///						  QString timestamp,
 		///						  bool oauthTokenNeeded,
@@ -236,43 +242,74 @@ class OAuthManager
 		/// @param postDatas POST datas to sign
 		/// @param nonce Nonce of the request
 		/// @param timestamp Timestamp of the request
-		/// @param oauthTokenNeeded Boolean indicationg that the oauth_token
-		/// is requested for the header.
-		/// @param callbackUrlNeeded Boolean indicationg that the oauth_callback
-		/// is requested for the header.
-		/// @param oauthVerifierNeeded Boolean indicationg that the oauth_verifier
-		/// is requested for the header.
+		/// @param oauthTokenNeeded Boolean indicating whether
+		/// the oauth_token is required.
+		/// @param callbackUrlNeeded Boolean indicating whether
+		/// the oauth_callback is required.
+		/// @param oauthVerifierNeeded Boolean indicating whether
+		/// the oauth_verifier is required.
 		/// @return The signature of the given datas
 		QString signDatas(RequestType type,
 						  QString baseURL,
-						  QString getDatas,
-						  QString postDatas,
+						  ArgsMap getDatas,
+						  ArgsMap postDatas,
 						  QString nonce,
 						  QString timestamp,
 						  bool oauthTokenNeeded,
 						  bool callbackUrlNeeded,
 						  bool oauthVerifierNeeded);
 
-		/// @fn QString formatOAuthParam(QString name,
-		///								 QString value,
-		///								 bool putDoubleQuotes);
-		/// @brief Method for formatting parameters in the Authorization header
-		/// and in the signature.
-		/// The process of how formatting parameters is described
-		/// <a href="https://dev.twitter.com/docs/auth/authorizing-request">here
-		/// </a> for the Authorization header and
-		/// <a href="https://dev.twitter.com/docs/auth/creating-signature">here
-		/// </a> for the signature. The difference between these two algorithm
-		/// is that double quotes '"' surrounds the percent encoded value for
-		/// the Authorization Header and not for the signature.
-		/// @param name Name of the parameter
-		/// @param value Value of the parameter
+		/// @fn QString buildOAuthParameterString(QString nonce,
+		///										  QString timestamp,
+		///										  QString separator,
+		///										  bool oauthTokenNeeded,
+		///										  bool callbackUrlNeeded,
+		///										  bool oauthVerifierNeeded,
+		///										  bool putDoubleQuotes,
+		///										  bool signatureNeeded,
+		///										  QString signature = "");
+		/// @brief Generic method to build strings with OAuth parameters.
+		///
+		/// It is used for the signature (string with the OAuth parameters) and
+		/// for the Authorization Header
+		/// @param nonce Nonce of the request
+		/// @param timestamp Timestamp of the request
+		/// @param separator Separator between parameters
+		/// @param oauthTokenNeeded Boolean indicating whether
+		/// the oauth_token is required.
+		/// @param callbackUrlNeeded Boolean indicating whether
+		/// the oauth_callback is required.
+		/// @param oauthVerifierNeeded Boolean indicating whether
+		/// the oauth_verifier is required.
 		/// @param putDoubleQuotes Boolean indicating if double quotes have to
 		/// surround the percent encoded value.
-		/// @return The formatted parameters
-		QString formatOAuthParam(QString name,
-								 QString value,
-								 bool putDoubleQuotes);
+		/// @param signatureNeeded Boolean indicating that the signature of
+		/// the request is required.
+		/// @param signature Signature of the request, if needed.
+		/// @return The string with the parameters.
+		QString buildOAuthParameterString(QString nonce,
+										  QString timestamp,
+										  QString separator,
+										  bool oauthTokenNeeded,
+										  bool callbackUrlNeeded,
+										  bool oauthVerifierNeeded,
+										  bool putDoubleQuotes,
+										  bool signatureNeeded,
+										  QString signature = "");
+
+		/// @fn QString buildSignatureBaseString(ArgsMap getDatas,
+		///										 ArgsMap postDatas,
+		///										 QString oauthString);
+		/// @brief Method builing the base string for the OAuth Signature.
+		/// @param getDatas GET datas of the request
+		/// @param postDatas POST datas of the request
+		/// @param oauthString String with the OAuth parameters
+		/// @return The string built just like Twitter describes
+		/// <a href="https://dev.twitter.com/docs/auth/creating-signature">
+		/// here</a>.
+		QString buildSignatureBaseString(ArgsMap getDatas,
+										 ArgsMap postDatas,
+										 QString oauthString);
 };
 
 #endif // OAUTHMANAGER_HPP

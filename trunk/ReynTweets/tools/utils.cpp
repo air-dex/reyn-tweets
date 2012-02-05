@@ -26,42 +26,12 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QJson/QObjectHelper>
 #include <QJson/Parser>
 #include <QJson/Serializer>
+#include <QUrl>
 #include "utils.hpp"
 
-
-// HMAC-SHA1 algorithm for signatures.
-QString hmacSha1(QByteArray key, QByteArray baseString) {
-	int blockSize = 64; // HMAC-SHA-1 block size, defined in SHA-1 standard
-
-	if (key.length() > blockSize) {
-		// if key is longer than block size (64), reduce key length with
-		// SHA-1 compression
-		key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
-	}
-
-	// initialize inner padding with char "6"
-	QByteArray innerPadding(blockSize, char(0x36));
-	// initialize outer padding with char "\"
-	QByteArray outerPadding(blockSize, char(0x5c));
-
-	// ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have
-	// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
-
-	for (int i = 0; i < key.length(); i++) {
-		// XOR operation between every byte in key and innerpadding, of key length
-		innerPadding[i] = innerPadding[i] ^ key.at(i);
-		// XOR operation between every byte in key and outerpadding, of key length
-		outerPadding[i] = outerPadding[i] ^ key.at(i);
-	}
-
-	// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64
-	QByteArray total = outerPadding;
-	QByteArray part = innerPadding;
-	part.append(baseString);
-	total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-	QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
-	return hashed.toBase64();
-}
+///////////////////////
+// String convertion //
+///////////////////////
 
 // Converting a RequestType into a QString
 QString requestTypeToString(RequestType type) {
@@ -73,11 +43,6 @@ QString requestTypeToString(RequestType type) {
 		default:
 			return "";
 	}
-}
-
-// Exclusive OR
-bool ouBien(bool a, bool b) {
-	return  a && !b || !a && b;
 }
 
 // Converting a bool into a QString
@@ -128,4 +93,73 @@ QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream) {
 	}
 
 	return in;
+}
+
+
+//////////////////
+// Miscanellous //
+//////////////////
+
+// HMAC-SHA1 algorithm for signatures.
+QString hmacSha1(QByteArray key, QByteArray baseString) {
+	int blockSize = 64; // HMAC-SHA-1 block size, defined in SHA-1 standard
+
+	if (key.length() > blockSize) {
+		// if key is longer than block size (64), reduce key length with
+		// SHA-1 compression
+		key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
+	}
+
+	// initialize inner padding with char "6"
+	QByteArray innerPadding(blockSize, char(0x36));
+	// initialize outer padding with char "\"
+	QByteArray outerPadding(blockSize, char(0x5c));
+
+	// ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have
+	// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
+
+	for (int i = 0; i < key.length(); i++) {
+		// XOR operation between every byte in key and innerpadding, of key length
+		innerPadding[i] = innerPadding[i] ^ key.at(i);
+		// XOR operation between every byte in key and outerpadding, of key length
+		outerPadding[i] = outerPadding[i] ^ key.at(i);
+	}
+
+	// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64
+	QByteArray total = outerPadding;
+	QByteArray part = innerPadding;
+	part.append(baseString);
+	total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
+	QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
+	return hashed.toBase64();
+}
+
+// Exclusive OR
+bool ouBien(bool a, bool b) {
+	return  a && !b || !a && b;
+}
+
+// Formatting parameters in the Authorization header
+QString formatParam(QString name, QString value, bool putDoubleQuotes) {
+	QString res = "";
+	QByteArray percentEncoded;
+
+	// Percent encoding the name
+	percentEncoded = QUrl::toPercentEncoding(name);
+	res.append(percentEncoded);
+
+	res.append('=');
+	if (putDoubleQuotes) {
+		res.append('"');
+	}
+
+	// Percent encoding the value
+	percentEncoded = QUrl::toPercentEncoding(value);
+	res.append(percentEncoded);
+
+	if (putDoubleQuotes) {
+		res.append('"');
+	}
+
+	return res;
 }

@@ -130,14 +130,13 @@ void OAuthManager::resetTokens() {
 // Getting the "Authorization" header
 QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 												QString baseURL,
-												QString getDatas,
-												QString postDatas,
+												ArgsMap getDatas,
+												ArgsMap postDatas,
 												bool oauthTokenNeeded,
 												bool callbackUrlNeeded,
 												bool oauthVerifierNeeded)
 {
 	QString authorizationHeader = "OAuth ";
-	QString formattedParamString;
 	QString nonce = generateNonce();
 	QString timestamp = generateTimestamp();
 	QString signature = signDatas(type,
@@ -149,105 +148,20 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 								  oauthTokenNeeded,
 								  callbackUrlNeeded,
 								  oauthVerifierNeeded);
-	QByteArray clearToken;
 
-	// oauth_callback
-	if (callbackUrlNeeded) {
-		formattedParamString = formatOAuthParam("oauth_callback",
-												callbackUrl,
-												true);
-		authorizationHeader.append(formattedParamString);
-		authorizationHeader.append(", ");
-	}
-
-	// oauth_consumer_key
-	clearToken = QByteArray::fromBase64(consumerKey);
-	formattedParamString = formatOAuthParam("oauth_consumer_key",
-											QString::fromAscii(clearToken.data()),
-											true);
-	authorizationHeader.append(formattedParamString);
-	authorizationHeader.append(", ");
-
-	// oauth_nonce
-	formattedParamString = formatOAuthParam("oauth_nonce",
-											nonce,
-											true);
-	authorizationHeader.append(formattedParamString);
-	authorizationHeader.append(", ");
-
-	// oauth_signature
-	formattedParamString = formatOAuthParam("oauth_signature",
-											signature,
-											true);
-	authorizationHeader.append(formattedParamString);
-	authorizationHeader.append(", ");
-
-	// oauth_signature_method
-	formattedParamString = formatOAuthParam("oauth_signature_method",
-											oauthSignatureMethod,
-											true);
-	authorizationHeader.append(formattedParamString);
-	authorizationHeader.append(", ");
-
-	// oauth_timestamp
-	formattedParamString = formatOAuthParam("oauth_timestamp",
-											timestamp,
-											true);
-	authorizationHeader.append(formattedParamString);
-	authorizationHeader.append(", ");
-
-	// oauth_token
-	if (oauthTokenNeeded) {
-		clearToken = QByteArray::fromBase64(oauthToken);
-		formattedParamString = formatOAuthParam("oauth_token",
-												QString::fromAscii(clearToken.data()),
-												true);
-		authorizationHeader.append(formattedParamString);
-		authorizationHeader.append(", ");
-	}
-
-	// oauth_verifier
-	if (oauthVerifierNeeded) {
-		clearToken = QByteArray::fromBase64(oauthVerifier);
-		formattedParamString = formatOAuthParam("oauth_verifier",
-												QString::fromAscii(clearToken.data()),
-												true);
-		authorizationHeader.append(formattedParamString);
-		authorizationHeader.append(", ");
-	}
-
-	// oauth_version
-	formattedParamString = formatOAuthParam("oauth_version",
-											oauthVersion,
-											true);
-	authorizationHeader.append(formattedParamString);
+	// Building the string with all the parameters
+	QString oauthString = buildOAuthParameterString(nonce,
+													timestamp,
+													", ",
+													oauthTokenNeeded,
+													callbackUrlNeeded,
+													oauthVerifierNeeded,
+													true,
+													true,
+													signature);
+	authorizationHeader.append(oauthString);
 
 	return authorizationHeader.toAscii();
-}
-
-// Formatting parameters in the Authorization header
-QString OAuthManager::formatOAuthParam(QString name, QString value, bool putDoubleQuotes) {
-	QString res = "";
-	QByteArray percentEncoded;
-
-	// Percent encoding the name
-	percentEncoded = QUrl::toPercentEncoding(name);
-	res.append(percentEncoded);
-
-	res.append('=');
-	if (putDoubleQuotes) {
-		res.append('"');
-	}
-
-	// Percent encoding the value
-	percentEncoded = QUrl::toPercentEncoding(value);
-	res.append(percentEncoded);
-
-	if (putDoubleQuotes) {
-		res.append('"');
-	}
-
-	return res;
 }
 
 // Generates a nonce for a request
@@ -278,8 +192,8 @@ QString OAuthManager::generateTimestamp() {
 // Signing datas
 QString OAuthManager::signDatas(RequestType type,
 								QString baseURL,
-								QString getDatas,
-								QString postDatas,
+								ArgsMap getDatas,
+								ArgsMap postDatas,
 								QString nonce,
 								QString timestamp,
 								bool oauthTokenNeeded,
@@ -289,94 +203,34 @@ QString OAuthManager::signDatas(RequestType type,
 	// Building the key
 	QString key = "";
 
-	key.append(QByteArray::fromBase64(consumerSecret));
+	key.append(QUrl::toPercentEncoding(
+				   QString::fromAscii(
+					   QByteArray::fromBase64(consumerSecret).data()
+					   )
+				   )
+			   );
 	key.append('&');
-	key.append(QByteArray::fromBase64(oauthSecret));
+	key.append(QUrl::toPercentEncoding(
+				   QString::fromAscii(
+					   QByteArray::fromBase64(oauthSecret).data()
+					   )
+				   )
+			   );
 
 
 	// Building that will be signed
 
-	// Parameter string
-	QString parameterString = getDatas;
-	QString formattedParamString;
+	// OAuth parameters
+	QString oauthString = buildOAuthParameterString(nonce,
+													timestamp,
+													"&",
+													oauthTokenNeeded,
+													callbackUrlNeeded,
+													oauthVerifierNeeded,
+													false,
+													false);
 
-	if ("" != getDatas && "" != postDatas) {
-		parameterString.append('&');
-	}
-
-	parameterString.append(postDatas);
-
-	if (parameterString != "") {
-		parameterString.append('&');
-	}
-
-	// Appending OAuth arguments
-	QByteArray clearToken;
-
-	// oauth_callback
-	if (callbackUrlNeeded) {
-		formattedParamString = formatOAuthParam("oauth_callback",
-												callbackUrl,
-												false);
-		parameterString.append(formattedParamString);
-		parameterString.append("&");
-	}
-
-	// oauth_consumer_key
-	clearToken = QByteArray::fromBase64(consumerKey);
-	formattedParamString = formatOAuthParam("oauth_consumer_key",
-											QString::fromAscii(clearToken.data()),
-											false);
-	parameterString.append(formattedParamString);
-	parameterString.append('&');
-
-	// oauth_nonce
-	formattedParamString = formatOAuthParam("oauth_nonce",
-											nonce,
-											false);
-	parameterString.append(formattedParamString);
-	parameterString.append('&');
-
-	// oauth_signature_method
-	formattedParamString = formatOAuthParam("oauth_signature_method",
-											oauthSignatureMethod,
-											false);
-	parameterString.append(formattedParamString);
-	parameterString.append('&');
-
-	// oauth_timestamp
-	formattedParamString = formatOAuthParam("oauth_timestamp",
-											timestamp,
-											false);
-	parameterString.append(formattedParamString);
-	parameterString.append('&');
-
-	// oauth_token
-	if (oauthTokenNeeded) {
-		clearToken = QByteArray::fromBase64(oauthToken);
-		formattedParamString = formatOAuthParam("oauth_token",
-												QString::fromAscii(clearToken.data()),
-												false);
-		parameterString.append(formattedParamString);
-		parameterString.append('&');
-	}
-
-	// oauth_verifier
-	if (oauthVerifierNeeded) {
-		clearToken = QByteArray::fromBase64(oauthVerifier);
-		formattedParamString = formatOAuthParam("oauth_verifier",
-												QString::fromAscii(clearToken.data()),
-												false);
-		parameterString.append(formattedParamString);
-		parameterString.append('&');
-	}
-
-	// oauth_version
-	formattedParamString = formatOAuthParam("oauth_version",
-											oauthVersion,
-											false);
-	parameterString.append(formattedParamString);
-
+	QString parameterString = buildSignatureBaseString(getDatas, postDatas, oauthString);
 
 	// Building the base String
 	QByteArray toSign = "";
@@ -388,4 +242,135 @@ QString OAuthManager::signDatas(RequestType type,
 	toSign.append(QUrl::toPercentEncoding(parameterString));
 
 	return hmacSha1(key.toAscii(), toSign);
+}
+
+// Generic method to build strings with OAuth parameters.
+QString OAuthManager::buildOAuthParameterString(QString nonce,
+												QString timestamp,
+												QString separator,
+												bool oauthTokenNeeded,
+												bool callbackUrlNeeded,
+												bool oauthVerifierNeeded,
+												bool putDoubleQuotes,
+												bool signatureNeeded,
+												QString signature)
+{
+	QString oauthParamString = "";		// Final string
+	QString formattedParamString = "";	// Temporary string containg a formatted parameter
+	QByteArray clearToken;				// Byte array with the clear value of a token
+
+	// oauth_callback
+	if (callbackUrlNeeded) {
+		formattedParamString = formatParam("oauth_callback",
+										   callbackUrl,
+										   putDoubleQuotes);
+		oauthParamString.append(formattedParamString);
+		oauthParamString.append(separator);
+	}
+
+	// oauth_consumer_key
+	clearToken = QByteArray::fromBase64(consumerKey);
+	formattedParamString = formatParam("oauth_consumer_key",
+									   QString::fromAscii(clearToken.data()),
+									   putDoubleQuotes);
+	oauthParamString.append(formattedParamString);
+	oauthParamString.append(separator);
+
+	// oauth_nonce
+	formattedParamString = formatParam("oauth_nonce",
+									   nonce,
+									   putDoubleQuotes);
+	oauthParamString.append(formattedParamString);
+	oauthParamString.append(separator);
+
+	// oauth_signature
+	if (signatureNeeded) {
+		formattedParamString = formatParam("oauth_signature",
+										   signature,
+										   putDoubleQuotes);
+		oauthParamString.append(formattedParamString);
+		oauthParamString.append(separator);
+	}
+
+	// oauth_signature_method
+	formattedParamString = formatParam("oauth_signature_method",
+									   oauthSignatureMethod,
+									   putDoubleQuotes);
+	oauthParamString.append(formattedParamString);
+	oauthParamString.append(separator);
+
+	// oauth_timestamp
+	formattedParamString = formatParam("oauth_timestamp",
+									   timestamp,
+									   putDoubleQuotes);
+	oauthParamString.append(formattedParamString);
+	oauthParamString.append(separator);
+
+	// oauth_token
+	if (oauthTokenNeeded) {
+		clearToken = QByteArray::fromBase64(oauthToken);
+		formattedParamString = formatParam("oauth_token",
+										   QString::fromAscii(clearToken.data()),
+										   putDoubleQuotes);
+		oauthParamString.append(formattedParamString);
+		oauthParamString.append(separator);
+	}
+
+	// oauth_verifier
+	if (oauthVerifierNeeded) {
+		clearToken = QByteArray::fromBase64(oauthVerifier);
+		formattedParamString = formatParam("oauth_verifier",
+										   QString::fromAscii(clearToken.data()),
+										   putDoubleQuotes);
+		oauthParamString.append(formattedParamString);
+		oauthParamString.append(separator);
+	}
+
+	// oauth_version
+	formattedParamString = formatParam("oauth_version",
+									   oauthVersion,
+									   putDoubleQuotes);
+	oauthParamString.append(formattedParamString);
+
+	return formattedParamString;
+}
+
+// Method builing the base string for the OAuth Signature.
+QString OAuthManager::buildSignatureBaseString(ArgsMap getDatas,
+											   ArgsMap postDatas,
+											   QString oauthString)
+{
+	QString oauthKey = "oauth_*";
+
+	// Building a big ArgsMap with all the parameters
+	ArgsMap allParametersMap;
+	allParametersMap.unite(getDatas);
+	allParametersMap.unite(postDatas);
+	allParametersMap.insert(oauthKey, oauthString);
+
+	// Sorting the keys in the alphabetical order
+	QStringList allKeys(allParametersMap.keys());
+	allKeys.sort();
+
+	// Building the string
+	QString signatureBaseString = "";
+
+	for (QStringList::iterator it = allKeys.begin();
+		 it != allKeys.end();
+		 ++it)
+	{
+		QString paramName = *it;
+		QString paramValue = allParametersMap.value(paramName);
+		QString formattedParam = (paramName == oauthKey) ?
+					paramValue	// All the OAuth parameters already treated
+				  : formatParam(paramName, paramValue);
+
+		signatureBaseString.append(formattedParam);
+		signatureBaseString.append('&');
+	}
+
+	// Erasing the last '&'
+	signatureBaseString.chop(1);
+
+	return signatureBaseString;
 }

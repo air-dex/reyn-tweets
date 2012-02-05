@@ -25,6 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QNetworkRequest>
 #include "twittercommunicator.hpp"
+#include "../../tools/utils.hpp"
 
 // Network manager
 QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
@@ -105,8 +106,8 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 		// Bulding the Authorization header
 		QByteArray authHeader = oauthManager->getAuthorizationHeader(requestType,
 																	 baseURL,
-																	 getArgs,
-																	 postArgs,
+																	 getParameters,
+																	 postParameters,
 																	 oauthTokenNeeded,
 																	 callbackUrlNeeded,
 																	 oauthVerifierlNeeded);
@@ -230,16 +231,11 @@ QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
 			continue;
 		}
 
-		// URL encoding of the value
-		QByteArray urlizedValue = QUrl::toPercentEncoding(argValue);
-
 		// Getting the name of the argument
 		QString argName = argsIterator.key();
 
 		// Append the argument in the argument string
-		res.append(argName);
-		res.append('=');
-		res.append(QString(urlizedValue));
+		res.append(formatParam(argName, argValue));
 		res.append('&');
 	}
 

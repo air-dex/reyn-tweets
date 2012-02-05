@@ -46,11 +46,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 extern QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
 
 
-/// @typedef QMap<QString, QString> ArgsMap
-/// @brief Convinience to designate QMaps that contains arguments
-typedef QMap<QString, QString> ArgsMap;
-
-
 /// @class TwitterCommunicator
 /// @brief Class managing communication with the Twitter API.
 ///

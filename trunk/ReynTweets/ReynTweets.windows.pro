@@ -1,8 +1,8 @@
-#-------------------------------#
-# SymbianConfiguration.pri      #
-# Symbian special configuration #
-# Auteur : Romain Ducher        #
-#-------------------------------#
+#---------------------------------------------------------------------#
+# ReynTweets.windows.pro                                              #
+# Fichier projet Qt de Reyn Tweets pour le développement sous Windows #
+# Auteur : Romain Ducher                                              #
+#---------------------------------------------------------------------#
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -25,35 +25,4 @@
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
-
-CONFIG += mobility
-MOBILITY =
-
-# Add dependency to Symbian components
-CONFIG += qt-components
-
-symbian {
-
-TARGET.UID3 = 0xE541D97B
-#TARGET.EPOCSTACKSIZE = 0x14000
-#TARGET.EPOCHEAPSIZE = 0x020000 0x800000
-
-# Allow network access on Symbian
-TARGET.CAPABILITY += NetworkServices
-
-# Smart Installer package's UID
-# This UID is from the protected range and therefore the package will
-# fail to install if self-signed. By default qmake uses the unprotected
-# range value if unprotected UID is defined for the application and
-# 0x2002CCCF value if protected UID is given to the application
-#DEPLOYMENT.installer_header = 0x2002CCCF
-
-#-------#
-# QJSON #
-#-------#
-
-#	QJSON_PATH = # TODO
-#	INCLUDEPATH += c:\Libs\Qjson\include
-#	LIBS += -Lc:\Libs\Qjson\lib -lqjson
-
-}
+include(ReynTweets.pri)

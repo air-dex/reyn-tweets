@@ -332,7 +332,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 									   putDoubleQuotes);
 	oauthParamString.append(formattedParamString);
 
-	return formattedParamString;
+	return oauthParamString;
 }
 
 // Method builing the base string for the OAuth Signature.

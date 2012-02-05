@@ -1,12 +1,12 @@
-#-------------------------------------------------------------#
-# ReynTweetsQt.pri                                            #
-# Sous-fichier projet Qt de Reyn Tweets pour la partie C++/Qt #
-# Auteur : Romain Ducher                                      #
-#-------------------------------------------------------------#
+#----------------------------------#
+# ReynTweets.pro                   #
+# Fichier projet Qt de Reyn Tweets #
+# Auteur : Romain Ducher           #
+#----------------------------------#
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
-# Copyright 2012 Romain Ducher                                                #
+# Copyright 2011 Romain Ducher                                                #
 #                                                                             #
 # This file is part of Reyn Tweets.                                           #
 #                                                                             #
@@ -26,6 +26,7 @@
 #-----------------------------------------------------------------------------#
 
 
+# Configuration for the C++/Qt part
 #----------------------#
 # Common configuration #
 #----------------------#
@@ -54,15 +55,15 @@ SOURCES += \
 	connection/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
+	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
-	connection/requests/searches/searchrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
 	connection/requests/oauth/postauthorizerequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
+	connection/requests/searches/searchrequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
-	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requestinfos.cpp \
 	connection/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
@@ -86,31 +87,21 @@ SOURCES += \
 	model/user.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
+	logic/processes/processresult.cpp \
+	logic/processes/processwrapper.cpp \
+	logic/processes/genericprocess.cpp \
 	logic/processes/oauthprocess.cpp \
+	logic/processes/allowprocess.cpp \
+	logic/processes/launchingprocess.cpp \
+	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
 	logic/controls/launchingcontrol.cpp \
-	ui/authentication/loginwidget.cpp \
-	ui/authentication/oauthwidget.cpp \
-	ui/genericqmlwidget.cpp \
-	ui/launchingwidget.cpp \
-	ui/testwidget.cpp \
-	ui/reyntweetswidget.cpp \
-	ui/mainwindow.cpp \
-#	main.cpp \
-#	ui/qmlviewer.cpp \
-#	ui/genericactionpane.cpp \
-	#ui/ratelimitedactionpane.cpp
- #   logic/launchinginfos.cpp
 	logic/controls/logincontrol.cpp \
-	logic/processes/genericprocess.cpp \
-	logic/processes/processresult.cpp \
-	logic/processes/processmanager.cpp \
-	logic/processes/processwrapper.cpp \
-	logic/processes/launchingprocess.cpp \
-	logic/processes/allowprocess.cpp
+	main.cpp
 
 
 HEADERS  += \
+	tools/qmldebug.hpp \
 	tools/utils.hpp \
 	tools/reyntweetsdatetime.hpp \
 	tools/parsers/genericparser.hpp \
@@ -127,15 +118,15 @@ HEADERS  += \
 	connection/twitterurls.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
+	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
-	connection/requests/searches/searchrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
 	connection/requests/oauth/postauthorizerequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
+	connection/requests/searches/searchrequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
-	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/requests.hpp \
 	connection/requestinfos.hpp \
 	connection/requestermanager.hpp \
@@ -162,36 +153,19 @@ HEADERS  += \
 	model/user.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \
-	logic/processes/oauthprocessresult.hpp \
-	logic/processes/oauthprocess.hpp \
 	logic/coreresult.hpp \
-	logic/reyncore.hpp \
-	logic/controls/launchingcontrol.hpp \
-	ui/authentication/loginwidget.hpp \
-	ui/authentication/oauthwidget.hpp \
-	ui/genericqmlwidget.hpp \
-	ui/launchingwidget.hpp \
-	ui/testwidget.hpp \
-	ui/reyntweetswidget.hpp \
-	ui/mainwindow.hpp \
-	tools/qmldebug.hpp \
-#	ui/qmlviewer.hpp \
-#	ui/genericactionpane.hpp \
-#	ui/ratelimitedactionpane.hpp
-  #  logic/launchinginfos.hpp
-	logic/controls/logincontrol.hpp \
-	logic/processes/processinfos.hpp \
-	logic/processes/genericprocess.hpp \
 	logic/processes/processresult.hpp \
-	logic/processes/processmanager.hpp \
 	logic/processes/processwrapper.hpp \
+	logic/processes/genericprocess.hpp \
+	logic/processes/oauthprocess.hpp \
+	logic/processes/allowprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/processes.hpp \
-	logic/processes/allowprocess.hpp
-
-
-RESOURCES += \
-	reyntweetsresources.qrc
+	logic/processes/processinfos.hpp \
+	logic/processes/processmanager.hpp \
+	logic/reyncore.hpp \
+	logic/controls/logincontrol.hpp \
+	logic/controls/launchingcontrol.hpp
 
 
 OTHER_FILES = \
@@ -209,20 +183,6 @@ OTHER_FILES = \
 TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 
-#-------------------------------#
-# Symbian special configuration #
-#-------------------------------#
-
-
-symbian {
-	TARGET.UID3 = 0xE541D97B
-	DEPLOYMENT.installer_header = 0x2002CCCF
-	TARGET.CAPABILITY += NetworkServices
-	#TARGET.EPOCSTACKSIZE = 0x14000
-	#TARGET.EPOCHEAPSIZE = 0x020000 0x800000
-}
-
-
 #-------#
 # QJSON #
 #-------#
@@ -238,11 +198,17 @@ win32 {
 	LIBS += -L$${QJSON_PATH}\\lib -lqjson0
 }
 
-#linux {
+linux {
 #	QJSON_PATH = # TODO
 #	INCLUDEPATH += $${QJSON_PATH}/include
 #	LIBS += -L$${QJSON_PATH}/lib -lqjson
-#}
+}
+
+symbian {
+#	QJSON_PATH = # TODO
+#	INCLUDEPATH += c:\Libs\Qjson\include
+#	LIBS += -Lc:\Libs\Qjson\lib -lqjson
+}
 
 
 #---------------------------#
@@ -253,7 +219,7 @@ win32 {
 # is a library with QML Components for desktop. It is under LGPL license (v2.1).
 # QMLCOMP_DESKTOP_PATH is the location of QJSON in the system.
 
-#win32 {
+win32 {
 #	QMLCOMP_DESKTOP_PATH = C:\\Libs\\QtComponentsForDesktop
 #	INCLUDEPATH += $${QMLCOMP_DESKTOP_PATH}\\include
 #	debug {
@@ -263,9 +229,9 @@ win32 {
 #		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\release -lstyleplugin
 #	}
 #
-#}
+}
 
-#linux {
+linux {
 #	QMLCOMP_DESKTOP_PATH = C:\\Libs\\QtComponentsForDesktop
 #	INCLUDEPATH += $${QMLCOMP_DESKTOP_PATH}\\include
 #	debug {
@@ -275,4 +241,80 @@ win32 {
 #		LIBS += -L$${QMLCOMP_DESKTOP_PATH}\\build\\release -lstyleplugin
 #	}
 #
-#}
+}
+
+
+#-------------------------------#
+# Symbian special configuration #
+#-------------------------------#
+
+CONFIG += mobility
+MOBILITY =
+
+# Add dependency to Symbian components
+CONFIG += qt-components
+
+symbian {
+
+TARGET.UID3 = 0xE541D97B
+#TARGET.EPOCSTACKSIZE = 0x14000
+#TARGET.EPOCHEAPSIZE = 0x020000 0x800000
+
+# Allow network access on Symbian
+TARGET.CAPABILITY += NetworkServices
+
+# Smart Installer package's UID
+# This UID is from the protected range and therefore the package will
+# fail to install if self-signed. By default qmake uses the unprotected
+# range value if unprotected UID is defined for the application and
+# 0x2002CCCF value if protected UID is given to the application
+#DEPLOYMENT.installer_header = 0x2002CCCF
+
+}
+
+
+#------------------------#
+# Folders with QML files #
+#------------------------#
+
+# Main QML file
+#main_folder.source = qml/ReynTweetsQML
+#main_folder.target = qml
+
+# QML files
+qml_files.source = ui/qml
+qml_files.target = ui
+
+# Resources
+resource.source = resources
+resource.target = .
+
+# Configuration files
+# Uncomment this folder if you want to reset the configuration time each
+# the application is launched
+conf_files.source = conf
+conf_files.target = .
+
+DEPLOYMENTFOLDERS = qml_files \
+	resource \
+	#conf_files 
+
+	
+#--------------#
+# Miscanellous #
+#--------------#
+
+# Additional import path used to resolve QML modules in Creator's code model
+QML_IMPORT_PATH =
+
+# If your application uses the Qt Mobility libraries, uncomment the following
+# lines and add the respective components to the MOBILITY variable.
+# CONFIG += mobility
+# MOBILITY +=
+
+# Speed up launching on MeeGo/Harmattan when using applauncherd daemon
+# CONFIG += qdeclarative-boostable
+
+# Please do not modify the following two lines. Required for deployment.
+include(ui/qmlapplicationviewer.pri)
+qtcAddDeployment()

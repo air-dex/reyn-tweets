@@ -24,7 +24,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include <QLocale>
 #include <QTranslator>
-#include "qmlapplicationviewer.h"
+#include "ui/qmlapplicationviewer.h"
 #include "ui/mainwindow.hpp"
 #include "logic/controls/launchingcontrol.hpp"
 //#include "logic/launchinginfos.hpp"

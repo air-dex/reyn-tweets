@@ -57,7 +57,7 @@ const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsL
 // Copy of a ReynTweetsListable
 template <class S>
 void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
-	empty();
+	clear();
 
 	for (ReynTweetsListable<S>::const_iterator it = list.begin();
 		 it != list.end();

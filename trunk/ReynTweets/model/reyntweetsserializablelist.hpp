@@ -68,7 +68,7 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 		virtual QVariantList toVariant() const;
 
 	protected:
-		/// @fn void recopie(const ReynTweetsListable<S> & list);
+		/// @fn virtual void recopie(const ReynTweetsListable<S> & list);
 		/// @brief Copy of a ReynTweetsListable
 		/// @param list ReynTweetsListable to copy
 		virtual void recopie(const ReynTweetsListable<S> &list);

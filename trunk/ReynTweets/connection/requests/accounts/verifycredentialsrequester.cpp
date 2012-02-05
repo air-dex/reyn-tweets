@@ -37,6 +37,14 @@ VerifyCredentialsRequester::VerifyCredentialsRequester(OAuthManager & authManage
 
 // Building getParameters
 void VerifyCredentialsRequester::buildGETParameters() {
-	getParameters.insert("include_entities", boolInString(includeEntities));
-	getParameters.insert("skip_status", boolInString(skipStatus));
+	//*
+	//if (includeEntities) {
+		getParameters.insert("include_entities", boolInString(includeEntities));
+	//}
+	//if (skipStatus) {
+		getParameters.insert("skip_status", boolInString(skipStatus));
+	//}
+
+
+	//*/
 }

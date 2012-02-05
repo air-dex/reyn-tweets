@@ -86,11 +86,11 @@ TwitterCommunicator::~TwitterCommunicator() {
 QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 	// GET arguments
 	QString getArgs = buildGetDatas();
+	QString baseURL = serviceURL;
 
 	// Adding the potential GET arguments at the end of the URL
 	if ("" != getArgs) {
-		getArgs.prepend('?');
-		serviceURL.append(getArgs);
+		serviceURL.append('?').append(getArgs);
 	}
 
 	QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
@@ -104,7 +104,7 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 	if (authenticationRequired && oauthManager != 0) {
 		// Bulding the Authorization header
 		QByteArray authHeader = oauthManager->getAuthorizationHeader(requestType,
-																	 serviceURL,
+																	 baseURL,
 																	 getArgs,
 																	 postArgs,
 																	 oauthTokenNeeded,

@@ -62,7 +62,7 @@ void LaunchingProcess::loadConfiguration() {
 void LaunchingProcess::checkTokens() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(verifyCredentialsEnded(ResultWrapper)));
-	twitter.verifyCredentials(false, true);
+	twitter.verifyCredentials(true, false);
 }
 
 // Slot executed after verifying credentials.

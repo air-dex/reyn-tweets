@@ -306,6 +306,10 @@ QString OAuthManager::signDatas(RequestType type,
 
 	parameterString.append(postDatas);
 
+	if (parameterString != "") {
+		parameterString.append('&');
+	}
+
 	// Appending OAuth arguments
 	QByteArray clearToken;
 

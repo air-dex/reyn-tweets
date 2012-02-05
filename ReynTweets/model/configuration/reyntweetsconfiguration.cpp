@@ -175,7 +175,7 @@ CoreResult ReynTweetsConfiguration::save() {
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
-	bool openOK = confFile.open(QFile::WriteOnly | QFile::Truncate);
+	bool openOK = confFile.open(QFile::WriteOnly);
 	if (!openOK) {
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}

@@ -24,18 +24,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QApplication>
 #include <QLocale>
 #include <QTranslator>
-#include "ui/qmlapplicationviewer.h"
-#include "ui/mainwindow.hpp"
+#include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/launchingcontrol.hpp"
-//#include "logic/launchinginfos.hpp"
 #include "logic/controls/logincontrol.hpp"
-
-// Including the widget for tests
-//*
-#ifndef Q_OS_SYMBIAN
-#include "ui/testwidget.hpp"
-#endif
-//*/
 
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
@@ -65,16 +56,15 @@ void initReynTweetsSystem() {
 void declareReynTweetsControls() {
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
-	//LaunchingInfos::declareQML();
 }
 
-void loadTranslation(QApplication & a) {
+void loadTranslation(QScopedPointer<QApplication> * a) {
 	// Program in French
 /*
 	QTranslator translator;
 	translator.load("reyntweets_fr");
 	translator.load("reyntweets_qml_launching_widget_fr");
-	a.installTranslator(&translator);
+	(*a)->installTranslator(&translator);
 //*/
 
 	// Defalult idiom : local idiom
@@ -85,7 +75,7 @@ void loadTranslation(QApplication & a) {
 	translator.load(QString("reyntweets_") + locale);
 	translator.load(QString("reyntweets_qml_launching_widget_") + locale);
 
-	a.installTranslator(&translator);
+	(*a)->installTranslator(&translator);
 }
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
@@ -94,7 +84,7 @@ void loadTranslation(QApplication & a) {
 /// @param argv List of arguments
 /// @return The result of the execution.
 Q_DECL_EXPORT int main(int argc, char *argv[])
-{//*
+{
 	QScopedPointer<QApplication> app(createApplication(argc, argv));
 
 	// Init the random generator used for generating nonces
@@ -105,7 +95,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	declareReynTweetsControls();
 
 	// Loading translation files
-	loadTranslation(*app);
+	loadTranslation(&app);
 
 	// Init Main QML file
 	#ifdef Q_OS_WIN32
@@ -123,38 +113,4 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	viewer.showExpanded();
 
 	return app->exec();
-//*/
-	/*
-	QApplication a(argc, argv);
-
-		// Init the random generator used for generating nonces
-		qsrand(QDateTime::currentMSecsSinceEpoch());
-
-		// Init for serialization
-		initReynTweetsSystem();
-
-		// Loading translation files
-		loadTranslation(a);
-
-		MainWindow w;
-
-		#if defined(Q_OS_SYMBIAN)
-			w.showMaximized();
-		#else // For Windows and Linux
-
-			// Insert a widget for tests purposes
-			//*
-			TestWidget tw;
-			QDockWidget dock("Tests", &w);
-			dock.setWidget(&tw);
-			w.addDockWidget(Qt::LeftDockWidgetArea, &dock);
-			//*/
-/*
-			w.show();
-		#endif
-
-		w.startReynTweets();
-
-		return a.exec();
-		//*/
 }

@@ -25,7 +25,6 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #define OAUTHPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "oauthprocessresult.hpp"
 #include "../connection/reyntwittercalls.hpp"
 
 /// @class OAuthProcess
@@ -58,42 +57,12 @@ class OAuthProcess : public GenericProcess
 		/// @brief Signal sent when the process requires user credentials
 		void userCredentialsRequired();
 
-		/// @fn void loginPanelVisible(bool visible);
-		/// @brief Signal sent to show or to hide the browser
-		/// @param visible Boolean indicating if the browser has to be visible.
-		void loginPanelVisible(bool visible);	// DEPRECATED
-
 		/// @fn void credentialsOK(bool ok);
 		/// @brief Signal sent to show or to hide an error message telling
 		/// the user if the credentials he gave were right.
 		/// @param ok Boolean indicating if the credentials sent to Twitter
 		/// were right.
 		void credentialsOK(bool ok);
-
-		/// @fn void errorProcess(bool fatalError, QString errorMsg);
-		/// @brief Signal emitted when an error occurs during the process
-		/// @param fatalError Boolean indicating if the error is fatal for
-		/// the process.
-		/// @param errorMsg Message describing the error
-		void errorProcess(bool fatalError, QString errorMsg);	// DEPRECATED
-
-		/// @fn void authenticationProcessFinished(OAuthProcessResult processResult,
-		///										   QByteArray accessToken = "",
-		///										   QByteArray tokenSecret = "",
-		///										   qlonglong userID = -1,
-		///										   QString screenName = "");
-		/// @brief Signal sent when the authentication process ends.
-		/// @param processResult Value indicating how the OAuth process has ended.
-		/// @param accessToken User access token
-		/// @param tokenSecret User token secret
-		/// @param userID ID of the user who has just authorized the application
-		/// @param screenName Screen name of the user who has just authorized
-		/// the application.
-		void authenticationProcessFinished(OAuthProcessResult processResult,
-										   QByteArray accessToken = "",
-										   QByteArray tokenSecret = "",
-										   qlonglong userID = -1,
-										   QString screenName = "");	// DEPRECATED
 
 	private:
 		/// @fn void requestToken();
@@ -109,6 +78,12 @@ class OAuthProcess : public GenericProcess
 		void accessToken();
 
 	protected:
+		/// @param processResult Value indicating how the OAuth process has ended.
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param userID ID of the user who has just authorized the application
+		/// @param screenName Screen name of the user who has just authorized
+		/// the application.
 		virtual void buildResult(bool processOK,
 								 CoreResult issue,
 								 QString errMsg = "",

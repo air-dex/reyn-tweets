@@ -1,25 +1,25 @@
 /// @file reyncore.hpp
 /// @brief Header of ReynCore
 /// @author Romain Ducher
-
-/*
-Copyright 2012 Romain Ducher
-
-This file is part of Reyn Tweets.
-
-Reyn Tweets is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Reyn Tweets is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
-*/
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef REYNCORE_HPP
 #define REYNCORE_HPP
@@ -28,6 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include "coreresult.hpp"
 #include "../model/configuration/reyntweetsconfiguration.hpp"
 #include "processes/genericprocess.hpp"
+#include "processes/oauthprocess.hpp"
 #include "processes/processmanager.hpp"
 #include "processes/processwrapper.hpp"
 
@@ -45,16 +46,23 @@ class ReynCore : public QObject
 	//////////////////////////////////
 
 	public:
-		/// @fn ReynCore();
+		/// @fn ReynCore(QObject * actionRequester);
 		/// @brief Constructor
+		/// @param actionRequester Entity which asks the Core to do something
 		ReynCore(QObject * actionRequester);
 
 		/// @fn ~ReynCore();
 		/// @brief Destructor
 		~ReynCore();
 
+		/// @fn ReynCore(const ReynCore & heart);
+		/// @brief Copy constructor
+		/// @param heart Core to copy
 		ReynCore(const ReynCore & heart);
 
+		/// @fn const ReynCore & operator=(const ReynCore & heart);
+		/// @brief Affectation operator
+		/// @param heart Core to copy
 		const ReynCore & operator=(const ReynCore & heart);
 
 	signals:
@@ -64,7 +72,7 @@ class ReynCore : public QObject
 		void sendResult(ProcessWrapper res);
 
 	public slots:
-		/// @fn void endRequest();
+		/// @fn void endProcess();
 		/// @brief Slot executed when a requester has finished its work
 		void endProcess();
 
@@ -79,11 +87,14 @@ class ReynCore : public QObject
 		static ReynTweetsConfiguration configuration;
 
 	private:
+		/// @fn void recopie(const ReynCore & heart);
+		/// @brief Copying a ReynCore
+		/// @param heart Core to copy
 		void recopie(const ReynCore & heart);
 
 		/// @fn void addProcess(GenericProcess * process);
 		/// @brief Adding a process to the process manager
-		/// @param process Address of the requester
+		/// @param process Address of the process
 		void addProcess(GenericProcess * process);
 
 		/// @fn void removeProcess(GenericProcess * process);
@@ -119,6 +130,12 @@ class ReynCore : public QObject
 		/// @fn void allowReynTweets();
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
+
+	protected:
+		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);
+		/// @brief Special wiring of an OAuth process.
+		/// @param oauthProcess The process
+		inline void oauthSpecialWiring(OAuthProcess * oauthProcess);
 
 
 	////////////////////

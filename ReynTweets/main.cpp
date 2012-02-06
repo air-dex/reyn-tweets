@@ -25,8 +25,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QLocale>
 #include <QTranslator>
 #include "ui/qmlapplicationviewer.hpp"
-#include "logic/controls/launchingcontrol.hpp"
-#include "logic/controls/logincontrol.hpp"
+#include "logic/controls/controls.hpp"
 
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
@@ -58,6 +57,9 @@ void declareReynTweetsControls() {
 	LoginControl::declareQML();
 }
 
+/// @fn void loadTranslation(QScopedPointer<QApplication> * a);
+/// @brief Loading the translation of the program
+/// @param a The application
 void loadTranslation(QScopedPointer<QApplication> * a) {
 	// Program in French
 /*

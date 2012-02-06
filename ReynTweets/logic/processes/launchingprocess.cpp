@@ -1,6 +1,30 @@
+/// @file launchingprocess.cpp
+/// @brief Implementation of LaunchingProcess
+/// @author Romain Ducher
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
 #include <QFile>
 #include "launchingprocess.hpp"
 
+// Constructor
 LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
 	GenericProcess(),
 	twitter(this),
@@ -173,100 +197,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	endProcess();
 }
 
-/*
-////////////////////////////////////////////////
-// Step 2bis : authenticating the application //
-////////////////////////////////////////////////
-
-// What happened while authorizing Reyn Tweets
-void LaunchingProcess::authenticationIssue(ProcessWrapper res) {
-	ProcessResult result = res.accessResult(this);
-
-	if (result == WRONG_PROCESS_RESULT) {
-		return;
-	}
-
-	CoreResult authIssue = result.processIssue;
-	QString errorMsg = "";
-	bool isFatal;
-	bool processOK;
-
-	switch (authIssue) {
-		case AUTHORIZED: {
-			// Download the user then save
-
-			// Extract the different values
-			QVariantMap resultMap = result.results;
-			QByteArray accessToken = resultMap.value("access_token").toByteArray();
-			QByteArray tokenSecret = resultMap.value("token_secret").toByteArray();
-			qlonglong userID = resultMap.value("user_id").toLongLong();
-			QString screenName = resultMap.value("screen_name").toString();
-
-			updateConfiguration(accessToken, tokenSecret, userID, screenName);
-		}return;
-
-		case DENIED:
-			// Try again later or quit
-			processOK = true;
-			errorMsg = LaunchingProcess::trUtf8("Reyn Tweets was not authorized to use your Twitter account.");
-			isFatal = false;
-			break;
-
-		case RATE_LIMITED:
-			// Try again later
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("You reach the Twitter rate.");
-			isFatal = false;
-			break;
-
-		case TWITTER_DOWN:
-			// Try again later
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Twitter seems down.");
-			isFatal = false;
-			break;
-
-		case TOKENS_NOT_AUTHORIZED:
-			// Quit
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Tokens seem wrong.");
-			isFatal = true;
-			break;
-
-		case NO_TOKENS:
-			// Quit
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Twitter did not give any token.");
-			isFatal = true;
-			break;
-
-		case PARSE_ERROR:
-			// Quit
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Internal error while parsing Twitter results.");
-			isFatal = true;
-			break;
-
-		case UNKNOWN_PROBLEM:
-			// Quit
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Problem unknown");
-			isFatal = true;
-			break;
-
-		default:
-			// Quit
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Unexpected end.");
-			isFatal = true;
-			break;
-	}
-
-	// Failed end
-	buildResult(processOK, authIssue, errorMsg, isFatal);
-	emit processEnded();
-}
-//*/
 
 ////////////////////////////////////////////////////
 // Step 3 : updating and saving the configuration //
@@ -331,4 +261,3 @@ void LaunchingProcess::buildResult(bool processOK,
 	processResult.fatalError = isFatal;
 	processResult.results = QVariantMap();
 }
-

@@ -5,9 +5,11 @@
 #include <QUuid>
 #include "processresult.hpp"
 
+
 class GenericProcess : public QObject
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
 		GenericProcess();
 

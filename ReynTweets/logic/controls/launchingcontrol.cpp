@@ -1,3 +1,26 @@
+/// @file launchingcontrol.cpp
+/// @brief Implementation of LaunchingControl
+/// @author Romain Ducher
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
 #include "launchingcontrol.hpp"
 #include <QtDeclarative>
 
@@ -17,24 +40,10 @@ void LaunchingControl::declareQML() {
 									  "LaunchingControl");
 }
 
-// Starting ReynTweets
-void LaunchingControl::launchReynTweets() {
-	// Connection for the end of the launch process
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(launchOK(ProcessWrapper)));
 
-	reyn.launchReynTweets();
-}
-
-// Allowing Reyn Tweets to use a Twitter Account
-void LaunchingControl::allowReynTweets() {
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(allowOK(ProcessWrapper)));
-
-	allowWiring();
-	reyn.allowReynTweets();
-}
-
+/////////////////////////
+// Property management //
+/////////////////////////
 
 LoginControl * LaunchingControl::getLoginControl() {
 	return control;
@@ -44,51 +53,24 @@ void LaunchingControl::setLoginControl(LoginControl * ctrl) {
 	control = ctrl;
 }
 
-void LaunchingControl::allowWiring() {
-	if (!control) {
-		return;
-	}
-
-	// Telling the user that its credentials are required
-	connect(&reyn, SIGNAL(userCredentialsNeeded()),
-			this, SLOT(credentialsNeeded()));
-
-	// Authorizing (or denying) Reyn Tweets
-	connect(control, SIGNAL(authorize(QString,QString)),
-			&reyn, SLOT(authorizeReynTweets(QString,QString)));
-	connect(control, SIGNAL(deny(QString,QString)),
-			&reyn, SLOT(denyReynTweets(QString,QString)));
-
-	// When credentials given by the user are right or wrong
-	connect(&reyn, SIGNAL(credentialsValid(bool)),
-			this, SLOT(validCredentials(bool)));
-}
-
-void LaunchingControl::allowUnwiring() {
-	if (!control) {
-		return;
-	}
-
-	// Telling the user that its credentials are required
-	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
-			   this, SLOT(credentialsNeeded()));
-
-	// Authorizing (or denying) Reyn Tweets
-	disconnect(control, SIGNAL(authorize(QString,QString)),
-			   &reyn, SLOT(authorizeReynTweets(QString,QString)));
-	disconnect(control, SIGNAL(deny(QString,QString)),
-			   &reyn, SLOT(denyReynTweets(QString,QString)));
-
-	// When credentials given by the user are right or wrong
-	disconnect(&reyn, SIGNAL(credentialsValid(bool)),
-			   this, SLOT(validCredentials(bool)));
-}
 
 //////////////////////////////
-// Configuration management //
+// Execution of the process //
 //////////////////////////////
 
-// After loading configuration
+/////////////////////////////////////////////////////////
+// Step 1 : starting ReynTweets by a launching process //
+/////////////////////////////////////////////////////////
+
+void LaunchingControl::launchReynTweets() {
+	// Connection for the end of the launch process
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(launchOK(ProcessWrapper)));
+
+	reyn.launchReynTweets();
+}
+
+// After launching
 void LaunchingControl::launchOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
@@ -131,6 +113,19 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 			emit launchEnded(false, result.errorMsg, true);
 			break;
 	}
+}
+
+///////////////////////////////////////////////////
+// Step 2 : authenticating Reyn Tweets if needed //
+///////////////////////////////////////////////////
+
+// Allowing Reyn Tweets to use a Twitter Account
+void LaunchingControl::allowReynTweets() {
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(allowOK(ProcessWrapper)));
+
+	allowWiring();
+	reyn.allowReynTweets();
 }
 
 // After an authentication, if needed.
@@ -186,6 +181,59 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	}
 }
 
+
+///////////////////////////////
+// Wiring for authentication //
+///////////////////////////////
+
+// Wiring
+void LaunchingControl::allowWiring() {
+	if (!control) {
+		return;
+	}
+
+	// Telling the user that its credentials are required
+	connect(&reyn, SIGNAL(userCredentialsNeeded()),
+			this, SLOT(credentialsNeeded()));
+
+	// Authorizing (or denying) Reyn Tweets
+	connect(control, SIGNAL(authorize(QString,QString)),
+			&reyn, SLOT(authorizeReynTweets(QString,QString)));
+	connect(control, SIGNAL(deny(QString,QString)),
+			&reyn, SLOT(denyReynTweets(QString,QString)));
+
+	// When credentials given by the user are right or wrong
+	connect(&reyn, SIGNAL(credentialsValid(bool)),
+			this, SLOT(validCredentials(bool)));
+}
+
+// Unwiring
+void LaunchingControl::allowUnwiring() {
+	if (!control) {
+		return;
+	}
+
+	// Telling the user that its credentials are required
+	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
+			   this, SLOT(credentialsNeeded()));
+
+	// Authorizing (or denying) Reyn Tweets
+	disconnect(control, SIGNAL(authorize(QString,QString)),
+			   &reyn, SLOT(authorizeReynTweets(QString,QString)));
+	disconnect(control, SIGNAL(deny(QString,QString)),
+			   &reyn, SLOT(denyReynTweets(QString,QString)));
+
+	// When credentials given by the user are right or wrong
+	disconnect(&reyn, SIGNAL(credentialsValid(bool)),
+			   this, SLOT(validCredentials(bool)));
+}
+
+
+////////////////////////////////////////
+// Slots to communicate with the View //
+////////////////////////////////////////
+
+// Credentials OK ?
 void LaunchingControl::validCredentials(bool valid) {
 	if (valid) {
 		// Hiding the login popup
@@ -196,6 +244,7 @@ void LaunchingControl::validCredentials(bool valid) {
 	}
 }
 
+// Reyn needs credentials
 void LaunchingControl::credentialsNeeded() {
 	// Displaying the popup to enter credentials
 	emit showLoginPopup(true);

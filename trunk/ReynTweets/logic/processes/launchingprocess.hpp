@@ -1,3 +1,26 @@
+/// @file launchingprocess.hpp
+/// @brief Header of LaunchingProcess
+/// @author Romain Ducher
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef LAUNCHINGPROCESS_HPP
 #define LAUNCHINGPROCESS_HPP
 
@@ -34,12 +57,7 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Slot executed after verifying credentials.
 		/// @param res Result of the request
 		void verifyCredentialsEnded(ResultWrapper res);
-/*
-		/// @fn authenticationIssue(ProcessWrapper res);
-		/// @brief What happened while authorizing Reyn Tweets
-		/// @param res Process result
-		void authenticationIssue(ProcessWrapper res);
-//*/
+
 	protected:
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;

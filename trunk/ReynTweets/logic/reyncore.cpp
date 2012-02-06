@@ -1,25 +1,25 @@
 /// @file reyncore.cpp
 /// @brief Implementation of ReynCore
 /// @author Romain Ducher
-
-/*
-Copyright 2012 Romain Ducher
-
-This file is part of Reyn Tweets.
-
-Reyn Tweets is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Reyn Tweets is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
-*/
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyncore.hpp"
 #include "processes/processes.hpp"
@@ -35,18 +35,26 @@ ReynCore::~ReynCore() {
 	requestDemander = 0;
 }
 
+// Copy constructor
 ReynCore::ReynCore(const ReynCore & heart) {
 	recopie(heart);
 }
 
+// Affectation
 const ReynCore & ReynCore::operator=(const ReynCore & heart) {
 	recopie(heart);
 	return *this;
 }
 
+// Recopy
 void ReynCore::recopie(const ReynCore & heart) {
 	requestDemander = heart.requestDemander;
 }
+
+
+////////////////////
+// Static members //
+////////////////////
 
 // Configuration
 ReynTweetsConfiguration ReynCore::configuration = ReynTweetsConfiguration();
@@ -119,43 +127,30 @@ void ReynCore::launchReynTweets() {
 // Allowing Reyn Tweets
 void ReynCore::authorizeReynTweets() {
 	OAuthProcess * process = new OAuthProcess();
-
-	// Special wiring
-
-	// Process giving informations about user credentials
-	connect(process, SIGNAL(userCredentialsRequired()),
-			this, SLOT(userCredentialsRequired()));
-	connect(process, SIGNAL(credentialsOK(bool)),
-			this, SLOT(credentialsOK(bool)));
-
-	// User telling the process if he want to authorize or to deny Reyn Tweets
-	connect(this, SIGNAL(authorize(QString,QString)),
-			process, SLOT(authorizeReynTweets(QString,QString)));
-	connect(this, SIGNAL(deny(QString,QString)),
-			process, SLOT(denyReynTweets(QString,QString)));
-
+	oauthSpecialWiring(process);
 	executeProcess(process);
 }
 
 // Allowing Reyn Tweets
 void ReynCore::allowReynTweets() {
 	AllowProcess * process = new AllowProcess(configuration);
+	oauthSpecialWiring(process);
+	executeProcess(process);
+}
 
-	// Special wiring
-
+// Special wiring of an OAuth process.
+void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 	// Process giving informations about user credentials
-	connect(process, SIGNAL(userCredentialsRequired()),
+	connect(oauthProcess, SIGNAL(userCredentialsRequired()),
 			this, SLOT(userCredentialsRequired()));
-	connect(process, SIGNAL(credentialsOK(bool)),
+	connect(oauthProcess, SIGNAL(credentialsOK(bool)),
 			this, SLOT(credentialsOK(bool)));
 
 	// User telling the process if he want to authorize or to deny Reyn Tweets
 	connect(this, SIGNAL(authorize(QString,QString)),
-			process, SLOT(authorizeReynTweets(QString,QString)));
+			oauthProcess, SLOT(authorizeReynTweets(QString,QString)));
 	connect(this, SIGNAL(deny(QString,QString)),
-			process, SLOT(denyReynTweets(QString,QString)));
-
-	executeProcess(process);
+			oauthProcess, SLOT(denyReynTweets(QString,QString)));
 }
 
 

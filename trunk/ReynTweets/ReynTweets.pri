@@ -167,7 +167,8 @@ HEADERS  += \
 	logic/processes/processmanager.hpp \
 	logic/reyncore.hpp \
 	logic/controls/logincontrol.hpp \
-	logic/controls/launchingcontrol.hpp
+	logic/controls/launchingcontrol.hpp \
+    logic/controls/controls.hpp
 
 
 OTHER_FILES = \

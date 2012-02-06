@@ -1,25 +1,25 @@
 /// @file oauthprocess.hpp
 /// @brief Header of OAuthProcess
 /// @author Romain Ducher
-
-/*
-Copyright 2011 Romain Ducher
-
-This file is part of Reyn Tweets.
-
-Reyn Tweets is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Reyn Tweets is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
-*/
+///
+/// @section LICENSE
+///
+/// Copyright 2011 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef OAUTHPROCESS_HPP
 #define OAUTHPROCESS_HPP
@@ -78,7 +78,19 @@ class OAuthProcess : public GenericProcess
 		void accessToken();
 
 	protected:
-		/// @param processResult Value indicating how the OAuth process has ended.
+		/// @fn virtual void buildResult(bool processOK,
+		///								 CoreResult issue,
+		///								 QString errMsg = "",
+		///								 bool isFatal = false,
+		///								 QByteArray accessToken = "",
+		///								 QByteArray tokenSecret = "",
+		///								 qlonglong userID = -1,
+		///								 QString screenName = "");
+		/// @brief Building the process result
+		/// @param processOK Value indicating how the process has ended correctly.
+		/// @param issue Tag describing the issue of the process
+		/// @param errMsg Error message
+		/// @param isFatal Has the process ended fatally.
 		/// @param accessToken User access token
 		/// @param tokenSecret User token secret
 		/// @param userID ID of the user who has just authorized the application

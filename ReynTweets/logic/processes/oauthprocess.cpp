@@ -102,7 +102,6 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 				errorMsg = OAuthProcess::trUtf8("Callback URL not confirmed.");
 				isFatal = true;
 				issue = NO_TOKENS;
-				emit errorProcess(true, "Callback URL not confirmed.");
 			}
 		}break;
 
@@ -119,7 +118,6 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 					.append(" :\n")
 					.append(result.getErrorMessage())
 					.append('.');
-			emit errorProcess(false, errorMsg);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -136,7 +134,6 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
 			errorMsg.append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
-			emit errorProcess(false, errorMsg);
 			break;
 
 		default:
@@ -145,7 +142,6 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
-			emit errorProcess(true, errorMsg);
 			break;
 	}
 
@@ -178,7 +174,6 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 		case NO_ERROR:
 			// The user can give its credentials now
 			emit userCredentialsRequired();
-			emit loginPanelVisible(true);	// DEPRECATED
 			return;
 
 		case API_CALL: {
@@ -194,7 +189,6 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 					.append(" :\n")
 					.append(result.getErrorMessage())
 					.append('.');
-			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
 			if (httpCode / 100 == 5) {
@@ -213,7 +207,6 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
 			errorMsg.append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
-			emit errorProcess(false, errorMsg);
 			break;
 
 		default:
@@ -222,7 +215,6 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
-			emit errorProcess(true, errorMsg);
 			break;
 	}
 
@@ -268,11 +260,8 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 				emit credentialsOK(rightCrdentials);
 
 				if (rightCrdentials) {
-					emit loginPanelVisible(false);	// DEPRECATED
-
 					if (resultMap.value("denied").toBool()) {
 						// Reyn Tweets is denied. The process ends.
-						emit authenticationProcessFinished(RT_DENIED);	// Deprecated
 						buildResult(true, DENIED);
 						emit processEnded();
 					} else {
@@ -286,7 +275,6 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.\n");
 				isFatal = true;
 				issue = POST_AUTHORIZING_FAILED;
-				emit errorProcess(true, errorMsg);
 			}
 		}break;
 
@@ -303,7 +291,6 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 					.append(" :\n")
 					.append(result.getErrorMessage())
 					.append('.');
-			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
 			if (httpCode / 100 == 5) {
@@ -323,7 +310,6 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
 			errorMsg.append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
-			emit errorProcess(false, errorMsg);
 			break;
 
 		default:
@@ -332,7 +318,6 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
-			emit errorProcess(true, errorMsg);
 			break;
 	}
 
@@ -372,11 +357,6 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			qlonglong userID = resultMap.value("user_id").toLongLong();
 			QString screenName = resultMap.value("screen_name").toString();
 
-			emit authenticationProcessFinished(RT_AUTHORIZED,
-											   accessToken,
-											   tokenSecret,
-											   userID,
-											   screenName);
 			// Successful end
 			buildResult(true,
 						AUTHORIZED,
@@ -399,7 +379,6 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 					.append(" :\n")
 					.append(result.getErrorMessage())
 					.append('.');
-			emit errorProcess(false, errorMsg);
 
 			// Looking for specific values of the return code
 			if (httpCode / 100 == 5) {
@@ -417,7 +396,6 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			// Building error message
 			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
 			errorMsg.append(result.getParsingErrorMessage());
-			emit errorProcess(false, errorMsg);
 			break;
 
 		default:
@@ -426,7 +404,6 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			errorMsg.append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
-			emit errorProcess(true, errorMsg);
 			break;
 	}
 

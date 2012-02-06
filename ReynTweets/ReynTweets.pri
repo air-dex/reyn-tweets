@@ -26,7 +26,6 @@
 #-----------------------------------------------------------------------------#
 
 
-# Configuration for the C++/Qt part
 #----------------------#
 # Common configuration #
 #----------------------#
@@ -40,6 +39,9 @@ TEMPLATE = app
 #--------------#
 # Source files #
 #--------------#
+
+# NB : the QML Application Viewer is in another .pri is here :
+# ui/qmlapplicationviewer.pri
 
 SOURCES += \
 	tools/utils.cpp \
@@ -217,7 +219,7 @@ symbian {
 
 # Qt Components for Desktop (http://qt.gitorious.org/qt-components/desktop)
 # is a library with QML Components for desktop. It is under LGPL license (v2.1).
-# QMLCOMP_DESKTOP_PATH is the location of QJSON in the system.
+# QMLCOMP_DESKTOP_PATH is the location of Qt Components for Desktop in the system.
 
 win32 {
 #	QMLCOMP_DESKTOP_PATH = C:\\Libs\\QtComponentsForDesktop
@@ -297,9 +299,9 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	#conf_files 
+	conf_files
 
-	
+
 #--------------#
 # Miscanellous #
 #--------------#

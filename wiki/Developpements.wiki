@@ -19,9 +19,6 @@ Où en est Reyn Tweets ?
     * Coder
     * Tester
     * Résoudre le bug des dates (issue 51) -> Fait avec une classe spéciale ReynTweetsDateTime.
-  * UI quand on arrive sur l'application :
-    * Ecrans d'autorisation à manipuler le compte Twitter.
-    * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
     * Automatisation de la génération de documentation.
@@ -31,17 +28,18 @@ Où en est Reyn Tweets ?
     * Modèle d'un tweet et de ses sous composants (Tweet Entities)
     * Modèle d'une timeline
     * Mettre à jour la doc' de ce qui a déjà été fait.
+    * Résoudre le bug des dates (issue 51).
   * Interface graphique (UI)
     * Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
+    * UI quand on arrive sur l'application :
+      * UI au lancement de l'appli réalisée en QML.
+      * Ecrans d'autorisation à manipuler le compte Twitter.
+      * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
+  * Architecture de l'application.
 
 
 == Ce qui reste à faire ==
 
-  # Sauvegarde des données d'une utilisation sur l'autre
-    # Résoudre le bug des dates (issue 51).
-  # UI quand on arrive sur l'application :
-    # Rendre le tout plus ergonomique, avec moins de popups, par exemple.
-  # Faire des tests unitaires et d'intégration (issue 20).
   # Modèle de données
     # Renommer le fichier des fichiers de la classe ReynTweetsListable
     # Faire du rangement dans les classes de modèle
@@ -51,8 +49,17 @@ Où en est Reyn Tweets ?
     # Faire de la documentation technique non Doxygen. À voir si tout est mis dans le wiki ou pas. Une page existe déjà pour l'architecture ([https://code.google.com/p/reyn-tweets/wiki/Architecture]).
     # Publication quelque part (Google Sites ?)
   # Implémentation des fonctionnalités de base.
-  # Interface graphique (UI).
-    # Finir pour le lancement de l'application
+    # Téléchargement de la timeline perso de l'utilisateur
+    # Ecrire un tweet et le poster.
+  # Faire des tests unitaires et d'intégration (issue 20).
+  # Interface graphique (UI) :
+    # Interface desktop à designer.
+    # UI d'un tweet (format résumé et détaillé).
+    # UI d'un user (résumé et détaillé)
+    # Timelines (listes de tweets)
+    # Listes d'utilisateurs
+    # UI de la partie options, popur les paramètres.
+    # ...
   # Portage sur Symbian
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées (issue 33)
@@ -60,4 +67,4 @@ Où en est Reyn Tweets ?
     # Remontage des tokens (issue 46)
     # Composants graphique non faits manu militari sur desktop (issue 56)
     # ... (cf. bug reporter)
-  # Releaser
+  # Releaser publiquement dès que je jugerai que ce sera suffisemment bon.

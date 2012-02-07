@@ -39,7 +39,7 @@ class ProcessWrapper
 		/// @brief Constructor
 		ProcessWrapper();
 
-		/// @fn ProcessWrapper(QObject * requestSender, RequestResult requestResult);
+		/// @fn ProcessWrapper(QObject * requestSender, ProcessResult requestResult);
 		/// @brief Constructor
 		/// @param requestSender Sender of the process
 		/// @param requestResult Result of the process

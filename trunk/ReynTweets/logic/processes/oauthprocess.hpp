@@ -56,7 +56,7 @@ class OAuthProcess : public GenericProcess
 
 
 	signals:
-		/// @fn void userCredentialsNeeded();
+		/// @fn void userCredentialsRequired();
 		/// @brief Signal sent when the process requires user credentials
 		void userCredentialsRequired();
 

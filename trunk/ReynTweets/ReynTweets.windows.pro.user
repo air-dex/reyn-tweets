@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-02-07T17:08:31. -->
+<!-- Written by Qt Creator 2.4.1, 2012-02-07T17:18:32. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -841,7 +841,7 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
     <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">C:/Users/Romain/Documents/ReynTweets/trunk/symbianBuild</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId">31</value>
-    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">false</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
     <value type="QString" key="ProjectExplorer.BuildCOnfiguration.ToolChain">Qt4ProjectManager.ToolChain.GCCE:C:/QtSDK/Symbian/tools/gcce4/bin/arm-none-symbianelf-g++.exe.arm-symbian-device-elf-32bit.C:/QtSDK/pythongdb/python_2.7based/gdb-arm-none-symbianelf.exe</value>
@@ -891,7 +891,7 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
     <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">C:/Users/Romain/Documents/ReynTweets/trunk/symbianBuild</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId">31</value>
-    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">false</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">2</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">

@@ -1,5 +1,7 @@
 /// @file reyntweetsconfiguration.hpp
 /// @brief Header of ReynTweetsConfiguration
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

@@ -1,5 +1,7 @@
 /// @file resultwrapper.hpp
 /// @brief Header of ResultWrapper
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

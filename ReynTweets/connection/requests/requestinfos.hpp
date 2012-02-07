@@ -1,5 +1,7 @@
 /// @file requestinfos.hpp
 /// @brief Header of RequestInfos
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*
@@ -25,7 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #define REQUESTINFOS_HPP
 
 #include <QObject>
-#include "requests/genericrequester.hpp"
+#include "genericrequester.hpp"
 
 /// @class RequestInfos
 /// @brief Class containing the entity which asks for the request (the "asker")

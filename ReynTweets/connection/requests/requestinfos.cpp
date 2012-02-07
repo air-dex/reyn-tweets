@@ -1,5 +1,7 @@
 /// @file requestinfos.cpp
 /// @brief Implementation of RequestInfos
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

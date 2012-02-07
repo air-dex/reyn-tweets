@@ -29,7 +29,7 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QColor>
 #include <QDataStream>
 #include <QString>
-#include "../connection/requesttype.hpp"
+#include "../connection/requests/requesttype.hpp"
 
 ///////////////////////
 // String convertion //

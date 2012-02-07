@@ -1,5 +1,7 @@
 /// @file reyntweetssettings.hpp
 /// @brief Declaration of the ReynTweetsSettings namespace
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

@@ -1,5 +1,7 @@
 /// @file requestermanager.cpp
 /// @brief Implementation of RequesterManager
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

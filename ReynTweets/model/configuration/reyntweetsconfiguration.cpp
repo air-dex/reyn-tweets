@@ -1,5 +1,7 @@
 /// @file reyntweetsconfiguration.cpp
 /// @brief Implementation of ReynTweetsConfiguration
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*
@@ -23,7 +25,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 #include "reyntweetsconfiguration.hpp"
-#include "../../connection/reyntweetssettings.hpp"
+#include "reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
 
 //////////////////////////////

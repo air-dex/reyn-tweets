@@ -1,5 +1,7 @@
 /// @file twitterurls.cpp
 /// @brief Implementation of the TwitterURL namespace.
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

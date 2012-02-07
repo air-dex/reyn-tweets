@@ -67,7 +67,7 @@ class ReynTweetsDateTime : public QDateTime
 		/// @brief Affectation of a ReynTweetsDateTime
 		const ReynTweetsDateTime & operator=(const ReynTweetsDateTime & date);
 
-		/// @fn void setDate(QString & stringDate);
+		/// @fn void setDate(QString stringDate);
 		/// @brief Core method for parsing the QString representation
 		/// @param stringDate The string to parse
 		void setDate(QString stringDate);

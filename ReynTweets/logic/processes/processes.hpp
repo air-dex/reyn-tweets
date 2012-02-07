@@ -1,4 +1,4 @@
-/// @file processes.cpp
+/// @file processes.hpp
 /// @brief Header with all the existing processes
 /// @author Romain Ducher
 ///

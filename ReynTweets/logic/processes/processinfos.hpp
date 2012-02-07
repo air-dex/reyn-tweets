@@ -1,4 +1,4 @@
-/// @file processinfos.cpp
+/// @file processinfos.hpp
 /// @brief Header of ProcessInfos
 /// @author Romain Ducher
 ///

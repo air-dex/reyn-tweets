@@ -125,7 +125,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets
+INPUT                  = .		# Reyn Tweets source directory
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
 						 *.cc \
@@ -150,6 +150,7 @@ FILE_PATTERNS          = *.c \
 						 *.cs \
 						 *.php \
 						 *.php3 \
+						 *.qml \
 						 *.inc \
 						 *.m \
 						 *.mm \

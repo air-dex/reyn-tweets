@@ -18,7 +18,7 @@ Rectangle {
 		font.pixelSize: 14
 	}
 
-	LaunchingWidget {
+	LaunchingPane {
 		id: splash_screen
 		anchors.fill: parent
 		visible: false

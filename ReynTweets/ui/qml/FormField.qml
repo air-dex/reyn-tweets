@@ -1,7 +1,31 @@
+/// @file FormField.qml
+/// @brief Text Input with a description.
+/// @author Romain DUCHER
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
 import QtQuick 1.1
 
+/// @class FormField
+/// @brief Text Input with a description.
 Rectangle {
-
 	/// @brief Property to determine the width of the input
 	property int field_left_margin: text.width
 
@@ -12,7 +36,7 @@ Rectangle {
 	property bool cursor_visible: false
 
 	/// @brief Legend of the field
-	property string legend: qsTr("text")
+	property string legend: "Description:"
 
 	/// @brief Default text in the input
 	property string field_text: field.text
@@ -23,6 +47,7 @@ Rectangle {
 	height: field_background.height + 2*radius
 	radius: 5
 
+	// Legend
 	Text {
 		id: text
 		text: legend
@@ -34,6 +59,7 @@ Rectangle {
 		font.pixelSize: 14
 	}
 
+	// Rectangle behind field for design concerns.
 	Rectangle {
 		id: field_background
 		height: text.height + 2*radius
@@ -46,9 +72,10 @@ Rectangle {
 		border.color: "#000000"
 		color: "#ffffff"
 
+		// Input
 		TextInput {
 			id: field
-			text: qsTr("")
+			text: ""
 			anchors.leftMargin: parent.radius
 			anchors.rightMargin: parent.radius
 			anchors.bottomMargin: parent.radius
@@ -61,5 +88,10 @@ Rectangle {
 		}
 	}
 
+	/// @fn function getLegendWidth();
+	/// @brief Getting the width of the text
+	///
+	/// It is used to align field_background borders
+	/// @return text.width
 	function getLegendWidth() { return text.width;}
 }

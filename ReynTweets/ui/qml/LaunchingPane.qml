@@ -1,33 +1,33 @@
-/// @file launchingWidget.qml
+/// @file LaunchingPane.qml
 /// @brief Widget displayed at the beginning of the program
 /// @author Romain DUCHER
-
-/*
-Copyright 2012 Romain Ducher
-
-This file is part of Reyn Tweets.
-
-Reyn Tweets is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Reyn Tweets is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
-*/
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 
-/// @class LaunchingWidget
+/// @class LaunchingPane
 /// @brief Component used to launch the app
 Rectangle {
-	id: main_screen
+	id: launching_pane
 	width: 360
 	height: 640
 
@@ -40,16 +40,16 @@ Rectangle {
 	// Logo with the name and the icon
 	Column {
 		id: program_logo
-		width: main_screen.width/3
-		//height: reyn_tweets_icon.height + program_name_label.height
+		width: launching_pane.width/3
 		spacing: (reyn_tweets_icon.height + program_name_label.height)/6
-		anchors.verticalCenterOffset: -bottom.height
+		anchors.verticalCenterOffset: -footer.height
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.horizontalCenter: parent.horizontalCenter
 
+		// Icon
 		Image {
 			id: reyn_tweets_icon
-			width: 5 * main_screen.width /8
+			width: 5 * launching_pane.width /8
 			fillMode: Image.PreserveAspectFit
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.top: parent.top
@@ -57,6 +57,7 @@ Rectangle {
 			source: "../../resources/Logo Reyn Tweets PNG.png"
 		}
 
+		// Name of the program
 		Text {
 			id: program_name_label
 			text: "Reyn Tweets"
@@ -72,8 +73,8 @@ Rectangle {
 
 	// Copyright and website of the application
 	Column {
-		id: bottom
-		width: main_screen.width
+		id: footer
+		width: launching_pane.width
 		spacing: (copyright.height + website.height) / 4
 
 		anchors.horizontalCenter: parent.horizontalCenter
@@ -110,9 +111,9 @@ Rectangle {
 		id: login_popup
 		z: 2
 		anchors.left: parent.left
-		anchors.leftMargin: main_screen.margin
+		anchors.leftMargin: launching_pane.margin
 		anchors.right: parent.right
-		anchors.rightMargin: main_screen.margin
+		anchors.rightMargin: launching_pane.margin
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 	}
@@ -121,7 +122,7 @@ Rectangle {
 	QuitPane {
 		id: abort_pane
 		z: 3
-		width: main_screen.width - 2* main_screen.margin
+		width: launching_pane.width - 2* launching_pane.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
@@ -131,7 +132,7 @@ Rectangle {
 	TwoButtonsActionPane {
 		id: try_again_pane
 		z: 3
-		width: main_screen.width - 2* main_screen.margin
+		width: launching_pane.width - 2* launching_pane.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
@@ -140,7 +141,7 @@ Rectangle {
 		left_button_text: qsTr("Try again")
 		onActLeft: {
 			try_again_pane.visible = false;
-			main_screen.launchReynTweets();
+			launching_pane.launchReynTweets();
 		}
 
 		// Right button
@@ -152,7 +153,7 @@ Rectangle {
 	TwoButtonsActionPane {
 		id: deny_pane
 		z: 3
-		width: main_screen.width - 2* main_screen.margin
+		width: launching_pane.width - 2* launching_pane.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
@@ -169,7 +170,7 @@ Rectangle {
 		right_button_text: qsTr("No")
 		onActRight: {
 			deny_pane.visible = false;
-			main_screen.launchReynTweets();
+			launching_pane.launchReynTweets();
 		}
 	}
 
@@ -196,25 +197,32 @@ Rectangle {
 		control.launchEnded.connect(afterLaunching)
 	}
 
-	// Launching the application
+	/// @fn function launchReynTweets();
+	/// @brief Launching the application
 	function launchReynTweets() {
 		login_popup.state = "UnknownValidity"
 		control.launchReynTweets()
 	}
 
-	// Showing / hiding the login popup
+	/// @fn function setLoginPopupVisible(visible);
+	/// @brief Showing / hiding the login popup
+	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
 	function setLoginPopupVisible(visible) {
 		login_popup.visible = visible;
 	}
 
-	// What happened after the launching processus
+	/// @fn function afterLaunching(endOK, errMsg, fatal);
+	/// @brief What happened after the launching processus
+	/// @param endOK Did the process ends successfully ?
+	/// @param errMsg Error message
+	/// @param fatal Did the process end fatally ?
 	function afterLaunching(endOK, errMsg, fatal) {
 		var pane;	// Pane where a message will be displayed
 		var messageDisplayed = "";
 
 		if (endOK) {	// Successful end
 			// Go to the next step
-			main_screen.endLaunch();
+			launching_pane.endLaunch();
 			return;
 		} else if (fatal) {
 			// Bad and fatal error. Show the quit pane.

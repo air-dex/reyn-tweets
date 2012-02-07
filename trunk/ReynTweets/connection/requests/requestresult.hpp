@@ -1,5 +1,7 @@
 /// @file requestresult.hpp
 /// @brief Header of RequestResult
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*
@@ -26,7 +28,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QNetworkReply>
 #include <QVariant>
-#include "errortypes.hpp"
+#include "../errortypes.hpp"
 
 /// @class RequestResult
 /// @brief Results of a request

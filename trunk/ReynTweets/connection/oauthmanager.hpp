@@ -27,8 +27,8 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QByteArray>
 #include <QMap>
 #include <QString>
-#include "reyntweetssettings.hpp"
-#include "requesttype.hpp"
+#include "../model/configuration/reyntweetssettings.hpp"
+#include "requests/requesttype.hpp"
 
 /// @typedef QMap<QString, QString> ArgsMap
 /// @brief Convinience to designate QMaps that contains arguments

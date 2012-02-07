@@ -49,12 +49,12 @@ SOURCES += \
 	tools/parsers/htmlparser.cpp \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
-	connection/twitterurls.cpp \
-	connection/reyntweetssettings.cpp \
+	connection/requests/twitterurls.cpp \
+	model/configuration/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
-	connection/requestresult.cpp \
-	connection/resultwrapper.cpp \
+	connection/requests/requestresult.cpp \
+	connection/requests/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
 	connection/requests/accounts/verifycredentialsrequester.cpp \
@@ -66,8 +66,8 @@ SOURCES += \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
-	connection/requestinfos.cpp \
-	connection/requestermanager.cpp \
+	connection/requests/requestinfos.cpp \
+	connection/requests/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
 	model/reyntweetsserializablelist.cpp \
 	model/reyntweetsmappable.cpp \
@@ -110,14 +110,14 @@ HEADERS  += \
 	tools/parsers/htmlparser.hpp \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
-	connection/reyntweetssettings.hpp \
-	connection/requesttype.hpp \
+	model/configuration/reyntweetssettings.hpp \
+	connection/requests/requesttype.hpp \
 	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
 	connection/errortypes.hpp \
-	connection/requestresult.hpp \
-	connection/resultwrapper.hpp \
-	connection/twitterurls.hpp \
+	connection/requests/requestresult.hpp \
+	connection/requests/resultwrapper.hpp \
+	connection/requests/twitterurls.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
 	connection/requests/accounts/verifycredentialsrequester.hpp \
@@ -130,8 +130,8 @@ HEADERS  += \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
 	connection/requests/requests.hpp \
-	connection/requestinfos.hpp \
-	connection/requestermanager.hpp \
+	connection/requests/requestinfos.hpp \
+	connection/requests/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
 	model/reyntweetsserializable.hpp \
 	model/reyntweetsserializablelist.hpp \
@@ -168,7 +168,7 @@ HEADERS  += \
 	logic/reyncore.hpp \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
-    logic/controls/controls.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \

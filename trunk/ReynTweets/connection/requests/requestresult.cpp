@@ -1,5 +1,7 @@
 /// @file requestresult.cpp
-/// @brief Header of RequestResult
+/// @brief Implementation of RequestResult
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

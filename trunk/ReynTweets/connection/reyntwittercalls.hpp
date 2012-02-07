@@ -27,10 +27,9 @@ along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QMap>
 #include <QUuid>
-#include <QWebView>
-#include "resultwrapper.hpp"
-#include "requestermanager.hpp"
 #include "requests/genericrequester.hpp"
+#include "requests/resultwrapper.hpp"
+#include "requests/requestermanager.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a

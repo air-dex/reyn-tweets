@@ -1,5 +1,7 @@
 /// @file resultwrapper.cpp
 /// @brief Implementation of ResultSender
+///
+/// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 
 /*

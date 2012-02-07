@@ -1,5 +1,8 @@
 /// @file launchingcontrol.hpp
 /// @brief Header of LaunchingControl
+///
+/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
+/// r204 is in /trunk/ReynTweets/logic
 /// @author Romain Ducher
 ///
 /// @section LICENSE

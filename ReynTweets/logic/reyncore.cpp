@@ -1,5 +1,7 @@
 /// @file reyncore.cpp
 /// @brief Implementation of ReynCore
+///
+/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
 /// @author Romain Ducher
 ///
 /// @section LICENSE

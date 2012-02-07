@@ -1,5 +1,8 @@
 /// @file oauthprocess.cpp
 /// @brief Implementation of OAuthProcess
+///
+/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
+/// r204 is in /trunk/ReynTweets/logic
 /// @author Romain Ducher
 ///
 /// @section LICENSE

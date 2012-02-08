@@ -1,5 +1,6 @@
 /// @file oauthparser.hpp
-/// @brief Header of OAuthParser<br/>
+/// @brief Header of OAuthParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

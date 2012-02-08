@@ -1,5 +1,7 @@
 /// @file reyntweetslistable.cpp
 /// @brief Implementation of ReynTweetsListable
+///
+/// This file was also known as reyntweetsserializablelist.cpp until r243
 /// @author Romain Ducher
 
 /*

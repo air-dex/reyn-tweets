@@ -1,5 +1,6 @@
 /// @file jsonparser.cpp
-/// @brief Implementation of JSONParser<br/>
+/// @brief Implementation of JSONParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

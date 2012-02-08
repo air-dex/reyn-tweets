@@ -1,5 +1,6 @@
 /// @file htmlparser.cpp
-/// @brief Implementation of HTMLParser<br/>
+/// @brief Implementation of HTMLParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

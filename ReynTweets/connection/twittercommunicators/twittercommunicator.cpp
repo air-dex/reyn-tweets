@@ -1,5 +1,6 @@
 /// @file twittercommunicator.cpp
-/// @brief Implementation of TwitterCommunicator.<br/>
+/// @brief Implementation of TwitterCommunicator.
+///
 /// SVN revisions of this file that are older than r80 are in the folder
 /// /trunk/ReynTweets/connection.
 /// @author Romain Ducher

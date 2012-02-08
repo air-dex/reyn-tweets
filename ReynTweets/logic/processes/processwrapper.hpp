@@ -1,4 +1,4 @@
-/// @file processwrapper.cpp
+/// @file processwrapper.hpp
 /// @brief Header of ProcessWrapper
 /// @author Romain Ducher
 ///

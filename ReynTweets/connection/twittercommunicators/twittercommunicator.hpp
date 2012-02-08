@@ -1,5 +1,6 @@
 /// @file twittercommunicator.hpp
-/// @brief Header of TwitterCommunicator.<br/>
+/// @brief Header of TwitterCommunicator.
+///
 /// SVN revisions of this file that are older than r80 are in the folder
 /// /trunk/ReynTweets/connection.
 /// @author Romain Ducher

@@ -1,5 +1,6 @@
 /// @file oauthparser.cpp
-/// @brief Implementation of OAuthParser<br/>
+/// @brief Implementation of OAuthParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

@@ -1,5 +1,6 @@
 /// @file jsonparser.hpp
-/// @brief Header of JSONParser<br/>
+/// @brief Header of JSONParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

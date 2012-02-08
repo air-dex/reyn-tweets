@@ -1,5 +1,6 @@
 /// @file utils.cpp
-/// @brief Implementation of the useful methods declared in utils.hpp.<br/>
+/// @brief Implementation of the useful methods declared in utils.hpp.
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/.
 /// @author Romain Ducher
 

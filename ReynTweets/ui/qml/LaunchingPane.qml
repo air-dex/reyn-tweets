@@ -95,7 +95,7 @@ Rectangle {
 
 		Text {
 			id: website
-			text: qsTr("Website : http://code.google.com/p/reyn-tweeets")
+			text: qsTr("Website : ") +  "http://code.google.com/p/reyn-tweeets"
 			font.family: "Ubuntu"
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -227,23 +227,27 @@ Rectangle {
 		} else if (fatal) {
 			// Bad and fatal error. Show the quit pane.
 			pane = abort_pane;
-			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:\n\n")
+			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:")
+					+ "\n\n"
 					+ errMsg
-					+ qsTr("\n\nThe application will quit.");
+					+ "\n\n"
+					+ qsTr("The application will quit.");
 		} else {
 			// Bad end but not fatal.
 
 			// Is it because Reyn Tweets was denied ?
 			if (errMsg == qsTr("Reyn Tweets was denied.")) {
 				pane = deny_pane;
-				messageDisplayed = errMsg
-						+ qsTr("\n\nAre you sure that you do not want to use Reyn Tweets with your Twitter account ?");
+				messageDisplayed = errMsg + "\n\n"
+						+ qsTr("Are you sure that you do not want Reyn Tweets to use your Twitter account ?");
 			} else {
 				// Display warning popup to ask the user to try again or to quit.
 				pane = try_again_pane;
-				messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:\n\n")
+				messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
+						+ "\n\n"
 						+ errMsg
-						+ qsTr("\n\nDo you want to try to launch Reyn Tweets again or to quit ?");
+						+ "\n\n"
+						+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 			}
 		}
 

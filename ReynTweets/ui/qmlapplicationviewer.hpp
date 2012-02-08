@@ -31,8 +31,8 @@
 /// It is recommended not to modify this file, since newer versions of Qt Creator
 /// may offer an updated version of it.
 
-#ifndef QMLAPPLICATIONVIEWER_H
-#define QMLAPPLICATIONVIEWER_H
+#ifndef QMLAPPLICATIONVIEWER_HPP
+#define QMLAPPLICATIONVIEWER_HPP
 
 #include <QtDeclarative/QDeclarativeView>
 
@@ -73,4 +73,4 @@ private:
 
 QApplication *createApplication(int &argc, char **argv);
 
-#endif // QMLAPPLICATIONVIEWER_H
+#endif // QMLAPPLICATIONVIEWER_HPP

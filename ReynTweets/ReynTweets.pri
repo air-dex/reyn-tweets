@@ -284,10 +284,6 @@ TARGET.CAPABILITY += NetworkServices
 # Folders with QML files #
 #------------------------#
 
-# Main QML file
-#main_folder.source = qml/ReynTweetsQML
-#main_folder.target = qml
-
 # QML files
 qml_files.source = ui/qml
 qml_files.target = ui
@@ -304,7 +300,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	conf_files
+	#conf_files
 
 
 #--------------#

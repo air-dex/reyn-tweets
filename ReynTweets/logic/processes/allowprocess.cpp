@@ -131,15 +131,15 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 
 		case OAUTH_PARSING:
 			// Building error message
-			errorMsg = AllowProcess::trUtf8("Parsing error :\n");
-			errorMsg.append(result.getParsingErrorMessage());
+			errorMsg = AllowProcess::trUtf8("Parsing error :");
+			errorMsg.append('\n').append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = AllowProcess::trUtf8("Unexpected problem :\n");
-			errorMsg.append(result.getErrorMessage()).append(".\n");
+			errorMsg = AllowProcess::trUtf8("Unexpected problem :");
+			errorMsg.append('\n').append(result.getErrorMessage()).append(".\n");
 			issue = UNKNOWN_PROBLEM;
 			break;
 	}

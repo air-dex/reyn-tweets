@@ -25,6 +25,10 @@
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
+#-------------------------------------------------#
+# The file was known as ReynTweets.pro until r231 #
+#-------------------------------------------------#
+
 
 #----------------------#
 # Common configuration #
@@ -69,24 +73,24 @@ SOURCES += \
 	connection/requests/requestinfos.cpp \
 	connection/requests/requestermanager.cpp \
 	connection/reyntwittercalls.cpp \
-	model/reyntweetsserializablelist.cpp \
+	model/reyntweetslistable.cpp \
 	model/reyntweetsmappable.cpp \
-	model/indexbounds.cpp \
-	model/mediasize.cpp \
-	model/mediasizes.cpp \
-	model/media.cpp \
-	model/medialist.cpp \
-	model/urlentity.cpp \
-	model/urlentitylist.cpp \
-	model/usermention.cpp \
-	model/usermentionlist.cpp \
-	model/hashtag.cpp \
-	model/hashtaglist.cpp \
-	model/tweetentities.cpp \
-	model/userinfos.cpp \
-	model/tweet.cpp \
-	model/timeline.cpp \
-	model/user.cpp \
+	model/tweets/indexbounds.cpp \
+	model/tweets/mediasize.cpp \
+	model/tweets/mediasizes.cpp \
+	model/tweets/media.cpp \
+	model/tweets/medialist.cpp \
+	model/tweets/urlentity.cpp \
+	model/tweets/urlentitylist.cpp \
+	model/tweets/usermention.cpp \
+	model/tweets/usermentionlist.cpp \
+	model/tweets/hashtag.cpp \
+	model/tweets/hashtaglist.cpp \
+	model/tweets/tweetentities.cpp \
+	model/users/userinfos.cpp \
+	model/tweets/tweet.cpp \
+	model/timelines/timeline.cpp \
+	model/users/user.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
 	logic/processes/processresult.cpp \
@@ -134,25 +138,25 @@ HEADERS  += \
 	connection/requests/requestermanager.hpp \
 	connection/reyntwittercalls.hpp \
 	model/reyntweetsserializable.hpp \
-	model/reyntweetsserializablelist.hpp \
-	model/reyntweetsserializablelist.tpp \
+	model/reyntweetslistable.hpp \
+	model/reyntweetslistable.tpp \
 	model/reyntweetsmappable.hpp \
-	model/indexbounds.hpp \
-	model/mediasize.hpp \
-	model/mediasizes.hpp \
-	model/urlentity.hpp \
-	model/urlentitylist.hpp \
-	model/media.hpp \
-	model/medialist.hpp \
-	model/usermention.hpp \
-	model/usermentionlist.hpp \
-	model/hashtag.hpp \
-	model/hashtaglist.hpp \
-	model/tweetentities.hpp \
-	model/userinfos.hpp \
-	model/tweet.hpp \
-	model/timeline.hpp \
-	model/user.hpp \
+	model/tweets/indexbounds.hpp \
+	model/tweets/mediasize.hpp \
+	model/tweets/mediasizes.hpp \
+	model/tweets/urlentity.hpp \
+	model/tweets/urlentitylist.hpp \
+	model/tweets/media.hpp \
+	model/tweets/medialist.hpp \
+	model/tweets/usermention.hpp \
+	model/tweets/usermentionlist.hpp \
+	model/tweets/hashtag.hpp \
+	model/tweets/hashtaglist.hpp \
+	model/tweets/tweetentities.hpp \
+	model/users/userinfos.hpp \
+	model/tweets/tweet.hpp \
+	model/timelines/timeline.hpp \
+	model/users/user.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/reyntweetsconfiguration.hpp \
 	logic/coreresult.hpp \

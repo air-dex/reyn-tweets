@@ -47,7 +47,7 @@ Où en est Reyn Tweets ?
 == Ce qui reste à faire ==
 
   # Traduction
-    # Chargement de la traduction dans les fichiers ML (issue 64).
+    # Chargement de la traduction dans les fichiers QML (issue 64).
   # Implémentation des fonctionnalités de base.
     # Téléchargement de la timeline perso de l'utilisateur
     # Ecrire un tweet et le poster.

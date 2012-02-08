@@ -23,6 +23,7 @@
 
 #include <QtGui/QApplication>
 #include <QLocale>
+#include <QScriptEngine>
 #include <QTranslator>
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
@@ -61,23 +62,22 @@ void declareReynTweetsControls() {
 /// @brief Loading the translation of the program
 /// @param a The application
 void loadTranslation(QScopedPointer<QApplication> * a) {
-	// Program in French
-/*
 	QTranslator translator;
-	translator.load("reyntweets_fr");
-	translator.load("reyntweets_qml_launching_widget_fr");
-	(*a)->installTranslator(&translator);
-//*/
+
+	// Program in French
+//	QString locale = "fr";
 
 	// Defalult idiom : local idiom
 	QString locale = QLocale::system().name().section('_', 0, 0);
-	QTranslator translator;
 
 	// Loading translation files
 	translator.load(QString("reyntweets_") + locale);
-	translator.load(QString("reyntweets_qml_launching_widget_") + locale);
+	translator.load(QString("reyntweets_qml_launching_pane_") + locale);
+	translator.load(QString("reyntweets_qml_login_pane_") + locale);
+	translator.load(QString("reyntweets_qml_quit_pane_") + locale);
 
 	(*a)->installTranslator(&translator);
+	//QScriptEngine::installTranslatorFunctions();
 }
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);

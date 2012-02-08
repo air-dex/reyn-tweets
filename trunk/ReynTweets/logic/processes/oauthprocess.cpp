@@ -134,15 +134,15 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 		case OAUTH_PARSING:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
-			errorMsg.append(result.getParsingErrorMessage());
+			errorMsg = OAuthProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n').append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append('.');
+			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
+			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -207,15 +207,15 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 
 		case HTML_PARSING:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
-			errorMsg.append(result.getParsingErrorMessage());
+			errorMsg = OAuthProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n').append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append('.');
+			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
+			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -275,7 +275,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 
 				return;		// The process does not fail for the moment
 			} else {
-				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.\n");
+				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.").append('\n');
 				isFatal = true;
 				issue = POST_AUTHORIZING_FAILED;
 			}
@@ -310,15 +310,15 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 		case HTML_PARSING:
 		case OAUTH_PARSING:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
-			errorMsg.append(result.getParsingErrorMessage());
+			errorMsg = OAuthProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n').append(result.getParsingErrorMessage());
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append('.');
+			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
+			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -397,14 +397,14 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 
 		case OAUTH_PARSING:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:\n");
-			errorMsg.append(result.getParsingErrorMessage());
+			errorMsg = OAuthProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n').append(result.getParsingErrorMessage());
 			break;
 
 		default:
 			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:\n");
-			errorMsg.append(result.getErrorMessage()).append('.');
+			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
+			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;

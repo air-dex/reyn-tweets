@@ -29,7 +29,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <QVariant>
 #include "../reyntweetsmappable.hpp"
-#include "../user.hpp"
+#include "../users/user.hpp"
 
 /// @class UserAccount
 /// @brief User account.
@@ -40,7 +40,6 @@ class UserAccount : public ReynTweetsMappable
 	//////////////////////////////
 	// Serialization management //
 	//////////////////////////////
-
 
 	public:
 		/// @fn UserAccount();

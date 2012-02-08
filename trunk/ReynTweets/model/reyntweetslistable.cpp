@@ -1,5 +1,5 @@
-/// @file reyntweetsserializablelist.cpp
-/// @brief Implementation of ReynTweetsSerializable
+/// @file reyntweetslistable.cpp
+/// @brief Implementation of ReynTweetsListable
 /// @author Romain Ducher
 
 /*
@@ -23,7 +23,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QJson/Parser>
 #include <QJson/Serializer>
-#include "reyntweetsserializablelist.hpp"
+#include "reyntweetslistable.hpp"
 
 /////////////
 // Coplien //

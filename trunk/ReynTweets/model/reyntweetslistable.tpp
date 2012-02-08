@@ -1,6 +1,8 @@
-/// @file reyntweetsserializablelist.tpp
-/// @brief Template header of ReynTweetsSerializable. These file was created
-/// in order to avoid problems while linking object files during the compilation.
+/// @file reyntweetslistable.tpp
+/// @brief Template header of ReynTweetsListable.
+///
+/// These file was created in order to avoid problems while linking object files
+/// during the compilation.
 /// @author Romain Ducher
 
 /*
@@ -25,7 +27,7 @@ along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 #ifndef REYNTWEETSSERIALIZABLELIST_TPP
 #define REYNTWEETSSERIALIZABLELIST_TPP
 
-#include "reyntweetsserializablelist.hpp"
-#include "reyntweetsserializablelist.cpp"
+#include "reyntweetslistable.hpp"
+#include "reyntweetslistable.cpp"
 
 #endif // REYNTWEETSSERIALIZABLELIST_TPP

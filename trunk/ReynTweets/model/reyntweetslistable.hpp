@@ -1,5 +1,5 @@
-/// @file reyntweetsserializablelist.hpp
-/// @brief Header of ReynTweetsSerializable
+/// @file reyntweetslistable.hpp
+/// @brief Header of ReynTweetsListable
 /// @author Romain Ducher
 
 /*

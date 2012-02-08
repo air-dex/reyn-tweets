@@ -1,5 +1,7 @@
 /// @file reyntweetslistable.hpp
 /// @brief Header of ReynTweetsListable
+///
+/// This file was also known as reyntweetsserializablelist.hpp until r243
 /// @author Romain Ducher
 
 /*

@@ -1,5 +1,6 @@
 /// @file utils.hpp
-/// @brief Header with useful methods<br/>
+/// @brief Header with useful methods
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/
 /// @author Romain Ducher
 

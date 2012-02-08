@@ -3,6 +3,8 @@
 ///
 /// These file was created in order to avoid problems while linking object files
 /// during the compilation.
+///
+/// It was also known as reyntweetsserializablelist.tpp until r243
 /// @author Romain Ducher
 
 /*

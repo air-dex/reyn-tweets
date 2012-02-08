@@ -1,5 +1,6 @@
 /// @file genericparser.hpp
-/// @brief Header of GenericParser<br/>
+/// @brief Header of GenericParser
+///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 

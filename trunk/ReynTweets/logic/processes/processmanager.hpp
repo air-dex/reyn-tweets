@@ -28,6 +28,11 @@
 #include <QUuid>
 #include "processinfos.hpp"
 
+/// @class ProcessManager
+/// @brief Map managing processes that are running
+///
+/// It does the same thing as RequesterManager but for processes
+/// instead of requesters.
 class ProcessManager : protected QMap<QUuid, ProcessInfos>
 {
 	public:

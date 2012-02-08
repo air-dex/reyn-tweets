@@ -89,20 +89,21 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>utils.hpp File Reference</h1>
-<p>Header with useful methods<br/>
- Revisions older than r120 are in the folder /trunk/ReynTweets/connection/.  
+<p>Header with useful methods.  
 <a href="#_details">More...</a></p>
 <code>#include &lt;QByteArray&gt;</code><br/>
 <code>#include &lt;QColor&gt;</code><br/>
 <code>#include &lt;QDataStream&gt;</code><br/>
 <code>#include &lt;QString&gt;</code><br/>
-<code>#include &quot;../connection/requesttype.hpp&quot;</code><br/>
+<code>#include &quot;../connection/requests/requesttype.hpp&quot;</code><br/>
 
 <p><a href="utils_8hpp_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a116f736d8b7083822a97783b1e85c052">boolInString</a> (bool b)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a bool into a QString.  <a href="#a116f736d8b7083822a97783b1e85c052"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a3fecdd0d8f879374a2a8451294584741">formatParam</a> (QString name, QString value, bool putDoubleQuotes=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for formatting parameters in the Authorization header, for GET and POST request parameters, and in the signature.  <a href="#a3fecdd0d8f879374a2a8451294584741"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">hmacSha1</a> (QByteArray key, QByteArray baseString)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HMAC-SHA1 algorithm for signatures.  <a href="#acfc27e59d388cde8e4e5e9c960aab0d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">jsonStreamingIn</a> (QDataStream &amp;in, QObject &amp;objectToStream)</td></tr>
@@ -117,9 +118,16 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converting a String into a QColor.  <a href="#a6544a05f2ef240fa28d87dcb9971f9db"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Header with useful methods<br/>
- Revisions older than r120 are in the folder /trunk/ReynTweets/connection/. </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher </dd></dl>
+<p>Header with useful methods. </p>
+<p>Revisions older than r120 are in the folder /trunk/ReynTweets/connection/ </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher</dd></dl>
+<h2><a class="anchor" id="LICENSE">
+LICENSE</a></h2>
+<p>Copyright 2011 Romain Ducher</p>
+<p>This file is part of Reyn Tweets.</p>
+<p>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
 
 <p>Definition in file <a class="el" href="utils_8hpp_source.html">utils.hpp</a>.</p>
 <hr/><h2>Function Documentation</h2>
@@ -148,7 +156,54 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QString </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00084">84</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00050">50</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3fecdd0d8f879374a2a8451294584741"></a><!-- doxytag: member="utils.hpp::formatParam" ref="a3fecdd0d8f879374a2a8451294584741" args="(QString name, QString value, bool putDoubleQuotes=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString formatParam </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>putDoubleQuotes</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Method for formatting parameters in the Authorization header, for GET and POST request parameters, and in the signature. </p>
+<p>The process of how formatting parameters is described <a href="https://dev.twitter.com/docs/auth/authorizing-request">here </a> for the Authorization header and <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a> for the signature. The difference between these two algorithm is that double quotes '"' surrounds the percent encoded value for the Authorization Header and not for the signature. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>Name of the parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>Value of the parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>putDoubleQuotes</em>&nbsp;</td><td>Boolean indicating if double quotes have to surround the percent encoded value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The formatted parameters </dd></dl>
+
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00144">144</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -188,7 +243,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00033">33</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00105">105</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,7 +282,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00118">118</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00084">84</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -266,7 +321,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00105">105</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00071">71</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -304,7 +359,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00079">79</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00139">139</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -333,7 +388,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding QString </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00067">67</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00038">38</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +418,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding color : &amp;#135;RRGGBB </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00089">89</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00055">55</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +437,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:25 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

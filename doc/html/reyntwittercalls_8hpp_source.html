@@ -92,24 +92,24 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef REYNTWITTERCALLS_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNTWITTERCALLS_HPP</span>
@@ -117,88 +117,92 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QMap&gt;</span>
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QUuid&gt;</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QWebView&gt;</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="resultwrapper_8hpp.html" title="Header of ResultWrapper.">resultwrapper.hpp</a>&quot;</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="requestermanager_8hpp.html" title="Header of RequesterManager.">requestermanager.hpp</a>&quot;</span>
-<a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="genericrequester_8hpp.html" title="Header of GenericRequester.">requests/genericrequester.hpp</a>&quot;</span>
-<a name="l00034"></a>00034 
-<a name="l00038"></a><a class="code" href="class_reyn_twitter_calls.html">00038</a> <span class="keyword">class </span><a class="code" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> : <span class="keyword">public</span> QObject
-<a name="l00039"></a>00039 {
-<a name="l00040"></a>00040         Q_OBJECT
-<a name="l00041"></a>00041 
-<a name="l00043"></a>00043         <span class="comment">// Core management of the class //</span>
-<a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046         <span class="keyword">public</span>:
-<a name="l00050"></a>00050                 <a class="code" href="class_reyn_twitter_calls.html#a3d734925a7ae27acf494808bb1d4f16a" title="Constructor.">ReynTwitterCalls</a>(QObject * requester);
-<a name="l00051"></a>00051 
-<a name="l00054"></a>00054                 <a class="code" href="class_reyn_twitter_calls.html#a672e5f4bd86d25343f911f304aef04b6" title="Destructor.">~ReynTwitterCalls</a>();
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056         signals:
-<a name="l00060"></a>00060                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ac16c647f67abd118fc5a39b98ed60371" title="Signal emitted to the QObject that sends the request.">sendResult</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keyword">public</span> slots:
-<a name="l00065"></a>00065                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ab7a6c5af99b6232600e61545e9892f30" title="Slot executed when a requester has finished its work.">endRequest</a>();
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keyword">protected</span>:
-<a name="l00069"></a><a class="code" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab">00069</a>                 QObject * <a class="code" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab" title="QObject that asks for the request.">requestDemander</a>;
-<a name="l00070"></a>00070 
-<a name="l00072"></a><a class="code" href="class_reyn_twitter_calls.html#af8e02bd83c32de3982caeb4b388fafac">00072</a>                 <span class="keyword">static</span> <a class="code" href="class_requester_manager.html" title="Entity storing requests while they are executed. They are indexed with a UUID.">RequesterManager</a> <a class="code" href="class_reyn_twitter_calls.html#af8e02bd83c32de3982caeb4b388fafac" title="Entity which manages requests that are running.">requesterManager</a>;
-<a name="l00073"></a>00073 
-<a name="l00075"></a><a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47">00075</a>                 <span class="keyword">static</span> <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>;
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077         <span class="keyword">private</span>:
-<a name="l00081"></a>00081                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ad2ec35f8bd25ef22f262cd1a6b9168f6" title="Adding a requester to the requester manager.">addRequester</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
-<a name="l00082"></a>00082 
-<a name="l00086"></a>00086                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a17e8805c13f5767d2facbbb3562ad14b" title="Removing a requester of the requester manager.">removeRequester</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
-<a name="l00087"></a>00087 
-<a name="l00092"></a>00092                 <a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> <a class="code" href="class_reyn_twitter_calls.html#aca294cc5c13a7ac9a2fc0032361bea5a" title="Method that builds the wrapper of a result.">buildResultSender</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * endedRequest);
-<a name="l00093"></a>00093 
-<a name="l00097"></a>00097                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="genericrequester_8hpp.html" title="Header of GenericRequester.">requests/genericrequester.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="resultwrapper_8hpp.html" title="Header of ResultWrapper.">requests/resultwrapper.hpp</a>&quot;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="requestermanager_8hpp.html" title="Header of RequesterManager.">requests/requestermanager.hpp</a>&quot;</span>
+<a name="l00033"></a>00033 
+<a name="l00037"></a><a class="code" href="class_reyn_twitter_calls.html">00037</a> <span class="keyword">class </span><a class="code" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> : <span class="keyword">public</span> QObject
+<a name="l00038"></a>00038 {
+<a name="l00039"></a>00039         Q_OBJECT
+<a name="l00040"></a>00040 
+<a name="l00042"></a>00042         <span class="comment">// Core management of the class //</span>
+<a name="l00044"></a>00044 <span class="comment"></span>
+<a name="l00045"></a>00045         <span class="keyword">public</span>:
+<a name="l00049"></a>00049                 <a class="code" href="class_reyn_twitter_calls.html#a3d734925a7ae27acf494808bb1d4f16a" title="Constructor.">ReynTwitterCalls</a>(QObject * requester);
+<a name="l00050"></a>00050 
+<a name="l00053"></a>00053                 <a class="code" href="class_reyn_twitter_calls.html#a672e5f4bd86d25343f911f304aef04b6" title="Destructor.">~ReynTwitterCalls</a>();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         signals:
+<a name="l00059"></a>00059                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ac16c647f67abd118fc5a39b98ed60371" title="Signal emitted to the QObject that sends the request.">sendResult</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <span class="keyword">public</span> slots:
+<a name="l00064"></a>00064                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ab7a6c5af99b6232600e61545e9892f30" title="Slot executed when a requester has finished its work.">endRequest</a>();
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066         <span class="keyword">protected</span>:
+<a name="l00068"></a><a class="code" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab">00068</a>                 QObject * <a class="code" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab" title="QObject that asks for the request.">requestDemander</a>;
+<a name="l00069"></a>00069 
+<a name="l00071"></a><a class="code" href="class_reyn_twitter_calls.html#af8e02bd83c32de3982caeb4b388fafac">00071</a>                 <span class="keyword">static</span> <a class="code" href="class_requester_manager.html" title="Entity storing requests while they are executed. They are indexed with a UUID.">RequesterManager</a> <a class="code" href="class_reyn_twitter_calls.html#af8e02bd83c32de3982caeb4b388fafac" title="Entity which manages requests that are running.">requesterManager</a>;
+<a name="l00072"></a>00072 
+<a name="l00074"></a><a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47">00074</a>                 <span class="keyword">static</span> <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         <span class="keyword">private</span>:
+<a name="l00080"></a>00080                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ad2ec35f8bd25ef22f262cd1a6b9168f6" title="Adding a requester to the requester manager.">addRequester</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
+<a name="l00081"></a>00081 
+<a name="l00085"></a>00085                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a17e8805c13f5767d2facbbb3562ad14b" title="Removing a requester of the requester manager.">removeRequester</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
+<a name="l00086"></a>00086 
+<a name="l00091"></a>00091                 <a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> <a class="code" href="class_reyn_twitter_calls.html#aca294cc5c13a7ac9a2fc0032361bea5a" title="Method that builds the wrapper of a result.">buildResultSender</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * endedRequest);
+<a name="l00092"></a>00092 
+<a name="l00096"></a>00096                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(<a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a> * requester);
+<a name="l00097"></a>00097 
 <a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00101"></a>00101         <span class="comment">// Methods calling Twitter //</span>
-<a name="l00103"></a>00103 <span class="comment"></span>
-<a name="l00104"></a>00104         <span class="keyword">public</span>:
-<a name="l00106"></a>00106                 <span class="comment">// Searches //</span>
-<a name="l00108"></a>00108 <span class="comment"></span>
-<a name="l00113"></a>00113                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">search</a>(QString q);
+<a name="l00100"></a>00100         <span class="comment">// Methods calling Twitter //</span>
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103         <span class="keyword">public</span>:
+<a name="l00105"></a>00105                 <span class="comment">// Accounts //</span>
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00113"></a>00113                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8be1c4bc810c8b7c543991717194d66f" title="Verifying credentials.">verifyCredentials</a>(<span class="keywordtype">bool</span> entities, <span class="keywordtype">bool</span> skipStatus);
 <a name="l00114"></a>00114 
 <a name="l00115"></a>00115 
-<a name="l00117"></a>00117                 <span class="comment">// OAuth //</span>
+<a name="l00117"></a>00117                 <span class="comment">// Searches //</span>
 <a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00123"></a>00123                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
-<a name="l00124"></a>00124 
-<a name="l00134"></a>00134                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">setNewTokens</a>(QByteArray <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>,
-<a name="l00135"></a>00135                                                                  QByteArray tokenSecret,
-<a name="l00136"></a>00136                                                                  QByteArray consumerKey = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>,
-<a name="l00137"></a>00137                                                                  QByteArray consumerSecret = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>);
-<a name="l00138"></a>00138 
-<a name="l00142"></a>00142                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">requestToken</a>();
-<a name="l00143"></a>00143 
-<a name="l00147"></a>00147                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">authorize</a>();
-<a name="l00148"></a>00148 
-<a name="l00157"></a>00157                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">postAuthorize</a>(QString login,
-<a name="l00158"></a>00158                                                    QString password,
-<a name="l00159"></a>00159                                                    <span class="keywordtype">bool</span> deny);
-<a name="l00160"></a>00160 
-<a name="l00164"></a>00164                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>();
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166 
-<a name="l00168"></a>00168                 <span class="comment">// Tweets //</span>
-<a name="l00170"></a>00170 <span class="comment"></span>
-<a name="l00179"></a>00179                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">showTweet</a>(qlonglong tweetID,
-<a name="l00180"></a>00180                                            <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
-<a name="l00181"></a>00181                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>);
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 
-<a name="l00185"></a>00185                 <span class="comment">// Users //</span>
-<a name="l00187"></a>00187 <span class="comment"></span>
-<a name="l00193"></a>00193                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00124"></a>00124                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">search</a>(QString q);
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 
+<a name="l00128"></a>00128                 <span class="comment">// OAuth //</span>
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00134"></a>00134                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00135"></a>00135 
+<a name="l00145"></a>00145                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">setNewTokens</a>(QByteArray <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>,
+<a name="l00146"></a>00146                                                                  QByteArray tokenSecret,
+<a name="l00147"></a>00147                                                                  QByteArray consumerKey = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>,
+<a name="l00148"></a>00148                                                                  QByteArray consumerSecret = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>);
+<a name="l00149"></a>00149 
+<a name="l00153"></a>00153                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">requestToken</a>();
+<a name="l00154"></a>00154 
+<a name="l00158"></a>00158                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">authorize</a>();
+<a name="l00159"></a>00159 
+<a name="l00168"></a>00168                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">postAuthorize</a>(QString login,
+<a name="l00169"></a>00169                                                    QString password,
+<a name="l00170"></a>00170                                                    <span class="keywordtype">bool</span> deny);
+<a name="l00171"></a>00171 
+<a name="l00175"></a>00175                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>();
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177 
+<a name="l00179"></a>00179                 <span class="comment">// Tweets //</span>
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00190"></a>00190                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">showTweet</a>(qlonglong tweetID,
+<a name="l00191"></a>00191                                            <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
+<a name="l00192"></a>00192                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>);
+<a name="l00193"></a>00193 
 <a name="l00194"></a>00194 
-<a name="l00200"></a>00200                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00201"></a>00201 };
-<a name="l00202"></a>00202 
-<a name="l00203"></a>00203 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
+<a name="l00196"></a>00196                 <span class="comment">// Users //</span>
+<a name="l00198"></a>00198 <span class="comment"></span>
+<a name="l00204"></a>00204                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00205"></a>00205 
+<a name="l00211"></a>00211                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00212"></a>00212 };
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -214,7 +218,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

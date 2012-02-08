@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requestresult.cpp Source File</title>
+<title>ReynTweets: connection/requests/requestresult.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>
+  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
   </div>
 </div>
 <div class="contents">
@@ -92,96 +92,98 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="requestresult_8hpp.html" title="Header of RequestResult.">requestresult.hpp</a>&quot;</span>
+<a name="l00024"></a>00024 
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="comment">// Default constructor</span>
-<a name="l00027"></a><a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2">00027</a> <a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2" title="Default constructor. It builds an invalid result.">RequestResult::RequestResult</a>() :
-<a name="l00028"></a>00028         resultType(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>),
-<a name="l00029"></a>00029         parsedResult(),
-<a name="l00030"></a>00030         httpCode(),
-<a name="l00031"></a>00031         httpReason(),
-<a name="l00032"></a>00032         parsingErrors(),
-<a name="l00033"></a>00033         errorMessage(<span class="stringliteral">&quot;Invalid result&quot;</span>)
-<a name="l00034"></a>00034 {}
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="comment">// Constructor</span>
-<a name="l00037"></a><a class="code" href="class_request_result.html#a3bdda2a34de51b0f0f74969009e6c2cc">00037</a> <a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2" title="Default constructor. It builds an invalid result.">RequestResult::RequestResult</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType,
-<a name="l00038"></a>00038                                                          QVariant parsedResults,
-<a name="l00039"></a>00039                                                          <span class="keywordtype">int</span> httpReturnCode,
-<a name="l00040"></a>00040                                                          QString httpReturnReason,
-<a name="l00041"></a>00041                                                          QVariantMap parsingErrorInfos,
-<a name="l00042"></a>00042                                                          QString errorMsg) :
-<a name="l00043"></a>00043         resultType(errorType),
-<a name="l00044"></a>00044         parsedResult(parsedResults),
-<a name="l00045"></a>00045         httpCode(httpReturnCode),
-<a name="l00046"></a>00046         httpReason(httpReturnReason),
-<a name="l00047"></a>00047         parsingErrors(parsingErrorInfos),
-<a name="l00048"></a>00048         errorMessage(errorMsg)
-<a name="l00049"></a>00049 {}
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="comment">// Method indicating if the request was successful</span>
-<a name="l00052"></a><a class="code" href="class_request_result.html#a81bc608468d3203d3ff619080c2fa175">00052</a> <span class="keywordtype">bool</span> <a class="code" href="class_request_result.html#a81bc608468d3203d3ff619080c2fa175" title="Method indicating if the request was successful.">RequestResult::isRequestSuccessful</a>() {
-<a name="l00053"></a>00053         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>;
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="comment">// Method indicating if the request result is fake</span>
-<a name="l00057"></a><a class="code" href="class_request_result.html#a5810ac704a7bc733d8a3fdb7aba2a2ca">00057</a> <span class="keywordtype">bool</span> <a class="code" href="class_request_result.html#a5810ac704a7bc733d8a3fdb7aba2a2ca" title="Method indicating if the request result is fake.">RequestResult::isFakeResult</a>() {
-<a name="l00058"></a>00058         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>;
-<a name="l00059"></a>00059 }
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <span class="comment">// Getter of requestSuccessful</span>
-<a name="l00062"></a><a class="code" href="class_request_result.html#a8c0701616a77999e3fa9ac6829261c67">00062</a> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> <a class="code" href="class_request_result.html#a8c0701616a77999e3fa9ac6829261c67" title="Getter on requestSuccessful.">RequestResult::getErrorType</a>() {
-<a name="l00063"></a>00063         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a>;
-<a name="l00064"></a>00064 }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="comment">// Getter on real results</span>
-<a name="l00067"></a><a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0">00067</a> QVariant <a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0" title="Getter on real results.">RequestResult::getParsedResult</a>() {
-<a name="l00068"></a>00068         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>;
-<a name="l00069"></a>00069 }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="comment">// Getter on httpCode</span>
-<a name="l00072"></a><a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542">00072</a> <span class="keywordtype">int</span> <a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542" title="Getter on httpCode.">RequestResult::getHttpCode</a>() {
-<a name="l00073"></a>00073         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#adbc573a97d090f0f827e43542e87d370" title="HTTP return code.">httpCode</a>;
-<a name="l00074"></a>00074 }
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076 <span class="comment">// Getter on httpReason</span>
-<a name="l00077"></a><a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93">00077</a> QString <a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93" title="Getter on httpReason.">RequestResult::getHttpReason</a>() {
-<a name="l00078"></a>00078         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a3aa9b431f1b4bc32e5b9641e433ad974" title="Reason associated to the HTTP return code.">httpReason</a>;
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081 <span class="comment">// Getter on the parsing error message</span>
-<a name="l00082"></a><a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3">00082</a> QString <a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3" title="Getter on the parsing error message.">RequestResult::getParsingErrorMessage</a>() {
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a9704f7b5fa724e8bbee81775b2db8909" title="Potential errors that can occur while parsing results.">parsingErrors</a>.value(<span class="stringliteral">&quot;errorMsg&quot;</span>).toString();
-<a name="l00084"></a>00084 }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment">// Getter on parsingErrors</span>
-<a name="l00087"></a><a class="code" href="class_request_result.html#a64f12ae9e8c6d6a14c7b5ebffa278baa">00087</a> QVariantMap <a class="code" href="class_request_result.html#a64f12ae9e8c6d6a14c7b5ebffa278baa" title="Getter on parsingErrors.">RequestResult::getParsingErrors</a>() {
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a9704f7b5fa724e8bbee81775b2db8909" title="Potential errors that can occur while parsing results.">parsingErrors</a>;
-<a name="l00089"></a>00089 }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="comment">// Getter on the error massage</span>
-<a name="l00092"></a><a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1">00092</a> QString <a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">RequestResult::getErrorMessage</a>() {
-<a name="l00093"></a>00093         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#af289f4b16f426be6c998c8e95ab7791d" title="Error message.">errorMessage</a>;
-<a name="l00094"></a>00094 }
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="requestresult_8hpp.html" title="Header of RequestResult.">requestresult.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="comment">// Default constructor</span>
+<a name="l00029"></a><a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2">00029</a> <a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2" title="Default constructor. It builds an invalid result.">RequestResult::RequestResult</a>() :
+<a name="l00030"></a>00030         resultType(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>),
+<a name="l00031"></a>00031         parsedResult(),
+<a name="l00032"></a>00032         httpCode(),
+<a name="l00033"></a>00033         httpReason(),
+<a name="l00034"></a>00034         parsingErrors(),
+<a name="l00035"></a>00035         errorMessage(<span class="stringliteral">&quot;Invalid result&quot;</span>)
+<a name="l00036"></a>00036 {}
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">// Constructor</span>
+<a name="l00039"></a><a class="code" href="class_request_result.html#a3bdda2a34de51b0f0f74969009e6c2cc">00039</a> <a class="code" href="class_request_result.html#a11b3c219b35c4e10e2e1379958db50c2" title="Default constructor. It builds an invalid result.">RequestResult::RequestResult</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType,
+<a name="l00040"></a>00040                                                          QVariant parsedResults,
+<a name="l00041"></a>00041                                                          <span class="keywordtype">int</span> httpReturnCode,
+<a name="l00042"></a>00042                                                          QString httpReturnReason,
+<a name="l00043"></a>00043                                                          QVariantMap parsingErrorInfos,
+<a name="l00044"></a>00044                                                          QString errorMsg) :
+<a name="l00045"></a>00045         resultType(errorType),
+<a name="l00046"></a>00046         parsedResult(parsedResults),
+<a name="l00047"></a>00047         httpCode(httpReturnCode),
+<a name="l00048"></a>00048         httpReason(httpReturnReason),
+<a name="l00049"></a>00049         parsingErrors(parsingErrorInfos),
+<a name="l00050"></a>00050         errorMessage(errorMsg)
+<a name="l00051"></a>00051 {}
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="comment">// Method indicating if the request was successful</span>
+<a name="l00054"></a><a class="code" href="class_request_result.html#a81bc608468d3203d3ff619080c2fa175">00054</a> <span class="keywordtype">bool</span> <a class="code" href="class_request_result.html#a81bc608468d3203d3ff619080c2fa175" title="Method indicating if the request was successful.">RequestResult::isRequestSuccessful</a>() {
+<a name="l00055"></a>00055         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>;
+<a name="l00056"></a>00056 }
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="comment">// Method indicating if the request result is fake</span>
+<a name="l00059"></a><a class="code" href="class_request_result.html#a5810ac704a7bc733d8a3fdb7aba2a2ca">00059</a> <span class="keywordtype">bool</span> <a class="code" href="class_request_result.html#a5810ac704a7bc733d8a3fdb7aba2a2ca" title="Method indicating if the request result is fake.">RequestResult::isFakeResult</a>() {
+<a name="l00060"></a>00060         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>;
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="comment">// Getter of requestSuccessful</span>
+<a name="l00064"></a><a class="code" href="class_request_result.html#a8c0701616a77999e3fa9ac6829261c67">00064</a> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> <a class="code" href="class_request_result.html#a8c0701616a77999e3fa9ac6829261c67" title="Getter on requestSuccessful.">RequestResult::getErrorType</a>() {
+<a name="l00065"></a>00065         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a>;
+<a name="l00066"></a>00066 }
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="comment">// Getter on real results</span>
+<a name="l00069"></a><a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0">00069</a> QVariant <a class="code" href="class_request_result.html#ad68a5520d8012399c251bca146263fc0" title="Getter on real results.">RequestResult::getParsedResult</a>() {
+<a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>;
+<a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="comment">// Getter on httpCode</span>
+<a name="l00074"></a><a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542">00074</a> <span class="keywordtype">int</span> <a class="code" href="class_request_result.html#a37ce7f09a8f7dfcd606c9fe762fc2542" title="Getter on httpCode.">RequestResult::getHttpCode</a>() {
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#adbc573a97d090f0f827e43542e87d370" title="HTTP return code.">httpCode</a>;
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="comment">// Getter on httpReason</span>
+<a name="l00079"></a><a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93">00079</a> QString <a class="code" href="class_request_result.html#ad3a9fe5029968a3a34bcf26a5580ea93" title="Getter on httpReason.">RequestResult::getHttpReason</a>() {
+<a name="l00080"></a>00080         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a3aa9b431f1b4bc32e5b9641e433ad974" title="Reason associated to the HTTP return code.">httpReason</a>;
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="comment">// Getter on the parsing error message</span>
+<a name="l00084"></a><a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3">00084</a> QString <a class="code" href="class_request_result.html#a86ce794a4628982c2c3f653baeb553e3" title="Getter on the parsing error message.">RequestResult::getParsingErrorMessage</a>() {
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a9704f7b5fa724e8bbee81775b2db8909" title="Potential errors that can occur while parsing results.">parsingErrors</a>.value(<span class="stringliteral">&quot;errorMsg&quot;</span>).toString();
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="comment">// Getter on parsingErrors</span>
+<a name="l00089"></a><a class="code" href="class_request_result.html#a64f12ae9e8c6d6a14c7b5ebffa278baa">00089</a> QVariantMap <a class="code" href="class_request_result.html#a64f12ae9e8c6d6a14c7b5ebffa278baa" title="Getter on parsingErrors.">RequestResult::getParsingErrors</a>() {
+<a name="l00090"></a>00090         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#a9704f7b5fa724e8bbee81775b2db8909" title="Potential errors that can occur while parsing results.">parsingErrors</a>;
+<a name="l00091"></a>00091 }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment">// Getter on the error massage</span>
+<a name="l00094"></a><a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1">00094</a> QString <a class="code" href="class_request_result.html#ab40000dcd5ad5a341b90ba7330a1aed1" title="Getter on the error massage.">RequestResult::getErrorMessage</a>() {
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> <a class="code" href="class_request_result.html#af289f4b16f426be6c998c8e95ab7791d" title="Error message.">errorMessage</a>;
+<a name="l00096"></a>00096 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -197,7 +199,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:20 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

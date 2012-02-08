@@ -92,124 +92,186 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2012 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsconfiguration_8hpp.html" title="Header of ReynTweetsConfiguration.">reyntweetsconfiguration.hpp</a>&quot;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../../connection/reyntweetssettings.hpp&quot;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;../../tools/utils.hpp&quot;</span>
-<a name="l00027"></a>00027 
-<a name="l00029"></a>00029 <span class="comment">// Serialization management //</span>
-<a name="l00031"></a>00031 <span class="comment"></span>
-<a name="l00032"></a>00032 <span class="comment">// Default constructor</span>
-<a name="l00033"></a><a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90">00033</a> <a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90" title="Default constructor.">ReynTweetsConfiguration::ReynTweetsConfiguration</a>() :
-<a name="l00034"></a>00034         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00035"></a>00035         userAccount()
-<a name="l00036"></a>00036 {}
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="comment">// Destructor</span>
-<a name="l00039"></a><a class="code" href="class_reyn_tweets_configuration.html#a13bd2a27889778ee2bb82dd7ff87545a">00039</a> <a class="code" href="class_reyn_tweets_configuration.html#a13bd2a27889778ee2bb82dd7ff87545a" title="Destructor.">ReynTweetsConfiguration::~ReynTweetsConfiguration</a>() {}
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QFile&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsconfiguration_8hpp.html" title="Header of ReynTweetsConfiguration.">reyntweetsconfiguration.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetssettings_8hpp.html" title="Declaration of the ReynTweetsSettings namespace.">reyntweetssettings.hpp</a>&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../../tools/utils.hpp&quot;</span>
+<a name="l00030"></a>00030 
+<a name="l00032"></a>00032 <span class="comment">// Serialization management //</span>
+<a name="l00034"></a>00034 <span class="comment"></span>
+<a name="l00035"></a>00035 <span class="comment">// Default constructor</span>
+<a name="l00036"></a><a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90">00036</a> <a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90" title="Default constructor.">ReynTweetsConfiguration::ReynTweetsConfiguration</a>() :
+<a name="l00037"></a>00037         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
+<a name="l00038"></a>00038         userAccount()
+<a name="l00039"></a>00039 {}
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="comment">// Copy constructor</span>
-<a name="l00042"></a><a class="code" href="class_reyn_tweets_configuration.html#af6fab0a076bbf6c2bc1b217734a211a2">00042</a> <a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90" title="Default constructor.">ReynTweetsConfiguration::ReynTweetsConfiguration</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
-<a name="l00043"></a>00043         <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">recopie</a>(configuration);
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment">// Affectation</span>
-<a name="l00047"></a><a class="code" href="class_reyn_tweets_configuration.html#a7e2217ede5b34e225427e9cb1579afa2">00047</a> <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; <a class="code" href="class_reyn_tweets_configuration.html#a7e2217ede5b34e225427e9cb1579afa2" title="Affectation.">ReynTweetsConfiguration::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
-<a name="l00048"></a>00048         <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">recopie</a>(configuration);
-<a name="l00049"></a>00049         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="comment">// Copy of a ReynTweetsConfiguration</span>
-<a name="l00053"></a><a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761">00053</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">ReynTweetsConfiguration::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
-<a name="l00054"></a>00054         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a> = configuration.<a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
-<a name="l00055"></a>00055 }
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="comment">// Serialization declaration</span>
-<a name="l00058"></a><a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7">00058</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7" title="Serialization declaration.">ReynTweetsConfiguration::initSystem</a>() {
-<a name="l00059"></a>00059         qRegisterMetaTypeStreamOperators&lt;ReynTweetsConfiguration&gt;(<span class="stringliteral">&quot;ReynTweetsConfiguration&quot;</span>);
-<a name="l00060"></a>00060         qMetaTypeId&lt;ReynTweetsConfiguration&gt;();
-<a name="l00061"></a>00061 }
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 
-<a name="l00065"></a>00065 <span class="comment">// JSON Streaming //</span>
-<a name="l00067"></a>00067 <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00069"></a><a class="code" href="reyntweetsconfiguration_8hpp.html#a5082b68d77bd7d6e0fab4b3b026c8062">00069</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out,
-<a name="l00070"></a>00070                                                  <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration)
-<a name="l00071"></a>00071 {
-<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, configuration);
-<a name="l00073"></a>00073 }
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00076"></a><a class="code" href="reyntweetsconfiguration_8hpp.html#ac4705f57b289e448ce9537e70ad43608">00076</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in,
-<a name="l00077"></a>00077                                                  <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration)
-<a name="l00078"></a>00078 {
-<a name="l00079"></a>00079         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, configuration);
-<a name="l00080"></a>00080 }
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 
-<a name="l00084"></a>00084 <span class="comment">// Properties management //</span>
-<a name="l00086"></a>00086 <span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">// Reading the property p_userAccount</span>
-<a name="l00088"></a><a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494">00088</a> QVariantMap <a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494" title="Reading the property user_account.">ReynTweetsConfiguration::getUserAccountProperty</a>() {
-<a name="l00089"></a>00089         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="comment">// Writing the property p_userAccount</span>
-<a name="l00093"></a><a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339">00093</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339" title="Writing the property user_account.">ReynTweetsConfiguration::setUserAccount</a>(QVariantMap accountMap) {
-<a name="l00094"></a>00094         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(accountMap);
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 
-<a name="l00099"></a>00099 <span class="comment">// Static members //</span>
-<a name="l00101"></a>00101 <span class="comment"></span>
-<a name="l00102"></a>00102 <span class="comment">// Consumer Key</span>
-<a name="l00103"></a>00103 QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY</a> = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>;
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="comment">// Consumer Secret</span>
-<a name="l00106"></a>00106 QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET</a> = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>;
+<a name="l00041"></a>00041 <span class="comment">// Destructor</span>
+<a name="l00042"></a><a class="code" href="class_reyn_tweets_configuration.html#a13bd2a27889778ee2bb82dd7ff87545a">00042</a> <a class="code" href="class_reyn_tweets_configuration.html#a13bd2a27889778ee2bb82dd7ff87545a" title="Destructor.">ReynTweetsConfiguration::~ReynTweetsConfiguration</a>() {}
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="comment">// Copy constructor</span>
+<a name="l00045"></a><a class="code" href="class_reyn_tweets_configuration.html#af6fab0a076bbf6c2bc1b217734a211a2">00045</a> <a class="code" href="class_reyn_tweets_configuration.html#a18037f63ed6ca81effc9e8927d737b90" title="Default constructor.">ReynTweetsConfiguration::ReynTweetsConfiguration</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
+<a name="l00046"></a>00046         <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">recopie</a>(configuration);
+<a name="l00047"></a>00047 }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="comment">// Affectation</span>
+<a name="l00050"></a><a class="code" href="class_reyn_tweets_configuration.html#a7e2217ede5b34e225427e9cb1579afa2">00050</a> <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; <a class="code" href="class_reyn_tweets_configuration.html#a7e2217ede5b34e225427e9cb1579afa2" title="Affectation.">ReynTweetsConfiguration::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
+<a name="l00051"></a>00051         <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">recopie</a>(configuration);
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00053"></a>00053 }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="comment">// Copy of a ReynTweetsConfiguration</span>
+<a name="l00056"></a><a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761">00056</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#ac39edc1410cada738881cec82096d761" title="Copy of a ReynTweetsConfiguration.">ReynTweetsConfiguration::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration) {
+<a name="l00057"></a>00057         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a> = configuration.<a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
+<a name="l00058"></a>00058 }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="comment">// Serialization declaration</span>
+<a name="l00061"></a><a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7" title="Serialization declaration.">ReynTweetsConfiguration::initSystem</a>() {
+<a name="l00062"></a>00062         qRegisterMetaTypeStreamOperators&lt;ReynTweetsConfiguration&gt;(<span class="stringliteral">&quot;ReynTweetsConfiguration&quot;</span>);
+<a name="l00063"></a>00063         qMetaTypeId&lt;ReynTweetsConfiguration&gt;();
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 
+<a name="l00068"></a>00068 <span class="comment">// JSON Streaming //</span>
+<a name="l00070"></a>00070 <span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00072"></a><a class="code" href="reyntweetsconfiguration_8hpp.html#a5082b68d77bd7d6e0fab4b3b026c8062">00072</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out,
+<a name="l00073"></a>00073                                                  <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration)
+<a name="l00074"></a>00074 {
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, configuration);
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00079"></a><a class="code" href="reyntweetsconfiguration_8hpp.html#ac4705f57b289e448ce9537e70ad43608">00079</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in,
+<a name="l00080"></a>00080                                                  <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; configuration)
+<a name="l00081"></a>00081 {
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, configuration);
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00087"></a>00087 <span class="comment">// Properties management //</span>
+<a name="l00089"></a>00089 <span class="comment"></span>
+<a name="l00090"></a>00090 <span class="comment">// Reading the property p_userAccount</span>
+<a name="l00091"></a><a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494">00091</a> QVariantMap <a class="code" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494" title="Reading the property user_account.">ReynTweetsConfiguration::getUserAccountProperty</a>() {
+<a name="l00092"></a>00092         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00093"></a>00093 }
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="comment">// Writing the property p_userAccount</span>
+<a name="l00096"></a><a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339">00096</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339" title="Writing the property user_account.">ReynTweetsConfiguration::setUserAccount</a>(QVariantMap accountMap) {
+<a name="l00097"></a>00097         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(accountMap);
+<a name="l00098"></a>00098 }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 
+<a name="l00102"></a>00102 <span class="comment">// Static members //</span>
+<a name="l00104"></a>00104 <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">// Consumer Key</span>
+<a name="l00106"></a>00106 QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY</a> = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>;
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 
-<a name="l00111"></a>00111 <span class="comment">// Configuration management //</span>
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">// Getting the consumer key</span>
-<a name="l00115"></a><a class="code" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f">00115</a> QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f" title="Getting the consumer key.">ReynTweetsConfiguration::getConsumerKey</a>() {
-<a name="l00116"></a>00116         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">REYN_TWEETS_CONSUMER_KEY</a>;
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119 <span class="comment">// Getting the consumer secret</span>
-<a name="l00120"></a><a class="code" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e">00120</a> QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e" title="Getting the consumer secret.">ReynTweetsConfiguration::getConsumerSecret</a>() {
-<a name="l00121"></a>00121         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">REYN_TWEETS_CONSUMER_SECRET</a>;
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="comment">// Getter on userAccount</span>
-<a name="l00125"></a><a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b">00125</a> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">ReynTweetsConfiguration::getUserAccount</a>() {
-<a name="l00126"></a>00126         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
-<a name="l00127"></a>00127 }
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129 <span class="comment">// Setter on userAccount</span>
-<a name="l00130"></a><a class="code" href="class_reyn_tweets_configuration.html#a5288f81262b86ad67b24997f852b8353">00130</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339" title="Writing the property user_account.">ReynTweetsConfiguration::setUserAccount</a>(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account) {
-<a name="l00131"></a>00131         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a> = account;
-<a name="l00132"></a>00132 }
+<a name="l00108"></a>00108 <span class="comment">// Consumer Secret</span>
+<a name="l00109"></a>00109 QByteArray <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET</a> = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>;
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="comment">// Configuration namefile</span>
+<a name="l00112"></a>00112 QString <a class="code" href="class_reyn_tweets_configuration.html#a69efa9eba250c821a4da90a4d109e667" title="Configuration file name.">ReynTweetsConfiguration::CONFIGURATION_NAMEFILE</a> = <span class="stringliteral">&quot;conf/ReynTweets.conf&quot;</span>;
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 
+<a name="l00117"></a>00117 <span class="comment">// Configuration management //</span>
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">// Getting the consumer key</span>
+<a name="l00121"></a><a class="code" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f">00121</a> QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f" title="Getting the consumer key.">ReynTweetsConfiguration::getConsumerKey</a>() {
+<a name="l00122"></a>00122         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e" title="Consumer Key.">REYN_TWEETS_CONSUMER_KEY</a>;
+<a name="l00123"></a>00123 }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 <span class="comment">// Getting the consumer secret</span>
+<a name="l00126"></a><a class="code" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e">00126</a> QByteArray <a class="code" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e" title="Getting the consumer secret.">ReynTweetsConfiguration::getConsumerSecret</a>() {
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48" title="Consumer Secret.">REYN_TWEETS_CONSUMER_SECRET</a>;
+<a name="l00128"></a>00128 }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="comment">// Getter on userAccount</span>
+<a name="l00131"></a><a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b">00131</a> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> <a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">ReynTweetsConfiguration::getUserAccount</a>() {
+<a name="l00132"></a>00132         <span class="keywordflow">return</span> <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a>;
+<a name="l00133"></a>00133 }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="comment">// Setter on userAccount</span>
+<a name="l00136"></a><a class="code" href="class_reyn_tweets_configuration.html#a5288f81262b86ad67b24997f852b8353">00136</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339" title="Writing the property user_account.">ReynTweetsConfiguration::setUserAccount</a>(<a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account) {
+<a name="l00137"></a>00137         <a class="code" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514" title="Twitter Account.">userAccount</a> = account;
+<a name="l00138"></a>00138 }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 <span class="comment">// Loading the configuration</span>
+<a name="l00141"></a><a class="code" href="class_reyn_tweets_configuration.html#afb5d21650be3dd842e6fcad09ea6e2a4">00141</a> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> <a class="code" href="class_reyn_tweets_configuration.html#afb5d21650be3dd842e6fcad09ea6e2a4" title="Loading the configuration from its file.">ReynTweetsConfiguration::load</a>() {
+<a name="l00142"></a>00142         <span class="comment">// Opening the configuration file</span>
+<a name="l00143"></a>00143         QFile confFile(<a class="code" href="class_reyn_tweets_configuration.html#a69efa9eba250c821a4da90a4d109e667" title="Configuration file name.">CONFIGURATION_NAMEFILE</a>);
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145         <span class="keywordflow">if</span> (!confFile.exists()) {
+<a name="l00146"></a>00146                 <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>;
+<a name="l00147"></a>00147         }
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149         <span class="keywordtype">bool</span> openOK = confFile.open(QFile::ReadOnly);
+<a name="l00150"></a>00150         <span class="keywordflow">if</span> (!openOK) {
+<a name="l00151"></a>00151                 <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>;
+<a name="l00152"></a>00152         }
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154         <span class="comment">// Launching the configuration</span>
+<a name="l00155"></a>00155         QDataStream readStream(&amp;confFile);
+<a name="l00156"></a>00156         QVariant confVariant;
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158         readStream &gt;&gt; confVariant;
+<a name="l00159"></a>00159         confFile.close();
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161         <span class="keywordflow">if</span> (!qVariantCanConvert&lt;ReynTweetsConfiguration&gt;(confVariant)) {
+<a name="l00162"></a>00162                 <span class="comment">// The content of the file cannot be converted into a configuration.</span>
+<a name="l00163"></a>00163                 <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>;
+<a name="l00164"></a>00164         }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166         *<span class="keyword">this</span> = qVariantValue&lt;ReynTweetsConfiguration&gt;(confVariant);
+<a name="l00167"></a>00167         <span class="comment">//fillOAuthManager();</span>
+<a name="l00168"></a>00168         <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1c195dae45971bdaec9f1ffb0dbe2330" title="The launching was successful.">LOAD_CONFIGURATION_SUCCESSFUL</a>;
+<a name="l00169"></a>00169 }
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 <span class="comment">// Saving the configuration</span>
+<a name="l00172"></a><a class="code" href="class_reyn_tweets_configuration.html#a9e0cce528bcb7e7699e86db86512d7c9">00172</a> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> <a class="code" href="class_reyn_tweets_configuration.html#a9e0cce528bcb7e7699e86db86512d7c9" title="Writing the configuration in its file.">ReynTweetsConfiguration::save</a>() {
+<a name="l00173"></a>00173         <span class="comment">// Opening the configuration file</span>
+<a name="l00174"></a>00174         QFile confFile(<a class="code" href="class_reyn_tweets_configuration.html#a69efa9eba250c821a4da90a4d109e667" title="Configuration file name.">CONFIGURATION_NAMEFILE</a>);
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176         <span class="keywordflow">if</span> (!confFile.exists()) {
+<a name="l00177"></a>00177                 <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>;
+<a name="l00178"></a>00178         }
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180         <span class="keywordtype">bool</span> openOK = confFile.open(QFile::WriteOnly);
+<a name="l00181"></a>00181         <span class="keywordflow">if</span> (!openOK) {
+<a name="l00182"></a>00182                 <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>;
+<a name="l00183"></a>00183         }
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185 
+<a name="l00186"></a>00186         <span class="comment">// Saving the configuration</span>
+<a name="l00187"></a>00187         QDataStream readStream(&amp;confFile);
+<a name="l00188"></a>00188         QVariant confVariant = qVariantFromValue(*<span class="keyword">this</span>);
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190         readStream &lt;&lt; confVariant;
+<a name="l00191"></a>00191         confFile.close();
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193         <span class="keywordflow">return</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a7480b219c93cd86d42a7d4652b86edc6" title="The launching was successful.">SAVE_SUCCESSFUL</a>;
+<a name="l00194"></a>00194 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -225,7 +287,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

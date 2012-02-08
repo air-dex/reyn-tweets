@@ -92,24 +92,24 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="reyntwittercalls_8hpp.html" title="Header of ReynTwitterCalls.">reyntwittercalls.hpp</a>&quot;</span>
 <a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="requests_8hpp.html" title="Header including all the request classes.">requests/requests.hpp</a>&quot;</span>
@@ -182,87 +182,100 @@ window.onload = initDynSections;
 <a name="l00094"></a>00094 
 <a name="l00096"></a>00096 <span class="comment">// Request launchers //</span>
 <a name="l00098"></a>00098 <span class="comment"></span>
-<a name="l00099"></a>00099 <span class="comment">// Method that launch searches</span>
-<a name="l00100"></a><a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">ReynTwitterCalls::search</a>(QString q) {
-<a name="l00101"></a>00101         <a class="code" href="class_search_requester.html" title="Requester for searches.">SearchRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_search_requester.html" title="Requester for searches.">SearchRequester</a>(q);
-<a name="l00102"></a>00102         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00103"></a>00103 }
-<a name="l00104"></a>00104 
-<a name="l00106"></a>00106 <span class="comment">// OAuth //</span>
-<a name="l00108"></a>00108 <span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">// Method for getting a request token</span>
-<a name="l00110"></a><a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">ReynTwitterCalls::requestToken</a>() {
-<a name="l00111"></a>00111         <a class="code" href="class_request_token_requester.html" title="Class managing requests with the Twitter API about OAuth.">RequestTokenRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_request_token_requester.html" title="Class managing requests with the Twitter API about OAuth.">RequestTokenRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
-<a name="l00112"></a>00112         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00113"></a>00113 }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115 <span class="comment">// Authorizing request Tokens</span>
-<a name="l00116"></a><a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe">00116</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">ReynTwitterCalls::authorize</a>() {
-<a name="l00117"></a>00117         <a class="code" href="class_authorize_requester.html" title="Requester for OAuth authentication.">AuthorizeRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_authorize_requester.html" title="Requester for OAuth authentication.">AuthorizeRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
-<a name="l00118"></a>00118         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00119"></a>00119 }
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 <span class="comment">// POST authorize() requests to allow or to deny the application.</span>
-<a name="l00122"></a><a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706">00122</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">ReynTwitterCalls::postAuthorize</a>(QString login, QString password, <span class="keywordtype">bool</span> deny) {
-<a name="l00123"></a>00123         <a class="code" href="class_post_authorize_requester.html" title="Request POST authorize(). They send to Twitter user&amp;#39;s credentials to authorize...">PostAuthorizeRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_post_authorize_requester.html" title="Request POST authorize(). They send to Twitter user&amp;#39;s credentials to authorize...">PostAuthorizeRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
-<a name="l00124"></a>00124                                                                                                                                         login,
-<a name="l00125"></a>00125                                                                                                                                         password,
-<a name="l00126"></a>00126                                                                                                                                         deny);
-<a name="l00127"></a>00127         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00128"></a>00128 }
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <span class="comment">// Getting the access tokens</span>
-<a name="l00131"></a><a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3">00131</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">ReynTwitterCalls::accessToken</a>() {
-<a name="l00132"></a>00132         <a class="code" href="class_access_token_requester.html" title="Requester for getting OAuth access tokens.">AccessTokenRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_access_token_requester.html" title="Requester for getting OAuth access tokens.">AccessTokenRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
-<a name="l00133"></a>00133         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00134"></a>00134 }
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="comment">// Resetting the credentials to connect to Twitter</span>
-<a name="l00137"></a><a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e">00137</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">ReynTwitterCalls::resetTokens</a>() {
-<a name="l00138"></a>00138         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a7b1a85a67ca7052e178ae829d5d02189" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
-<a name="l00139"></a>00139 }
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="comment">// Setting new credentials to connect to Twitter</span>
-<a name="l00142"></a><a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe">00142</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">ReynTwitterCalls::setNewTokens</a>(QByteArray accessToken,
-<a name="l00143"></a>00143                                                                         QByteArray tokenSecret,
-<a name="l00144"></a>00144                                                                         QByteArray consumerKey,
-<a name="l00145"></a>00145                                                                         QByteArray consumerSecret)
-<a name="l00146"></a>00146 {
-<a name="l00147"></a>00147         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(accessToken, <span class="keyword">false</span>);
-<a name="l00148"></a>00148         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4" title="Setter on the OAuth secret.">setOAuthSecret</a>(tokenSecret);
-<a name="l00149"></a>00149         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#af90d4f82fe2fe48447b689ed4f8e12e2" title="Setter on the consumer key.">setConsumerKey</a>(consumerKey);
-<a name="l00150"></a>00150         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a8972a6bcbcf6ec139ed1d712b5f6921f" title="Setter on the consumer secret.">setConsumerSecret</a>(consumerSecret);
+<a name="l00100"></a>00100 <span class="comment">// Accounts //</span>
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">// Verifying credentials</span>
+<a name="l00104"></a><a class="code" href="class_reyn_twitter_calls.html#a8be1c4bc810c8b7c543991717194d66f">00104</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8be1c4bc810c8b7c543991717194d66f" title="Verifying credentials.">ReynTwitterCalls::verifyCredentials</a>(<span class="keywordtype">bool</span> entities, <span class="keywordtype">bool</span> skipStatus) {
+<a name="l00105"></a>00105         <a class="code" href="class_verify_credentials_requester.html" title="Request to verify if the access tokens owned by Reyn Tweets to use a given Twitter...">VerifyCredentialsRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_verify_credentials_requester.html" title="Request to verify if the access tokens owned by Reyn Tweets to use a given Twitter...">VerifyCredentialsRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00106"></a>00106                                                                                                                                                         entities,
+<a name="l00107"></a>00107                                                                                                                                                         skipStatus);
+<a name="l00108"></a>00108         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00113"></a>00113 <span class="comment">// Searches //</span>
+<a name="l00115"></a>00115 <span class="comment"></span>
+<a name="l00116"></a>00116 <span class="comment">// Method that launch searches</span>
+<a name="l00117"></a><a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e">00117</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">ReynTwitterCalls::search</a>(QString q) {
+<a name="l00118"></a>00118         <a class="code" href="class_search_requester.html" title="Requester for searches.">SearchRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_search_requester.html" title="Requester for searches.">SearchRequester</a>(q);
+<a name="l00119"></a>00119         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00120"></a>00120 }
+<a name="l00121"></a>00121 
+<a name="l00123"></a>00123 <span class="comment">// OAuth //</span>
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">// Method for getting a request token</span>
+<a name="l00127"></a><a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe">00127</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">ReynTwitterCalls::requestToken</a>() {
+<a name="l00128"></a>00128         <a class="code" href="class_request_token_requester.html" title="Class managing requests with the Twitter API about OAuth.">RequestTokenRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_request_token_requester.html" title="Class managing requests with the Twitter API about OAuth.">RequestTokenRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
+<a name="l00129"></a>00129         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00130"></a>00130 }
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <span class="comment">// Authorizing request Tokens</span>
+<a name="l00133"></a><a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe">00133</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">ReynTwitterCalls::authorize</a>() {
+<a name="l00134"></a>00134         <a class="code" href="class_authorize_requester.html" title="Requester for OAuth authentication.">AuthorizeRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_authorize_requester.html" title="Requester for OAuth authentication.">AuthorizeRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
+<a name="l00135"></a>00135         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00136"></a>00136 }
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 <span class="comment">// POST authorize() requests to allow or to deny the application.</span>
+<a name="l00139"></a><a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706">00139</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">ReynTwitterCalls::postAuthorize</a>(QString login, QString password, <span class="keywordtype">bool</span> deny) {
+<a name="l00140"></a>00140         <a class="code" href="class_post_authorize_requester.html" title="Request POST authorize(). They send to Twitter user&amp;#39;s credentials to authorize...">PostAuthorizeRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_post_authorize_requester.html" title="Request POST authorize(). They send to Twitter user&amp;#39;s credentials to authorize...">PostAuthorizeRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00141"></a>00141                                                                                                                                         login,
+<a name="l00142"></a>00142                                                                                                                                         password,
+<a name="l00143"></a>00143                                                                                                                                         deny);
+<a name="l00144"></a>00144         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00145"></a>00145 }
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147 <span class="comment">// Getting the access tokens</span>
+<a name="l00148"></a><a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3">00148</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">ReynTwitterCalls::accessToken</a>() {
+<a name="l00149"></a>00149         <a class="code" href="class_access_token_requester.html" title="Requester for getting OAuth access tokens.">AccessTokenRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_access_token_requester.html" title="Requester for getting OAuth access tokens.">AccessTokenRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>);
+<a name="l00150"></a>00150         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
 <a name="l00151"></a>00151 }
 <a name="l00152"></a>00152 
-<a name="l00153"></a>00153 
-<a name="l00155"></a>00155 <span class="comment">// Tweets //</span>
-<a name="l00157"></a>00157 <span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">// Showing a tweet</span>
-<a name="l00159"></a><a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9">00159</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">ReynTwitterCalls::showTweet</a>(qlonglong tweetID, <span class="keywordtype">bool</span> entities, <span class="keywordtype">bool</span> trimUser) {
-<a name="l00160"></a>00160         <a class="code" href="class_show_tweet_requester.html" title="Requester for getting details about a tweet identified by its ID.">ShowTweetRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_tweet_requester.html" title="Requester for getting details about a tweet identified by its ID.">ShowTweetRequester</a>(tweetID,
-<a name="l00161"></a>00161                                                                                                                         entities,
-<a name="l00162"></a>00162                                                                                                                         trimUser);
-<a name="l00163"></a>00163         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00164"></a>00164 }
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166 
-<a name="l00168"></a>00168 <span class="comment">// Users //</span>
-<a name="l00170"></a>00170 <span class="comment"></span>
-<a name="l00171"></a>00171 <span class="comment">// Showing a user identified by its ID</span>
-<a name="l00172"></a><a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a">00172</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities) {
-<a name="l00173"></a>00173         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
-<a name="l00174"></a>00174                                                                                                                   userID,
-<a name="l00175"></a>00175                                                                                                                   entities);
-<a name="l00176"></a>00176         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00177"></a>00177 }
-<a name="l00178"></a>00178 
-<a name="l00179"></a>00179 <span class="comment">// Showing a user identified by its screen name</span>
-<a name="l00180"></a><a class="code" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">00180</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities) {
-<a name="l00181"></a>00181         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
-<a name="l00182"></a>00182                                                                                                                   screenName,
-<a name="l00183"></a>00183                                                                                                                   entities);
-<a name="l00184"></a>00184         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00185"></a>00185 }
+<a name="l00153"></a>00153 <span class="comment">// Resetting the credentials to connect to Twitter</span>
+<a name="l00154"></a><a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e">00154</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">ReynTwitterCalls::resetTokens</a>() {
+<a name="l00155"></a>00155         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a7b1a85a67ca7052e178ae829d5d02189" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00156"></a>00156 }
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 <span class="comment">// Setting new credentials to connect to Twitter</span>
+<a name="l00159"></a><a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe">00159</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">ReynTwitterCalls::setNewTokens</a>(QByteArray accessToken,
+<a name="l00160"></a>00160                                                                         QByteArray tokenSecret,
+<a name="l00161"></a>00161                                                                         QByteArray consumerKey,
+<a name="l00162"></a>00162                                                                         QByteArray consumerSecret)
+<a name="l00163"></a>00163 {
+<a name="l00164"></a>00164         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(accessToken, <span class="keyword">false</span>);
+<a name="l00165"></a>00165         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4" title="Setter on the OAuth secret.">setOAuthSecret</a>(tokenSecret, <span class="keyword">false</span>);
+<a name="l00166"></a>00166         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#af90d4f82fe2fe48447b689ed4f8e12e2" title="Setter on the consumer key.">setConsumerKey</a>(consumerKey);
+<a name="l00167"></a>00167         <a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a8972a6bcbcf6ec139ed1d712b5f6921f" title="Setter on the consumer secret.">setConsumerSecret</a>(consumerSecret);
+<a name="l00168"></a>00168 }
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170 
+<a name="l00172"></a>00172 <span class="comment">// Tweets //</span>
+<a name="l00174"></a>00174 <span class="comment"></span>
+<a name="l00175"></a>00175 <span class="comment">// Showing a tweet</span>
+<a name="l00176"></a><a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9">00176</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">ReynTwitterCalls::showTweet</a>(qlonglong tweetID, <span class="keywordtype">bool</span> entities, <span class="keywordtype">bool</span> trimUser) {
+<a name="l00177"></a>00177         <a class="code" href="class_show_tweet_requester.html" title="Requester for getting details about a tweet identified by its ID.">ShowTweetRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_tweet_requester.html" title="Requester for getting details about a tweet identified by its ID.">ShowTweetRequester</a>(tweetID,
+<a name="l00178"></a>00178                                                                                                                         entities,
+<a name="l00179"></a>00179                                                                                                                         trimUser);
+<a name="l00180"></a>00180         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00181"></a>00181 }
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 
+<a name="l00185"></a>00185 <span class="comment">// Users //</span>
+<a name="l00187"></a>00187 <span class="comment"></span>
+<a name="l00188"></a>00188 <span class="comment">// Showing a user identified by its ID</span>
+<a name="l00189"></a><a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a">00189</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities) {
+<a name="l00190"></a>00190         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00191"></a>00191                                                                                                                   userID,
+<a name="l00192"></a>00192                                                                                                                   entities);
+<a name="l00193"></a>00193         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00194"></a>00194 }
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196 <span class="comment">// Showing a user identified by its screen name</span>
+<a name="l00197"></a><a class="code" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">00197</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities) {
+<a name="l00198"></a>00198         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00199"></a>00199                                                                                                                   screenName,
+<a name="l00200"></a>00200                                                                                                                   entities);
+<a name="l00201"></a>00201         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00202"></a>00202 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -278,7 +291,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

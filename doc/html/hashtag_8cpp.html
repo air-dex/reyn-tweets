@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/hashtag.cpp File Reference</title>
+<title>ReynTweets: model/tweets/hashtag.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
+  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ddaef8fb73602a57805889eeb9608e17.html">tweets</a>
   </div>
 </div>
 <div class="contents">
@@ -95,8 +95,8 @@ window.onload = initDynSections;
 <code>#include &lt;QDataStream&gt;</code><br/>
 <code>#include &lt;QObject&gt;</code><br/>
 <code>#include &lt;QVariant&gt;</code><br/>
-<code>#include &lt;QList&gt;</code><br/>
-<code>#include &quot;<a class="el" href="reyntweetsmappable_8hpp_source.html">reyntweetsmappable.hpp</a>&quot;</code><br/>
+<code>#include &quot;../reyntweetsserializable.hpp&quot;</code><br/>
+<code>#include &quot;../reyntweetsmappable.hpp&quot;</code><br/>
 <code>#include &quot;../tools/utils.hpp&quot;</code><br/>
 
 <p><a href="hashtag_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -109,7 +109,15 @@ window.onload = initDynSections;
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Implementation of <a class="el" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a>. </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher </dd></dl>
+<p>Revisions older than r243 was in /trunk/ReynTwets/model </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher</dd></dl>
+<h2><a class="anchor" id="LICENSE">
+LICENSE</a></h2>
+<p>Copyright 2012 Romain Ducher</p>
+<p>This file is part of Reyn Tweets.</p>
+<p>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
 
 <p>Definition in file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 <hr/><h2>Function Documentation</h2>
@@ -148,7 +156,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00065">65</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00067">67</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -187,7 +195,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00070">70</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00072">72</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -206,7 +214,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

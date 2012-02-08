@@ -99,8 +99,8 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ae91f7ac3fbf9f496ac0fb344c2514859">getAuthenticityToken</a> (bool isClear=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the Authenticity Token.  <a href="#ae91f7ac3fbf9f496ac0fb344c2514859"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ad5ed528109a5bbc9153b3b2c852e58b7">getAuthorizationHeader</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, QString getDatas, QString postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting that will be written in the "Authorization" field of requests.  <a href="#ad5ed528109a5bbc9153b3b2c852e58b7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a57e45bdea5c67b05a7cfd8da387fa26b">getAuthorizationHeader</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting that will be written in the "Authorization" field of requests.  <a href="#a57e45bdea5c67b05a7cfd8da387fa26b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aad8cf88e751405f20abbaf01dbd2b8f4">getCallbackUrl</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter for callbackUrl.  <a href="#aad8cf88e751405f20abbaf01dbd2b8f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a198a290395933fe0530f7fd518f90204">getDeny</a> ()</td></tr>
@@ -151,19 +151,21 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a846898793d41758ca2d878ee2e5ac7ef">oauthVersion</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Version of the OAuth protocol used for the authentication.  <a href="#a846898793d41758ca2d878ee2e5ac7ef"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a49c759edf48176a6922c2214fb02664f">formatOAuthParam</a> (QString name, QString value, bool putDoubleQuotes)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for formatting parameters in the Authorization header and in the signature. The process of how formatting parameters is described <a href="https://dev.twitter.com/docs/auth/authorizing-request">here </a> for the Authorization header and <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a> for the signature. The difference between these two algorithm is that double quotes '"' surrounds the percent encoded value for the Authorization Header and not for the signature.  <a href="#a49c759edf48176a6922c2214fb02664f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a6690f38a748be1f265e6c8008414c774">buildOAuthParameterString</a> (QString nonce, QString timestamp, QString separator, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded, bool putDoubleQuotes, bool signatureNeeded, QString signature=&quot;&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generic method to build strings with OAuth parameters.  <a href="#a6690f38a748be1f265e6c8008414c774"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ade64df62fce8e574954f7f48184068b4">buildSignatureBaseString</a> (<a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, QString oauthString)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method builing the base string for the OAuth Signature.  <a href="#ade64df62fce8e574954f7f48184068b4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af18d4d67eb87f8f8b13788443d07703b">generateNonce</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a nonce for a request. To generate a nonce, a random string is generated by taking 32 times one letter in the alphabet. The letter could be in upper case or lower case. The final nonce is the 64 base-encoding of the random string.  <a href="#af18d4d67eb87f8f8b13788443d07703b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4a0f48bd00b456590803dd327f3f3c09">generateTimestamp</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a timestamp for a request. The timestamp is the number of seconds since the Unix Epoch (1/1/1970 at midnight).  <a href="#a4a0f48bd00b456590803dd327f3f3c09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ac2ee6de3d71ccdd0538b14499fb2c3b2">signDatas</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, QString getDatas, QString postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for signing datas. It is described <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a>.  <a href="#ac2ee6de3d71ccdd0538b14499fb2c3b2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a3c7b1522b9c9fa749a5ca14443de43e9">signDatas</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for signing datas. It is described <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a>.  <a href="#a3c7b1522b9c9fa749a5ca14443de43e9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Class managing OAuth authentication to Twitter. For the security, tokens are kept secret. They are encoded for that. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00035">35</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00041">41</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1f3c0442a309c1f14db73f5c8b6ee525"></a><!-- doxytag: member="OAuthManager::OAuthManager" ref="a1f3c0442a309c1f14db73f5c8b6ee525" args="(QByteArray clientKey=ReynTweetsSettings::CONSUMER_KEY, QByteArray clientSecret=ReynTweetsSettings::CONSUMER_SECRET, QString clientUrl=ReynTweetsSettings::CALLBACK_URL, QString signatureAlgorithm=&quot;HMAC&#45;SHA1&quot;, QString version=&quot;1.0&quot;)" -->
 <div class="memitem">
@@ -246,27 +248,63 @@ window.onload = initDynSections;
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a49c759edf48176a6922c2214fb02664f"></a><!-- doxytag: member="OAuthManager::formatOAuthParam" ref="a49c759edf48176a6922c2214fb02664f" args="(QString name, QString value, bool putDoubleQuotes)" -->
+<a class="anchor" id="a6690f38a748be1f265e6c8008414c774"></a><!-- doxytag: member="OAuthManager::buildOAuthParameterString" ref="a6690f38a748be1f265e6c8008414c774" args="(QString nonce, QString timestamp, QString separator, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded, bool putDoubleQuotes, bool signatureNeeded, QString signature=&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString OAuthManager::formatOAuthParam </td>
+          <td class="memname">QString OAuthManager::buildOAuthParameterString </td>
           <td>(</td>
           <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>name</em>, </td>
+          <td class="paramname"> <em>nonce</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>value</em>, </td>
+          <td class="paramname"> <em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>separator</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>putDoubleQuotes</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>oauthTokenNeeded</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>callbackUrlNeeded</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>oauthVerifierNeeded</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>putDoubleQuotes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>signatureNeeded</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>signature</em> = <code>&quot;&quot;</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -277,18 +315,71 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Method for formatting parameters in the Authorization header and in the signature. The process of how formatting parameters is described <a href="https://dev.twitter.com/docs/auth/authorizing-request">here </a> for the Authorization header and <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a> for the signature. The difference between these two algorithm is that double quotes '"' surrounds the percent encoded value for the Authorization Header and not for the signature. </p>
+<p>Generic method to build strings with OAuth parameters. </p>
+<p>It is used for the signature (string with the OAuth parameters) and for the Authorization Header </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>Name of the parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>Value of the parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>nonce</em>&nbsp;</td><td>Nonce of the request </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>timestamp</em>&nbsp;</td><td>Timestamp of the request </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>separator</em>&nbsp;</td><td>Separator between parameters </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthTokenNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_token is required. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>callbackUrlNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_callback is required. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthVerifierNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_verifier is required. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>putDoubleQuotes</em>&nbsp;</td><td>Boolean indicating if double quotes have to surround the percent encoded value. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>signatureNeeded</em>&nbsp;</td><td>Boolean indicating that the signature of the request is required. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>signature</em>&nbsp;</td><td>Signature of the request, if needed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The formatted parameters </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The string with the parameters. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00229">229</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00248">248</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ade64df62fce8e574954f7f48184068b4"></a><!-- doxytag: member="OAuthManager::buildSignatureBaseString" ref="ade64df62fce8e574954f7f48184068b4" args="(ArgsMap getDatas, ArgsMap postDatas, QString oauthString)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString OAuthManager::buildSignatureBaseString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramname"> <em>getDatas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramname"> <em>postDatas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>oauthString</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Method builing the base string for the OAuth Signature. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>getDatas</em>&nbsp;</td><td>GET datas of the request </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>postDatas</em>&nbsp;</td><td>POST datas of the request </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthString</em>&nbsp;</td><td>String with the OAuth parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The string built just like Twitter describes <a href="https://dev.twitter.com/docs/auth/creating-signature">here</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00339">339</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +401,7 @@ window.onload = initDynSections;
 <p>Generates a nonce for a request. To generate a nonce, a random string is generated by taking 32 times one letter in the alphabet. The letter could be in upper case or lower case. The final nonce is the 64 base-encoding of the random string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A nonce for a request. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00254">254</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +423,7 @@ window.onload = initDynSections;
 <p>Generates a timestamp for a request. The timestamp is the number of seconds since the Unix Epoch (1/1/1970 at midnight). </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A timestamp corresponding to the current date. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00273">273</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00187">187</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +456,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="ad5ed528109a5bbc9153b3b2c852e58b7"></a><!-- doxytag: member="OAuthManager::getAuthorizationHeader" ref="ad5ed528109a5bbc9153b3b2c852e58b7" args="(RequestType type, QString baseURL, QString getDatas, QString postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)" -->
+<a class="anchor" id="a57e45bdea5c67b05a7cfd8da387fa26b"></a><!-- doxytag: member="OAuthManager::getAuthorizationHeader" ref="a57e45bdea5c67b05a7cfd8da387fa26b" args="(RequestType type, QString baseURL, ArgsMap getDatas, ArgsMap postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -384,13 +475,13 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>getDatas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>postDatas</em>, </td>
         </tr>
         <tr>
@@ -427,9 +518,9 @@ window.onload = initDynSections;
     <tr><td valign="top"></td><td valign="top"><em>baseURL</em>&nbsp;</td><td>URL for the request </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>getDatas</em>&nbsp;</td><td>GET arguments of the request </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>postDatas</em>&nbsp;</td><td>POST arguments of the request </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>oauthTokenNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_token is requested for the header. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>callbackUrlNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_callback is requested for the header. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>oauthVerifierNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_verifier is requested for the header. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthTokenNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_token is required for the header. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>callbackUrlNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_callback is required for the header. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthVerifierNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_verifier is required for the header. </td></tr>
   </table>
   </dd>
 </dl>
@@ -778,7 +869,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="ac2ee6de3d71ccdd0538b14499fb2c3b2"></a><!-- doxytag: member="OAuthManager::signDatas" ref="ac2ee6de3d71ccdd0538b14499fb2c3b2" args="(RequestType type, QString baseURL, QString getDatas, QString postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)" -->
+<a class="anchor" id="a3c7b1522b9c9fa749a5ca14443de43e9"></a><!-- doxytag: member="OAuthManager::signDatas" ref="a3c7b1522b9c9fa749a5ca14443de43e9" args="(RequestType type, QString baseURL, ArgsMap getDatas, ArgsMap postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -797,13 +888,13 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>getDatas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>postDatas</em>, </td>
         </tr>
         <tr>
@@ -854,15 +945,15 @@ window.onload = initDynSections;
     <tr><td valign="top"></td><td valign="top"><em>postDatas</em>&nbsp;</td><td>POST datas to sign </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>nonce</em>&nbsp;</td><td>Nonce of the request </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>timestamp</em>&nbsp;</td><td>Timestamp of the request </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>oauthTokenNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_token is requested for the header. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>callbackUrlNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_callback is requested for the header. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>oauthVerifierNeeded</em>&nbsp;</td><td>Boolean indicationg that the oauth_verifier is requested for the header. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthTokenNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_token is required. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>callbackUrlNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_callback is required. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>oauthVerifierNeeded</em>&nbsp;</td><td>Boolean indicating whether the oauth_verifier is required. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature of the given datas </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00279">279</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00193">193</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -880,7 +971,7 @@ window.onload = initDynSections;
 
 <p>Authenticity token for POST authorizing(). </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00200">200</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00206">206</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -897,7 +988,7 @@ window.onload = initDynSections;
 
 <p>Callback URL of the application. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00182">182</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00188">188</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -914,7 +1005,7 @@ window.onload = initDynSections;
 
 <p>Consumer key. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00176">176</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00182">182</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1022,7 @@ window.onload = initDynSections;
 
 <p>Consumer secret. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00179">179</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00185">185</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -948,7 +1039,7 @@ window.onload = initDynSections;
 
 <p>Value used to tell Twitter that an application is denied. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00203">203</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00209">209</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -965,7 +1056,7 @@ window.onload = initDynSections;
 
 <p>Secret used for signatures. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00194">194</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00200">200</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -982,7 +1073,7 @@ window.onload = initDynSections;
 
 <p>Algorithm used for signing requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00185">185</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00191">191</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1090,7 @@ window.onload = initDynSections;
 
 <p>Token used for requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00191">191</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00197">197</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1107,7 @@ window.onload = initDynSections;
 
 <p>Verifier for authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00197">197</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00203">203</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1124,7 @@ window.onload = initDynSections;
 
 <p>Version of the OAuth protocol used for the authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00188">188</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00194">194</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1056,7 +1147,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:28 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:55 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

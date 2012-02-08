@@ -93,131 +93,132 @@ window.onload = initDynSections;
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
 <a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="comment">/*</span>
-<a name="l00007"></a>00007 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00008"></a>00008 <span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00010"></a>00010 <span class="comment"></span>
-<a name="l00011"></a>00011 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00012"></a>00012 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00013"></a>00013 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00014"></a>00014 <span class="comment">(at your option) any later version.</span>
-<a name="l00015"></a>00015 <span class="comment"></span>
-<a name="l00016"></a>00016 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00017"></a>00017 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00018"></a>00018 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00019"></a>00019 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00022"></a>00022 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00023"></a>00023 <span class="comment">*/</span>
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QList&gt;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="oauthparser_8hpp.html" title="Header of OAuthParser  Revisions older than r120 are in the folder /trunk/ReynTweets/connection/pars...">oauthparser.hpp</a>&quot;</span>
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="comment">// Parsing method</span>
-<a name="l00029"></a><a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8">00029</a> QVariantMap <a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8" title="Parsing datas for OAuth.">OAuthParser::parse</a>(QByteArray data,
-<a name="l00030"></a>00030                                                            <span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00031"></a>00031                                                            QString &amp; parseError,
-<a name="l00032"></a>00032                                                            <span class="keywordtype">int</span> *)
-<a name="l00033"></a>00033 {
-<a name="l00034"></a>00034         QVariantMap res;
-<a name="l00035"></a>00035         QString errorMsg = <span class="stringliteral">&quot;Following arguments are invalid : &quot;</span>;
-<a name="l00036"></a>00036         parseOK = <span class="keyword">true</span>;
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="comment">// Split the couples of arguments</span>
-<a name="l00039"></a>00039         <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> arguments = data.split(<span class="charliteral">&#39;&amp;&#39;</span>);
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="keywordflow">foreach</span> (QByteArray argument, arguments) {
-<a name="l00042"></a>00042                 <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> couple = argument.split(<span class="charliteral">&#39;=&#39;</span>);
-<a name="l00043"></a>00043                 <span class="keywordtype">bool</span> validCouple = couple.length() == 2 || argument.isEmpty();
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045                 <span class="comment">// Ensures that there is a name and a value</span>
-<a name="l00046"></a>00046                 parseOK = parseOK &amp;&amp; validCouple;
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048                 <span class="keywordflow">if</span> (validCouple) {
-<a name="l00049"></a>00049                         QString name = QString(couple.at(0));
-<a name="l00050"></a>00050                         QString value = QString(couple.at(1));
-<a name="l00051"></a>00051                         res.insert(name, QVariant(value));
-<a name="l00052"></a>00052                 } <span class="keywordflow">else</span> {
-<a name="l00053"></a>00053                         errorMsg.append(<span class="stringliteral">&quot;OAuth parsing : cannot parse &#39;&quot;</span>);
-<a name="l00054"></a>00054                         errorMsg.append(argument);
-<a name="l00055"></a>00055                         errorMsg.append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
-<a name="l00056"></a>00056                 }
-<a name="l00057"></a>00057         }
-<a name="l00058"></a>00058 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QList&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="oauthparser_8hpp.html" title="Header of OAuthParser.">oauthparser.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="comment">// Parsing method</span>
+<a name="l00030"></a><a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8">00030</a> QVariantMap <a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8" title="Parsing datas for OAuth.">OAuthParser::parse</a>(QByteArray data,
+<a name="l00031"></a>00031                                                            <span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00032"></a>00032                                                            QString &amp; parseError,
+<a name="l00033"></a>00033                                                            <span class="keywordtype">int</span> *)
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035         QVariantMap res;
+<a name="l00036"></a>00036         QString errorMsg = <span class="stringliteral">&quot;Following arguments are invalid : &quot;</span>;
+<a name="l00037"></a>00037         parseOK = <span class="keyword">true</span>;
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039         <span class="comment">// Split the couples of arguments</span>
+<a name="l00040"></a>00040         <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> arguments = data.split(<span class="charliteral">&#39;&amp;&#39;</span>);
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042         <span class="keywordflow">foreach</span> (QByteArray argument, arguments) {
+<a name="l00043"></a>00043                 <a class="code" href="class_q_list.html">QList&lt;QByteArray&gt;</a> couple = argument.split(<span class="charliteral">&#39;=&#39;</span>);
+<a name="l00044"></a>00044                 <span class="keywordtype">bool</span> validCouple = couple.length() == 2 || argument.isEmpty();
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046                 <span class="comment">// Ensures that there is a name and a value</span>
+<a name="l00047"></a>00047                 parseOK = parseOK &amp;&amp; validCouple;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049                 <span class="keywordflow">if</span> (validCouple) {
+<a name="l00050"></a>00050                         QString name = QString(couple.at(0));
+<a name="l00051"></a>00051                         QString value = QString(couple.at(1));
+<a name="l00052"></a>00052                         res.insert(name, QVariant(value));
+<a name="l00053"></a>00053                 } <span class="keywordflow">else</span> {
+<a name="l00054"></a>00054                         errorMsg.append(<span class="stringliteral">&quot;OAuth parsing : cannot parse &#39;&quot;</span>);
+<a name="l00055"></a>00055                         errorMsg.append(argument);
+<a name="l00056"></a>00056                         errorMsg.append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
+<a name="l00057"></a>00057                 }
+<a name="l00058"></a>00058         }
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060         <span class="comment">// Writing parsing errors</span>
-<a name="l00061"></a>00061         parseError = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         <span class="keywordflow">if</span> (!parseOK) {
-<a name="l00064"></a>00064                 parseError = errorMsg;
-<a name="l00065"></a>00065         }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keywordflow">return</span> res;
-<a name="l00068"></a>00068 }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="comment">// Extracting one parameter from the parsed result</span>
-<a name="l00071"></a><a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07">00071</a> QVariant <a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">OAuthParser::extractParameter</a>(QVariantMap &amp; parsedMap,
-<a name="l00072"></a>00072                                                                            QString parameterName,
-<a name="l00073"></a>00073                                                                            <span class="keywordtype">bool</span> &amp; extractOK,
-<a name="l00074"></a>00074                                                                            QString &amp; extractError)
-<a name="l00075"></a>00075 {
-<a name="l00076"></a>00076         QVariant res;
-<a name="l00077"></a>00077         extractError = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00078"></a>00078         extractOK = parsedMap.contains(parameterName);
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080         <span class="keywordflow">if</span> (extractOK) {
-<a name="l00081"></a>00081                 res = parsedMap.value(parameterName);
-<a name="l00082"></a>00082                 parsedMap.remove(parameterName);
-<a name="l00083"></a>00083         } <span class="keywordflow">else</span> {
-<a name="l00084"></a>00084                 extractError.append(<span class="stringliteral">&quot;Parameter extraction : parameter &#39;&quot;</span>);
-<a name="l00085"></a>00085                 extractError.append(parameterName);
-<a name="l00086"></a>00086                 extractError.append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
-<a name="l00087"></a>00087         }
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089         <span class="keywordflow">return</span> res;
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="comment">// Rewriting one parameter of the parsed result as a boolean</span>
-<a name="l00093"></a><a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b">00093</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b" title="Rewriting one parameter of the parsed result as a boolean.">OAuthParser::rewriteAsBool</a>(QVariantMap &amp; parsedMap,
-<a name="l00094"></a>00094                                                                 QString parameterName,
-<a name="l00095"></a>00095                                                                 <span class="keywordtype">bool</span> &amp; rewriteOK,
-<a name="l00096"></a>00096                                                                 QString &amp; rewriteError)
-<a name="l00097"></a>00097 {
-<a name="l00098"></a>00098         rewriteOK = parsedMap.contains(parameterName);
-<a name="l00099"></a>00099         rewriteError = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101         <span class="keywordflow">if</span> (rewriteOK) {
-<a name="l00102"></a>00102                 QString result = parsedMap.value(parameterName).toString();
-<a name="l00103"></a>00103                 <span class="keywordtype">bool</span> convertOK = <span class="stringliteral">&quot;true&quot;</span> == result || <span class="stringliteral">&quot;false&quot;</span> == result;
-<a name="l00104"></a>00104                 rewriteOK = rewriteOK &amp;&amp; convertOK;
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106                 <span class="keywordflow">if</span> (convertOK) {
-<a name="l00107"></a>00107                         <span class="keywordtype">bool</span> booleanValue;
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109                         <span class="keywordflow">if</span> (<span class="stringliteral">&quot;true&quot;</span> == result) {
-<a name="l00110"></a>00110                                 booleanValue = <span class="keyword">true</span>;
-<a name="l00111"></a>00111                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="stringliteral">&quot;false&quot;</span> == result) {
-<a name="l00112"></a>00112                                 booleanValue = <span class="keyword">false</span>;
-<a name="l00113"></a>00113                         }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115                         parsedMap.remove(parameterName);
-<a name="l00116"></a>00116                         parsedMap.insert(parameterName, QVariant(booleanValue));
-<a name="l00117"></a>00117                 } <span class="keywordflow">else</span> {
-<a name="l00118"></a>00118                         <span class="comment">// Unexpected value. This is an error.</span>
-<a name="l00119"></a>00119                         rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : unexpected value &#39;&quot;</span>)
-<a name="l00120"></a>00120                                         .append(result)
-<a name="l00121"></a>00121                                         .append(<span class="stringliteral">&quot;&#39; for parameter &#39;&quot;</span>)
-<a name="l00122"></a>00122                                         .append(parameterName)
-<a name="l00123"></a>00123                                         .append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
-<a name="l00124"></a>00124                 }
-<a name="l00125"></a>00125         } <span class="keywordflow">else</span> {
-<a name="l00126"></a>00126                 rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : parameter &#39;&quot;</span>)
-<a name="l00127"></a>00127                                 .append(parameterName)
-<a name="l00128"></a>00128                                 .append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
-<a name="l00129"></a>00129         }
-<a name="l00130"></a>00130 }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <span class="comment">// Writing parsing errors</span>
+<a name="l00062"></a>00062         parseError = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="keywordflow">if</span> (!parseOK) {
+<a name="l00065"></a>00065                 parseError = errorMsg;
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="keywordflow">return</span> res;
+<a name="l00069"></a>00069 }
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="comment">// Extracting one parameter from the parsed result</span>
+<a name="l00072"></a><a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07">00072</a> QVariant <a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">OAuthParser::extractParameter</a>(QVariantMap &amp; parsedMap,
+<a name="l00073"></a>00073                                                                            QString parameterName,
+<a name="l00074"></a>00074                                                                            <span class="keywordtype">bool</span> &amp; extractOK,
+<a name="l00075"></a>00075                                                                            QString &amp; extractError)
+<a name="l00076"></a>00076 {
+<a name="l00077"></a>00077         QVariant res;
+<a name="l00078"></a>00078         extractError = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00079"></a>00079         extractOK = parsedMap.contains(parameterName);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081         <span class="keywordflow">if</span> (extractOK) {
+<a name="l00082"></a>00082                 res = parsedMap.value(parameterName);
+<a name="l00083"></a>00083                 parsedMap.remove(parameterName);
+<a name="l00084"></a>00084         } <span class="keywordflow">else</span> {
+<a name="l00085"></a>00085                 extractError.append(<span class="stringliteral">&quot;Parameter extraction : parameter &#39;&quot;</span>);
+<a name="l00086"></a>00086                 extractError.append(parameterName);
+<a name="l00087"></a>00087                 extractError.append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <span class="keywordflow">return</span> res;
+<a name="l00091"></a>00091 }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment">// Rewriting one parameter of the parsed result as a boolean</span>
+<a name="l00094"></a><a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b">00094</a> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b" title="Rewriting one parameter of the parsed result as a boolean.">OAuthParser::rewriteAsBool</a>(QVariantMap &amp; parsedMap,
+<a name="l00095"></a>00095                                                                 QString parameterName,
+<a name="l00096"></a>00096                                                                 <span class="keywordtype">bool</span> &amp; rewriteOK,
+<a name="l00097"></a>00097                                                                 QString &amp; rewriteError)
+<a name="l00098"></a>00098 {
+<a name="l00099"></a>00099         rewriteOK = parsedMap.contains(parameterName);
+<a name="l00100"></a>00100         rewriteError = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102         <span class="keywordflow">if</span> (rewriteOK) {
+<a name="l00103"></a>00103                 QString result = parsedMap.value(parameterName).toString();
+<a name="l00104"></a>00104                 <span class="keywordtype">bool</span> convertOK = <span class="stringliteral">&quot;true&quot;</span> == result || <span class="stringliteral">&quot;false&quot;</span> == result;
+<a name="l00105"></a>00105                 rewriteOK = rewriteOK &amp;&amp; convertOK;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107                 <span class="keywordflow">if</span> (convertOK) {
+<a name="l00108"></a>00108                         <span class="keywordtype">bool</span> booleanValue;
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110                         <span class="keywordflow">if</span> (<span class="stringliteral">&quot;true&quot;</span> == result) {
+<a name="l00111"></a>00111                                 booleanValue = <span class="keyword">true</span>;
+<a name="l00112"></a>00112                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="stringliteral">&quot;false&quot;</span> == result) {
+<a name="l00113"></a>00113                                 booleanValue = <span class="keyword">false</span>;
+<a name="l00114"></a>00114                         }
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116                         parsedMap.remove(parameterName);
+<a name="l00117"></a>00117                         parsedMap.insert(parameterName, QVariant(booleanValue));
+<a name="l00118"></a>00118                 } <span class="keywordflow">else</span> {
+<a name="l00119"></a>00119                         <span class="comment">// Unexpected value. This is an error.</span>
+<a name="l00120"></a>00120                         rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : unexpected value &#39;&quot;</span>)
+<a name="l00121"></a>00121                                         .append(result)
+<a name="l00122"></a>00122                                         .append(<span class="stringliteral">&quot;&#39; for parameter &#39;&quot;</span>)
+<a name="l00123"></a>00123                                         .append(parameterName)
+<a name="l00124"></a>00124                                         .append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
+<a name="l00125"></a>00125                 }
+<a name="l00126"></a>00126         } <span class="keywordflow">else</span> {
+<a name="l00127"></a>00127                 rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : parameter &#39;&quot;</span>)
+<a name="l00128"></a>00128                                 .append(parameterName)
+<a name="l00129"></a>00129                                 .append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
+<a name="l00130"></a>00130         }
+<a name="l00131"></a>00131 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -233,7 +234,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

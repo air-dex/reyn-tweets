@@ -90,15 +90,16 @@ window.onload = initDynSections;
 <div class="contents">
 <h1>OAuthManager Member List</h1>This is the complete list of members for <a class="el" href="class_o_auth_manager.html">OAuthManager</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a6871bf42e3c74a75f8eb0f9dd014b2db">authenticityToken</a></td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a6690f38a748be1f265e6c8008414c774">buildOAuthParameterString</a>(QString nonce, QString timestamp, QString separator, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded, bool putDoubleQuotes, bool signatureNeeded, QString signature=&quot;&quot;)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ade64df62fce8e574954f7f48184068b4">buildSignatureBaseString</a>(ArgsMap getDatas, ArgsMap postDatas, QString oauthString)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a879f5c98a57c385ba4b19c6f8b921e29">callbackUrl</a></td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a26c67768b4f4abfe8738177cd9a48cdd">consumerKey</a></td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a08dfde3d00eab4a06addb5c18bc55365">consumerSecret</a></td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#aea91a54208a14e1bfbaaa127b922bf02">denyTag</a></td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a49c759edf48176a6922c2214fb02664f">formatOAuthParam</a>(QString name, QString value, bool putDoubleQuotes)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#af18d4d67eb87f8f8b13788443d07703b">generateNonce</a>()</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a4a0f48bd00b456590803dd327f3f3c09">generateTimestamp</a>()</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ae91f7ac3fbf9f496ac0fb344c2514859">getAuthenticityToken</a>(bool isClear=true)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ad5ed528109a5bbc9153b3b2c852e58b7">getAuthorizationHeader</a>(RequestType type, QString baseURL, QString getDatas, QString postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a57e45bdea5c67b05a7cfd8da387fa26b">getAuthorizationHeader</a>(RequestType type, QString baseURL, ArgsMap getDatas, ArgsMap postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#aad8cf88e751405f20abbaf01dbd2b8f4">getCallbackUrl</a>()</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a198a290395933fe0530f7fd518f90204">getDeny</a>()</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#acec92b2355ae874ec4a5893250d2a682">getOAuthToken</a>(bool isClear=true)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
@@ -117,7 +118,7 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4">setOAuthSecret</a>(QByteArray authSecret, bool isClear=true)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944">setOAuthToken</a>(QByteArray authToken, bool isClear=true)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ac15ad8abdf37aac183d7879526831b68">setVerifier</a>(QByteArray verifier)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#ac2ee6de3d71ccdd0538b14499fb2c3b2">signDatas</a>(RequestType type, QString baseURL, QString getDatas, QString postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#a3c7b1522b9c9fa749a5ca14443de43e9">signDatas</a>(RequestType type, QString baseURL, ArgsMap getDatas, ArgsMap postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_o_auth_manager.html#afd85781094eb1178f9eb10e1f5de87a5">~OAuthManager</a>()</td><td><a class="el" href="class_o_auth_manager.html">OAuthManager</a></td><td><code> [virtual]</code></td></tr>
 </table></div>
 <!--- window showing the filter options -->
@@ -134,7 +135,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:28 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:55 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

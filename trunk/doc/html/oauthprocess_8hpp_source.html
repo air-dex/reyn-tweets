@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: controls/oauthprocess.hpp Source File</title>
+<title>ReynTweets: logic/processes/oauthprocess.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_d926af42770d3017e45bb6e6c37ef599.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
   </div>
 </div>
 <div class="contents">
@@ -92,91 +92,95 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2011 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#ifndef OAUTHPROCESS_HPP</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define OAUTHPROCESS_HPP</span>
-<a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="oauthprocessresult_8hpp.html" title="Header of OAuthProcessResult.">oauthprocessresult.hpp</a>&quot;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../connection/reyntwittercalls.hpp&quot;</span>
-<a name="l00030"></a>00030 
-<a name="l00033"></a><a class="code" href="class_o_auth_process.html">00033</a> <span class="keyword">class </span><a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> : <span class="keyword">public</span> QObject
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035         Q_OBJECT
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037         <span class="keyword">public</span>:
-<a name="l00040"></a>00040                 <a class="code" href="class_o_auth_process.html#a6d88675639eb01ae0706a0989c73911f" title="Constructor.">OAuthProcess</a>();
-<a name="l00041"></a>00041 
-<a name="l00044"></a>00044                 <a class="code" href="class_o_auth_process.html#ab698ffd84f5eb96a259cda6c7deb37ce" title="Destructor.">~OAuthProcess</a>();
-<a name="l00045"></a>00045 
-<a name="l00048"></a>00048                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a66945fe251e86ad88f84d8c05c0dd9b3" title="Starting the OAuth authentication flow.">startAuthentication</a>();
-<a name="l00049"></a>00049 
-<a name="l00053"></a>00053                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056         signals:
-<a name="l00060"></a>00060                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a01d18fecbfabd450c7b7f23d12da3b6f" title="Signal sent to show or to hide the browser.">loginPanelVisible</a>(<span class="keywordtype">bool</span> visible);
-<a name="l00061"></a>00061 
-<a name="l00067"></a>00067                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ab6dbe9e6dbfe57cb47e724b3c12b383d" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span> ok);
-<a name="l00068"></a>00068 
-<a name="l00074"></a>00074                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ab819fe3d81840e109b99b146c0acac03" title="Signal emitted when an error occurs during the process.">errorProcess</a>(<span class="keywordtype">bool</span> fatalError, QString errorMsg);
-<a name="l00075"></a>00075 
-<a name="l00088"></a>00088                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a9ab12ae52d7c13df047642c4d7af63b0" title="Signal sent when the authentication process ends.">authenticationProcessFinished</a>(<a class="code" href="oauthprocessresult_8hpp.html#a81a9a81e608b6a8e71d2c8bf63eed228" title="Result of the OAuth Process.">OAuthProcessResult</a> processResult,
-<a name="l00089"></a>00089                                                                                    QByteArray <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a> = <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00090"></a>00090                                                                                    QByteArray tokenSecret = <span class="stringliteral">&quot;&quot;</span>,
-<a name="l00091"></a>00091                                                                                    qlonglong userID = -1,
-<a name="l00092"></a>00092                                                                                    QString screenName = <span class="stringliteral">&quot;&quot;</span>);
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094         <span class="keyword">private</span>:
-<a name="l00097"></a>00097                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#add6570abea1bf47588a6678da4182f0c" title="Demanding a Request Token.">requestToken</a>();
-<a name="l00098"></a>00098 
-<a name="l00101"></a>00101                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a9b548f249f783370e5a863cedf2306cb" title="Authorize the request tokens.">authorize</a>();
-<a name="l00102"></a>00102 
-<a name="l00105"></a>00105                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a>();
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <span class="keyword">public</span> slots:
-<a name="l00110"></a>00110                 <span class="comment">// Requests to Twitter //</span>
-<a name="l00112"></a>00112 <span class="comment"></span>
-<a name="l00116"></a>00116                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a13a6ef4f0ced8efc25eeca55e001e20f" title="Treatments after the request for Request Tokens.">requestTokenDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00117"></a>00117 
-<a name="l00121"></a>00121                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ae3ba0bf426dd752ccbae8e4f893e3554" title="Treatments after the request for authorizing Request Tokens.">authorizeDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00122"></a>00122 
-<a name="l00126"></a>00126                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a2e5577d819cbdf19da28d9e428aa33e9" title="Treatments after the POST authorizing request.">postAuthorizeDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00127"></a>00127 
-<a name="l00131"></a>00131                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ad8835a22e417032d3f2a8b144501d87c" title="Treatments after the request for Access Tokens.">accessTokenDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 
-<a name="l00135"></a>00135                 <span class="comment">// OAuthWidget requests //</span>
-<a name="l00137"></a>00137 <span class="comment"></span>
-<a name="l00142"></a>00142                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#aa742d72e0dc772b64ed3f931a69760a1" title="Slot executed to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString login, QString password);
-<a name="l00143"></a>00143 
-<a name="l00148"></a>00148                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ab5ab0afaf7f28638240d7b13d905a768" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151         <span class="keyword">protected</span>:
-<a name="l00153"></a><a class="code" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e">00153</a>                 <a class="code" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> <a class="code" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e" title="Entity calling Twitter.">twitter</a>;
-<a name="l00154"></a>00154 };
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 <span class="preprocessor">#endif // OAUTHPROCESS_HPP</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="preprocessor">#ifndef OAUTHPROCESS_HPP</span>
+<a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#define OAUTHPROCESS_HPP</span>
+<a name="l00029"></a>00029 <span class="preprocessor"></span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="genericprocess_8hpp.html" title="Header of GenericProcess.">genericprocess.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;../connection/reyntwittercalls.hpp&quot;</span>
+<a name="l00032"></a>00032 
+<a name="l00035"></a><a class="code" href="class_o_auth_process.html">00035</a> <span class="keyword">class </span><a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> : <span class="keyword">public</span> <a class="code" href="class_generic_process.html" title="Base class for all the processes.">GenericProcess</a>
+<a name="l00036"></a>00036 {
+<a name="l00037"></a>00037         Q_OBJECT
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039         <span class="keyword">public</span>:
+<a name="l00042"></a>00042                 <a class="code" href="class_o_auth_process.html#a6d88675639eb01ae0706a0989c73911f" title="Constructor.">OAuthProcess</a>();
+<a name="l00043"></a>00043 
+<a name="l00046"></a>00046                 <a class="code" href="class_o_auth_process.html#ab698ffd84f5eb96a259cda6c7deb37ce" title="Destructor.">~OAuthProcess</a>();
+<a name="l00047"></a>00047 
+<a name="l00050"></a>00050                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#aa397aa0cbaa217acd98e9696f1b28674" title="Starting the OAuth Authentication flow.">startProcess</a>();
+<a name="l00051"></a>00051 
+<a name="l00055"></a>00055                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a8912d5b8e244314bc7656a5bd3956a45" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058         signals:
+<a name="l00061"></a>00061                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a253058307f18c77deaa98db9b2ebfcd4" title="Signal sent when the process requires user credentials.">userCredentialsRequired</a>();
+<a name="l00062"></a>00062 
+<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ab6dbe9e6dbfe57cb47e724b3c12b383d" title="Signal sent to show or to hide an error message telling the user if the credentials...">credentialsOK</a>(<span class="keywordtype">bool</span> ok);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         <span class="keyword">private</span>:
+<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#add6570abea1bf47588a6678da4182f0c" title="Demanding a Request Token.">requestToken</a>();
+<a name="l00074"></a>00074 
+<a name="l00077"></a>00077                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a9b548f249f783370e5a863cedf2306cb" title="Authorize the request tokens.">authorize</a>();
+<a name="l00078"></a>00078 
+<a name="l00081"></a>00081                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#aca7c2d27f18abef0bde1207d6ba2440e" title="Demanding an Access Token.">accessToken</a>();
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083         <span class="keyword">protected</span>:
+<a name="l00102"></a>00102                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a420342c293b6ecd9cfba052896fd6752" title="Building the process result.">buildResult</a>(<span class="keywordtype">bool</span> processOK,
+<a name="l00103"></a>00103                                                                  <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue,
+<a name="l00104"></a>00104                                                                  QString errMsg = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00105"></a>00105                                                                  <span class="keywordtype">bool</span> isFatal = <span class="keyword">false</span>,
+<a name="l00106"></a>00106                                                                  QByteArray accessToken = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00107"></a>00107                                                                  QByteArray tokenSecret = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00108"></a>00108                                                                  qlonglong userID = -1,
+<a name="l00109"></a>00109                                                                  QString screenName = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112         <span class="keyword">public</span> slots:
+<a name="l00114"></a>00114                 <span class="comment">// Requests to Twitter //</span>
+<a name="l00116"></a>00116 <span class="comment"></span>
+<a name="l00120"></a>00120                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a13a6ef4f0ced8efc25eeca55e001e20f" title="Treatments after the request for Request Tokens.">requestTokenDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
+<a name="l00121"></a>00121 
+<a name="l00125"></a>00125                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ae3ba0bf426dd752ccbae8e4f893e3554" title="Treatments after the request for authorizing Request Tokens.">authorizeDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#a2e5577d819cbdf19da28d9e428aa33e9" title="Treatments after the POST authorizing request.">postAuthorizeDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
+<a name="l00131"></a>00131 
+<a name="l00135"></a>00135                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ad8835a22e417032d3f2a8b144501d87c" title="Treatments after the request for Access Tokens.">accessTokenDemanded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 
+<a name="l00139"></a>00139                 <span class="comment">// OAuthWidget requests //</span>
+<a name="l00141"></a>00141 <span class="comment"></span>
+<a name="l00146"></a>00146                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#aa742d72e0dc772b64ed3f931a69760a1" title="Slot executed to allow Reyn Tweets to use the Twitter account :).">authorizeReynTweets</a>(QString login, QString password);
+<a name="l00147"></a>00147 
+<a name="l00152"></a>00152                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_process.html#ab5ab0afaf7f28638240d7b13d905a768" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155         <span class="keyword">protected</span>:
+<a name="l00157"></a><a class="code" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e">00157</a>                 <a class="code" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> <a class="code" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e" title="Entity calling Twitter.">twitter</a>;
+<a name="l00158"></a>00158 };
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="preprocessor">#endif // OAUTHPROCESS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -192,7 +196,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

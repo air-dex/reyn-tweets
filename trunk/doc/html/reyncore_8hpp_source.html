@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: controls/reyncore.hpp Source File</title>
+<title>ReynTweets: logic/reyncore.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_d926af42770d3017e45bb6e6c37ef599.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>
   </div>
 </div>
 <div class="contents">
@@ -92,89 +92,121 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2012 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#ifndef REYNCORE_HPP</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNCORE_HPP</span>
-<a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="launchresult_8hpp.html" title="Header of LaunchingWidget and SaveConfResult.">launchresult.hpp</a>&quot;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../connection/reyntwittercalls.hpp&quot;</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;../model/configuration/reyntweetsconfiguration.hpp&quot;</span>
-<a name="l00031"></a>00031 
-<a name="l00037"></a><a class="code" href="class_reyn_core.html">00037</a> <span class="keyword">class </span><a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> : <span class="keyword">public</span> QObject
-<a name="l00038"></a>00038 {
-<a name="l00039"></a>00039         Q_OBJECT
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="keyword">public</span>:
-<a name="l00044"></a>00044                 <a class="code" href="class_reyn_core.html#a16208dc0a4b840d18f8f175a3f730e25" title="Constructor.">ReynCore</a>();
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#ifndef REYNCORE_HPP</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span><span class="preprocessor">#define REYNCORE_HPP</span>
+<a name="l00028"></a>00028 <span class="preprocessor"></span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="coreresult_8hpp.html" title="Header with enums indicating how ReynCore treatments have ended.">coreresult.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;../model/configuration/reyntweetsconfiguration.hpp&quot;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="genericprocess_8hpp.html" title="Header of GenericProcess.">processes/genericprocess.hpp</a>&quot;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="oauthprocess_8hpp.html" title="Header of OAuthProcess.">processes/oauthprocess.hpp</a>&quot;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include &quot;<a class="code" href="processmanager_8hpp.html" title="Header of ProcessManager.">processes/processmanager.hpp</a>&quot;</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include &quot;<a class="code" href="processwrapper_8hpp.html" title="Header of ProcessWrapper.">processes/processwrapper.hpp</a>&quot;</span>
+<a name="l00036"></a>00036 
+<a name="l00042"></a><a class="code" href="class_reyn_core.html">00042</a> <span class="keyword">class </span><a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> : <span class="keyword">public</span> QObject
+<a name="l00043"></a>00043 {
+<a name="l00044"></a>00044         Q_OBJECT
 <a name="l00045"></a>00045 
-<a name="l00047"></a>00047                 <span class="comment">// Authentication management //</span>
+<a name="l00047"></a>00047         <span class="comment">// Core management of the class //</span>
 <a name="l00049"></a>00049 <span class="comment"></span>
-<a name="l00054"></a>00054                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a93c24614dbefe32f2a3eaa64d98b85c8" title="Checks if the access tokens seem legit. If not, it sends an authenticationRequired();...">checkTokens</a>();
+<a name="l00050"></a>00050         <span class="keyword">public</span>:
+<a name="l00054"></a>00054                 <a class="code" href="class_reyn_core.html#a463d662ca7e9cac17ad238d0b94f4517" title="Constructor.">ReynCore</a>(QObject * actionRequester);
 <a name="l00055"></a>00055 
-<a name="l00057"></a>00057                 <span class="comment">// Configuration management //</span>
-<a name="l00059"></a>00059 <span class="comment"></span>
-<a name="l00062"></a>00062                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a863c8b749fa081ed9db209d59fc07eee" title="Loading the configuartion from the configuration file.">loadConfiguration</a>();
-<a name="l00063"></a>00063 
-<a name="l00076"></a>00076                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a7d3f5347668ef460c2c5cd86c1e914cd" title="Uploading the configuration after an authentication process.">updateConfAfterAuth</a>(QByteArray accessToken,
-<a name="l00077"></a>00077                                                                  QByteArray tokenSecret,
-<a name="l00078"></a>00078                                                                  qlonglong <span class="keywordtype">id</span>,
-<a name="l00079"></a>00079                                                                  QString screenName);
+<a name="l00058"></a>00058                 <a class="code" href="class_reyn_core.html#a43ebcb37fec0718e9bcc478428cbda65" title="Destructor.">~ReynCore</a>();
+<a name="l00059"></a>00059 
+<a name="l00063"></a>00063                 <a class="code" href="class_reyn_core.html#a463d662ca7e9cac17ad238d0b94f4517" title="Constructor.">ReynCore</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> &amp; heart);
+<a name="l00064"></a>00064 
+<a name="l00068"></a>00068                 <span class="keyword">const</span> <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> &amp; <a class="code" href="class_reyn_core.html#a29525bf78dab5fcd96425bee2e6175cc" title="Affectation operator.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> &amp; heart);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         signals:
+<a name="l00074"></a>00074                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#af8e5febafb2925af4ca4d68e4e8107fd" title="Signal emitted to the QObject that requests the process.">sendResult</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         <span class="keyword">public</span> slots:
+<a name="l00079"></a>00079                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a8c8e4a188f25c198f4256c5ff0592e8f" title="Slot executed when a requester has finished its work.">endProcess</a>();
 <a name="l00080"></a>00080 
-<a name="l00083"></a>00083                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ab07552586c2d0870f1f405bd22be7124" title="Saving the configuartion in the configuration file.">saveConfiguration</a>();
+<a name="l00081"></a>00081         <span class="keyword">protected</span>:
+<a name="l00083"></a><a class="code" href="class_reyn_core.html#a94022db854f428003230dda3957e47ab">00083</a>                 QObject * <a class="code" href="class_reyn_core.html#a94022db854f428003230dda3957e47ab" title="QObject that asks for the request.">requestDemander</a>;
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085         signals:
-<a name="l00087"></a>00087                 <span class="comment">// Authentication management //</span>
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aa1f137675ebe526c6725bf91a699e4ef" title="Signal sent if the application has to be authorized again (in order to get new access...">authenticationRequired</a>();
-<a name="l00094"></a>00094 
-<a name="l00096"></a>00096                 <span class="comment">// Configuration management //</span>
-<a name="l00098"></a>00098 <span class="comment"></span>
-<a name="l00103"></a>00103                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a805f4df02776d4b750c369ec76d0d215" title="Signal sent at the end of the authentication to indicate if it was successful or...">launchEnded</a>(<a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a> authOK);
-<a name="l00104"></a>00104 
-<a name="l00108"></a>00108                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aa8346f002c3f50358fd678ac6b04934d" title="Signal sent after saving the configuration.">saveConfEnded</a>(<a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a> saveOK);
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <span class="keyword">public</span> slots:
-<a name="l00114"></a>00114                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a2469e97e71f5e77ddb8f5fb90d6b281b" title="Getting a user after requesting it to Twitter.">getUser</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res);
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116         <span class="keyword">protected</span>:
-<a name="l00118"></a><a class="code" href="class_reyn_core.html#a19d38b7c6cb29933bdf96c75b9964a69">00118</a>                 <a class="code" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> <a class="code" href="class_reyn_core.html#a19d38b7c6cb29933bdf96c75b9964a69" title="Entity calling Twitter.">twitter</a>;
-<a name="l00119"></a>00119 
-<a name="l00121"></a><a class="code" href="class_reyn_core.html#ad330fad49aeb468069d788976f0b0afb">00121</a>                 <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> <a class="code" href="class_reyn_core.html#ad330fad49aeb468069d788976f0b0afb" title="Configuration of the program.">configuration</a>;
-<a name="l00122"></a>00122 
-<a name="l00126"></a>00126                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aba0d24027c9af6bea1b75a60abb9e640" title="Filling the authentication manager of the ReynTwitterCalls with the right credentials...">fillOAuthManager</a>();
+<a name="l00086"></a><a class="code" href="class_reyn_core.html#a0982981a3f075f2f2a1cd9638e3f3a8e">00086</a>                 <span class="keyword">static</span> <a class="code" href="class_process_manager.html" title="Map managing processes that are running.">ProcessManager</a> <a class="code" href="class_reyn_core.html#a0982981a3f075f2f2a1cd9638e3f3a8e" title="Process manager.">processManager</a>;
+<a name="l00087"></a>00087 
+<a name="l00089"></a><a class="code" href="class_reyn_core.html#ad330fad49aeb468069d788976f0b0afb">00089</a>                 <span class="keyword">static</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> <a class="code" href="class_reyn_core.html#ad330fad49aeb468069d788976f0b0afb" title="Configuration of the program.">configuration</a>;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="keyword">private</span>:
+<a name="l00095"></a>00095                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#af9bd94850cfb3590bd22aa56b715a3b2" title="Copying a ReynCore.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> &amp; heart);
+<a name="l00096"></a>00096 
+<a name="l00100"></a>00100                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a20ee63484aa55d2274f24bc62984c4f3" title="Adding a process to the process manager.">addProcess</a>(<a class="code" href="class_generic_process.html" title="Base class for all the processes.">GenericProcess</a> * process);
+<a name="l00101"></a>00101 
+<a name="l00105"></a>00105                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aed6417c2ee0c0706265d91bdc4f95108" title="Removing a process of the process manager.">removeProcess</a>(<a class="code" href="class_generic_process.html" title="Base class for all the processes.">GenericProcess</a> * process);
+<a name="l00106"></a>00106 
+<a name="l00111"></a>00111                 <a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> <a class="code" href="class_reyn_core.html#a3863e6c6386c499b497e955faab30ef5" title="Method that builds the wrapper of a result.">buildResultSender</a>(<a class="code" href="class_generic_process.html" title="Base class for all the processes.">GenericProcess</a> * endedProcess);
+<a name="l00112"></a>00112 
+<a name="l00116"></a>00116                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#adda0e608869c555fb575bebedb2ff33d" title="Inline method for executing processes.">executeProcess</a>(<a class="code" href="class_generic_process.html" title="Base class for all the processes.">GenericProcess</a> * process);
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 
+<a name="l00120"></a>00120         <span class="comment">// Actions to realize //</span>
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123         <span class="keyword">public</span>:
+<a name="l00126"></a>00126                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a139949eb30e527576d7bc475c004f0f3" title="Launching the app.">launchReynTweets</a>();
 <a name="l00127"></a>00127 
-<a name="l00128"></a>00128         <span class="keyword">private</span>:
-<a name="l00130"></a>00130                 <span class="comment">// Authentication management //</span>
-<a name="l00132"></a>00132 <span class="comment"></span>
-<a name="l00137"></a>00137                 <span class="keywordtype">bool</span> <a class="code" href="class_reyn_core.html#a814f474de3290825199f84fc62193453" title="Determining if a token seems legit.">isValidToken</a>(QByteArray token);
-<a name="l00138"></a>00138 
-<a name="l00140"></a>00140                 <span class="comment">// Configuration management //</span>
-<a name="l00142"></a>00142 <span class="comment"></span>
-<a name="l00146"></a>00146                 <a class="code" href="launchresult_8hpp.html#a62d7eb3b8f4bc7f712be5d126ddd557b" title="Enum indicating the result of the launching of Reyn Tweets.">LaunchResult</a> <a class="code" href="class_reyn_core.html#ae1a82b2768bdab8a889b04c24ac1fa2b" title="Loading the configuartion from the configuration file.">loadConfigurationPrivate</a>();
-<a name="l00147"></a>00147 
-<a name="l00151"></a>00151                 <a class="code" href="launchresult_8hpp.html#ad04e276f5f784e8e9732bd5229bf98f1" title="Enum indicating if saving the configuration was successful.">SaveConfResult</a> <a class="code" href="class_reyn_core.html#a8fbc6009564e1dd5cdcd040efc45a136" title="Saving the configuartion in the configuration file.">saveConfigurationPrivate</a>();
-<a name="l00152"></a>00152 };
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 <span class="preprocessor">#endif // REYNCORE_HPP</span>
+<a name="l00130"></a>00130                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a329907f37c1dbbdb26ba4ccc4334ef8c" title="Authorizing Reyn Tweets (not saving the configuration after).">authorizeReynTweets</a>();
+<a name="l00131"></a>00131 
+<a name="l00134"></a>00134                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ae9ab3696cab8a2307a55b34ff36ce0fc" title="Allowing Reyn Tweets.">allowReynTweets</a>();
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136         <span class="keyword">protected</span>:
+<a name="l00140"></a>00140                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6cf70dfd2c722444e8bd6f541c36ad68" title="Special wiring of an OAuth process.">oauthSpecialWiring</a>(<a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> * oauthProcess);
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00144"></a>00144         <span class="comment">// Special wiring //</span>
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147         signals:
+<a name="l00149"></a>00149                 <span class="comment">// OAuth process giving informations about user credentials //</span>
+<a name="l00151"></a>00151 <span class="comment"></span>
+<a name="l00155"></a>00155                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6f3b5f749839f472ef259759fa0e94e6" title="Transmitting the userCredentialsRequired() signal of a given OAuthProcess.">userCredentialsNeeded</a>();
+<a name="l00156"></a>00156 
+<a name="l00160"></a>00160                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a954f69433d2ecdb04d7b46102ba6372c" title="Telling the user whether credentials given by it are right.">credentialsValid</a>(<span class="keywordtype">bool</span> credsOK);
+<a name="l00161"></a>00161 
+<a name="l00163"></a>00163                 <span class="comment">// Authorize or deny //</span>
+<a name="l00165"></a>00165 <span class="comment"></span>
+<a name="l00170"></a>00170                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a599fa47f000635a6d41ecdf5497aa95a" title="Slot executed to allow Reyn Tweets to use the Twitter account :).">authorize</a>(QString login, QString password);
+<a name="l00171"></a>00171 
+<a name="l00176"></a>00176                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a04f533fe4d70d6c137a81c6b38696e36" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">deny</a>(QString login, QString password);
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178         <span class="keyword">public</span> slots:
+<a name="l00180"></a>00180                 <span class="comment">// OAuth process giving informations about user credentials //</span>
+<a name="l00182"></a>00182 <span class="comment"></span>
+<a name="l00186"></a>00186                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a870cef4ec88a80b4fed9d31667f2d927" title="Executed when an OAuthProcess send its userCredentialsRequired() signal.">userCredentialsRequired</a>();
+<a name="l00187"></a>00187 
+<a name="l00191"></a>00191                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ab91fbae917d0f7ca6f7b107882e2546b" title="Telling the user whether credentials given by it are right.">credentialsOK</a>(<span class="keywordtype">bool</span> credsOK);
+<a name="l00192"></a>00192 
+<a name="l00194"></a>00194                 <span class="comment">// Authorize or deny //</span>
+<a name="l00196"></a>00196 <span class="comment"></span>
+<a name="l00201"></a>00201                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a329907f37c1dbbdb26ba4ccc4334ef8c" title="Authorizing Reyn Tweets (not saving the configuration after).">authorizeReynTweets</a>(QString login, QString password);
+<a name="l00202"></a>00202 
+<a name="l00207"></a>00207                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aac20b26a764111288569e8977bfdd226" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
+<a name="l00208"></a>00208 };
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210 <span class="preprocessor">#endif // REYNCORE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -190,7 +222,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:21 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

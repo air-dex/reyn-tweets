@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/urlentity.cpp Source File</title>
+<title>ReynTweets: model/tweets/urlentity.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
+  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ddaef8fb73602a57805889eeb9608e17.html">tweets</a>
   </div>
 </div>
 <div class="contents">
@@ -92,131 +92,133 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2012 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="urlentity_8hpp.html" title="Header of URLEntity.">urlentity.hpp</a>&quot;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00028"></a>00028 <span class="comment">// Serialization management //</span>
-<a name="l00030"></a>00030 <span class="comment"></span>
-<a name="l00031"></a>00031 <span class="comment">// Constructor</span>
-<a name="l00032"></a><a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195">00032</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00034"></a>00034         extractedURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00035"></a>00035         displayedURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00036"></a>00036         expandedURL(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00037"></a>00037         indexes()
-<a name="l00038"></a>00038 {}
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">// Destructor</span>
-<a name="l00041"></a><a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7">00041</a> <a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7" title="Destructor.">URLEntity::~URLEntity</a>() {}
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment">// Copy constructor</span>
-<a name="l00044"></a><a class="code" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">00044</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00045"></a>00045         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="comment">// Affectation</span>
-<a name="l00049"></a><a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">00049</a> <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; <a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d" title="Affectation.">URLEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00050"></a>00050         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
-<a name="l00051"></a>00051         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment">// Serialization declaration</span>
-<a name="l00055"></a><a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767">00055</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767" title="Serialization declaration.">URLEntity::initSystem</a>() {
-<a name="l00056"></a>00056         qRegisterMetaTypeStreamOperators&lt;URLEntity&gt;(<span class="stringliteral">&quot;URLEntity&quot;</span>);
-<a name="l00057"></a>00057         qMetaTypeId&lt;URLEntity&gt;();
-<a name="l00058"></a>00058 }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment">// Copy of a URLEntity</span>
-<a name="l00061"></a><a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">URLEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00062"></a>00062         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
-<a name="l00063"></a>00063         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
-<a name="l00064"></a>00064         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
-<a name="l00065"></a>00065         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = entity.<a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00069"></a><a class="code" href="urlentity_8hpp.html#a4963466848463a021d0ffa5b5d53d9da">00069</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, entity);
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00074"></a><a class="code" href="urlentity_8hpp.html#afc50d01e1fb1f6971c69850c2bb0069b">00074</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, entity);
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00079"></a>00079 <span class="comment">// Properties management //</span>
-<a name="l00081"></a>00081 <span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">// Reading method for the property indices</span>
-<a name="l00083"></a><a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6">00083</a> QVariantList <a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6" title="Reading method for the property indices.">URLEntity::getIndicesProperty</a>() {
-<a name="l00084"></a>00084         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="comment">// Writing method for the property indices</span>
-<a name="l00088"></a><a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f">00088</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(QVariantList newIndexList) {
-<a name="l00089"></a>00089         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(newIndexList);
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
-<a name="l00094"></a>00094 <span class="comment">// Getter and setters //</span>
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">// Reading extractedURL</span>
-<a name="l00098"></a><a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd">00098</a> QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">URLEntity::getURL</a>() {
-<a name="l00099"></a>00099         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
-<a name="l00100"></a>00100 }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="comment">// Writing extractedURL</span>
-<a name="l00103"></a><a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">00103</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">URLEntity::setURL</a>(QString newURL) {
-<a name="l00104"></a>00104         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = newURL;
-<a name="l00105"></a>00105 }
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="comment">// Reading method for displayedURL</span>
-<a name="l00108"></a><a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">00108</a> QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">URLEntity::getDisplayedURL</a>() {
-<a name="l00109"></a>00109         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
-<a name="l00110"></a>00110 }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 <span class="comment">// Writing displayedURL</span>
-<a name="l00113"></a><a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf">00113</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">URLEntity::setDisplayedURL</a>(QString newURL) {
-<a name="l00114"></a>00114         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = newURL;
-<a name="l00115"></a>00115 }
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 <span class="comment">// Reading method for expandedURL</span>
-<a name="l00118"></a><a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">00118</a> QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">URLEntity::getExpandedURL</a>() {
-<a name="l00119"></a>00119         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
-<a name="l00120"></a>00120 }
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="comment">// Writing method for expandedURL</span>
-<a name="l00123"></a><a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">00123</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">URLEntity::setExpandedURL</a>(QString newURL) {
-<a name="l00124"></a>00124         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = newURL;
-<a name="l00125"></a>00125 }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="comment">// Reading indexes</span>
-<a name="l00128"></a><a class="code" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c">00128</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c" title="Reading indexes.">URLEntity::getIndices</a>() {
-<a name="l00129"></a>00129         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
-<a name="l00130"></a>00130 }
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="comment">// Writing indexes</span>
-<a name="l00133"></a><a class="code" href="class_u_r_l_entity.html#a20e71ccffe2ab93f0627002e22660a03">00133</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
-<a name="l00134"></a>00134         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = newIndexes;
-<a name="l00135"></a>00135 }
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="urlentity_8hpp.html" title="Header of URLEntity.">urlentity.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
+<a name="l00028"></a>00028 
+<a name="l00030"></a>00030 <span class="comment">// Serialization management //</span>
+<a name="l00032"></a>00032 <span class="comment"></span>
+<a name="l00033"></a>00033 <span class="comment">// Constructor</span>
+<a name="l00034"></a><a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195">00034</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>() :
+<a name="l00035"></a>00035         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
+<a name="l00036"></a>00036         extractedURL(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00037"></a>00037         displayedURL(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00038"></a>00038         expandedURL(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00039"></a>00039         indexes()
+<a name="l00040"></a>00040 {}
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment">// Destructor</span>
+<a name="l00043"></a><a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7">00043</a> <a class="code" href="class_u_r_l_entity.html#a7d6c00205a93fb95139db76680fa9ec7" title="Destructor.">URLEntity::~URLEntity</a>() {}
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="comment">// Copy constructor</span>
+<a name="l00046"></a><a class="code" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">00046</a> <a class="code" href="class_u_r_l_entity.html#a548a7fef9d1a99e014eaf24ab8b97195" title="Constructor.">URLEntity::URLEntity</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
+<a name="l00047"></a>00047         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// Affectation</span>
+<a name="l00051"></a><a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">00051</a> <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; <a class="code" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d" title="Affectation.">URLEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
+<a name="l00052"></a>00052         <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">recopie</a>(entity);
+<a name="l00053"></a>00053         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00054"></a>00054 }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="comment">// Serialization declaration</span>
+<a name="l00057"></a><a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a22b8df921e5f4c3b58cbba9c330b4767" title="Serialization declaration.">URLEntity::initSystem</a>() {
+<a name="l00058"></a>00058         qRegisterMetaTypeStreamOperators&lt;URLEntity&gt;(<span class="stringliteral">&quot;URLEntity&quot;</span>);
+<a name="l00059"></a>00059         qMetaTypeId&lt;URLEntity&gt;();
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="comment">// Copy of a URLEntity</span>
+<a name="l00063"></a><a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d">00063</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#ac54767a48e66659e0e8b76b284e3c19d" title="Copy of a URLEntity.">URLEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
+<a name="l00064"></a>00064         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
+<a name="l00065"></a>00065         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
+<a name="l00066"></a>00066         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = entity.<a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
+<a name="l00067"></a>00067         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = entity.<a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00071"></a><a class="code" href="urlentity_8hpp.html#a4963466848463a021d0ffa5b5d53d9da">00071</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, entity);
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00076"></a><a class="code" href="urlentity_8hpp.html#afc50d01e1fb1f6971c69850c2bb0069b">00076</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a> &amp; entity) {
+<a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, entity);
+<a name="l00078"></a>00078 }
+<a name="l00079"></a>00079 
+<a name="l00081"></a>00081 <span class="comment">// Properties management //</span>
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">// Reading method for the property indices</span>
+<a name="l00085"></a><a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6">00085</a> QVariantList <a class="code" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6" title="Reading method for the property indices.">URLEntity::getIndicesProperty</a>() {
+<a name="l00086"></a>00086         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="comment">// Writing method for the property indices</span>
+<a name="l00090"></a><a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f">00090</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(QVariantList newIndexList) {
+<a name="l00091"></a>00091         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(newIndexList);
+<a name="l00092"></a>00092 }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 
+<a name="l00096"></a>00096 <span class="comment">// Getter and setters //</span>
+<a name="l00098"></a>00098 <span class="comment"></span>
+<a name="l00099"></a>00099 <span class="comment">// Reading extractedURL</span>
+<a name="l00100"></a><a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd">00100</a> QString <a class="code" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd" title="Reading extractedURL.">URLEntity::getURL</a>() {
+<a name="l00101"></a>00101         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a>;
+<a name="l00102"></a>00102 }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="comment">// Writing extractedURL</span>
+<a name="l00105"></a><a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">00105</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d" title="Writing extractedURL.">URLEntity::setURL</a>(QString newURL) {
+<a name="l00106"></a>00106         <a class="code" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6" title="Extracted URL.">extractedURL</a> = newURL;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">// Reading method for displayedURL</span>
+<a name="l00110"></a><a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">00110</a> QString <a class="code" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a" title="Reading method for displayedURL.">URLEntity::getDisplayedURL</a>() {
+<a name="l00111"></a>00111         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a>;
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="comment">// Writing displayedURL</span>
+<a name="l00115"></a><a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#aa1fb9194468b24932c3f22a5d9622daf" title="Writing displayedURL.">URLEntity::setDisplayedURL</a>(QString newURL) {
+<a name="l00116"></a>00116         <a class="code" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b" title="URL displayed on the tweet.">displayedURL</a> = newURL;
+<a name="l00117"></a>00117 }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="comment">// Reading method for expandedURL</span>
+<a name="l00120"></a><a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">00120</a> QString <a class="code" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df" title="Reading method for expandedURL.">URLEntity::getExpandedURL</a>() {
+<a name="l00121"></a>00121         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a>;
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <span class="comment">// Writing method for expandedURL</span>
+<a name="l00125"></a><a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">00125</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c" title="Writing method for expandedURL.">URLEntity::setExpandedURL</a>(QString newURL) {
+<a name="l00126"></a>00126         <a class="code" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94" title="Full URL (only for t.co URLs).">expandedURL</a> = newURL;
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="comment">// Reading indexes</span>
+<a name="l00130"></a><a class="code" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c">00130</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c" title="Reading indexes.">URLEntity::getIndices</a>() {
+<a name="l00131"></a>00131         <span class="keywordflow">return</span> <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a>;
+<a name="l00132"></a>00132 }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="comment">// Writing indexes</span>
+<a name="l00135"></a><a class="code" href="class_u_r_l_entity.html#a20e71ccffe2ab93f0627002e22660a03">00135</a> <span class="keywordtype">void</span> <a class="code" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f" title="Writing method for the property indices.">URLEntity::setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
+<a name="l00136"></a>00136         <a class="code" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6" title="Indexes in the tweet.">indexes</a> = newIndexes;
+<a name="l00137"></a>00137 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -232,7 +234,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

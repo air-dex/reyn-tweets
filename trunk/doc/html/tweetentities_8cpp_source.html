@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/tweetentities.cpp Source File</title>
+<title>ReynTweets: model/tweets/tweetentities.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
+  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ddaef8fb73602a57805889eeb9608e17.html">tweets</a>
   </div>
 </div>
 <div class="contents">
@@ -92,162 +92,164 @@ window.onload = initDynSections;
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">/*</span>
-<a name="l00006"></a>00006 <span class="comment">Copyright 2012 Romain Ducher</span>
-<a name="l00007"></a>00007 <span class="comment"></span>
-<a name="l00008"></a>00008 <span class="comment">This file is part of Reyn Tweets.</span>
-<a name="l00009"></a>00009 <span class="comment"></span>
-<a name="l00010"></a>00010 <span class="comment">Reyn Tweets is free software: you can redistribute it and/or modify</span>
-<a name="l00011"></a>00011 <span class="comment">it under the terms of the GNU Lesser General Public License as published by</span>
-<a name="l00012"></a>00012 <span class="comment">the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00013"></a>00013 <span class="comment">(at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment"></span>
-<a name="l00015"></a>00015 <span class="comment">Reyn Tweets is distributed in the hope that it will be useful,</span>
-<a name="l00016"></a>00016 <span class="comment">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00017"></a>00017 <span class="comment">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00018"></a>00018 <span class="comment">GNU Lesser General Public License for more details.</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">You should have received a copy of the GNU Lesser General Public License</span>
-<a name="l00021"></a>00021 <span class="comment">along with Reyn Tweets. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<a name="l00022"></a>00022 <span class="comment">*/</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="tweetentities_8hpp.html" title="Header of TweetEntities.">tweetentities.hpp</a>&quot;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00028"></a>00028 <span class="comment">// Serialization management //</span>
-<a name="l00030"></a>00030 <span class="comment"></span>
-<a name="l00031"></a>00031 <span class="comment">// Default constructor</span>
-<a name="l00032"></a><a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5">00032</a> <a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5" title="Default constructor.">TweetEntities::TweetEntities</a>() :
-<a name="l00033"></a>00033         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00034"></a>00034         medias(),
-<a name="l00035"></a>00035         tweetURLs(),
-<a name="l00036"></a>00036         mentions(),
-<a name="l00037"></a>00037         tweetHashtags()
-<a name="l00038"></a>00038 {}
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">// Destructor</span>
-<a name="l00041"></a><a class="code" href="class_tweet_entities.html#af7738e66d7d5e3a6eea5c8f2ad42d64f">00041</a> <a class="code" href="class_tweet_entities.html#af7738e66d7d5e3a6eea5c8f2ad42d64f" title="Destructor.">TweetEntities::~TweetEntities</a>() {}
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment">// Copy constructor</span>
-<a name="l00044"></a><a class="code" href="class_tweet_entities.html#acfa5df862abf1428eaf8dbb372b08b77">00044</a> <a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5" title="Default constructor.">TweetEntities::TweetEntities</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
-<a name="l00045"></a>00045         <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">recopie</a>(entities);
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="comment">// Affectation</span>
-<a name="l00049"></a><a class="code" href="class_tweet_entities.html#a6ae8a70d5f1a17e1f694da02a51cfc32">00049</a> <span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; <a class="code" href="class_tweet_entities.html#a6ae8a70d5f1a17e1f694da02a51cfc32" title="Affectation.">TweetEntities::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
-<a name="l00050"></a>00050         <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">recopie</a>(entities);
-<a name="l00051"></a>00051         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment">// Serialization declaration</span>
-<a name="l00055"></a><a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9">00055</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9" title="Serialization declaration.">TweetEntities::initSystem</a>() {
-<a name="l00056"></a>00056         qRegisterMetaTypeStreamOperators&lt;TweetEntities&gt;(<span class="stringliteral">&quot;TweetEntities&quot;</span>);
-<a name="l00057"></a>00057         qMetaTypeId&lt;TweetEntities&gt;();
-<a name="l00058"></a>00058 }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment">// Copy of a TwitterEntities</span>
-<a name="l00061"></a><a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">TweetEntities::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
-<a name="l00062"></a>00062         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a> = entities.<a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>;
-<a name="l00063"></a>00063         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a> = entities.<a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>;
-<a name="l00064"></a>00064         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a> = entities.<a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>;
-<a name="l00065"></a>00065         <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a> = entities.<a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>;
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00069"></a><a class="code" href="tweetentities_8hpp.html#af780627bae9b95a29d8d40f14dbb90de">00069</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
-<a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, entities);
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00074"></a><a class="code" href="tweetentities_8hpp.html#a6d57684a9e058f162c57da7406f57e22">00074</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> <a class="code" href="reyntweetsserializablelist_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, entities);
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00080"></a>00080 <span class="comment">// Properties management //</span>
-<a name="l00082"></a>00082 <span class="comment"></span>
-<a name="l00083"></a>00083 <span class="comment">// Reading the property media</span>
-<a name="l00084"></a><a class="code" href="class_tweet_entities.html#abeb6142e1847cec1011beae32fe5440d">00084</a> QVariantList <a class="code" href="class_tweet_entities.html#abeb6142e1847cec1011beae32fe5440d" title="Reading the property media.">TweetEntities::getMediaProperty</a>() {
-<a name="l00085"></a>00085         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
-<a name="l00086"></a>00086 }
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="comment">// Writing the property media</span>
-<a name="l00089"></a><a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75">00089</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75" title="Writing the property media.">TweetEntities::setMedia</a>(QVariantList newMediaList) {
-<a name="l00090"></a>00090         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newMediaList);
-<a name="l00091"></a>00091 }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 <span class="comment">// Reading the property urls</span>
-<a name="l00094"></a><a class="code" href="class_tweet_entities.html#a0a8e29e78769a73bbaade3cccc232f19">00094</a> QVariantList <a class="code" href="class_tweet_entities.html#a0a8e29e78769a73bbaade3cccc232f19" title="Reading the property urls.">TweetEntities::getURLsProperty</a>() {
-<a name="l00095"></a>00095         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
-<a name="l00096"></a>00096 }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="comment">// Writing the property urls</span>
-<a name="l00099"></a><a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa">00099</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa" title="Writing the property urls.">TweetEntities::setURLs</a>(QVariantList newURLList) {
-<a name="l00100"></a>00100         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newURLList);
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="comment">// Reading the property user_mentions</span>
-<a name="l00104"></a><a class="code" href="class_tweet_entities.html#a37f6e147af3f8d0ba82c5d0fb715cbf8">00104</a> QVariantList <a class="code" href="class_tweet_entities.html#a37f6e147af3f8d0ba82c5d0fb715cbf8" title="Reading the property user_mentions.">TweetEntities::getUserMentionsProperty</a>() {
-<a name="l00105"></a>00105         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
-<a name="l00106"></a>00106 }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="comment">// Writing the property user_mentions</span>
-<a name="l00109"></a><a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497" title="Writing the property user_mentions.">TweetEntities::setUserMentions</a>(QVariantList newUserMentionsList) {
-<a name="l00110"></a>00110         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newUserMentionsList);
-<a name="l00111"></a>00111 }
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="comment">// Reading the property hashtags</span>
-<a name="l00114"></a><a class="code" href="class_tweet_entities.html#ac686b7daf2ee405f73bc91cbabdcf370">00114</a> QVariantList <a class="code" href="class_tweet_entities.html#ac686b7daf2ee405f73bc91cbabdcf370" title="Reading the property hashtags.">TweetEntities::getHashtagsProperty</a>() {
-<a name="l00115"></a>00115         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
-<a name="l00116"></a>00116 }
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="comment">// Writing the property hashtags</span>
-<a name="l00119"></a><a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3">00119</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3" title="Writing the property hashtags.">TweetEntities::setHashtags</a>(QVariantList newHashtagsList) {
-<a name="l00120"></a>00120          <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newHashtagsList);
-<a name="l00121"></a>00121 }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 
-<a name="l00125"></a>00125 <span class="comment">// Accessors //</span>
-<a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">// Reading medias</span>
-<a name="l00129"></a><a class="code" href="class_tweet_entities.html#a09dd37d90686ee974ee171c4767bd368">00129</a> <a class="code" href="class_media_list.html" title="List of Medias.">MediaList</a> <a class="code" href="class_tweet_entities.html#a09dd37d90686ee974ee171c4767bd368" title="Reading medias.">TweetEntities::getMedia</a>() {
-<a name="l00130"></a>00130         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>;
-<a name="l00131"></a>00131 }
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="comment">// Writing medias</span>
-<a name="l00134"></a><a class="code" href="class_tweet_entities.html#aeec527f3f4dd71c0f49b56301cf9e2c0">00134</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75" title="Writing the property media.">TweetEntities::setMedia</a>(<a class="code" href="class_media_list.html" title="List of Medias.">MediaList</a> newMedia) {
-<a name="l00135"></a>00135         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a> = newMedia;
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="comment">// Reading tweetURLs</span>
-<a name="l00139"></a><a class="code" href="class_tweet_entities.html#a894464b1eea9e04de629e9c701c1203f">00139</a> <a class="code" href="class_u_r_l_entity_list.html" title="List of URL Entities.">URLEntityList</a> <a class="code" href="class_tweet_entities.html#a894464b1eea9e04de629e9c701c1203f" title="Reading tweetURLs.">TweetEntities::getURLs</a>() {
-<a name="l00140"></a>00140         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>;
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 <span class="comment">// Writing tweetURLs</span>
-<a name="l00144"></a><a class="code" href="class_tweet_entities.html#ac367465cbe63489b3347c4a2fcfcbbc6">00144</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa" title="Writing the property urls.">TweetEntities::setURLs</a>(<a class="code" href="class_u_r_l_entity_list.html" title="List of URL Entities.">URLEntityList</a> newURLs) {
-<a name="l00145"></a>00145         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a> = newURLs;
-<a name="l00146"></a>00146 }
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148 <span class="comment">// Reading userMentions</span>
-<a name="l00149"></a><a class="code" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5">00149</a> <a class="code" href="class_user_mention_list.html" title="List of user mentions.">UserMentionList</a> <a class="code" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5" title="Reading userMentions.">TweetEntities::getUserMentions</a>() {
-<a name="l00150"></a>00150         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>;
-<a name="l00151"></a>00151 }
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153 <span class="comment">// Writing userMentions</span>
-<a name="l00154"></a><a class="code" href="class_tweet_entities.html#a9dd524289a4d72e8a1995900c324629f">00154</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497" title="Writing the property user_mentions.">TweetEntities::setUserMentions</a>(<a class="code" href="class_user_mention_list.html" title="List of user mentions.">UserMentionList</a> newUserMentions) {
-<a name="l00155"></a>00155         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a> = newUserMentions;
-<a name="l00156"></a>00156 }
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158 <span class="comment">// Reading tweetHashtags</span>
-<a name="l00159"></a><a class="code" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829">00159</a> <a class="code" href="class_hashtag_list.html" title="Lists of Hashtags.">HashtagList</a> <a class="code" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829" title="Reading tweetHashtags.">TweetEntities::getHashtags</a>() {
-<a name="l00160"></a>00160         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>;
-<a name="l00161"></a>00161 }
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 <span class="comment">// Writing tweetHashtags</span>
-<a name="l00164"></a><a class="code" href="class_tweet_entities.html#a791dbcdc5043c45bd34ad277053bcc66">00164</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3" title="Writing the property hashtags.">TweetEntities::setHashtags</a>(<a class="code" href="class_hashtag_list.html" title="Lists of Hashtags.">HashtagList</a> newHashtags) {
-<a name="l00165"></a>00165         <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a> = newHashtags;
-<a name="l00166"></a>00166 }
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="tweetentities_8hpp.html" title="Header of TweetEntities.">tweetentities.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
+<a name="l00028"></a>00028 
+<a name="l00030"></a>00030 <span class="comment">// Serialization management //</span>
+<a name="l00032"></a>00032 <span class="comment"></span>
+<a name="l00033"></a>00033 <span class="comment">// Default constructor</span>
+<a name="l00034"></a><a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5">00034</a> <a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5" title="Default constructor.">TweetEntities::TweetEntities</a>() :
+<a name="l00035"></a>00035         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
+<a name="l00036"></a>00036         medias(),
+<a name="l00037"></a>00037         tweetURLs(),
+<a name="l00038"></a>00038         mentions(),
+<a name="l00039"></a>00039         tweetHashtags()
+<a name="l00040"></a>00040 {}
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment">// Destructor</span>
+<a name="l00043"></a><a class="code" href="class_tweet_entities.html#af7738e66d7d5e3a6eea5c8f2ad42d64f">00043</a> <a class="code" href="class_tweet_entities.html#af7738e66d7d5e3a6eea5c8f2ad42d64f" title="Destructor.">TweetEntities::~TweetEntities</a>() {}
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="comment">// Copy constructor</span>
+<a name="l00046"></a><a class="code" href="class_tweet_entities.html#acfa5df862abf1428eaf8dbb372b08b77">00046</a> <a class="code" href="class_tweet_entities.html#a1f3e259578d170d807fb1d66dcfa52a5" title="Default constructor.">TweetEntities::TweetEntities</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
+<a name="l00047"></a>00047         <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">recopie</a>(entities);
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// Affectation</span>
+<a name="l00051"></a><a class="code" href="class_tweet_entities.html#a6ae8a70d5f1a17e1f694da02a51cfc32">00051</a> <span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; <a class="code" href="class_tweet_entities.html#a6ae8a70d5f1a17e1f694da02a51cfc32" title="Affectation.">TweetEntities::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
+<a name="l00052"></a>00052         <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">recopie</a>(entities);
+<a name="l00053"></a>00053         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00054"></a>00054 }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="comment">// Serialization declaration</span>
+<a name="l00057"></a><a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ad570eb2f5f2cc339b9a5b2d026ccacc9" title="Serialization declaration.">TweetEntities::initSystem</a>() {
+<a name="l00058"></a>00058         qRegisterMetaTypeStreamOperators&lt;TweetEntities&gt;(<span class="stringliteral">&quot;TweetEntities&quot;</span>);
+<a name="l00059"></a>00059         qMetaTypeId&lt;TweetEntities&gt;();
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="comment">// Copy of a TwitterEntities</span>
+<a name="l00063"></a><a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d">00063</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d" title="Copy of a TwitterEntities.">TweetEntities::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
+<a name="l00064"></a>00064         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a> = entities.<a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>;
+<a name="l00065"></a>00065         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a> = entities.<a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>;
+<a name="l00066"></a>00066         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a> = entities.<a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>;
+<a name="l00067"></a>00067         <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a> = entities.<a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00071"></a><a class="code" href="tweetentities_8hpp.html#af780627bae9b95a29d8d40f14dbb90de">00071</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, entities);
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00076"></a><a class="code" href="tweetentities_8hpp.html#a6d57684a9e058f162c57da7406f57e22">00076</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> &amp; entities) {
+<a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, entities);
+<a name="l00078"></a>00078 }
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 
+<a name="l00082"></a>00082 <span class="comment">// Properties management //</span>
+<a name="l00084"></a>00084 <span class="comment"></span>
+<a name="l00085"></a>00085 <span class="comment">// Reading the property media</span>
+<a name="l00086"></a><a class="code" href="class_tweet_entities.html#abeb6142e1847cec1011beae32fe5440d">00086</a> QVariantList <a class="code" href="class_tweet_entities.html#abeb6142e1847cec1011beae32fe5440d" title="Reading the property media.">TweetEntities::getMediaProperty</a>() {
+<a name="l00087"></a>00087         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
+<a name="l00088"></a>00088 }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="comment">// Writing the property media</span>
+<a name="l00091"></a><a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75" title="Writing the property media.">TweetEntities::setMedia</a>(QVariantList newMediaList) {
+<a name="l00092"></a>00092         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newMediaList);
+<a name="l00093"></a>00093 }
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="comment">// Reading the property urls</span>
+<a name="l00096"></a><a class="code" href="class_tweet_entities.html#a0a8e29e78769a73bbaade3cccc232f19">00096</a> QVariantList <a class="code" href="class_tweet_entities.html#a0a8e29e78769a73bbaade3cccc232f19" title="Reading the property urls.">TweetEntities::getURLsProperty</a>() {
+<a name="l00097"></a>00097         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
+<a name="l00098"></a>00098 }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="comment">// Writing the property urls</span>
+<a name="l00101"></a><a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa">00101</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa" title="Writing the property urls.">TweetEntities::setURLs</a>(QVariantList newURLList) {
+<a name="l00102"></a>00102         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newURLList);
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="comment">// Reading the property user_mentions</span>
+<a name="l00106"></a><a class="code" href="class_tweet_entities.html#a37f6e147af3f8d0ba82c5d0fb715cbf8">00106</a> QVariantList <a class="code" href="class_tweet_entities.html#a37f6e147af3f8d0ba82c5d0fb715cbf8" title="Reading the property user_mentions.">TweetEntities::getUserMentionsProperty</a>() {
+<a name="l00107"></a>00107         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
+<a name="l00108"></a>00108 }
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 <span class="comment">// Writing the property user_mentions</span>
+<a name="l00111"></a><a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497">00111</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497" title="Writing the property user_mentions.">TweetEntities::setUserMentions</a>(QVariantList newUserMentionsList) {
+<a name="l00112"></a>00112         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newUserMentionsList);
+<a name="l00113"></a>00113 }
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <span class="comment">// Reading the property hashtags</span>
+<a name="l00116"></a><a class="code" href="class_tweet_entities.html#ac686b7daf2ee405f73bc91cbabdcf370">00116</a> QVariantList <a class="code" href="class_tweet_entities.html#ac686b7daf2ee405f73bc91cbabdcf370" title="Reading the property hashtags.">TweetEntities::getHashtagsProperty</a>() {
+<a name="l00117"></a>00117         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>.<a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">toVariant</a>();
+<a name="l00118"></a>00118 }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 <span class="comment">// Writing the property hashtags</span>
+<a name="l00121"></a><a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3">00121</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3" title="Writing the property hashtags.">TweetEntities::setHashtags</a>(QVariantList newHashtagsList) {
+<a name="l00122"></a>00122          <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(newHashtagsList);
+<a name="l00123"></a>00123 }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 
+<a name="l00127"></a>00127 <span class="comment">// Accessors //</span>
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">// Reading medias</span>
+<a name="l00131"></a><a class="code" href="class_tweet_entities.html#a09dd37d90686ee974ee171c4767bd368">00131</a> <a class="code" href="class_media_list.html" title="List of Medias.">MediaList</a> <a class="code" href="class_tweet_entities.html#a09dd37d90686ee974ee171c4767bd368" title="Reading medias.">TweetEntities::getMedia</a>() {
+<a name="l00132"></a>00132         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a>;
+<a name="l00133"></a>00133 }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="comment">// Writing medias</span>
+<a name="l00136"></a><a class="code" href="class_tweet_entities.html#aeec527f3f4dd71c0f49b56301cf9e2c0">00136</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a62f88c69d3b7be117cf1692eac5e5a75" title="Writing the property media.">TweetEntities::setMedia</a>(<a class="code" href="class_media_list.html" title="List of Medias.">MediaList</a> newMedia) {
+<a name="l00137"></a>00137         <a class="code" href="class_tweet_entities.html#a0b5d57a4cece8be70ed90063219ddfda" title="Medias.">medias</a> = newMedia;
+<a name="l00138"></a>00138 }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 <span class="comment">// Reading tweetURLs</span>
+<a name="l00141"></a><a class="code" href="class_tweet_entities.html#a894464b1eea9e04de629e9c701c1203f">00141</a> <a class="code" href="class_u_r_l_entity_list.html" title="List of URL Entities.">URLEntityList</a> <a class="code" href="class_tweet_entities.html#a894464b1eea9e04de629e9c701c1203f" title="Reading tweetURLs.">TweetEntities::getURLs</a>() {
+<a name="l00142"></a>00142         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a>;
+<a name="l00143"></a>00143 }
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145 <span class="comment">// Writing tweetURLs</span>
+<a name="l00146"></a><a class="code" href="class_tweet_entities.html#ac367465cbe63489b3347c4a2fcfcbbc6">00146</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa" title="Writing the property urls.">TweetEntities::setURLs</a>(<a class="code" href="class_u_r_l_entity_list.html" title="List of URL Entities.">URLEntityList</a> newURLs) {
+<a name="l00147"></a>00147         <a class="code" href="class_tweet_entities.html#a08b58d917bf14ae34f26b2ff4e5af200" title="URLs.">tweetURLs</a> = newURLs;
+<a name="l00148"></a>00148 }
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 <span class="comment">// Reading userMentions</span>
+<a name="l00151"></a><a class="code" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5">00151</a> <a class="code" href="class_user_mention_list.html" title="List of user mentions.">UserMentionList</a> <a class="code" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5" title="Reading userMentions.">TweetEntities::getUserMentions</a>() {
+<a name="l00152"></a>00152         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a>;
+<a name="l00153"></a>00153 }
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="comment">// Writing userMentions</span>
+<a name="l00156"></a><a class="code" href="class_tweet_entities.html#a9dd524289a4d72e8a1995900c324629f">00156</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497" title="Writing the property user_mentions.">TweetEntities::setUserMentions</a>(<a class="code" href="class_user_mention_list.html" title="List of user mentions.">UserMentionList</a> newUserMentions) {
+<a name="l00157"></a>00157         <a class="code" href="class_tweet_entities.html#ab12dee9441ff3243b561c77ab3382ed1" title="User mentions.">mentions</a> = newUserMentions;
+<a name="l00158"></a>00158 }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="comment">// Reading tweetHashtags</span>
+<a name="l00161"></a><a class="code" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829">00161</a> <a class="code" href="class_hashtag_list.html" title="Lists of Hashtags.">HashtagList</a> <a class="code" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829" title="Reading tweetHashtags.">TweetEntities::getHashtags</a>() {
+<a name="l00162"></a>00162         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a>;
+<a name="l00163"></a>00163 }
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165 <span class="comment">// Writing tweetHashtags</span>
+<a name="l00166"></a><a class="code" href="class_tweet_entities.html#a791dbcdc5043c45bd34ad277053bcc66">00166</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entities.html#ace154450b4b62d31de7fc671909876f3" title="Writing the property hashtags.">TweetEntities::setHashtags</a>(<a class="code" href="class_hashtag_list.html" title="Lists of Hashtags.">HashtagList</a> newHashtags) {
+<a name="l00167"></a>00167         <a class="code" href="class_tweet_entities.html#a09865730eaa32f4195589cd69362bd66" title="Hashtags.">tweetHashtags</a> = newHashtags;
+<a name="l00168"></a>00168 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -263,7 +265,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

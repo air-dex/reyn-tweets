@@ -92,30 +92,57 @@ window.onload = initDynSections;
 <code>#include &lt;QtGui/QApplication&gt;</code><br/>
 <code>#include &lt;QLocale&gt;</code><br/>
 <code>#include &lt;QTranslator&gt;</code><br/>
-<code>#include &quot;<a class="el" href="main_8cpp_source.html">ui/mainwindow.hpp</a>&quot;</code><br/>
-<code>#include &lt;QMainWindow&gt;</code><br/>
-<code>#include &lt;QtGui&gt;</code><br/>
-<code>#include &quot;<a class="el" href="reyntweetswidget_8hpp_source.html">reyntweetswidget.hpp</a>&quot;</code><br/>
-<code>#include &lt;QWidget&gt;</code><br/>
-<code>#include &lt;QPushButton&gt;</code><br/>
-<code>#include &lt;QVBoxLayout&gt;</code><br/>
-<code>#include &lt;QLabel&gt;</code><br/>
-<code>#include &quot;<a class="el" href="oauthwidget_8hpp_source.html">authentication/oauthwidget.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="main_8cpp_source.html">ui/qmlapplicationviewer.hpp</a>&quot;</code><br/>
+<code>#include &lt;QtDeclarative/QDeclarativeView&gt;</code><br/>
+<code>#include &quot;<a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="logincontrol_8hpp_source.html">logincontrol.hpp</a>&quot;</code><br/>
 
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1af320108fed438e08b36be8dcc85e29">declareReynTweetsControls</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declares all the controls used by QML widgets.  <a href="#a1af320108fed438e08b36be8dcc85e29"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298">initReynTweetsSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes all the serializable classes.  <a href="#a5f0194537f9f8bef5b756f885b965298"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Main function. Entry point of the program.  <a href="#a0ddf1224851353fc92bfbff6f499fa97"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a44933f7b8dbf78ce2ec6248dc4d1b4f0">loadTranslation</a> (QScopedPointer&lt; QApplication &gt; *a)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the translation of the program.  <a href="#a44933f7b8dbf78ce2ec6248dc4d1b4f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_DECL_EXPORT int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5569469946ea5791c91647274bd498eb">main</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Main function. Entry point of the program.  <a href="#a5569469946ea5791c91647274bd498eb"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>File with the main method. </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher </dd></dl>
+<dl class="author"><dt><b>Author:</b></dt><dd>Romain Ducher</dd></dl>
+<h2><a class="anchor" id="LICENSE">
+LICENSE</a></h2>
+<p>Copyright 2011 Romain Ducher</p>
+<p>This file is part of Reyn Tweets.</p>
+<p>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
 
 <p>Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a1af320108fed438e08b36be8dcc85e29"></a><!-- doxytag: member="main.cpp::declareReynTweetsControls" ref="a1af320108fed438e08b36be8dcc85e29" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void declareReynTweetsControls </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Declares all the controls used by QML widgets. </p>
+
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00055">55</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5f0194537f9f8bef5b756f885b965298"></a><!-- doxytag: member="main.cpp::initReynTweetsSystem" ref="a5f0194537f9f8bef5b756f885b965298" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -133,16 +160,44 @@ window.onload = initDynSections;
 
 <p>Initializes all the serializable classes. </p>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00039">39</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00032">32</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a><!-- doxytag: member="main.cpp::main" ref="a0ddf1224851353fc92bfbff6f499fa97" args="(int argc, char *argv[])" -->
+<a class="anchor" id="a44933f7b8dbf78ce2ec6248dc4d1b4f0"></a><!-- doxytag: member="main.cpp::loadTranslation" ref="a44933f7b8dbf78ce2ec6248dc4d1b4f0" args="(QScopedPointer&lt; QApplication &gt; *a)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int main </td>
+          <td class="memname">void loadTranslation </td>
+          <td>(</td>
+          <td class="paramtype">QScopedPointer&lt; QApplication &gt; *&nbsp;</td>
+          <td class="paramname"> <em>a</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Loading the translation of the program. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>The application </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00063">63</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5569469946ea5791c91647274bd498eb"></a><!-- doxytag: member="main.cpp::main" ref="a5569469946ea5791c91647274bd498eb" args="(int argc, char *argv[])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Q_DECL_EXPORT int main </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>argc</em>, </td>
@@ -172,7 +227,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The result of the execution. </dd></dl>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00065">65</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00088">88</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -191,7 +246,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jan 21 02:55:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

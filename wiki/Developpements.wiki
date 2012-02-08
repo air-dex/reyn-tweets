@@ -22,6 +22,8 @@ Où en est Reyn Tweets ?
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
     * Automatisation de la génération de documentation.
+    * Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement (retard).
+    * License dans la documentation des fichiers.
   * Modèle de données
     * Modèle pour la sérialisation.
     * Modèle d'un user
@@ -29,29 +31,27 @@ Où en est Reyn Tweets ?
     * Modèle d'une timeline
     * Mettre à jour la doc' de ce qui a déjà été fait.
     * Résoudre le bug des dates (issue 51).
+    * Renommer le fichier des fichiers de la classe ReynTweetsListable
+    * Faire du rangement dans les classes de modèle
   * Interface graphique (UI)
     * Portage QML de l'application (UI gérée avec QML/ Qt Quick et non C++/Qt comme initialement prévu)
     * UI quand on arrive sur l'application :
       * UI au lancement de l'appli réalisée en QML.
       * Ecrans d'autorisation à manipuler le compte Twitter.
       * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
+  * Traduction
+    * Automatisation de la traduction pour le développement sur Windows
   * Architecture de l'application.
 
 
 == Ce qui reste à faire ==
 
-  # Modèle de données
-    # Renommer le fichier des fichiers de la classe ReynTweetsListable
-    # Faire du rangement dans les classes de modèle
-  # Documentation :
-    # Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement
-    # Approfondir la documentation
-    # Faire de la documentation technique non Doxygen. À voir si tout est mis dans le wiki ou pas. Une page existe déjà pour l'architecture ([https://code.google.com/p/reyn-tweets/wiki/Architecture]).
-    # Publication quelque part (Google Sites ?)
+  # Traduction
+    # Chargement de la traduction dans les fichiers ML (issue 64).
   # Implémentation des fonctionnalités de base.
     # Téléchargement de la timeline perso de l'utilisateur
     # Ecrire un tweet et le poster.
-  # Faire des tests unitaires et d'intégration (issue 20).
+  # Modèle de données
   # Interface graphique (UI) :
     # Interface desktop à designer.
     # UI d'un tweet (format résumé et détaillé).
@@ -60,6 +60,12 @@ Où en est Reyn Tweets ?
     # Listes d'utilisateurs
     # UI de la partie options, popur les paramètres.
     # ...
+  # Documentation :
+    # Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement
+    # Approfondir la documentation
+    # Faire de la documentation technique non Doxygen. À voir si tout est mis dans le wiki ou pas. Une page existe déjà pour l'architecture ([https://code.google.com/p/reyn-tweets/wiki/Architecture]).
+    # Publication quelque part (Google Sites ?)
+  # Faire des tests unitaires et d'intégration (issue 20).
   # Portage sur Symbian
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées (issue 33)

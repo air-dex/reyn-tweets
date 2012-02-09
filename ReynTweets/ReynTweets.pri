@@ -48,7 +48,6 @@ TEMPLATE = app
 # ui/qmlapplicationviewer.pri
 
 SOURCES += \
-	tools/qmltranslator.cpp \
 	tools/utils.cpp \
 	tools/reyntweetsdatetime.cpp \
 	tools/parsers/htmlparser.cpp \
@@ -110,7 +109,6 @@ SOURCES += \
 HEADERS  += \
 	tools/qmldebug.hpp \
 	tools/utils.hpp \
-	tools/qmltranslator.hpp \
 	tools/reyntweetsdatetime.hpp \
 	tools/parsers/genericparser.hpp \
 	tools/parsers/htmlparser.hpp \

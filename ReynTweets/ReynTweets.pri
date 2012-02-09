@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkit declarative
+QT += core gui network webkit declarative script
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -48,6 +48,7 @@ TEMPLATE = app
 # ui/qmlapplicationviewer.pri
 
 SOURCES += \
+	tools/qmltranslator.cpp \
 	tools/utils.cpp \
 	tools/reyntweetsdatetime.cpp \
 	tools/parsers/htmlparser.cpp \
@@ -109,6 +110,7 @@ SOURCES += \
 HEADERS  += \
 	tools/qmldebug.hpp \
 	tools/utils.hpp \
+	tools/qmltranslator.hpp \
 	tools/reyntweetsdatetime.hpp \
 	tools/parsers/genericparser.hpp \
 	tools/parsers/htmlparser.hpp \
@@ -180,7 +182,10 @@ OTHER_FILES = \
 	reyntweets_fr.ts \
 	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
-	resources/Logo Reyn Tweets.png
+	resources/Logo Reyn Tweets.png \
+	ui/qml/LaunchingPane.qml \
+	ui/qml/LoginPane.qml \
+	ui/qml/QuitPane.qml
 
 
 #--------------#
@@ -188,6 +193,29 @@ OTHER_FILES = \
 #--------------#
 
 TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
+
+
+#------------------------#
+# Folders with QML files #
+#------------------------#
+
+# QML files
+qml_files.source = ui/qml
+qml_files.target = ui
+
+# Resources
+resource.source = resources
+resource.target = .
+
+# Configuration files
+# Uncomment this folder if you want to reset the configuration time each
+# the application is launched
+conf_files.source = conf
+conf_files.target = .
+
+DEPLOYMENTFOLDERS = qml_files \
+	resource \
+	conf_files
 
 
 #-------#
@@ -278,29 +306,6 @@ TARGET.CAPABILITY += NetworkServices
 #DEPLOYMENT.installer_header = 0x2002CCCF
 
 }
-
-
-#------------------------#
-# Folders with QML files #
-#------------------------#
-
-# QML files
-qml_files.source = ui/qml
-qml_files.target = ui
-
-# Resources
-resource.source = resources
-resource.target = .
-
-# Configuration files
-# Uncomment this folder if you want to reset the configuration time each
-# the application is launched
-conf_files.source = conf
-conf_files.target = .
-
-DEPLOYMENTFOLDERS = qml_files \
-	resource \
-	#conf_files
 
 
 #--------------#

@@ -25,7 +25,6 @@
 #include <QLocale>
 #include <QScriptEngine>
 #include <QTranslator>
-#include "tools/qmltranslator.hpp"
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 
@@ -62,21 +61,19 @@ void declareReynTweetsControls() {
 /// @fn void loadTranslation(QScopedPointer<QApplication> * a);
 /// @brief Loading the translation of the program
 /// @param a The application
-void loadTranslation(QScopedPointer<QApplication> * a, QScriptEngine & eng) {
-	QTranslator translator;
+void loadTranslation(QScopedPointer<QApplication> & a) {
+	static QTranslator translator;	// It must not be deleted ! (issue 64)
 
 	// Program in French
-	QString locale = "fr";
+//	QString locale = "fr";
 
 	// Defalult idiom : local idiom
-//	QString locale = QLocale::system().name().section('_', 0, 0);
+	QString locale = QLocale::system().name().section('_', 0, 0);
 
 	// Loading translation files
-//	translator.load(QString("qml_") + locale, ".");
 	translator.load(QString("reyntweets_") + locale);
 
-	a->data()->installTranslator(&translator);
-//	SCRIPT_ENGINE->installTranslatorFunctions();
+	a->installTranslator(&translator);
 }
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
@@ -91,15 +88,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 
-	SCRIPT_ENGINE = new QScriptEngine();
-
 	// Init for serialization
 	initReynTweetsSystem();
 	declareReynTweetsControls();
 
 	// Loading translation files
-	QScriptEngine e;
-	loadTranslation(&app, e);
+	loadTranslation(app);
 
 	// Init Main QML file
 	#ifdef Q_OS_WIN32
@@ -116,9 +110,5 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
 
-	int res = app->exec();
-
-	delete SCRIPT_ENGINE;
-
-	return res;
+	return app->exec();
 }

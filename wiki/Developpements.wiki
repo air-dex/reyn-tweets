@@ -41,13 +41,12 @@ Où en est Reyn Tweets ?
       * Ecran de chargement (l'OAuthManager qui récupère ses tokens au lancement)
   * Traduction
     * Automatisation de la traduction pour le développement sur Windows
+    * Chargement de la traduction dans les fichiers QML (issue 64).
   * Architecture de l'application.
 
 
 == Ce qui reste à faire ==
 
-  # Traduction
-    # Chargement de la traduction dans les fichiers QML (issue 64).
   # Implémentation des fonctionnalités de base.
     # Téléchargement de la timeline perso de l'utilisateur
     # Ecrire un tweet et le poster.
@@ -67,6 +66,8 @@ Où en est Reyn Tweets ?
     # Publication quelque part (Google Sites ?)
   # Faire des tests unitaires et d'intégration (issue 20).
   # Portage sur Symbian
+  # Traduction
+    # Faire un script pour la traduction (Windws, Linux) qui sera appelé.
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées (issue 33)
     # Sérialisation et requesters (issue 44)

@@ -103,7 +103,8 @@ SOURCES += \
 	logic/reyncore.cpp \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
-	main.cpp
+	main.cpp \
+    connection/requests/timelines/hometimelinerequester.cpp
 
 
 HEADERS  += \
@@ -172,7 +173,8 @@ HEADERS  += \
 	logic/reyncore.hpp \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+    connection/requests/timelines/hometimelinerequester.hpp
 
 
 OTHER_FILES = \

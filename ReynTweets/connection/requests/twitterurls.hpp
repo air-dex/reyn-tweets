@@ -65,6 +65,14 @@ namespace TwitterURL
 	extern QString SEARCH_URL;
 
 
+	///////////////
+	// Timelines //
+	///////////////
+
+	/// @brief URL to getting the timeline with friends tweets
+	extern QString HOME_TIMELINE_URL;
+
+
 	////////////
 	// Tweets //
 	////////////

@@ -58,7 +58,7 @@ void declareReynTweetsControls() {
 	LoginControl::declareQML();
 }
 
-/// @fn void loadTranslation(QScopedPointer<QApplication> * a);
+/// @fn void loadTranslation(QScopedPointer<QApplication> & a);
 /// @brief Loading the translation of the program
 /// @param a The application
 void loadTranslation(QScopedPointer<QApplication> & a) {

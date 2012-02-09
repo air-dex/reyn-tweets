@@ -60,6 +60,14 @@ QString TwitterURL::ACCESS_TOKEN_URL = QString::fromUtf8("https://api.twitter.co
 QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/search.json");
 
 
+///////////////
+// Timelines //
+///////////////
+
+// Getting the timeline with friends tweets
+QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/home_timeline.json");
+
+
 ////////////
 // Tweets //
 ////////////

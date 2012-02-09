@@ -43,7 +43,7 @@
     <message>
         <location filename="logic/controls/launchingcontrol.cpp" line="160"/>
         <source>Reyn Tweets was denied.</source>
-        <translation>eyn Tweets n&apos;a pas été autorisé.</translation>
+        <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
     </message>
 </context>
 <context>

@@ -75,12 +75,6 @@ const Tweet & Tweet::operator=(const Tweet & tweet) {
 	return *this;
 }
 
-// Serialization declaration
-void Tweet::initSystem() {
-	qRegisterMetaTypeStreamOperators<Tweet>("Tweet");
-	qMetaTypeId<Tweet>();
-}
-
 // Copy of a Tweet
 void Tweet::recopie(const Tweet & status) {
 	tweetID = status.tweetID;
@@ -114,6 +108,19 @@ void Tweet::recopie(const Tweet & status) {
 	if (status.retweetSource) {
 		retweetSource = new Tweet(*(status.retweetSource));
 	}
+}
+
+// Serialization declaration
+void Tweet::initSystem() {
+	qRegisterMetaTypeStreamOperators<Tweet>("Tweet");
+	qMetaTypeId<Tweet>();
+}
+
+// Declaring to the QML components
+void LaunchingControl::declareQML() {
+	qmlRegisterType<Tweet>("ReynTweetsEntities",
+						   0, 1,
+						   "Tweet");
 }
 
 // Output stream operator for serialization
@@ -353,4 +360,27 @@ void Tweet::setRetweetedStatus(Tweet retweet) {
 	}
 
 	retweetSource = new Tweet(retweet);
+}
+
+
+//////////////////////////////////
+// Methods used by the QML View //
+//////////////////////////////////
+
+// Getting the (rich) content of the text.
+QString Tweet::getDisplayText() {
+	// TODO
+	return tweet;
+}
+
+// Getting a HTML string of the name of the Twitter client used to post the tweet
+QString Tweet::getDisplaySource() {
+	// TODO
+	return sourceClient;
+}
+
+// When the tweet was posted ?
+QString Tweet::whenWasItPosted() {
+	// TODO
+	return "Un jour";
 }

@@ -86,12 +86,6 @@ const UserInfos & UserInfos::operator=(const UserInfos & user) {
 	return *this;
 }
 
-// Serialization declaration
-void UserInfos::initSystem() {
-	qRegisterMetaTypeStreamOperators<UserInfos>("UserInfos");
-	qMetaTypeId<UserInfos>();
-}
-
 // Copy of a User
 void UserInfos::recopie(const UserInfos & user) {
 	userID = user.userID;
@@ -131,6 +125,19 @@ void UserInfos::recopie(const UserInfos & user) {
 	followRequestSent = user.followRequestSent;
 	showAllInlineMedia = user.showAllInlineMedia;
 	notificationsEnabled = user.notificationsEnabled;
+}
+
+// Serialization declaration
+void UserInfos::initSystem() {
+	qRegisterMetaTypeStreamOperators<UserInfos>("UserInfos");
+	qMetaTypeId<UserInfos>();
+}
+
+// Declaring to the QML components
+void LaunchingControl::declareQML() {
+	qmlRegisterType<UserInfos>("ReynTweetsEntities",
+							   0, 1,
+							   "UserInfos");
 }
 
 // Friends serialization operators

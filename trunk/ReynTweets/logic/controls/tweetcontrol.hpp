@@ -1,5 +1,8 @@
-/// @file controls.hpp
-/// @brief Header with all the processes
+/// @file tweetcontrol.hpp
+/// @brief Header of TweetControl
+///
+/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
+/// r204 is in /trunk/ReynTweets/logic
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,11 +24,36 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef CONTROLS_HPP
-#define CONTROLS_HPP
+#ifndef TWEETCONTROL_HPP
+#define TWEETCONTROL_HPP
 
-#include "launchingcontrol.hpp"
-#include "logincontrol.hpp"
-#include "tweetcontrol.hpp"
+#include <QObject>
+#include "../reyncore.hpp"
+#include "../../model/tweets/tweet.hpp"
 
-#endif // CONTROLS_HPP
+/// @class TweetControl
+/// @brief Control behind a TweetPane
+class TweetControl : public QObject
+{
+	Q_OBJECT
+
+	public:
+		explicit TweetControl();
+
+		void declareQML();
+
+	signals:
+
+	public slots:
+		void reply();
+		void retweet();
+		void quote();
+		void favorite();
+		void unfavorite();
+
+	protected:
+		ReynCore reyn;
+		Tweet tweet;
+};
+
+#endif // TWEETCONTROL_HPP

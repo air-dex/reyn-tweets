@@ -68,6 +68,7 @@ SOURCES += \
 	connection/requests/oauth/postauthorizerequester.cpp \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
+	connection/requests/timelines/hometimelinerequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
 	connection/requests/requestinfos.cpp \
@@ -103,8 +104,8 @@ SOURCES += \
 	logic/reyncore.cpp \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
-	main.cpp \
-    connection/requests/timelines/hometimelinerequester.cpp
+	logic/controls/tweetcontrol.cpp \
+	main.cpp
 
 
 HEADERS  += \
@@ -132,6 +133,7 @@ HEADERS  += \
 	connection/requests/oauth/postauthorizerequester.hpp \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
+	connection/requests/timelines/hometimelinerequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
 	connection/requests/requests.hpp \
@@ -173,8 +175,8 @@ HEADERS  += \
 	logic/reyncore.hpp \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
-	logic/controls/controls.hpp \
-    connection/requests/timelines/hometimelinerequester.hpp
+	logic/controls/tweetcontrol.hpp \
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -185,7 +187,8 @@ OTHER_FILES = \
 	resources/Logo Reyn Tweets.png \
 	ui/qml/LaunchingPane.qml \
 	ui/qml/LoginPane.qml \
-	ui/qml/QuitPane.qml
+	ui/qml/QuitPane.qml \
+	ui/qml/TweetPane.qml
 
 
 #--------------#

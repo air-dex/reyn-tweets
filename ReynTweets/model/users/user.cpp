@@ -52,16 +52,23 @@ const User & User::operator=(const User & user) {
 	return *this;
 }
 
+// Copy of a User
+void User::recopie(const User & user) {
+	UserInfos::recopie(user);
+	lastTweet = user.lastTweet;
+}
+
 // Serialization declaration
 void User::initSystem() {
 	qRegisterMetaTypeStreamOperators<User>("User");
 	qMetaTypeId<User>();
 }
 
-// Copy of a User
-void User::recopie(const User & user) {
-	UserInfos::recopie(user);
-	lastTweet = user.lastTweet;
+// Declaring to the QML components
+void LaunchingControl::declareQML() {
+	qmlRegisterType<User>("ReynTweetsEntities",
+						  0, 1,
+						  "User");
 }
 
 // Friends serialization operators

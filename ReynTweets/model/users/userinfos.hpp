@@ -66,6 +66,10 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 	protected:
 		/// @fn void recopie(const UserInfos & user);
 		/// @brief Copy of a User

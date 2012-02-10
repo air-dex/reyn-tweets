@@ -56,6 +56,9 @@ void initReynTweetsSystem() {
 void declareReynTweetsControls() {
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
+	Tweet::declareQML();
+	UserInfos::declareQML();
+	User::declareQML();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);

@@ -64,6 +64,10 @@ class User : public UserInfos
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 	private:
 		/// @fn void recopie(const User & user);
 		/// @brief Copy of a User

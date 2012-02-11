@@ -24,7 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "requestresult.hpp"
-
+/*
 // Default constructor
 RequestResult::RequestResult() :
 	resultType(INVALID_RESULT),
@@ -94,3 +94,4 @@ QVariantMap RequestResult::getParsingErrors() {
 QString RequestResult::getErrorMessage() {
 	return errorMessage;
 }
+//*/

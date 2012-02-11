@@ -109,9 +109,22 @@ class GenericRequester : public QObject
 		/// @param parseErrorType New value for parsingErrorType
 		void setParsingErrorType(ErrorType parseErrorType);
 
+
 	//////////////////////////
 	// Treatment of results //
 	//////////////////////////
+
+	private:
+		/// @fn virtual void initCommunicator();
+		/// @brief Initialize the communicator. This a template method because
+		/// requests with authentication needs more parameters.
+		virtual void initCommunicator();
+
+	public slots:
+		/// @fn void treatResults();
+		/// @brief Slot that is executed when the Twitter Communicator has just
+		/// finished its work.
+		void treatResults();
 
 	protected:
 		/// @brief Result of the request.
@@ -128,39 +141,11 @@ class GenericRequester : public QObject
 		virtual QVariant parseResult(bool & parseOK,
 									 QVariantMap & parsingErrors);
 
-	public slots:
-		/// @fn void treatResults(bool requestOK);
-		/// @brief Slot that is executed when the Twitter Communicator has just
-		/// finished its work.
-		/// @param requestOK Boolean indicating if the Twitter Communicator did
-		/// its work successfully.
-		void treatResults(bool requestOK);
-
 	signals:
 		/// @fn void requestDone();
 		/// @brief Signal sent when the results of the request received by
 		/// the Twitter Communicator have been treated.
 		void requestDone();
-
-
-	private:
-		/// @fn void fillParsedResult(ErrorType errorType,
-		///			QVariant parsedResults,
-		///			QVariantMap parsingErrors);
-		/// @brief Filling parsedResult. Some information such as the
-		/// networkError and httpInfos are contained in the Twitter Communicator
-		/// son they are not passed as parameters of the method.
-		/// @param errorType ErrorType
-		/// @param parsedResults Parsed results. If there w
-		/// @param parsingErrors Errors that may occur while parsing.
-		void fillParsedResult(ErrorType errorType,
-							  QVariant parsedResults,
-							  QVariantMap parsingErrors);
-
-		/// @fn virtual void initCommunicator();
-		/// @brief Initialize the communicator. This a template method because
-		/// requests with authentication needs more parameters.
-		virtual void initCommunicator();
 };
 
 #endif // GENERICREQUESTER_HPP

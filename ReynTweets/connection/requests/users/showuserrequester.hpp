@@ -26,6 +26,7 @@
 
 #include <QString>
 #include "../authenticationrequester.hpp"
+#include "../identificationway.hpp"
 
 /// @class ShowUserRequester
 /// @brief Requester for getting details about a user identified by its ID
@@ -57,20 +58,6 @@ class ShowUserRequester : public AuthenticationRequester
 						  bool entities = true);
 
 	protected:
-		///////////////////////////
-		// Way of identification //
-		///////////////////////////
-
-		/// @enum IdentificationWay
-		/// @brief How the user is identified ?
-		enum IdentificationWay {
-			/// @brief With an ID.
-			ID,
-
-			/// @brief With a screen name
-			SCREEN_NAME
-		};
-
 		/// @brief How the user is identified
 		IdentificationWay idWay;
 

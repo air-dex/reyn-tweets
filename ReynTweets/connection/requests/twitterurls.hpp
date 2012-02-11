@@ -40,6 +40,20 @@ namespace TwitterURL
 	extern QString VERIFY_CREDENTIALS_URL;
 
 
+	///////////////
+	// Favorites //
+	///////////////
+
+	/// @brief URL to favorite a tweet
+	extern QString CREATE_FAVORITE_URL;
+
+	/// @brief URL to unfavorite a tweet
+	extern QString DELETE_FAVORITE_URL;
+
+	/// @brief URL to get the timeline of the favorite tweets of a user
+	extern QString FAVORITE_TIMELINE_URL;
+
+
 	///////////
 	// OAuth //
 	///////////

@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
 
 /// @class TweetPane.qml
@@ -41,12 +42,15 @@ Rectangle {
 	// Size of the font
 	property int font_size: 14
 
+	// The tweet displayed in this pane
+	property Tweet tweet: control.tweet
+
 	width: 360
 	height: 200
 
-	// Tweet displayed in this pane
-	Tweet {
-		id: tweet
+	// Control behind the pane
+	TweetControl {
+		id: control
 	}
 
 	// Square with avatars
@@ -171,7 +175,7 @@ Rectangle {
 			MouseArea {
 				id: reply_act
 				anchors.fill: parent
-				onClicked:
+				onClicked: control.reply();
 			}
 		}
 
@@ -184,6 +188,7 @@ Rectangle {
 			MouseArea {
 				id: retweet_act
 				anchors.fill: parent
+				onClicked: control.retweet();
 			}
 		}
 
@@ -196,18 +201,26 @@ Rectangle {
 			MouseArea {
 				id: quote_act
 				anchors.fill: parent
+				onClicked: control.quote();
 			}
 		}
 
 		Text {
 			id: favorite_action
-			text: qsTr("Favorite")
+			text: tweet.favorited ? qsTr("Unfavorite") : qsTr("Favorite")
 			font.family: font_name
 			font.pixelSize: font_size
 
 			MouseArea {
 				id: favorite_act
 				anchors.fill: parent
+				onClicked: {
+					if (tweet.favorited) {
+						control.unfavorite()
+					} else {
+						control.favorite()
+					}
+				}
 			}
 		}
 	}

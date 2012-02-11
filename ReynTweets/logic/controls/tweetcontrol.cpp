@@ -25,8 +25,60 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "tweetcontrol.hpp"
+#include <QtDeclarative>
 
 TweetControl::TweetControl() :
-	QObject()
-{
+	QObject(),
+	reyn(this),
+	status()
+{}
+
+// Declaring TweetControl to the QML system
+void TweetControl::declareQML() {
+	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 1, "TweetControl");
+}
+
+
+/////////////////////////
+// Property management //
+/////////////////////////
+
+// Reading the tweet property
+Tweet TweetControl::getTweet() {
+	return status;
+}
+
+// Writing the tweet property
+void TweetControl::setTweet(Tweet newStatus) {
+	status = newStatus;
+}
+
+
+/////////////
+// Actions //
+/////////////
+
+// Reply to the tweet
+void TweetControl::reply() {
+	// TODO
+}
+
+// Retweet the tweet
+void TweetControl::retweet() {
+	// TODO
+}
+
+// Quote the tweet (old retweet method)
+void TweetControl::quote() {
+	// TODO
+}
+
+// Favorite the tweet
+void TweetControl::favorite() {
+	// TODO
+}
+
+// Unfavorite the tweet
+void TweetControl::unfavorite() {
+	// TODO
 }

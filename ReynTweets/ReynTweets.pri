@@ -105,7 +105,10 @@ SOURCES += \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
-	main.cpp
+	main.cpp \
+    connection/requests/favorites/favoriterequester.cpp \
+    connection/requests/favorites/unfavoriterequester.cpp \
+    connection/requests/favorites/favoritestimelinerequester.cpp
 
 
 HEADERS  += \
@@ -176,7 +179,11 @@ HEADERS  += \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+    connection/requests/favorites/favoriterequester.hpp \
+    connection/requests/favorites/unfavoriterequester.hpp \
+    connection/requests/favorites/favoritestimelinerequester.hpp \
+    connection/requests/identificationway.hpp
 
 
 OTHER_FILES = \
@@ -188,7 +195,8 @@ OTHER_FILES = \
 	ui/qml/LaunchingPane.qml \
 	ui/qml/LoginPane.qml \
 	ui/qml/QuitPane.qml \
-	ui/qml/TweetPane.qml
+	ui/qml/TweetPane.qml \
+    ui/qml/qml_files_to_translate.txt
 
 
 #--------------#

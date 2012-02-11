@@ -35,6 +35,20 @@
 QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twitter.com/1/account/verify_credentials.json");
 
 
+///////////////
+// Favorites //
+///////////////
+
+// Favorite a tweet
+QString TwitterURL::CREATE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites/create/:id.json");
+
+// Unfavorite a tweet
+QString TwitterURL::DELETE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites/destroy/:id.json");
+
+// Getting the timeline of the favorite tweets of a user
+QString TwitterURL::FAVORITE_TIMELINE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites.json");
+
+
 ///////////
 // OAuth //
 ///////////

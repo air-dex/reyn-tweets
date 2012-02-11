@@ -24,23 +24,36 @@
 #include "favoriteprocess.hpp"
 
 // Constructor
-FavoriteProcess::FavoriteProcess(qlonglong id) :
+FavoriteProcess::FavoriteProcess(qlonglong id, bool fav) :
 	GenericProcess(),
 	twitter(this),
-	tweetID(id)
+	tweetID(id),
+	favorite(fav)
 {}
 
 // Start the process calling twitter to favorite the tweet
 void FavoriteProcess::startProcess() {
-	favoriteTweet();
+	if (favorite) {
+		favoriteTweet();
+	} else {
+		unfavoriteTweet();
+	}
 }
 
-// Entry point of the process
+// Favorite the tweet
 void FavoriteProcess::favoriteTweet() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(favoriteEnded(ResultWrapper)));
 
 	twitter.favoriteTweet(tweetID, false);
+}
+
+// Unavorite the tweet
+void FavoriteProcess::unfavoriteTweet() {
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(favoriteEnded(ResultWrapper)));
+
+	twitter.unfavoriteTweet(tweetID);
 }
 
 // Slot executing after favoriting the tweet

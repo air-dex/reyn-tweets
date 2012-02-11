@@ -28,16 +28,18 @@
 #include "../../connection/reyntwittercalls.hpp"
 
 /// @class FavoriteProcess
-/// @brief Process to favorite a tweet
+/// @brief Process to favorite or to unfavorite a tweet.
 class FavoriteProcess : public GenericProcess
 {
 	Q_OBJECT
 
 	public:
-		/// @fn explicit FavoriteProcess(qlonglong id);
+		/// @fn explicit FavoriteProcess(qlonglong id, bool fav);
 		/// @brief Constructor
 		/// @param id ID of the tweet
-		explicit FavoriteProcess(qlonglong id);
+		/// @param fav Boolean indicating if the tweet hyas to be favorited
+		/// (true) or unfavorited (false).
+		explicit FavoriteProcess(qlonglong id, bool fav);
 
 		/// @fn void startProcess() = 0;
 		/// @brief Start the process calling twitter to favorite the tweet
@@ -49,6 +51,11 @@ class FavoriteProcess : public GenericProcess
 		/// @param res Result of the request
 		void favoriteEnded(ResultWrapper res);
 
+		/// @fn void unfavoriteEnded(ResultWrapper res);
+		/// @brief Slot executing after unfavoriting the tweet
+		/// @param res Result of the request
+		void unfavoriteEnded(ResultWrapper res);
+
 	protected:
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;
@@ -56,9 +63,17 @@ class FavoriteProcess : public GenericProcess
 		/// @brief ID of the tweet to favorite
 		qlonglong tweetID;
 
+		/// @brief Boolean whose value is true if the process has to favorite
+		/// the tweet or false if it has to unfavorite it.
+		bool favorite;
+
 		/// @fn void favoriteTweet();
-		/// @brief Entry point of the process
+		/// @brief Entry point of the process if un
 		void favoriteTweet();
+
+		/// @fn void unfavoriteTweet();
+		/// @brief Entry point of the process
+		void unfavoriteTweet();
 
 		/// @fn void buildResult(bool processOK,
 		///						 CoreResult issue,

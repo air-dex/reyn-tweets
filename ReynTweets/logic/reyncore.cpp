@@ -142,13 +142,13 @@ void ReynCore::allowReynTweets() {
 
 // Favoriting a tweet
 void ReynCore::favoriteTweet(qlonglong id) {
-	FavoriteProcess * process = new FavoriteProcess(id);
+	FavoriteProcess * process = new FavoriteProcess(id, true);
 	executeProcess(process);
 }
 
 // Unfavoriting a tweet
 void ReynCore::unfavoriteTweet(qlonglong id) {
-	UnfavoriteProcess * process = new UnfavoriteProcess(id);
+	FavoriteProcess * process = new FavoriteProcess(id, false);
 	executeProcess(process);
 }
 

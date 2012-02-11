@@ -28,6 +28,5 @@
 #include "oauthprocess.hpp"
 #include "allowprocess.hpp"
 #include "favoriteprocess.hpp"
-#include "unfavoriteprocess.hpp"
 
 #endif // PROCESSES_HPP

@@ -57,7 +57,6 @@ SOURCES += \
 	model/configuration/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
-	connection/requests/requestresult.cpp \
 	connection/requests/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
@@ -104,7 +103,6 @@ SOURCES += \
 	logic/processes/allowprocess.cpp \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
-	logic/processes/unfavoriteprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
 	logic/controls/launchingcontrol.cpp \
@@ -180,7 +178,6 @@ HEADERS  += \
 	logic/processes/allowprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
-	logic/processes/unfavoriteprocess.hpp \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \

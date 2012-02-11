@@ -140,7 +140,7 @@ void ReynTwitterCalls::getFavoriteTimeline(qlonglong id,
 // Retrieving the timeline with the favorite tweets of the user whose screen name is id.
 void ReynTwitterCalls::getFavoriteTimeline(QString id,
 										   qlonglong sinceID,
-										   bool entitie,
+										   bool entities,
 										   int page,
 										   int count)
 {

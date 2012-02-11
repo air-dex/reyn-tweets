@@ -62,6 +62,9 @@ SOURCES += \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
 	connection/requests/accounts/verifycredentialsrequester.cpp \
+	connection/requests/favorites/favoriterequester.cpp \
+	connection/requests/favorites/unfavoriterequester.cpp \
+	connection/requests/favorites/favoritestimelinerequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
 	connection/requests/oauth/authorizerequester.cpp \
@@ -100,17 +103,14 @@ SOURCES += \
 	logic/processes/oauthprocess.cpp \
 	logic/processes/allowprocess.cpp \
 	logic/processes/launchingprocess.cpp \
+	logic/processes/favoriteprocess.cpp \
+	logic/processes/unfavoriteprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
-	main.cpp \
-    connection/requests/favorites/favoriterequester.cpp \
-    connection/requests/favorites/unfavoriterequester.cpp \
-    connection/requests/favorites/favoritestimelinerequester.cpp \
-    logic/processes/favoriteprocess.cpp \
-    logic/processes/unfavoriteprocess.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -126,12 +126,17 @@ HEADERS  += \
 	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
 	connection/errortypes.hpp \
+	connection/responseinfos.hpp \
 	connection/requests/requestresult.hpp \
 	connection/requests/resultwrapper.hpp \
 	connection/requests/twitterurls.hpp \
+	connection/requests/identificationway.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
 	connection/requests/accounts/verifycredentialsrequester.hpp \
+	connection/requests/favorites/favoriterequester.hpp \
+	connection/requests/favorites/unfavoriterequester.hpp \
+	connection/requests/favorites/favoritestimelinerequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \
 	connection/requests/oauth/authorizerequester.hpp \
@@ -174,6 +179,8 @@ HEADERS  += \
 	logic/processes/oauthprocess.hpp \
 	logic/processes/allowprocess.hpp \
 	logic/processes/launchingprocess.hpp \
+	logic/processes/favoriteprocess.hpp \
+	logic/processes/unfavoriteprocess.hpp \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
@@ -181,14 +188,7 @@ HEADERS  += \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp \
-    connection/requests/favorites/favoriterequester.hpp \
-    connection/requests/favorites/unfavoriterequester.hpp \
-    connection/requests/favorites/favoritestimelinerequester.hpp \
-    connection/requests/identificationway.hpp \
-    logic/processes/favoriteprocess.hpp \
-    logic/processes/unfavoriteprocess.hpp \
-    connection/requests/responseinfos.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -201,7 +201,7 @@ OTHER_FILES = \
 	ui/qml/LoginPane.qml \
 	ui/qml/QuitPane.qml \
 	ui/qml/TweetPane.qml \
-    ui/qml/qml_files_to_translate.txt
+	ui/qml/qml_files_to_translate.txt
 
 
 #--------------#

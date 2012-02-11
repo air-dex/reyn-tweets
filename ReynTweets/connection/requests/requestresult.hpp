@@ -28,7 +28,7 @@
 
 #include <QVariant>
 #include "../errortypes.hpp"
-#include "requestinfos.hpp"
+#include "../responseinfos.hpp"
 
 /// @struct RequestResult
 /// @brief Results of a request

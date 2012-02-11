@@ -93,7 +93,7 @@ void LaunchingProcess::checkTokens() {
 void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -106,6 +106,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	int httpCode = result.httpResponse.code;
 	QString verifyMsg = "";
 	CoreResult verifyIssue;
+	bool isFatal;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -143,13 +144,13 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
+				verifyIssue = TWITTER_DOWN;
 			} else if (httpCode == 401) {
-				issue = TOKENS_NOT_AUTHORIZED;
+				verifyIssue = TOKENS_NOT_AUTHORIZED;
 			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
+				verifyIssue = RATE_LIMITED;
 			} else {
-				issue = UNKNOWN_PROBLEM;
+				verifyIssue = UNKNOWN_PROBLEM;
 			}
 			break;
 
@@ -169,13 +170,13 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 		case QJSON_PARSING:
 			// Building error message
-			errorMsg = LaunchingProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
+			verifyMsg = LaunchingProcess::trUtf8("Parsing error:");
+			verifyMsg.append('\n')
 					.append(LaunchingProcess::trUtf8("Line "))
 					.append(QString::number(result.parsingErrors.code))
 					.append(" : ")
 					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			verifyIssue = PARSE_ERROR;
 			break;
 
 		default:
@@ -191,7 +192,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Keeping on launching Reyn Tweets depending on what happened in the request
 	bool processOK;
 	QString errorMsg = "";
-	bool isFatal;
 
 	switch (verifyIssue) {
 		case TOKENS_OK:

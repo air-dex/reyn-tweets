@@ -83,7 +83,7 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -141,9 +141,6 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Retrieving network informations
-			int httpCode = result.httpResponse.code;
-
 			// Building error message
 			errorMsg = AllowProcess::trUtf8("Network error ");
 			errorMsg.append(QString::number(httpCode))
@@ -173,7 +170,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = AllowProcess::trUtf8("Unexpected problem :");
-			errorMsg.append('\n').append(result.getErrorMessage()).append(".\n");
+			errorMsg.append('\n').append(result.errorMessage).append(".\n");
 			issue = UNKNOWN_PROBLEM;
 			break;
 	}

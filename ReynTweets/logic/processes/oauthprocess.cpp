@@ -83,7 +83,7 @@ void OAuthProcess::requestToken() {
 void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -189,7 +189,7 @@ void OAuthProcess::authorize() {
 void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -294,7 +294,7 @@ void OAuthProcess::denyReynTweets(QString login, QString password) {
 void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -415,7 +415,7 @@ void OAuthProcess::accessToken() {
 void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 

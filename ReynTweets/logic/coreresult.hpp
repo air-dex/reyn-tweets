@@ -115,6 +115,17 @@ enum CoreResult {
 	ALLOW_SUCCESSFUL,
 
 
+	////////////////////////////
+	// Favorites process ends //
+	////////////////////////////
+
+	/// @brief FavoriteProcess ended successfully
+	FAVORITE_SUCCESSFUL,
+
+	/// @brief UnfavoriteProcess ended successfully
+	UNFAVORITE_SUCCESSFUL,
+
+
 	//////////
 	// Misc //
 	//////////

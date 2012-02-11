@@ -108,7 +108,9 @@ SOURCES += \
 	main.cpp \
     connection/requests/favorites/favoriterequester.cpp \
     connection/requests/favorites/unfavoriterequester.cpp \
-    connection/requests/favorites/favoritestimelinerequester.cpp
+    connection/requests/favorites/favoritestimelinerequester.cpp \
+    logic/processes/favoriteprocess.cpp \
+    logic/processes/unfavoriteprocess.cpp
 
 
 HEADERS  += \
@@ -183,7 +185,9 @@ HEADERS  += \
     connection/requests/favorites/favoriterequester.hpp \
     connection/requests/favorites/unfavoriterequester.hpp \
     connection/requests/favorites/favoritestimelinerequester.hpp \
-    connection/requests/identificationway.hpp
+    connection/requests/identificationway.hpp \
+    logic/processes/favoriteprocess.hpp \
+    logic/processes/unfavoriteprocess.hpp
 
 
 OTHER_FILES = \

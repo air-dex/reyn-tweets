@@ -23,6 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QtDeclarative>
 #include "userinfos.hpp"
 #include "../tools/utils.hpp"
 
@@ -134,7 +135,7 @@ void UserInfos::initSystem() {
 }
 
 // Declaring to the QML components
-void LaunchingControl::declareQML() {
+void UserInfos::declareQML() {
 	qmlRegisterType<UserInfos>("ReynTweetsEntities",
 							   0, 1,
 							   "UserInfos");

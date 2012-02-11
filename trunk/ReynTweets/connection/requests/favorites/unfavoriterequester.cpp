@@ -1,10 +1,10 @@
-/// @file requests.hpp
-/// @brief Header including all the request classes
+/// @file unfavoriterequester.cpp
+/// @brief Implementation of UnfavoriteRequester
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2012 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,19 +21,18 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REQUESTS_HPP
-#define REQUESTS_HPP
+#include "unfavoriterequester.hpp"
 
-#include "accounts/verifycredentialsrequester.hpp"
-#include "favorites/favoriterequester.hpp"
-#include "favorites/favoritestimelinerequester.hpp"
-#include "favorites/unfavoriterequester.hpp"
-#include "oauth/accesstokenrequester.hpp"
-#include "oauth/authorizerequester.hpp"
-#include "oauth/postauthorizerequester.hpp"
-#include "oauth/requesttokenrequester.hpp"
-#include "searches/searchrequester.hpp"
-#include "tweets/showtweetrequester.hpp"
-#include "users/showuserrequester.hpp"
+// Constructor
+UnfavoriteRequester::UnfavoriteRequester(OAuthManager & authManager,
+										 qlonglong id) :
+	AuthenticationRequester(POST, TwitterURL::DELETE_FAVORITE_URL, authManager),
+	tweetID(id)
+{
+	// Replacing ":id" in the URL with the tweet ID
+	requestURL.replace(":id", QString::number(tweetID));
 
-#endif // REQUESTS_HPP
+	// Verifying while debugging
+	qDebug("L'URL de défavoritisme :");
+	qDebug(requestURL.toUtf8().data());
+}

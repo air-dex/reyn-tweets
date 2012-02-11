@@ -38,22 +38,59 @@ class TweetControl : public QObject
 	Q_OBJECT
 
 	public:
+		/// @fn explicit TweetControl();
+		/// @brief Constructor
 		explicit TweetControl();
 
-		void declareQML();
+		/// @fn static void declareQML();
+		/// @brief Declaring TweetControl to the QML system
+		static void declareQML();
 
 	signals:
 
 	public slots:
+		/// @fn void reply();
+		/// @brief Reply to the tweet
 		void reply();
+
+		/// @fn void retweet();
+		/// @brief Retweet the tweet
 		void retweet();
+
+		/// @fn void quote();
+		/// @brief Quote the tweet (old retweet method)
 		void quote();
+
+		/// @fn void favorite();
+		/// @brief Favorite the tweet
 		void favorite();
+
+		/// @fn void unfavorite();
+		/// @brief Unfavorite the tweet
 		void unfavorite();
 
 	protected:
+		/// @brief Entity which realizes treatments
 		ReynCore reyn;
-		Tweet tweet;
+
+		/// @property tweet
+		/// @brief Model of the tweet manipulated by the control.
+		Q_PROPERTY(Tweet tweet
+				   READ getTweet
+				   WRITE setTweet)
+
+		/// @brief Tweet entity behind the tweet property
+		Tweet status;
+
+		/// @fn Tweet getTweet();
+		/// @brief Reading the tweet property
+		/// @return status
+		Tweet getTweet();
+
+		/// @fn void setTweet(Tweet newStatus);
+		/// @brief Writing the tweet property
+		/// @param newStatus New value for status.
+		void setTweet(Tweet newStatus);
 };
 
 #endif // TWEETCONTROL_HPP

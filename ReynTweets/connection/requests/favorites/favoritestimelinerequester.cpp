@@ -27,10 +27,10 @@
 // Constructor with ID
 FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManager,
 													   qlonglong uid,
-													   int nbTweets,
 													   qlonglong oldestTweetID,
+													   bool withEntities,
 													   int nbPages,
-													   bool withEntities) :
+													   int nbTweets) :
 	AuthenticationRequester(GET,
 							TwitterURL::FAVORITE_TIMELINE_URL,
 							authManager),
@@ -46,10 +46,10 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 // Constructor with screen name
 FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManager,
 													   QString userName,
-													   int nbTweets,
 													   qlonglong oldestTweetID,
+													   bool withEntities,
 													   int nbPages,
-													   bool withEntities) :
+													   int nbTweets) :
 	AuthenticationRequester(GET,
 							TwitterURL::FAVORITE_TIMELINE_URL,
 							authManager),

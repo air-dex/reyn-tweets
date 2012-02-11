@@ -26,14 +26,14 @@
 
 // Constructor
 HomeTimelineRequester::HomeTimelineRequester(OAuthManager & authManager,
-											 int nbTweets,
 											 qlonglong oldestTweetID,
 											 qlonglong youngestTweetID,
-											 int nbPage,
 											 bool userIDonly,
 											 bool withRetweets,
 											 bool withEntities,
 											 bool withoutReplies,
+											 int nbPage,
+											 int nbTweets,
 											 bool withContributorsDetails) :
 	AuthenticationRequester(GET, TwitterURL::HOME_TIMELINE_URL, authManager),
 	count(nbTweets),

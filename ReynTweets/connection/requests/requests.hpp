@@ -33,6 +33,7 @@
 #include "oauth/postauthorizerequester.hpp"
 #include "oauth/requesttokenrequester.hpp"
 #include "searches/searchrequester.hpp"
+#include "timelines/hometimelinerequester.hpp"
 #include "tweets/showtweetrequester.hpp"
 #include "users/showuserrequester.hpp"
 

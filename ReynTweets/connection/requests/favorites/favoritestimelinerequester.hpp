@@ -27,6 +27,9 @@
 #include "../authenticationrequester.hpp"
 #include "../identificationway.hpp"
 
+/// @class FavoritesTimelineRequester
+/// @brief Requester to retrieve the timeline with the favorite tweets of a user
+/// @see https://dev.twitter.com/docs/api/1/get/favorites
 class FavoritesTimelineRequester : public AuthenticationRequester
 {
 	Q_OBJECT
@@ -34,45 +37,45 @@ class FavoritesTimelineRequester : public AuthenticationRequester
 	public:
 		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
 		///								   qlonglong uid = -1,
-		///								   int nbTweets = 1-,
 		///								   qlonglong oldestTweetID = -1,
+		///								   bool withEntities = false,
 		///								   int nbPages = 0,
-		///								   bool withEntities = false);
+		///								   int nbTweets = 20);
 		/// @brief Constructor with an ID.
 		/// @param authManager Entity with authentication datas
 		/// @param uid ID of the user whose favorites timeline will be
 		/// retrieved by the request.
-		/// @param nbTweets Value of count
 		/// @param oldestTweetID Value of sinceID
-		/// @param nbPages Value of page
 		/// @param withEntities Value of includeEntities
+		/// @param nbPages Value of page
+		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   qlonglong uid = -1,
-								   int nbTweets = -1,
 								   qlonglong oldestTweetID = -1,
+								   bool withEntities = false,
 								   int nbPages = 0,
-								   bool withEntities = false);
+								   int nbTweets = 20);
 
 		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
 		///								   QString userName = "",
-		///								   int nbTweets = 20,
 		///								   qlonglong oldestTweetID = -1,
+		///								   bool withEntities = false,
 		///								   int nbPages = 0,
-		///								   bool withEntities = false);
+		///								   int nbTweets = 20);
 		/// @brief Constructor with a screen name.
 		/// @param authManager Entity with authentication datas
 		/// @param userName Screen name of the user whose favorites timeline
 		/// will be retrieved by the request.
-		/// @param nbTweets Value of count
 		/// @param oldestTweetID Value of sinceID
-		/// @param nbPages Value of page
 		/// @param withEntities Value of includeEntities
+		/// @param nbPages Value of page
+		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   QString userName = "",
-								   int nbTweets = 20,
-								   qlonglong oldestTweetID = -1,
+								   qlonglong oldestTweetID = 20,
+								   bool withEntities = false,
 								   int nbPages = 0,
-								   bool withEntities = false);
+								   int nbTweets = 20);
 
 	protected:
 		/// @brief How the user is identified

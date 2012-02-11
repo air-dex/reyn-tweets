@@ -27,7 +27,7 @@
 #include "../authenticationrequester.hpp"
 
 /// @class HomeTimelineRequester
-/// @brief Request to retrieve the timeline withh all the users' friends ' tweets.
+/// @brief Request to retrieve the timeline withh all the users' friends' tweets
 /// @see https://dev.twitter.com/docs/api/1/get/statuses/home_timeline
 class HomeTimelineRequester : public AuthenticationRequester
 {

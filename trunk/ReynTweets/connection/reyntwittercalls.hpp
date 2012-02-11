@@ -113,15 +113,67 @@ class ReynTwitterCalls : public QObject
 		void verifyCredentials(bool entities, bool skipStatus);
 
 
-		//////////////
-		// Searches //
-		//////////////
+		///////////////
+		// Favorites //
+		///////////////
 
-		/// @fn void search(QString q);
-		/// @brief Method that launch searches
-		/// @param q The query
-		/// @see https://dev.twitter.com/docs/api/1/get/search
-		void search(QString q);
+		/// @fn void favoriteTweet(qlonglong id, bool entities = false);
+		/// @brief Favoriting a tweet
+		/// @param authManager Entity with authentication datas
+		/// @param id ID of the tweet to favorite
+		/// @param entities Boolean whose value is true if the tweet
+		/// in the reply has got its entities
+		/// @see https://dev.twitter.com/docs/api/1/post/favorites/create/%3Aid
+		void favoriteTweet(qlonglong id, bool entities = false);
+
+		/// @fn void getFavoriteTimeline(qlonglong id = -1,
+		///								 qlonglong sinceID = -1,
+		///								 bool entities = false,
+		///								 int page = 0,
+		///								 int count = 20);
+		/// @brief Retrieving the timeline with the favorite tweets of the user
+		/// whose ID is id.
+		/// @param id ID of the user whose favorites timeline will be
+		/// retrieved by the request.
+		/// @param count Number of tweets in the timeline
+		/// @param sinceID Minimum ID for a tweet possible in the timeline
+		/// @param page Number of tweets page
+		/// @param entities Boolean whose value is true if the tweets have got
+		/// their entities
+		/// @see https://dev.twitter.com/docs/api/1/get/favorites
+		void getFavoriteTimeline(qlonglong id = -1,
+								 qlonglong sinceID = -1,
+								 bool entities = false,
+								 int page = 0,
+								 int count = 20);
+
+		/// @fn void getFavoriteTimeline(QString id = "",
+		///								 qlonglong sinceID = -1,
+		///								 bool entities = false,
+		///								 int page = 0,
+		///								 int count = 20);
+		/// @brief Retrieving the timeline with the favorite tweets of the user
+		/// whose screen name is id.
+		/// @param id Screen name of the user whose favorites timeline
+		/// will be retrieved by the request.
+		/// @param count Number of tweets in the timeline
+		/// @param sinceID Minimum ID for a tweet possible in the timeline
+		/// @param page Number of tweets page
+		/// @param entities Boolean whose value is true if the tweets have got
+		/// their entities
+		/// @see https://dev.twitter.com/docs/api/1/get/favorites
+		void getFavoriteTimeline(QString id = "",
+								 qlonglong sinceID = -1,
+								 bool entities = false,
+								 int page = 0,
+								 int count = 20);
+
+		/// @fn void unfavoriteTweet(qlonglong id, bool withEntities = false);
+		/// @brief Unavoriting a tweet
+		/// @param authManager Entity with authentication datas
+		/// @param id ID of the tweet to unfavorite
+		/// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
+		void unfavoriteTweet(qlonglong id);
 
 
 		///////////
@@ -173,6 +225,51 @@ class ReynTwitterCalls : public QObject
 		/// @brief Method for getting an access token
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/access_token
 		void accessToken();
+
+
+		//////////////
+		// Searches //
+		//////////////
+
+		/// @fn void search(QString q);
+		/// @brief Method that launch searches
+		/// @param q The query
+		/// @see https://dev.twitter.com/docs/api/1/get/search
+		void search(QString q);
+
+
+		///////////////
+		// Timelines //
+		///////////////
+
+		/// @fn void retrieveHomeTimeline(qlonglong sinceID = -1,
+		///								  qlonglong maxID = -1,
+		///								  bool trimUser = false,
+		///								  bool includeRTS = false,
+		///								  bool includeEntities = false,
+		///								  bool excludeReplies = false,
+		///								  int page = 0,
+		///								  int count = 20,
+		///								  bool contributorsDetails = false);
+		/// @brief Retrieving the timeline with the tweets of the user's friends
+		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param maxID Maximum tweet ID possible in the timeline
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeRTS Including retweets
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param excludeReplies Excluding the replies
+		/// @param page Number of pages
+		/// @param count Number of tweets
+		/// @param contributorsDetails Including details about contributors
+		void retrieveHomeTimeline(qlonglong sinceID = -1,
+								  qlonglong maxID = -1,
+								  bool trimUser = false,
+								  bool includeRTS = false,
+								  bool includeEntities = false,
+								  bool excludeReplies = false,
+								  int page = 0,
+								  int count = 20,
+								  bool contributorsDetails = false);
 
 
 		////////////

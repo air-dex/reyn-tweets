@@ -109,13 +109,53 @@ void ReynTwitterCalls::verifyCredentials(bool entities, bool skipStatus) {
 }
 
 
-//////////////
-// Searches //
-//////////////
+///////////////
+// Favorites //
+///////////////
 
-// Method that launch searches
-void ReynTwitterCalls::search(QString q) {
-	SearchRequester * requester = new SearchRequester(q);
+// Favoriting a tweet
+void ReynTwitterCalls::favoriteTweet(qlonglong id, bool entities) {
+	FavoriteRequester * requester = new FavoriteRequester(oauthManager,
+														  id,
+														  entities);
+	executeRequest(requester);
+}
+
+// Retrieving the timeline with the favorite tweets of the userwhose ID is id.
+void ReynTwitterCalls::getFavoriteTimeline(qlonglong id,
+										   qlonglong sinceID,
+										   bool entities,
+										   int page,
+										   int count)
+{
+	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
+																			id,
+																			count,
+																			sinceID,
+																			page,
+																			entities);
+	executeRequest(requester);
+}
+
+// Retrieving the timeline with the favorite tweets of the user whose screen name is id.
+void ReynTwitterCalls::getFavoriteTimeline(QString id,
+										   qlonglong sinceID,
+										   bool entitie,
+										   int page,
+										   int count)
+{
+	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
+																			id,
+																			count,
+																			sinceID,
+																			page,
+																			entities);
+	executeRequest(requester);
+}
+
+// Unavoriting a tweet
+void ReynTwitterCalls::unfavoriteTweet(qlonglong id) {
+	UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager, id);
 	executeRequest(requester);
 }
 
@@ -165,6 +205,46 @@ void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
 	oauthManager.setOAuthSecret(tokenSecret, false);
 	oauthManager.setConsumerKey(consumerKey);
 	oauthManager.setConsumerSecret(consumerSecret);
+}
+
+
+//////////////
+// Searches //
+//////////////
+
+// Method that launch searches
+void ReynTwitterCalls::search(QString q) {
+	SearchRequester * requester = new SearchRequester(q);
+	executeRequest(requester);
+}
+
+
+///////////////
+// Timelines //
+///////////////
+
+// Retrieving the timeline with the tweets of the user's friends
+void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
+											qlonglong maxID,
+											bool trimUser,
+											bool includeRTS,
+											bool includeEntities,
+											bool excludeReplies,
+											int page,
+											int count,
+											bool contributorsDetails)
+{
+	HomeTimelineRequester * requester = new HomeTimelineRequester(oauthManager,
+																  sinceID,
+																  maxID,
+																  trimUser,
+																  includeRTS,
+																  includeEntities,
+																  excludeReplies,
+																  page,
+																  count,
+																  contributorsDetails);
+	executeRequest(requester);
 }
 
 

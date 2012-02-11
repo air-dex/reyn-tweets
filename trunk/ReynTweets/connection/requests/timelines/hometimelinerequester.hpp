@@ -35,18 +35,17 @@ class HomeTimelineRequester : public AuthenticationRequester
 
 	public:
 		/// @fn HomeTimelineRequester(OAuthManager & authManager,
-		///							  int nbTweets = 20,
 		///							  qlonglong oldestTweetID = -1,
 		///							  qlonglong youngestTweetID = -1,
-		///							  int nbPage = 0,
 		///							  bool userIDonly = false,
 		///							  bool withRetweets = false,
 		///							  bool withEntities = false,
 		///							  bool withoutReplies = false,
+		///							  int nbPage = 0,
+		///							  int nbTweets = 20,
 		///							  bool withContributorsDetails = false);
 		/// @brief Constructor
 		/// @param authManager Entity with authentication datas
-		/// @param nbTweets Value of count
 		/// @param oldestTweetID Value of sinceID
 		/// @param youngestTweetID Value of maxID
 		/// @param nbPage Value of page
@@ -54,16 +53,17 @@ class HomeTimelineRequester : public AuthenticationRequester
 		/// @param withRetweets Value of includeRetweets
 		/// @param withEntities Value of includeEntities
 		/// @param withoutReplies Value of excludeReplies
+		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
 		HomeTimelineRequester(OAuthManager & authManager,
-							  int nbTweets = 20,
 							  qlonglong oldestTweetID = -1,
 							  qlonglong youngestTweetID = -1,
-							  int nbPage = 0,
 							  bool userIDonly = false,
 							  bool withRetweets = false,
 							  bool withEntities = false,
 							  bool withoutReplies = false,
+							  int nbPage = 0,
+							  int nbTweets = 20,
 							  bool withContributorsDetails = false);
 
 	protected:

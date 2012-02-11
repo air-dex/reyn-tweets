@@ -50,6 +50,6 @@ void AuthenticationRequester::initCommunicator() {
 										   oauthTokenNeeded,
 										   oauthCallbackUrlNeeded,
 										   oauthVerifierNeeded);
-	connect(communicator, SIGNAL(requestDone(bool)),
-			this, SLOT(treatResults(bool)));
+	connect(communicator, SIGNAL(requestDone()),
+			this, SLOT(treatResults()));
 }

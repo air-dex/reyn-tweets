@@ -47,7 +47,7 @@ void FavoriteProcess::favoriteTweet() {
 void FavoriteProcess::favoriteEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -77,16 +77,16 @@ void FavoriteProcess::favoriteEnded(ResultWrapper res) {
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
-				errMsg = FavoriteProcess::trUtf8("Twitter seems down:");
+				errorMsg = FavoriteProcess::trUtf8("Twitter seems down:");
 			} else if (httpCode == 401) {
 				issue = TOKENS_NOT_AUTHORIZED;
-				errMsg = FavoriteProcess::trUtf8("Tokens were not authorized:");
+				errorMsg = FavoriteProcess::trUtf8("Tokens were not authorized:");
 			} else if (httpCode == 420) {
 				issue = RATE_LIMITED;
-				errMsg = FavoriteProcess::trUtf8("You reach the authentication rate:");
+				errorMsg = FavoriteProcess::trUtf8("You reach the authentication rate:");
 			} else {
 				issue = UNKNOWN_PROBLEM;
-				errMsg = FavoriteProcess::trUtf8("Unexpected result:");
+				errorMsg = FavoriteProcess::trUtf8("Unexpected result:");
 			}
 
 			// Building error message
@@ -143,7 +143,7 @@ void FavoriteProcess::favoriteEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal, resultMap);
+	buildResult(false, issue, errorMsg, isFatal);
 	emit processEnded();
 }
 

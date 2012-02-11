@@ -47,7 +47,7 @@ void UnfavoriteProcess::unfavoriteTweet() {
 void UnfavoriteProcess::unfavoriteEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result == RequestResult()) {
+	if (result.resultType == INVALID_RESULT) {
 		return;
 	}
 
@@ -77,16 +77,16 @@ void UnfavoriteProcess::unfavoriteEnded(ResultWrapper res) {
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
-				errMsg = UnfavoriteProcess::trUtf8("Twitter seems down:");
+				errorMsg = UnfavoriteProcess::trUtf8("Twitter seems down:");
 			} else if (httpCode == 401) {
 				issue = TOKENS_NOT_AUTHORIZED;
-				errMsg = UnfavoriteProcess::trUtf8("Tokens were not authorized:");
+				errorMsg = UnfavoriteProcess::trUtf8("Tokens were not authorized:");
 			} else if (httpCode == 420) {
 				issue = RATE_LIMITED;
-				errMsg = UnfavoriteProcess::trUtf8("You reach the authentication rate:");
+				errorMsg = UnfavoriteProcess::trUtf8("You reach the authentication rate:");
 			} else {
 				issue = UNKNOWN_PROBLEM;
-				errMsg = UnfavoriteProcess::trUtf8("Unexpected result:");
+				errorMsg = UnfavoriteProcess::trUtf8("Unexpected result:");
 			}
 
 			// Building error message
@@ -124,7 +124,7 @@ void UnfavoriteProcess::unfavoriteEnded(ResultWrapper res) {
 
 		case QJSON_PARSING:
 			// Building error message
-			errorMsg = FavoriteProcess::trUtf8("Parsing error:");
+			errorMsg = UnfavoriteProcess::trUtf8("Parsing error:");
 			errorMsg.append('\n')
 					.append(UnfavoriteProcess::trUtf8("Line "))
 					.append(QString::number(result.parsingErrors.code))
@@ -143,7 +143,7 @@ void UnfavoriteProcess::unfavoriteEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal, resultMap);
+	buildResult(false, issue, errorMsg, isFatal);
 	emit processEnded();
 }
 

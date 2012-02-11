@@ -137,7 +137,7 @@ void GenericRequester::treatResults() {
 					&& resultMap.value("errors").type() == QVariant::List
 				)
 			{
-				QVariantList errorList = resultMap.value("errors");
+				QVariantList errorList = resultMap.value("errors").toList();
 
 				// Building the list of errors
 				for (QVariantList::Iterator it = errorList.begin();

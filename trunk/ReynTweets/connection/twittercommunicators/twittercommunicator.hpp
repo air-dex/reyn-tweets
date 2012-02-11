@@ -35,7 +35,7 @@
 #include <QUrl>
 #include <QMap>
 #include "../oauthmanager.hpp"
-#include "../requests/responseinfos.hpp"
+#include "../responseinfos.hpp"
 
 /////////////////////
 // Network Manager //

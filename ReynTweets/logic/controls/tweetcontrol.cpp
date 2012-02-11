@@ -58,27 +58,62 @@ void TweetControl::setTweet(Tweet newStatus) {
 // Actions //
 /////////////
 
-// Reply to the tweet
+// Reply
+
 void TweetControl::reply() {
 	// TODO
 }
 
-// Retweet the tweet
+void TweetControl::replyEnd(ProcessWrapper res) {
+	//
+}
+
+
+// Retweet
+
 void TweetControl::retweet() {
 	// TODO
 }
 
-// Quote the tweet (old retweet method)
+void TweetControl::retweetEnd(ProcessWrapper res) {
+	//
+}
+
+
+// Quote
+
 void TweetControl::quote() {
 	// TODO
 }
 
-// Favorite the tweet
-void TweetControl::favorite() {
-	// TODO
+void TweetControl::quoteEnd(ProcessWrapper res) {
+	//
 }
 
-// Unfavorite the tweet
+
+// Favorite
+
+void TweetControl::favorite() {
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(favoriteEnd(ProcessWrapper)));
+	reyn.favoriteTweet(status.getID());
+}
+
+void TweetControl::favoriteEnd(ProcessWrapper res) {
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(favoriteEnd(ProcessWrapper)));
+}
+
+
+// Unfavorite
+
 void TweetControl::unfavorite() {
-	// TODO
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(unfavoriteEnd(ProcessWrapper)));
+	reyn.unfavoriteTweet(status.getID());
+}
+
+void TweetControl::unfavoriteEnd(ProcessWrapper res) {
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(unfavoriteEnd(ProcessWrapper)));
 }

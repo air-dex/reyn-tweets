@@ -140,6 +140,18 @@ void ReynCore::allowReynTweets() {
 	executeProcess(process);
 }
 
+// Favoriting a tweet
+void ReynCore::favoriteTweet(qlonglong id) {
+	FavoriteProcess * process = new FavoriteProcess(id);
+	executeProcess(process);
+}
+
+// Unfavoriting a tweet
+void ReynCore::unfavoriteTweet(qlonglong id) {
+	UnfavoriteProcess * process = new UnfavoriteProcess(id);
+	executeProcess(process);
+}
+
 // Special wiring of an OAuth process.
 void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 	// Process giving informations about user credentials

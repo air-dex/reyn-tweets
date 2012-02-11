@@ -133,6 +133,17 @@ class ReynCore : public QObject
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
 
+		/// @fn void favoriteTweet(qlonglong id);
+		/// @brief Favoriting a tweet
+		/// @param id ID of the tweet to favorite
+		void favoriteTweet(qlonglong id);
+
+		/// @fn void unfavoriteTweet(qlonglong id);
+		/// @brief Unfavoriting a tweet
+		/// @param id ID of the tweet to unfavorite
+		void unfavoriteTweet(qlonglong id);
+
+
 	protected:
 		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);
 		/// @brief Special wiring of an OAuth process.

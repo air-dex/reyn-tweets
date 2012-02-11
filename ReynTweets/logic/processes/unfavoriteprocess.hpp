@@ -24,17 +24,57 @@
 #ifndef UNFAVORITEPROCESS_HPP
 #define UNFAVORITEPROCESS_HPP
 
+#include "genericprocess.hpp"
+#include "../../connection/reyntwittercalls.hpp"
+
 class UnfavoriteProcess : public GenericProcess
 {
 	Q_OBJECT
 
 	public:
-		explicit UnfavoriteProcess(QObject *parent = 0);
+		/// @fn explicit UnfavoriteProcess(qlonglong id);
+		/// @brief Constructor
+		/// @param id ID of the tweet
+		explicit UnfavoriteProcess(qlonglong id);
 
-	signals:
+		/// @fn void startProcess() = 0;
+		/// @brief Start the process calling twitter to unfavorite the tweet
+		void startProcess();
 
 	public slots:
+		/// @fn void unfavoriteEnded(ResultWrapper res);
+		/// @brief Slot executing after unfavoriting the tweet
+		/// @param res Result of the request
+		void unfavoriteEnded(ResultWrapper res);
 
+	protected:
+		/// @brief Entity calling Twitter
+		ReynTwitterCalls twitter;
+
+		/// @brief ID of the tweet to unfavorite
+		qlonglong tweetID;
+
+		/// @fn void unfavoriteTweet();
+		/// @brief Entry point of the process
+		void unfavoriteTweet();
+
+		/// @fn void buildResult(bool processOK,
+		///						 CoreResult issue,
+		///						 QString errMsg = "",
+		///						 bool isFatal = false
+		///						 QVariantMap tweetMap = QVariantMap());
+		/// @brief Building process results
+		/// @param processOK Did the process end successfully ?
+		/// @param issue Enum value describing how it ended.
+		/// @param errMsg Error message
+		/// @param isFatal Is the issue fatal (i.e. requiring to abort
+		/// the application) ?
+		/// @param tweetMap Request result (Tweet) in a QVariantMap.
+		void buildResult(bool processOK,
+						 CoreResult issue,
+						 QString errMsg,
+						 bool isFatal,
+						 QVariantMap tweetMap = QVariantMap());
 };
 
 #endif // UNFAVORITEPROCESS_HPP

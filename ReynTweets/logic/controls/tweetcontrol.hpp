@@ -69,6 +69,27 @@ class TweetControl : public QObject
 		/// @brief Unfavorite the tweet
 		void unfavorite();
 
+	protected slots:
+		/// @fn void replyEnd(ProcessWrapper res);
+		/// @brief Slot executed after replying to the tweet
+		void replyEnd(ProcessWrapper res);
+
+		/// @fn void retweetEnd(ProcessWrapper res);
+		/// @brief Slot executed after retweeting the tweet
+		void retweetEnd(ProcessWrapper res);
+
+		/// @fn void quoteEnd(ProcessWrapper res);
+		/// @brief Slot executed after quoting the tweet (old retweet method)
+		void quoteEnd(ProcessWrapper res);
+
+		/// @fn void favoriteEnd(ProcessWrapper res);
+		/// @brief Slot executed after favoriting the tweet
+		void favoriteEnd(ProcessWrapper res);
+
+		/// @fn void unfavoriteEnd(ProcessWrapper res);
+		/// @brief Slot executed after unfavoriting the tweet
+		void unfavoriteEnd(ProcessWrapper res);
+
 	protected:
 		/// @brief Entity which realizes treatments
 		ReynCore reyn;

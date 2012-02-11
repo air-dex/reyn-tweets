@@ -91,18 +91,27 @@ void LaunchingProcess::checkTokens() {
 
 // Slot executed after verifying credentials.
 void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
 
-	// Analysing the Twitter request
-	RequestResult result = res.accessResult(this);
-	int httpCode = result.getHttpCode();
+	ErrorType errorType = result.resultType;
+
+	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
+	QString verifyMsg = "";
 	CoreResult verifyIssue;
 
-	switch (httpCode) {
-		case 200: {
+	// Analysing the Twitter response
+	switch (errorType) {
+		case NO_ERROR: {
 			// Credentials were right a priori. Ensures that the user is the right one.
-			QVariantMap userMap = result.getParsedResult().toMap();
+			QVariantMap userMap = result.parsedResult.toMap();
 			User userOfCredentials;
 			userOfCredentials.fillWithVariant(userMap);
 			UserAccount account = configuration.getUserAccount();
@@ -114,26 +123,72 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			}
 		}break;
 
-		case 401:
-			// Credentials were wrong
-			verifyIssue = TOKENS_NOT_AUTHORIZED;
+		case TWITTER_ERRORS:
+			// Building error message
+			verifyMsg = LaunchingProcess::trUtf8("Twitter errors:");
+
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				verifyMsg.append(LaunchingProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			verifyMsg.chop(1);
+
+			// Looking for specific value of the return code
+			if (httpCode / 100 == 5) {
+				issue = TWITTER_DOWN;
+			} else if (httpCode == 401) {
+				issue = TOKENS_NOT_AUTHORIZED;
+			} else if (httpCode == 420) {
+				issue = RATE_LIMITED;
+			} else {
+				issue = UNKNOWN_PROBLEM;
+			}
 			break;
 
-		case 420:
-			// Rate limited
-			verifyIssue = RATE_LIMITED;
+		case API_CALL:
+			// Building error message
+			verifyMsg = LaunchingProcess::trUtf8("Network error ");
+			verifyMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			verifyIssue = NETWORK_CALL;
+			break;
+
+		case QJSON_PARSING:
+			// Building error message
+			errorMsg = LaunchingProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n')
+					.append(LaunchingProcess::trUtf8("Line "))
+					.append(QString::number(result.parsingErrors.code))
+					.append(" : ")
+					.append(result.parsingErrors.message);
+			issue = PARSE_ERROR;
 			break;
 
 		default:
-			// Return == 5xx -> Twitter problem. Unknown problem otherwise.
-			verifyIssue = (httpCode / 100 == 5) ?
-						TWITTER_DOWN
-					  : UNKNOWN_PROBLEM;
+			// Unexpected problem. Abort.
+			verifyMsg = LaunchingProcess::trUtf8("Unexpected problem:");
+			verifyMsg.append('\n').append(result.errorMessage).append('.');
+			isFatal = true;
+			verifyIssue = UNKNOWN_PROBLEM;
 			break;
 	}
 
 
-	// Keeping on launching Reyn Tweets
+	// Keeping on launching Reyn Tweets depending on what happened in the request
 	bool processOK;
 	QString errorMsg = "";
 	bool isFatal;
@@ -166,28 +221,47 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
 			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate.");
+			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate:");
+			errorMsg.append('\n').append(verifyMsg);
 			isFatal = false;
 			break;
 
 		case TWITTER_DOWN:
-			// Twitter problem Asking the user to try later.
+			// Twitter problem. Asking the user to try later.
 			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Twitter is down.");
+			errorMsg = LaunchingProcess::trUtf8("Twitter is down:");
+			errorMsg.append('\n').append(verifyMsg);
 			isFatal = false;
+			break;
+
+		case NETWORK_CALL:
+			// Probably problem. Asking the user to try later.
+			processOK = false;
+			errorMsg = LaunchingProcess::trUtf8("Problem while connecting to Twitter:");
+			errorMsg.append('\n').append(verifyMsg);
+			isFatal = false;
+			break;
+
+		case PARSE_ERROR:
+			// Unknown problem. Abort ?
+			processOK = false;
+			errorMsg = verifyMsg;
+			isFatal = true;
 			break;
 
 		case UNKNOWN_PROBLEM:
 			// Unknown problem. Abort ?
 			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Unknown prolem.");
+			errorMsg = LaunchingProcess::trUtf8("Unknown prolem:");
+			errorMsg.append('\n').append(verifyMsg);
 			isFatal = true;
 			break;
 
 		default:
 			// Unexpected result. Abort.
 			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Unexpected result.");
+			errorMsg = LaunchingProcess::trUtf8("Unexpected result:");
+			errorMsg.append('\n').append(verifyMsg);
 			isFatal = true;
 			break;
 	}

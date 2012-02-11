@@ -81,13 +81,19 @@ void OAuthProcess::requestToken() {
 
 // Treatments after the request for Request Tokens
 void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(requestTokenDemanded(ResultWrapper)));
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
+	ErrorType errorType = result.resultType;
 
 	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	bool isFatal = false;
 	CoreResult issue;
@@ -96,7 +102,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case NO_ERROR: {
 			// The request was successful. Was the callback URL confirmed ?
-			QVariantMap parsedResults = result.getParsedResult().toMap();
+			QVariantMap parsedResults = result.parsedResult.toMap();
 			if (parsedResults.value("oauth_callback_confirmed").toBool()) {
 				// Let's authorize the request tokens !
 				return authorize();
@@ -108,19 +114,23 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
+		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append('.');
+			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
+
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(OAuthProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -130,19 +140,34 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
-		}break;
+			break;
+
+		case API_CALL:
+			// Building error message
+			errorMsg = OAuthProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
+			break;
 
 		case OAUTH_PARSING:
 			// Building error message
 			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n').append(result.getParsingErrorMessage());
+			errorMsg.append('\n')
+					.append(result.parsingErrors.message);
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
+			errorMsg.append('\n').append(result.errorMessage).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -162,13 +187,19 @@ void OAuthProcess::authorize() {
 
 // Treatments after the request for authorizing Request Tokens
 void OAuthProcess::authorizeDemanded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(authorizeDemanded(ResultWrapper)));
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
+	ErrorType errorType = result.resultType;
 
 	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	bool isFatal = false;
 	CoreResult issue;
@@ -179,21 +210,25 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			emit userCredentialsRequired();
 			return;
 
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
+		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append('.');
+			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
 
-			// Looking for specific values of the return code
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(OAuthProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
+
+			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
 			} else if (httpCode == 401) {
@@ -203,19 +238,34 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
-		}break;
+			break;
+
+		case API_CALL:
+			// Building error message
+			errorMsg = OAuthProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
+			break;
 
 		case HTML_PARSING:
 			// Building error message
 			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n').append(result.getParsingErrorMessage());
+			errorMsg.append('\n')
+					.append(result.parsingErrors.message);
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
+			errorMsg.append('\n').append(result.errorMessage).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -242,20 +292,26 @@ void OAuthProcess::denyReynTweets(QString login, QString password) {
 
 // Treatments for the POST authorizing request
 void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postAuthorizeDemanded(ResultWrapper)));
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
+	ErrorType errorType = result.resultType;
 
 	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	bool isFatal = false;
 	CoreResult issue;
 
 	switch (errorType) {
 		case NO_ERROR: {
-			QVariantMap resultMap = result.getParsedResult().toMap();
+			QVariantMap resultMap = result.parsedResult.toMap();
 			bool urlOK = resultMap.value("urlOK").toBool();
 
 			if (urlOK) {
@@ -281,21 +337,25 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
+		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append('.');
+			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
 
-			// Looking for specific values of the return code
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(OAuthProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
+
+			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
 			} else if (httpCode == 401) {
@@ -305,20 +365,35 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
-		}break;
+			break;
+
+		case API_CALL:
+			// Building error message
+			errorMsg = OAuthProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
+			break;
 
 		case HTML_PARSING:
 		case OAUTH_PARSING:
 			// Building error message
 			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n').append(result.getParsingErrorMessage());
+			errorMsg.append('\n')
+					.append(result.parsingErrors.message);
 			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
+			errorMsg.append('\n').append(result.errorMessage).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;
@@ -338,13 +413,19 @@ void OAuthProcess::accessToken() {
 
 // Treatments after the request for Access Tokens
 void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(accessTokenDemanded(ResultWrapper)));
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
+	ErrorType errorType = result.resultType;
 
 	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	bool isFatal = false;
 	CoreResult issue;
@@ -354,7 +435,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			// The authentication process is ended.
 
 			// Extract the different values
-			QVariantMap resultMap = result.getParsedResult().toMap();
+			QVariantMap resultMap = result.parsedResult.toMap();
 			QByteArray accessToken = resultMap.value("oauth_token").toByteArray();
 			QByteArray tokenSecret = resultMap.value("oauth_token_secret").toByteArray();
 			qlonglong userID = resultMap.value("user_id").toLongLong();
@@ -369,21 +450,25 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			endProcess();
 		}return;
 
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
+		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append('.');
+			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
 
-			// Looking for specific values of the return code
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(OAuthProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
+
+			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
 			} else if (httpCode == 401) {
@@ -393,18 +478,34 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
-		}break;
+			break;
+
+		case API_CALL:
+			// Building error message
+			errorMsg = OAuthProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
+			break;
 
 		case OAUTH_PARSING:
 			// Building error message
 			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n').append(result.getParsingErrorMessage());
+			errorMsg.append('\n')
+					.append(result.parsingErrors.message);
+			issue = PARSE_ERROR;
 			break;
 
 		default:
 			// Unexpected problem. Abort.
 			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.getErrorMessage()).append('.');
+			errorMsg.append('\n').append(result.errorMessage).append('.');
 			isFatal = true;
 			issue = UNKNOWN_PROBLEM;
 			break;

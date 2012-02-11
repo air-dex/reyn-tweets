@@ -57,8 +57,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	oauthVerifierlNeeded(verifierNeeded),
 	request(0),
 	responseBuffer(""),
-	httpReturnCode(0),
-	httpReturnReason(""),
+	httpResponse(),
 	errorMessage("Request not done"),
 	replyURL("")
 {
@@ -145,29 +144,22 @@ void TwitterCommunicator::executeRequest() {
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
-	bool requestOK = treatReply(response);
 
-	// Ending the request
-	emit requestDone(requestOK);
-}
-
-bool TwitterCommunicator::treatReply(QNetworkReply * response) {
 	if (!response) {
-		return false;
+		return;
 	}
 
 	// Analysing the response
 	extractHttpStatuses(response);
 	errorMessage = response->errorString();
 	replyURL = response->url().toString();
-	bool requestOK = httpReturnCode == 200;
 
 	// Extracting informations
 	responseBuffer = response->readAll();
 	response->deleteLater();
 
 	// Ending the request
-	return requestOK;
+	emit requestDone();
 }
 
 
@@ -180,14 +172,9 @@ QByteArray TwitterCommunicator::getResponseBuffer() {
 	return responseBuffer;
 }
 
-// Getting the HTTP return code.
-int TwitterCommunicator::getHttpCode() {
-	return httpReturnCode;
-}
-
-// Getting the HTTP return reason.
-QString TwitterCommunicator::getHttpReason() {
-	return httpReturnReason;
+// Getting the HTTP response (code and reason)
+ResponseInfos TwitterCommunicator::getHttpResponse() {
+	return httpResponse;
 }
 
 // Getting the URL of the reply
@@ -260,9 +247,9 @@ void TwitterCommunicator::extractHttpStatuses(QNetworkReply * reply) {
 
 	// Extract return code
 	httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-	httpReturnCode = httpStatus.toInt();
+	httpResponse.code = httpStatus.toInt();
 
 	// Extract return reason
 	httpStatus = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
-	httpReturnReason = QString::fromAscii(httpStatus.toByteArray());
+	httpResponse.message = QString::fromAscii(httpStatus.toByteArray());
 }

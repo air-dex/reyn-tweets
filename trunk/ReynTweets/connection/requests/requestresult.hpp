@@ -26,103 +26,44 @@
 #ifndef REQUESTRESULT_HPP
 #define REQUESTRESULT_HPP
 
-#include <QNetworkReply>
 #include <QVariant>
 #include "../errortypes.hpp"
+#include "requestinfos.hpp"
 
-/// @class RequestResult
+/// @struct RequestResult
 /// @brief Results of a request
-class RequestResult
-{
-	public:
-		/// @fn RequestResult();
-		/// @brief Default constructor. It builds an invalid result.
-		RequestResult();
+struct RequestResult {
+	/// @brief Code indicating whether an error occured during the request.
+	ErrorType resultType;
 
-		/// @fn RequestResult(ErrorType errorType,
-		///					  QVariant parsedResults,
-		///					  int httpReturnCode,
-		///					  QString httpReturnReason,
-		///					  QVariantMap parsingErrorInfos,
-		///					  QString errorMsg);
-		/// @brief Constructor
-		/// @param errorType Code indicating if an error occured.
-		/// @param parsedResults Pure results of the request.
-		/// @param httpReturnCode HTTP code of the request
-		/// @param httpReturnReason HTTP reason
-		/// @param parsingErrorInfos Information about potential parsing errors
-		/// @param errorMsg Error message
-		RequestResult(ErrorType errorType,
-					  QVariant parsedResults,
-					  int httpReturnCode,
-					  QString httpReturnReason,
-					  QVariantMap parsingErrorInfos,
-					  QString errorMsg);
+	/// @brief Results of the request parsed by QJson.
+	QVariant parsedResult;
 
-		/// @fn bool isRequestSuccessful();
-		/// @brief Method indicating if the request was successful
-		/// @return true if the request was successful, false otherwise.
-		bool isRequestSuccessful();
+	/// @brief HTTP response (code and reason)
+	ResponseInfos httpResponse;
 
-		/// @fn bool isFakeResult();
-		/// @brief Method indicating if the request result is fake
-		/// @return true if the object is FAKE_REQUEST_RESULT, false otherwise.
-		bool isFakeResult();
+	/// @brief Twitter response (code and reason)
+	QList<ResponseInfos> twitterErrors;
 
-		/// @fn ErrorType getErrorType();
-		/// @brief Getter on requestSuccessful
-		/// @return The value of requestSuccessful
-		ErrorType getErrorType();
+	/// @brief Potential errors that can occur while parsing results.
+	///
+	/// The message field is the error message while the code field is the
+	/// number of the line where the error occured.
+	ResponseInfos parsingErrors;
 
-		/// @fn QVariant getParsedResult();
-		/// @brief Getter on real results
-		/// @return The real results of the request
-		QVariant getParsedResult();
+	/// @brief Error message
+	QString errorMessage;
 
-		/// @fn int getHttpCode();
-		/// @brief Getter on httpCode
-		/// @return The HTTP return code
-		int getHttpCode();
-
-		/// @fn QString getHttpReason();
-		/// @brief Getter on httpReason
-		/// @return The value of httpReaso
-		QString getHttpReason();
-
-		/// @fn QVariantMap getParsingErrors();
-		/// @brief Getter on parsingErrors
-		/// @return The value of parsingErrors
-		QVariantMap getParsingErrors();
-
-		/// @fn QVariantMap getParsingErrorMessage();
-		/// @brief Getter on the parsing error message
-		/// @return The parsing error message
-		QString getParsingErrorMessage();
-
-		/// @fn QString getErrorMessage();
-		/// @brief Getter on the error massage
-		/// @return The error message
-		QString getErrorMessage();
-
-
-	protected:
-		/// @brief Code indicating whether an error occured during the request.
-		ErrorType resultType;
-
-		/// @brief Results of the request parsed by QJson.
-		QVariant parsedResult;
-
-		/// @brief HTTP return code.
-		int httpCode;
-
-		/// @brief Reason associated to the HTTP return code.
-		QString httpReason;
-
-		/// @brief Potential errors that can occur while parsing results.
-		QVariantMap parsingErrors;
-
-		/// @brief Error message
-		QString errorMessage;
+	/// @fn RequestResult();
+	/// @brief Constructor
+	RequestResult() :
+		resultType(INVALID_RESULT),
+		parsedResult(),
+		httpResponse(),
+		twitterErrors(),
+		parsingErrors(),
+		errorMessage("")
+	{}
 };
 
 #endif // REQUESTRESULT_HPP

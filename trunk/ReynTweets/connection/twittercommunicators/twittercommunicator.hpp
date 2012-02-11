@@ -35,6 +35,7 @@
 #include <QUrl>
 #include <QMap>
 #include "../oauthmanager.hpp"
+#include "../requests/responseinfos.hpp"
 
 /////////////////////
 // Network Manager //
@@ -113,15 +114,10 @@ class TwitterCommunicator : public QObject
 		/// @return The buffer containing the response
 		QByteArray getResponseBuffer();
 
-		/// @fn int getHttpCode();
-		/// @brief Getting the HTTP return code.
-		/// @return The HTTP code of the request.
-		int getHttpCode();
-
-		/// @fn QString getHttpReason();
-		/// @brief Getting the HTTP return reason.
+		/// @fn ResponseInfos getHttpResponse();
+		/// @brief Getting the HTTP response (code and reason).
 		/// @return The description of the HTTP return code.
-		QString getHttpReason();
+		ResponseInfos getHttpResponse();
 
 		/// @fn QString getReplyURL();
 		/// @brief Getting the URL of the reply.
@@ -135,11 +131,9 @@ class TwitterCommunicator : public QObject
 
 
 	signals:
-		/// @fn void requestDone(bool ok);
+		/// @fn void requestDone();
 		/// @brief Signal indicating the end of a request
-		/// @param ok Boolean indicating if the request is ok (true) of if there
-		/// was an error (false).
-		void requestDone(bool ok);
+		void requestDone();
 
 
 	protected slots:
@@ -190,23 +184,14 @@ class TwitterCommunicator : public QObject
 		/// @brief Content of the response
 		QByteArray responseBuffer;
 
-		/// @brief HTTP return code
-		int httpReturnCode;
-
-		/// @brief HTTP return reason
-		QString httpReturnReason;
+		/// @brief HTTP response code and reason
+		ResponseInfos httpResponse;
 
 		/// @brief Error message
 		QString errorMessage;
 
 		/// @brief URL of the reply
 		QString replyURL;
-
-		/// @fn bool treatReply(QNetworkReply * response);
-		/// @brief Treating a response.
-		/// @param response The Reply to treat
-		/// @return A boolean indicating if the request was successful
-		bool treatReply(QNetworkReply * response);
 
 
 	private:

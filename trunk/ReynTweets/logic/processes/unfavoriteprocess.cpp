@@ -45,71 +45,105 @@ void UnfavoriteProcess::unfavoriteTweet() {
 
 // Slot executing after favoriting the tweet
 void UnfavoriteProcess::unfavoriteEnded(ResultWrapper res) {
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(unfavoriteEnded(ResultWrapper)));
-
+	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
 
-	int httpCode = result.getHttpCode();
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(favoriteEnded(ResultWrapper)));
 
-	CoreResult issue;
-	QString errMsg = "";
+	ErrorType errorType = result.resultType;
+
+	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
+	QString errorMsg = "";
 	bool isFatal = false;
+	CoreResult issue;
 
-	switch (httpCode) {
-		case 200:
-			// No problem during the request
-			switch (result.getErrorMessage()) {
-				case NO_ERROR: {
-					// The tweet was favorited
-					QVariantMap resultMap = result.getParsedResult().toMap();
+	// Analysing the Twitter response
+	switch (errorType) {
+		case NO_ERROR: {
+			// The tweet was favorited
+			QVariantMap resultMap = result.parsedResult.toMap();
 
-					// No need to convert resultMap into a Tweet to convert it back just after.
-					buildResult(true, FAVORITE_SUCCESSFUL, "", false, resultMap);
-					emit processEnded();
-				} return;
+			// No need to convert resultMap into a Tweet to convert it back just after.
+			buildResult(true, FAVORITE_SUCCESSFUL, "", false, resultMap);
+			emit processEnded();
+		} return;
 
-				case QJSON_PARSING:
-					// Parsing error
-					issue = PARSE_ERROR;
-					errMsg = FavoriteProcess::trUtf8("Error while parsing request results.");
-					break;
-
-				default:
-					issue = UNKNOWN_PROBLEM;
-					errMsg = FavoriteProcess::trUtf8("Unexpected result.");
-					isFatal = true;
-					break;
+		case TWITTER_ERRORS:
+			// Looking for specific value of the return code
+			if (httpCode / 100 == 5) {
+				issue = TWITTER_DOWN;
+				errMsg = UnfavoriteProcess::trUtf8("Twitter seems down:");
+			} else if (httpCode == 401) {
+				issue = TOKENS_NOT_AUTHORIZED;
+				errMsg = UnfavoriteProcess::trUtf8("Tokens were not authorized:");
+			} else if (httpCode == 420) {
+				issue = RATE_LIMITED;
+				errMsg = UnfavoriteProcess::trUtf8("You reach the authentication rate:");
+			} else {
+				issue = UNKNOWN_PROBLEM;
+				errMsg = UnfavoriteProcess::trUtf8("Unexpected result:");
 			}
+
+			// Building error message
+			errorMsg.append('\n')
+					.append(UnfavoriteProcess::trUtf8("Twitter errors:"));
+
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(UnfavoriteProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
 			break;
 
-		case 401:
-			// Credentials were wrong
-			issue = TOKENS_NOT_AUTHORIZED;
-			errMsg = FavoriteProcess::trUtf8("Tokens were not authorized.");
+		case API_CALL:
+			// Building error message
+			errorMsg = UnfavoriteProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
 			break;
 
-		case 420:
-			// Rate limited
-			issue = RATE_LIMITED;
-			errMsg = FavoriteProcess::trUtf8("You reach the authentication rate.");
+		case QJSON_PARSING:
+			// Building error message
+			errorMsg = FavoriteProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n')
+					.append(UnfavoriteProcess::trUtf8("Line "))
+					.append(QString::number(result.parsingErrors.code))
+					.append(" : ")
+					.append(result.parsingErrors.message);
+			issue = PARSE_ERROR;
 			break;
 
 		default:
-			// Return == 5xx -> Twitter problem. Unknown problem otherwise.
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-				errMsg = FavoriteProcess::trUtf8("Twitter seems down.");
-			} else {
-				issue = UNKNOWN_PROBLEM;
-				errMsg = FavoriteProcess::trUtf8("Unknown problem.");
-				isFatal = true;
-			}
+			// Unexpected problem. Abort.
+			errorMsg = UnfavoriteProcess::trUtf8("Unexpected problem:");
+			errorMsg.append('\n').append(result.errorMessage).append('.');
+			isFatal = true;
+			issue = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Failed end
-	buildResult(false, issue, "", isFatal, resultMap);
+	buildResult(false, issue, errorMsg, isFatal, resultMap);
 	emit processEnded();
 }
 

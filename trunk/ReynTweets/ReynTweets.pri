@@ -187,7 +187,8 @@ HEADERS  += \
     connection/requests/favorites/favoritestimelinerequester.hpp \
     connection/requests/identificationway.hpp \
     logic/processes/favoriteprocess.hpp \
-    logic/processes/unfavoriteprocess.hpp
+    logic/processes/unfavoriteprocess.hpp \
+    connection/requests/responseinfos.hpp
 
 
 OTHER_FILES = \

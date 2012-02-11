@@ -81,20 +81,27 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 
 // Updating a user after requesting it to Twitter
 void AllowProcess::retrieveUserEnded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result == RequestResult()) {
+		return;
+	}
+
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(retrieveUserEnded(ResultWrapper)));
 
-	RequestResult result = res.accessResult(this);
-	ErrorType errorType = result.getErrorType();
+	ErrorType errorType = result.resultType;
 
-	CoreResult issue;
+	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	bool isFatal = true;
+	bool isFatal = false;
+	CoreResult issue;
 
 	switch (errorType) {
 		case NO_ERROR: {
 			// Get user, put it in the conf and save
-			QVariantMap parsedResults = result.getParsedResult().toMap();
+			QVariantMap parsedResults = result.parsedResult.toMap();
 			User u;
 			u.fillWithVariant(parsedResults);
 			UserAccount account = configuration.getUserAccount();
@@ -103,19 +110,23 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			saveConfiguration();
 		}return;
 
-		case API_CALL: {
-			// Retrieving network informations
-			int httpCode = result.getHttpCode();
-			QString httpReason = result.getHttpReason();
-
+		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = AllowProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(httpReason)
-					.append(" :\n")
-					.append(result.getErrorMessage())
-					.append(".\n");
+			errorMsg = AllowProcess::trUtf8("Twitter errors:");
+
+			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
+				 it < result.twitterErrors.end();
+				 ++it)
+			{
+				errorMsg.append(AllowProcess::trUtf8("Error "))
+						.append(QString::number(it->code))
+						.append(" : ")
+						.append(it->message)
+						.append(".\n");
+			}
+
+			// Erasing the last '\n'
+			errorMsg.chop(1);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -127,12 +138,35 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			}
 
 			isFatal = false;
-		}break;
+			break;
 
-		case OAUTH_PARSING:
+		case API_CALL:
+			// Retrieving network informations
+			int httpCode = result.httpResponse.code;
+
 			// Building error message
-			errorMsg = AllowProcess::trUtf8("Parsing error :");
-			errorMsg.append('\n').append(result.getParsingErrorMessage());
+			errorMsg = AllowProcess::trUtf8("Network error ");
+			errorMsg.append(QString::number(httpCode))
+					.append(" : ")
+					.append(result.httpResponse.message)
+					.append(" :\n")
+					.append(result.errorMessage)
+					.append('.');
+
+			// Looking for specific value of the return code
+			issue = NETWORK_CALL;
+
+			isFatal = false;
+			break;
+
+		case QJSON_PARSING:
+			// Building error message
+			errorMsg = AllowProcess::trUtf8("Parsing error:");
+			errorMsg.append('\n')
+					.append(AllowProcess::trUtf8("Line "))
+					.append(QString::number(result.parsingErrors.code))
+					.append(" : ")
+					.append(result.parsingErrors.message);
 			issue = PARSE_ERROR;
 			break;
 

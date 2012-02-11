@@ -87,8 +87,8 @@ void GenericRequester::initCommunicator() {
 										   getParameters,
 										   postParameters,
 										   false);
-	connect(communicator, SIGNAL(requestDone(bool)),
-			this, SLOT(treatResults(bool)));
+	connect(communicator, SIGNAL(requestDone()),
+			this, SLOT(treatResults()));
 }
 
 // Executing the request
@@ -105,20 +105,58 @@ void GenericRequester::executeRequest() {
 //////////////////////////
 
 // Slot executed when the Twitter Communicator has just finished its work.
-void GenericRequester::treatResults(bool requestOK) {
-	ErrorType errorType;
-	QVariant parsedResults;
-	QVariantMap parsingErrorInfos;
+void GenericRequester::treatResults() {
+	// On regarde la réponse HTTP. Si défaut => API_CALL
+	requestResult.httpResponse = communicator->getHttpResponse();
+	requestResult.errorMessage = communicator->getErrorMessage();
 
-	if (requestOK) {
-		bool parseOK;
-		parsedResults = this->parseResult(parseOK, parsingErrorInfos);
-		errorType = parseOK ? NO_ERROR : parsingErrorType;
+	int httpReturnCode = communicator->getHttpResponse().code;
+
+	if (httpReturnCode == 0) {
+		requestResult.resultType = API_CALL;
 	} else {
-		errorType = API_CALL;
-	}
+		// Sinon on parse
+		bool parseOK;
+		QVariantMap parseErrorMap;
+		requestResult.parsedResult = this->parseResult(parseOK, parseErrorMap);
+		requestResult.resultType = parseOK ? NO_ERROR : parsingErrorType;
+		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
+		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
-	fillParsedResult(errorType, parsedResults, parsingErrorInfos);
+		// Analyse the response (if it is a table from JSON with errors => FAIL)
+		if (parseOK
+				&& parsingErrorType == QJSON_PARSING
+				&& requestResult.parsedResult.type() == QVariant::Map
+			)
+		{
+			// Table error : one row ("errors"; QVariantList)
+			QVariantMap resultMap = requestResult.parsedResult.toMap();
+
+			if (resultMap.size() == 1
+					&& resultMap.contains(("errors"))
+					&& resultMap.value("errors").type() == QVariant::List
+				)
+			{
+				QVariantList errorList = resultMap.value("errors");
+
+				// Building the list of errors
+				for (QVariantList::Iterator it = errorList.begin();
+					 it != errorList.end();
+					 ++it)
+				{
+					QVariantMap error = it->toMap();
+					ResponseInfos twitterError;
+					twitterError.code = error.value("code").toInt();
+					twitterError.message = error.value("message").toString();
+					requestResult.twitterErrors.append(twitterError);
+				}
+
+				requestResult.resultType = TWITTER_ERRORS;
+			}
+		} else {
+			requestResult.parsedResult = QVariant::fromValue(communicator->getResponseBuffer());
+		}
+	}
 
 	// Telling the ReynTwitterCalls that the request is finished
 	emit requestDone();
@@ -139,16 +177,4 @@ QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 	}
 
 	return QVariant(result);
-}
-
-// Filling parsedResult
-void GenericRequester::fillParsedResult(ErrorType errorType,
-										QVariant parsedResults,
-										QVariantMap parsingErrors) {
-	requestResult = RequestResult(errorType,
-								  parsedResults,
-								  communicator->getHttpCode(),
-								  communicator->getHttpReason(),
-								  parsingErrors,
-								  communicator->getErrorMessage());
 }

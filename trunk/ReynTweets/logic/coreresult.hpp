@@ -95,6 +95,9 @@ enum CoreResult {
 	/// @brief There were an error while parsing results
 	PARSE_ERROR,
 
+	/// @brief There were an error while calling the network
+	NETWORK_CALL,
+
 
 	////////////////////////////
 	// Launching process ends //

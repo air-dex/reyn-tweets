@@ -38,7 +38,7 @@ struct ProcessResult {
 	QString errorMsg;
 
 	/// @brief Results
-	QVariantMap results;
+	QVariant results;
 
 	/// @brief Boolean indicating if the error is fatal
 	bool fatalError;
@@ -49,7 +49,7 @@ struct ProcessResult {
 	/// @fn ProcessResult();
 	/// @brief Constructor of an invalid result
 	ProcessResult() :
-		processIssue(false),
+		processOK(false),
 		errorMsg(""),
 		results(),
 		fatalError(true),

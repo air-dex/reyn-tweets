@@ -24,42 +24,23 @@
 #ifndef FAVORITEPROCESS_HPP
 #define FAVORITEPROCESS_HPP
 
-#include "genericprocess.hpp"
-#include "../../connection/reyntwittercalls.hpp"
+#include "singletwittercallprocess.hpp"
 
 /// @class FavoriteProcess
 /// @brief Process to favorite or to unfavorite a tweet.
-class FavoriteProcess : public GenericProcess
+class FavoriteProcess : public SingleTwitterCallProcess
 {
 	Q_OBJECT
 
 	public:
-		/// @fn explicit FavoriteProcess(qlonglong id, bool fav);
+		/// @fn FavoriteProcess(qlonglong id, bool fav);
 		/// @brief Constructor
 		/// @param id ID of the tweet
 		/// @param fav Boolean indicating if the tweet hyas to be favorited
 		/// (true) or unfavorited (false).
-		explicit FavoriteProcess(qlonglong id, bool fav);
-
-		/// @fn void startProcess() = 0;
-		/// @brief Start the process calling twitter to favorite the tweet
-		void startProcess();
-
-	public slots:
-		/// @fn void favoriteEnded(ResultWrapper res);
-		/// @brief Slot executing after favoriting the tweet
-		/// @param res Result of the request
-		void favoriteEnded(ResultWrapper res);
-
-		/// @fn void unfavoriteEnded(ResultWrapper res);
-		/// @brief Slot executing after unfavoriting the tweet
-		/// @param res Result of the request
-		void unfavoriteEnded(ResultWrapper res);
+		FavoriteProcess(qlonglong id, bool fav);
 
 	protected:
-		/// @brief Entity calling Twitter
-		ReynTwitterCalls twitter;
-
 		/// @brief ID of the tweet to favorite
 		qlonglong tweetID;
 
@@ -69,29 +50,7 @@ class FavoriteProcess : public GenericProcess
 
 		/// @fn void favoriteTweet();
 		/// @brief Entry point of the process if un
-		void favoriteTweet();
-
-		/// @fn void unfavoriteTweet();
-		/// @brief Entry point of the process
-		void unfavoriteTweet();
-
-		/// @fn void buildResult(bool processOK,
-		///						 CoreResult issue,
-		///						 QString errMsg = "",
-		///						 bool isFatal = false
-		///						 QVariantMap tweetMap = QVariantMap());
-		/// @brief Building process results
-		/// @param processOK Did the process end successfully ?
-		/// @param issue Enum value describing how it ended.
-		/// @param errMsg Error message
-		/// @param isFatal Is the issue fatal (i.e. requiring to abort
-		/// the application) ?
-		/// @param tweetMap Request result (Tweet) in a QVariantMap.
-		void buildResult(bool processOK,
-						 CoreResult issue,
-						 QString errMsg,
-						 bool isFatal,
-						 QVariantMap tweetMap = QVariantMap());
+		void callTwitter();
 };
 
 #endif // FAVORITEPROCESS_HPP

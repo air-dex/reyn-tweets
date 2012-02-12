@@ -97,19 +97,21 @@ SOURCES += \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
 	logic/processes/processwrapper.cpp \
+	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
+	logic/processes/singletwittercallprocess.cpp \
 	logic/processes/oauthprocess.cpp \
 	logic/processes/allowprocess.cpp \
-	logic/processes/launchingprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
+	logic/processes/launchingprocess.cpp \
+	logic/processes/loadinghometimelineprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
-	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
+	logic/controls/launchingcontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
-	main.cpp \
-    logic/controls/timelinecontrol.cpp \
-    logic/processes/loadinghometimelineprocess.cpp
+	logic/controls/timelinecontrol.cpp \
+	main.cpp
 
 
 HEADERS  += \
@@ -174,21 +176,23 @@ HEADERS  += \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
+	tools/processutils.cpp \
 	logic/processes/genericprocess.hpp \
+	logic/processes/singletwittercallprocess.hpp \
 	logic/processes/oauthprocess.hpp \
 	logic/processes/allowprocess.hpp \
-	logic/processes/launchingprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
+	logic/processes/launchingprocess.hpp \
+	logic/processes/loadinghometimelineprocess.hpp \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
 	logic/reyncore.hpp \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
+	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp \
-    logic/controls/timelinecontrol.hpp \
-    logic/processes/loadinghometimelineprocess.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -202,9 +206,9 @@ OTHER_FILES = \
 	ui/qml/QuitPane.qml \
 	ui/qml/TweetPane.qml \
 	ui/qml/qml_files_to_translate.txt \
-    ui/qml/TimelinePane.qml \
-    ui/qml/TimelineModel.qml \
-    ui/qml/TweetElement.qml
+	ui/qml/TimelinePane.qml \
+	ui/qml/TimelineModel.qml \
+	ui/qml/TweetElement.qml
 
 
 #--------------#

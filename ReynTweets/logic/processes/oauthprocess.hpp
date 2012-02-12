@@ -84,29 +84,31 @@ class OAuthProcess : public GenericProcess
 		/// @fn virtual void buildResult(bool processOK,
 		///								 CoreResult issue,
 		///								 QString errMsg = "",
-		///								 bool isFatal = false,
-		///								 QByteArray accessToken = "",
-		///								 QByteArray tokenSecret = "",
-		///								 qlonglong userID = -1,
-		///								 QString screenName = "");
+		///								 bool isFatal = false);
 		/// @brief Building the process result
 		/// @param processOK Value indicating how the process has ended correctly.
 		/// @param issue Tag describing the issue of the process
 		/// @param errMsg Error message
 		/// @param isFatal Has the process ended fatally.
+		virtual void buildResult(bool processOK,
+								 CoreResult issue,
+								 QString errMsg = "",
+								 bool isFatal = false);
+
+		/// @fn virtual void buildResult(QByteArray accessToken,
+		///								 QByteArray tokenSecret,
+		///								 qlonglong userID,
+		///								 QString screenName);
+		/// @brief Building the process result if Reyn Tweets is authorized.
 		/// @param accessToken User access token
 		/// @param tokenSecret User token secret
 		/// @param userID ID of the user who has just authorized the application
 		/// @param screenName Screen name of the user who has just authorized
 		/// the application.
-		virtual void buildResult(bool processOK,
-								 CoreResult issue,
-								 QString errMsg = "",
-								 bool isFatal = false,
-								 QByteArray accessToken = "",
-								 QByteArray tokenSecret = "",
-								 qlonglong userID = -1,
-								 QString screenName = "");
+		virtual void buildResult(QByteArray accessToken,
+								 QByteArray tokenSecret,
+								 qlonglong userID,
+								 QString screenName);
 
 
 	public slots:

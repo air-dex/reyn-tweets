@@ -32,8 +32,10 @@
 
 /// @class Timeline
 /// @brief Definition of a Twitter timeline : a list of tweets.
-class Timeline : public ReynTweetsListable<Tweet>
+class Timeline : public QObject, public ReynTweetsListable<Tweet>
 {
+	Q_OBJECT
+
 	public:
 		/// @fn Timeline();
 		/// @brief Constructor

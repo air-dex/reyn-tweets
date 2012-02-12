@@ -25,6 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "oauthprocess.hpp"
+#include "../../tools/processutils.hpp"
 
 // Constructor
 OAuthProcess::OAuthProcess() :
@@ -43,22 +44,29 @@ void OAuthProcess::resetTokens() {
 // Building the result of the process
 void OAuthProcess::buildResult(bool processOK,
 							   CoreResult issue,
-							   QString errMsg, bool isFatal,
-							   QByteArray accessToken, QByteArray tokenSecret,
-							   qlonglong userID, QString screenName)
+							   QString errMsg,
+							   bool isFatal)
 {
-	processResult.processOK = processOK;
-	processResult.processIssue = issue;
-	processResult.errorMsg = errMsg;
-	processResult.fatalError = isFatal;
+	processResult = ProcessUtils::buildProcessResult(processOK,
+													 issue,
+													 errMsg,
+													 isFatal);
+}
 
+// Building the result of the process
+void OAuthProcess::buildResult(QByteArray accessToken,
+							   QByteArray tokenSecret,
+							   qlonglong userID,
+							   QString screenName)
+{
 	QVariantMap resultMap;
 	resultMap.insert("access_token", qVariantFromValue(accessToken));
 	resultMap.insert("token_secret", qVariantFromValue(tokenSecret));
 	resultMap.insert("user_id", qVariantFromValue(userID));
 	resultMap.insert("screen_name", qVariantFromValue(screenName));
 
-	processResult.results = resultMap;
+	processResult = ProcessUtils::buildProcessResult(AUTHORIZED,
+													 QVariant(resultMap));
 }
 
 
@@ -116,21 +124,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				errorMsg.append(OAuthProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			errorMsg.chop(1);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -143,33 +137,20 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			issue = NETWORK_CALL;
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
 		case OAUTH_PARSING:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
-					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
+												  errorMsg,
+												  issue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.errorMessage).append('.');
-			isFatal = true;
-			issue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
 			break;
 	}
 
@@ -212,21 +193,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 
 		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				errorMsg.append(OAuthProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			errorMsg.chop(1);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -241,33 +208,20 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			issue = NETWORK_CALL;
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
 		case HTML_PARSING:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
-					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
+												  errorMsg,
+												  issue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.errorMessage).append('.');
-			isFatal = true;
-			issue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
 			break;
 	}
 
@@ -339,21 +293,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 
 		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				errorMsg.append(OAuthProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			errorMsg.chop(1);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -368,34 +308,21 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			issue = NETWORK_CALL;
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
 		case HTML_PARSING:
 		case OAUTH_PARSING:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
-					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
+												  errorMsg,
+												  issue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.errorMessage).append('.');
-			isFatal = true;
-			issue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
 			break;
 	}
 
@@ -442,31 +369,13 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			QString screenName = resultMap.value("screen_name").toString();
 
 			// Successful end
-			buildResult(true,
-						AUTHORIZED,
-						"", false,
-						accessToken, tokenSecret,
-						userID, screenName);
+			buildResult(accessToken, tokenSecret, userID, screenName);
 			endProcess();
 		}return;
 
 		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				errorMsg.append(OAuthProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			errorMsg.chop(1);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -481,33 +390,20 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			issue = NETWORK_CALL;
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
 		case OAUTH_PARSING:
-			// Building error message
-			errorMsg = OAuthProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
-					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
+												  errorMsg,
+												  issue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			errorMsg = OAuthProcess::trUtf8("Unexpected problem:");
-			errorMsg.append('\n').append(result.errorMessage).append('.');
-			isFatal = true;
-			issue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
 			break;
 	}
 

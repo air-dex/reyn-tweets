@@ -1,6 +1,6 @@
-/// @file processwrapper.cpp
-/// @brief Implementation of ProcessWrapper
-/// @author Romain Ducher
+/// @file TimelineModel.qml
+/// @brief Pane to show a tweet
+/// @author Romain DUCHER
 ///
 /// @section LICENSE
 ///
@@ -21,21 +21,26 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "processwrapper.hpp"
+import QtQuick 1.1
+import ReynTweetsControls 0.1
+import ReynTweetsEntities 0.1
 
-// Default constructor
-ProcessWrapper::ProcessWrapper() :
-	asker(0),
-	result()
-{}
+/// @class TimelineModel
+/// @brief Model of a TimelinePane
+ListModel {
+	id: timeline_model
 
-// Constructor
-ProcessWrapper::ProcessWrapper(QObject * requestSender, ProcessResult requestResult) :
-	asker(requestSender),
-	result(requestResult)
-{}
+	// Timeline that will be displayed
+	property Timeline timeline
 
-// Method to access to the result
-ProcessResult ProcessWrapper::accessResult(QObject * demanderAdress) {
-	return (demanderAdress == asker) ? result : ProcessResult();
+	function syncWithTimeline() {
+		timeline_model.clear();
+
+		for (var i = 0; i < timeline.length; i++) {
+			var tweetElt = new TweetElement();
+			tweetElt.tweet = timeline[i];
+
+			timeline_model.append(tweetElt);
+		}
+	}
 }

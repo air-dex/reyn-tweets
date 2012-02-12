@@ -96,7 +96,6 @@ SOURCES += \
 	model/users/user.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/reyntweetsconfiguration.cpp \
-	logic/processes/processresult.cpp \
 	logic/processes/processwrapper.cpp \
 	logic/processes/genericprocess.cpp \
 	logic/processes/oauthprocess.cpp \
@@ -108,7 +107,9 @@ SOURCES += \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
-	main.cpp
+	main.cpp \
+    logic/controls/timelinecontrol.cpp \
+    logic/processes/loadinghometimelineprocess.cpp
 
 
 HEADERS  += \
@@ -185,7 +186,9 @@ HEADERS  += \
 	logic/controls/logincontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+    logic/controls/timelinecontrol.hpp \
+    logic/processes/loadinghometimelineprocess.hpp
 
 
 OTHER_FILES = \
@@ -198,7 +201,10 @@ OTHER_FILES = \
 	ui/qml/LoginPane.qml \
 	ui/qml/QuitPane.qml \
 	ui/qml/TweetPane.qml \
-	ui/qml/qml_files_to_translate.txt
+	ui/qml/qml_files_to_translate.txt \
+    ui/qml/TimelinePane.qml \
+    ui/qml/TimelineModel.qml \
+    ui/qml/TweetElement.qml
 
 
 #--------------#

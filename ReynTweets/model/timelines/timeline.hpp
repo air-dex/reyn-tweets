@@ -57,6 +57,10 @@ class Timeline : public ReynTweetsListable<Tweet>
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 	protected:
 		// Friends serialization operators
 

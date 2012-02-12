@@ -100,8 +100,33 @@ void TweetControl::favorite() {
 }
 
 void TweetControl::favoriteEnd(ProcessWrapper res) {
+	ProcessResult result = res.accessResult(this);
+
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		return;
+	}
+
+	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(favoriteEnd(ProcessWrapper)));
+
+	CoreResult issue = result.processIssue;
+
+	// TODO
+	switch (issue) {
+		case FAVORITE_SUCCESSFUL:
+			tweet.setFavorited(true);
+			break;
+
+		case TWITTER_DOWN:
+		case RATE_LIMITED:
+		case NETWORK_CALL:
+		case TOKENS_NOT_AUTHORIZED:
+		case PARSE_ERROR:
+		case UNKNOWN_PROBLEM:
+		default:
+	}
 }
 
 
@@ -114,6 +139,31 @@ void TweetControl::unfavorite() {
 }
 
 void TweetControl::unfavoriteEnd(ProcessWrapper res) {
+	ProcessResult result = res.accessResult(this);
+
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		return;
+	}
+
+	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(unfavoriteEnd(ProcessWrapper)));
+
+	CoreResult issue = result.processIssue;
+
+	// TODO
+	switch (issue) {
+		case FAVORITE_SUCCESSFUL:
+			tweet.setFavorited(false);
+			break;
+
+		case TWITTER_DOWN:
+		case RATE_LIMITED:
+		case NETWORK_CALL:
+		case TOKENS_NOT_AUTHORIZED:
+		case PARSE_ERROR:
+		case UNKNOWN_PROBLEM:
+		default:
+	}
 }

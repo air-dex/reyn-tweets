@@ -1,6 +1,6 @@
-/// @file processresult.cpp
-/// @brief Initialize WRONG_PROCESS_RESULT
-/// @author Romain Ducher
+/// @file TimelinePane.qml
+/// @brief Pane to show a tweet
+/// @author Romain DUCHER
 ///
 /// @section LICENSE
 ///
@@ -21,15 +21,44 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "processresult.hpp"
+import QtQuick 1.1
+import ReynTweetsControls 0.1
+import ReynTweetsEntities 0.1
 
-ProcessResult WRONG_PROCESS_RESULT = initWrongProcessResult();
+/// @class TimelinePane
+/// @brief Pane to show a timeline
+Rectangle {
+	id: timeline_pane
+	width: 360
+	height: 640
 
-ProcessResult initWrongProcessResult() {
-	ProcessResult wrongResult;
-	wrongResult.processOK = false;
-	wrongResult.errorMsg = "Invalid asker";
-	wrongResult.fatalError = true;
+	// Control behind the pane
+	TimelineControl {
+		id: control
+		onTimelineChanged: timeline_model.syncWithTimeline();
+	}
 
-	return wrongResult;
+	// Model of the list
+	TimelineModel {
+		id: timeline_model
+		timeline: control.timeline
+	}
+
+	// Delegate tweet
+	Component {
+		id: delegate_tweet
+		TweetPane {
+			width: timeline_pane.width
+			tweet: tweet
+		}
+	}
+
+	// List of all the tweets
+	ListView {
+		id: timeline_view
+		anchors.fill: parent
+
+		delegate: delegate_tweet
+		model: timeline_model
+	}
 }

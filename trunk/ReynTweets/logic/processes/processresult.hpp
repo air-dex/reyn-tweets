@@ -45,14 +45,16 @@ struct ProcessResult {
 
 	/// @brief Information about how the process ended
 	CoreResult processIssue;
+
+	/// @fn ProcessResult();
+	/// @brief Constructor of an invalid result
+	ProcessResult() :
+		processIssue(false),
+		errorMsg(""),
+		results(),
+		fatalError(true),
+		processIssue(INVALID_ISSUE)
+	{}
 };
-
-/// @brief An invalid process result
-extern ProcessResult WRONG_PROCESS_RESULT;
-
-/// @fn ProcessResult initWrongProcessResult();
-/// @brief Function to init WRONG_PROCESS_RESULT
-/// @return The future value of WRONG_PROCESS_RESULT
-ProcessResult initWrongProcessResult();
 
 #endif // PROCESSRESULT_HPP

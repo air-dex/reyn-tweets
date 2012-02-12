@@ -25,7 +25,7 @@ import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
 
-/// @class TweetPane.qml
+/// @class TweetPane
 /// @brief Pane to show a tweet
 Rectangle {
 	id: tweet_pane

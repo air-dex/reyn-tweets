@@ -1,6 +1,6 @@
-/// @file processwrapper.cpp
-/// @brief Implementation of ProcessWrapper
-/// @author Romain Ducher
+/// @file TweetElement.qml
+/// @brief Pane to show a tweet
+/// @author Romain DUCHER
 ///
 /// @section LICENSE
 ///
@@ -21,21 +21,13 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "processwrapper.hpp"
+import QtQuick 1.1
+import ReynTweetsControls 0.1
+import ReynTweetsEntities 0.1
 
-// Default constructor
-ProcessWrapper::ProcessWrapper() :
-	asker(0),
-	result()
-{}
-
-// Constructor
-ProcessWrapper::ProcessWrapper(QObject * requestSender, ProcessResult requestResult) :
-	asker(requestSender),
-	result(requestResult)
-{}
-
-// Method to access to the result
-ProcessResult ProcessWrapper::accessResult(QObject * demanderAdress) {
-	return (demanderAdress == asker) ? result : ProcessResult();
+/// @class TweetElement
+/// @brief ListElement containing a Tweet
+ListElement {
+	// Tweet that will be displayed
+	property Tweet tweet
 }

@@ -78,7 +78,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if ("Invalid asker" == result.errorMsg) {
+	if (INVALID_ISSUE == result.processIssue) {
 		return;
 	}
 
@@ -136,7 +136,7 @@ void LaunchingControl::allowOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if ("Invalid asker" == result.errorMsg) {
+	if (INVALID_ISSUE == result.processIssue) {
 		return;
 	}
 

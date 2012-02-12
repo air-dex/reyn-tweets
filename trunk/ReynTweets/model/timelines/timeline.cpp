@@ -52,6 +52,13 @@ void Timeline::initSystem() {
 	qMetaTypeId<Timeline>();
 }
 
+// Declaring to the QML components
+void Timeline::declareQML() {
+	qmlRegisterType<Timeline>("ReynTweetsEntities",
+							  0, 1,
+							  "Timeline");
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Timeline & list) {
 	return jsonStreamingOut<Tweet>(out, list);

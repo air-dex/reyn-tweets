@@ -31,6 +31,9 @@
 /// @enum CoreResult
 /// @brief Unified error for all the possible ends of all treatments
 enum CoreResult {
+	/// @brief Issue for fake process results
+	INVALID_ISSUE,
+
 	//////////////////////////////////////////////////
 	// Results while manipulating the configuration //
 	//////////////////////////////////////////////////

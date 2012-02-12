@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "allowprocess.hpp"
+#include "../../tools/processutils.hpp"
 
 // Constructor
 AllowProcess::AllowProcess(ReynTweetsConfiguration & conf) :
@@ -42,8 +43,8 @@ void AllowProcess::endProcess() {
 		bool anticipatedEnd = !processResult.processOK
 				|| processResult.processOK && processResult.processIssue == DENIED;
 
-		processResult.results.value("is_authorized",
-									processResult.processIssue == AUTHORIZED);
+		processResult.results.toMap().value("is_authorized",
+											processResult.processIssue == AUTHORIZED);
 
 		if (anticipatedEnd) {
 			emit processEnded();
@@ -51,7 +52,7 @@ void AllowProcess::endProcess() {
 			// Retrieve the user and save
 
 			// Extract the different values
-			QVariantMap resultMap = processResult.results;
+			QVariantMap resultMap = processResult.results.toMap();
 			QByteArray accessToken = resultMap.value("access_token").toByteArray();
 			QByteArray tokenSecret = resultMap.value("token_secret").toByteArray();
 			qlonglong userID = resultMap.value("user_id").toLongLong();
@@ -112,21 +113,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 
 		case TWITTER_ERRORS:
 			// Building error message
-			errorMsg = AllowProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				errorMsg.append(AllowProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			errorMsg.chop(1);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -136,42 +123,23 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
-
-			isFatal = false;
 			break;
 
 		case API_CALL:
-			// Building error message
-			errorMsg = AllowProcess::trUtf8("Network error ");
-			errorMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			issue = NETWORK_CALL;
-
-			isFatal = false;
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
 		case QJSON_PARSING:
-			// Building error message
-			errorMsg = AllowProcess::trUtf8("Parsing error:");
-			errorMsg.append('\n')
-					.append(AllowProcess::trUtf8("Line "))
-					.append(QString::number(result.parsingErrors.code))
-					.append(" : ")
-					.append(result.parsingErrors.message);
-			issue = PARSE_ERROR;
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
+												  errorMsg,
+												  issue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			errorMsg = AllowProcess::trUtf8("Unexpected problem :");
-			errorMsg.append('\n').append(result.errorMessage).append(".\n");
-			issue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
 			break;
 	}
 

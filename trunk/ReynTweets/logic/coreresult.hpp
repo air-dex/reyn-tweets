@@ -128,8 +128,8 @@ enum CoreResult {
 	/// @brief FavoriteProcess ended successfully
 	FAVORITE_SUCCESSFUL,
 
-	/// @brief UnfavoriteProcess ended successfully
-	UNFAVORITE_SUCCESSFUL,
+	/// @brief After retrieving a timeline
+	TIMELINE_RETRIEVED,
 
 
 	//////////

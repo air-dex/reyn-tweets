@@ -23,6 +23,7 @@
 
 #include <QFile>
 #include "launchingprocess.hpp"
+#include "../../tools/processutils.hpp"
 
 // Constructor
 LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
@@ -126,21 +127,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 		case TWITTER_ERRORS:
 			// Building error message
-			verifyMsg = LaunchingProcess::trUtf8("Twitter errors:");
-
-			for (QList<ResponseInfos>::Iterator it = result.twitterErrors.begin();
-				 it < result.twitterErrors.end();
-				 ++it)
-			{
-				verifyMsg.append(LaunchingProcess::trUtf8("Error "))
-						.append(QString::number(it->code))
-						.append(" : ")
-						.append(it->message)
-						.append(".\n");
-			}
-
-			// Erasing the last '\n'
-			verifyMsg.chop(1);
+			verifyMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -155,36 +142,20 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			break;
 
 		case API_CALL:
-			// Building error message
-			verifyMsg = LaunchingProcess::trUtf8("Network error ");
-			verifyMsg.append(QString::number(httpCode))
-					.append(" : ")
-					.append(result.httpResponse.message)
-					.append(" :\n")
-					.append(result.errorMessage)
-					.append('.');
-
-			// Looking for specific value of the return code
-			verifyIssue = NETWORK_CALL;
+			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyIssue);
 			break;
 
 		case QJSON_PARSING:
-			// Building error message
-			verifyMsg = LaunchingProcess::trUtf8("Parsing error:");
-			verifyMsg.append('\n')
-					.append(LaunchingProcess::trUtf8("Line "))
-					.append(QString::number(result.parsingErrors.code))
-					.append(" : ")
-					.append(result.parsingErrors.message);
-			verifyIssue = PARSE_ERROR;
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
+												  verifyMsg,
+												  verifyIssue);
 			break;
 
 		default:
-			// Unexpected problem. Abort.
-			verifyMsg = LaunchingProcess::trUtf8("Unexpected problem:");
-			verifyMsg.append('\n').append(result.errorMessage).append('.');
-			isFatal = true;
-			verifyIssue = UNKNOWN_PROBLEM;
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 verifyMsg,
+											 verifyIssue,
+											 isFatal);
 			break;
 	}
 
@@ -242,18 +213,10 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			isFatal = false;
 			break;
 
-		case PARSE_ERROR:
-			// Unknown problem. Abort ?
+		case PARSE_ERROR:		// Parsing problem. Abort
+		case UNKNOWN_PROBLEM:	// Unknown problem. Abort
 			processOK = false;
 			errorMsg = verifyMsg;
-			isFatal = true;
-			break;
-
-		case UNKNOWN_PROBLEM:
-			// Unknown problem. Abort ?
-			processOK = false;
-			errorMsg = LaunchingProcess::trUtf8("Unknown prolem:");
-			errorMsg.append('\n').append(verifyMsg);
 			isFatal = true;
 			break;
 
@@ -329,9 +292,8 @@ void LaunchingProcess::buildResult(bool processOK,
 								   QString errMsg,
 								   bool isFatal)
 {
-	processResult.processOK = processOK;
-	processResult.processIssue = issue;
-	processResult.errorMsg = errMsg;
-	processResult.fatalError = isFatal;
-	processResult.results = QVariantMap();
+	processResult = ProcessUtils::buildProcessResult(processOK,
+													 issue,
+													 errMsg,
+													 isFatal);
 }

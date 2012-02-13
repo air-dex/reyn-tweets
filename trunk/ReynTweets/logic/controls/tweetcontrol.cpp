@@ -116,7 +116,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			tweet.setFavorited(true);
+			status.setFavorited(true);
 			break;
 
 		case TWITTER_DOWN:
@@ -126,6 +126,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 		case PARSE_ERROR:
 		case UNKNOWN_PROBLEM:
 		default:
+			break;
 	}
 }
 
@@ -155,7 +156,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			tweet.setFavorited(false);
+			status.setFavorited(false);
 			break;
 
 		case TWITTER_DOWN:
@@ -165,5 +166,6 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 		case PARSE_ERROR:
 		case UNKNOWN_PROBLEM:
 		default:
+			break;
 	}
 }

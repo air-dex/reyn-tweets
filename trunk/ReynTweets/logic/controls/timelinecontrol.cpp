@@ -21,10 +21,12 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QtDeclarative>
 #include "timelinecontrol.hpp"
 
 TimelineControl::TimelineControl() :
 	QObject(),
+	reyn(this),
 	statuses()
 {}
 

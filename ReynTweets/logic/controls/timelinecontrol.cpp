@@ -42,12 +42,16 @@ void TimelineControl::declareQML() {
 // Propoerty management //
 /////////////////////////
 
-Timeline TimelineControl::getTimeline() {
-	return statuses;
+Timeline * TimelineControl::getTimeline() {
+	return &statuses;
 }
 
-void TimelineControl::setTimeline(Timeline tl) {
-	statuses = tl;
+void TimelineControl::setTimeline(Timeline * tl) {
+	if (!tl) {
+		statuses = Timeline();
+	} else {
+		statuses = *tl;
+	}
 }
 
 
@@ -57,6 +61,9 @@ void TimelineControl::setTimeline(Timeline tl) {
 
 // Loading the home timeline
 void TimelineControl::loadHomeTimeline() {
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(loadTimelineEnded(ProcessWrapper)));
+
 	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 10);
 }
 
@@ -72,7 +79,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(launchOK(ProcessWrapper)));
+			   this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
 	QVariantList resList = result.results.toList();

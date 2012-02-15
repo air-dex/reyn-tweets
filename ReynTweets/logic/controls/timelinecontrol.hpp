@@ -75,18 +75,18 @@ class TimelineControl : public QObject
 		ReynCore reyn;
 
 		/// @brief Timeline to display
-		Q_PROPERTY(Timeline timeline
+		Q_PROPERTY(Timeline * timeline
 				   READ getTimeline
 				   WRITE setTimeline
 				   NOTIFY timelineChanged)
 
 		/// @fn Timeline getTimeline();
 		/// @brief Reading the property timeline
-		Timeline getTimeline();
+		Timeline * getTimeline();
 
 		/// @fn void setTimeline(Timeline tl);
 		/// @brief Writing the property timeline
-		void setTimeline(Timeline tl);
+		void setTimeline(Timeline * tl);
 
 		/// @brief Attribute behind the property timeline
 		Timeline statuses;

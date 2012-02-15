@@ -231,14 +231,14 @@ resource.source = resources
 resource.target = .
 
 # Configuration files
-# Uncomment this folder if you want to reset the configuration time each
-# the application is launched
+# Uncomment this folder in DEPLOYMENTFOLDERS if you want the configuration to
+# be reset each time the application is launched
 conf_files.source = conf
 conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	conf_files
+	#conf_files
 
 
 #-------#

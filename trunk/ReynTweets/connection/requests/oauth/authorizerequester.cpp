@@ -88,7 +88,7 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 				oauthManager.setAuthenticityToken(inputValue.toAscii());
 				authenticityTokenFound = true;
 			} else if (!oauthTokenFound && inputName == "oauth_token") {
-				// The oauth token is found (WTF) !
+				// The oauth token is found. (WTF)
 				oauthManager.setOAuthToken(inputValue.toAscii());
 				oauthTokenFound = true;
 			} else if (!denyFound && inputName == "deny") {
@@ -105,19 +105,23 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 		// Are all the parameters found ?
 		if (!treatmentOK) {
 			if (!authenticityTokenFound) {
-				errorMsg.append("Authenticity token not found.\n");
+				errorMsg.append(AuthorizeRequester::trUtf8("Authenticity token not found."))
+						.append('\n');
 			}
 
 			if (!oauthTokenFound) {
-				errorMsg.append("OAuth token not found.\n");
+				errorMsg.append(AuthorizeRequester::trUtf8("OAuth token not found."))
+						.append('\n');
 			}
 
 			if (!denyFound) {
-				errorMsg.append("Deny value not found.\n");
+				errorMsg.append(AuthorizeRequester::trUtf8("Deny value not found."))
+						.append('\n');
 			}
 		}
 	} else {
-		errorMsg.append("Empty HTML page.\n");
+		errorMsg.append(AuthorizeRequester::trUtf8("Empty HTML page.\n"))
+				.append('\n');
 	}
 
 

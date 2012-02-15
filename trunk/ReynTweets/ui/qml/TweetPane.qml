@@ -288,9 +288,9 @@ Rectangle {
 	// Management //
 	////////////////
 
-	signal reply(Tweet tweet)
-	signal retweet(Tweet tweet)
-	signal quote(Tweet tweet)
-	signal favorite(Tweet tweet)
-	signal unfavorite(Tweet tweet)
+	signal reply
+	signal retweet
+	signal quote
+	signal favorite
+	signal unfavorite
 }

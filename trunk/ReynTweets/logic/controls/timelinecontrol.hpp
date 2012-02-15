@@ -48,6 +48,17 @@ class TimelineControl : public QObject
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
 
+		/// @fn void launchEnded(bool launchOK,
+		///						 QString errorMsg = "",
+		///						 bool isFatal = false);
+		/// @brief Signal sent after launching
+		/// @param launchOK Did the launching process end successfully ?
+		/// @param errorMsg Error message
+		/// @param isFatal Did the launching process end with a fatal error ?
+		void loadEnded(bool launchOK,
+						 QString errorMsg,
+						 bool isFatal);
+
 	public slots:
 		/// @fn void loadHomeTimeline();
 		/// @brief Loading the home timeline

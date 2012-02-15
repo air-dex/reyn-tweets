@@ -106,16 +106,17 @@ void GenericRequester::executeRequest() {
 
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults() {
-	// On regarde la réponse HTTP. Si défaut => API_CALL
+	// Looking the HHTP request
 	requestResult.httpResponse = communicator->getHttpResponse();
 	requestResult.errorMessage = communicator->getErrorMessage();
 
 	int httpReturnCode = communicator->getHttpResponse().code;
 
 	if (httpReturnCode == 0) {
+		// No response => API_CALL
 		requestResult.resultType = API_CALL;
 	} else {
-		// Sinon on parse
+		// A response to parse
 		bool parseOK;
 		QVariantMap parseErrorMap;
 		requestResult.parsedResult = this->parseResult(parseOK, parseErrorMap);
@@ -123,38 +124,90 @@ void GenericRequester::treatResults() {
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
-		// Analyse the response (if it is a table from JSON with errors => FAIL)
-		if (parseOK
-				&& parsingErrorType == QJSON_PARSING
-				&& requestResult.parsedResult.type() == QVariant::Map
-			)
-		{
-			// Table error : one row ("errors"; QVariantList)
-			QVariantMap resultMap = requestResult.parsedResult.toMap();
-
-			if (resultMap.size() == 1
-					&& resultMap.contains(("errors"))
-					&& resultMap.value("errors").type() == QVariant::List
-				)
-			{
-				QVariantList errorList = resultMap.value("errors").toList();
-
-				// Building the list of errors
-				for (QVariantList::Iterator it = errorList.begin();
-					 it != errorList.end();
-					 ++it)
-				{
-					QVariantMap error = it->toMap();
-					ResponseInfos twitterError;
-					twitterError.code = error.value("code").toInt();
-					twitterError.message = error.value("message").toString();
-					requestResult.twitterErrors.append(twitterError);
-				}
-
-				requestResult.resultType = TWITTER_ERRORS;
-			}
-		} else {
+		if (!parseOK) {
+			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(communicator->getResponseBuffer());
+		} else {
+			// Is it a map with error messages
+			switch (httpReturnCode) {
+				case 200:
+					break;
+
+				// Uncomment when the following feature is deployed :
+				// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
+					/*
+				case 404:
+				case 500:
+				case 503:
+					if (parsingErrorType == QJSON_PARSING
+							&& requestResult.parsedResult.type() == QVariant::Map
+						)
+					{
+						// Table error : one row ("errors"; QVariantList)
+						QVariantMap resultMap = requestResult.parsedResult.toMap();
+
+						if (resultMap.size() == 1
+								&& resultMap.contains("errors")
+								&& resultMap.value("errors").type() == QVariant::List
+							)
+						{
+							QVariantList errorList = resultMap.value("errors").toList();
+
+							// Building the list of errors
+							for (QVariantList::Iterator it = errorList.begin();
+								 it != errorList.end();
+								 ++it)
+							{
+								QVariantMap error = it->toMap();
+								ResponseInfos twitterError;
+								twitterError.code = error.value("code").toInt();
+								twitterError.message = error.value("message").toString();
+								requestResult.twitterErrors.append(twitterError);
+							}
+
+							requestResult.resultType = TWITTER_ERRORS;
+						}
+					}
+					break;
+					//*/
+
+				case 304:
+				case 400:
+				case 401:
+				case 403:
+				case 406:
+				case 420:
+				case 502:
+					if (parsingErrorType == QJSON_PARSING
+							&& requestResult.parsedResult.type() == QVariant::Map
+						)
+					{
+						// Table error : two rows called "error" and "request"
+						QVariantMap resultMap = requestResult.parsedResult.toMap();
+
+						if (resultMap.size() == 2
+								&& resultMap.contains("error")
+								&& resultMap.contains("request")
+							)
+						{
+							ResponseInfos twitterError;
+							twitterError.code = httpReturnCode;
+
+							twitterError.message = resultMap.value("error").toString();
+							requestResult.twitterErrors.append(twitterError);
+
+							twitterError.message = resultMap.value("request").toString();
+							requestResult.twitterErrors.append(twitterError);
+
+							requestResult.resultType = TWITTER_ERRORS;
+						}
+					}
+					break;
+
+				default:
+					requestResult.resultType = API_CALL;
+					break;
+			}
 		}
 	}
 

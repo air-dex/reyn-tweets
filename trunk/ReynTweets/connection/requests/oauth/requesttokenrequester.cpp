@@ -88,7 +88,7 @@ QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsin
 		QList<QString> argNames = resultMap.keys();
 		argNames.removeOne("oauth_callback_confirmed");
 		foreach (QString argName, argNames) {
-			errorMsg.append("Unexpected parameter '")
+			errorMsg.append(RequestTokenRequester::trUtf8("Unexpected parameter '"))
 					.append(argName)
 					.append("'.\n");
 		}

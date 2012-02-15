@@ -43,7 +43,7 @@ QWebElement HTMLParser::parse(QByteArray data,
 		return frame->documentElement();
 	} else {
 		parseOK = false;
-		parseError = "No HTML parser available.\n";
+		parseError = QObject::trUtf8("No HTML parser available.").append('\n');
 		return QWebElement();
 	}
 }

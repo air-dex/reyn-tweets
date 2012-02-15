@@ -28,5 +28,6 @@
 #include "oauthprocess.hpp"
 #include "allowprocess.hpp"
 #include "favoriteprocess.hpp"
+#include "loadinghometimelineprocess.hpp"
 
 #endif // PROCESSES_HPP

@@ -28,24 +28,16 @@ Rectangle {
 	width: 360
 	height: 640
 
-	// Component displayed while launching the application
-	Text {
-		id: mockup
-		text: "You can tweet now !"
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		verticalAlignment: Text.AlignVCenter
-		horizontalAlignment: Text.AlignHCenter
-		font.family: "Ubuntu"
-		visible: false
-		font.pixelSize: 14
-	}
-
 	LaunchingPane {
 		id: splash_screen
 		anchors.fill: parent
 		visible: false
-		onEndLaunch: reyn_tweets.state = "Tweeting";
+		onEndLaunch: {reyn_tweets.state = "Tweeting"; view.loadHomeTimeline(); }
+	}
+
+	MainView {
+		id: view
+		visible: false
 	}
 
 
@@ -68,7 +60,7 @@ Rectangle {
 			}
 
 		   PropertyChanges {
-			   target: mockup
+			   target: view
 			   visible: true
 		   }
 		}

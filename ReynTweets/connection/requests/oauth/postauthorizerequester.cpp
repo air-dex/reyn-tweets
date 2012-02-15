@@ -137,7 +137,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 								parsedResults.insert("denied", QVariant(false));
 								parsedResults.insert("rightCredentials", QVariant(true));
 							} else {
-								errorMsg.append("PIN code (oauth verifier) not found.\n");
+								errorMsg.append(PostAuthorizeRequester::trUtf8("PIN code (oauth verifier) not found.")).append('\n');
 							}
 						}
 					} else {
@@ -201,17 +201,21 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 						oauthManager.setVerifier(extractedCredential.toByteArray());
 					} else {
 						// Error according to the observations done for the process
-						errorMsg.append("&lt;div class=\"happy notice callback\"&gt; HTML tag expected.\n");
+						errorMsg.append(PostAuthorizeRequester::trUtf8("&lt;div class=\"happy notice callback\"&gt; HTML tag expected."))
+								.append('\n');
 					}
 				}
 			} else {
-				errorMsg.append("Empty HTML page.\n");
+				errorMsg.append(PostAuthorizeRequester::trUtf8("Empty HTML page."))
+						.append('\n');
 			}
 		} else {
-			errorMsg.append("HTML parsing failed.\n");
+			errorMsg.append(PostAuthorizeRequester::trUtf8("HTML parsing failed."))
+					.append('\n');
 		}
 	} else {
-		errorMsg.append("Wrong URL.\n");
+		errorMsg.append(PostAuthorizeRequester::trUtf8("Wrong URL."))
+				.append('\n');
 	}
 
 

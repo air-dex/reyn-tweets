@@ -33,7 +33,7 @@ QVariantMap OAuthParser::parse(QByteArray data,
 							   int *)
 {
 	QVariantMap res;
-	QString errorMsg = "Following arguments are invalid : ";
+	QString errorMsg = QObject::trUtf8("Following arguments are invalid : ");
 	parseOK = true;
 
 	// Split the couples of arguments
@@ -51,7 +51,7 @@ QVariantMap OAuthParser::parse(QByteArray data,
 			QString value = QString(couple.at(1));
 			res.insert(name, QVariant(value));
 		} else {
-			errorMsg.append("OAuth parsing : cannot parse '");
+			errorMsg.append(QObject::trUtf8("OAuth parsing : cannot parse '"));
 			errorMsg.append(argument);
 			errorMsg.append("'.\n");
 		}
@@ -82,9 +82,9 @@ QVariant OAuthParser::extractParameter(QVariantMap & parsedMap,
 		res = parsedMap.value(parameterName);
 		parsedMap.remove(parameterName);
 	} else {
-		extractError.append("Parameter extraction : parameter '");
+		extractError.append(QObject::trUtf8("Parameter extraction : parameter '"));
 		extractError.append(parameterName);
-		extractError.append("' expected.\n");
+		extractError.append(QObject::trUtf8("' expected.")).append('\n');
 	}
 
 	return res;
@@ -117,15 +117,15 @@ void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
 			parsedMap.insert(parameterName, QVariant(booleanValue));
 		} else {
 			// Unexpected value. This is an error.
-			rewriteError.append("Rewriting as bool : unexpected value '")
+			rewriteError.append(QObject::trUtf8("Rewriting as bool : unexpected value '"))
 					.append(result)
-					.append("' for parameter '")
+					.append(QObject::trUtf8("' for parameter '"))
 					.append(parameterName)
 					.append("'.\n");
 		}
 	} else {
-		rewriteError.append("Rewriting as bool : parameter '")
+		rewriteError.append(QObject::trUtf8("Rewriting as bool : parameter '"))
 				.append(parameterName)
-				.append("' expected.\n");
+				.append(QObject::trUtf8("' expected.")).append('\n');
 	}
 }

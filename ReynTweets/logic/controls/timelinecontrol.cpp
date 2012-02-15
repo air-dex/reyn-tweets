@@ -57,11 +57,54 @@ void TimelineControl::setTimeline(Timeline tl) {
 
 // Loading the home timeline
 void TimelineControl::loadHomeTimeline() {
-	//
+	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 10);
 }
 
 
 // After loading a timeline
 void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
-	//
+	ProcessResult result = res.accessResult(this);
+
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		return;
+	}
+
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(launchOK(ProcessWrapper)));
+
+	CoreResult issue = result.processIssue;
+	QVariantList resList = result.results.toList();
+
+	switch (issue) {
+		case TIMELINE_RETRIEVED:
+			statuses.fillWithVariant(resList);
+			emit timelineChanged();
+			// Process successful
+			emit loadEnded(true, QString(), false);
+			break;
+/*
+		case AUTHENTICATION_REQUIRED:
+			// An authentication is needed. So let's do it!
+			return allowReynTweets();
+//*/
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+			emit loadEnded(false, result.errorMsg, false);
+			break;
+
+		// Problems with configuration file
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
+		case LOADING_CONFIGURATION_ERROR:
+
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
+
+		default:
+			emit loadEnded(false, result.errorMsg, true);
+			break;
+	}
 }

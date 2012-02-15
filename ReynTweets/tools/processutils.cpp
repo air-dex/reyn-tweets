@@ -65,6 +65,10 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 }
 
 QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
+	// Uncomment when the following feature is deployed :
+	// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
+
+		/*
 	// Building error message
 	QString errorMsg = QObject::trUtf8("Twitter errors:");
 	errorMsg.append('\n');
@@ -82,6 +86,16 @@ QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
 
 	// Erasing the last '\n'
 	errorMsg.chop(1);
+	//*/
+
+	QString errorMsg = QObject::trUtf8("Error ");
+	errorMsg.append(QString::number(twitterErrors.at(0).code))
+			.append(" : ")
+			.append(twitterErrors.at(0).message)
+			.append(".\n")
+			.append(QObject::trUtf8("Request : "))
+			.append(twitterErrors.at(1).message)
+			.append('.');
 
 	return errorMsg;
 }

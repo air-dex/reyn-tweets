@@ -27,5 +27,6 @@
 #include "launchingcontrol.hpp"
 #include "logincontrol.hpp"
 #include "tweetcontrol.hpp"
+#include "timelinecontrol.hpp"
 
 #endif // CONTROLS_HPP

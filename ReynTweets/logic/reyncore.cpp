@@ -167,6 +167,29 @@ void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 			oauthProcess, SLOT(denyReynTweets(QString,QString)));
 }
 
+// Unfavoriting a tweet
+void ReynCore::loadHomeTimeline(qlonglong sinceID,
+								qlonglong maxID,
+								bool trimUser,
+								bool includeRTS,
+								bool includeEntities,
+								bool excludeReplies,
+								int page,
+								int count,
+								bool contributorsDetails)
+{
+	LoadingHomeTimelineProcess * process = new LoadingHomeTimelineProcess(sinceID,
+																		  maxID,
+																		  trimUser,
+																		  includeRTS,
+																		  includeEntities,
+																		  excludeReplies,
+																		  page,
+																		  count,
+																		  contributorsDetails);
+	executeProcess(process);
+}
+
 
 ////////////////////
 // Special wiring //

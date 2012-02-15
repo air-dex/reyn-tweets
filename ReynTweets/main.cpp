@@ -27,6 +27,7 @@
 #include <QTranslator>
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
+#include "model/timelines/timeline.hpp"
 
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
@@ -45,7 +46,7 @@ void initReynTweetsSystem() {
 	TweetEntities::initSystem();
 	UserInfos::initSystem();
 	Tweet::initSystem();
-//	Timeline::initSystem();
+	Timeline::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();
 	ReynTweetsConfiguration::initSystem();
@@ -59,6 +60,9 @@ void declareReynTweetsControls() {
 	Tweet::declareQML();
 	UserInfos::declareQML();
 	User::declareQML();
+	Timeline::declareQML();
+	TimelineControl::declareQML();
+	TweetControl::declareQML();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);

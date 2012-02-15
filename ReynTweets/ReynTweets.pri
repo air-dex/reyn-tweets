@@ -176,7 +176,7 @@ HEADERS  += \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
-	tools/processutils.cpp \
+	tools/processutils.hpp \
 	logic/processes/genericprocess.hpp \
 	logic/processes/singletwittercallprocess.hpp \
 	logic/processes/oauthprocess.hpp \

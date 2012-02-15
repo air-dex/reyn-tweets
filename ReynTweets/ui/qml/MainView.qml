@@ -29,6 +29,32 @@ Rectangle {
 	id: main_view
 	property int margin: 5
 
+	function loadHomeTimeline() {
+		timeline.loadHomeTimeline();
+	}
+
 	width: 360
 	height: 640
+
+	// Component displayed while launching the application
+	Text {
+		id: mockup
+		text: "You can tweet now !"
+		anchors.top: parent.top
+		anchors.horizontalCenter: parent.horizontalCenter
+		verticalAlignment: Text.AlignVCenter
+		horizontalAlignment: Text.AlignHCenter
+		font.family: "Ubuntu"
+		visible: true
+		font.pixelSize: 14
+	}
+
+	TimelinePane {
+		id: timeline
+		anchors.top: mockup.bottom
+		anchors.topMargin: 0
+		anchors.right: parent.right
+		anchors.left: parent.left
+		anchors.bottom: parent.bottom
+	}
 }

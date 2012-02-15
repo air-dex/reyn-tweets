@@ -100,7 +100,7 @@ QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsing
 		argNames.removeOne("user_id");
 		argNames.removeOne("screen_name");
 		foreach (QString argName, argNames) {
-			errorMsg.append("Unexpected parameter '")
+			errorMsg.append(AccessTokenRequester::trUtf8("Unexpected parameter '"))
 					.append(argName)
 					.append("'.\n");
 		}

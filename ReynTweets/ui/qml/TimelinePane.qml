@@ -61,4 +61,8 @@ Rectangle {
 		delegate: delegate_tweet
 		model: timeline_model
 	}
+
+	function loadHomeTimeline() {
+		control.loadHomeTimeline();
+	}
 }

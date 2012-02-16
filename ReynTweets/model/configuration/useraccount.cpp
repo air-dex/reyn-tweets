@@ -52,6 +52,7 @@ const UserAccount & UserAccount::operator=(const UserAccount & account) {
 
 // Recopying a UserAccount
 void UserAccount::recopie(const UserAccount & account) {
+	ReynTweetsMappable::recopie(account);
 	accessToken = account.accessToken;
 	tokenSecret = account.tokenSecret;
 	user = account.user;

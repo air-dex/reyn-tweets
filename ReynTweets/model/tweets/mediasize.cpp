@@ -53,6 +53,7 @@ const MediaSize & MediaSize::operator=(const MediaSize & size) {
 
 // Copy of a MediaSize
 void MediaSize::recopie(const MediaSize & size) {
+	ReynTweetsMappable::recopie(size);
 	setWidth(size.width());
 	setHeight(size.height());
 	resizeMedia = size.resizeMedia;

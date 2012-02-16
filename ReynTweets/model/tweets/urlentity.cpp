@@ -61,6 +61,7 @@ void URLEntity::initSystem() {
 
 // Copy of a URLEntity
 void URLEntity::recopie(const URLEntity & entity) {
+	ReynTweetsMappable::recopie(entity);
 	extractedURL = entity.extractedURL;
 	displayedURL = entity.displayedURL;
 	expandedURL = entity.expandedURL;

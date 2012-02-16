@@ -59,6 +59,7 @@ void Hashtag::initSystem() {
 
 // Copy of a Hashtag
 void Hashtag::recopie(const Hashtag & hashtag) {
+	ReynTweetsMappable::recopie(hashtag);
 	hashText = hashtag.hashText;
 	indexes = hashtag.indexes;
 }

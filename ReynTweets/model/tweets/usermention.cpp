@@ -62,6 +62,7 @@ void UserMention::initSystem() {
 
 // Copy of a User Mention
 void UserMention::recopie(const UserMention & mention) {
+	ReynTweetsMappable::recopie(mention);
 	userID = mention.userID;
 	userIDstr = mention.userIDstr;
 	screenName = mention.screenName;

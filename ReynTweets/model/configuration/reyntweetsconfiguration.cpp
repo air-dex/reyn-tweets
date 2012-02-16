@@ -54,6 +54,7 @@ const ReynTweetsConfiguration & ReynTweetsConfiguration::operator=(const ReynTwe
 
 // Copy of a ReynTweetsConfiguration
 void ReynTweetsConfiguration::recopie(const ReynTweetsConfiguration & configuration) {
+	ReynTweetsMappable::recopie(configuration);
 	userAccount = configuration.userAccount;
 }
 

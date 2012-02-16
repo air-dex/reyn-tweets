@@ -89,6 +89,7 @@ const UserInfos & UserInfos::operator=(const UserInfos & user) {
 
 // Copy of a User
 void UserInfos::recopie(const UserInfos & user) {
+	ReynTweetsMappable::recopie(user);
 	userID = user.userID;
 	userIDstr = user.userIDstr;
 	screenName = user.screenName;

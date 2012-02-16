@@ -25,6 +25,7 @@
 #define REYNTWEETSMAPPABLE_HPP
 
 #include <QObject>
+#include <QStringList>
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
 
@@ -60,6 +61,26 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 	Q_OBJECT
 
 	public:
+		/// @fn explicit ReynTweetsMappable(bool blacklistObjectName = true);
+		/// @brief Constructor
+		/// @param blacklistObjectName Boolean indicating if the "objectName"
+		/// property of QObject has to be included in transientProperties.
+		explicit ReynTweetsMappable(bool blacklistObjectName = true);
+
+		/// @fn virtual ~ReynTweetsMappable();
+		/// @brief Destructor
+		virtual ~ReynTweetsMappable();
+
+		/// @fn ReynTweetsMappable(const ReynTweetsMappable & mappable);
+		/// @brief Copy constructor
+		/// @param mappable ReynTweetsMappable to copy
+		ReynTweetsMappable(const ReynTweetsMappable & mappable);
+
+		/// @fn const ReynTweetsMappable & operator=(const ReynTweetsMappable & mappable);
+		/// @brief Affecting a ReynTweetsMappable
+		/// @param mappable ReynTweetsMappable to copy
+		const ReynTweetsMappable & operator=(const ReynTweetsMappable & mappable);
+
 		/// @fn virtual QVariantMap toVariant() const;
 		/// @brief Converting the object into a QVariantMap
 		/// @return A QVariantMap containing all the informations.
@@ -70,6 +91,28 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// contained in a map.
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
+
+	protected:
+		/// @brief List of properties to ignore while converting the object into
+		/// a QVariant.
+		///
+		/// These properties might be used by QML Views and be unserializable
+		/// correctly by QJSON. They could cause problems just like what happened
+		/// for the
+		/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=50#c8">
+		/// reopening of issue 50</a>.
+		QStringList transientProperties;
+
+		/// @fn void recopie(const ReynTweetsMappable & mappable);
+		/// @brief Core method for recopying a ReynTweetsMappable
+		/// @param mappable ReynTweetsMappable to copy
+		void recopie(const ReynTweetsMappable & mappable);
+
+		/// @fn virtual void blacklistProperties(bool blacklistObjectName = true);
+		/// @brief Building transientProperties
+		/// @param blacklistObjectName Boolean indicating if the "objectName"
+		/// property of QObject has to be included in transientProperties.
+		virtual void blacklistProperties(bool blacklistObjectName);
 };
 
 #endif // REYNTWEETSMAPPABLE_HPP

@@ -61,6 +61,7 @@ void MediaSizes::initSystem() {
 
 // Copy of a MediaSizes
 void MediaSizes::recopie(const MediaSizes & sizes) {
+	ReynTweetsMappable::recopie(sizes);
 	largeSize = sizes.largeSize;
 	mediumSize = sizes.mediumSize;
 	smallSize = sizes.smallSize;

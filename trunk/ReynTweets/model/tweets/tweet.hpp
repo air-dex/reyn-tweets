@@ -97,6 +97,16 @@ class Tweet : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
+		/// @fn virtual void blacklistProperties(bool blacklistObjectName = true);
+		/// @brief Blacklisting the "author" and "retweet" properties (used only
+		/// for and by QML views).
+		/// @param blacklistObjectName Unused parameter which is here only for
+		/// the redefinition.
+		///
+		/// It is the parameter to blacklist "objectName" which is always
+		/// true here.
+		virtual void blacklistProperties(bool blacklistObjectName);
+
 		// entities
 		/// @property entities
 		/// @brief Tweet Entities
@@ -189,14 +199,14 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Writing the property user
 		/// @param newUserMap New value for user
 		void setUser(QVariantMap newUserMap);
-
+//*
 		/// @property author
 		/// @brief User who wrote the tweet. Used to get information
 		/// to display about the author of the tweet (in a TweetPane).
 		Q_PROPERTY(UserInfos author
 				   READ getUser
 				   WRITE setUser)
-
+//*/
 		// retweeted
 		/// @property retweeted
 		/// @brief Is the tweet retweeted ?
@@ -269,13 +279,13 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Writing retweeted_status
 		/// @param statusMap The new value of the property
 		void setRetweetedStatus(QVariantMap statusMap);
-
+//*
 		/// @property retweet
 		/// @brief The retweet to display in a TweetPane
 		Q_PROPERTY(Tweet retweet
 				   READ getRetweetedStatus
 				   WRITE setRetweetedStatus)
-
+//*/
 		/*
 		 * Properties that are not here :
 		 * - place

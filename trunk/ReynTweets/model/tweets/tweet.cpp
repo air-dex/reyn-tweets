@@ -78,6 +78,7 @@ const Tweet & Tweet::operator=(const Tweet & tweet) {
 
 // Copy of a Tweet
 void Tweet::recopie(const Tweet & status) {
+	ReynTweetsMappable::recopie(status);
 	tweetID = status.tweetID;
 	tweetIDstr = status.tweetIDstr;
 	tweetEntities = status.tweetEntities;
@@ -138,6 +139,13 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 ///////////////////////////
 // Properties management //
 ///////////////////////////
+
+// Blacklisting the "author" and "retweet"
+void Tweet::blacklistProperties(bool) {
+	ReynTweetsMappable::blacklistProperties(true);
+	transientProperties.append(QString(QLatin1String("author")));
+	transientProperties.append(QString(QLatin1String("retweet")));
+}
 
 // Reading the property entities
 QVariantMap Tweet::getEntitiesProperty() {

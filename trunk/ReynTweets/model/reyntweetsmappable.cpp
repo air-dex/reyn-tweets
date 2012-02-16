@@ -24,9 +24,53 @@
 #include <QJson/QObjectHelper>
 #include "reyntweetsmappable.hpp"
 
+/////////////
+// Coplien //
+/////////////
+
+// Default constructor
+ReynTweetsMappable::ReynTweetsMappable(bool blacklistObjectName) :
+	QObject(),
+	ReynTweetsSerializable<QVariantMap>(),
+	transientProperties()
+{
+	this->blacklistProperties(blacklistObjectName);
+}
+
+// Destructor
+ReynTweetsMappable::~ReynTweetsMappable() {}
+
+// Copy constructor
+ReynTweetsMappable::ReynTweetsMappable(const ReynTweetsMappable & mappable) {
+	recopie(mappable);
+}
+
+// Affecting a ReynTweetsMappable
+const ReynTweetsMappable & ReynTweetsMappable::operator=(const ReynTweetsMappable & mappable) {
+	recopie(mappable);
+	return *this;
+}
+
+// Core method for recopying a ReynTweetsMappable
+void ReynTweetsMappable::recopie(const ReynTweetsMappable & mappable) {
+	transientProperties = mappable.transientProperties;
+}
+
+
+////////////////////////////////////////////////
+// Converting the Mappable into a QVariantMap //
+////////////////////////////////////////////////
+
+// Building transientProperties
+void ReynTweetsMappable::blacklistProperties(bool blacklistObjectName) {
+	if (blacklistObjectName) {
+		transientProperties.append(QString(QLatin1String("objectName")));
+	}
+}
+
 // Converting the object into a QVariantMap
 QVariantMap ReynTweetsMappable::toVariant() const {
-	return QJson::QObjectHelper::qobject2qvariant(this);
+	return QJson::QObjectHelper::qobject2qvariant(this, transientProperties);
 }
 
 // Filling a ReynTweetsSerializable object with the informations

@@ -61,6 +61,7 @@ void TweetEntities::initSystem() {
 
 // Copy of a TwitterEntities
 void TweetEntities::recopie(const TweetEntities & entities) {
+	ReynTweetsMappable::recopie(entities);
 	medias = entities.medias;
 	tweetURLs = entities.tweetURLs;
 	mentions = entities.mentions;

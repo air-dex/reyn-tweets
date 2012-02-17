@@ -124,28 +124,6 @@ void GenericRequester::treatResults() {
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
-		// Debug à la sortie du parsage
-		qDebug("Type du parsage :");
-		qDebug(requestResult.parsedResult.typeName());
-		foreach (QString cle, requestResult.parsedResult.toMap().keys()) {
-			QVariant v = requestResult.parsedResult.toMap().value(cle);
-			qDebug("Cle :");
-			qDebug(cle.toUtf8().data());
-			qDebug("Type de la valeur :");
-			qDebug(v.typeName());
-
-			if (v.type() == QVariant::List) {
-				QVariantList l = v.toList();
-				qDebug("Longueur de la liste :");
-				qDebug(QString::number(l.size()).toAscii().data());
-				foreach (QVariant v2, l) {
-					qDebug("Type de la valeur :");
-					qDebug(v2.typeName());
-				}
-			}
-		}
-
-
 		if (!parseOK) {
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(communicator->getResponseBuffer());

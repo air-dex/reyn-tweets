@@ -124,6 +124,28 @@ void GenericRequester::treatResults() {
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
+		// Debug à la sortie du parsage
+		qDebug("Type du parsage :");
+		qDebug(requestResult.parsedResult.typeName());
+		foreach (QString cle, requestResult.parsedResult.toMap().keys()) {
+			QVariant v = requestResult.parsedResult.toMap().value(cle);
+			qDebug("Cle :");
+			qDebug(cle.toUtf8().data());
+			qDebug("Type de la valeur :");
+			qDebug(v.typeName());
+
+			if (v.type() == QVariant::List) {
+				QVariantList l = v.toList();
+				qDebug("Longueur de la liste :");
+				qDebug(QString::number(l.size()).toAscii().data());
+				foreach (QVariant v2, l) {
+					qDebug("Type de la valeur :");
+					qDebug(v2.typeName());
+				}
+			}
+		}
+
+
 		if (!parseOK) {
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(communicator->getResponseBuffer());
@@ -221,7 +243,16 @@ QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 	QByteArray rawResponse = communicator->getResponseBuffer();
 	QString errorMsg;
 	int lineMsg;
-	QVariantMap result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
+
+	// Special treatment for lists because of a QJSON bug while parsing lists
+	bool isList = rawResponse.startsWith('[');
+	// Truc pour le debug :
+	if (isList) {
+		rawResponse.prepend("{\"reslist\":");
+		rawResponse.append('}');
+	}
+
+	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !
@@ -229,5 +260,10 @@ QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 		parsingErrors.insert("lineError", QVariant(lineMsg));
 	}
 
-	return QVariant(result);
+	// Retrieveing the list to parse
+	if (isList) {
+		result = QVariant(result.toMap().value("reslist"));
+	}
+
+	return result;
 }

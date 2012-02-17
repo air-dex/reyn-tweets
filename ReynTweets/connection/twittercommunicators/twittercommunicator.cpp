@@ -144,7 +144,6 @@ void TwitterCommunicator::executeRequest() {
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
-
 	if (!response) {
 		return;
 	}

@@ -34,7 +34,7 @@ ReynTweetsMappable::ReynTweetsMappable(bool blacklistObjectName) :
 	ReynTweetsSerializable<QVariantMap>(),
 	transientProperties()
 {
-	this->blacklistProperties(blacklistObjectName);
+	blacklistProperties(blacklistObjectName);
 }
 
 // Destructor

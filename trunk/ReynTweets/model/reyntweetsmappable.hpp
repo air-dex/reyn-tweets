@@ -113,6 +113,8 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param blacklistObjectName Boolean indicating if the "objectName"
 		/// property of QObject has to be included in transientProperties.
 		virtual void blacklistProperties(bool blacklistObjectName);
+
+		void toto(bool b);
 };
 
 #endif // REYNTWEETSMAPPABLE_HPP

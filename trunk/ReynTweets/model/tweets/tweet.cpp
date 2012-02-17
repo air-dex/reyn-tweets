@@ -52,7 +52,9 @@ Tweet::Tweet() :
 	createdAt(),
 	sourceClient(""),
 	truncatedTweet(false)
-{}
+{
+	blacklistProperties();
+}
 
 // Destructor
 Tweet::~Tweet() {
@@ -141,8 +143,7 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 ///////////////////////////
 
 // Blacklisting the "author" and "retweet"
-void Tweet::blacklistProperties(bool) {
-	ReynTweetsMappable::blacklistProperties(true);
+void Tweet::blacklistProperties() {
 	transientProperties.append(QString(QLatin1String("author")));
 	transientProperties.append(QString(QLatin1String("retweet")));
 }

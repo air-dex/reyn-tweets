@@ -97,15 +97,10 @@ class Tweet : public ReynTweetsMappable
 	///////////////////////////
 
 	protected:
-		/// @fn virtual void blacklistProperties(bool blacklistObjectName = true);
+		/// @fn void blacklistProperties();
 		/// @brief Blacklisting the "author" and "retweet" properties (used only
 		/// for and by QML views).
-		/// @param blacklistObjectName Unused parameter which is here only for
-		/// the redefinition.
-		///
-		/// It is the parameter to blacklist "objectName" which is always
-		/// true here.
-		virtual void blacklistProperties(bool blacklistObjectName);
+		void blacklistProperties();
 
 		// entities
 		/// @property entities

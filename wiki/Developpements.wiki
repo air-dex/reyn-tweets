@@ -49,6 +49,7 @@ Où en est Reyn Tweets ?
 
   # Implémentation des fonctionnalités de base.
     # Téléchargement de la timeline perso de l'utilisateur
+      # Mise en place de l'architecture pour des composants listes
     # Ecrire un tweet et le poster.
   # Modèle de données
   # Interface graphique (UI) :

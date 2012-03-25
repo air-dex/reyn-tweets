@@ -30,22 +30,6 @@
 /////////////
 
 // Default constructor
-ReynTweetsMappable::ReynTweetsMappable(QObject o, bool blacklistObjectName) :
-	QObject(),
-	ReynTweetsSerializable<QVariantMap>(),
-	transientProperties()
-{
-	blacklistProperties(blacklistObjectName);
-
-	// Recopying properties
-	QMetaObject omo = *o.metaObject();
-
-	for (int i = 0; i < omo.propertyCount(); i++) {
-		const char * name = omo.property(i).name();
-		QVariant value = omo.property(i).read(&o);
-		setProperty(name, value);
-	}
-}
 ReynTweetsMappable::ReynTweetsMappable(bool blacklistObjectName) :
 	QObject(),
 	ReynTweetsSerializable<QVariantMap>(),
@@ -93,4 +77,12 @@ QVariantMap ReynTweetsMappable::toVariant() const {
 // Filling a ReynTweetsSerializable object with the informations
 void ReynTweetsMappable::fillWithVariant(QVariantMap map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
+}
+
+// JSON string corresponding to the Mappable
+QString ReynTweetsMappable::toString() {
+	QVariantMap variant = toVariant();
+	QJson::Serializer s;
+	QByteArray b = s.serialize(variant);
+	return QString::fromUtf8(b.data());
 }

@@ -113,9 +113,7 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	main.cpp \
 	model/timelines/timelinemodel.cpp \
-	model/timelines/timelinelistmodel.cpp \
-    model/reyntweetsitemmodel.cpp \
-    model/reyntweetslistmodel.cpp
+	model/timelines/timelinelistmodel.cpp
 
 
 HEADERS  += \
@@ -198,9 +196,7 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/controls.hpp \
 	model/timelines/timelinemodel.hpp \
-	model/timelines/timelinelistmodel.hpp \
-    model/reyntweetsitemmodel.hpp \
-    model/reyntweetslistmodel.hpp
+	model/timelines/timelinelistmodel.hpp
 
 
 OTHER_FILES = \

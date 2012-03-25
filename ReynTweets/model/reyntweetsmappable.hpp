@@ -65,12 +65,6 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @brief Constructor
 		/// @param blacklistObjectName Boolean indicating if the "objectName"
 		/// property of QObject has to be included in transientProperties.
-		explicit ReynTweetsMappable(QObject o, bool blacklistObjectName = true);
-
-		/// @fn explicit ReynTweetsMappable(bool blacklistObjectName = true);
-		/// @brief Constructor
-		/// @param blacklistObjectName Boolean indicating if the "objectName"
-		/// property of QObject has to be included in transientProperties.
 		explicit ReynTweetsMappable(bool blacklistObjectName = true);
 
 		/// @fn virtual ~ReynTweetsMappable();
@@ -98,12 +92,10 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
 
-	public slots: QString toString() {
-			QVariantMap variant = toVariant();
-			QJson::Serializer s;
-			QByteArray b = s.serialize(variant);
-			return QString::fromUtf8(b.data());
-		}
+		/// @fn Q_INVOKABLE QString toString();
+		/// @brief Converting the object into its JSON representation
+		/// @return JSON representation of the object
+		Q_INVOKABLE QString toString();
 
 	protected:
 		/// @brief List of properties to ignore while converting the object into

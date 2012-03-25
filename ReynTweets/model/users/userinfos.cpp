@@ -167,6 +167,7 @@ QString UserInfos::getProfileLinkColorProperty() {
 // Write profile_link_color
 void UserInfos::setProfileLinkColor(QString newLinkColor) {
 	linkColor = string2color(newLinkColor);
+	emit profileLinkColorChanged();
 }
 
 // Read profile_background_color
@@ -177,6 +178,7 @@ QString UserInfos::getProfileBackgroundColorProperty() {
 // Write profile_background_color
 void UserInfos::setProfileBackgroundColor(QString newBackgroundColor) {
 	backgroundColor = string2color(newBackgroundColor);
+	emit profileBackgroundColorChanged();
 }
 
 // Read profile_sidebar_fill_color
@@ -192,11 +194,13 @@ QString UserInfos::getCreatedAtProperty() {
 // Writing created_at
 void UserInfos::setCreatedAt(QString newDate) {
 	createdAt.setDate(newDate);
+	emit createdAtChanged();
 }
 
 // Write profile_sidebar_fill_color
 void UserInfos::setProfileSidebarFillColor(QString newSidebarColor) {
 	sidebarColor = string2color(newSidebarColor);
+	emit profileSidebarFillColorChanged();
 }
 
 // Read profile_sidebar_border_color
@@ -207,6 +211,7 @@ QString UserInfos::getProfileSidebarBorderColorProperty() {
 // Write profile_sidebar_border_color
 void UserInfos::setProfileSidebarBorderColor(QString newSidebarBorderColor) {
 	sidebarBorderColor = string2color(newSidebarBorderColor);
+	emit profileSidebarBorderColorChanged();
 }
 
 // Read profile_text_color
@@ -217,6 +222,7 @@ QString UserInfos::getProfileTextColorProperty() {
 // Write profile_text_color
 void UserInfos::setProfileTextColor(QString newTextColor) {
 	textColor = string2color(newTextColor);
+	emit profileTextColorChanged();
 }
 
 
@@ -232,6 +238,7 @@ bool UserInfos::isContributorsEnabled() {
 // Setter on contributorsEnabled
 void UserInfos::setContributorsEnabled(bool newContributorsEnabled) {
 	contributorsEnabled = newContributorsEnabled;
+	emit contributorsEnabledChanged();
 }
 
 // Getter on lang
@@ -242,6 +249,7 @@ QString UserInfos::getLang() {
 // Setter on lang
 void UserInfos::setLang(QString newLang) {
 	language = newLang;
+	emit langChanged();
 }
 
 // Getter on backgroundURL
@@ -252,6 +260,7 @@ QString UserInfos::getProfileBackgroundImageURL() {
 // Setter on backgroundURL
 void UserInfos::setProfileBackgroundImageURL(QString newBackgroundURL) {
 	backgroundURL = newBackgroundURL;
+	emit profileBackgroundImageURLChanged();
 }
 
 // Getter on protected
@@ -262,6 +271,7 @@ bool UserInfos::isProtected() {
 // Setter on protected
 void UserInfos::setProtected(bool newProtected) {
 	protectedAccount = newProtected;
+	emit protectedChanged();
 }
 
 // Getter on linkColor
@@ -272,6 +282,7 @@ QColor UserInfos::getProfileLinkColor() {
 // Setter on linkColor
 void UserInfos::setProfileLinkColor(QColor newLinkColor) {
 	linkColor = newLinkColor;
+	emit profileLinkColorChanged();
 }
 
 // Getter on url
@@ -282,6 +293,7 @@ QString UserInfos::getURL() {
 // Setter on url
 void UserInfos::setURL(QString newURL) {
 	userURL = newURL;
+	emit urlChanged();
 }
 
 // Getter on name
@@ -292,6 +304,7 @@ QString UserInfos::getName() {
 // Setter on name
 void UserInfos::setName(QString newName) {
 	userName = newName;
+	emit nameChanged();
 }
 
 // Getter on listedCount
@@ -302,6 +315,7 @@ int UserInfos::getListedCount() {
 // Setter on listedCount
 void UserInfos::setListedCount(int newListedCount) {
 	listsCount = newListedCount;
+	emit listedCountChanged();
 }
 
 // Getter on timeZoneOffset
@@ -312,6 +326,7 @@ int UserInfos::getUTCoffset() {
 // Setter on timeZoneOffset
 void UserInfos::setUTCoffset(int newTimeZoneOffset) {
 	timeZoneOffset = newTimeZoneOffset;
+	emit timeZoneChanged();
 }
 
 // Getter on backgroundColor
@@ -322,6 +337,7 @@ QColor UserInfos::getProfileBackgroundColor() {
 // Setter on backgroundColor
 void UserInfos::setProfileBackgroundColor(QColor newBackgroundColor) {
 	backgroundColor = newBackgroundColor;
+	emit profileBackgroundColorChanged();
 }
 
 // Getter on followersCount
@@ -332,6 +348,7 @@ int UserInfos::getFollowersCount() {
 // Setter on followersCount
 void UserInfos::setFollowersCount(int newFollowersCount) {
 	followersCount = newFollowersCount;
+	emit followersCountChanged();
 }
 
 // Getter on avatarURL
@@ -342,6 +359,7 @@ QString UserInfos::getProfileImageURL() {
 // Setter on avatarURL
 void UserInfos::setProfileImageURL(QString newAvatarURL) {
 	avatarURL = newAvatarURL;
+	emit profileImageURLChanged();
 }
 
 // Getter on description
@@ -352,6 +370,7 @@ QString UserInfos::getDescription() {
 // Setter on description
 void UserInfos::setDescription(QString newDescription) {
 	userDescription = newDescription;
+	emit descriptionChanged();
 }
 
 // Getter on backgroundTile
@@ -362,6 +381,7 @@ bool UserInfos::isProfileBackgroundTile() {
 // Setter on backgroundTile
 void UserInfos::setProfileBackgroundTile(bool newBackgroundTile) {
 	backgroundTile = newBackgroundTile;
+	emit profileBackgroundTileChanged();
 }
 
 // Getter on tweetsCount
@@ -372,6 +392,7 @@ int UserInfos::getStatusesCount() {
 // Setter on tweetsCount
 void UserInfos::setStatusesCount(int newTweetsCount) {
 	tweetsCount = newTweetsCount;
+	emit statusesCountChanged();
 }
 
 // Getter on createdAt
@@ -382,6 +403,7 @@ ReynTweetsDateTime UserInfos::getCreatedAt() {
 // Setter on createdAt
 void UserInfos::setCreatedAt(ReynTweetsDateTime newDate) {
 	createdAt = newDate;
+	emit createdAtChanged();
 }
 
 // Getter on sidebarColor
@@ -392,6 +414,7 @@ QColor UserInfos::getProfileSidebarFillColor() {
 // Setter on sidebarColor
 void UserInfos::setProfileSidebarFillColor(QColor newSidebarColor) {
 	sidebarColor = newSidebarColor;
+	emit profileSidebarFillColorChanged();
 }
 
 // Getter on screenName
@@ -402,6 +425,7 @@ QString UserInfos::getScreenName() {
 // Setter on screenName
 void UserInfos::setScreenName(QString newScreenName) {
 	screenName = newScreenName;
+	emit screenNameChanged();
 }
 
 // Getter on geoEnabled
@@ -412,6 +436,7 @@ bool UserInfos::isGeoEnabled() {
 // Setter on geoEnabled
 void UserInfos::setGeoEnabled(bool newGeoEnabled) {
 	geotaggingEnabled = newGeoEnabled;
+	emit geotaggingEnabled;
 }
 
 // Getter on defaultProfileImage
@@ -422,6 +447,7 @@ bool UserInfos::isDefaultProfileImage() {
 // Setter on defaultProfileImage
 void UserInfos::setDefaultProfileImage(bool newDefaultProfileImage) {
 	defaultProfileImage = newDefaultProfileImage;
+	emit defaultProfileImageChanged();
 }
 
 // Getter on friendsCount
@@ -432,6 +458,7 @@ int UserInfos::getFriendsCount() {
 // Setter on friendsCount
 void UserInfos::setFriendsCount(int newfriendsCount) {
 	friendsCount = newfriendsCount;
+	emit friendsCountChanged();
 }
 
 // Getter on sidebarBorderColor
@@ -442,6 +469,7 @@ QColor UserInfos::getProfileSidebarBorderColor() {
 // Setter on sidebarBorderColor
 void UserInfos::setProfileSidebarBorderColor(QColor newSidebarBorderColor) {
 	sidebarBorderColor = newSidebarBorderColor;
+	emit profileSidebarBorderColorChanged();
 }
 
 // Getter on IDstr
@@ -452,6 +480,7 @@ QString UserInfos::getIDstr() {
 // Setter on IDstr
 void UserInfos::setIDstr(QString newID) {
 	userIDstr = newID;
+	emit idStrChanged();
 }
 
 // Getter on showAllInlineMedia
@@ -462,6 +491,7 @@ bool UserInfos::isShowAllInlineMedia() {
 // Setter on showAllInlineMedia
 void UserInfos::setShowAllInlineMedia(bool newShowAllInlineMedia) {
 	showAllInlineMedia = newShowAllInlineMedia;
+	emit showAllInlineMediaChanged();
 }
 
 // Getter on followRequestSent
@@ -472,6 +502,7 @@ bool UserInfos::isFollowRequestSent() {
 // Setter on followRequestSent
 void UserInfos::setFollowRequestSent(bool newFollowRequestSent) {
 	followRequestSent = newFollowRequestSent;
+	emit followRequestSentChanged();
 }
 
 // Getter on backgroundURLhttps
@@ -482,6 +513,7 @@ QString UserInfos::getProfileBackgroundImageURLhttps() {
 // Setter on backgroundURLhttps
 void UserInfos::setProfileBackgroundImageURLhttps(QString newBackgroundURL) {
 	backgroundURLhttps = newBackgroundURL;
+	emit profileBackgroundImageURLhttpsChanged();
 }
 
 // Getter on isTranslator
@@ -492,6 +524,7 @@ bool UserInfos::isTranslator() {
 // Setter on isTranslator
 void UserInfos::setTranslator(bool newTranslator) {
 	twitterTranslator = newTranslator;
+	emit isTranslatorChanged();
 }
 
 // Getter on defaultProfile
@@ -502,6 +535,7 @@ bool UserInfos::isDefaultProfile() {
 // Setter on defaultProfile
 void UserInfos::setDefaultProfile(bool newDefaultProfile) {
 	defaultProfile = newDefaultProfile;
+	emit defaultProfileChanged();
 }
 
 // Getter on notifications
@@ -512,6 +546,7 @@ bool UserInfos::isNotifications() {
 // Setter on notifications
 void UserInfos::setNotifications(bool newNotifications) {
 	notificationsEnabled = newNotifications;
+	emit notificationsChanged();
 }
 
 // Getter on useBackgroundImage
@@ -522,6 +557,7 @@ bool UserInfos::isProfileUseBackgroundImage() {
 // Setter on useBackgroundImage
 void UserInfos::setProfileUseBackgroundImage(bool newUseBackgroundImage) {
 	useBackgroundImage = newUseBackgroundImage;
+	emit profileUseBackgroundImageChanged();
 }
 
 // Getter on avatarURLhttps
@@ -532,6 +568,7 @@ QString UserInfos::getProfileImageURLhttps() {
 // Setter on avatarURLhttps
 void UserInfos::setProfileImageURLhttps(QString newAvatarURL) {
 	avatarURLhttps = newAvatarURL;
+	emit profileImageURLhttpsChanged();
 }
 
 // Getter on ID
@@ -542,6 +579,7 @@ qlonglong UserInfos::getID() {
 // Setter on ID
 void UserInfos::setID(qlonglong newID) {
 	userID = newID;
+	emit idChanged();
 }
 
 // Getter on verified
@@ -552,6 +590,7 @@ bool UserInfos::isVerified() {
 // Setter on verified
 void UserInfos::setVerified(bool newVerified) {
 	verifiedAccount = newVerified;
+	emit verifiedChanged();
 }
 
 // Getter on timeZone
@@ -562,6 +601,7 @@ QString UserInfos::getTimeZone() {
 // Setter on timeZone
 void UserInfos::setTimeZone(QString newTimeZone) {
 	timeZone = newTimeZone;
+	emit timeZoneChanged();
 }
 
 // Getter on favoritesCount
@@ -572,6 +612,7 @@ int UserInfos::getFavouritesCount() {
 // Setter on favoritesCount
 void UserInfos::setFavouritesCount(int newFavoritesCount) {
 	favoritesCount = newFavoritesCount;
+	emit favouritesCountChanged();
 }
 
 // Getter on textColor
@@ -582,6 +623,7 @@ QColor UserInfos::getProfileTextColor() {
 // Setter on textColor
 void UserInfos::setProfileTextColor(QColor newTextColor) {
 	textColor = newTextColor;
+	emit profileTextColorChanged();
 }
 
 // Getter on location
@@ -592,4 +634,5 @@ QString UserInfos::getLocation() {
 // Setter on location
 void UserInfos::setLocation(QString newLocation) {
 	userLocation = newLocation;
+	emit locationChanged();
 }

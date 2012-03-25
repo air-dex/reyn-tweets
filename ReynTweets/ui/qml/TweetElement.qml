@@ -27,7 +27,9 @@ import ReynTweetsEntities 0.1
 
 /// @class TweetElement
 /// @brief ListElement containing a Tweet
-ListElement {
+QtObject {
 	// Tweet that will be displayed
 	property Tweet tweet
+
+	//function
 }

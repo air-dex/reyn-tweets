@@ -31,16 +31,40 @@ ListModel {
 	id: timeline_model
 
 	// Timeline that will be displayed
-	property Timeline timeline
+	//property list timeline: []
 
-	function syncWithTimeline() {
+	property Tweet currentTweet
+
+	function tweetToJSObject(tweet) {
+		//var tweetStr = tweet.toString();
+		var tweetObj;
+		eval("tweetObj = " + tweet);
+		return tweetObj;
+	}
+
+	function syncWithTimeline(timeline) {
 		timeline_model.clear();
 
+		console.log("Longeur de la TL :" + timeline.length)
+
 		for (var i = 0; i < timeline.length; i++) {
-			var tweetElt = new TweetElement();
+			var object = tweetToJSObject(timeline[i])
+			//timeline.append(object)
+			/*
+			var tweetElt = new TweetElement;
+
 			tweetElt.tweet = timeline[i];
 
 			timeline_model.append(tweetElt);
+			//*/
+
+			/*
+			timeline_model.append(timeline[i]);
+			//*/
+
+			timeline_model.append(object)
 		}
 	}
+
+	//property type name: value
 }

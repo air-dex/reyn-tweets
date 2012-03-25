@@ -44,13 +44,14 @@ void TweetControl::declareQML() {
 /////////////////////////
 
 // Reading the tweet property
-Tweet TweetControl::getTweet() {
-	return status;
+Tweet *TweetControl::getTweet() {
+	return &status;
 }
 
 // Writing the tweet property
-void TweetControl::setTweet(Tweet newStatus) {
-	status = newStatus;
+void TweetControl::setTweet(Tweet * newStatus) {
+	status = newStatus ? *newStatus : Tweet();
+	emit tweetChanged();
 }
 
 

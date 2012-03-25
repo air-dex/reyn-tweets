@@ -38,15 +38,16 @@ class TweetControl : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn explicit TweetControl();
+		/// @fn TweetControl();
 		/// @brief Constructor
-		explicit TweetControl();
+		TweetControl();
 
 		/// @fn static void declareQML();
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
 	signals:
+		void tweetChanged();
 
 	public slots:
 		/// @fn void reply();
@@ -96,22 +97,23 @@ class TweetControl : public QObject
 
 		/// @property tweet
 		/// @brief Model of the tweet manipulated by the control.
-		Q_PROPERTY(Tweet tweet
+		Q_PROPERTY(Tweet * tweet
 				   READ getTweet
-				   WRITE setTweet)
+				   WRITE setTweet
+				   NOTIFY tweetChanged)
 
 		/// @brief Tweet entity behind the tweet property
 		Tweet status;
 
-		/// @fn Tweet getTweet();
+		/// @fn Tweet * getTweet();
 		/// @brief Reading the tweet property
 		/// @return status
-		Tweet getTweet();
+		Tweet * getTweet();
 
-		/// @fn void setTweet(Tweet newStatus);
+		/// @fn void setTweet(Tweet * newStatus);
 		/// @brief Writing the tweet property
 		/// @param newStatus New value for status.
-		void setTweet(Tweet newStatus);
+		void setTweet(Tweet *newStatus);
 };
 
 #endif // TWEETCONTROL_HPP

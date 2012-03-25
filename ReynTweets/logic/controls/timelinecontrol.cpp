@@ -27,7 +27,7 @@
 TimelineControl::TimelineControl() :
 	QObject(),
 	reyn(this),
-	statuses()
+	model()
 {}
 
 // Declaring TweetControl to the QML system
@@ -42,18 +42,20 @@ void TimelineControl::declareQML() {
 // Propoerty management //
 /////////////////////////
 
-Timeline * TimelineControl::getTimeline() {
-	return &statuses;
+QDeclarativeListProperty<Tweet> TimelineControl::getTimeline() {
+	//return &model;
+	return QDeclarativeListProperty<Tweet>(this, model);
 }
 
-void TimelineControl::setTimeline(Timeline * tl) {
-	if (!tl) {
-		statuses = Timeline();
-	} else {
-		statuses = *tl;
-	}
+void TimelineControl::setTimeline(QDeclarativeListProperty<Tweet> tl) {
+//	if (tl) {
+//		model = *tl;
+//	} else {
+//		model.clear();
+//	}
 }
 
+Tweet * TimelineControl::dt() {return new Tweet;}
 
 ///////////////////////
 // Loading timelines //
@@ -64,10 +66,10 @@ void TimelineControl::loadHomeTimeline() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-	//reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 3);
+	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 3);
 
 	qDebug("loadHomeTimeline");
-	reyn.loadHomeTimeline(170309014415093759, 170311906891014145, false, true, true, false, 0, 3);
+	//reyn.loadHomeTimeline(170309014415093759, 170311906891014145, false, true, true, false, 0, 3);
 }
 
 
@@ -86,10 +88,12 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantList resList = result.results.toList();
+	Timeline & statuses = model.getTimelineRef();
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
 			statuses.fillWithVariant(resList);
+			model.setTimeline(statuses);
 			emit timelineChanged();
 			// Process successful
 			emit loadEnded(true, QString(), false);

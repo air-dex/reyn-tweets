@@ -25,6 +25,7 @@
 #define REYNTWEETSSERIALIZABLE_HPP
 
 #include <QVariant>
+#include <QJson/Serializer>
 
 /// @class ReynTweetsSerializable
 /// @brief Class for objects that needs an equivalent serializable by QJSON.

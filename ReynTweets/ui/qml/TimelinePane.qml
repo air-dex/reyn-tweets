@@ -35,30 +35,37 @@ Rectangle {
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onTimelineChanged: timeline_model.syncWithTimeline();
+		onTimelineChanged: timeline_model.syncWithTimeline(control.timelineStr);
 	}
-
+//*
 	// Model of the list
 	TimelineModel {
 		id: timeline_model
-		timeline: control.timeline
+		//timeline: control.timeline
 	}
-
+//*/
+/*
 	// Delegate tweet
 	Component {
 		id: delegate_tweet
 		TweetPane {
 			width: timeline_pane.width
-			tweet: tweet
+			tweet: timeline_view.model.get(index)
 		}
 	}
-
+//*/
 	// List of all the tweets
 	ListView {
 		id: timeline_view
 		anchors.fill: parent
 
-		delegate: delegate_tweet
+		delegate: Component {
+			TweetPane {
+				width: timeline_pane.width
+				tweet: index < 0 ? control.deft : timeline_model.get(index);
+			}
+		}
+
 		model: timeline_model
 	}
 

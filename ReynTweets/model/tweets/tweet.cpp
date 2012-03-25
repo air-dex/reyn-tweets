@@ -197,6 +197,7 @@ void Tweet::setRetweetedStatus(QVariantMap statusMap) {
 	}
 
 	retweetSource->fillWithVariant(statusMap);
+	emit retweetedStatusChanged();
 }
 
 
@@ -211,6 +212,7 @@ TweetEntities Tweet::getEntities() {
 
 void Tweet::setEntities(TweetEntities newValue) {
 	tweetEntities = newValue;
+	emit entitiesChanged();
 }
 
 // in_reply_to_user_id
@@ -220,6 +222,7 @@ qlonglong Tweet::getInReplyToUserID() {
 
 void Tweet::setInReplyToUserID(qlonglong newValue) {
 	replyToUserID = newValue;
+	emit inReplyToUserIDChanged();
 }
 
 // truncated
@@ -229,6 +232,7 @@ bool Tweet::isTruncated() {
 
 void Tweet::setTruncated(bool newValue) {
 	truncatedTweet = newValue;
+	emit truncatedChanged();
 }
 
 // favorited
@@ -238,6 +242,7 @@ bool Tweet::isFavorited() {
 
 void Tweet::setFavorited(bool newValue) {
 	favoritedTweet = newValue;
+	emit favoritedChanged();
 }
 
 // retweet_count
@@ -247,6 +252,7 @@ int Tweet::getRetweetCount() {
 
 void Tweet::setRetweetCount(int newValue) {
 	retweetCount = newValue;
+	emit retweetCountChanged();
 }
 
 // in_reply_to_screen_name
@@ -256,6 +262,7 @@ QString Tweet::getInReplyToScreenName() {
 
 void Tweet::setInReplyToScreenName(QString newValue) {
 	replyToScreenName = newValue;
+	emit inReplyToScreenNameChanged();
 }
 
 // created_at
@@ -265,6 +272,7 @@ ReynTweetsDateTime Tweet::getCreatedAt() {
 
 void Tweet::setCreatedAt(ReynTweetsDateTime newValue) {
 	createdAt = newValue;
+	emit createdAtChanged();
 }
 
 // in_reply_to_status_id_str
@@ -274,6 +282,17 @@ QString Tweet::getInReplyToStatusIDstr() {
 
 void Tweet::setInReplyToStatusIDstr(QString newValue) {
 	replyToTweetIDstr = newValue;
+	emit inReplyToStatusIDstrChanged();
+}
+
+// author
+UserInfos * Tweet::getAuthor() {
+	return &profile;
+}
+
+void Tweet::setAuthor(UserInfos * newValue) {
+	profile = newValue ? *newValue : UserInfos();
+	emit userChanged();
 }
 
 // user
@@ -283,6 +302,7 @@ UserInfos Tweet::getUser() {
 
 void Tweet::setUser(UserInfos newValue) {
 	profile = newValue;
+	emit userChanged();
 }
 
 // retweeted
@@ -292,6 +312,7 @@ bool Tweet::isRetweeted() {
 
 void Tweet::setRetweeted(bool newValue) {
 	retweetedTweet = newValue;
+	emit retweetedChanged();
 }
 
 // in_reply_to_user_id_str
@@ -301,6 +322,7 @@ QString Tweet::getInReplyToUserIDstr() {
 
 void Tweet::setInReplyToUserIDstr(QString newValue) {
 	replyToUserIDstr = newValue;
+	emit inReplyToUserIDstrChanged();
 }
 
 // id_str
@@ -310,6 +332,7 @@ QString Tweet::getIDstr() {
 
 void Tweet::setIDstr(QString newValue) {
 	tweetIDstr = newValue;
+	emit idStrChanged();
 }
 
 // source
@@ -319,6 +342,7 @@ QString Tweet::getSource() {
 
 void Tweet::setSource(QString newValue) {
 	sourceClient = newValue;
+	emit sourceChanged();
 }
 
 // id
@@ -328,6 +352,7 @@ qlonglong Tweet::getID() {
 
 void Tweet::setID(qlonglong newValue) {
 	tweetID = newValue;
+	emit idChanged();
 }
 
 // in_reply_to_status_id
@@ -337,6 +362,7 @@ qlonglong Tweet::getInReplyToStatusID() {
 
 void Tweet::setInReplyToStatusID(qlonglong newValue) {
 	replyToTweetID = newValue;
+	emit inReplyToStatusIDChanged();
 }
 
 // text
@@ -346,6 +372,7 @@ QString Tweet::getText() {
 
 void Tweet::setText(QString newValue) {
 	tweet = newValue;
+	emit textChanged();
 }
 
 // sensible
@@ -355,21 +382,22 @@ bool Tweet::isSensible() {
 
 void Tweet::setSensible(bool newValue) {
 	sensibleTweet = newValue;
+	emit sensibleChanged();
 }
 
 // retweeted_status
-Tweet Tweet::getRetweetedStatus() {
-	return retweetSource ?
-				*retweetSource
-			  : Tweet();
+Tweet * Tweet::getRetweetedStatus() {
+	return retweetSource ? retweetSource : new Tweet;
 }
 
-void Tweet::setRetweetedStatus(Tweet retweet) {
+void Tweet::setRetweetedStatus(Tweet * retweet) {
 	if (retweetSource) {
 		delete retweetSource;
+		retweetSource = 0;
 	}
 
-	retweetSource = new Tweet(retweet);
+	retweetSource = retweet ? new Tweet(*retweet) : new Tweet;
+	emit retweetedStatusChanged();
 }
 
 

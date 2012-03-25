@@ -46,7 +46,9 @@ Rectangle {
 	property Tweet tweet: control.tweet
 
 	width: 360
-	height: 200
+	height: 150
+ border.width: 2
+ border.color: "#000000"
 
 	// Control behind the pane
 	TweetControl {
@@ -78,7 +80,7 @@ Rectangle {
 			anchors.topMargin: 0
 			anchors.left: parent.left
 			anchors.leftMargin: 0
-			source: tweet.author.profile_image_url
+			source: control.tweet.author.profile_image_url
 		}
 
 		// Retweeter's avatar if it is a retweet
@@ -98,7 +100,7 @@ Rectangle {
 	// Label displaying the author of the tweet
 	Text {
 		id: author_text
-		text: tweet.author.screen_name
+		text: control.tweet.author.screen_name
 		verticalAlignment: Text.AlignVCenter
 		font.family: font_name
 		font.pixelSize: font_size
@@ -112,7 +114,7 @@ Rectangle {
 	// Label displaying when the tweet was posted
 	Text {
 		id: date_text
-		text: tweet.whenWasItPosted();
+		text: control.tweet.whenWasItPosted();
 		anchors.left: author_text.right
 		anchors.leftMargin: margin
 		font.family: font_name
@@ -128,7 +130,7 @@ Rectangle {
 	// Content of the tweet
 	Text {
 		id: text
-		text: tweet.getDisplayText();
+		text: control.tweet.getDisplayText();
 		font.family: font_name
 		font.pixelSize: font_size
 		anchors.left: author_text.left
@@ -142,7 +144,7 @@ Rectangle {
 	// Source of the tweet
 	Text {
 		id: source_text
-		text: tweet.getDisplaySource();
+		text: control.tweet.getDisplaySource();
 		color: "#757575"
 		font.italic: true
 		font.family: font_name
@@ -158,7 +160,7 @@ Rectangle {
 	Row {
 		id: action_row
 		spacing: margin
-		height: 74
+		height: reply_action.height
 		anchors.right: parent.right
 		anchors.rightMargin: margin
 		anchors.bottom: parent.bottom
@@ -207,7 +209,7 @@ Rectangle {
 
 		Text {
 			id: favorite_action
-			text: tweet.favorited ? qsTr("Unfavorite") : qsTr("Favorite")
+			text: control.tweet.favorited ? qsTr("Unfavorite") : qsTr("Favorite")
 			font.family: font_name
 			font.pixelSize: font_size
 
@@ -215,7 +217,7 @@ Rectangle {
 				id: favorite_act
 				anchors.fill: parent
 				onClicked: {
-					if (tweet.favorited) {
+					if (control.tweet.favorited) {
 						control.unfavorite()
 					} else {
 						control.favorite()
@@ -240,38 +242,38 @@ Rectangle {
 
 			PropertyChanges {
 				target: tweet_author_avatar
-				source: tweet.retweet.author.profile_image_url
+				source: control.tweet.retweet.author.profile_image_url
 			}
 
 			PropertyChanges {
 				target: retweeter_avatar
 				visible: true
-				source: tweet.author.profile_image_url
+				source: control.tweet.author.profile_image_url
 			}
 
 			// New author and new margin to not move the QML Component
 			PropertyChanges {
 				target: author_text
-				text: tweet.retweet.author.screen_name
+				text: control.tweet.retweet.author.screen_name
 				anchors.leftMargin: 2*margin
 			}
 
 			// New date
 			PropertyChanges {
 				target: date_text
-				text: tweet.retweet.whenWasItPosted();
+				text: control.tweet.retweet.whenWasItPosted();
 			}
 
 			// New text (i.e. not beginning by "RT @qqn: ")
 			PropertyChanges {
 				target: text
-				text: tweet.retweet.getDisplayText();
+				text: control.tweet.retweet.getDisplayText();
 			}
 
 			// Original source of the retweet
 			PropertyChanges {
 				target: source_text
-				text: tweet.retweet.getDisplaySource();
+				text: control.tweet.retweet.getDisplaySource();
 			}
 		},
 		State {

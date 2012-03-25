@@ -25,7 +25,8 @@
 #define TIMELINECONTROL_HPP
 
 #include <QObject>
-#include "../../model/timelines/timeline.hpp"
+#include <QDeclarativeListProperty>
+#include "../../model/timelines/timelinemodel.hpp"
 #include "../reyncore.hpp"
 
 /// @class TimelineControl
@@ -75,22 +76,46 @@ class TimelineControl : public QObject
 		ReynCore reyn;
 
 		/// @brief Timeline to display
-		Q_PROPERTY(Timeline * timeline
+		Q_PROPERTY(QDeclarativeListProperty<Tweet> timeline
 				   READ getTimeline
 				   WRITE setTimeline
 				   NOTIFY timelineChanged)
 
 		/// @fn Timeline getTimeline();
 		/// @brief Reading the property timeline
-		Timeline * getTimeline();
+		QDeclarativeListProperty<Tweet> getTimeline();
 
 		/// @fn void setTimeline(Timeline tl);
 		/// @brief Writing the property timeline
-		void setTimeline(Timeline * tl);
+		void setTimeline(QDeclarativeListProperty<Tweet> tl);
 
-		/// @brief Attribute behind the property timeline
-		Timeline statuses;
+		/// @fn void setTimeline(Timeline tl);
+		/// @brief Writing the property timeline
+		void setTimeline(TimelineModel * tl);
 
+		TimelineModel model;
+
+		Q_PROPERTY(Tweet * deft READ dt)
+
+		Tweet * dt();
+
+		/// @brief Timeline to display
+		Q_PROPERTY(QVariant timelineStr
+				   READ getTimelineStr
+				   NOTIFY timelineChanged)
+
+		/// @fn Timeline getTimeline();
+		/// @brief Reading the property timeline
+		QVariant getTimelineStr() {
+			QStringList res;
+
+			for (int var = 0; var < model.size(); ++var) {
+				Tweet * t = model.at(var);
+				res.append(t->toString());
+			}
+
+			return res;
+		}
 };
 
 #endif // TIMELINECONTROL_HPP

@@ -23,12 +23,29 @@
 
 #include <QJson/QObjectHelper>
 #include "reyntweetsmappable.hpp"
+#include <QMetaProperty>
 
 /////////////
 // Coplien //
 /////////////
 
 // Default constructor
+ReynTweetsMappable::ReynTweetsMappable(QObject o, bool blacklistObjectName) :
+	QObject(),
+	ReynTweetsSerializable<QVariantMap>(),
+	transientProperties()
+{
+	blacklistProperties(blacklistObjectName);
+
+	// Recopying properties
+	QMetaObject omo = *o.metaObject();
+
+	for (int i = 0; i < omo.propertyCount(); i++) {
+		const char * name = omo.property(i).name();
+		QVariant value = omo.property(i).read(&o);
+		setProperty(name, value);
+	}
+}
 ReynTweetsMappable::ReynTweetsMappable(bool blacklistObjectName) :
 	QObject(),
 	ReynTweetsSerializable<QVariantMap>(),
@@ -64,7 +81,7 @@ void ReynTweetsMappable::recopie(const ReynTweetsMappable & mappable) {
 // Building transientProperties
 void ReynTweetsMappable::blacklistProperties(bool blacklistObjectName) {
 	if (blacklistObjectName) {
-		transientProperties.append(QString(QLatin1String("objectName")));
+		transientProperties.append("objectName");
 	}
 }
 

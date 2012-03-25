@@ -107,7 +107,8 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Tweet Entities
 		Q_PROPERTY(QVariantMap entities
 				   READ getEntitiesProperty
-				   WRITE setEntities)
+				   WRITE setEntities
+				   NOTIFY entitiesChanged)
 
 		/// @fn QVariantMap getEntitiesProperty();
 		/// @brief Reading the property entities
@@ -124,42 +125,48 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Property corresponding to replyToUserID
 		Q_PROPERTY(qlonglong in_reply_to_user_id
 				   READ getInReplyToUserID
-				   WRITE setInReplyToUserID)
+				   WRITE setInReplyToUserID
+				   NOTIFY inReplyToUserIDChanged)
 
 		// truncated
 		/// @property truncated
 		/// @brief Is the tweet truncated ?
 		Q_PROPERTY(bool truncated
 				   READ isTruncated
-				   WRITE setTruncated)
+				   WRITE setTruncated
+				   NOTIFY truncatedChanged)
 
 		// favorited
 		/// @property favorited
 		/// @brief Is the tweet favorited ?
 		Q_PROPERTY(bool favorited
 				   READ isFavorited
-				   WRITE setFavorited)
+				   WRITE setFavorited
+				   NOTIFY favoritedChanged)
 
 		// retweet_count
 		/// @property retweet_count
 		/// @brief How many times the tweet has been retweeted ?
 		Q_PROPERTY(int retweet_count
 				   READ getRetweetCount
-				   WRITE setRetweetCount)
+				   WRITE setRetweetCount
+				   NOTIFY retweetCountChanged)
 
 		// in_reply_to_screen_name
 		/// @property in_reply_to_screen_name
 		/// @brief Screen name corresponding to the user ID in_reply_to_user_id
 		Q_PROPERTY(QString in_reply_to_screen_name
 				   READ getInReplyToScreenName
-				   WRITE setInReplyToScreenName)
+				   WRITE setInReplyToScreenName
+				   NOTIFY inReplyToScreenNameChanged)
 
 		// created_at
 		/// @property created_at
 		/// @brief Serializable form of createdAt
 		Q_PROPERTY(QString created_at
 				   READ getCreatedAtProperty
-				   WRITE setCreatedAt)
+				   WRITE setCreatedAt
+				   NOTIFY createdAtChanged)
 
 		/// @fn QString getCreatedAtProperty();
 		/// @brief Reading created_at
@@ -176,14 +183,16 @@ class Tweet : public ReynTweetsMappable
 		/// @brief String form of in_reply_to_status_id
 		Q_PROPERTY(QString in_reply_to_status_id_str
 				   READ getInReplyToStatusIDstr
-				   WRITE setInReplyToStatusIDstr)
+				   WRITE setInReplyToStatusIDstr
+				   NOTIFY inReplyToStatusIDstrChanged)
 
 		// user
 		/// @property user
 		/// @brief User who wrote the tweet
 		Q_PROPERTY(QVariantMap user
 				   READ getUserProperty
-				   WRITE setUser)
+				   WRITE setUser
+				   NOTIFY userChanged)
 
 		/// @fn QVariantMap getUserProperty();
 		/// @brief Reading the property user
@@ -198,72 +207,82 @@ class Tweet : public ReynTweetsMappable
 		/// @property author
 		/// @brief User who wrote the tweet. Used to get information
 		/// to display about the author of the tweet (in a TweetPane).
-		Q_PROPERTY(UserInfos author
-				   READ getUser
-				   WRITE setUser)
+		Q_PROPERTY(UserInfos * author
+				   READ getAuthor
+				   WRITE setAuthor
+				   NOTIFY userChanged)
 //*/
 		// retweeted
 		/// @property retweeted
 		/// @brief Is the tweet retweeted ?
 		Q_PROPERTY(bool retweeted
 				   READ isRetweeted
-				   WRITE setRetweeted)
+				   WRITE setRetweeted
+				   NOTIFY retweetedChanged)
 
 		// in_reply_to_user_id_str
 		/// @property in_reply_to_user_id_str
 		/// @brief String version of in_reply_to_user_id
 		Q_PROPERTY(QString in_reply_to_user_id_str
 				   READ getInReplyToUserIDstr
-				   WRITE setInReplyToUserIDstr)
+				   WRITE setInReplyToUserIDstr
+				   NOTIFY inReplyToUserIDstrChanged)
 
 		// id_str
 		/// @property id_str
 		/// @brief String version of the tweet ID.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
-				   WRITE setIDstr)
+				   WRITE setIDstr
+				   NOTIFY idStrChanged)
 
 		// source
 		/// @property source
 		/// @brief Source of the tweet (Twitter client)
 		Q_PROPERTY(QString source
 				   READ getSource
-				   WRITE setSource)
+				   WRITE setSource
+				   NOTIFY sourceChanged)
 
 		// id
 		/// @property id
 		/// @brief Tweet ID
 		Q_PROPERTY(qlonglong id
 				   READ getID
-				   WRITE setID)
+				   WRITE setID
+				   NOTIFY idChanged)
 
 		// in_reply_to_status_id
 		/// @property in_reply_to_status_id
 		/// @brief Property corresponding to replyToTweetID
 		Q_PROPERTY(qlonglong in_reply_to_status_id
 				   READ getInReplyToStatusID
-				   WRITE setInReplyToStatusID)
+				   WRITE setInReplyToStatusID
+				   NOTIFY inReplyToStatusIDChanged)
 
 		// text
 		/// @property text
 		/// @brief Content of the tweet (the famous 140 characters)
 		Q_PROPERTY(QString text
 				   READ getText
-				   WRITE setText)
+				   WRITE setText
+				   NOTIFY textChanged)
 
 		// sensible
 		/// @property sensible
 		/// @brief Is the content of the tweet sensible
 		Q_PROPERTY(bool sensible
 				   READ isSensible
-				   WRITE setSensible)
+				   WRITE setSensible
+				   NOTIFY sensibleChanged)
 
 		// retweeted_status
 		/// @property retweeted_status
 		/// @brief Serializable form of retweetedTweet
 		Q_PROPERTY(QVariantMap retweeted_status
 				   READ getRetweetedStatusProperty
-				   WRITE setRetweetedStatus)
+				   WRITE setRetweetedStatus
+				   NOTIFY retweetedStatusChanged)
 
 		/// @fn QVariantMap getRetweetedStatusProperty();
 		/// @brief Reading retweeted_status
@@ -277,9 +296,10 @@ class Tweet : public ReynTweetsMappable
 //*
 		/// @property retweet
 		/// @brief The retweet to display in a TweetPane
-		Q_PROPERTY(Tweet retweet
+		Q_PROPERTY(Tweet * retweet
 				   READ getRetweetedStatus
-				   WRITE setRetweetedStatus)
+				   WRITE setRetweetedStatus
+				   NOTIFY retweetedStatusChanged)
 //*/
 		/*
 		 * Properties that are not here :
@@ -288,6 +308,80 @@ class Tweet : public ReynTweetsMappable
 		 * - coordinates
 		 * - contributors
 		 */
+
+
+	signals:
+		/// @fn void entitiesChanged();
+		/// @brief Emitted when the entities property changes
+		void entitiesChanged();
+
+		/// @fn void inReplyToUserIDChanged();
+		/// @brief Emitted when the in_reply_to_user_id property changes
+		void inReplyToUserIDChanged();
+
+		/// @fn void truncatedChanged();
+		/// @brief Emitted when the truncated property changes
+		void truncatedChanged();
+
+		/// @fn void favoritedChanged();
+		/// @brief Emitted when the favorited property changes
+		void favoritedChanged();
+
+		/// @fn void retweetCountChanged();
+		/// @brief Emitted when the retweet_count property changes
+		void retweetCountChanged();
+
+		/// @fn void inReplyToScreenNameChanged();
+		/// @brief Emitted when the in_reply_to_screen_name property changes
+		void inReplyToScreenNameChanged();
+
+		/// @fn void createdAtChanged();
+		/// @brief Emitted when the created_at property changes
+		void createdAtChanged();
+
+		/// @fn void inReplyToStatusIDstrChanged();
+		/// @brief Emitted when the in_reply_to_status_id_str property changes
+		void inReplyToStatusIDstrChanged();
+
+		/// @fn void userChanged();
+		/// @brief Emitted when the user and author properties change
+		void userChanged();
+
+		/// @fn void retweetedChanged();
+		/// @brief Emitted when the retweeted property changes
+		void retweetedChanged();
+
+		/// @fn void inReplyToUserIDstrChanged();
+		/// @brief Emitted when the in_reply_to_user_id_str property changes
+		void inReplyToUserIDstrChanged();
+
+		/// @fn void idStrChanged();
+		/// @brief Emitted when the id_str property changes
+		void idStrChanged();
+
+		/// @fn void sourceChanged();
+		/// @brief Emitted when the source property changes
+		void sourceChanged();
+
+		/// @fn void idChanged();
+		/// @brief Emitted when the id property changes
+		void idChanged();
+
+		/// @fn void inReplyToStatusIDChanged();
+		/// @brief Emitted when the in_reply_to_status_id property changes
+		void inReplyToStatusIDChanged();
+
+		/// @fn void textChanged();
+		/// @brief Emitted when the text property changes
+		void textChanged();
+
+		/// @fn void sensibleChanged();
+		/// @brief Emitted when the sensible property changes
+		void sensibleChanged();
+
+		/// @fn void retweetedStatusChanged();
+		/// @brief Emitted when the retweeted_status and retweet properties change
+		void retweetedStatusChanged();
 
 
 	//////////////////////
@@ -483,6 +577,17 @@ class Tweet : public ReynTweetsMappable
 		/// @param newValue New value for user
 		void setUser(UserInfos newValue);
 
+		// author
+		/// @fn UserInfos * getAuthor();
+		/// @brief Reading author
+		/// @return profile
+		UserInfos * getAuthor();
+
+		/// @fn void setAuthor(UserInfos * newValue);
+		/// @brief Writing author
+		/// @param newValue New value for author
+		void setAuthor(UserInfos * newValue);
+
 		// retweeted
 		/// @fn bool isRetweeted();
 		/// @brief Reading retweeted
@@ -572,15 +677,15 @@ class Tweet : public ReynTweetsMappable
 		void setSensible(bool newValue);
 
 		// retweeted_status
-		/// @fn Tweet getRetweetedStatus();
+		/// @fn Tweet * getRetweetedStatus();
 		/// @brief Reading retweeted_status
 		/// @return lastTweetMap
-		Tweet getRetweetedStatus();
+		Tweet * getRetweetedStatus();
 
-		/// @fn void setRetweetedStatus(Tweet retweet);
+		/// @fn void setRetweetedStatus(Tweet * retweet);
 		/// @brief Writing retweeted_status
 		/// @param retweet The new value of the property
-		void setRetweetedStatus(Tweet retweet);
+		void setRetweetedStatus(Tweet * retweet);
 
 
 	//////////////////////////////////

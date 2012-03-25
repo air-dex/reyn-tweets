@@ -103,35 +103,40 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of contributorsEnabled
 		Q_PROPERTY(bool contributors_enabled
 				   READ isContributorsEnabled
-				   WRITE setContributorsEnabled)
+				   WRITE setContributorsEnabled
+				   NOTIFY contributorsEnabledChanged)
 
 		// lang
 		/// @property lang
 		/// @brief Serializable form of language
 		Q_PROPERTY(QString lang
 				   READ getLang
-				   WRITE setLang)
+				   WRITE setLang
+				   NOTIFY langChanged)
 
 		// profile_background_image_url
 		/// @property profile_background_image_url
 		/// @brief Serializable form of backgroundURL
 		Q_PROPERTY(QString profile_background_image_url
 				   READ getProfileBackgroundImageURL
-				   WRITE setProfileBackgroundImageURL)
+				   WRITE setProfileBackgroundImageURL
+				   NOTIFY profileBackgroundImageURLChanged)
 
 		// protected
 		/// @property protected
 		/// @brief Serializable form of protectedAccount
 		Q_PROPERTY(bool protected
 				   READ isProtected
-				   WRITE setProtected)
+				   WRITE setProtected
+				   NOTIFY protectedChanged)
 
 		// profile_link_color
 		/// @property profile_link_color
 		/// @brief Serializable form of linkColor
 		Q_PROPERTY(QString profile_link_color
 				   READ getProfileLinkColorProperty
-				   WRITE setProfileLinkColor)
+				   WRITE setProfileLinkColor
+				   NOTIFY profileLinkColorChanged)
 
 		/// @fn QString getProfileLinkColorProperty();
 		/// @brief Reading profile_link_color
@@ -148,35 +153,40 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of userURL
 		Q_PROPERTY(QString url
 				   READ getURL
-				   WRITE setURL)
+				   WRITE setURL
+				   NOTIFY urlChanged)
 
 		// name
 		/// @property name
 		/// @brief Serializable form of userName
 		Q_PROPERTY(QString name
 				   READ getName
-				   WRITE setName)
+				   WRITE setName
+				   NOTIFY nameChanged)
 
 		// listed_count
 		/// @property listed_count
 		/// @brief Serializable form of listedCount
 		Q_PROPERTY(int listed_count
 				   READ getListedCount
-				   WRITE setListedCount)
+				   WRITE setListedCount
+				   NOTIFY listedCountChanged)
 
 		// utc_offset
 		/// @property utc_offset
 		/// @brief Serializable form of timeZoneOffset
 		Q_PROPERTY(int utc_offset
 				   READ getUTCoffset
-				   WRITE setUTCoffset)
+				   WRITE setUTCoffset
+				   NOTIFY utcOffsetChanged)
 
 		// profile_background_color
 		/// @property profile_background_color
 		/// @brief Serializable form of backgroundColor
 		Q_PROPERTY(QString profile_background_color
 				   READ getProfileBackgroundColorProperty
-				   WRITE setProfileBackgroundColor)
+				   WRITE setProfileBackgroundColor
+				   NOTIFY profileBackgroundColorChanged)
 
 		/// @fn QString getProfileBackgroundColorProperty();
 		/// @brief Reading profile_background_color
@@ -193,42 +203,48 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of followersCount
 		Q_PROPERTY(int followers_count
 				   READ getFollowersCount
-				   WRITE setFollowersCount)
+				   WRITE setFollowersCount
+				   NOTIFY followersCountChanged)
 
 		// profile_image_url
 		/// @property profile_image_url
 		/// @brief Serializable form of avatarURL
 		Q_PROPERTY(QString profile_image_url
 				   READ getProfileImageURL
-				   WRITE setProfileImageURL)
+				   WRITE setProfileImageURL
+				   NOTIFY profileImageURLChanged)
 
 		// description
 		/// @property description
 		/// @brief Serializable form of userDescription
 		Q_PROPERTY(QString description
 				   READ getDescription
-				   WRITE setDescription)
+				   WRITE setDescription
+				   NOTIFY descriptionChanged)
 
 		// profile_background_tile
 		/// @property profile_background_tile
 		/// @brief Serializable form of backgroundTile
 		Q_PROPERTY(bool profile_background_tile
 				   READ isProfileBackgroundTile
-				   WRITE setProfileBackgroundTile)
+				   WRITE setProfileBackgroundTile
+				   NOTIFY profileBackgroundTileChanged)
 
 		// statuses_count
 		/// @property statuses_count
 		/// @brief Serializable form of tweetsCount
 		Q_PROPERTY(int statuses_count
 				   READ getStatusesCount
-				   WRITE setStatusesCount)
+				   WRITE setStatusesCount
+				   NOTIFY statusesCountChanged)
 
 		// created_at
 		/// @property created_at
 		/// @brief Serializable form of createdAt
 		Q_PROPERTY(QString created_at
 				   READ getCreatedAtProperty
-				   WRITE setCreatedAt)
+				   WRITE setCreatedAt
+				   NOTIFY createdAtChanged)
 
 		/// @fn QString getCreatedAtProperty();
 		/// @brief Reading created_at
@@ -245,7 +261,8 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of sidebarColor
 		Q_PROPERTY(QString profile_sidebar_fill_color
 				   READ getProfileSidebarFillColorProperty
-				   WRITE setProfileSidebarFillColor)
+				   WRITE setProfileSidebarFillColor
+				   NOTIFY profileSidebarFillColorChanged)
 
 		/// @fn QString getProfileSidebarFillColorProperty();
 		/// @brief Reading profile_sidebar_fill_color
@@ -262,35 +279,40 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of screenName
 		Q_PROPERTY(QString screen_name
 				   READ getScreenName
-				   WRITE setScreenName)
+				   WRITE setScreenName
+				   NOTIFY screenNameChanged)
 
 		// geo_enabled
 		/// @property geo_enabled
 		/// @brief Serializable form of geoEnabled
 		Q_PROPERTY(bool geo_enabled
 				   READ isGeoEnabled
-				   WRITE setGeoEnabled)
+				   WRITE setGeoEnabled
+				   NOTIFY geoEnabledChanged)
 
 		// default_profile_image
 		/// @property default_profile_image
 		/// @brief Serializable form of defaultProfileImage
 		Q_PROPERTY(bool default_profile_image
 				   READ isDefaultProfileImage
-				   WRITE setDefaultProfileImage)
+				   WRITE setDefaultProfileImage
+				   NOTIFY defaultProfileImageChanged)
 
 		// friends_count
 		/// @property friends_count
 		/// @brief Serializable form of friendsCount
 		Q_PROPERTY(int friends_count
 				   READ getFriendsCount
-				   WRITE setFriendsCount)
+				   WRITE setFriendsCount
+				   NOTIFY friendsCountChanged)
 
 		// profile_sidebar_border_color
 		/// @property profile_sidebar_border_color
 		/// @brief Serializable form of sidebarBorderColor
 		Q_PROPERTY(QString profile_sidebar_border_color
 				   READ getProfileSidebarBorderColorProperty
-				   WRITE setProfileSidebarBorderColor)
+				   WRITE setProfileSidebarBorderColor
+				   NOTIFY profileSidebarBorderColorChanged)
 
 		/// @fn QString getProfileSidebarBorderColorProperty();
 		/// @brief Reading profile_sidebar_border_color
@@ -307,98 +329,112 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of userIDstr
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
-				   WRITE setIDstr)
+				   WRITE setIDstr
+				   NOTIFY idStrChanged)
 
 		// show_all_inline_media
 		/// @property show_all_inline_media
 		/// @brief Serializable form of showAllInlineMedia
 		Q_PROPERTY(bool show_all_inline_media
 				   READ isShowAllInlineMedia
-				   WRITE setShowAllInlineMedia)
+				   WRITE setShowAllInlineMedia
+				   NOTIFY showAllInlineMediaChanged)
 
 		// follow_request_sent
 		/// @property follow_request_sent
 		/// @brief Serializable form of followRequestSent
 		Q_PROPERTY(bool follow_request_sent
 				   READ isFollowRequestSent
-				   WRITE setFollowRequestSent)
+				   WRITE setFollowRequestSent
+				   NOTIFY followRequestSentChanged)
 
 		// profile_background_image_url_https
 		/// @property profile_background_image_url_https
 		/// @brief Serializable form of backgroundURLhttps
 		Q_PROPERTY(QString profile_background_image_url_https
 				   READ getProfileBackgroundImageURLhttps
-				   WRITE setProfileBackgroundImageURLhttps)
+				   WRITE setProfileBackgroundImageURLhttps
+				   NOTIFY profileBackgroundImageURLhttpsChanged)
 
 		// is_translator
 		/// @property is_translator
 		/// @brief Serializable form of isTranslator
 		Q_PROPERTY(bool is_translator
 				   READ isTranslator
-				   WRITE setTranslator)
+				   WRITE setTranslator
+				   NOTIFY isTranslatorChanged)
 
 		// default_profile
 		/// @property default_profile
 		/// @brief Serializable form of defaultProfile
 		Q_PROPERTY(bool default_profile
 				   READ isDefaultProfile
-				   WRITE setDefaultProfile)
+				   WRITE setDefaultProfile
+				   NOTIFY defaultProfileChanged)
 
 		// notifications
 		/// @property notifications
 		/// @brief Serializable form of notificationsEnabled
 		Q_PROPERTY(bool notifications
 				   READ isNotifications
-				   WRITE setNotifications)
+				   WRITE setNotifications
+				   NOTIFY notificationsChanged)
 
 		// profile_use_background_image
 		/// @property profile_use_background_image
 		/// @brief Serializable form of useBackgroundImage
 		Q_PROPERTY(bool profile_use_background_image
 				   READ isProfileUseBackgroundImage
-				   WRITE setProfileUseBackgroundImage)
+				   WRITE setProfileUseBackgroundImage
+				   NOTIFY profileUseBackgroundImageChanged)
 
 		// profile_image_url_https
 		/// @property profile_image_url_https
 		/// @brief Serializable form of avatarURLhttps
 		Q_PROPERTY(QString profile_image_url_https
 				   READ getProfileImageURLhttps
-				   WRITE setProfileImageURLhttps)
+				   WRITE setProfileImageURLhttps
+				   NOTIFY profileImageURLhttpsChanged)
 
 		// id
 		/// @property id
 		/// @brief Serializable form of userID
 		Q_PROPERTY(qlonglong id
 				   READ getID
-				   WRITE setID)
+				   WRITE setID
+				   NOTIFY idChanged)
 
 		// verified
 		/// @property verified
 		/// @brief Serializable form of verifiedAccount
 		Q_PROPERTY(bool verified
 				   READ isVerified
-				   WRITE setVerified)
+				   WRITE setVerified
+				   NOTIFY verifiedChanged)
 
 		// time_zone
 		/// @property time_zone
 		/// @brief Serializable form of timeZone
 		Q_PROPERTY(QString time_zone
 				   READ getTimeZone
-				   WRITE setTimeZone)
+				   WRITE setTimeZone
+				   NOTIFY timeZoneChanged)
 
 		// favourites_count
 		/// @property favourites_count
 		/// @brief Serializable form of favouritesCount
 		Q_PROPERTY(int favourites_count
 				   READ getFavouritesCount
-				   WRITE setFavouritesCount)
+				   WRITE setFavouritesCount
+				   NOTIFY favouritesCountChanged)
 
 		// profile_text_color
 		/// @property profile_text_color
 		/// @brief Serializable form of textColor
 		Q_PROPERTY(QString profile_text_color
 				   READ getProfileTextColorProperty
-				   WRITE setProfileTextColor)
+				   WRITE setProfileTextColor
+				   NOTIFY profileTextColorChanged)
 
 		/// @fn QString getProfileTextColorProperty();
 		/// @brief Reading profile_text_color
@@ -415,7 +451,158 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Serializable form of userLocation
 		Q_PROPERTY(QString location
 				   READ getLocation
-				   WRITE setLocation)
+				   WRITE setLocation
+				   NOTIFY locationChanged)
+
+	signals:
+		/// @fn void contributorsEnabledChanged();
+		/// @brief Emitted when the property contributors_enabled changes
+		void contributorsEnabledChanged();
+
+		/// @fn void langChanged();
+		/// @brief Emitted when the property lang changes
+		void langChanged();
+
+		/// @fn void profileBackgroundImageURLChanged();
+		/// @brief Emitted when the property profile_background_image_url changes
+		void profileBackgroundImageURLChanged();
+
+		/// @fn void protectedChanged();
+		/// @brief Emitted when the property protected changes
+		void protectedChanged();
+
+		/// @fn void profileLinkColorChanged();
+		/// @brief Emitted when the property profile_link_color changes
+		void profileLinkColorChanged();
+
+		/// @fn void urlChanged();
+		/// @brief Emitted when the property url changes
+		void urlChanged();
+
+		/// @fn void nameChanged();
+		/// @brief Emitted when the property name changes
+		void nameChanged();
+
+		/// @fn void listedCountChanged();
+		/// @brief Emitted when the property listed_count changes
+		void listedCountChanged();
+
+		/// @fn void utcOffsetChanged();
+		/// @brief Emitted when the property utc_offset changes
+		void utcOffsetChanged();
+
+		/// @fn void profileBackgroundColorChanged();
+		/// @brief Emitted when the property  profile_background_color changes
+		void profileBackgroundColorChanged();
+
+		/// @fn void followersCountChanged();
+		/// @brief Emitted when the property followers_countchanges
+		void followersCountChanged();
+
+		/// @fn void profileImageURLChanged();
+		/// @brief Emitted when the property  profile_image_url changes
+		void profileImageURLChanged();
+
+		/// @fn void descriptionChanged();
+		/// @brief Emitted when the property description changes
+		void descriptionChanged();
+
+		/// @fn void profileBackgroundTileChanged();
+		/// @brief Emitted when the property profile_background_tile changes
+		void profileBackgroundTileChanged();
+
+		/// @fn void statusesCountChanged();
+		/// @brief Emitted when the property statuses_count changes
+		void statusesCountChanged();
+
+		/// @fn void createdAtChanged();
+		/// @brief Emitted when the property created_at changes
+		void createdAtChanged();
+
+		/// @fn void profileSidebarFillColorChanged();
+		/// @brief Emitted when the property profile_sidebar_fill_color changes
+		void profileSidebarFillColorChanged();
+
+		/// @fn void screenNameChanged();
+		/// @brief Emitted when the property screen_name changes
+		void screenNameChanged();
+
+		/// @fn void geoEnabledChanged();
+		/// @brief Emitted when the property geo_enabled changes
+		void geoEnabledChanged();
+
+		/// @fn void defaultProfileImageChanged();
+		/// @brief Emitted when the property default_profile_image changes
+		void defaultProfileImageChanged();
+
+		/// @fn void friendsCountChanged();
+		/// @brief Emitted when the property friends_count changes
+		void friendsCountChanged();
+
+		/// @fn void profileSidebarBorderColorChanged();
+		/// @brief Emitted when the property profile_sidebar_border_color changes
+		void profileSidebarBorderColorChanged();
+
+		/// @fn void idStrChanged();
+		/// @brief Emitted when the property id_str changes
+		void idStrChanged();
+
+		/// @fn void showAllInlineMediaChanged();
+		/// @brief Emitted when the property show_all_inline_media changes
+		void showAllInlineMediaChanged();
+
+		/// @fn void followRequestSentChanged();
+		/// @brief Emitted when the property follow_request_sent changes
+		void followRequestSentChanged();
+
+		/// @fn void profileBackgroundImageURLhttpsChanged();
+		/// @brief Emitted when the property profile_background_image_url_https
+		/// changes
+		void profileBackgroundImageURLhttpsChanged();
+
+		/// @fn void isTranslatorChanged();
+		/// @brief Emitted when the property is_translator changes
+		void isTranslatorChanged();
+
+		/// @fn void defaultProfileChanged();
+		/// @brief Emitted when the property default_profile changes
+		void defaultProfileChanged();
+
+		/// @fn void notificationsChanged();
+		/// @brief Emitted when the property notifications changes
+		void notificationsChanged();
+
+		/// @fn void profileUseBackgroundImageChanged();
+		/// @brief Emitted when the property profile_use_background_image changes
+		void profileUseBackgroundImageChanged();
+
+		/// @fn void profileImageURLhttpsChanged();
+		/// @brief Emitted when the property profile_image_url_https changes
+		void profileImageURLhttpsChanged();
+
+		/// @fn void idChanged();
+		/// @brief Emitted when the property id changes
+		void idChanged();
+
+		/// @fn void verifiedChanged();
+		/// @brief Emitted when the property verified changes
+		void verifiedChanged();
+
+		/// @fn void timeZoneChanged();
+		/// @brief Emitted when the property time_zone changes
+		void timeZoneChanged();
+
+		/// @fn void favouritesCountChanged();
+		/// @brief Emitted when the property favorites_count changes
+		void favouritesCountChanged();
+
+		/// @fn void profileTextColorChanged();
+		/// @brief Emitted when the property profile_text_color changes
+		void profileTextColorChanged();
+
+		/// @fn void locationChanged();
+		/// @brief Emitted when the property location changes
+		void locationChanged();
 
 
 	/////////////////////

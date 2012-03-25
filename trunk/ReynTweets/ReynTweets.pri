@@ -111,7 +111,11 @@ SOURCES += \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/timelinecontrol.cpp \
-	main.cpp
+	main.cpp \
+	model/timelines/timelinemodel.cpp \
+	model/timelines/timelinelistmodel.cpp \
+    model/reyntweetsitemmodel.cpp \
+    model/reyntweetslistmodel.cpp
 
 
 HEADERS  += \
@@ -192,7 +196,11 @@ HEADERS  += \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+	model/timelines/timelinemodel.hpp \
+	model/timelines/timelinelistmodel.hpp \
+    model/reyntweetsitemmodel.hpp \
+    model/reyntweetslistmodel.hpp
 
 
 OTHER_FILES = \
@@ -208,7 +216,8 @@ OTHER_FILES = \
 	ui/qml/qml_files_to_translate.txt \
 	ui/qml/TimelinePane.qml \
 	ui/qml/TimelineModel.qml \
-	ui/qml/TweetElement.qml
+	ui/qml/TweetElement.qml \
+	ui/qml/TimelineDelegate.qml
 
 
 #--------------#

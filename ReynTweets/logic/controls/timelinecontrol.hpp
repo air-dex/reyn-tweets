@@ -44,6 +44,16 @@ class TimelineControl : public QObject
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
+		Q_INVOKABLE Tweet * getTweet(int index) {
+			qDebug(QByteArray("Tweet #").append(QString::number(index)).data());
+			if (index >= 0 && index < model.size()) {
+				return model.at(index);
+			} else {
+				return new Tweet;
+			}
+
+		}
+
 	signals:
 		/// @fn void timelineChanged();
 		/// @brief Signal sent when the timeline property changes
@@ -94,10 +104,6 @@ class TimelineControl : public QObject
 		void setTimeline(TimelineModel * tl);
 
 		TimelineModel model;
-
-		Q_PROPERTY(Tweet * deft READ dt)
-
-		Tweet * dt();
 
 		/// @brief Timeline to display
 		Q_PROPERTY(QVariant timelineStr

@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QJson/QObjectHelper>
+#include <QJson/Parser>
 #include "reyntweetsmappable.hpp"
 #include <QMetaProperty>
 
@@ -85,4 +86,12 @@ QString ReynTweetsMappable::toString() {
 	QJson::Serializer s;
 	QByteArray b = s.serialize(variant);
 	return QString::fromUtf8(b.data());
+}
+
+ReynTweetsMappable ReynTweetsMappable::fromString(QString str) {
+	QJson::Parser p;
+	QVariant v = p.parse(str.toUtf8());
+	ReynTweetsMappable r;
+	r.fillWithVariant(v.toMap());
+	return r;
 }

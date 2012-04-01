@@ -30,13 +30,7 @@ import ReynTweetsEntities 0.1
 ListModel {
 	id: timeline_model
 
-	// Timeline that will be displayed
-	//property list timeline: []
-
-	property Tweet currentTweet
-
-	function tweetToJSObject(tweet) {
-		//var tweetStr = tweet.toString();
+	function toJSObject(tweet) {
 		var tweetObj;
 		eval("tweetObj = " + tweet);
 		return tweetObj;
@@ -48,23 +42,18 @@ ListModel {
 		console.log("Longeur de la TL :" + timeline.length)
 
 		for (var i = 0; i < timeline.length; i++) {
-			var object = tweetToJSObject(timeline[i])
-			//timeline.append(object)
-			/*
-			var tweetElt = new TweetElement;
+			var element = {};
+/*
+			var object = toJSObject(timeline[i])
 
-			tweetElt.tweet = timeline[i];
-
-			timeline_model.append(tweetElt);
-			//*/
-
-			/*
-			timeline_model.append(timeline[i]);
-			//*/
-
-			timeline_model.append(object)
+			element = {
+				obj: object,
+				str: timeline[i]
+			}
+//*/
+			timeline_model.append(element)
 		}
-	}
 
-	//property type name: value
+		console.log("Sync finie")
+	}
 }

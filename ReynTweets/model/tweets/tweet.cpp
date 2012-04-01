@@ -422,3 +422,11 @@ QString Tweet::whenWasItPosted() {
 	// TODO
 	return "Un jour";
 }
+
+Tweet * Tweet::fromString(QString str) {
+	QJson::Parser p;
+	QVariant v = p.parse(str.toUtf8());
+	Tweet * r = new Tweet;
+	r->fillWithVariant(v.toMap());
+	return r;
+}

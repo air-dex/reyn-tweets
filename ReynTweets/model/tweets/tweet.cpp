@@ -407,8 +407,7 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 
 // Getting the (rich) content of the text.
 QString Tweet::getDisplayText() {
-	// TODO
-	return tweet;
+	return retweetedTweet ? retweetSource->tweet : tweet;
 }
 
 // Getting a HTML string of the name of the Twitter client used to post the tweet

@@ -216,7 +216,9 @@ class Tweet : public ReynTweetsMappable
 //*/
 		// retweeted
 		/// @property retweeted
-		/// @brief Is the tweet retweeted ?
+		/// @brief Is the tweet retweeted by the user of the account ?
+		///
+		/// <strong>It does not mean that the tweet is a retweet !</strong>
 		Q_PROPERTY(bool retweeted
 				   READ isRetweeted
 				   WRITE setRetweeted
@@ -690,30 +692,36 @@ class Tweet : public ReynTweetsMappable
 		void setRetweetedStatus(Tweet * retweet);
 
 
-	//////////////////////////////////
-	// Methods used by the QML View //
-	//////////////////////////////////
+		//////////////////////////////////
+		// Methods used by the QML View //
+		//////////////////////////////////
 
-	public slots:
-		/// @fn QString getDisplayText();
+		/// @fn Q_INVOKABLE QString getDisplayText();
 		/// @brief Getting the content of tweet under the form of a HTML string.
 		///
 		/// It is used to display the tweet in a QML View.
 		///	@return The text to display (in a TweetPane)
-		QString getDisplayText();
+		Q_INVOKABLE QString getDisplayText();
 
-		/// @fn QString getDisplaySource();
+		/// @fn Q_INVOKABLE QString getDisplaySource();
 		/// @brief Getting the name of the Twitter client used to post the tweet
 		/// under the form of a HTML string.
 		///
 		/// It is used to display the client name in a QML View.
 		///	@return The text to display
-		QString getDisplaySource();
+		Q_INVOKABLE QString getDisplaySource();
 
-		/// @fn QString whenWasItPosted();
+		/// @fn Q_INVOKABLE QString whenWasItPosted();
 		/// @brief When the tweet was posted ?
 		///	@return A string telling when it was posted
-		QString whenWasItPosted();
+		Q_INVOKABLE QString whenWasItPosted();
+
+		/// @fn Q_INVOKABLE bool isRetweet();
+		/// @brief Method indicating if the tweet is a retweet or not
+		///	@return true if it is a retweet, false otherwise.
+		Q_INVOKABLE bool isRetweet() {
+			return !retweetSource;
+		}
 };
 
 // Serialization of Tweet

@@ -69,6 +69,8 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
+		Q_INVOKABLE static Tweet *fromString(QString str);
+
 	private:
 		/// @fn void recopie(const Tweet & status);
 		/// @brief Copy of a tweet

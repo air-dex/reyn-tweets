@@ -55,8 +55,6 @@ void TimelineControl::setTimeline(QDeclarativeListProperty<Tweet> tl) {
 //	}
 }
 
-Tweet * TimelineControl::dt() {return new Tweet;}
-
 ///////////////////////
 // Loading timelines //
 ///////////////////////

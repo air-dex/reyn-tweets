@@ -95,8 +95,8 @@ Rectangle {
 		Image {
 			id: retweeter_avatar
 			z: avatar_zone.z + 1
-			width: tweet_pane.avatar_side /2
-			height: tweet_pane.avatar_side /2
+			width: tweet_pane.avatar_side * 3/5
+			height: tweet_pane.avatar_side * 3/5
 			anchors.bottom: parent.bottom
 			anchors.bottomMargin: 0
 			anchors.right: parent.right
@@ -245,7 +245,7 @@ Rectangle {
 			// Displaying the retweet author's avatar
 			PropertyChanges {
 				target: avatar_zone
-				side: tweet_pane.avatar_side * 5/4
+				side: tweet_pane.avatar_side * 6/5
 			}
 
 			PropertyChanges {
@@ -256,7 +256,7 @@ Rectangle {
 			PropertyChanges {
 				target: retweeter_avatar
 				visible: true
-				source: retweet.author.profile_image_url
+				source: tweet.author.profile_image_url
 			}
 
 			// New author and new margin to not move the QML Component

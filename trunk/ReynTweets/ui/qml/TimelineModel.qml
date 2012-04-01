@@ -30,28 +30,11 @@ import ReynTweetsEntities 0.1
 ListModel {
 	id: timeline_model
 
-	function toJSObject(tweet) {
-		var tweetObj;
-		eval("tweetObj = " + tweet);
-		return tweetObj;
-	}
-
 	function syncWithTimeline(timeline) {
 		timeline_model.clear();
 
-		console.log("Longeur de la TL :" + timeline.length)
-
 		for (var i = 0; i < timeline.length; i++) {
-			var element = {};
-/*
-			var object = toJSObject(timeline[i])
-
-			element = {
-				obj: object,
-				str: timeline[i]
-			}
-//*/
-			timeline_model.append(element)
+			timeline_model.append({})
 		}
 
 		console.log("Sync finie")

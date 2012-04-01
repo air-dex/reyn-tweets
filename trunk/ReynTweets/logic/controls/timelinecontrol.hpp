@@ -45,7 +45,6 @@ class TimelineControl : public QObject
 		static void declareQML();
 
 		Q_INVOKABLE Tweet * getTweet(int index) {
-			qDebug(QByteArray("Tweet #").append(QString::number(index)).data());
 			if (index >= 0 && index < model.size()) {
 				return model.at(index);
 			} else {

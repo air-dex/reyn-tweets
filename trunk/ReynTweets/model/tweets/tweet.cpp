@@ -192,11 +192,19 @@ QVariantMap Tweet::getRetweetedStatusProperty() {
 
 // Writing retweeted_status
 void Tweet::setRetweetedStatus(QVariantMap statusMap) {
-	if (!retweetSource) {
-		retweetSource = new Tweet();
+	if (statusMap.empty()) {
+		// This is not a retweet
+		if (retweetSource) {
+			delete retweetSource;
+			retweetSource = 0;
+		}
 	}
-
-	retweetSource->fillWithVariant(statusMap);
+	else {
+		if (!retweetSource) {
+			retweetSource = new Tweet;
+		}
+		retweetSource->fillWithVariant(statusMap);
+	}
 	emit retweetedStatusChanged();
 }
 

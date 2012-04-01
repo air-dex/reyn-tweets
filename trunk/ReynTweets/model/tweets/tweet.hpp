@@ -720,7 +720,7 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Method indicating if the tweet is a retweet or not
 		///	@return true if it is a retweet, false otherwise.
 		Q_INVOKABLE bool isRetweet() {
-			return !retweetSource;
+			return retweetSource != 0;
 		}
 };
 

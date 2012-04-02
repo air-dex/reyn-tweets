@@ -213,7 +213,8 @@ OTHER_FILES = \
 	ui/qml/TimelinePane.qml \
 	ui/qml/TimelineModel.qml \
 	ui/qml/TweetElement.qml \
-	ui/qml/TimelineDelegate.qml
+	ui/qml/TimelineDelegate.qml \
+    ui/qml/Constants.qml
 
 
 #--------------#

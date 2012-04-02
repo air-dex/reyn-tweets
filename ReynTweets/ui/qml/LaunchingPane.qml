@@ -31,6 +31,8 @@ Rectangle {
 	width: 360
 	height: 640
 
+	Constants {	id:constant	}
+
 	//////////////////////////
 	// Design of the Widget //
 	//////////////////////////
@@ -64,7 +66,7 @@ Rectangle {
 			font.bold: true
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.bottom: parent.bottom
-			font.family: "Ubuntu"
+			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 			font.pixelSize: 36
@@ -84,25 +86,25 @@ Rectangle {
 		Text {
 			id: copyright
 			text: "(C) 2012 Romain DUCHER (@air_dex)"
-			font.family: "Ubuntu"
+			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.top: parent.top
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: 14
+			font.pixelSize: constant.font_size
 		}
 
 		Text {
 			id: website
 			text: qsTr("Website : ") +  "http://code.google.com/p/reyn-tweeets"
-			font.family: "Ubuntu"
+			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.bottom: parent.bottom
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
-			font.pixelSize: 14
+			font.pixelSize: constant.font_size
 		}
 	}
 

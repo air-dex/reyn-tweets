@@ -40,6 +40,8 @@ Rectangle {
 	/// @brief Property used to access to the control behind the pane
 	property LoginControl ctrl: control
 
+	Constants {	id:constant	}
+
 	id: login_pane
 	width: 360
 	height: min_height
@@ -82,8 +84,8 @@ Rectangle {
 		anchors.topMargin: margin
 		anchors.top: parent.top
 		font.bold: true
-		font.family: "Ubuntu"
-		font.pixelSize: 14
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 		visible: false
 	}
 
@@ -172,9 +174,9 @@ Rectangle {
 		Text {
 			id: legend
 			text: qsTr("Show password")
-			font.family: "Ubuntu"
+			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
-			font.pixelSize: 14
+			font.pixelSize: constant.font_size
 		}
 	}
 

@@ -47,6 +47,8 @@ Rectangle {
 	height: field_background.height + 2*radius
 	radius: 5
 
+	Constants { id:constant }
+
 	// Legend
 	Text {
 		id: text
@@ -55,8 +57,8 @@ Rectangle {
 		anchors.leftMargin: radius
 		anchors.verticalCenter: parent.verticalCenter
 		verticalAlignment: Text.AlignVCenter
-		font.family: "Ubuntu"
-		font.pixelSize: 14
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 	}
 
 	// Rectangle behind field for design concerns.
@@ -82,9 +84,9 @@ Rectangle {
 			anchors.topMargin: parent.radius
 			anchors.fill: parent
 			echoMode: clear_field ? TextInput.Normal : TextInput.Password
-			font.family: "Ubuntu"
+			font.family: constant.font
 			horizontalAlignment: TextEdit.AlignLeft
-			font.pixelSize: 14
+			font.pixelSize: constant.font_size
 		}
 	}
 

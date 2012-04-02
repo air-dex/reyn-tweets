@@ -36,12 +36,6 @@ Rectangle {
 	// Size of a side of an avatar
 	property int margin: 5
 
-	// Name of the font
-	property string font_name: "Ubuntu"
-
-	// Size of the font
-	property int font_size: 14
-
 	// The tweet displayed in this pane
 	property Tweet tweet: control.tweet
 
@@ -49,6 +43,8 @@ Rectangle {
 	height: 150
  border.width: 2
  border.color: "#000000"
+
+	Constants { id:constant }
 
 	Component.onCompleted: {
 		// Treatments if it is a retweet
@@ -110,8 +106,8 @@ Rectangle {
 		id: author_text
 		text:  tweet.author.screen_name
 		verticalAlignment: Text.AlignVCenter
-		font.family: font_name
-		font.pixelSize: font_size
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 		anchors.topMargin: margin
 		anchors.top: parent.top
 		anchors.left: avatar_zone.right
@@ -125,22 +121,22 @@ Rectangle {
 		text: tweet.whenWasItPosted();
 		anchors.left: author_text.right
 		anchors.leftMargin: margin
-		font.family: font_name
+		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignRight
 		anchors.top: parent.top
 		anchors.topMargin: margin
 		anchors.right: parent.right
 		anchors.rightMargin: margin
-		font.pixelSize: font_size
+		font.pixelSize: constant.font_size
 	}
 
 	// Content of the tweet
 	Text {
 		id: text
 		text: tweet.getDisplayText();
-		font.family: font_name
-		font.pixelSize: font_size
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: author_text.bottom
@@ -155,8 +151,8 @@ Rectangle {
 		text: tweet.getDisplaySource();
 		color: "#757575"
 		font.italic: true
-		font.family: font_name
-		font.pixelSize: font_size
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: text.bottom
@@ -179,8 +175,8 @@ Rectangle {
 		Text {
 			id: reply_action
 			text: qsTr("Reply")
-			font.family: font_name
-			font.pixelSize: font_size
+			font.family: constant.font
+			font.pixelSize: constant.font_size
 
 			MouseArea {
 				id: reply_act
@@ -192,8 +188,8 @@ Rectangle {
 		Text {
 			id: retweet_action
 			text: qsTr("Retweet")
-			font.family: font_name
-			font.pixelSize: font_size
+			font.family: constant.font
+			font.pixelSize: constant.font_size
 
 			MouseArea {
 				id: retweet_act
@@ -205,8 +201,8 @@ Rectangle {
 		Text {
 			id: quote_action
 			text: qsTr("Quote")
-			font.family: font_name
-			font.pixelSize: font_size
+			font.family: constant.font
+			font.pixelSize: constant.font_size
 
 			MouseArea {
 				id: quote_act
@@ -218,8 +214,8 @@ Rectangle {
 		Text {
 			id: favorite_action
 			text: tweet.favorited ? qsTr("Unfavorite") : qsTr("Favorite")
-			font.family: font_name
-			font.pixelSize: font_size
+			font.family: constant.font
+			font.pixelSize: constant.font_size
 
 			MouseArea {
 				id: favorite_act

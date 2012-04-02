@@ -44,6 +44,8 @@ Rectangle {
 	width: action_text.width + 2*margin_value
 	height: action_text.height + 2*margin_value
 
+	Constants {	id:constant	}
+
 	/// @brief Signal sent while clicking on the button
 	signal click
 
@@ -58,7 +60,7 @@ Rectangle {
 
 		GradientStop {
 			position: 1
-			color: "#d9781d"
+			color: constant.orange
 		}
 	}
 	border.color: "#000000"
@@ -77,8 +79,8 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		font.family: "Ubuntu"
-		font.pixelSize: 14
+		font.family: constant.font
+		font.pixelSize: constant.font_size
 	}
 
 	// Clickable area of the component

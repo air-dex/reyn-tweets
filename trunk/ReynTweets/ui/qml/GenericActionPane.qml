@@ -50,12 +50,14 @@ Rectangle {
 	color: "#a4a4a4"
 	radius: pane_radius
 
+	Constants {	id:constant	}
+
 	// Text to display.
 	Text {
 		id: description_action
 		width: generic_action_pane.width - 2* generic_action_pane.margin_value
 		text: generic_action_pane.pane_text
-		font.family: "Ubuntu"
+		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft
 		anchors.right: parent.right
@@ -64,7 +66,7 @@ Rectangle {
 		anchors.leftMargin: margin_value
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
-		font.pixelSize: 14
+		font.pixelSize: constant.font_size
 		elide: Text.ElideRight
 	}
 

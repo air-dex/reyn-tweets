@@ -29,6 +29,8 @@ Rectangle {
 	id: main_view
 	property int margin: 5
 
+	Constants {	id:constant	}
+
 	function loadHomeTimeline() {
 		timeline.loadHomeTimeline();
 	}
@@ -44,17 +46,17 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignHCenter
-		font.family: "Ubuntu"
+		font.family: constant.font
 		visible: true
-		font.pixelSize: 14
+		font.pixelSize: constant.font_size
 	}
 
 	TimelinePane {
 		id: timeline
 		anchors.top: mockup.bottom
 		anchors.topMargin: 0
-		anchors.right: parent.right
-		anchors.left: parent.left
-		anchors.bottom: parent.bottom
+		anchors.right: main_view.right
+		anchors.left: main_view.left
+		anchors.bottom: main_view.bottom
 	}
 }

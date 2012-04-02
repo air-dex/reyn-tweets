@@ -50,6 +50,8 @@ Rectangle {
 	/// @brief Signal sent when the user click on the right button
 	signal actRight
 
+	Constants {	id:constant	}
+
 	id: two_buttons_pane
 	width: 360
 	height: description_action.height + spacing + left_button.height
@@ -66,12 +68,12 @@ Rectangle {
 		anchors.left: parent.left
 		anchors.leftMargin: margin_value
 		wrapMode: Text.WordWrap
-		font.family: "Ubuntu"
+		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
-		font.pixelSize: 14
+		font.pixelSize: constant.font_size
 		elide: Text.ElideRight
 	}
 

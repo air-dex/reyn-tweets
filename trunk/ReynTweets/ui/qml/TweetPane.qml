@@ -49,7 +49,6 @@ Rectangle {
 	Component.onCompleted: {
 		// Treatments if it is a retweet
 		if (tweet.isRetweet()) {
-			console.log("Le tweet #" + tweet.id_str + " est un retweet")
 			tweet_pane.state = "Retweet"
 		}
 	}

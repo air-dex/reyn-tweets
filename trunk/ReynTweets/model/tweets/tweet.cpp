@@ -415,12 +415,75 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 
 // Getting the (rich) content of the text.
 QString Tweet::getDisplayText() {
-	return retweetedTweet ? retweetSource->tweet : tweet;
+	QString displayedText = tweet;
+
+//	// Replacing tweet entities by a link
+
+//	// Hashtags
+//	HashtagList hlist = tweetEntities.getHashtags();
+////*
+//	for (HashtagList::Iterator it = hlist.begin();
+//		 it != hlist.end();
+//		 ++it)
+//	{
+//		Hashtag h = *it;
+
+//		IndexBounds bounds = h.getIndices();
+//		QString beginTag = "<a href=\"google.com\">";
+//		QString endTag = "</a>";
+//		displayedText.insert(bounds.getMin(), beginTag);
+//		displayedText.insert(bounds.getMax(), endTag);
+//	}
+////*/
+//	// Mentions
+//	UserMentionList mlist = tweetEntities.getUserMentions();
+
+//	for (UserMentionList::Iterator it = mlist.begin();
+//		 it != mlist.end();
+//		 ++it)
+//	{
+//		UserMention mention = *it;
+
+//		IndexBounds bounds = mention.getIndices();
+
+//		// Do the mention start by "RT " ?
+
+//		//bool startWithRT = tweet.truncate(bounds.getMin()).s;
+
+//		QString beginTag = "<a href=\"google.com\">";
+//		QString endTag = "</a>";
+//		displayedText.insert(bounds.getMin(), beginTag);
+//		displayedText.insert(bounds.getMax(), endTag);
+//	}
+
+//	// URLs
+//	URLEntityList ulist = tweetEntities.getURLs();
+///*
+//	for (URLEntityList::Iterator it = ulist.begin();
+//		 it != ulist.end();
+//		 ++it)
+//	{
+//		URLEntity url = *it;
+
+//		IndexBounds bounds = url.getIndices();
+//		QString displayURL = url.getDisplayedURL();
+//		QString beginTag = "<a href=\"" + url.getURL() + "\">";
+//		QString endTag = "</a>";
+//		QString newText = beginTag + displayURL + endTag;
+//		displayedText.replace(bounds.getMin(), bounds.getMax() - bounds.getMin(), newText);
+//	}
+////*/
+//	// TODO : Medias
+
+//	qDebug("Le texte :");
+//	qDebug(displayedText.toUtf8().data());
+
+	return displayedText;
 }
 
 // Getting a HTML string of the name of the Twitter client used to post the tweet
 QString Tweet::getDisplaySource() {
-	// TODO
+	// TODO : faire en sorte que quand on clique dessus, ça lance le navigateur vers le lien de l'appli
 	return sourceClient;
 }
 

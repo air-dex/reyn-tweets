@@ -25,6 +25,7 @@
 #include <QLocale>
 #include <QScriptEngine>
 #include <QTranslator>
+#include <QIcon>
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
@@ -115,6 +116,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	#endif
 
 	QmlApplicationViewer viewer;
+	const QString iconName = "./ReynTweets.ico";
+	QIcon icone(iconName);
+	if (icone.isNull())
+		qDebug("Pas bon!");
+
+	viewer.setWindowIcon(icone);
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
 

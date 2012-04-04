@@ -26,12 +26,11 @@
 #ifndef HASHTAG_HPP
 #define HASHTAG_HPP
 
-#include "indexbounds.hpp"
-#include "../reyntweetsmappable.hpp"
+#include "tweetentity.hpp"
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet
-class Hashtag : public ReynTweetsMappable
+class Hashtag : public TweetEntity
 {
 	Q_OBJECT
 
@@ -62,6 +61,14 @@ class Hashtag : public ReynTweetsMappable
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
 		static void initSystem();
+
+		/// @fn QString getDisplayedText();
+		/// @brief Building the rich text for the hashtag
+		///
+		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @return The tweet entity with rich content
+		QString getDisplayedText();
+
 
 	private:
 		/// @fn void recopie(const Hashtag & hashtag);
@@ -97,23 +104,6 @@ class Hashtag : public ReynTweetsMappable
 				   READ getText
 				   WRITE setText)
 
-		// indices
-		/// @property indices
-		/// @brief Indexes
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices)
-
-		/// @fn QVariantList getIndicesProperty();
-		/// @brief Reading method for the property indices
-		/// @return indexList
-		QVariantList getIndicesProperty();
-
-		/// @fn void setIndices(QVariantList newIndexList);
-		/// @brief Writing method for the property indices
-		/// @param newIndexList New value for the property indices
-		void setIndices(QVariantList newIndexList);
-
 
 	////////////////////////
 	// Hashtag management //
@@ -122,9 +112,6 @@ class Hashtag : public ReynTweetsMappable
 	protected:
 		/// @brief Text of the tag
 		QString hashText;
-
-		/// @brief Indexes of the hashtag in the tweet
-		IndexBounds indexes;
 
 
 	////////////////////////
@@ -141,16 +128,6 @@ class Hashtag : public ReynTweetsMappable
 		/// @brief Writing hashText
 		/// @param newText New value for hashText
 		void setText(QString newText);
-
-		/// @fn IndexBounds getIndices();
-		/// @brief Reading indexes
-		/// @return indexes
-		IndexBounds getIndices();
-
-		/// @fn void setIndices(IndexBounds newIndexes);
-		/// @brief Writing indexes
-		/// @param newIndexes New value for indexes
-		void setIndices(IndexBounds newIndexes);
 };
 
 // Serialization of Hashtag

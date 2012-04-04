@@ -235,7 +235,7 @@ class TweetEntities : public ReynTweetsMappable
 		/// @fn QList<TweetEntity *> getAllEntitiesList();
 		/// @brief Getting a list with pointers on all the Tweet Entities.
 		///
-		/// The entities are sorted increasingly with their first index bound
+		/// The entities are sorted decreasingly with their first index bound
 		/// in the tweet.
 		/// @return List with pointers on all the entities
 		QList<TweetEntity *> getAllEntitiesList();

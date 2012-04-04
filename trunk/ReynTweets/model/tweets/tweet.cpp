@@ -417,66 +417,24 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 QString Tweet::getDisplayText() {
 	QString displayedText = tweet;
 
-//	// Replacing tweet entities by a link
+	qDebug("Le tweet :");
+	qDebug(tweet.toUtf8().data());
 
-//	// Hashtags
-//	HashtagList hlist = tweetEntities.getHashtags();
-////*
-//	for (HashtagList::Iterator it = hlist.begin();
-//		 it != hlist.end();
-//		 ++it)
-//	{
-//		Hashtag h = *it;
+	QList<TweetEntity *> allEntities = tweetEntities.getAllEntitiesList();
 
-//		IndexBounds bounds = h.getIndices();
-//		QString beginTag = "<a href=\"google.com\">";
-//		QString endTag = "</a>";
-//		displayedText.insert(bounds.getMin(), beginTag);
-//		displayedText.insert(bounds.getMax(), endTag);
-//	}
-////*/
-//	// Mentions
-//	UserMentionList mlist = tweetEntities.getUserMentions();
+	for (QList<TweetEntity *>::Iterator it = allEntities.begin();
+		 it != allEntities.end();
+		 ++it)
+	{
+		TweetEntity * entity = *it;
+		QString entityText = entity->getDisplayedText();
+		int min = entity->getIndices().getMin();
+		int max = entity->getIndices().getMax();
+		displayedText.replace(min, max-min, entityText);
+	}
 
-//	for (UserMentionList::Iterator it = mlist.begin();
-//		 it != mlist.end();
-//		 ++it)
-//	{
-//		UserMention mention = *it;
-
-//		IndexBounds bounds = mention.getIndices();
-
-//		// Do the mention start by "RT " ?
-
-//		//bool startWithRT = tweet.truncate(bounds.getMin()).s;
-
-//		QString beginTag = "<a href=\"google.com\">";
-//		QString endTag = "</a>";
-//		displayedText.insert(bounds.getMin(), beginTag);
-//		displayedText.insert(bounds.getMax(), endTag);
-//	}
-
-//	// URLs
-//	URLEntityList ulist = tweetEntities.getURLs();
-///*
-//	for (URLEntityList::Iterator it = ulist.begin();
-//		 it != ulist.end();
-//		 ++it)
-//	{
-//		URLEntity url = *it;
-
-//		IndexBounds bounds = url.getIndices();
-//		QString displayURL = url.getDisplayedURL();
-//		QString beginTag = "<a href=\"" + url.getURL() + "\">";
-//		QString endTag = "</a>";
-//		QString newText = beginTag + displayURL + endTag;
-//		displayedText.replace(bounds.getMin(), bounds.getMax() - bounds.getMin(), newText);
-//	}
-////*/
-//	// TODO : Medias
-
-//	qDebug("Le texte :");
-//	qDebug(displayedText.toUtf8().data());
+	qDebug("Le texte :");
+	qDebug(displayedText.toUtf8().data());
 
 	return displayedText;
 }

@@ -32,12 +32,11 @@
 
 // Constructor
 UserMention::UserMention() :
-	ReynTweetsMappable(),
+	TweetEntity(),
 	userID(-1),
 	userIDstr("-1"),
 	screenName(""),
-	userName(""),
-	indexes()
+	userName("")
 {}
 
 // Destructor
@@ -62,12 +61,11 @@ void UserMention::initSystem() {
 
 // Copy of a User Mention
 void UserMention::recopie(const UserMention & mention) {
-	ReynTweetsMappable::recopie(mention);
+	TweetEntity::recopie(mention);
 	userID = mention.userID;
 	userIDstr = mention.userIDstr;
 	screenName = mention.screenName;
 	userName = mention.userName;
-	indexes = mention.indexes;
 }
 
 // Output stream operator for serialization
@@ -78,21 +76,6 @@ QDataStream & operator<<(QDataStream & out, const UserMention & mention) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 	return jsonStreamingIn(in, mention);
-}
-
-
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property indices
-QVariantList UserMention::getIndicesProperty() {
-	return indexes.toVariant();
-}
-
-// Writing method for the property indices
-void UserMention::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -140,12 +123,14 @@ void UserMention::setName(QString newName) {
 	userName = newName;
 }
 
-// Reading indexes
-IndexBounds UserMention::getIndices() {
-	return indexes;
-}
 
-// Writing indexes
-void UserMention::setIndices(IndexBounds newIndexes) {
-	indexes = newIndexes;
+//////////
+// Misc //
+//////////
+
+// Building the rich text for the entity
+QString UserMention::getDisplayedText() {
+	QString beginTag = "<a href=\"http://google.com\">";
+	QString endTag = "</a>";
+	return beginTag + screenName + endTag;
 }

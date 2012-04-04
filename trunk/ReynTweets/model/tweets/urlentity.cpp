@@ -32,11 +32,10 @@
 
 // Constructor
 URLEntity::URLEntity() :
-	ReynTweetsMappable(),
+	TweetEntity(),
 	extractedURL(""),
 	displayedURL(""),
-	expandedURL(""),
-	indexes()
+	expandedURL("")
 {}
 
 // Destructor
@@ -61,11 +60,10 @@ void URLEntity::initSystem() {
 
 // Copy of a URLEntity
 void URLEntity::recopie(const URLEntity & entity) {
-	ReynTweetsMappable::recopie(entity);
+	TweetEntity::recopie(entity);
 	extractedURL = entity.extractedURL;
 	displayedURL = entity.displayedURL;
 	expandedURL = entity.expandedURL;
-	indexes = entity.indexes;
 }
 
 // Output stream operator for serialization
@@ -76,20 +74,6 @@ QDataStream & operator<<(QDataStream & out, const URLEntity & entity) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 	return jsonStreamingIn(in, entity);
-}
-
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property indices
-QVariantList URLEntity::getIndicesProperty() {
-	return indexes.toVariant();
-}
-
-// Writing method for the property indices
-void URLEntity::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -127,12 +111,15 @@ void URLEntity::setExpandedURL(QString newURL) {
 	expandedURL = newURL;
 }
 
-// Reading indexes
-IndexBounds URLEntity::getIndices() {
-	return indexes;
-}
 
-// Writing indexes
-void URLEntity::setIndices(IndexBounds newIndexes) {
-	indexes = newIndexes;
+//////////
+// Misc //
+//////////
+
+// Building the rich text for the entity
+QString URLEntity::getDisplayedText() {
+	QString beginTag = "<a href=\"";
+	QString beginTag2 = "\">";
+	QString endTag = "</a>";
+	return beginTag + extractedURL + beginTag2 + displayedURL + endTag;
 }

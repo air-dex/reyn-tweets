@@ -27,12 +27,11 @@
 #define URLENTITY_HPP
 
 #include <QString>
-#include "indexbounds.hpp"
-#include "../reyntweetsmappable.hpp"
+#include "tweetentity.hpp"
 
 /// @class URLEntity
 /// @brief URL in a tweet
-class URLEntity : public ReynTweetsMappable
+class URLEntity : public TweetEntity
 {
 	Q_OBJECT
 
@@ -63,6 +62,14 @@ class URLEntity : public ReynTweetsMappable
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
 		static void initSystem();
+
+		/// @fn QString getDisplayedText();
+		/// @brief Building the rich text for the url.
+		///
+		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @return An HTML tag to open the URL in a browser
+		QString getDisplayedText();
+
 
 	protected:
 		/// @fn void recopie(const URLEntity & entity);
@@ -112,23 +119,6 @@ class URLEntity : public ReynTweetsMappable
 				   READ getExpandedURL
 				   WRITE setExpandedURL)
 
-		// indices
-		/// @property indices
-		/// @brief Indexes
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices)
-
-		/// @fn QVariantList getIndicesProperty();
-		/// @brief Reading method for the property indices
-		/// @return indexList
-		QVariantList getIndicesProperty();
-
-		/// @fn void setIndices(QVariantList newIndexList);
-		/// @brief Writing method for the property indices
-		/// @param newIndexList New value for the property indices
-		void setIndices(QVariantList newIndexList);
-
 
 	////////////////////
 	// URL management //
@@ -138,14 +128,11 @@ class URLEntity : public ReynTweetsMappable
 		/// @brief Extracted URL
 		QString extractedURL;
 
-		/// @brief URL displayed on the tweet
+		/// @brief URL displayed on the tweet (only for t.co URLs)
 		QString displayedURL;
 
 		/// @brief Full URL (only for t.co URLs)
 		QString expandedURL;
-
-		/// @brief Indexes in the tweet
-		IndexBounds indexes;
 
 
 	////////////////////////
@@ -182,19 +169,9 @@ class URLEntity : public ReynTweetsMappable
 		/// @brief Writing method for expandedURL
 		/// @param newURL New value for expandedURL
 		void setExpandedURL(QString newURL);
-
-		/// @fn IndexBounds getIndices();
-		/// @brief Reading indexes
-		/// @return indexes
-		IndexBounds getIndices();
-
-		/// @fn void setIndices(IndexBounds newIndexes);
-		/// @brief Writing indexes
-		/// @param newIndexes New value for indexes
-		void setIndices(IndexBounds newIndexes);
 };
 
-// Serialization of MediaSizes
+// Serialization of URLEntity
 Q_DECLARE_METATYPE(URLEntity)
 
 /// @fn QDataStream & operator<<(QDataStream & out, const URLEntity & entity);

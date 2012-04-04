@@ -26,12 +26,11 @@
 #ifndef USERMENTION_HPP
 #define USERMENTION_HPP
 
-#include "indexbounds.hpp"
-#include "../reyntweetsmappable.hpp"
+#include "tweetentity.hpp"
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
-class UserMention : public ReynTweetsMappable
+class UserMention : public TweetEntity
 {
 	Q_OBJECT
 
@@ -62,6 +61,13 @@ class UserMention : public ReynTweetsMappable
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
 		static void initSystem();
+
+		/// @fn QString getDisplayedText();
+		/// @brief Building the rich text for the mention.
+		///
+		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @return An HTML tag to show the user
+		QString getDisplayedText();
 
 	private:
 		/// @fn void recopie(const UserMention & mention);
@@ -117,23 +123,6 @@ class UserMention : public ReynTweetsMappable
 		Q_PROPERTY(QString name
 				   READ getName
 				   WRITE setName)
-
-		// indices
-		/// @property indices
-		/// @brief Indexes
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices)
-
-		/// @fn QVariantList getIndicesProperty();
-		/// @brief Reading method for the property indices
-		/// @return indexList
-		QVariantList getIndicesProperty();
-
-		/// @fn void setIndices(QVariantList newIndexList);
-		/// @brief Writing method for the property indices
-		/// @param newIndexList New value for the property indices
-		void setIndices(QVariantList newIndexList);
 
 
 	////////////////////////
@@ -201,17 +190,6 @@ class UserMention : public ReynTweetsMappable
 		/// @brief Writing method for userName
 		/// @param newName New value for userName
 		void setName(QString newName);
-
-		/// @fn IndexBounds getIndices();
-		/// @brief Reading indexes
-		/// @return indexes
-		IndexBounds getIndices();
-
-		/// @fn void setIndices(IndexBounds newIndexes);
-		/// @brief Writing indexes
-		/// @param newIndexes New value for indexes
-		void setIndices(IndexBounds newIndexes);
-
 };
 
 // Serialization of UserMention

@@ -32,9 +32,8 @@
 
 // Constructor
 Hashtag::Hashtag() :
-	ReynTweetsMappable(),
-	hashText(),
-	indexes()
+	TweetEntity(),
+	hashText()
 {}
 
 // Destructor
@@ -59,9 +58,8 @@ void Hashtag::initSystem() {
 
 // Copy of a Hashtag
 void Hashtag::recopie(const Hashtag & hashtag) {
-	ReynTweetsMappable::recopie(hashtag);
+	TweetEntity::recopie(hashtag);
 	hashText = hashtag.hashText;
-	indexes = hashtag.indexes;
 }
 
 // Output stream operator for serialization
@@ -72,21 +70,6 @@ QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
 	return jsonStreamingIn(in, hashtag);
-}
-
-
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property indices
-QVariantList Hashtag::getIndicesProperty() {
-	return indexes.toVariant();
-}
-
-// Writing method for the property indices
-void Hashtag::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(newIndexList);
 }
 
 
@@ -104,12 +87,14 @@ void Hashtag::setText(QString newText) {
 	hashText = newText;
 }
 
-// Reading indexes
-IndexBounds Hashtag::getIndices() {
-	return indexes;
-}
 
-// Writing indexes
-void Hashtag::setIndices(IndexBounds newIndexes) {
-	indexes = newIndexes;
+//////////
+// Misc //
+//////////
+
+// Building the rich text for the entity
+QString Hashtag::getDisplayedText() {
+	QString beginTag = "<a href=\"http://google.com\">";
+	QString endTag = "</a>";
+	return beginTag + hashText + endTag;
 }

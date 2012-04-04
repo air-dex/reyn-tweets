@@ -113,7 +113,8 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	main.cpp \
 	model/timelines/timelinemodel.cpp \
-	model/timelines/timelinelistmodel.cpp
+	model/timelines/timelinelistmodel.cpp \
+	model/tweets/tweetentity.cpp
 
 
 HEADERS  += \
@@ -196,7 +197,8 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/controls.hpp \
 	model/timelines/timelinemodel.hpp \
-	model/timelines/timelinelistmodel.hpp
+	model/timelines/timelinelistmodel.hpp \
+	model/tweets/tweetentity.hpp
 
 
 OTHER_FILES = \
@@ -214,7 +216,7 @@ OTHER_FILES = \
 	ui/qml/TimelineModel.qml \
 	ui/qml/TweetElement.qml \
 	ui/qml/TimelineDelegate.qml \
-    ui/qml/Constants.qml
+	ui/qml/Constants.qml
 
 
 #--------------#

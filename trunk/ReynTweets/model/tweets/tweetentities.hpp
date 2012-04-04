@@ -226,6 +226,28 @@ class TweetEntities : public ReynTweetsMappable
 		/// @brief Writing tweetHashtags
 		/// @param newHashtags New value for tweetHashtags
 		void setHashtags(HashtagList newHashtags);
+
+
+	//////////////////////////
+	// List of all entities //
+	//////////////////////////
+
+		/// @fn QList<TweetEntity *> getAllEntitiesList();
+		/// @brief Getting a list with pointers on all the Tweet Entities.
+		///
+		/// The entities are sorted increasingly with their first index bound
+		/// in the tweet.
+		/// @return List with pointers on all the entities
+		QList<TweetEntity *> getAllEntitiesList();
+
+	private:
+		/// @fn void insertEntity(TweetEntity & entity,
+		///						  QList<TweetEntity *> & entityList);
+		/// @brief Inserting an entity in the list of all the entities
+		/// @param entity The entity to insert
+		/// @param entityList The list to insert the entity
+		void insertEntity(TweetEntity & entity,
+						  QList<TweetEntity *> & entityList);
 };
 
 // Serialization of TweetEntities

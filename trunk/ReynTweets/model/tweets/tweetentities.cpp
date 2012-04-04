@@ -167,3 +167,86 @@ HashtagList TweetEntities::getHashtags() {
 void TweetEntities::setHashtags(HashtagList newHashtags) {
 	tweetHashtags = newHashtags;
 }
+
+
+//////////////////////////
+// List of all entities //
+//////////////////////////
+
+// Inserting an entity in the list of all the entities
+void TweetEntities::insertEntity(TweetEntity & entity,
+								 QList<TweetEntity *> & entityList)
+{
+	// The list is supposed to be sorted -> dichotomical insertion time !
+
+	// Index in the list (dichotomy)
+	int entityMinBound = entity.getIndices().getMin();
+	int entityListLastBound = entityList.last()->getIndices().getMax()->getIndices().getMin();
+	int entityIndex;
+
+	if (entityListLastBound < entityMinBound) {
+		entityIndex = entityList.size();
+	} else {
+		int a = 0;
+		int b = entityList.size();
+
+		while (a != b) {
+			int m = (a + b) / 2;
+			int entityListMidBound = entityList.at(m)->getIndices().getMin();
+
+			if (entityMinBound <= entityListMidBound) {
+				b = m;
+			} else {
+				a = m + 1;
+			}
+		}
+
+		entityIndex = a;
+	}
+
+	// Insertion
+	entityList.insert(entityIndex, &entity);
+}
+
+// Getting a list with pointers on all the Tweet Entities
+QList<TweetEntity *> TweetEntities::getAllEntitiesList() {
+	QList<TweetEntity *> res;
+
+	// Insert hashtags
+	for (HashtagList::Iterator it = tweetHashtags.begin();
+		 it != tweetHashtags.end();
+		 ++it)
+	{
+		Hashtag & hashtag = *it;
+		insertEntity(hashtag, res);
+	}
+
+	// Insert mentions
+	for (UserMentionList::Iterator it = mentions.begin();
+		 it != mentions.end();
+		 ++it)
+	{
+		UserMention & mention = *it;
+		insertEntity(mention, res);
+	}
+
+	// Insert URLs
+	for (URLEntityList::Iterator it = tweetURLs.begin();
+		 it != tweetURLs.end();
+		 ++it)
+	{
+		URLEntity & url = *it;
+		insertEntity(url, res);
+	}
+
+	// Insert medias
+	for (MediaList::Iterator it = medias.begin();
+		 it != medias.end();
+		 ++it)
+	{
+		Media & media = *it;
+		insertEntity(media, res);
+	}
+
+	return res;
+}

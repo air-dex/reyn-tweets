@@ -121,5 +121,5 @@ QString URLEntity::getDisplayedText() {
 	QString beginTag = "<a href=\"";
 	QString beginTag2 = "\">";
 	QString endTag = "</a>";
-	return beginTag + extractedURL + beginTag2 + displayedURL + endTag;
+	return beginTag + extractedURL + beginTag2 + expandedURL + endTag;
 }

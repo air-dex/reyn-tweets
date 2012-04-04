@@ -177,31 +177,39 @@ void TweetEntities::setHashtags(HashtagList newHashtags) {
 void TweetEntities::insertEntity(TweetEntity & entity,
 								 QList<TweetEntity *> & entityList)
 {
+
+
 	// The list is supposed to be sorted -> dichotomical insertion time !
 
-	// Index in the list (dichotomy)
-	int entityMinBound = entity.getIndices().getMin();
-	int entityListLastBound = entityList.last()->getIndices().getMax()->getIndices().getMin();
+	// Index in the list, aka entityIndex
+	int entityBound = entity.getIndices().getMin();
 	int entityIndex;
 
-	if (entityListLastBound < entityMinBound) {
-		entityIndex = entityList.size();
+	if (entityList.isEmpty()) {
+		entityIndex = 0;
 	} else {
-		int a = 0;
-		int b = entityList.size();
+		int entityListLastBound = entityList.last()->getIndices().getMin();
 
-		while (a != b) {
-			int m = (a + b) / 2;
-			int entityListMidBound = entityList.at(m)->getIndices().getMin();
+		if (entityListLastBound > entityBound) {
+			entityIndex = entityList.size();
+		} else {
+			// Dichotomy
+			int a = 0;
+			int b = entityList.size();
 
-			if (entityMinBound <= entityListMidBound) {
-				b = m;
-			} else {
-				a = m + 1;
+			while (a != b) {
+				int m = (a + b) / 2;
+				int entityListMidBound = entityList.at(m)->getIndices().getMin();
+
+				if (entityBound >= entityListMidBound) {
+					b = m;
+				} else {
+					a = m + 1;
+				}
 			}
-		}
 
-		entityIndex = a;
+			entityIndex = a;
+		}
 	}
 
 	// Insertion

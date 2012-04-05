@@ -94,7 +94,7 @@ void Hashtag::setText(QString newText) {
 
 // Building the rich text for the entity
 QString Hashtag::getDisplayedText() {
-	QString beginTag = "<a href=\"http://google.com\">";
+	QString beginTag = "<a href=\"http://google.com\">#";
 	QString endTag = "</a>";
 	return beginTag + hashText + endTag;
 }

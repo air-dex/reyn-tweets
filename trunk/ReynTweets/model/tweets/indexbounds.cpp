@@ -25,11 +25,13 @@
 
 #include "indexbounds.hpp"
 
+int IndexBounds::FAKE_BOUND = -1;
+
 // Constructor
 IndexBounds::IndexBounds() :
 	QObject(),
-	min(0),
-	max(0)
+	min(FAKE_BOUND),
+	max(FAKE_BOUND)
 {}
 
 // Destructor
@@ -83,7 +85,7 @@ QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
 
 // Sorting the min and the max
 void IndexBounds::sort() {
-	if (max < min) {
+	if (max < min && max != FAKE_BOUND) {
 		int tmp = max;
 		min = max;
 		max = tmp;

@@ -134,6 +134,8 @@ Rectangle {
 	Text {
 		id: text
 		text: tweet.getDisplayText();
+		textFormat: Text.RichText
+		wrapMode: Text.Wrap
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
@@ -142,6 +144,9 @@ Rectangle {
 		anchors.topMargin: 2*margin
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
+		onLinkActivated: {
+			console.log(link)
+		}
 	}
 
 	// Source of the tweet

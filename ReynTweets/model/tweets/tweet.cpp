@@ -417,9 +417,6 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 QString Tweet::getDisplayText() {
 	QString displayedText = tweet;
 
-	qDebug("Le tweet :");
-	qDebug(tweet.toUtf8().data());
-
 	QList<TweetEntity *> allEntities = tweetEntities.getAllEntitiesList();
 
 	for (QList<TweetEntity *>::Iterator it = allEntities.begin();
@@ -432,9 +429,6 @@ QString Tweet::getDisplayText() {
 		int max = entity->getIndices().getMax();
 		displayedText.replace(min, max-min, entityText);
 	}
-
-	qDebug("Le texte :");
-	qDebug(displayedText.toUtf8().data());
 
 	return displayedText;
 }

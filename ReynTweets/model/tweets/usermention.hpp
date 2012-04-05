@@ -142,9 +142,6 @@ class UserMention : public TweetEntity
 		/// @brief User's name
 		QString userName;
 
-		/// @brief Indexes of the mention in the tweet
-		IndexBounds indexes;
-
 
 	////////////////////////
 	// Getter and setters //

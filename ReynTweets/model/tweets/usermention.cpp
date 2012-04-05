@@ -130,7 +130,7 @@ void UserMention::setName(QString newName) {
 
 // Building the rich text for the entity
 QString UserMention::getDisplayedText() {
-	QString beginTag = "<a href=\"http://google.com\">";
+	QString beginTag = "<a href=\"http://google.com\">@";
 	QString endTag = "</a>";
 	return beginTag + screenName + endTag;
 }

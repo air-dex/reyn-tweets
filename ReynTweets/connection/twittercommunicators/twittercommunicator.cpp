@@ -157,6 +157,10 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	responseBuffer = response->readAll();
 	response->deleteLater();
 
+	// responseBuffer (for debug purposes)
+	qDebug("responseBuffer :");
+	qDebug(responseBuffer.data());
+
 	// Ending the request
 	emit requestDone();
 }

@@ -47,6 +47,8 @@ class TweetControl : public QObject
 		static void declareQML();
 
 	signals:
+		/// @fn void tweetChanged();
+		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
 	public slots:

@@ -25,8 +25,7 @@
 #define TIMELINECONTROL_HPP
 
 #include <QObject>
-#include <QDeclarativeListProperty>
-#include "../../model/timelines/timelinemodel.hpp"
+#include "../../model/timelines/timeline.hpp"
 #include "../reyncore.hpp"
 
 /// @class TimelineControl
@@ -44,30 +43,32 @@ class TimelineControl : public QObject
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
-		Q_INVOKABLE Tweet * getTweet(int index) {
-			if (index >= 0 && index < model.size()) {
-				return model.at(index);
-			} else {
-				return new Tweet;
-			}
+		/// @fn Q_INVOKABLE Tweet * getTweet(int index);
+		/// @brief Getting a pointer on a tweet in the timeline.
+		///
+		/// Used by QML delegates of the ListView in the TimelinePane
+		/// to attribute a tweet to TweetPane in the delegate in the list.
+		/// @param index Index of the tweet in the timeline
+		/// @return The tweet #index in the timeline if the index is ok,
+		/// a default tweet otherwise.
+		Q_INVOKABLE Tweet * getTweet(int index);
 
-		}
 
 	signals:
 		/// @fn void timelineChanged();
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
 
-		/// @fn void launchEnded(bool launchOK,
-		///						 QString errorMsg = "",
-		///						 bool isFatal = false);
+		/// @fn void loadEnded(bool launchOK,
+		///					   QString errorMsg,
+		///					   bool isFatal);
 		/// @brief Signal sent after launching
 		/// @param launchOK Did the launching process end successfully ?
 		/// @param errorMsg Error message
 		/// @param isFatal Did the launching process end with a fatal error ?
 		void loadEnded(bool launchOK,
-						 QString errorMsg,
-						 bool isFatal);
+					   QString errorMsg,
+					   bool isFatal);
 
 	public slots:
 		/// @fn void loadHomeTimeline();
@@ -84,43 +85,17 @@ class TimelineControl : public QObject
 		/// @brief Heart of Reyn Tweets
 		ReynCore reyn;
 
-		/// @brief Timeline to display
-		Q_PROPERTY(QDeclarativeListProperty<Tweet> timeline
-				   READ getTimeline
-				   WRITE setTimeline
+		/// @brief The timeline
+		Timeline timeline;
+
+		/// @brief Length of the timeline. Used by QML for the list model.
+		Q_PROPERTY(int tl_length
+				   READ getTimelineLength
 				   NOTIFY timelineChanged)
 
-		/// @fn Timeline getTimeline();
-		/// @brief Reading the property timeline
-		QDeclarativeListProperty<Tweet> getTimeline();
-
-		/// @fn void setTimeline(Timeline tl);
-		/// @brief Writing the property timeline
-		void setTimeline(QDeclarativeListProperty<Tweet> tl);
-
-		/// @fn void setTimeline(Timeline tl);
-		/// @brief Writing the property timeline
-		void setTimeline(TimelineModel * tl);
-
-		TimelineModel model;
-
-		/// @brief Timeline to display
-		Q_PROPERTY(QVariant timelineStr
-				   READ getTimelineStr
-				   NOTIFY timelineChanged)
-
-		/// @fn Timeline getTimeline();
-		/// @brief Reading the property timeline
-		QVariant getTimelineStr() {
-			QStringList res;
-
-			for (int var = 0; var < model.size(); ++var) {
-				Tweet * t = model.at(var);
-				res.append(t->toString());
-			}
-
-			return res;
-		}
+		/// @fn Timeline getTimelineLength();
+		/// @brief Reading the property tl_length
+		int getTimelineLength();
 };
 
 #endif // TIMELINECONTROL_HPP

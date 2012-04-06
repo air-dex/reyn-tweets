@@ -85,8 +85,11 @@ Rectangle {
 			anchors.leftMargin: 0
 			source: tweet.author.profile_image_url
 			MouseArea {
+				id: avatar_mouse_area
 				anchors.fill: parent
-				onClicked: console.log("Show @" + tweet.author.screen_name)
+				onClicked: console.log("Show @" + aut)
+
+				property string aut: tweet.author.screen_name
 			}
 		}
 
@@ -103,6 +106,7 @@ Rectangle {
 			visible: false
 			MouseArea {
 				anchors.fill: parent
+				onClicked: console.log("TODO : Show @" + tweet.author.screen_name)
 			}
 		}
 	}
@@ -278,14 +282,17 @@ Rectangle {
 			PropertyChanges {
 				target: tweet_author_avatar
 				source: tweet.retweet.author.profile_image_url
-				MouseArea.onClicked: console.log("Show @" + tweet.retweet.author.screen_name)
+			}
+
+			PropertyChanges {
+				target: avatar_mouse_area
+				aut: tweet.retweet.author.screen_name
 			}
 
 			PropertyChanges {
 				target: retweeter_avatar
 				visible: true
 				source: tweet.author.profile_image_url
-				MouseArea.onClicked: console.log("Show @" + tweet.retweet.author.screen_name)
 			}
 
 			// New author and new margin to not move the QML Component

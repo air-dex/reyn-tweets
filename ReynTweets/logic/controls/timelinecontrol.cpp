@@ -27,7 +27,7 @@
 TimelineControl::TimelineControl() :
 	QObject(),
 	reyn(this),
-	model()
+	timeline()
 {}
 
 // Declaring TweetControl to the QML system
@@ -38,22 +38,25 @@ void TimelineControl::declareQML() {
 }
 
 
-//////////////////////////
-// Propoerty management //
-/////////////////////////
+///////////////////////////////////
+// Accessing tweets in QML views //
+///////////////////////////////////
 
-QDeclarativeListProperty<Tweet> TimelineControl::getTimeline() {
-	//return &model;
-	return QDeclarativeListProperty<Tweet>(this, model);
+// Getting a pointer on a tweet in the timeline.
+Tweet * TimelineControl::getTweet(int index) {
+	if (index >= 0 && index < timeline.size()) {
+		return &(timeline[index]);
+	} else {
+		return new Tweet;
+	}
 }
 
-void TimelineControl::setTimeline(QDeclarativeListProperty<Tweet> tl) {
-//	if (tl) {
-//		model = *tl;
-//	} else {
-//		model.clear();
-//	}
+// Reading the property tl_length
+int TimelineControl::getTimelineLength() {
+	return timeline.size();
 }
+
+
 
 ///////////////////////
 // Loading timelines //
@@ -84,12 +87,12 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantList resList = result.results.toList();
-	Timeline & statuses = model.getTimelineRef();
+	Timeline statuses;
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
 			statuses.fillWithVariant(resList);
-			model.setTimeline(statuses);
+			timeline = statuses;
 			emit timelineChanged();
 			// Process successful
 			emit loadEnded(true, QString(), false);

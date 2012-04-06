@@ -1,4 +1,4 @@
-/// @file singletwittercallprocess.cpp
+/// @file singletwittercallprocess.hpp
 /// @brief Header of SingleTwitterCallProcess
 /// @author Romain Ducher
 ///
@@ -87,8 +87,6 @@ class SingleTwitterCallProcess : public GenericProcess
 		/// @fn inline virtual void treatSuccessfulResult(QVariant result);
 		/// @brief Default treatment when the request was successful
 		/// @param result Result
-		/// @param errorMsg Error message of the process
-		/// @param issue Reference on the issue of the request
 		inline virtual void treatSuccessfulResult(QVariant result);
 
 		/// @fn inline virtual void treatTwitterErrorResult(RequestResult result,

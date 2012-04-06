@@ -1,5 +1,5 @@
 /// @file TimelineModel.qml
-/// @brief Pane to show a tweet
+/// @brief ListModel for a timeline
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -30,13 +30,11 @@ import ReynTweetsEntities 0.1
 ListModel {
 	id: timeline_model
 
-	function syncWithTimeline(timeline) {
+	function syncWithTimeline(lgTL) {
 		timeline_model.clear();
 
-		for (var i = 0; i < timeline.length; i++) {
+		for (var i = 0; i < lgTL; i++) {
 			timeline_model.append({})
 		}
-
-		console.log("Sync finie")
 	}
 }

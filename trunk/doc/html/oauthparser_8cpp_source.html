@@ -123,7 +123,7 @@ window.onload = initDynSections;
 <a name="l00033"></a>00033                                                            <span class="keywordtype">int</span> *)
 <a name="l00034"></a>00034 {
 <a name="l00035"></a>00035         QVariantMap res;
-<a name="l00036"></a>00036         QString errorMsg = <span class="stringliteral">&quot;Following arguments are invalid : &quot;</span>;
+<a name="l00036"></a>00036         QString errorMsg = QObject::trUtf8(<span class="stringliteral">&quot;Following arguments are invalid : &quot;</span>);
 <a name="l00037"></a>00037         parseOK = <span class="keyword">true</span>;
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039         <span class="comment">// Split the couples of arguments</span>
@@ -141,7 +141,7 @@ window.onload = initDynSections;
 <a name="l00051"></a>00051                         QString value = QString(couple.at(1));
 <a name="l00052"></a>00052                         res.insert(name, QVariant(value));
 <a name="l00053"></a>00053                 } <span class="keywordflow">else</span> {
-<a name="l00054"></a>00054                         errorMsg.append(<span class="stringliteral">&quot;OAuth parsing : cannot parse &#39;&quot;</span>);
+<a name="l00054"></a>00054                         errorMsg.append(QObject::trUtf8(<span class="stringliteral">&quot;OAuth parsing : cannot parse &#39;&quot;</span>));
 <a name="l00055"></a>00055                         errorMsg.append(argument);
 <a name="l00056"></a>00056                         errorMsg.append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
 <a name="l00057"></a>00057                 }
@@ -172,9 +172,9 @@ window.onload = initDynSections;
 <a name="l00082"></a>00082                 res = parsedMap.value(parameterName);
 <a name="l00083"></a>00083                 parsedMap.remove(parameterName);
 <a name="l00084"></a>00084         } <span class="keywordflow">else</span> {
-<a name="l00085"></a>00085                 extractError.append(<span class="stringliteral">&quot;Parameter extraction : parameter &#39;&quot;</span>);
+<a name="l00085"></a>00085                 extractError.append(QObject::trUtf8(<span class="stringliteral">&quot;Parameter extraction : parameter &#39;&quot;</span>));
 <a name="l00086"></a>00086                 extractError.append(parameterName);
-<a name="l00087"></a>00087                 extractError.append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
+<a name="l00087"></a>00087                 extractError.append(QObject::trUtf8(<span class="stringliteral">&quot;&#39; expected.&quot;</span>)).append(<span class="charliteral">&#39;\n&#39;</span>);
 <a name="l00088"></a>00088         }
 <a name="l00089"></a>00089 
 <a name="l00090"></a>00090         <span class="keywordflow">return</span> res;
@@ -207,16 +207,16 @@ window.onload = initDynSections;
 <a name="l00117"></a>00117                         parsedMap.insert(parameterName, QVariant(booleanValue));
 <a name="l00118"></a>00118                 } <span class="keywordflow">else</span> {
 <a name="l00119"></a>00119                         <span class="comment">// Unexpected value. This is an error.</span>
-<a name="l00120"></a>00120                         rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : unexpected value &#39;&quot;</span>)
+<a name="l00120"></a>00120                         rewriteError.append(QObject::trUtf8(<span class="stringliteral">&quot;Rewriting as bool : unexpected value &#39;&quot;</span>))
 <a name="l00121"></a>00121                                         .append(result)
-<a name="l00122"></a>00122                                         .append(<span class="stringliteral">&quot;&#39; for parameter &#39;&quot;</span>)
+<a name="l00122"></a>00122                                         .append(QObject::trUtf8(<span class="stringliteral">&quot;&#39; for parameter &#39;&quot;</span>))
 <a name="l00123"></a>00123                                         .append(parameterName)
 <a name="l00124"></a>00124                                         .append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
 <a name="l00125"></a>00125                 }
 <a name="l00126"></a>00126         } <span class="keywordflow">else</span> {
-<a name="l00127"></a>00127                 rewriteError.append(<span class="stringliteral">&quot;Rewriting as bool : parameter &#39;&quot;</span>)
+<a name="l00127"></a>00127                 rewriteError.append(QObject::trUtf8(<span class="stringliteral">&quot;Rewriting as bool : parameter &#39;&quot;</span>))
 <a name="l00128"></a>00128                                 .append(parameterName)
-<a name="l00129"></a>00129                                 .append(<span class="stringliteral">&quot;&#39; expected.\n&quot;</span>);
+<a name="l00129"></a>00129                                 .append(QObject::trUtf8(<span class="stringliteral">&quot;&#39; expected.&quot;</span>)).append(<span class="charliteral">&#39;\n&#39;</span>);
 <a name="l00130"></a>00130         }
 <a name="l00131"></a>00131 }
 </pre></div></div>
@@ -234,7 +234,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

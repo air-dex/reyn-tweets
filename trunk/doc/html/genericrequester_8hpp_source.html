@@ -136,7 +136,7 @@ window.onload = initDynSections;
 <a name="l00063"></a>00063 
 <a name="l00068"></a>00068                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#acf6a9613ec954573d2f711233b91e041" title="Executing the request. The method is virtual because of the Authorize step in the...">executeRequest</a>();
 <a name="l00069"></a>00069 
-<a name="l00073"></a>00073                 <a class="code" href="class_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#adb81f1c95ff44b7bbe8f2acdfded28ca" title="Getting parsed results.">getRequestResult</a>();
+<a name="l00073"></a>00073                 <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#adb81f1c95ff44b7bbe8f2acdfded28ca" title="Getting parsed results.">getRequestResult</a>();
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075         <span class="keyword">protected</span>:
 <a name="l00077"></a><a class="code" href="class_generic_requester.html#a880837800558244031da0938117ab4d8">00077</a>                 QUuid <a class="code" href="class_generic_requester.html#a880837800558244031da0938117ab4d8" title="UUID of the request.">uuid</a>;
@@ -159,30 +159,26 @@ window.onload = initDynSections;
 <a name="l00105"></a>00105 
 <a name="l00110"></a>00110                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a5e051448a3c3d5792c407129536b5b9d" title="Setting parsingErrorType in classes which inherits from GenericRequesters.">setParsingErrorType</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> parseErrorType);
 <a name="l00111"></a>00111 
-<a name="l00113"></a>00113         <span class="comment">// Treatment of results //</span>
-<a name="l00115"></a>00115 <span class="comment"></span>
-<a name="l00116"></a>00116         <span class="keyword">protected</span>:
-<a name="l00118"></a><a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6">00118</a>                 <a class="code" href="class_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6" title="Result of the request.">requestResult</a>;
-<a name="l00119"></a>00119 
-<a name="l00128"></a>00128                 <span class="keyword">virtual</span> QVariant <a class="code" href="class_generic_requester.html#a653ea483faea1662fb9276837708a6e3" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00129"></a>00129                                                                          QVariantMap &amp; parsingErrors);
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131         <span class="keyword">public</span> slots:
-<a name="l00137"></a>00137                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a60801bd6fb58861ab36b5b74f17d1965" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>(<span class="keywordtype">bool</span> requestOK);
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139         signals:
-<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>();
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146         <span class="keyword">private</span>:
-<a name="l00156"></a>00156                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a385465f0ca98a245508700d1eeb27565" title="Filling parsedResult. Some information such as the networkError and httpInfos are...">fillParsedResult</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType,
-<a name="l00157"></a>00157                                                           QVariant parsedResults,
-<a name="l00158"></a>00158                                                           QVariantMap parsingErrors);
-<a name="l00159"></a>00159 
-<a name="l00163"></a>00163                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a296b8637e3e86cdff9e54865e43d6de2" title="Initialize the communicator. This a template method because requests with authentication...">initCommunicator</a>();
-<a name="l00164"></a>00164 };
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166 <span class="preprocessor">#endif // GENERICREQUESTER_HPP</span>
+<a name="l00112"></a>00112 
+<a name="l00114"></a>00114         <span class="comment">// Treatment of results //</span>
+<a name="l00116"></a>00116 <span class="comment"></span>
+<a name="l00117"></a>00117         <span class="keyword">private</span>:
+<a name="l00121"></a>00121                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a296b8637e3e86cdff9e54865e43d6de2" title="Initialize the communicator. This a template method because requests with authentication...">initCommunicator</a>();
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123         <span class="keyword">public</span> slots:
+<a name="l00127"></a>00127                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a3aef8eba6b6e3a074f0c4de500b2eee2" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>();
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129         <span class="keyword">protected</span>:
+<a name="l00131"></a><a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6">00131</a>                 <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6" title="Result of the request.">requestResult</a>;
+<a name="l00132"></a>00132 
+<a name="l00141"></a>00141                 <span class="keyword">virtual</span> QVariant <a class="code" href="class_generic_requester.html#a653ea483faea1662fb9276837708a6e3" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00142"></a>00142                                                                          QVariantMap &amp; parsingErrors);
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144         signals:
+<a name="l00148"></a>00148                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>();
+<a name="l00149"></a>00149 };
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="preprocessor">#endif // GENERICREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -198,7 +194,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:48 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:37 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

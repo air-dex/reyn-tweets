@@ -102,7 +102,9 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#aac20b26a764111288569e8977bfdd226">denyReynTweets</a>(QString login, QString password)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [slot]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a8c8e4a188f25c198f4256c5ff0592e8f">endProcess</a>()</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [slot]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#adda0e608869c555fb575bebedb2ff33d">executeProcess</a>(GenericProcess *process)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [inline, private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a1391134cebaf8d30905d13cb531a05ea">favoriteTweet</a>(qlonglong id)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a139949eb30e527576d7bc475c004f0f3">launchReynTweets</a>()</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a91fd1516ec8e00d39e5cec4be231a83d">loadHomeTimeline</a>(qlonglong sinceID=-1, qlonglong maxID=-1, bool trimUser=false, bool includeRTS=false, bool includeEntities=false, bool excludeReplies=false, int page=0, int count=20, bool contributorsDetails=false)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a6cf70dfd2c722444e8bd6f541c36ad68">oauthSpecialWiring</a>(OAuthProcess *oauthProcess)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a29525bf78dab5fcd96425bee2e6175cc">operator=</a>(const ReynCore &amp;heart)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a0982981a3f075f2f2a1cd9638e3f3a8e">processManager</a></td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [protected, static]</code></td></tr>
@@ -112,6 +114,7 @@ window.onload = initDynSections;
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a463d662ca7e9cac17ad238d0b94f4517">ReynCore</a>(QObject *actionRequester)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a0f40cc6de49404cf86d069ec58358337">ReynCore</a>(const ReynCore &amp;heart)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#af8e5febafb2925af4ca4d68e4e8107fd">sendResult</a>(ProcessWrapper res)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [signal]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_reyn_core.html#ad8d9fb7055879124026598634a7421a8">unfavoriteTweet</a>(qlonglong id)</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a6f3b5f749839f472ef259759fa0e94e6">userCredentialsNeeded</a>()</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [signal]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a870cef4ec88a80b4fed9d31667f2d927">userCredentialsRequired</a>()</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td><code> [slot]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_reyn_core.html#a43ebcb37fec0718e9bcc478428cbda65">~ReynCore</a>()</td><td><a class="el" href="class_reyn_core.html">ReynCore</a></td><td></td></tr>
@@ -130,7 +133,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:56 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:54 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

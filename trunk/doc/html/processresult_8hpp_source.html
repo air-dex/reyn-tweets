@@ -123,18 +123,22 @@ window.onload = initDynSections;
 <a name="l00036"></a>00036 
 <a name="l00038"></a><a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef">00038</a>         QString <a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>;
 <a name="l00039"></a>00039 
-<a name="l00041"></a><a class="code" href="struct_process_result.html#a3b16dffa70fce5033a3cfd37350524cc">00041</a>         QVariantMap <a class="code" href="struct_process_result.html#a3b16dffa70fce5033a3cfd37350524cc" title="Results.">results</a>;
+<a name="l00041"></a><a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f">00041</a>         QVariant <a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>;
 <a name="l00042"></a>00042 
 <a name="l00044"></a><a class="code" href="struct_process_result.html#ae079a0d725197539af3c52a7ef97a86e">00044</a>         <span class="keywordtype">bool</span> <a class="code" href="struct_process_result.html#ae079a0d725197539af3c52a7ef97a86e" title="Boolean indicating if the error is fatal.">fatalError</a>;
 <a name="l00045"></a>00045 
 <a name="l00047"></a><a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2">00047</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> <a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
-<a name="l00048"></a>00048 };
-<a name="l00049"></a>00049 
-<a name="l00051"></a>00051 <span class="keyword">extern</span> <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> <a class="code" href="processresult_8cpp.html#a2ae5b2d9f8d9790d7561837dbde603d9" title="An invalid process result.">WRONG_PROCESS_RESULT</a>;
-<a name="l00052"></a>00052 
-<a name="l00056"></a>00056 <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> <a class="code" href="processresult_8cpp.html#aac2def2b1c00bff56e6b946abc7b0b60" title="Function to init WRONG_PROCESS_RESULT.">initWrongProcessResult</a>();
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="preprocessor">#endif // PROCESSRESULT_HPP</span>
+<a name="l00048"></a>00048 
+<a name="l00051"></a><a class="code" href="struct_process_result.html#a22e680386abd96a1377bf3f25f5b9551">00051</a>         <a class="code" href="struct_process_result.html#a22e680386abd96a1377bf3f25f5b9551" title="Constructor of an invalid result.">ProcessResult</a>() :
+<a name="l00052"></a>00052                 <a class="code" href="struct_process_result.html#a47b6e2d592b69f4f18595d6bcc0a769a" title="Boolean indicating if the process ended successfully.">processOK</a>(false),
+<a name="l00053"></a>00053                 <a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00054"></a>00054                 <a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>(),
+<a name="l00055"></a>00055                 <a class="code" href="struct_process_result.html#ae079a0d725197539af3c52a7ef97a86e" title="Boolean indicating if the error is fatal.">fatalError</a>(true),
+<a name="l00056"></a>00056                 <a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>(<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a>)
+<a name="l00057"></a>00057         {}
+<a name="l00058"></a>00058 };
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="preprocessor">#endif // PROCESSRESULT_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -150,7 +154,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

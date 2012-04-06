@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>URLEntity Class Reference</h1><!-- doxytag: class="URLEntity" --><!-- doxytag: inherits="ReynTweetsMappable" -->
+<h1>URLEntity Class Reference</h1><!-- doxytag: class="URLEntity" --><!-- doxytag: inherits="TweetEntity" -->
 <p>URL in a tweet.  
 <a href="#_details">More...</a></p>
 
@@ -99,9 +99,10 @@ Inheritance diagram for URLEntity:</div>
  <div class="center">
   <img src="class_u_r_l_entity.png" usemap="#URLEntity_map" alt=""/>
   <map id="URLEntity_map" name="URLEntity_map">
+<area href="class_tweet_entity.html" alt="TweetEntity" shape="rect" coords="0,112,246,136"/>
 <area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
 <area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
-<area href="class_media.html" alt="Media" shape="rect" coords="0,168,246,192"/>
+<area href="class_media.html" alt="Media" shape="rect" coords="0,224,246,248"/>
 </map>
  </div>
 </div>
@@ -109,14 +110,12 @@ Inheritance diagram for URLEntity:</div>
 <p><a href="class_u_r_l_entity-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#ae35e39c2aed565d732156d7606514f1a">getDisplayedText</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the url.  <a href="#ae35e39c2aed565d732156d7606514f1a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">getDisplayedURL</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading method for displayedURL.  <a href="#aac2f693201764416433d42c54b509e0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">getExpandedURL</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading method for expandedURL.  <a href="#a05afe01ca354fb386b1928e3a0e355df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#ae5a40af1792c6af2004c8a01c5909f8c">getIndices</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading indexes.  <a href="#ae5a40af1792c6af2004c8a01c5909f8c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a897f8403e78a7a1393d2dbfe86c7d4b6">getIndicesProperty</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading method for the property indices.  <a href="#a897f8403e78a7a1393d2dbfe86c7d4b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a2cc1bc3a7c8888ab317853ca5b739acd">getURL</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading extractedURL.  <a href="#a2cc1bc3a7c8888ab317853ca5b739acd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#aa8321fe208423de795aa1598a91ca16d">operator=</a> (const <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &amp;entity)</td></tr>
@@ -125,10 +124,6 @@ Inheritance diagram for URLEntity:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing displayedURL.  <a href="#aa1fb9194468b24932c3f22a5d9622daf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a2785f81e984695506bbdf119c9e71e3c">setExpandedURL</a> (QString newURL)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for expandedURL.  <a href="#a2785f81e984695506bbdf119c9e71e3c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a20e71ccffe2ab93f0627002e22660a03">setIndices</a> (<a class="el" href="class_index_bounds.html">IndexBounds</a> newIndexes)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing indexes.  <a href="#a20e71ccffe2ab93f0627002e22660a03"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a4bca038291d0eeb57decc20a31a0138f">setIndices</a> (QVariantList newIndexList)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for the property indices.  <a href="#a4bca038291d0eeb57decc20a31a0138f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a6de522d5eb36fc4b396784b7f362329d">setURL</a> (QString newURL)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing extractedURL.  <a href="#a6de522d5eb36fc4b396784b7f362329d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a9b251adaafcb0d53e585e65e45832d6c">URLEntity</a> (const <a class="el" href="class_u_r_l_entity.html">URLEntity</a> &amp;entity)</td></tr>
@@ -145,20 +140,16 @@ Inheritance diagram for URLEntity:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a <a class="el" href="class_u_r_l_entity.html" title="URL in a tweet.">URLEntity</a>.  <a href="#ac54767a48e66659e0e8b76b284e3c19d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a79ddcb909fc43cf88adbff903d68fe7b">displayedURL</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL displayed on the tweet.  <a href="#a79ddcb909fc43cf88adbff903d68fe7b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL displayed on the tweet (only for t.co URLs).  <a href="#a79ddcb909fc43cf88adbff903d68fe7b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#aee1fd5756f06ccd2deeebd3fffe84c94">expandedURL</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Full URL (only for t.co URLs).  <a href="#aee1fd5756f06ccd2deeebd3fffe84c94"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a83ecb3b217d225b9b218fcc8214363a6">extractedURL</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Extracted URL.  <a href="#a83ecb3b217d225b9b218fcc8214363a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6">indexes</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexes in the tweet.  <a href="#a28aeecf4f41ef7bf3b3d17513d49f7f6"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a89b0bd3d9bd2482dee784c18ba282832">displayed_url</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Displayed URL.  <a href="#a89b0bd3d9bd2482dee784c18ba282832"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a55a5484f0987318867657009626f2156">expanded_url</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Expanded URL.  <a href="#a55a5484f0987318867657009626f2156"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#aa81bc84943d7d42f35bcf4ef6d215784">indices</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexes.  <a href="#aa81bc84943d7d42f35bcf4ef6d215784"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a8a22416b6eead90066de95b884003607">url</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Extracted URL.  <a href="#a8a22416b6eead90066de95b884003607"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
@@ -170,7 +161,7 @@ Inheritance diagram for URLEntity:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>URL in a tweet. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00035">35</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00034">34</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a548a7fef9d1a99e014eaf24ab8b97195"></a><!-- doxytag: member="URLEntity::URLEntity" ref="a548a7fef9d1a99e014eaf24ab8b97195" args="()" -->
 <div class="memitem">
@@ -189,7 +180,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00034">34</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00035">35</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -243,6 +234,31 @@ Inheritance diagram for URLEntity:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ae35e39c2aed565d732156d7606514f1a"></a><!-- doxytag: member="URLEntity::getDisplayedText" ref="ae35e39c2aed565d732156d7606514f1a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString URLEntity::getDisplayedText </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Building the rich text for the url. </p>
+<p>Overrides the QString <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An HTML tag to open the URL in a browser </dd></dl>
+
+<p>Implements <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff">TweetEntity</a>.</p>
+
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00121">121</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aac2f693201764416433d42c54b509e0a"></a><!-- doxytag: member="URLEntity::getDisplayedURL" ref="aac2f693201764416433d42c54b509e0a" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +277,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading method for displayedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>displayedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00110">110</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00096">96</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,51 +299,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading method for expandedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>expandedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00120">120</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae5a40af1792c6af2004c8a01c5909f8c"></a><!-- doxytag: member="URLEntity::getIndices" ref="ae5a40af1792c6af2004c8a01c5909f8c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_index_bounds.html">IndexBounds</a> URLEntity::getIndices </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reading indexes. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>indexes </dd></dl>
-
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00130">130</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a897f8403e78a7a1393d2dbfe86c7d4b6"></a><!-- doxytag: member="URLEntity::getIndicesProperty" ref="a897f8403e78a7a1393d2dbfe86c7d4b6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QVariantList URLEntity::getIndicesProperty </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reading method for the property indices. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>indexList </dd></dl>
-
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00085">85</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00106">106</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +321,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading extractedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>extractedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00100">100</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00086">86</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +429,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00115">115</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00101">101</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -485,63 +457,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00125">125</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a20e71ccffe2ab93f0627002e22660a03"></a><!-- doxytag: member="URLEntity::setIndices" ref="a20e71ccffe2ab93f0627002e22660a03" args="(IndexBounds newIndexes)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void URLEntity::setIndices </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td>
-          <td class="paramname"> <em>newIndexes</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Writing indexes. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>newIndexes</em>&nbsp;</td><td>New value for indexes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00135">135</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4bca038291d0eeb57decc20a31a0138f"></a><!-- doxytag: member="URLEntity::setIndices" ref="a4bca038291d0eeb57decc20a31a0138f" args="(QVariantList newIndexList)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void URLEntity::setIndices </td>
-          <td>(</td>
-          <td class="paramtype">QVariantList&nbsp;</td>
-          <td class="paramname"> <em>newIndexList</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Writing method for the property indices. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>newIndexList</em>&nbsp;</td><td>New value for the property indices </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00090">90</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00111">111</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -569,7 +485,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00105">105</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00091">91</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -664,9 +580,9 @@ Inheritance diagram for URLEntity:</div>
 </div>
 <div class="memdoc">
 
-<p>URL displayed on the tweet. </p>
+<p>URL displayed on the tweet (only for t.co URLs). </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00142">142</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00132">132</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -683,7 +599,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Full URL (only for t.co URLs). </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00145">145</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00135">135</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -700,24 +616,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Extracted URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00139">139</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a28aeecf4f41ef7bf3b3d17513d49f7f6"></a><!-- doxytag: member="URLEntity::indexes" ref="a28aeecf4f41ef7bf3b3d17513d49f7f6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_index_bounds.html">IndexBounds</a> <a class="el" href="class_u_r_l_entity.html#a28aeecf4f41ef7bf3b3d17513d49f7f6">URLEntity::indexes</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Indexes in the tweet. </p>
-
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00148">148</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00129">129</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -735,7 +634,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Displayed URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00106">106</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00113">113</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -751,23 +650,6 @@ Inheritance diagram for URLEntity:</div>
 <div class="memdoc">
 
 <p>Expanded URL. </p>
-
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00113">113</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa81bc84943d7d42f35bcf4ef6d215784"></a><!-- doxytag: member="URLEntity::indices" ref="aa81bc84943d7d42f35bcf4ef6d215784" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">URLEntity::indices<code> [read, write]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Indexes. </p>
 
 <p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00120">120</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
@@ -786,7 +668,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Extracted URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00099">99</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00106">106</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -809,7 +691,7 @@ Inheritance diagram for URLEntity:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:58 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:58 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

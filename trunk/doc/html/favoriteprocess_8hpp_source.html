@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/processes/processresult.cpp Source File</title>
+<title>ReynTweets: logic/processes/favoriteprocess.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>processresult.cpp</h1><a href="processresult_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<h1>favoriteprocess.hpp</h1><a href="favoriteprocess_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
@@ -111,18 +111,27 @@ window.onload = initDynSections;
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="processresult_8hpp.html" title="Header of ProcessResult.">processresult.hpp</a>&quot;</span>
-<a name="l00025"></a>00025 
-<a name="l00026"></a><a class="code" href="processresult_8hpp.html#a2ae5b2d9f8d9790d7561837dbde603d9">00026</a> <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> <a class="code" href="processresult_8cpp.html#a2ae5b2d9f8d9790d7561837dbde603d9" title="An invalid process result.">WRONG_PROCESS_RESULT</a> = <a class="code" href="processresult_8cpp.html#aac2def2b1c00bff56e6b946abc7b0b60" title="Function to init WRONG_PROCESS_RESULT.">initWrongProcessResult</a>();
-<a name="l00027"></a>00027 
-<a name="l00028"></a><a class="code" href="processresult_8hpp.html#aac2def2b1c00bff56e6b946abc7b0b60">00028</a> <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> <a class="code" href="processresult_8cpp.html#aac2def2b1c00bff56e6b946abc7b0b60" title="Function to init WRONG_PROCESS_RESULT.">initWrongProcessResult</a>() {
-<a name="l00029"></a>00029         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> wrongResult;
-<a name="l00030"></a>00030         wrongResult.<a class="code" href="struct_process_result.html#a47b6e2d592b69f4f18595d6bcc0a769a" title="Boolean indicating if the process ended successfully.">processOK</a> = <span class="keyword">false</span>;
-<a name="l00031"></a>00031         wrongResult.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a> = <span class="stringliteral">&quot;Invalid asker&quot;</span>;
-<a name="l00032"></a>00032         wrongResult.<a class="code" href="struct_process_result.html#ae079a0d725197539af3c52a7ef97a86e" title="Boolean indicating if the error is fatal.">fatalError</a> = <span class="keyword">true</span>;
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034         <span class="keywordflow">return</span> wrongResult;
-<a name="l00035"></a>00035 }
+<a name="l00024"></a>00024 <span class="preprocessor">#ifndef FAVORITEPROCESS_HPP</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define FAVORITEPROCESS_HPP</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="singletwittercallprocess_8hpp.html" title="Header of SingleTwitterCallProcess.">singletwittercallprocess.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 
+<a name="l00031"></a><a class="code" href="class_favorite_process.html">00031</a> <span class="keyword">class </span><a class="code" href="class_favorite_process.html" title="Process to favorite or to unfavorite a tweet.">FavoriteProcess</a> : <span class="keyword">public</span> <a class="code" href="class_single_twitter_call_process.html" title="Base class for processes which consists in only one call to Twitter.">SingleTwitterCallProcess</a>
+<a name="l00032"></a>00032 {
+<a name="l00033"></a>00033         Q_OBJECT
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035         <span class="keyword">public</span>:
+<a name="l00041"></a>00041                 <a class="code" href="class_favorite_process.html#ae9c49219a2ce066e8aae5da812853798" title="Constructor.">FavoriteProcess</a>(qlonglong <span class="keywordtype">id</span>, <span class="keywordtype">bool</span> fav);
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043         <span class="keyword">protected</span>:
+<a name="l00045"></a><a class="code" href="class_favorite_process.html#a38b6bbccd2b80b8e2cf4f1f414f8c22a">00045</a>                 qlonglong <a class="code" href="class_favorite_process.html#a38b6bbccd2b80b8e2cf4f1f414f8c22a" title="ID of the tweet to favorite.">tweetID</a>;
+<a name="l00046"></a>00046 
+<a name="l00049"></a><a class="code" href="class_favorite_process.html#abf739aa45d603370f8632241e1d833b9">00049</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_favorite_process.html#abf739aa45d603370f8632241e1d833b9" title="Boolean whose value is true if the process has to favorite the tweet or false if...">favorite</a>;
+<a name="l00050"></a>00050 
+<a name="l00053"></a>00053                 <span class="keywordtype">void</span> <a class="code" href="class_favorite_process.html#ade089ecb46ad6ae458858544a82b4dac" title="Calling the Twitter API to favorite or to unfavorite the tweet.">callTwitter</a>();
+<a name="l00054"></a>00054 };
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="preprocessor">#endif // FAVORITEPROCESS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -138,7 +147,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

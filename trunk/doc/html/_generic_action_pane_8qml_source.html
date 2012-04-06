@@ -132,35 +132,37 @@ window.onload = initDynSections;
 <a name="l00050"></a>00050         color: <span class="stringliteral">&quot;#a4a4a4&quot;</span>
 <a name="l00051"></a>00051         radius: pane_radius
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <span class="comment">// Text to display.</span>
-<a name="l00054"></a>00054         Text {
-<a name="l00055"></a>00055                 <span class="keywordtype">id</span>: description_action
-<a name="l00056"></a>00056                 width: generic_action_pane.width - 2* generic_action_pane.margin_value
-<a name="l00057"></a>00057                 text: generic_action_pane.pane_text
-<a name="l00058"></a>00058                 font.family: <span class="stringliteral">&quot;Ubuntu&quot;</span>
-<a name="l00059"></a>00059                 verticalAlignment: Text.AlignVCenter
-<a name="l00060"></a>00060                 horizontalAlignment: Text.AlignLeft
-<a name="l00061"></a>00061                 anchors.right: parent.right
-<a name="l00062"></a>00062                 anchors.rightMargin: margin_value
-<a name="l00063"></a>00063                 anchors.left: parent.left
-<a name="l00064"></a>00064                 anchors.leftMargin: margin_value
-<a name="l00065"></a>00065                 anchors.top: parent.top
-<a name="l00066"></a>00066                 anchors.topMargin: margin_value
-<a name="l00067"></a>00067                 font.pixelSize: 14
-<a name="l00068"></a>00068                 elide: Text.ElideRight
-<a name="l00069"></a>00069         }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="comment">// Button to act</span>
-<a name="l00072"></a>00072         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
-<a name="l00073"></a>00073                 <span class="keywordtype">id</span>: action_button
-<a name="l00074"></a>00074                 button_text: generic_action_pane.button_text
-<a name="l00075"></a>00075                 anchors.right: parent.right
-<a name="l00076"></a>00076                 anchors.rightMargin: margin_value
-<a name="l00077"></a>00077                 anchors.bottom: parent.bottom
-<a name="l00078"></a>00078                 anchors.bottomMargin: margin_value
-<a name="l00079"></a>00079                 onClick: act();
-<a name="l00080"></a>00080         }
-<a name="l00081"></a>00081 }
+<a name="l00053"></a>00053         <a class="code" href="class_constants.html" title="QML constants of Reyn Tweets.">Constants</a> {     <span class="keywordtype">id</span>:constant     }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="comment">// Text to display.</span>
+<a name="l00056"></a>00056         Text {
+<a name="l00057"></a>00057                 <span class="keywordtype">id</span>: description_action
+<a name="l00058"></a>00058                 width: generic_action_pane.width - 2* generic_action_pane.margin_value
+<a name="l00059"></a>00059                 text: generic_action_pane.pane_text
+<a name="l00060"></a>00060                 font.family: constant.font
+<a name="l00061"></a>00061                 verticalAlignment: Text.AlignVCenter
+<a name="l00062"></a>00062                 horizontalAlignment: Text.AlignLeft
+<a name="l00063"></a>00063                 anchors.right: parent.right
+<a name="l00064"></a>00064                 anchors.rightMargin: margin_value
+<a name="l00065"></a>00065                 anchors.left: parent.left
+<a name="l00066"></a>00066                 anchors.leftMargin: margin_value
+<a name="l00067"></a>00067                 anchors.top: parent.top
+<a name="l00068"></a>00068                 anchors.topMargin: margin_value
+<a name="l00069"></a>00069                 font.pixelSize: constant.font_size
+<a name="l00070"></a>00070                 elide: Text.ElideRight
+<a name="l00071"></a>00071         }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073         <span class="comment">// Button to act</span>
+<a name="l00074"></a>00074         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
+<a name="l00075"></a>00075                 <span class="keywordtype">id</span>: action_button
+<a name="l00076"></a>00076                 button_text: generic_action_pane.button_text
+<a name="l00077"></a>00077                 anchors.right: parent.right
+<a name="l00078"></a>00078                 anchors.rightMargin: margin_value
+<a name="l00079"></a>00079                 anchors.bottom: parent.bottom
+<a name="l00080"></a>00080                 anchors.bottomMargin: margin_value
+<a name="l00081"></a>00081                 onClick: act();
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -176,7 +178,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:42 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -117,9 +117,37 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029         <span class="keywordtype">id</span>: main_view
 <a name="l00030"></a>00030         <span class="keyword">property</span> <span class="keywordtype">int</span> margin: 5
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032         width: 360
-<a name="l00033"></a>00033         height: 640
-<a name="l00034"></a>00034 }
+<a name="l00032"></a>00032         <a class="code" href="class_constants.html" title="QML constants of Reyn Tweets.">Constants</a> {     <span class="keywordtype">id</span>:constant     }
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034         function loadHomeTimeline() {
+<a name="l00035"></a>00035                 timeline.loadHomeTimeline();
+<a name="l00036"></a>00036         }
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038         width: 360
+<a name="l00039"></a>00039         height: 640
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041         <span class="comment">// Component displayed while launching the application</span>
+<a name="l00042"></a>00042         Text {
+<a name="l00043"></a>00043                 <span class="keywordtype">id</span>: mockup
+<a name="l00044"></a>00044                 text: <span class="stringliteral">&quot;You can tweet now !&quot;</span>
+<a name="l00045"></a>00045                 anchors.top: parent.top
+<a name="l00046"></a>00046                 anchors.horizontalCenter: parent.horizontalCenter
+<a name="l00047"></a>00047                 verticalAlignment: Text.AlignVCenter
+<a name="l00048"></a>00048                 horizontalAlignment: Text.AlignHCenter
+<a name="l00049"></a>00049                 font.family: constant.font
+<a name="l00050"></a>00050                 visible: <span class="keyword">true</span>
+<a name="l00051"></a>00051                 font.pixelSize: constant.font_size
+<a name="l00052"></a>00052         }
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054         <a class="code" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> {
+<a name="l00055"></a>00055                 <span class="keywordtype">id</span>: timeline
+<a name="l00056"></a>00056                 anchors.top: mockup.bottom
+<a name="l00057"></a>00057                 anchors.topMargin: 0
+<a name="l00058"></a>00058                 anchors.right: main_view.right
+<a name="l00059"></a>00059                 anchors.left: main_view.left
+<a name="l00060"></a>00060                 anchors.bottom: main_view.bottom
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -135,7 +163,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:42 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -227,7 +227,7 @@ window.onload = initDynSections;
 <a name="l00137"></a>00137                                                                 parsedResults.insert(<span class="stringliteral">&quot;denied&quot;</span>, QVariant(<span class="keyword">false</span>));
 <a name="l00138"></a>00138                                                                 parsedResults.insert(<span class="stringliteral">&quot;rightCredentials&quot;</span>, QVariant(<span class="keyword">true</span>));
 <a name="l00139"></a>00139                                                         } <span class="keywordflow">else</span> {
-<a name="l00140"></a>00140                                                                 errorMsg.append(<span class="stringliteral">&quot;PIN code (oauth verifier) not found.\n&quot;</span>);
+<a name="l00140"></a>00140                                                                 errorMsg.append(PostAuthorizeRequester::trUtf8(<span class="stringliteral">&quot;PIN code (oauth verifier) not found.&quot;</span>)).append(<span class="charliteral">&#39;\n&#39;</span>);
 <a name="l00141"></a>00141                                                         }
 <a name="l00142"></a>00142                                                 }
 <a name="l00143"></a>00143                                         } <span class="keywordflow">else</span> {
@@ -291,27 +291,31 @@ window.onload = initDynSections;
 <a name="l00201"></a>00201                                                 <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac15ad8abdf37aac183d7879526831b68" title="Setter on the verifier.">setVerifier</a>(extractedCredential.toByteArray());
 <a name="l00202"></a>00202                                         } <span class="keywordflow">else</span> {
 <a name="l00203"></a>00203                                                 <span class="comment">// Error according to the observations done for the process</span>
-<a name="l00204"></a>00204                                                 errorMsg.append(<span class="stringliteral">&quot;&amp;lt;div class=\&quot;happy notice callback\&quot;&amp;gt; HTML tag expected.\n&quot;</span>);
-<a name="l00205"></a>00205                                         }
-<a name="l00206"></a>00206                                 }
-<a name="l00207"></a>00207                         } <span class="keywordflow">else</span> {
-<a name="l00208"></a>00208                                 errorMsg.append(<span class="stringliteral">&quot;Empty HTML page.\n&quot;</span>);
-<a name="l00209"></a>00209                         }
-<a name="l00210"></a>00210                 } <span class="keywordflow">else</span> {
-<a name="l00211"></a>00211                         errorMsg.append(<span class="stringliteral">&quot;HTML parsing failed.\n&quot;</span>);
-<a name="l00212"></a>00212                 }
-<a name="l00213"></a>00213         } <span class="keywordflow">else</span> {
-<a name="l00214"></a>00214                 errorMsg.append(<span class="stringliteral">&quot;Wrong URL.\n&quot;</span>);
-<a name="l00215"></a>00215         }
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218         <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
-<a name="l00219"></a>00219         <span class="keywordflow">if</span> (!parseOK) {
-<a name="l00220"></a>00220                 parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
-<a name="l00221"></a>00221         }
-<a name="l00222"></a>00222 
-<a name="l00223"></a>00223         <span class="keywordflow">return</span> QVariant(parsedResults);
-<a name="l00224"></a>00224 }
+<a name="l00204"></a>00204                                                 errorMsg.append(PostAuthorizeRequester::trUtf8(<span class="stringliteral">&quot;&amp;lt;div class=\&quot;happy notice callback\&quot;&amp;gt; HTML tag expected.&quot;</span>))
+<a name="l00205"></a>00205                                                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00206"></a>00206                                         }
+<a name="l00207"></a>00207                                 }
+<a name="l00208"></a>00208                         } <span class="keywordflow">else</span> {
+<a name="l00209"></a>00209                                 errorMsg.append(PostAuthorizeRequester::trUtf8(<span class="stringliteral">&quot;Empty HTML page.&quot;</span>))
+<a name="l00210"></a>00210                                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00211"></a>00211                         }
+<a name="l00212"></a>00212                 } <span class="keywordflow">else</span> {
+<a name="l00213"></a>00213                         errorMsg.append(PostAuthorizeRequester::trUtf8(<span class="stringliteral">&quot;HTML parsing failed.&quot;</span>))
+<a name="l00214"></a>00214                                         .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00215"></a>00215                 }
+<a name="l00216"></a>00216         } <span class="keywordflow">else</span> {
+<a name="l00217"></a>00217                 errorMsg.append(PostAuthorizeRequester::trUtf8(<span class="stringliteral">&quot;Wrong URL.&quot;</span>))
+<a name="l00218"></a>00218                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00219"></a>00219         }
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221 
+<a name="l00222"></a>00222         <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
+<a name="l00223"></a>00223         <span class="keywordflow">if</span> (!parseOK) {
+<a name="l00224"></a>00224                 parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
+<a name="l00225"></a>00225         }
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227         <span class="keywordflow">return</span> QVariant(parsedResults);
+<a name="l00228"></a>00228 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -327,7 +331,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:48 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

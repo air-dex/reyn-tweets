@@ -91,11 +91,16 @@ window.onload = initDynSections;
 <a href="#_details">More...</a></p>
 <code>#include &lt;QtGui/QApplication&gt;</code><br/>
 <code>#include &lt;QLocale&gt;</code><br/>
+<code>#include &lt;QScriptEngine&gt;</code><br/>
 <code>#include &lt;QTranslator&gt;</code><br/>
+<code>#include &lt;QIcon&gt;</code><br/>
 <code>#include &quot;<a class="el" href="main_8cpp_source.html">ui/qmlapplicationviewer.hpp</a>&quot;</code><br/>
 <code>#include &lt;QtDeclarative/QDeclarativeView&gt;</code><br/>
 <code>#include &quot;<a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="logincontrol_8hpp_source.html">logincontrol.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="tweetcontrol_8hpp_source.html">tweetcontrol.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="timeline_8hpp_source.html">model/timelines/timeline.hpp</a>&quot;</code><br/>
 
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -104,8 +109,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declares all the controls used by QML widgets.  <a href="#a1af320108fed438e08b36be8dcc85e29"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5f0194537f9f8bef5b756f885b965298">initReynTweetsSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes all the serializable classes.  <a href="#a5f0194537f9f8bef5b756f885b965298"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a44933f7b8dbf78ce2ec6248dc4d1b4f0">loadTranslation</a> (QScopedPointer&lt; QApplication &gt; *a)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the translation of the program.  <a href="#a44933f7b8dbf78ce2ec6248dc4d1b4f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a01aaa1b14bf8c4695ecded58b8dfa1e6">loadTranslation</a> (QScopedPointer&lt; QApplication &gt; &amp;a)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the translation of the program.  <a href="#a01aaa1b14bf8c4695ecded58b8dfa1e6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Q_DECL_EXPORT int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5569469946ea5791c91647274bd498eb">main</a> (int argc, char *argv[])</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Main function. Entry point of the program.  <a href="#a5569469946ea5791c91647274bd498eb"></a><br/></td></tr>
 </table>
@@ -139,7 +144,7 @@ LICENSE</a></h2>
 
 <p>Declares all the controls used by QML widgets. </p>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00055">55</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00058">58</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -160,18 +165,18 @@ LICENSE</a></h2>
 
 <p>Initializes all the serializable classes. </p>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00032">32</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00035">35</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a44933f7b8dbf78ce2ec6248dc4d1b4f0"></a><!-- doxytag: member="main.cpp::loadTranslation" ref="a44933f7b8dbf78ce2ec6248dc4d1b4f0" args="(QScopedPointer&lt; QApplication &gt; *a)" -->
+<a class="anchor" id="a01aaa1b14bf8c4695ecded58b8dfa1e6"></a><!-- doxytag: member="main.cpp::loadTranslation" ref="a01aaa1b14bf8c4695ecded58b8dfa1e6" args="(QScopedPointer&lt; QApplication &gt; &amp;a)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void loadTranslation </td>
           <td>(</td>
-          <td class="paramtype">QScopedPointer&lt; QApplication &gt; *&nbsp;</td>
+          <td class="paramtype">QScopedPointer&lt; QApplication &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>a</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -188,7 +193,7 @@ LICENSE</a></h2>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00063">63</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00073">73</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,7 +232,7 @@ LICENSE</a></h2>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The result of the execution. </dd></dl>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00088">88</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00093">93</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +251,7 @@ LICENSE</a></h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:52 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:45 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

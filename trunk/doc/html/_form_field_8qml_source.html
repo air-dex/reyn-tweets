@@ -130,49 +130,51 @@ window.onload = initDynSections;
 <a name="l00047"></a>00047         height: field_background.height + 2*radius
 <a name="l00048"></a>00048         radius: 5
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050         <span class="comment">// Legend</span>
-<a name="l00051"></a>00051         Text {
-<a name="l00052"></a>00052                 <span class="keywordtype">id</span>: text
-<a name="l00053"></a>00053                 text: legend
-<a name="l00054"></a>00054                 anchors.left: parent.left
-<a name="l00055"></a>00055                 anchors.leftMargin: radius
-<a name="l00056"></a>00056                 anchors.verticalCenter: parent.verticalCenter
-<a name="l00057"></a>00057                 verticalAlignment: Text.AlignVCenter
-<a name="l00058"></a>00058                 font.family: <span class="stringliteral">&quot;Ubuntu&quot;</span>
-<a name="l00059"></a>00059                 font.pixelSize: 14
-<a name="l00060"></a>00060         }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="comment">// Rectangle behind field for design concerns.</span>
-<a name="l00063"></a>00063         Rectangle {
-<a name="l00064"></a>00064                 <span class="keywordtype">id</span>: field_background
-<a name="l00065"></a>00065                 height: text.height + 2*radius
-<a name="l00066"></a>00066                 radius: 4
-<a name="l00067"></a>00067                 anchors.verticalCenter: parent.verticalCenter
-<a name="l00068"></a>00068                 anchors.leftMargin: field_left_margin + spacing + radius
-<a name="l00069"></a>00069                 anchors.left: parent.left
-<a name="l00070"></a>00070                 anchors.right: parent.right
-<a name="l00071"></a>00071                 anchors.rightMargin: radius
-<a name="l00072"></a>00072                 border.color: <span class="stringliteral">&quot;#000000&quot;</span>
-<a name="l00073"></a>00073                 color: <span class="stringliteral">&quot;#ffffff&quot;</span>
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075                 <span class="comment">// Input</span>
-<a name="l00076"></a>00076                 TextInput {
-<a name="l00077"></a>00077                         <span class="keywordtype">id</span>: field
-<a name="l00078"></a>00078                         text: <span class="stringliteral">&quot;&quot;</span>
-<a name="l00079"></a>00079                         anchors.leftMargin: parent.radius
-<a name="l00080"></a>00080                         anchors.rightMargin: parent.radius
-<a name="l00081"></a>00081                         anchors.bottomMargin: parent.radius
-<a name="l00082"></a>00082                         anchors.topMargin: parent.radius
-<a name="l00083"></a>00083                         anchors.fill: parent
-<a name="l00084"></a>00084                         echoMode: clear_field ? TextInput.Normal : TextInput.Password
-<a name="l00085"></a>00085                         font.family: <span class="stringliteral">&quot;Ubuntu&quot;</span>
-<a name="l00086"></a>00086                         horizontalAlignment: TextEdit.AlignLeft
-<a name="l00087"></a>00087                         font.pixelSize: 14
-<a name="l00088"></a>00088                 }
-<a name="l00089"></a>00089         }
-<a name="l00090"></a>00090 
-<a name="l00096"></a>00096         function getLegendWidth() { <span class="keywordflow">return</span> text.width;}
-<a name="l00097"></a>00097 }
+<a name="l00050"></a>00050         <a class="code" href="class_constants.html" title="QML constants of Reyn Tweets.">Constants</a> { <span class="keywordtype">id</span>:constant }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="comment">// Legend</span>
+<a name="l00053"></a>00053         Text {
+<a name="l00054"></a>00054                 <span class="keywordtype">id</span>: text
+<a name="l00055"></a>00055                 text: legend
+<a name="l00056"></a>00056                 anchors.left: parent.left
+<a name="l00057"></a>00057                 anchors.leftMargin: radius
+<a name="l00058"></a>00058                 anchors.verticalCenter: parent.verticalCenter
+<a name="l00059"></a>00059                 verticalAlignment: Text.AlignVCenter
+<a name="l00060"></a>00060                 font.family: constant.font
+<a name="l00061"></a>00061                 font.pixelSize: constant.font_size
+<a name="l00062"></a>00062         }
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="comment">// Rectangle behind field for design concerns.</span>
+<a name="l00065"></a>00065         Rectangle {
+<a name="l00066"></a>00066                 <span class="keywordtype">id</span>: field_background
+<a name="l00067"></a>00067                 height: text.height + 2*radius
+<a name="l00068"></a>00068                 radius: 4
+<a name="l00069"></a>00069                 anchors.verticalCenter: parent.verticalCenter
+<a name="l00070"></a>00070                 anchors.leftMargin: field_left_margin + spacing + radius
+<a name="l00071"></a>00071                 anchors.left: parent.left
+<a name="l00072"></a>00072                 anchors.right: parent.right
+<a name="l00073"></a>00073                 anchors.rightMargin: radius
+<a name="l00074"></a>00074                 border.color: <span class="stringliteral">&quot;#000000&quot;</span>
+<a name="l00075"></a>00075                 color: <span class="stringliteral">&quot;#ffffff&quot;</span>
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077                 <span class="comment">// Input</span>
+<a name="l00078"></a>00078                 TextInput {
+<a name="l00079"></a>00079                         <span class="keywordtype">id</span>: field
+<a name="l00080"></a>00080                         text: <span class="stringliteral">&quot;&quot;</span>
+<a name="l00081"></a>00081                         anchors.leftMargin: parent.radius
+<a name="l00082"></a>00082                         anchors.rightMargin: parent.radius
+<a name="l00083"></a>00083                         anchors.bottomMargin: parent.radius
+<a name="l00084"></a>00084                         anchors.topMargin: parent.radius
+<a name="l00085"></a>00085                         anchors.fill: parent
+<a name="l00086"></a>00086                         echoMode: clear_field ? TextInput.Normal : TextInput.Password
+<a name="l00087"></a>00087                         font.family: constant.font
+<a name="l00088"></a>00088                         horizontalAlignment: TextEdit.AlignLeft
+<a name="l00089"></a>00089                         font.pixelSize: constant.font_size
+<a name="l00090"></a>00090                 }
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092 
+<a name="l00098"></a>00098         function getLegendWidth() { <span class="keywordflow">return</span> text.width;}
+<a name="l00099"></a>00099 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -188,7 +190,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:51 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:42 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

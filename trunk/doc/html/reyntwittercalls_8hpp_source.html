@@ -163,46 +163,78 @@ window.onload = initDynSections;
 <a name="l00113"></a>00113                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8be1c4bc810c8b7c543991717194d66f" title="Verifying credentials.">verifyCredentials</a>(<span class="keywordtype">bool</span> entities, <span class="keywordtype">bool</span> skipStatus);
 <a name="l00114"></a>00114 
 <a name="l00115"></a>00115 
-<a name="l00117"></a>00117                 <span class="comment">// Searches //</span>
+<a name="l00117"></a>00117                 <span class="comment">// Favorites //</span>
 <a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00124"></a>00124                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">search</a>(QString q);
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 
-<a name="l00128"></a>00128                 <span class="comment">// OAuth //</span>
-<a name="l00130"></a>00130 <span class="comment"></span>
-<a name="l00134"></a>00134                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
-<a name="l00135"></a>00135 
-<a name="l00145"></a>00145                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">setNewTokens</a>(QByteArray <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>,
-<a name="l00146"></a>00146                                                                  QByteArray tokenSecret,
-<a name="l00147"></a>00147                                                                  QByteArray consumerKey = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>,
-<a name="l00148"></a>00148                                                                  QByteArray consumerSecret = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>);
-<a name="l00149"></a>00149 
-<a name="l00153"></a>00153                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">requestToken</a>();
-<a name="l00154"></a>00154 
-<a name="l00158"></a>00158                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">authorize</a>();
-<a name="l00159"></a>00159 
-<a name="l00168"></a>00168                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">postAuthorize</a>(QString login,
-<a name="l00169"></a>00169                                                    QString password,
-<a name="l00170"></a>00170                                                    <span class="keywordtype">bool</span> deny);
-<a name="l00171"></a>00171 
-<a name="l00175"></a>00175                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>();
+<a name="l00126"></a>00126                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ab7b2beefd604e22c530c388379178e01" title="Favoriting a tweet.">favoriteTweet</a>(qlonglong <span class="keywordtype">id</span>, <span class="keywordtype">bool</span> entities = <span class="keyword">false</span>);
+<a name="l00127"></a>00127 
+<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a00a7b49d5c0a4d0a971beaf37105d097" title="Retrieving the timeline with the favorite tweets of the user whose ID is id.">getFavoriteTimeline</a>(qlonglong <span class="keywordtype">id</span> = -1,
+<a name="l00144"></a>00144                                                                  qlonglong sinceID = -1,
+<a name="l00145"></a>00145                                                                  <span class="keywordtype">bool</span> entities = <span class="keyword">false</span>,
+<a name="l00146"></a>00146                                                                  <span class="keywordtype">int</span> page = 0,
+<a name="l00147"></a>00147                                                                  <span class="keywordtype">int</span> count = 20);
+<a name="l00148"></a>00148 
+<a name="l00164"></a>00164                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a00a7b49d5c0a4d0a971beaf37105d097" title="Retrieving the timeline with the favorite tweets of the user whose ID is id.">getFavoriteTimeline</a>(QString <span class="keywordtype">id</span> = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00165"></a>00165                                                                  qlonglong sinceID = -1,
+<a name="l00166"></a>00166                                                                  <span class="keywordtype">bool</span> entities = <span class="keyword">false</span>,
+<a name="l00167"></a>00167                                                                  <span class="keywordtype">int</span> page = 0,
+<a name="l00168"></a>00168                                                                  <span class="keywordtype">int</span> count = 20);
+<a name="l00169"></a>00169 
+<a name="l00174"></a>00174                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a02576dc7c5f5415f6505c33406aff26d" title="Unavoriting a tweet.">unfavoriteTweet</a>(qlonglong <span class="keywordtype">id</span>);
+<a name="l00175"></a>00175 
 <a name="l00176"></a>00176 
-<a name="l00177"></a>00177 
-<a name="l00179"></a>00179                 <span class="comment">// Tweets //</span>
-<a name="l00181"></a>00181 <span class="comment"></span>
-<a name="l00190"></a>00190                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">showTweet</a>(qlonglong tweetID,
-<a name="l00191"></a>00191                                            <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
-<a name="l00192"></a>00192                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>);
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194 
-<a name="l00196"></a>00196                 <span class="comment">// Users //</span>
-<a name="l00198"></a>00198 <span class="comment"></span>
-<a name="l00204"></a>00204                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00205"></a>00205 
-<a name="l00211"></a>00211                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00212"></a>00212 };
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
+<a name="l00178"></a>00178                 <span class="comment">// OAuth //</span>
+<a name="l00180"></a>00180 <span class="comment"></span>
+<a name="l00184"></a>00184                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a788fdbb512df28f578f1e4733c5c192e" title="Resetting the tokens. A full new OAuth authentication process has to be launch to...">resetTokens</a>();
+<a name="l00185"></a>00185 
+<a name="l00195"></a>00195                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe" title="Giving new tokens to the oauthManager.">setNewTokens</a>(QByteArray <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>,
+<a name="l00196"></a>00196                                                                  QByteArray tokenSecret,
+<a name="l00197"></a>00197                                                                  QByteArray consumerKey = <a class="code" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8" title="Reyn Tweets&amp;#39; consumer key.">ReynTweetsSettings::CONSUMER_KEY</a>,
+<a name="l00198"></a>00198                                                                  QByteArray consumerSecret = <a class="code" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d" title="Reyn Tweets&amp;#39; consumer secret.">ReynTweetsSettings::CONSUMER_SECRET</a>);
+<a name="l00199"></a>00199 
+<a name="l00203"></a>00203                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#af5187deb05c40a44fbf021e8f29634fe" title="Method for getting a request token.">requestToken</a>();
+<a name="l00204"></a>00204 
+<a name="l00208"></a>00208                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a8845c5ef364c783b46b4888aa743fcbe" title="Method for authorizing request Tokens.">authorize</a>();
+<a name="l00209"></a>00209 
+<a name="l00218"></a>00218                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4de550600e72c8500d44808c859c3706" title="POST authorize() requests to allow or to deny the application.">postAuthorize</a>(QString login,
+<a name="l00219"></a>00219                                                    QString password,
+<a name="l00220"></a>00220                                                    <span class="keywordtype">bool</span> deny);
+<a name="l00221"></a>00221 
+<a name="l00225"></a>00225                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#ada24f7e66a16e67f227ff488a8f43de3" title="Method for getting an access token.">accessToken</a>();
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227 
+<a name="l00229"></a>00229                 <span class="comment">// Searches //</span>
+<a name="l00231"></a>00231 <span class="comment"></span>
+<a name="l00236"></a>00236                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a1841d6eed5d2b649684dc6be704a660e" title="Method that launch searches.">search</a>(QString q);
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238 
+<a name="l00240"></a>00240                 <span class="comment">// Timelines //</span>
+<a name="l00242"></a>00242 <span class="comment"></span>
+<a name="l00263"></a>00263                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#acf5c9a4e80ce13f0da265f444065c448" title="Retrieving the timeline with the tweets of the user&amp;#39;s friends.">retrieveHomeTimeline</a>(qlonglong sinceID = -1,
+<a name="l00264"></a>00264                                                                   qlonglong maxID = -1,
+<a name="l00265"></a>00265                                                                   <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>,
+<a name="l00266"></a>00266                                                                   <span class="keywordtype">bool</span> includeRTS = <span class="keyword">false</span>,
+<a name="l00267"></a>00267                                                                   <span class="keywordtype">bool</span> includeEntities = <span class="keyword">false</span>,
+<a name="l00268"></a>00268                                                                   <span class="keywordtype">bool</span> excludeReplies = <span class="keyword">false</span>,
+<a name="l00269"></a>00269                                                                   <span class="keywordtype">int</span> page = 0,
+<a name="l00270"></a>00270                                                                   <span class="keywordtype">int</span> count = 20,
+<a name="l00271"></a>00271                                                                   <span class="keywordtype">bool</span> contributorsDetails = <span class="keyword">false</span>);
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273 
+<a name="l00275"></a>00275                 <span class="comment">// Tweets //</span>
+<a name="l00277"></a>00277 <span class="comment"></span>
+<a name="l00286"></a>00286                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#aab389cf2f9969a500e39c30d678daff9" title="Showing a tweet.">showTweet</a>(qlonglong tweetID,
+<a name="l00287"></a>00287                                            <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
+<a name="l00288"></a>00288                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>);
+<a name="l00289"></a>00289 
+<a name="l00290"></a>00290 
+<a name="l00292"></a>00292                 <span class="comment">// Users //</span>
+<a name="l00294"></a>00294 <span class="comment"></span>
+<a name="l00300"></a>00300                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00301"></a>00301 
+<a name="l00307"></a>00307                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00308"></a>00308 };
+<a name="l00309"></a>00309 
+<a name="l00310"></a>00310 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -218,7 +250,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

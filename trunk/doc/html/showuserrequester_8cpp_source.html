@@ -119,7 +119,7 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029                                                                          qlonglong <span class="keywordtype">id</span>,
 <a name="l00030"></a>00030                                                                          <span class="keywordtype">bool</span> entities) :
 <a name="l00031"></a>00031         <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">SHOW_USER_URL</a>, authManager),
-<a name="l00032"></a>00032         idWay(ID),
+<a name="l00032"></a>00032         idWay(<a class="code" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6ba001479a58fb44c39a29b20d565081a68" title="With an ID.">ID</a>),
 <a name="l00033"></a>00033         userID(id),
 <a name="l00034"></a>00034         includeEntities(entities),
 <a name="l00035"></a>00035         screenName()
@@ -130,7 +130,7 @@ window.onload = initDynSections;
 <a name="l00040"></a>00040                                                                          QString name,
 <a name="l00041"></a>00041                                                                          <span class="keywordtype">bool</span> entities) :
 <a name="l00042"></a>00042         <a class="code" href="class_authentication_requester.html" title="Requester specialized for requests which needs authentication.">AuthenticationRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">SHOW_USER_URL</a>, authManager),
-<a name="l00043"></a>00043         idWay(SCREEN_NAME),
+<a name="l00043"></a>00043         idWay(<a class="code" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6baf276b177f32644c072231ba043609170" title="With a screen name.">SCREEN_NAME</a>),
 <a name="l00044"></a>00044         userID(),
 <a name="l00045"></a>00045         includeEntities(entities),
 <a name="l00046"></a>00046         screenName(name)
@@ -138,13 +138,13 @@ window.onload = initDynSections;
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 <span class="comment">// Building getParameters</span>
 <a name="l00050"></a><a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d">00050</a> <span class="keywordtype">void</span> <a class="code" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d" title="Building getParameters.">ShowUserRequester::buildGETParameters</a>() {
-<a name="l00051"></a>00051         <span class="keywordflow">if</span> (<a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a> == <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee" title="With an ID.">ID</a>) {
+<a name="l00051"></a>00051         <span class="keywordflow">if</span> (<a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a> == <a class="code" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6ba001479a58fb44c39a29b20d565081a68" title="With an ID.">ID</a>) {
 <a name="l00052"></a>00052                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;id&quot;</span>, QString::number(<a class="code" href="class_show_user_requester.html#a9a0ca0fefec324420d6f1ae1c64f51a3" title="ID of the user.">userID</a>));
 <a name="l00053"></a>00053         }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_entities&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453" title="Boolean indicating if entities of a tweet have to be included in the reply.">includeEntities</a>));
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057         <span class="keywordflow">if</span> (<a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a> == <a class="code" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28" title="With a screen name.">SCREEN_NAME</a>) {
+<a name="l00057"></a>00057         <span class="keywordflow">if</span> (<a class="code" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb" title="How the user is identified.">idWay</a> == <a class="code" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6baf276b177f32644c072231ba043609170" title="With a screen name.">SCREEN_NAME</a>) {
 <a name="l00058"></a>00058                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;screen_name&quot;</span>, <a class="code" href="class_show_user_requester.html#a0c73954ad0133b9e8f1ab67e6037d1e1" title="When this value is set to true, only the id and id_str values of the user are returned...">screenName</a>);
 <a name="l00059"></a>00059         }
 <a name="l00060"></a>00060 
@@ -164,7 +164,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

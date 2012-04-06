@@ -178,7 +178,7 @@ window.onload = initDynSections;
 <a name="l00088"></a>00088                                 <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a4ce9bd4c4561d87d75c255a960ed5d0b" title="Setter on the Authenticity Token.">setAuthenticityToken</a>(inputValue.toAscii());
 <a name="l00089"></a>00089                                 authenticityTokenFound = <span class="keyword">true</span>;
 <a name="l00090"></a>00090                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!oauthTokenFound &amp;&amp; inputName == <span class="stringliteral">&quot;oauth_token&quot;</span>) {
-<a name="l00091"></a>00091                                 <span class="comment">// The oauth token is found (WTF) !</span>
+<a name="l00091"></a>00091                                 <span class="comment">// The oauth token is found. (WTF)</span>
 <a name="l00092"></a>00092                                 <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(inputValue.toAscii());
 <a name="l00093"></a>00093                                 oauthTokenFound = <span class="keyword">true</span>;
 <a name="l00094"></a>00094                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!denyFound &amp;&amp; inputName == <span class="stringliteral">&quot;deny&quot;</span>) {
@@ -195,29 +195,33 @@ window.onload = initDynSections;
 <a name="l00105"></a>00105                 <span class="comment">// Are all the parameters found ?</span>
 <a name="l00106"></a>00106                 <span class="keywordflow">if</span> (!treatmentOK) {
 <a name="l00107"></a>00107                         <span class="keywordflow">if</span> (!authenticityTokenFound) {
-<a name="l00108"></a>00108                                 errorMsg.append(<span class="stringliteral">&quot;Authenticity token not found.\n&quot;</span>);
-<a name="l00109"></a>00109                         }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111                         <span class="keywordflow">if</span> (!oauthTokenFound) {
-<a name="l00112"></a>00112                                 errorMsg.append(<span class="stringliteral">&quot;OAuth token not found.\n&quot;</span>);
-<a name="l00113"></a>00113                         }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115                         <span class="keywordflow">if</span> (!denyFound) {
-<a name="l00116"></a>00116                                 errorMsg.append(<span class="stringliteral">&quot;Deny value not found.\n&quot;</span>);
-<a name="l00117"></a>00117                         }
-<a name="l00118"></a>00118                 }
-<a name="l00119"></a>00119         } <span class="keywordflow">else</span> {
-<a name="l00120"></a>00120                 errorMsg.append(<span class="stringliteral">&quot;Empty HTML page.\n&quot;</span>);
-<a name="l00121"></a>00121         }
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124         <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
-<a name="l00125"></a>00125         <span class="keywordflow">if</span> (!parseOK) {
-<a name="l00126"></a>00126                 parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
-<a name="l00127"></a>00127         }
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129         <span class="keywordflow">return</span> QVariant();
-<a name="l00130"></a>00130 }
+<a name="l00108"></a>00108                                 errorMsg.append(AuthorizeRequester::trUtf8(<span class="stringliteral">&quot;Authenticity token not found.&quot;</span>))
+<a name="l00109"></a>00109                                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00110"></a>00110                         }
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112                         <span class="keywordflow">if</span> (!oauthTokenFound) {
+<a name="l00113"></a>00113                                 errorMsg.append(AuthorizeRequester::trUtf8(<span class="stringliteral">&quot;OAuth token not found.&quot;</span>))
+<a name="l00114"></a>00114                                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00115"></a>00115                         }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117                         <span class="keywordflow">if</span> (!denyFound) {
+<a name="l00118"></a>00118                                 errorMsg.append(AuthorizeRequester::trUtf8(<span class="stringliteral">&quot;Deny value not found.&quot;</span>))
+<a name="l00119"></a>00119                                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00120"></a>00120                         }
+<a name="l00121"></a>00121                 }
+<a name="l00122"></a>00122         } <span class="keywordflow">else</span> {
+<a name="l00123"></a>00123                 errorMsg.append(AuthorizeRequester::trUtf8(<span class="stringliteral">&quot;Empty HTML page.\n&quot;</span>))
+<a name="l00124"></a>00124                                 .append(<span class="charliteral">&#39;\n&#39;</span>);
+<a name="l00125"></a>00125         }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128         <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
+<a name="l00129"></a>00129         <span class="keywordflow">if</span> (!parseOK) {
+<a name="l00130"></a>00130                 parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133         <span class="keywordflow">return</span> QVariant();
+<a name="l00134"></a>00134 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -233,7 +237,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:48 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:37 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

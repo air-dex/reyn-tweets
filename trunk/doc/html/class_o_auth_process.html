@@ -135,8 +135,10 @@ Inheritance diagram for OAuthProcess:</div>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#ab698ffd84f5eb96a259cda6c7deb37ce">~OAuthProcess</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#ab698ffd84f5eb96a259cda6c7deb37ce"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a420342c293b6ecd9cfba052896fd6752">buildResult</a> (bool processOK, <a class="el" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">CoreResult</a> issue, QString errMsg=&quot;&quot;, bool isFatal=false, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, qlonglong userID=-1, QString screenName=&quot;&quot;)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the process result.  <a href="#a420342c293b6ecd9cfba052896fd6752"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a4e5d3dbc43540f1a398461bbb199a0c0">buildResult</a> (QByteArray accessToken, QByteArray tokenSecret, qlonglong userID, QString screenName)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the process result if Reyn Tweets is authorized.  <a href="#a4e5d3dbc43540f1a398461bbb199a0c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a22608dab50bcce6d8f80b68dcf1140f1">buildResult</a> (bool processOK, <a class="el" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">CoreResult</a> issue, QString errMsg=&quot;&quot;, bool isFatal=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the process result.  <a href="#a22608dab50bcce6d8f80b68dcf1140f1"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_twitter_calls.html">ReynTwitterCalls</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_process.html#a4000d7bf63ced923dd8fbd4624402b0e">twitter</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Entity calling Twitter.  <a href="#a4000d7bf63ced923dd8fbd4624402b0e"></a><br/></td></tr>
@@ -170,7 +172,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00030">30</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00031">31</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -191,7 +193,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00036">36</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00037">37</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -213,7 +215,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Demanding an Access Token. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00333">333</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00335">335</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -241,7 +243,7 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00340">340</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00342">342</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +264,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Authorize the request tokens. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00157">157</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00163">163</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +292,7 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00164">164</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00170">170</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,11 +330,63 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00230">230</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00234">234</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a420342c293b6ecd9cfba052896fd6752"></a><!-- doxytag: member="OAuthProcess::buildResult" ref="a420342c293b6ecd9cfba052896fd6752" args="(bool processOK, CoreResult issue, QString errMsg=&quot;&quot;, bool isFatal=false, QByteArray accessToken=&quot;&quot;, QByteArray tokenSecret=&quot;&quot;, qlonglong userID=&#45;1, QString screenName=&quot;&quot;)" -->
+<a class="anchor" id="a4e5d3dbc43540f1a398461bbb199a0c0"></a><!-- doxytag: member="OAuthProcess::buildResult" ref="a4e5d3dbc43540f1a398461bbb199a0c0" args="(QByteArray accessToken, QByteArray tokenSecret, qlonglong userID, QString screenName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OAuthProcess::buildResult </td>
+          <td>(</td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&nbsp;</td>
+          <td class="paramname"> <em>tokenSecret</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qlonglong&nbsp;</td>
+          <td class="paramname"> <em>userID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>screenName</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Building the process result if Reyn Tweets is authorized. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>accessToken</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> access token </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>tokenSecret</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> token secret </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>userID</em>&nbsp;</td><td>ID of the user who has just authorized the application </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>screenName</em>&nbsp;</td><td>Screen name of the user who has just authorized the application. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00057">57</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22608dab50bcce6d8f80b68dcf1140f1"></a><!-- doxytag: member="OAuthProcess::buildResult" ref="a22608dab50bcce6d8f80b68dcf1140f1" args="(bool processOK, CoreResult issue, QString errMsg=&quot;&quot;, bool isFatal=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -358,31 +412,7 @@ Inheritance diagram for OAuthProcess:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>isFatal</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>accessToken</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>tokenSecret</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">qlonglong&nbsp;</td>
-          <td class="paramname"> <em>userID</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>screenName</em> = <code>&quot;&quot;</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>isFatal</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -400,15 +430,11 @@ Inheritance diagram for OAuthProcess:</div>
     <tr><td valign="top"></td><td valign="top"><em>issue</em>&nbsp;</td><td>Tag describing the issue of the process </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>errMsg</em>&nbsp;</td><td>Error message </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>isFatal</em>&nbsp;</td><td>Has the process ended fatally. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>accessToken</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> access token </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tokenSecret</em>&nbsp;</td><td><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> token secret </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>userID</em>&nbsp;</td><td>ID of the user who has just authorized the application </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>screenName</em>&nbsp;</td><td>Screen name of the user who has just authorized the application. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00044">44</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00045">45</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,7 +498,7 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00237">237</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00241">241</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +526,7 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00244">244</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00248">248</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +547,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Demanding a Request Token. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00076">76</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00084">84</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,7 +575,7 @@ Inheritance diagram for OAuthProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00083">83</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00091">91</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -570,7 +596,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00039">39</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00040">40</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -593,7 +619,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Implements <a class="el" href="class_generic_process.html#ac113e2d39b237fa898493dff25b86cb7">GenericProcess</a>.</p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00070">70</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8cpp_source.html#l00078">78</a> of file <a class="el" href="oauthprocess_8cpp_source.html">oauthprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +656,7 @@ Inheritance diagram for OAuthProcess:</div>
 
 <p>Entity calling Twitter. </p>
 
-<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00157">157</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthprocess_8hpp_source.html#l00159">159</a> of file <a class="el" href="oauthprocess_8hpp_source.html">oauthprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -653,7 +679,7 @@ Inheritance diagram for OAuthProcess:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:55 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

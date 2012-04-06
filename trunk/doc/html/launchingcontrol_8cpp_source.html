@@ -162,7 +162,7 @@ window.onload = initDynSections;
 <a name="l00078"></a>00078         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00081"></a>00081         <span class="keywordflow">if</span> (<span class="stringliteral">&quot;Invalid asker&quot;</span> == result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>) {
+<a name="l00081"></a>00081         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
 <a name="l00082"></a>00082                 <span class="keywordflow">return</span>;
 <a name="l00083"></a>00083         }
 <a name="l00084"></a>00084 
@@ -218,7 +218,7 @@ window.onload = initDynSections;
 <a name="l00136"></a>00136         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00139"></a>00139         <span class="keywordflow">if</span> (<span class="stringliteral">&quot;Invalid asker&quot;</span> == result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>) {
+<a name="l00139"></a>00139         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
 <a name="l00140"></a>00140                 <span class="keywordflow">return</span>;
 <a name="l00141"></a>00141         }
 <a name="l00142"></a>00142 
@@ -345,7 +345,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

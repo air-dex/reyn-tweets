@@ -23,6 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QTextStream>
 #include "urlentity.hpp"
 #include "../tools/utils.hpp"
 
@@ -118,8 +119,8 @@ void URLEntity::setExpandedURL(QString newURL) {
 
 // Building the rich text for the entity
 QString URLEntity::getDisplayedText() {
-	QString beginTag = "<a href=\"";
-	QString beginTag2 = "\">";
-	QString endTag = "</a>";
-	return beginTag + extractedURL + beginTag2 + expandedURL + endTag;
+	QString s = "";
+	QTextStream t(&s);
+	t << "<a href=\"" << extractedURL << "\">" << expandedURL << "</a>";
+	return t.readAll();
 }

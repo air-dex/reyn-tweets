@@ -23,6 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QTextStream>
 #include "usermention.hpp"
 #include "../tools/utils.hpp"
 
@@ -128,9 +129,19 @@ void UserMention::setName(QString newName) {
 // Misc //
 //////////
 
+// #hashText
+QString UserMention::getMention() {
+	QString s = "";
+	QTextStream t(&s);
+	t << '@' << screenName;
+	return t.readAll();
+}
+
 // Building the rich text for the entity
 QString UserMention::getDisplayedText() {
-	QString beginTag = "<a href=\"http://google.com\">@";
-	QString endTag = "</a>";
-	return beginTag + screenName + endTag;
+	QString mention = getMention();
+	QString s = "";
+	QTextStream t(&s);
+	t << "<a href=\"" << mention << "\">" << mention << "</a>";
+	return t.readAll();
 }

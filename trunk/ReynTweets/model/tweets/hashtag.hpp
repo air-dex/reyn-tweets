@@ -128,6 +128,11 @@ class Hashtag : public TweetEntity
 		/// @brief Writing hashText
 		/// @param newText New value for hashText
 		void setText(QString newText);
+
+		/// @fn QString getHashtag();
+		/// @brief Getting the hashtag under its usual form
+		/// @return #hashText
+		inline QString getHashtag();
 };
 
 // Serialization of Hashtag

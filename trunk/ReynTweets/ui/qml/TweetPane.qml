@@ -40,7 +40,7 @@ Rectangle {
 	property Tweet tweet: control.tweet
 
 	width: 360
-	height: 150
+	height: 200
  border.width: 2
  border.color: "#000000"
 
@@ -84,6 +84,10 @@ Rectangle {
 			anchors.left: parent.left
 			anchors.leftMargin: 0
 			source: tweet.author.profile_image_url
+			MouseArea {
+				anchors.fill: parent
+				onClicked: console.log("Show @" + tweet.author.screen_name)
+			}
 		}
 
 		// Retweeter's avatar if it is a retweet
@@ -97,6 +101,9 @@ Rectangle {
 			anchors.right: parent.right
 			anchors.rightMargin: 0
 			visible: false
+			MouseArea {
+				anchors.fill: parent
+			}
 		}
 	}
 
@@ -135,7 +142,7 @@ Rectangle {
 		id: text
 		text: tweet.getDisplayText();
 		textFormat: Text.RichText
-		wrapMode: Text.Wrap
+		wrapMode: Text.WordWrap
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
@@ -145,15 +152,31 @@ Rectangle {
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
 		onLinkActivated: {
-			console.log(link)
+			if (link.length <= 0) return;
+
+			switch (link[0]) {
+				case '#':
+					// It is an hashtag. Launch a search about it !
+					console.log("Rechercher le hashtag " + link)
+					break;
+
+				case '@':
+					// It is a mentionned used. Show him !
+					console.log("Voir l'utilisateur " + link)
+					break;
+
+				default:
+					// It is an URL. Show its content in a browser !
+					Qt.openUrlExternally(link)
+					break;
+			}
 		}
 	}
 
 	// Source of the tweet
 	Text {
 		id: source_text
-		text: tweet.getDisplaySource();
-		color: "#757575"
+		text: "via " + tweet_source
 		font.italic: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
@@ -163,8 +186,12 @@ Rectangle {
 		anchors.topMargin: 2*margin
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
+		onLinkActivated: Qt.openUrlExternally(link)
+
+		property string tweet_source: tweet.source
 	}
 
+	// Row with actions on the tweet
 	Row {
 		id: action_row
 		spacing: margin
@@ -251,12 +278,14 @@ Rectangle {
 			PropertyChanges {
 				target: tweet_author_avatar
 				source: tweet.retweet.author.profile_image_url
+				MouseArea.onClicked: console.log("Show @" + tweet.retweet.author.screen_name)
 			}
 
 			PropertyChanges {
 				target: retweeter_avatar
 				visible: true
 				source: tweet.author.profile_image_url
+				MouseArea.onClicked: console.log("Show @" + tweet.retweet.author.screen_name)
 			}
 
 			// New author and new margin to not move the QML Component
@@ -281,7 +310,7 @@ Rectangle {
 			// Original source of the retweet
 			PropertyChanges {
 				target: source_text
-				text: tweet.retweet.getDisplaySource();
+				tweet_source: tweet.retweet.source;
 			}
 		},
 		State {

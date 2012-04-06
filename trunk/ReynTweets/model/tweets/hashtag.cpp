@@ -23,6 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QTextStream>
 #include "hashtag.hpp"
 #include "../tools/utils.hpp"
 
@@ -87,6 +88,14 @@ void Hashtag::setText(QString newText) {
 	hashText = newText;
 }
 
+// #hashText
+QString Hashtag::getHashtag() {
+	QString s = "";
+	QTextStream t(&s);
+	t << '#' << hashText;
+	return t.readAll();
+}
+
 
 //////////
 // Misc //
@@ -94,7 +103,9 @@ void Hashtag::setText(QString newText) {
 
 // Building the rich text for the entity
 QString Hashtag::getDisplayedText() {
-	QString beginTag = "<a href=\"http://google.com\">#";
-	QString endTag = "</a>";
-	return beginTag + hashText + endTag;
+	QString hashtag = getHashtag();
+	QString s = "";
+	QTextStream t(&s);
+	t << "<a href=\"" << hashtag << "\">" << hashtag << "</a>";
+	return t.readAll();
 }

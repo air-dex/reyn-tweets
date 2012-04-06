@@ -1,0 +1,14 @@
+#labels Architecture
+= Architecture des listes avec QML =
+
+Dans la vue, les listes sont des ListViews avec des ListModels derrière
+
+La liste des objets dont on a besoin (Tweets, Users, ...) est dans le Contrôle.
+
+Le délégué de la ListView va piocher l'entité dont il a besoin via une méthode {{{Entite * getEntite(int index);}}} (Entite = Tweet, User, etc.) du Contrôle. Pendant ce temps, le ListModel est constitué d'une liste de jsobject vides ({}) dont la longueur est celle de la liste dans le contrôle.
+
+
+== Pourquoi cette architecture peu ragoutante ? ==
+
+  * On évite la manipulation du QML côté Qt avec des setContext(); et autres méthodes dans ce genre. *C'est même une ligne de conduite du code de Reyn Tweets. QML contexts in Qt parts of the code are EVIL (and bullshit).*
+  * Mauvais interfaçage QML/JS (à mon avis). Incompatibilités entre jsobjects et les objets de QML et/ou objets Qt du programme déclarés via qmlRegisterTypes();. Idem entre listes QML et Arrays JS.

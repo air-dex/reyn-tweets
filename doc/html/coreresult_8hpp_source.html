@@ -119,66 +119,77 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029 <span class="preprocessor"></span><span class="preprocessor">#define CORERESULT_HPP</span>
 <a name="l00030"></a>00030 <span class="preprocessor"></span>
 <a name="l00033"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">00033</a> <span class="keyword">enum</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> {
-<a name="l00035"></a>00035         <span class="comment">// Results while manipulating the configuration //</span>
-<a name="l00037"></a>00037 <span class="comment"></span>
-<a name="l00039"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1c195dae45971bdaec9f1ffb0dbe2330">00039</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1c195dae45971bdaec9f1ffb0dbe2330" title="The launching was successful.">LOAD_CONFIGURATION_SUCCESSFUL</a>,
-<a name="l00040"></a>00040 
-<a name="l00042"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8">00042</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>,
+<a name="l00035"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68">00035</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a>,
+<a name="l00036"></a>00036 
+<a name="l00038"></a>00038         <span class="comment">// Results while manipulating the configuration //</span>
+<a name="l00040"></a>00040 <span class="comment"></span>
+<a name="l00042"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1c195dae45971bdaec9f1ffb0dbe2330">00042</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1c195dae45971bdaec9f1ffb0dbe2330" title="The launching was successful.">LOAD_CONFIGURATION_SUCCESSFUL</a>,
 <a name="l00043"></a>00043 
-<a name="l00045"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b">00045</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>,
+<a name="l00045"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8">00045</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>,
 <a name="l00046"></a>00046 
-<a name="l00048"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d">00048</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>,
+<a name="l00048"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b">00048</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>,
 <a name="l00049"></a>00049 
-<a name="l00051"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a7480b219c93cd86d42a7d4652b86edc6">00051</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a7480b219c93cd86d42a7d4652b86edc6" title="The launching was successful.">SAVE_SUCCESSFUL</a>,
+<a name="l00051"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d">00051</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>,
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00055"></a>00055         <span class="comment">// Ends with token issues //</span>
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00059"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a374835518b1edd34acfdaa743008a7a1">00059</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a374835518b1edd34acfdaa743008a7a1" title="Credentials were right.">TOKENS_OK</a>,
-<a name="l00060"></a>00060 
-<a name="l00062"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2">00062</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>,
+<a name="l00054"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a7480b219c93cd86d42a7d4652b86edc6">00054</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a7480b219c93cd86d42a7d4652b86edc6" title="The launching was successful.">SAVE_SUCCESSFUL</a>,
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00058"></a>00058         <span class="comment">// Ends with token issues //</span>
+<a name="l00060"></a>00060 <span class="comment"></span>
+<a name="l00062"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a374835518b1edd34acfdaa743008a7a1">00062</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a374835518b1edd34acfdaa743008a7a1" title="Credentials were right.">TOKENS_OK</a>,
 <a name="l00063"></a>00063 
-<a name="l00065"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac1f3e8168c66c0e16c63dad5162dd57f">00065</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac1f3e8168c66c0e16c63dad5162dd57f" title="Not obtained tokens (OAuth Authentication Flow).">NO_TOKENS</a>,
+<a name="l00065"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2">00065</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>,
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069         <span class="comment">// OAuth ends //</span>
-<a name="l00071"></a>00071 <span class="comment"></span>
-<a name="l00073"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811af6f4aacc1bedf80b8aab3b0e372cfb0b">00073</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>,
-<a name="l00074"></a>00074 
-<a name="l00076"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a08f1ea1cb5cac34a4f4237e5259fcabb">00076</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>,
+<a name="l00068"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac1f3e8168c66c0e16c63dad5162dd57f">00068</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac1f3e8168c66c0e16c63dad5162dd57f" title="Not obtained tokens (OAuth Authentication Flow).">NO_TOKENS</a>,
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00072"></a>00072         <span class="comment">// OAuth ends //</span>
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00076"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811af6f4aacc1bedf80b8aab3b0e372cfb0b">00076</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811af6f4aacc1bedf80b8aab3b0e372cfb0b" title="The application is authorized.">AUTHORIZED</a>,
 <a name="l00077"></a>00077 
-<a name="l00079"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac48a0f6be07e3679d8ec44899ffda406">00079</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac48a0f6be07e3679d8ec44899ffda406" title="Unexpected redirection during POST authorizing.">POST_AUTHORIZING_FAILED</a>,
+<a name="l00079"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a08f1ea1cb5cac34a4f4237e5259fcabb">00079</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a08f1ea1cb5cac34a4f4237e5259fcabb" title="The application is denied.">DENIED</a>,
 <a name="l00080"></a>00080 
-<a name="l00081"></a>00081 
-<a name="l00083"></a>00083         <span class="comment">// Problems linked to Twitter requests problem //</span>
-<a name="l00085"></a>00085 <span class="comment"></span>
-<a name="l00087"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b">00087</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>,
-<a name="l00088"></a>00088 
-<a name="l00090"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb">00090</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>,
+<a name="l00082"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac48a0f6be07e3679d8ec44899ffda406">00082</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ac48a0f6be07e3679d8ec44899ffda406" title="Unexpected redirection during POST authorizing.">POST_AUTHORIZING_FAILED</a>,
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00086"></a>00086         <span class="comment">// Problems linked to Twitter requests problem //</span>
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00090"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b">00090</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>,
 <a name="l00091"></a>00091 
-<a name="l00093"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07">00093</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>,
+<a name="l00093"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb">00093</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>,
 <a name="l00094"></a>00094 
-<a name="l00096"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e">00096</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e" title="There were an error while parsing results.">PARSE_ERROR</a>,
+<a name="l00096"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07">00096</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>,
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098 
-<a name="l00100"></a>00100         <span class="comment">// Launching process ends //</span>
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00104"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a">00104</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a" title="LaunchingProcess ended successfully.">LAUNCH_SUCCESSFUL</a>,
-<a name="l00105"></a>00105 
-<a name="l00107"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad">00107</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad" title="An authentication to Twitter is required.">AUTHENTICATION_REQUIRED</a>,
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 
-<a name="l00111"></a>00111         <span class="comment">// Allowing process end //</span>
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00115"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ae297ce92558f2b811dc3a59af0b7f630">00115</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ae297ce92558f2b811dc3a59af0b7f630" title="AllowProcess ended successfully.">ALLOW_SUCCESSFUL</a>,
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 
-<a name="l00119"></a>00119         <span class="comment">// Misc //</span>
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00123"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a990023aaaed781de6aefda187aab5c77">00123</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a990023aaaed781de6aefda187aab5c77" title="The user was wrong.">WRONG_USER</a>
-<a name="l00124"></a>00124 };
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 <span class="preprocessor">#endif // CORERESULT_HPP</span>
+<a name="l00099"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e">00099</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e" title="There were an error while parsing results.">PARSE_ERROR</a>,
+<a name="l00100"></a>00100 
+<a name="l00102"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37">00102</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>,
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 
+<a name="l00106"></a>00106         <span class="comment">// Launching process ends //</span>
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00110"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a">00110</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a" title="LaunchingProcess ended successfully.">LAUNCH_SUCCESSFUL</a>,
+<a name="l00111"></a>00111 
+<a name="l00113"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad">00113</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad" title="An authentication to Twitter is required.">AUTHENTICATION_REQUIRED</a>,
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 
+<a name="l00117"></a>00117         <span class="comment">// Allowing process end //</span>
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00121"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ae297ce92558f2b811dc3a59af0b7f630">00121</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ae297ce92558f2b811dc3a59af0b7f630" title="AllowProcess ended successfully.">ALLOW_SUCCESSFUL</a>,
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 
+<a name="l00125"></a>00125         <span class="comment">// Favorites process ends //</span>
+<a name="l00127"></a>00127 <span class="comment"></span>
+<a name="l00129"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d">00129</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d" title="FavoriteProcess ended successfully.">FAVORITE_SUCCESSFUL</a>,
+<a name="l00130"></a>00130 
+<a name="l00132"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811abe86df0379bd1ebb167fbaeef6fd2e25">00132</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811abe86df0379bd1ebb167fbaeef6fd2e25" title="After retrieving a timeline.">TIMELINE_RETRIEVED</a>,
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 
+<a name="l00136"></a>00136         <span class="comment">// Misc //</span>
+<a name="l00138"></a>00138 <span class="comment"></span>
+<a name="l00140"></a><a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a990023aaaed781de6aefda187aab5c77">00140</a>         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a990023aaaed781de6aefda187aab5c77" title="The user was wrong.">WRONG_USER</a>
+<a name="l00141"></a>00141 };
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 <span class="preprocessor">#endif // CORERESULT_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -194,7 +205,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

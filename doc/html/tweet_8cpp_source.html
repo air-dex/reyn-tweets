@@ -113,331 +113,427 @@ window.onload = initDynSections;
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="tweet_8hpp.html" title="Header of Tweet.">tweet.hpp</a>&quot;</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
-<a name="l00028"></a>00028 
-<a name="l00030"></a>00030 <span class="comment">// Serialization management //</span>
-<a name="l00032"></a>00032 <span class="comment"></span>
-<a name="l00033"></a>00033 <span class="comment">// Default constructor</span>
-<a name="l00034"></a><a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6">00034</a> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet::Tweet</a>() :
-<a name="l00035"></a>00035         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00036"></a>00036         tweetID(-1),
-<a name="l00037"></a>00037         tweetIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
-<a name="l00038"></a>00038         tweetEntities(),
-<a name="l00039"></a>00039         tweet(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00040"></a>00040         sensibleTweet(false),
-<a name="l00041"></a>00041         retweetedTweet(false),
-<a name="l00042"></a>00042         retweetCount(0),
-<a name="l00043"></a>00043         retweetSource(0),
-<a name="l00044"></a>00044         favoritedTweet(false),
-<a name="l00045"></a>00045         replyToScreenName(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00046"></a>00046         replyToUserID(-1),
-<a name="l00047"></a>00047         replyToUserIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
-<a name="l00048"></a>00048         replyToTweetID(-1),
-<a name="l00049"></a>00049         replyToTweetIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
-<a name="l00050"></a>00050         profile(),
-<a name="l00051"></a>00051         createdAt(),
-<a name="l00052"></a>00052         sourceClient(<span class="stringliteral">&quot;&quot;</span>),
-<a name="l00053"></a>00053         truncatedTweet(false)
-<a name="l00054"></a>00054 {}
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="comment">// Destructor</span>
-<a name="l00057"></a><a class="code" href="class_tweet.html#a81d6643e4ee5616281339d2918ca415b">00057</a> <a class="code" href="class_tweet.html#a81d6643e4ee5616281339d2918ca415b" title="Destructor.">Tweet::~Tweet</a>() {
-<a name="l00058"></a>00058         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00059"></a>00059                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
-<a name="l00060"></a>00060                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 <span class="comment">// Copy constructor</span>
-<a name="l00065"></a><a class="code" href="class_tweet.html#a2ec20c9a650f3d82748149d4e390a03c">00065</a> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet::Tweet</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) :
-<a name="l00066"></a>00066         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00067"></a>00067         retweetSource(0)
-<a name="l00068"></a>00068 {
-<a name="l00069"></a>00069         <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">recopie</a>(tweet);
-<a name="l00070"></a>00070 }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 <span class="comment">// Affectation</span>
-<a name="l00073"></a><a class="code" href="class_tweet.html#a70a1efab13e7f9bc8b02710aa14d4a05">00073</a> <span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; <a class="code" href="class_tweet.html#a70a1efab13e7f9bc8b02710aa14d4a05" title="Affectation.">Tweet::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
-<a name="l00074"></a>00074         <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">recopie</a>(tweet);
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="comment">// Serialization declaration</span>
-<a name="l00079"></a><a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7" title="Serialization declaration.">Tweet::initSystem</a>() {
-<a name="l00080"></a>00080         qRegisterMetaTypeStreamOperators&lt;Tweet&gt;(<span class="stringliteral">&quot;Tweet&quot;</span>);
-<a name="l00081"></a>00081         qMetaTypeId&lt;Tweet&gt;();
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="comment">// Copy of a Tweet</span>
-<a name="l00085"></a><a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690">00085</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">Tweet::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; status) {
-<a name="l00086"></a>00086         <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> = status.<a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a>;
-<a name="l00087"></a>00087         <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a> = status.<a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
-<a name="l00088"></a>00088         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a> = status.<a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
-<a name="l00089"></a>00089         <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a> = status.<a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
-<a name="l00090"></a>00090         <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a> = status.<a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
-<a name="l00091"></a>00091         <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a> = status.<a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
-<a name="l00092"></a>00092         <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a> = status.<a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
-<a name="l00093"></a>00093         <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a> = status.<a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
-<a name="l00094"></a>00094         <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a> = status.<a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
-<a name="l00095"></a>00095         <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a> = status.<a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a>;
-<a name="l00096"></a>00096         <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a> = status.<a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
-<a name="l00097"></a>00097         <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a> = status.<a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
-<a name="l00098"></a>00098         <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a> = status.<a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
-<a name="l00099"></a>00099         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a> = status.<a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
-<a name="l00100"></a>00100         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a> = status.<a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>;
-<a name="l00101"></a>00101         <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a> = status.<a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
-<a name="l00102"></a>00102         <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a> = status.<a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
-<a name="l00103"></a>00103 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QtDeclarative&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="tweet_8hpp.html" title="Header of Tweet.">tweet.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
+<a name="l00029"></a>00029 
+<a name="l00031"></a>00031 <span class="comment">// Serialization management //</span>
+<a name="l00033"></a>00033 <span class="comment"></span>
+<a name="l00034"></a>00034 <span class="comment">// Default constructor</span>
+<a name="l00035"></a><a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6">00035</a> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet::Tweet</a>() :
+<a name="l00036"></a>00036         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
+<a name="l00037"></a>00037         tweetID(-1),
+<a name="l00038"></a>00038         tweetIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
+<a name="l00039"></a>00039         tweetEntities(),
+<a name="l00040"></a>00040         tweet(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00041"></a>00041         sensibleTweet(false),
+<a name="l00042"></a>00042         retweetedTweet(false),
+<a name="l00043"></a>00043         retweetCount(0),
+<a name="l00044"></a>00044         retweetSource(0),
+<a name="l00045"></a>00045         favoritedTweet(false),
+<a name="l00046"></a>00046         replyToScreenName(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00047"></a>00047         replyToUserID(-1),
+<a name="l00048"></a>00048         replyToUserIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
+<a name="l00049"></a>00049         replyToTweetID(-1),
+<a name="l00050"></a>00050         replyToTweetIDstr(<span class="stringliteral">&quot;-1&quot;</span>),
+<a name="l00051"></a>00051         profile(),
+<a name="l00052"></a>00052         createdAt(),
+<a name="l00053"></a>00053         sourceClient(<span class="stringliteral">&quot;&quot;</span>),
+<a name="l00054"></a>00054         truncatedTweet(false)
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056         <a class="code" href="class_tweet.html#af4dbc21b62d8638712a4cede72d8bee6" title="Blacklisting the &amp;quot;author&amp;quot; and &amp;quot;retweet&amp;quot; properties (used only...">blacklistProperties</a>();
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="comment">// Destructor</span>
+<a name="l00060"></a><a class="code" href="class_tweet.html#a81d6643e4ee5616281339d2918ca415b">00060</a> <a class="code" href="class_tweet.html#a81d6643e4ee5616281339d2918ca415b" title="Destructor.">Tweet::~Tweet</a>() {
+<a name="l00061"></a>00061         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00062"></a>00062                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
+<a name="l00063"></a>00063                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
+<a name="l00064"></a>00064         }
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="comment">// Copy constructor</span>
+<a name="l00068"></a><a class="code" href="class_tweet.html#a2ec20c9a650f3d82748149d4e390a03c">00068</a> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet::Tweet</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) :
+<a name="l00069"></a>00069         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
+<a name="l00070"></a>00070         retweetSource(0)
+<a name="l00071"></a>00071 {
+<a name="l00072"></a>00072         <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">recopie</a>(tweet);
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="comment">// Affectation</span>
+<a name="l00076"></a><a class="code" href="class_tweet.html#a70a1efab13e7f9bc8b02710aa14d4a05">00076</a> <span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; <a class="code" href="class_tweet.html#a70a1efab13e7f9bc8b02710aa14d4a05" title="Affectation.">Tweet::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
+<a name="l00077"></a>00077         <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">recopie</a>(tweet);
+<a name="l00078"></a>00078         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00079"></a>00079 }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="comment">// Copy of a Tweet</span>
+<a name="l00082"></a><a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690">00082</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">Tweet::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; status) {
+<a name="l00083"></a>00083         <a class="code" href="class_tweet.html#a3479086110115aff5d20096547328690" title="Copy of a tweet.">ReynTweetsMappable::recopie</a>(status);
+<a name="l00084"></a>00084         <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> = status.<a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a>;
+<a name="l00085"></a>00085         <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a> = status.<a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
+<a name="l00086"></a>00086         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a> = status.<a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
+<a name="l00087"></a>00087         <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a> = status.<a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
+<a name="l00088"></a>00088         <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a> = status.<a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
+<a name="l00089"></a>00089         <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a> = status.<a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
+<a name="l00090"></a>00090         <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a> = status.<a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
+<a name="l00091"></a>00091         <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a> = status.<a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
+<a name="l00092"></a>00092         <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a> = status.<a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
+<a name="l00093"></a>00093         <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a> = status.<a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a>;
+<a name="l00094"></a>00094         <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a> = status.<a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
+<a name="l00095"></a>00095         <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a> = status.<a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
+<a name="l00096"></a>00096         <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a> = status.<a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
+<a name="l00097"></a>00097         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a> = status.<a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
+<a name="l00098"></a>00098         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a> = status.<a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>;
+<a name="l00099"></a>00099         <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a> = status.<a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
+<a name="l00100"></a>00100         <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a> = status.<a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103         <span class="comment">// Recopying retweetedTweet</span>
 <a name="l00104"></a>00104 
-<a name="l00105"></a>00105         <span class="comment">// Recopying retweetedTweet</span>
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107         <span class="comment">// Setting the old value to NULL</span>
-<a name="l00108"></a>00108         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00109"></a>00109                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
-<a name="l00110"></a>00110                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113         <span class="comment">// Recopying the new value if it&#39;s not NULL</span>
-<a name="l00114"></a>00114         <span class="keywordflow">if</span> (status.<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00115"></a>00115                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = <span class="keyword">new</span> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>(*(status.<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>));
-<a name="l00116"></a>00116         }
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00120"></a><a class="code" href="tweet_8hpp.html#a175f4b38212493fb1d420d5c7c375714">00120</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
-<a name="l00121"></a>00121         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, tweet);
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00125"></a><a class="code" href="tweet_8hpp.html#a345e67febad18c9cb050196144e47380">00125</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
-<a name="l00126"></a>00126         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, tweet);
-<a name="l00127"></a>00127 }
-<a name="l00128"></a>00128 
+<a name="l00105"></a>00105         <span class="comment">// Setting the old value to NULL</span>
+<a name="l00106"></a>00106         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00107"></a>00107                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
+<a name="l00108"></a>00108                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
+<a name="l00109"></a>00109         }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111         <span class="comment">// Recopying the new value if it&#39;s not NULL</span>
+<a name="l00112"></a>00112         <span class="keywordflow">if</span> (status.<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00113"></a>00113                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = <span class="keyword">new</span> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>(*(status.<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>));
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115 }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 <span class="comment">// Serialization declaration</span>
+<a name="l00118"></a><a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7">00118</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7" title="Serialization declaration.">Tweet::initSystem</a>() {
+<a name="l00119"></a>00119         qRegisterMetaTypeStreamOperators&lt;Tweet&gt;(<span class="stringliteral">&quot;Tweet&quot;</span>);
+<a name="l00120"></a>00120         qMetaTypeId&lt;Tweet&gt;();
+<a name="l00121"></a>00121 }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 <span class="comment">// Declaring to the QML components</span>
+<a name="l00124"></a><a class="code" href="class_tweet.html#a8f38b5ff094e4e31100b4a29a2458fb4">00124</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a8f38b5ff094e4e31100b4a29a2458fb4" title="Declaring to the QML system.">Tweet::declareQML</a>() {
+<a name="l00125"></a>00125         qmlRegisterType&lt;Tweet&gt;(<span class="stringliteral">&quot;ReynTweetsEntities&quot;</span>,
+<a name="l00126"></a>00126                                                    0, 1,
+<a name="l00127"></a>00127                                                    <span class="stringliteral">&quot;Tweet&quot;</span>);
+<a name="l00128"></a>00128 }
 <a name="l00129"></a>00129 
-<a name="l00131"></a>00131 <span class="comment">// Properties management //</span>
-<a name="l00133"></a>00133 <span class="comment"></span>
-<a name="l00134"></a>00134 <span class="comment">// Reading the property entities</span>
-<a name="l00135"></a><a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61">00135</a> QVariantMap <a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61" title="Reading the property entities.">Tweet::getEntitiesProperty</a>() {
-<a name="l00136"></a>00136         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00137"></a>00137 }
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="comment">// Writing the property entities</span>
-<a name="l00140"></a><a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474">00140</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">Tweet::setEntities</a>(QVariantMap newEntityMap) {
-<a name="l00141"></a>00141         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newEntityMap);
-<a name="l00142"></a>00142 }
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="comment">// Reading created_at</span>
-<a name="l00145"></a><a class="code" href="class_tweet.html#ad53de37ae28b652e1dd9b34eb8ffe78c">00145</a> QString <a class="code" href="class_tweet.html#ad53de37ae28b652e1dd9b34eb8ffe78c" title="Reading created_at.">Tweet::getCreatedAtProperty</a>() {
-<a name="l00146"></a>00146         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>.<a class="code" href="class_reyn_tweets_date_time.html#a1d24604bdccc9457bdce116061b38ae7" title="String representation of the string with a standard ISO 8601 date format.">toString</a>();
-<a name="l00147"></a>00147 }
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="comment">// Writing created_at</span>
-<a name="l00150"></a><a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2">00150</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2" title="Writing created_at.">Tweet::setCreatedAt</a>(QString newDate) {
-<a name="l00151"></a>00151         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>.<a class="code" href="class_reyn_tweets_date_time.html#a84024febec12b5c8b957347b48cef0b0" title="Core method for parsing the QString representation.">setDate</a>(newDate);
-<a name="l00152"></a>00152 }
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 <span class="comment">// Reading the property user</span>
-<a name="l00155"></a><a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb">00155</a> QVariantMap <a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb" title="Reading the property user.">Tweet::getUserProperty</a>() {
-<a name="l00156"></a>00156         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="comment">// Writing the property user</span>
-<a name="l00160"></a><a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c">00160</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">Tweet::setUser</a>(QVariantMap newUserMap) {
-<a name="l00161"></a>00161         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newUserMap);
-<a name="l00162"></a>00162 }
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164 <span class="comment">// Reading retweeted_status</span>
-<a name="l00165"></a><a class="code" href="class_tweet.html#a70b255b31f5d0425dad66230d3a19636">00165</a> QVariantMap <a class="code" href="class_tweet.html#a70b255b31f5d0425dad66230d3a19636" title="Reading retweeted_status.">Tweet::getRetweetedStatusProperty</a>() {
-<a name="l00166"></a>00166         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00167"></a>00167                 <span class="comment">// Return an empty QVariantMap for a default tweet to avoid stack problems</span>
-<a name="l00168"></a>00168                 <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> == -1 ?
-<a name="l00169"></a>00169                                         QVariantMap()
-<a name="l00170"></a>00170                                   : <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00171"></a>00171         } <span class="keywordflow">else</span> {
-<a name="l00172"></a>00172                 <span class="keywordflow">return</span> QVariantMap();
-<a name="l00173"></a>00173         }
+<a name="l00130"></a>00130 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00131"></a><a class="code" href="tweet_8hpp.html#a175f4b38212493fb1d420d5c7c375714">00131</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
+<a name="l00132"></a>00132         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, tweet);
+<a name="l00133"></a>00133 }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00136"></a><a class="code" href="tweet_8hpp.html#a345e67febad18c9cb050196144e47380">00136</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; tweet) {
+<a name="l00137"></a>00137         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, tweet);
+<a name="l00138"></a>00138 }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 
+<a name="l00142"></a>00142 <span class="comment">// Properties management //</span>
+<a name="l00144"></a>00144 <span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">// Blacklisting the &quot;author&quot; and &quot;retweet&quot;</span>
+<a name="l00146"></a><a class="code" href="class_tweet.html#af4dbc21b62d8638712a4cede72d8bee6">00146</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af4dbc21b62d8638712a4cede72d8bee6" title="Blacklisting the &amp;quot;author&amp;quot; and &amp;quot;retweet&amp;quot; properties (used only...">Tweet::blacklistProperties</a>() {
+<a name="l00147"></a>00147         <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>.append(QString(QLatin1String(<span class="stringliteral">&quot;author&quot;</span>)));
+<a name="l00148"></a>00148         <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>.append(QString(QLatin1String(<span class="stringliteral">&quot;retweet&quot;</span>)));
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="comment">// Reading the property entities</span>
+<a name="l00152"></a><a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61">00152</a> QVariantMap <a class="code" href="class_tweet.html#aaa3ce5ffd1a35d7653d6261f881a8c61" title="Reading the property entities.">Tweet::getEntitiesProperty</a>() {
+<a name="l00153"></a>00153         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00154"></a>00154 }
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 <span class="comment">// Writing the property entities</span>
+<a name="l00157"></a><a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474">00157</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">Tweet::setEntities</a>(QVariantMap newEntityMap) {
+<a name="l00158"></a>00158         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newEntityMap);
+<a name="l00159"></a>00159 }
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 <span class="comment">// Reading created_at</span>
+<a name="l00162"></a><a class="code" href="class_tweet.html#ad53de37ae28b652e1dd9b34eb8ffe78c">00162</a> QString <a class="code" href="class_tweet.html#ad53de37ae28b652e1dd9b34eb8ffe78c" title="Reading created_at.">Tweet::getCreatedAtProperty</a>() {
+<a name="l00163"></a>00163         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>.<a class="code" href="class_reyn_tweets_date_time.html#a1d24604bdccc9457bdce116061b38ae7" title="String representation of the string with a standard ISO 8601 date format.">toString</a>();
+<a name="l00164"></a>00164 }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 <span class="comment">// Writing created_at</span>
+<a name="l00167"></a><a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2">00167</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2" title="Writing created_at.">Tweet::setCreatedAt</a>(QString newDate) {
+<a name="l00168"></a>00168         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>.<a class="code" href="class_reyn_tweets_date_time.html#a84024febec12b5c8b957347b48cef0b0" title="Core method for parsing the QString representation.">setDate</a>(newDate);
+<a name="l00169"></a>00169 }
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 <span class="comment">// Reading the property user</span>
+<a name="l00172"></a><a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb">00172</a> QVariantMap <a class="code" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb" title="Reading the property user.">Tweet::getUserProperty</a>() {
+<a name="l00173"></a>00173         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
 <a name="l00174"></a>00174 }
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176 <span class="comment">// Writing retweeted_status</span>
-<a name="l00177"></a><a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f">00177</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f" title="Writing retweeted_status.">Tweet::setRetweetedStatus</a>(QVariantMap statusMap) {
-<a name="l00178"></a>00178         <span class="keywordflow">if</span> (!<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00179"></a>00179                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = <span class="keyword">new</span> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>();
-<a name="l00180"></a>00180         }
-<a name="l00181"></a>00181 
-<a name="l00182"></a>00182         <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(statusMap);
-<a name="l00183"></a>00183 }
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185 
-<a name="l00187"></a>00187 <span class="comment">// Getters and setters //</span>
-<a name="l00189"></a>00189 <span class="comment"></span>
-<a name="l00190"></a>00190 <span class="comment">// entities</span>
-<a name="l00191"></a><a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844">00191</a> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">Tweet::getEntities</a>() {
-<a name="l00192"></a>00192         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
-<a name="l00193"></a>00193 }
-<a name="l00194"></a>00194 
-<a name="l00195"></a><a class="code" href="class_tweet.html#a240a0e4799b2722f18137a66dbec6540">00195</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">Tweet::setEntities</a>(<a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> newValue) {
-<a name="l00196"></a>00196         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a> = newValue;
-<a name="l00197"></a>00197 }
-<a name="l00198"></a>00198 
-<a name="l00199"></a>00199 <span class="comment">// in_reply_to_user_id</span>
-<a name="l00200"></a><a class="code" href="class_tweet.html#ad21d4ca7b6712bed52f637fdcf37744d">00200</a> qlonglong <a class="code" href="class_tweet.html#ad21d4ca7b6712bed52f637fdcf37744d" title="Reading in_reply_to_user_id.">Tweet::getInReplyToUserID</a>() {
-<a name="l00201"></a>00201         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a>;
-<a name="l00202"></a>00202 }
-<a name="l00203"></a>00203 
-<a name="l00204"></a><a class="code" href="class_tweet.html#a45903cc30338124dc1e36fce79dc83cf">00204</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a45903cc30338124dc1e36fce79dc83cf" title="Writing in_reply_to_user_id.">Tweet::setInReplyToUserID</a>(qlonglong newValue) {
-<a name="l00205"></a>00205         <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a> = newValue;
-<a name="l00206"></a>00206 }
-<a name="l00207"></a>00207 
-<a name="l00208"></a>00208 <span class="comment">// truncated</span>
-<a name="l00209"></a><a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97">00209</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">Tweet::isTruncated</a>() {
-<a name="l00210"></a>00210         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
-<a name="l00211"></a>00211 }
-<a name="l00212"></a>00212 
-<a name="l00213"></a><a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd">00213</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">Tweet::setTruncated</a>(<span class="keywordtype">bool</span> newValue) {
-<a name="l00214"></a>00214         <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a> = newValue;
-<a name="l00215"></a>00215 }
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217 <span class="comment">// favorited</span>
-<a name="l00218"></a><a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08">00218</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">Tweet::isFavorited</a>() {
-<a name="l00219"></a>00219         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
-<a name="l00220"></a>00220 }
-<a name="l00221"></a>00221 
-<a name="l00222"></a><a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0">00222</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">Tweet::setFavorited</a>(<span class="keywordtype">bool</span> newValue) {
-<a name="l00223"></a>00223         <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a> = newValue;
+<a name="l00176"></a>00176 <span class="comment">// Writing the property user</span>
+<a name="l00177"></a><a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c">00177</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">Tweet::setUser</a>(QVariantMap newUserMap) {
+<a name="l00178"></a>00178         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newUserMap);
+<a name="l00179"></a>00179 }
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 <span class="comment">// Reading retweeted_status</span>
+<a name="l00182"></a><a class="code" href="class_tweet.html#a70b255b31f5d0425dad66230d3a19636">00182</a> QVariantMap <a class="code" href="class_tweet.html#a70b255b31f5d0425dad66230d3a19636" title="Reading retweeted_status.">Tweet::getRetweetedStatusProperty</a>() {
+<a name="l00183"></a>00183         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00184"></a>00184                 <span class="comment">// Return an empty QVariantMap for a default tweet to avoid stack problems</span>
+<a name="l00185"></a>00185                 <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> == -1 ?
+<a name="l00186"></a>00186                                         QVariantMap()
+<a name="l00187"></a>00187                                   : <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00188"></a>00188         } <span class="keywordflow">else</span> {
+<a name="l00189"></a>00189                 <span class="keywordflow">return</span> QVariantMap();
+<a name="l00190"></a>00190         }
+<a name="l00191"></a>00191 }
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193 <span class="comment">// Writing retweeted_status</span>
+<a name="l00194"></a><a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f">00194</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f" title="Writing retweeted_status.">Tweet::setRetweetedStatus</a>(QVariantMap statusMap) {
+<a name="l00195"></a>00195         <span class="keywordflow">if</span> (statusMap.empty()) {
+<a name="l00196"></a>00196                 <span class="comment">// This is not a retweet</span>
+<a name="l00197"></a>00197                 <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00198"></a>00198                         <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
+<a name="l00199"></a>00199                         <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
+<a name="l00200"></a>00200                 }
+<a name="l00201"></a>00201         }
+<a name="l00202"></a>00202         <span class="keywordflow">else</span> {
+<a name="l00203"></a>00203                 <span class="keywordflow">if</span> (!<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00204"></a>00204                         <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = <span class="keyword">new</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>;
+<a name="l00205"></a>00205                 }
+<a name="l00206"></a>00206                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(statusMap);
+<a name="l00207"></a>00207         }
+<a name="l00208"></a>00208         emit <a class="code" href="class_tweet.html#a2c9d7a6af30b49bfdf085469cf35ebc7" title="Emitted when the retweeted_status and retweet properties change.">retweetedStatusChanged</a>();
+<a name="l00209"></a>00209 }
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 
+<a name="l00213"></a>00213 <span class="comment">// Getters and setters //</span>
+<a name="l00215"></a>00215 <span class="comment"></span>
+<a name="l00216"></a>00216 <span class="comment">// entities</span>
+<a name="l00217"></a><a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844">00217</a> <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> <a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">Tweet::getEntities</a>() {
+<a name="l00218"></a>00218         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>;
+<a name="l00219"></a>00219 }
+<a name="l00220"></a>00220 
+<a name="l00221"></a><a class="code" href="class_tweet.html#a240a0e4799b2722f18137a66dbec6540">00221</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">Tweet::setEntities</a>(<a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> newValue) {
+<a name="l00222"></a>00222         <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a> = newValue;
+<a name="l00223"></a>00223         emit <a class="code" href="class_tweet.html#a66c44b002bc66ed854bb285c1a724f28" title="Emitted when the entities property changes.">entitiesChanged</a>();
 <a name="l00224"></a>00224 }
 <a name="l00225"></a>00225 
-<a name="l00226"></a>00226 <span class="comment">// retweet_count</span>
-<a name="l00227"></a><a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16">00227</a> <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">Tweet::getRetweetCount</a>() {
-<a name="l00228"></a>00228         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
+<a name="l00226"></a>00226 <span class="comment">// in_reply_to_user_id</span>
+<a name="l00227"></a><a class="code" href="class_tweet.html#ad21d4ca7b6712bed52f637fdcf37744d">00227</a> qlonglong <a class="code" href="class_tweet.html#ad21d4ca7b6712bed52f637fdcf37744d" title="Reading in_reply_to_user_id.">Tweet::getInReplyToUserID</a>() {
+<a name="l00228"></a>00228         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a>;
 <a name="l00229"></a>00229 }
 <a name="l00230"></a>00230 
-<a name="l00231"></a><a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e">00231</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">Tweet::setRetweetCount</a>(<span class="keywordtype">int</span> newValue) {
-<a name="l00232"></a>00232         <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a> = newValue;
-<a name="l00233"></a>00233 }
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235 <span class="comment">// in_reply_to_screen_name</span>
-<a name="l00236"></a><a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35">00236</a> QString <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">Tweet::getInReplyToScreenName</a>() {
-<a name="l00237"></a>00237         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
-<a name="l00238"></a>00238 }
-<a name="l00239"></a>00239 
-<a name="l00240"></a><a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b">00240</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">Tweet::setInReplyToScreenName</a>(QString newValue) {
-<a name="l00241"></a>00241         <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a> = newValue;
-<a name="l00242"></a>00242 }
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244 <span class="comment">// created_at</span>
-<a name="l00245"></a><a class="code" href="class_tweet.html#a2c652007f89d8fa91e70cd3ff9bd1c96">00245</a> <a class="code" href="class_reyn_tweets_date_time.html" title="Special date class for Reyn Tweets.">ReynTweetsDateTime</a> <a class="code" href="class_tweet.html#a2c652007f89d8fa91e70cd3ff9bd1c96" title="Reading created_at.">Tweet::getCreatedAt</a>() {
-<a name="l00246"></a>00246         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>;
-<a name="l00247"></a>00247 }
-<a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="class_tweet.html#a4f61103b4a21fc5e1a80fe292a45bff1">00249</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2" title="Writing created_at.">Tweet::setCreatedAt</a>(<a class="code" href="class_reyn_tweets_date_time.html" title="Special date class for Reyn Tweets.">ReynTweetsDateTime</a> newValue) {
-<a name="l00250"></a>00250         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a> = newValue;
-<a name="l00251"></a>00251 }
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253 <span class="comment">// in_reply_to_status_id_str</span>
-<a name="l00254"></a><a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04">00254</a> QString <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">Tweet::getInReplyToStatusIDstr</a>() {
-<a name="l00255"></a>00255         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
-<a name="l00256"></a>00256 }
-<a name="l00257"></a>00257 
-<a name="l00258"></a><a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0">00258</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">Tweet::setInReplyToStatusIDstr</a>(QString newValue) {
-<a name="l00259"></a>00259         <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a> = newValue;
-<a name="l00260"></a>00260 }
-<a name="l00261"></a>00261 
-<a name="l00262"></a>00262 <span class="comment">// user</span>
-<a name="l00263"></a><a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c">00263</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c" title="Reading user.">Tweet::getUser</a>() {
-<a name="l00264"></a>00264         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
-<a name="l00265"></a>00265 }
-<a name="l00266"></a>00266 
-<a name="l00267"></a><a class="code" href="class_tweet.html#a706f2d7b449f3ed2e3f4e2a1390cf487">00267</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">Tweet::setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> newValue) {
-<a name="l00268"></a>00268         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a> = newValue;
+<a name="l00231"></a><a class="code" href="class_tweet.html#a45903cc30338124dc1e36fce79dc83cf">00231</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a45903cc30338124dc1e36fce79dc83cf" title="Writing in_reply_to_user_id.">Tweet::setInReplyToUserID</a>(qlonglong newValue) {
+<a name="l00232"></a>00232         <a class="code" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370" title="ID of the user which the tweet replies.">replyToUserID</a> = newValue;
+<a name="l00233"></a>00233         emit <a class="code" href="class_tweet.html#a2b04ec083b55f2158e6a1f9d22ed4b0d" title="Emitted when the in_reply_to_user_id property changes.">inReplyToUserIDChanged</a>();
+<a name="l00234"></a>00234 }
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236 <span class="comment">// truncated</span>
+<a name="l00237"></a><a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97">00237</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97" title="Reading truncated.">Tweet::isTruncated</a>() {
+<a name="l00238"></a>00238         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a>;
+<a name="l00239"></a>00239 }
+<a name="l00240"></a>00240 
+<a name="l00241"></a><a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd">00241</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1a0f99b0f35e732955258661ec5db1bd" title="Writing truncated.">Tweet::setTruncated</a>(<span class="keywordtype">bool</span> newValue) {
+<a name="l00242"></a>00242         <a class="code" href="class_tweet.html#a0fdf2f8d1d103c7663b78f352634d06a" title="truncated">truncatedTweet</a> = newValue;
+<a name="l00243"></a>00243         emit <a class="code" href="class_tweet.html#a98ac67b3feda9a2dcbc62fb006f02aca" title="Emitted when the truncated property changes.">truncatedChanged</a>();
+<a name="l00244"></a>00244 }
+<a name="l00245"></a>00245 
+<a name="l00246"></a>00246 <span class="comment">// favorited</span>
+<a name="l00247"></a><a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08">00247</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08" title="Reading favorited.">Tweet::isFavorited</a>() {
+<a name="l00248"></a>00248         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a>;
+<a name="l00249"></a>00249 }
+<a name="l00250"></a>00250 
+<a name="l00251"></a><a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0">00251</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">Tweet::setFavorited</a>(<span class="keywordtype">bool</span> newValue) {
+<a name="l00252"></a>00252         <a class="code" href="class_tweet.html#a4abd9688d907ef55b427c7b29c8f01d6" title="Boolean indicating if the tweet was favorited.">favoritedTweet</a> = newValue;
+<a name="l00253"></a>00253         emit <a class="code" href="class_tweet.html#a0edca91902d64bd8143ebc95e8efdd38" title="Emitted when the favorited property changes.">favoritedChanged</a>();
+<a name="l00254"></a>00254 }
+<a name="l00255"></a>00255 
+<a name="l00256"></a>00256 <span class="comment">// retweet_count</span>
+<a name="l00257"></a><a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16">00257</a> <span class="keywordtype">int</span> <a class="code" href="class_tweet.html#a71336497013cc2a64865b85059ac6f16" title="Reading retweet_count.">Tweet::getRetweetCount</a>() {
+<a name="l00258"></a>00258         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a>;
+<a name="l00259"></a>00259 }
+<a name="l00260"></a>00260 
+<a name="l00261"></a><a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e">00261</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ae44f57d62cc2d06d0e20ad71ec60cd2e" title="Writing retweet_count.">Tweet::setRetweetCount</a>(<span class="keywordtype">int</span> newValue) {
+<a name="l00262"></a>00262         <a class="code" href="class_tweet.html#af80704592deed4d3203074e7d1dd3895" title="Number of retweets of this tweet.">retweetCount</a> = newValue;
+<a name="l00263"></a>00263         emit <a class="code" href="class_tweet.html#a05e59e14af00c85c1662601a58da4c71" title="Emitted when the retweet_count property changes.">retweetCountChanged</a>();
+<a name="l00264"></a>00264 }
+<a name="l00265"></a>00265 
+<a name="l00266"></a>00266 <span class="comment">// in_reply_to_screen_name</span>
+<a name="l00267"></a><a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35">00267</a> QString <a class="code" href="class_tweet.html#aba6f068d673429a6d63afc3e242cae35" title="Reading in_reply_to_screen_name.">Tweet::getInReplyToScreenName</a>() {
+<a name="l00268"></a>00268         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a>;
 <a name="l00269"></a>00269 }
 <a name="l00270"></a>00270 
-<a name="l00271"></a>00271 <span class="comment">// retweeted</span>
-<a name="l00272"></a><a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23">00272</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">Tweet::isRetweeted</a>() {
-<a name="l00273"></a>00273         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
+<a name="l00271"></a><a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b">00271</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a63d65108655977c33cfbfa43efeb3f3b" title="Writing in_reply_to_screen_name.">Tweet::setInReplyToScreenName</a>(QString newValue) {
+<a name="l00272"></a>00272         <a class="code" href="class_tweet.html#aa98e082ada31f58a3459fdb83d940d37" title="Screen Name of the user which the tweet replies.">replyToScreenName</a> = newValue;
+<a name="l00273"></a>00273         emit <a class="code" href="class_tweet.html#a474d21442db427ee1dbc186bad05c8bb" title="Emitted when the in_reply_to_screen_name property changes.">inReplyToScreenNameChanged</a>();
 <a name="l00274"></a>00274 }
 <a name="l00275"></a>00275 
-<a name="l00276"></a><a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd">00276</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">Tweet::setRetweeted</a>(<span class="keywordtype">bool</span> newValue) {
-<a name="l00277"></a>00277         <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a> = newValue;
-<a name="l00278"></a>00278 }
-<a name="l00279"></a>00279 
-<a name="l00280"></a>00280 <span class="comment">// in_reply_to_user_id_str</span>
-<a name="l00281"></a><a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594">00281</a> QString <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">Tweet::getInReplyToUserIDstr</a>() {
-<a name="l00282"></a>00282         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
-<a name="l00283"></a>00283 }
-<a name="l00284"></a>00284 
-<a name="l00285"></a><a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78">00285</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">Tweet::setInReplyToUserIDstr</a>(QString newValue) {
-<a name="l00286"></a>00286         <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a> = newValue;
-<a name="l00287"></a>00287 }
-<a name="l00288"></a>00288 
-<a name="l00289"></a>00289 <span class="comment">// id_str</span>
-<a name="l00290"></a><a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e">00290</a> QString <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">Tweet::getIDstr</a>() {
-<a name="l00291"></a>00291         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
-<a name="l00292"></a>00292 }
-<a name="l00293"></a>00293 
-<a name="l00294"></a><a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353">00294</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">Tweet::setIDstr</a>(QString newValue) {
-<a name="l00295"></a>00295         <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a> = newValue;
-<a name="l00296"></a>00296 }
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298 <span class="comment">// source</span>
-<a name="l00299"></a><a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325">00299</a> QString <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">Tweet::getSource</a>() {
-<a name="l00300"></a>00300         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
-<a name="l00301"></a>00301 }
-<a name="l00302"></a>00302 
-<a name="l00303"></a><a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66">00303</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">Tweet::setSource</a>(QString newValue) {
-<a name="l00304"></a>00304         <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a> = newValue;
-<a name="l00305"></a>00305 }
-<a name="l00306"></a>00306 
-<a name="l00307"></a>00307 <span class="comment">// id</span>
-<a name="l00308"></a><a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0">00308</a> qlonglong <a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0" title="Reading.">Tweet::getID</a>() {
-<a name="l00309"></a>00309         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a>;
-<a name="l00310"></a>00310 }
-<a name="l00311"></a>00311 
-<a name="l00312"></a><a class="code" href="class_tweet.html#a3488babd068fd95cc04f47be12f0ab4a">00312</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a3488babd068fd95cc04f47be12f0ab4a" title="Writing id.">Tweet::setID</a>(qlonglong newValue) {
-<a name="l00313"></a>00313         <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> = newValue;
+<a name="l00276"></a>00276 <span class="comment">// created_at</span>
+<a name="l00277"></a><a class="code" href="class_tweet.html#a2c652007f89d8fa91e70cd3ff9bd1c96">00277</a> <a class="code" href="class_reyn_tweets_date_time.html" title="Special date class for Reyn Tweets.">ReynTweetsDateTime</a> <a class="code" href="class_tweet.html#a2c652007f89d8fa91e70cd3ff9bd1c96" title="Reading created_at.">Tweet::getCreatedAt</a>() {
+<a name="l00278"></a>00278         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a>;
+<a name="l00279"></a>00279 }
+<a name="l00280"></a>00280 
+<a name="l00281"></a><a class="code" href="class_tweet.html#a4f61103b4a21fc5e1a80fe292a45bff1">00281</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1deec1f267de54eb78d886d7356a23c2" title="Writing created_at.">Tweet::setCreatedAt</a>(<a class="code" href="class_reyn_tweets_date_time.html" title="Special date class for Reyn Tweets.">ReynTweetsDateTime</a> newValue) {
+<a name="l00282"></a>00282         <a class="code" href="class_tweet.html#a095b09ec5c90c20529861166f94cfeb7" title="Creation date of the tweet.">createdAt</a> = newValue;
+<a name="l00283"></a>00283         emit <a class="code" href="class_tweet.html#afd5075671ea1cc5d79659a69bd39e18c" title="Emitted when the created_at property changes.">createdAtChanged</a>();
+<a name="l00284"></a>00284 }
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286 <span class="comment">// in_reply_to_status_id_str</span>
+<a name="l00287"></a><a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04">00287</a> QString <a class="code" href="class_tweet.html#aeecb4e5ff5e6e191a5e3a2b3f7a60d04" title="Reading in_reply_to_status_id_str.">Tweet::getInReplyToStatusIDstr</a>() {
+<a name="l00288"></a>00288         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a>;
+<a name="l00289"></a>00289 }
+<a name="l00290"></a>00290 
+<a name="l00291"></a><a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0">00291</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ad14d711f8e996c743dfee331d99908d0" title="Writing in_reply_to_status_id_str.">Tweet::setInReplyToStatusIDstr</a>(QString newValue) {
+<a name="l00292"></a>00292         <a class="code" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3" title="String version of replyToTweetID.">replyToTweetIDstr</a> = newValue;
+<a name="l00293"></a>00293         emit <a class="code" href="class_tweet.html#a30e6e0f03029e7aac7061f33247bb6ff" title="Emitted when the in_reply_to_status_id_str property changes.">inReplyToStatusIDstrChanged</a>();
+<a name="l00294"></a>00294 }
+<a name="l00295"></a>00295 
+<a name="l00296"></a>00296 <span class="comment">// author</span>
+<a name="l00297"></a><a class="code" href="class_tweet.html#afa1b8df4d995c5ad9022c173b449f944">00297</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> * <a class="code" href="class_tweet.html#afa1b8df4d995c5ad9022c173b449f944" title="Reading author.">Tweet::getAuthor</a>() {
+<a name="l00298"></a>00298         <span class="keywordflow">return</span> &amp;<a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
+<a name="l00299"></a>00299 }
+<a name="l00300"></a>00300 
+<a name="l00301"></a><a class="code" href="class_tweet.html#ab6fa48a88177bd77e7d283fbeba67dcc">00301</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#ab6fa48a88177bd77e7d283fbeba67dcc" title="Writing author.">Tweet::setAuthor</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> * newValue) {
+<a name="l00302"></a>00302         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a> = newValue ? *newValue : <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a>();
+<a name="l00303"></a>00303         emit <a class="code" href="class_tweet.html#a5cac56eea3c012e68d062829663956df" title="Emitted when the user and author properties change.">userChanged</a>();
+<a name="l00304"></a>00304 }
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306 <span class="comment">// user</span>
+<a name="l00307"></a><a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c">00307</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_tweet.html#a498232701c995261481b523c369d464c" title="Reading user.">Tweet::getUser</a>() {
+<a name="l00308"></a>00308         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a>;
+<a name="l00309"></a>00309 }
+<a name="l00310"></a>00310 
+<a name="l00311"></a><a class="code" href="class_tweet.html#a706f2d7b449f3ed2e3f4e2a1390cf487">00311</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c" title="Writing the property user.">Tweet::setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> newValue) {
+<a name="l00312"></a>00312         <a class="code" href="class_tweet.html#a64762942bd7ecb9e66d2196cfc83c561" title="User who posted the tweet.">profile</a> = newValue;
+<a name="l00313"></a>00313         emit <a class="code" href="class_tweet.html#a5cac56eea3c012e68d062829663956df" title="Emitted when the user and author properties change.">userChanged</a>();
 <a name="l00314"></a>00314 }
 <a name="l00315"></a>00315 
-<a name="l00316"></a>00316 <span class="comment">// in_reply_to_status_id</span>
-<a name="l00317"></a><a class="code" href="class_tweet.html#a1ddcf3c22534247fd26652d724f58e79">00317</a> qlonglong <a class="code" href="class_tweet.html#a1ddcf3c22534247fd26652d724f58e79" title="Reading in_reply_to_status_id.">Tweet::getInReplyToStatusID</a>() {
-<a name="l00318"></a>00318         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
+<a name="l00316"></a>00316 <span class="comment">// retweeted</span>
+<a name="l00317"></a><a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23">00317</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23" title="Reading retweeted.">Tweet::isRetweeted</a>() {
+<a name="l00318"></a>00318         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a>;
 <a name="l00319"></a>00319 }
 <a name="l00320"></a>00320 
-<a name="l00321"></a><a class="code" href="class_tweet.html#a1f1f05d07cecb1cc703039e737103994">00321</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1f1f05d07cecb1cc703039e737103994" title="Writing in_reply_to_status_id.">Tweet::setInReplyToStatusID</a>(qlonglong newValue) {
-<a name="l00322"></a>00322         <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a> = newValue;
-<a name="l00323"></a>00323 }
-<a name="l00324"></a>00324 
-<a name="l00325"></a>00325 <span class="comment">// text</span>
-<a name="l00326"></a><a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850">00326</a> QString <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">Tweet::getText</a>() {
-<a name="l00327"></a>00327         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
-<a name="l00328"></a>00328 }
-<a name="l00329"></a>00329 
-<a name="l00330"></a><a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e">00330</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">Tweet::setText</a>(QString newValue) {
-<a name="l00331"></a>00331         <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a> = newValue;
-<a name="l00332"></a>00332 }
-<a name="l00333"></a>00333 
-<a name="l00334"></a>00334 <span class="comment">// sensible</span>
-<a name="l00335"></a><a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276">00335</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">Tweet::isSensible</a>() {
-<a name="l00336"></a>00336         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
-<a name="l00337"></a>00337 }
-<a name="l00338"></a>00338 
-<a name="l00339"></a><a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02">00339</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">Tweet::setSensible</a>(<span class="keywordtype">bool</span> newValue) {
-<a name="l00340"></a>00340         <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a> = newValue;
-<a name="l00341"></a>00341 }
-<a name="l00342"></a>00342 
-<a name="l00343"></a>00343 <span class="comment">// retweeted_status</span>
-<a name="l00344"></a><a class="code" href="class_tweet.html#ad457be247c8bce6d9a662172f46e29a7">00344</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_tweet.html#ad457be247c8bce6d9a662172f46e29a7" title="Reading retweeted_status.">Tweet::getRetweetedStatus</a>() {
-<a name="l00345"></a>00345         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> ?
-<a name="l00346"></a>00346                                 *<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>
-<a name="l00347"></a>00347                           : <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>();
-<a name="l00348"></a>00348 }
-<a name="l00349"></a>00349 
-<a name="l00350"></a><a class="code" href="class_tweet.html#a43d48f8a88439810aaadb084bdc6508f">00350</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f" title="Writing retweeted_status.">Tweet::setRetweetedStatus</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> retweet) {
-<a name="l00351"></a>00351         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
-<a name="l00352"></a>00352                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
-<a name="l00353"></a>00353         }
-<a name="l00354"></a>00354 
-<a name="l00355"></a>00355         <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = <span class="keyword">new</span> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>(retweet);
-<a name="l00356"></a>00356 }
+<a name="l00321"></a><a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd">00321</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">Tweet::setRetweeted</a>(<span class="keywordtype">bool</span> newValue) {
+<a name="l00322"></a>00322         <a class="code" href="class_tweet.html#a19f4a0f5648366a6c3c1261accb8526d" title="Boolean indicating if the tweet was retweeted.">retweetedTweet</a> = newValue;
+<a name="l00323"></a>00323         emit <a class="code" href="class_tweet.html#a089cd5bf36a73bf34106d4db015bdbd7" title="Emitted when the retweeted property changes.">retweetedChanged</a>();
+<a name="l00324"></a>00324 }
+<a name="l00325"></a>00325 
+<a name="l00326"></a>00326 <span class="comment">// in_reply_to_user_id_str</span>
+<a name="l00327"></a><a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594">00327</a> QString <a class="code" href="class_tweet.html#af519a3568bbfecc7b11976b20a648594" title="Reading in_reply_to_user_id_str.">Tweet::getInReplyToUserIDstr</a>() {
+<a name="l00328"></a>00328         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a>;
+<a name="l00329"></a>00329 }
+<a name="l00330"></a>00330 
+<a name="l00331"></a><a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78">00331</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa62ddd39e96ca3ebb37018bf090f6e78" title="Writing in_reply_to_user_id_str.">Tweet::setInReplyToUserIDstr</a>(QString newValue) {
+<a name="l00332"></a>00332         <a class="code" href="class_tweet.html#aeb64bef9c2fa17fd696010c73cd4265c" title="String version of replyToUserID.">replyToUserIDstr</a> = newValue;
+<a name="l00333"></a>00333         emit <a class="code" href="class_tweet.html#ada71e6f45a442fc4c4d49ffabbe5563d" title="Emitted when the in_reply_to_user_id_str property changes.">inReplyToUserIDstrChanged</a>();
+<a name="l00334"></a>00334 }
+<a name="l00335"></a>00335 
+<a name="l00336"></a>00336 <span class="comment">// id_str</span>
+<a name="l00337"></a><a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e">00337</a> QString <a class="code" href="class_tweet.html#a7d38f0eb19a0c9f11ee040ac3af84b8e" title="Reading id_str.">Tweet::getIDstr</a>() {
+<a name="l00338"></a>00338         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a>;
+<a name="l00339"></a>00339 }
+<a name="l00340"></a>00340 
+<a name="l00341"></a><a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353">00341</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a828a09d94fb35d52d12542ddc9479353" title="Writing id_str.">Tweet::setIDstr</a>(QString newValue) {
+<a name="l00342"></a>00342         <a class="code" href="class_tweet.html#a2716cacd91a5c7f83d71162f69aaac49" title="String version of tweetID.">tweetIDstr</a> = newValue;
+<a name="l00343"></a>00343         emit <a class="code" href="class_tweet.html#a18ee06765f7a79d0f17a733d5e163a8a" title="Emitted when the id_str property changes.">idStrChanged</a>();
+<a name="l00344"></a>00344 }
+<a name="l00345"></a>00345 
+<a name="l00346"></a>00346 <span class="comment">// source</span>
+<a name="l00347"></a><a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325">00347</a> QString <a class="code" href="class_tweet.html#a23179f1e3a80cc53fc1ef00e0b013325" title="Reading source.">Tweet::getSource</a>() {
+<a name="l00348"></a>00348         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
+<a name="l00349"></a>00349 }
+<a name="l00350"></a>00350 
+<a name="l00351"></a><a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66">00351</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66" title="Writing source.">Tweet::setSource</a>(QString newValue) {
+<a name="l00352"></a>00352         <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a> = newValue;
+<a name="l00353"></a>00353         emit <a class="code" href="class_tweet.html#a5d57538368e183d6aa92966d2cc42b7e" title="Emitted when the source property changes.">sourceChanged</a>();
+<a name="l00354"></a>00354 }
+<a name="l00355"></a>00355 
+<a name="l00356"></a>00356 <span class="comment">// id</span>
+<a name="l00357"></a><a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0">00357</a> qlonglong <a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0" title="Reading.">Tweet::getID</a>() {
+<a name="l00358"></a>00358         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a>;
+<a name="l00359"></a>00359 }
+<a name="l00360"></a>00360 
+<a name="l00361"></a><a class="code" href="class_tweet.html#a3488babd068fd95cc04f47be12f0ab4a">00361</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a3488babd068fd95cc04f47be12f0ab4a" title="Writing id.">Tweet::setID</a>(qlonglong newValue) {
+<a name="l00362"></a>00362         <a class="code" href="class_tweet.html#a221d90976013a5c2dfc9b7435852039b" title="ID of the tweet.">tweetID</a> = newValue;
+<a name="l00363"></a>00363         emit <a class="code" href="class_tweet.html#a7e856b7d0f3dfb6311d33a8d5393e14d" title="Emitted when the id property changes.">idChanged</a>();
+<a name="l00364"></a>00364 }
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366 <span class="comment">// in_reply_to_status_id</span>
+<a name="l00367"></a><a class="code" href="class_tweet.html#a1ddcf3c22534247fd26652d724f58e79">00367</a> qlonglong <a class="code" href="class_tweet.html#a1ddcf3c22534247fd26652d724f58e79" title="Reading in_reply_to_status_id.">Tweet::getInReplyToStatusID</a>() {
+<a name="l00368"></a>00368         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a>;
+<a name="l00369"></a>00369 }
+<a name="l00370"></a>00370 
+<a name="l00371"></a><a class="code" href="class_tweet.html#a1f1f05d07cecb1cc703039e737103994">00371</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a1f1f05d07cecb1cc703039e737103994" title="Writing in_reply_to_status_id.">Tweet::setInReplyToStatusID</a>(qlonglong newValue) {
+<a name="l00372"></a>00372         <a class="code" href="class_tweet.html#a0434efac395b5640293053571fa8d75c" title="ID of the tweet which the tweet replies.">replyToTweetID</a> = newValue;
+<a name="l00373"></a>00373         emit <a class="code" href="class_tweet.html#a7986d9fb29b93a89816cfb4b97b686c6" title="Emitted when the in_reply_to_status_id property changes.">inReplyToStatusIDChanged</a>();
+<a name="l00374"></a>00374 }
+<a name="l00375"></a>00375 
+<a name="l00376"></a>00376 <span class="comment">// text</span>
+<a name="l00377"></a><a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850">00377</a> QString <a class="code" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850" title="Reading text.">Tweet::getText</a>() {
+<a name="l00378"></a>00378         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
+<a name="l00379"></a>00379 }
+<a name="l00380"></a>00380 
+<a name="l00381"></a><a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e">00381</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e" title="Writing text.">Tweet::setText</a>(QString newValue) {
+<a name="l00382"></a>00382         <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a> = newValue;
+<a name="l00383"></a>00383         emit <a class="code" href="class_tweet.html#a7d3c143ba864e8941374713674035db9" title="Emitted when the text property changes.">textChanged</a>();
+<a name="l00384"></a>00384 }
+<a name="l00385"></a>00385 
+<a name="l00386"></a>00386 <span class="comment">// sensible</span>
+<a name="l00387"></a><a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276">00387</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276" title="Reading sensible.">Tweet::isSensible</a>() {
+<a name="l00388"></a>00388         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a>;
+<a name="l00389"></a>00389 }
+<a name="l00390"></a>00390 
+<a name="l00391"></a><a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02">00391</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#aa6360e1fbe63254dcc4d0ab3b13c8d02" title="Writing sensible.">Tweet::setSensible</a>(<span class="keywordtype">bool</span> newValue) {
+<a name="l00392"></a>00392         <a class="code" href="class_tweet.html#abcf60f5dbc7b3055fcf9cfd23fcc2802" title="Boolean indicating if the content of the tweet is sensible.">sensibleTweet</a> = newValue;
+<a name="l00393"></a>00393         emit <a class="code" href="class_tweet.html#a811df1cc02be932edbffae982ed17327" title="Emitted when the sensible property changes.">sensibleChanged</a>();
+<a name="l00394"></a>00394 }
+<a name="l00395"></a>00395 
+<a name="l00396"></a>00396 <span class="comment">// retweeted_status</span>
+<a name="l00397"></a><a class="code" href="class_tweet.html#a43e939f3e36d20d8f93ebed6fe74ece9">00397</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet.html#a43e939f3e36d20d8f93ebed6fe74ece9" title="Reading retweeted_status.">Tweet::getRetweetedStatus</a>() {
+<a name="l00398"></a>00398         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> ? <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> : <span class="keyword">new</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>;
+<a name="l00399"></a>00399 }
+<a name="l00400"></a>00400 
+<a name="l00401"></a><a class="code" href="class_tweet.html#a57dd8c03439e9709f2721fb1e1aaf2bc">00401</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f" title="Writing retweeted_status.">Tweet::setRetweetedStatus</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * retweet) {
+<a name="l00402"></a>00402         <span class="keywordflow">if</span> (<a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>) {
+<a name="l00403"></a>00403                 <span class="keyword">delete</span> <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a>;
+<a name="l00404"></a>00404                 <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = 0;
+<a name="l00405"></a>00405         }
+<a name="l00406"></a>00406 
+<a name="l00407"></a>00407         <a class="code" href="class_tweet.html#a36233de21aafb3931e541d10d350ecbd" title="Initial tweet if the tweet is retweeted.">retweetSource</a> = retweet ? <span class="keyword">new</span> <a class="code" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6" title="Default constructor.">Tweet</a>(*retweet) : <span class="keyword">new</span> Tweet;
+<a name="l00408"></a>00408         emit <a class="code" href="class_tweet.html#a2c9d7a6af30b49bfdf085469cf35ebc7" title="Emitted when the retweeted_status and retweet properties change.">retweetedStatusChanged</a>();
+<a name="l00409"></a>00409 }
+<a name="l00410"></a>00410 
+<a name="l00411"></a>00411 
+<a name="l00413"></a>00413 <span class="comment">// Methods used by the QML View //</span>
+<a name="l00415"></a>00415 <span class="comment"></span>
+<a name="l00416"></a>00416 <span class="comment">// Getting the (rich) content of the text.</span>
+<a name="l00417"></a><a class="code" href="class_tweet.html#a7a70cd54fe904df42e195438f8a2716e">00417</a> QString <a class="code" href="class_tweet.html#a7a70cd54fe904df42e195438f8a2716e" title="Getting the content of tweet under the form of a HTML string.">Tweet::getDisplayText</a>() {
+<a name="l00418"></a>00418         QString displayedText = <a class="code" href="class_tweet.html#a3dfedc46e5e997c9d0f76fbd0717cf02" title="Text of the tweet (the famous 140 characters !).">tweet</a>;
+<a name="l00419"></a>00419 
+<a name="l00420"></a>00420         <a class="code" href="class_q_list.html">QList&lt;TweetEntity *&gt;</a> allEntities = <a class="code" href="class_tweet.html#a6633d849a37cb7cb1906a2a3f5d31e78" title="Entities of the tweet.">tweetEntities</a>.<a class="code" href="class_tweet_entities.html#a82afb3bdcdf9416220437c63c2ed2f0a" title="Getting a list with pointers on all the Tweet Entities.">getAllEntitiesList</a>();
+<a name="l00421"></a>00421 
+<a name="l00422"></a>00422         <span class="keywordflow">for</span> (<a class="code" href="class_q_list.html">QList&lt;TweetEntity *&gt;::Iterator</a> it = allEntities.begin();
+<a name="l00423"></a>00423                  it != allEntities.end();
+<a name="l00424"></a>00424                  ++it)
+<a name="l00425"></a>00425         {
+<a name="l00426"></a>00426                 <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> * entity = *it;
+<a name="l00427"></a>00427                 QString entityText = entity-&gt;<a class="code" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">getDisplayedText</a>();
+<a name="l00428"></a>00428                 <span class="keywordtype">int</span> min = entity-&gt;<a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">getIndices</a>().<a class="code" href="class_index_bounds.html#a4118c15cdacfeea8909463d61c66b2ca" title="Getter on min.">getMin</a>();
+<a name="l00429"></a>00429                 <span class="keywordtype">int</span> max = entity-&gt;<a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">getIndices</a>().<a class="code" href="class_index_bounds.html#a247890fe22344ae430ae3f44ebca3600" title="Getter on max.">getMax</a>();
+<a name="l00430"></a>00430                 displayedText.replace(min, max-min, entityText);
+<a name="l00431"></a>00431         }
+<a name="l00432"></a>00432 
+<a name="l00433"></a>00433         <span class="keywordflow">return</span> displayedText;
+<a name="l00434"></a>00434 }
+<a name="l00435"></a>00435 
+<a name="l00436"></a>00436 <span class="comment">// Getting a HTML string of the name of the Twitter client used to post the tweet</span>
+<a name="l00437"></a><a class="code" href="class_tweet.html#abf49df6243a255eb612e1aed6d4ce109">00437</a> QString <a class="code" href="class_tweet.html#abf49df6243a255eb612e1aed6d4ce109" title="Getting the name of the Twitter client used to post the tweet under the form of a...">Tweet::getDisplaySource</a>() {
+<a name="l00438"></a>00438         <span class="comment">// TODO : faire en sorte que quand on clique dessus, ça lance le navigateur vers le lien de l&#39;appli</span>
+<a name="l00439"></a>00439         <span class="keywordflow">return</span> <a class="code" href="class_tweet.html#ae31305bf09f5df599a0f1260d994f507" title="Client used to post this tweet, just like Reyn Tweets. ;-).">sourceClient</a>;
+<a name="l00440"></a>00440 }
+<a name="l00441"></a>00441 
+<a name="l00442"></a>00442 <span class="comment">// When the tweet was posted ?</span>
+<a name="l00443"></a><a class="code" href="class_tweet.html#a704ca5ec4360f11dd2bde039405dd74d">00443</a> QString <a class="code" href="class_tweet.html#a704ca5ec4360f11dd2bde039405dd74d" title="When the tweet was posted ?">Tweet::whenWasItPosted</a>() {
+<a name="l00444"></a>00444         <span class="comment">// TODO</span>
+<a name="l00445"></a>00445         <span class="keywordflow">return</span> <span class="stringliteral">&quot;Un jour&quot;</span>;
+<a name="l00446"></a>00446 }
+<a name="l00447"></a>00447 
+<a name="l00448"></a><a class="code" href="class_tweet.html#a532b53cf30ed7f64f45898062344f7bc">00448</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet.html#a532b53cf30ed7f64f45898062344f7bc">Tweet::fromString</a>(QString str) {
+<a name="l00449"></a>00449         QJson::Parser p;
+<a name="l00450"></a>00450         QVariant v = p.parse(str.toUtf8());
+<a name="l00451"></a>00451         <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * r = <span class="keyword">new</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>;
+<a name="l00452"></a>00452         r-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(v.toMap());
+<a name="l00453"></a>00453         <span class="keywordflow">return</span> r;
+<a name="l00454"></a>00454 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -453,7 +549,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

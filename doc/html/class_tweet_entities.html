@@ -108,6 +108,8 @@ Inheritance diagram for TweetEntities:</div>
 <p><a href="class_tweet_entities-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_tweet_entity.html">TweetEntity</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#a82afb3bdcdf9416220437c63c2ed2f0a">getAllEntitiesList</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting a list with pointers on all the <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities.  <a href="#a82afb3bdcdf9416220437c63c2ed2f0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_hashtag_list.html">HashtagList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#abd4c4ec1576282e48b5ae14000213829">getHashtags</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading tweetHashtags.  <a href="#abd4c4ec1576282e48b5ae14000213829"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ac686b7daf2ee405f73bc91cbabdcf370">getHashtagsProperty</a> ()</td></tr>
@@ -170,6 +172,8 @@ Inheritance diagram for TweetEntities:</div>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ac7694ccdb4efb8fb97182a16e4f7affd">user_mentions</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Users mentionned in the tweet.  <a href="#ac7694ccdb4efb8fb97182a16e4f7affd"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#ac156c0f53d58ca0eac6419009d2868e2">insertEntity</a> (<a class="el" href="class_tweet_entity.html">TweetEntity</a> &amp;entity, <a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_tweet_entity.html">TweetEntity</a> * &gt; &amp;entityList)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inserting an entity in the list of all the entities.  <a href="#ac156c0f53d58ca0eac6419009d2868e2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entities.html#abdbc95a9b65558d78d58769568fb720d">recopie</a> (const <a class="el" href="class_tweet_entities.html">TweetEntities</a> &amp;entities)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy of a TwitterEntities.  <a href="#abdbc95a9b65558d78d58769568fb720d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
@@ -254,6 +258,29 @@ Inheritance diagram for TweetEntities:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a82afb3bdcdf9416220437c63c2ed2f0a"></a><!-- doxytag: member="TweetEntities::getAllEntitiesList" ref="a82afb3bdcdf9416220437c63c2ed2f0a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_tweet_entity.html">TweetEntity</a> * &gt; TweetEntities::getAllEntitiesList </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Getting a list with pointers on all the <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities. </p>
+<p>The entities are sorted decreasingly with their first index bound in the tweet. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>List with pointers on all the entities </dd></dl>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00220">220</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="abd4c4ec1576282e48b5ae14000213829"></a><!-- doxytag: member="TweetEntities::getHashtags" ref="abd4c4ec1576282e48b5ae14000213829" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -272,7 +299,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading tweetHashtags. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetHashtags </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00161">161</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00162">162</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +321,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property hashtags. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>hashtagsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00116">116</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00117">117</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -316,7 +343,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading medias. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>medias </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00131">131</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00132">132</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +365,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property media. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>mediaList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00086">86</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00087">87</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -360,7 +387,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading tweetURLs. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetURLs </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00141">141</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00142">142</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +409,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property urls. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>urlsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00096">96</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00097">97</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +431,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading userMentions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMentions </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00151">151</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00152">152</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +453,7 @@ Inheritance diagram for TweetEntities:</div>
 <p>Reading the property user_mentions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMentionsList </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00106">106</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00107">107</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,6 +475,44 @@ Inheritance diagram for TweetEntities:</div>
 <p>Serialization declaration. </p>
 
 <p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00057">57</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac156c0f53d58ca0eac6419009d2868e2"></a><!-- doxytag: member="TweetEntities::insertEntity" ref="ac156c0f53d58ca0eac6419009d2868e2" args="(TweetEntity &amp;entity, QList&lt; TweetEntity * &gt; &amp;entityList)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TweetEntities::insertEntity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tweet_entity.html">TweetEntity</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_tweet_entity.html">TweetEntity</a> * &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>entityList</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inserting an entity in the list of all the entities. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>entity</em>&nbsp;</td><td>The entity to insert </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>entityList</em>&nbsp;</td><td>The list to insert the entity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00177">177</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -532,7 +597,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00166">166</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00167">167</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -560,7 +625,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00121">121</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00122">122</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -588,7 +653,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00136">136</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00137">137</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -616,7 +681,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00091">91</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00092">92</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -644,7 +709,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00146">146</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00147">147</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -672,7 +737,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00101">101</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00102">102</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -700,7 +765,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00156">156</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00157">157</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -728,7 +793,7 @@ Inheritance diagram for TweetEntities:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00111">111</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00112">112</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -768,7 +833,7 @@ Inheritance diagram for TweetEntities:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00071">71</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00072">72</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -807,7 +872,7 @@ Inheritance diagram for TweetEntities:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00076">76</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentities_8cpp_source.html#l00077">77</a> of file <a class="el" href="tweetentities_8cpp_source.html">tweetentities.cpp</a>.</p>
 
 </div>
 </div>
@@ -968,7 +1033,7 @@ Inheritance diagram for TweetEntities:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:58 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:57 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

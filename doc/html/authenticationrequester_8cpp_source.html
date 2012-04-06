@@ -140,8 +140,8 @@ window.onload = initDynSections;
 <a name="l00050"></a>00050                                                                                    <a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>,
 <a name="l00051"></a>00051                                                                                    <a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae" title="Boolean indicating if the oauth_callback parameter is required for authentication...">oauthCallbackUrlNeeded</a>,
 <a name="l00052"></a>00052                                                                                    <a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthVerifierNeeded</a>);
-<a name="l00053"></a>00053         connect(<a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a>, SIGNAL(<a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>(<span class="keywordtype">bool</span>)),
-<a name="l00054"></a>00054                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_generic_requester.html#a60801bd6fb58861ab36b5b74f17d1965" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>(<span class="keywordtype">bool</span>)));
+<a name="l00053"></a>00053         connect(<a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a>, SIGNAL(<a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>()),
+<a name="l00054"></a>00054                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_generic_requester.html#a3aef8eba6b6e3a074f0c4de500b2eee2" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>()));
 <a name="l00055"></a>00055 }
 </pre></div></div>
 <!--- window showing the filter options -->
@@ -158,7 +158,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:48 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:37 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

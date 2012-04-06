@@ -113,16 +113,16 @@ window.onload = initDynSections;
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="hashtag_8hpp.html" title="Header of Hashtag.">hashtag.hpp</a>&quot;</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
-<a name="l00028"></a>00028 
-<a name="l00030"></a>00030 <span class="comment">// Serialization management //</span>
-<a name="l00032"></a>00032 <span class="comment"></span>
-<a name="l00033"></a>00033 <span class="comment">// Constructor</span>
-<a name="l00034"></a><a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f">00034</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>() :
-<a name="l00035"></a>00035         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>(),
-<a name="l00036"></a>00036         hashText(),
-<a name="l00037"></a>00037         indexes()
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QTextStream&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="hashtag_8hpp.html" title="Header of Hashtag.">hashtag.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
+<a name="l00029"></a>00029 
+<a name="l00031"></a>00031 <span class="comment">// Serialization management //</span>
+<a name="l00033"></a>00033 <span class="comment"></span>
+<a name="l00034"></a>00034 <span class="comment">// Constructor</span>
+<a name="l00035"></a><a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f">00035</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>() :
+<a name="l00036"></a>00036         <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a>(),
+<a name="l00037"></a>00037         hashText()
 <a name="l00038"></a>00038 {}
 <a name="l00039"></a>00039 
 <a name="l00040"></a>00040 <span class="comment">// Destructor</span>
@@ -147,8 +147,8 @@ window.onload = initDynSections;
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="comment">// Copy of a Hashtag</span>
 <a name="l00061"></a><a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">Hashtag::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00062"></a>00062         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = hashtag.<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00063"></a>00063         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a> = hashtag.<a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>;
+<a name="l00062"></a>00062         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">TweetEntity::recopie</a>(hashtag);
+<a name="l00063"></a>00063         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = hashtag.<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
 <a name="l00064"></a>00064 }
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 <span class="comment">// Output stream operator for serialization</span>
@@ -162,40 +162,37 @@ window.onload = initDynSections;
 <a name="l00074"></a>00074 }
 <a name="l00075"></a>00075 
 <a name="l00076"></a>00076 
-<a name="l00078"></a>00078 <span class="comment">// Properties management //</span>
+<a name="l00078"></a>00078 <span class="comment">// Getter and setters //</span>
 <a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">// Reading method for the property indices</span>
-<a name="l00082"></a><a class="code" href="class_hashtag.html#ac183bb9d7efdc7661c7af0617bf02ff8">00082</a> QVariantList <a class="code" href="class_hashtag.html#ac183bb9d7efdc7661c7af0617bf02ff8" title="Reading method for the property indices.">Hashtag::getIndicesProperty</a>() {
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
+<a name="l00081"></a>00081 <span class="comment">// Reading hashText</span>
+<a name="l00082"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00082</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
+<a name="l00083"></a>00083         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
 <a name="l00084"></a>00084 }
 <a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment">// Writing method for the property indices</span>
-<a name="l00087"></a><a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf">00087</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf" title="Writing method for the property indices.">Hashtag::setIndices</a>(QVariantList newIndexList) {
-<a name="l00088"></a>00088         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(newIndexList);
+<a name="l00086"></a>00086 <span class="comment">// Writing hashText</span>
+<a name="l00087"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00087</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
+<a name="l00088"></a>00088         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
 <a name="l00089"></a>00089 }
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091 
-<a name="l00093"></a>00093 <span class="comment">// Getter and setters //</span>
-<a name="l00095"></a>00095 <span class="comment"></span>
-<a name="l00096"></a>00096 <span class="comment">// Reading hashText</span>
-<a name="l00097"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00097</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
-<a name="l00098"></a>00098         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00099"></a>00099 }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="comment">// Writing hashText</span>
-<a name="l00102"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00102</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
-<a name="l00103"></a>00103         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
-<a name="l00104"></a>00104 }
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106 <span class="comment">// Reading indexes</span>
-<a name="l00107"></a><a class="code" href="class_hashtag.html#a8047acfbc8dfd4bd12edfb767931cfbc">00107</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_hashtag.html#a8047acfbc8dfd4bd12edfb767931cfbc" title="Reading indexes.">Hashtag::getIndices</a>() {
-<a name="l00108"></a>00108         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00109"></a>00109 }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 <span class="comment">// Writing indexes</span>
-<a name="l00112"></a><a class="code" href="class_hashtag.html#a370005027b7d1cc753b5a6215c23a0d9">00112</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf" title="Writing method for the property indices.">Hashtag::setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
-<a name="l00113"></a>00113         <a class="code" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d" title="Indexes of the hashtag in the tweet.">indexes</a> = newIndexes;
-<a name="l00114"></a>00114 }
+<a name="l00091"></a>00091 <span class="comment">// #hashText</span>
+<a name="l00092"></a><a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87">00092</a> QString <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">Hashtag::getHashtag</a>() {
+<a name="l00093"></a>00093         QString s = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00094"></a>00094         QTextStream t(&amp;s);
+<a name="l00095"></a>00095         t &lt;&lt; <span class="charliteral">&#39;#&#39;</span> &lt;&lt; <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> t.readAll();
+<a name="l00097"></a>00097 }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00101"></a>00101 <span class="comment">// Misc //</span>
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">// Building the rich text for the entity</span>
+<a name="l00105"></a><a class="code" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d">00105</a> QString <a class="code" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d" title="Building the rich text for the hashtag.">Hashtag::getDisplayedText</a>() {
+<a name="l00106"></a>00106         QString hashtag = <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">getHashtag</a>();
+<a name="l00107"></a>00107         QString s = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00108"></a>00108         QTextStream t(&amp;s);
+<a name="l00109"></a>00109         t &lt;&lt; <span class="stringliteral">&quot;&lt;a href=\&quot;&quot;</span> &lt;&lt; hashtag &lt;&lt; <span class="stringliteral">&quot;\&quot;&gt;&quot;</span> &lt;&lt; hashtag &lt;&lt; <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>;
+<a name="l00110"></a>00110         <span class="keywordflow">return</span> t.readAll();
+<a name="l00111"></a>00111 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -211,7 +208,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

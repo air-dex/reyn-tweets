@@ -125,33 +125,47 @@ window.onload = initDynSections;
 <a name="l00040"></a>00040         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194" title="URL to verify if credentials are right.">VERIFY_CREDENTIALS_URL</a>;
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 
-<a name="l00044"></a>00044         <span class="comment">// OAuth //</span>
+<a name="l00044"></a>00044         <span class="comment">// Favorites //</span>
 <a name="l00046"></a>00046 <span class="comment"></span>
-<a name="l00048"></a>00048         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca" title="URL to get request tokens.">REQUEST_TOKEN_URL</a>;
+<a name="l00048"></a>00048         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f" title="URL to favorite a tweet.">CREATE_FAVORITE_URL</a>;
 <a name="l00049"></a>00049 
-<a name="l00051"></a>00051         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3" title="URL to authorize the application.">AUTHORIZE_URL</a>;
+<a name="l00051"></a>00051         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04" title="URL to unfavorite a tweet.">DELETE_FAVORITE_URL</a>;
 <a name="l00052"></a>00052 
-<a name="l00054"></a>00054         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194" title="URL for authentication.">AUTHENTICATE_URL</a>;
+<a name="l00054"></a>00054         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9" title="URL to get the timeline of the favorite tweets of a user.">FAVORITE_TIMELINE_URL</a>;
 <a name="l00055"></a>00055 
-<a name="l00057"></a>00057         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">ACCESS_TOKEN_URL</a>;
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00061"></a>00061         <span class="comment">// Searches //</span>
-<a name="l00063"></a>00063 <span class="comment"></span>
-<a name="l00065"></a>00065         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">SEARCH_URL</a>;
+<a name="l00056"></a>00056 
+<a name="l00058"></a>00058         <span class="comment">// OAuth //</span>
+<a name="l00060"></a>00060 <span class="comment"></span>
+<a name="l00062"></a>00062         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca" title="URL to get request tokens.">REQUEST_TOKEN_URL</a>;
+<a name="l00063"></a>00063 
+<a name="l00065"></a>00065         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3" title="URL to authorize the application.">AUTHORIZE_URL</a>;
 <a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069         <span class="comment">// Tweets //</span>
-<a name="l00071"></a>00071 <span class="comment"></span>
-<a name="l00073"></a>00073         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">SHOW_TWEET_URL</a>;
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 
-<a name="l00077"></a>00077         <span class="comment">// Users //</span>
-<a name="l00079"></a>00079 <span class="comment"></span>
-<a name="l00081"></a>00081         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">SHOW_USER_URL</a>;
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif // TWITTERURLS_HPP</span>
+<a name="l00068"></a>00068         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194" title="URL for authentication.">AUTHENTICATE_URL</a>;
+<a name="l00069"></a>00069 
+<a name="l00071"></a>00071         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">ACCESS_TOKEN_URL</a>;
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 
+<a name="l00075"></a>00075         <span class="comment">// Searches //</span>
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00079"></a>00079         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">SEARCH_URL</a>;
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 
+<a name="l00083"></a>00083         <span class="comment">// Timelines //</span>
+<a name="l00085"></a>00085 <span class="comment"></span>
+<a name="l00087"></a>00087         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3" title="URL to getting the timeline with friends tweets.">HOME_TIMELINE_URL</a>;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00091"></a>00091         <span class="comment">// Tweets //</span>
+<a name="l00093"></a>00093 <span class="comment"></span>
+<a name="l00095"></a>00095         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">SHOW_TWEET_URL</a>;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 
+<a name="l00099"></a>00099         <span class="comment">// Users //</span>
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00103"></a>00103         <span class="keyword">extern</span> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">SHOW_USER_URL</a>;
+<a name="l00104"></a>00104 }
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="preprocessor">#endif // TWITTERURLS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -167,7 +181,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -123,37 +123,55 @@ window.onload = initDynSections;
 <a name="l00035"></a><a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">00035</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194" title="URL to verify if credentials are right.">TwitterURL::VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/account/verify_credentials.json&quot;</span>);
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
-<a name="l00039"></a>00039 <span class="comment">// OAuth //</span>
+<a name="l00039"></a>00039 <span class="comment">// Favorites //</span>
 <a name="l00041"></a>00041 <span class="comment"></span>
-<a name="l00042"></a>00042 <span class="comment">// Getting a request token</span>
-<a name="l00043"></a><a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca">00043</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca" title="URL to get request tokens.">TwitterURL::REQUEST_TOKEN_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/request_token&quot;</span>);
+<a name="l00042"></a>00042 <span class="comment">// Favorite a tweet</span>
+<a name="l00043"></a><a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">00043</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f" title="URL to favorite a tweet.">TwitterURL::CREATE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites/create/:id.json&quot;</span>);
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="comment">// Authorizing the application</span>
-<a name="l00046"></a><a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3">00046</a> QString <a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3" title="URL to authorize the application.">TwitterURL::AUTHORIZE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/authorize&quot;</span>);
+<a name="l00045"></a>00045 <span class="comment">// Unfavorite a tweet</span>
+<a name="l00046"></a><a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">00046</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04" title="URL to unfavorite a tweet.">TwitterURL::DELETE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites/destroy/:id.json&quot;</span>);
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="comment">// Authentication</span>
-<a name="l00049"></a><a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194">00049</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194" title="URL for authentication.">TwitterURL::AUTHENTICATE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/authenticate&quot;</span>);
+<a name="l00048"></a>00048 <span class="comment">// Getting the timeline of the favorite tweets of a user</span>
+<a name="l00049"></a><a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">00049</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9" title="URL to get the timeline of the favorite tweets of a user.">TwitterURL::FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites.json&quot;</span>);
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="comment">// Getting an access token</span>
-<a name="l00052"></a><a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448">00052</a> QString <a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">TwitterURL::ACCESS_TOKEN_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/access_token&quot;</span>);
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
-<a name="l00056"></a>00056 <span class="comment">// Searches //</span>
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">// Search request</span>
-<a name="l00060"></a><a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b">00060</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">TwitterURL::SEARCH_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://search.twitter.com/search.json&quot;</span>);
+<a name="l00051"></a>00051 
+<a name="l00053"></a>00053 <span class="comment">// OAuth //</span>
+<a name="l00055"></a>00055 <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">// Getting a request token</span>
+<a name="l00057"></a><a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca">00057</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca" title="URL to get request tokens.">TwitterURL::REQUEST_TOKEN_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/request_token&quot;</span>);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="comment">// Authorizing the application</span>
+<a name="l00060"></a><a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3">00060</a> QString <a class="code" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3" title="URL to authorize the application.">TwitterURL::AUTHORIZE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/authorize&quot;</span>);
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062 
-<a name="l00064"></a>00064 <span class="comment">// Tweets //</span>
-<a name="l00066"></a>00066 <span class="comment"></span>
-<a name="l00067"></a>00067 <span class="comment">// Getting informations about a given tweet</span>
-<a name="l00068"></a><a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">00068</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/show.json&quot;</span>);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00072"></a>00072 <span class="comment">// Users //</span>
-<a name="l00074"></a>00074 <span class="comment"></span>
-<a name="l00075"></a>00075 <span class="comment">// Getting informations about a given user</span>
-<a name="l00076"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00076</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
+<a name="l00062"></a>00062 <span class="comment">// Authentication</span>
+<a name="l00063"></a><a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194">00063</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a4dfd3dd410e8ce8c75db0569975f3194" title="URL for authentication.">TwitterURL::AUTHENTICATE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/authenticate&quot;</span>);
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="comment">// Getting an access token</span>
+<a name="l00066"></a><a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448">00066</a> QString <a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">TwitterURL::ACCESS_TOKEN_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/oauth/access_token&quot;</span>);
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 
+<a name="l00070"></a>00070 <span class="comment">// Searches //</span>
+<a name="l00072"></a>00072 <span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">// Search request</span>
+<a name="l00074"></a><a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b">00074</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">TwitterURL::SEARCH_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://search.twitter.com/search.json&quot;</span>);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00078"></a>00078 <span class="comment">// Timelines //</span>
+<a name="l00080"></a>00080 <span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">// Getting the timeline with friends tweets</span>
+<a name="l00082"></a><a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">00082</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3" title="URL to getting the timeline with friends tweets.">TwitterURL::HOME_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/home_timeline.json&quot;</span>);
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00086"></a>00086 <span class="comment">// Tweets //</span>
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">// Getting informations about a given tweet</span>
+<a name="l00090"></a><a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">00090</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/show.json&quot;</span>);
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00094"></a>00094 <span class="comment">// Users //</span>
+<a name="l00096"></a>00096 <span class="comment"></span>
+<a name="l00097"></a>00097 <span class="comment">// Getting informations about a given user</span>
+<a name="l00098"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00098</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -169,7 +187,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

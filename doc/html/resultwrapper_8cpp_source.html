@@ -116,7 +116,7 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="resultwrapper_8hpp.html" title="Header of ResultWrapper.">resultwrapper.hpp</a>&quot;</span>
 <a name="l00027"></a>00027 
 <a name="l00028"></a>00028 <span class="comment">// Constructor</span>
-<a name="l00029"></a><a class="code" href="class_result_wrapper.html#a03070c620da4dd8dd7fe3a9af64b6ca2">00029</a> <a class="code" href="class_result_wrapper.html#a7b6fffd28ced8879951f8f09945b5fce" title="Default constructor which builds an invalid wrapper.">ResultWrapper::ResultWrapper</a>(QObject * requestSender, <a class="code" href="class_request_result.html" title="Results of a request.">RequestResult</a> requestResult) :
+<a name="l00029"></a><a class="code" href="class_result_wrapper.html#a03070c620da4dd8dd7fe3a9af64b6ca2">00029</a> <a class="code" href="class_result_wrapper.html#a7b6fffd28ced8879951f8f09945b5fce" title="Default constructor which builds an invalid wrapper.">ResultWrapper::ResultWrapper</a>(QObject * requestSender, <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> requestResult) :
 <a name="l00030"></a>00030         asker(requestSender),
 <a name="l00031"></a>00031         result(requestResult)
 <a name="l00032"></a>00032 {}
@@ -128,8 +128,8 @@ window.onload = initDynSections;
 <a name="l00038"></a>00038 {}
 <a name="l00039"></a>00039 
 <a name="l00040"></a>00040 <span class="comment">// Method to access to the result</span>
-<a name="l00041"></a><a class="code" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2">00041</a> <a class="code" href="class_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2" title="Method to access to the result.">ResultWrapper::accessResult</a>(QObject * demanderAdress) {
-<a name="l00042"></a>00042         <span class="keywordflow">return</span> (demanderAdress == <a class="code" href="class_result_wrapper.html#a004934e32beb9720c0d483bae626ceba" title="Sender of the request.">asker</a>) ? <a class="code" href="class_result_wrapper.html#a353ec4ab30e5567341c95db79862dd4d" title="Result of the request.">result</a> : <a class="code" href="class_request_result.html" title="Results of a request.">RequestResult</a>();
+<a name="l00041"></a><a class="code" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2">00041</a> <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2" title="Method to access to the result.">ResultWrapper::accessResult</a>(QObject * demanderAdress) {
+<a name="l00042"></a>00042         <span class="keywordflow">return</span> (demanderAdress == <a class="code" href="class_result_wrapper.html#a004934e32beb9720c0d483bae626ceba" title="Sender of the request.">asker</a>) ? <a class="code" href="class_result_wrapper.html#a353ec4ab30e5567341c95db79862dd4d" title="Result of the request.">result</a> : <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a>();
 <a name="l00043"></a>00043 }
 </pre></div></div>
 <!--- window showing the filter options -->
@@ -146,7 +146,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

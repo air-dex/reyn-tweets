@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>Hashtag Class Reference</h1><!-- doxytag: class="Hashtag" --><!-- doxytag: inherits="ReynTweetsMappable" -->
+<h1>Hashtag Class Reference</h1><!-- doxytag: class="Hashtag" --><!-- doxytag: inherits="TweetEntity" -->
 <p><a class="el" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> in a tweet.  
 <a href="#_details">More...</a></p>
 
@@ -99,6 +99,7 @@ Inheritance diagram for Hashtag:</div>
  <div class="center">
   <img src="class_hashtag.png" usemap="#Hashtag_map" alt=""/>
   <map id="Hashtag_map" name="Hashtag_map">
+<area href="class_tweet_entity.html" alt="TweetEntity" shape="rect" coords="0,112,246,136"/>
 <area href="class_reyn_tweets_mappable.html" alt="ReynTweetsMappable" shape="rect" coords="0,56,246,80"/>
 <area href="class_reyn_tweets_serializable.html" alt="ReynTweetsSerializable&lt; QVariantMap &gt;" shape="rect" coords="0,0,246,24"/>
 </map>
@@ -108,10 +109,10 @@ Inheritance diagram for Hashtag:</div>
 <p><a href="class_hashtag-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a8047acfbc8dfd4bd12edfb767931cfbc">getIndices</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading indexes.  <a href="#a8047acfbc8dfd4bd12edfb767931cfbc"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#ac183bb9d7efdc7661c7af0617bf02ff8">getIndicesProperty</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading method for the property indices.  <a href="#ac183bb9d7efdc7661c7af0617bf02ff8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d">getDisplayedText</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the hashtag.  <a href="#a9e55ae51729d0f764d3a72672e81982d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87">getHashtag</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the hashtag under its usual form.  <a href="#a2a0262d02147820e1ba01a184136be87"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">getText</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading hashText.  <a href="#afac848456252e4fcaba0db34cffb3da6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a8bd79fb3eba8b8d71b1b855a14de04fe">Hashtag</a> (const <a class="el" href="class_hashtag.html">Hashtag</a> &amp;hashtag)</td></tr>
@@ -120,10 +121,6 @@ Inheritance diagram for Hashtag:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a365a6c955054b6bbfc9b3e4b1ba84c0f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_hashtag.html">Hashtag</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#aeca0310e3b107481655c3ddc1ff5ddae">operator=</a> (const <a class="el" href="class_hashtag.html">Hashtag</a> &amp;hashtag)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affectation.  <a href="#aeca0310e3b107481655c3ddc1ff5ddae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a370005027b7d1cc753b5a6215c23a0d9">setIndices</a> (<a class="el" href="class_index_bounds.html">IndexBounds</a> newIndexes)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing indexes.  <a href="#a370005027b7d1cc753b5a6215c23a0d9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#ad3afeb06d584580e477b7691aa5b18cf">setIndices</a> (QVariantList newIndexList)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing method for the property indices.  <a href="#ad3afeb06d584580e477b7691aa5b18cf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">setText</a> (QString newText)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing hashText.  <a href="#a3e095cc558f6936fa244a3057edafa54"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6">~Hashtag</a> ()</td></tr>
@@ -134,11 +131,7 @@ Inheritance diagram for Hashtag:</div>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15">hashText</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Text of the tag.  <a href="#abce13e7a50c6463547dde3cec9d04e15"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d">indexes</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexes of the hashtag in the tweet.  <a href="#a19f6feecee2b488c29041b366372f24d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a9a8dfdd58659a7218b40f9816f322caf">indices</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexes.  <a href="#a9a8dfdd58659a7218b40f9816f322caf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a8b856a1f31950ed6d63bccb99e3e1e3e">text</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Text of the hashtag.  <a href="#a8b856a1f31950ed6d63bccb99e3e1e3e"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
@@ -153,7 +146,7 @@ Inheritance diagram for Hashtag:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p><a class="el" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> in a tweet. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00034">34</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00033">33</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a365a6c955054b6bbfc9b3e4b1ba84c0f"></a><!-- doxytag: member="Hashtag::Hashtag" ref="a365a6c955054b6bbfc9b3e4b1ba84c0f" args="()" -->
 <div class="memitem">
@@ -172,7 +165,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00034">34</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00035">35</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -226,47 +219,50 @@ Inheritance diagram for Hashtag:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8047acfbc8dfd4bd12edfb767931cfbc"></a><!-- doxytag: member="Hashtag::getIndices" ref="a8047acfbc8dfd4bd12edfb767931cfbc" args="()" -->
+<a class="anchor" id="a9e55ae51729d0f764d3a72672e81982d"></a><!-- doxytag: member="Hashtag::getDisplayedText" ref="a9e55ae51729d0f764d3a72672e81982d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_index_bounds.html">IndexBounds</a> Hashtag::getIndices </td>
+          <td class="memname">QString Hashtag::getDisplayedText </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reading indexes. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>indexes </dd></dl>
+<p>Building the rich text for the hashtag. </p>
+<p>Overrides the QString <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The tweet entity with rich content </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00107">107</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Implements <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff">TweetEntity</a>.</p>
+
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac183bb9d7efdc7661c7af0617bf02ff8"></a><!-- doxytag: member="Hashtag::getIndicesProperty" ref="ac183bb9d7efdc7661c7af0617bf02ff8" args="()" -->
+<a class="anchor" id="a2a0262d02147820e1ba01a184136be87"></a><!-- doxytag: member="Hashtag::getHashtag" ref="a2a0262d02147820e1ba01a184136be87" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QVariantList Hashtag::getIndicesProperty </td>
+          <td class="memname">QString Hashtag::getHashtag </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reading method for the property indices. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>indexList </dd></dl>
+<p>Getting the hashtag under its usual form. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00082">82</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00092">92</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +284,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Reading hashText. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>hashText </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00097">97</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00082">82</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -370,62 +366,6 @@ Inheritance diagram for Hashtag:</div>
 
 </div>
 </div>
-<a class="anchor" id="a370005027b7d1cc753b5a6215c23a0d9"></a><!-- doxytag: member="Hashtag::setIndices" ref="a370005027b7d1cc753b5a6215c23a0d9" args="(IndexBounds newIndexes)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Hashtag::setIndices </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td>
-          <td class="paramname"> <em>newIndexes</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Writing indexes. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>newIndexes</em>&nbsp;</td><td>New value for indexes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00112">112</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad3afeb06d584580e477b7691aa5b18cf"></a><!-- doxytag: member="Hashtag::setIndices" ref="ad3afeb06d584580e477b7691aa5b18cf" args="(QVariantList newIndexList)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Hashtag::setIndices </td>
-          <td>(</td>
-          <td class="paramtype">QVariantList&nbsp;</td>
-          <td class="paramname"> <em>newIndexList</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Writing method for the property indices. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>newIndexList</em>&nbsp;</td><td>New value for the property indices </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00087">87</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a3e095cc558f6936fa244a3057edafa54"></a><!-- doxytag: member="Hashtag::setText" ref="a3e095cc558f6936fa244a3057edafa54" args="(QString newText)" -->
 <div class="memitem">
 <div class="memproto">
@@ -450,7 +390,7 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00102">102</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00087">87</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -547,45 +487,11 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the tag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00124">124</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a19f6feecee2b488c29041b366372f24d"></a><!-- doxytag: member="Hashtag::indexes" ref="a19f6feecee2b488c29041b366372f24d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_index_bounds.html">IndexBounds</a> <a class="el" href="class_hashtag.html#a19f6feecee2b488c29041b366372f24d">Hashtag::indexes</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Indexes of the hashtag in the tweet. </p>
-
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00127">127</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00114">114</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a9a8dfdd58659a7218b40f9816f322caf"></a><!-- doxytag: member="Hashtag::indices" ref="a9a8dfdd58659a7218b40f9816f322caf" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Hashtag::indices<code> [read, write]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Indexes. </p>
-
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a8b856a1f31950ed6d63bccb99e3e1e3e"></a><!-- doxytag: member="Hashtag::text" ref="a8b856a1f31950ed6d63bccb99e3e1e3e" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -599,7 +505,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the hashtag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00098">98</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -622,7 +528,7 @@ Inheritance diagram for Hashtag:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -112,17 +112,75 @@ window.onload = initDynSections;
 <a name="l00022"></a>00022 
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QJson/QObjectHelper&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsmappable_8hpp.html" title="Header of ReynTweetsMappable.">reyntweetsmappable.hpp</a>&quot;</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="comment">// Converting the object into a QVariantMap</span>
-<a name="l00028"></a><a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d">00028</a> QVariantMap <a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">ReynTweetsMappable::toVariant</a>()<span class="keyword"> const </span>{
-<a name="l00029"></a>00029         <span class="keywordflow">return</span> QJson::QObjectHelper::qobject2qvariant(<span class="keyword">this</span>);
-<a name="l00030"></a>00030 }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="comment">// Filling a ReynTweetsSerializable object with the informations</span>
-<a name="l00033"></a><a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8">00033</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">ReynTweetsMappable::fillWithVariant</a>(QVariantMap map) {
-<a name="l00034"></a>00034         QJson::QObjectHelper::qvariant2qobject(map, <span class="keyword">this</span>);
-<a name="l00035"></a>00035 }
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QJson/Parser&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsmappable_8hpp.html" title="Header of ReynTweetsMappable.">reyntweetsmappable.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QMetaProperty&gt;</span>
+<a name="l00028"></a>00028 
+<a name="l00030"></a>00030 <span class="comment">// Coplien //</span>
+<a name="l00032"></a>00032 <span class="comment"></span>
+<a name="l00033"></a>00033 <span class="comment">// Default constructor</span>
+<a name="l00034"></a><a class="code" href="class_reyn_tweets_mappable.html#afbdf33aba9568b53db12281b548b5c7c">00034</a> <a class="code" href="class_reyn_tweets_mappable.html#afbdf33aba9568b53db12281b548b5c7c" title="Constructor.">ReynTweetsMappable::ReynTweetsMappable</a>(<span class="keywordtype">bool</span> blacklistObjectName) :
+<a name="l00035"></a>00035         QObject(),
+<a name="l00036"></a>00036         <a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>&lt;QVariantMap&gt;(),
+<a name="l00037"></a>00037         transientProperties()
+<a name="l00038"></a>00038 {
+<a name="l00039"></a>00039         <a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1" title="Building transientProperties.">blacklistProperties</a>(blacklistObjectName);
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment">// Destructor</span>
+<a name="l00043"></a><a class="code" href="class_reyn_tweets_mappable.html#a6581d1d7c8c31b255390d898e85640e7">00043</a> <a class="code" href="class_reyn_tweets_mappable.html#a6581d1d7c8c31b255390d898e85640e7" title="Destructor.">ReynTweetsMappable::~ReynTweetsMappable</a>() {}
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="comment">// Copy constructor</span>
+<a name="l00046"></a><a class="code" href="class_reyn_tweets_mappable.html#a7fa20ced502356a303c7769ccef6a94a">00046</a> <a class="code" href="class_reyn_tweets_mappable.html#afbdf33aba9568b53db12281b548b5c7c" title="Constructor.">ReynTweetsMappable::ReynTweetsMappable</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable) {
+<a name="l00047"></a>00047         <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">recopie</a>(mappable);
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// Affecting a ReynTweetsMappable</span>
+<a name="l00051"></a><a class="code" href="class_reyn_tweets_mappable.html#ad349da3db2b8ce33758e7dd673006cb4">00051</a> <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; <a class="code" href="class_reyn_tweets_mappable.html#ad349da3db2b8ce33758e7dd673006cb4" title="Affecting a ReynTweetsMappable.">ReynTweetsMappable::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable) {
+<a name="l00052"></a>00052         <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">recopie</a>(mappable);
+<a name="l00053"></a>00053         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00054"></a>00054 }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="comment">// Core method for recopying a ReynTweetsMappable</span>
+<a name="l00057"></a><a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">ReynTweetsMappable::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable) {
+<a name="l00058"></a>00058         <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a> = mappable.<a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>;
+<a name="l00059"></a>00059 }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 
+<a name="l00063"></a>00063 <span class="comment">// Converting the Mappable into a QVariantMap //</span>
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">// Building transientProperties</span>
+<a name="l00067"></a><a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1">00067</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1" title="Building transientProperties.">ReynTweetsMappable::blacklistProperties</a>(<span class="keywordtype">bool</span> blacklistObjectName) {
+<a name="l00068"></a>00068         <span class="keywordflow">if</span> (blacklistObjectName) {
+<a name="l00069"></a>00069                 <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>.append(<span class="stringliteral">&quot;objectName&quot;</span>);
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="comment">// Converting the object into a QVariantMap</span>
+<a name="l00074"></a><a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d">00074</a> QVariantMap <a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">ReynTweetsMappable::toVariant</a>()<span class="keyword"> const </span>{
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> QJson::QObjectHelper::qobject2qvariant(<span class="keyword">this</span>, <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>);
+<a name="l00076"></a>00076 }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="comment">// Filling a ReynTweetsSerializable object with the informations</span>
+<a name="l00079"></a><a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">ReynTweetsMappable::fillWithVariant</a>(QVariantMap map) {
+<a name="l00080"></a>00080         QJson::QObjectHelper::qvariant2qobject(map, <span class="keyword">this</span>);
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="comment">// JSON string corresponding to the Mappable</span>
+<a name="l00084"></a><a class="code" href="class_reyn_tweets_mappable.html#a00c00bd6f3ab4308626a0377fcfc1064">00084</a> QString <a class="code" href="class_reyn_tweets_mappable.html#a00c00bd6f3ab4308626a0377fcfc1064" title="Converting the object into its JSON representation.">ReynTweetsMappable::toString</a>() {
+<a name="l00085"></a>00085         QVariantMap variant = <a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00086"></a>00086         QJson::Serializer s;
+<a name="l00087"></a>00087         QByteArray b = s.serialize(variant);
+<a name="l00088"></a>00088         <span class="keywordflow">return</span> QString::fromUtf8(b.data());
+<a name="l00089"></a>00089 }
+<a name="l00090"></a>00090 
+<a name="l00091"></a><a class="code" href="class_reyn_tweets_mappable.html#a080b0d02cd8f0a3a9fe72bc36a95fd65">00091</a> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> <a class="code" href="class_reyn_tweets_mappable.html#a080b0d02cd8f0a3a9fe72bc36a95fd65">ReynTweetsMappable::fromString</a>(QString str) {
+<a name="l00092"></a>00092         QJson::Parser p;
+<a name="l00093"></a>00093         QVariant v = p.parse(str.toUtf8());
+<a name="l00094"></a>00094         <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> r;
+<a name="l00095"></a>00095         r.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(v.toMap());
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> r;
+<a name="l00097"></a>00097 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -138,7 +196,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

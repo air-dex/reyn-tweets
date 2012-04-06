@@ -125,101 +125,96 @@ window.onload = initDynSections;
 <a name="l00035"></a>00035 <span class="preprocessor">#include &lt;QUrl&gt;</span>
 <a name="l00036"></a>00036 <span class="preprocessor">#include &lt;QMap&gt;</span>
 <a name="l00037"></a>00037 <span class="preprocessor">#include &quot;../oauthmanager.hpp&quot;</span>
-<a name="l00038"></a>00038 
-<a name="l00040"></a>00040 <span class="comment">// Network Manager //</span>
-<a name="l00042"></a>00042 <span class="comment"></span>
-<a name="l00047"></a>00047 <span class="keyword">extern</span> QNetworkAccessManager <a class="code" href="twittercommunicator_8cpp.html#ae46b8e70d631ba95a92225636cc4a04c" title="Network manager used by all the requesters for all the request. Including him in...">REYN_TWEETS_NETWORK_MANAGER</a>;
-<a name="l00048"></a>00048 
+<a name="l00038"></a>00038 <span class="preprocessor">#include &quot;../responseinfos.hpp&quot;</span>
+<a name="l00039"></a>00039 
+<a name="l00041"></a>00041 <span class="comment">// Network Manager //</span>
+<a name="l00043"></a>00043 <span class="comment"></span>
+<a name="l00048"></a>00048 <span class="keyword">extern</span> QNetworkAccessManager <a class="code" href="twittercommunicator_8cpp.html#ae46b8e70d631ba95a92225636cc4a04c" title="Network manager used by all the requesters for all the request. Including him in...">REYN_TWEETS_NETWORK_MANAGER</a>;
 <a name="l00049"></a>00049 
-<a name="l00056"></a><a class="code" href="class_twitter_communicator.html">00056</a> <span class="keyword">class </span><a class="code" href="class_twitter_communicator.html" title="Class managing communication with the Twitter API.">TwitterCommunicator</a> : <span class="keyword">public</span> QObject
-<a name="l00057"></a>00057 {
-<a name="l00058"></a>00058         Q_OBJECT
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060         <span class="keyword">public</span>:
-<a name="l00085"></a>00085                 <a class="code" href="class_twitter_communicator.html#a199cbf01949f42530e25e306bdbc81e3" title="Constructor.">TwitterCommunicator</a>(QString url,
-<a name="l00086"></a>00086                                                         <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type,
-<a name="l00087"></a>00087                                                         <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> getArgs,
-<a name="l00088"></a>00088                                                         <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> postArgs,
-<a name="l00089"></a>00089                                                         <span class="keywordtype">bool</span> authRequired,
-<a name="l00090"></a>00090                                                         <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> * authManager = 0,
-<a name="l00091"></a>00091                                                         <span class="keywordtype">bool</span> tokenNeeded = 0,
-<a name="l00092"></a>00092                                                         <span class="keywordtype">bool</span> callbackURLNeeded = <span class="keyword">true</span>,
-<a name="l00093"></a>00093                                                         <span class="keywordtype">bool</span> verifierNeeded = <span class="keyword">false</span>);
-<a name="l00094"></a>00094 
-<a name="l00097"></a>00097                 <a class="code" href="class_twitter_communicator.html#aff1dc45d969094652b855478f231d440" title="Destructor.">~TwitterCommunicator</a>();
-<a name="l00098"></a>00098 
-<a name="l00105"></a>00105                 QNetworkRequest * <a class="code" href="class_twitter_communicator.html#a0dbccfeed64a8eeb06a42af385ff74bd" title="Preparing the request. It builds the parameters for GET and POST and the Authorization...">prepareRequest</a>(QByteArray &amp; postArgs = QByteArray());
-<a name="l00106"></a>00106 
-<a name="l00109"></a>00109                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#ad5a1fa749814aa4299869cfad8eb1e4f" title="Executing the request.">executeRequest</a>();
-<a name="l00110"></a>00110 
-<a name="l00114"></a>00114                 QByteArray <a class="code" href="class_twitter_communicator.html#a69ad6476590374e490ddd927c42f2ad3" title="Getting the content of the response.">getResponseBuffer</a>();
-<a name="l00115"></a>00115 
-<a name="l00119"></a>00119                 <span class="keywordtype">int</span> <a class="code" href="class_twitter_communicator.html#a692d03af74e2e80075ff707fc6ff97ac" title="Getting the HTTP return code.">getHttpCode</a>();
-<a name="l00120"></a>00120 
-<a name="l00124"></a>00124                 QString <a class="code" href="class_twitter_communicator.html#a3b068ea39ff25bd317cb716e4f0579f8" title="Getting the HTTP return reason.">getHttpReason</a>();
-<a name="l00125"></a>00125 
-<a name="l00129"></a>00129                 QString <a class="code" href="class_twitter_communicator.html#a30382840631d51c94e98ef891a5ddb49" title="Getting the URL of the reply.">getReplyURL</a>();
-<a name="l00130"></a>00130 
-<a name="l00134"></a>00134                 QString <a class="code" href="class_twitter_communicator.html#a53a432e6c58da84eca467f0902da659a" title="Getter on the error massage.">getErrorMessage</a>();
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137         signals:
-<a name="l00142"></a>00142                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#a3557b08e67b3e2cc72b6d047f3778cf7" title="Signal indicating the end of a request.">requestDone</a>(<span class="keywordtype">bool</span> ok);
-<a name="l00143"></a>00143 
+<a name="l00050"></a>00050 
+<a name="l00057"></a><a class="code" href="class_twitter_communicator.html">00057</a> <span class="keyword">class </span><a class="code" href="class_twitter_communicator.html" title="Class managing communication with the Twitter API.">TwitterCommunicator</a> : <span class="keyword">public</span> QObject
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059         Q_OBJECT
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <span class="keyword">public</span>:
+<a name="l00086"></a>00086                 <a class="code" href="class_twitter_communicator.html#a199cbf01949f42530e25e306bdbc81e3" title="Constructor.">TwitterCommunicator</a>(QString url,
+<a name="l00087"></a>00087                                                         <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> type,
+<a name="l00088"></a>00088                                                         <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> getArgs,
+<a name="l00089"></a>00089                                                         <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> postArgs,
+<a name="l00090"></a>00090                                                         <span class="keywordtype">bool</span> authRequired,
+<a name="l00091"></a>00091                                                         <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> * authManager = 0,
+<a name="l00092"></a>00092                                                         <span class="keywordtype">bool</span> tokenNeeded = 0,
+<a name="l00093"></a>00093                                                         <span class="keywordtype">bool</span> callbackURLNeeded = <span class="keyword">true</span>,
+<a name="l00094"></a>00094                                                         <span class="keywordtype">bool</span> verifierNeeded = <span class="keyword">false</span>);
+<a name="l00095"></a>00095 
+<a name="l00098"></a>00098                 <a class="code" href="class_twitter_communicator.html#aff1dc45d969094652b855478f231d440" title="Destructor.">~TwitterCommunicator</a>();
+<a name="l00099"></a>00099 
+<a name="l00106"></a>00106                 QNetworkRequest * <a class="code" href="class_twitter_communicator.html#a0dbccfeed64a8eeb06a42af385ff74bd" title="Preparing the request. It builds the parameters for GET and POST and the Authorization...">prepareRequest</a>(QByteArray &amp; postArgs = QByteArray());
+<a name="l00107"></a>00107 
+<a name="l00110"></a>00110                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#ad5a1fa749814aa4299869cfad8eb1e4f" title="Executing the request.">executeRequest</a>();
+<a name="l00111"></a>00111 
+<a name="l00115"></a>00115                 QByteArray <a class="code" href="class_twitter_communicator.html#a69ad6476590374e490ddd927c42f2ad3" title="Getting the content of the response.">getResponseBuffer</a>();
+<a name="l00116"></a>00116 
+<a name="l00120"></a>00120                 <a class="code" href="struct_response_infos.html" title="Struct with an integer (field &amp;quot;code&amp;quot;) and its meaning (field &amp;quot;message&amp;quot;)...">ResponseInfos</a> <a class="code" href="class_twitter_communicator.html#a75edd50f0e8dba61140ba35412020aee" title="Getting the HTTP response (code and reason).">getHttpResponse</a>();
+<a name="l00121"></a>00121 
+<a name="l00125"></a>00125                 QString <a class="code" href="class_twitter_communicator.html#a30382840631d51c94e98ef891a5ddb49" title="Getting the URL of the reply.">getReplyURL</a>();
+<a name="l00126"></a>00126 
+<a name="l00130"></a>00130                 QString <a class="code" href="class_twitter_communicator.html#a53a432e6c58da84eca467f0902da659a" title="Getter on the error massage.">getErrorMessage</a>();
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133         signals:
+<a name="l00136"></a>00136                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#ae6035b035bf050bae0ece77063aa5936" title="Signal indicating the end of a request.">requestDone</a>();
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139         <span class="keyword">protected</span> slots:
+<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#ab64f579867ad139249134d68d8e31439" title="Slot called at the end of the request.">endRequest</a>(QNetworkReply * response);
 <a name="l00144"></a>00144 
-<a name="l00145"></a>00145         <span class="keyword">protected</span> slots:
-<a name="l00149"></a>00149                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#ab64f579867ad139249134d68d8e31439" title="Slot called at the end of the request.">endRequest</a>(QNetworkReply * response);
+<a name="l00145"></a>00145         <span class="keyword">protected</span>:
+<a name="l00146"></a>00146                 <span class="comment">// Entities for request</span>
+<a name="l00147"></a>00147 
+<a name="l00149"></a><a class="code" href="class_twitter_communicator.html#a9ef3d63d91d84f717e4ad7db8865a3e8">00149</a>                 QString <a class="code" href="class_twitter_communicator.html#a9ef3d63d91d84f717e4ad7db8865a3e8" title="URL of the service.">serviceURL</a>;
 <a name="l00150"></a>00150 
-<a name="l00151"></a>00151         <span class="keyword">protected</span>:
-<a name="l00152"></a>00152                 <span class="comment">// Entities for request</span>
+<a name="l00152"></a><a class="code" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af">00152</a>                 <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> <a class="code" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af" title="Request type.">requestType</a>;
 <a name="l00153"></a>00153 
-<a name="l00155"></a><a class="code" href="class_twitter_communicator.html#a9ef3d63d91d84f717e4ad7db8865a3e8">00155</a>                 QString <a class="code" href="class_twitter_communicator.html#a9ef3d63d91d84f717e4ad7db8865a3e8" title="URL of the service.">serviceURL</a>;
+<a name="l00155"></a><a class="code" href="class_twitter_communicator.html#af31ff4e6d92b9f0c2f20698682f85ee5">00155</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_twitter_communicator.html#af31ff4e6d92b9f0c2f20698682f85ee5" title="GET datas.">getParameters</a>;
 <a name="l00156"></a>00156 
-<a name="l00158"></a><a class="code" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af">00158</a>                 <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> <a class="code" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af" title="Request type.">requestType</a>;
+<a name="l00158"></a><a class="code" href="class_twitter_communicator.html#a720a644bb9c9afb2c5a1dc65c74ca7b1">00158</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_twitter_communicator.html#a720a644bb9c9afb2c5a1dc65c74ca7b1" title="POST datas.">postParameters</a>;
 <a name="l00159"></a>00159 
-<a name="l00161"></a><a class="code" href="class_twitter_communicator.html#af31ff4e6d92b9f0c2f20698682f85ee5">00161</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_twitter_communicator.html#af31ff4e6d92b9f0c2f20698682f85ee5" title="GET datas.">getParameters</a>;
+<a name="l00161"></a><a class="code" href="class_twitter_communicator.html#af1ccb5921e68639882d864ad91bf1bb0">00161</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#af1ccb5921e68639882d864ad91bf1bb0" title="Boolean indicating if authentication is required for the request.">authenticationRequired</a>;
 <a name="l00162"></a>00162 
-<a name="l00164"></a><a class="code" href="class_twitter_communicator.html#a720a644bb9c9afb2c5a1dc65c74ca7b1">00164</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_twitter_communicator.html#a720a644bb9c9afb2c5a1dc65c74ca7b1" title="POST datas.">postParameters</a>;
+<a name="l00164"></a><a class="code" href="class_twitter_communicator.html#ac04094e26979a3b803934f39cc7526b1">00164</a>                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> * <a class="code" href="class_twitter_communicator.html#ac04094e26979a3b803934f39cc7526b1" title="Entity with authentication information.">oauthManager</a>;
 <a name="l00165"></a>00165 
-<a name="l00167"></a><a class="code" href="class_twitter_communicator.html#af1ccb5921e68639882d864ad91bf1bb0">00167</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#af1ccb5921e68639882d864ad91bf1bb0" title="Boolean indicating if authentication is required for the request.">authenticationRequired</a>;
-<a name="l00168"></a>00168 
-<a name="l00170"></a><a class="code" href="class_twitter_communicator.html#ac04094e26979a3b803934f39cc7526b1">00170</a>                 <a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> * <a class="code" href="class_twitter_communicator.html#ac04094e26979a3b803934f39cc7526b1" title="Entity with authentication information.">oauthManager</a>;
-<a name="l00171"></a>00171 
-<a name="l00174"></a><a class="code" href="class_twitter_communicator.html#a0cd7b9d459e9582412c6424f76d1614a">00174</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a0cd7b9d459e9582412c6424f76d1614a" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>;
-<a name="l00175"></a>00175 
-<a name="l00178"></a><a class="code" href="class_twitter_communicator.html#a2c8d1a4ac0da4aecd072248a7f037a68">00178</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a2c8d1a4ac0da4aecd072248a7f037a68" title="Boolean indicating if the oauth_callback parameter is required for authentication...">callbackUrlNeeded</a>;
-<a name="l00179"></a>00179 
-<a name="l00182"></a><a class="code" href="class_twitter_communicator.html#a10b99a5b12ff39a976cda62d454e3eac">00182</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a10b99a5b12ff39a976cda62d454e3eac" title="Boolean indicating if the oauth_verifier parameter is required for authentication...">oauthVerifierlNeeded</a>;
+<a name="l00168"></a><a class="code" href="class_twitter_communicator.html#a0cd7b9d459e9582412c6424f76d1614a">00168</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a0cd7b9d459e9582412c6424f76d1614a" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>;
+<a name="l00169"></a>00169 
+<a name="l00172"></a><a class="code" href="class_twitter_communicator.html#a2c8d1a4ac0da4aecd072248a7f037a68">00172</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a2c8d1a4ac0da4aecd072248a7f037a68" title="Boolean indicating if the oauth_callback parameter is required for authentication...">callbackUrlNeeded</a>;
+<a name="l00173"></a>00173 
+<a name="l00176"></a><a class="code" href="class_twitter_communicator.html#a10b99a5b12ff39a976cda62d454e3eac">00176</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a10b99a5b12ff39a976cda62d454e3eac" title="Boolean indicating if the oauth_verifier parameter is required for authentication...">oauthVerifierlNeeded</a>;
+<a name="l00177"></a>00177 
+<a name="l00179"></a><a class="code" href="class_twitter_communicator.html#a5438c134ec84279a83c05d2379cfc985">00179</a>                 QNetworkRequest * <a class="code" href="class_twitter_communicator.html#a5438c134ec84279a83c05d2379cfc985" title="The request.">request</a>;
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182                 <span class="comment">// Entities for response</span>
 <a name="l00183"></a>00183 
-<a name="l00185"></a><a class="code" href="class_twitter_communicator.html#a5438c134ec84279a83c05d2379cfc985">00185</a>                 QNetworkRequest * <a class="code" href="class_twitter_communicator.html#a5438c134ec84279a83c05d2379cfc985" title="The request.">request</a>;
+<a name="l00185"></a><a class="code" href="class_twitter_communicator.html#a13bf2eb6525c911865a228df138071d0">00185</a>                 QByteArray <a class="code" href="class_twitter_communicator.html#a13bf2eb6525c911865a228df138071d0" title="Content of the response.">responseBuffer</a>;
 <a name="l00186"></a>00186 
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188                 <span class="comment">// Entities for response</span>
+<a name="l00188"></a><a class="code" href="class_twitter_communicator.html#a9cd1696d761a102b3602985f9871b55a">00188</a>                 <a class="code" href="struct_response_infos.html" title="Struct with an integer (field &amp;quot;code&amp;quot;) and its meaning (field &amp;quot;message&amp;quot;)...">ResponseInfos</a> <a class="code" href="class_twitter_communicator.html#a9cd1696d761a102b3602985f9871b55a" title="HTTP response code and reason.">httpResponse</a>;
 <a name="l00189"></a>00189 
-<a name="l00191"></a><a class="code" href="class_twitter_communicator.html#a13bf2eb6525c911865a228df138071d0">00191</a>                 QByteArray <a class="code" href="class_twitter_communicator.html#a13bf2eb6525c911865a228df138071d0" title="Content of the response.">responseBuffer</a>;
+<a name="l00191"></a><a class="code" href="class_twitter_communicator.html#a2a5b9492c119421907ecb72758309316">00191</a>                 QString <a class="code" href="class_twitter_communicator.html#a2a5b9492c119421907ecb72758309316" title="Error message.">errorMessage</a>;
 <a name="l00192"></a>00192 
-<a name="l00194"></a><a class="code" href="class_twitter_communicator.html#ab85dce5adb7f44ca9bfa86862fc4276d">00194</a>                 <span class="keywordtype">int</span> <a class="code" href="class_twitter_communicator.html#ab85dce5adb7f44ca9bfa86862fc4276d" title="HTTP return code.">httpReturnCode</a>;
+<a name="l00194"></a><a class="code" href="class_twitter_communicator.html#ac067f4273c1ffa3d7ef7c442c476e2a0">00194</a>                 QString <a class="code" href="class_twitter_communicator.html#ac067f4273c1ffa3d7ef7c442c476e2a0" title="URL of the reply.">replyURL</a>;
 <a name="l00195"></a>00195 
-<a name="l00197"></a><a class="code" href="class_twitter_communicator.html#aba0f71b4a0d29318ab9cbc62fb327513">00197</a>                 QString <a class="code" href="class_twitter_communicator.html#aba0f71b4a0d29318ab9cbc62fb327513" title="HTTP return reason.">httpReturnReason</a>;
-<a name="l00198"></a>00198 
-<a name="l00200"></a><a class="code" href="class_twitter_communicator.html#a2a5b9492c119421907ecb72758309316">00200</a>                 QString <a class="code" href="class_twitter_communicator.html#a2a5b9492c119421907ecb72758309316" title="Error message.">errorMessage</a>;
-<a name="l00201"></a>00201 
-<a name="l00203"></a><a class="code" href="class_twitter_communicator.html#ac067f4273c1ffa3d7ef7c442c476e2a0">00203</a>                 QString <a class="code" href="class_twitter_communicator.html#ac067f4273c1ffa3d7ef7c442c476e2a0" title="URL of the reply.">replyURL</a>;
-<a name="l00204"></a>00204 
-<a name="l00209"></a>00209                 <span class="keywordtype">bool</span> <a class="code" href="class_twitter_communicator.html#a2021e6975f053104d2d4c375b10e6255" title="Treating a response.">treatReply</a>(QNetworkReply * response);
-<a name="l00210"></a>00210 
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212         <span class="keyword">private</span>:
-<a name="l00219"></a>00219                 QString <a class="code" href="class_twitter_communicator.html#aa672225c652ae3ea8bd97a628ddfb90e" title="Building the string that will contain all the GET arguments and go through the Internet...">buildGetDatas</a>();
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197         <span class="keyword">private</span>:
+<a name="l00204"></a>00204                 QString <a class="code" href="class_twitter_communicator.html#aa672225c652ae3ea8bd97a628ddfb90e" title="Building the string that will contain all the GET arguments and go through the Internet...">buildGetDatas</a>();
+<a name="l00205"></a>00205 
+<a name="l00212"></a>00212                 QByteArray <a class="code" href="class_twitter_communicator.html#a8bc4c59514a281bd53b8a1d8eb4aacc3" title="Building the array that will contain all the POST arguments and go through the Internet...">buildPostDatas</a>();
+<a name="l00213"></a>00213 
+<a name="l00219"></a>00219                 QString <a class="code" href="class_twitter_communicator.html#a86d4c8010cbfdb401972db25518dd173" title="Building the string that will contain all the arguments of the given ArgsMap just...">buildDatas</a>(<a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> argsMap);
 <a name="l00220"></a>00220 
-<a name="l00227"></a>00227                 QByteArray <a class="code" href="class_twitter_communicator.html#a8bc4c59514a281bd53b8a1d8eb4aacc3" title="Building the array that will contain all the POST arguments and go through the Internet...">buildPostDatas</a>();
-<a name="l00228"></a>00228 
-<a name="l00234"></a>00234                 QString <a class="code" href="class_twitter_communicator.html#a86d4c8010cbfdb401972db25518dd173" title="Building the string that will contain all the arguments of the given ArgsMap just...">buildDatas</a>(<a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> argsMap);
-<a name="l00235"></a>00235 
-<a name="l00239"></a>00239                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#a3f35ea1bebdbc2c413c9790c4596599b" title="Extract the HTTP return code and reason of the request.">extractHttpStatuses</a>(QNetworkReply * reply);
-<a name="l00240"></a>00240 };
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242 <span class="preprocessor">#endif // TWITTERCOMMUNICATOR_HPP</span>
+<a name="l00224"></a>00224                 <span class="keywordtype">void</span> <a class="code" href="class_twitter_communicator.html#a3f35ea1bebdbc2c413c9790c4596599b" title="Extract the HTTP return code and reason of the request.">extractHttpStatuses</a>(QNetworkReply * reply);
+<a name="l00225"></a>00225 };
+<a name="l00226"></a>00226 
+<a name="l00227"></a>00227 <span class="preprocessor">#endif // TWITTERCOMMUNICATOR_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -235,7 +230,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

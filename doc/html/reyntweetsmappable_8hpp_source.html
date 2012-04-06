@@ -115,20 +115,42 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define REYNTWEETSMAPPABLE_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QVariant&gt;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
-<a name="l00030"></a>00030 
-<a name="l00058"></a><a class="code" href="class_reyn_tweets_mappable.html">00058</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> : <span class="keyword">public</span> QObject, <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>&lt;QVariantMap&gt;
-<a name="l00059"></a>00059 {
-<a name="l00060"></a>00060         Q_OBJECT
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keyword">public</span>:
-<a name="l00066"></a>00066                 <span class="keyword">virtual</span> QVariantMap <a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>() <span class="keyword">const</span>;
-<a name="l00067"></a>00067 
-<a name="l00072"></a>00072                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(QVariantMap map);
-<a name="l00073"></a>00073 };
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="preprocessor">#endif // REYNTWEETSMAPPABLE_HPP</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QStringList&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QVariant&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="reyntweetsserializable_8hpp.html" title="Header of ReynTweetsSerializable.">reyntweetsserializable.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 
+<a name="l00059"></a><a class="code" href="class_reyn_tweets_mappable.html">00059</a> <span class="keyword">class </span><a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> : <span class="keyword">public</span> QObject, <span class="keyword">public</span> <a class="code" href="class_reyn_tweets_serializable.html" title="Class for objects that needs an equivalent serializable by QJSON.">ReynTweetsSerializable</a>&lt;QVariantMap&gt;
+<a name="l00060"></a>00060 {
+<a name="l00061"></a>00061         Q_OBJECT
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063         <span class="keyword">public</span>:
+<a name="l00068"></a>00068                 <span class="keyword">explicit</span> <a class="code" href="class_reyn_tweets_mappable.html#afbdf33aba9568b53db12281b548b5c7c" title="Constructor.">ReynTweetsMappable</a>(<span class="keywordtype">bool</span> blacklistObjectName = <span class="keyword">true</span>);
+<a name="l00069"></a>00069 
+<a name="l00072"></a>00072                 <span class="keyword">virtual</span> <a class="code" href="class_reyn_tweets_mappable.html#a6581d1d7c8c31b255390d898e85640e7" title="Destructor.">~ReynTweetsMappable</a>();
+<a name="l00073"></a>00073 
+<a name="l00077"></a>00077                 <a class="code" href="class_reyn_tweets_mappable.html#afbdf33aba9568b53db12281b548b5c7c" title="Constructor.">ReynTweetsMappable</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
+<a name="l00078"></a>00078 
+<a name="l00082"></a>00082                 <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; <a class="code" href="class_reyn_tweets_mappable.html#ad349da3db2b8ce33758e7dd673006cb4" title="Affecting a ReynTweetsMappable.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
+<a name="l00083"></a>00083 
+<a name="l00087"></a>00087                 <span class="keyword">virtual</span> QVariantMap <a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>() <span class="keyword">const</span>;
+<a name="l00088"></a>00088 
+<a name="l00093"></a>00093                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(QVariantMap map);
+<a name="l00094"></a>00094 
+<a name="l00098"></a>00098                 Q_INVOKABLE QString <a class="code" href="class_reyn_tweets_mappable.html#a00c00bd6f3ab4308626a0377fcfc1064" title="Converting the object into its JSON representation.">toString</a>();
+<a name="l00099"></a>00099 
+<a name="l00104"></a>00104                 Q_INVOKABLE <span class="keyword">virtual</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> <a class="code" href="class_reyn_tweets_mappable.html#a080b0d02cd8f0a3a9fe72bc36a95fd65">fromString</a>(QString str);
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106         <span class="keyword">protected</span>:
+<a name="l00115"></a><a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d">00115</a>                 QStringList <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>;
+<a name="l00116"></a>00116 
+<a name="l00120"></a>00120                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
+<a name="l00121"></a>00121 
+<a name="l00126"></a>00126                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1" title="Building transientProperties.">blacklistProperties</a>(<span class="keywordtype">bool</span> blacklistObjectName);
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a7385185742d6e50246ec37a08c204675">toto</a>(<span class="keywordtype">bool</span> b);
+<a name="l00129"></a>00129 };
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 <span class="preprocessor">#endif // REYNTWEETSMAPPABLE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -144,7 +166,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

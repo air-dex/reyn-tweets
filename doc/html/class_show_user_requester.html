@@ -112,17 +112,11 @@ Inheritance diagram for ShowUserRequester:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor with the screen name.  <a href="#acf4b5c6507806a53606578682d132ba4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#a2791dc98babe356abace5a89c66edbd6">ShowUserRequester</a> (<a class="el" href="class_o_auth_manager.html">OAuthManager</a> &amp;authManager, qlonglong id, bool entities=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor with the user ID.  <a href="#a2791dc98babe356abace5a89c66edbd6"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Protected Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">IdentificationWay</a> { <a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee">ID</a>, 
-<a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28">SCREEN_NAME</a>
- }</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>How the user is identified ? </p>
- <a href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d">buildGETParameters</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building getParameters.  <a href="#a8587ccbdd0ee042561f237037956e66d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">IdentificationWay</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">idWay</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6b">IdentificationWay</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">idWay</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How the user is identified.  <a href="#a380cc521c3f0737148525f3310a14ffb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_show_user_requester.html#ac087ec55535e9132672f81667baea453">includeEntities</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boolean indicating if entities of a tweet have to be included in the reply.  <a href="#ac087ec55535e9132672f81667baea453"></a><br/></td></tr>
@@ -135,35 +129,7 @@ Inheritance diagram for ShowUserRequester:</div>
 <p>Requester for getting details about a user identified by its ID or its screen name. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/users/show">https://dev.twitter.com/docs/api/1/get/users/show</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00034">34</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
-<hr/><h2>Member Enumeration Documentation</h2>
-<a class="anchor" id="aca3df56a1d8d1d1eae90fa43f10042e5"></a><!-- doxytag: member="ShowUserRequester::IdentificationWay" ref="aca3df56a1d8d1d1eae90fa43f10042e5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">ShowUserRequester::IdentificationWay</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>How the user is identified ? </p>
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee"></a><!-- doxytag: member="ID" ref="aca3df56a1d8d1d1eae90fa43f10042e5a53d6490b3e91b8943a6b24dfc1dc4aee" args="" -->ID</em>&nbsp;</td><td>
-<p>With an ID. </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28"></a><!-- doxytag: member="SCREEN_NAME" ref="aca3df56a1d8d1d1eae90fa43f10042e5ae7926997fa2cb855425c297236802a28" args="" -->SCREEN_NAME</em>&nbsp;</td><td>
-<p>With a screen name. </p>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00066">66</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00035">35</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2791dc98babe356abace5a89c66edbd6"></a><!-- doxytag: member="ShowUserRequester::ShowUserRequester" ref="a2791dc98babe356abace5a89c66edbd6" args="(OAuthManager &amp;authManager, qlonglong id, bool entities=true)" -->
 <div class="memitem">
@@ -285,7 +251,7 @@ Inheritance diagram for ShowUserRequester:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_show_user_requester.html#aca3df56a1d8d1d1eae90fa43f10042e5">IdentificationWay</a> <a class="el" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">ShowUserRequester::idWay</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="identificationway_8hpp.html#a83ce0f22cee40af12204dd984fbb4d6b">IdentificationWay</a> <a class="el" href="class_show_user_requester.html#a380cc521c3f0737148525f3310a14ffb">ShowUserRequester::idWay</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -293,7 +259,7 @@ Inheritance diagram for ShowUserRequester:</div>
 
 <p>How the user is identified. </p>
 
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00075">75</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00062">62</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +276,7 @@ Inheritance diagram for ShowUserRequester:</div>
 
 <p>Boolean indicating if entities of a tweet have to be included in the reply. </p>
 
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00087">87</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00074">74</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +293,7 @@ Inheritance diagram for ShowUserRequester:</div>
 
 <p>When this value is set to true, only the id and id_str values of the user are returned. </p>
 
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00091">91</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00078">78</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +310,7 @@ Inheritance diagram for ShowUserRequester:</div>
 
 <p>ID of the user. </p>
 
-<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00083">83</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="showuserrequester_8hpp_source.html#l00070">70</a> of file <a class="el" href="showuserrequester_8hpp_source.html">showuserrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +333,7 @@ Inheritance diagram for ShowUserRequester:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Feb 8 01:53:58 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 6 04:20:56 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -188,9 +188,9 @@ class UserMention : public TweetEntity
 		/// @param newName New value for userName
 		void setName(QString newName);
 
-		/// @fn QString getMention();
+		/// @fn inline QString getMention();
 		/// @brief Getting the hashtag under its usual form
-		/// @return @screenName
+		/// @return &#64;screenName
 		inline QString getMention();
 };
 

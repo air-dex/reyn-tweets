@@ -119,7 +119,6 @@ class ReynTwitterCalls : public QObject
 
 		/// @fn void favoriteTweet(qlonglong id, bool entities = false);
 		/// @brief Favoriting a tweet
-		/// @param authManager Entity with authentication datas
 		/// @param id ID of the tweet to favorite
 		/// @param entities Boolean whose value is true if the tweet
 		/// in the reply has got its entities
@@ -168,9 +167,8 @@ class ReynTwitterCalls : public QObject
 								 int page = 0,
 								 int count = 20);
 
-		/// @fn void unfavoriteTweet(qlonglong id, bool withEntities = false);
+		/// @fn void unfavoriteTweet(qlonglong id);
 		/// @brief Unavoriting a tweet
-		/// @param authManager Entity with authentication datas
 		/// @param id ID of the tweet to unfavorite
 		/// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
 		void unfavoriteTweet(qlonglong id);

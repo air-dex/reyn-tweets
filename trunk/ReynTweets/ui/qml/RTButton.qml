@@ -44,6 +44,7 @@ Rectangle {
 	width: action_text.width + 2*margin_value
 	height: action_text.height + 2*margin_value
 
+	/// @brief Reyn Tweets constants
 	Constants {	id:constant	}
 
 	/// @brief Signal sent while clicking on the button
@@ -52,15 +53,24 @@ Rectangle {
 	// Button design
 	// Border colors and interior
 	radius: button_radius
+
+	/// @brief Proportion for the gradient
+	property real bordeur: 0.15
+
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: "#ffffff"
+			color: "#626262"
+		}
+
+		GradientStop {
+			position: bordeur
+			color: constant.orange
 		}
 
 		GradientStop {
 			position: 1
-			color: constant.orange
+			color: "#626262"
 		}
 	}
 	border.color: "#000000"

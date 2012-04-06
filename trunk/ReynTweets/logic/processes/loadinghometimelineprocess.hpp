@@ -26,6 +26,8 @@
 
 #include "singletwittercallprocess.hpp"
 
+/// @class LoadingHomeTimelineProcess
+/// @brief Process to load the Home timeline
 class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 {
 	Q_OBJECT

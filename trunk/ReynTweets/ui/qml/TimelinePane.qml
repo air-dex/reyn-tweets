@@ -1,5 +1,5 @@
 /// @file TimelinePane.qml
-/// @brief Pane to show a tweet
+/// @brief Pane to show a timeline
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -35,12 +35,7 @@ Rectangle {
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onTimelineChanged: timeline_model.syncWithTimeline(control.timelineStr);
-	}
-
-	// Model of the list
-	TimelineModel {
-		id: timeline_model
+		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length);
 	}
 
 	// List of all the tweets
@@ -55,7 +50,9 @@ Rectangle {
 			}
 		}
 
-		model: timeline_model
+		model: TimelineModel {
+			id: timeline_model
+		}
 	}
 
 	function loadHomeTimeline() {

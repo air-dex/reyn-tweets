@@ -205,7 +205,7 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Writing the property user
 		/// @param newUserMap New value for user
 		void setUser(QVariantMap newUserMap);
-//*
+
 		/// @property author
 		/// @brief User who wrote the tweet. Used to get information
 		/// to display about the author of the tweet (in a TweetPane).
@@ -213,7 +213,7 @@ class Tweet : public ReynTweetsMappable
 				   READ getAuthor
 				   WRITE setAuthor
 				   NOTIFY userChanged)
-//*/
+
 		// retweeted
 		/// @property retweeted
 		/// @brief Is the tweet retweeted by the user of the account ?

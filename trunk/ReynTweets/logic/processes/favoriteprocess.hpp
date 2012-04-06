@@ -48,8 +48,8 @@ class FavoriteProcess : public SingleTwitterCallProcess
 		/// the tweet or false if it has to unfavorite it.
 		bool favorite;
 
-		/// @fn void favoriteTweet();
-		/// @brief Entry point of the process if un
+		/// @fn void callTwitter();
+		/// @brief Calling the Twitter API to favorite or to unfavorite the tweet.
 		void callTwitter();
 };
 

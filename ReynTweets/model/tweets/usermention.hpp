@@ -187,6 +187,11 @@ class UserMention : public TweetEntity
 		/// @brief Writing method for userName
 		/// @param newName New value for userName
 		void setName(QString newName);
+
+		/// @fn QString getMention();
+		/// @brief Getting the hashtag under its usual form
+		/// @return @screenName
+		inline QString getMention();
 };
 
 // Serialization of UserMention

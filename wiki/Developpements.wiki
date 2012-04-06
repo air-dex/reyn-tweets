@@ -43,20 +43,22 @@ Où en est Reyn Tweets ?
     * Automatisation de la traduction pour le développement sur Windows
     * Chargement de la traduction dans les fichiers QML (issue 64).
   * Architecture de l'application.
+  * Implémentation des fonctionnalités de base.
+    * Téléchargement de la timeline perso de l'utilisateur
+    * Mise en place de l'architecture pour des composants listes
+  * Interface graphique (UI) :
+    * Timelines (listes de tweets)
 
 
 == Ce qui reste à faire ==
 
   # Implémentation des fonctionnalités de base.
-    # Téléchargement de la timeline perso de l'utilisateur
-      # Mise en place de l'architecture pour des composants listes
     # Ecrire un tweet et le poster.
   # Modèle de données
   # Interface graphique (UI) :
     # Interface desktop à designer.
     # UI d'un tweet (format résumé et détaillé).
     # UI d'un user (résumé et détaillé)
-    # Timelines (listes de tweets)
     # Listes d'utilisateurs
     # UI de la partie options, popur les paramètres.
     # ...

@@ -213,8 +213,8 @@ Rectangle {
 
 			PropertyChanges {
 				target: form_column
-				anchors.topMargin: spacing
 				anchors.top: invalid_password_text.bottom
+				anchors.topMargin: spacing
 			}
 
 			PropertyChanges {

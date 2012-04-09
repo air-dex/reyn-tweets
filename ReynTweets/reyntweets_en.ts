@@ -2,40 +2,69 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US" sourcelanguage="en">
 <context>
+    <name>AccessTokenRequester</name>
+    <message>
+        <location filename="connection/requests/oauth/accesstokenrequester.cpp" line="103"/>
+        <source>Unexpected parameter &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AllowProcess</name>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="112"/>
         <source>Network error </source>
-        <translation>Network error </translation>
+        <translation type="obsolete">Network error </translation>
     </message>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="134"/>
         <source>Parsing error :</source>
         <oldsource>Parsing error :
 </oldsource>
-        <translation>Parsing error:</translation>
+        <translation type="obsolete">Parsing error:</translation>
     </message>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="141"/>
         <source>Unexpected problem :</source>
         <oldsource>Unexpected problem :
 </oldsource>
-        <translation>Unexpected problem:</translation>
+        <translation type="obsolete">Unexpected problem:</translation>
     </message>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="167"/>
+        <location filename="logic/processes/allowprocess.cpp" line="166"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="171"/>
+        <location filename="logic/processes/allowprocess.cpp" line="170"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="logic/processes/allowprocess.cpp" line="175"/>
+        <location filename="logic/processes/allowprocess.cpp" line="174"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
+    </message>
+</context>
+<context>
+    <name>AuthorizeRequester</name>
+    <message>
+        <location filename="connection/requests/oauth/authorizerequester.cpp" line="108"/>
+        <source>Authenticity token not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/authorizerequester.cpp" line="113"/>
+        <source>OAuth token not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/authorizerequester.cpp" line="118"/>
+        <source>Deny value not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/authorizerequester.cpp" line="123"/>
+        <source>Empty HTML page.
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -49,100 +78,235 @@
 <context>
     <name>LaunchingProcess</name>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="57"/>
-        <location filename="logic/processes/launchingprocess.cpp" line="221"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="58"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="258"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="61"/>
-        <location filename="logic/processes/launchingprocess.cpp" line="225"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="62"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="262"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="65"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="66"/>
         <source>Configuration cannot be loaded.</source>
         <translation>Configuration cannot be loaded.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="70"/>
-        <location filename="logic/processes/launchingprocess.cpp" line="230"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="71"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="267"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="151"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="177"/>
         <source>The user was not the right one.</source>
         <translation>The user was not the right one.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="161"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="187"/>
         <source>Tokens for authentication to Twitter were wrong.</source>
         <translation>Tokens for authentication to Twitter were wrong.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="169"/>
+        <location filename="logic/processes/launchingprocess.cpp" line="195"/>
+        <source>You reach the authentication rate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logic/processes/launchingprocess.cpp" line="203"/>
+        <source>Twitter is down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logic/processes/launchingprocess.cpp" line="211"/>
+        <source>Problem while connecting to Twitter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="logic/processes/launchingprocess.cpp" line="226"/>
+        <source>Unexpected result:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>You reach the authentication rate.</source>
-        <translation>You reach the authentication rate.</translation>
+        <translation type="obsolete">You reach the authentication rate.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="176"/>
         <source>Twitter is down.</source>
-        <translation>Twitter is down.</translation>
+        <translation type="obsolete">Twitter is down.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="183"/>
         <source>Unknown prolem.</source>
-        <translation>Unknown prolem.</translation>
+        <translation type="obsolete">Unknown prolem.</translation>
     </message>
     <message>
-        <location filename="logic/processes/launchingprocess.cpp" line="190"/>
         <source>Unexpected result.</source>
-        <translation>Unexpected result.</translation>
+        <translation type="obsolete">Unexpected result.</translation>
     </message>
 </context>
 <context>
     <name>OAuthProcess</name>
     <message>
-        <location filename="logic/processes/oauthprocess.cpp" line="105"/>
+        <location filename="logic/processes/oauthprocess.cpp" line="119"/>
         <source>Callback URL not confirmed.</source>
         <translation>Callback URL not confirmed.</translation>
     </message>
     <message>
-        <location filename="logic/processes/oauthprocess.cpp" line="117"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="188"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="290"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="378"/>
         <source>Network error </source>
-        <translation>Network error </translation>
+        <translation type="obsolete">Network error </translation>
     </message>
     <message>
-        <location filename="logic/processes/oauthprocess.cpp" line="137"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="210"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="313"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="400"/>
         <source>Parsing error:</source>
         <oldsource>Parsing error:
 </oldsource>
-        <translation>Parsing error:</translation>
+        <translation type="obsolete">Parsing error:</translation>
     </message>
     <message>
-        <location filename="logic/processes/oauthprocess.cpp" line="144"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="217"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="320"/>
-        <location filename="logic/processes/oauthprocess.cpp" line="406"/>
         <source>Unexpected problem:</source>
         <oldsource>Unexpected problem:
 </oldsource>
-        <translation>Unexpected problem:</translation>
+        <translation type="obsolete">Unexpected problem:</translation>
     </message>
     <message>
-        <location filename="logic/processes/oauthprocess.cpp" line="278"/>
+        <location filename="logic/processes/oauthprocess.cpp" line="288"/>
         <source>Unexpected redirection. Process aborted.</source>
         <oldsource>Unexpected redirection. Process aborted.
 </oldsource>
         <translation>Unexpected redirection. Process aborted.</translation>
+    </message>
+</context>
+<context>
+    <name>PostAuthorizeRequester</name>
+    <message>
+        <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="140"/>
+        <source>PIN code (oauth verifier) not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="204"/>
+        <source>&amp;lt;div class=&quot;happy notice callback&quot;&amp;gt; HTML tag expected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="209"/>
+        <source>Empty HTML page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="213"/>
+        <source>HTML parsing failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="217"/>
+        <source>Wrong URL.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="tools/parsers/htmlparser.cpp" line="46"/>
+        <source>No HTML parser available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="36"/>
+        <source>Following arguments are invalid : </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="54"/>
+        <source>OAuth parsing : cannot parse &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="85"/>
+        <source>Parameter extraction : parameter &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="87"/>
+        <location filename="tools/parsers/oauthparser.cpp" line="129"/>
+        <source>&apos; expected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="120"/>
+        <source>Rewriting as bool : unexpected value &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="122"/>
+        <source>&apos; for parameter &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/parsers/oauthparser.cpp" line="127"/>
+        <source>Rewriting as bool : parameter &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="73"/>
+        <source>Twitter seems down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="76"/>
+        <source>Tokens were not authorized:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="79"/>
+        <source>You reach the authentication rate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="82"/>
+        <source>Unexpected result:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="114"/>
+        <source>Error </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="119"/>
+        <source>Request : </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="132"/>
+        <source>Network error </source>
+        <translation type="unfinished">Network error </translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="149"/>
+        <location filename="tools/processutils.cpp" line="165"/>
+        <source>Parsing error:</source>
+        <translation type="unfinished">Parsing error:</translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="151"/>
+        <source>Line </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tools/processutils.cpp" line="178"/>
+        <source>Unexpected problem:</source>
+        <translation type="unfinished">Unexpected problem:</translation>
+    </message>
+</context>
+<context>
+    <name>RequestTokenRequester</name>
+    <message>
+        <location filename="connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
+        <source>Unexpected parameter &apos;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

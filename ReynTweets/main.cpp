@@ -62,7 +62,6 @@ void declareReynTweetsControls() {
 	UserInfos::declareQML();
 	User::declareQML();
 	Timeline::declareQML();
-	TimelineModel::declareQML();
 	TimelineControl::declareQML();
 	TweetControl::declareQML();
 }

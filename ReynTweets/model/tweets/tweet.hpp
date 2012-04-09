@@ -69,8 +69,6 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
-		Q_INVOKABLE static Tweet *fromString(QString str);
-
 	private:
 		/// @fn void recopie(const Tweet & status);
 		/// @brief Copy of a tweet
@@ -220,7 +218,7 @@ class Tweet : public ReynTweetsMappable
 		///
 		/// <strong>It does not mean that the tweet is a retweet !</strong>
 		Q_PROPERTY(bool retweeted
-				   READ isRetweeted
+				   READ isRetweetedByMe
 				   WRITE setRetweeted
 				   NOTIFY retweetedChanged)
 
@@ -593,10 +591,10 @@ class Tweet : public ReynTweetsMappable
 		void setAuthor(UserInfos * newValue);
 
 		// retweeted
-		/// @fn bool isRetweeted();
+		/// @fn bool isRetweetedByMe();
 		/// @brief Reading retweeted
 		/// @return retweetedTweet
-		bool isRetweeted();
+		bool isRetweetedByMe();
 
 		/// @fn void setRetweeted(bool newValue);
 		/// @brief Writing retweeted
@@ -719,9 +717,17 @@ class Tweet : public ReynTweetsMappable
 		/// @fn Q_INVOKABLE bool isRetweet();
 		/// @brief Method indicating if the tweet is a retweet or not
 		///	@return true if it is a retweet, false otherwise.
-		Q_INVOKABLE bool isRetweet() {
-			return retweetSource != 0;
-		}
+		Q_INVOKABLE bool isRetweet();
+
+		/// @fn Q_INVOKABLE bool isReply();
+		/// @brief Method indicating if the tweet replies to another one or not.
+		///	@return true if it is a reply to a tweet, false otherwise.
+		Q_INVOKABLE bool isReply();
+
+		/// @fn Q_INVOKABLE bool isRetweetedByPeople();
+		/// @brief Method indicating if the tweet was retweeted by other users.
+		///	@return true if it was retweeted, false otherwise.
+		Q_INVOKABLE bool isRetweetedByPeople();
 };
 
 // Serialization of Tweet

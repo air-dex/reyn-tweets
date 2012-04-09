@@ -79,19 +79,3 @@ QVariantMap ReynTweetsMappable::toVariant() const {
 void ReynTweetsMappable::fillWithVariant(QVariantMap map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
 }
-
-// JSON string corresponding to the Mappable
-QString ReynTweetsMappable::toString() {
-	QVariantMap variant = toVariant();
-	QJson::Serializer s;
-	QByteArray b = s.serialize(variant);
-	return QString::fromUtf8(b.data());
-}
-
-ReynTweetsMappable ReynTweetsMappable::fromString(QString str) {
-	QJson::Parser p;
-	QVariant v = p.parse(str.toUtf8());
-	ReynTweetsMappable r;
-	r.fillWithVariant(v.toMap());
-	return r;
-}

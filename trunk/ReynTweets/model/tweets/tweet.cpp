@@ -314,7 +314,7 @@ void Tweet::setUser(UserInfos newValue) {
 }
 
 // retweeted
-bool Tweet::isRetweeted() {
+bool Tweet::isRetweetedByMe() {
 	return retweetedTweet;
 }
 
@@ -445,10 +445,17 @@ QString Tweet::whenWasItPosted() {
 	return "Un jour";
 }
 
-Tweet * Tweet::fromString(QString str) {
-	QJson::Parser p;
-	QVariant v = p.parse(str.toUtf8());
-	Tweet * r = new Tweet;
-	r->fillWithVariant(v.toMap());
-	return r;
+// Indicating if the tweet is a retweet or not
+bool Tweet::isRetweet() {
+	return retweetSource != 0;
+}
+
+// Indicating if the tweet replies to another one or not
+bool Tweet::isReply() {
+	return replyToTweetID != -1;
+}
+
+// Indicating if the tweet was retweeted by other users.
+bool Tweet::isRetweetedByPeople() {
+	return retweetCount > 0;
 }

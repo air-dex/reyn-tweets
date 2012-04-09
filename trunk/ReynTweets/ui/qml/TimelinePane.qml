@@ -50,8 +50,17 @@ Rectangle {
 			}
 		}
 
-		model: TimelineModel {
-			id: timeline_model
+		model: TimelineModel { id: timeline_model }
+
+		// Loading tweets
+		onMovingChanged: {
+			if (timeline_view.atYBeginning) {
+				// If you are at the top -> get earlier tweets
+				console.log("TODO : get earlier tweets")
+			} else if (timeline_view.atYEnd) {
+				// If you are at the bottom -> get older tweets
+				console.log("TODO : get older tweets")
+			}
 		}
 	}
 

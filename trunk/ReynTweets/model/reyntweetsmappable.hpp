@@ -92,17 +92,6 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
 
-		/// @fn Q_INVOKABLE QString toString();
-		/// @brief Converting the object into its JSON representation
-		/// @return JSON representation of the object
-		Q_INVOKABLE QString toString();
-
-		/// @fn virtual void fillWithVariant(QVariantMap map);
-		/// @brief Filling a serializable object with the informations
-		/// contained in a map.
-		/// @param map The map
-		Q_INVOKABLE virtual ReynTweetsMappable fromString(QString str);
-
 	protected:
 		/// @brief List of properties to ignore while converting the object into
 		/// a QVariant.

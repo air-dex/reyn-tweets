@@ -25,8 +25,7 @@ import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
 
-/// @class TweetPane
-/// @brief Pane to show a tweet
+// Pane to show a tweet
 Rectangle {
 	id: tweet_pane
 
@@ -39,10 +38,27 @@ Rectangle {
 	// The tweet displayed in this pane
 	property Tweet tweet: control.tweet
 
+	// The tweet displayed in this pane
+	property Tweet shown_tweet: tweet
+
+	// Minimal height
+	property int min_height: author_text.height + text.height
+							 + source_text.height + action_row.height + 8*margin
+
 	width: 360
-	height: 200
- border.width: 2
- border.color: "#000000"
+	height:  min_height
+			 + (tweet.isReply() ?
+					(reply_info.height + 2*margin)
+				  : 0
+				)
+			 + (tweet.isRetweetedByPeople() ?
+					(retweet_info.height + 2*margin)
+				  : 0
+				)
+
+	//Debug params
+ border.width: 1
+ border.color: "#400000"
 
 	Constants { id:constant }
 
@@ -51,12 +67,21 @@ Rectangle {
 		if (tweet.isRetweet()) {
 			tweet_pane.state = "Retweet"
 		}
+
+		// Treatments if it is a retweet
+		if (tweet.isRetweetedByPeople()) {
+			retweet_info.visible = true
+			retweet_info.anchors.topMargin = 2*margin
+		}
+
+		// Treatments if it is a reply
+		if (tweet.isReply()) {
+			tweet_pane.state = "Reply"
+		}
 	}
 
 	// Control behind the pane
-	TweetControl {
-		id: control
-	}
+	TweetControl { id: control }
 
 	// Square with avatars
 	Item {
@@ -83,13 +108,11 @@ Rectangle {
 			anchors.topMargin: 0
 			anchors.left: parent.left
 			anchors.leftMargin: 0
-			source: tweet.author.profile_image_url
+			source: shown_tweet.author.profile_image_url
 			MouseArea {
 				id: avatar_mouse_area
 				anchors.fill: parent
-				onClicked: console.log("Show @" + aut)
-
-				property string aut: tweet.author.screen_name
+				onClicked: console.log("TODO : Show @" + shown_tweet.author.screen_name)
 			}
 		}
 
@@ -114,7 +137,7 @@ Rectangle {
 	// Label displaying the author of the tweet
 	Text {
 		id: author_text
-		text:  tweet.author.screen_name
+		text: shown_tweet.author.screen_name
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
 		font.pixelSize: constant.font_size
@@ -128,7 +151,7 @@ Rectangle {
 	// Label displaying when the tweet was posted
 	Text {
 		id: date_text
-		text: tweet.whenWasItPosted();
+		text: shown_tweet.whenWasItPosted();
 		anchors.left: author_text.right
 		anchors.leftMargin: margin
 		font.family: constant.font
@@ -144,9 +167,9 @@ Rectangle {
 	// Content of the tweet
 	Text {
 		id: text
-		text: tweet.getDisplayText();
+		text: shown_tweet.getDisplayText();
 		textFormat: Text.RichText
-		wrapMode: Text.WordWrap
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
@@ -180,7 +203,7 @@ Rectangle {
 	// Source of the tweet
 	Text {
 		id: source_text
-		text: "via " + tweet_source
+		text: "via " + shown_tweet.source
 		font.italic: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
@@ -191,8 +214,64 @@ Rectangle {
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
 		onLinkActivated: Qt.openUrlExternally(link)
+	}
 
-		property string tweet_source: tweet.source
+	// Reply informations
+	Text {
+		id: reply_info
+		text: qsTr("In reply to ") + shown_tweet.in_reply_to_screen_name	// TODO le @screen_name + link to show
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+		visible: false
+		font.italic: true
+		font.family: constant.font
+		font.pixelSize: constant.font_size
+		anchors.left: author_text.left
+		anchors.leftMargin: 0
+		anchors.top: source_text.bottom
+		anchors.topMargin: 0
+		anchors.right: tweet_pane.right
+		anchors.rightMargin: margin
+		onLinkActivated: {
+			// Showing who replied
+			console.log("TODO : qui a répondu ?")
+		}
+	}
+
+	// Retweet informations
+	Text {
+		id: retweet_info
+		text: retweetInfoText();
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+		visible: false
+		font.italic: true
+		font.family: constant.font
+		font.pixelSize: constant.font_size
+		anchors.left: author_text.left
+		anchors.leftMargin: 0
+		anchors.top: source_text.bottom
+		anchors.topMargin: 0
+		anchors.right: tweet_pane.right
+		anchors.rightMargin: margin
+		onLinkActivated: {
+			// Showing people that have retweeted
+			console.log("TODO : qui a retweeté ?")
+		}
+
+		function retweetInfoText() {
+			// TODO : be perfect !
+			var text = qsTr("Retweeted by ")
+			text = text + tweet.author.screen_name
+
+			// Nb of people that retweeted
+			var nbRetweeters = shown_tweet.retweet_count
+
+			if (nbRetweeters > 0) {
+				var peopleString = (nbRetweeters - 1 == 1) ? qsTr("person") : qsTr("people")
+				text = text + qsTr(" and ") + nbRetweeters + qsTr(" other ") + peopleString + '.'
+			}
+
+			return text
+		}
 	}
 
 	// Row with actions on the tweet
@@ -275,20 +354,17 @@ Rectangle {
 
 			// Displaying the retweet author's avatar
 			PropertyChanges {
+				target: tweet_pane
+				shown_tweet: tweet.retweet
+			}
+
+			// Displaying the retweet author's avatar
+			PropertyChanges {
 				target: avatar_zone
 				side: tweet_pane.avatar_side * 6/5
 			}
 
-			PropertyChanges {
-				target: tweet_author_avatar
-				source: tweet.retweet.author.profile_image_url
-			}
-
-			PropertyChanges {
-				target: avatar_mouse_area
-				aut: tweet.retweet.author.screen_name
-			}
-
+			// Kept to load the image if necessary
 			PropertyChanges {
 				target: retweeter_avatar
 				visible: true
@@ -298,31 +374,25 @@ Rectangle {
 			// New author and new margin to not move the QML Component
 			PropertyChanges {
 				target: author_text
-				text: tweet.retweet.author.screen_name
 				anchors.leftMargin: 2*margin
-			}
-
-			// New date
-			PropertyChanges {
-				target: date_text
-				text: tweet.retweet.whenWasItPosted();
-			}
-
-			// New text (i.e. not beginning by "RT @qqn: ")
-			PropertyChanges {
-				target: text
-				text: tweet.retweet.getDisplayText();
-			}
-
-			// Original source of the retweet
-			PropertyChanges {
-				target: source_text
-				tweet_source: tweet.retweet.source;
 			}
 		},
 		State {
 			// The tweet is a reply
 			name: "Reply"
+
+			// Showing reply text
+			PropertyChanges {
+				target: reply_info
+				visible: true
+				anchors.topMargin: 2*margin
+			}
+
+			// Putting retweet_info under reply_info
+			PropertyChanges {
+				target: retweet_info
+				anchors.top: reply_info.bottom
+			}
 		},
 		State {
 			// The tweet is a direct message (DM)

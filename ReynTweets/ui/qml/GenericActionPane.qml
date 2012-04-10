@@ -47,7 +47,7 @@ Rectangle {
 	id: generic_action_pane
 	width: 360
 	height: description_action.height + spacing + action_button.height
-	color: "#a4a4a4"
+	color: constant.grey
 	radius: pane_radius
 
 	Constants {	id:constant	}

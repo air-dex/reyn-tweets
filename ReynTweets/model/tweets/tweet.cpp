@@ -24,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtDeclarative>
+#include <QtWebKit>
 #include "tweet.hpp"
 #include "../tools/utils.hpp"
 
@@ -435,8 +436,24 @@ QString Tweet::getDisplayText() {
 
 // Getting a HTML string of the name of the Twitter client used to post the tweet
 QString Tweet::getDisplaySource() {
-	// TODO : faire en sorte que quand on clique dessus, ça lance le navigateur vers le lien de l'appli
-	return sourceClient;
+	// Getting the HTML source. "web" redirects to Twitter website.
+	QString htmlText = (sourceClient == "web") ?
+				"<a href=\"https://twitter.com\">web</a>"
+			  : sourceClient;
+
+	// Getting the 'a' tag
+	QWebPage p;
+	QWebFrame * f = p.mainFrame();
+	f->setHtml(htmlText);
+	QWebElement doc = f->documentElement();
+	QWebElement elt = doc.findFirst("a");
+
+	// Styling
+	elt.setStyleProperty("text-decoration", "none");
+	elt.setStyleProperty("color", profile.getProfileLinkColor().name());
+
+	// Extracting the tag under its QString form
+	return elt.toOuterXml();
 }
 
 // When the tweet was posted ?

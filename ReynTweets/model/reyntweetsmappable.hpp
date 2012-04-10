@@ -92,6 +92,13 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
 
+		/// @fn QStringList & getTransientProperties() const;
+		/// @brief Getter on transientProperties.
+		///
+		/// Used by the specialization of jsonStreamingOut for ReynTweetsMappables.
+		/// @return A reference on transientProperties
+		QStringList & getTransientProperties();
+
 	protected:
 		/// @brief List of properties to ignore while converting the object into
 		/// a QVariant.
@@ -113,8 +120,19 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param blacklistObjectName Boolean indicating if the "objectName"
 		/// property of QObject has to be included in transientProperties.
 		virtual void blacklistProperties(bool blacklistObjectName);
-
-		void toto(bool b);
 };
+
+/// @fn QDataStream & jsonStreamingOut(QDataStream & out,
+///									   const ReynTweetsMappable & mappable);
+/// @brief Output stream operator for JSON serialization.
+///
+/// This method is a specialization for ReynTweetsMappables because they have
+/// got properties to ignore. These properties are blacklisted in
+/// the transientProperties attribute.
+/// @param out The output stream
+/// @param mappable ReynTweetsMappables to put in the stream
+/// @return The stream with the object
+QDataStream & jsonStreamingOut(QDataStream & out,
+							   const ReynTweetsMappable & mappable);
 
 #endif // REYNTWEETSMAPPABLE_HPP

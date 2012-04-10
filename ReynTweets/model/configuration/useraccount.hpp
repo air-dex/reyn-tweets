@@ -65,6 +65,11 @@ class UserAccount : public ReynTweetsMappable
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring ReynTweetsConfiguration to the QML system
+		static void declareQML();
+
+
 	private:
 		/// @fn void recopie(const UserAccount & account);
 		/// @brief Copy of a UserAccount
@@ -90,6 +95,14 @@ class UserAccount : public ReynTweetsMappable
 										UserAccount & account);
 
 	private:
+		/// @fn void blacklistProperties();
+		/// @brief Blacklisting properties used only for and by QML views.
+		///
+		/// The following properties are blacklisted in this class : <ul>
+		/// <li>current_user</li>
+		/// </ul>
+		void blacklistProperties();
+
 		// Access Token
 		/// @property access_token
 		/// @brief Access token
@@ -121,6 +134,22 @@ class UserAccount : public ReynTweetsMappable
 		/// @param newUserMap New value for twitter_user
 		void setUser(QVariantMap newUserMap);
 
+		/// @property current_user
+		/// @brief Twitter user
+		Q_PROPERTY(UserInfos * current_user
+				   READ getCurrentUser
+				   NOTIFY currentUserChanged)
+
+		/// @fn User * getCurrentUser();
+		/// @brief Reading the property current_user
+		/// @return A pointer on user
+		UserInfos * getCurrentUser();
+
+	signals:
+		/// @fn void currentUserChanged();
+		/// @brief Notifying changes about current_user
+		void currentUserChanged();
+
 
 	//////////////////////////////
 	// Configuration management //
@@ -134,7 +163,7 @@ class UserAccount : public ReynTweetsMappable
 		QByteArray tokenSecret;
 
 		/// @brief User of the account
-		User user;
+		UserInfos user;
 
 	public:
 		/// @fn QByteArray getAccessToken();
@@ -157,15 +186,15 @@ class UserAccount : public ReynTweetsMappable
 		/// @param secret The new token secret
 		void setTokenSecret(QByteArray secret);
 
-		/// @fn User getUser();
+		/// @fn UserInfos getUser();
 		/// @brief Getter on the user
 		/// @return The user
-		User getUser();
+		UserInfos getUser();
 
-		/// @fn void setUser(User u);
+		/// @fn void setUser(UserInfos u);
 		/// @brief Setter on the user
 		/// @param u The new user
-		void setUser(User u);
+		void setUser(UserInfos u);
 };
 
 // Serialization of UserAccount

@@ -1,3 +1,0 @@
-function TweetEntity(tweet) {
-
-}

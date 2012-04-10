@@ -103,7 +103,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 		case NO_ERROR: {
 			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.parsedResult.toMap();
-			User u;
+			UserInfos u;
 			u.fillWithVariant(parsedResults);
 			UserAccount account = configuration.getUserAccount();
 			account.setUser(u);

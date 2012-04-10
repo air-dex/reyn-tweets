@@ -24,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
+#include <QtDeclarative>
 #include "reyntweetsconfiguration.hpp"
 #include "reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
@@ -36,7 +37,9 @@
 ReynTweetsConfiguration::ReynTweetsConfiguration() :
 	ReynTweetsMappable(),
 	userAccount()
-{}
+{
+	blacklistProperties();
+}
 
 // Destructor
 ReynTweetsConfiguration::~ReynTweetsConfiguration() {}
@@ -64,6 +67,13 @@ void ReynTweetsConfiguration::initSystem() {
 	qMetaTypeId<ReynTweetsConfiguration>();
 }
 
+// Declaring ReynTweetsConfiguration to the QML system
+void ReynTweetsConfiguration::declareQML() {
+	qmlRegisterType<ReynTweetsConfiguration>("ReynTweetsEntities",
+											 0, 1,
+											 "ReynTweetsConfiguration");
+}
+
 
 ////////////////////
 // JSON Streaming //
@@ -88,6 +98,11 @@ QDataStream & operator>>(QDataStream & in,
 // Properties management //
 ///////////////////////////
 
+// Blacklisting the "current_account"
+void ReynTweetsConfiguration::blacklistProperties() {
+	transientProperties.append(QString(QLatin1String("current_account")));
+}
+
 // Reading the property p_userAccount
 QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
 	return userAccount.toVariant();
@@ -96,6 +111,11 @@ QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
 // Writing the property p_userAccount
 void ReynTweetsConfiguration::setUserAccount(QVariantMap accountMap) {
 	userAccount.fillWithVariant(accountMap);
+}
+
+// Reading the property current_account
+UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
+	return &userAccount;
 }
 
 

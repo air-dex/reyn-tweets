@@ -24,7 +24,9 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtDeclarative>
-#include <QtWebKit>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 #include "tweet.hpp"
 #include "../tools/utils.hpp"
 
@@ -425,7 +427,7 @@ QString Tweet::getDisplayText() {
 		 ++it)
 	{
 		TweetEntity * entity = *it;
-		QString entityText = entity->getDisplayedText();
+		QString entityText = entity->getDisplayedText(profile.getProfileLinkColor());
 		int min = entity->getIndices().getMin();
 		int max = entity->getIndices().getMax();
 		displayedText.replace(min, max-min, entityText);

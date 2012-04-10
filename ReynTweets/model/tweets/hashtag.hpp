@@ -62,12 +62,13 @@ class Hashtag : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
-		/// @fn QString getDisplayedText();
+		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the hashtag
 		///
 		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @param linkColor Color for links
 		/// @return The tweet entity with rich content
-		QString getDisplayedText();
+		QString getDisplayedText(QColor linkColor);
 
 
 	private:

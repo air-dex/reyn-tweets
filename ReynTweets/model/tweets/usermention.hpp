@@ -62,12 +62,13 @@ class UserMention : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
-		/// @fn QString getDisplayedText();
+		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the mention.
 		///
 		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @param linkColor Color for links
 		/// @return An HTML tag to show the user
-		QString getDisplayedText();
+		QString getDisplayedText(QColor linkColor);
 
 	private:
 		/// @fn void recopie(const UserMention & mention);

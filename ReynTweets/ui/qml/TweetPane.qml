@@ -158,7 +158,7 @@ Rectangle {
 	// Label displaying the author of the tweet
 	Text {
 		id: author_text
-		text: wrapEntity('@' +shown_tweet.author.screen_name)
+		text: wrapEntity('@' + shown_tweet.author.screen_name)
 		font.bold: true
 		font.underline: false
 		verticalAlignment: Text.AlignVCenter
@@ -169,6 +169,7 @@ Rectangle {
 		anchors.left: avatar_zone.right
 		// More margin to not move if it is a retweet.
 		anchors.leftMargin: 2*margin + tweet_pane.avatar_side /4
+		onLinkActivated: console.log('TODO : show user @' + shown_tweet.author.screen_name)
 	}
 
 	// Label displaying when the tweet was posted
@@ -427,7 +428,7 @@ Rectangle {
 		var hrefTag = '" href="';
 		var closeTag = '">';
 		var endTag = '</a>';
-		return beginTag + tweet.author.profile_link_color
+		return beginTag + shown_tweet.author.profile_link_color
 				+ hrefTag + entity + closeTag + entity + endTag;
 	}
 

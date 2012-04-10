@@ -68,7 +68,7 @@ void TimelineControl::loadHomeTimeline() {
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
 	qDebug("loadHomeTimeline");
-	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 10);
+	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 20);
 }
 
 

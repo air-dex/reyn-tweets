@@ -56,11 +56,30 @@ Rectangle {
 				  : 0
 				)
 
-	radius: 5
+	// Width of top and bottom borders / pane height.
+	property real separator: 2 / tweet_pane.height
 
-	//Debug params
- border.width: 1
- border.color: "#400000"
+	gradient: Gradient {
+		GradientStop {
+			position: 0
+			color: constant.grey
+		}
+
+		GradientStop {
+			position: separator
+			color: constant.white
+		}
+
+		GradientStop {
+			position: 1-separator
+			color: constant.white
+		}
+
+		GradientStop {
+			position: 1
+			color: constant.grey
+		}
+	}
 
 	Constants { id:constant }
 
@@ -139,7 +158,9 @@ Rectangle {
 	// Label displaying the author of the tweet
 	Text {
 		id: author_text
-		text: shown_tweet.author.screen_name
+		text: wrapEntity('@' +shown_tweet.author.screen_name)
+		font.bold: true
+		font.underline: false
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
 		font.pixelSize: constant.font_size
@@ -205,7 +226,7 @@ Rectangle {
 	// Source of the tweet
 	Text {
 		id: source_text
-		text: "via " + shown_tweet.source
+		text: "via " + shown_tweet.getDisplaySource()
 		font.italic: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
@@ -221,7 +242,7 @@ Rectangle {
 	// Reply informations
 	Text {
 		id: reply_info
-		text: qsTr("In reply to ") + shown_tweet.in_reply_to_screen_name	// TODO le @screen_name + link to show
+		text: qsTr("In reply to ") + wrapEntity('@' + shown_tweet.in_reply_to_screen_name)
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
@@ -399,6 +420,16 @@ Rectangle {
 			name: "DirectMessage"
 		}
 	]
+
+	// Function to wrap words into an HTML tag
+	function wrapEntity(entity) {
+		var beginTag = '<a style="text-decoration: none; color: ';
+		var hrefTag = '" href="';
+		var closeTag = '">';
+		var endTag = '</a>';
+		return beginTag + tweet.author.profile_link_color
+				+ hrefTag + entity + closeTag + entity + endTag;
+	}
 
 	////////////////
 	// Management //

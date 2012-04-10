@@ -26,8 +26,23 @@ import QtQuick 1.1
 /// @class Constants
 /// @brief QML constants of Reyn Tweets.
 QtObject {
+	////////////
+	// Colors //
+	////////////
+
 	// Orange Reyn Tweets
 	property string orange: "#d9781d"
+
+	// Grey
+	property string grey: "#a4a4a4"
+
+	// Grey
+	property string white: "#ffffff"
+
+
+	//////////
+	// Font //
+	//////////
 
 	// Font used for Reyn Tweets
 	property string font: "Ubuntu"

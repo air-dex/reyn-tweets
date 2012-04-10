@@ -57,12 +57,10 @@ Rectangle {
 	/// @brief Proportion for the gradient
 	property real bordeur: 0.25
 
-	property string grey_color: "#a4a4a4"
-
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: grey_color
+			color: constant.grey
 		}
 
 		GradientStop {
@@ -77,7 +75,7 @@ Rectangle {
 
 		GradientStop {
 			position: 1
-			color: grey_color
+			color: constant.grey
 		}
 	}
 	//border.color: "#000000"

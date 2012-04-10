@@ -55,10 +55,11 @@ class TweetEntity : public ReynTweetsMappable
 		/// @return Copy of the original entity
 		const TweetEntity & operator=(const TweetEntity & hashtag);
 
-		/// @fn virtual QString getDisplayedText() = 0;
+		/// @fn virtual QString getDisplayedText(QColor linkColor) = 0;
 		/// @brief Building the rich text for the entity
+		/// @param linkColor Color for links
 		/// @return The tweet entity with rich content
-		virtual QString getDisplayedText() = 0;
+		virtual QString getDisplayedText(QColor linkColor) = 0;
 
 
 	protected:

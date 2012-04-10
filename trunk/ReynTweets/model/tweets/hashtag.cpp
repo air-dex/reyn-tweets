@@ -24,6 +24,9 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QTextStream>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 #include "hashtag.hpp"
 #include "../tools/utils.hpp"
 
@@ -102,10 +105,23 @@ QString Hashtag::getHashtag() {
 //////////
 
 // Building the rich text for the entity
-QString Hashtag::getDisplayedText() {
+QString Hashtag::getDisplayedText(QColor linkColor) {
 	QString hashtag = getHashtag();
-	QString s = "";
-	QTextStream t(&s);
-	t << "<a href=\"" << hashtag << "\">" << hashtag << "</a>";
-	return t.readAll();
+	QWebPage page;
+	QWebFrame * frame = page.mainFrame();
+	frame->setHtml("<a></a>");
+	QWebElement doc = frame->documentElement();
+	QWebElement link = doc.findFirst("a");
+
+	link.setPlainText(hashtag);
+	link.setAttribute("href", hashtag);
+	link.setStyleProperty("color", linkColor.name());
+	link.setStyleProperty("text-decoration", "none");
+
+	return link.toOuterXml();
+
+//	QString s = "";
+//	QTextStream t(&s);
+//	t << "<a href=\"" << hashtag << "\">" << hashtag << "</a>";
+//	return t.readAll();
 }

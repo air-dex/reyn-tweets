@@ -63,12 +63,13 @@ class URLEntity : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
-		/// @fn QString getDisplayedText();
+		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the url.
 		///
 		/// Overrides the QString TweetEntity::getDisplayedText(); method
+		/// @param linkColor Color for links
 		/// @return An HTML tag to open the URL in a browser
-		QString getDisplayedText();
+		QString getDisplayedText(QColor linkColor);
 
 
 	protected:

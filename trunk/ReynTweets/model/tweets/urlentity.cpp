@@ -23,7 +23,9 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QTextStream>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 #include "urlentity.hpp"
 #include "../tools/utils.hpp"
 
@@ -118,9 +120,22 @@ void URLEntity::setExpandedURL(QString newURL) {
 //////////
 
 // Building the rich text for the entity
-QString URLEntity::getDisplayedText() {
-	QString s = "";
-	QTextStream t(&s);
-	t << "<a href=\"" << extractedURL << "\">" << expandedURL << "</a>";
-	return t.readAll();
+QString URLEntity::getDisplayedText(QColor linkColor) {
+	QWebPage page;
+	QWebFrame * frame = page.mainFrame();
+	frame->setHtml("<a></a>");
+	QWebElement doc = frame->documentElement();
+	QWebElement link = doc.findFirst("a");
+
+	link.setPlainText(expandedURL);
+	link.setAttribute("href", extractedURL);
+	link.setStyleProperty("color", linkColor.name());
+	link.setStyleProperty("text-decoration", "none");
+
+	return link.toOuterXml();
+
+//	QString s = "";
+//	QTextStream t(&s);
+//	t << "<a href=\"" << extractedURL << "\">" << expandedURL << "</a>";
+//	return t.readAll();
 }

@@ -24,6 +24,9 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QTextStream>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 #include "usermention.hpp"
 #include "../tools/utils.hpp"
 
@@ -138,10 +141,24 @@ QString UserMention::getMention() {
 }
 
 // Building the rich text for the entity
-QString UserMention::getDisplayedText() {
+QString UserMention::getDisplayedText(QColor linkColor) {
 	QString mention = getMention();
-	QString s = "";
-	QTextStream t(&s);
-	t << "<a href=\"" << mention << "\">" << mention << "</a>";
-	return t.readAll();
+	QWebPage page;
+	QWebFrame * frame = page.mainFrame();
+	frame->setHtml("<a></a>");
+	QWebElement doc = frame->documentElement();
+	QWebElement link = doc.findFirst("a");
+
+	link.setPlainText(mention);
+	link.setAttribute("href", mention);
+	link.setStyleProperty("color", linkColor.name());
+	link.setStyleProperty("text-decoration", "none");
+
+	return link.toOuterXml();
+
+//	QString mention = getMention();
+//	QString s = "";
+//	QTextStream t(&s);
+//	t << "<a href=\"" << mention << "\">" << mention << "</a>";
+//	return t.readAll();
 }

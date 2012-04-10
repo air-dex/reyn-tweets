@@ -62,14 +62,21 @@ QColor string2color(QString coloredString);
 // JSON Streaming //
 ////////////////////
 
-/// @fn static QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream);
+/// @fn QDataStream & jsonStreamingOut(QDataStream & out,
+///									   const QObject & objectToStream,
+///									   const QStringList & blacklist =
+///											QStringList(QString(QLatin1String("objectName"))));
 /// @brief Output stream operator for JSON serialization
 /// @param out The output stream
 /// @param objectToStream Object to put in the stream
+/// @param blacklist Properties to ignore while conserting the QObject into
+/// a QVariant before serializing.
 /// @return The stream with the object
-QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream);
+QDataStream & jsonStreamingOut(QDataStream & out,
+							   const QObject & objectToStream,
+							   const QStringList & blacklist = QStringList(QString(QLatin1String("objectName"))));
 
-/// @fn static QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
+/// @fn QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
 /// @brief Input stream operator for JSON serialization
 /// @param in The input stream
 /// @param objectToStream Object to put in the stream

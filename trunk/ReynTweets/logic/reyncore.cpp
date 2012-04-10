@@ -191,6 +191,13 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 }
 
 
+
+// Getting a reference on the configuration
+ReynTweetsConfiguration & ReynCore::getConfiguration() {
+	return configuration;
+}
+
+
 ////////////////////
 // Special wiring //
 ////////////////////

@@ -54,16 +54,19 @@ void initReynTweetsSystem() {
 }
 
 /// @fn void declareReynTweetsControls();
-/// @brief Declares all the controls used by QML widgets
+/// @brief Declares all the controls and classes used by QML widgets
 void declareReynTweetsControls() {
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
+	ReynTweetsConfiguration::declareQML();
+	UserAccount::declareQML();
 	Tweet::declareQML();
 	UserInfos::declareQML();
 	User::declareQML();
 	Timeline::declareQML();
 	TimelineControl::declareQML();
 	TweetControl::declareQML();
+	SettingsControl::declareQML();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);

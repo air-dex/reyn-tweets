@@ -173,6 +173,11 @@ class ReynCore : public QObject
 							  int count = 20,
 							  bool contributorsDetails = false);
 
+		/// @fn static ReynTweetsConfiguration & getConfiguration();
+		/// @brief Getting a reference on the configuration
+		/// @return Reference on configuration
+		static ReynTweetsConfiguration & getConfiguration();
+
 
 	protected:
 		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);

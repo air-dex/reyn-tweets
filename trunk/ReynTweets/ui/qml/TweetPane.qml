@@ -56,6 +56,8 @@ Rectangle {
 				  : 0
 				)
 
+	radius: 5
+
 	//Debug params
  border.width: 1
  border.color: "#400000"
@@ -222,7 +224,6 @@ Rectangle {
 		text: qsTr("In reply to ") + shown_tweet.in_reply_to_screen_name	// TODO le @screen_name + link to show
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
-		font.italic: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		anchors.left: author_text.left
@@ -243,7 +244,6 @@ Rectangle {
 		text: retweetInfoText();
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
-		font.italic: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		anchors.left: author_text.left

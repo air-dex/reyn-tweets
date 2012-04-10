@@ -21,6 +21,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QtDeclarative>
 #include "useraccount.hpp"
 #include "../../tools/utils.hpp"
 
@@ -34,7 +35,9 @@ UserAccount::UserAccount() :
 	accessToken(""),
 	tokenSecret(""),
 	user()
-{}
+{
+	blacklistProperties();
+}
 
 // Destructor
 UserAccount::~UserAccount() {}
@@ -64,6 +67,13 @@ void UserAccount::initSystem() {
 	qMetaTypeId<UserAccount>();
 }
 
+// Declaring ReynTweetsConfiguration to the QML system
+void UserAccount::declareQML() {
+	qmlRegisterType<UserAccount>("ReynTweetsEntities",
+								 0, 1,
+								 "UserAccount");
+}
+
 
 ////////////////////
 // JSON Streaming //
@@ -84,6 +94,11 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 // Properties management //
 ///////////////////////////
 
+// Blacklisting the "current_user"
+void UserAccount::blacklistProperties() {
+	transientProperties.append(QString(QLatin1String("current_user")));
+}
+
 // Reading the property twitter_user
 QVariantMap UserAccount::getUserProperty() {
 	return user.toVariant();
@@ -92,6 +107,11 @@ QVariantMap UserAccount::getUserProperty() {
 // Writing the property twitter_user
 void UserAccount::setUser(QVariantMap newUserMap) {
 	user.fillWithVariant(newUserMap);
+}
+
+// Reading the property current_user
+UserInfos * UserAccount::getCurrentUser() {
+	return &user;
 }
 
 
@@ -120,11 +140,11 @@ void UserAccount::setTokenSecret(QByteArray secret) {
 }
 
 // Getter on user
-User UserAccount::getUser() {
+UserInfos UserAccount::getUser() {
 	return user;
 }
 
 // Setter on user
-void UserAccount::setUser(User u) {
+void UserAccount::setUser(UserInfos u) {
 	user = u;
 }

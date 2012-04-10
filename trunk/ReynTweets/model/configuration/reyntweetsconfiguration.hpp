@@ -69,6 +69,10 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring ReynTweetsConfiguration to the QML system
+		static void declareQML();
+
 	private:
 		/// @fn void recopie(const ReynTweetsConfiguration & configuration);
 		/// @brief Copy of a ReynTweetsConfiguration
@@ -100,6 +104,14 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	////////////////
 
 	protected:
+		/// @fn void blacklistProperties();
+		/// @brief Blacklisting properties used only for and by QML views.
+		///
+		/// The following properties are blacklisted in this class : <ul>
+		/// <li>current_account</li>
+		/// </ul>
+		void blacklistProperties();
+
 		// User account
 		/// @property user_account
 		/// @brief Serializable form of the account
@@ -116,6 +128,23 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		/// @brief Writing the property user_account
 		/// @param account New value for the account
 		void setUserAccount(QVariantMap accountMap);
+
+		/// @property user_account
+		/// @brief QML read only property to access to the user account.
+		Q_PROPERTY(UserAccount * current_account
+				   READ getCurrentAccount
+				   NOTIFY currentAccountChanged)
+
+		/// @fn UserAccount * getCurrentAccount();
+		/// @brief Reading the property current_account
+		/// @return The user account
+		UserAccount * getCurrentAccount();
+
+
+	signals:
+		/// @fn void currentAccountChanged();
+		/// @brief Signal notifying about changes dealing with current_account
+		void currentAccountChanged();
 
 
 	//////////////////////////////

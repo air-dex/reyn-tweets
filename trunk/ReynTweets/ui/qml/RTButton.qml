@@ -55,12 +55,14 @@ Rectangle {
 	radius: button_radius
 
 	/// @brief Proportion for the gradient
-	property real bordeur: 0.15
+	property real bordeur: 0.25
+
+	property string grey_color: "#a4a4a4"
 
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: "#626262"
+			color: grey_color
 		}
 
 		GradientStop {
@@ -69,11 +71,16 @@ Rectangle {
 		}
 
 		GradientStop {
+			position: 1-bordeur
+			color: constant.orange
+		}
+
+		GradientStop {
 			position: 1
-			color: "#626262"
+			color: grey_color
 		}
 	}
-	border.color: "#000000"
+	//border.color: "#000000"
 
 	// Anchors
 	anchors.right: parent.right

@@ -1,5 +1,5 @@
-/// @file controls.hpp
-/// @brief Header with all the processes
+/// @file settingscontrol.cpp
+/// @brief Implementation of SettingsControl
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,13 +21,24 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef CONTROLS_HPP
-#define CONTROLS_HPP
-
-#include "launchingcontrol.hpp"
-#include "logincontrol.hpp"
+#include <QtDeclarative>
 #include "settingscontrol.hpp"
-#include "tweetcontrol.hpp"
-#include "timelinecontrol.hpp"
 
-#endif // CONTROLS_HPP
+// Constructor
+SettingsControl::SettingsControl() :
+	QObject(),
+	reyn(this),
+	conf(ReynCore::getConfiguration())
+{}
+
+// Declaring SettingsControl to the QML system
+void SettingsControl::declareQML() {
+	qmlRegisterType<SettingsControl>("ReynTweetsControls",
+									 0, 1,
+									 "SettingsControl");
+}
+
+// Reading the configuration property
+ReynTweetsConfiguration * SettingsControl::getConfiguration() {
+	return &conf;
+}

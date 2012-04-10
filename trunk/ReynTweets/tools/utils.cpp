@@ -68,9 +68,12 @@ QColor string2color(QString coloredString) {
 ////////////////////
 
 // Output stream operator for serialization
-QDataStream & jsonStreamingOut(QDataStream & out, const QObject & objectToStream) {
+QDataStream & jsonStreamingOut(QDataStream & out,
+							   const QObject & objectToStream,
+							   const QStringList & blacklist)
+{
 	// Converting the object into a JSON file
-	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream);
+	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream, blacklist);
 	QJson::Serializer serializer;
 	QByteArray jsonedAccount = serializer.serialize(accountMap);
 

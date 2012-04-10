@@ -25,6 +25,7 @@
 #include <QJson/Parser>
 #include "reyntweetsmappable.hpp"
 #include <QMetaProperty>
+#include "../tools/utils.hpp"
 
 /////////////
 // Coplien //
@@ -78,4 +79,18 @@ QVariantMap ReynTweetsMappable::toVariant() const {
 // Filling a ReynTweetsSerializable object with the informations
 void ReynTweetsMappable::fillWithVariant(QVariantMap map) {
 	QJson::QObjectHelper::qvariant2qobject(map, this);
+}
+
+// Specialization of jsonStreamingOut for mappables
+QDataStream & jsonStreamingOut(QDataStream & out,
+							   const ReynTweetsMappable & mappable)
+{
+	return jsonStreamingOut(out,
+							mappable,
+							((ReynTweetsMappable &) mappable).getTransientProperties());
+}
+
+// Getter on transientProperties.
+QStringList & ReynTweetsMappable::getTransientProperties() {
+	return transientProperties;
 }

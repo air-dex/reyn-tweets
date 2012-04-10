@@ -114,10 +114,10 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case NO_ERROR: {
 			// Credentials were right a priori. Ensures that the user is the right one.
 			QVariantMap userMap = result.parsedResult.toMap();
-			User userOfCredentials;
+			UserInfos userOfCredentials;
 			userOfCredentials.fillWithVariant(userMap);
 			UserAccount account = configuration.getUserAccount();
-			User confUser = account.getUser();
+			UserInfos confUser = account.getUser();
 			bool rightUser = confUser.getID() == userOfCredentials.getID();
 			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;
 			if (rightUser) {

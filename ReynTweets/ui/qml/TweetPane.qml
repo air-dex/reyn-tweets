@@ -51,7 +51,7 @@ Rectangle {
 					(reply_info.height + 2*margin)
 				  : 0
 				)
-			 + (tweet.isRetweetedByPeople() ?
+			 + (tweet.isRetweetedByPeople() || tweet.isRetweet() ?
 					(retweet_info.height + 2*margin)
 				  : 0
 				)
@@ -90,13 +90,17 @@ Rectangle {
 		}
 
 		// Treatments if it is a retweet
-		if (tweet.isRetweetedByPeople()) {
+		if (shown_tweet.isRetweetedByPeople()
+				|| tweet_pane.state == "Retweet")
+		{
+			// If you are the retweeter of the tweet is the only one, the
+			// text indicating retweeters won't be displayed
 			retweet_info.visible = true
 			retweet_info.anchors.topMargin = 2*margin
 		}
 
 		// Treatments if it is a reply
-		if (tweet.isReply()) {
+		if (shown_tweet.isReply()) {
 			tweet_pane.state = "Reply"
 		}
 	}
@@ -180,8 +184,6 @@ Rectangle {
 		id: date_text
 		text: shown_tweet.whenWasItPosted();
 		textFormat: Text.RichText
-//		anchors.left: author_text.right
-//		anchors.leftMargin: margin
 		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignRight
@@ -280,26 +282,87 @@ Rectangle {
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
 		onLinkActivated: {
-			// Showing people that have retweeted
-			console.log("TODO : qui a retweeté ?")
+			if (link.length <= 0) return;
+
+			switch (link[0]) {
+				case '@':
+					// The retweeter was mentionned. Show him !
+					console.log("TODO : show " + link)
+					break;
+
+				default:
+					// Show other people that have retweeted
+					console.log("TODO : who retweeted ?")
+					break;
+			}
 		}
 
+		// Text to announce the retweeters
 		function retweetInfoText() {
-			// TODO : be perfect !
-			var text = qsTr("Retweeted by ")
-			text = text + tweet.author.screen_name
+			var message = qsTr("Retweeted by")
 
-			// Nb of people that retweeted
-			var nbRetweeters = shown_tweet.retweet_count
+			// Nb of other people that retweeted
+			var nbOtherRetweeters = shown_tweet.retweet_count
+			var spottedAsRetweeter = false
 
-			if (nbRetweeters > 0) {
-				var peopleString = (nbRetweeters - 1 == 1) ? qsTr("person") : qsTr("people")
-				text = text + qsTr(" and ") + nbRetweeters + qsTr(" other ") + peopleString + '.'
+			// Catching the potential retweeter if it is a retweet
+			if (tweet.isRetweet()) {
+				// There is at least one retweeter : the one that bring it to the TL.
+				var myID = settings_control.configuration.current_account.current_user.id_str
+
+				var iamTheRetweeter = (myID == tweet.author.id_str)
+				spottedAsRetweeter = iamTheRetweeter
+
+				if (iamTheRetweeter) {
+					message = message + ' ' + qsTr("me")
+				} else {
+					message = message + ' '
+							+ wrapEntity('@' + tweet.author.screen_name)
+					nbOtherRetweeters--
+				}
 			}
 
-			return text
+			// Did I retweet this ? No need to tell it again if I am the retweeter.
+			if (tweet.retweeted && !spottedAsRetweeter) {
+				if (tweet.isRetweet()) {
+					// The author of the retweet is already written. Let's write a comma after its name
+					message = message + ', '
+				}
+
+				message = message + qsTr("me")
+				spottedAsRetweeter = true
+			}
+
+			// Writing if other people retweeted
+			if (nbOtherRetweeters > 0) {
+				// Enclosing in a tag to show retweeters
+				message = message + ' <a href="showRTers" style="color: '
+						+ shown_tweet.author.profile_link_color
+						+ ' ; text-decoration: none">'
+
+				// People already written in var message
+				var peopleAlreadyCaught = shown_tweet.retweet_count - nbOtherRetweeters
+				var singularForOtherRTers = (nbOtherRetweeters == 1)
+
+				if (peopleAlreadyCaught > 0) {
+					var otherString = singularForOtherRTers ? qsTr("other") : qsTr("others")
+					message = message + qsTr("and") + ' ' + nbOtherRetweeters
+							+ ' ' + otherString
+				} else {
+					message = message + nbOtherRetweeters
+				}
+
+				var peopleString = singularForOtherRTers ? qsTr("person") : qsTr("people")
+				message = message + ' ' + peopleString + '</a>'
+			}
+
+			message = message + '.'
+
+			return message
 		}
 	}
+
+	SettingsControl { id: settings_control }
 
 	// Row with actions on the tweet
 	Row {

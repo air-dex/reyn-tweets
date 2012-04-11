@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-04-11T02:17:18. -->
+<!-- Written by Qt Creator 2.4.1, 2012-04-11T04:42:28. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -380,7 +380,7 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
-      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">ui\qml\LaunchingPane.qml ui\qml\LoginPane.qml ui\qml\QuitPane.qml -ts reyntweets_qml_en.ts</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">ui\qml\LaunchingPane.qml ui\qml\LoginPane.qml ui\qml\QuitPane.qml ui\qml\TweetPane.qml -ts reyntweets_qml_en.ts</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">C:/QtSDK/Desktop/Qt/4.7.4/msvc2008/bin/lupdate.exe</value>
       <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{sourceDir}</value>

@@ -6,7 +6,7 @@
     <message>
         <location filename="connection/requests/oauth/accesstokenrequester.cpp" line="103"/>
         <source>Unexpected parameter &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected parameter &apos;</translation>
     </message>
 </context>
 <context>
@@ -48,23 +48,23 @@
     <message>
         <location filename="connection/requests/oauth/authorizerequester.cpp" line="108"/>
         <source>Authenticity token not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Authenticity token not found.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/authorizerequester.cpp" line="113"/>
         <source>OAuth token not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>OAuth token not found.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/authorizerequester.cpp" line="118"/>
         <source>Deny value not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deny value not found.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/authorizerequester.cpp" line="123"/>
         <source>Empty HTML page.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Empty HTML page.</translation>
     </message>
 </context>
 <context>
@@ -113,22 +113,22 @@
     <message>
         <location filename="logic/processes/launchingprocess.cpp" line="195"/>
         <source>You reach the authentication rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>You reach the authentication rate:</translation>
     </message>
     <message>
         <location filename="logic/processes/launchingprocess.cpp" line="203"/>
         <source>Twitter is down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Twitter is down:</translation>
     </message>
     <message>
         <location filename="logic/processes/launchingprocess.cpp" line="211"/>
         <source>Problem while connecting to Twitter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Problem while connecting to Twitter:</translation>
     </message>
     <message>
         <location filename="logic/processes/launchingprocess.cpp" line="226"/>
         <source>Unexpected result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected result:</translation>
     </message>
     <message>
         <source>You reach the authentication rate.</source>
@@ -183,27 +183,27 @@
     <message>
         <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="140"/>
         <source>PIN code (oauth verifier) not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>PIN code (OAuth Verifier) not found.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="204"/>
         <source>&amp;lt;div class=&quot;happy notice callback&quot;&amp;gt; HTML tag expected.</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;lt;div class=&quot;happy notice callback&quot;&amp;gt; HTML tag expected.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="209"/>
         <source>Empty HTML page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Empty HTML page.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="213"/>
         <source>HTML parsing failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML parsing failed.</translation>
     </message>
     <message>
         <location filename="connection/requests/oauth/postauthorizerequester.cpp" line="217"/>
         <source>Wrong URL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wrong URL.</translation>
     </message>
 </context>
 <context>
@@ -211,94 +211,94 @@
     <message>
         <location filename="tools/parsers/htmlparser.cpp" line="46"/>
         <source>No HTML parser available.</source>
-        <translation type="unfinished"></translation>
+        <translation>No HTML parser available.</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="36"/>
         <source>Following arguments are invalid : </source>
-        <translation type="unfinished"></translation>
+        <translation>Following arguments are invalid : </translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="54"/>
         <source>OAuth parsing : cannot parse &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>OAuth parsing : cannot parse &apos;</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="85"/>
         <source>Parameter extraction : parameter &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Parameter extraction : parameter &apos;</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="87"/>
         <location filename="tools/parsers/oauthparser.cpp" line="129"/>
         <source>&apos; expected.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos; expected.</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="120"/>
         <source>Rewriting as bool : unexpected value &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Rewriting as bool : unexpected value &apos;</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="122"/>
         <source>&apos; for parameter &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos; for parameter &apos;</translation>
     </message>
     <message>
         <location filename="tools/parsers/oauthparser.cpp" line="127"/>
         <source>Rewriting as bool : parameter &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Rewriting as bool : parameter &apos;</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="73"/>
         <source>Twitter seems down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Twitter seems down:</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="76"/>
         <source>Tokens were not authorized:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tokens were not authorized:</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="79"/>
         <source>You reach the authentication rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>You reach the authentication rate:</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="82"/>
         <source>Unexpected result:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected result:</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="114"/>
         <source>Error </source>
-        <translation type="unfinished"></translation>
+        <translation>Error </translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="119"/>
         <source>Request : </source>
-        <translation type="unfinished"></translation>
+        <translation>Request: </translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="132"/>
         <source>Network error </source>
-        <translation type="unfinished">Network error </translation>
+        <translation>Network error </translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="149"/>
         <location filename="tools/processutils.cpp" line="165"/>
         <source>Parsing error:</source>
-        <translation type="unfinished">Parsing error:</translation>
+        <translation>Parsing error:</translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="151"/>
         <source>Line </source>
-        <translation type="unfinished"></translation>
+        <translation>Line </translation>
     </message>
     <message>
         <location filename="tools/processutils.cpp" line="178"/>
         <source>Unexpected problem:</source>
-        <translation type="unfinished">Unexpected problem:</translation>
+        <translation>Unexpected problem:</translation>
     </message>
 </context>
 <context>
@@ -306,7 +306,7 @@
     <message>
         <location filename="connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
         <source>Unexpected parameter &apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected parameter &apos;</translation>
     </message>
 </context>
 </TS>

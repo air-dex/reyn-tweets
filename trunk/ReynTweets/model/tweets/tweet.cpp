@@ -444,24 +444,66 @@ QString Tweet::getDisplaySource() {
 			  : sourceClient;
 
 	// Getting the 'a' tag
-	QWebPage p;
-	QWebFrame * f = p.mainFrame();
-	f->setHtml(htmlText);
-	QWebElement doc = f->documentElement();
-	QWebElement elt = doc.findFirst("a");
+	QWebPage page;
+	QWebFrame * frame = page.mainFrame();
 
-	// Styling
-	elt.setStyleProperty("text-decoration", "none");
-	elt.setStyleProperty("color", profile.getProfileLinkColor().name());
+	if (frame) {
+		frame->setHtml(htmlText);
+		QWebElement aTag = frame->documentElement().findFirst("a");
 
-	// Extracting the tag under its QString form
-	return elt.toOuterXml();
+		// Styling
+		aTag.setStyleProperty("text-decoration", "none");
+		aTag.setStyleProperty("color", profile.getProfileLinkColor().name());
+
+		// Extracting the tag under its QString form
+		return aTag.toOuterXml();
+	} else {
+		return htmlText;
+	}
+
 }
 
 // When the tweet was posted ?
-QString Tweet::whenWasItPosted() {
-	// TODO
-	return "Un jour";
+QString Tweet::whenWasItPosted(bool encloseInHtmlTag) {
+	QDateTime localCreatedAt = createdAt.toLocalTime();
+
+	// If the tweet was posted today, forget the date
+	QString dateToReturn = (QDate::currentDate() == localCreatedAt.date()) ?
+				localCreatedAt.time().toString(Qt::SystemLocaleShortDate)
+			  : localCreatedAt.toString(Qt::SystemLocaleShortDate);
+
+	// Enclosing it in a HTML tag (or not)
+	if (encloseInHtmlTag) {
+		QWebPage page;
+		QWebFrame * frame = page.mainFrame();
+
+		if (frame) {
+			frame->setHtml("<a></a>");
+			QWebElement aTag = frame->documentElement().findFirst("a");
+
+			aTag.setInnerXml(dateToReturn);
+			aTag.setAttribute("href", getTweetURL().toString());
+			aTag.setStyleProperty("text-decoration", "none");
+			aTag.setStyleProperty("color", profile.getProfileLinkColor().name());
+
+			// Extracting the tag under its QString form
+			return aTag.toOuterXml();
+		} else {
+			QString s = "";
+			QTextStream t(&s);
+
+			t << "<a href=\"" << getTweetURL().toString()
+			  << "style=\"text-decoration: none ; color:\""
+			  << profile.getProfileLinkColor().name() << "\">"
+			  << dateToReturn << "</a>";
+
+			return t.readAll();
+		}
+	} else {
+		// Do not enclose
+		return dateToReturn;
+	}
+
 }
 
 // Indicating if the tweet is a retweet or not
@@ -477,4 +519,15 @@ bool Tweet::isReply() {
 // Indicating if the tweet was retweeted by other users.
 bool Tweet::isRetweetedByPeople() {
 	return retweetCount > 0;
+}
+
+// Getting the URL of the tweet on twitter.com
+QUrl Tweet::getTweetURL() {
+	QString s = "";
+	QTextStream t(&s);
+
+	t << "https://twitter.com/#!/" << profile.getScreenName()
+	  << "/status/" << tweetIDstr;
+
+	return QUrl(t.readAll());
 }

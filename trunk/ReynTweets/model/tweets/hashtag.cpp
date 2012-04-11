@@ -109,19 +109,28 @@ QString Hashtag::getDisplayedText(QColor linkColor) {
 	QString hashtag = getHashtag();
 	QWebPage page;
 	QWebFrame * frame = page.mainFrame();
-	frame->setHtml("<a></a>");
-	QWebElement doc = frame->documentElement();
-	QWebElement link = doc.findFirst("a");
 
-	link.setPlainText(hashtag);
-	link.setAttribute("href", hashtag);
-	link.setStyleProperty("color", linkColor.name());
-	link.setStyleProperty("text-decoration", "none");
+	if (frame) {
+		frame->setHtml("<a></a>");
+		QWebElement link = frame->documentElement().findFirst("a");
 
-	return link.toOuterXml();
+		link.setPlainText(hashtag);
+		link.setAttribute("href", hashtag);
+		link.setStyleProperty("color", linkColor.name());
+		link.setStyleProperty("text-decoration", "none");
 
-//	QString s = "";
-//	QTextStream t(&s);
-//	t << "<a href=\"" << hashtag << "\">" << hashtag << "</a>";
-//	return t.readAll();
+		return link.toOuterXml();
+	} else {
+		// Back to basics : writing a string.
+		QString s = "";
+		QTextStream t(&s);
+
+		t << "<a href=\"" << hashtag
+		  << "style=\"text-decoration: none ; color:\""
+		  << linkColor.name() << "\">" << hashtag << "</a>";
+
+		return t.readAll();
+	}
+
+
 }

@@ -145,20 +145,28 @@ QString UserMention::getDisplayedText(QColor linkColor) {
 	QString mention = getMention();
 	QWebPage page;
 	QWebFrame * frame = page.mainFrame();
-	frame->setHtml("<a></a>");
-	QWebElement doc = frame->documentElement();
-	QWebElement link = doc.findFirst("a");
 
-	link.setPlainText(mention);
-	link.setAttribute("href", mention);
-	link.setStyleProperty("color", linkColor.name());
-	link.setStyleProperty("text-decoration", "none");
+	if (frame) {
+		frame->setHtml("<a></a>");
+		QWebElement link = frame->documentElement().findFirst("a");
 
-	return link.toOuterXml();
+		link.setPlainText(mention);
+		link.setAttribute("href", mention);
+		link.setStyleProperty("color", linkColor.name());
+		link.setStyleProperty("text-align", "right");
+		link.setStyleProperty("text-decoration", "none");
 
-//	QString mention = getMention();
-//	QString s = "";
-//	QTextStream t(&s);
-//	t << "<a href=\"" << mention << "\">" << mention << "</a>";
-//	return t.readAll();
+		return link.toOuterXml();
+	} else {
+		// Back to basics : writing a string.
+		QString mention = getMention();
+		QString s = "";
+		QTextStream t(&s);
+
+		t << "<a href=\"" << mention
+		  << "style=\"text-decoration: none ; color:\""
+		  << linkColor.name() << "\">" << mention << "</a>";
+
+		return t.readAll();
+	}
 }

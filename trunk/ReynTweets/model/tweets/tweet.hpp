@@ -26,6 +26,7 @@
 #ifndef TWEET_HPP
 #define TWEET_HPP
 
+#include <QUrl>
 #include "../../tools/reyntweetsdatetime.hpp"
 #include "../reyntweetsmappable.hpp"
 #include "tweetentities.hpp"
@@ -709,10 +710,12 @@ class Tweet : public ReynTweetsMappable
 		///	@return The text to display
 		Q_INVOKABLE QString getDisplaySource();
 
-		/// @fn Q_INVOKABLE QString whenWasItPosted();
+		/// @fn Q_INVOKABLE QString whenWasItPosted(bool encloseInHtmlTag = true);
 		/// @brief When the tweet was posted ?
+		/// @param encloseInHtmlTag Boolean indicating if the date has to be
+		/// enclosed in a HTML tag linked to the tweet on twitter.com (default : true).
 		///	@return A string telling when it was posted
-		Q_INVOKABLE QString whenWasItPosted();
+		Q_INVOKABLE QString whenWasItPosted(bool encloseInHtmlTag = true);
 
 		/// @fn Q_INVOKABLE bool isRetweet();
 		/// @brief Method indicating if the tweet is a retweet or not
@@ -728,6 +731,12 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Method indicating if the tweet was retweeted by other users.
 		///	@return true if it was retweeted, false otherwise.
 		Q_INVOKABLE bool isRetweetedByPeople();
+
+		/// @fn Q_INVOKABLE QUrl getTweetURL();
+		/// @brief Getting the URL of the tweet on twitter.com
+		///	@return URL of the tweet on twitter.com. It lloks like
+		/// https://twitter.com/#!/<screen_name>/status/<id>
+		Q_INVOKABLE QUrl getTweetURL();
 };
 
 // Serialization of Tweet

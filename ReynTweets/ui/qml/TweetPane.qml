@@ -159,6 +159,7 @@ Rectangle {
 	Text {
 		id: author_text
 		text: wrapEntity('@' + shown_tweet.author.screen_name)
+		elide: Text.ElideRight
 		font.bold: true
 		font.underline: false
 		verticalAlignment: Text.AlignVCenter
@@ -169,6 +170,8 @@ Rectangle {
 		anchors.left: avatar_zone.right
 		// More margin to not move if it is a retweet.
 		anchors.leftMargin: 2*margin + tweet_pane.avatar_side /4
+		anchors.right: date_text.left
+		anchors.rightMargin: 2*margin
 		onLinkActivated: console.log('TODO : show user @' + shown_tweet.author.screen_name)
 	}
 
@@ -176,8 +179,9 @@ Rectangle {
 	Text {
 		id: date_text
 		text: shown_tweet.whenWasItPosted();
-		anchors.left: author_text.right
-		anchors.leftMargin: margin
+		textFormat: Text.RichText
+//		anchors.left: author_text.right
+//		anchors.leftMargin: margin
 		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignRight
@@ -186,6 +190,7 @@ Rectangle {
 		anchors.right: parent.right
 		anchors.rightMargin: margin
 		font.pixelSize: constant.font_size
+		onLinkActivated: Qt.openUrlExternally(link)
 	}
 
 	// Content of the tweet

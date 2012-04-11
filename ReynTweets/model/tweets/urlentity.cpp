@@ -23,6 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QTextStream>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
@@ -123,19 +124,25 @@ void URLEntity::setExpandedURL(QString newURL) {
 QString URLEntity::getDisplayedText(QColor linkColor) {
 	QWebPage page;
 	QWebFrame * frame = page.mainFrame();
-	frame->setHtml("<a></a>");
-	QWebElement doc = frame->documentElement();
-	QWebElement link = doc.findFirst("a");
 
-	link.setPlainText(expandedURL);
-	link.setAttribute("href", extractedURL);
-	link.setStyleProperty("color", linkColor.name());
-	link.setStyleProperty("text-decoration", "none");
+	if (frame) {
+		frame->setHtml("<a></a>");
+		QWebElement link = frame->documentElement().findFirst("a");
 
-	return link.toOuterXml();
+		link.setPlainText(expandedURL);
+		link.setAttribute("href", extractedURL);
+		link.setStyleProperty("color", linkColor.name());
+		link.setStyleProperty("text-decoration", "none");
 
-//	QString s = "";
-//	QTextStream t(&s);
-//	t << "<a href=\"" << extractedURL << "\">" << expandedURL << "</a>";
-//	return t.readAll();
+		return link.toOuterXml();
+	} else {
+		QString s = "";
+		QTextStream t(&s);
+
+		t << "<a href=\"" << extractedURL
+		  << "style=\"text-decoration: none ; color:\""
+		  << linkColor.name() << "\">" << expandedURL << "</a>";
+
+		return t.readAll();
+	}
 }

@@ -67,12 +67,17 @@ Rectangle {
 
 		GradientStop {
 			position: separator
+			color: constant.very_light_grey // or white
+		}
+
+		GradientStop {
+			position: 0.5
 			color: constant.white
 		}
 
 		GradientStop {
 			position: 1-separator
-			color: constant.white
+			color: constant.very_light_grey // or white
 		}
 
 		GradientStop {
@@ -274,7 +279,7 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pixelSize: 0
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom

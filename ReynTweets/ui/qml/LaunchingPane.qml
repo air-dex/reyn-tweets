@@ -85,7 +85,9 @@ Rectangle {
 
 		Text {
 			id: copyright
-			text: "(C) 2012 Romain DUCHER (@air_dex)"
+			text: '(C) 2012 Romain DUCHER (<a href="https://twitter.com/#!/air_dex"'
+				  + ' style="text-decoration: none; color: '+ constant.orange
+				  + '">@air_dex</a>)'
 			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -93,11 +95,14 @@ Rectangle {
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 			font.pixelSize: constant.font_size
+			onLinkActivated: Qt.openUrlExternally(link)
 		}
 
 		Text {
 			id: website
-			text: qsTr("Website : ") +  "http://code.google.com/p/reyn-tweeets"
+			text: qsTr("Website : ") +  '<a href="http://code.google.com/p/reyn-tweets/"'
+				  + 'style="text-decoration:none; color: ' + constant.orange
+				  + '">http://code.google.com/p/reyn-tweeets/</a>'
 			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -105,6 +110,7 @@ Rectangle {
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 			font.pixelSize: constant.font_size
+			onLinkActivated: Qt.openUrlExternally(link)
 		}
 	}
 

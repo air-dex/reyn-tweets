@@ -103,7 +103,7 @@ class AllowControl : public QObject
 				   WRITE setLoginControl)
 
 		/// @brief Value behind login_control property
-		LoginControl control;
+		LoginControl * control;
 
 	private:
 		/// @fn void allowWiring();

@@ -46,15 +46,9 @@ class LaunchingControl : public QObject
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
-		/// @fn LoginControl * getLoginControl();
-		/// @brief Reading the login_control property
-		/// @return control
-		LoginControl * getLoginControl();
-
-		/// @fn void setLoginControl(LoginControl * ctrl);
-		/// @brief Writing the login_control property
-		/// @param ctrl New value for control
-		void setLoginControl(LoginControl * ctrl);
+		/// @fn Q_INVOKABLE void launchReynTweets();
+		/// @brief Lauching Reyn Tweets
+		Q_INVOKABLE void launchReynTweets();
 
 
 	signals:
@@ -69,29 +63,9 @@ class LaunchingControl : public QObject
 						 QString errorMsg,
 						 bool isFatal);
 
-		/// @fn void showLoginPopup(bool popupVisible);
-		/// @brief Signal sent to modify the visibility of the popup used to
-		/// ask the user to give its credentials.
-		/// @param popupVisible Boolean indicating if the popup has to be
-		/// shown or hidden.
-		void showLoginPopup(bool popupVisible);
-
-
-	public slots:
-		/// @fn void launchReynTweets();
-		/// @brief Lauching Reyn Tweets
-		void launchReynTweets();
-
-		/// @fn void validCredentials(bool valid);
-		/// @brief Slot executed when reyn tells the control if the credentials
-		/// given by the user were right.
-		/// @param valid Boolean whose value is true if the credentials are OK.
-		void validCredentials(bool valid);
-
-		/// @fn void credentialsNeeded();
-		/// @brief Slot executed when reyn tells the control that it needs
-		/// user credentials.
-		void credentialsNeeded();
+		/// @fn void authenticationNeeded();
+		/// @brief Signal sent if Reyn Tweets has to be allowed again
+		void authenticationNeeded();
 
 
 	protected slots:
@@ -100,37 +74,9 @@ class LaunchingControl : public QObject
 		/// @param res The process result
 		void launchOK(ProcessWrapper res);
 
-		/// @fn void allowOK(ProcessWrapper res);
-		/// @brief Slot executed after an authentication, if needed.
-		/// @param res The process result
-		void allowOK(ProcessWrapper res);
-
 	protected:
 		/// @brief Core of the application
 		ReynCore reyn;
-
-		/// @property loginControl
-		/// @brief Control behind the authentication popup
-		Q_PROPERTY(LoginControl * loginControl
-				   READ getLoginControl
-				   WRITE setLoginControl)
-
-		/// @brief Value behind loginControl
-		LoginControl * control;
-
-	private:
-		/// @fn void allowWiring();
-		/// @brief Wiring for a potential authentication process
-		void allowWiring();
-
-		/// @fn void allowUnwiring();
-		/// @brief Disconnect what was connected while executing
-		/// <code>allowWiring();</code>.
-		void allowUnwiring();
-
-		/// @fn void allowReynTweets();
-		/// @brief Allowing Reyn Tweets to use a Twitter Account
-		void allowReynTweets();
 };
 
 #endif // LAUNCHINGCONTROL_HPP

@@ -24,6 +24,7 @@
 #ifndef CONTROLS_HPP
 #define CONTROLS_HPP
 
+#include "allowcontrol.hpp"
 #include "launchingcontrol.hpp"
 #include "logincontrol.hpp"
 #include "settingscontrol.hpp"

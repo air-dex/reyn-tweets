@@ -45,7 +45,7 @@ Rectangle {
 	id: login_pane
 	width: 360
 	height: min_height
-	color: "#cacaca"
+	color: constant.grey
 	radius: 5
 
 	Component.onCompleted: {
@@ -142,7 +142,7 @@ Rectangle {
 		// Clickable check box
 		Rectangle {
 			property string hide_color: "#ffffff"
-			property string show_color: "#d9781d"
+			property string show_color: constant.orange
 
 			id: check_box
 			width: legend.height

@@ -31,7 +31,7 @@
 AllowControl::AllowControl() :
 	QObject(),
 	reyn(this),
-	control()
+	control(0)
 {}
 
 // Declaring to the QML components
@@ -47,11 +47,11 @@ void AllowControl::declareQML() {
 /////////////////////////
 
 LoginControl * AllowControl::getLoginControl() {
-	return &control;
+	return control;
 }
 
 void AllowControl::setLoginControl(LoginControl * ctrl) {
-	control = (ctrl == 0) ? LoginControl() : *ctrl;
+	control = ctrl;
 }
 
 
@@ -128,14 +128,19 @@ void AllowControl::allowOK(ProcessWrapper res) {
 
 // Wiring
 void AllowControl::allowWiring() {
+	if (!control) {
+		emit allowEnded(false, AllowControl::trUtf8("No control"), true);
+		return;
+	}
+
 	// Telling the user that its credentials are required
 	connect(&reyn, SIGNAL(userCredentialsNeeded()),
 			this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
-	connect(&control, SIGNAL(authorize(QString,QString)),
+	connect(control, SIGNAL(authorize(QString,QString)),
 			&reyn, SLOT(authorizeReynTweets(QString,QString)));
-	connect(&control, SIGNAL(deny(QString,QString)),
+	connect(control, SIGNAL(deny(QString,QString)),
 			&reyn, SLOT(denyReynTweets(QString,QString)));
 
 	// When credentials given by the user are right or wrong
@@ -145,14 +150,19 @@ void AllowControl::allowWiring() {
 
 // Unwiring
 void AllowControl::allowUnwiring() {
+	if (!control) {
+		emit allowEnded(false, AllowControl::trUtf8("No control"), true);
+		return;
+	}
+
 	// Telling the user that its credentials are required
 	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
 			   this, SLOT(credentialsNeeded()));
 
 	// Authorizing (or denying) Reyn Tweets
-	disconnect(&control, SIGNAL(authorize(QString,QString)),
+	disconnect(control, SIGNAL(authorize(QString,QString)),
 			   &reyn, SLOT(authorizeReynTweets(QString,QString)));
-	disconnect(&control, SIGNAL(deny(QString,QString)),
+	disconnect(control, SIGNAL(deny(QString,QString)),
 			   &reyn, SLOT(denyReynTweets(QString,QString)));
 
 	// When credentials given by the user are right or wrong
@@ -167,12 +177,17 @@ void AllowControl::allowUnwiring() {
 
 // Credentials OK ?
 void AllowControl::validCredentials(bool valid) {
+	if (!control) {
+		emit allowEnded(false, AllowControl::trUtf8("No control"), true);
+		return;
+	}
+
 	if (valid) {
 		// Hiding the login popup
 		emit showLoginPopup(false);
 	} else {
 		// Informing the user that the credentials are wrong
-		control.wrongCredentials();
+		control->wrongCredentials();
 	}
 }
 

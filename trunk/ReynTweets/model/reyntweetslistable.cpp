@@ -77,7 +77,7 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 // Converting a QVariantList serialized by QJSON into a list of entities.
 template <class S>
 void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
-	empty();
+	clear();
 
 	for (QVariantList::Iterator it = entities.begin();
 		 it != entities.end();

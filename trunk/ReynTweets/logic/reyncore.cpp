@@ -170,12 +170,12 @@ void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 // Unfavoriting a tweet
 void ReynCore::loadHomeTimeline(qlonglong sinceID,
 								qlonglong maxID,
+								int count,
 								bool trimUser,
 								bool includeRTS,
 								bool includeEntities,
 								bool excludeReplies,
 								int page,
-								int count,
 								bool contributorsDetails)
 {
 	LoadingHomeTimelineProcess * process = new LoadingHomeTimelineProcess(sinceID,

@@ -36,6 +36,7 @@ Rectangle {
 	TimelineControl {
 		id: control
 		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length);
+		onLoadEnded: console.log("Problem")
 	}
 
 	// List of all the tweets

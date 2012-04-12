@@ -113,7 +113,8 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	main.cpp \
 	model/tweets/tweetentity.cpp \
-	logic/controls/settingscontrol.cpp
+	logic/controls/settingscontrol.cpp \
+    logic/controls/allowcontrol.cpp
 
 
 HEADERS  += \
@@ -196,7 +197,8 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/controls.hpp \
 	model/tweets/tweetentity.hpp \
-	logic/controls/settingscontrol.hpp
+	logic/controls/settingscontrol.hpp \
+    logic/controls/allowcontrol.hpp
 
 
 OTHER_FILES = \

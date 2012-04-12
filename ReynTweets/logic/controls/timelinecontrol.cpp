@@ -67,10 +67,7 @@ void TimelineControl::loadHomeTimeline() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-	qDebug("loadHomeTimeline");
-	// Choix du 73
-	//reyn.loadHomeTimeline(190123036127666177, 190123424834793471, false, true, true, false, 0, 100);
-	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 50);
+	reyn.loadHomeTimeline(-1, -1, 50, false, true, true, false, 0);
 }
 
 
@@ -89,21 +86,19 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantList resList = result.results.toList();
-	Timeline statuses;
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			statuses.fillWithVariant(resList);
-			timeline = statuses;
+			timeline.fillWithVariant(resList);
 			emit timelineChanged();
 			// Process successful
 			emit loadEnded(true, QString(), false);
 			break;
-/*
+
 		case AUTHENTICATION_REQUIRED:
 			// An authentication is needed. So let's do it!
-			return allowReynTweets();
-//*/
+			return reyn.allowReynTweets();
+
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.

@@ -55,7 +55,7 @@ Rectangle {
 	id: two_buttons_pane
 	width: 360
 	height: description_action.height + spacing + left_button.height
-	color: "#a4a4a4"
+	color: constant.grey
 	radius: pane_radius
 	opacity: 0.800
 
@@ -67,14 +67,13 @@ Rectangle {
 		anchors.rightMargin: margin_value
 		anchors.left: parent.left
 		anchors.leftMargin: margin_value
-		wrapMode: Text.WordWrap
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
 		font.pixelSize: constant.font_size
-		elide: Text.ElideRight
 	}
 
 	// Left button

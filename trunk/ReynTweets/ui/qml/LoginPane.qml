@@ -112,8 +112,6 @@ Rectangle {
 			legend: qsTr("Username or email:")
 			field_left_margin: Tools.max(login_field.getLegendWidth(),
 										 password_field.getLegendWidth())
-			anchors.top: parent.top
-			anchors.topMargin: 0
 		}
 
 		// Field for password
@@ -126,8 +124,6 @@ Rectangle {
 			legend: qsTr("Password:")
 			field_left_margin: Tools.max(login_field.getLegendWidth(),
 										 password_field.getLegendWidth())
-			anchors.bottom: parent.bottom
-			anchors.bottomMargin: 0
 		}
 	}
 
@@ -151,8 +147,6 @@ Rectangle {
 			id: check_box
 			width: legend.height
 			height: width
-			anchors.left: parent.left
-			anchors.leftMargin: 0
 			anchors.bottom: parent.bottom
 			anchors.bottomMargin: 0
 			anchors.top: parent.top

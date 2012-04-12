@@ -54,8 +54,6 @@ Rectangle {
 			width: 5 * launching_pane.width /8
 			fillMode: Image.PreserveAspectFit
 			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.top: parent.top
-			anchors.topMargin: 0
 			source: "../../resources/Logo Reyn Tweets PNG.png"
 		}
 
@@ -65,7 +63,6 @@ Rectangle {
 			text: "Reyn Tweets"
 			font.bold: true
 			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.bottom: parent.bottom
 			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
@@ -91,7 +88,6 @@ Rectangle {
 			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.top: parent.top
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
 			font.pixelSize: constant.font_size
@@ -106,7 +102,6 @@ Rectangle {
 			font.family: constant.font
 			font.bold: false
 			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.bottom: parent.bottom
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 			font.pixelSize: constant.font_size

@@ -52,4 +52,7 @@ QtObject {
 
 	// Font size
 	property int font_size: 14
+
+	// Font size
+	property int font_small_size: 12
 }

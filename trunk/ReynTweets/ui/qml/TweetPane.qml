@@ -43,16 +43,19 @@ Rectangle {
 
 	// Minimal height
 	property int min_height: author_text.height + text.height
-							 + source_text.height + action_row.height + 8*margin
+							 + source_text.height + action_row.height + 9*margin
+
+	property bool iam_author: shown_tweet.author.id_str ==
+							  settings_control.configuration.current_account.current_user.id_str
 
 	width: 360
 	height:  min_height
-			 + (tweet.isReply() ?
-					(reply_info.height + 2*margin)
+			 + (shown_tweet.isReply() ?
+					(reply_info.height + margin)
 				  : 0
 				)
-			 + (tweet.isRetweetedByPeople() || tweet.isRetweet() ?
-					(retweet_info.height + 2*margin)
+			 + (shown_tweet.isRetweetedByPeople() || tweet.isRetweet() ?
+					(retweet_info.height + margin)
 				  : 0
 				)
 
@@ -89,24 +92,22 @@ Rectangle {
 	Constants { id:constant }
 
 	Component.onCompleted: {
-		// Treatments if it is a retweet
-		if (tweet.isRetweet()) {
-			tweet_pane.state = "Retweet"
+		// Detects automatically if it's a retweet (put in "Retweet" state)
+
+		// Treatments if it is a reply
+		if (shown_tweet.isReply()) {
+			tweet_pane.state = "Reply"
 		}
+
 
 		// Treatments if it is a retweet
 		if (shown_tweet.isRetweetedByPeople()
 				|| tweet_pane.state == "Retweet")
 		{
-			// If you are the retweeter of the tweet is the only one, the
-			// text indicating retweeters won't be displayed
+			// The retweeter is not in retweet_count. So there is a problem if
+			// the author of the retweet is the only retweeter.
 			retweet_info.visible = true
-			retweet_info.anchors.topMargin = 2*margin
-		}
-
-		// Treatments if it is a reply
-		if (shown_tweet.isReply()) {
-			tweet_pane.state = "Reply"
+			retweet_info.anchors.topMargin = margin
 		}
 	}
 
@@ -124,7 +125,7 @@ Rectangle {
 		width: side
 		height: side
 		anchors.top: parent.top
-		anchors.topMargin: margin
+		anchors.topMargin: 2*margin
 		anchors.left: parent.left
 		anchors.leftMargin: margin
 
@@ -174,7 +175,7 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
 		font.pixelSize: constant.font_size
-		anchors.topMargin: margin
+		anchors.topMargin: 2*margin
 		anchors.top: parent.top
 		anchors.left: avatar_zone.right
 		// More margin to not move if it is a retweet.
@@ -193,7 +194,7 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignRight
 		anchors.top: parent.top
-		anchors.topMargin: margin
+		anchors.topMargin: 2*margin
 		anchors.right: parent.right
 		anchors.rightMargin: margin
 		font.pixelSize: constant.font_size
@@ -220,12 +221,12 @@ Rectangle {
 			switch (link[0]) {
 				case '#':
 					// It is an hashtag. Launch a search about it !
-					console.log("Rechercher le hashtag " + link)
+					console.log("TODO : search hashtag " + link)
 					break;
 
 				case '@':
 					// It is a mentionned used. Show him !
-					console.log("Voir l'utilisateur " + link)
+					console.log("TODO : show user " + link)
 					break;
 
 				default:
@@ -242,11 +243,11 @@ Rectangle {
 		text: "via " + shown_tweet.getDisplaySource()
 		font.italic: true
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pixelSize: constant.font_small_size
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: text.bottom
-		anchors.topMargin: 2*margin
+		anchors.topMargin: margin
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
 		onLinkActivated: Qt.openUrlExternally(link)
@@ -255,11 +256,14 @@ Rectangle {
 	// Reply informations
 	Text {
 		id: reply_info
-		text: qsTr("In reply to ") + wrapEntity('@' + shown_tweet.in_reply_to_screen_name)
+		text: buildImageTag("../../resources/icons/reply_on.png")
+			  + ' ' + qsTr("In reply to ")
+			  + wrapEntity('@' + shown_tweet.in_reply_to_screen_name)
+			  + '. ' + wrapEntity(qsTr("Show conversation")) + '.'
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pixelSize: constant.font_small_size
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
@@ -267,19 +271,32 @@ Rectangle {
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
 		onLinkActivated: {
-			// Showing who replied
-			console.log("TODO : qui a répondu ?")
+			if (link.length <= 0) return;
+
+			switch (link[0]) {
+				case '@':
+					// It is a mentionned used. Show him !
+					console.log("TODO : show " + link)
+					break;
+
+				default:
+					// It is an URL. Show its content in a browser !
+					console.log("TODO : show the conversation")
+					break;
+			}
 		}
 	}
 
 	// Retweet informations
 	Text {
 		id: retweet_info
-		text: retweetInfoText();
+		text: buildImageTag("../../resources/icons/retweet_"
+							+ retweet_action.rt_suffix + ".png")
+			  + ' ' + retweetInfoText();
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: 0
+		font.pixelSize: constant.font_small_size
 		anchors.left: author_text.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
@@ -331,10 +348,10 @@ Rectangle {
 			if (tweet.retweeted && !spottedAsRetweeter) {
 				if (tweet.isRetweet()) {
 					// The author of the retweet is already written. Let's write a comma after its name
-					message = message + ', '
+					message = message + ','
 				}
 
-				message = message + qsTr("me")
+				message = message + ' ' + qsTr("me")
 				spottedAsRetweeter = true
 			}
 
@@ -372,71 +389,82 @@ Rectangle {
 	// Row with actions on the tweet
 	Row {
 		id: action_row
-		spacing: margin
-		height: reply_action.height
-		anchors.right: parent.right
-		anchors.rightMargin: margin
+		spacing: 2*margin
 		anchors.bottom: parent.bottom
-		anchors.bottomMargin: margin
-		anchors.left: parent.left
-		anchors.leftMargin: margin
+		anchors.bottomMargin: 2*margin
+		anchors.horizontalCenter: parent.horizontalCenter
 
-		Text {
+		// Reply
+		ActionElement {
 			id: reply_action
-			text: qsTr("Reply")
-			font.family: constant.font
-			font.pixelSize: constant.font_size
-
-			MouseArea {
-				id: reply_act
-				anchors.fill: parent
-				onClicked: control.reply();
+			image_source: "../../resources/icons/reply_off.png"
+			legend: qsTr("Reply")
+			onAct: {
+				console.log("TODO : reply to the tweet")
+				//control.reply();
 			}
+
+			property string reply_switch: "off"
 		}
 
-		Text {
+		// Delete tweet
+		ActionElement {
+			id: delete_action
+			image_source: "../../resources/icons/wastebin.png"
+			legend: qsTr("Delete")
+			onAct: {
+				console.log("TODO : delete the tweet (or not)")
+			}
+
+			property string rt_suffix: tweet.retweeted ? "on" : "off"
+
+			visible: iam_author
+		}
+
+		// Retweet
+		ActionElement {
 			id: retweet_action
-			text: qsTr("Retweet")
-			font.family: constant.font
-			font.pixelSize: constant.font_size
-
-			MouseArea {
-				id: retweet_act
-				anchors.fill: parent
-				onClicked: control.retweet();
+			image_source: "../../resources/icons/retweet_" + rt_suffix + "2.png"
+			legend: (tweet.retweeted) ? qsTr("Retweeted") : qsTr("Retweet")
+			onAct: {
+				console.log("TODO : retweet the tweet (or not)")
+				//control.retweet();
 			}
+
+			property string rt_suffix: tweet.retweeted ? "on" : "off"
+
+			visible: !iam_author
 		}
 
-		Text {
+		// Quote
+		ActionElement {
 			id: quote_action
-			text: qsTr("Quote")
-			font.family: constant.font
-			font.pixelSize: constant.font_size
-
-			MouseArea {
-				id: quote_act
-				anchors.fill: parent
-				onClicked: control.quote();
+			image_source: "../../resources/icons/quote.png"
+			legend: qsTr("Quote")
+			onAct: {
+				console.log("TODO : quote the tweet (old RT)")
+				//control.quote();
 			}
+
+			visible: !iam_author
 		}
 
-		Text {
+		// Favorite
+		ActionElement {
 			id: favorite_action
-			text: tweet.favorited ? qsTr("Unfavorite") : qsTr("Favorite")
-			font.family: constant.font
-			font.pixelSize: constant.font_size
-
-			MouseArea {
-				id: favorite_act
-				anchors.fill: parent
-				onClicked: {
-					if (tweet.favorited) {
-						control.unfavorite()
-					} else {
-						control.favorite()
-					}
+			image_source: "../../resources/icons/favorite_" + fav_suffix + ".png"
+			legend: (tweet.favorited) ? qsTr("Favorited") : qsTr("Favorite")
+			onAct: {
+				if (tweet.favorited) {
+					console.log("TODO : unfavorite the tweet")
+					//control.unfavorite()
+				} else {
+					console.log("TODO : favorite the tweet")
+					//control.favorite()
 				}
 			}
+
+			property string fav_suffix: tweet.favorited ? "on" : "off"
 		}
 	}
 
@@ -446,17 +474,20 @@ Rectangle {
 		State {
 			// The tweet is a retweet
 			name: "Retweet"
+			when: tweet.isRetweet()
 
 			// Displaying the retweet author's avatar
 			PropertyChanges {
 				target: tweet_pane
 				shown_tweet: tweet.retweet
+				restoreEntryValues: false
 			}
 
 			// Displaying the retweet author's avatar
 			PropertyChanges {
 				target: avatar_zone
 				side: tweet_pane.avatar_side * 6/5
+				restoreEntryValues: false
 			}
 
 			// Kept to load the image if necessary
@@ -464,12 +495,14 @@ Rectangle {
 				target: retweeter_avatar
 				visible: true
 				source: tweet.author.profile_image_url
+				restoreEntryValues: false
 			}
 
 			// New author and new margin to not move the QML Component
 			PropertyChanges {
 				target: author_text
 				anchors.leftMargin: 2*margin
+				restoreEntryValues: false
 			}
 		},
 		State {
@@ -480,13 +513,15 @@ Rectangle {
 			PropertyChanges {
 				target: reply_info
 				visible: true
-				anchors.topMargin: 2*margin
+				anchors.topMargin: margin
+				restoreEntryValues: false
 			}
 
 			// Putting retweet_info under reply_info
 			PropertyChanges {
 				target: retweet_info
 				anchors.top: reply_info.bottom
+				restoreEntryValues: false
 			}
 		},
 		State {
@@ -503,6 +538,10 @@ Rectangle {
 		var endTag = '</a>';
 		return beginTag + shown_tweet.author.profile_link_color
 				+ hrefTag + entity + closeTag + entity + endTag;
+	}
+
+	function buildImageTag(imageSrc) {
+		return '<img src="' + imageSrc + '">'
 	}
 
 	////////////////

@@ -27,7 +27,11 @@
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 
-Component {
+Item {
+	id: login_component
+
+	property int margin: 5
+
 	signal allowOK
 	signal allowKO(string errMsg, bool isfatal)
 
@@ -35,8 +39,6 @@ Component {
 	AllowControl {
 		id: control
 		login_control: login_popup.ctrl
-		onShowLoginPopup: setLoginPopupVisible
-		onAllowEnded: afterAllowing
 	}
 
 	// Popup displayed when the user has to enter its credentials
@@ -44,9 +46,9 @@ Component {
 		id: login_popup
 		z: 2
 		anchors.left: parent.left
-		anchors.leftMargin: launching_pane.margin
+		anchors.leftMargin: login_component.margin
 		anchors.right: parent.right
-		anchors.rightMargin: launching_pane.margin
+		anchors.rightMargin: login_component.margin
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 	}
@@ -55,7 +57,7 @@ Component {
 	TwoButtonsActionPane {
 		id: deny_pane
 		z: 3
-		width: launching_pane.width - 2* launching_pane.margin
+		width: login_component.width - 2* login_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
@@ -82,11 +84,23 @@ Component {
 	QuitPane {
 		id: abort_pane
 		z: 3
-		width: launching_pane.width - 2* launching_pane.margin
+		width: login_component.width - 2* login_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 		pane_text: qsTr("Reyn Tweets will quit. Bye bye !")
+	}
+
+	Component.onCompleted: {
+		// Wiring between the control and its view
+		control.showLoginPopup.connect(setLoginPopupVisible)
+		control.allowEnded.connect(afterAllowing)
+	}
+
+	// Allowing Reyn Tweets
+	function allowReynTweets() {
+		login_popup.state = "UnknownValidity"
+		control.allowReynTweets();
 	}
 
 	/// @fn function setLoginPopupVisible(visible);
@@ -102,42 +116,18 @@ Component {
 	/// @param errMsg Error message
 	/// @param fatal Did the process end fatally ?
 	function afterAllowing(endOK, errMsg, fatal) {
-		var pane;	// Pane where a message will be displayed
-		var messageDisplayed = "";
-
 		if (endOK) {	// Successful end
 			// Tell that's ended
 			allowOK();
-			return;
-		} else if (fatal) {
-			// Bad and fatal error. Show the quit pane.
+		} else if (fatal) {		// Bad and fatal error. Show the quit pane.
 			allowKO(errMsg, fatal)
-//			pane = abort_pane;
-//			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:")
-//					+ "\n\n"
-//					+ errMsg
-//					+ "\n\n"
-//					+ qsTr("The application will quit.");
-		} else {
-			// Bad end but not fatal.
-
+		} else {	// Bad end but not fatal.
 			// Is it because Reyn Tweets was denied ?
 			if (errMsg == qsTr("Reyn Tweets was denied.")) {
 				deny_pane.visible = true;
-				return;
 			} else {
 				allowKO(errMsg, fatal)
-//				// Display warning popup to ask the user to try again or to quit.
-//				pane = try_again_pane;
-//				messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
-//						+ "\n\n"
-//						+ errMsg
-//						+ "\n\n"
-//						+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 			}
 		}
-
-		pane.pane_text = messageDisplayed;
-		pane.visible = true;
 	}
 }

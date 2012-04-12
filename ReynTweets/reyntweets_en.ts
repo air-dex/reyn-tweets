@@ -10,6 +10,14 @@
     </message>
 </context>
 <context>
+    <name>AllowControl</name>
+    <message>
+        <location filename="logic/controls/allowcontrol.cpp" line="97"/>
+        <source>Reyn Tweets was denied.</source>
+        <translation>Reyn Tweets was denied.</translation>
+    </message>
+</context>
+<context>
     <name>AllowProcess</name>
     <message>
         <source>Network error </source>
@@ -70,9 +78,8 @@
 <context>
     <name>LaunchingControl</name>
     <message>
-        <location filename="logic/controls/launchingcontrol.cpp" line="160"/>
         <source>Reyn Tweets was denied.</source>
-        <translation>Reyn Tweets was denied.</translation>
+        <translation type="obsolete">Reyn Tweets was denied.</translation>
     </message>
 </context>
 <context>

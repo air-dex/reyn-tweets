@@ -56,6 +56,7 @@ void initReynTweetsSystem() {
 /// @fn void declareReynTweetsControls();
 /// @brief Declares all the controls and classes used by QML widgets
 void declareReynTweetsControls() {
+	AllowControl::declareQML();
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
 	ReynTweetsConfiguration::declareQML();

@@ -109,18 +109,6 @@ Rectangle {
 		}
 	}
 
-	// Popup displayed if the user has to enter its credentials
-	LoginPane {
-		id: login_popup
-		z: 2
-		anchors.left: parent.left
-		anchors.leftMargin: launching_pane.margin
-		anchors.right: parent.right
-		anchors.rightMargin: launching_pane.margin
-		anchors.verticalCenter: parent.verticalCenter
-		visible: false
-	}
-
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
@@ -152,31 +140,6 @@ Rectangle {
 		onActRight: Qt.quit();
 	}
 
-	// Popup after denying ReynTweets
-	TwoButtonsActionPane {
-		id: deny_pane
-		z: 3
-		width: launching_pane.width - 2* launching_pane.margin
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		visible: false
-
-		// Left button
-		left_button_text: qsTr("Yes")
-		onActLeft: {
-			deny_pane.visible = false;
-			abort_pane.pane_text = qsTr("Reyn Tweets will quit. Bye bye !");
-			abort_pane.visible = true;
-		}
-
-		// Right button
-		right_button_text: qsTr("No")
-		onActRight: {
-			deny_pane.visible = false;
-			launching_pane.launchReynTweets();
-		}
-	}
-
 	////////////////////////////
 	// Back office management //
 	////////////////////////////
@@ -187,31 +150,32 @@ Rectangle {
 	/// @brief Control behind the component
 	LaunchingControl {
 		id: control
-		loginControl: login_popup.ctrl
+		onAuthenticationNeeded: log_component.allowReynTweets();
+	}
+
+	// Component for potential authentications
+	LoginComponent {
+		id: log_component
+		width: parent.width
+		anchors.verticalCenter: parent.verticalCenter
+		onAllowOK: launching_pane.endLaunch();
 	}
 
 	Component.onCompleted: {
 		// Wiring
-
-		// Displaying login_popup or not
-		control.showLoginPopup.connect(setLoginPopupVisible)
-
-		//End of the launching process
 		control.launchEnded.connect(afterLaunching)
+		log_component.allowKO.connect(afterAllowing)
 	}
 
 	/// @fn function launchReynTweets();
 	/// @brief Launching the application
 	function launchReynTweets() {
-		login_popup.state = "UnknownValidity"
 		control.launchReynTweets()
 	}
 
-	/// @fn function setLoginPopupVisible(visible);
-	/// @brief Showing / hiding the login popup
-	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
-	function setLoginPopupVisible(visible) {
-		login_popup.visible = visible;
+	// After a potential authentication process
+	function afterAllowing(errMsg, fatal) {
+		afterLaunching(false, errMsg, fatal)
 	}
 
 	/// @fn function afterLaunching(endOK, errMsg, fatal);
@@ -238,20 +202,13 @@ Rectangle {
 		} else {
 			// Bad end but not fatal.
 
-			// Is it because Reyn Tweets was denied ?
-			if (errMsg == qsTr("Reyn Tweets was denied.")) {
-				pane = deny_pane;
-				messageDisplayed = errMsg + "\n\n"
-						+ qsTr("Are you sure that you do not want Reyn Tweets to use your Twitter account ?");
-			} else {
-				// Display warning popup to ask the user to try again or to quit.
-				pane = try_again_pane;
-				messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
-						+ "\n\n"
-						+ errMsg
-						+ "\n\n"
-						+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
-			}
+			// Display warning popup to ask the user to try again or to quit.
+			pane = try_again_pane;
+			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
+					+ "\n\n"
+					+ errMsg
+					+ "\n\n"
+					+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 		}
 
 		pane.pane_text = messageDisplayed;

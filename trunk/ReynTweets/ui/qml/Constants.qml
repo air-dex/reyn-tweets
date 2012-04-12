@@ -34,7 +34,7 @@ QtObject {
 	property string orange: "#d9781d"
 
 	// Grey
-	property string grey: "#a4a4a4"
+	property string grey: "#c4c4c4"
 
 	// Grey
 	property string very_light_grey: "#fafafa"
@@ -55,4 +55,18 @@ QtObject {
 
 	// Font size
 	property int font_small_size: 12
+
+
+	//////////////////////////
+	// Actions after errors //
+	//////////////////////////
+
+	// Showing temporary message
+	property string info_msg_action: "Info message"
+
+	// Font size
+	property string try_again_action: "Try again"
+
+	// Font size
+	property string quit_action: "Quit"
 }

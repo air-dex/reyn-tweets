@@ -57,6 +57,7 @@ Rectangle {
 		id: description_action
 		width: generic_action_pane.width - 2* generic_action_pane.margin_value
 		text: generic_action_pane.pane_text
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft
@@ -67,7 +68,6 @@ Rectangle {
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
 		font.pixelSize: constant.font_size
-		elide: Text.ElideRight
 	}
 
 	// Button to act

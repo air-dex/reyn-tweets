@@ -1,8 +1,6 @@
 /// @file LoginComponent.qml
 /// @brief Component with items for authentication
 ///
-/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
-/// r204 is in /trunk/ReynTweets/logic
 /// @author Romain Ducher
 ///
 /// @section LICENSE

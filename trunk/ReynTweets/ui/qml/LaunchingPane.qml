@@ -109,35 +109,12 @@ Rectangle {
 		}
 	}
 
-	// Popup to make the user quit the application
-	QuitPane {
-		id: abort_pane
-		z: 3
-		width: launching_pane.width - 2* launching_pane.margin
+	ErrorComponent {
+		id: err_comp
+		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		visible: false
-	}
-
-	// Popup to try again
-	TwoButtonsActionPane {
-		id: try_again_pane
-		z: 3
-		width: launching_pane.width - 2* launching_pane.margin
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		visible: false
-
-		// Left button
-		left_button_text: qsTr("Try again")
-		onActLeft: {
-			try_again_pane.visible = false;
-			launching_pane.launchReynTweets();
-		}
-
-		// Right button
-		right_button_text: qsTr("Quit")
-		onActRight: Qt.quit();
+		onTryAgain: control.launchReynTweets();
 	}
 
 	////////////////////////////
@@ -184,7 +161,7 @@ Rectangle {
 	/// @param errMsg Error message
 	/// @param fatal Did the process end fatally ?
 	function afterLaunching(endOK, errMsg, fatal) {
-		var pane;	// Pane where a message will be displayed
+		var action;	// Pane where a message will be displayed
 		var messageDisplayed = "";
 
 		if (endOK) {	// Successful end
@@ -193,7 +170,7 @@ Rectangle {
 			return;
 		} else if (fatal) {
 			// Bad and fatal error. Show the quit pane.
-			pane = abort_pane;
+			action = constant.quit_action;
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:")
 					+ "\n\n"
 					+ errMsg
@@ -203,7 +180,7 @@ Rectangle {
 			// Bad end but not fatal.
 
 			// Display warning popup to ask the user to try again or to quit.
-			pane = try_again_pane;
+			action = constant.try_again_action;
 			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
 					+ "\n\n"
 					+ errMsg
@@ -211,7 +188,6 @@ Rectangle {
 					+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 		}
 
-		pane.pane_text = messageDisplayed;
-		pane.visible = true;
+		err_comp.displayMessage(action, messageDisplayed)
 	}
 }

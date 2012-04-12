@@ -219,6 +219,8 @@ Rectangle {
 		State {
 			// When the validity of credentials is unknown
 			name: "UnknownValidity"
+			when: !login_pane.visible
+
 			PropertyChanges {
 				target: invalid_password_text
 				visible: false
@@ -233,6 +235,18 @@ Rectangle {
 			PropertyChanges {
 				target: login_pane
 				height: min_height
+			}
+
+			// Writing nothing for password (hidden) and username
+			PropertyChanges {
+				target: login_field
+				field_text: ""
+			}
+
+			PropertyChanges {
+				target: password_field
+				clear_field: false
+				field_text: ""
 			}
 		}
 	]

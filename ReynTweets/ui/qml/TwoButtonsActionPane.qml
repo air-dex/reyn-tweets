@@ -63,11 +63,11 @@ Rectangle {
 	Text {
 		id: description_action
 		text: two_buttons_pane.pane_text
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		anchors.right: parent.right
 		anchors.rightMargin: margin_value
 		anchors.left: parent.left
 		anchors.leftMargin: margin_value
-		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
 		verticalAlignment: Text.AlignVCenter
 		horizontalAlignment: Text.AlignLeft

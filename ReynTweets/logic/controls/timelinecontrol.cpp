@@ -68,7 +68,9 @@ void TimelineControl::loadHomeTimeline() {
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
 	qDebug("loadHomeTimeline");
-	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 25);
+	// Choix du 73
+	//reyn.loadHomeTimeline(190123036127666177, 190123424834793471, false, true, true, false, 0, 100);
+	reyn.loadHomeTimeline(-1, -1, false, true, true, false, 0, 50);
 }
 
 

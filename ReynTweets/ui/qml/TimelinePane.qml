@@ -45,6 +45,7 @@ Rectangle {
 	ListView {
 		id: timeline_view
 		anchors.fill: parent
+		clip: true
 
 		delegate: Component {
 			TweetPane {
@@ -64,7 +65,10 @@ Rectangle {
 				// If you are at the bottom -> get older tweets
 				console.log("TODO : get older tweets")
 			}
+
+			timeline_view.returnToBounds()
 		}
+
 	}
 
 	// Component for potential authentications

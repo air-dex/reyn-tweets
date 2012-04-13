@@ -39,8 +39,14 @@ QtObject {
 	// Grey
 	property string very_light_grey: "#fafafa"
 
-	// Grey
+	// White
 	property string white: "#ffffff"
+
+	// Black
+	property string black: "#000000"
+
+	// Black
+	property string red: "#ff0000"
 
 
 	//////////

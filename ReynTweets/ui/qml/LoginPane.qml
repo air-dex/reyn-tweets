@@ -75,7 +75,7 @@ Rectangle {
 	// Text displayed if the password is invalid
 	Text {
 		id: invalid_password_text
-		color: "#ff0000"
+		color: constant.red
 		text: qsTr("Username or password invalid. Try again.")
 		anchors.rightMargin: margin
 		anchors.right: parent.right

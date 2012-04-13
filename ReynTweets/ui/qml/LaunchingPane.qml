@@ -109,6 +109,15 @@ Rectangle {
 		}
 	}
 
+	// Component for potential authentications
+	LoginComponent {
+		id: log_component
+		width: parent.width
+		anchors.verticalCenter: parent.verticalCenter
+		onAllowOK: launching_pane.endLaunch();
+	}
+
+	// Components for errors
 	ErrorComponent {
 		id: err_comp
 		width: parent.width
@@ -128,14 +137,6 @@ Rectangle {
 	LaunchingControl {
 		id: control
 		onAuthenticationNeeded: log_component.allowReynTweets();
-	}
-
-	// Component for potential authentications
-	LoginComponent {
-		id: log_component
-		width: parent.width
-		anchors.verticalCenter: parent.verticalCenter
-		onAllowOK: launching_pane.endLaunch();
 	}
 
 	Component.onCompleted: {

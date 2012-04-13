@@ -97,7 +97,8 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 		case AUTHENTICATION_REQUIRED:
 			// An authentication is needed. So let's do it!
-			return reyn.allowReynTweets();
+			emit authenticationNeeded();
+			return;
 
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.

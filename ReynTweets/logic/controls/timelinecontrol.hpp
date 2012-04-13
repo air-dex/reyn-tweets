@@ -43,6 +43,10 @@ class TimelineControl : public QObject
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
+		/// @fn Q_INVOKABLE void loadHomeTimeline();
+		/// @brief Loading the home timeline
+		Q_INVOKABLE void loadHomeTimeline();
+
 		/// @fn Q_INVOKABLE Tweet * getTweet(int index);
 		/// @brief Getting a pointer on a tweet in the timeline.
 		///
@@ -70,10 +74,9 @@ class TimelineControl : public QObject
 					   QString errorMsg,
 					   bool isFatal);
 
-	public slots:
-		/// @fn void loadHomeTimeline();
-		/// @brief Loading the home timeline
-		void loadHomeTimeline();
+		/// @fn void authenticationNeeded();
+		/// @brief Signal sent if Reyn Tweets has to be allowed again
+		void authenticationNeeded();
 
 	protected slots:
 		/// @fn void loadTimelineEnded(ProcessWrapper res);

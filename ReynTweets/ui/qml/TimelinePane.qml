@@ -32,10 +32,13 @@ Rectangle {
 	width: 360
 	height: 640
 
+	Constants { id: constant }
+
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length);
+		onAuthenticationNeeded: log_component.allowReynTweets()
+		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
 		onLoadEnded: console.log("TODO : what happened after the load ?")
 	}
 
@@ -65,7 +68,52 @@ Rectangle {
 		}
 	}
 
+	// Component for potential authentications
+	LoginComponent {
+		id: log_component
+		width: parent.width
+		anchors.verticalCenter: parent.verticalCenter
+		onAllowOK: loadHomeTimeline();
+	}
+
+	// Components for errors
+	ErrorComponent {
+		id: err_comp
+		width: parent.width
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		onTryAgain: control.loadHomeTimeline();
+	}
+
+	Component.onCompleted: {
+		// Wiring
+		control.loadEnded.connect(afterLoading)
+	}
+
+	// Loading the home timeline
 	function loadHomeTimeline() {
 		control.loadHomeTimeline();
+	}
+
+	function afterLoading(endOK, errMsg, isFatal) {
+		var action, messageDisplayed;
+
+		if (endOK) {
+			// Nothing to do for the moment
+			return;
+		} else if (isFatal) {
+			// Bad and fatal error. Show the quit pane.
+			action = constant.quit_action;
+			messageDisplayed = qsTr("A fatal error occured while loading the timeline:")
+					+ "\n\n"
+					+ errMsg
+					+ "\n\n"
+					+ qsTr("The application will quit.");
+		} else {
+			action = constant.info_msg_action
+			messageDisplayed = errMsg
+		}
+
+		err_comp.displayMessage(action, messageDisplayed)
 	}
 }

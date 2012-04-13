@@ -127,10 +127,12 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Favoriting a tweet.  <a href="#a1391134cebaf8d30905d13cb531a05ea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a139949eb30e527576d7bc475c004f0f3">launchReynTweets</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Launching the app.  <a href="#a139949eb30e527576d7bc475c004f0f3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a91fd1516ec8e00d39e5cec4be231a83d">loadHomeTimeline</a> (qlonglong sinceID=-1, qlonglong maxID=-1, bool trimUser=false, bool includeRTS=false, bool includeEntities=false, bool excludeReplies=false, int page=0, int count=20, bool contributorsDetails=false)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the home timeline of a user.  <a href="#a91fd1516ec8e00d39e5cec4be231a83d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a627b976ee239b5faa2066889a36d81e4">loadHomeTimeline</a> (qlonglong sinceID=-1, qlonglong maxID=-1, int count=20, bool trimUser=false, bool includeRTS=false, bool includeEntities=false, bool excludeReplies=false, int page=0, bool contributorsDetails=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the home timeline of a user.  <a href="#a627b976ee239b5faa2066889a36d81e4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_reyn_core.html">ReynCore</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a29525bf78dab5fcd96425bee2e6175cc">operator=</a> (const <a class="el" href="class_reyn_core.html">ReynCore</a> &amp;heart)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affectation operator.  <a href="#a29525bf78dab5fcd96425bee2e6175cc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a523134b33222032792aaba223d687da1">postTweet</a> (QString tweet, qlonglong replyToTweetID=-1, bool trimUser=true, bool includeEntities=false, float latitude=-361, float longitude=-361, QString reversePlace=&quot;&quot;, bool displayCoord=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Posting a tweet without media.  <a href="#a523134b33222032792aaba223d687da1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a0f40cc6de49404cf86d069ec58358337">ReynCore</a> (const <a class="el" href="class_reyn_core.html">ReynCore</a> &amp;heart)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#a0f40cc6de49404cf86d069ec58358337"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a463d662ca7e9cac17ad238d0b94f4517">ReynCore</a> (QObject *actionRequester)</td></tr>
@@ -139,6 +141,9 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Unfavoriting a tweet.  <a href="#ad8d9fb7055879124026598634a7421a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a43ebcb37fec0718e9bcc478428cbda65">~ReynCore</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a43ebcb37fec0718e9bcc478428cbda65"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#ab1fb3f521221a3c4cb5b21ca5a671113">getConfiguration</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting a reference on the configuration.  <a href="#ab1fb3f521221a3c4cb5b21ca5a671113"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_core.html#a6cf70dfd2c722444e8bd6f541c36ad68">oauthSpecialWiring</a> (<a class="el" href="class_o_auth_process.html">OAuthProcess</a> *oauthProcess)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Special wiring of an OAuth process.  <a href="#a6cf70dfd2c722444e8bd6f541c36ad68"></a><br/></td></tr>
@@ -291,7 +296,7 @@ window.onload = initDynSections;
 
 <p>Allowing Reyn Tweets. </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00137">137</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00167">167</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +370,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00214">214</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00139">139</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -386,7 +391,7 @@ window.onload = initDynSections;
 
 <p>Authorizing Reyn Tweets (not saving the configuration after). </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00130">130</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00160">160</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -443,7 +448,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00206">206</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00131">131</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +548,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00219">219</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00144">144</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +625,29 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00144">144</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00174">174</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab1fb3f521221a3c4cb5b21ca5a671113"></a><!-- doxytag: member="ReynCore::getConfiguration" ref="ab1fb3f521221a3c4cb5b21ca5a671113" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a> &amp; ReynCore::getConfiguration </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Getting a reference on the configuration. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Reference on configuration </dd></dl>
+
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00226">226</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -641,11 +668,11 @@ window.onload = initDynSections;
 
 <p>Launching the app. </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00124">124</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00154">154</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a91fd1516ec8e00d39e5cec4be231a83d"></a><!-- doxytag: member="ReynCore::loadHomeTimeline" ref="a91fd1516ec8e00d39e5cec4be231a83d" args="(qlonglong sinceID=&#45;1, qlonglong maxID=&#45;1, bool trimUser=false, bool includeRTS=false, bool includeEntities=false, bool excludeReplies=false, int page=0, int count=20, bool contributorsDetails=false)" -->
+<a class="anchor" id="a627b976ee239b5faa2066889a36d81e4"></a><!-- doxytag: member="ReynCore::loadHomeTimeline" ref="a627b976ee239b5faa2066889a36d81e4" args="(qlonglong sinceID=&#45;1, qlonglong maxID=&#45;1, int count=20, bool trimUser=false, bool includeRTS=false, bool includeEntities=false, bool excludeReplies=false, int page=0, bool contributorsDetails=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -660,6 +687,12 @@ window.onload = initDynSections;
           <td></td>
           <td class="paramtype">qlonglong&nbsp;</td>
           <td class="paramname"> <em>maxID</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>count</em> = <code>20</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -694,12 +727,6 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>count</em> = <code>20</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">bool&nbsp;</td>
           <td class="paramname"> <em>contributorsDetails</em> = <code>false</code></td><td>&nbsp;</td>
         </tr>
@@ -717,19 +744,19 @@ window.onload = initDynSections;
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>sinceID</em>&nbsp;</td><td>Minimum tweet ID possible in the timeline </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>maxID</em>&nbsp;</td><td>Maximum tweet ID possible in the timeline </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>count</em>&nbsp;</td><td>Number of tweets </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>trimUser</em>&nbsp;</td><td>In tweets, giving only the ID of the author (true). </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>includeRTS</em>&nbsp;</td><td>Including retweets </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>includeEntities</em>&nbsp;</td><td>Including <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in the tweets (true). </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>excludeReplies</em>&nbsp;</td><td>Excluding the replies </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>page</em>&nbsp;</td><td>Number of pages </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>count</em>&nbsp;</td><td>Number of tweets </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>contributorsDetails</em>&nbsp;</td><td>Including details about contributors </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/statuses/home_timeline">https://dev.twitter.com/docs/api/1/get/statuses/home_timeline</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00171">171</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00201">201</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -757,7 +784,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00156">156</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00186">186</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -786,6 +813,87 @@ window.onload = initDynSections;
 </dl>
 
 <p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00046">46</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a523134b33222032792aaba223d687da1"></a><!-- doxytag: member="ReynCore::postTweet" ref="a523134b33222032792aaba223d687da1" args="(QString tweet, qlonglong replyToTweetID=&#45;1, bool trimUser=true, bool includeEntities=false, float latitude=&#45;361, float longitude=&#45;361, QString reversePlace=&quot;&quot;, bool displayCoord=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynCore::postTweet </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>tweet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qlonglong&nbsp;</td>
+          <td class="paramname"> <em>replyToTweetID</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>trimUser</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>includeEntities</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>latitude</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>longitude</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>reversePlace</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>displayCoord</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Posting a tweet without media. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>tweet</em>&nbsp;</td><td>Text of the tweet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>replyToTweetID</em>&nbsp;</td><td>If the tweet is a reply, this parameter is the ID of the tweet that this tweet replies to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trimUser</em>&nbsp;</td><td>In tweets, giving only the ID of the author (true). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>includeEntities</em>&nbsp;</td><td>Including <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in the tweets (true). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>longitude</em>&nbsp;</td><td>For geolocation, your latitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>latitude</em>&nbsp;</td><td>For geolocation, your longitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>reversePlace</em>&nbsp;</td><td>For geolocation, ID of the place where the tweet is supposed to be sent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>displayCoord</em>&nbsp;</td><td>Displaying the coordonates of the tweet with a pin on a map </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/post/statuses/update">https://dev.twitter.com/docs/api/1/post/statuses/update</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00231">231</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -895,7 +1003,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00150">150</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00180">180</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +1043,7 @@ window.onload = initDynSections;
 
 <p>Executed when an <a class="el" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&#39;s OAuth Authentication Flow.">OAuthProcess</a> send its <a class="el" href="class_reyn_core.html#a870cef4ec88a80b4fed9d31667f2d927" title="Executed when an OAuthProcess send its userCredentialsRequired() signal.">userCredentialsRequired()</a> signal. </p>
 
-<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00201">201</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyncore_8cpp_source.html#l00126">126</a> of file <a class="el" href="reyncore_8cpp_source.html">reyncore.cpp</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +1118,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:35 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

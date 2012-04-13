@@ -96,48 +96,25 @@ window.onload = initDynSections;
 
 <p><a href="class_launching_control-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Slots</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a3b6bc12300d4ed77204e3f457438aa61">credentialsNeeded</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed when reyn tells the control that it needs user credentials.  <a href="#a3b6bc12300d4ed77204e3f457438aa61"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#aaff7a3daa0cc4b2ec85e211efcabf854">launchReynTweets</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lauching Reyn Tweets.  <a href="#aaff7a3daa0cc4b2ec85e211efcabf854"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a9562494a08cad4c8ea28b64ca758cce3">validCredentials</a> (bool valid)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed when reyn tells the control if the credentials given by the user were right.  <a href="#a9562494a08cad4c8ea28b64ca758cce3"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Signals</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ae0771cab52fe1a33cee95a2a2d920a6b">authenticationNeeded</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent if Reyn Tweets has to be allowed again.  <a href="#ae0771cab52fe1a33cee95a2a2d920a6b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785">launchEnded</a> (bool launchOK, QString errorMsg, bool isFatal)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent after launching.  <a href="#a2f32b2d06fba2dd52d835abff3c55785"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a1581d0c7749c3b9da56ebdf237cc0a51">showLoginPopup</a> (bool popupVisible)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent to modify the visibility of the popup used to ask the user to give its credentials.  <a href="#a1581d0c7749c3b9da56ebdf237cc0a51"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_login_control.html">LoginControl</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a12be88f0ffa083e6802800504e83efc7">getLoginControl</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the login_control property.  <a href="#a12be88f0ffa083e6802800504e83efc7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ad0aff0f2ea9098e81fc3f8e6b7731d2a">LaunchingControl</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#ad0aff0f2ea9098e81fc3f8e6b7731d2a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a4540ac09f69e4536b68cf4f32787e52a">setLoginControl</a> (<a class="el" href="class_login_control.html">LoginControl</a> *ctrl)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing the login_control property.  <a href="#a4540ac09f69e4536b68cf4f32787e52a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986">launchReynTweets</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lauching Reyn Tweets.  <a href="#ad151a81ba9feea9c5cdffd86e02d2986"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120">declareQML</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declaring to the QML system.  <a href="#a1878bc6c71619d22a6cd58a9c3f05120"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Slots</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ab34366a874965e56233e82d06c9a92a7">allowOK</a> (<a class="el" href="class_process_wrapper.html">ProcessWrapper</a> res)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed after an authentication, if needed.  <a href="#ab34366a874965e56233e82d06c9a92a7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f">launchOK</a> (<a class="el" href="class_process_wrapper.html">ProcessWrapper</a> res)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Slot executed at the end of the launch process.  <a href="#a67204d582f888226fe918a7cde6bf54f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_core.html">ReynCore</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49">reyn</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Core of the application.  <a href="#a653c58cc355816d94f12ba6b10495a49"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_login_control.html">LoginControl</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ab682a6b1f94240b6e3305efd4997dfb1">control</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Value behind loginControl.  <a href="#ab682a6b1f94240b6e3305efd4997dfb1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_login_control.html">LoginControl</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a27cab8995a03dfd76834aae4c554113a">loginControl</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Control behind the authentication popup.  <a href="#a27cab8995a03dfd76834aae4c554113a"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a6e03caf46af20cedd4169ea116f71762">allowReynTweets</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Allowing Reyn Tweets to use a Twitter Account.  <a href="#a6e03caf46af20cedd4169ea116f71762"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#ac9fd595b2f49b370bfdf2a907d2c7663">allowUnwiring</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Disconnect what was connected while executing <code><a class="el" href="class_launching_control.html#a612d81bf245836a75e74bf1ce7416724" title="Wiring for a potential authentication process.">allowWiring()</a>;</code>.  <a href="#ac9fd595b2f49b370bfdf2a907d2c7663"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_launching_control.html#a612d81bf245836a75e74bf1ce7416724">allowWiring</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wiring for a potential authentication process.  <a href="#a612d81bf245836a75e74bf1ce7416724"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Control behind a <a class="el" href="class_launching_pane.html" title="Component used to launch the app.">LaunchingPane</a>. </p>
@@ -166,115 +143,22 @@ window.onload = initDynSections;
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ab34366a874965e56233e82d06c9a92a7"></a><!-- doxytag: member="LaunchingControl::allowOK" ref="ab34366a874965e56233e82d06c9a92a7" args="(ProcessWrapper res)" -->
+<a class="anchor" id="ae0771cab52fe1a33cee95a2a2d920a6b"></a><!-- doxytag: member="LaunchingControl::authenticationNeeded" ref="ae0771cab52fe1a33cee95a2a2d920a6b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LaunchingControl::allowOK </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_process_wrapper.html">ProcessWrapper</a>&nbsp;</td>
-          <td class="paramname"> <em>res</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected, slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Slot executed after an authentication, if needed. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>res</em>&nbsp;</td><td>The process result </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00135">135</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6e03caf46af20cedd4169ea116f71762"></a><!-- doxytag: member="LaunchingControl::allowReynTweets" ref="a6e03caf46af20cedd4169ea116f71762" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::allowReynTweets </td>
+          <td class="memname">void LaunchingControl::authenticationNeeded </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [signal]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allowing Reyn Tweets to use a Twitter Account. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00126">126</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac9fd595b2f49b370bfdf2a907d2c7663"></a><!-- doxytag: member="LaunchingControl::allowUnwiring" ref="ac9fd595b2f49b370bfdf2a907d2c7663" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::allowUnwiring </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Disconnect what was connected while executing <code><a class="el" href="class_launching_control.html#a612d81bf245836a75e74bf1ce7416724" title="Wiring for a potential authentication process.">allowWiring()</a>;</code>. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00214">214</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a612d81bf245836a75e74bf1ce7416724"></a><!-- doxytag: member="LaunchingControl::allowWiring" ref="a612d81bf245836a75e74bf1ce7416724" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::allowWiring </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Wiring for a potential authentication process. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00193">193</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3b6bc12300d4ed77204e3f457438aa61"></a><!-- doxytag: member="LaunchingControl::credentialsNeeded" ref="a3b6bc12300d4ed77204e3f457438aa61" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::credentialsNeeded </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Slot executed when reyn tells the control that it needs user credentials. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00251">251</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
+<p>Signal sent if Reyn Tweets has to be allowed again. </p>
 
 </div>
 </div>
@@ -295,29 +179,7 @@ window.onload = initDynSections;
 
 <p>Declaring to the QML system. </p>
 
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00040">40</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a12be88f0ffa083e6802800504e83efc7"></a><!-- doxytag: member="LaunchingControl::getLoginControl" ref="a12be88f0ffa083e6802800504e83efc7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_login_control.html">LoginControl</a> * LaunchingControl::getLoginControl </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reading the login_control property. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>control </dd></dl>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00051">51</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
+<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00037">37</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
 
 </div>
 </div>
@@ -388,40 +250,18 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00077">77</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
+<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00061">61</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaff7a3daa0cc4b2ec85e211efcabf854"></a><!-- doxytag: member="LaunchingControl::launchReynTweets" ref="aaff7a3daa0cc4b2ec85e211efcabf854" args="()" -->
+<a class="anchor" id="ad151a81ba9feea9c5cdffd86e02d2986"></a><!-- doxytag: member="LaunchingControl::launchReynTweets" ref="ad151a81ba9feea9c5cdffd86e02d2986" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LaunchingControl::launchReynTweets </td>
+          <td class="memname">Q_INVOKABLE void LaunchingControl::launchReynTweets </td>
           <td>(</td>
           <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Lauching Reyn Tweets. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00068">68</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4540ac09f69e4536b68cf4f32787e52a"></a><!-- doxytag: member="LaunchingControl::setLoginControl" ref="a4540ac09f69e4536b68cf4f32787e52a" args="(LoginControl *ctrl)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::setLoginControl </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_login_control.html">LoginControl</a> *&nbsp;</td>
-          <td class="paramname"> <em>ctrl</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -429,69 +269,9 @@ window.onload = initDynSections;
 </div>
 <div class="memdoc">
 
-<p>Writing the login_control property. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ctrl</em>&nbsp;</td><td>New value for control </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Lauching Reyn Tweets. </p>
 
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00055">55</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1581d0c7749c3b9da56ebdf237cc0a51"></a><!-- doxytag: member="LaunchingControl::showLoginPopup" ref="a1581d0c7749c3b9da56ebdf237cc0a51" args="(bool popupVisible)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::showLoginPopup </td>
-          <td>(</td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>popupVisible</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [signal]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Signal sent to modify the visibility of the popup used to ask the user to give its credentials. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>popupVisible</em>&nbsp;</td><td>Boolean indicating if the popup has to be shown or hidden. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a9562494a08cad4c8ea28b64ca758cce3"></a><!-- doxytag: member="LaunchingControl::validCredentials" ref="a9562494a08cad4c8ea28b64ca758cce3" args="(bool valid)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LaunchingControl::validCredentials </td>
-          <td>(</td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>valid</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [slot]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Slot executed when reyn tells the control if the credentials given by the user were right. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>valid</em>&nbsp;</td><td>Boolean whose value is true if the credentials are OK. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00240">240</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
+<p>Definition at line <a class="el" href="launchingcontrol_8cpp_source.html#l00052">52</a> of file <a class="el" href="launchingcontrol_8cpp_source.html">launchingcontrol.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,42 +289,7 @@ window.onload = initDynSections;
 
 <p>Core of the application. </p>
 
-<p>Definition at line <a class="el" href="launchingcontrol_8hpp_source.html#l00110">110</a> of file <a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Property Documentation</h2>
-<a class="anchor" id="ab682a6b1f94240b6e3305efd4997dfb1"></a><!-- doxytag: member="LaunchingControl::control" ref="ab682a6b1f94240b6e3305efd4997dfb1" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_login_control.html">LoginControl</a>* LaunchingControl::control</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Value behind loginControl. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8hpp_source.html#l00119">119</a> of file <a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a27cab8995a03dfd76834aae4c554113a"></a><!-- doxytag: member="LaunchingControl::loginControl" ref="a27cab8995a03dfd76834aae4c554113a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LaunchingControl::loginControl<code> [read, write]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Control behind the authentication popup. </p>
-
-<p>Definition at line <a class="el" href="launchingcontrol_8hpp_source.html#l00116">116</a> of file <a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="launchingcontrol_8hpp_source.html#l00079">79</a> of file <a class="el" href="launchingcontrol_8hpp_source.html">launchingcontrol.hpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +312,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:33 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:48 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

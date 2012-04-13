@@ -112,8 +112,8 @@ Inheritance diagram for TweetEntity:</div>
 <p><a href="class_tweet_entity-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff">getDisplayedText</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the entity.  <a href="#ab9ff6ad4d6d451211d8d6d259179c6ff"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f">getDisplayedText</a> (QColor linkColor)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the entity.  <a href="#a333ab14c60747f8f40d8d92c53104d8f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index_bounds.html">IndexBounds</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12">getIndices</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading indexes.  <a href="#aa5ba17fe1a02a937770a5910984e4b12"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d">getIndicesProperty</a> ()</td></tr>
@@ -216,14 +216,15 @@ Inheritance diagram for TweetEntity:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ab9ff6ad4d6d451211d8d6d259179c6ff"></a><!-- doxytag: member="TweetEntity::getDisplayedText" ref="ab9ff6ad4d6d451211d8d6d259179c6ff" args="()=0" -->
+<a class="anchor" id="a333ab14c60747f8f40d8d92c53104d8f"></a><!-- doxytag: member="TweetEntity::getDisplayedText" ref="a333ab14c60747f8f40d8d92c53104d8f" args="(QColor linkColor)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">QString TweetEntity::getDisplayedText </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">QColor&nbsp;</td>
+          <td class="paramname"> <em>linkColor</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
         </tr>
@@ -232,9 +233,15 @@ Inheritance diagram for TweetEntity:</div>
 <div class="memdoc">
 
 <p>Building the rich text for the entity. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>linkColor</em>&nbsp;</td><td>Color for links </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The tweet entity with rich content </dd></dl>
 
-<p>Implemented in <a class="el" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d">Hashtag</a>, <a class="el" href="class_u_r_l_entity.html#ae35e39c2aed565d732156d7606514f1a">URLEntity</a>, and <a class="el" href="class_user_mention.html#a4f8fe92edad2f4ad7cdfe2fce3b71d86">UserMention</a>.</p>
+<p>Implemented in <a class="el" href="class_hashtag.html#a858590259f9329028c29fb015ab77c12">Hashtag</a>, <a class="el" href="class_u_r_l_entity.html#a90954fd44549b6803ca9809a8c6b652b">URLEntity</a>, and <a class="el" href="class_user_mention.html#a9b2619a5874db2400a18781200867e35">UserMention</a>.</p>
 
 </div>
 </div>
@@ -409,7 +416,7 @@ Inheritance diagram for TweetEntity:</div>
 
 <p>Indexes of the hashtag in the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweetentity_8hpp_source.html#l00090">90</a> of file <a class="el" href="tweetentity_8hpp_source.html">tweetentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentity_8hpp_source.html#l00091">91</a> of file <a class="el" href="tweetentity_8hpp_source.html">tweetentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +434,7 @@ Inheritance diagram for TweetEntity:</div>
 <p>Bounds of the entity in the tweet. </p>
 <p>Represented by the indexes attribute. </p>
 
-<p>Definition at line <a class="el" href="tweetentity_8hpp_source.html#l00077">77</a> of file <a class="el" href="tweetentity_8hpp_source.html">tweetentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweetentity_8hpp_source.html#l00078">78</a> of file <a class="el" href="tweetentity_8hpp_source.html">tweetentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -450,7 +457,7 @@ Inheritance diagram for TweetEntity:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:37 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -139,15 +139,22 @@ window.onload = initDynSections;
 <a name="l00051"></a>00051                 font.pixelSize: constant.font_size
 <a name="l00052"></a>00052         }
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054         <a class="code" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> {
-<a name="l00055"></a>00055                 <span class="keywordtype">id</span>: timeline
-<a name="l00056"></a>00056                 anchors.top: mockup.bottom
-<a name="l00057"></a>00057                 anchors.topMargin: 0
-<a name="l00058"></a>00058                 anchors.right: main_view.right
-<a name="l00059"></a>00059                 anchors.left: main_view.left
-<a name="l00060"></a>00060                 anchors.bottom: main_view.bottom
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 }
+<a name="l00054"></a>00054         WriteTweetPane {
+<a name="l00055"></a>00055                 <span class="keywordtype">id</span>: write_tweet
+<a name="l00056"></a>00056                 width: parent.width
+<a name="l00057"></a>00057                 anchors.top: main_view.top
+<a name="l00058"></a>00058                 anchors.horizontalCenter: parent.horizontalCenter
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <a class="code" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> {
+<a name="l00062"></a>00062                 <span class="keywordtype">id</span>: timeline
+<a name="l00063"></a>00063                 anchors.top: write_tweet.bottom
+<a name="l00064"></a>00064                 anchors.topMargin: 0
+<a name="l00065"></a>00065                 anchors.right: main_view.right
+<a name="l00066"></a>00066                 anchors.left: main_view.left
+<a name="l00067"></a>00067                 anchors.bottom: main_view.bottom
+<a name="l00068"></a>00068         }
+<a name="l00069"></a>00069 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -163,7 +170,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

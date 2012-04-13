@@ -47,15 +47,15 @@ class TimelineControl : public QObject
 		/// @brief Loading the home timeline
 		Q_INVOKABLE void loadHomeTimeline();
 
-		/// @fn Q_INVOKABLE Tweet * getTweet(int index);
+		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 		/// @brief Getting a pointer on a tweet in the timeline.
 		///
 		/// Used by QML delegates of the ListView in the TimelinePane
 		/// to attribute a tweet to TweetPane in the delegate in the list.
-		/// @param index Index of the tweet in the timeline
-		/// @return The tweet #index in the timeline if the index is ok,
-		/// a default tweet otherwise.
-		Q_INVOKABLE Tweet * getTweet(int index);
+		/// @param tweetIndex Index of the tweet in the timeline
+		/// @return The tweet &#135;tweetIndex in the timeline if the index
+		/// is ok, a default tweet otherwise.
+		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 
 
 	signals:

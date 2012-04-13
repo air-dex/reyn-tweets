@@ -16,6 +16,13 @@
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets was denied.</translation>
     </message>
+    <message>
+        <location filename="logic/controls/allowcontrol.cpp" line="132"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="154"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="181"/>
+        <source>No control</source>
+        <translation>No control</translation>
+    </message>
 </context>
 <context>
     <name>AllowProcess</name>

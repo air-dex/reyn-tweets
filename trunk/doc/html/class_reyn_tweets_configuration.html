@@ -107,7 +107,12 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p><a href="class_reyn_tweets_configuration-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Signals</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a9794e78f6d00812a6421dd29fedb6913">currentAccountChanged</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal notifying about changes dealing with current_account.  <a href="#a9794e78f6d00812a6421dd29fedb6913"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_account.html">UserAccount</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a92bc7d1d529892498cc2c95ece3a56cb">getCurrentAccount</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property current_account.  <a href="#a92bc7d1d529892498cc2c95ece3a56cb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_account.html">UserAccount</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b">getUserAccount</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the user account.  <a href="#a4f580b734d132484651479baf8dd097b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#ad7a0a944d42407cb4f72cc5e9d312494">getUserAccountProperty</a> ()</td></tr>
@@ -129,12 +134,17 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a13bd2a27889778ee2bb82dd7ff87545a">~ReynTweetsConfiguration</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a13bd2a27889778ee2bb82dd7ff87545a"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a903d5a6e4ce59ea47985dd5239edbbf1">declareQML</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declaring <a class="el" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> to the QML system.  <a href="#a903d5a6e4ce59ea47985dd5239edbbf1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a93600e7c08a9e4b6cef785ca57c9089f">getConsumerKey</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the consumer key.  <a href="#a93600e7c08a9e4b6cef785ca57c9089f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a0f3efd3e6423e0990568f0fa893dbc5e">getConsumerSecret</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the consumer secret.  <a href="#a0f3efd3e6423e0990568f0fa893dbc5e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a97fa6cab8b6985721513d695f8738bb7">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#a97fa6cab8b6985721513d695f8738bb7"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a26954eae784b72454eba063cf7258243">blacklistProperties</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Blacklisting properties used only for and by QML views.  <a href="#a26954eae784b72454eba063cf7258243"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_account.html">UserAccount</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a5e435378f5dd58eef693c78c4285f514">userAccount</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Twitter Account.  <a href="#a5e435378f5dd58eef693c78c4285f514"></a><br/></td></tr>
@@ -146,6 +156,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <tr><td class="memItemLeft" align="right" valign="top">static QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48">REYN_TWEETS_CONSUMER_SECRET</a> = <a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Consumer Secret.  <a href="#aa1b10014d21bf86775571c88f0c56c48"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Properties</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_account.html">UserAccount</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#ab5b58db37678510bf344ac2c586f8707">current_account</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_tweets_configuration.html#a8fdfd989cd488d75886f5442d0012c7a">user_account</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of the account.  <a href="#a8fdfd989cd488d75886f5442d0012c7a"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
@@ -179,7 +190,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Default constructor. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00036">36</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00037">37</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -200,7 +211,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00042">42</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00045">45</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,11 +239,77 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00045">45</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00048">48</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a26954eae784b72454eba063cf7258243"></a><!-- doxytag: member="ReynTweetsConfiguration::blacklistProperties" ref="a26954eae784b72454eba063cf7258243" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynTweetsConfiguration::blacklistProperties </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Blacklisting properties used only for and by QML views. </p>
+<p>The following properties are blacklisted in this class : </p>
+<ul>
+<li>
+current_account </li>
+</ul>
+
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00102">102</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9794e78f6d00812a6421dd29fedb6913"></a><!-- doxytag: member="ReynTweetsConfiguration::currentAccountChanged" ref="a9794e78f6d00812a6421dd29fedb6913" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynTweetsConfiguration::currentAccountChanged </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Signal notifying about changes dealing with current_account. </p>
+
+</div>
+</div>
+<a class="anchor" id="a903d5a6e4ce59ea47985dd5239edbbf1"></a><!-- doxytag: member="ReynTweetsConfiguration::declareQML" ref="a903d5a6e4ce59ea47985dd5239edbbf1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ReynTweetsConfiguration::declareQML </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Declaring <a class="el" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> to the QML system. </p>
+
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00071">71</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a93600e7c08a9e4b6cef785ca57c9089f"></a><!-- doxytag: member="ReynTweetsConfiguration::getConsumerKey" ref="a93600e7c08a9e4b6cef785ca57c9089f" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +328,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Getting the consumer key. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The consumer key </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00122">122</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00142">142</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +350,29 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Getting the consumer secret. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The consumer secret </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00127">127</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00147">147</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92bc7d1d529892498cc2c95ece3a56cb"></a><!-- doxytag: member="ReynTweetsConfiguration::getCurrentAccount" ref="a92bc7d1d529892498cc2c95ece3a56cb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_user_account.html">UserAccount</a> * ReynTweetsConfiguration::getCurrentAccount </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reading the property current_account. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The user account </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00117">117</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -295,7 +394,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Getter on the user account. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The user account </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00132">132</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00152">152</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -317,7 +416,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Reading the property user_account. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The user account </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00092">92</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00107">107</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +437,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Serialization declaration. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00062">62</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00065">65</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -360,7 +459,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Loading the configuration from its file. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A value depending on what happened </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00142">142</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00162">162</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -389,7 +488,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original configuration </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00050">50</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00053">53</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -417,7 +516,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00056">56</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00059">59</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -439,7 +538,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <p>Writing the configuration in its file. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A value depending on what happened </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00173">173</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00193">193</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +566,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00137">137</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00157">157</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,7 +594,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00097">97</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00112">112</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -535,7 +634,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00073">73</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00083">83</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -574,7 +673,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00080">80</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8cpp_source.html#l00090">90</a> of file <a class="el" href="reyntweetsconfiguration_8cpp_source.html">reyntweetsconfiguration.cpp</a>.</p>
 
 </div>
 </div>
@@ -592,7 +691,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Configuration file name. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00150">150</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00179">179</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +708,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Consumer Key. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00138">138</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00167">167</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -626,7 +725,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Consumer Secret. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00141">141</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00170">170</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -643,11 +742,26 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 
 <p>Twitter Account. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00144">144</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00173">173</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
+<a class="anchor" id="ab5b58db37678510bf344ac2c586f8707"></a><!-- doxytag: member="ReynTweetsConfiguration::current_account" ref="ab5b58db37678510bf344ac2c586f8707" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_user_account.html">UserAccount</a> ReynTweetsConfiguration::current_account<code> [read]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00136">136</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a8fdfd989cd488d75886f5442d0012c7a"></a><!-- doxytag: member="ReynTweetsConfiguration::user_account" ref="a8fdfd989cd488d75886f5442d0012c7a" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -660,8 +774,9 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 <div class="memdoc">
 
 <p>Serializable form of the account. </p>
+<p>QML read only property to access to the user account. </p>
 
-<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00108">108</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntweetsconfiguration_8hpp_source.html#l00120">120</a> of file <a class="el" href="reyntweetsconfiguration_8hpp_source.html">reyntweetsconfiguration.hpp</a>.</p>
 
 </div>
 </div>
@@ -684,7 +799,7 @@ Inheritance diagram for ReynTweetsConfiguration:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:35 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

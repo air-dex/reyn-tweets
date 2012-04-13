@@ -334,24 +334,46 @@ window.onload = initDynSections;
 <a name="l00260"></a>00260         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
 <a name="l00261"></a>00261 }
 <a name="l00262"></a>00262 
-<a name="l00263"></a>00263 
-<a name="l00265"></a>00265 <span class="comment">// Users //</span>
-<a name="l00267"></a>00267 <span class="comment"></span>
-<a name="l00268"></a>00268 <span class="comment">// Showing a user identified by its ID</span>
-<a name="l00269"></a><a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a">00269</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities) {
-<a name="l00270"></a>00270         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
-<a name="l00271"></a>00271                                                                                                                   userID,
-<a name="l00272"></a>00272                                                                                                                   entities);
-<a name="l00273"></a>00273         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00274"></a>00274 }
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276 <span class="comment">// Showing a user identified by its screen name</span>
-<a name="l00277"></a><a class="code" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">00277</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities) {
-<a name="l00278"></a>00278         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
-<a name="l00279"></a>00279                                                                                                                   screenName,
-<a name="l00280"></a>00280                                                                                                                   entities);
-<a name="l00281"></a>00281         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
-<a name="l00282"></a>00282 }
+<a name="l00263"></a>00263 <span class="comment">// Posting a tweet without media</span>
+<a name="l00264"></a><a class="code" href="class_reyn_twitter_calls.html#a23cd9c7d737c834d6bddb22f5fb98ebe">00264</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a23cd9c7d737c834d6bddb22f5fb98ebe" title="Posting a tweet without media.">ReynTwitterCalls::updateTweet</a>(QString tweet,
+<a name="l00265"></a>00265                                                                    qlonglong replyToTweetID,
+<a name="l00266"></a>00266                                                                    <span class="keywordtype">float</span> latitude,
+<a name="l00267"></a>00267                                                                    <span class="keywordtype">float</span> longitude,
+<a name="l00268"></a>00268                                                                    QString reversePlace,
+<a name="l00269"></a>00269                                                                    <span class="keywordtype">bool</span> displayCoord,
+<a name="l00270"></a>00270                                                                    <span class="keywordtype">bool</span> trimUser,
+<a name="l00271"></a>00271                                                                    <span class="keywordtype">bool</span> includeEntities)
+<a name="l00272"></a>00272 {
+<a name="l00273"></a>00273         <a class="code" href="class_post_tweet_requester.html" title="Requester for posting a tweet without media.">PostTweetRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_post_tweet_requester.html" title="Requester for posting a tweet without media.">PostTweetRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00274"></a>00274                                                                                                                         tweet,
+<a name="l00275"></a>00275                                                                                                                         replyToTweetID,
+<a name="l00276"></a>00276                                                                                                                         latitude,
+<a name="l00277"></a>00277                                                                                                                         longitude,
+<a name="l00278"></a>00278                                                                                                                         reversePlace,
+<a name="l00279"></a>00279                                                                                                                         displayCoord,
+<a name="l00280"></a>00280                                                                                                                         trimUser,
+<a name="l00281"></a>00281                                                                                                                         includeEntities);
+<a name="l00282"></a>00282         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00283"></a>00283 }
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285 
+<a name="l00287"></a>00287 <span class="comment">// Users //</span>
+<a name="l00289"></a>00289 <span class="comment"></span>
+<a name="l00290"></a>00290 <span class="comment">// Showing a user identified by its ID</span>
+<a name="l00291"></a><a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a">00291</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities) {
+<a name="l00292"></a>00292         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00293"></a>00293                                                                                                                   userID,
+<a name="l00294"></a>00294                                                                                                                   entities);
+<a name="l00295"></a>00295         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00296"></a>00296 }
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298 <span class="comment">// Showing a user identified by its screen name</span>
+<a name="l00299"></a><a class="code" href="class_reyn_twitter_calls.html#ab14d60a28ed2cd1d9b460f697c1c02b2">00299</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">ReynTwitterCalls::showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities) {
+<a name="l00300"></a>00300         <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a> * requester = <span class="keyword">new</span> <a class="code" href="class_show_user_requester.html" title="Requester for getting details about a user identified by its ID or its screen name...">ShowUserRequester</a>(<a class="code" href="class_reyn_twitter_calls.html#aeef9f9ca1e693aa55a926fc7e8cdae47" title="OAuth information.">oauthManager</a>,
+<a name="l00301"></a>00301                                                                                                                   screenName,
+<a name="l00302"></a>00302                                                                                                                   entities);
+<a name="l00303"></a>00303         <a class="code" href="class_reyn_twitter_calls.html#a16f4a76fa4d67d1adeab51a43d83bee7" title="Inline method for executing requests.">executeRequest</a>(requester);
+<a name="l00304"></a>00304 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -367,7 +389,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

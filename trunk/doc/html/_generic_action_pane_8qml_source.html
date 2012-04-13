@@ -129,7 +129,7 @@ window.onload = initDynSections;
 <a name="l00047"></a>00047         <span class="keywordtype">id</span>: generic_action_pane
 <a name="l00048"></a>00048         width: 360
 <a name="l00049"></a>00049         height: description_action.height + spacing + action_button.height
-<a name="l00050"></a>00050         color: <span class="stringliteral">&quot;#a4a4a4&quot;</span>
+<a name="l00050"></a>00050         color: constant.grey
 <a name="l00051"></a>00051         radius: pane_radius
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053         <a class="code" href="class_constants.html" title="QML constants of Reyn Tweets.">Constants</a> {     <span class="keywordtype">id</span>:constant     }
@@ -139,17 +139,17 @@ window.onload = initDynSections;
 <a name="l00057"></a>00057                 <span class="keywordtype">id</span>: description_action
 <a name="l00058"></a>00058                 width: generic_action_pane.width - 2* generic_action_pane.margin_value
 <a name="l00059"></a>00059                 text: generic_action_pane.pane_text
-<a name="l00060"></a>00060                 font.family: constant.font
-<a name="l00061"></a>00061                 verticalAlignment: Text.AlignVCenter
-<a name="l00062"></a>00062                 horizontalAlignment: Text.AlignLeft
-<a name="l00063"></a>00063                 anchors.right: parent.right
-<a name="l00064"></a>00064                 anchors.rightMargin: margin_value
-<a name="l00065"></a>00065                 anchors.left: parent.left
-<a name="l00066"></a>00066                 anchors.leftMargin: margin_value
-<a name="l00067"></a>00067                 anchors.top: parent.top
-<a name="l00068"></a>00068                 anchors.topMargin: margin_value
-<a name="l00069"></a>00069                 font.pixelSize: constant.font_size
-<a name="l00070"></a>00070                 elide: Text.ElideRight
+<a name="l00060"></a>00060                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+<a name="l00061"></a>00061                 font.family: constant.font
+<a name="l00062"></a>00062                 verticalAlignment: Text.AlignVCenter
+<a name="l00063"></a>00063                 horizontalAlignment: Text.AlignLeft
+<a name="l00064"></a>00064                 anchors.right: parent.right
+<a name="l00065"></a>00065                 anchors.rightMargin: margin_value
+<a name="l00066"></a>00066                 anchors.left: parent.left
+<a name="l00067"></a>00067                 anchors.leftMargin: margin_value
+<a name="l00068"></a>00068                 anchors.top: parent.top
+<a name="l00069"></a>00069                 anchors.topMargin: margin_value
+<a name="l00070"></a>00070                 font.pixelSize: constant.font_size
 <a name="l00071"></a>00071         }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073         <span class="comment">// Button to act</span>
@@ -178,7 +178,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

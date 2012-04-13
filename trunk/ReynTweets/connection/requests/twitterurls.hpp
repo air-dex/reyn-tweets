@@ -94,6 +94,12 @@ namespace TwitterURL
 	/// @brief URL to get informations about a given tweet
 	extern QString SHOW_TWEET_URL;
 
+	/// @brief URL to update a tweet
+	extern QString UPDATE_TWEET_URL;
+
+	/// @brief URL to update a tweet with medias
+	extern QString UPDATE_TWEET_WITH_MEDIA_URL;
+
 
 	///////////
 	// Users //

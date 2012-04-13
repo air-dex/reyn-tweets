@@ -96,7 +96,7 @@ class AllowControl : public QObject
 		/// @brief Core of the application
 		ReynCore reyn;
 
-		/// @property loginControl
+		/// @property login_control
 		/// @brief Control behind the authentication popup
 		Q_PROPERTY(LoginControl * login_control
 				   READ getLoginControl

@@ -154,100 +154,103 @@ window.onload = initDynSections;
 <a name="l00067"></a>00067 <span class="comment">// JSON Streaming //</span>
 <a name="l00069"></a>00069 <span class="comment"></span>
 <a name="l00070"></a>00070 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00071"></a><a class="code" href="utils_8hpp.html#a060e8578c6b3529a70a785950f60a2b8">00071</a> QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(QDataStream &amp; out, <span class="keyword">const</span> QObject &amp; objectToStream) {
-<a name="l00072"></a>00072         <span class="comment">// Converting the object into a JSON file</span>
-<a name="l00073"></a>00073         QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&amp;objectToStream);
-<a name="l00074"></a>00074         QJson::Serializer serializer;
-<a name="l00075"></a>00075         QByteArray jsonedAccount = serializer.serialize(accountMap);
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077         <span class="comment">// Putting it in the stream</span>
-<a name="l00078"></a>00078         out &lt;&lt; jsonedAccount;
+<a name="l00071"></a><a class="code" href="utils_8hpp.html#a9b5dc5055856b40838ebc2bc91aa106a">00071</a> QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(QDataStream &amp; out,
+<a name="l00072"></a>00072                                                            <span class="keyword">const</span> QObject &amp; objectToStream,
+<a name="l00073"></a>00073                                                            <span class="keyword">const</span> QStringList &amp; blacklist)
+<a name="l00074"></a>00074 {
+<a name="l00075"></a>00075         <span class="comment">// Converting the object into a JSON file</span>
+<a name="l00076"></a>00076         QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&amp;objectToStream, blacklist);
+<a name="l00077"></a>00077         QJson::Serializer serializer;
+<a name="l00078"></a>00078         QByteArray jsonedAccount = serializer.serialize(accountMap);
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080         <span class="keywordflow">return</span> out;
-<a name="l00081"></a>00081 }
+<a name="l00080"></a>00080         <span class="comment">// Putting it in the stream</span>
+<a name="l00081"></a>00081         out &lt;&lt; jsonedAccount;
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00084"></a><a class="code" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">00084</a> QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream) {
-<a name="l00085"></a>00085         QByteArray jsonedAccount = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00086"></a>00086         in &gt;&gt; jsonedAccount;
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088         QJson::Parser parser;
-<a name="l00089"></a>00089         <span class="keywordtype">bool</span> parseOK;
-<a name="l00090"></a>00090         QVariant accountVariant = parser.parse(jsonedAccount, &amp;parseOK);
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092         <span class="keywordflow">if</span> (parseOK) {
-<a name="l00093"></a>00093                 QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &amp;objectToStream);
-<a name="l00094"></a>00094         }
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096         <span class="keywordflow">return</span> in;
-<a name="l00097"></a>00097 }
+<a name="l00083"></a>00083         <span class="keywordflow">return</span> out;
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00087"></a><a class="code" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">00087</a> QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(QDataStream &amp; in, QObject &amp; objectToStream) {
+<a name="l00088"></a>00088         QByteArray jsonedAccount = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00089"></a>00089         in &gt;&gt; jsonedAccount;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         QJson::Parser parser;
+<a name="l00092"></a>00092         <span class="keywordtype">bool</span> parseOK;
+<a name="l00093"></a>00093         QVariant accountVariant = parser.parse(jsonedAccount, &amp;parseOK);
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095         <span class="keywordflow">if</span> (parseOK) {
+<a name="l00096"></a>00096                 QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &amp;objectToStream);
+<a name="l00097"></a>00097         }
 <a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00101"></a>00101 <span class="comment">// Miscanellous //</span>
-<a name="l00103"></a>00103 <span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">// HMAC-SHA1 algorithm for signatures.</span>
-<a name="l00105"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00105</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures.">hmacSha1</a>(QByteArray key, QByteArray baseString) {
-<a name="l00106"></a>00106         <span class="keywordtype">int</span> blockSize = 64; <span class="comment">// HMAC-SHA-1 block size, defined in SHA-1 standard</span>
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <span class="keywordflow">if</span> (key.length() &gt; blockSize) {
-<a name="l00109"></a>00109                 <span class="comment">// if key is longer than block size (64), reduce key length with</span>
-<a name="l00110"></a>00110                 <span class="comment">// SHA-1 compression</span>
-<a name="l00111"></a>00111                 key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
-<a name="l00112"></a>00112         }
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114         <span class="comment">// initialize inner padding with char &quot;6&quot;</span>
-<a name="l00115"></a>00115         QByteArray innerPadding(blockSize, <span class="keywordtype">char</span>(0x36));
-<a name="l00116"></a>00116         <span class="comment">// initialize outer padding with char &quot;\&quot;</span>
-<a name="l00117"></a>00117         QByteArray outerPadding(blockSize, <span class="keywordtype">char</span>(0x5c));
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119         <span class="comment">// ascii characters 0x36 (&quot;6&quot;) and 0x5c (&quot;\&quot;) are selected because they have</span>
-<a name="l00120"></a>00120         <span class="comment">// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)</span>
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> in;
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00104"></a>00104 <span class="comment">// Miscanellous //</span>
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">// HMAC-SHA1 algorithm for signatures.</span>
+<a name="l00108"></a><a class="code" href="utils_8hpp.html#acfc27e59d388cde8e4e5e9c960aab0d5">00108</a> QString <a class="code" href="utils_8cpp.html#acfc27e59d388cde8e4e5e9c960aab0d5" title="HMAC-SHA1 algorithm for signatures.">hmacSha1</a>(QByteArray key, QByteArray baseString) {
+<a name="l00109"></a>00109         <span class="keywordtype">int</span> blockSize = 64; <span class="comment">// HMAC-SHA-1 block size, defined in SHA-1 standard</span>
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111         <span class="keywordflow">if</span> (key.length() &gt; blockSize) {
+<a name="l00112"></a>00112                 <span class="comment">// if key is longer than block size (64), reduce key length with</span>
+<a name="l00113"></a>00113                 <span class="comment">// SHA-1 compression</span>
+<a name="l00114"></a>00114                 key = QCryptographicHash::hash(key, QCryptographicHash::Sha1);
+<a name="l00115"></a>00115         }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117         <span class="comment">// initialize inner padding with char &quot;6&quot;</span>
+<a name="l00118"></a>00118         QByteArray innerPadding(blockSize, <span class="keywordtype">char</span>(0x36));
+<a name="l00119"></a>00119         <span class="comment">// initialize outer padding with char &quot;\&quot;</span>
+<a name="l00120"></a>00120         QByteArray outerPadding(blockSize, <span class="keywordtype">char</span>(0x5c));
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; key.length(); i++) {
-<a name="l00123"></a>00123                 <span class="comment">// XOR operation between every byte in key and innerpadding, of key length</span>
-<a name="l00124"></a>00124                 innerPadding[i] = innerPadding[i] ^ key.at(i);
-<a name="l00125"></a>00125                 <span class="comment">// XOR operation between every byte in key and outerpadding, of key length</span>
-<a name="l00126"></a>00126                 outerPadding[i] = outerPadding[i] ^ key.at(i);
-<a name="l00127"></a>00127         }
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129         <span class="comment">// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64</span>
-<a name="l00130"></a>00130         QByteArray total = outerPadding;
-<a name="l00131"></a>00131         QByteArray part = innerPadding;
-<a name="l00132"></a>00132         part.append(baseString);
-<a name="l00133"></a>00133         total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-<a name="l00134"></a>00134         QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
-<a name="l00135"></a>00135         <span class="keywordflow">return</span> hashed.toBase64();
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="comment">// Exclusive OR</span>
-<a name="l00139"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00139</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#a8d07c7275f142aa6d74f95a134f8a863" title="Logical XOR : a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
-<a name="l00140"></a>00140         <span class="keywordflow">return</span>  a &amp;&amp; !b || !a &amp;&amp; b;
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 <span class="comment">// Formatting parameters in the Authorization header</span>
-<a name="l00144"></a><a class="code" href="utils_8hpp.html#a3fecdd0d8f879374a2a8451294584741">00144</a> QString <a class="code" href="utils_8cpp.html#a5eb20b808a2717e2a5d28e6d7069143a" title="Method for formatting parameters in the Authorization header, for GET and POST request...">formatParam</a>(QString name, QString value, <span class="keywordtype">bool</span> putDoubleQuotes) {
-<a name="l00145"></a>00145         QString res = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00146"></a>00146         QByteArray percentEncoded;
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148         <span class="comment">// Percent encoding the name</span>
-<a name="l00149"></a>00149         percentEncoded = QUrl::toPercentEncoding(name);
-<a name="l00150"></a>00150         res.append(percentEncoded);
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152         res.append(<span class="charliteral">&#39;=&#39;</span>);
-<a name="l00153"></a>00153         <span class="keywordflow">if</span> (putDoubleQuotes) {
-<a name="l00154"></a>00154                 res.append(<span class="charliteral">&#39;&quot;&#39;</span>);
-<a name="l00155"></a>00155         }
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157         <span class="comment">// Percent encoding the value</span>
-<a name="l00158"></a>00158         percentEncoded = QUrl::toPercentEncoding(value);
-<a name="l00159"></a>00159         res.append(percentEncoded);
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161         <span class="keywordflow">if</span> (putDoubleQuotes) {
-<a name="l00162"></a>00162                 res.append(<span class="charliteral">&#39;&quot;&#39;</span>);
-<a name="l00163"></a>00163         }
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165         <span class="keywordflow">return</span> res;
-<a name="l00166"></a>00166 }
+<a name="l00122"></a>00122         <span class="comment">// ascii characters 0x36 (&quot;6&quot;) and 0x5c (&quot;\&quot;) are selected because they have</span>
+<a name="l00123"></a>00123         <span class="comment">// large Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)</span>
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; key.length(); i++) {
+<a name="l00126"></a>00126                 <span class="comment">// XOR operation between every byte in key and innerpadding, of key length</span>
+<a name="l00127"></a>00127                 innerPadding[i] = innerPadding[i] ^ key.at(i);
+<a name="l00128"></a>00128                 <span class="comment">// XOR operation between every byte in key and outerpadding, of key length</span>
+<a name="l00129"></a>00129                 outerPadding[i] = outerPadding[i] ^ key.at(i);
+<a name="l00130"></a>00130         }
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132         <span class="comment">// result = hash ( outerPadding CONCAT hash ( innerPadding CONCAT baseString ) ).toBase64</span>
+<a name="l00133"></a>00133         QByteArray total = outerPadding;
+<a name="l00134"></a>00134         QByteArray part = innerPadding;
+<a name="l00135"></a>00135         part.append(baseString);
+<a name="l00136"></a>00136         total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
+<a name="l00137"></a>00137         QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
+<a name="l00138"></a>00138         <span class="keywordflow">return</span> hashed.toBase64();
+<a name="l00139"></a>00139 }
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="comment">// Exclusive OR</span>
+<a name="l00142"></a><a class="code" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">00142</a> <span class="keywordtype">bool</span> <a class="code" href="utils_8cpp.html#a8d07c7275f142aa6d74f95a134f8a863" title="Logical XOR : a XOR b == a &amp;amp;&amp;amp; !b || !a &amp;amp;&amp;amp; b">ouBien</a>(<span class="keywordtype">bool</span> a, <span class="keywordtype">bool</span> b) {
+<a name="l00143"></a>00143         <span class="keywordflow">return</span>  a &amp;&amp; !b || !a &amp;&amp; b;
+<a name="l00144"></a>00144 }
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 <span class="comment">// Formatting parameters in the Authorization header</span>
+<a name="l00147"></a><a class="code" href="utils_8hpp.html#a3fecdd0d8f879374a2a8451294584741">00147</a> QString <a class="code" href="utils_8cpp.html#a5eb20b808a2717e2a5d28e6d7069143a" title="Method for formatting parameters in the Authorization header, for GET and POST request...">formatParam</a>(QString name, QString value, <span class="keywordtype">bool</span> putDoubleQuotes) {
+<a name="l00148"></a>00148         QString res = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00149"></a>00149         QByteArray percentEncoded;
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151         <span class="comment">// Percent encoding the name</span>
+<a name="l00152"></a>00152         percentEncoded = QUrl::toPercentEncoding(name);
+<a name="l00153"></a>00153         res.append(percentEncoded);
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155         res.append(<span class="charliteral">&#39;=&#39;</span>);
+<a name="l00156"></a>00156         <span class="keywordflow">if</span> (putDoubleQuotes) {
+<a name="l00157"></a>00157                 res.append(<span class="charliteral">&#39;&quot;&#39;</span>);
+<a name="l00158"></a>00158         }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160         <span class="comment">// Percent encoding the value</span>
+<a name="l00161"></a>00161         percentEncoded = QUrl::toPercentEncoding(value);
+<a name="l00162"></a>00162         res.append(percentEncoded);
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164         <span class="keywordflow">if</span> (putDoubleQuotes) {
+<a name="l00165"></a>00165                 res.append(<span class="charliteral">&#39;&quot;&#39;</span>);
+<a name="l00166"></a>00166         }
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168         <span class="keywordflow">return</span> res;
+<a name="l00169"></a>00169 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -263,7 +266,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

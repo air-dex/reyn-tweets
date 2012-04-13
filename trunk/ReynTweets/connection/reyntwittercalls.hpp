@@ -287,6 +287,36 @@ class ReynTwitterCalls : public QObject
 					   bool entities = true,
 					   bool trimUser = false);
 
+		/// @fn void updateTweet(QString tweet,
+		///						 qlonglong replyToTweetID,
+		///						 float latitude = -361,
+		///						 float longitude = -361,
+		///						 QString reversePlace = "",
+		///						 bool displayCoord = false,
+		///						 bool trimUser = false,
+		///						 bool includeEntities = false);
+		/// @brief Posting a tweet without media
+		/// @param tweet Text of the tweet
+		/// @param replyToTweetID If the tweet is a reply, this parameter is
+		/// the ID of the tweet that this tweet replies to.
+		/// @param latitude For geolocation, your longitude.
+		/// @param longitude For geolocation, your latitude.
+		/// @param reversePlace For geolocation, ID of the place where the tweet
+		/// is supposed to be sent
+		/// @param displayCoord Displaying the coordonates of the tweet
+		/// with a pin on a map
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+		void updateTweet(QString tweet,
+						 qlonglong replyToTweetID = -1,
+						 float latitude = -361,
+						 float longitude = -361,
+						 QString reversePlace = "",
+						 bool displayCoord = false,
+						 bool trimUser = false,
+						 bool includeEntities = false);
+
 
 		///////////
 		// Users //

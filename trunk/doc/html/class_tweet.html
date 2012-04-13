@@ -183,16 +183,22 @@ Inheritance diagram for Tweet:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading source.  <a href="#a23179f1e3a80cc53fc1ef00e0b013325"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a212f5b48d4d74489b680a5081e2df850">getText</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading text.  <a href="#a212f5b48d4d74489b680a5081e2df850"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QUrl&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a0d96c14a1151437aa408403b9d74e6bd">getTweetURL</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the URL of the tweet on twitter.com.  <a href="#a0d96c14a1151437aa408403b9d74e6bd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_infos.html">UserInfos</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a498232701c995261481b523c369d464c">getUser</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading user.  <a href="#a498232701c995261481b523c369d464c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#ab4da41ee0bdf28c9082b2101d3af59fb">getUserProperty</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property user.  <a href="#ab4da41ee0bdf28c9082b2101d3af59fb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a0b6b22726e8233fee4f19e5a7a546d08">isFavorited</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading favorited.  <a href="#a0b6b22726e8233fee4f19e5a7a546d08"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a76be7e3aa85abc8f42ca5d5e8b7a7752">isReply</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method indicating if the tweet replies to another one or not.  <a href="#a76be7e3aa85abc8f42ca5d5e8b7a7752"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a1b323e18f221ab60c31d1e35f9dc8d04">isRetweet</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method indicating if the tweet is a retweet or not.  <a href="#a1b323e18f221ab60c31d1e35f9dc8d04"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a6bb7b33af173d268b8681828b70dfc23">isRetweeted</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading retweeted.  <a href="#a6bb7b33af173d268b8681828b70dfc23"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a587891a4bfd36fd3bd9c1224aa24c461">isRetweetedByMe</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading retweeted.  <a href="#a587891a4bfd36fd3bd9c1224aa24c461"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#add772eaeb5b7ce6031e5a7ed9d205fdc">isRetweetedByPeople</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method indicating if the tweet was retweeted by other users.  <a href="#add772eaeb5b7ce6031e5a7ed9d205fdc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a9bee805a691590e8bf8ccccf1adee276">isSensible</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading sensible.  <a href="#a9bee805a691590e8bf8ccccf1adee276"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a65ea53b0dfd00250c29c5a21ede8cb97">isTruncated</a> ()</td></tr>
@@ -249,14 +255,13 @@ Inheritance diagram for Tweet:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#a2ec20c9a650f3d82748149d4e390a03c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a44199f9f1acd3f2dcd290f09e2f334c6">Tweet</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a44199f9f1acd3f2dcd290f09e2f334c6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a704ca5ec4360f11dd2bde039405dd74d">whenWasItPosted</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">When the tweet was posted ?  <a href="#a704ca5ec4360f11dd2bde039405dd74d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a389c9b42c1839cb01264f9caf9dfd5fa">whenWasItPosted</a> (bool encloseInHtmlTag=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">When the tweet was posted ?  <a href="#a389c9b42c1839cb01264f9caf9dfd5fa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a81d6643e4ee5616281339d2918ca415b">~Tweet</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a81d6643e4ee5616281339d2918ca415b"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a8f38b5ff094e4e31100b4a29a2458fb4">declareQML</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declaring to the QML system.  <a href="#a8f38b5ff094e4e31100b4a29a2458fb4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="class_tweet.html">Tweet</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a532b53cf30ed7f64f45898062344f7bc">fromString</a> (QString str)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a4b771d908193a8814e5ab82dce3c94f7">initSystem</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serialization declaration.  <a href="#a4b771d908193a8814e5ab82dce3c94f7"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
@@ -301,7 +306,7 @@ Inheritance diagram for Tweet:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">String version of tweetID.  <a href="#a2716cacd91a5c7f83d71162f69aaac49"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user_infos.html">UserInfos</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#aa65753a11321641b08f6e6de6fd62b4e">author</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who wrote the tweet. Used to get information to display about the author of the tweet (in a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a>).  <a href="#aa65753a11321641b08f6e6de6fd62b4e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who wrote the tweet. Used to get information to display about the author of the tweet (in a TweetPane).  <a href="#aa65753a11321641b08f6e6de6fd62b4e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a4ffcdff96d2e732f231f4dd38e3fe845">created_at</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Serializable form of createdAt.  <a href="#a4ffcdff96d2e732f231f4dd38e3fe845"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a4c7e95d72795b5e4d851d639dca5e61c">entities</a></td></tr>
@@ -323,7 +328,7 @@ Inheritance diagram for Tweet:</div>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a254ba3874396cba386297f6c3eba7daa">in_reply_to_user_id_str</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">String version of in_reply_to_user_id.  <a href="#a254ba3874396cba386297f6c3eba7daa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tweet.html">Tweet</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a89a74a0773a4b13c59479be64d3e9e63">retweet</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The retweet to display in a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a>.  <a href="#a89a74a0773a4b13c59479be64d3e9e63"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The retweet to display in a TweetPane.  <a href="#a89a74a0773a4b13c59479be64d3e9e63"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#a60702e4f9832fedc73f5779f2324e0b9">retweet_count</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How many times the tweet has been retweeted ?  <a href="#a60702e4f9832fedc73f5779f2324e0b9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tweet.html#adb6931fa01c8dabbd51bd596bd117c31">retweeted</a></td></tr>
@@ -352,7 +357,7 @@ Inheritance diagram for Tweet:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Model of a tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00036">36</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00037">37</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a44199f9f1acd3f2dcd290f09e2f334c6"></a><!-- doxytag: member="Tweet::Tweet" ref="a44199f9f1acd3f2dcd290f09e2f334c6" args="()" -->
 <div class="memitem">
@@ -371,7 +376,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Default constructor. </p>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00035">35</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00038">38</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -392,7 +397,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00060">60</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00063">63</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -420,7 +425,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00068">68</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00071">71</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -442,7 +447,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Blacklisting the "author" and "retweet" properties (used only for and by QML views). </p>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00146">146</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00149">149</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,7 +487,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Declaring to the QML system. </p>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00124">124</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00127">127</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -524,28 +529,6 @@ Inheritance diagram for Tweet:</div>
 
 </div>
 </div>
-<a class="anchor" id="a532b53cf30ed7f64f45898062344f7bc"></a><!-- doxytag: member="Tweet::fromString" ref="a532b53cf30ed7f64f45898062344f7bc" args="(QString str)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_tweet.html">Tweet</a> * Tweet::fromString </td>
-          <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>str</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [static, virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reimplemented from <a class="el" href="class_reyn_tweets_mappable.html#a080b0d02cd8f0a3a9fe72bc36a95fd65">ReynTweetsMappable</a>.</p>
-
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00448">448</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="afa1b8df4d995c5ad9022c173b449f944"></a><!-- doxytag: member="Tweet::getAuthor" ref="afa1b8df4d995c5ad9022c173b449f944" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -564,7 +547,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading author. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>profile </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00297">297</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00300">300</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -586,7 +569,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading created_at. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>createdAt </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00277">277</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00280">280</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -608,7 +591,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading created_at. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The value of createdAt </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00162">162</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00165">165</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -631,7 +614,7 @@ Inheritance diagram for Tweet:</div>
 <p>It is used to display the client name in a QML View. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The text to display </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00437">437</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00440">440</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -652,9 +635,9 @@ Inheritance diagram for Tweet:</div>
 
 <p>Getting the content of tweet under the form of a HTML string. </p>
 <p>It is used to display the tweet in a QML View. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The text to display (in a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a>) </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The text to display (in a TweetPane) </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00417">417</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00420">420</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +659,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading entities. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetEntities </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00217">217</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00220">220</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -698,7 +681,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading the property entities. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>entitiesMap </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00152">152</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00155">155</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -720,7 +703,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetID </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00357">357</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00360">360</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -742,7 +725,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading id_str. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweetIDstr </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00337">337</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00340">340</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -764,7 +747,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading in_reply_to_screen_name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyToScreenName </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00267">267</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00270">270</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -786,7 +769,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading in_reply_to_status_id. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyToTweetID </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00367">367</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00370">370</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -808,7 +791,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading in_reply_to_status_id_str. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyToTweetIDstr </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00287">287</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00290">290</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -830,7 +813,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading in_reply_to_user_id. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyToUserID </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00227">227</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00230">230</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -852,7 +835,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading in_reply_to_user_id_str. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>replyToUserIDstr </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00327">327</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00330">330</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -874,7 +857,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading retweet_count. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>retweetCount </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00257">257</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00260">260</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -896,7 +879,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading retweeted_status. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>lastTweetMap </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00397">397</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00400">400</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -918,7 +901,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading retweeted_status. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>lastTweetMap </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00182">182</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00185">185</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -940,7 +923,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading source. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>sourceClient </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00347">347</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00350">350</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -962,7 +945,29 @@ Inheritance diagram for Tweet:</div>
 <p>Reading text. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>tweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00377">377</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00380">380</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d96c14a1151437aa408403b9d74e6bd"></a><!-- doxytag: member="Tweet::getTweetURL" ref="a0d96c14a1151437aa408403b9d74e6bd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Q_INVOKABLE QUrl Tweet::getTweetURL </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Getting the URL of the tweet on twitter.com. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>URL of the tweet on twitter.com. It lloks like <a href="https://twitter.com/#!/screen_name/status/id">https://twitter.com/#!/screen_name/status/id</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00525">525</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -984,7 +989,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading user. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>profile </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00307">307</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00310">310</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1006,7 +1011,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading the property user. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>userMap </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00172">172</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00175">175</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1065,7 +1070,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Serialization declaration. </p>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00118">118</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00121">121</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1187,29 @@ Inheritance diagram for Tweet:</div>
 <p>Reading favorited. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>favoritedTweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00247">247</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00250">250</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76be7e3aa85abc8f42ca5d5e8b7a7752"></a><!-- doxytag: member="Tweet::isReply" ref="a76be7e3aa85abc8f42ca5d5e8b7a7752" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Q_INVOKABLE bool Tweet::isReply </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Method indicating if the tweet replies to another one or not. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true if it is a reply to a tweet, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00515">515</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1222,7 @@ Inheritance diagram for Tweet:</div>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -1204,16 +1231,16 @@ Inheritance diagram for Tweet:</div>
 <p>Method indicating if the tweet is a retweet or not. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>true if it is a retweet, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00722">722</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00510">510</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6bb7b33af173d268b8681828b70dfc23"></a><!-- doxytag: member="Tweet::isRetweeted" ref="a6bb7b33af173d268b8681828b70dfc23" args="()" -->
+<a class="anchor" id="a587891a4bfd36fd3bd9c1224aa24c461"></a><!-- doxytag: member="Tweet::isRetweetedByMe" ref="a587891a4bfd36fd3bd9c1224aa24c461" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Tweet::isRetweeted </td>
+          <td class="memname">bool Tweet::isRetweetedByMe </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -1226,7 +1253,29 @@ Inheritance diagram for Tweet:</div>
 <p>Reading retweeted. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>retweetedTweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00317">317</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00320">320</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="add772eaeb5b7ce6031e5a7ed9d205fdc"></a><!-- doxytag: member="Tweet::isRetweetedByPeople" ref="add772eaeb5b7ce6031e5a7ed9d205fdc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Q_INVOKABLE bool Tweet::isRetweetedByPeople </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Method indicating if the tweet was retweeted by other users. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>true if it was retweeted, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00520">520</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1297,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading sensible. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>sensibleTweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00387">387</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00390">390</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1270,7 +1319,7 @@ Inheritance diagram for Tweet:</div>
 <p>Reading truncated. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>truncatedTweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00237">237</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00240">240</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1299,7 +1348,7 @@ Inheritance diagram for Tweet:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original tweet </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00076">76</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00079">79</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1327,7 +1376,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00082">82</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00085">85</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1480,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00301">301</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00304">304</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1459,7 +1508,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00281">281</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00284">284</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1487,7 +1536,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00167">167</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00170">170</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1515,7 +1564,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00221">221</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00224">224</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1543,7 +1592,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00157">157</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00160">160</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1571,7 +1620,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00251">251</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00254">254</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1599,7 +1648,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00361">361</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00364">364</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1627,7 +1676,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00341">341</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00344">344</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1704,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00271">271</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00274">274</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1683,7 +1732,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00371">371</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00374">374</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1711,7 +1760,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00291">291</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00294">294</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1739,7 +1788,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00231">231</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00234">234</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1767,7 +1816,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00331">331</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00334">334</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1795,7 +1844,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00261">261</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00264">264</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1823,7 +1872,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00321">321</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00324">324</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1851,7 +1900,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00401">401</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00404">404</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1879,7 +1928,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00194">194</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00197">197</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1907,7 +1956,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00391">391</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00394">394</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1935,7 +1984,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00351">351</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00354">354</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1963,7 +2012,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00381">381</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00384">384</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -1991,7 +2040,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00241">241</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00244">244</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2019,7 +2068,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00311">311</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00314">314</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2047,7 +2096,7 @@ Inheritance diagram for Tweet:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00177">177</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00180">180</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2127,14 +2176,15 @@ Inheritance diagram for Tweet:</div>
 
 </div>
 </div>
-<a class="anchor" id="a704ca5ec4360f11dd2bde039405dd74d"></a><!-- doxytag: member="Tweet::whenWasItPosted" ref="a704ca5ec4360f11dd2bde039405dd74d" args="()" -->
+<a class="anchor" id="a389c9b42c1839cb01264f9caf9dfd5fa"></a><!-- doxytag: member="Tweet::whenWasItPosted" ref="a389c9b42c1839cb01264f9caf9dfd5fa" args="(bool encloseInHtmlTag=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Q_INVOKABLE QString Tweet::whenWasItPosted </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>encloseInHtmlTag</em> = <code>true</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -2143,9 +2193,15 @@ Inheritance diagram for Tweet:</div>
 <div class="memdoc">
 
 <p>When the tweet was posted ? </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>encloseInHtmlTag</em>&nbsp;</td><td>Boolean indicating if the date has to be enclosed in a HTML tag linked to the tweet on twitter.com (default : true). </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string telling when it was posted </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00443">443</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00467">467</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2185,7 +2241,7 @@ Inheritance diagram for Tweet:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00131">131</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00134">134</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2224,7 +2280,7 @@ Inheritance diagram for Tweet:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00136">136</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8cpp_source.html#l00139">139</a> of file <a class="el" href="tweet_8cpp_source.html">tweet.cpp</a>.</p>
 
 </div>
 </div>
@@ -2242,7 +2298,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Creation date of the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00455">455</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00454">454</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2259,7 +2315,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Boolean indicating if the tweet was favorited. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00430">430</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00429">429</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2276,7 +2332,7 @@ Inheritance diagram for Tweet:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who posted the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00452">452</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00451">451</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2293,7 +2349,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Screen Name of the user which the tweet replies. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00435">435</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00434">434</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2310,7 +2366,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>ID of the tweet which the tweet replies. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00444">444</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00443">443</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2327,7 +2383,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String version of replyToTweetID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00447">447</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00446">446</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2344,7 +2400,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>ID of the user which the tweet replies. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00438">438</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00437">437</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2361,7 +2417,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String version of replyToUserID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00441">441</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00440">440</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2378,7 +2434,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Number of retweets of this tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00420">420</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00419">419</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2395,7 +2451,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Boolean indicating if the tweet was retweeted. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00417">417</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00416">416</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2413,7 +2469,7 @@ Inheritance diagram for Tweet:</div>
 <p>Initial tweet if the tweet is retweeted. </p>
 <p>It is a pointer on a tweet to avoir the compiler error C2460. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00425">425</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00424">424</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2430,7 +2486,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Boolean indicating if the content of the tweet is sensible. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00412">412</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00411">411</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2447,7 +2503,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Client used to post this tweet, just like Reyn Tweets. ;-). </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00458">458</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00457">457</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2464,7 +2520,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>truncated </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00477">477</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00476">476</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2481,7 +2537,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Text of the tweet (the famous 140 characters !). </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00409">409</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00408">408</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2498,7 +2554,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Entities of the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00406">406</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00405">405</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2515,7 +2571,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>ID of the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00398">398</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00397">397</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2532,7 +2588,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String version of tweetID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00401">401</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00400">400</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2548,9 +2604,9 @@ Inheritance diagram for Tweet:</div>
 </div>
 <div class="memdoc">
 
-<p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who wrote the tweet. Used to get information to display about the author of the tweet (in a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a>). </p>
+<p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who wrote the tweet. Used to get information to display about the author of the tweet (in a TweetPane). </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00215">215</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00214">214</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2567,7 +2623,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Serializable form of createdAt. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00171">171</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00170">170</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2584,7 +2640,7 @@ Inheritance diagram for Tweet:</div>
 
 <p><a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00113">113</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00112">112</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2601,7 +2657,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Is the tweet favorited ? </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00147">147</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00146">146</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2618,7 +2674,7 @@ Inheritance diagram for Tweet:</div>
 
 <p><a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> ID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00257">257</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00256">256</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2635,7 +2691,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String version of the tweet ID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00241">241</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00240">240</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2652,7 +2708,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Screen name corresponding to the user ID in_reply_to_user_id. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00163">163</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00162">162</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2669,7 +2725,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Property corresponding to replyToTweetID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00265">265</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00264">264</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2686,7 +2742,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String form of in_reply_to_status_id. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00189">189</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00188">188</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2703,7 +2759,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Property corresponding to replyToUserID. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00131">131</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00130">130</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2720,7 +2776,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>String version of in_reply_to_user_id. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00233">233</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00232">232</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2735,9 +2791,9 @@ Inheritance diagram for Tweet:</div>
 </div>
 <div class="memdoc">
 
-<p>The retweet to display in a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a>. </p>
+<p>The retweet to display in a TweetPane. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00306">306</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00305">305</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2754,7 +2810,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>How many times the tweet has been retweeted ? </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00155">155</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00154">154</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2772,7 +2828,7 @@ Inheritance diagram for Tweet:</div>
 <p>Is the tweet retweeted by the user of the account ? </p>
 <p><b>It does not mean that the tweet is a retweet !</b> </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00225">225</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00224">224</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2789,7 +2845,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Serializable form of retweetedTweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00289">289</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00288">288</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2806,7 +2862,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Is the content of the tweet sensible. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00281">281</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00280">280</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2823,7 +2879,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Source of the tweet (Twitter client). </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00249">249</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00248">248</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2840,7 +2896,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Content of the tweet (the famous 140 characters). </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00273">273</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00272">272</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2857,7 +2913,7 @@ Inheritance diagram for Tweet:</div>
 
 <p>Is the tweet truncated ? </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00139">139</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00138">138</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2874,7 +2930,7 @@ Inheritance diagram for Tweet:</div>
 
 <p><a class="el" href="class_user.html" title="Person who uses Twitter.">User</a> who wrote the tweet. </p>
 
-<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00197">197</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
+<p>Definition at line <a class="el" href="tweet_8hpp_source.html#l00196">196</a> of file <a class="el" href="tweet_8hpp_source.html">tweet.hpp</a>.</p>
 
 </div>
 </div>
@@ -2897,7 +2953,7 @@ Inheritance diagram for Tweet:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:37 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

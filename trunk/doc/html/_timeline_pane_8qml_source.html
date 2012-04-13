@@ -120,33 +120,94 @@ window.onload = initDynSections;
 <a name="l00032"></a>00032         width: 360
 <a name="l00033"></a>00033         height: 640
 <a name="l00034"></a>00034 
-<a name="l00035"></a>00035         <span class="comment">// Control behind the pane</span>
-<a name="l00036"></a>00036         <a class="code" href="class_timeline_control.html" title="Control behind a TimelinePane.">TimelineControl</a> {
-<a name="l00037"></a>00037                 <span class="keywordtype">id</span>: control
-<a name="l00038"></a>00038                 onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length);
-<a name="l00039"></a>00039         }
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="comment">// List of all the tweets</span>
-<a name="l00042"></a>00042         ListView {
-<a name="l00043"></a>00043                 <span class="keywordtype">id</span>: timeline_view
-<a name="l00044"></a>00044                 anchors.fill: parent
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046                 delegate: Component {
-<a name="l00047"></a>00047                         <a class="code" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a> {
-<a name="l00048"></a>00048                                 width: timeline_pane.width
-<a name="l00049"></a>00049                                 tweet: control.getTweet(index)
-<a name="l00050"></a>00050                         }
-<a name="l00051"></a>00051                 }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053                 model: <a class="code" href="class_timeline_model.html" title="Model of a TimelinePane.">TimelineModel</a> {
-<a name="l00054"></a>00054                         <span class="keywordtype">id</span>: timeline_model
+<a name="l00035"></a>00035         <a class="code" href="class_constants.html" title="QML constants of Reyn Tweets.">Constants</a> { <span class="keywordtype">id</span>: constant }
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037         <span class="comment">// Control behind the pane</span>
+<a name="l00038"></a>00038         <a class="code" href="class_timeline_control.html" title="Control behind a TimelinePane.">TimelineControl</a> {
+<a name="l00039"></a>00039                 <span class="keywordtype">id</span>: control
+<a name="l00040"></a>00040                 onAuthenticationNeeded: log_component.allowReynTweets()
+<a name="l00041"></a>00041                 onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
+<a name="l00042"></a>00042         }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044         <span class="comment">// List of all the tweets</span>
+<a name="l00045"></a>00045         ListView {
+<a name="l00046"></a>00046                 <span class="keywordtype">id</span>: timeline_view
+<a name="l00047"></a>00047                 anchors.fill: parent
+<a name="l00048"></a>00048                 clip: <span class="keyword">true</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050                 delegate: Component {
+<a name="l00051"></a>00051                         TweetPane {
+<a name="l00052"></a>00052                                 width: timeline_pane.width
+<a name="l00053"></a>00053                                 tweet: control.getTweet(index)
+<a name="l00054"></a>00054                         }
 <a name="l00055"></a>00055                 }
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058         function loadHomeTimeline() {
-<a name="l00059"></a>00059                 control.loadHomeTimeline();
-<a name="l00060"></a>00060         }
-<a name="l00061"></a>00061 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057                 model: <a class="code" href="class_timeline_model.html" title="Model of a TimelinePane.">TimelineModel</a> { <span class="keywordtype">id</span>: timeline_model }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059                 <span class="comment">// Loading tweets</span>
+<a name="l00060"></a>00060                 onMovingChanged: {
+<a name="l00061"></a>00061                         <span class="keywordflow">if</span> (timeline_view.atYBeginning) {
+<a name="l00062"></a>00062                                 <span class="comment">// If you are at the top -&gt; get earlier tweets</span>
+<a name="l00063"></a>00063                                 console.log(<span class="stringliteral">&quot;TODO : get earlier tweets&quot;</span>)
+<a name="l00064"></a>00064                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (timeline_view.atYEnd) {
+<a name="l00065"></a>00065                                 <span class="comment">// If you are at the bottom -&gt; get older tweets</span>
+<a name="l00066"></a>00066                                 console.log(<span class="stringliteral">&quot;TODO : get older tweets&quot;</span>)
+<a name="l00067"></a>00067                         }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069                         timeline_view.returnToBounds()
+<a name="l00070"></a>00070                 }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074         <span class="comment">// Component for potential authentications</span>
+<a name="l00075"></a>00075         LoginComponent {
+<a name="l00076"></a>00076                 <span class="keywordtype">id</span>: log_component
+<a name="l00077"></a>00077                 width: parent.width
+<a name="l00078"></a>00078                 anchors.verticalCenter: parent.verticalCenter
+<a name="l00079"></a>00079                 onAllowOK: loadHomeTimeline();
+<a name="l00080"></a>00080         }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082         <span class="comment">// Components for errors</span>
+<a name="l00083"></a>00083         ErrorComponent {
+<a name="l00084"></a>00084                 <span class="keywordtype">id</span>: err_comp
+<a name="l00085"></a>00085                 width: parent.width
+<a name="l00086"></a>00086                 anchors.horizontalCenter: parent.horizontalCenter
+<a name="l00087"></a>00087                 anchors.verticalCenter: parent.verticalCenter
+<a name="l00088"></a>00088                 onTryAgain: control.loadHomeTimeline();
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         Component.onCompleted: {
+<a name="l00092"></a>00092                 <span class="comment">// Wiring</span>
+<a name="l00093"></a>00093                 control.loadEnded.connect(afterLoading)
+<a name="l00094"></a>00094         }
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096         <span class="comment">// Loading the home timeline</span>
+<a name="l00097"></a>00097         function loadHomeTimeline() {
+<a name="l00098"></a>00098                 control.loadHomeTimeline();
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101         function afterLoading(endOK, errMsg, isFatal) {
+<a name="l00102"></a>00102                 var action, messageDisplayed;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104                 <span class="keywordflow">if</span> (endOK) {
+<a name="l00105"></a>00105                         <span class="comment">// Nothing to do for the moment</span>
+<a name="l00106"></a>00106                         <span class="keywordflow">return</span>;
+<a name="l00107"></a>00107                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isFatal) {
+<a name="l00108"></a>00108                         <span class="comment">// Bad and fatal error. Show the quit pane.</span>
+<a name="l00109"></a>00109                         action = constant.quit_action;
+<a name="l00110"></a>00110                         messageDisplayed = qsTr(<span class="stringliteral">&quot;A fatal error occured while loading the timeline:&quot;</span>)
+<a name="l00111"></a>00111                                         + <span class="stringliteral">&quot;\n\n&quot;</span>
+<a name="l00112"></a>00112                                         + errMsg
+<a name="l00113"></a>00113                                         + <span class="stringliteral">&quot;\n\n&quot;</span>
+<a name="l00114"></a>00114                                         + qsTr(<span class="stringliteral">&quot;The application will quit.&quot;</span>);
+<a name="l00115"></a>00115                 } <span class="keywordflow">else</span> {
+<a name="l00116"></a>00116                         action = constant.info_msg_action
+<a name="l00117"></a>00117                         messageDisplayed = errMsg
+<a name="l00118"></a>00118                 }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120                 err_comp.displayMessage(action, messageDisplayed)
+<a name="l00121"></a>00121         }
+<a name="l00122"></a>00122 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -162,7 +223,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

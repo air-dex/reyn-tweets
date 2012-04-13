@@ -109,8 +109,8 @@ Inheritance diagram for Hashtag:</div>
 <p><a href="class_hashtag-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d">getDisplayedText</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the hashtag.  <a href="#a9e55ae51729d0f764d3a72672e81982d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a858590259f9329028c29fb015ab77c12">getDisplayedText</a> (QColor linkColor)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the hashtag.  <a href="#a858590259f9329028c29fb015ab77c12"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87">getHashtag</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the hashtag under its usual form.  <a href="#a2a0262d02147820e1ba01a184136be87"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">getText</a> ()</td></tr>
@@ -165,7 +165,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00035">35</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00038">38</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -186,7 +186,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00041">41</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00044">44</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,19 +214,20 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00044">44</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00047">47</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a9e55ae51729d0f764d3a72672e81982d"></a><!-- doxytag: member="Hashtag::getDisplayedText" ref="a9e55ae51729d0f764d3a72672e81982d" args="()" -->
+<a class="anchor" id="a858590259f9329028c29fb015ab77c12"></a><!-- doxytag: member="Hashtag::getDisplayedText" ref="a858590259f9329028c29fb015ab77c12" args="(QColor linkColor)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">QString Hashtag::getDisplayedText </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">QColor&nbsp;</td>
+          <td class="paramname"> <em>linkColor</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
         </tr>
@@ -235,12 +236,18 @@ Inheritance diagram for Hashtag:</div>
 <div class="memdoc">
 
 <p>Building the rich text for the hashtag. </p>
-<p>Overrides the QString <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<p>Overrides the QString <a class="el" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>linkColor</em>&nbsp;</td><td>Color for links </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The tweet entity with rich content </dd></dl>
 
-<p>Implements <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff">TweetEntity</a>.</p>
+<p>Implements <a class="el" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f">TweetEntity</a>.</p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00108">108</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +269,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Getting the hashtag under its usual form. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00092">92</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00095">95</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,7 +291,7 @@ Inheritance diagram for Hashtag:</div>
 <p>Reading hashText. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>hashText </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00082">82</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00085">85</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +312,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Serialization declaration. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00055">55</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00058">58</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -334,7 +341,7 @@ Inheritance diagram for Hashtag:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original hashtag </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00049">49</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00052">52</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +369,7 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00061">61</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00064">64</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +397,7 @@ Inheritance diagram for Hashtag:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00087">87</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00090">90</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -430,7 +437,7 @@ Inheritance diagram for Hashtag:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00067">67</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00070">70</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -469,7 +476,7 @@ Inheritance diagram for Hashtag:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00072">72</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8cpp_source.html#l00075">75</a> of file <a class="el" href="hashtag_8cpp_source.html">hashtag.cpp</a>.</p>
 
 </div>
 </div>
@@ -487,7 +494,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the tag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00114">114</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00115">115</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +512,7 @@ Inheritance diagram for Hashtag:</div>
 
 <p>Text of the hashtag. </p>
 
-<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00105">105</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hashtag_8hpp_source.html#l00106">106</a> of file <a class="el" href="hashtag_8hpp_source.html">hashtag.hpp</a>.</p>
 
 </div>
 </div>
@@ -528,7 +535,7 @@ Inheritance diagram for Hashtag:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:32 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:48 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

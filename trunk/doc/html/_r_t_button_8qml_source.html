@@ -136,12 +136,12 @@ window.onload = initDynSections;
 <a name="l00054"></a>00054         <span class="comment">// Border colors and interior</span>
 <a name="l00055"></a>00055         radius: button_radius
 <a name="l00056"></a>00056 
-<a name="l00058"></a>00058         <span class="keyword">property</span> real bordeur: 0.15
+<a name="l00058"></a>00058         <span class="keyword">property</span> real bordeur: 0.25
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060         gradient: Gradient {
 <a name="l00061"></a>00061                 GradientStop {
 <a name="l00062"></a>00062                         position: 0
-<a name="l00063"></a>00063                         color: <span class="stringliteral">&quot;#626262&quot;</span>
+<a name="l00063"></a>00063                         color: constant.grey
 <a name="l00064"></a>00064                 }
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066                 GradientStop {
@@ -150,41 +150,46 @@ window.onload = initDynSections;
 <a name="l00069"></a>00069                 }
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071                 GradientStop {
-<a name="l00072"></a>00072                         position: 1
-<a name="l00073"></a>00073                         color: <span class="stringliteral">&quot;#626262&quot;</span>
+<a name="l00072"></a>00072                         position: 1-bordeur
+<a name="l00073"></a>00073                         color: constant.orange
 <a name="l00074"></a>00074                 }
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076         border.color: <span class="stringliteral">&quot;#000000&quot;</span>
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078         <span class="comment">// Anchors</span>
-<a name="l00079"></a>00079         anchors.right: parent.right
-<a name="l00080"></a>00080         anchors.rightMargin: margin_value
-<a name="l00081"></a>00081         anchors.bottom: parent.bottom
-<a name="l00082"></a>00082         anchors.bottomMargin: margin_value
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084         <span class="comment">// Text written in the button</span>
-<a name="l00085"></a>00085         Text {
-<a name="l00086"></a>00086                 <span class="keywordtype">id</span>: action_text
-<a name="l00087"></a>00087                 text: button_text
-<a name="l00088"></a>00088                 horizontalAlignment: Text.AlignHCenter
-<a name="l00089"></a>00089                 verticalAlignment: Text.AlignVCenter
-<a name="l00090"></a>00090                 anchors.horizontalCenter: parent.horizontalCenter
-<a name="l00091"></a>00091                 anchors.verticalCenter: parent.verticalCenter
-<a name="l00092"></a>00092                 font.family: constant.font
-<a name="l00093"></a>00093                 font.pixelSize: constant.font_size
-<a name="l00094"></a>00094         }
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096         <span class="comment">// Clickable area of the component</span>
-<a name="l00097"></a>00097         MouseArea {
-<a name="l00098"></a>00098                 <span class="keywordtype">id</span>: click_area
-<a name="l00099"></a>00099                 x: 0
-<a name="l00100"></a>00100                 y: 0
-<a name="l00101"></a>00101                 width: parent.width
-<a name="l00102"></a>00102                 height: parent.height
-<a name="l00103"></a>00103                 anchors.fill: parent
-<a name="l00104"></a>00104                 onClicked: button.click()
-<a name="l00105"></a>00105         }
-<a name="l00106"></a>00106 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076                 GradientStop {
+<a name="l00077"></a>00077                         position: 1
+<a name="l00078"></a>00078                         color: constant.grey
+<a name="l00079"></a>00079                 }
+<a name="l00080"></a>00080         }
+<a name="l00081"></a>00081         <span class="comment">//border.color: &quot;#000000&quot;</span>
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083         <span class="comment">// Anchors</span>
+<a name="l00084"></a>00084         anchors.right: parent.right
+<a name="l00085"></a>00085         anchors.rightMargin: margin_value
+<a name="l00086"></a>00086         anchors.bottom: parent.bottom
+<a name="l00087"></a>00087         anchors.bottomMargin: margin_value
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089         <span class="comment">// Text written in the button</span>
+<a name="l00090"></a>00090         Text {
+<a name="l00091"></a>00091                 <span class="keywordtype">id</span>: action_text
+<a name="l00092"></a>00092                 text: button_text
+<a name="l00093"></a>00093                 horizontalAlignment: Text.AlignHCenter
+<a name="l00094"></a>00094                 verticalAlignment: Text.AlignVCenter
+<a name="l00095"></a>00095                 anchors.horizontalCenter: parent.horizontalCenter
+<a name="l00096"></a>00096                 anchors.verticalCenter: parent.verticalCenter
+<a name="l00097"></a>00097                 font.family: constant.font
+<a name="l00098"></a>00098                 font.pixelSize: constant.font_size
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101         <span class="comment">// Clickable area of the component</span>
+<a name="l00102"></a>00102         MouseArea {
+<a name="l00103"></a>00103                 <span class="keywordtype">id</span>: click_area
+<a name="l00104"></a>00104                 x: 0
+<a name="l00105"></a>00105                 y: 0
+<a name="l00106"></a>00106                 width: parent.width
+<a name="l00107"></a>00107                 height: parent.height
+<a name="l00108"></a>00108                 anchors.fill: parent
+<a name="l00109"></a>00109                 onClicked: button.click()
+<a name="l00110"></a>00110         }
+<a name="l00111"></a>00111 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -200,7 +205,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

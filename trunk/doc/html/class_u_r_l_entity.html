@@ -110,8 +110,8 @@ Inheritance diagram for URLEntity:</div>
 <p><a href="class_u_r_l_entity-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#ae35e39c2aed565d732156d7606514f1a">getDisplayedText</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the url.  <a href="#ae35e39c2aed565d732156d7606514f1a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a90954fd44549b6803ca9809a8c6b652b">getDisplayedText</a> (QColor linkColor)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building the rich text for the url.  <a href="#a90954fd44549b6803ca9809a8c6b652b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#aac2f693201764416433d42c54b509e0a">getDisplayedURL</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading method for displayedURL.  <a href="#aac2f693201764416433d42c54b509e0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_r_l_entity.html#a05afe01ca354fb386b1928e3a0e355df">getExpandedURL</a> ()</td></tr>
@@ -180,7 +180,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00035">35</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00038">38</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -201,7 +201,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00043">43</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00046">46</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -229,19 +229,20 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00046">46</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00049">49</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ae35e39c2aed565d732156d7606514f1a"></a><!-- doxytag: member="URLEntity::getDisplayedText" ref="ae35e39c2aed565d732156d7606514f1a" args="()" -->
+<a class="anchor" id="a90954fd44549b6803ca9809a8c6b652b"></a><!-- doxytag: member="URLEntity::getDisplayedText" ref="a90954fd44549b6803ca9809a8c6b652b" args="(QColor linkColor)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">QString URLEntity::getDisplayedText </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">QColor&nbsp;</td>
+          <td class="paramname"> <em>linkColor</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
         </tr>
@@ -250,12 +251,18 @@ Inheritance diagram for URLEntity:</div>
 <div class="memdoc">
 
 <p>Building the rich text for the url. </p>
-<p>Overrides the QString <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<p>Overrides the QString <a class="el" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f" title="Building the rich text for the entity.">TweetEntity::getDisplayedText()</a>; method </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>linkColor</em>&nbsp;</td><td>Color for links </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An HTML tag to open the URL in a browser </dd></dl>
 
-<p>Implements <a class="el" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff">TweetEntity</a>.</p>
+<p>Implements <a class="el" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f">TweetEntity</a>.</p>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00121">121</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00124">124</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +284,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading method for displayedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>displayedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00096">96</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00099">99</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -299,7 +306,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading method for expandedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>expandedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00106">106</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00109">109</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -321,7 +328,7 @@ Inheritance diagram for URLEntity:</div>
 <p>Reading extractedURL. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>extractedURL </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00086">86</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00089">89</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +351,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Reimplemented in <a class="el" href="class_media.html#a557a47cc076c3854074ed4367e011c86">Media</a>.</p>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00057">57</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00060">60</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -373,7 +380,7 @@ Inheritance diagram for URLEntity:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Copy of the original entity </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00051">51</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00054">54</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +408,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00063">63</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00066">66</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -429,7 +436,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00101">101</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00104">104</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +464,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00111">111</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00114">114</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -485,7 +492,7 @@ Inheritance diagram for URLEntity:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00091">91</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00094">94</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -525,7 +532,7 @@ Inheritance diagram for URLEntity:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00071">71</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00074">74</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,7 +571,7 @@ Inheritance diagram for URLEntity:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00076">76</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8cpp_source.html#l00079">79</a> of file <a class="el" href="urlentity_8cpp_source.html">urlentity.cpp</a>.</p>
 
 </div>
 </div>
@@ -582,7 +589,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>URL displayed on the tweet (only for t.co URLs). </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00132">132</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00133">133</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +606,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Full URL (only for t.co URLs). </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00135">135</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00136">136</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -616,7 +623,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Extracted URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00129">129</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00130">130</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +641,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Displayed URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00113">113</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00114">114</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -651,7 +658,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Expanded URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00120">120</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00121">121</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -668,7 +675,7 @@ Inheritance diagram for URLEntity:</div>
 
 <p>Extracted URL. </p>
 
-<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00106">106</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
+<p>Definition at line <a class="el" href="urlentity_8hpp_source.html#l00107">107</a> of file <a class="el" href="urlentity_8hpp_source.html">urlentity.hpp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +698,7 @@ Inheritance diagram for URLEntity:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:53 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

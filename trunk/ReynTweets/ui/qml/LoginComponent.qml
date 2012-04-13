@@ -109,7 +109,7 @@ Item {
 	}
 
 	/// @fn function afterLaunching(endOK, errMsg, fatal);
-	/// @brief What happened after the launching processus
+	/// @brief What happened after the allowing processus
 	/// @param endOK Did the process ends successfully ?
 	/// @param errMsg Error message
 	/// @param fatal Did the process end fatally ?
@@ -117,15 +117,12 @@ Item {
 		if (endOK) {	// Successful end
 			// Tell that's ended
 			allowOK();
-		} else if (fatal) {		// Bad and fatal error. Show the quit pane.
+		} else if (!fatal && errMsg == qsTr("Reyn Tweets was denied.")) {
+			// Asking the user if he is sure that he wants to deny Reny Tweets
+			deny_pane.visible = true;
+		} else {
+			// Sending the error
 			allowKO(errMsg, fatal)
-		} else {	// Bad end but not fatal.
-			// Is it because Reyn Tweets was denied ?
-			if (errMsg == qsTr("Reyn Tweets was denied.")) {
-				deny_pane.visible = true;
-			} else {
-				allowKO(errMsg, fatal)
-			}
 		}
 	}
 }

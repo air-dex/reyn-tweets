@@ -27,9 +27,13 @@ import QtQuick 1.1
 Rectangle {
 	id: error_component
 
+	// Margin
 	property int margin: 5
 
+	// Sent when the user allows the component which made the error to try again
 	signal tryAgain
+
+	//property Rectangle sender
 
 	Constants { id: constant }
 

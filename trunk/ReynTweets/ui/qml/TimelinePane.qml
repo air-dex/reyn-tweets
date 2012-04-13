@@ -39,7 +39,6 @@ Rectangle {
 		id: control
 		onAuthenticationNeeded: log_component.allowReynTweets()
 		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
-		onLoadEnded: console.log("TODO : what happened after the load ?")
 	}
 
 	// List of all the tweets

@@ -130,34 +130,34 @@ window.onload = initDynSections;
 <a name="l00051"></a>00051 
 <a name="l00056"></a>00056                 <span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; <a class="code" href="class_tweet_entity.html#aa63e470a541d79b4524cc1dc4b9efa69" title="Affectation.">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; hashtag);
 <a name="l00057"></a>00057 
-<a name="l00061"></a>00061                 <span class="keyword">virtual</span> QString <a class="code" href="class_tweet_entity.html#ab9ff6ad4d6d451211d8d6d259179c6ff" title="Building the rich text for the entity.">getDisplayedText</a>() = 0;
-<a name="l00062"></a>00062 
+<a name="l00062"></a>00062                 <span class="keyword">virtual</span> QString <a class="code" href="class_tweet_entity.html#a333ab14c60747f8f40d8d92c53104d8f" title="Building the rich text for the entity.">getDisplayedText</a>(QColor linkColor) = 0;
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064         <span class="keyword">protected</span>:
-<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070                 <span class="comment">// indices</span>
-<a name="l00075"></a>00075 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_tweet_entity.html#ab974f223f1ba79aca8a48ee527380a23" title="Bounds of the entity in the tweet.">indices</a>
-<a name="l00076"></a>00076                                    READ <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">getIndicesProperty</a>
-<a name="l00077"></a><a class="code" href="class_tweet_entity.html#ab974f223f1ba79aca8a48ee527380a23">00077</a>                                    WRITE <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>)
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079                 
-<a name="l00080"></a>00080 
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="keyword">protected</span>:
+<a name="l00069"></a>00069                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071                 <span class="comment">// indices</span>
+<a name="l00076"></a>00076 <span class="comment"></span>                Q_PROPERTY(QVariantList <a class="code" href="class_tweet_entity.html#ab974f223f1ba79aca8a48ee527380a23" title="Bounds of the entity in the tweet.">indices</a>
+<a name="l00077"></a>00077                                    READ <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">getIndicesProperty</a>
+<a name="l00078"></a><a class="code" href="class_tweet_entity.html#ab974f223f1ba79aca8a48ee527380a23">00078</a>                                    WRITE <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>)
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080                 
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082                 QVariantList <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">getIndicesProperty</a>();
-<a name="l00083"></a>00083 
-<a name="l00087"></a>00087                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>(QVariantList newIndexList);
-<a name="l00088"></a>00088 
-<a name="l00090"></a><a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa">00090</a>                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00091"></a>00091 
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083                 QVariantList <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">getIndicesProperty</a>();
+<a name="l00084"></a>00084 
+<a name="l00088"></a>00088                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>(QVariantList newIndexList);
+<a name="l00089"></a>00089 
+<a name="l00091"></a><a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa">00091</a>                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
 <a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <span class="keyword">public</span>:
-<a name="l00097"></a>00097                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">getIndices</a>();
-<a name="l00098"></a>00098 
-<a name="l00102"></a>00102                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes);
-<a name="l00103"></a>00103 };
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="preprocessor">#endif // TWEETENTITY_HPP</span>
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094         <span class="keyword">public</span>:
+<a name="l00098"></a>00098                 <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">getIndices</a>();
+<a name="l00099"></a>00099 
+<a name="l00103"></a>00103                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes);
+<a name="l00104"></a>00104 };
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="preprocessor">#endif // TWEETENTITY_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -173,7 +173,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -131,6 +131,9 @@ enum CoreResult {
 	/// @brief After retrieving a timeline
 	TIMELINE_RETRIEVED,
 
+	/// @brief After retrieving a timeline
+	TWEET_POSTED,
+
 
 	//////////
 	// Misc //

@@ -89,6 +89,12 @@ QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("https://api.twitter.c
 // Getting informations about a given tweet
 QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/show.json");
 
+// Updating a tweet without medias
+QString TwitterURL::UPDATE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/update.json");
+
+// Updating a tweet with medias
+QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("https://upload.twitter.com/1/statuses/update_with_media.json");
+
 
 ///////////
 // Users //

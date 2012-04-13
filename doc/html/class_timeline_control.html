@@ -96,10 +96,9 @@ window.onload = initDynSections;
 
 <p><a href="class_timeline_control-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Slots</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#aa1b3d04c98ff6a25faffa94c83c00d30">loadHomeTimeline</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the home timeline.  <a href="#aa1b3d04c98ff6a25faffa94c83c00d30"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Signals</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#aadc3f8d5581287446b581341ff136abe">authenticationNeeded</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent if Reyn Tweets has to be allowed again.  <a href="#aadc3f8d5581287446b581341ff136abe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd">loadEnded</a> (bool launchOK, QString errorMsg, bool isFatal)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signal sent after launching.  <a href="#a75d88919e6c568a505823f94744ddefd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#ab4faa402905eacf9ae83a9ff8e2f1bd7">timelineChanged</a> ()</td></tr>
@@ -107,8 +106,10 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#aaf81efdc9a9b8a42caf604392db069a1">getTimelineLength</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reading the property tl_length.  <a href="#aaf81efdc9a9b8a42caf604392db069a1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="el" href="class_tweet.html">Tweet</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#a4b6dbb42cfe0f1b5ce4a7473c8662341">getTweet</a> (int index)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting a pointer on a tweet in the timeline.  <a href="#a4b6dbb42cfe0f1b5ce4a7473c8662341"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="el" href="class_tweet.html">Tweet</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#a21afc91443a1d7bd3dd021279529799e">getTweet</a> (int tweetIndex)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting a pointer on a tweet in the timeline.  <a href="#a21afc91443a1d7bd3dd021279529799e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#a3c5106d7ea7b3ed34d8376d979b4bcba">loadHomeTimeline</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loading the home timeline.  <a href="#a3c5106d7ea7b3ed34d8376d979b4bcba"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_timeline_control.html#a0d81dfd578b24e9fc7c7de173096487c">TimelineControl</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a0d81dfd578b24e9fc7c7de173096487c"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
@@ -153,6 +154,25 @@ window.onload = initDynSections;
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aadc3f8d5581287446b581341ff136abe"></a><!-- doxytag: member="TimelineControl::authenticationNeeded" ref="aadc3f8d5581287446b581341ff136abe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimelineControl::authenticationNeeded </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Signal sent if Reyn Tweets has to be allowed again. </p>
+
+</div>
+</div>
 <a class="anchor" id="a74bacf91dde1a842293009b75b5c863d"></a><!-- doxytag: member="TimelineControl::declareQML" ref="a74bacf91dde1a842293009b75b5c863d" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +215,7 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="a4b6dbb42cfe0f1b5ce4a7473c8662341"></a><!-- doxytag: member="TimelineControl::getTweet" ref="a4b6dbb42cfe0f1b5ce4a7473c8662341" args="(int index)" -->
+<a class="anchor" id="a21afc91443a1d7bd3dd021279529799e"></a><!-- doxytag: member="TimelineControl::getTweet" ref="a21afc91443a1d7bd3dd021279529799e" args="(int tweetIndex)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -203,7 +223,7 @@ window.onload = initDynSections;
           <td class="memname">Q_INVOKABLE <a class="el" href="class_tweet.html">Tweet</a> * TimelineControl::getTweet </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>index</em></td>
+          <td class="paramname"> <em>tweetIndex</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -212,14 +232,14 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>Getting a pointer on a tweet in the timeline. </p>
-<p>Used by QML delegates of the ListView in the <a class="el" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> to attribute a tweet to <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a> in the delegate in the list. </p>
+<p>Used by QML delegates of the ListView in the <a class="el" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> to attribute a tweet to TweetPane in the delegate in the list. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>Index of the tweet in the timeline </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>tweetIndex</em>&nbsp;</td><td>Index of the tweet in the timeline </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The tweet index in the timeline if the index is ok, a default tweet otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The tweet &amp;#135;tweetIndex in the timeline if the index is ok, a default tweet otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="timelinecontrol_8cpp_source.html#l00046">46</a> of file <a class="el" href="timelinecontrol_8cpp_source.html">timelinecontrol.cpp</a>.</p>
 
@@ -268,16 +288,16 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="aa1b3d04c98ff6a25faffa94c83c00d30"></a><!-- doxytag: member="TimelineControl::loadHomeTimeline" ref="aa1b3d04c98ff6a25faffa94c83c00d30" args="()" -->
+<a class="anchor" id="a3c5106d7ea7b3ed34d8376d979b4bcba"></a><!-- doxytag: member="TimelineControl::loadHomeTimeline" ref="a3c5106d7ea7b3ed34d8376d979b4bcba" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TimelineControl::loadHomeTimeline </td>
+          <td class="memname">Q_INVOKABLE void TimelineControl::loadHomeTimeline </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [slot]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -313,7 +333,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="timelinecontrol_8cpp_source.html#l00076">76</a> of file <a class="el" href="timelinecontrol_8cpp_source.html">timelinecontrol.cpp</a>.</p>
+<p>Definition at line <a class="el" href="timelinecontrol_8cpp_source.html#l00075">75</a> of file <a class="el" href="timelinecontrol_8cpp_source.html">timelinecontrol.cpp</a>.</p>
 
 </div>
 </div>
@@ -350,7 +370,7 @@ window.onload = initDynSections;
 
 <p>Heart of Reyn Tweets. </p>
 
-<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00086">86</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00089">89</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +387,7 @@ window.onload = initDynSections;
 
 <p>The timeline. </p>
 
-<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00089">89</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00092">92</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +405,7 @@ window.onload = initDynSections;
 
 <p>Length of the timeline. Used by QML for the list model. </p>
 
-<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00094">94</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timelinecontrol_8hpp_source.html#l00097">97</a> of file <a class="el" href="timelinecontrol_8hpp_source.html">timelinecontrol.hpp</a>.</p>
 
 </div>
 </div>
@@ -408,7 +428,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:37 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:52 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

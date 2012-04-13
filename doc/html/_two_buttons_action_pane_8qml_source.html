@@ -135,7 +135,7 @@ window.onload = initDynSections;
 <a name="l00055"></a>00055         <span class="keywordtype">id</span>: two_buttons_pane
 <a name="l00056"></a>00056         width: 360
 <a name="l00057"></a>00057         height: description_action.height + spacing + left_button.height
-<a name="l00058"></a>00058         color: <span class="stringliteral">&quot;#a4a4a4&quot;</span>
+<a name="l00058"></a>00058         color: constant.grey
 <a name="l00059"></a>00059         radius: pane_radius
 <a name="l00060"></a>00060         opacity: 0.800
 <a name="l00061"></a>00061 
@@ -143,42 +143,41 @@ window.onload = initDynSections;
 <a name="l00063"></a>00063         Text {
 <a name="l00064"></a>00064                 <span class="keywordtype">id</span>: description_action
 <a name="l00065"></a>00065                 text: two_buttons_pane.pane_text
-<a name="l00066"></a>00066                 anchors.right: parent.right
-<a name="l00067"></a>00067                 anchors.rightMargin: margin_value
-<a name="l00068"></a>00068                 anchors.left: parent.left
-<a name="l00069"></a>00069                 anchors.leftMargin: margin_value
-<a name="l00070"></a>00070                 wrapMode: Text.WordWrap
+<a name="l00066"></a>00066                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+<a name="l00067"></a>00067                 anchors.right: parent.right
+<a name="l00068"></a>00068                 anchors.rightMargin: margin_value
+<a name="l00069"></a>00069                 anchors.left: parent.left
+<a name="l00070"></a>00070                 anchors.leftMargin: margin_value
 <a name="l00071"></a>00071                 font.family: constant.font
 <a name="l00072"></a>00072                 verticalAlignment: Text.AlignVCenter
 <a name="l00073"></a>00073                 horizontalAlignment: Text.AlignLeft
 <a name="l00074"></a>00074                 anchors.top: parent.top
 <a name="l00075"></a>00075                 anchors.topMargin: margin_value
 <a name="l00076"></a>00076                 font.pixelSize: constant.font_size
-<a name="l00077"></a>00077                 elide: Text.ElideRight
-<a name="l00078"></a>00078         }
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080         <span class="comment">// Left button</span>
-<a name="l00081"></a>00081         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
-<a name="l00082"></a>00082                 <span class="keywordtype">id</span>: left_button
-<a name="l00083"></a>00083                 button_text: two_buttons_pane.left_button_text
-<a name="l00084"></a>00084                 anchors.right: right_button.left
-<a name="l00085"></a>00085                 anchors.rightMargin: two_buttons_pane.margin_value
-<a name="l00086"></a>00086                 anchors.bottom: two_buttons_pane.bottom
-<a name="l00087"></a>00087                 anchors.bottomMargin: two_buttons_pane.margin_value
-<a name="l00088"></a>00088                 onClick: actLeft();
-<a name="l00089"></a>00089         }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <span class="comment">// Right button</span>
-<a name="l00092"></a>00092         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
-<a name="l00093"></a>00093                 <span class="keywordtype">id</span>: right_button
-<a name="l00094"></a>00094                 button_text: two_buttons_pane.right_button_text
-<a name="l00095"></a>00095                 anchors.right: two_buttons_pane.right
-<a name="l00096"></a>00096                 anchors.rightMargin: two_buttons_pane.margin_value
-<a name="l00097"></a>00097                 anchors.bottom: two_buttons_pane.bottom
-<a name="l00098"></a>00098                 anchors.bottomMargin: two_buttons_pane.margin_value
-<a name="l00099"></a>00099                 onClick: actRight();
-<a name="l00100"></a>00100         }
-<a name="l00101"></a>00101 }
+<a name="l00077"></a>00077         }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079         <span class="comment">// Left button</span>
+<a name="l00080"></a>00080         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
+<a name="l00081"></a>00081                 <span class="keywordtype">id</span>: left_button
+<a name="l00082"></a>00082                 button_text: two_buttons_pane.left_button_text
+<a name="l00083"></a>00083                 anchors.right: right_button.left
+<a name="l00084"></a>00084                 anchors.rightMargin: two_buttons_pane.margin_value
+<a name="l00085"></a>00085                 anchors.bottom: two_buttons_pane.bottom
+<a name="l00086"></a>00086                 anchors.bottomMargin: two_buttons_pane.margin_value
+<a name="l00087"></a>00087                 onClick: actLeft();
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <span class="comment">// Right button</span>
+<a name="l00091"></a>00091         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
+<a name="l00092"></a>00092                 <span class="keywordtype">id</span>: right_button
+<a name="l00093"></a>00093                 button_text: two_buttons_pane.right_button_text
+<a name="l00094"></a>00094                 anchors.right: two_buttons_pane.right
+<a name="l00095"></a>00095                 anchors.rightMargin: two_buttons_pane.margin_value
+<a name="l00096"></a>00096                 anchors.bottom: two_buttons_pane.bottom
+<a name="l00097"></a>00097                 anchors.bottomMargin: two_buttons_pane.margin_value
+<a name="l00098"></a>00098                 onClick: actRight();
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -194,7 +193,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:24 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

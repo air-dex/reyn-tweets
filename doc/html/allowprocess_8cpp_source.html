@@ -193,7 +193,7 @@ window.onload = initDynSections;
 <a name="l00103"></a>00103                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>: {
 <a name="l00104"></a>00104                         <span class="comment">// Get user, put it in the conf and save</span>
 <a name="l00105"></a>00105                         QVariantMap parsedResults = result.<a class="code" href="struct_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>.toMap();
-<a name="l00106"></a>00106                         <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> u;
+<a name="l00106"></a>00106                         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> u;
 <a name="l00107"></a>00107                         u.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(parsedResults);
 <a name="l00108"></a>00108                         <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account = <a class="code" href="class_allow_process.html#ac68c78855c7d798fb984872fd9d2e5fa" title="Configuration of Reyn Tweets.">configuration</a>.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>();
 <a name="l00109"></a>00109                         account.<a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">setUser</a>(u);
@@ -284,7 +284,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

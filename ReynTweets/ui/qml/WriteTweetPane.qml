@@ -23,6 +23,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import ReynTweetsControls 0.1
 
 Rectangle {
 	id: write_tweet_pane
@@ -59,7 +60,11 @@ Rectangle {
 
 	Constants { id: constant }
 
-
+	WriteTweetControl {
+		id: control
+		onTweetPosted: console.log("Tweet posted")
+		onPostEnded: console.log("Post posted")
+	}
 
 	Text {
 		id: announce
@@ -125,7 +130,7 @@ Rectangle {
 		anchors.rightMargin: margin
 		anchors.bottomMargin: margin
 		button_text: qsTr("Tweet")
-		onClick: console.log("TODO : send the tweet")
+		onClick: control.postTweet(tweet_edit.text)
 	}
 
 	// Changes depending on the tweet length

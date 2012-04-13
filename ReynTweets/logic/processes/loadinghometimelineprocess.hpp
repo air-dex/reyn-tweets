@@ -92,6 +92,8 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 		/// @brief Including details about contributors
 		bool contributorsDetails;
 
+		/// @fn void callTwitter();
+		/// @brief Loading the Home Timeline
 		void callTwitter();
 };
 

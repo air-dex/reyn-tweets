@@ -167,11 +167,17 @@ window.onload = initDynSections;
 <a name="l00089"></a>00089 <span class="comment">// Getting informations about a given tweet</span>
 <a name="l00090"></a><a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">00090</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/show.json&quot;</span>);
 <a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
-<a name="l00094"></a>00094 <span class="comment">// Users //</span>
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">// Getting informations about a given user</span>
-<a name="l00098"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00098</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
+<a name="l00092"></a>00092 <span class="comment">// Updating a tweet without medias</span>
+<a name="l00093"></a><a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">00093</a> QString <a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236" title="URL to update a tweet.">TwitterURL::UPDATE_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/update.json&quot;</span>);
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="comment">// Updating a tweet with medias</span>
+<a name="l00096"></a><a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">00096</a> QString <a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504" title="URL to update a tweet with medias.">TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://upload.twitter.com/1/statuses/update_with_media.json&quot;</span>);
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 
+<a name="l00100"></a>00100 <span class="comment">// Users //</span>
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">// Getting informations about a given user</span>
+<a name="l00104"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00104</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -187,7 +193,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

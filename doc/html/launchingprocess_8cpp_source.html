@@ -200,10 +200,10 @@ window.onload = initDynSections;
 <a name="l00114"></a>00114                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>: {
 <a name="l00115"></a>00115                         <span class="comment">// Credentials were right a priori. Ensures that the user is the right one.</span>
 <a name="l00116"></a>00116                         QVariantMap userMap = result.<a class="code" href="struct_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>.toMap();
-<a name="l00117"></a>00117                         <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> userOfCredentials;
+<a name="l00117"></a>00117                         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> userOfCredentials;
 <a name="l00118"></a>00118                         userOfCredentials.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(userMap);
 <a name="l00119"></a>00119                         <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> account = <a class="code" href="class_launching_process.html#a50eb0979e608c7f8ad14006efc1517d0" title="Configuration.">configuration</a>.<a class="code" href="class_reyn_tweets_configuration.html#a4f580b734d132484651479baf8dd097b" title="Getter on the user account.">getUserAccount</a>();
-<a name="l00120"></a>00120                         <a class="code" href="class_user.html" title="Person who uses Twitter.">User</a> confUser = account.<a class="code" href="class_user_account.html#acf74667e5d2ad77dbe26bf61f5e79993" title="Getter on the user.">getUser</a>();
+<a name="l00120"></a>00120                         <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> confUser = account.<a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c" title="Getter on the user.">getUser</a>();
 <a name="l00121"></a>00121                         <span class="keywordtype">bool</span> rightUser = confUser.<a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">getID</a>() == userOfCredentials.<a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">getID</a>();
 <a name="l00122"></a>00122                         verifyIssue = rightUser ? <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a374835518b1edd34acfdaa743008a7a1" title="Credentials were right.">TOKENS_OK</a> : <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a990023aaaed781de6aefda187aab5c77" title="The user was wrong.">WRONG_USER</a>;
 <a name="l00123"></a>00123                         <span class="keywordflow">if</span> (rightUser) {
@@ -394,7 +394,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

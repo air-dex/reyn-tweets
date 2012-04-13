@@ -90,6 +90,7 @@ window.onload = initDynSections;
 <div class="contents">
 <h1>Class List</h1>Here are the classes, structs, unions and interfaces with brief descriptions:<table>
   <tr><td class="indexkey"><a class="el" href="class_access_token_requester.html">AccessTokenRequester</a></td><td class="indexvalue">Requester for getting OAuth access tokens </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_allow_control.html">AllowControl</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_allow_process.html">AllowProcess</a></td><td class="indexvalue">OAuth Authentication Flow + updating the configuration </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_authenticate_requester.html">AuthenticateRequester</a></td><td class="indexvalue">Requester for OAuth authentication. <b>Unused for the moment.</b> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_authentication_requester.html">AuthenticationRequester</a></td><td class="indexvalue">Requester specialized for requests which needs authentication </td></tr>
@@ -126,6 +127,8 @@ window.onload = initDynSections;
   <tr><td class="indexkey"><a class="el" href="class_o_auth_process.html">OAuthProcess</a></td><td class="indexvalue">Controller for the execution of the Twitter's OAuth Authentication Flow </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_o_auth_requester.html">OAuthRequester</a></td><td class="indexvalue">Generic requester for requests dealing with OAuth </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_post_authorize_requester.html">PostAuthorizeRequester</a></td><td class="indexvalue">Request POST authorize(). They send to Twitter user's credentials to authorize the request tokens </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_post_tweet_process.html">PostTweetProcess</a></td><td class="indexvalue">Process to update a tweet (aka tweeting) without medias </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_post_tweet_requester.html">PostTweetRequester</a></td><td class="indexvalue">Requester for posting a tweet without media </td></tr>
   <tr><td class="indexkey"><a class="el" href="struct_process_infos.html">ProcessInfos</a></td><td class="indexvalue">Information about a process stored in the <a class="el" href="class_process_manager.html" title="Map managing processes that are running.">ProcessManager</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_process_manager.html">ProcessManager</a></td><td class="indexvalue">Map managing processes that are running </td></tr>
   <tr><td class="indexkey"><a class="el" href="struct_process_result.html">ProcessResult</a></td><td class="indexvalue">Results of a process </td></tr>
@@ -149,6 +152,7 @@ window.onload = initDynSections;
   <tr><td class="indexkey"><a class="el" href="class_reyn_twitter_calls.html">ReynTwitterCalls</a></td><td class="indexvalue"><a class="el" href="class_reyn_twitter_calls.html" title="ReynTwitterCalls is a class which manages calls to Twitter. It is a singleton. To...">ReynTwitterCalls</a> is a class which manages calls to Twitter. It is a singleton. To use it </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_r_t_button.html">RTButton</a></td><td class="indexvalue">Custom button </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_search_requester.html">SearchRequester</a></td><td class="indexvalue">Requester for searches </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_settings_control.html">SettingsControl</a></td><td class="indexvalue">Control for managing the configuration </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_show_tweet_requester.html">ShowTweetRequester</a></td><td class="indexvalue">Requester for getting details about a tweet identified by its ID </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_show_user_requester.html">ShowUserRequester</a></td><td class="indexvalue">Requester for getting details about a user identified by its ID or its screen name </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_single_twitter_call_process.html">SingleTwitterCallProcess</a></td><td class="indexvalue">Base class for processes which consists in only one call to Twitter </td></tr>
@@ -157,10 +161,9 @@ window.onload = initDynSections;
   <tr><td class="indexkey"><a class="el" href="class_timeline_model.html">TimelineModel</a></td><td class="indexvalue">Model of a <a class="el" href="class_timeline_pane.html" title="Pane to show a timeline.">TimelinePane</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_timeline_pane.html">TimelinePane</a></td><td class="indexvalue">Pane to show a timeline </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_tweet.html">Tweet</a></td><td class="indexvalue">Model of a tweet </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_tweet_control.html">TweetControl</a></td><td class="indexvalue">Control behind a <a class="el" href="class_tweet_pane.html" title="Pane to show a tweet.">TweetPane</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_tweet_control.html">TweetControl</a></td><td class="indexvalue">Control behind a TweetPane </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_tweet_entities.html">TweetEntities</a></td><td class="indexvalue">Entities of a tweet, such as its hashtags, its mentions and its URLs </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_tweet_entity.html">TweetEntity</a></td><td class="indexvalue">Base class for all <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_tweet_pane.html">TweetPane</a></td><td class="indexvalue">Pane to show a tweet </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_twitter_communicator.html">TwitterCommunicator</a></td><td class="indexvalue">Class managing communication with the Twitter API </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_two_buttons_action_pane.html">TwoButtonsActionPane</a></td><td class="indexvalue">Widget displayed to quit Reyn Tweets, after fatal issues for example </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_unfavorite_requester.html">UnfavoriteRequester</a></td><td class="indexvalue">Requester to unfavorite a tweet </td></tr>
@@ -172,6 +175,7 @@ window.onload = initDynSections;
   <tr><td class="indexkey"><a class="el" href="class_user_mention.html">UserMention</a></td><td class="indexvalue">Mention of a user in a tweet </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_user_mention_list.html">UserMentionList</a></td><td class="indexvalue">List of user mentions </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_verify_credentials_requester.html">VerifyCredentialsRequester</a></td><td class="indexvalue">Request to verify if the access tokens owned by Reyn Tweets to use a given Twitter account are the right ones </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td class="indexvalue">Control behind a pane used for writing and posting tweets </td></tr>
 </table>
 </div>
 <!--- window showing the filter options -->
@@ -188,7 +192,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:28 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:45 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

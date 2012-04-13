@@ -114,85 +114,110 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QTextStream&gt;</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="hashtag_8hpp.html" title="Header of Hashtag.">hashtag.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
-<a name="l00029"></a>00029 
-<a name="l00031"></a>00031 <span class="comment">// Serialization management //</span>
-<a name="l00033"></a>00033 <span class="comment"></span>
-<a name="l00034"></a>00034 <span class="comment">// Constructor</span>
-<a name="l00035"></a><a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f">00035</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>() :
-<a name="l00036"></a>00036         <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a>(),
-<a name="l00037"></a>00037         hashText()
-<a name="l00038"></a>00038 {}
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">// Destructor</span>
-<a name="l00041"></a><a class="code" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6">00041</a> <a class="code" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6" title="Destructor.">Hashtag::~Hashtag</a>() {}
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QWebPage&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QWebFrame&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QWebElement&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="hashtag_8hpp.html" title="Header of Hashtag.">hashtag.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;../tools/utils.hpp&quot;</span>
+<a name="l00032"></a>00032 
+<a name="l00034"></a>00034 <span class="comment">// Serialization management //</span>
+<a name="l00036"></a>00036 <span class="comment"></span>
+<a name="l00037"></a>00037 <span class="comment">// Constructor</span>
+<a name="l00038"></a><a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f">00038</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>() :
+<a name="l00039"></a>00039         <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a>(),
+<a name="l00040"></a>00040         hashText()
+<a name="l00041"></a>00041 {}
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment">// Copy constructor</span>
-<a name="l00044"></a><a class="code" href="class_hashtag.html#a8bd79fb3eba8b8d71b1b855a14de04fe">00044</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00045"></a>00045         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">recopie</a>(hashtag);
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="comment">// Affectation</span>
-<a name="l00049"></a><a class="code" href="class_hashtag.html#aeca0310e3b107481655c3ddc1ff5ddae">00049</a> <span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; <a class="code" href="class_hashtag.html#aeca0310e3b107481655c3ddc1ff5ddae" title="Affectation.">Hashtag::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00050"></a>00050         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">recopie</a>(hashtag);
-<a name="l00051"></a>00051         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00052"></a>00052 }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment">// Serialization declaration</span>
-<a name="l00055"></a><a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba">00055</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba" title="Serialization declaration.">Hashtag::initSystem</a>() {
-<a name="l00056"></a>00056         qRegisterMetaTypeStreamOperators&lt;Hashtag&gt;(<span class="stringliteral">&quot;Hashtag&quot;</span>);
-<a name="l00057"></a>00057         qMetaTypeId&lt;Hashtag&gt;();
-<a name="l00058"></a>00058 }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment">// Copy of a Hashtag</span>
-<a name="l00061"></a><a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">Hashtag::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00062"></a>00062         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">TweetEntity::recopie</a>(hashtag);
-<a name="l00063"></a>00063         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = hashtag.<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00064"></a>00064 }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00067"></a><a class="code" href="hashtag_8hpp.html#a0a442fd08a2c5a74eb8e41c57338f67d">00067</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00068"></a>00068         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, hashtag);
-<a name="l00069"></a>00069 }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00072"></a><a class="code" href="hashtag_8hpp.html#a9b2437f5cedf935bf42d671830a3fc9c">00072</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
-<a name="l00073"></a>00073         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, hashtag);
-<a name="l00074"></a>00074 }
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076 
-<a name="l00078"></a>00078 <span class="comment">// Getter and setters //</span>
-<a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">// Reading hashText</span>
-<a name="l00082"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00082</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00084"></a>00084 }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment">// Writing hashText</span>
-<a name="l00087"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00087</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
-<a name="l00088"></a>00088         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
-<a name="l00089"></a>00089 }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="comment">// #hashText</span>
-<a name="l00092"></a><a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87">00092</a> QString <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">Hashtag::getHashtag</a>() {
-<a name="l00093"></a>00093         QString s = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00094"></a>00094         QTextStream t(&amp;s);
-<a name="l00095"></a>00095         t &lt;&lt; <span class="charliteral">&#39;#&#39;</span> &lt;&lt; <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
-<a name="l00096"></a>00096         <span class="keywordflow">return</span> t.readAll();
-<a name="l00097"></a>00097 }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00101"></a>00101 <span class="comment">// Misc //</span>
-<a name="l00103"></a>00103 <span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">// Building the rich text for the entity</span>
-<a name="l00105"></a><a class="code" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d">00105</a> QString <a class="code" href="class_hashtag.html#a9e55ae51729d0f764d3a72672e81982d" title="Building the rich text for the hashtag.">Hashtag::getDisplayedText</a>() {
-<a name="l00106"></a>00106         QString hashtag = <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">getHashtag</a>();
-<a name="l00107"></a>00107         QString s = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00108"></a>00108         QTextStream t(&amp;s);
-<a name="l00109"></a>00109         t &lt;&lt; <span class="stringliteral">&quot;&lt;a href=\&quot;&quot;</span> &lt;&lt; hashtag &lt;&lt; <span class="stringliteral">&quot;\&quot;&gt;&quot;</span> &lt;&lt; hashtag &lt;&lt; <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>;
-<a name="l00110"></a>00110         <span class="keywordflow">return</span> t.readAll();
-<a name="l00111"></a>00111 }
+<a name="l00043"></a>00043 <span class="comment">// Destructor</span>
+<a name="l00044"></a><a class="code" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6">00044</a> <a class="code" href="class_hashtag.html#a466f9aadd5b1f8346ed55adb04bd2db6" title="Destructor.">Hashtag::~Hashtag</a>() {}
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="comment">// Copy constructor</span>
+<a name="l00047"></a><a class="code" href="class_hashtag.html#a8bd79fb3eba8b8d71b1b855a14de04fe">00047</a> <a class="code" href="class_hashtag.html#a365a6c955054b6bbfc9b3e4b1ba84c0f" title="Constructor.">Hashtag::Hashtag</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
+<a name="l00048"></a>00048         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">recopie</a>(hashtag);
+<a name="l00049"></a>00049 }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="comment">// Affectation</span>
+<a name="l00052"></a><a class="code" href="class_hashtag.html#aeca0310e3b107481655c3ddc1ff5ddae">00052</a> <span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; <a class="code" href="class_hashtag.html#aeca0310e3b107481655c3ddc1ff5ddae" title="Affectation.">Hashtag::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
+<a name="l00053"></a>00053         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">recopie</a>(hashtag);
+<a name="l00054"></a>00054         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="comment">// Serialization declaration</span>
+<a name="l00058"></a><a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba">00058</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3ecb0cad855d8de83cd20bdedc6fcdba" title="Serialization declaration.">Hashtag::initSystem</a>() {
+<a name="l00059"></a>00059         qRegisterMetaTypeStreamOperators&lt;Hashtag&gt;(<span class="stringliteral">&quot;Hashtag&quot;</span>);
+<a name="l00060"></a>00060         qMetaTypeId&lt;Hashtag&gt;();
+<a name="l00061"></a>00061 }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="comment">// Copy of a Hashtag</span>
+<a name="l00064"></a><a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">Hashtag::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
+<a name="l00065"></a>00065         <a class="code" href="class_hashtag.html#a48b2c074888529f35fa3392ea29e49b9" title="Copy of a Hashtag.">TweetEntity::recopie</a>(hashtag);
+<a name="l00066"></a>00066         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = hashtag.<a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00070"></a><a class="code" href="hashtag_8hpp.html#a0a442fd08a2c5a74eb8e41c57338f67d">00070</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
+<a name="l00071"></a>00071         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, hashtag);
+<a name="l00072"></a>00072 }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00075"></a><a class="code" href="hashtag_8hpp.html#a9b2437f5cedf935bf42d671830a3fc9c">00075</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_hashtag.html" title="Hashtag in a tweet.">Hashtag</a> &amp; hashtag) {
+<a name="l00076"></a>00076         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, hashtag);
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 
+<a name="l00081"></a>00081 <span class="comment">// Getter and setters //</span>
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">// Reading hashText</span>
+<a name="l00085"></a><a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6">00085</a> QString <a class="code" href="class_hashtag.html#afac848456252e4fcaba0db34cffb3da6" title="Reading hashText.">Hashtag::getText</a>() {
+<a name="l00086"></a>00086         <span class="keywordflow">return</span> <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="comment">// Writing hashText</span>
+<a name="l00090"></a><a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">00090</a> <span class="keywordtype">void</span> <a class="code" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54" title="Writing hashText.">Hashtag::setText</a>(QString newText) {
+<a name="l00091"></a>00091         <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a> = newText;
+<a name="l00092"></a>00092 }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="comment">// #hashText</span>
+<a name="l00095"></a><a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87">00095</a> QString <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">Hashtag::getHashtag</a>() {
+<a name="l00096"></a>00096         QString s = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00097"></a>00097         QTextStream t(&amp;s);
+<a name="l00098"></a>00098         t &lt;&lt; <span class="charliteral">&#39;#&#39;</span> &lt;&lt; <a class="code" href="class_hashtag.html#abce13e7a50c6463547dde3cec9d04e15" title="Text of the tag.">hashText</a>;
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> t.readAll();
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00104"></a>00104 <span class="comment">// Misc //</span>
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">// Building the rich text for the entity</span>
+<a name="l00108"></a><a class="code" href="class_hashtag.html#a858590259f9329028c29fb015ab77c12">00108</a> QString <a class="code" href="class_hashtag.html#a858590259f9329028c29fb015ab77c12" title="Building the rich text for the hashtag.">Hashtag::getDisplayedText</a>(QColor linkColor) {
+<a name="l00109"></a>00109         QString hashtag = <a class="code" href="class_hashtag.html#a2a0262d02147820e1ba01a184136be87" title="Getting the hashtag under its usual form.">getHashtag</a>();
+<a name="l00110"></a>00110         QWebPage page;
+<a name="l00111"></a>00111         QWebFrame * frame = page.mainFrame();
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113         <span class="keywordflow">if</span> (frame) {
+<a name="l00114"></a>00114                 frame-&gt;setHtml(<span class="stringliteral">&quot;&lt;a&gt;&lt;/a&gt;&quot;</span>);
+<a name="l00115"></a>00115                 QWebElement link = frame-&gt;documentElement().findFirst(<span class="stringliteral">&quot;a&quot;</span>);
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117                 link.setPlainText(hashtag);
+<a name="l00118"></a>00118                 link.setAttribute(<span class="stringliteral">&quot;href&quot;</span>, hashtag);
+<a name="l00119"></a>00119                 link.setStyleProperty(<span class="stringliteral">&quot;color&quot;</span>, linkColor.name());
+<a name="l00120"></a>00120                 link.setStyleProperty(<span class="stringliteral">&quot;text-decoration&quot;</span>, <span class="stringliteral">&quot;none&quot;</span>);
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122                 <span class="keywordflow">return</span> link.toOuterXml();
+<a name="l00123"></a>00123         } <span class="keywordflow">else</span> {
+<a name="l00124"></a>00124                 <span class="comment">// Back to basics : writing a string.</span>
+<a name="l00125"></a>00125                 QString s = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00126"></a>00126                 QTextStream t(&amp;s);
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128                 t &lt;&lt; <span class="stringliteral">&quot;&lt;a href=\&quot;&quot;</span> &lt;&lt; hashtag
+<a name="l00129"></a>00129                   &lt;&lt; <span class="stringliteral">&quot;style=\&quot;text-decoration: none ; color:\&quot;&quot;</span>
+<a name="l00130"></a>00130                   &lt;&lt; linkColor.name() &lt;&lt; <span class="stringliteral">&quot;\&quot;&gt;&quot;</span> &lt;&lt; hashtag &lt;&lt; <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>;
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132                 <span class="keywordflow">return</span> t.readAll();
+<a name="l00133"></a>00133         }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -208,7 +233,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

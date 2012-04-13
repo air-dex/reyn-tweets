@@ -116,6 +116,36 @@ void ReynCore::executeProcess(GenericProcess * process) {
 }
 
 
+////////////////////
+// Special wiring //
+////////////////////
+
+// OAuth process giving informations about user credentials
+
+// Executed when an OAuthProcess send its userCredentialsRequired() signal.
+void ReynCore::userCredentialsRequired() {
+	emit userCredentialsNeeded();
+}
+
+// Telling the user whether credentials given by it are right.
+void ReynCore::credentialsOK(bool credsOK) {
+	emit credentialsValid(credsOK);
+}
+
+
+// Authorize or deny
+
+// Allowing Reyn Tweets to use the Twitter account :)
+void ReynCore::authorizeReynTweets(QString login, QString password) {
+	emit authorize(login, password);
+}
+
+// Denying Reyn Tweets :(
+void ReynCore::denyReynTweets(QString login, QString password) {
+	emit deny(login, password);
+}
+
+
 ////////////////////////
 // Actions to realize //
 ////////////////////////
@@ -197,32 +227,24 @@ ReynTweetsConfiguration & ReynCore::getConfiguration() {
 	return configuration;
 }
 
+// Posting a tweet without media
+void ReynCore::postTweet(QString tweet,
+						 qlonglong replyToTweetID,
+						 bool trimUser,
+						 bool includeEntities,
+						 float latitude,
+						 float longitude,
+						 QString reversePlace,
+						 bool displayCoord)
+{
+	PostTweetProcess * process = new PostTweetProcess(tweet,
+													  replyToTweetID,
+													  trimUser,
+													  includeEntities,
+													  latitude,
+													  longitude,
+													  reversePlace,
+													  displayCoord);
 
-////////////////////
-// Special wiring //
-////////////////////
-
-// OAuth process giving informations about user credentials
-
-// Executed when an OAuthProcess send its userCredentialsRequired() signal.
-void ReynCore::userCredentialsRequired() {
-	emit userCredentialsNeeded();
-}
-
-// Telling the user whether credentials given by it are right.
-void ReynCore::credentialsOK(bool credsOK) {
-	emit credentialsValid(credsOK);
-}
-
-
-// Authorize or deny
-
-// Allowing Reyn Tweets to use the Twitter account :)
-void ReynCore::authorizeReynTweets(QString login, QString password) {
-	emit authorize(login, password);
-}
-
-// Denying Reyn Tweets :(
-void ReynCore::denyReynTweets(QString login, QString password) {
-	emit deny(login, password);
+	executeProcess(process);
 }

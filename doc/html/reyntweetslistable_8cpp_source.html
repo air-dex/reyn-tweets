@@ -163,7 +163,7 @@ window.onload = initDynSections;
 <a name="l00077"></a>00077 <span class="comment">// Converting a QVariantList serialized by QJSON into a list of entities.</span>
 <a name="l00078"></a>00078 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
 <a name="l00079"></a><a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">ReynTweetsListable&lt;S&gt;::fillWithVariant</a>(QVariantList entities) {
-<a name="l00080"></a>00080         empty();
+<a name="l00080"></a>00080         clear();
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082         <span class="keywordflow">for</span> (QVariantList::Iterator it = entities.begin();
 <a name="l00083"></a>00083                  it != entities.end();
@@ -244,7 +244,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

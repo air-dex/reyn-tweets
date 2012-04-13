@@ -131,6 +131,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Showing a user identified by its ID.  <a href="#a4b2d791da49e7b507ab829dd0598093a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a02576dc7c5f5415f6505c33406aff26d">unfavoriteTweet</a> (qlonglong id)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Unavoriting a tweet.  <a href="#a02576dc7c5f5415f6505c33406aff26d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a23cd9c7d737c834d6bddb22f5fb98ebe">updateTweet</a> (QString tweet, qlonglong replyToTweetID=-1, float latitude=-361, float longitude=-361, QString reversePlace=&quot;&quot;, bool displayCoord=false, bool trimUser=false, bool includeEntities=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Posting a tweet without media.  <a href="#a23cd9c7d737c834d6bddb22f5fb98ebe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a8be1c4bc810c8b7c543991717194d66f">verifyCredentials</a> (bool entities, bool skipStatus)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verifying credentials.  <a href="#a8be1c4bc810c8b7c543991717194d66f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reyn_twitter_calls.html#a672e5f4bd86d25343f911f304aef04b6">~ReynTwitterCalls</a> ()</td></tr>
@@ -914,7 +916,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/users/show">https://dev.twitter.com/docs/api/1/get/users/show</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00277">277</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00299">299</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -953,7 +955,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/get/users/show">https://dev.twitter.com/docs/api/1/get/users/show</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00269">269</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00291">291</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -983,6 +985,87 @@ window.onload = initDynSections;
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid">https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00157">157</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a23cd9c7d737c834d6bddb22f5fb98ebe"></a><!-- doxytag: member="ReynTwitterCalls::updateTweet" ref="a23cd9c7d737c834d6bddb22f5fb98ebe" args="(QString tweet, qlonglong replyToTweetID=&#45;1, float latitude=&#45;361, float longitude=&#45;361, QString reversePlace=&quot;&quot;, bool displayCoord=false, bool trimUser=false, bool includeEntities=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReynTwitterCalls::updateTweet </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>tweet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">qlonglong&nbsp;</td>
+          <td class="paramname"> <em>replyToTweetID</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>latitude</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>longitude</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>reversePlace</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>displayCoord</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>trimUser</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>includeEntities</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Posting a tweet without media. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>tweet</em>&nbsp;</td><td>Text of the tweet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>replyToTweetID</em>&nbsp;</td><td>If the tweet is a reply, this parameter is the ID of the tweet that this tweet replies to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>latitude</em>&nbsp;</td><td>For geolocation, your longitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>longitude</em>&nbsp;</td><td>For geolocation, your latitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>reversePlace</em>&nbsp;</td><td>For geolocation, ID of the place where the tweet is supposed to be sent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>displayCoord</em>&nbsp;</td><td>Displaying the coordonates of the tweet with a pin on a map </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trimUser</em>&nbsp;</td><td>In tweets, giving only the ID of the author (true). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>includeEntities</em>&nbsp;</td><td>Including <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in the tweets (true). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="https://dev.twitter.com/docs/api/1/post/statuses/update">https://dev.twitter.com/docs/api/1/post/statuses/update</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="reyntwittercalls_8cpp_source.html#l00264">264</a> of file <a class="el" href="reyntwittercalls_8cpp_source.html">reyntwittercalls.cpp</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1179,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:36 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:51 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

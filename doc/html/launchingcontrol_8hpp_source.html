@@ -130,51 +130,25 @@ window.onload = initDynSections;
 <a name="l00044"></a>00044 
 <a name="l00047"></a>00047                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120" title="Declaring to the QML system.">declareQML</a>();
 <a name="l00048"></a>00048 
-<a name="l00052"></a>00052                 <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_launching_control.html#a12be88f0ffa083e6802800504e83efc7" title="Reading the login_control property.">getLoginControl</a>();
+<a name="l00051"></a>00051                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986" title="Lauching Reyn Tweets.">launchReynTweets</a>();
+<a name="l00052"></a>00052 
 <a name="l00053"></a>00053 
-<a name="l00057"></a>00057                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a4540ac09f69e4536b68cf4f32787e52a" title="Writing the login_control property.">setLoginControl</a>(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * ctrl);
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060         signals:
-<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keywordtype">bool</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>,
-<a name="l00069"></a>00069                                                  QString errorMsg,
-<a name="l00070"></a>00070                                                  <span class="keywordtype">bool</span> isFatal);
-<a name="l00071"></a>00071 
-<a name="l00077"></a>00077                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1581d0c7749c3b9da56ebdf237cc0a51" title="Signal sent to modify the visibility of the popup used to ask the user to give its...">showLoginPopup</a>(<span class="keywordtype">bool</span> popupVisible);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080         <span class="keyword">public</span> slots:
-<a name="l00083"></a>00083                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#aaff7a3daa0cc4b2ec85e211efcabf854" title="Lauching Reyn Tweets.">launchReynTweets</a>();
-<a name="l00084"></a>00084 
-<a name="l00089"></a>00089                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a9562494a08cad4c8ea28b64ca758cce3" title="Slot executed when reyn tells the control if the credentials given by the user were...">validCredentials</a>(<span class="keywordtype">bool</span> valid);
-<a name="l00090"></a>00090 
-<a name="l00094"></a>00094                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a3b6bc12300d4ed77204e3f457438aa61" title="Slot executed when reyn tells the control that it needs user credentials.">credentialsNeeded</a>();
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         <span class="keyword">protected</span> slots:
-<a name="l00101"></a>00101                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00102"></a>00102 
-<a name="l00106"></a>00106                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ab34366a874965e56233e82d06c9a92a7" title="Slot executed after an authentication, if needed.">allowOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <span class="keyword">protected</span>:
-<a name="l00110"></a><a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49">00110</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>;
-<a name="l00111"></a>00111 
-<a name="l00114"></a>00114                 Q_PROPERTY(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_launching_control.html#a27cab8995a03dfd76834aae4c554113a" title="Control behind the authentication popup.">loginControl</a>
-<a name="l00115"></a>00115                                    READ getLoginControl
-<a name="l00116"></a><a class="code" href="class_launching_control.html#a27cab8995a03dfd76834aae4c554113a">00116</a>                                    WRITE setLoginControl)
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118                 
-<a name="l00119"></a><a class="code" href="class_launching_control.html#ab682a6b1f94240b6e3305efd4997dfb1">00119</a>                 <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_launching_control.html#ab682a6b1f94240b6e3305efd4997dfb1" title="Value behind loginControl.">control</a>;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121         private:
-<a name="l00124"></a>00124                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a612d81bf245836a75e74bf1ce7416724" title="Wiring for a potential authentication process.">allowWiring</a>();
-<a name="l00125"></a>00125 
-<a name="l00129"></a>00129                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ac9fd595b2f49b370bfdf2a907d2c7663" title="Disconnect what was connected while executing allowWiring();.">allowUnwiring</a>();
-<a name="l00130"></a>00130 
-<a name="l00133"></a>00133                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a6e03caf46af20cedd4169ea116f71762" title="Allowing Reyn Tweets to use a Twitter Account.">allowReynTweets</a>();
-<a name="l00134"></a>00134 };
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="preprocessor">#endif // LAUNCHINGCONTROL_HPP</span>
+<a name="l00054"></a>00054         signals:
+<a name="l00062"></a>00062                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keywordtype">bool</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>,
+<a name="l00063"></a>00063                                                  QString errorMsg,
+<a name="l00064"></a>00064                                                  <span class="keywordtype">bool</span> isFatal);
+<a name="l00065"></a>00065 
+<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ae0771cab52fe1a33cee95a2a2d920a6b" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071         <span class="keyword">protected</span> slots:
+<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077         <span class="keyword">protected</span>:
+<a name="l00079"></a><a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49">00079</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>;
+<a name="l00080"></a>00080 };
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 <span class="preprocessor">#endif // LAUNCHINGCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -190,7 +164,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

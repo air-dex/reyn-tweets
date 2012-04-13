@@ -226,15 +226,24 @@ window.onload = initDynSections;
 <a name="l00287"></a>00287                                            <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>,
 <a name="l00288"></a>00288                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>);
 <a name="l00289"></a>00289 
-<a name="l00290"></a>00290 
-<a name="l00292"></a>00292                 <span class="comment">// Users //</span>
-<a name="l00294"></a>00294 <span class="comment"></span>
-<a name="l00300"></a>00300                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00301"></a>00301 
-<a name="l00307"></a>00307                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
-<a name="l00308"></a>00308 };
-<a name="l00309"></a>00309 
-<a name="l00310"></a>00310 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
+<a name="l00311"></a>00311                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a23cd9c7d737c834d6bddb22f5fb98ebe" title="Posting a tweet without media.">updateTweet</a>(QString tweet,
+<a name="l00312"></a>00312                                                  qlonglong replyToTweetID = -1,
+<a name="l00313"></a>00313                                                  <span class="keywordtype">float</span> latitude = -361,
+<a name="l00314"></a>00314                                                  <span class="keywordtype">float</span> longitude = -361,
+<a name="l00315"></a>00315                                                  QString reversePlace = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00316"></a>00316                                                  <span class="keywordtype">bool</span> displayCoord = <span class="keyword">false</span>,
+<a name="l00317"></a>00317                                                  <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>,
+<a name="l00318"></a>00318                                                  <span class="keywordtype">bool</span> includeEntities = <span class="keyword">false</span>);
+<a name="l00319"></a>00319 
+<a name="l00320"></a>00320 
+<a name="l00322"></a>00322                 <span class="comment">// Users //</span>
+<a name="l00324"></a>00324 <span class="comment"></span>
+<a name="l00330"></a>00330                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(qlonglong userID, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00331"></a>00331 
+<a name="l00337"></a>00337                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_twitter_calls.html#a4b2d791da49e7b507ab829dd0598093a" title="Showing a user identified by its ID.">showUser</a>(QString screenName, <span class="keywordtype">bool</span> entities = <span class="keyword">true</span>);
+<a name="l00338"></a>00338 };
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340 <span class="preprocessor">#endif // REYNTWITTERCALLS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -250,7 +259,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

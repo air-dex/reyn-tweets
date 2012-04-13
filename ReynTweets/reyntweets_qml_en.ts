@@ -9,14 +9,12 @@
         <translation>Website: </translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="132"/>
         <source>Try again</source>
-        <translation>Try again</translation>
+        <translation type="obsolete">Try again</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="139"/>
         <source>Quit</source>
-        <translation>Quit</translation>
+        <translation type="obsolete">Quit</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -31,12 +29,12 @@
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="196"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="175"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>A fatal error occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="200"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="179"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -49,12 +47,12 @@
         <translation type="obsolete">Are you sure that you do not want Reyn Tweets to use your Twitter account?</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="206"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="185"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translation>An hitch occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="210"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="189"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Do you want to try to launch Reyn Tweets again or to quit ?</translation>
     </message>
@@ -62,28 +60,28 @@
 <context>
     <name>LoginComponent</name>
     <message>
-        <location filename="ui/qml/LoginComponent.qml" line="63"/>
-        <location filename="ui/qml/LoginComponent.qml" line="124"/>
+        <location filename="ui/qml/LoginComponent.qml" line="64"/>
+        <location filename="ui/qml/LoginComponent.qml" line="121"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets was denied.</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponent.qml" line="64"/>
+        <location filename="ui/qml/LoginComponent.qml" line="65"/>
         <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
         <translation>Are you sure that you do not want Reyn Tweets to use your Twitter account?</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponent.qml" line="67"/>
+        <location filename="ui/qml/LoginComponent.qml" line="68"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponent.qml" line="74"/>
+        <location filename="ui/qml/LoginComponent.qml" line="75"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponent.qml" line="89"/>
+        <location filename="ui/qml/LoginComponent.qml" line="90"/>
         <source>Reyn Tweets will quit. Bye bye !</source>
         <translation>Reyn Tweets will quit. Bye bye!</translation>
     </message>
@@ -217,6 +215,19 @@
         <location filename="ui/qml/TweetPane.qml" line="456"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
+    </message>
+</context>
+<context>
+    <name>WriteTweetPane</name>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="76"/>
+        <source>What&apos;s up ?</source>
+        <translation>What&apos;s up ?</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="132"/>
+        <source>Tweet</source>
+        <translation>Tweet</translation>
     </message>
 </context>
 </TS>

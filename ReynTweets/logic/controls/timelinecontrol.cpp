@@ -43,9 +43,9 @@ void TimelineControl::declareQML() {
 ///////////////////////////////////
 
 // Getting a pointer on a tweet in the timeline.
-Tweet * TimelineControl::getTweet(int index) {
-	if (index >= 0 && index < timeline.size()) {
-		return &(timeline[index]);
+Tweet * TimelineControl::getTweet(int tweetIndex) {
+	if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
+		return &(timeline[tweetIndex]);
 	} else {
 		return new Tweet;
 	}

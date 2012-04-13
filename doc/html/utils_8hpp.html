@@ -108,8 +108,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">HMAC-SHA1 algorithm for signatures.  <a href="#acfc27e59d388cde8e4e5e9c960aab0d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#ae15aeba3ab9cfff07d9b9d5960b0c5e9">jsonStreamingIn</a> (QDataStream &amp;in, QObject &amp;objectToStream)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Input stream operator for JSON serialization.  <a href="#ae15aeba3ab9cfff07d9b9d5960b0c5e9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a060e8578c6b3529a70a785950f60a2b8">jsonStreamingOut</a> (QDataStream &amp;out, const QObject &amp;objectToStream)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for JSON serialization.  <a href="#a060e8578c6b3529a70a785950f60a2b8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QDataStream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a9b5dc5055856b40838ebc2bc91aa106a">jsonStreamingOut</a> (QDataStream &amp;out, const QObject &amp;objectToStream, const QStringList &amp;blacklist=QStringList(QString(QLatin1String(&quot;objectName&quot;))))</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Output stream operator for JSON serialization.  <a href="#a9b5dc5055856b40838ebc2bc91aa106a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a8d07c7275f142aa6d74f95a134f8a863">ouBien</a> (bool a, bool b)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Logical XOR : <code>a XOR b == a &amp;&amp; !b || !a &amp;&amp; b</code>  <a href="#a8d07c7275f142aa6d74f95a134f8a863"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8hpp.html#a7761eeb958785fd8489d741e7abf3281">requestTypeToString</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type)</td></tr>
@@ -203,7 +203,7 @@ LICENSE</a></h2>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The formatted parameters </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00144">144</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00147">147</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ LICENSE</a></h2>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00105">105</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00108">108</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,11 +282,11 @@ LICENSE</a></h2>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The stream with the object </dd></dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00084">84</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00087">87</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a060e8578c6b3529a70a785950f60a2b8"></a><!-- doxytag: member="utils.hpp::jsonStreamingOut" ref="a060e8578c6b3529a70a785950f60a2b8" args="(QDataStream &amp;out, const QObject &amp;objectToStream)" -->
+<a class="anchor" id="a9b5dc5055856b40838ebc2bc91aa106a"></a><!-- doxytag: member="utils.hpp::jsonStreamingOut" ref="a9b5dc5055856b40838ebc2bc91aa106a" args="(QDataStream &amp;out, const QObject &amp;objectToStream, const QStringList &amp;blacklist=QStringList(QString(QLatin1String(&quot;objectName&quot;))))" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -300,7 +300,13 @@ LICENSE</a></h2>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QObject &amp;&nbsp;</td>
-          <td class="paramname"> <em>objectToStream</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>objectToStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&nbsp;</td>
+          <td class="paramname"> <em>blacklist</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -316,6 +322,7 @@ LICENSE</a></h2>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>out</em>&nbsp;</td><td>The output stream </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>objectToStream</em>&nbsp;</td><td>Object to put in the stream </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>blacklist</em>&nbsp;</td><td>Properties to ignore while conserting the QObject into a QVariant before serializing. </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,7 +366,7 @@ LICENSE</a></h2>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00139">139</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="utils_8cpp_source.html#l00142">142</a> of file <a class="el" href="utils_8cpp_source.html">utils.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +444,7 @@ LICENSE</a></h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:27 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:44 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

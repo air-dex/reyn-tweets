@@ -260,6 +260,28 @@ void ReynTwitterCalls::showTweet(qlonglong tweetID, bool entities, bool trimUser
 	executeRequest(requester);
 }
 
+// Posting a tweet without media
+void ReynTwitterCalls::updateTweet(QString tweet,
+								   qlonglong replyToTweetID,
+								   float latitude,
+								   float longitude,
+								   QString reversePlace,
+								   bool displayCoord,
+								   bool trimUser,
+								   bool includeEntities)
+{
+	PostTweetRequester * requester = new PostTweetRequester(oauthManager,
+															tweet,
+															replyToTweetID,
+															latitude,
+															longitude,
+															reversePlace,
+															displayCoord,
+															trimUser,
+															includeEntities);
+	executeRequest(requester);
+}
+
 
 ///////////
 // Users //

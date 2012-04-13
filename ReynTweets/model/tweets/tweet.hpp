@@ -735,7 +735,7 @@ class Tweet : public ReynTweetsMappable
 		/// @fn Q_INVOKABLE QUrl getTweetURL();
 		/// @brief Getting the URL of the tweet on twitter.com
 		///	@return URL of the tweet on twitter.com. It lloks like
-		/// https://twitter.com/#!/<screen_name>/status/<id>
+		/// https://twitter.com/#!/screen_name/status/id
 		Q_INVOKABLE QUrl getTweetURL();
 };
 

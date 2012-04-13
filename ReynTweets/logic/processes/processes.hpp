@@ -24,10 +24,11 @@
 #ifndef PROCESSES_HPP
 #define PROCESSES_HPP
 
-#include "launchingprocess.hpp"
-#include "oauthprocess.hpp"
 #include "allowprocess.hpp"
 #include "favoriteprocess.hpp"
+#include "launchingprocess.hpp"
 #include "loadinghometimelineprocess.hpp"
+#include "oauthprocess.hpp"
+#include "posttweetprocess.hpp"
 
 #endif // PROCESSES_HPP

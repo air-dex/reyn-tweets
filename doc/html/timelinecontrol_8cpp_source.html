@@ -131,9 +131,9 @@ window.onload = initDynSections;
 <a name="l00042"></a>00042 <span class="comment">// Accessing tweets in QML views //</span>
 <a name="l00044"></a>00044 <span class="comment"></span>
 <a name="l00045"></a>00045 <span class="comment">// Getting a pointer on a tweet in the timeline.</span>
-<a name="l00046"></a><a class="code" href="class_timeline_control.html#a4b6dbb42cfe0f1b5ce4a7473c8662341">00046</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_timeline_control.html#a4b6dbb42cfe0f1b5ce4a7473c8662341" title="Getting a pointer on a tweet in the timeline.">TimelineControl::getTweet</a>(<span class="keywordtype">int</span> index) {
-<a name="l00047"></a>00047         <span class="keywordflow">if</span> (index &gt;= 0 &amp;&amp; index &lt; <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>.size()) {
-<a name="l00048"></a>00048                 <span class="keywordflow">return</span> &amp;(<a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>[index]);
+<a name="l00046"></a><a class="code" href="class_timeline_control.html#a21afc91443a1d7bd3dd021279529799e">00046</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_timeline_control.html#a21afc91443a1d7bd3dd021279529799e" title="Getting a pointer on a tweet in the timeline.">TimelineControl::getTweet</a>(<span class="keywordtype">int</span> tweetIndex) {
+<a name="l00047"></a>00047         <span class="keywordflow">if</span> (tweetIndex &gt;= 0 &amp;&amp; tweetIndex &lt; <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>.size()) {
+<a name="l00048"></a>00048                 <span class="keywordflow">return</span> &amp;(<a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>[tweetIndex]);
 <a name="l00049"></a>00049         } <span class="keywordflow">else</span> {
 <a name="l00050"></a>00050                 <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>;
 <a name="l00051"></a>00051         }
@@ -149,64 +149,62 @@ window.onload = initDynSections;
 <a name="l00062"></a>00062 <span class="comment">// Loading timelines //</span>
 <a name="l00064"></a>00064 <span class="comment"></span>
 <a name="l00065"></a>00065 <span class="comment">// Loading the home timeline</span>
-<a name="l00066"></a><a class="code" href="class_timeline_control.html#aa1b3d04c98ff6a25faffa94c83c00d30">00066</a> <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#aa1b3d04c98ff6a25faffa94c83c00d30" title="Loading the home timeline.">TimelineControl::loadHomeTimeline</a>() {
+<a name="l00066"></a><a class="code" href="class_timeline_control.html#a3c5106d7ea7b3ed34d8376d979b4bcba">00066</a> <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a3c5106d7ea7b3ed34d8376d979b4bcba" title="Loading the home timeline.">TimelineControl::loadHomeTimeline</a>() {
 <a name="l00067"></a>00067         connect(&amp;<a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
 <a name="l00068"></a>00068                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070         qDebug(<span class="stringliteral">&quot;loadHomeTimeline&quot;</span>);
-<a name="l00071"></a>00071         <a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>.<a class="code" href="class_reyn_core.html#a91fd1516ec8e00d39e5cec4be231a83d" title="Loading the home timeline of a user.">loadHomeTimeline</a>(-1, -1, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, 0, 10);
-<a name="l00072"></a>00072 }
+<a name="l00070"></a>00070         <a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>.<a class="code" href="class_reyn_core.html#a627b976ee239b5faa2066889a36d81e4" title="Loading the home timeline of a user.">loadHomeTimeline</a>(-1, -1, 50, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, 0);
+<a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="comment">// After loading a timeline</span>
-<a name="l00076"></a><a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7">00076</a> <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">TimelineControl::loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00077"></a>00077         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00080"></a>00080         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
-<a name="l00081"></a>00081                 <span class="keywordflow">return</span>;
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084         <span class="comment">// Disconnect</span>
-<a name="l00085"></a>00085         disconnect(&amp;<a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00086"></a>00086                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
-<a name="l00089"></a>00089         QVariantList resList = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toList();
-<a name="l00090"></a>00090         <a class="code" href="class_timeline.html" title="Definition of a Twitter timeline : a list of tweets.">Timeline</a> statuses;
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092         <span class="keywordflow">switch</span> (issue) {
-<a name="l00093"></a>00093                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811abe86df0379bd1ebb167fbaeef6fd2e25" title="After retrieving a timeline.">TIMELINE_RETRIEVED</a>:
-<a name="l00094"></a>00094                         statuses.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(resList);
-<a name="l00095"></a>00095                         <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a> = statuses;
-<a name="l00096"></a>00096                         emit <a class="code" href="class_timeline_control.html#ab4faa402905eacf9ae83a9ff8e2f1bd7" title="Signal sent when the timeline property changes.">timelineChanged</a>();
-<a name="l00097"></a>00097                         <span class="comment">// Process successful</span>
-<a name="l00098"></a>00098                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">true</span>, QString(), <span class="keyword">false</span>);
-<a name="l00099"></a>00099                         <span class="keywordflow">break</span>;
-<a name="l00100"></a>00100 <span class="comment">/*</span>
-<a name="l00101"></a>00101 <span class="comment">                case AUTHENTICATION_REQUIRED:</span>
-<a name="l00102"></a>00102 <span class="comment">                        // An authentication is needed. So let&#39;s do it!</span>
-<a name="l00103"></a>00103 <span class="comment">                        return allowReynTweets();</span>
-<a name="l00104"></a>00104 <span class="comment">//*/</span>
-<a name="l00105"></a>00105                 <span class="comment">// Problems that can be solved trying later</span>
-<a name="l00106"></a>00106                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
-<a name="l00107"></a>00107                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
-<a name="l00108"></a>00108                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
-<a name="l00109"></a>00109                         <span class="keywordflow">break</span>;
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111                 <span class="comment">// Problems with configuration file</span>
-<a name="l00112"></a>00112                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>:
-<a name="l00113"></a>00113                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>:
-<a name="l00114"></a>00114                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>:
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116                 <span class="comment">// Unknown ends</span>
-<a name="l00117"></a>00117                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119                 <span class="keywordflow">default</span>:
-<a name="l00120"></a>00120                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
-<a name="l00121"></a>00121                         <span class="keywordflow">break</span>;
-<a name="l00122"></a>00122         }
-<a name="l00123"></a>00123 }
+<a name="l00074"></a>00074 <span class="comment">// After loading a timeline</span>
+<a name="l00075"></a><a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7">00075</a> <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">TimelineControl::loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00076"></a>00076         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078         <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00079"></a>00079         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00080"></a>00080                 <span class="keywordflow">return</span>;
+<a name="l00081"></a>00081         }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083         <span class="comment">// Disconnect</span>
+<a name="l00084"></a>00084         disconnect(&amp;<a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00085"></a>00085                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00088"></a>00088         QVariantList resList = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toList();
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <span class="keywordflow">switch</span> (issue) {
+<a name="l00091"></a>00091                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811abe86df0379bd1ebb167fbaeef6fd2e25" title="After retrieving a timeline.">TIMELINE_RETRIEVED</a>:
+<a name="l00092"></a>00092                         <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>.<a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">fillWithVariant</a>(resList);
+<a name="l00093"></a>00093                         emit <a class="code" href="class_timeline_control.html#ab4faa402905eacf9ae83a9ff8e2f1bd7" title="Signal sent when the timeline property changes.">timelineChanged</a>();
+<a name="l00094"></a>00094                         <span class="comment">// Process successful</span>
+<a name="l00095"></a>00095                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">true</span>, QString(), <span class="keyword">false</span>);
+<a name="l00096"></a>00096                         <span class="keywordflow">break</span>;
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad" title="An authentication to Twitter is required.">AUTHENTICATION_REQUIRED</a>:
+<a name="l00099"></a>00099                         <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00100"></a>00100                         emit <a class="code" href="class_timeline_control.html#aadc3f8d5581287446b581341ff136abe" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00101"></a>00101                         <span class="keywordflow">return</span>;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103                 <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00104"></a>00104                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00105"></a>00105                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00106"></a>00106                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00107"></a>00107                         <span class="keywordflow">break</span>;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109                 <span class="comment">// Problems with configuration file</span>
+<a name="l00110"></a>00110                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>:
+<a name="l00111"></a>00111                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>:
+<a name="l00112"></a>00112                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>:
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114                 <span class="comment">// Unknown ends</span>
+<a name="l00115"></a>00115                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117                 <span class="keywordflow">default</span>:
+<a name="l00118"></a>00118                         emit <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00119"></a>00119                         <span class="keywordflow">break</span>;
+<a name="l00120"></a>00120         }
+<a name="l00121"></a>00121 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -222,7 +220,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:22 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -30,5 +30,6 @@
 #include "settingscontrol.hpp"
 #include "tweetcontrol.hpp"
 #include "timelinecontrol.hpp"
+#include "writetweetcontrol.hpp"
 
 #endif // CONTROLS_HPP

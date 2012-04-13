@@ -177,51 +177,62 @@ window.onload = initDynSections;
 <a name="l00140"></a>00140 
 <a name="l00144"></a>00144                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ad8d9fb7055879124026598634a7421a8" title="Unfavoriting a tweet.">unfavoriteTweet</a>(qlonglong <span class="keywordtype">id</span>);
 <a name="l00145"></a>00145 
-<a name="l00166"></a>00166                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a91fd1516ec8e00d39e5cec4be231a83d" title="Loading the home timeline of a user.">loadHomeTimeline</a>(qlonglong sinceID = -1,
+<a name="l00166"></a>00166                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a627b976ee239b5faa2066889a36d81e4" title="Loading the home timeline of a user.">loadHomeTimeline</a>(qlonglong sinceID = -1,
 <a name="l00167"></a>00167                                                           qlonglong maxID = -1,
-<a name="l00168"></a>00168                                                           <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>,
-<a name="l00169"></a>00169                                                           <span class="keywordtype">bool</span> includeRTS = <span class="keyword">false</span>,
-<a name="l00170"></a>00170                                                           <span class="keywordtype">bool</span> includeEntities = <span class="keyword">false</span>,
-<a name="l00171"></a>00171                                                           <span class="keywordtype">bool</span> excludeReplies = <span class="keyword">false</span>,
-<a name="l00172"></a>00172                                                           <span class="keywordtype">int</span> page = 0,
-<a name="l00173"></a>00173                                                           <span class="keywordtype">int</span> count = 20,
+<a name="l00168"></a>00168                                                           <span class="keywordtype">int</span> count = 20,
+<a name="l00169"></a>00169                                                           <span class="keywordtype">bool</span> trimUser = <span class="keyword">false</span>,
+<a name="l00170"></a>00170                                                           <span class="keywordtype">bool</span> includeRTS = <span class="keyword">false</span>,
+<a name="l00171"></a>00171                                                           <span class="keywordtype">bool</span> includeEntities = <span class="keyword">false</span>,
+<a name="l00172"></a>00172                                                           <span class="keywordtype">bool</span> excludeReplies = <span class="keyword">false</span>,
+<a name="l00173"></a>00173                                                           <span class="keywordtype">int</span> page = 0,
 <a name="l00174"></a>00174                                                           <span class="keywordtype">bool</span> contributorsDetails = <span class="keyword">false</span>);
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176 
-<a name="l00177"></a>00177         <span class="keyword">protected</span>:
-<a name="l00181"></a>00181                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6cf70dfd2c722444e8bd6f541c36ad68" title="Special wiring of an OAuth process.">oauthSpecialWiring</a>(<a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> * oauthProcess);
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 
-<a name="l00185"></a>00185         <span class="comment">// Special wiring //</span>
-<a name="l00187"></a>00187 <span class="comment"></span>
-<a name="l00188"></a>00188         signals:
-<a name="l00190"></a>00190                 <span class="comment">// OAuth process giving informations about user credentials //</span>
-<a name="l00192"></a>00192 <span class="comment"></span>
-<a name="l00196"></a>00196                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6f3b5f749839f472ef259759fa0e94e6" title="Transmitting the userCredentialsRequired() signal of a given OAuthProcess.">userCredentialsNeeded</a>();
-<a name="l00197"></a>00197 
-<a name="l00201"></a>00201                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a954f69433d2ecdb04d7b46102ba6372c" title="Telling the user whether credentials given by it are right.">credentialsValid</a>(<span class="keywordtype">bool</span> credsOK);
-<a name="l00202"></a>00202 
-<a name="l00204"></a>00204                 <span class="comment">// Authorize or deny //</span>
-<a name="l00206"></a>00206 <span class="comment"></span>
-<a name="l00211"></a>00211                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a599fa47f000635a6d41ecdf5497aa95a" title="Slot executed to allow Reyn Tweets to use the Twitter account :).">authorize</a>(QString login, QString password);
-<a name="l00212"></a>00212 
-<a name="l00217"></a>00217                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a04f533fe4d70d6c137a81c6b38696e36" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">deny</a>(QString login, QString password);
+<a name="l00179"></a>00179                 <span class="keyword">static</span> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; <a class="code" href="class_reyn_core.html#ab1fb3f521221a3c4cb5b21ca5a671113" title="Getting a reference on the configuration.">getConfiguration</a>();
+<a name="l00180"></a>00180 
+<a name="l00202"></a>00202                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a523134b33222032792aaba223d687da1" title="Posting a tweet without media.">postTweet</a>(QString tweet,
+<a name="l00203"></a>00203                                            qlonglong replyToTweetID = -1,
+<a name="l00204"></a>00204                                            <span class="keywordtype">bool</span> trimUser = <span class="keyword">true</span>,
+<a name="l00205"></a>00205                                            <span class="keywordtype">bool</span> includeEntities = <span class="keyword">false</span>,
+<a name="l00206"></a>00206                                            <span class="keywordtype">float</span> latitude = -361,
+<a name="l00207"></a>00207                                            <span class="keywordtype">float</span> longitude = -361,
+<a name="l00208"></a>00208                                            QString reversePlace = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00209"></a>00209                                            <span class="keywordtype">bool</span> displayCoord = <span class="keyword">false</span>);
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 
+<a name="l00212"></a>00212         <span class="keyword">protected</span>:
+<a name="l00216"></a>00216                 <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6cf70dfd2c722444e8bd6f541c36ad68" title="Special wiring of an OAuth process.">oauthSpecialWiring</a>(<a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a> * oauthProcess);
+<a name="l00217"></a>00217 
 <a name="l00218"></a>00218 
-<a name="l00219"></a>00219         <span class="keyword">public</span> slots:
-<a name="l00221"></a>00221                 <span class="comment">// OAuth process giving informations about user credentials //</span>
-<a name="l00223"></a>00223 <span class="comment"></span>
-<a name="l00227"></a>00227                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a870cef4ec88a80b4fed9d31667f2d927" title="Executed when an OAuthProcess send its userCredentialsRequired() signal.">userCredentialsRequired</a>();
-<a name="l00228"></a>00228 
-<a name="l00232"></a>00232                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ab91fbae917d0f7ca6f7b107882e2546b" title="Telling the user whether credentials given by it are right.">credentialsOK</a>(<span class="keywordtype">bool</span> credsOK);
-<a name="l00233"></a>00233 
-<a name="l00235"></a>00235                 <span class="comment">// Authorize or deny //</span>
-<a name="l00237"></a>00237 <span class="comment"></span>
-<a name="l00242"></a>00242                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a329907f37c1dbbdb26ba4ccc4334ef8c" title="Authorizing Reyn Tweets (not saving the configuration after).">authorizeReynTweets</a>(QString login, QString password);
-<a name="l00243"></a>00243 
-<a name="l00248"></a>00248                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aac20b26a764111288569e8977bfdd226" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
-<a name="l00249"></a>00249 };
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251 <span class="preprocessor">#endif // REYNCORE_HPP</span>
+<a name="l00220"></a>00220         <span class="comment">// Special wiring //</span>
+<a name="l00222"></a>00222 <span class="comment"></span>
+<a name="l00223"></a>00223         signals:
+<a name="l00225"></a>00225                 <span class="comment">// OAuth process giving informations about user credentials //</span>
+<a name="l00227"></a>00227 <span class="comment"></span>
+<a name="l00231"></a>00231                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a6f3b5f749839f472ef259759fa0e94e6" title="Transmitting the userCredentialsRequired() signal of a given OAuthProcess.">userCredentialsNeeded</a>();
+<a name="l00232"></a>00232 
+<a name="l00236"></a>00236                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a954f69433d2ecdb04d7b46102ba6372c" title="Telling the user whether credentials given by it are right.">credentialsValid</a>(<span class="keywordtype">bool</span> credsOK);
+<a name="l00237"></a>00237 
+<a name="l00239"></a>00239                 <span class="comment">// Authorize or deny //</span>
+<a name="l00241"></a>00241 <span class="comment"></span>
+<a name="l00246"></a>00246                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a599fa47f000635a6d41ecdf5497aa95a" title="Slot executed to allow Reyn Tweets to use the Twitter account :).">authorize</a>(QString login, QString password);
+<a name="l00247"></a>00247 
+<a name="l00252"></a>00252                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a04f533fe4d70d6c137a81c6b38696e36" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">deny</a>(QString login, QString password);
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254         <span class="keyword">public</span> slots:
+<a name="l00256"></a>00256                 <span class="comment">// OAuth process giving informations about user credentials //</span>
+<a name="l00258"></a>00258 <span class="comment"></span>
+<a name="l00262"></a>00262                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a870cef4ec88a80b4fed9d31667f2d927" title="Executed when an OAuthProcess send its userCredentialsRequired() signal.">userCredentialsRequired</a>();
+<a name="l00263"></a>00263 
+<a name="l00267"></a>00267                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#ab91fbae917d0f7ca6f7b107882e2546b" title="Telling the user whether credentials given by it are right.">credentialsOK</a>(<span class="keywordtype">bool</span> credsOK);
+<a name="l00268"></a>00268 
+<a name="l00270"></a>00270                 <span class="comment">// Authorize or deny //</span>
+<a name="l00272"></a>00272 <span class="comment"></span>
+<a name="l00277"></a>00277                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#a329907f37c1dbbdb26ba4ccc4334ef8c" title="Authorizing Reyn Tweets (not saving the configuration after).">authorizeReynTweets</a>(QString login, QString password);
+<a name="l00278"></a>00278 
+<a name="l00283"></a>00283                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_core.html#aac20b26a764111288569e8977bfdd226" title="Slot executed to deny Reyn Tweets to use the Twitter account :(.">denyReynTweets</a>(QString login, QString password);
+<a name="l00284"></a>00284 };
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286 <span class="preprocessor">#endif // REYNCORE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -237,7 +248,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Apr 7 16:57:23 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

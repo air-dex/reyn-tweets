@@ -1,6 +1,7 @@
 /// @file LoginComponent.qml
 /// @brief Component with items for authentication
 ///
+/// The LoginComponent which existed until r220 is now known as LoginPane.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

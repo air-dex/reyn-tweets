@@ -92,7 +92,7 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map);
 
-		/// @fn QStringList & getTransientProperties() const;
+		/// @fn QStringList & getTransientProperties();
 		/// @brief Getter on transientProperties.
 		///
 		/// Used by the specialization of jsonStreamingOut for ReynTweetsMappables.

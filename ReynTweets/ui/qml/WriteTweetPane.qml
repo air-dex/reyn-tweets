@@ -40,7 +40,12 @@ Rectangle {
 		}
 
 		GradientStop {
-			position: 0.5
+			position: write_zone.y / write_tweet_pane.height
+			color: constant.grey
+		}
+
+		GradientStop {
+			position: (write_zone.y + write_zone.height) / write_tweet_pane.height
 			color: constant.grey
 		}
 

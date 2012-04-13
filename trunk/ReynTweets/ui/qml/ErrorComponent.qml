@@ -1,4 +1,4 @@
-/// @file LoginComponent.qml
+/// @file ErrorComponent.qml
 /// @brief Component with items for displaying errors
 ///
 /// @author Romain Ducher

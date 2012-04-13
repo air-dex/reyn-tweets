@@ -51,9 +51,16 @@ Rectangle {
 		font.pixelSize: constant.font_size
 	}
 
+	WriteTweetPane {
+		id: write_tweet
+		width: parent.width
+		anchors.top: main_view.top
+		anchors.horizontalCenter: parent.horizontalCenter
+	}
+
 	TimelinePane {
 		id: timeline
-		anchors.top: mockup.bottom
+		anchors.top: write_tweet.bottom
 		anchors.topMargin: 0
 		anchors.right: main_view.right
 		anchors.left: main_view.left

@@ -24,6 +24,7 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
+import "twitter-text-js-wrapper.js" as TwitterTextJS
 
 Rectangle {
 	id: write_tweet_pane
@@ -33,6 +34,18 @@ Rectangle {
 	property int chars_left: 140 - tweet_edit.text.length
 
 	property bool too_long_tweet: tweet_edit.text.length > 140
+
+	Component.onCompleted: {
+		var test = TwitterTextJS.twttr.txt.isValidHashtag("#hashtag")
+
+		if (typeof test === "undefined") {
+			console.log("pas de pot")
+		} else if (test) {
+			console.log("c'est bon")
+		} else {
+			console.log("c'est pas bon")
+		}
+	}
 
 	gradient: Gradient {
 		GradientStop {
@@ -120,6 +133,7 @@ Rectangle {
 			wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
 			font.family: constant.font
 			font.pixelSize: constant.font_size
+			onTextChanged: control.detectURLs(tweet_edit.text)
 		}
 	}
 

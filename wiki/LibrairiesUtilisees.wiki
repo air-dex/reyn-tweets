@@ -1,4 +1,4 @@
-= Librairies utilisées por Reyn Tweets =
+= Librairies utilisées par Reyn Tweets =
 
 Voici la liste des librairies utilisées par Reyn Tweets :
   * QJSON ( http://qjson.sourceforge.net ) pour le parsage JSON des réponses de Twitter

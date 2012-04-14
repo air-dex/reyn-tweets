@@ -22,6 +22,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtDeclarative>
+#include <QRegExp>
+#include <QUrl>
 #include "writetweetcontrol.hpp"
 
 // Constructor
@@ -93,3 +95,32 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 			break;
 	}
 }
+
+//void WriteTweetControl::detectURLs(QString text) {
+//	// Regex with one of the following characters : space \n \r \t < > [ \ ] ^ { } | `
+//	QString regex = "[\\s\\n\\r\\t\\0074\\0076\\0133\\0134\\0135\\0136\\0140\\0173\\0174\\0175\\0176]";
+//	QStringList splittedText = text.split(QRegExp(regex), QString::SkipEmptyParts);
+
+//	urls.clear();
+//	qDebug("les urls");
+//	for (QStringList::Iterator it = splittedText.begin();
+//		 it != splittedText.end();
+//		 ++it)
+//	{
+////		QString R_PROTOCOL = "(http(s)?|ftp)";
+////		QString R_HOSTNAMEANDPORT = "[\\w-]+(\\.[\\w-]+)*(:(\\d+))?";
+////		QString R_RELATIVEPATH = "(/\\w+)*(/\\w+\\.\\w+)?";
+////		QString R_QUERY = "(\\?\\w+=\\w+(&(\\w+=\\w+))*)?";
+////		QString URL_REGEX = "^" + R_PROTOCOL + "://" + R_HOSTNAMEANDPORT + R_RELATIVEPATH + R_QUERY;
+
+////		QString candidateURL = *it;
+////		candidateURL
+////		if (u.isValid()) {
+////			urls.append(candidateURL);
+////			qDebug(u.toString().toUtf8().data());
+////			qDebug(u.errorString().toUtf8().append("£££").data());
+////		}
+//	}
+
+
+//}

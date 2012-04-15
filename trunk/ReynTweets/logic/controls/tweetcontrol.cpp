@@ -30,7 +30,7 @@
 TweetControl::TweetControl() :
 	QObject(),
 	reyn(this),
-	status()
+	status(0)
 {}
 
 // Declaring TweetControl to the QML system
@@ -44,13 +44,13 @@ void TweetControl::declareQML() {
 /////////////////////////
 
 // Reading the tweet property
-Tweet *TweetControl::getTweet() {
-	return &status;
+Tweet * TweetControl::getTweet() {
+	return status;
 }
 
 // Writing the tweet property
 void TweetControl::setTweet(Tweet * newStatus) {
-	status = newStatus ? *newStatus : Tweet();
+	status = newStatus;
 	emit tweetChanged();
 }
 
@@ -66,7 +66,7 @@ void TweetControl::reply() {
 }
 
 void TweetControl::replyEnd(ProcessWrapper res) {
-	//
+	// TODO
 }
 
 
@@ -77,7 +77,7 @@ void TweetControl::retweet() {
 }
 
 void TweetControl::retweetEnd(ProcessWrapper res) {
-	//
+	// TODO
 }
 
 
@@ -88,8 +88,35 @@ void TweetControl::quote() {
 }
 
 void TweetControl::quoteEnd(ProcessWrapper res) {
-	//
+	// TODO
 }
+
+// Method indicating if the tweet mentions the user.
+bool TweetControl::isMention() {
+	if (!status) {
+		return false;
+	}
+
+	qlonglong userID = reyn.getConfiguration().getUserAccount().getUser().getID();
+
+	Tweet * shownTweet = status->isRetweet() ?
+				status->getRetweetedStatus()
+			  : status;
+
+	UserMentionList mentions = shownTweet->getEntities().getUserMentions();
+
+	for(UserMentionList::Iterator it = mentions.begin();
+		it != mentions.end();
+		++it)
+	{
+		if (it->getID() == userID) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 
 // Favorite
@@ -97,7 +124,7 @@ void TweetControl::quoteEnd(ProcessWrapper res) {
 void TweetControl::favorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(favoriteEnd(ProcessWrapper)));
-	reyn.favoriteTweet(status.getID());
+	reyn.favoriteTweet(status->getID());
 }
 
 void TweetControl::favoriteEnd(ProcessWrapper res) {
@@ -117,7 +144,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			status.setFavorited(true);
+			status->setFavorited(true);
 			break;
 
 		case TWITTER_DOWN:
@@ -137,7 +164,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 void TweetControl::unfavorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(unfavoriteEnd(ProcessWrapper)));
-	reyn.unfavoriteTweet(status.getID());
+	reyn.unfavoriteTweet(status->getID());
 }
 
 void TweetControl::unfavoriteEnd(ProcessWrapper res) {
@@ -157,7 +184,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			status.setFavorited(false);
+			status->setFavorited(false);
 			break;
 
 		case TWITTER_DOWN:

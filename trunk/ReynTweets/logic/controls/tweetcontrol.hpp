@@ -46,31 +46,35 @@ class TweetControl : public QObject
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
+		/// @fn void reply();
+		/// @brief Reply to the tweet
+		Q_INVOKABLE void reply();
+
+		/// @fn void retweet();
+		/// @brief Retweet the tweet
+		Q_INVOKABLE void retweet();
+
+		/// @fn void quote();
+		/// @brief Quote the tweet (old retweet method)
+		Q_INVOKABLE void quote();
+
+		/// @fn void favorite();
+		/// @brief Favorite the tweet
+		Q_INVOKABLE void favorite();
+
+		/// @fn void unfavorite();
+		/// @brief Unfavorite the tweet
+		Q_INVOKABLE void unfavorite();
+
+		/// @fn Q_INVOKABLE bool isMention();
+		/// @brief Method indicating if the tweet mentions the user.
+		///	@return true if the user is mentionned, false otherwise.
+		Q_INVOKABLE bool isMention();
+
 	signals:
 		/// @fn void tweetChanged();
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
-
-	public slots:
-		/// @fn void reply();
-		/// @brief Reply to the tweet
-		void reply();
-
-		/// @fn void retweet();
-		/// @brief Retweet the tweet
-		void retweet();
-
-		/// @fn void quote();
-		/// @brief Quote the tweet (old retweet method)
-		void quote();
-
-		/// @fn void favorite();
-		/// @brief Favorite the tweet
-		void favorite();
-
-		/// @fn void unfavorite();
-		/// @brief Unfavorite the tweet
-		void unfavorite();
 
 	protected slots:
 		/// @fn void replyEnd(ProcessWrapper res);
@@ -105,7 +109,7 @@ class TweetControl : public QObject
 				   NOTIFY tweetChanged)
 
 		/// @brief Tweet entity behind the tweet property
-		Tweet status;
+		Tweet * status;
 
 		/// @fn Tweet * getTweet();
 		/// @brief Reading the tweet property
@@ -115,7 +119,7 @@ class TweetControl : public QObject
 		/// @fn void setTweet(Tweet * newStatus);
 		/// @brief Writing the tweet property
 		/// @param newStatus New value for status.
-		void setTweet(Tweet *newStatus);
+		void setTweet(Tweet * newStatus);
 };
 
 #endif // TWEETCONTROL_HPP

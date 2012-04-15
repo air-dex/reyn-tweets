@@ -31,12 +31,12 @@ QtObject {
 	////////////
 
 	// Orange Reyn Tweets
-	property string orange: "#d9781d"
+	property string orange: "#eb8801"
 
 	// Grey
 	property string grey: "#c4c4c4"
 
-	// Grey
+	// Light grey
 	property string very_light_grey: "#fafafa"
 
 	// White
@@ -45,8 +45,20 @@ QtObject {
 	// Black
 	property string black: "#000000"
 
-	// Black
+	// Red
 	property string red: "#ff0000"
+
+	// Green for mentions (separator_color)
+	property string green_mention: "#b8fe86"
+
+	// Green for mentions (middle_color)
+	property string light_green_mention: "#d3ffb4"
+
+	// Blue for Direct messages (separator_color)
+	property string blue_dm: "#90c0fd"
+
+	// Blue for Direct messages (middle_color)
+	property string light_blue_dm: "#b3d3fd"
 
 
 	//////////

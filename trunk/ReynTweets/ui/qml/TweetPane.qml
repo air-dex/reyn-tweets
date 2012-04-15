@@ -36,10 +36,16 @@ Rectangle {
 	property int margin: 5
 
 	// The tweet displayed in this pane
-	property Tweet tweet: control.tweet
+	property Tweet tweet
 
 	// The tweet displayed in this pane
 	property Tweet shown_tweet: tweet
+
+	property UserInfos me: settings_control.configuration.current_account.current_user
+
+	property string separator_color: constant.very_light_grey
+
+	property string middle_color: constant.white
 
 	// Minimal height
 	property int min_height: author_text.height + text.height
@@ -65,54 +71,37 @@ Rectangle {
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: constant.grey
+			color: constant.black
 		}
 
 		GradientStop {
 			position: separator
-			color: constant.very_light_grey // or white
+			color: separator_color
 		}
 
 		GradientStop {
 			position: 0.5
-			color: constant.white
+			color: middle_color
 		}
 
 		GradientStop {
 			position: 1-separator
-			color: constant.very_light_grey // or white
+			color: separator_color
 		}
 
 		GradientStop {
 			position: 1
-			color: constant.grey
+			color: constant.black
 		}
 	}
 
 	Constants { id:constant }
 
-	Component.onCompleted: {
-		// Detects automatically if it's a retweet (put in "Retweet" state)
-
-		// Treatments if it is a reply
-		if (shown_tweet.isReply()) {
-			tweet_pane.state = "Reply"
-		}
-
-
-		// Treatments if it is a retweet
-		if (shown_tweet.isRetweetedByPeople()
-				|| tweet_pane.state == "Retweet")
-		{
-			// The retweeter is not in retweet_count. So there is a problem if
-			// the author of the retweet is the only retweeter.
-			retweet_info.visible = true
-			retweet_info.anchors.topMargin = margin
-		}
-	}
-
 	// Control behind the pane
-	TweetControl { id: control }
+	TweetControl {
+		id: control
+		tweet: tweet_pane.tweet
+	}
 
 	// Square with avatars
 	Item {
@@ -471,6 +460,7 @@ Rectangle {
 	states: [
 		// Base state : classic tweet
 
+		// The tweet is a retweet
 		State {
 			// The tweet is a retweet
 			name: "Retweet"
@@ -505,6 +495,8 @@ Rectangle {
 				restoreEntryValues: false
 			}
 		},
+
+		// The tweet is a reply to a user
 		State {
 			// The tweet is a reply
 			name: "Reply"
@@ -524,11 +516,61 @@ Rectangle {
 				restoreEntryValues: false
 			}
 		},
+
+		// The tweet is a direct message to the user
 		State {
 			// The tweet is a direct message (DM)
 			name: "DirectMessage"
+
+			PropertyChanges {
+				target: tweet_pane
+				separator_color: constant.blue_dm
+				middle_color: constant.light_blue_dm
+				restoreEntryValues: false
+			}
+		},
+
+		// Tweet mentionning the user
+		State {
+			// The tweet is a mention
+			name: "Mention"
+
+			PropertyChanges {
+				target: tweet_pane
+				separator_color: constant.green_mention
+				middle_color: constant.light_green_mention
+				restoreEntryValues: false
+			}
 		}
 	]
+
+	Component.onCompleted: {
+		// TODO : Direct Messages
+
+		// Detects automatically if it's a retweet (put in "Retweet" state)
+
+		// Treatments if it is a reply
+		if (shown_tweet.isReply()) {
+			tweet_pane.state = "Reply"
+		}
+
+
+		// Treatments if it is a retweet
+		if (shown_tweet.isRetweetedByPeople()
+				|| tweet_pane.state == "Retweet")
+		{
+			// The retweeter is not in retweet_count. So there is a problem if
+			// the author of the retweet is the only retweeter.
+			retweet_info.visible = true
+			retweet_info.anchors.topMargin = margin
+		}
+
+		//console.log("Le tweet " + shown_tweet.id_str + " est-il une mention ?")
+		if (control.isMention()) {
+			//console.log("Le tweet " + shown_tweet.id_str + " est une mention.")
+			tweet_pane.state = "Mention"
+		}
+	}
 
 	// Function to wrap words into an HTML tag
 	function wrapEntity(entity) {
@@ -543,6 +585,7 @@ Rectangle {
 	function buildImageTag(imageSrc) {
 		return '<img src="' + imageSrc + '">'
 	}
+
 
 	////////////////
 	// Management //

@@ -1,6 +1,9 @@
 /// @file twitter-text-js-wrapper.js
-/// @brief Wrapper for integrating the Twitter Text JS Library
+/// @brief Wrapper for integrating the twitter-text-js library.
 ///
+/// <a href="https://github.com/twitter/twitter-text-js">twitter-text-js</a>
+/// is a JavaScript library developed by Twitter. It provides useful functions
+/// for manipulating tweets.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

@@ -35,18 +35,6 @@ Rectangle {
 
 	property bool too_long_tweet: tweet_edit.text.length > 140
 
-	Component.onCompleted: {
-		var test = TwitterTextJS.twttr.txt.isValidHashtag("#hashtag")
-
-		if (typeof test === "undefined") {
-			console.log("pas de pot")
-		} else if (test) {
-			console.log("c'est bon")
-		} else {
-			console.log("c'est pas bon")
-		}
-	}
-
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -75,7 +63,11 @@ Rectangle {
 
 	WriteTweetControl {
 		id: control
-		onTweetPosted: console.log("Tweet posted")
+		onTweetPosted: {
+			tweet_edit.text = ""
+			console.log("Tweet posted")
+			console.log("TODO : update timeline")
+		}
 		onPostEnded: console.log("Post posted")
 	}
 
@@ -133,7 +125,6 @@ Rectangle {
 			wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
 			font.family: constant.font
 			font.pixelSize: constant.font_size
-			onTextChanged: control.detectURLs(tweet_edit.text)
 		}
 	}
 

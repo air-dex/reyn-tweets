@@ -57,7 +57,6 @@ int TimelineControl::getTimelineLength() {
 }
 
 
-
 ///////////////////////
 // Loading timelines //
 ///////////////////////

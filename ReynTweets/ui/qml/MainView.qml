@@ -39,18 +39,6 @@ Rectangle {
 	height: 640
 
 	// Component displayed while launching the application
-	Text {
-		id: mockup
-		text: "You can tweet now !"
-		anchors.top: parent.top
-		anchors.horizontalCenter: parent.horizontalCenter
-		verticalAlignment: Text.AlignVCenter
-		horizontalAlignment: Text.AlignHCenter
-		font.family: constant.font
-		visible: true
-		font.pixelSize: constant.font_size
-	}
-
 	WriteTweetPane {
 		id: write_tweet
 		width: parent.width
@@ -60,6 +48,7 @@ Rectangle {
 
 	TimelinePane {
 		id: timeline
+		width: parent.width
 		anchors.top: write_tweet.bottom
 		anchors.topMargin: 0
 		anchors.right: main_view.right

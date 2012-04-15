@@ -38,8 +38,9 @@ Rectangle {
 	MainView {
 		id: view
 		visible: false
-		anchors.left: reyn_tweets.left
-		anchors.right: reyn_tweets.right
+//		anchors.left: reyn_tweets.left
+//		anchors.right: reyn_tweets.right
+		anchors.fill: reyn_tweets
 	}
 
 

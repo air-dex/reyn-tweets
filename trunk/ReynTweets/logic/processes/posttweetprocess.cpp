@@ -25,6 +25,32 @@
 
 // Constructor
 PostTweetProcess::PostTweetProcess(QString status,
+								   QString replyTostatusID,
+								   bool userIDonly,
+								   bool withEntities,
+								   float lat,
+								   float lon,
+								   QString place,
+								   bool showCoord) :
+	SingleTwitterCallProcess(TWEET_POSTED),
+	tweet(status),
+	trimUser(userIDonly),
+	includeEntities(withEntities),
+	latitude(lat),
+	longitude(lon),
+	reversePlace(place),
+	displayCoord(showCoord)
+{
+	// Converting replyTostatusID QString into a qlonglong
+	bool convOK = false;
+
+	replyToTweetID = replyTostatusID.toLongLong(&convOK);
+	if (!convOK) {
+		replyToTweetID = -1;
+	}
+}
+
+PostTweetProcess::PostTweetProcess(QString status,
 								   qlonglong replyTostatusID,
 								   bool userIDonly,
 								   bool withEntities,

@@ -248,3 +248,25 @@ void ReynCore::postTweet(QString tweet,
 
 	executeProcess(process);
 }
+
+// Posting a tweet without media
+void ReynCore::postTweet(QString tweet,
+						 QString replyToTweetID,
+						 bool trimUser,
+						 bool includeEntities,
+						 float latitude,
+						 float longitude,
+						 QString reversePlace,
+						 bool displayCoord)
+{
+	PostTweetProcess * process = new PostTweetProcess(tweet,
+													  replyToTweetID,
+													  trimUser,
+													  includeEntities,
+													  latitude,
+													  longitude,
+													  reversePlace,
+													  displayCoord);
+
+	executeProcess(process);
+}

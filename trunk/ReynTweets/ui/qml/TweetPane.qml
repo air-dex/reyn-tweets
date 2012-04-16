@@ -389,8 +389,8 @@ Rectangle {
 			image_source: "../../resources/icons/reply_off.png"
 			legend: qsTr("Reply")
 			onAct: {
-				console.log("TODO : reply to the tweet")
-				//control.reply();
+				reply('@' + shown_tweet.author.screen_name + ' ',
+					  shown_tweet.id_str)
 			}
 
 			property string reply_switch: "off"
@@ -431,8 +431,7 @@ Rectangle {
 			image_source: "../../resources/icons/quote.png"
 			legend: qsTr("Quote")
 			onAct: {
-				console.log("TODO : quote the tweet (old RT)")
-				//control.quote();
+				quote('RT @' + tweet.author.screen_name + ' ' + shown_tweet.text);
 			}
 
 			visible: !iam_author
@@ -445,10 +444,8 @@ Rectangle {
 			legend: (tweet.favorited) ? qsTr("Favorited") : qsTr("Favorite")
 			onAct: {
 				if (tweet.favorited) {
-					console.log("TODO : unfavorite the tweet")
 					control.unfavorite()
 				} else {
-					console.log("TODO : favorite the tweet")
 					control.favorite()
 				}
 			}
@@ -456,6 +453,8 @@ Rectangle {
 			property string fav_suffix: tweet.favorited ? "on" : "off"
 		}
 	}
+
+	// TODO : for treatments like authentication and errors
 
 	states: [
 		// Base state : classic tweet
@@ -591,9 +590,7 @@ Rectangle {
 	// Management //
 	////////////////
 
-	signal reply
-	signal retweet
-	signal quote
-	signal favorite
-	signal unfavorite
+	// Sends base to write
+	signal reply(string screenName, string replyToTweetID)
+	signal quote(string text)
 }

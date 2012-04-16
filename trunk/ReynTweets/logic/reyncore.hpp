@@ -186,7 +186,7 @@ class ReynCore : public QObject
 		///					   float longitude = -361,
 		///					   QString reversePlace = "",
 		///					   bool displayCoord = false);
-		/// @brief Posting a tweet without media
+		/// @brief Posting a tweet without media (ID qlonglong)
 		/// @param tweet Text of the tweet
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
@@ -201,6 +201,36 @@ class ReynCore : public QObject
 		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
 		void postTweet(QString tweet,
 					   qlonglong replyToTweetID = -1,
+					   bool trimUser = true,
+					   bool includeEntities = false,
+					   float latitude = -361,
+					   float longitude = -361,
+					   QString reversePlace = "",
+					   bool displayCoord = false);
+
+		/// @fn void postTweet(QString tweet,
+		///					   QString replyToTweetID = "-1",
+		///					   bool trimUser = true,
+		///					   bool includeEntities = false,
+		///					   float latitude = -361,
+		///					   float longitude = -361,
+		///					   QString reversePlace = "",
+		///					   bool displayCoord = false);
+		/// @brief Posting a tweet without media (ID QString)
+		/// @param tweet Text of the tweet
+		/// @param replyToTweetID If the tweet is a reply, this parameter is
+		/// the ID of the tweet that this tweet replies to.
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param longitude For geolocation, your latitude.
+		/// @param latitude For geolocation, your longitude.
+		/// @param reversePlace For geolocation, ID of the place where the tweet
+		/// is supposed to be sent
+		/// @param displayCoord Displaying the coordonates of the tweet
+		/// with a pin on a map
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+		void postTweet(QString tweet,
+					   QString replyToTweetID = "-1",
 					   bool trimUser = true,
 					   bool includeEntities = false,
 					   float latitude = -361,

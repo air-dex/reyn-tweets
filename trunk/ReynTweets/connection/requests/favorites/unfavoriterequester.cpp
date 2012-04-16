@@ -31,8 +31,4 @@ UnfavoriteRequester::UnfavoriteRequester(OAuthManager & authManager,
 {
 	// Replacing ":id" in the URL with the tweet ID
 	requestURL.replace(":id", QString::number(tweetID));
-
-	// Verifying while debugging
-	qDebug("L'URL de défavoritisme :");
-	qDebug(requestURL.toUtf8().data());
 }

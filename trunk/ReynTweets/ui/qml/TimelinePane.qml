@@ -49,8 +49,15 @@ Rectangle {
 
 		delegate: Component {
 			TweetPane {
+				//id: delegate_pane
 				width: timeline_pane.width
 				tweet: control.getTweet(index)
+
+				Component.onCompleted: {
+					// When a tweet is quoted or reply to a tweet
+					reply.connect(writeReply)
+					quote.connect(writeTweet)
+				}
 			}
 		}
 
@@ -90,6 +97,8 @@ Rectangle {
 
 	Component.onCompleted: {
 		// Wiring
+
+		// After loading a timeline
 		control.loadEnded.connect(afterLoading)
 	}
 
@@ -119,4 +128,7 @@ Rectangle {
 
 		err_comp.displayMessage(action, messageDisplayed)
 	}
+
+	signal writeReply(string text, string replyID)
+	signal writeTweet(string text)
 }

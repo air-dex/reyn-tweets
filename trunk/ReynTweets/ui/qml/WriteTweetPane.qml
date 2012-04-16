@@ -35,6 +35,8 @@ Rectangle {
 
 	property bool too_long_tweet: tweet_edit.text.length > 140
 
+	property string in_reply_to_tweet_id: '-1'
+
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -65,6 +67,7 @@ Rectangle {
 		id: control
 		onTweetPosted: {
 			tweet_edit.text = ""
+			in_reply_to_tweet_id = "-1"
 			console.log("Tweet posted")
 			console.log("TODO : update timeline")
 		}
@@ -78,7 +81,7 @@ Rectangle {
 		anchors.left: write_tweet_pane.left
 		anchors.topMargin: margin
 		anchors.leftMargin: margin
-		text: qsTr("What's up ?")
+		text: qsTr("What is happening ?")
 		font.family: constant.font
 		font.pixelSize: constant.font_size
 		verticalAlignment: Text.AlignVCenter
@@ -135,7 +138,7 @@ Rectangle {
 		anchors.rightMargin: margin
 		anchors.bottomMargin: margin
 		button_text: qsTr("Tweet")
-		onClick: control.postTweet(tweet_edit.text)
+		onClick: control.postTweet(tweet_edit.text, in_reply_to_tweet_id)
 	}
 
 	// Changes depending on the tweet length
@@ -160,4 +163,17 @@ Rectangle {
 			}
 		}
 	]
+
+	signal writeReply(string tweetText, string replyToTweetID)
+	onWriteReply: {
+		tweet_edit.text = tweetText
+		tweet_edit.cursorPosition = tweetText.length
+		in_reply_to_tweet_id = replyToTweetID
+	}
+
+	signal writeTweet(string tweetText)
+	onWriteTweet: {
+		tweet_edit.text = tweetText
+		tweet_edit.cursorPosition = tweetText.length
+	}
 }

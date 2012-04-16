@@ -1,4 +1,6 @@
+#summary Page sur la gestion des listes Qt côté QML dans Reyn Tweets
 #labels Architecture
+
 = Architecture des listes avec QML =
 
 Dans la vue, les listes sont des ListViews avec des ListModels derrière

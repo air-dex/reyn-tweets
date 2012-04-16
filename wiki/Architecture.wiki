@@ -1,5 +1,7 @@
+#summary Page sur l'architeture générale de l'application
 #labels Architecture
-=Architecture de Reyn Tweets :=
+
+= Architecture de Reyn Tweets : =
 
 Les 7 couches de l'architecture de Reyn Tweets :
 

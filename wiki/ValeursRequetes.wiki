@@ -1,3 +1,5 @@
+#summary Page sur les valeurs de retour des requêtes et des processes
+
 = Valeurs des requêtes =
 
 Différentes valeurs des requêtes effectuées
@@ -38,6 +40,7 @@ Les valeurs sont des ProcessResult composés de :
 === CoreResult ===
 
 CoreResult est un énumération povant prendre beaucoup de valeurs. En voici quelques unes :
+  * INVALID_RESULT : résultat invalide -> Arrêt de la requête car aucune requête n'est censée retourner une telle valeur.
   * RATE_LIMITED : les limitations d'utilisations ont été atteintes. Twitter autorise jusqu'à 350 requêtes authentifiées par heure et par adresse IP et jusqu'à 150 requêtes non-authentifiées par heure et par adresse IP.
   * TWITTER_DOWN : Twitter semble être en panne ou surchargé. C'est un peu une "fail whale".
   * NETWORK_CALL : Problème lors de l'appel à Twitter. Ce résultat découle d'une erreur d'ErrorType API_CALL lors de la requête à l'API Twitter.

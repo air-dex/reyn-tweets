@@ -1,4 +1,6 @@
+#summary Travail réalisé lors de l'intégration d'OAuth.
 #labels Phase-Implementation
+
 = *Développement de Reyn Tweets* =
 
 == Travail fait pour l'intégration de OAuth ==

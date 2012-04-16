@@ -94,7 +94,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			emit loadEnded(true, QString(), false);
 			break;
 
-		case AUTHENTICATION_REQUIRED:
+		case TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			return;
@@ -102,13 +102,9 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
 			emit loadEnded(false, result.errorMsg, false);
 			break;
-
-		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case LOADING_CONFIGURATION_ERROR:
 
 		// Unknown ends
 		case UNKNOWN_PROBLEM:

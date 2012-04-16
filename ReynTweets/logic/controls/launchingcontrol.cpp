@@ -86,6 +86,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
 			emit launchEnded(false, result.errorMsg, false);
 			break;
 

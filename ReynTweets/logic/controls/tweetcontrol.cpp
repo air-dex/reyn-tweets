@@ -141,19 +141,29 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 
-	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
 			status->setFavorited(true);
+			emit tweetChanged();
 			break;
 
-		case TWITTER_DOWN:
-		case RATE_LIMITED:
-		case NETWORK_CALL:
 		case TOKENS_NOT_AUTHORIZED:
-		case PARSE_ERROR:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
+
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit tweetEnded(false, result.errorMsg, false);
+			break;
+
+		// Unknown ends
 		case UNKNOWN_PROBLEM:
+
 		default:
+			emit tweetEnded(false, result.errorMsg, true);
 			break;
 	}
 }
@@ -181,19 +191,29 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 
-	// TODO
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
 			status->setFavorited(false);
+			emit tweetChanged();
 			break;
 
-		case TWITTER_DOWN:
-		case RATE_LIMITED:
-		case NETWORK_CALL:
 		case TOKENS_NOT_AUTHORIZED:
-		case PARSE_ERROR:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
+
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit tweetEnded(false, result.errorMsg, false);
+			break;
+
+		// Unknown ends
 		case UNKNOWN_PROBLEM:
+
 		default:
+			emit tweetEnded(false, result.errorMsg, true);
 			break;
 	}
 }

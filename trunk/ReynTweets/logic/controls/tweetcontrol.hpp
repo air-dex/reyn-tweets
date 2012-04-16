@@ -71,10 +71,27 @@ class TweetControl : public QObject
 		///	@return true if the user is mentionned, false otherwise.
 		Q_INVOKABLE bool isMention();
 
+
 	signals:
 		/// @fn void tweetChanged();
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
+
+		/// @fn void tweetChanged(bool launchOK,
+		///						  QString errorMsg,
+		///						  bool isFatal);
+		/// @brief Signal sent after an operation made by the control.
+		/// @param launchOK Did the process end successfully ?
+		/// @param errorMsg Error message
+		/// @param isFatal Did the process end with a fatal error ?
+		void tweetEnded(bool launchOK,
+						QString errorMsg,
+						bool isFatal);
+
+		/// @fn void authenticationNeeded();
+		/// @brief Signal sent if Reyn Tweets has to be allowed again
+		void authenticationNeeded();
+
 
 	protected slots:
 		/// @fn void replyEnd(ProcessWrapper res);

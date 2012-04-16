@@ -79,13 +79,9 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 		// Problems that can be solved trying later
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
 			emit postEnded(false, result.errorMsg, false);
 			break;
-
-		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case LOADING_CONFIGURATION_ERROR:
 
 		// Unknown ends
 		case UNKNOWN_PROBLEM:

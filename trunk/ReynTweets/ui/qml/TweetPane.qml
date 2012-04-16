@@ -446,10 +446,10 @@ Rectangle {
 			onAct: {
 				if (tweet.favorited) {
 					console.log("TODO : unfavorite the tweet")
-					//control.unfavorite()
+					control.unfavorite()
 				} else {
 					console.log("TODO : favorite the tweet")
-					//control.favorite()
+					control.favorite()
 				}
 			}
 

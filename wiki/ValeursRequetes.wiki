@@ -53,3 +53,13 @@ CoreResult est un énumération povant prendre beaucoup de valeurs. En voici que
     * Pour OAuth : NO_TOKENS, DENIED (Reyn Tweets est difficilement utilisable sans tokens OAuth pour requêter), 
     * WRONG_USER : requête de vérification que les tokens que Reyn Tweets a à sa disposition pour un user correspondent bien à l'user et qu'ils ont bien été délivrés pour l'application Reyn Tweets. À la fin d'un LaunchingProcess (process se déroulant au lancement du programme), tomber sur un WRONG_USER fait renvoyer AUTHENTICATION_REQUIRED au LaunchingProcess (à l'instar d'un TOKENS_NOT_AUTHORIZED).
     * ...
+
+Parmi ces CoreResults, on tombe souvent sur ces valeurs possibles lors d'une requête :
+  * Valeur de succès. On passe à la suite.
+  * Valeur(s) d'erreur éventuelles. Choix du programmeur pour la suite.
+  * TOKENS_NOT_AUTHORIZED / AUTHENTICATION_REQUIRED : problème de tokens. Un signal dont le but est de démarrer une procédure de récupération de bons tokens pour un utilisateur est émis.
+  * RATE_LIMITED : l'utilisateur a trop floodé Twitter. Réessayer plus tard peut permettre d'avoir plus de succès dans la requête, quand l'utilisateur sera à nouveau autorisé à envoyer des requêtes à Twitter.
+  * TWITTER_DOWN : le problème vient de Twitter qui semble KO et pas de l'application. Réessayer plus tard quand Twitter sera de nouveau d'aplomb est judicieux.
+  * NETWORK_CALL : problème réseau. Il est conseillé de réeesayer ultérieurement quand les conditions réseau de l'utilisateur seront meilleures.
+  * PARSE_ERROR : erreur de parsage : là on ne peut pas faire grand chose. Choix du programmeur pour la suite.
+  * UNKNOWN_PROBLEM : imprévu. Il est conseillé d'arrêter l'application dès que possible.

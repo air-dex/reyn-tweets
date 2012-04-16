@@ -1,0 +1,55 @@
+= Valeurs des requêtes =
+
+Différentes valeurs des requêtes effectuées
+
+
+== Requêtes à la Twitter API ==
+
+Les valeurs sont des RequestResult composées de :
+  * Un flag ErrorType
+  * Les résultats parsés dans un QVariant
+  * Les infos sur la requête HTTP (code de retour, raison)
+  * Les erreurs de Twitter (liste d'ensembles codes + message)
+  * Les erreurs de parsage 
+  * Un message d'erreur
+
+=== ErrorType ===
+
+ErrorType est une énumération povant prendre 7 valeurs différentes :
+  * NO_ERROR : pas d'erreur
+  * INVALID_RESULT : résultat invalide
+  * API_CALL : problème lors de l'appel à l'API Twitter (problèmes réseau par exemple).
+  * TWITTER_ERRORS : le traitement côté Twitter s'est mal passé.
+  * 3 valeurs pour les erreurs de parsage :
+    * QJSON_PARSING : QJSON n'a pas réussi à parser le résultat JSON d'une requête faite à Twitter.
+    * OAUTH_PARSING : des résultats de type arg0=val0&arg1=val1&...&argN=valN n'ont pu être parsés. Ce parsage est utilisé lors des requêtes d'authentification (via OAuth, d'où son nom), sauf pour les requêtes authorize() (GET et POST) où c'est une page HTML qui est renvoyée.
+    * HTML_PARSING : une page HTML reçue après une requête n'a pu être parsée. Utilisé pour les requêtes authorize() (GET et POST) d'OAuth.
+
+
+== Résultats des processus ==
+
+Les valeurs sont des ProcessResult composés de :
+  * Un booléen indiquant si le process s'est bien déroulé.
+  * Les résultats parsés dans un QVariant
+  * Un message d'erreur
+  * Un booléen indiquant en cas d'échec si l'erreur est fatale, c'est-à-dire nécessite un arrêt de l'application.
+  * Un flag descriptif du résultat du process (CoreResult)
+
+=== CoreResult ===
+
+CoreResult est un énumération povant prendre beaucoup de valeurs. En voici quelques unes :
+  * RATE_LIMITED : les limitations d'utilisations ont été atteintes. Twitter autorise jusqu'à 350 requêtes authentifiées par heure et par adresse IP et jusqu'à 150 requêtes non-authentifiées par heure et par adresse IP.
+  * TWITTER_DOWN : Twitter semble être en panne ou surchargé. C'est un peu une "fail whale".
+  * NETWORK_CALL : Problème lors de l'appel à Twitter. Ce résultat découle d'une erreur d'ErrorType API_CALL lors de la requête à l'API Twitter.
+  * PARSE_ERROR : Erreur de parsage de la requête.
+  * UNKNOWN_PROBLEM : Problème inattendu et/ou inconnu. Par mesures de précaution, l'application se doit d'être arrêtée.
+  * TOKENS_NOT_AUTHORIZED : les tokens utilisés pour l'authentification ont posé problème. L'application se doit de demander à l'utilisateur de refaire une procédure d'authentification via OAuth afin d'avoir des tokens convenables pour les requêtes futures.
+  * AUTHENTICATION_REQUIRED : il faut demander de nouveaux tokens car ceux à notre disposition ne sont pas les bons. Plus ou moins équivalent à TOKENS_NOT_AUTHORIZED.
+  * Exemples de valeurs de succès :
+    * Pour OAuth : TOKENS_OK, AUTHORIZED, 
+    * Résumé d'un bon déroulement d'un process : TIMELINE_RETRIEVED pour les requêtes en rapport avec les timelines, ALLOW_SUCCESSFUL pour les happy ends des processus d'autorisation (AllowProcess).
+    * ...
+  * Valeurs d'erreur :
+    * Pour OAuth : NO_TOKENS, DENIED (Reyn Tweets est difficilement utilisable sans tokens OAuth pour requêter), 
+    * WRONG_USER : requête de vérification que les tokens que Reyn Tweets a à sa disposition pour un user correspondent bien à l'user et qu'ils ont bien été délivrés pour l'application Reyn Tweets. À la fin d'un LaunchingProcess (process se déroulant au lancement du programme), tomber sur un WRONG_USER fait renvoyer AUTHENTICATION_REQUIRED au LaunchingProcess (à l'instar d'un TOKENS_NOT_AUTHORIZED).
+    * ...

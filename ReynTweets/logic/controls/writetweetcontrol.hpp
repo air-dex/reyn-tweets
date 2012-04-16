@@ -44,12 +44,12 @@ class WriteTweetControl : public QObject
 		static void declareQML();
 
 		/// @fn Q_INVOKABLE void postTweet(QString tweet,
-		///								   qlonglong inReplyToTweetID = -1);
+		///								   QString inReplyToTweetID = -1);
 		/// @brief Posting a tweet without medias
 		/// @param tweet The text of the tweet
 		/// @param inReplyToTweetID ID of the tweet
 		Q_INVOKABLE void postTweet(QString tweet,
-								   qlonglong inReplyToTweetID = -1);
+								   QString inReplyToTweetID = "-1");
 
 
 	signals:

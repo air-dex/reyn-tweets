@@ -34,6 +34,35 @@ class PostTweetProcess : public SingleTwitterCallProcess
 
 	public:
 		/// @fn PostTweetProcess(QString status,
+		///						 QString replyTostatusID = "-1",
+		///						 bool userIDonly = true,
+		///						 bool withEntities = false,
+		///						 float lat = -361,
+		///						 float lon = -361,
+		///						 QString place = "",
+		///						 bool showCoord = false);
+		/// @brief Constructor
+		/// @param status Text of the tweet
+		/// @param replyTostatusID If the tweet is a reply, this parameter is
+		/// the ID of the tweet that this tweet replies to.
+		/// @param userIDonly In tweets, giving only the ID of the author (true).
+		/// @param withEntities Including Tweet Entities in the tweets (true).
+		/// @param lat For geolocation, your longitude.
+		/// @param lon For geolocation, your latitude.
+		/// @param place For geolocation, ID of the place where the tweet
+		/// is supposed to be sent
+		/// @param showCoord Displaying the coordonates of the tweet
+		/// with a pin on a map
+		PostTweetProcess(QString status,
+						 QString replyTostatusID = "-1",
+						 bool userIDonly = true,
+						 bool withEntities = false,
+						 float lat = -361,
+						 float lon = -361,
+						 QString place = "",
+						 bool showCoord = false);
+
+		/// @fn PostTweetProcess(QString status,
 		///						 qlonglong replyTostatusID = -1,
 		///						 bool userIDonly = true,
 		///						 bool withEntities = false,
@@ -61,6 +90,7 @@ class PostTweetProcess : public SingleTwitterCallProcess
 						 float lon = -361,
 						 QString place = "",
 						 bool showCoord = false);
+
 
 
 	protected:

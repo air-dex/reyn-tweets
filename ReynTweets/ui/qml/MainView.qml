@@ -31,10 +31,6 @@ Rectangle {
 
 	Constants {	id:constant	}
 
-	function loadHomeTimeline() {
-		timeline.loadHomeTimeline();
-	}
-
 	width: 360
 	height: 640
 
@@ -54,5 +50,15 @@ Rectangle {
 		anchors.right: main_view.right
 		anchors.left: main_view.left
 		anchors.bottom: main_view.bottom
+	}
+
+	Component.onCompleted: {
+		// Wiring
+		timeline.writeReply.connect(write_tweet.writeReply)
+		timeline.writeTweet.connect(write_tweet.writeTweet)
+	}
+
+	function loadHomeTimeline() {
+		timeline.loadHomeTimeline();
 	}
 }

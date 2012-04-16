@@ -39,9 +39,8 @@ void WriteTweetControl::declareQML() {
 									   "WriteTweetControl");
 }
 
-
 // Posting a tweet without medias
-void WriteTweetControl::postTweet(QString tweet, qlonglong inReplyToTweetID) {
+void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(postTweetEnded(ProcessWrapper)));
 

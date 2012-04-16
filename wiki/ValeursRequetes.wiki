@@ -61,5 +61,5 @@ Parmi ces CoreResults, on tombe souvent sur ces valeurs possibles lors d'une req
   * RATE_LIMITED : l'utilisateur a trop floodé Twitter. Réessayer plus tard peut permettre d'avoir plus de succès dans la requête, quand l'utilisateur sera à nouveau autorisé à envoyer des requêtes à Twitter.
   * TWITTER_DOWN : le problème vient de Twitter qui semble KO et pas de l'application. Réessayer plus tard quand Twitter sera de nouveau d'aplomb est judicieux.
   * NETWORK_CALL : problème réseau. Il est conseillé de réeesayer ultérieurement quand les conditions réseau de l'utilisateur seront meilleures.
-  * PARSE_ERROR : erreur de parsage : là on ne peut pas faire grand chose. Choix du programmeur pour la suite.
+  * PARSE_ERROR : erreur de parsage : là on ne peut pas faire grand chose. Choix du programmeur pour la suite. On réessaye plus tard par défaut dans Reyn Tweets.
   * UNKNOWN_PROBLEM : imprévu. Il est conseillé d'arrêter l'application dès que possible.

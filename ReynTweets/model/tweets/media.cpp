@@ -82,6 +82,11 @@ QDataStream & operator>>(QDataStream & in, Media & media) {
 	return jsonStreamingIn(in, media);
 }
 
+// Resets the mappable to a default value
+void Media::reset() {
+	*this = Media();
+}
+
 
 ///////////////////////////
 // Properties management //

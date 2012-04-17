@@ -99,6 +99,10 @@ class ReynTweetsMappable : public QObject, public ReynTweetsSerializable<QVarian
 		/// @return A reference on transientProperties
 		QStringList & getTransientProperties();
 
+		/// @fn virtual void reset() = 0;
+		/// @brief Resets the mappable to a default value
+		virtual void reset() = 0;
+
 	protected:
 		/// @brief List of properties to ignore while converting the object into
 		/// a QVariant.

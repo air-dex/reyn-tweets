@@ -86,6 +86,12 @@ QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("https://api.twitter.c
 // Tweets //
 ////////////
 
+// Deleting a tweet (or a retweet)
+QString TwitterURL::DELETE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/destroy/:id.json");
+
+// Retweeting a tweet
+QString TwitterURL::RETWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/retweet/:id.json");
+
 // Getting informations about a given tweet
 QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/show.json");
 

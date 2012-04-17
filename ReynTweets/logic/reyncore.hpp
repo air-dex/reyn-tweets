@@ -121,6 +121,15 @@ class ReynCore : public QObject
 	////////////////////////
 
 	public:
+		/// @fn static ReynTweetsConfiguration & getConfiguration();
+		/// @brief Getting a reference on the configuration
+		/// @return Reference on configuration
+		static ReynTweetsConfiguration & getConfiguration();
+
+		//////////////////////////////////
+		// Launching and authentication //
+		//////////////////////////////////
+
 		/// @fn void launchReynTweets();
 		/// @brief Launching the app
 		void launchReynTweets();
@@ -133,15 +142,9 @@ class ReynCore : public QObject
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
 
-		/// @fn void favoriteTweet(qlonglong id);
-		/// @brief Favoriting a tweet
-		/// @param id ID of the tweet to favorite
-		void favoriteTweet(qlonglong id);
-
-		/// @fn void unfavoriteTweet(qlonglong id);
-		/// @brief Unfavoriting a tweet
-		/// @param id ID of the tweet to unfavorite
-		void unfavoriteTweet(qlonglong id);
+		///////////////
+		// Timelines //
+		///////////////
 
 		/// @fn void loadHomeTimeline(qlonglong sinceID = -1,
 		///							  qlonglong maxID = -1,
@@ -173,10 +176,19 @@ class ReynCore : public QObject
 							  int page = 0,
 							  bool contributorsDetails = false);
 
-		/// @fn static ReynTweetsConfiguration & getConfiguration();
-		/// @brief Getting a reference on the configuration
-		/// @return Reference on configuration
-		static ReynTweetsConfiguration & getConfiguration();
+		////////////
+		// Tweets //
+		////////////
+
+		/// @fn void favoriteTweet(qlonglong id);
+		/// @brief Favoriting a tweet
+		/// @param id ID of the tweet to favorite
+		void favoriteTweet(qlonglong id);
+
+		/// @fn void unfavoriteTweet(qlonglong id);
+		/// @brief Unfavoriting a tweet
+		/// @param id ID of the tweet to unfavorite
+		void unfavoriteTweet(qlonglong id);
 
 		/// @fn void postTweet(QString tweet,
 		///					   qlonglong replyToTweetID,
@@ -237,6 +249,18 @@ class ReynCore : public QObject
 					   float longitude = -361,
 					   QString reversePlace = "",
 					   bool displayCoord = false);
+
+		/// @fn void retweet(QString tweetID,
+		///					 bool trimUser = true,
+		///					 bool includeEntities = false);
+		/// @brief Reweeting a tweet
+		/// @param tweetID ID of the tweet to retweet
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+		void retweet(qlonglong tweetID,
+					 bool includeEntities = true,
+					 bool trimUser = false);
 
 
 	protected:

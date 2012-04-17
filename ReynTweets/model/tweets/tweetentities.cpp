@@ -78,6 +78,11 @@ QDataStream & operator>>(QDataStream & in, TweetEntities & entities) {
 	return jsonStreamingIn(in, entities);
 }
 
+// Resets the mappable to a default value
+void TweetEntities::reset() {
+	*this = TweetEntities();
+}
+
 
 ///////////////////////////
 // Properties management //

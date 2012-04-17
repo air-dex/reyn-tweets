@@ -57,6 +57,14 @@ class TimelineControl : public QObject
 		/// is ok, a default tweet otherwise.
 		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 
+		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+		/// @brief Replacing a tweet in a timeline
+		///
+		/// It can be used after retweeting a tweet, for example.
+		/// @param updatedTweet New value of the tweet
+		/// @param tweetIndex Index of the tweet in the timeline
+		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+
 
 	signals:
 		/// @fn void timelineChanged();

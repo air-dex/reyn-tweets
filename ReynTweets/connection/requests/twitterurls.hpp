@@ -91,6 +91,12 @@ namespace TwitterURL
 	// Tweets //
 	////////////
 
+	/// @brief URL to delete a tweet (or a retweet)
+	extern QString DELETE_TWEET_URL;
+
+	/// @brief URL to retweet a tweet
+	extern QString RETWEET_URL;
+
 	/// @brief URL to get informations about a given tweet
 	extern QString SHOW_TWEET_URL;
 

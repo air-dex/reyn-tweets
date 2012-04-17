@@ -71,6 +71,10 @@ class URLEntity : public TweetEntity
 		/// @return An HTML tag to open the URL in a browser
 		QString getDisplayedText(QColor linkColor);
 
+		/// @fn virtual void reset();
+		/// @brief Resets the mappable to a default value
+		virtual void reset();
+
 
 	protected:
 		/// @fn void recopie(const URLEntity & entity);

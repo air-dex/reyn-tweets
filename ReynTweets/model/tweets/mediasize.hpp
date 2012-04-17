@@ -94,6 +94,10 @@ class MediaSize : public ReynTweetsMappable, public QSize
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 	private:
 		/// @fn void recopie(const MediaSize & size);
 		/// @brief Copy of a MediaSize

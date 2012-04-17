@@ -252,6 +252,15 @@ void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 // Tweets //
 ////////////
 
+// Retweeting a tweet
+void ReynTwitterCalls::retweet(qlonglong tweetID, bool entities, bool trimUser) {
+	RetweetRequester * requester = new RetweetRequester(oauthManager,
+														tweetID,
+														entities,
+														trimUser);
+	executeRequest(requester);
+}
+
 // Showing a tweet
 void ReynTwitterCalls::showTweet(qlonglong tweetID, bool entities, bool trimUser) {
 	ShowTweetRequester * requester = new ShowTweetRequester(tweetID,

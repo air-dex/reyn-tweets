@@ -74,6 +74,11 @@ void UserAccount::declareQML() {
 								 "UserAccount");
 }
 
+// Resets the mappable to a default value
+void UserAccount::reset() {
+	*this = UserAccount();
+}
+
 
 ////////////////////
 // JSON Streaming //

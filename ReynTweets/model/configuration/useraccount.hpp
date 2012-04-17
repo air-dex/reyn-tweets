@@ -69,6 +69,10 @@ class UserAccount : public ReynTweetsMappable
 		/// @brief Declaring ReynTweetsConfiguration to the QML system
 		static void declareQML();
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 
 	private:
 		/// @fn void recopie(const UserAccount & account);

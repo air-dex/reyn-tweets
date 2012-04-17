@@ -56,6 +56,24 @@ int TimelineControl::getTimelineLength() {
 	return timeline.size();
 }
 
+// Replacing a tweet
+void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
+	qDebug("Je remplace");
+
+	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+		return;
+	}
+
+	Tweet & tweet = timeline[tweetIndex];
+	tweet.reset();
+	tweet.fillWithVariant(updatedTweet.toMap());
+//	emit timelineChanged();
+
+	qDebug("C'est bon");
+
+//	timeline.replace(tweetIndex, *updatedTweet);
+}
+
 
 ///////////////////////
 // Loading timelines //

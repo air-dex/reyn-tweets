@@ -49,7 +49,6 @@ Rectangle {
 
 		delegate: Component {
 			TweetPane {
-				//id: delegate_pane
 				width: timeline_pane.width
 				tweet: control.getTweet(index)
 
@@ -57,6 +56,12 @@ Rectangle {
 					// When a tweet is quoted or reply to a tweet
 					reply.connect(writeReply)
 					quote.connect(writeTweet)
+					updateTweet.connect(updateTL)
+				}
+
+				function updateTL(newTweet) {
+					console.debug("Until TL")
+					control.replaceTweet(newTweet, index)
 				}
 			}
 		}

@@ -68,6 +68,33 @@ Rectangle {
 	// Width of top and bottom borders / pane height.
 	property real separator: 2 / tweet_pane.height
 
+	Constants { id:constant }
+
+//	onTweetChanged: {
+//		resetToStart()
+//	}
+
+	// Control behind the pane
+	TweetControl {
+		id: control
+		tweet: tweet_pane.tweet
+//		onTweetUpdated: {
+//			if (tweet.isRetweet()) {
+//				tweet_pane.state = "Retweet"
+//			}
+//		}
+//		onTweetRetweeted:  {
+////			tweet_pane.tweet = control.tweet
+////			resetToStart()
+//		}
+//		onTweetChanged: {
+//			if (typeof tweet === "undefined")
+//				return;
+
+//			resetToStart();
+//		}
+	}
+
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -93,14 +120,6 @@ Rectangle {
 			position: 1
 			color: constant.black
 		}
-	}
-
-	Constants { id:constant }
-
-	// Control behind the pane
-	TweetControl {
-		id: control
-		tweet: tweet_pane.tweet
 	}
 
 	// Square with avatars
@@ -402,10 +421,8 @@ Rectangle {
 			image_source: "../../resources/icons/wastebin.png"
 			legend: qsTr("Delete")
 			onAct: {
-				console.log("TODO : delete the tweet (or not)")
+				console.log("TODO : delete the tweet")
 			}
-
-			property string rt_suffix: tweet.retweeted ? "on" : "off"
 
 			visible: iam_author
 		}
@@ -417,7 +434,11 @@ Rectangle {
 			legend: (tweet.retweeted) ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
 				console.log("TODO : retweet the tweet (or not)")
-				//control.retweet();
+				if (shown_tweet.retweeted) {
+					console.log("TODO : delete the tweet")
+				} else {
+					control.retweet();
+				}
 			}
 
 			property string rt_suffix: tweet.retweeted ? "on" : "off"
@@ -431,7 +452,7 @@ Rectangle {
 			image_source: "../../resources/icons/quote.png"
 			legend: qsTr("Quote")
 			onAct: {
-				quote('RT @' + tweet.author.screen_name + ' ' + shown_tweet.text);
+				quote('RT @' + tweet.author.screen_name + ': ' + shown_tweet.text);
 			}
 
 			visible: !iam_author
@@ -544,9 +565,26 @@ Rectangle {
 	]
 
 	Component.onCompleted: {
+		control.updateTimeline.connect(tweet_pane.updateTweet)
+		displayTweet();
+	}
+
+	function displayTweet() {
 		// TODO : Direct Messages
 
 		// Detects automatically if it's a retweet (put in "Retweet" state)
+
+		//tweet = control.tweet
+
+//		if (tweet.isRetweet()) {
+//			tweet_pane.state = "Retweet"
+//		} else {
+//			tweet_pane.shown_tweet = tweet
+//		}
+
+//		if (typeof shown_tweet === "undefined") {
+//			return;
+//		}
 
 		// Treatments if it is a reply
 		if (shown_tweet.isReply()) {
@@ -571,6 +609,24 @@ Rectangle {
 		}
 	}
 
+	function resetToStart() {
+		avatar_zone.side = tweet_pane.avatar_side
+		retweeter_avatar.visible = false
+		retweeter_avatar.source = ""
+		author_text.anchors.leftMargin = 2*margin + tweet_pane.avatar_side /4
+		reply_info.visible = false
+		reply_info.anchors.topMargin = 0
+		retweet_info.visible = false
+		retweet_info.anchors.top = source_text.bottom
+		tweet_pane.separator_color = constant.very_light_grey
+		tweet_pane.middle_color = constant.white
+
+		tweet_pane.tweet = control.tweet
+		//tweet_pane.shown_tweet = tweet.isRetweet() ? tweet.retweet : tweet
+		tweet_pane.state = ""
+		displayTweet();
+	}
+
 	// Function to wrap words into an HTML tag
 	function wrapEntity(entity) {
 		var beginTag = '<a style="text-decoration: none; color: ';
@@ -593,4 +649,5 @@ Rectangle {
 	// Sends base to write
 	signal reply(string screenName, string replyToTweetID)
 	signal quote(string text)
+	signal updateTweet(variant updatedTweet)
 }

@@ -150,6 +150,15 @@ void ReynCore::denyReynTweets(QString login, QString password) {
 // Actions to realize //
 ////////////////////////
 
+// Getting a reference on the configuration
+ReynTweetsConfiguration & ReynCore::getConfiguration() {
+	return configuration;
+}
+
+//////////////////////////////////
+// Launching and authentication //
+//////////////////////////////////
+
 // Launching the app
 void ReynCore::launchReynTweets() {
 	LaunchingProcess * process = new LaunchingProcess(configuration);
@@ -170,18 +179,6 @@ void ReynCore::allowReynTweets() {
 	executeProcess(process);
 }
 
-// Favoriting a tweet
-void ReynCore::favoriteTweet(qlonglong id) {
-	FavoriteProcess * process = new FavoriteProcess(id, true);
-	executeProcess(process);
-}
-
-// Unfavoriting a tweet
-void ReynCore::unfavoriteTweet(qlonglong id) {
-	FavoriteProcess * process = new FavoriteProcess(id, false);
-	executeProcess(process);
-}
-
 // Special wiring of an OAuth process.
 void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 	// Process giving informations about user credentials
@@ -196,6 +193,10 @@ void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 	connect(this, SIGNAL(deny(QString,QString)),
 			oauthProcess, SLOT(denyReynTweets(QString,QString)));
 }
+
+///////////////
+// Timelines //
+///////////////
 
 // Unfavoriting a tweet
 void ReynCore::loadHomeTimeline(qlonglong sinceID,
@@ -220,11 +221,20 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 	executeProcess(process);
 }
 
+////////////
+// Tweets //
+////////////
 
+// Favoriting a tweet
+void ReynCore::favoriteTweet(qlonglong id) {
+	FavoriteProcess * process = new FavoriteProcess(id, true);
+	executeProcess(process);
+}
 
-// Getting a reference on the configuration
-ReynTweetsConfiguration & ReynCore::getConfiguration() {
-	return configuration;
+// Unfavoriting a tweet
+void ReynCore::unfavoriteTweet(qlonglong id) {
+	FavoriteProcess * process = new FavoriteProcess(id, false);
+	executeProcess(process);
 }
 
 // Posting a tweet without media
@@ -267,6 +277,15 @@ void ReynCore::postTweet(QString tweet,
 													  longitude,
 													  reversePlace,
 													  displayCoord);
+
+	executeProcess(process);
+}
+
+// Reweeting a tweet
+void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
+	RetweetProcess * process = new RetweetProcess(tweetID,
+												  includeEntities,
+												  trimUser);
 
 	executeProcess(process);
 }

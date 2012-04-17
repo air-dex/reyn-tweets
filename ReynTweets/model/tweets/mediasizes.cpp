@@ -68,6 +68,11 @@ void MediaSizes::recopie(const MediaSizes & sizes) {
 	thumbSize = sizes.thumbSize;
 }
 
+// Resets the mappable to a default value
+void MediaSizes::reset() {
+	*this = MediaSizes();
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaSizes & sizes) {
 	return jsonStreamingOut(out, sizes);

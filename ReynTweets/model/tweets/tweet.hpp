@@ -70,6 +70,10 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 	private:
 		/// @fn void recopie(const Tweet & status);
 		/// @brief Copy of a tweet

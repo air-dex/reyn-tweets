@@ -74,6 +74,11 @@ void ReynTweetsConfiguration::declareQML() {
 											 "ReynTweetsConfiguration");
 }
 
+// Resets the mappable to a default value
+void ReynTweetsConfiguration::reset() {
+	*this = ReynTweetsConfiguration();
+}
+
 
 ////////////////////
 // JSON Streaming //

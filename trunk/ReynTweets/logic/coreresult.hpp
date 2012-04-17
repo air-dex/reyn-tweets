@@ -131,8 +131,14 @@ enum CoreResult {
 	/// @brief After retrieving a timeline
 	TIMELINE_RETRIEVED,
 
-	/// @brief After retrieving a timeline
+	/// @brief After deleting a tweet
+	TWEET_DELETED,
+
+	/// @brief After updating a tweet
 	TWEET_POSTED,
+
+	/// @brief After retweeting a tweet
+	TWEET_RETWEETED,
 
 
 	//////////

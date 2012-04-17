@@ -82,6 +82,11 @@ QDataStream & operator>>(QDataStream & in, UserMention & mention) {
 	return jsonStreamingIn(in, mention);
 }
 
+// Resets the mappable to a default value
+void UserMention::reset() {
+	*this = UserMention();
+}
+
 
 ////////////////////////
 // Getter and setters //

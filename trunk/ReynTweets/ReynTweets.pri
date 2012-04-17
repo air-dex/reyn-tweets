@@ -117,7 +117,9 @@ SOURCES += \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	logic/processes/posttweetprocess.cpp \
-	connection/requests/tweets/posttweetrequester.cpp
+	connection/requests/tweets/posttweetrequester.cpp \
+    connection/requests/tweets/retweetrequester.cpp \
+    logic/processes/retweetprocess.cpp
 
 
 HEADERS  += \
@@ -204,7 +206,9 @@ HEADERS  += \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/processes/posttweetprocess.hpp \
-	connection/requests/tweets/posttweetrequester.hpp
+	connection/requests/tweets/posttweetrequester.hpp \
+    connection/requests/tweets/retweetrequester.hpp \
+    logic/processes/retweetprocess.hpp
 
 
 OTHER_FILES = \

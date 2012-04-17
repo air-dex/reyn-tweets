@@ -140,6 +140,11 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 	return jsonStreamingIn(in, tweet);
 }
 
+// Resets the mappable to a default value
+void Tweet::reset() {
+	*this = Tweet();
+}
+
 
 ///////////////////////////
 // Properties management //
@@ -199,12 +204,14 @@ void Tweet::setRetweetedStatus(QVariantMap statusMap) {
 		// This is not a retweet
 		if (retweetSource) {
 			delete retweetSource;
-			retweetSource = 0;
 		}
+		retweetSource = 0;
 	}
 	else {
 		if (!retweetSource) {
 			retweetSource = new Tweet;
+		} else {
+			retweetSource->reset();
 		}
 		retweetSource->fillWithVariant(statusMap);
 	}

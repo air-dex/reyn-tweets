@@ -1,5 +1,5 @@
-/// @file processes.hpp
-/// @brief Header with all the existing processes
+/// @file retweetprocess.cpp
+/// @brief Implementation of RetweetProcess
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,15 +21,17 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef PROCESSES_HPP
-#define PROCESSES_HPP
-
-#include "allowprocess.hpp"
-#include "favoriteprocess.hpp"
-#include "launchingprocess.hpp"
-#include "loadinghometimelineprocess.hpp"
-#include "oauthprocess.hpp"
-#include "posttweetprocess.hpp"
 #include "retweetprocess.hpp"
 
-#endif // PROCESSES_HPP
+// Constructor
+RetweetProcess::RetweetProcess(qlonglong statusID, bool withEntities, bool userIDonly) :
+	SingleTwitterCallProcess(TWEET_RETWEETED),
+	tweetID(statusID),
+	trimUser(userIDonly),
+	includeEntities(withEntities)
+{}
+
+// Calling Twitter
+void RetweetProcess::callTwitter() {
+	twitter.retweet(tweetID, includeEntities, trimUser);
+}

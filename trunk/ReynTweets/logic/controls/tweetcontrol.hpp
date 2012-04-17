@@ -46,17 +46,9 @@ class TweetControl : public QObject
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();
 
-		/// @fn void reply();
-		/// @brief Reply to the tweet
-		Q_INVOKABLE void reply();
-
 		/// @fn void retweet();
 		/// @brief Retweet the tweet
 		Q_INVOKABLE void retweet();
-
-		/// @fn void quote();
-		/// @brief Quote the tweet (old retweet method)
-		Q_INVOKABLE void quote();
 
 		/// @fn void favorite();
 		/// @brief Favorite the tweet
@@ -77,6 +69,10 @@ class TweetControl : public QObject
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
+		void tweetUpdated();
+
+		void tweetRetweeted();
+
 		/// @fn void tweetChanged(bool launchOK,
 		///						  QString errorMsg,
 		///						  bool isFatal);
@@ -92,19 +88,15 @@ class TweetControl : public QObject
 		/// @brief Signal sent if Reyn Tweets has to be allowed again
 		void authenticationNeeded();
 
+		/// @fn void updateTimeline(Tweet * updatedTweet);
+		/// @brief Signal sent when a tweet has to be updated in the timeline
+		void updateTimeline(QVariant updatedTweet);
+
 
 	protected slots:
-		/// @fn void replyEnd(ProcessWrapper res);
-		/// @brief Slot executed after replying to the tweet
-		void replyEnd(ProcessWrapper res);
-
 		/// @fn void retweetEnd(ProcessWrapper res);
 		/// @brief Slot executed after retweeting the tweet
 		void retweetEnd(ProcessWrapper res);
-
-		/// @fn void quoteEnd(ProcessWrapper res);
-		/// @brief Slot executed after quoting the tweet (old retweet method)
-		void quoteEnd(ProcessWrapper res);
 
 		/// @fn void favoriteEnd(ProcessWrapper res);
 		/// @brief Slot executed after favoriting the tweet
@@ -126,7 +118,7 @@ class TweetControl : public QObject
 				   NOTIFY tweetChanged)
 
 		/// @brief Tweet entity behind the tweet property
-		Tweet * status;
+		Tweet status;
 
 		/// @fn Tweet * getTweet();
 		/// @brief Reading the tweet property

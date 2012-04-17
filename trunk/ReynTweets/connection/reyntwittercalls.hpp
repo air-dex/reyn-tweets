@@ -275,6 +275,18 @@ class ReynTwitterCalls : public QObject
 		// Tweets //
 		////////////
 
+		/// @fn void retweet(qlonglong tweetID,
+		///					 bool entities = true,
+		///					 bool trimUser = false);
+		/// @brief Retweeting a tweet
+		/// @param tweetID ID of the tweet
+		/// @param entities Include Tweet Entities in th reply ?
+		/// @param trimUser Return only user IDs instead of all the values ?
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+		void retweet(qlonglong tweetID,
+					 bool entities = true,
+					 bool trimUser = false);
+
 		/// @fn void showTweet(qlonglong tweetID,
 		///					   bool entities = true,
 		///					   bool trimUser = false);

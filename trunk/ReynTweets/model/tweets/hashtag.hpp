@@ -70,6 +70,10 @@ class Hashtag : public TweetEntity
 		/// @return The tweet entity with rich content
 		QString getDisplayedText(QColor linkColor);
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 
 	private:
 		/// @fn void recopie(const Hashtag & hashtag);

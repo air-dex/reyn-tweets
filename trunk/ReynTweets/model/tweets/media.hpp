@@ -63,6 +63,10 @@ class Media : public URLEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 	protected:
 		/// @fn void recopie(const Media & media);
 		/// @brief Copy of a Media

@@ -203,6 +203,10 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		/// @brief Setter on the user account
 		/// @param account New value for the account
 		void setUserAccount(UserAccount account);
+
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
 };
 
 // Serialization of ReynTweetsConfiguration

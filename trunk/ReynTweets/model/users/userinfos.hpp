@@ -70,6 +70,10 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
+		/// @fn virtual void reset();
+		/// @brief Resets the mappable to a default value
+		virtual void reset();
+
 	protected:
 		/// @fn void recopie(const UserInfos & user);
 		/// @brief Copy of a User

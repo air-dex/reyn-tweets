@@ -67,6 +67,10 @@ class TweetEntities : public ReynTweetsMappable
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn virtual void reset();
+		/// @brief Resets the mappable to a default value
+		virtual void reset();
+
 	private:
 		/// @fn void recopie(const TweetEntities & entities);
 		/// @brief Copy of a TwitterEntities

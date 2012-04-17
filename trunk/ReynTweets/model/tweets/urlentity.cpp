@@ -80,6 +80,11 @@ QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
 	return jsonStreamingIn(in, entity);
 }
 
+// Resets the mappable to a default value
+void URLEntity::reset() {
+	*this = URLEntity();
+}
+
 
 ////////////////////////
 // Getter and setters //

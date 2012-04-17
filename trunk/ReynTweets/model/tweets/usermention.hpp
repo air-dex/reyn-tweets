@@ -70,6 +70,10 @@ class UserMention : public TweetEntity
 		/// @return An HTML tag to show the user
 		QString getDisplayedText(QColor linkColor);
 
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
+
 	private:
 		/// @fn void recopie(const UserMention & mention);
 		/// @brief Copy of a User Mention

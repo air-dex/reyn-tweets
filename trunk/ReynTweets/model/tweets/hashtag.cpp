@@ -76,6 +76,11 @@ QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
 	return jsonStreamingIn(in, hashtag);
 }
 
+// Resets the mappable to a default value
+void Hashtag::reset() {
+	*this = Hashtag();
+}
+
 
 ////////////////////////
 // Getter and setters //

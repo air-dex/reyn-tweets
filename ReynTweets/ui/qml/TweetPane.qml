@@ -68,10 +68,6 @@ Rectangle {
 	TweetControl {
 		id: control
 		tweet: tweet_pane.tweet
-		onTweetRetweeted:  {
-			tweet_pane.tweet.retweeted = true
-			tweet_pane.state = "RetweetedByMe"
-		}
 		onTweetChanged: {
 			tweet_pane.state = "Scratch"
 			displayTweet()

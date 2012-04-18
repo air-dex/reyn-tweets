@@ -70,14 +70,6 @@ class TweetControl : public QObject
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
-		/// @fn void tweetRetweeted();
-		/// @brief Emitted when the tweet was retweeted by the user.
-		void tweetRetweeted();
-
-		/// @fn void tweetRetweeted();
-		/// @brief Emitted when the tweet was retweeted by the user.
-		void tweetFavorited(bool favorited);
-
 		/// @fn void tweetChanged(bool launchOK,
 		///						  QString errorMsg,
 		///						  bool isFatal);

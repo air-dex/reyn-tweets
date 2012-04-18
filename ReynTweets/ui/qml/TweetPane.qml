@@ -38,20 +38,17 @@ Rectangle {
 	// The tweet displayed in this pane
 	property alias tweet: control.tweet
 
-	// The tweet displayed in this pane
+	// Tweet
 	property alias shown_tweet: control.shown_tweet
 
-	property UserInfos me: settings_control.configuration.current_account.current_user
-
-	property string separator_color: constant.very_light_grey
-
-	property string middle_color: constant.white
+	// User behind the timeline
+	property UserInfos current_user: settings_control.configuration.current_account.current_user
 
 	// Minimal height
 	property int min_height: author_text.height + text.height
 							 + source_text.height + action_row.height + 9*margin
 
-	property bool iam_author: shown_tweet.author.id_str == me.id_str
+	property bool iam_author: shown_tweet.author.id_str == current_user.id_str
 
 	width: 360
 	height:  min_height
@@ -64,9 +61,7 @@ Rectangle {
 				  : 0
 				)
 
-	// Width of top and bottom borders / pane height.
-	property real separator: 2 / tweet_pane.height
-
+	// Constants of Reyn Tweets
 	Constants { id:constant }
 
 	// Control behind the pane
@@ -74,14 +69,7 @@ Rectangle {
 		id: control
 		tweet: tweet_pane.tweet
 		onTweetRetweeted:  {
-//			//tweet_pane.tweet = control.tweet
 			tweet_pane.tweet.retweeted = true
-//			//retweet_info.text = retweet_info.d
-//			tweet_pane.shown_tweet = tweet.retweet
-//			tweet_pane.state = "Retweet"
-
-//			tweet_pane.state = "Scratch"
-//			displayTweet()
 			tweet_pane.state = "RetweetedByMe"
 		}
 		onTweetChanged: {
@@ -91,6 +79,15 @@ Rectangle {
 	}
 
 	// Background of the tweet
+
+	// Background colors of the tweet
+	property string separator_color: constant.very_light_grey
+	property string middle_color: constant.white
+
+	// Width of top and bottom borders / pane height.
+	property real separator: 2 / tweet_pane.height
+
+	// Background Gradation
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -335,7 +332,7 @@ Rectangle {
 			// Catching the potential retweeter if it is a retweet
 			if (tweet.isRetweet()) {
 				// There is at least one retweeter : the one that bring it to the TL.
-				var myID = me.id_str
+				var myID = current_user.id_str
 
 				var iamTheRetweeter = (myID == tweet.author.id_str)
 				spottedAsRetweeter = iamTheRetweeter
@@ -486,16 +483,12 @@ Rectangle {
 
 		// The tweet is a retweet
 		State {
-			// The tweet is a retweet
 			name: "Retweet"
-			//when: tweet.isRetweet()
 
 			StateChangeScript {
 				name: "retweet_script"
 				script: {
 					console.log("Shiny happy people")
-					// Displaying the retweet
-					//tweet_pane.shown_tweet = tweet_pane.tweet.retweet
 
 					// Displaying the retweet author's avatar
 					avatar_zone.side = tweet_pane.avatar_side * 6/5
@@ -512,9 +505,7 @@ Rectangle {
 
 		// The tweet was retweeted by the user
 		State {
-			// The tweet is a reply
 			name: "RetweetedByMe"
-			//when: tweet.retweeted
 
 			StateChangeScript {
 				name: "rt_by_me_script"
@@ -527,11 +518,9 @@ Rectangle {
 			}
 		},
 
-		// The tweet was retweeted by the user
+		// The tweet was not retweeted by the user
 		State {
-			// The tweet is a reply
 			name: "NotRetweetedByMe"
-			//when: !tweet.retweeted
 
 			StateChangeScript {
 				name: "not_rt_by_me_script"
@@ -548,7 +537,6 @@ Rectangle {
 		State {
 			// The tweet is a reply
 			name: "Reply"
-			//when: tweet.isReply()
 
 			StateChangeScript {
 				name: "reply_script"
@@ -593,7 +581,6 @@ Rectangle {
 	]
 
 	Component.onCompleted: {
-		//shown_tweet = tweet
 		tweet = control.tweet
 		control.updateTimeline.connect(tweet_pane.updateTweet)
 		displayTweet();
@@ -626,9 +613,7 @@ Rectangle {
 			retweet_info.anchors.topMargin = margin
 		}
 
-		//console.log("Le tweet " + shown_tweet.id_str + " est-il une mention ?")
 		if (control.isMention()) {
-			//console.log("Le tweet " + shown_tweet.id_str + " est une mention.")
 			tweet_pane.state = "Mention"
 		}
 	}
@@ -644,10 +629,6 @@ Rectangle {
 		retweet_info.anchors.top = source_text.bottom
 		tweet_pane.separator_color = constant.very_light_grey
 		tweet_pane.middle_color = constant.white
-
-//		tweet_pane.tweet = control.tweet
-//		tweet_pane.shown_tweet = tweet
-		//displayTweet();
 	}
 
 	// Function to wrap words into an HTML tag
@@ -673,8 +654,4 @@ Rectangle {
 	signal reply(string screenName, string replyToTweetID)
 	signal quote(string text)
 	signal updateTweet(variant updatedTweet)
-
-	onUpdateTweet: {
-
-	}
 }

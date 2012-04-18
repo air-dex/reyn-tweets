@@ -525,6 +525,34 @@ Rectangle {
 			}
 		},
 
+		// The tweet was retweeted by the user
+		State {
+			name: "FavoritedByMe"
+
+			StateChangeScript {
+				name: "rt_fav_me_script"
+				script: {
+					favorite_action.legend = qsTr("Favorited");
+					retweet_action.image_source = "../../resources/icons/retweet_on2.png";
+					retweet_info.icon_source = "../../resources/icons/retweet_on.png";
+				}
+			}
+		},
+
+		// The tweet was not retweeted by the user
+		State {
+			name: "NotFavoritedByMe"
+
+			StateChangeScript {
+				name: "not_fav_by_me_script"
+				script: {
+					retweet_action.legend = qsTr("Favorite");
+					retweet_action.image_source = "../../resources/icons/retweet_off2.png";
+					retweet_info.icon_source = "../../resources/icons/retweet_off.png";;
+				}
+			}
+		},
+
 		// The tweet is a reply to a user
 		State {
 			// The tweet is a reply

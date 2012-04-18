@@ -111,9 +111,14 @@ class TweetControl : public QObject
 		/// @brief Slot executed after deleting a tweet
 		void deleteEnd(ProcessWrapper res);
 
+		void processAgain(bool, QString, bool);
+
 	protected:
 		/// @brief Entity which realizes treatments
 		ReynCore reyn;
+
+		/// @brief Boolean indicating if the control is in a process
+		bool processing;
 
 		/// @property tweet
 		/// @brief Model of the tweet manipulated by the control.
@@ -144,13 +149,11 @@ class TweetControl : public QObject
 				   READ getShownTweet
 				   NOTIFY tweetChanged)
 
-		/// @fn Tweet * getShownTweet();
+		/// @fn inline Tweet * getShownTweet();
 		/// @brief Reading the shown_tweet property
 		/// @return status->getRetweetedStatus() if the tweet is a retweet,
 		/// status otherwise
-		Tweet * getShownTweet();
-
-		bool wasFavoritedBefore;
+		inline Tweet * getShownTweet();
 };
 
 #endif // TWEETCONTROL_HPP

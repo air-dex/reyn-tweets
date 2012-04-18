@@ -241,7 +241,7 @@ class Tweet : public ReynTweetsMappable
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr
-				   NOTIFY idStrChanged)
+				   NOTIFY idChanged)
 
 		// source
 		/// @property source
@@ -361,10 +361,6 @@ class Tweet : public ReynTweetsMappable
 		/// @fn void inReplyToUserIDstrChanged();
 		/// @brief Emitted when the in_reply_to_user_id_str property changes
 		void inReplyToUserIDstrChanged();
-
-		/// @fn void idStrChanged();
-		/// @brief Emitted when the id_str property changes
-		void idStrChanged();
 
 		/// @fn void sourceChanged();
 		/// @brief Emitted when the source property changes

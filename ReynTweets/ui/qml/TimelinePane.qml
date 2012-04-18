@@ -56,11 +56,12 @@ Rectangle {
 					// When a tweet is quoted or reply to a tweet
 					reply.connect(writeReply)
 					quote.connect(writeTweet)
+
+					// Updating the timeline
 					updateTweet.connect(updateTL)
 				}
 
 				function updateTL(newTweet) {
-					console.debug("Until TL")
 					control.replaceTweet(newTweet, index)
 				}
 			}

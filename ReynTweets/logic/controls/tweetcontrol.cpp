@@ -30,7 +30,7 @@
 TweetControl::TweetControl() :
 	QObject(),
 	reyn(this),
-	status()
+	status(0)
 {}
 
 // Declaring TweetControl to the QML system
@@ -40,15 +40,15 @@ void TweetControl::declareQML() {
 
 // Method indicating if the tweet mentions the user.
 bool TweetControl::isMention() {
-//	if (!status) {
-//		return false;
-//	}
+	if (!status) {
+		return false;
+	}
 
 	qlonglong userID = reyn.getConfiguration().getUserAccount().getUser().getID();
 
-	Tweet & shownTweet = status.isRetweet() ?
-				*(status.getRetweetedStatus())
-			  : status;
+	Tweet & shownTweet = status->isRetweet() ?
+				*(status->getRetweetedStatus())
+			  : *status;
 
 	UserMentionList mentions = shownTweet.getEntities().getUserMentions();
 
@@ -71,12 +71,12 @@ bool TweetControl::isMention() {
 
 // Reading the tweet property
 Tweet * TweetControl::getTweet() {
-	return &status;
+	return status;
 }
 
 // Writing the tweet property
 void TweetControl::setTweet(Tweet * newStatus) {
-	status = newStatus ? *newStatus : Tweet();
+	status = newStatus/* ? *newStatus : Tweet()*/;
 	emit tweetChanged();
 }
 
@@ -93,9 +93,9 @@ void TweetControl::retweet() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(retweetEnd(ProcessWrapper)));
 
-	qlonglong tweetID = status.isRetweet() ?
-				status.getRetweetedStatus()->getID()
-			  : status.getID();
+	qlonglong tweetID = status->isRetweet() ?
+				status->getRetweetedStatus()->getID()
+			  : status->getID();
 
 	reyn.retweet(tweetID);
 }
@@ -114,21 +114,15 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
-	Tweet updatedTweet;
 
 	switch (issue) {
 		case TWEET_RETWEETED:
-			qDebug("Retweet OK");
 			parsedResults = result.results.toMap();
-			updatedTweet.fillWithVariant(parsedResults);
-			status.reset();
-			status.fillWithVariant(parsedResults);
-			emit tweetChanged();
+			status->reset();
+			status->fillWithVariant(parsedResults);
+			emit updateTimeline(QVariant(status->toVariant()));
+			//emit tweetChanged();
 			emit tweetRetweeted();
-//			updatedTweet.fillWithVariant(parsedResults);
-//			setTweet(&updatedTweet);
-//			emit tweetUpdated();
-			emit updateTimeline(QVariant(status.toVariant()));
 			emit tweetEnded(true, "", false);
 			break;
 
@@ -160,7 +154,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 void TweetControl::favorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(favoriteEnd(ProcessWrapper)));
-	reyn.favoriteTweet(status.getID());
+	reyn.favoriteTweet(status->getID());
 }
 
 void TweetControl::favoriteEnd(ProcessWrapper res) {
@@ -176,10 +170,13 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			   this, SLOT(favoriteEnd(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
+//	QVariantMap parsedResults;
+//	Tweet updatedTweet;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			status.setFavorited(true);
+//			updatedTweet.fillWithVariant(parsedResults);
+			status->setFavorited(true);
 			emit tweetChanged();
 			break;
 
@@ -207,7 +204,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 void TweetControl::unfavorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(unfavoriteEnd(ProcessWrapper)));
-	reyn.unfavoriteTweet(status.getID());
+	reyn.unfavoriteTweet(status->getID());
 }
 
 void TweetControl::unfavoriteEnd(ProcessWrapper res) {
@@ -223,10 +220,13 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			   this, SLOT(unfavoriteEnd(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
+//	QVariantMap parsedResults;
+//	Tweet updatedTweet;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			status.setFavorited(false);
+//			updatedTweet.fillWithVariant(parsedResults);
+			status->setFavorited(false);
 			emit tweetChanged();
 			break;
 

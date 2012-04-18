@@ -2,7 +2,10 @@
 
 = Intégration de TwitLonger =
 
-Travail à réaliser :
+Le service TwitLonger ( http://www.twitlonger.com/ ) sera intégré à Reyn Tweets. Voici la roadmap de l'intégration :
+
+== Travail à réaliser ==
+
   * Au niveau des Calls :
     * Création d'un TwitLongerCalls pour wrapper l'API REST de TwitLonger.
     * Création d'un dossier connection/calls pour y mettre tous les calls (dont le TwitLongerCalls et les ReynTwitterCalls).
@@ -14,7 +17,7 @@ Travail à réaliser :
       * ReadMessageRequester : pour lire un message
     * TwitLonger renvoie des réponses au format XML -> Création d'un parser XML.
   * Au niveau des Communicators :
-    * Rien dans le header a priori. Il faudra donc faire une hiérarchisation côté communicators (issue 74). En profiter pour y faire les quelques revues déjà notées (issu 24, issue 25, issue 34)
+    * Rien dans le header a priori. Il faudra donc faire une hiérarchisation côté communicators (issue 74). En profiter pour y faire les quelques revues déjà notées (issue 24, issue 25, issue 34)
     * Modifications en conséquence dans le code.
   * Autres :
     * Réfléchir à l'intégration de l'API Key dans l'appli (issue 75).

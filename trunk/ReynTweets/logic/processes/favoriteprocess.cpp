@@ -33,7 +33,7 @@ FavoriteProcess::FavoriteProcess(qlonglong id, bool fav) :
 // Start the process calling twitter to favorite the tweet
 void FavoriteProcess::callTwitter() {
 	if (favorite) {
-		twitter.favoriteTweet(tweetID, false);
+		twitter.favoriteTweet(tweetID, true);
 	} else {
 		twitter.unfavoriteTweet(tweetID);
 	}

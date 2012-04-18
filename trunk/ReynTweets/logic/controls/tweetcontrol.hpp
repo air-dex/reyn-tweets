@@ -70,9 +70,13 @@ class TweetControl : public QObject
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
-		void tweetUpdated();
-
+		/// @fn void tweetRetweeted();
+		/// @brief Emitted when the tweet was retweeted by the user.
 		void tweetRetweeted();
+
+		/// @fn void tweetRetweeted();
+		/// @brief Emitted when the tweet was retweeted by the user.
+		void tweetFavorited(bool favorited);
 
 		/// @fn void tweetChanged(bool launchOK,
 		///						  QString errorMsg,
@@ -131,23 +135,20 @@ class TweetControl : public QObject
 		/// @param newStatus New value for status.
 		void setTweet(Tweet * newStatus);
 
-		/// @property tweet
-		/// @brief Model of the tweet manipulated by the control.
+		/// @property shown_tweet
+		/// @brief Tweet that is really displayed on the screen.
+		///
+		/// When the tweet is a retweet, ReynTweets displays the retweet instead
+		/// of the original tweet.
 		Q_PROPERTY(Tweet * shown_tweet
 				   READ getShownTweet
 				   NOTIFY tweetChanged)
 
-		/// @fn Tweet * getTweet();
-		/// @brief Reading the tweet property
-		/// @return status
-		Tweet * getShownTweet() {
-			return status->isRetweet() ? status->getRetweetedStatus() : status;
-		}
-
-	protected slots:
-		void tch() {
-			emit tweetChanged();
-		}
+		/// @fn Tweet * getShownTweet();
+		/// @brief Reading the shown_tweet property
+		/// @return status->getRetweetedStatus() if the tweet is a retweet,
+		/// status otherwise
+		Tweet * getShownTweet();
 };
 
 #endif // TWEETCONTROL_HPP

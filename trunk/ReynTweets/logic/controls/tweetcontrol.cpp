@@ -31,10 +31,7 @@ TweetControl::TweetControl() :
 	QObject(),
 	reyn(this),
 	status(new Tweet)
-{
-	connect(status, SIGNAL(retweetedStatusChanged()),
-			this, SLOT(tch()));
-}
+{}
 
 TweetControl::~TweetControl() {
 	//delete status;
@@ -75,6 +72,11 @@ bool TweetControl::isMention() {
 /////////////////////////
 // Property management //
 /////////////////////////
+
+// Reading the shown_tweet property
+Tweet * TweetControl::getShownTweet() {
+	return status->isRetweet() ? status->getRetweetedStatus() : status;
+}
 
 // Reading the tweet property
 Tweet * TweetControl::getTweet() {
@@ -130,19 +132,15 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
-	Tweet updatedTweet;
 
 	switch (issue) {
 		case TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
-			updatedTweet.fillWithVariant(parsedResults);
-//			status->reset();
-//			status->fillWithVariant(parsedResults);
-			setTweet(&updatedTweet);
+			status->reset();
+			status->fillWithVariant(parsedResults);
+			emit tweetChanged();
+			emit updateTimeline(QVariant(status->toVariant()));
 			emit tweetRetweeted();
-
-			//emit tweetChanged();
-			//emit updateTimeline(QVariant(status->toVariant()));
 			emit tweetEnded(true, "", false);
 			break;
 
@@ -190,12 +188,12 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			   this, SLOT(favoriteEnd(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-//	QVariantMap parsedResults;
-//	Tweet updatedTweet;
+	QVariantMap parsedResults;
+	Tweet updatedTweet;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-//			updatedTweet.fillWithVariant(parsedResults);
+			updatedTweet.fillWithVariant(parsedResults);
 			status->setFavorited(true);
 			emit tweetChanged();
 			break;

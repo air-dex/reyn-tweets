@@ -59,6 +59,10 @@ class TweetControl : public QObject
 		/// @brief Unfavorite the tweet
 		Q_INVOKABLE void unfavorite();
 
+		/// @fn void deleteTweet();
+		/// @brief Delete the tweet
+		Q_INVOKABLE void deleteTweet();
+
 		/// @fn Q_INVOKABLE bool isMention();
 		/// @brief Method indicating if the tweet mentions the user.
 		///	@return true if the user is mentionned, false otherwise.
@@ -70,9 +74,9 @@ class TweetControl : public QObject
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
-		/// @fn void tweetChanged(bool launchOK,
-		///						  QString errorMsg,
-		///						  bool isFatal);
+		/// @fn void tweetEnded(bool launchOK,
+		///						QString errorMsg,
+		///						bool isFatal);
 		/// @brief Signal sent after an operation made by the control.
 		/// @param launchOK Did the process end successfully ?
 		/// @param errorMsg Error message
@@ -102,6 +106,10 @@ class TweetControl : public QObject
 		/// @fn void unfavoriteEnd(ProcessWrapper res);
 		/// @brief Slot executed after unfavoriting the tweet
 		void unfavoriteEnd(ProcessWrapper res);
+
+		/// @fn void deleteEnd(ProcessWrapper res);
+		/// @brief Slot executed after deleting a tweet
+		void deleteEnd(ProcessWrapper res);
 
 	protected:
 		/// @brief Entity which realizes treatments
@@ -141,6 +149,8 @@ class TweetControl : public QObject
 		/// @return status->getRetweetedStatus() if the tweet is a retweet,
 		/// status otherwise
 		Tweet * getShownTweet();
+
+		bool wasFavoritedBefore;
 };
 
 #endif // TWEETCONTROL_HPP

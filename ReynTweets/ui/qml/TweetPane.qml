@@ -484,8 +484,6 @@ Rectangle {
 			StateChangeScript {
 				name: "retweet_script"
 				script: {
-					console.log("Shiny happy people")
-
 					// Displaying the retweet author's avatar
 					avatar_zone.side = tweet_pane.avatar_side * 6/5
 
@@ -506,7 +504,6 @@ Rectangle {
 			StateChangeScript {
 				name: "rt_by_me_script"
 				script: {
-					console.log("RT par moi")
 					retweet_action.legend = qsTr("Retweeted");
 					retweet_action.image_source = "../../resources/icons/retweet_on2.png";
 					retweet_info.icon_source = "../../resources/icons/retweet_on.png";
@@ -521,7 +518,6 @@ Rectangle {
 			StateChangeScript {
 				name: "not_rt_by_me_script"
 				script: {
-					console.log("Pas RT par moi")
 					retweet_action.legend = qsTr("Retweet");
 					retweet_action.image_source = "../../resources/icons/retweet_off2.png";
 					retweet_info.icon_source = "../../resources/icons/retweet_off.png";;

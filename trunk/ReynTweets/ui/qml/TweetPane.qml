@@ -51,8 +51,7 @@ Rectangle {
 	property int min_height: author_text.height + text.height
 							 + source_text.height + action_row.height + 9*margin
 
-	property bool iam_author: shown_tweet.author.id_str ==
-							  settings_control.configuration.current_account.current_user.id_str
+	property bool iam_author: shown_tweet.author.id_str == me.id_str
 
 	width: 360
 	height:  min_height
@@ -70,31 +69,27 @@ Rectangle {
 
 	Constants { id:constant }
 
-//	onTweetChanged: {
-//		resetToStart()
-//	}
-
 	// Control behind the pane
 	TweetControl {
 		id: control
 		tweet: tweet_pane.tweet
-//		onTweetUpdated: {
-//			if (tweet.isRetweet()) {
-//				tweet_pane.state = "Retweet"
-//			}
-//		}
-//		onTweetRetweeted:  {
-////			tweet_pane.tweet = control.tweet
-////			resetToStart()
-//		}
+		onTweetRetweeted:  {
+			//tweet_pane.tweet = control.tweet
+			tweet_pane.tweet.retweeted = true
+			//retweet_info.text = retweet_info.d
+			tweet_pane.shown_tweet = tweet.retweet
+			tweet_pane.state = "Retweet"
+		}
 //		onTweetChanged: {
-//			if (typeof tweet === "undefined")
-//				return;
-
-//			resetToStart();
+//			if (tweet.favorited) {
+//				console.debug("Tweet favori")
+//			} else {
+//				console.debug("Tweet non favori")
+//			}
 //		}
 	}
 
+	// Background of the tweet
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -298,9 +293,7 @@ Rectangle {
 	// Retweet informations
 	Text {
 		id: retweet_info
-		text: buildImageTag("../../resources/icons/retweet_"
-							+ retweet_action.rt_suffix + ".png")
-			  + ' ' + retweetInfoText();
+		text: retweetInfoText();
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
@@ -327,9 +320,13 @@ Rectangle {
 			}
 		}
 
+		property string rt_suffix: tweet.retweeted ? "on" : "off"
+
 		// Text to announce the retweeters
 		function retweetInfoText() {
-			var message = qsTr("Retweeted by")
+			var message = buildImageTag("../../resources/icons/retweet_"
+										+ retweet_info.rt_suffix + ".png")
+					+ ' ' + qsTr("Retweeted by")
 
 			// Nb of other people that retweeted
 			var nbOtherRetweeters = shown_tweet.retweet_count
@@ -338,7 +335,7 @@ Rectangle {
 			// Catching the potential retweeter if it is a retweet
 			if (tweet.isRetweet()) {
 				// There is at least one retweeter : the one that bring it to the TL.
-				var myID = settings_control.configuration.current_account.current_user.id_str
+				var myID = me.id_str
 
 				var iamTheRetweeter = (myID == tweet.author.id_str)
 				spottedAsRetweeter = iamTheRetweeter
@@ -379,7 +376,7 @@ Rectangle {
 					message = message + qsTr("and") + ' ' + nbOtherRetweeters
 							+ ' ' + otherString
 				} else {
-					message = message + nbOtherRetweeters
+					message = message + ' ' + nbOtherRetweeters
 				}
 
 				var peopleString = singularForOtherRTers ? qsTr("person") : qsTr("people")
@@ -431,7 +428,7 @@ Rectangle {
 		ActionElement {
 			id: retweet_action
 			image_source: "../../resources/icons/retweet_" + rt_suffix + "2.png"
-			legend: (tweet.retweeted) ? qsTr("Retweeted") : qsTr("Retweet")
+			legend: tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
 				console.log("TODO : retweet the tweet (or not)")
 				if (shown_tweet.retweeted) {
@@ -462,7 +459,7 @@ Rectangle {
 		ActionElement {
 			id: favorite_action
 			image_source: "../../resources/icons/favorite_" + fav_suffix + ".png"
-			legend: (tweet.favorited) ? qsTr("Favorited") : qsTr("Favorite")
+			legend: tweet.favorited ? qsTr("Favorited") : qsTr("Favorite")
 			onAct: {
 				if (tweet.favorited) {
 					control.unfavorite()
@@ -574,23 +571,10 @@ Rectangle {
 
 		// Detects automatically if it's a retweet (put in "Retweet" state)
 
-		//tweet = control.tweet
-
-//		if (tweet.isRetweet()) {
-//			tweet_pane.state = "Retweet"
-//		} else {
-//			tweet_pane.shown_tweet = tweet
-//		}
-
-//		if (typeof shown_tweet === "undefined") {
-//			return;
-//		}
-
 		// Treatments if it is a reply
 		if (shown_tweet.isReply()) {
 			tweet_pane.state = "Reply"
 		}
-
 
 		// Treatments if it is a retweet
 		if (shown_tweet.isRetweetedByPeople()

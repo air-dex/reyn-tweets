@@ -118,7 +118,7 @@ class TweetControl : public QObject
 				   NOTIFY tweetChanged)
 
 		/// @brief Tweet entity behind the tweet property
-		Tweet status;
+		Tweet * status;
 
 		/// @fn Tweet * getTweet();
 		/// @brief Reading the tweet property

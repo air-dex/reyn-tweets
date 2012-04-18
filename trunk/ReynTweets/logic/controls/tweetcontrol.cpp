@@ -138,9 +138,9 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			parsedResults = result.results.toMap();
 			status->reset();
 			status->fillWithVariant(parsedResults);
+			status->setRetweeted(true);
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
-			emit tweetRetweeted();
 			emit tweetEnded(true, "", false);
 			break;
 
@@ -189,13 +189,17 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
-	Tweet updatedTweet;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-			updatedTweet.fillWithVariant(parsedResults);
+			// Don't forget to update the tweet
+			parsedResults = result.results.toMap();
+			status->reset();
+			status->fillWithVariant(parsedResults);
 			status->setFavorited(true);
 			emit tweetChanged();
+			emit updateTimeline(QVariant(status->toVariant()));
+			emit tweetEnded(true, "", false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -238,14 +242,18 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			   this, SLOT(unfavoriteEnd(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-//	QVariantMap parsedResults;
-//	Tweet updatedTweet;
+	QVariantMap parsedResults;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-//			updatedTweet.fillWithVariant(parsedResults);
+			// Don't forget to update the tweet
+			parsedResults = result.results.toMap();
+			status->reset();
+			status->fillWithVariant(parsedResults);
 			status->setFavorited(false);
 			emit tweetChanged();
+			emit updateTimeline(QVariant(status->toVariant()));
+			emit tweetEnded(true, "", false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:

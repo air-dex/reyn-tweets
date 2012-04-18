@@ -250,7 +250,7 @@ class ReynCore : public QObject
 					   QString reversePlace = "",
 					   bool displayCoord = false);
 
-		/// @fn void retweet(QString tweetID,
+		/// @fn void retweet(qlonglong tweetID,
 		///					 bool trimUser = true,
 		///					 bool includeEntities = false);
 		/// @brief Reweeting a tweet

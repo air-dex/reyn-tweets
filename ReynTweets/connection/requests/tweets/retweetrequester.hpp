@@ -33,6 +33,15 @@ class RetweetRequester : public AuthenticationRequester
 {
 		Q_OBJECT
 	public:
+		/// @fn RetweetRequester(OAuthManager & authManager,
+		///						 qlonglong statusID,
+		///						 bool withEntities = true,
+		///						 bool userIDonly = false);
+		/// @brief Constructor
+		/// @param authManager Entities with OAuth values
+		/// @param statusID ID of the tweet
+		/// @param withEntities Including Tweet Entities ?
+		/// @param userIDonly Omit user details in the reply ?
 		RetweetRequester(OAuthManager & authManager,
 						 qlonglong statusID,
 						 bool withEntities = true,

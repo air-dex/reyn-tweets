@@ -100,6 +100,7 @@ qlonglong UserMention::getID() {
 // Writing userID
 void UserMention::setID(qlonglong newID) {
 	userID = newID;
+	userIDstr = QString::number(userID);
 }
 
 // Reading userIDstr
@@ -110,6 +111,7 @@ QString UserMention::getIDstr() {
 // Writing userIDstr
 void UserMention::setIDstr(QString newID) {
 	userIDstr = newID;
+	userID = userIDstr.toLongLong();
 }
 
 // Reading method for screenName

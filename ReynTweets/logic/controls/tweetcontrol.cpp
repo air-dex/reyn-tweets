@@ -188,26 +188,11 @@ void TweetControl::favorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(favoriteEnd(ProcessWrapper)));
 
-	qDebug("ID status");
-	qDebug(QString::number(status->getID()).toUtf8().data());
-	qDebug("ID RT");
-	qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-	qDebug("ID favorited");
-	qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
-	qDebug("");
-
 	processing = true;
 	reyn.favoriteTweet(getShownTweet()->getID());
 }
 
 void TweetControl::favoriteEnd(ProcessWrapper res) {
-
-	qDebug("ID status");
-	qDebug(QString::number(status->getID()).toUtf8().data());
-	qDebug("ID RT");
-	qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-	qDebug("ID favorited");
-	qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
@@ -221,25 +206,15 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
-	Tweet * shownTweet = getShownTweet();
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
-			qDebug("ID favorited by Twitter");
-			qDebug(parsedResults.value("id").toByteArray().data());
-			shownTweet->reset();
-			shownTweet->fillWithVariant(parsedResults);
-			shownTweet->setFavorited(true);
+			getShownTweet()->reset();
+			getShownTweet()->fillWithVariant(parsedResults);
+			getShownTweet()->setFavorited(true);
 			status->setFavorited(true);
-
-			qDebug("ID status");
-			qDebug(QString::number(status->getID()).toUtf8().data());
-			qDebug("ID RT");
-			qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-			qDebug("ID favorited");
-			qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
 			emit tweetEnded(true, "", false);
@@ -277,15 +252,6 @@ void TweetControl::unfavorite() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(unfavoriteEnd(ProcessWrapper)));
 
-
-	qDebug("ID status");
-	qDebug(QString::number(status->getID()).toUtf8().data());
-	qDebug("ID RT");
-	qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-	qDebug("ID unfavorited");
-	qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
-	qDebug("");
-
 	processing = true;
 	reyn.unfavoriteTweet(getShownTweet()->getID());
 }
@@ -306,34 +272,10 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	QVariantMap parsedResults;
 	TweetEntities entities;
 
-	qDebug("ID status");
-	qDebug(QString::number(status->getID()).toUtf8().data());
-	qDebug("ID RT");
-	qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-	qDebug("ID unfavorited");
-	qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
-
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
-//			// Don't forget to update the tweet
-//			parsedResults = result.results.toMap();
-
-//			// Saving tweet entities because Twitter API doesn't return them here !
-//			entities = status->getEntities();
-
-//			status->reset();
-//			status->fillWithVariant(parsedResults);
-//			status->setEntities(entities);
-//			status->setFavorited(false);
-//			getShownTweet()->setFavorited(false);
-//			emit tweetChanged();
-//			emit updateTimeline(QVariant(parsedResults));
-//			emit tweetEnded(true, "", false);
-
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
-			qDebug("ID unfavorited by Twitter");
-			qDebug(parsedResults.value("id").toByteArray().data());
 
 			// Saving tweet entities because Twitter API doesn't return them here !
 			entities = getShownTweet()->getEntities();
@@ -343,13 +285,6 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			getShownTweet()->setEntities(entities);
 			getShownTweet()->setFavorited(false);
 			status->setFavorited(false);
-
-			qDebug("ID status");
-			qDebug(QString::number(status->getID()).toUtf8().data());
-			qDebug("ID RT");
-			qDebug(QString::number(status->getRetweetedStatus()->getID()).toUtf8().data());
-			qDebug("ID unfavorited");
-			qDebug(QString::number(getShownTweet()->getID()).toUtf8().data());
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
 			emit tweetEnded(true, "", false);

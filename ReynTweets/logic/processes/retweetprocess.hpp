@@ -1,4 +1,4 @@
-/// @file retweetprocess.cpp
+/// @file retweetprocess.hpp
 /// @brief Header of RetweetProcess
 /// @author Romain Ducher
 ///
@@ -33,6 +33,13 @@ class RetweetProcess : public SingleTwitterCallProcess
 	Q_OBJECT
 
 	public:
+		/// @fn RetweetProcess(qlonglong statusID,
+		///					   bool withEntities = true,
+		///					   bool userIDonly = false);
+		/// @brief Constructor
+		/// @param statusID ID of the tweet
+		/// @param withEntities Including Tweet Entities ?
+		/// @param userIDonly Omit user details in the reply ?
 		RetweetProcess(qlonglong statusID,
 					   bool withEntities = true,
 					   bool userIDonly = false);

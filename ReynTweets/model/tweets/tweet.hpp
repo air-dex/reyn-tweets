@@ -189,7 +189,7 @@ class Tweet : public ReynTweetsMappable
 		Q_PROPERTY(QString in_reply_to_status_id_str
 				   READ getInReplyToStatusIDstr
 				   WRITE setInReplyToStatusIDstr
-				   NOTIFY inReplyToStatusIDstrChanged)
+				   NOTIFY inReplyToStatusIDChanged)
 
 		// user
 		/// @property user
@@ -233,7 +233,7 @@ class Tweet : public ReynTweetsMappable
 		Q_PROPERTY(QString in_reply_to_user_id_str
 				   READ getInReplyToUserIDstr
 				   WRITE setInReplyToUserIDstr
-				   NOTIFY inReplyToUserIDstrChanged)
+				   NOTIFY inReplyToUserIDChanged)
 
 		// id_str
 		/// @property id_str
@@ -323,7 +323,8 @@ class Tweet : public ReynTweetsMappable
 		void entitiesChanged();
 
 		/// @fn void inReplyToUserIDChanged();
-		/// @brief Emitted when the in_reply_to_user_id property changes
+		/// @brief Emitted when the in_reply_to_user_id and
+		/// in_reply_to_user_id_str properties change
 		void inReplyToUserIDChanged();
 
 		/// @fn void truncatedChanged();
@@ -346,9 +347,10 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Emitted when the created_at property changes
 		void createdAtChanged();
 
-		/// @fn void inReplyToStatusIDstrChanged();
-		/// @brief Emitted when the in_reply_to_status_id_str property changes
-		void inReplyToStatusIDstrChanged();
+		/// @fn void inReplyToStatusIDChanged();
+		/// @brief Emitted when the in_reply_to_status_id_str and
+		/// in_reply_to_status_id_str properties change.
+		void inReplyToStatusIDChanged();
 
 		/// @fn void userChanged();
 		/// @brief Emitted when the user and author properties change
@@ -358,21 +360,13 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Emitted when the retweeted property changes
 		void retweetedChanged();
 
-		/// @fn void inReplyToUserIDstrChanged();
-		/// @brief Emitted when the in_reply_to_user_id_str property changes
-		void inReplyToUserIDstrChanged();
-
 		/// @fn void sourceChanged();
 		/// @brief Emitted when the source property changes
 		void sourceChanged();
 
 		/// @fn void idChanged();
-		/// @brief Emitted when the id property changes
+		/// @brief Emitted when the id and id_str properties change
 		void idChanged();
-
-		/// @fn void inReplyToStatusIDChanged();
-		/// @brief Emitted when the in_reply_to_status_id property changes
-		void inReplyToStatusIDChanged();
 
 		/// @fn void textChanged();
 		/// @brief Emitted when the text property changes

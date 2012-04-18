@@ -30,10 +30,15 @@
 #include <QObject>
 #include "logincontrol.hpp"
 
+/// @class AllowControl
+/// @brief Control behind a LoginComponent
 class AllowControl : public QObject
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
+		/// @fn AllowControl();
+		/// @brief Constructor
 		AllowControl();
 
 		/// @fn static void declareQML();

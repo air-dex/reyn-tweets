@@ -115,6 +115,7 @@ qlonglong Media::getID() {
 // Writing mediaID
 void Media::setID(qlonglong newID) {
 	mediaID = newID;
+	mediaIDstr = QString::number(mediaID);
 }
 
 // Reading mediaIDstr
@@ -125,6 +126,7 @@ QString Media::getIDstr() {
 // Writing mediaIDstr
 void Media::setIDstr(QString newID) {
 	mediaIDstr = newID;
+	mediaID = mediaIDstr.toLongLong();
 }
 
 // Reading method for mediaURL

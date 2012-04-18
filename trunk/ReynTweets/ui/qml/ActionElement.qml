@@ -1,5 +1,6 @@
-/// @file TweetPane.qml
-/// @brief Pane to show a tweet
+/// @file ActionElement.qml
+/// @brief QML Component with an icon and a description that can be clicked
+/// to do something
 /// @author Romain DUCHER
 ///
 /// @section LICENSE

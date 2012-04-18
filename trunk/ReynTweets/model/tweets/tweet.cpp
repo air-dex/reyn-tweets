@@ -240,6 +240,7 @@ qlonglong Tweet::getInReplyToUserID() {
 
 void Tweet::setInReplyToUserID(qlonglong newValue) {
 	replyToUserID = newValue;
+	replyToUserIDstr = QString::number(replyToUserID);
 	emit inReplyToUserIDChanged();
 }
 
@@ -300,7 +301,8 @@ QString Tweet::getInReplyToStatusIDstr() {
 
 void Tweet::setInReplyToStatusIDstr(QString newValue) {
 	replyToTweetIDstr = newValue;
-	emit inReplyToStatusIDstrChanged();
+	replyToTweetID = replyToTweetIDstr.toLongLong();
+	emit inReplyToStatusIDChanged();
 }
 
 // author
@@ -340,7 +342,8 @@ QString Tweet::getInReplyToUserIDstr() {
 
 void Tweet::setInReplyToUserIDstr(QString newValue) {
 	replyToUserIDstr = newValue;
-	emit inReplyToUserIDstrChanged();
+	replyToUserID = replyToUserIDstr.toLongLong();
+	emit inReplyToUserIDChanged();
 }
 
 // id_str
@@ -382,6 +385,7 @@ qlonglong Tweet::getInReplyToStatusID() {
 
 void Tweet::setInReplyToStatusID(qlonglong newValue) {
 	replyToTweetID = newValue;
+	replyToTweetIDstr = QString::number(replyToTweetID);
 	emit inReplyToStatusIDChanged();
 }
 

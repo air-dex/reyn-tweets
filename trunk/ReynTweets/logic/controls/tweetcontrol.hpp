@@ -89,8 +89,9 @@ class TweetControl : public QObject
 		/// @brief Signal sent if Reyn Tweets has to be allowed again
 		void authenticationNeeded();
 
-		/// @fn void updateTimeline(Tweet * updatedTweet);
+		/// @fn void updateTimeline(QVariant updatedTweet);
 		/// @brief Signal sent when a tweet has to be updated in the timeline
+		/// @param updatedTweet The updatedTweet after an operation on it.
 		void updateTimeline(QVariant updatedTweet);
 
 

@@ -334,7 +334,7 @@ class UserInfos : public ReynTweetsMappable
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr
-				   NOTIFY idStrChanged)
+				   NOTIFY idChanged)
 
 		// show_all_inline_media
 		/// @property show_all_inline_media
@@ -547,9 +547,9 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Emitted when the property profile_sidebar_border_color changes
 		void profileSidebarBorderColorChanged();
 
-		/// @fn void idStrChanged();
-		/// @brief Emitted when the property id_str changes
-		void idStrChanged();
+		/// @fn void idChanged();
+		/// @brief Emitted when the properties id and id_str change.
+		void idChanged();
 
 		/// @fn void showAllInlineMediaChanged();
 		/// @brief Emitted when the property show_all_inline_media changes
@@ -583,10 +583,6 @@ class UserInfos : public ReynTweetsMappable
 		/// @fn void profileImageURLhttpsChanged();
 		/// @brief Emitted when the property profile_image_url_https changes
 		void profileImageURLhttpsChanged();
-
-		/// @fn void idChanged();
-		/// @brief Emitted when the property id changes
-		void idChanged();
 
 		/// @fn void verifiedChanged();
 		/// @brief Emitted when the property verified changes

@@ -485,7 +485,8 @@ QString UserInfos::getIDstr() {
 // Setter on IDstr
 void UserInfos::setIDstr(QString newID) {
 	userIDstr = newID;
-	emit idStrChanged();
+	userID = userIDstr.toLongLong();
+	emit idChanged();
 }
 
 // Getter on showAllInlineMedia
@@ -584,6 +585,7 @@ qlonglong UserInfos::getID() {
 // Setter on ID
 void UserInfos::setID(qlonglong newID) {
 	userID = newID;
+	userIDstr = QString::number(userID);
 	emit idChanged();
 }
 

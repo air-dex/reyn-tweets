@@ -350,7 +350,8 @@ QString Tweet::getIDstr() {
 
 void Tweet::setIDstr(QString newValue) {
 	tweetIDstr = newValue;
-	emit idStrChanged();
+	tweetID = tweetIDstr.toLongLong();
+	emit idChanged();
 }
 
 // source
@@ -370,6 +371,7 @@ qlonglong Tweet::getID() {
 
 void Tweet::setID(qlonglong newValue) {
 	tweetID = newValue;
+	tweetIDstr = QString::number(tweetID);
 	emit idChanged();
 }
 

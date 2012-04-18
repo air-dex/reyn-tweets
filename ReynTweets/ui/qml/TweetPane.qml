@@ -36,10 +36,10 @@ Rectangle {
 	property int margin: 5
 
 	// The tweet displayed in this pane
-	property Tweet tweet
+	property alias tweet: control.tweet
 
 	// The tweet displayed in this pane
-	property Tweet shown_tweet: tweet
+	property alias shown_tweet: control.shown_tweet
 
 	property UserInfos me: settings_control.configuration.current_account.current_user
 
@@ -74,19 +74,20 @@ Rectangle {
 		id: control
 		tweet: tweet_pane.tweet
 		onTweetRetweeted:  {
-			//tweet_pane.tweet = control.tweet
+//			//tweet_pane.tweet = control.tweet
 			tweet_pane.tweet.retweeted = true
-			//retweet_info.text = retweet_info.d
-			tweet_pane.shown_tweet = tweet.retweet
-			tweet_pane.state = "Retweet"
+//			//retweet_info.text = retweet_info.d
+//			tweet_pane.shown_tweet = tweet.retweet
+//			tweet_pane.state = "Retweet"
+
+//			tweet_pane.state = "Scratch"
+//			displayTweet()
+			tweet_pane.state = "RetweetedByMe"
 		}
-//		onTweetChanged: {
-//			if (tweet.favorited) {
-//				console.debug("Tweet favori")
-//			} else {
-//				console.debug("Tweet non favori")
-//			}
-//		}
+		onTweetChanged: {
+			tweet_pane.state = "Scratch"
+			displayTweet()
+		}
 	}
 
 	// Background of the tweet
@@ -320,12 +321,11 @@ Rectangle {
 			}
 		}
 
-		property string rt_suffix: tweet.retweeted ? "on" : "off"
+		property string icon_source: "../../resources/icons/retweet_off.png"
 
 		// Text to announce the retweeters
 		function retweetInfoText() {
-			var message = buildImageTag("../../resources/icons/retweet_"
-										+ retweet_info.rt_suffix + ".png")
+			var message = buildImageTag(retweet_info.icon_source)
 					+ ' ' + qsTr("Retweeted by")
 
 			// Nb of other people that retweeted
@@ -427,7 +427,8 @@ Rectangle {
 		// Retweet
 		ActionElement {
 			id: retweet_action
-			image_source: "../../resources/icons/retweet_" + rt_suffix + "2.png"
+			image_source: "../../resources/icons/retweet_off2.png"
+
 			legend: tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
 				console.log("TODO : retweet the tweet (or not)")
@@ -437,8 +438,6 @@ Rectangle {
 					control.retweet();
 				}
 			}
-
-			property string rt_suffix: tweet.retweeted ? "on" : "off"
 
 			visible: !iam_author
 		}
@@ -476,40 +475,72 @@ Rectangle {
 
 	states: [
 		// Base state : classic tweet
+		State {
+			name: "Scratch"
+
+			StateChangeScript {
+				name: "base_script"
+				script: resetToStart();
+			}
+		},
 
 		// The tweet is a retweet
 		State {
 			// The tweet is a retweet
 			name: "Retweet"
-			when: tweet.isRetweet()
+			//when: tweet.isRetweet()
 
-			// Displaying the retweet author's avatar
-			PropertyChanges {
-				target: tweet_pane
-				shown_tweet: tweet.retweet
-				restoreEntryValues: false
+			StateChangeScript {
+				name: "retweet_script"
+				script: {
+					console.log("Shiny happy people")
+					// Displaying the retweet
+					//tweet_pane.shown_tweet = tweet_pane.tweet.retweet
+
+					// Displaying the retweet author's avatar
+					avatar_zone.side = tweet_pane.avatar_side * 6/5
+
+					// Kept to load the image if necessary
+					retweeter_avatar.visible = true
+					retweeter_avatar.source = tweet.author.profile_image_url
+
+					// New author and new margin to not move the QML Component
+					author_text.anchors.leftMargin = 2*margin
+				}
 			}
+		},
 
-			// Displaying the retweet author's avatar
-			PropertyChanges {
-				target: avatar_zone
-				side: tweet_pane.avatar_side * 6/5
-				restoreEntryValues: false
+		// The tweet was retweeted by the user
+		State {
+			// The tweet is a reply
+			name: "RetweetedByMe"
+			//when: tweet.retweeted
+
+			StateChangeScript {
+				name: "rt_by_me_script"
+				script: {
+					console.log("RT par moi")
+					retweet_action.legend = qsTr("Retweeted");
+					retweet_action.image_source = "../../resources/icons/retweet_on2.png";
+					retweet_info.icon_source = "../../resources/icons/retweet_on.png";
+				}
 			}
+		},
 
-			// Kept to load the image if necessary
-			PropertyChanges {
-				target: retweeter_avatar
-				visible: true
-				source: tweet.author.profile_image_url
-				restoreEntryValues: false
-			}
+		// The tweet was retweeted by the user
+		State {
+			// The tweet is a reply
+			name: "NotRetweetedByMe"
+			//when: !tweet.retweeted
 
-			// New author and new margin to not move the QML Component
-			PropertyChanges {
-				target: author_text
-				anchors.leftMargin: 2*margin
-				restoreEntryValues: false
+			StateChangeScript {
+				name: "not_rt_by_me_script"
+				script: {
+					console.log("Pas RT par moi")
+					retweet_action.legend = qsTr("Retweet");
+					retweet_action.image_source = "../../resources/icons/retweet_off2.png";
+					retweet_info.icon_source = "../../resources/icons/retweet_off.png";;
+				}
 			}
 		},
 
@@ -517,20 +548,18 @@ Rectangle {
 		State {
 			// The tweet is a reply
 			name: "Reply"
+			//when: tweet.isReply()
 
-			// Showing reply text
-			PropertyChanges {
-				target: reply_info
-				visible: true
-				anchors.topMargin: margin
-				restoreEntryValues: false
-			}
+			StateChangeScript {
+				name: "reply_script"
+				script: {
+					// Showing reply text
+					reply_info.visible = true;
+					reply_info.anchors.topMargin = margin;
 
-			// Putting retweet_info under reply_info
-			PropertyChanges {
-				target: retweet_info
-				anchors.top: reply_info.bottom
-				restoreEntryValues: false
+					// Putting retweet_info under reply_info
+					retweet_info.anchors.top = reply_info.bottom;
+				}
 			}
 		},
 
@@ -539,11 +568,12 @@ Rectangle {
 			// The tweet is a direct message (DM)
 			name: "DirectMessage"
 
-			PropertyChanges {
-				target: tweet_pane
-				separator_color: constant.blue_dm
-				middle_color: constant.light_blue_dm
-				restoreEntryValues: false
+			StateChangeScript {
+				name: "dm_script"
+				script: {
+					tweet_pane.separator_color = constant.blue_dm;
+					tweet_pane.middle_color = constant.light_blue_dm;
+				}
 			}
 		},
 
@@ -552,16 +582,19 @@ Rectangle {
 			// The tweet is a mention
 			name: "Mention"
 
-			PropertyChanges {
-				target: tweet_pane
-				separator_color: constant.green_mention
-				middle_color: constant.light_green_mention
-				restoreEntryValues: false
+			StateChangeScript {
+				name: "mention_script"
+				script: {
+					tweet_pane.separator_color = constant.green_mention;
+					tweet_pane.middle_color = constant.light_green_mention;
+				}
 			}
 		}
 	]
 
 	Component.onCompleted: {
+		//shown_tweet = tweet
+		tweet = control.tweet
 		control.updateTimeline.connect(tweet_pane.updateTweet)
 		displayTweet();
 	}
@@ -570,6 +603,13 @@ Rectangle {
 		// TODO : Direct Messages
 
 		// Detects automatically if it's a retweet (put in "Retweet" state)
+		if (tweet_pane.tweet.isRetweet()) {
+			tweet_pane.state = "Retweet"
+		}
+
+		// Was it retweeted by the user ?
+		var prefix = tweet.retweeted ? "" : "Not"
+		tweet_pane.state = prefix + "RetweetedByMe"
 
 		// Treatments if it is a reply
 		if (shown_tweet.isReply()) {
@@ -578,7 +618,7 @@ Rectangle {
 
 		// Treatments if it is a retweet
 		if (shown_tweet.isRetweetedByPeople()
-				|| tweet_pane.state == "Retweet")
+				|| tweet_pane.tweet.isRetweet())
 		{
 			// The retweeter is not in retweet_count. So there is a problem if
 			// the author of the retweet is the only retweeter.
@@ -605,10 +645,9 @@ Rectangle {
 		tweet_pane.separator_color = constant.very_light_grey
 		tweet_pane.middle_color = constant.white
 
-		tweet_pane.tweet = control.tweet
-		//tweet_pane.shown_tweet = tweet.isRetweet() ? tweet.retweet : tweet
-		tweet_pane.state = ""
-		displayTweet();
+//		tweet_pane.tweet = control.tweet
+//		tweet_pane.shown_tweet = tweet
+		//displayTweet();
 	}
 
 	// Function to wrap words into an HTML tag
@@ -634,4 +673,8 @@ Rectangle {
 	signal reply(string screenName, string replyToTweetID)
 	signal quote(string text)
 	signal updateTweet(variant updatedTweet)
+
+	onUpdateTweet: {
+
+	}
 }

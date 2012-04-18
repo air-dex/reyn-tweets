@@ -30,8 +30,15 @@
 TweetControl::TweetControl() :
 	QObject(),
 	reyn(this),
-	status(0)
-{}
+	status(new Tweet)
+{
+	connect(status, SIGNAL(retweetedStatusChanged()),
+			this, SLOT(tch()));
+}
+
+TweetControl::~TweetControl() {
+	//delete status;
+}
 
 // Declaring TweetControl to the QML system
 void TweetControl::declareQML() {
@@ -76,8 +83,10 @@ Tweet * TweetControl::getTweet() {
 
 // Writing the tweet property
 void TweetControl::setTweet(Tweet * newStatus) {
-	status = newStatus/* ? *newStatus : Tweet()*/;
-	emit tweetChanged();
+	if (newStatus) {
+		status = newStatus;
+		emit tweetChanged();
+	}
 }
 
 
@@ -90,6 +99,13 @@ void TweetControl::setTweet(Tweet * newStatus) {
 /////////////
 
 void TweetControl::retweet() {
+	// Protection to not attempt to retweet its own tweets.
+	if (status->getAuthor()->getID() ==
+			reyn.getConfiguration().getUserAccount().getUser().getID())
+	{
+		return;
+	}
+
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(retweetEnd(ProcessWrapper)));
 
@@ -114,15 +130,19 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
+	Tweet updatedTweet;
 
 	switch (issue) {
 		case TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
-			status->reset();
-			status->fillWithVariant(parsedResults);
-			emit updateTimeline(QVariant(status->toVariant()));
-			//emit tweetChanged();
+			updatedTweet.fillWithVariant(parsedResults);
+//			status->reset();
+//			status->fillWithVariant(parsedResults);
+			setTweet(&updatedTweet);
 			emit tweetRetweeted();
+
+			//emit tweetChanged();
+			//emit updateTimeline(QVariant(status->toVariant()));
 			emit tweetEnded(true, "", false);
 			break;
 

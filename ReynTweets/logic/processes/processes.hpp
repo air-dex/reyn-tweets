@@ -25,6 +25,7 @@
 #define PROCESSES_HPP
 
 #include "allowprocess.hpp"
+#include "deletetweetprocess.hpp"
 #include "favoriteprocess.hpp"
 #include "launchingprocess.hpp"
 #include "loadinghometimelineprocess.hpp"

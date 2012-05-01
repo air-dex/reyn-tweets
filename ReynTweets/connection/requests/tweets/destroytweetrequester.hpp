@@ -1,5 +1,5 @@
-/// @file retweetprocess.hpp
-/// @brief Header of RetweetProcess
+/// @file destroytweetrequester.hpp
+/// @brief Header of DestroyTweetRequester
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,28 +21,31 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef RETWEETPROCESS_HPP
-#define RETWEETPROCESS_HPP
+#ifndef DESTROYTWEETREQUESTER_HPP
+#define DESTROYTWEETREQUESTER_HPP
 
-#include "singletwittercallprocess.hpp"
+#include "../authenticationrequester.hpp"
 
-/// @class RetweetProcess
-/// @brief Process consisting in retweeting a tweet
-class RetweetProcess : public SingleTwitterCallProcess
+/// @class DestroyTweetRequester
+/// @brief Deleting tweets
+/// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
+class DestroyTweetRequester : public AuthenticationRequester
 {
-	Q_OBJECT
-
+		Q_OBJECT
 	public:
-		/// @fn RetweetProcess(qlonglong statusID,
-		///					   bool withEntities = true,
-		///					   bool userIDonly = false);
+		/// @fn DestroyTweetRequester(OAuthManager & authManager,
+		///							  qlonglong statusID,
+		///							  bool withEntities = true,
+		///							  bool userIDonly = false);
 		/// @brief Constructor
+		/// @param authManager Entities with OAuth values
 		/// @param statusID ID of the tweet
 		/// @param withEntities Including Tweet Entities ?
 		/// @param userIDonly Omit user details in the reply ?
-		RetweetProcess(qlonglong statusID,
-					   bool withEntities = true,
-					   bool userIDonly = false);
+		DestroyTweetRequester(OAuthManager & authManager,
+							  qlonglong statusID,
+							  bool withEntities = true,
+							  bool userIDonly = false);
 
 	protected:
 		/// @brief ID of the tweet to favorite
@@ -54,9 +57,9 @@ class RetweetProcess : public SingleTwitterCallProcess
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
 
-		/// @fn void callTwitter();
-		/// @brief Calling the Twitter API to retweet the tweet.
-		void callTwitter();
+		/// @fn void buildPOSTParameters();
+		/// @brief Building postParameters
+		void buildPOSTParameters();
 };
 
-#endif // RETWEETPROCESS_HPP
+#endif // DESTROYTWEETREQUESTER_HPP

@@ -67,6 +67,16 @@ void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 	tweet.fillWithVariant(updatedTweet.toMap());
 }
 
+// Replacing a tweet
+void TimelineControl::deleteTweet(int tweetIndex) {
+	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+		return;
+	}
+
+	timeline.removeAt(tweetIndex);
+	emit timelineChanged();
+}
+
 
 ///////////////////////
 // Loading timelines //

@@ -72,6 +72,7 @@ Rectangle {
 			tweet_pane.state = "Scratch"
 			displayTweet()
 		}
+		onDestroyTweet: tweet_pane.destroyTweet()
 	}
 
 	// Background of the tweet
@@ -411,7 +412,7 @@ Rectangle {
 			image_source: "../../resources/icons/wastebin.png"
 			legend: qsTr("Delete")
 			onAct: {
-				console.log("TODO : delete the tweet")
+				control.deleteTweet();
 			}
 
 			visible: iam_author
@@ -421,12 +422,10 @@ Rectangle {
 		ActionElement {
 			id: retweet_action
 			image_source: "../../resources/icons/retweet_off2.png"
-
 			legend: tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
-				console.log("TODO : retweet the tweet (or not)")
-				if (shown_tweet.retweeted) {
-					console.log("TODO : delete the tweet")
+				if (tweet.retweeted) {
+					control.deleteTweet();
 				} else {
 					control.retweet();
 				}
@@ -505,8 +504,8 @@ Rectangle {
 				name: "rt_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Retweeted");
-					retweet_action.image_source = "../../resources/icons/retweet_on2.png";
-					retweet_info.icon_source = "../../resources/icons/retweet_on.png";
+					retweet_action.image_source = "../../resources/icons/retweet_on2.png"
+					retweet_info.icon_source = "../../resources/icons/retweet_on.png"
 				}
 			}
 		},
@@ -519,8 +518,8 @@ Rectangle {
 				name: "not_rt_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Retweet");
-					retweet_action.image_source = "../../resources/icons/retweet_off2.png";
-					retweet_info.icon_source = "../../resources/icons/retweet_off.png";;
+					retweet_action.image_source = "../../resources/icons/retweet_off2.png"
+					retweet_info.icon_source = "../../resources/icons/retweet_off.png"
 				}
 			}
 		},
@@ -533,8 +532,8 @@ Rectangle {
 				name: "rt_fav_me_script"
 				script: {
 					favorite_action.legend = qsTr("Favorited");
-					retweet_action.image_source = "../../resources/icons/retweet_on2.png";
-					retweet_info.icon_source = "../../resources/icons/retweet_on.png";
+					retweet_action.image_source = "../../resources/icons/retweet_on2.png"
+					retweet_info.icon_source = "../../resources/icons/retweet_on.png"
 				}
 			}
 		},
@@ -547,8 +546,8 @@ Rectangle {
 				name: "not_fav_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Favorite");
-					retweet_action.image_source = "../../resources/icons/retweet_off2.png";
-					retweet_info.icon_source = "../../resources/icons/retweet_off.png";;
+					retweet_action.image_source = "../../resources/icons/retweet_off2.png"
+					retweet_info.icon_source = "../../resources/icons/retweet_off.png"
 				}
 			}
 		},
@@ -674,4 +673,5 @@ Rectangle {
 	signal reply(string screenName, string replyToTweetID)
 	signal quote(string text)
 	signal updateTweet(variant updatedTweet)
+	signal destroyTweet
 }

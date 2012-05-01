@@ -96,6 +96,13 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 
 	QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
 
+	// For debug purposes (avoid errors due to https)
+	/*
+	QUrl requrl = requestToTwitter->url();
+	requrl.setScheme("http");
+	delete requestToTwitter;
+	requestToTwitter = new QNetworkRequest(requrl);
+	//*/
 
 	// POST arguments
 	postArgs = buildPostDatas();
@@ -158,7 +165,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	response->deleteLater();
 
 	// responseBuffer (for debug purposes)
-	/*
+	//*
 	qDebug("responseBuffer :");
 	qDebug(responseBuffer.data());
 	qDebug("\n");

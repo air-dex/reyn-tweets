@@ -59,10 +59,17 @@ Rectangle {
 
 					// Updating the timeline
 					updateTweet.connect(updateTL)
+
+					// Destroying the tweet
+					destroyTweet.connect(deleteTweet)
 				}
 
 				function updateTL(newTweet) {
 					control.replaceTweet(newTweet, index)
+				}
+
+				function deleteTweet(newTweet) {
+					control.deleteTweet(index)
 				}
 			}
 		}

@@ -32,7 +32,7 @@
 //////////////
 
 // Verify credentials
-QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twitter.com/1/account/verify_credentials.json");
+QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("http://api.twitter.com/1/account/verify_credentials.json");
 
 
 ///////////////
@@ -40,13 +40,13 @@ QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twit
 ///////////////
 
 // Favorite a tweet
-QString TwitterURL::CREATE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites/create/:id.json");
+QString TwitterURL::CREATE_FAVORITE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites/create/:id.json");
 
 // Unfavorite a tweet
-QString TwitterURL::DELETE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites/destroy/:id.json");
+QString TwitterURL::DELETE_FAVORITE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites/destroy/:id.json");
 
 // Getting the timeline of the favorite tweets of a user
-QString TwitterURL::FAVORITE_TIMELINE_URL = QString::fromUtf8("https://api.twitter.com/1/favorites.json");
+QString TwitterURL::FAVORITE_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites.json");
 
 
 ///////////
@@ -79,7 +79,10 @@ QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/se
 ///////////////
 
 // Getting the timeline with friends tweets
-QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/home_timeline.json");
+QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/home_timeline.json");
+
+// Getting the timeline with retweets retweeted by the user
+QString TwitterURL::RETWEETED_BY_ME_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/retweeted_by_me.json");
 
 
 ////////////
@@ -87,19 +90,19 @@ QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("https://api.twitter.c
 ////////////
 
 // Deleting a tweet (or a retweet)
-QString TwitterURL::DELETE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/destroy/:id.json");
+QString TwitterURL::DELETE_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/destroy/:id.json");
 
 // Retweeting a tweet
-QString TwitterURL::RETWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/retweet/:id.json");
+QString TwitterURL::RETWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/retweet/:id.json");
 
 // Getting informations about a given tweet
-QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/show.json");
+QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/show.json");
 
 // Updating a tweet without medias
-QString TwitterURL::UPDATE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1/statuses/update.json");
+QString TwitterURL::UPDATE_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/update.json");
 
 // Updating a tweet with medias
-QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("https://upload.twitter.com/1/statuses/update_with_media.json");
+QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("http://upload.twitter.com/1/statuses/update_with_media.json");
 
 
 ///////////

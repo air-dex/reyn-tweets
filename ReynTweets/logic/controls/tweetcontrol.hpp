@@ -94,6 +94,10 @@ class TweetControl : public QObject
 		/// @param updatedTweet The updatedTweet after an operation on it.
 		void updateTimeline(QVariant updatedTweet);
 
+		/// @fn void destroyTweet();
+		/// @brief Emitted if the tweet has to be destroyed
+		void destroyTweet();
+
 
 	protected slots:
 		/// @fn void retweetEnd(ProcessWrapper res);

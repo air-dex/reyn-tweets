@@ -63,6 +63,7 @@ UserInfos::UserInfos() :
 	timeZone("London"),
 	createdAt(),
 	language("en"),
+	followedByMe(false),
 	protectedAccount(false),
 	geotaggingEnabled(false),
 	verifiedAccount(false),
@@ -119,6 +120,7 @@ void UserInfos::recopie(const UserInfos & user) {
 	timeZone = user.timeZone;
 	createdAt = user.createdAt;
 	language = user.language;
+	followedByMe = user.followedByMe;
 	protectedAccount = user.protectedAccount;
 	geotaggingEnabled = user.geotaggingEnabled;
 	verifiedAccount = user.verifiedAccount;
@@ -631,6 +633,17 @@ QColor UserInfos::getProfileTextColor() {
 void UserInfos::setProfileTextColor(QColor newTextColor) {
 	textColor = newTextColor;
 	emit profileTextColorChanged();
+}
+
+// Reading the following property
+bool UserInfos::isFollowedByMe() {
+	return followedByMe;
+}
+
+// Setter on following
+void UserInfos::setFollowing(bool newFollowing) {
+	followedByMe = newFollowing;
+	emit followingChanged();
 }
 
 // Getter on location

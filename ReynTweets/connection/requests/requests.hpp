@@ -34,6 +34,8 @@
 #include "oauth/requesttokenrequester.hpp"
 #include "searches/searchrequester.hpp"
 #include "timelines/hometimelinerequester.hpp"
+#include "timelines/retweetsbymerequester.hpp"
+#include "tweets/destroytweetrequester.hpp"
 #include "tweets/posttweetrequester.hpp"
 #include "tweets/retweetrequester.hpp"
 #include "tweets/showtweetrequester.hpp"

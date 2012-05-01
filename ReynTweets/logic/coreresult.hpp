@@ -102,9 +102,9 @@ enum CoreResult {
 	NETWORK_CALL,
 
 
-	////////////////////////////
-	// Launching process ends //
-	////////////////////////////
+	//////////
+	// Misc //
+	//////////
 
 	/// @brief LaunchingProcess ended successfully
 	LAUNCH_SUCCESSFUL,
@@ -112,18 +112,8 @@ enum CoreResult {
 	/// @brief An authentication to Twitter is required
 	AUTHENTICATION_REQUIRED,
 
-
-	//////////////////////////
-	// Allowing process end //
-	//////////////////////////
-
 	/// @brief AllowProcess ended successfully
 	ALLOW_SUCCESSFUL,
-
-
-	////////////////////////////
-	// Favorites process ends //
-	////////////////////////////
 
 	/// @brief FavoriteProcess ended successfully
 	FAVORITE_SUCCESSFUL,
@@ -140,13 +130,11 @@ enum CoreResult {
 	/// @brief After retweeting a tweet
 	TWEET_RETWEETED,
 
-
-	//////////
-	// Misc //
-	//////////
-
 	/// @brief The user was wrong
-	WRONG_USER
+	WRONG_USER,
+
+	/// @brief If a tweet cannot be deleted
+	TWEET_UNDESTROYABLE
 };
 
 #endif // CORERESULT_HPP

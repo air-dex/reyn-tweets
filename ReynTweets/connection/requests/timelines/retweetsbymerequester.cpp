@@ -1,5 +1,5 @@
-/// @file hometimelinerequester.cpp
-/// @brief Implementation of HomeTimelineRequester
+/// @file retweetsbymerequester.cpp
+/// @brief Implementation of RetweetsByMeRequester
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,54 +21,40 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "hometimelinerequester.hpp"
+#include "retweetsbymerequester.hpp"
 #include "../../../tools/utils.hpp"
 
 // Constructor
-HomeTimelineRequester::HomeTimelineRequester(OAuthManager & authManager,
-											 qlonglong oldestTweetID,
-											 qlonglong youngestTweetID,
+RetweetsByMeRequester::RetweetsByMeRequester(OAuthManager &authManager,
+											 qlonglong oldestID,
+											 qlonglong youngestID,
+											 int nbRetweets,
 											 bool userIDonly,
-											 bool withRetweets,
-											 bool withEntities,
-											 bool withoutReplies,
-											 int nbPage,
-											 int nbTweets,
-											 bool withContributorsDetails) :
-	AuthenticationRequester(GET, TwitterURL::HOME_TIMELINE_URL, authManager),
-	count(nbTweets),
-	sinceID(oldestTweetID),
-	maxID(youngestTweetID),
-	page(nbPage),
+											 bool withEntities) :
+	AuthenticationRequester(GET,
+							TwitterURL::RETWEETED_BY_ME_TIMELINE_URL,
+							authManager),
+	sinceID(oldestID),
+	maxID(youngestID),
+	count(nbRetweets),
 	trimUser(userIDonly),
-	includeRetweets(withRetweets),
-	includeEntities(withEntities),
-	excludeReplies(withoutReplies),
-	contributorsDetails(withContributorsDetails)
+	includeEntities(withEntities)
 {}
 
 // Building getParameters
-void HomeTimelineRequester::buildGETParameters() {
-	if (count != 20) {
-		getParameters.insert("count", QString::number(count));
-	}
-
+void RetweetsByMeRequester::buildGETParameters() {
 	if (sinceID > -1) {
 		getParameters.insert("since_id", QString::number(sinceID));
 	}
-
 
 	if (maxID > -1) {
 		getParameters.insert("max_id", QString::number(maxID));
 	}
 
-	if (page > 0) {
-		getParameters.insert("page", QString::number(page));
+	if (count != 20) {
+		getParameters.insert("count", QString::number(count));
 	}
 
 	getParameters.insert("trim_user", boolInString(trimUser));
-	getParameters.insert("include_rts", boolInString(includeRetweets));
 	getParameters.insert("include_entities", boolInString(includeEntities));
-	getParameters.insert("exclude_replies", boolInString(excludeReplies));
-	getParameters.insert("contributors_details", boolInString(contributorsDetails));
 }

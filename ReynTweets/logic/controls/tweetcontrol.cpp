@@ -133,6 +133,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
+		processing = false;
 		return;
 	}
 
@@ -142,12 +143,21 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
+	Tweet resultTweet;
 
 	switch (issue) {
 		case TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
-			status->reset();
-			status->fillWithVariant(parsedResults);
+			resultTweet.fillWithVariant(parsedResults);
+			if (!resultTweet.isRetweet()) {
+				// The retweet is not in the timeline and cannot be updated
+				emit tweetEnded(false,
+								TweetControl::trUtf8("No retweet in the retweeted status"),
+								false);
+				break;
+			}
+			getShownTweet()->reset();
+			getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
 			status->setRetweeted(true);
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
@@ -197,6 +207,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
+		processing = false;
 		return;
 	}
 
@@ -261,6 +272,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
+		processing = false;
 		return;
 	}
 
@@ -316,66 +328,84 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 //////////////////////
 
 void TweetControl::deleteTweet() {
-//	// Protection to not attempt to retweet its own tweets.
-//	if (status->getAuthor()->getID() ==
-//			reyn.getConfiguration().getUserAccount().getUser().getID())
-//	{
-//		return;
-//	}
+	// No new process if the control has not finished the last one
+	if (processing) {
+		return;
+	}
 
-//	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-//			this, SLOT(retweetEnd(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(deleteEnd(ProcessWrapper)));
 
-//	qlonglong tweetID = status->isRetweet() ?
-//				status->getRetweetedStatus()->getID()
-//			  : status->getID();
-
-//	reyn.retweet(tweetID);
+	processing = true;
+	reyn.deleteTweet(*status);
 }
 
 void TweetControl::deleteEnd(ProcessWrapper res) {
-//	ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-//	// The result was not for the object. Stop the treatment.
-//	if (INVALID_ISSUE == result.processIssue) {
-//		return;
-//	}
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		processing = false;
+		return;
+	}
 
-//	// Disconnect
-//	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-//			   this, SLOT(retweetEnd(ProcessWrapper)));
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(deleteEnd(ProcessWrapper)));
 
-//	CoreResult issue = result.processIssue;
-//	QVariantMap parsedResults;
+	CoreResult issue = result.processIssue;
+	QVariantMap parsedResults;
 
-//	switch (issue) {
-//		case TWEET_RETWEETED:
-//			parsedResults = result.results.toMap();
-//			status->reset();
-//			status->fillWithVariant(parsedResults);
-//			status->setRetweeted(true);
-//			emit tweetChanged();
-//			emit updateTimeline(QVariant(status->toVariant()));
-//			emit tweetEnded(true, "", false);
-//			break;
+	switch (issue) {
+		case TWEET_DELETED:
+			parsedResults = result.results.toMap();
 
-//		case TOKENS_NOT_AUTHORIZED:
-//			// An authentication is needed. So let's do it!
-//			emit authenticationNeeded();
-//			break;
+			// Delete the tweet in the timeline ?
+			if (parsedResults.value("keep_in_timeline").toBool()) {
+				Tweet resultTweet;
+				resultTweet.fillWithVariant(parsedResults.value("twitter_result").toMap());
 
-//		// Problems that can be solved trying later
-//		case RATE_LIMITED:	// The user reached rates.
-//		case TWITTER_DOWN:	// Twitter does not respond.
-//		case NETWORK_CALL:
-//			emit tweetEnded(false, result.errorMsg, false);
-//			break;
+				if (!resultTweet.isRetweet()) {
+					// It's a tweet written by the user and should not be kept
+					// in the timeline. This is an error.
+					emit tweetEnded(false,
+									TweetControl::trUtf8("Retweet expected in Twiiter reply."),
+									false);
+					return;
+				}
 
-//		// Unknown ends
-//		case UNKNOWN_PROBLEM:
+				getShownTweet()->reset();
+				getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
+				status->setRetweeted(false);
+				emit tweetChanged();
+				emit updateTimeline(QVariant(status->toVariant()));
+			} else {
+				emit destroyTweet();
+			}
 
-//		default:
-//			emit tweetEnded(false, result.errorMsg, true);
-//			break;
-//	}
+			emit tweetEnded(true, "", false);
+			break;
+
+		case TOKENS_NOT_AUTHORIZED:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			break;
+
+
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+		case TWEET_UNDESTROYABLE: // Tweet not deleted
+			emit tweetEnded(false, result.errorMsg, false);
+			break;
+
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
+		default:
+			emit tweetEnded(false, result.errorMsg, true);
+			break;
+	}
+
+	processing = false;
 }

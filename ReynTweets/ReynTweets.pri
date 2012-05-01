@@ -119,7 +119,10 @@ SOURCES += \
 	logic/processes/posttweetprocess.cpp \
 	connection/requests/tweets/posttweetrequester.cpp \
     connection/requests/tweets/retweetrequester.cpp \
-    logic/processes/retweetprocess.cpp
+    logic/processes/retweetprocess.cpp \
+    connection/requests/tweets/destroytweetrequester.cpp \
+    logic/processes/deletetweetprocess.cpp \
+    connection/requests/timelines/retweetsbymerequester.cpp
 
 
 HEADERS  += \
@@ -208,7 +211,10 @@ HEADERS  += \
 	logic/processes/posttweetprocess.hpp \
 	connection/requests/tweets/posttweetrequester.hpp \
     connection/requests/tweets/retweetrequester.hpp \
-    logic/processes/retweetprocess.hpp
+    logic/processes/retweetprocess.hpp \
+    connection/requests/tweets/destroytweetrequester.hpp \
+    logic/processes/deletetweetprocess.hpp \
+    connection/requests/timelines/retweetsbymerequester.hpp
 
 
 OTHER_FILES = \

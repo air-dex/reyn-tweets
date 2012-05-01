@@ -59,19 +59,6 @@ class DeleteTweetProcess : public GenericProcess
 
 
 	protected:
-		/// @union DeleteComplement
-		/// @brief Additional informations about the deletion
-		union DeleteComplement {
-			/// @brief ID of the tweet to delete
-			qlonglong tweetID;
-
-			/// @brief Message indicating why the tweetcannot be deleted.
-			///
-			/// It is a char * instead of a QString because unions cannot
-			/// accept fields with copy Constructeurs (Dafuq).
-			char * errMsg;
-		};
-
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;
 
@@ -101,14 +88,14 @@ class DeleteTweetProcess : public GenericProcess
 		void canDeleteTweet();
 
 	signals:
-		/// @fn void allowDelete(bool allowToDelete, DeleteComplement addInfos);
+		/// @fn void allowDelete(bool allowToDelete, QString addInfos);
 		/// @brief Send after determining if the tweet can be deleted
 		/// @param allowToDelete Boolean determining if the tweet can be deleted
 		/// (true, false otherwise).
 		/// @param addInfos Additionnal informations for the deletion
 		/// (ID of the tweet to delete or message explaining why the tweet
 		/// won't be destroyed).
-		void allowDelete(bool allowToDelete, DeleteComplement addInfos);
+		void allowDelete(bool allowToDelete, QString addInfos);
 
 	protected slots:
 		/// @fn void searchRetweetIDEnded(RequestResult res);
@@ -116,14 +103,14 @@ class DeleteTweetProcess : public GenericProcess
 		/// @param res Result of the request
 		void searchRetweetIDEnded(ResultWrapper res);
 
-		/// @fn void deleteTweet(bool allowToDelete, DeleteComplement addInfos);
+		/// @fn void deleteTweet(bool allowToDelete, QString addInfos);
 		/// @brief Deleting the tweet
 		/// @param allowToDelete Boolean determining if the tweet can be deleted
 		/// (true, false otherwise).
 		/// @param addInfos Additionnal informations for the deletion
 		/// (ID of the tweet to delete or message explaining why the tweet
 		/// won't be destroyed).
-		void deleteTweet(bool allowToDelete, DeleteComplement addInfos);
+		void deleteTweet(bool allowToDelete, QString addInfos);
 
 		/// @fn void deleteEnded(RequestResult res);
 		/// @brief After deleting the tweet

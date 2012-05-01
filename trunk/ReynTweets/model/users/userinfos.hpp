@@ -450,6 +450,14 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTextColor The new value of textColor
 		void setProfileTextColor(QString newTextColor);
 
+		// following
+		/// @property following
+		/// @brief Serializable form of followedByMe
+		Q_PROPERTY(bool following
+				   READ isFollowedByMe
+				   WRITE setFollowing
+				   NOTIFY followingChanged)
+
 		// location
 		/// @property location
 		/// @brief Serializable form of userLocation
@@ -600,6 +608,10 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Emitted when the property profile_text_color changes
 		void profileTextColorChanged();
 
+		/// @fn void followingChanged();
+		/// @brief Emitted when the property following changes
+		void followingChanged();
+
 		/// @fn void locationChanged();
 		/// @brief Emitted when the property location changes
 		void locationChanged();
@@ -711,6 +723,10 @@ class UserInfos : public ReynTweetsMappable
 
 		/// @brief User's idiom
 		QString language;
+
+		/// @brief Boolean indicating if the user is followed by the user
+		/// which is currently using the application.
+		bool followedByMe;
 
 		/// @brief Boolean indicating if the user protects its account
 		bool protectedAccount;
@@ -1105,6 +1121,16 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Setter on textColor
 		/// @param newTextColor The new value of textColor
 		void setProfileTextColor(QColor newTextColor);
+
+		/// @fn bool isFollowedByMe();
+		/// @brief Reading the following property
+		/// @return The value of followedByMe
+		bool isFollowedByMe();
+
+		/// @fn void setFollowing(bool newFollowing);
+		/// @brief Setter on following
+		/// @param newVerified The new value of followedByMe
+		void setFollowing(bool newFollowing);
 
 		/// @fn QString getLocation();
 		/// @brief Getter on location

@@ -262,6 +262,18 @@ class ReynCore : public QObject
 					 bool includeEntities = true,
 					 bool trimUser = false);
 
+		/// @fn void deleteTweet(Tweet tweetToDelete,
+		///						 bool includeEntities = true,
+		///						 bool trimUser = false);
+		/// @brief Deleting a tweet
+		/// @param tweetToDelete The tweet to delete
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/destroy/%3Aid
+		void deleteTweet(Tweet tweetToDelete,
+						 bool includeEntities = true,
+						 bool trimUser = false);
+
 
 	protected:
 		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);

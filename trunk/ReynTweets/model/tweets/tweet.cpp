@@ -187,7 +187,7 @@ void Tweet::setUser(QVariantMap newUserMap) {
 }
 
 // Reading retweeted_status
-QVariantMap Tweet::getRetweetedStatusProperty() {
+QVariantMap Tweet::getRetweetedStatusVariant() {
 	if (retweetSource) {
 		// Return an empty QVariantMap for a default tweet to avoid stack problems
 		return retweetSource->tweetID == -1 ?

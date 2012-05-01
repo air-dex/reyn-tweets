@@ -40,7 +40,11 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		ProcessUtils::buildProcessResult(false,
+										 INVALID_ISSUE,
+										 SingleTwitterCallProcess::trUtf8("Dead end"),
+										 false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -77,7 +81,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 
 	// Failed end
 	buildResult(false, issue, errorMsg, isFatal);
-	emit processEnded();
+	endProcess();
 }
 
 // Building the process results
@@ -99,7 +103,7 @@ void SingleTwitterCallProcess::buildResult(QVariant result) {
 
 void SingleTwitterCallProcess::treatSuccessfulResult(QVariant result) {
 	buildResult(result);
-	emit processEnded();
+	endProcess();
 }
 
 void SingleTwitterCallProcess::treatTwitterErrorResult(RequestResult result,

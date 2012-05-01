@@ -289,3 +289,13 @@ void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
 
 	executeProcess(process);
 }
+
+// Deleting a tweet
+void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimUser) {
+	DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUser(),
+														  tweetToDelete,
+														  includeEntities,
+														  trimUser);
+
+	executeProcess(process);
+}

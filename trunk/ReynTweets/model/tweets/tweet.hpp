@@ -287,27 +287,17 @@ class Tweet : public ReynTweetsMappable
 		/// @property retweeted_status
 		/// @brief Serializable form of retweetedTweet
 		Q_PROPERTY(QVariantMap retweeted_status
-				   READ getRetweetedStatusProperty
+				   READ getRetweetedStatusVariant
 				   WRITE setRetweetedStatus
 				   NOTIFY retweetedStatusChanged)
 
-		/// @fn QVariantMap getRetweetedStatusProperty();
-		/// @brief Reading retweeted_status
-		/// @return lastTweetMap
-		QVariantMap getRetweetedStatusProperty();
-
-		/// @fn void setRetweetedStatus(QVariantMap statusMap);
-		/// @brief Writing retweeted_status
-		/// @param statusMap The new value of the property
-		void setRetweetedStatus(QVariantMap statusMap);
-//*
 		/// @property retweet
 		/// @brief The retweet to display in a TweetPane
 		Q_PROPERTY(Tweet * retweet
 				   READ getRetweetedStatus
 				   WRITE setRetweetedStatus
 				   NOTIFY retweetedStatusChanged)
-//*/
+
 		/*
 		 * Properties that are not here :
 		 * - place
@@ -683,6 +673,16 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Writing retweeted_status
 		/// @param retweet The new value of the property
 		void setRetweetedStatus(Tweet * retweet);
+
+		/// @fn QVariantMap getRetweetedStatusVariant();
+		/// @brief Reading retweeted_status
+		/// @return lastTweetMap
+		QVariantMap getRetweetedStatusVariant();
+
+		/// @fn void setRetweetedStatus(QVariantMap statusMap);
+		/// @brief Writing retweeted_status
+		/// @param statusMap The new value of the property
+		void setRetweetedStatus(QVariantMap statusMap);
 
 
 		//////////////////////////////////

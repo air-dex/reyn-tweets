@@ -247,10 +247,38 @@ void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 	executeRequest(requester);
 }
 
+// Retrieving the timeline with the tweets of the user's friends
+void ReynTwitterCalls::userRetweetsTimeline(qlonglong sinceID,
+											qlonglong maxID,
+											int count,
+											bool trimUser,
+											bool includeEntities)
+{
+	RetweetsByMeRequester * requester = new RetweetsByMeRequester(oauthManager,
+																  sinceID,
+																  maxID,
+																  count,
+																  trimUser,
+																  includeEntities);
+	executeRequest(requester);
+}
+
 
 ////////////
 // Tweets //
 ////////////
+
+// Destroying (deleting) a tweet
+void ReynTwitterCalls::destroyTweet(qlonglong tweetID,
+									bool entities,
+									bool trimUser)
+{
+	DestroyTweetRequester * requester = new DestroyTweetRequester(oauthManager,
+																  tweetID,
+																  entities,
+																  trimUser);
+	executeRequest(requester);
+}
 
 // Retweeting a tweet
 void ReynTwitterCalls::retweet(qlonglong tweetID, bool entities, bool trimUser) {

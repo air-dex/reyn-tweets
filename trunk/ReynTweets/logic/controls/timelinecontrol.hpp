@@ -65,6 +65,13 @@ class TimelineControl : public QObject
 		/// @param tweetIndex Index of the tweet in the timeline
 		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
 
+		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
+		/// @brief Deleting a tweet in a timeline
+		///
+		/// It can be used after retweeting a tweet, for example.
+		/// @param tweetIndex Index of the tweet in the timeline
+		Q_INVOKABLE void deleteTweet(int tweetIndex);
+
 
 	signals:
 		/// @fn void timelineChanged();

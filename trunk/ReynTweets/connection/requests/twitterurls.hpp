@@ -86,6 +86,9 @@ namespace TwitterURL
 	/// @brief URL to getting the timeline with friends tweets
 	extern QString HOME_TIMELINE_URL;
 
+	/// @brief URL to getting the timeline with retweets of the user
+	extern QString RETWEETED_BY_ME_TIMELINE_URL;
+
 
 	////////////
 	// Tweets //

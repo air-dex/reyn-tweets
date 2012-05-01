@@ -38,14 +38,14 @@ DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,
 	trimUser(userIDonly),
 	keepInTimeline(tweetToDelete.getAuthor()->isFollowedByMe())
 {
-	connect(this, SIGNAL(allowDelete(bool,DeleteComplement)),
-			this, SLOT(deleteTweet(bool,DeleteComplement)));
+	connect(this, SIGNAL(allowDelete(bool,QString)),
+			this, SLOT(deleteTweet(bool,QString)));
 }
 
 // Destructor
 DeleteTweetProcess::~DeleteTweetProcess() {
-	disconnect(this, SIGNAL(allowDelete(bool,DeleteComplement)),
-			   this, SLOT(deleteTweet(bool,DeleteComplement)));
+	disconnect(this, SIGNAL(allowDelete(bool,QString)),
+			   this, SLOT(deleteTweet(bool,QString)));
 }
 
 // Starting the process by determining if the tweet can be deleted.
@@ -55,33 +55,28 @@ void DeleteTweetProcess::startProcess() {
 
 // Determining if the tweet can be deleted
 void DeleteTweetProcess::canDeleteTweet() {
-	DeleteComplement addInfos;
-
-	// Is the user the author ?
 	if (user.getID() == tweetToDelete.getAuthor()->getID()) {
-		// Yes ! The tweet can be deleted and the ID is already known :) !
-		addInfos.tweetID = tweetToDelete.getID();
+		// The user is the author of the tweet
+		// The tweet can be deleted and the ID is already known :) !
+		emit allowDelete(true, tweetToDelete.getIDstr());
+	}
+	else if (tweetToDelete.isRetweetedByMe()) {
+		// Tweet can be deleted only if the user retweeted it.
+		// But the retweet ID is unknown. So let's search it !
 
-		emit allowDelete(true, addInfos);
-	} else {
-		// No. The tweet can be deleted only if the user retweeted it.
-		if (tweetToDelete.isRetweetedByMe()) {
-			// Tweet can be deleted but the retweet ID is unknown. Search it.
+		// The ID is in the timeline of the user's retweets.
+		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+				this, SLOT(searchRetweetIDEnded(ResultWrapper)));
 
-			// The ID is in the timeline of the user's retweets.
-			connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-					this, SLOT(searchRetweetIDEnded(ResultWrapper)));
-
-			// Moreover, the user's retweet is more recent than the original
-			// tweet. So retweet ID > tweet ID
-			twitter.userRetweetsTimeline(tweetToDelete.getID(),
-										 -1, 20, true, false);
-		} else {
-			// Tweet cannot be deleted
-			strcpy(addInfos.errMsg,
-				   DeleteTweetProcess::trUtf8("The user is not the author of the tweet").toUtf8().data());
-			emit allowDelete(false, addInfos);
-		}
+		// Moreover, the user's retweet is more recent than the original
+		// tweet. So retweet ID > tweet ID
+		twitter.userRetweetsTimeline(tweetToDelete.getID(),
+									 -1, 20, true, false);
+	}
+	else {
+		// Tweet cannot be deleted
+		emit allowDelete(false,
+						 DeleteTweetProcess::trUtf8("The user is not the author of the tweet"));
 	}
 }
 
@@ -111,9 +106,9 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 	// For NO_ERROR requests
 	Timeline retweets;
-	qlonglong tweetToDeleteID = -1;
+	QString tweetToDeleteIDstr = "-1";
 	bool idFound = false;
-	DeleteComplement addInfos;
+	QString addInfos;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -135,20 +130,18 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 				qlonglong originalTweetID = retweet.getRetweetedStatus()->getID();
 
 				if (originalTweetID == tweetToDelete.getID()) {
-					tweetToDeleteID = retweet.getID();
+					tweetToDeleteIDstr = retweet.getIDstr();
 					idFound = true;
 				}
 			}
 
 			if (idFound) {
 				// We got the ID. Let's delete
-				addInfos.tweetID = tweetToDeleteID;
+				addInfos = tweetToDeleteIDstr;
 			} else {
 				// Tweet cannot be deleted because the ID is still unknown
-				errorMsg = beginErrMsg
+				addInfos = beginErrMsg
 						+ DeleteTweetProcess::trUtf8("Reweet ID unreachable");
-
-				strcpy(addInfos.errMsg, errorMsg.toUtf8().data());
 			}
 
 			emit allowDelete(idFound, addInfos);
@@ -179,21 +172,36 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 // Deleting the tweet
 void DeleteTweetProcess::deleteTweet(bool allowToDelete,
-									 DeleteComplement addInfos)
+									 QString addInfos)
 {
+	QString errMsg = "";
+
 	if (allowToDelete) {
 		// Let's destroy the tweet
 		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 				this, SLOT(deleteEnded(ResultWrapper)));
 
-		twitter.destroyTweet(addInfos.tweetID, includeEntities, trimUser);
+		bool toLongLongOK = false;
+
+		qlonglong tweetID = addInfos.toLongLong(&toLongLongOK);
+
+		if (toLongLongOK) {
+			return twitter.destroyTweet(tweetID, includeEntities, trimUser);
+		} else {
+			errMsg.append(DeleteTweetProcess::trUtf8("Unknown tweet ID '"));
+			errMsg.append(addInfos);
+			errMsg.append("'.");
+		}
 	} else {
-		processResult = ProcessUtils::buildProcessResult(false,
-														 TWEET_UNDESTROYABLE,
-														 QString(addInfos.errMsg),
-														 false);
-		endProcess();
+		errMsg = addInfos;
 	}
+
+	// Failed end
+	processResult = ProcessUtils::buildProcessResult(false,
+													 TWEET_UNDESTROYABLE,
+													 errMsg,
+													 false);
+	endProcess();
 }
 
 // After deleting the tweet

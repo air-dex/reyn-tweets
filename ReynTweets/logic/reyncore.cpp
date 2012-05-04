@@ -38,7 +38,9 @@ ReynCore::~ReynCore() {
 }
 
 // Copy constructor
-ReynCore::ReynCore(const ReynCore & heart) {
+ReynCore::ReynCore(const ReynCore & heart) :
+    QObject()
+{
 	recopie(heart);
 }
 
@@ -292,7 +294,7 @@ void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
 
 // Deleting a tweet
 void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimUser) {
-	DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUser(),
+    DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUserRef(),
 														  tweetToDelete,
 														  includeEntities,
 														  trimUser);

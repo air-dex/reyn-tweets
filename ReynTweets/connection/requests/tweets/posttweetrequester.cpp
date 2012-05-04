@@ -39,8 +39,8 @@ PostTweetRequester::PostTweetRequester(OAuthManager & authManager,
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
-	latitude(lat),
-	longitude(lon),
+    longitude(lon),
+    latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {}

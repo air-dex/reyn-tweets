@@ -40,8 +40,8 @@ void AllowProcess::endProcess() {
 		authEnded = true;
 
 		// Is it an anticipated end (auth does not end successfully) ?
-		bool anticipatedEnd = !processResult.processOK
-				|| processResult.processOK && processResult.processIssue == DENIED;
+        bool anticipatedEnd = (!processResult.processOK)
+                || (processResult.processOK && processResult.processIssue == DENIED);
 
 		processResult.results.toMap().value("is_authorized",
 											processResult.processIssue == AUTHORIZED);

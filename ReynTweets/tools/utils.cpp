@@ -140,7 +140,7 @@ QString hmacSha1(QByteArray key, QByteArray baseString) {
 
 // Exclusive OR
 bool ouBien(bool a, bool b) {
-	return  a && !b || !a && b;
+    return  (a && !b) || (!a && b);
 }
 
 // Formatting parameters in the Authorization header

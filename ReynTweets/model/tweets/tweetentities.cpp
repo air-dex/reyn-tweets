@@ -43,7 +43,9 @@ TweetEntities::TweetEntities() :
 TweetEntities::~TweetEntities() {}
 
 // Copy constructor
-TweetEntities::TweetEntities(const TweetEntities & entities) {
+TweetEntities::TweetEntities(const TweetEntities & entities) :
+    ReynTweetsMappable()
+{
 	recopie(entities);
 }
 

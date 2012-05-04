@@ -154,11 +154,11 @@ class TweetControl : public QObject
 				   READ getShownTweet
 				   NOTIFY tweetChanged)
 
-		/// @fn inline Tweet * getShownTweet();
+        /// @fn Tweet * getShownTweet();
 		/// @brief Reading the shown_tweet property
 		/// @return status->getRetweetedStatus() if the tweet is a retweet,
 		/// status otherwise
-		inline Tweet * getShownTweet();
+        Tweet * getShownTweet();
 };
 
 #endif // TWEETCONTROL_HPP

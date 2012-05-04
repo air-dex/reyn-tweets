@@ -78,7 +78,9 @@ UserInfos::UserInfos() :
 UserInfos::~UserInfos() {}
 
 // Copy constructor
-UserInfos::UserInfos(const UserInfos & user) {
+UserInfos::UserInfos(const UserInfos & user) :
+    ReynTweetsMappable()
+{
 	recopie(user);
 }
 
@@ -365,7 +367,7 @@ QString UserInfos::getProfileImageURL() {
 
 // Setter on avatarURL
 void UserInfos::setProfileImageURL(QString newAvatarURL) {
-	avatarURL = newAvatarURL;
+    avatarURL = newAvatarURL;
 	emit profileImageURLChanged();
 }
 
@@ -443,7 +445,7 @@ bool UserInfos::isGeoEnabled() {
 // Setter on geoEnabled
 void UserInfos::setGeoEnabled(bool newGeoEnabled) {
 	geotaggingEnabled = newGeoEnabled;
-	emit geotaggingEnabled;
+    emit geoEnabledChanged();
 }
 
 // Getter on defaultProfileImage
@@ -520,7 +522,7 @@ QString UserInfos::getProfileBackgroundImageURLhttps() {
 
 // Setter on backgroundURLhttps
 void UserInfos::setProfileBackgroundImageURLhttps(QString newBackgroundURL) {
-	backgroundURLhttps = newBackgroundURL;
+    backgroundURLhttps = newBackgroundURL;
 	emit profileBackgroundImageURLhttpsChanged();
 }
 
@@ -575,7 +577,7 @@ QString UserInfos::getProfileImageURLhttps() {
 
 // Setter on avatarURLhttps
 void UserInfos::setProfileImageURLhttps(QString newAvatarURL) {
-	avatarURLhttps = newAvatarURL;
+    avatarURLhttps = newAvatarURL;
 	emit profileImageURLhttpsChanged();
 }
 

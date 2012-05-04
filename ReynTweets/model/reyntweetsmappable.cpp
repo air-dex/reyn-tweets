@@ -44,7 +44,9 @@ ReynTweetsMappable::ReynTweetsMappable(bool blacklistObjectName) :
 ReynTweetsMappable::~ReynTweetsMappable() {}
 
 // Copy constructor
-ReynTweetsMappable::ReynTweetsMappable(const ReynTweetsMappable & mappable) {
+ReynTweetsMappable::ReynTweetsMappable(const ReynTweetsMappable & mappable) :
+    QObject()
+{
 	recopie(mappable);
 }
 

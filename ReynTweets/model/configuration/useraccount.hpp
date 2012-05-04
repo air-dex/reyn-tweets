@@ -195,6 +195,11 @@ class UserAccount : public ReynTweetsMappable
 		/// @return The user
 		UserInfos getUser();
 
+        /// @fn UserInfos & getUserRef();
+        /// @brief Getting a reference on the user
+        /// @return The user
+        UserInfos & getUserRef();
+
 		/// @fn void setUser(UserInfos u);
 		/// @brief Setter on the user
 		/// @param u The new user

@@ -249,9 +249,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 		default:
 			emit tweetEnded(false, result.errorMsg, true);
 			break;
-	}
-
-	qDebug("");
+    }
 }
 
 void TweetControl::unfavorite() {

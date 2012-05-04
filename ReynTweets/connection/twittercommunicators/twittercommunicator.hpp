@@ -97,13 +97,13 @@ class TwitterCommunicator : public QObject
 		/// @brief Destructor
 		~TwitterCommunicator();
 
-		/// @fn QNetworkRequest * prepareRequest(QByteArray & postArgs = "");
+        /// @fn QNetworkRequest * prepareRequest(QByteArray & postArgs);
 		/// @brief Preparing the request. It builds the parameters for GET
 		/// and POST and the Authorization header if needed.
 		/// @param postArgs QByteArrray for storing the POST argument under
 		/// the form arg1=val1&arg2=val2&...&argN=valN if needed.
 		/// @return A pointer on the request
-		QNetworkRequest * prepareRequest(QByteArray & postArgs = QByteArray());
+        QNetworkRequest * prepareRequest(QByteArray & postArgs);
 
 		/// @fn virtual void executeRequest();
 		/// @brief Executing the request

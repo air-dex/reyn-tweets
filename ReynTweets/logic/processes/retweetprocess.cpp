@@ -26,9 +26,9 @@
 // Constructor
 RetweetProcess::RetweetProcess(qlonglong statusID, bool withEntities, bool userIDonly) :
 	SingleTwitterCallProcess(TWEET_RETWEETED),
-	tweetID(statusID),
-	trimUser(userIDonly),
-	includeEntities(withEntities)
+    tweetID(statusID),
+    includeEntities(withEntities),
+    trimUser(userIDonly)
 {}
 
 // Calling Twitter

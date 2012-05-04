@@ -38,7 +38,9 @@ IndexBounds::IndexBounds() :
 IndexBounds::~IndexBounds() {}
 
 // Copy constructor
-IndexBounds::IndexBounds(const IndexBounds & indexes) {
+IndexBounds::IndexBounds(const IndexBounds & indexes) :
+    QObject()
+{
 	recopie(indexes);
 }
 

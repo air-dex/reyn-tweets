@@ -43,7 +43,9 @@ UserAccount::UserAccount() :
 UserAccount::~UserAccount() {}
 
 // Copy constructor
-UserAccount::UserAccount(const UserAccount & account) {
+UserAccount::UserAccount(const UserAccount & account) :
+    ReynTweetsMappable()
+{
 	recopie(account);
 }
 
@@ -147,6 +149,11 @@ void UserAccount::setTokenSecret(QByteArray secret) {
 // Getter on user
 UserInfos UserAccount::getUser() {
 	return user;
+}
+
+// Getter on user
+UserInfos & UserAccount::getUserRef() {
+    return user;
 }
 
 // Setter on user

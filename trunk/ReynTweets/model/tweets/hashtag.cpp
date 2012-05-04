@@ -44,7 +44,9 @@ Hashtag::Hashtag() :
 Hashtag::~Hashtag() {}
 
 // Copy constructor
-Hashtag::Hashtag(const Hashtag & hashtag) {
+Hashtag::Hashtag(const Hashtag & hashtag) :
+    TweetEntity()
+{
 	recopie(hashtag);
 }
 

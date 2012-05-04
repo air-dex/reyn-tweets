@@ -59,9 +59,9 @@ const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsL
 // Copy of a ReynTweetsListable
 template <class S>
 void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
-	clear();
+    this->clear();
 
-	for (ReynTweetsListable<S>::const_iterator it = list.begin();
+    for (typename ReynTweetsListable<S>::const_iterator it = list.begin();
 		 it != list.end();
 		 ++it)
 	{
@@ -77,7 +77,7 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 // Converting a QVariantList serialized by QJSON into a list of entities.
 template <class S>
 void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
-	clear();
+    this->clear();
 
 	for (QVariantList::Iterator it = entities.begin();
 		 it != entities.end();
@@ -95,8 +95,8 @@ template <class S>
 QVariantList ReynTweetsListable<S>::toVariant() const {
 	QVariantList res;
 
-	for (ReynTweetsListable<S>::const_iterator it = begin();
-		 it != end();
+    for (typename ReynTweetsListable<S>::const_iterator it = this->begin();
+         it != this->end();
 		 ++it)
 	{
 		S serializable = *it;

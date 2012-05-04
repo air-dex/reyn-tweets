@@ -23,7 +23,7 @@
 
 #include "posttweetprocess.hpp"
 
-// Constructor
+// Constructor with QString ID
 PostTweetProcess::PostTweetProcess(QString status,
 								   QString replyTostatusID,
 								   bool userIDonly,
@@ -36,8 +36,8 @@ PostTweetProcess::PostTweetProcess(QString status,
 	tweet(status),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
-	latitude(lat),
-	longitude(lon),
+    longitude(lon),
+    latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {
@@ -50,6 +50,7 @@ PostTweetProcess::PostTweetProcess(QString status,
 	}
 }
 
+// Constructor with qlonglong ID
 PostTweetProcess::PostTweetProcess(QString status,
 								   qlonglong replyTostatusID,
 								   bool userIDonly,
@@ -63,8 +64,8 @@ PostTweetProcess::PostTweetProcess(QString status,
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
-	latitude(lat),
-	longitude(lon),
+    longitude(lon),
+    latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {}

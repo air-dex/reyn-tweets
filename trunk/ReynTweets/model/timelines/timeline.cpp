@@ -36,6 +36,7 @@ Timeline::~Timeline() {}
 
 // Copy constructor
 Timeline::Timeline(const Timeline & list) :
+    QObject(),
 	ReynTweetsListable<Tweet>()
 {
 	recopie(list);

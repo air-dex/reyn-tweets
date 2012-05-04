@@ -279,10 +279,10 @@ win32 {
 	LIBS += -L$${QJSON_PATH}\\lib -lqjson0
 }
 
-linux {
-#	QJSON_PATH = # TODO
-#	INCLUDEPATH += $${QJSON_PATH}/include
-#	LIBS += -L$${QJSON_PATH}/lib -lqjson
+linux-g++ {
+	QJSON_PATH = /home/ducher/Libs/qjson
+	INCLUDEPATH += $${QJSON_PATH}/include
+	LIBS += -L$${QJSON_PATH}/lib -lqjson
 }
 
 symbian {

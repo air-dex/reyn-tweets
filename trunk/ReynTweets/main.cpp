@@ -96,7 +96,7 @@ void loadTranslation(QScopedPointer<QApplication> & a) {
 /// @return The result of the execution.
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-	QScopedPointer<QApplication> app(createApplication(argc, argv));
+    QScopedPointer<QApplication> app(createApplication(argc, argv));
 
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());

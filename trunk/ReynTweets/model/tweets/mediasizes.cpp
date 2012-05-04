@@ -43,7 +43,9 @@ MediaSizes::MediaSizes() :
 MediaSizes::~MediaSizes() {}
 
 // Copy constructor
-MediaSizes::MediaSizes(const MediaSizes & sizes) {
+MediaSizes::MediaSizes(const MediaSizes & sizes) :
+    ReynTweetsMappable()
+{
 	recopie(sizes);
 }
 

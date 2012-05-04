@@ -45,7 +45,9 @@ ReynTweetsConfiguration::ReynTweetsConfiguration() :
 ReynTweetsConfiguration::~ReynTweetsConfiguration() {}
 
 // Copy constructor
-ReynTweetsConfiguration::ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration) {
+ReynTweetsConfiguration::ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration) :
+    ReynTweetsMappable()
+{
 	recopie(configuration);
 }
 

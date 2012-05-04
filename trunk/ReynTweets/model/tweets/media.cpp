@@ -45,7 +45,9 @@ Media::Media() :
 Media::~Media() {}
 
 // Copy constructor
-Media::Media(const Media & media) {
+Media::Media(const Media & media) :
+    URLEntity()
+{
 	recopie(media);
 }
 

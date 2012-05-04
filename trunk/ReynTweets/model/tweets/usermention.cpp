@@ -47,7 +47,9 @@ UserMention::UserMention() :
 UserMention::~UserMention() {}
 
 // Copy constructor
-UserMention::UserMention(const UserMention & mention) {
+UserMention::UserMention(const UserMention & mention) :
+    TweetEntity()
+{
 	recopie(mention);
 }
 

@@ -84,57 +84,57 @@ class SingleTwitterCallProcess : public GenericProcess
 		/// @param result Request result
 		void buildResult(QVariant result);
 
-		/// @fn inline virtual void treatSuccessfulResult(QVariant result);
+        /// @fn virtual void treatSuccessfulResult(QVariant result);
 		/// @brief Default treatment when the request was successful
 		/// @param result Result
-		inline virtual void treatSuccessfulResult(QVariant result);
+        virtual void treatSuccessfulResult(QVariant result);
 
-		/// @fn inline virtual void treatTwitterErrorResult(RequestResult result,
-		///													QString &errorMsg,
-		///													CoreResult &issue);
+        /// @fn virtual void treatTwitterErrorResult(RequestResult result,
+        ///											 QString &errorMsg,
+        ///											 CoreResult &issue);
 		/// @brief Default treatment when Twitter says that the request was unsuccessful
 		/// @param result Result of the request
 		/// @param errorMsg Error message of the process
 		/// @param issue Reference on the issue of the request
-		inline virtual void treatTwitterErrorResult(RequestResult result,
-													QString &errorMsg,
-													CoreResult &issue);
+        virtual void treatTwitterErrorResult(RequestResult result,
+                                             QString &errorMsg,
+                                             CoreResult &issue);
 
-		/// @fn inline virtual void treatApiCallResult(RequestResult result,
-		///											   QString &errorMsg,
-		///											   CoreResult &issue);
+        /// @fn virtual void treatApiCallResult(RequestResult result,
+        ///                                     QString &errorMsg,
+        ///										CoreResult &issue);
 		/// @brief Default treatment when there was a problem while calling Twitter
 		/// @param result Result of the request
 		/// @param errorMsg Error message of the process
 		/// @param issue Reference on the issue of the request
-		inline virtual void treatApiCallResult(RequestResult result,
-											   QString &errorMsg,
-											   CoreResult &issue);
+        virtual void treatApiCallResult(RequestResult result,
+                                        QString &errorMsg,
+                                        CoreResult &issue);
 
-		/// @fn inline virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
-		///													QString &errorMsg,
-		///													CoreResult &issue);
+        /// @fn virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
+        ///											 QString &errorMsg,
+        ///											 CoreResult &issue);
 		/// @brief Default treatment when results cannot be parsed
 		/// @param parsingErrors Errors that occured while parsing results
 		/// @param errorMsg Error message of the process
 		/// @param issue Reference on the issue of the request
-		inline virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
-													QString &errorMsg,
-													CoreResult &issue);
+        virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
+                                             QString &errorMsg,
+                                             CoreResult &issue);
 
-		/// @fn inline virtual void treatUnknownResult(QString resultErrorMessage,
-		///											   QString &errorMsg,
-		///											   CoreResult & issue,
-		///											   bool & fatal);
+        /// @fn virtual void treatUnknownResult(QString resultErrorMessage,
+        ///										QString &errorMsg,
+        ///                                     CoreResult & issue,
+        ///										bool & fatal);
 		/// @brief Default treatment when the issue was unexpected
 		/// @param resultErrorMessage Error message of the request
 		/// @param errorMsg Error message of the process
 		/// @param issue Reference on the issue of the request
 		/// @param fatal Boolean indicating if the request error was fatal or not.
-		inline virtual void treatUnknownResult(QString resultErrorMessage,
-											   QString &errorMsg,
-											   CoreResult & issue,
-											   bool & fatal);
+        virtual void treatUnknownResult(QString resultErrorMessage,
+                                        QString &errorMsg,
+                                        CoreResult & issue,
+                                        bool & fatal);
 };
 
 #endif // SINGLETWITTERCALLPROCESS_HPP

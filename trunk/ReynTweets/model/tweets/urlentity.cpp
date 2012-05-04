@@ -46,7 +46,9 @@ URLEntity::URLEntity() :
 URLEntity::~URLEntity() {}
 
 // Copy constructor
-URLEntity::URLEntity(const URLEntity & entity) {
+URLEntity::URLEntity(const URLEntity & entity) :
+    TweetEntity()
+{
 	recopie(entity);
 }
 

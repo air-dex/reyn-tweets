@@ -30,6 +30,11 @@
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
 
+/*
+#include <QtPlugin>
+Q_IMPORT_PLUGIN(qjpeg)
+//*/
+
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
@@ -97,6 +102,8 @@ void loadTranslation(QScopedPointer<QApplication> & a) {
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
+
+    app->addLibraryPath(QCoreApplication::applicationDirPath() + "imageformats/");
 
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());

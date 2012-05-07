@@ -362,7 +362,7 @@ void UserInfos::setFollowersCount(int newFollowersCount) {
 
 // Getter on avatarURL
 QString UserInfos::getProfileImageURL() {
-	return avatarURL;
+    return avatarURL;
 }
 
 // Setter on avatarURL

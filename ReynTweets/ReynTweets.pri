@@ -39,6 +39,9 @@ QT += core gui network webkit declarative script
 TARGET = ReynTweets
 TEMPLATE = app
 
+QTPLUGINS += qjpeg qpng qjpg
+#LIBS += -L./imageformats/ -lqjpegb
+
 
 #--------------#
 # Source files #

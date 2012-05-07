@@ -56,7 +56,7 @@ Rectangle {
 					(reply_info.height + margin)
 				  : 0
 				)
-			 + (shown_tweet.isRetweetedByPeople() || tweet.isRetweet() ?
+			 + (shown_tweet.isRetweetedByPeople() || shown_tweet.retweeted || tweet.isRetweet() ?
 					(retweet_info.height + margin)
 				  : 0
 				)

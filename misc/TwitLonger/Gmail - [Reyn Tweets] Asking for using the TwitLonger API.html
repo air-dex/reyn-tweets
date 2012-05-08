@@ -1,0 +1,108 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" SYSTEM "http://www.w3.org/TR/html4/strict.dtd"> <html lang="fr"> 
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<head>  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Gmail - [Reyn Tweets] Asking for using the TwitLonger API</title> <style type="text/css">
+body, td{font-family:arial,sans-serif;font-size:13px} a:link, a:active {color:#1155CC; text-decoration:none} a:hover {text-decoration:underline; cursor: pointer} a:visited{color:##6611CC} img{border:0px} pre { white-space: pre; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; white-space: pre-wrap; word-wrap: break-word; width: 800px; overflow: auto;}
+</style> </head>
+<body> <div class="bodycontainer"> <table width="100%" cellpadding="0" cellspacing="0" border="0"> <tr height="14px"> <td width="143"> <img src="Gmail%20-%20%5BReyn%20Tweets%5D%20Asking%20for%20using%20the%20TwitLonger%20API_files/logo0000.gif" width="143" height="59" alt="Gmail"> </td> <td align="right"> <font size="-1" color="#777"><b> Romain Ducher &lt;ducher.romain@gmail.com&gt; </b></font></td> </tr> </table> <hr> <div class="maincontent"> <table width="100%" cellpadding="0" cellspacing="0" border="0"> <tr> <td> <font size="+1"> <b>[Reyn Tweets] Asking for using the TwitLonger API</b></font><br> </td> </tr> </table> <hr> <table width="100%" cellpadding="0" cellspacing="0" border="0" class="message"> <tr> <td> <font size="-1"><b> Twitlonger </b> &lt;hello@twitlonger.com&gt; </font> </td> <td align="right"> <font size="-1"> 18 avril 2012 08:43 </font> <tr> <td colspan="2"> <font size="-1" class="recipient"> <div> À : Romain Ducher &lt;ducher.romain@gmail.com&gt;</div> </font> <tr> <td colspan="2"> <table width="100%" cellpadding="12" cellspacing="0" border="0"> <tr> <td> <font size="-1">Hi,<br>
+<br>
+I've outlined the details for the TwitLonger API below. It's pretty simple, but if you have any questions give me a shout. One thing to note is that, as an open source client, you shouldn't be distributing your API keys with the source. I'm sure you realise that, but some people don't think about it and just hard code them rather than having a config variable.<br>
+<br>
+Please make sure any implementation warns the user before submitting to TwitLonger, giving them the option to edit down to 140 characters if they want. Automatically posting encourages overuse of TwitLonger and many people don't realise they are sending their post to a third party site.<br>
+<br>
+TwitLonger should NEVER be used when sending DMs as the site has no concept of direct messages. Twitter has blocked access to apps that send DMs to third party sites, so it would be a good idea to make sure you don't. The same also applies to private accounts.<br>
+<br>
+Before an app goes live it would be great if you can send through about 100 words about the app, a decent resolution icon and a link to the application or developer site.<br>
+<br>
+All the best,<br>
+Stuart<br>
+<br>
+Twitlonger API<br>
+--------------------<br>
+<br>
+For posting to Twitlonger:<br>
+------------------------------<wbr>----<br>
+<a href="http://www.twitlonger.com/api_post" target="_blank">http://www.twitlonger.com/api_<wbr>post</a><br>
+Request is made by POST (will throw a 405 error otherwise) and requires the following:<br>
+<br>
+application &nbsp; &nbsp; - reyntweets<br>
+api_key &nbsp; &nbsp; &nbsp; &nbsp; - QKYsNt3hMonSgunD<br>
+username &nbsp; &nbsp; &nbsp; &nbsp;- Twitter username (no password needed)<br>
+message - Body of message<br>
+<br>
+If any of these are missing or the app/api_key are incorrect it will throw an error and set the appropriate http header response. Twitlonger is NOT checking if these are valid Twitter usernames, it is assumed that the application has already performed that part when the user registers with the app/service connecting to the api:<br>
+<br>
+Optional:<br>
+in_reply &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;- If the message is a reply, include the in_reply_to_status_id here<br>
+in_reply_user &nbsp; - the username the message is a reply to<br>
+<br>
+Errors look like this:<br>
+---------------------------<br>
+&lt;twitlonger&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;error&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;No Message Content<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;/error&gt;<br>
+&lt;/twitlonger&gt;<br>
+<br>
+If everything goes ok you should get back a 200 OK response and the data in the following format. Short is the short url I generate and this will be at the end of the post as the read more link. If shortening has failed this will come back as "isgdfail" and the message will have the full link to the Twitlonger post at the end. The content will always be 140 characters (unless you've sent a message that is significantly shorter, but it is assumed your app will only be accessing the service when the post is longer than 140). Note that Twitlonger does not handle posting to Twitter for third party apps, rather it returns the info that you then need to send to Twitter which makes error handling a lot easier on the client side and allows the appropriate app id to be set.<br>
+<br>
+Successful Response:<br>
+------------------------------<br>
+&lt;twitlonger&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;post&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;id&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;8994dca4ac3680a7a40100d1b24571<wbr>01<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/id&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;link&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.twitlonger.com/show/8994dca4ac3680a7a40100d1b2457101" target="_blank">http://www.twitlonger.com/<wbr>show/<wbr>8994dca4ac3680a7a40100d1b24571<wbr>01</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/link&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;short&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://is.gd/kr0z" target="_blank">http://is.gd/kr0z</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/short&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;content&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;This was a triumph, I'm making a note here, huge success. (cont) <a href="http://tl.gd/1234" target="_blank">http://tl.gd/1234</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/content&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;/post&gt;<br>
+&lt;/twitlonger&gt;<br>
+<br>
+ID CALLBACK<br>
+------------------------<br>
+Once a message has been successfully posted to Twitlonger and Twitter, it would be really useful to send back the Twitter ID for the message. This will allow users to manage their Twitlonger posts and delete not only the Twitlonger post, but also the Twitter post associated with it. It will also makes replies much more effective.<br>
+<br>
+<a href="http://www.twitlonger.com/api_set_id" target="_blank">http://www.twitlonger.com/api_<wbr>set_id</a><br>
+Call by POST<br>
+As with a message post, send your application name and api_key<br>
+<br>
+Also send:<br>
+message_id (the id of the message you get back from Twitlonger when making a post)<br>
+twitter_id (the id of the message you've just posted to Twitter)<br>
+<br>
+This should update the info in Twitlonger.<br>
+<br>
+For reading<br>
+----------------<br>
+OK, technically to get it you go to:<br>
+<br>
+<a href="http://www.twitlonger.com/api_read/message_id" target="_blank">http://www.twitlonger.com/api_<wbr>read/message_id</a><br>
+<br>
+but you can also take a raw twitlonger post<br>
+<br>
+<a href="http://www.twitlonger.com/show/8994dca4ac3680a7a40100d1b2457101" target="_blank">http://www.twitlonger.com/<wbr>show/<wbr>8994dca4ac3680a7a40100d1b24571<wbr>01</a><br>
+and add<br>
+<a href="http://www.twitlonger.com/show/8994dca4ac3680a7a40100d1b2457101/fulltext" target="_blank">http://www.twitlonger.com/<wbr>show/<wbr>8994dca4ac3680a7a40100d1b24571<wbr>01/fulltext</a><br>
+<br>
+Which will do a header redirect to the api_read page.<br>
+<br>
+<br>
+If the message ID is invalid then you'll get back:<br>
+<br>
+&lt;twitlonger&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;error&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Invalid Message Requested<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&lt;/error&gt;<br>
+&lt;/twitlonger&gt;<br>
+<br>
+If you want to do some integration of Twitlonger posts into the user timeline (rather than just loading the page in a webview) the site will be shortening links with the custom domain <a href="http://tl.gd/" target="_blank">tl.gd</a> in the form <a href="http://tl.gd/xxxx" target="_blank">http://tl.gd/xxxx</a> This will do a 301 redirect to the post and should make it easier to catch Twitlonger posts if you wish to. You could also grab the "xxxx" part on a <a href="http://tl.gd/" target="_blank">tl.gd</a> URL and grab the content of <a href="http://www.twitlonger.com/api_read/xxxx" target="_blank">http://www.twitlonger.com/api_<wbr>read/xxxx</a> to avoid the header redirects.<br>
+<br>
+There is also an option to get an oEmbed endpoint via <a href="http://embed.ly/" target="_blank">embed.ly</a> (<a href="http://embed.ly/" target="_blank">http://embed.ly</a>) which will return JSON for reading posts if that is easier for you.<br>
+<div style="padding:5 0"><font size="1" color="#888888">[Texte des messages précédents masqué]</font></div></font> </table> </table> </div> </div> </body> </html> 
+<!-- This document saved from https://mail.google.com/mail/?ui=2&ik=2abcee98d2&view=pt&search=inbox&msg=136c4307a52595fd -->

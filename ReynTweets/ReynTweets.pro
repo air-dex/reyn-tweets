@@ -71,6 +71,10 @@ SOURCES += \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/timelines/hometimelinerequester.cpp \
+	connection/requests/timelines/retweetsbymerequester.cpp \
+	connection/requests/tweets/destroytweetrequester.cpp \
+	connection/requests/tweets/posttweetrequester.cpp \
+	connection/requests/tweets/retweetrequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
 	connection/requests/requestinfos.cpp \
@@ -78,6 +82,7 @@ SOURCES += \
 	connection/reyntwittercalls.cpp \
 	model/reyntweetslistable.cpp \
 	model/reyntweetsmappable.cpp \
+	model/tweets/tweetentity.cpp \
 	model/tweets/indexbounds.cpp \
 	model/tweets/mediasize.cpp \
 	model/tweets/mediasizes.cpp \
@@ -100,29 +105,24 @@ SOURCES += \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
 	logic/processes/singletwittercallprocess.cpp \
+	logic/processes/retweetprocess.cpp \
 	logic/processes/oauthprocess.cpp \
 	logic/processes/allowprocess.cpp \
+	logic/processes/deletetweetprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/loadinghometimelineprocess.cpp \
+	logic/processes/posttweetprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
-	logic/controls/logincontrol.cpp \
-	logic/controls/launchingcontrol.cpp \
-	logic/controls/tweetcontrol.cpp \
-	logic/controls/timelinecontrol.cpp \
-	main.cpp \
-	model/tweets/tweetentity.cpp \
-	logic/controls/settingscontrol.cpp \
 	logic/controls/allowcontrol.cpp \
+	logic/controls/launchingcontrol.cpp \
+	logic/controls/logincontrol.cpp \
+	logic/controls/settingscontrol.cpp \
+	logic/controls/timelinecontrol.cpp \
+	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	logic/processes/posttweetprocess.cpp \
-	connection/requests/tweets/posttweetrequester.cpp \
-	connection/requests/tweets/retweetrequester.cpp \
-	logic/processes/retweetprocess.cpp \
-	connection/requests/tweets/destroytweetrequester.cpp \
-	logic/processes/deletetweetprocess.cpp \
-	connection/requests/timelines/retweetsbymerequester.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -166,6 +166,7 @@ HEADERS  += \
 	model/reyntweetslistable.hpp \
 	model/reyntweetslistable.tpp \
 	model/reyntweetsmappable.hpp \
+	model/tweets/tweetentity.hpp \
 	model/tweets/indexbounds.hpp \
 	model/tweets/mediasize.hpp \
 	model/tweets/mediasizes.hpp \
@@ -192,28 +193,27 @@ HEADERS  += \
 	logic/processes/singletwittercallprocess.hpp \
 	logic/processes/oauthprocess.hpp \
 	logic/processes/allowprocess.hpp \
+	logic/processes/deletetweetprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/loadinghometimelineprocess.hpp \
+	logic/processes/posttweetprocess.hpp \
+	logic/processes/retweetprocess.hpp \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
 	logic/reyncore.hpp \
-	logic/controls/logincontrol.hpp \
+	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
+	logic/controls/logincontrol.hpp \
+	logic/controls/settingscontrol.hpp \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
-	logic/controls/controls.hpp \
-	model/tweets/tweetentity.hpp \
-	logic/controls/settingscontrol.hpp \
-	logic/controls/allowcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/processes/posttweetprocess.hpp \
+	logic/controls/controls.hpp \
 	connection/requests/tweets/posttweetrequester.hpp \
 	connection/requests/tweets/retweetrequester.hpp \
-	logic/processes/retweetprocess.hpp \
 	connection/requests/tweets/destroytweetrequester.hpp \
-	logic/processes/deletetweetprocess.hpp \
 	connection/requests/timelines/retweetsbymerequester.hpp
 
 
@@ -309,9 +309,9 @@ QML_FILES_TO_TRANSLATE = \
 	$${QML_FOLDER}ErrorComponent.qml
 
 # lupdate
-LUPDATE_QT = lupdate $${SRC_FOLDER}ReynTweets.windows.pro
-LUPDATE_QML_FR = lupdate $${QML_FILES_TO_TRANSLATE} -ts reyntweets_qml_fr.ts
-LUPDATE_QML_EN = lupdate $${QML_FILES_TO_TRANSLATE} -ts reyntweets_qml_en.ts
+LUPDATE_QT = lupdate $${SRC_FOLDER}ReynTweets.pro
+LUPDATE_QML_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_qml_fr.ts
+LUPDATE_QML_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_qml_en.ts
 
 trupdate.target = trupdate
 win32 {

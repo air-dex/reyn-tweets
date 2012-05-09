@@ -241,30 +241,49 @@ OTHER_FILES = \
 TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 
 
+#-------------------------------------#
+# Extra targets - General definitions #
+#-------------------------------------#
+
+# SRC_FOLDER : Source folder
+# RMDIR_CMD : Command to delete directories
+# RMFILE_CMD : Command to delete files
+
+win32 {
+	# Leave an empty line because of the backslash at the end of the variable
+	SRC_FOLDER = ..\\ReynTweets\\
+
+	RMDIR_CMD = rd /s /q
+	RMFILE_CMD = del /s /q
+}
+
+linux-g++ {
+	SRC_FOLDER = ../ReynTweets/
+	RMDIR_CMD = rm -rfv
+	RMFILE_CMD = rm -rfv
+}
+
+
 #-----------------------#
 # Documentation targets #
 #-----------------------#
 win32 {
 	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
-	DOXYGEN_FILE = ..\\ReynTweets\\Doxyfile.txt
-	RM_CMD = rd /s /q
 	DOC_FOLDERS = ..\\doc\\html
 }
 
 linux-g++ {
 	DOXYGEN_CMD = doxygen
-	DOXYGEN_FILE = ../ReynTweets/Doxyfile.txt
-	RM_CMD = rm -rfv
 	DOC_FOLDERS = ../doc/html
 }
 
 # Create doc
 doc.target = doc
-doc.commands = $${DOXYGEN_CMD} $${DOXYGEN_FILE}
+doc.commands = $${DOXYGEN_CMD} $${SRC_FOLDER}Doxyfile.txt
 
 # Clean doc
 cleandoc.target = cleandoc
-cleandoc.commands = $${RM_CMD} $${DOC_FOLDERS}
+cleandoc.commands = $${RMDIR_CMD} $${DOC_FOLDERS}
 
 QMAKE_EXTRA_TARGETS += doc cleandoc
 
@@ -272,6 +291,55 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 #---------------------#
 # Translation targets #
 #---------------------#
+win32 {
+	QML_FOLDER = $${SRC_FOLDER}\\ui\\qml\\
+}
+
+linux-g++ {
+	QML_FOLDER = $${SRC_FOLDER}ui/qml/
+}
+
+QML_FILES_TO_TRANSLATE = \
+	$${QML_FOLDER}LaunchingPane.qml \
+	$${QML_FOLDER}LoginPane.qml \
+	$${QML_FOLDER}QuitPane.qml \
+	$${QML_FOLDER}TweetPane.qml \
+	$${QML_FOLDER}WriteTweetPane.qml \
+	$${QML_FOLDER}LoginComponent.qml \
+	$${QML_FOLDER}ErrorComponent.qml
+
+# lupdate
+LUPDATE_QT = lupdate $${SRC_FOLDER}ReynTweets.windows.pro
+LUPDATE_QML_FR = lupdate $${QML_FILES_TO_TRANSLATE} -ts reyntweets_qml_fr.ts
+LUPDATE_QML_EN = lupdate $${QML_FILES_TO_TRANSLATE} -ts reyntweets_qml_en.ts
+
+trupdate.target = trupdate
+win32 {
+	trupdate.commands = ($${LUPDATE_QT}) & ($${LUPDATE_QML_FR}) & ($${LUPDATE_QML_EN})
+}
+linux-g++ {
+	trupdate.commands = $${LUPDATE_QT} ; $${LUPDATE_QML_FR} ; $${LUPDATE_QML_EN}
+}
+
+# lrelease
+LRELEASE_FR = lrelease $${SRC_FOLDER}reyntweets_fr.ts $${SRC_FOLDER}reyntweets_qml_fr.ts \
+		-qm $${SRC_FOLDER}reyntweets_fr.qm
+LRELEASE_EN = lrelease $${SRC_FOLDER}reyntweets_en.ts $${SRC_FOLDER}reyntweets_qml_en.ts \
+		-qm $${SRC_FOLDER}reyntweets_en.qm
+
+trrelease.target = trrelease
+win32 {
+	trrelease.commands = ($${LRELEASE_FR}) & ($${LRELEASE_EN})
+}
+linux-g++ {
+	trrelease.commands = $${LRELEASE_FR} ; $${LRELEASE_EN}
+}
+
+# Delete .qm files
+trclean.target = trclean
+trclean.commands = $${RMFILE_CMD} $${SRC_FOLDER}*.qm
+
+QMAKE_EXTRA_TARGETS += trupdate trrelease trclean
 
 
 #------------------------#

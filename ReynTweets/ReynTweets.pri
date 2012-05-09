@@ -39,9 +39,6 @@ QT += core gui network webkit declarative script
 TARGET = ReynTweets
 TEMPLATE = app
 
-QTPLUGINS += qjpeg qpng qjpg
-#LIBS += -L./imageformats/ -lqjpegb
-
 
 #--------------#
 # Source files #
@@ -121,11 +118,11 @@ SOURCES += \
 	logic/controls/writetweetcontrol.cpp \
 	logic/processes/posttweetprocess.cpp \
 	connection/requests/tweets/posttweetrequester.cpp \
-    connection/requests/tweets/retweetrequester.cpp \
-    logic/processes/retweetprocess.cpp \
-    connection/requests/tweets/destroytweetrequester.cpp \
-    logic/processes/deletetweetprocess.cpp \
-    connection/requests/timelines/retweetsbymerequester.cpp
+	connection/requests/tweets/retweetrequester.cpp \
+	logic/processes/retweetprocess.cpp \
+	connection/requests/tweets/destroytweetrequester.cpp \
+	logic/processes/deletetweetprocess.cpp \
+	connection/requests/timelines/retweetsbymerequester.cpp
 
 
 HEADERS  += \
@@ -213,11 +210,11 @@ HEADERS  += \
 	logic/controls/writetweetcontrol.hpp \
 	logic/processes/posttweetprocess.hpp \
 	connection/requests/tweets/posttweetrequester.hpp \
-    connection/requests/tweets/retweetrequester.hpp \
-    logic/processes/retweetprocess.hpp \
-    connection/requests/tweets/destroytweetrequester.hpp \
-    logic/processes/deletetweetprocess.hpp \
-    connection/requests/timelines/retweetsbymerequester.hpp
+	connection/requests/tweets/retweetrequester.hpp \
+	logic/processes/retweetprocess.hpp \
+	connection/requests/tweets/destroytweetrequester.hpp \
+	logic/processes/deletetweetprocess.hpp \
+	connection/requests/timelines/retweetsbymerequester.hpp
 
 
 OTHER_FILES = \
@@ -242,6 +239,62 @@ OTHER_FILES = \
 #--------------#
 
 TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
+
+
+#-----------------------#
+# Documentation targets #
+#-----------------------#
+
+# Documentation
+win32 {
+	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
+	RM_CMD = rd /s /q
+	DOC_FOLDERS = ..\\doc\\html
+}
+
+linux-g++ {
+	DOXYGEN_CMD = doxygen
+	RM_CMD = rm -rfv
+	DOC_FOLDERS = ../doc/html
+}
+
+# Create doc
+doc.target = doc
+doc.commands = $${DOXYGEN_CMD} Doxyfile.txt
+QMAKE_EXTRA_TARGETS += doc
+
+# Clean doc
+cleandoc.target = cleandoc
+cleandoc.commands = $${RM_CMD} $${DOC_FOLDERS}
+QMAKE_EXTRA_TARGETS += cleandoc
+
+
+#---------------------#
+# Translation targets #
+#---------------------#
+win32 {
+	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
+	DOXYGEN_FILE = ..\\ReynTweets\\Doxyfile.txt
+	RM_CMD = rd /s /q
+	DOC_FOLDERS = ..\\doc\\html
+}
+
+linux-g++ {
+	DOXYGEN_CMD = doxygen
+	DOXYGEN_FILE = ../ReynTweets/Doxyfile.txt
+	RM_CMD = rm -rfv
+	DOC_FOLDERS = ../doc/html
+}
+
+# Create doc
+doc.target = doc
+doc.commands = $${DOXYGEN_CMD} $${DOXYGEN_FILE}
+
+# Clean doc
+cleandoc.target = cleandoc
+cleandoc.commands = $${RM_CMD} $${DOC_FOLDERS}
+
+QMAKE_EXTRA_TARGETS += doc cleandoc
 
 
 #------------------------#

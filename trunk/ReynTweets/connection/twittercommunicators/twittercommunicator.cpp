@@ -30,15 +30,10 @@
 
 // Network manager
 #ifdef Q_OS_WIN32
-    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
+	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 #ifdef Q_OS_LINUX
-    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
-
-//    void initqnam() {
-//        QNetworkAccessManager * qnam = &REYN_TWEETS_NETWORK_MANAGER;
-//        qnam = new QNetworkAccessManager();
-//    }
+	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
 #endif
 #ifdef Q_OS_SYMBIAN    // TODO
 //    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
@@ -64,9 +59,9 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	getParameters(getArgs),
 	postParameters(postArgs),
 	authenticationRequired(authRequired),
-    oauthManager(authManager),
+	oauthManager(authManager),
 	oauthTokenNeeded(tokenNeeded),
-    callbackUrlNeeded(callbackURLNeeded),
+	callbackUrlNeeded(callbackURLNeeded),
 	oauthVerifierlNeeded(verifierNeeded),
 	request(0),
 	responseBuffer(""),
@@ -128,7 +123,7 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 	}
 
 #ifdef Q_OS_LINUX
-    requestToTwitter->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+	requestToTwitter->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #endif
 
 	return requestToTwitter;

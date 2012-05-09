@@ -244,34 +244,6 @@ TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 #-----------------------#
 # Documentation targets #
 #-----------------------#
-
-# Documentation
-win32 {
-	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
-	RM_CMD = rd /s /q
-	DOC_FOLDERS = ..\\doc\\html
-}
-
-linux-g++ {
-	DOXYGEN_CMD = doxygen
-	RM_CMD = rm -rfv
-	DOC_FOLDERS = ../doc/html
-}
-
-# Create doc
-doc.target = doc
-doc.commands = $${DOXYGEN_CMD} Doxyfile.txt
-QMAKE_EXTRA_TARGETS += doc
-
-# Clean doc
-cleandoc.target = cleandoc
-cleandoc.commands = $${RM_CMD} $${DOC_FOLDERS}
-QMAKE_EXTRA_TARGETS += cleandoc
-
-
-#---------------------#
-# Translation targets #
-#---------------------#
 win32 {
 	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
 	DOXYGEN_FILE = ..\\ReynTweets\\Doxyfile.txt
@@ -295,6 +267,11 @@ cleandoc.target = cleandoc
 cleandoc.commands = $${RM_CMD} $${DOC_FOLDERS}
 
 QMAKE_EXTRA_TARGETS += doc cleandoc
+
+
+#---------------------#
+# Translation targets #
+#---------------------#
 
 
 #------------------------#

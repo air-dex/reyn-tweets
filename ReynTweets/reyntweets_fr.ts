@@ -83,10 +83,81 @@
     </message>
 </context>
 <context>
+    <name>DeleteTweetProcess</name>
+    <message>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="79"/>
+        <source>The user is not the author of the tweet</source>
+        <translation>L&apos;utilisateur n&apos;est pas l&apos;auteur de ce tweet</translation>
+    </message>
+    <message>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="90"/>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="214"/>
+        <source>Dead end</source>
+        <translation>Fausse fin</translation>
+    </message>
+    <message>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="102"/>
+        <source>Retrieving retweet ID:</source>
+        <translation>Recherche de l&apos;ID du retweet à effacer :</translation>
+    </message>
+    <message>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="144"/>
+        <source>Reweet ID unreachable</source>
+        <translation>ID du retweet à effacer inaccessible</translation>
+    </message>
+    <message>
+        <location filename="logic/processes/deletetweetprocess.cpp" line="191"/>
+        <source>Unknown tweet ID &apos;</source>
+        <translation>ID d&apos;un tweet inconnu &apos;</translation>
+    </message>
+</context>
+<context>
+    <name>ErrorComponent</name>
+    <message>
+        <location filename="ui/qml/ErrorComponent.qml" line="60"/>
+        <source>Try again</source>
+        <translation>Réessayer</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/ErrorComponent.qml" line="67"/>
+        <source>Quit</source>
+        <translation>Quitter</translation>
+    </message>
+</context>
+<context>
     <name>LaunchingControl</name>
     <message>
         <source>Reyn Tweets was denied.</source>
         <translation type="obsolete">Reyn Tweets n&apos;a pas été autorisé.</translation>
+    </message>
+</context>
+<context>
+    <name>LaunchingPane</name>
+    <message>
+        <location filename="ui/qml/LaunchingPane.qml" line="99"/>
+        <source>Website : </source>
+        <translation>Internet : </translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LaunchingPane.qml" line="175"/>
+        <source>A fatal error occured while launching Reyn Tweets:</source>
+        <translation>Une erreur fatale s&apos;est produite au lancement de Reyn Tweets :</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LaunchingPane.qml" line="179"/>
+        <source>The application will quit.</source>
+        <translation>L&apos;application va s&apos;arrêter.</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LaunchingPane.qml" line="185"/>
+        <source>An hitch occured while launching Reyn Tweets:</source>
+        <translatorcomment>Trouver une meilleure traduction pour &quot;hitch&quot;.</translatorcomment>
+        <translation>Un pépin s&apos;est produit au lancement de Reyn Tweets :</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LaunchingPane.qml" line="189"/>
+        <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
+        <translation>Voulez-vous essayer de relancer Reyn Tweets ou l&apos;arrêter ?</translation>
     </message>
 </context>
 <context>
@@ -160,6 +231,68 @@
     <message>
         <source>Unexpected result.</source>
         <translation type="obsolete">Résultat inattendu.</translation>
+    </message>
+</context>
+<context>
+    <name>LoginComponent</name>
+    <message>
+        <location filename="ui/qml/LoginComponent.qml" line="64"/>
+        <location filename="ui/qml/LoginComponent.qml" line="121"/>
+        <source>Reyn Tweets was denied.</source>
+        <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginComponent.qml" line="65"/>
+        <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
+        <translation>Êtes-vous sûr de ne pas vouloir utiliser Reyn Tweets avec votre compte Twitter ?</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginComponent.qml" line="68"/>
+        <source>Yes</source>
+        <translation>Oui</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginComponent.qml" line="75"/>
+        <source>No</source>
+        <translation>Non</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginComponent.qml" line="90"/>
+        <source>Reyn Tweets will quit. Bye bye !</source>
+        <translation>Reyn Tweets va s&apos;arrêter. Au revoir !</translation>
+    </message>
+</context>
+<context>
+    <name>LoginPane</name>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="79"/>
+        <source>Username or password invalid. Try again.</source>
+        <translation>Nom d&apos;utilisateur ou mot de passe invalide. Veuillez réessayer.</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="112"/>
+        <source>Username or email:</source>
+        <translation>Nom d&apos;utilisateur ou courriel :</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="124"/>
+        <source>Password:</source>
+        <translation>Mot de passe :</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="170"/>
+        <source>Show password</source>
+        <translation>Voir le mot de passe</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="182"/>
+        <source>Authorize</source>
+        <translation>Autoriser</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/LoginPane.qml" line="194"/>
+        <source>No, thanks</source>
+        <translation>Non merci</translation>
     </message>
 </context>
 <context>
@@ -318,11 +451,154 @@
     </message>
 </context>
 <context>
+    <name>QuitPane</name>
+    <message>
+        <location filename="ui/qml/QuitPane.qml" line="29"/>
+        <source>Quit</source>
+        <translation>Quitter</translation>
+    </message>
+</context>
+<context>
     <name>RequestTokenRequester</name>
     <message>
         <location filename="connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
         <source>Unexpected parameter &apos;</source>
         <translation>Paramètre inattendu : &apos;</translation>
+    </message>
+</context>
+<context>
+    <name>SingleTwitterCallProcess</name>
+    <message>
+        <location filename="logic/processes/singletwittercallprocess.cpp" line="45"/>
+        <source>Dead end</source>
+        <translation>Fausse fin</translation>
+    </message>
+</context>
+<context>
+    <name>TimelinePane</name>
+    <message>
+        <location filename="ui/qml/TimelinePane.qml" line="132"/>
+        <source>A fatal error occured while loading the timeline:</source>
+        <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TimelinePane.qml" line="136"/>
+        <source>The application will quit.</source>
+        <translation>L&apos;application va s&apos;arrêter.</translation>
+    </message>
+</context>
+<context>
+    <name>TweetControl</name>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="155"/>
+        <source>No retweet in the retweeted status</source>
+        <translation>Pas de retweet dans le tweet retweeté</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="370"/>
+        <source>Retweet expected in Twiiter reply.</source>
+        <translation>Retweet attendu dans la réponse de Twitter.</translation>
+    </message>
+</context>
+<context>
+    <name>TweetPane</name>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="258"/>
+        <source>In reply to </source>
+        <translation>En réponse à</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="260"/>
+        <source>Show conversation</source>
+        <translation>Voir la conversation</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="323"/>
+        <source>Retweeted by</source>
+        <translation>Retweeté par</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="338"/>
+        <location filename="ui/qml/TweetPane.qml" line="353"/>
+        <source>me</source>
+        <translation>moi</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="369"/>
+        <source>other</source>
+        <translation>autre</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="369"/>
+        <source>others</source>
+        <translation>autres</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="370"/>
+        <source>and</source>
+        <translation>et</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="376"/>
+        <source>person</source>
+        <translation>personne</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="376"/>
+        <source>people</source>
+        <translation>personnes</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="400"/>
+        <source>Reply</source>
+        <translation>Répondre</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="413"/>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="425"/>
+        <location filename="ui/qml/TweetPane.qml" line="506"/>
+        <source>Retweeted</source>
+        <translation>Retweeté</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="425"/>
+        <location filename="ui/qml/TweetPane.qml" line="520"/>
+        <source>Retweet</source>
+        <translation>Retweeter</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="441"/>
+        <source>Quote</source>
+        <translation>Citer</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="453"/>
+        <location filename="ui/qml/TweetPane.qml" line="534"/>
+        <source>Favorited</source>
+        <translation>Favorisé</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/TweetPane.qml" line="453"/>
+        <location filename="ui/qml/TweetPane.qml" line="548"/>
+        <source>Favorite</source>
+        <translation>Favoriser</translation>
+    </message>
+</context>
+<context>
+    <name>WriteTweetPane</name>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="84"/>
+        <source>What is happening ?</source>
+        <translation>Quoi de neuf ?</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="140"/>
+        <source>Tweet</source>
+        <translation>Tweeter</translation>
     </message>
 </context>
 </TS>

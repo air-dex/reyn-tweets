@@ -98,8 +98,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
 	QScopedPointer<QApplication> app(createApplication(argc, argv));
 
-	//app->addLibraryPath(QCoreApplication::applicationDirPath() + "imageformats/");
-
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 

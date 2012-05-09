@@ -156,6 +156,10 @@ HEADERS  += \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/timelines/hometimelinerequester.hpp \
+	connection/requests/timelines/retweetsbymerequester.hpp \
+	connection/requests/tweets/destroytweetrequester.hpp \
+	connection/requests/tweets/posttweetrequester.hpp \
+	connection/requests/tweets/retweetrequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
 	connection/requests/requests.hpp \
@@ -210,11 +214,7 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp \
-	connection/requests/tweets/posttweetrequester.hpp \
-	connection/requests/tweets/retweetrequester.hpp \
-	connection/requests/tweets/destroytweetrequester.hpp \
-	connection/requests/timelines/retweetsbymerequester.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -291,41 +291,22 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 #---------------------#
 # Translation targets #
 #---------------------#
-win32 {
-	QML_FOLDER = $${SRC_FOLDER}\\ui\\qml\\
-}
-
-linux-g++ {
-	QML_FOLDER = $${SRC_FOLDER}ui/qml/
-}
-
-QML_FILES_TO_TRANSLATE = \
-	$${QML_FOLDER}LaunchingPane.qml \
-	$${QML_FOLDER}LoginPane.qml \
-	$${QML_FOLDER}QuitPane.qml \
-	$${QML_FOLDER}TweetPane.qml \
-	$${QML_FOLDER}WriteTweetPane.qml \
-	$${QML_FOLDER}LoginComponent.qml \
-	$${QML_FOLDER}ErrorComponent.qml
 
 # lupdate
-LUPDATE_QT = lupdate $${SRC_FOLDER}ReynTweets.pro
-LUPDATE_QML_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_qml_fr.ts
-LUPDATE_QML_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_qml_en.ts
+LUPDATE_QML_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
+LUPDATE_QML_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
 
 trupdate.target = trupdate
 win32 {
-	trupdate.commands = ($${LUPDATE_QT}) & ($${LUPDATE_QML_FR}) & ($${LUPDATE_QML_EN})
+	trupdate.commands = ($${LUPDATE_QML_FR}) & ($${LUPDATE_QML_EN})
 }
 linux-g++ {
-	trupdate.commands = $${LUPDATE_QT} ; $${LUPDATE_QML_FR} ; $${LUPDATE_QML_EN}
+	trupdate.commands = $${LUPDATE_QML_FR} ; $${LUPDATE_QML_EN}
 }
 
 # lrelease
-LRELEASE_FR = lrelease $${SRC_FOLDER}reyntweets_fr.ts $${SRC_FOLDER}reyntweets_qml_fr.ts \
-		-qm $${SRC_FOLDER}reyntweets_fr.qm
-LRELEASE_EN = lrelease $${SRC_FOLDER}reyntweets_en.ts $${SRC_FOLDER}reyntweets_qml_en.ts \
-		-qm $${SRC_FOLDER}reyntweets_en.qm
+LRELEASE_FR = lrelease $${SRC_FOLDER}reyntweets_fr.ts
+LRELEASE_EN = lrelease $${SRC_FOLDER}reyntweets_en.ts
 
 trrelease.target = trrelease
 win32 {

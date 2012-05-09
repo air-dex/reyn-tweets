@@ -1,5 +1,17 @@
 #summary Liste des librairies annexes utilisées dans Reyn Tweets
 
+= Versions de Qt & compilateurs =
+
+== Windows ==
+Qt 4.8.1 avec MSVC 2008. Un passage à MinGW a été envisagé à l'occasion de l'issue 54.
+
+== Linux ==
+Qt 4.8.1 avec gcc (g++ pour être précis)
+
+== Symbian ==
+Qt 4.7.4 for Symbian Belle avec GCCE
+
+
 = Librairies utilisées par Reyn Tweets =
 
 Voici la liste des librairies utilisées par Reyn Tweets :
@@ -7,5 +19,7 @@ Voici la liste des librairies utilisées par Reyn Tweets :
   * twitter-text-js ( https://github.com/twitter/twitter-text-js ) pour la manipulation côté QML dees textes des tweets. La version utilisée est la 1.4.16.
 
 = Dépendances =
+
+Ne *JAMAIS* oublier la librairie avec QJson (qjson0.dll / qjson0.so / qjson0.sis ? ).
 
 Sur Linux, il faut que libjpeg62 soit installé.

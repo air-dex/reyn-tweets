@@ -591,14 +591,31 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="84"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="83"/>
         <source>What is happening ?</source>
         <translation>Quoi de neuf ?</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="140"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="141"/>
         <source>Tweet</source>
         <translation>Tweeter</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <source>too_long</source>
+        <translatorcomment>L&apos;underscore est retiré après la traduction</translatorcomment>
+        <translation>trop_long</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="167"/>
+        <source>invalid_characters</source>
+        <translatorcomment>L&apos;underscore est retiré après la traduction</translatorcomment>
+        <translation>caractère(s)_invalide(s)</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="172"/>
+        <source>empty</source>
+        <translation>vide</translation>
     </message>
 </context>
 </TS>

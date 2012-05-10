@@ -588,15 +588,32 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="84"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="83"/>
         <source>What is happening ?</source>
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="140"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="141"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <source>too_long</source>
+        <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
+        <translation>too_long</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="167"/>
+        <source>invalid_characters</source>
+        <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
+        <translation>invalid_characters</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/WriteTweetPane.qml" line="172"/>
+        <source>empty</source>
+        <translation>empty</translation>
     </message>
 </context>
 </TS>

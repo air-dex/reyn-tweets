@@ -267,6 +267,7 @@ linux-g++ {
 #-----------------------#
 # Documentation targets #
 #-----------------------#
+
 win32 {
 	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
 	DOC_FOLDERS = ..\\doc\\html
@@ -293,15 +294,15 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 #---------------------#
 
 # lupdate
-LUPDATE_QML_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
-LUPDATE_QML_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
+LUPDATE_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
+LUPDATE_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
 
 trupdate.target = trupdate
 win32 {
-	trupdate.commands = ($${LUPDATE_QML_FR}) & ($${LUPDATE_QML_EN})
+	trupdate.commands = ($${LUPDATE_FR}) & ($${LUPDATE_EN})
 }
 linux-g++ {
-	trupdate.commands = $${LUPDATE_QML_FR} ; $${LUPDATE_QML_EN}
+	trupdate.commands = $${LUPDATE_FR} ; $${LUPDATE_EN}
 }
 
 # lrelease

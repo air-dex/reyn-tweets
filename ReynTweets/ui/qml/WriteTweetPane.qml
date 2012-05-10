@@ -31,9 +31,7 @@ Rectangle {
 	width: 360
 	height: 4*margin + announce.height + write_zone.height + tweet_button.height
 
-	property int chars_left: 140 - tweet_edit.text.length
-
-	property bool too_long_tweet: tweet_edit.text.length > 140
+	property int chars_left: getCharsLeft()
 
 	property string in_reply_to_tweet_id: '-1'
 
@@ -74,6 +72,7 @@ Rectangle {
 		onPostEnded: console.log("Post posted")
 	}
 
+	// Introduction message
 	Text {
 		id: announce
 		color: constant.black
@@ -88,6 +87,7 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 	}
 
+	// How many characters the user can write ?
 	Text {
 		id: chars_left_indicator
 		color: constant.black
@@ -102,6 +102,7 @@ Rectangle {
 		text: chars_left
 	}
 
+	// The tweet to write
 	Rectangle {
 		id: write_zone
 		width: parent.width - 2*margin
@@ -148,18 +149,42 @@ Rectangle {
 		// When the tweet is too long (> 140 characters)
 		State {
 			name: "TooLong"
-			when: tweet_edit.text.length > 140
+			when: {
+				var isValidText = TwitterTextJS.twttr.txt.isValidTweetText(tweet_edit.text)
+
+				return !isValidText || isValidText && tweet_edit.text.length == 0
+			}
 
 			PropertyChanges {
 				target: chars_left_indicator
 				color: constant.red
-				text: chars_left + ' (TL)'
 				font.bold: true
+				text: {
+					var invalidMsg = qsTr(TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text))
+
+					switch (invalidMsg) {
+						case qsTr("too_long"):
+						case qsTr("invalid_characters"):
+							invalidMsg = invalidMsg.replace('_', ' ')
+							break;
+
+						// TODO : Unexpected cases
+						case qsTr("empty"):
+						case false:
+						default:
+							break;
+					}
+
+					return chars_left.toString()
+						.concat(" (")
+						.concat(invalidMsg)
+						.concat(')')
+				}
 			}
 
 			PropertyChanges {
 				target: tweet_button
-				onClick: console.log("Tweet too long. Cannot tweet.")
+				onClick: console.log("Cannot tweet.")
 			}
 		}
 	]
@@ -175,5 +200,26 @@ Rectangle {
 	onWriteTweet: {
 		tweet_edit.text = tweetText
 		tweet_edit.cursorPosition = tweetText.length
+	}
+
+	// Readjusting the number depending on the URLS contained in the text.
+	// In the final tweet, URLs will be shortened with t.co and the corresponding
+	// t.co URLs have got fixed lengthes : 21 chars for https URLs, 20 otherwise.
+	function getCharsLeft() {
+		var charsAllowed = 140 - tweet_edit.text.length
+
+		// Readjusting the number depending on the URLS contained in the text
+		var urls = TwitterTextJS.twttr.txt.extractUrls(tweet_edit.text);
+
+		for (var i in urls) {
+			var url = urls[i]
+
+			// Length of the t.co shortened URL
+			var tcoLength = (url.search("https") === 0) ? 21 : 20
+
+			charsAllowed += (url.length - tcoLength)
+		}
+
+		return charsAllowed;
 	}
 }

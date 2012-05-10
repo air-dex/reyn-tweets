@@ -223,15 +223,9 @@ OTHER_FILES = \
 	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
 	resources/Logo Reyn Tweets.png \
-	ui/qml/LaunchingPane.qml \
-	ui/qml/LoginPane.qml \
-	ui/qml/QuitPane.qml \
-	ui/qml/TweetPane.qml \
-	ui/qml/qml_files_to_translate.txt \
-	ui/qml/TimelinePane.qml \
-	ui/qml/TimelineModel.qml \
-	ui/qml/Constants.qml \
-	tools/twitter-text-1.4.16.js
+	ui/qml/tools.js \
+	ui/qml/twitter-text-js-wrapper.js \
+	ui/qml/twitter-text-1.4.16.js
 
 
 #--------------#

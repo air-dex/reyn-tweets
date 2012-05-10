@@ -1,7 +1,0 @@
-ui/qml/LaunchingPane.gml
-ui/qml/LoginPane.qml
-ui/qml/QuitPane.qml
-ui/qml/TweetPane.qml
-ui/qml/WriteTweetPane.qml
-ui/qml/LoginComponent.qml
-ui/qml/ErrorComponent.qml

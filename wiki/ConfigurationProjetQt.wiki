@@ -1,0 +1,14 @@
+#summary Notes sur la configuration du projet Qt "ReynTweets"
+
+= Règles supplémentaires dans le Makefile =
+
+|| *Règle*  || *Description* ||
+|| doc || Génération de documentation avec Doxygen ||
+|| cleandoc || Suppression de la documentation générée via la règle _doc_ ||
+|| trupdate || Traduction - Mise à jour des fichiers .ts ||
+|| trrelease || Traduction - Création des fichiers .qm ||
+|| trclean || Traduction - Suppression des fichiers .qm  ||
+
+Chaque règle de traduction génère les fichiers pour l'ensemble des langues.
+
+Une optimisation de ceci serait de pouvoir générer via des fonctions (QMake) des règles trupdate_{langue} et trrelease_{langue} pour chaque langue prise en compte (exemple pour le français : trupdate_fr et trrelease_fr). Mais QMake ne semble pas le permettre.

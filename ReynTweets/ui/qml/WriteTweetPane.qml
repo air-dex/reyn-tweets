@@ -35,6 +35,9 @@ Rectangle {
 
 	property string in_reply_to_tweet_id: '-1'
 
+	// Twitter Text entity used in Javascript code
+	property variant twitterText: TwitterTextJS.twttr.txt
+
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -66,10 +69,9 @@ Rectangle {
 		onTweetPosted: {
 			tweet_edit.text = ""
 			in_reply_to_tweet_id = "-1"
-			console.log("Tweet posted")
-			console.log("TODO : update timeline")
+			console.log("Posted")
+			write_tweet_pane.updateTimeline()
 		}
-		onPostEnded: console.log("Post posted")
 	}
 
 	// Introduction message
@@ -150,9 +152,9 @@ Rectangle {
 		State {
 			name: "TooLong"
 			when: {
-				var isValidText = TwitterTextJS.twttr.txt.isValidTweetText(tweet_edit.text)
+				var isValidText = twitterText.isValidTweetText(tweet_edit.text)
 
-				return !isValidText || isValidText && tweet_edit.text.length == 0
+				return !isValidText || isValidText && twitterText.isInvalidTweet(tweet_edit.text) === "empty"
 			}
 
 			PropertyChanges {
@@ -189,15 +191,20 @@ Rectangle {
 		}
 	]
 
-	signal writeReply(string tweetText, string replyToTweetID)
-	onWriteReply: {
+	Component.onCompleted: {
+		control.postTweetEnded.connect(endWriting)
+		control.authenticationNeeded.connect(needAuthentication)
+	}
+
+	// Writing a reply to a tweet by specifying the text and the person to reply
+	function writeReply(tweetText, replyToTweetID) {
 		tweet_edit.text = tweetText
 		tweet_edit.cursorPosition = tweetText.length
 		in_reply_to_tweet_id = replyToTweetID
 	}
 
-	signal writeTweet(string tweetText)
-	onWriteTweet: {
+	// Writing a tweet by specifying the text
+	function writeTweet(tweetText) {
 		tweet_edit.text = tweetText
 		tweet_edit.cursorPosition = tweetText.length
 	}
@@ -209,7 +216,7 @@ Rectangle {
 		var charsAllowed = 140 - tweet_edit.text.length
 
 		// Readjusting the number depending on the URLS contained in the text
-		var urls = TwitterTextJS.twttr.txt.extractUrls(tweet_edit.text);
+		var urls = twitterText.extractUrls(tweet_edit.text);
 
 		for (var i in urls) {
 			var url = urls[i]
@@ -222,4 +229,12 @@ Rectangle {
 
 		return charsAllowed;
 	}
+
+	/////////////
+	// Signals //
+	/////////////
+
+	signal needAuthentication
+	signal endWriting(bool endOK, string errMsg, bool fatalEnd)
+	signal updateTimeline
 }

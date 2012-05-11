@@ -112,6 +112,12 @@ Rectangle {
 		control.loadHomeTimeline();
 	}
 
+	// Loading the home timeline
+	function updateTimeline() {
+		console.log("TODO : update the timeline")
+		//control.updateTimeline();
+	}
+
 	// What happened after loading the timeline
 	function afterLoading(endOK, errMsg, isFatal) {
 		var action, messageDisplayed;

@@ -71,11 +71,16 @@ Rectangle {
 	}
 
 	Component.onCompleted: {
-		// Wiring
+		// Wiring timeline
 		timeline.writeReply.connect(write_tweet.writeReply)
 		timeline.writeTweet.connect(write_tweet.writeTweet)
 		timeline.endAction.connect(main_view.endAction)
 		timeline.needAuthentication.connect(log_component.allowReynTweets)
+
+		// Wiring write_tweet
+		write_tweet.needAuthentication.connect(log_component.allowReynTweets)
+		write_tweet.endWriting.connect(main_view.endAction)
+		write_tweet.updateTimeline.connect(timeline.updateTimeline)
 	}
 
 	// Loading the home timeline
@@ -83,6 +88,7 @@ Rectangle {
 		timeline.loadHomeTimeline();
 	}
 
+	// After an action was made
 	function endAction(endOK, errMsg, fatalEnd) {
 		if (endOK) {
 			return;

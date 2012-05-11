@@ -70,7 +70,7 @@ Rectangle {
 		onActRight: Qt.quit();
 	}
 
-	// Popup to show a simple message
+	// Popup to show a simple problem message. This is not fatal.
 	Rectangle {
 		id: warning_pane
 		z: error_component.z + 1
@@ -91,6 +91,26 @@ Rectangle {
 			font.pixelSize: constant.font_size
 			visible: parent.visible
 		}
+
+		// Timer to show the pane for a given duration (5 seconds for the moment)
+		Timer {
+			id: show_timer
+			interval: 5000	// Five seconds
+			repeat: false
+			onTriggered: warning_pane.visible = false
+		}
+
+		states: [
+			State {
+				name: "Showtime"
+				when: warning_pane.visible
+
+				StateChangeScript {
+					name: show_warning_pane_script
+					script: show_timer.start()
+				}
+			}
+		]
 
 		// Text to show in the pane
 		property string pane_text

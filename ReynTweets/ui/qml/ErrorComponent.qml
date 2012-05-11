@@ -33,6 +33,8 @@ Rectangle {
 	// Sent when the user allows the component which made the error to try again
 	signal tryAgain
 
+	property alias info_pane: error_component.warning_pane
+
 	//property Rectangle sender
 
 	Constants { id: constant }
@@ -40,7 +42,7 @@ Rectangle {
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: 3
+		z: error_component.z + 1
 		width: error_component.width - 2* error_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -50,7 +52,7 @@ Rectangle {
 	// Popup to try again
 	TwoButtonsActionPane {
 		id: try_again_pane
-		z: 3
+		z: error_component.z + 1
 		width: error_component.width - 2* error_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -68,8 +70,33 @@ Rectangle {
 		onActRight: Qt.quit();
 	}
 
-	// TODO : Popup to show a simple message
+	// Popup to show a simple message
+	Rectangle {
+		id: warning_pane
+		z: error_component.z + 1
+		width: error_component.width - 2* error_component.margin
+		color: constant.grey
+		anchors.top: parent.top
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
 
+		Text {
+			id: warning_message
+			text: "<strong>" + qsTr("A problem occured :") + "</strong><br/>"
+				  + warning_pane.pane_text
+			wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+			anchors.fill: parent
+			anchors.margins: error_component.margin
+			font.family: constant.font
+			font.pixelSize: constant.font_size
+			visible: parent.visible
+		}
+
+		// Text to show in the pane
+		property string pane_text
+	}
+
+	// Displaying a message
 	function displayMessage(action, message) {
 		var pane;
 
@@ -83,14 +110,14 @@ Rectangle {
 				break;
 
 			case constant.info_msg_action:
-				// TODO
+				pane = warning_pane
 				break;
 
 			default:
 				break;
 		}
 
-		if (pane == undefined) {
+		if (pane === undefined) {
 			return;
 		}
 

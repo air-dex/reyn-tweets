@@ -86,6 +86,7 @@ Rectangle {
 		font.bold: true
 		font.family: constant.font
 		font.pixelSize: constant.font_size
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 	}
 

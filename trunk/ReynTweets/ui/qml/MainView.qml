@@ -67,7 +67,7 @@ Rectangle {
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		onTryAgain: control.loadHomeTimeline();
+		onTryAgain: loadHomeTimeline();
 	}
 
 	Component.onCompleted: {

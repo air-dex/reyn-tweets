@@ -62,6 +62,12 @@ Rectangle {
 
 					// Destroying the tweet
 					destroyTweet.connect(deleteTweet)
+
+					// End of an action
+					endTweeting.connect(timeline_pane.endAction)
+
+					// Potential authentication
+					needAuthentication.connect(timeline_pane.needAuthentication)
 				}
 
 				function updateTL(newTweet) {
@@ -91,28 +97,14 @@ Rectangle {
 
 	}
 
-	// Component for potential authentications
-	LoginComponent {
-		id: log_component
-		width: parent.width
-		anchors.verticalCenter: parent.verticalCenter
-		onAllowOK: loadHomeTimeline();
-	}
-
-	// Components for errors
-	ErrorComponent {
-		id: err_comp
-		width: parent.width
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		onTryAgain: control.loadHomeTimeline();
-	}
-
 	Component.onCompleted: {
 		// Wiring
 
 		// After loading a timeline
 		control.loadEnded.connect(afterLoading)
+
+		// For authentications
+		control.authenticationNeeded.connect(needAuthentication)
 	}
 
 	// Loading the home timeline
@@ -120,6 +112,7 @@ Rectangle {
 		control.loadHomeTimeline();
 	}
 
+	// What happened after loading the timeline
 	function afterLoading(endOK, errMsg, isFatal) {
 		var action, messageDisplayed;
 
@@ -128,19 +121,20 @@ Rectangle {
 			return;
 		} else if (isFatal) {
 			// Bad and fatal error. Show the quit pane.
-			action = constant.quit_action;
 			messageDisplayed = qsTr("A fatal error occured while loading the timeline:")
 					+ "\n\n"
 					+ errMsg
 					+ "\n\n"
 					+ qsTr("The application will quit.");
 		} else {
-			action = constant.info_msg_action
 			messageDisplayed = errMsg
 		}
 
-		err_comp.displayMessage(action, messageDisplayed)
+		timeline_pane.endAction(endOK, messageDisplayed, isFatal)
 	}
+
+	signal needAuthentication
+	signal endAction(bool endOK, string errMsg, bool fatalEnd)
 
 	signal writeReply(string text, string replyID)
 	signal writeTweet(string text)

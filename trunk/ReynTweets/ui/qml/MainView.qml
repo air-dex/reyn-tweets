@@ -42,6 +42,7 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 	}
 
+	// Home timeline (subject to future changes)
 	TimelinePane {
 		id: timeline
 		width: parent.width
@@ -52,13 +53,43 @@ Rectangle {
 		anchors.bottom: main_view.bottom
 	}
 
+	// Component for potential authentications
+	LoginComponent {
+		id: log_component
+		width: parent.width
+		anchors.verticalCenter: parent.verticalCenter
+		onAllowOK: loadHomeTimeline();
+	}
+
+	// Components for errors
+	ErrorComponent {
+		id: err_comp
+		width: parent.width
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		onTryAgain: control.loadHomeTimeline();
+	}
+
 	Component.onCompleted: {
 		// Wiring
 		timeline.writeReply.connect(write_tweet.writeReply)
 		timeline.writeTweet.connect(write_tweet.writeTweet)
+		timeline.endAction.connect(main_view.endAction)
+		timeline.needAuthentication.connect(log_component.allowReynTweets)
 	}
 
+	// Loading the home timeline
 	function loadHomeTimeline() {
 		timeline.loadHomeTimeline();
+	}
+
+	function endAction(endOK, errMsg, fatalEnd) {
+		if (endOK) {
+			return;
+		}
+
+		var action = fatalEnd ? constant.quit_action : constant.info_msg_action;
+
+		err_comp.displayMessage(action, errMsg)
 	}
 }

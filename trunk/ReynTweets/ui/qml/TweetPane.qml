@@ -48,7 +48,7 @@ Rectangle {
 	property int min_height: author_text.height + text.height
 							 + source_text.height + action_row.height + 9*margin
 
-	property bool iam_author: shown_tweet.author.id_str == current_user.id_str
+	property bool iam_author: shown_tweet.author.id_str === current_user.id_str
 
 	width: 360
 	height:  min_height
@@ -72,7 +72,23 @@ Rectangle {
 			tweet_pane.state = "Scratch"
 			displayTweet()
 		}
-		onDestroyTweet: tweet_pane.destroyTweet()
+	}
+
+	// Component for potential authentications
+	LoginComponent {
+		id: log_component
+		width: parent.width
+		anchors.verticalCenter: parent.verticalCenter
+		onAllowOK: launching_pane.endLaunch();
+		onAllowKO: ;
+	}
+
+	// Components for errors
+	ErrorComponent {
+		id: err_comp
+		width: parent.width
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
 	}
 
 	// Background of the tweet
@@ -601,7 +617,13 @@ Rectangle {
 
 	Component.onCompleted: {
 		tweet = control.tweet
+
+		// Wiring
+		control.destroyTweet.connect(tweet_pane.destroyTweet)
 		control.updateTimeline.connect(tweet_pane.updateTweet)
+		control.tweetEnded.connect(tweet_pane.endTweeting)
+		control.authenticationNeeded.connect(tweet_pane.needAuthentication)
+
 		displayTweet();
 	}
 
@@ -664,14 +686,25 @@ Rectangle {
 		return '<img src="' + imageSrc + '">'
 	}
 
+	/////////////
+	// Signals //
+	/////////////
 
-	////////////////
-	// Management //
-	////////////////
-
-	// Sends base to write
+	// Reply to a tweet
 	signal reply(string screenName, string replyToTweetID)
+
+	// Quoting a tweet
 	signal quote(string text)
+
+	// Updating a tweet in the timeline
 	signal updateTweet(variant updatedTweet)
+
+	// Destroying a tweet
 	signal destroyTweet
+
+	// Launch an authentication
+	signal needAuthentication
+
+	// After an action was made
+	signal endTweeting(bool endOK, string errMsg, bool fatalEnd)
 }

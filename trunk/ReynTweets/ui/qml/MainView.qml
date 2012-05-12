@@ -80,10 +80,10 @@ Rectangle {
 	// Popup to show a message.
 	TransientPane {
 		id: info_pane
-		z: main_view.z + 10
-		anchors.bottom: parent.bottom
-		anchors.bottomMargin: 3* main_view.margin
-		anchors.verticalCenter: parent.verticalCenter
+		//z: main_view.z + 10
+		anchors.bottom: main_view.bottom
+		anchors.bottomMargin: 10* main_view.margin
+		anchors.horizontalCenter: main_view.horizontalCenter
 
 		// Text to show in the pane
 		property alias pane_text: info_pane.message
@@ -92,9 +92,9 @@ Rectangle {
 	// Popup to show a warnig and not fatal problem message.
 	WarningTransientPane {
 		id: warning_pane
-		z: main_view.z + 10
-		anchors.top: parent.top
-		anchors.verticalCenter: parent.verticalCenter
+		//z: main_view.z + 10
+		anchors.top: main_view.top
+		anchors.horizontalCenter: main_view.horizontalCenter
 
 		// Text to show in the pane
 		property alias pane_text: warning_pane.warning_msg

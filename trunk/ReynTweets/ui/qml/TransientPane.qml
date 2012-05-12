@@ -48,7 +48,7 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_small_size
+		font.pixelSize: constant.font_size
 		color: constant.white
 		visible: parent.visible
 	}
@@ -68,7 +68,7 @@ Rectangle {
 			when: transient_pane.visible
 
 			StateChangeScript {
-				name: show_warning_pane_script
+				name: "show_warning_pane_script"
 				script: show_timer.restart()
 			}
 		}

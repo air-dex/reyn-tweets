@@ -27,13 +27,13 @@ import QtQuick 1.1
 /// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.
 Rectangle {
 	/// @brief Text of the pane
-	property string pane_text: "Yeah ! It's Reyn time !"
+	property alias pane_text: description_action.text
 
 	/// @brief Text of the left button
-	property string left_button_text: "Leave it to Reyn !"
+	property string left_button_text: left_button.text
 
 	/// @brief Text of the right button
-	property string right_button_text: "Here we go... LARIAT !"
+	property string right_button_text: right_button.text
 
 	/// @brief Value for marges
 	property int margin_value: 5
@@ -62,7 +62,7 @@ Rectangle {
 	// Description
 	Text {
 		id: description_action
-		text: two_buttons_pane.pane_text
+		text:  "Yeah ! It's Reyn time !" // Mockup
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		anchors.right: parent.right
 		anchors.rightMargin: margin_value
@@ -79,7 +79,7 @@ Rectangle {
 	// Left button
 	RTButton {
 		id: left_button
-		button_text: two_buttons_pane.left_button_text
+		button_text: "Leave it to Reyn !"	// Mockup
 		anchors.right: right_button.left
 		anchors.rightMargin: two_buttons_pane.margin_value
 		anchors.bottom: two_buttons_pane.bottom
@@ -90,7 +90,7 @@ Rectangle {
 	// Right button
 	RTButton {
 		id: right_button
-		button_text: two_buttons_pane.right_button_text
+		button_text: "Here we goooo... LARIAT !"	// Mockup
 		anchors.right: two_buttons_pane.right
 		anchors.rightMargin: two_buttons_pane.margin_value
 		anchors.bottom: two_buttons_pane.bottom

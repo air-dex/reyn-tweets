@@ -129,7 +129,7 @@ Rectangle {
 		width: parent.width
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: 3* launching_pane.margin
-		anchors.verticalCenter: parent.verticalCenter
+		anchors.horizontalCenter: parent.horizontalCenter
 
 		// Text to show in the pane
 		property alias pane_text: info_pane.message

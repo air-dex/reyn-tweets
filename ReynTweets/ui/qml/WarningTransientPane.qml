@@ -25,13 +25,10 @@ import QtQuick 1.1
 
 TransientPane {
 	id: warning_transient_message
-	width: constant.reyn_tweets_width
-	height: constant.reyn_tweets_height
 
 	Constants { id:constant }
 
-	message: '<strong style="font-size: ' + constant.font_size + ';" >'
-			 + qsTr("A problem occured :") + "</strong><br/>"
+	message: '<strong>' + qsTr("A problem occured :") + "</strong><br/>"
 			 + warning_transient_message.warning_msg
 
 	// Message describing the warning

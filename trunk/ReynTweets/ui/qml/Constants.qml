@@ -26,6 +26,17 @@ import QtQuick 1.1
 /// @class Constants
 /// @brief QML constants of Reyn Tweets.
 QtObject {
+	//////////////////////
+	// Application size //
+	//////////////////////
+
+	// Width
+	property int reyn_tweets_width: 360
+
+	// Height
+	property int reyn_tweets_height: 640
+
+
 	////////////
 	// Colors //
 	////////////

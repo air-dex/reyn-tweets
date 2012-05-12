@@ -1,4 +1,4 @@
-/// @file ErrorComponent.qml
+/// @file EndActionComponent.qml
 /// @brief Component with items for displaying errors
 ///
 /// Also known as ErrorComponent.qml until r369.
@@ -26,7 +26,7 @@
 import QtQuick 1.1
 
 Rectangle {
-	id: error_component
+	id: end_action_component
 
 	// Margin
 	property int margin: 5
@@ -34,46 +34,34 @@ Rectangle {
 	// Sent when the user allows the component which made the error to try again
 	signal tryAgain
 
-	//property Rectangle sender
-
 	Constants { id: constant }
 
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: error_component.z + 1
-		width: error_component.width - 2* error_component.margin
+		z: end_action_component.z + 1
+		width: end_action_component.width - 2* end_action_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 	}
 
 	// Popup to try again
-	TwoButtonsActionPane {
+	TryAgainPane {
 		id: try_again_pane
-		z: error_component.z + 1
-		width: error_component.width - 2* error_component.margin
+		z: end_action_component.z + 1
+		width: end_action_component.width - 2* end_action_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
-
-		// Left button
-		left_button_text: qsTr("Try again")
-		onActLeft: {
-			try_again_pane.visible = false;
-			tryAgain();
-		}
-
-		// Right button
-		right_button_text: qsTr("Quit")
-		onActRight: Qt.quit();
+		onTryAgain: end_action_component.tryAgain();
 	}
 
 	// Popup to show a simple problem message. This is not fatal.
 	TransientPane {
 		id: warning_pane
-		z: error_component.z + 1
-		width: error_component.width - 2* error_component.margin
+		z: end_action_component.z + 1
+		width: end_action_component.width - 2* end_action_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		message: "<strong>" + qsTr("A problem occured :") + "</strong><br/>"
@@ -86,8 +74,8 @@ Rectangle {
 	// Popup to show a message.
 	TransientPane {
 		id: info_pane
-		z: error_component.z + 1
-		width: error_component.width - 2* error_component.margin
+		z: end_action_component.z + 1
+		width: end_action_component.width - 2* end_action_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		message: info_pane.pane_text

@@ -53,22 +53,57 @@ Rectangle {
 		anchors.bottom: main_view.bottom
 	}
 
+
+	////////////////////////////////////////
+	// Components for non successful ends //
+	////////////////////////////////////////
+
 	// Component for potential authentications
-	LoginComponent {
+	LoginComponents {
 		id: log_component
+		z: main_view.z + 1
 		width: parent.width
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: loadHomeTimeline();
 	}
 
-	// Components for errors
-	EndActionComponent {
-		id: end_comp
+	// Popup to make the user quit the application
+	QuitPane {
+		id: abort_pane
+		z: main_view.z + 1
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		onTryAgain: loadHomeTimeline();
+		visible: false
 	}
+
+	// Popup to show a message.
+	TransientPane {
+		id: info_pane
+		z: main_view.z + 1
+		anchors.bottom: parent.bottom
+		anchors.bottomMargin: 3* launching_pane.margin
+		anchors.verticalCenter: parent.verticalCenter
+
+		// Text to show in the pane
+		property alias pane_text: info_pane.message
+	}
+
+	// Popup to show a warnig and not fatal problem message.
+	WarningTransientPane {
+		id: warning_pane
+		z: main_view.z + 1
+		anchors.top: parent.top
+		anchors.verticalCenter: parent.verticalCenter
+
+		// Text to show in the pane
+		property alias pane_text: warning_pane.warning_msg
+	}
+
+
+	////////////////
+	// Management //
+	////////////////
 
 	Component.onCompleted: {
 		// Wiring timeline
@@ -90,14 +125,17 @@ Rectangle {
 
 	// After an action was made
 	function endAction(endOK, errMsg, fatalEnd) {
-		var action
+		var pane	// Pane to show the message
 
 		if (endOK) {
-			action = constant.info_msg_action;
+			pane = info_pane
+		} else if (fatalEnd) {
+			pane = abort_pane
 		} else {
-			action = fatalEnd ? constant.quit_action : constant.warning_msg_action;
+			pane = warning_pane
 		}
 
-		end_comp.displayMessage(action, errMsg)
+		pane.pane_text = errMsg
+		pane.visible = true
 	}
 }

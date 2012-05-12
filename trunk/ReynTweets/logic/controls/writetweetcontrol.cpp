@@ -67,7 +67,9 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 		case TWEET_POSTED:
 			// Process successful
 			emit tweetPosted();
-			emit postEnded(true, QString(), false);
+            emit postEnded(true,
+                           WriteTweetControl::trUtf8("Tweet sent successfully"),
+                           false);
 			break;
 
 		case AUTHENTICATION_REQUIRED:

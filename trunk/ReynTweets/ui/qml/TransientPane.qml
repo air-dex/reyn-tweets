@@ -25,8 +25,8 @@ import QtQuick 1.1
 
 Rectangle {
 	id: transient_pane
-	width: 360
-	height: 640
+	width: transient_message.width + 2* transient_pane.margin
+	height: transient_message.height + 2* transient_pane.margin
 
 	color: constant.grey
 	visible: false
@@ -45,10 +45,10 @@ Rectangle {
 		id: transient_message
 		text: transient_pane.pane_text
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-		anchors.fill: parent
-		anchors.margins: transient_pane.margin
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pixelSize: constant.font_small_size
 		visible: parent.visible
 	}
 

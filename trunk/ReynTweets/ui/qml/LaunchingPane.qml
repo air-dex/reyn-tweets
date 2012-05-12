@@ -109,22 +109,54 @@ Rectangle {
 		}
 	}
 
+	////////////////////////////////////////
+	// Components for non successful ends //
+	////////////////////////////////////////
+
 	// Component for potential authentications
-	LoginComponent {
+	LoginComponents {
 		id: log_component
 		width: parent.width
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: launching_pane.endLaunch();
 	}
 
+	// Popup to show a message.
+	TransientPane {
+		id: info_pane
+		z: launching_pane.z + 1
+		width: parent.width
+		anchors.bottom: parent.bottom
+		anchors.bottomMargin: 3* launching_pane.margin
+		anchors.verticalCenter: parent.verticalCenter
+
+		// Text to show in the pane
+		property alias pane_text: info_pane.message
+	}
+
 	// Components for errors
-	EndActionComponent {
-		id: endAction_comp
+
+	// Popup to make the user quit the application
+	QuitPane {
+		id: abort_pane
+		z: launching_pane.z + 1
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
+		visible: false
+	}
+
+	// Popup to try again
+	TryAgainPane {
+		id: try_again_pane
+		z: launching_pane.z + 1
+		width: parent.width
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
 		onTryAgain: control.launchReynTweets();
 	}
+
 
 	////////////////////////////
 	// Back office management //
@@ -162,18 +194,17 @@ Rectangle {
 	/// @param errMsg Error message
 	/// @param fatal Did the process end fatally ?
 	function afterLaunching(endOK, errMsg, fatal) {
-		var action;	// Pane where a message will be displayed
 		var messageDisplayed = "";
+		var pane;	// Pane where a message will be displayed
 
 		if (endOK) {	// Successful end
 			// Go to the next step
-			action = constant.info_msg_action
+			pane = info_pane
 			messageDisplayed = errMsg
 			launching_pane.endLaunch();
-			return;
 		} else if (fatal) {
 			// Bad and fatal error. Show the quit pane.
-			action = constant.quit_action;
+			pane = abort_pane
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:")
 					+ "\n\n"
 					+ errMsg
@@ -183,7 +214,7 @@ Rectangle {
 			// Bad end but not fatal.
 
 			// Display warning popup to ask the user to try again or to quit.
-			action = constant.try_again_action;
+			pane = try_again_pane
 			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
 					+ "\n\n"
 					+ errMsg
@@ -191,6 +222,7 @@ Rectangle {
 					+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 		}
 
-		endAction_comp.displayMessage(action, messageDisplayed)
+		pane.pane_text = messageDisplayed;
+		pane.visible = true
 	}
 }

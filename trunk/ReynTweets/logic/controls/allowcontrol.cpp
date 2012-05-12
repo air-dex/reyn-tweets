@@ -87,10 +87,12 @@ void AllowControl::allowOK(ProcessWrapper res) {
 	CoreResult issue = result.processIssue;
 
 	switch (issue) {
-		case ALLOW_SUCCESSFUL:
-			// Process successful
-			emit allowEnded(true, QString(), false);
-			break;
+        case ALLOW_SUCCESSFUL:
+            // Process successful
+            emit allowEnded(true,
+                            AllowControl::trUtf8("Reyn Tweets was authorized"),
+                            false);
+            break;
 
 		case DENIED:
 			// Process successful but Reyn Tweets was denied :(

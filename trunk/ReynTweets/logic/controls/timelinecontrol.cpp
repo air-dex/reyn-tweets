@@ -113,7 +113,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			timeline.fillWithVariant(resList);
 			emit timelineChanged();
 			// Process successful
-			emit loadEnded(true, QString(), false);
+            emit loadEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:

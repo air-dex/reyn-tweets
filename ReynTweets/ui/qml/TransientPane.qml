@@ -28,7 +28,7 @@ Rectangle {
 	width: transient_message.width + 2* transient_pane.margin
 	height: transient_message.height + 2* transient_pane.margin
 
-	color: constant.grey
+	color: constant.black
 	visible: false
 
 	property int margin: 5
@@ -49,6 +49,7 @@ Rectangle {
 		anchors.verticalCenter: parent.verticalCenter
 		font.family: constant.font
 		font.pixelSize: constant.font_small_size
+		color: constant.white
 		visible: parent.visible
 	}
 

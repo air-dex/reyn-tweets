@@ -35,9 +35,6 @@ Rectangle {
 
 	property string in_reply_to_tweet_id: '-1'
 
-	// Twitter Text entity used in Javascript code
-	property variant twitterText: TwitterTextJS.twttr.txt
-
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -101,7 +98,9 @@ Rectangle {
 		anchors.right: write_tweet_pane.right
 		anchors.topMargin: margin
 		anchors.rightMargin: margin
-		text: chars_left
+		text: chars_left + reason
+
+		property string reason
 	}
 
 	// The tweet to write
@@ -151,42 +150,30 @@ Rectangle {
 		// When the tweet is too long (> 140 characters)
 		State {
 			name: "TooLong"
-			when: {
-				var isValidText = twitterText.isValidTweetText(tweet_edit.text)
-
-				return !isValidText || isValidText && twitterText.isInvalidTweet(tweet_edit.text) === "empty"
-			}
+			when: !TwitterTextJS.twttr.txt.isValidTweetText(tweet_edit.text)
+				  && TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) !== "empty"
 
 			PropertyChanges {
 				target: chars_left_indicator
 				color: constant.red
 				font.bold: true
-				text: {
-					var invalidMsg = qsTr(TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text))
-
-					switch (invalidMsg) {
-						case qsTr("too_long"):
-						case qsTr("invalid_characters"):
-							invalidMsg = invalidMsg.replace('_', ' ')
-							break;
-
-						// TODO : Unexpected cases
-						case qsTr("empty"):
-						case false:
-						default:
-							break;
-					}
-
-					return chars_left.toString()
-						.concat(" (")
-						.concat(invalidMsg)
-						.concat(')')
-				}
+				reason: getInvalidReason()
 			}
 
 			PropertyChanges {
 				target: tweet_button
-				onClick: console.log("Cannot tweet.")
+				onClick: console.log("TODO : cannot tweet")
+			}
+		},
+
+		// When the text input is empty
+		State {
+			name: "Empty"
+			when: TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) === "empty"
+
+			PropertyChanges {
+				target: tweet_button
+				onClick: console.log("TODO : write something before tweeting")
 			}
 		}
 	]
@@ -216,7 +203,7 @@ Rectangle {
 		var charsAllowed = 140 - tweet_edit.text.length
 
 		// Readjusting the number depending on the URLS contained in the text
-		var urls = twitterText.extractUrls(tweet_edit.text);
+		var urls = TwitterTextJS.twttr.txt.extractUrls(tweet_edit.text);
 
 		for (var i in urls) {
 			var url = urls[i]
@@ -228,6 +215,29 @@ Rectangle {
 		}
 
 		return charsAllowed;
+	}
+
+	// Knowing why the tweet cannot be posted
+	function getInvalidReason() {
+		var invalidMsg = TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text)
+		var finalReason = " ("
+
+		switch (invalidMsg) {
+			case "too_long":
+				finalReason = finalReason.concat(qsTr("too long"))
+				break;
+
+			case "invalid_characters":
+				finalReason = finalReason.concat(qsTr("invalid character(s)"))
+				break;
+
+			default:	// "empty", false or other unexpected values
+				finalReason = finalReason.concat(invalidMsg)
+				break;
+		}
+
+		finalReason = finalReason.concat(')')
+		return finalReason
 	}
 
 	/////////////

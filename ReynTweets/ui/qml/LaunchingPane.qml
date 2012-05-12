@@ -116,6 +116,7 @@ Rectangle {
 	// Component for potential authentications
 	LoginComponents {
 		id: log_component
+		z: launching_pane.z + 10
 		width: parent.width
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: launching_pane.endLaunch();
@@ -124,7 +125,7 @@ Rectangle {
 	// Popup to show a message.
 	TransientPane {
 		id: info_pane
-		z: launching_pane.z + 1
+		z: launching_pane.z + 10
 		width: parent.width
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: 3* launching_pane.margin
@@ -139,7 +140,7 @@ Rectangle {
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: launching_pane.z + 1
+		z: launching_pane.z + 10
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -149,7 +150,7 @@ Rectangle {
 	// Popup to try again
 	TryAgainPane {
 		id: try_again_pane
-		z: launching_pane.z + 1
+		z: launching_pane.z + 10
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter

@@ -32,22 +32,6 @@
 <context>
     <name>AllowProcess</name>
     <message>
-        <source>Network error </source>
-        <translation type="obsolete">Network error </translation>
-    </message>
-    <message>
-        <source>Parsing error :</source>
-        <oldsource>Parsing error :
-</oldsource>
-        <translation type="obsolete">Parsing error:</translation>
-    </message>
-    <message>
-        <source>Unexpected problem :</source>
-        <oldsource>Unexpected problem :
-</oldsource>
-        <translation type="obsolete">Unexpected problem:</translation>
-    </message>
-    <message>
         <location filename="logic/processes/allowprocess.cpp" line="166"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
@@ -117,22 +101,7 @@
     </message>
 </context>
 <context>
-    <name>ErrorComponent</name>
-    <message>
-        <source>Try again</source>
-        <translation type="obsolete">Try again</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="obsolete">Quit</translation>
-    </message>
-</context>
-<context>
     <name>LaunchingControl</name>
-    <message>
-        <source>Reyn Tweets was denied.</source>
-        <translation type="obsolete">Reyn Tweets was denied.</translation>
-    </message>
     <message>
         <location filename="logic/controls/launchingcontrol.cpp" line="79"/>
         <source>Reyn Tweets launched</source>
@@ -147,22 +116,22 @@
         <translation>Website : </translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="208"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="209"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>A fatal error occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="212"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="213"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="218"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="219"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translation>An hitch occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="222"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="223"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Do you want to try to launch Reyn Tweets again or to quit ?</translation>
     </message>
@@ -221,45 +190,6 @@
         <location filename="logic/processes/launchingprocess.cpp" line="226"/>
         <source>Unexpected result:</source>
         <translation>Unexpected result:</translation>
-    </message>
-    <message>
-        <source>You reach the authentication rate.</source>
-        <translation type="obsolete">You reach the authentication rate.</translation>
-    </message>
-    <message>
-        <source>Twitter is down.</source>
-        <translation type="obsolete">Twitter is down.</translation>
-    </message>
-    <message>
-        <source>Unknown prolem.</source>
-        <translation type="obsolete">Unknown prolem.</translation>
-    </message>
-    <message>
-        <source>Unexpected result.</source>
-        <translation type="obsolete">Unexpected result.</translation>
-    </message>
-</context>
-<context>
-    <name>LoginComponent</name>
-    <message>
-        <source>Reyn Tweets was denied.</source>
-        <translation type="obsolete">Reyn Tweets was denied.</translation>
-    </message>
-    <message>
-        <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
-        <translation type="obsolete">Are you sure that you do not want Reyn Tweets to use your Twitter account ?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Yes</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">No</translation>
-    </message>
-    <message>
-        <source>Reyn Tweets will quit. Bye bye !</source>
-        <translation type="obsolete">Reyn Tweets will quit. Bye bye !</translation>
     </message>
 </context>
 <context>
@@ -330,22 +260,6 @@
         <location filename="logic/processes/oauthprocess.cpp" line="119"/>
         <source>Callback URL not confirmed.</source>
         <translation>Callback URL not confirmed.</translation>
-    </message>
-    <message>
-        <source>Network error </source>
-        <translation type="obsolete">Network error </translation>
-    </message>
-    <message>
-        <source>Parsing error:</source>
-        <oldsource>Parsing error:
-</oldsource>
-        <translation type="obsolete">Parsing error:</translation>
-    </message>
-    <message>
-        <source>Unexpected problem:</source>
-        <oldsource>Unexpected problem:
-</oldsource>
-        <translation type="obsolete">Unexpected problem:</translation>
     </message>
     <message>
         <location filename="logic/processes/oauthprocess.cpp" line="288"/>
@@ -676,32 +590,26 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="85"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="82"/>
         <source>What is happening ?</source>
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="143"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="142"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="168"/>
-        <source>too_long</source>
-        <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
-        <translation>too_long</translation>
+        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <source>too long</source>
+        <translation>too long</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="169"/>
-        <source>invalid_characters</source>
-        <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
-        <translation>invalid_characters</translation>
-    </message>
-    <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="174"/>
-        <source>empty</source>
-        <translation>empty</translation>
+        <location filename="ui/qml/WriteTweetPane.qml" line="170"/>
+        <source>invalid character(s)</source>
+        <oldsource>invalid characters</oldsource>
+        <translation>invalid character(s)</translation>
     </message>
 </context>
 </TS>

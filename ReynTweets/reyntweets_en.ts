@@ -114,14 +114,19 @@
 <context>
     <name>ErrorComponent</name>
     <message>
-        <location filename="ui/qml/ErrorComponent.qml" line="60"/>
+        <location filename="ui/qml/ErrorComponent.qml" line="62"/>
         <source>Try again</source>
         <translation>Try again</translation>
     </message>
     <message>
-        <location filename="ui/qml/ErrorComponent.qml" line="67"/>
+        <location filename="ui/qml/ErrorComponent.qml" line="69"/>
         <source>Quit</source>
         <translation>Quit</translation>
+    </message>
+    <message>
+        <location filename="ui/qml/ErrorComponent.qml" line="85"/>
+        <source>A problem occured :</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -268,27 +273,27 @@
         <translation>Username or password invalid. Try again.</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginPane.qml" line="112"/>
+        <location filename="ui/qml/LoginPane.qml" line="113"/>
         <source>Username or email:</source>
         <translation>Username or email:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginPane.qml" line="124"/>
+        <location filename="ui/qml/LoginPane.qml" line="125"/>
         <source>Password:</source>
         <translation>Password:</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginPane.qml" line="170"/>
+        <location filename="ui/qml/LoginPane.qml" line="171"/>
         <source>Show password</source>
         <translation>Show password</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginPane.qml" line="182"/>
+        <location filename="ui/qml/LoginPane.qml" line="183"/>
         <source>Authorize</source>
         <translation>Authorize</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginPane.qml" line="194"/>
+        <location filename="ui/qml/LoginPane.qml" line="195"/>
         <source>No, thanks</source>
         <translation>No, thanks</translation>
     </message>
@@ -474,12 +479,12 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="132"/>
+        <location filename="ui/qml/TimelinePane.qml" line="130"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="136"/>
+        <location filename="ui/qml/TimelinePane.qml" line="134"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -500,87 +505,87 @@
 <context>
     <name>TweetPane</name>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="258"/>
+        <location filename="ui/qml/TweetPane.qml" line="274"/>
         <source>In reply to </source>
         <translation>In reply to </translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="260"/>
+        <location filename="ui/qml/TweetPane.qml" line="276"/>
         <source>Show conversation</source>
         <translation>Show conversation</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="323"/>
+        <location filename="ui/qml/TweetPane.qml" line="339"/>
         <source>Retweeted by</source>
         <translation>Retweeted by</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="338"/>
-        <location filename="ui/qml/TweetPane.qml" line="353"/>
+        <location filename="ui/qml/TweetPane.qml" line="354"/>
+        <location filename="ui/qml/TweetPane.qml" line="369"/>
         <source>me</source>
         <translation>me</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="369"/>
+        <location filename="ui/qml/TweetPane.qml" line="385"/>
         <source>other</source>
         <translation>other</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="369"/>
+        <location filename="ui/qml/TweetPane.qml" line="385"/>
         <source>others</source>
         <translation>others</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="370"/>
+        <location filename="ui/qml/TweetPane.qml" line="386"/>
         <source>and</source>
         <translation>and</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="376"/>
+        <location filename="ui/qml/TweetPane.qml" line="392"/>
         <source>person</source>
         <translation>person</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="376"/>
+        <location filename="ui/qml/TweetPane.qml" line="392"/>
         <source>people</source>
         <translation>people</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="400"/>
+        <location filename="ui/qml/TweetPane.qml" line="416"/>
         <source>Reply</source>
         <translation>Reply</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="413"/>
+        <location filename="ui/qml/TweetPane.qml" line="429"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="425"/>
-        <location filename="ui/qml/TweetPane.qml" line="506"/>
+        <location filename="ui/qml/TweetPane.qml" line="441"/>
+        <location filename="ui/qml/TweetPane.qml" line="522"/>
         <source>Retweeted</source>
         <translation>Retweeted</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="425"/>
-        <location filename="ui/qml/TweetPane.qml" line="520"/>
+        <location filename="ui/qml/TweetPane.qml" line="441"/>
+        <location filename="ui/qml/TweetPane.qml" line="536"/>
         <source>Retweet</source>
         <translation>Retweet</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="441"/>
+        <location filename="ui/qml/TweetPane.qml" line="457"/>
         <source>Quote</source>
         <translation>Quote</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="453"/>
-        <location filename="ui/qml/TweetPane.qml" line="534"/>
+        <location filename="ui/qml/TweetPane.qml" line="469"/>
+        <location filename="ui/qml/TweetPane.qml" line="550"/>
         <source>Favorited</source>
         <translation>Favorited</translation>
     </message>
     <message>
-        <location filename="ui/qml/TweetPane.qml" line="453"/>
-        <location filename="ui/qml/TweetPane.qml" line="548"/>
+        <location filename="ui/qml/TweetPane.qml" line="469"/>
+        <location filename="ui/qml/TweetPane.qml" line="564"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
     </message>
@@ -588,30 +593,30 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="83"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="84"/>
         <source>What is happening ?</source>
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="141"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="142"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="167"/>
         <source>too_long</source>
         <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
         <translation>too_long</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="167"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="168"/>
         <source>invalid_characters</source>
         <translatorcomment>The underscore is replaced after the translation.</translatorcomment>
         <translation>invalid_characters</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="172"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="173"/>
         <source>empty</source>
         <translation>empty</translation>
     </message>

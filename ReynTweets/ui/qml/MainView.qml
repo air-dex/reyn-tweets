@@ -62,8 +62,8 @@ Rectangle {
 	}
 
 	// Components for errors
-	ErrorComponent {
-		id: err_comp
+	EndActionComponent {
+		id: end_comp
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -90,12 +90,14 @@ Rectangle {
 
 	// After an action was made
 	function endAction(endOK, errMsg, fatalEnd) {
+		var action
+
 		if (endOK) {
-			return;
+			action = constant.info_msg_action;
+		} else {
+			action = fatalEnd ? constant.quit_action : constant.warning_msg_action;
 		}
 
-		var action = fatalEnd ? constant.quit_action : constant.info_msg_action;
-
-		err_comp.displayMessage(action, errMsg)
+		end_comp.displayMessage(action, errMsg)
 	}
 }

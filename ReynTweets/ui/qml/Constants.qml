@@ -82,6 +82,9 @@ QtObject {
 	// Showing temporary message
 	property string info_msg_action: "Info message"
 
+	// Showing temporary message
+	property string warning_msg_action: "Warn message"
+
 	// Font size
 	property string try_again_action: "Try again"
 

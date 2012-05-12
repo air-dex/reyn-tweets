@@ -33,8 +33,6 @@ Rectangle {
 	// Sent when the user allows the component which made the error to try again
 	signal tryAgain
 
-	property alias info_pane: error_component.warning_pane
-
 	//property Rectangle sender
 
 	Constants { id: constant }
@@ -71,46 +69,27 @@ Rectangle {
 	}
 
 	// Popup to show a simple problem message. This is not fatal.
-	Rectangle {
+	TransientPane {
 		id: warning_pane
 		z: error_component.z + 1
 		width: error_component.width - 2* error_component.margin
-		color: constant.grey
-		anchors.top: parent.top
+		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		visible: false
+		message: "<strong>" + qsTr("A problem occured :") + "</strong><br/>"
+				 + warning_pane.pane_text
 
-		Text {
-			id: warning_message
-			text: "<strong>" + qsTr("A problem occured :") + "</strong><br/>"
-				  + warning_pane.pane_text
-			wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-			anchors.fill: parent
-			anchors.margins: error_component.margin
-			font.family: constant.font
-			font.pixelSize: constant.font_size
-			visible: parent.visible
-		}
+		// Text to show in the pane
+		property string pane_text
+	}
 
-		// Timer to show the pane for a given duration (5 seconds for the moment)
-		Timer {
-			id: show_timer
-			interval: 5000	// Five seconds
-			repeat: false
-			onTriggered: warning_pane.visible = false
-		}
-
-		states: [
-			State {
-				name: "Showtime"
-				when: warning_pane.visible
-
-				StateChangeScript {
-					name: show_warning_pane_script
-					script: show_timer.start()
-				}
-			}
-		]
+	// Popup to show a message.
+	TransientPane {
+		id: info_pane
+		z: error_component.z + 1
+		width: error_component.width - 2* error_component.margin
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		message: info_pane.pane_text
 
 		// Text to show in the pane
 		property string pane_text
@@ -130,6 +109,10 @@ Rectangle {
 				break;
 
 			case constant.info_msg_action:
+				pane = info_pane
+				break;
+
+			case constant.warning_msg_action:
 				pane = warning_pane
 				break;
 

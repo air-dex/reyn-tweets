@@ -74,23 +74,6 @@ Rectangle {
 		}
 	}
 
-	// Component for potential authentications
-	LoginComponent {
-		id: log_component
-		width: parent.width
-		anchors.verticalCenter: parent.verticalCenter
-		onAllowOK: launching_pane.endLaunch();
-		onAllowKO: ;
-	}
-
-	// Components for errors
-	ErrorComponent {
-		id: err_comp
-		width: parent.width
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-	}
-
 	// Background of the tweet
 
 	// Background colors of the tweet

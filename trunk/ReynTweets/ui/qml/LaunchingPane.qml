@@ -118,8 +118,8 @@ Rectangle {
 	}
 
 	// Components for errors
-	ErrorComponent {
-		id: err_comp
+	EndActionComponent {
+		id: endAction_comp
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -167,6 +167,8 @@ Rectangle {
 
 		if (endOK) {	// Successful end
 			// Go to the next step
+			action = constant.info_msg_action
+			messageDisplayed = errMsg
 			launching_pane.endLaunch();
 			return;
 		} else if (fatal) {
@@ -189,6 +191,6 @@ Rectangle {
 					+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
 		}
 
-		err_comp.displayMessage(action, messageDisplayed)
+		endAction_comp.displayMessage(action, messageDisplayed)
 	}
 }

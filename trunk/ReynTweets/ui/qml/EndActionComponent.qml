@@ -1,6 +1,7 @@
 /// @file ErrorComponent.qml
 /// @brief Component with items for displaying errors
 ///
+/// Also known as ErrorComponent.qml until r369.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

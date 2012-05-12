@@ -74,8 +74,10 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 
 	switch (issue) {
 		case LAUNCH_SUCCESSFUL:
-			// Process successful
-			emit launchEnded(true, QString(), false);
+            // Process successful
+            emit launchEnded(true,
+                             LaunchingControl::trUtf8("Reyn Tweets launched"),
+                             false);
 			break;
 
 		case AUTHENTICATION_REQUIRED:

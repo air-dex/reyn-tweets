@@ -161,7 +161,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			status->setRetweeted(true);
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
-			emit tweetEnded(true, "", false);
+            emit tweetEnded(true, TweetControl::trUtf8("Tweet retweeted"), false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -227,8 +227,8 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			getShownTweet()->setFavorited(true);
 			status->setFavorited(true);
 			emit tweetChanged();
-			emit updateTimeline(QVariant(status->toVariant()));
-			emit tweetEnded(true, "", false);
+            emit updateTimeline(QVariant(status->toVariant()));
+            emit tweetEnded(true, TweetControl::trUtf8("Tweet favorited"), false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -297,7 +297,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			status->setFavorited(false);
 			emit tweetChanged();
 			emit updateTimeline(QVariant(status->toVariant()));
-			emit tweetEnded(true, "", false);
+            emit tweetEnded(true, TweetControl::trUtf8("Tweet unfavorited"), false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -381,7 +381,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 				emit destroyTweet();
 			}
 
-			emit tweetEnded(true, "", false);
+            emit tweetEnded(true, TweetControl::trUtf8("Tweet deleted"), false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:

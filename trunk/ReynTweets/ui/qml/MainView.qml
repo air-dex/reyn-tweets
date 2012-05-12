@@ -61,7 +61,7 @@ Rectangle {
 	// Component for potential authentications
 	LoginComponents {
 		id: log_component
-		z: main_view.z + 1
+		z: main_view.z + 10
 		width: parent.width
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: loadHomeTimeline();
@@ -70,7 +70,7 @@ Rectangle {
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: main_view.z + 1
+		z: main_view.z + 10
 		width: parent.width
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -80,9 +80,9 @@ Rectangle {
 	// Popup to show a message.
 	TransientPane {
 		id: info_pane
-		z: main_view.z + 1
+		z: main_view.z + 10
 		anchors.bottom: parent.bottom
-		anchors.bottomMargin: 3* launching_pane.margin
+		anchors.bottomMargin: 3* main_view.margin
 		anchors.verticalCenter: parent.verticalCenter
 
 		// Text to show in the pane
@@ -92,7 +92,7 @@ Rectangle {
 	// Popup to show a warnig and not fatal problem message.
 	WarningTransientPane {
 		id: warning_pane
-		z: main_view.z + 1
+		z: main_view.z + 10
 		anchors.top: parent.top
 		anchors.verticalCenter: parent.verticalCenter
 

@@ -288,8 +288,8 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 #---------------------#
 
 # lupdate
-LUPDATE_FR = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
-LUPDATE_EN = lupdate $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
+LUPDATE_FR = lupdate -noobsolete $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
+LUPDATE_EN = lupdate -noobsolete $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
 
 trupdate.target = trupdate
 win32 {

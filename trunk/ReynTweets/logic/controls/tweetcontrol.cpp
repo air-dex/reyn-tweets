@@ -37,9 +37,7 @@ TweetControl::TweetControl() :
 			this, SLOT(processAgain(bool,QString,bool)));
 }
 
-TweetControl::~TweetControl() {
-	//delete status;
-}
+TweetControl::~TweetControl() {}
 
 void TweetControl::processAgain(bool, QString, bool) {
 	processing = false;
@@ -125,6 +123,7 @@ void TweetControl::retweet() {
 			this, SLOT(retweetEnd(ProcessWrapper)));
 
 	processing = true;
+    emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
 	reyn.retweet(getShownTweet()->getID());
 }
 
@@ -199,6 +198,7 @@ void TweetControl::favorite() {
 			this, SLOT(favoriteEnd(ProcessWrapper)));
 
 	processing = true;
+    emit showInfoMessage(TweetControl::trUtf8("Favoriting..."));
 	reyn.favoriteTweet(getShownTweet()->getID());
 }
 
@@ -262,6 +262,7 @@ void TweetControl::unfavorite() {
 			this, SLOT(unfavoriteEnd(ProcessWrapper)));
 
 	processing = true;
+    emit showInfoMessage(TweetControl::trUtf8("Unfavoriting..."));
 	reyn.unfavoriteTweet(getShownTweet()->getID());
 }
 
@@ -335,6 +336,7 @@ void TweetControl::deleteTweet() {
 			this, SLOT(deleteEnd(ProcessWrapper)));
 
 	processing = true;
+    emit showInfoMessage(TweetControl::trUtf8("Deleting the tweet..."));
 	reyn.deleteTweet(*status);
 }
 

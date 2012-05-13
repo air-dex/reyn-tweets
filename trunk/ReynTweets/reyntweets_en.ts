@@ -419,7 +419,12 @@
 <context>
     <name>TimelineControl</name>
     <message>
-        <location filename="logic/controls/timelinecontrol.cpp" line="116"/>
+        <location filename="logic/controls/timelinecontrol.cpp" line="90"/>
+        <source>Loading timeline...</source>
+        <translation>Loading timeline...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/timelinecontrol.cpp" line="117"/>
         <source>Timeline loaded</source>
         <translation>Timeline loaded</translation>
     </message>
@@ -427,12 +432,12 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="129"/>
+        <location filename="ui/qml/TimelinePane.qml" line="135"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="133"/>
+        <location filename="ui/qml/TimelinePane.qml" line="139"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -453,14 +458,25 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="155"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="126"/>
+        <source>Retweeting...</source>
+        <oldsource>Retweeting</oldsource>
+        <translation>Retweeting...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="154"/>
         <source>No retweet in the retweeted status</source>
         <translation>No retweet in the retweeted status</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="164"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="163"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeted</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="201"/>
+        <source>Favoriting...</source>
+        <translation>Favoriting...</translation>
     </message>
     <message>
         <location filename="logic/controls/tweetcontrol.cpp" line="231"/>
@@ -468,18 +484,28 @@
         <translation>Tweet favorited</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="300"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="265"/>
+        <source>Unfavoriting...</source>
+        <translation>Unfavoriting...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="301"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet unfavorited</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="370"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="339"/>
+        <source>Deleting the tweet...</source>
+        <translation>Deleting the tweet...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/tweetcontrol.cpp" line="372"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="384"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="386"/>
         <source>Tweet deleted</source>
         <translation>Tweet deleted</translation>
     </message>
@@ -583,7 +609,12 @@
 <context>
     <name>WriteTweetControl</name>
     <message>
-        <location filename="logic/controls/writetweetcontrol.cpp" line="71"/>
+        <location filename="logic/controls/writetweetcontrol.cpp" line="53"/>
+        <source>Posting tweet...</source>
+        <translation>Posting tweet...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/writetweetcontrol.cpp" line="78"/>
         <source>Tweet sent successfully</source>
         <translation>Tweet sent successfully</translation>
     </message>
@@ -602,12 +633,12 @@
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="227"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="229"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="231"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="233"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

@@ -606,6 +606,7 @@ Rectangle {
 		control.updateTimeline.connect(tweet_pane.updateTweet)
 		control.tweetEnded.connect(tweet_pane.endTweeting)
 		control.authenticationNeeded.connect(tweet_pane.needAuthentication)
+		control.showInfoMessage.connect(tweet_pane.showInfoMessage)
 
 		displayTweet();
 	}
@@ -691,4 +692,7 @@ Rectangle {
 
 	// After an action was made
 	signal endTweeting(bool endOK, string errMsg, bool fatalEnd)
+
+	// Showing an information message
+	signal showInfoMessage(string infoMsg)
 }

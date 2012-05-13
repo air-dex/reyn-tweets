@@ -111,11 +111,13 @@ Rectangle {
 		timeline.writeTweet.connect(write_tweet.writeTweet)
 		timeline.endAction.connect(main_view.endAction)
 		timeline.needAuthentication.connect(log_component.allowReynTweets)
+		timeline.showInfoMessage.connect(main_view.displayInfoMessage)
 
 		// Wiring write_tweet
 		write_tweet.needAuthentication.connect(log_component.allowReynTweets)
 		write_tweet.endWriting.connect(main_view.endAction)
 		write_tweet.updateTimeline.connect(timeline.updateTimeline)
+		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
 	}
 
 	// Loading the home timeline
@@ -137,5 +139,10 @@ Rectangle {
 
 		pane.pane_text = errMsg
 		pane.visible = true
+	}
+
+	function displayInfoMessage(msg) {
+		info_pane.pane_text = msg
+		info_pane.visible = true
 	}
 }

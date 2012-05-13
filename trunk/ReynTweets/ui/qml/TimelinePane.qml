@@ -68,6 +68,9 @@ Rectangle {
 
 					// Potential authentication
 					needAuthentication.connect(timeline_pane.needAuthentication)
+
+					// For displaying informations
+					showInfoMessage.connect(timeline_pane.showInfoMessage)
 				}
 
 				function updateTL(newTweet) {
@@ -105,6 +108,9 @@ Rectangle {
 
 		// For authentications
 		control.authenticationNeeded.connect(needAuthentication)
+
+		// For displaying informations
+		control.showInfoMessage.connect(timeline_pane.showInfoMessage)
 	}
 
 	// Loading the home timeline
@@ -143,4 +149,7 @@ Rectangle {
 
 	signal writeReply(string text, string replyID)
 	signal writeTweet(string text)
+
+	// Showing an information message
+	signal showInfoMessage(string infoMsg)
 }

@@ -179,8 +179,10 @@ Rectangle {
 	]
 
 	Component.onCompleted: {
+		// Wiring
 		control.postEnded.connect(write_tweet_pane.endWriting)
 		control.authenticationNeeded.connect(write_tweet_pane.needAuthentication)
+		control.showInfoMessage.connect(write_tweet_pane.showInfoMessage)
 	}
 
 	// Writing a reply to a tweet by specifying the text and the person to reply
@@ -244,7 +246,15 @@ Rectangle {
 	// Signals //
 	/////////////
 
+	// Send when a new authentication is needed
 	signal needAuthentication
+
+	// Sent after writing a tweet
 	signal endWriting(bool endOK, string errMsg, bool fatalEnd)
+
+	// Sent to update the timeline
 	signal updateTimeline
+
+	// Showing an information message
+	signal showInfoMessage(string infoMsg)
 }

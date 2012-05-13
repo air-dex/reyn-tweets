@@ -98,6 +98,12 @@ class TweetControl : public QObject
 		/// @brief Emitted if the tweet has to be destroyed
 		void destroyTweet();
 
+        /// @fn void showInfoMessage(QString message);
+        /// @brief Signal sent for announcing something, often at the beginning
+        /// of an action
+        /// @param message Thye message to display.
+        void showInfoMessage(QString message);
+
 
 	protected slots:
 		/// @fn void retweetEnd(ProcessWrapper res);
@@ -116,7 +122,7 @@ class TweetControl : public QObject
 		/// @brief Slot executed after deleting a tweet
 		void deleteEnd(ProcessWrapper res);
 
-		void processAgain(bool, QString, bool);
+        void processAgain(bool, QString, bool);
 
 	protected:
 		/// @brief Entity which realizes treatments

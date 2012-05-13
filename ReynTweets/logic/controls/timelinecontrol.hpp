@@ -93,6 +93,12 @@ class TimelineControl : public QObject
 		/// @brief Signal sent if Reyn Tweets has to be allowed again
 		void authenticationNeeded();
 
+        /// @fn void showInfoMessage(QString message);
+        /// @brief Signal sent for announcing something, often at the beginning
+        /// of an action
+        /// @param message Thye message to display.
+        void showInfoMessage(QString message);
+
 	protected slots:
 		/// @fn void loadTimelineEnded(ProcessWrapper res);
 		/// @brief Slot executed after loading a timeline

@@ -37,7 +37,7 @@ Rectangle {
 	property alias message: transient_message.text
 
 	// How many seconds does the pane remain visible ?
-	property int secondsDisplayed: 5
+	property int secondsDisplayed: 4
 
 	Constants { id:constant }
 
@@ -53,10 +53,10 @@ Rectangle {
 		visible: parent.visible
 	}
 
-	// Timer to show the pane for a given duration (5 seconds for the moment)
+	// Timer to show the pane for a given duration (4 seconds for the moment)
 	Timer {
 		id: show_timer
-		interval: secondsDisplayed * 1000	// Five seconds
+		interval: secondsDisplayed * 1000	// Four seconds
 		repeat: false
 		onTriggered: transient_pane.visible = false
 	}

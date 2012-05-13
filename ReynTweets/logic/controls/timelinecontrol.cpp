@@ -87,8 +87,9 @@ void TimelineControl::loadHomeTimeline() {
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-	reyn.loadHomeTimeline(-1, -1, 50, false, true, true, false, 0);
-	//reyn.loadHomeTimeline(190128971562758144, 190129309267140611, 50, false, true, true, false, 0);
+    emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
+    reyn.loadHomeTimeline(-1, -1, 50, false, true, true, false, 0);
+    //reyn.loadHomeTimeline(190128971562758144, 190129309267140611, 50, false, true, true, false, 0);
 }
 
 

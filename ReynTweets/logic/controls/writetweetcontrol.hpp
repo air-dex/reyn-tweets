@@ -72,6 +72,12 @@ class WriteTweetControl : public QObject
 		/// @brief Signal sent if Reyn Tweets has to be allowed again
 		void authenticationNeeded();
 
+        /// @fn void showInfoMessage(QString message);
+        /// @brief Signal sent for announcing something, often at the beginning
+        /// of an action
+        /// @param message Thye message to display.
+        void showInfoMessage(QString message);
+
 	protected slots:
 		/// @fn void postTweetEnded(ProcessWrapper res);
 		/// @brief Slot executed after posting a tweet.
@@ -81,6 +87,9 @@ class WriteTweetControl : public QObject
 	protected:
 		/// @brief Heart of Reyn Tweets
 		ReynCore reyn;
+
+        /// @brief Boolean indicating if the control is in a process
+        bool processing;
 };
 
 #endif // WRITETWEETCONTROL_HPP

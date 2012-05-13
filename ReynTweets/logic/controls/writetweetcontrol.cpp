@@ -29,7 +29,8 @@
 // Constructor
 WriteTweetControl::WriteTweetControl() :
 	QObject(),
-	reyn(this)
+    reyn(this),
+    processing(false)
 {}
 
 // Declaring WriteTweetControl to the QML system
@@ -41,9 +42,15 @@ void WriteTweetControl::declareQML() {
 
 // Posting a tweet without medias
 void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
+    if (processing) {
+        return;
+    }
+
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(postTweetEnded(ProcessWrapper)));
 
+    processing = true;
+    emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
 	reyn.postTweet(tweet, inReplyToTweetID);
 }
 
@@ -91,33 +98,6 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 			emit postEnded(false, result.errorMsg, true);
 			break;
 	}
+
+    processing = false;
 }
-
-//void WriteTweetControl::detectURLs(QString text) {
-//	// Regex with one of the following characters : space \n \r \t < > [ \ ] ^ { } | `
-//	QString regex = "[\\s\\n\\r\\t\\0074\\0076\\0133\\0134\\0135\\0136\\0140\\0173\\0174\\0175\\0176]";
-//	QStringList splittedText = text.split(QRegExp(regex), QString::SkipEmptyParts);
-
-//	urls.clear();
-//	qDebug("les urls");
-//	for (QStringList::Iterator it = splittedText.begin();
-//		 it != splittedText.end();
-//		 ++it)
-//	{
-////		QString R_PROTOCOL = "(http(s)?|ftp)";
-////		QString R_HOSTNAMEANDPORT = "[\\w-]+(\\.[\\w-]+)*(:(\\d+))?";
-////		QString R_RELATIVEPATH = "(/\\w+)*(/\\w+\\.\\w+)?";
-////		QString R_QUERY = "(\\?\\w+=\\w+(&(\\w+=\\w+))*)?";
-////		QString URL_REGEX = "^" + R_PROTOCOL + "://" + R_HOSTNAMEANDPORT + R_RELATIVEPATH + R_QUERY;
-
-////		QString candidateURL = *it;
-////		candidateURL
-////		if (u.isValid()) {
-////			urls.append(candidateURL);
-////			qDebug(u.toString().toUtf8().data());
-////			qDebug(u.errorString().toUtf8().append("£££").data());
-////		}
-//	}
-
-
-//}

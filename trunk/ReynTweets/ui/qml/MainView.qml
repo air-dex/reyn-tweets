@@ -106,6 +106,9 @@ Rectangle {
 	////////////////
 
 	Component.onCompleted: {
+		// Wiring log_component
+		log_component.showInfoMessage.connect(main_view.displayInfoMessage)
+
 		// Wiring timeline
 		timeline.writeReply.connect(write_tweet.writeReply)
 		timeline.writeTweet.connect(write_tweet.writeTweet)
@@ -141,6 +144,7 @@ Rectangle {
 		pane.visible = true
 	}
 
+	// Displaying informations
 	function displayInfoMessage(msg) {
 		info_pane.pane_text = msg
 		info_pane.visible = true

@@ -12,19 +12,24 @@
 <context>
     <name>AllowControl</name>
     <message>
-        <location filename="logic/controls/allowcontrol.cpp" line="93"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="73"/>
+        <source>Authorizing Reyn Tweets...</source>
+        <translation>Autorisation de Reyn Tweets en cours...</translation>
+    </message>
+    <message>
+        <location filename="logic/controls/allowcontrol.cpp" line="99"/>
         <source>Reyn Tweets was authorized</source>
         <translation>Reyn Tweet a été autorisé</translation>
     </message>
     <message>
-        <location filename="logic/controls/allowcontrol.cpp" line="99"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="105"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
     </message>
     <message>
-        <location filename="logic/controls/allowcontrol.cpp" line="134"/>
-        <location filename="logic/controls/allowcontrol.cpp" line="156"/>
-        <location filename="logic/controls/allowcontrol.cpp" line="183"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="140"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="163"/>
+        <location filename="logic/controls/allowcontrol.cpp" line="191"/>
         <source>No control</source>
         <translation>Pas de contrôle</translation>
     </message>
@@ -103,7 +108,7 @@
 <context>
     <name>LaunchingControl</name>
     <message>
-        <location filename="logic/controls/launchingcontrol.cpp" line="79"/>
+        <location filename="logic/controls/launchingcontrol.cpp" line="85"/>
         <source>Reyn Tweets launched</source>
         <translation>Reyn Tweets démarré</translation>
     </message>
@@ -116,23 +121,23 @@
         <translation>Internet : </translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="209"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="212"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>Une erreur fatale s&apos;est produite au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="213"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="216"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="219"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="222"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translatorcomment>Trouver une meilleure traduction pour &quot;hitch&quot;.</translatorcomment>
         <translation>Un pépin s&apos;est produit au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="ui/qml/LaunchingPane.qml" line="223"/>
+        <location filename="ui/qml/LaunchingPane.qml" line="226"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Voulez-vous essayer de relancer Reyn Tweets ou l&apos;arrêter ?</translation>
     </message>
@@ -196,28 +201,28 @@
 <context>
     <name>LoginComponents</name>
     <message>
-        <location filename="ui/qml/LoginComponents.qml" line="65"/>
-        <location filename="ui/qml/LoginComponents.qml" line="122"/>
+        <location filename="ui/qml/LoginComponents.qml" line="62"/>
+        <location filename="ui/qml/LoginComponents.qml" line="120"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponents.qml" line="66"/>
+        <location filename="ui/qml/LoginComponents.qml" line="63"/>
         <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
         <translation>Êtes-vous sûr de ne pas vouloir utiliser Reyn Tweets avec votre compte Twitter ?</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponents.qml" line="69"/>
+        <location filename="ui/qml/LoginComponents.qml" line="66"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponents.qml" line="76"/>
+        <location filename="ui/qml/LoginComponents.qml" line="73"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="ui/qml/LoginComponents.qml" line="91"/>
+        <location filename="ui/qml/LoginComponents.qml" line="88"/>
         <source>Reyn Tweets will quit. Bye bye !</source>
         <translation>Reyn Tweets va s&apos;arrêter. Au revoir !</translation>
     </message>
@@ -421,12 +426,12 @@
 <context>
     <name>TimelineControl</name>
     <message>
-        <location filename="logic/controls/timelinecontrol.cpp" line="90"/>
+        <location filename="logic/controls/timelinecontrol.cpp" line="93"/>
         <source>Loading timeline...</source>
         <translation>Chargement de la timeline...</translation>
     </message>
     <message>
-        <location filename="logic/controls/timelinecontrol.cpp" line="117"/>
+        <location filename="logic/controls/timelinecontrol.cpp" line="120"/>
         <source>Timeline loaded</source>
         <translation>Timeline chargée</translation>
     </message>
@@ -460,54 +465,54 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="126"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="124"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweet en cours...</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="154"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="152"/>
         <source>No retweet in the retweeted status</source>
         <translation>Pas de retweet dans le tweet retweeté</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="163"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="160"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeté</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="201"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="198"/>
         <source>Favoriting...</source>
         <translation>Mise en favoris...</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="231"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="227"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorisé</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="265"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="261"/>
         <source>Unfavoriting...</source>
         <translation>Retrait des favoris...</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="301"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="296"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet retiré des favoris</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="339"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="334"/>
         <source>Deleting the tweet...</source>
         <translation>Suppression du tweet...</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="372"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="367"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet attendu dans la réponse de Twitter.</translation>
     </message>
     <message>
-        <location filename="logic/controls/tweetcontrol.cpp" line="386"/>
+        <location filename="logic/controls/tweetcontrol.cpp" line="380"/>
         <source>Tweet deleted</source>
         <translation>Tweet supprimé</translation>
     </message>
@@ -572,13 +577,13 @@
     </message>
     <message>
         <location filename="ui/qml/TweetPane.qml" line="424"/>
-        <location filename="ui/qml/TweetPane.qml" line="505"/>
+        <location filename="ui/qml/TweetPane.qml" line="503"/>
         <source>Retweeted</source>
         <translation>Retweeté</translation>
     </message>
     <message>
         <location filename="ui/qml/TweetPane.qml" line="424"/>
-        <location filename="ui/qml/TweetPane.qml" line="519"/>
+        <location filename="ui/qml/TweetPane.qml" line="517"/>
         <source>Retweet</source>
         <translation>Retweeter</translation>
     </message>
@@ -589,13 +594,13 @@
     </message>
     <message>
         <location filename="ui/qml/TweetPane.qml" line="452"/>
-        <location filename="ui/qml/TweetPane.qml" line="533"/>
+        <location filename="ui/qml/TweetPane.qml" line="531"/>
         <source>Favorited</source>
         <translation>Favorisé</translation>
     </message>
     <message>
         <location filename="ui/qml/TweetPane.qml" line="452"/>
-        <location filename="ui/qml/TweetPane.qml" line="547"/>
+        <location filename="ui/qml/TweetPane.qml" line="545"/>
         <source>Favorite</source>
         <translation>Favoriser</translation>
     </message>
@@ -611,12 +616,12 @@
 <context>
     <name>WriteTweetControl</name>
     <message>
-        <location filename="logic/controls/writetweetcontrol.cpp" line="53"/>
+        <location filename="logic/controls/writetweetcontrol.cpp" line="51"/>
         <source>Posting tweet...</source>
         <translation>Envoi du tweet...</translation>
     </message>
     <message>
-        <location filename="logic/controls/writetweetcontrol.cpp" line="78"/>
+        <location filename="logic/controls/writetweetcontrol.cpp" line="77"/>
         <source>Tweet sent successfully</source>
         <translation>Tweet envoyé avec succès</translation>
     </message>

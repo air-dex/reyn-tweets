@@ -28,16 +28,14 @@
 
 // Constructor
 WriteTweetControl::WriteTweetControl() :
-	QObject(),
-    reyn(this),
-    processing(false)
+    GenericControl()
 {}
 
 // Declaring WriteTweetControl to the QML system
 void WriteTweetControl::declareQML() {
-	qmlRegisterType<WriteTweetControl>("ReynTweetsControls",
-									   0, 1,
-									   "WriteTweetControl");
+    qmlRegisterType<WriteTweetControl>("ReynTweetsControls",
+                                       0, 1,
+                                       "WriteTweetControl");
 }
 
 // Posting a tweet without medias
@@ -46,58 +44,57 @@ void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
         return;
     }
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(postTweetEnded(ProcessWrapper)));
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(postTweetEnded(ProcessWrapper)));
 
     processing = true;
     emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
-	reyn.postTweet(tweet, inReplyToTweetID);
+    reyn.postTweet(tweet, inReplyToTweetID);
 }
 
 
 // After posting a tweet
 void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
-	ProcessResult result = res.accessResult(this);
+    ProcessResult result = res.accessResult(this);
 
-	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
-		return;
-	}
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = false;
+        return;
+    }
 
-	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(postTweetEnded(ProcessWrapper)));
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(postTweetEnded(ProcessWrapper)));
 
-	CoreResult issue = result.processIssue;
+    CoreResult issue = result.processIssue;
 
-	switch (issue) {
-		case TWEET_POSTED:
-			// Process successful
-			emit tweetPosted();
-            emit postEnded(true,
-                           WriteTweetControl::trUtf8("Tweet sent successfully"),
-                           false);
-			break;
+    switch (issue) {
+        case TWEET_POSTED:
+            // Process successful
+            emit tweetPosted();
+            emit actionEnded(true,
+                             WriteTweetControl::trUtf8("Tweet sent successfully"),
+                             false);
+            break;
 
-		case AUTHENTICATION_REQUIRED:
-			// An authentication is needed. So let's do it!
-			emit authenticationNeeded();
-			break;
+        case AUTHENTICATION_REQUIRED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            break;
 
-		// Problems that can be solved trying later
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
-			emit postEnded(false, result.errorMsg, false);
-			break;
+        // Problems that can be solved trying later
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
 
-		// Unknown ends
-		case UNKNOWN_PROBLEM:
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
 
-		default:
-			emit postEnded(false, result.errorMsg, true);
-			break;
-	}
-
-    processing = false;
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
 }

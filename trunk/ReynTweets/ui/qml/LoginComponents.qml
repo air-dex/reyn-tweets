@@ -32,9 +32,6 @@ Item {
 
 	property int margin: 5
 
-	signal allowOK
-	signal allowKO(string errMsg, bool isfatal)
-
 	// Control whose role is to allow Reyn Tweets then saving it the configuration
 	AllowControl {
 		id: control
@@ -94,7 +91,8 @@ Item {
 	Component.onCompleted: {
 		// Wiring between the control and its view
 		control.showLoginPopup.connect(setLoginPopupVisible)
-		control.allowEnded.connect(afterAllowing)
+		control.actionEnded.connect(afterAllowing)
+		control.showInfoMessage.connect(showInfoMessage)
 	}
 
 	// Allowing Reyn Tweets
@@ -127,4 +125,14 @@ Item {
 			allowKO(errMsg, fatal)
 		}
 	}
+
+	/////////////
+	// Signals //
+	/////////////
+
+	signal allowOK
+	signal allowKO(string errMsg, bool isfatal)
+
+	// Showing an information message
+	signal showInfoMessage(string infoMsg)
 }

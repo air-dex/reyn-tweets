@@ -27,56 +27,34 @@
 #ifndef LAUNCHINGCONTROL_HPP
 #define LAUNCHINGCONTROL_HPP
 
-#include <QObject>
+#include "genericcontrol.hpp"
 #include "logincontrol.hpp"
 #include "../reyncore.hpp"
 
 /// @class LaunchingControl
 /// @brief Control behind a LaunchingPane
-class LaunchingControl : public QObject
+class LaunchingControl : public GenericControl
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn LaunchingControl();
-		/// @brief Constructor
-		LaunchingControl();
+    public:
+        /// @fn LaunchingControl();
+        /// @brief Constructor
+        LaunchingControl();
 
-		/// @fn static void declareQML();
-		/// @brief Declaring to the QML system
-		static void declareQML();
+        /// @fn static void declareQML();
+        /// @brief Declaring to the QML system
+        static void declareQML();
 
-		/// @fn Q_INVOKABLE void launchReynTweets();
-		/// @brief Lauching Reyn Tweets
-		Q_INVOKABLE void launchReynTweets();
+        /// @fn Q_INVOKABLE void launchReynTweets();
+        /// @brief Lauching Reyn Tweets
+        Q_INVOKABLE void launchReynTweets();
 
-
-	signals:
-		/// @fn void launchEnded(bool launchOK,
-		///						 QString errorMsg = "",
-		///						 bool isFatal = false);
-		/// @brief Signal sent after launching
-		/// @param launchOK Did the launching process end successfully ?
-		/// @param errorMsg Error message
-		/// @param isFatal Did the launching process end with a fatal error ?
-		void launchEnded(bool launchOK,
-						 QString errorMsg,
-						 bool isFatal);
-
-		/// @fn void authenticationNeeded();
-		/// @brief Signal sent if Reyn Tweets has to be allowed again
-		void authenticationNeeded();
-
-
-	protected slots:
-		/// @fn void launchOK(ProcessWrapper res);
-		/// @brief Slot executed at the end of the launch process
-		/// @param res The process result
-		void launchOK(ProcessWrapper res);
-
-	protected:
-		/// @brief Core of the application
-		ReynCore reyn;
+    protected slots:
+        /// @fn void launchOK(ProcessWrapper res);
+        /// @brief Slot executed at the end of the launch process
+        /// @param res The process result
+        void launchOK(ProcessWrapper res);
 };
 
 #endif // LAUNCHINGCONTROL_HPP

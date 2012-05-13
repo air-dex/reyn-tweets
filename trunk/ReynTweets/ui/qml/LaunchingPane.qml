@@ -128,7 +128,7 @@ Rectangle {
 		z: launching_pane.z + 10
 		width: parent.width
 		anchors.bottom: parent.bottom
-		anchors.bottomMargin: 3* launching_pane.margin
+		anchors.bottomMargin: 10* launching_pane.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		// Text to show in the pane
@@ -174,8 +174,11 @@ Rectangle {
 
 	Component.onCompleted: {
 		// Wiring
-		control.launchEnded.connect(afterLaunching)
+		control.actionEnded.connect(afterLaunching)
+
+		// Wiring log_component
 		log_component.allowKO.connect(afterAllowing)
+		log_component.showInfoMessage.connect(displayInfoMessage)
 	}
 
 	/// @fn function launchReynTweets();
@@ -225,5 +228,11 @@ Rectangle {
 
 		pane.pane_text = messageDisplayed;
 		pane.visible = true
+	}
+
+	// Displaying informations
+	function displayInfoMessage(msg) {
+		info_pane.pane_text = msg
+		info_pane.visible = true
 	}
 }

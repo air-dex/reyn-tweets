@@ -24,102 +24,78 @@
 #ifndef TIMELINECONTROL_HPP
 #define TIMELINECONTROL_HPP
 
-#include <QObject>
+#include "genericcontrol.hpp"
 #include "../../model/timelines/timeline.hpp"
 #include "../reyncore.hpp"
 
 /// @class TimelineControl
 /// @brief Control behind a TimelinePane
-class TimelineControl : public QObject
+class TimelineControl : public GenericControl
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn TimelineControl();
-		/// @brief Constructor
-		TimelineControl();
+    public:
+        /// @fn TimelineControl();
+        /// @brief Constructor
+        TimelineControl();
 
-		/// @fn static void declareQML();
-		/// @brief Declaring TweetControl to the QML system
-		static void declareQML();
+        /// @fn static void declareQML();
+        /// @brief Declaring TweetControl to the QML system
+        static void declareQML();
 
-		/// @fn Q_INVOKABLE void loadHomeTimeline();
-		/// @brief Loading the home timeline
-		Q_INVOKABLE void loadHomeTimeline();
+        /// @fn Q_INVOKABLE void loadHomeTimeline();
+        /// @brief Loading the home timeline
+        Q_INVOKABLE void loadHomeTimeline();
 
-		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-		/// @brief Getting a pointer on a tweet in the timeline.
-		///
-		/// Used by QML delegates of the ListView in the TimelinePane
-		/// to attribute a tweet to TweetPane in the delegate in the list.
-		/// @param tweetIndex Index of the tweet in the timeline
-		/// @return The tweet &#135;tweetIndex in the timeline if the index
-		/// is ok, a default tweet otherwise.
-		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
+        /// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
+        /// @brief Getting a pointer on a tweet in the timeline.
+        ///
+        /// Used by QML delegates of the ListView in the TimelinePane
+        /// to attribute a tweet to TweetPane in the delegate in the list.
+        /// @param tweetIndex Index of the tweet in the timeline
+        /// @return The tweet &#135;tweetIndex in the timeline if the index
+        /// is ok, a default tweet otherwise.
+        Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 
-		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-		/// @brief Replacing a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param updatedTweet New value of the tweet
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+        /// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+        /// @brief Replacing a tweet in a timeline
+        ///
+        /// It can be used after retweeting a tweet, for example.
+        /// @param updatedTweet New value of the tweet
+        /// @param tweetIndex Index of the tweet in the timeline
+        Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
 
-		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
-		/// @brief Deleting a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void deleteTweet(int tweetIndex);
+        /// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
+        /// @brief Deleting a tweet in a timeline
+        ///
+        /// It can be used after retweeting a tweet, for example.
+        /// @param tweetIndex Index of the tweet in the timeline
+        Q_INVOKABLE void deleteTweet(int tweetIndex);
 
 
-	signals:
-		/// @fn void timelineChanged();
-		/// @brief Signal sent when the timeline property changes
-		void timelineChanged();
+    signals:
+        /// @fn void timelineChanged();
+        /// @brief Signal sent when the timeline property changes
+        void timelineChanged();
 
-		/// @fn void loadEnded(bool launchOK,
-		///					   QString errorMsg,
-		///					   bool isFatal);
-		/// @brief Signal sent after launching
-		/// @param launchOK Did the launching process end successfully ?
-		/// @param errorMsg Error message
-		/// @param isFatal Did the launching process end with a fatal error ?
-		void loadEnded(bool launchOK,
-					   QString errorMsg,
-					   bool isFatal);
+    protected slots:
+        /// @fn void loadTimelineEnded(ProcessWrapper res);
+        /// @brief Slot executed after loading a timeline
+        /// @param res Result of the load
+        void loadTimelineEnded(ProcessWrapper res);
 
-		/// @fn void authenticationNeeded();
-		/// @brief Signal sent if Reyn Tweets has to be allowed again
-		void authenticationNeeded();
+    protected:
+        /// @brief The timeline
+        Timeline timeline;
 
-        /// @fn void showInfoMessage(QString message);
-        /// @brief Signal sent for announcing something, often at the beginning
-        /// of an action
-        /// @param message Thye message to display.
-        void showInfoMessage(QString message);
+        /// @brief Length of the timeline. Used by QML for the list model.
+        Q_PROPERTY(int tl_length
+                   READ getTimelineLength
+                   NOTIFY timelineChanged)
 
-	protected slots:
-		/// @fn void loadTimelineEnded(ProcessWrapper res);
-		/// @brief Slot executed after loading a timeline
-		/// @param res Result of the load
-		void loadTimelineEnded(ProcessWrapper res);
-
-	protected:
-		/// @brief Heart of Reyn Tweets
-		ReynCore reyn;
-
-		/// @brief The timeline
-		Timeline timeline;
-
-		/// @brief Length of the timeline. Used by QML for the list model.
-		Q_PROPERTY(int tl_length
-				   READ getTimelineLength
-				   NOTIFY timelineChanged)
-
-		/// @fn Timeline getTimelineLength();
-		/// @brief Reading the property tl_length
-		int getTimelineLength();
+        /// @fn Timeline getTimelineLength();
+        /// @brief Reading the property tl_length
+        int getTimelineLength();
 };
 
 #endif // TIMELINECONTROL_HPP

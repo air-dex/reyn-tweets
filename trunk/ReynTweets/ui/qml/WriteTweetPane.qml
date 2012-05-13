@@ -150,19 +150,39 @@ Rectangle {
 		// When the tweet is too long (> 140 characters)
 		State {
 			name: "TooLong"
-			when: !TwitterTextJS.twttr.txt.isValidTweetText(tweet_edit.text)
-				  && TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) !== "empty"
+			when: TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) === "too_long"
 
 			PropertyChanges {
 				target: chars_left_indicator
 				color: constant.red
 				font.bold: true
-				reason: getInvalidReason()
+				reason: "( " + qsTr("too long") + ')'
 			}
 
 			PropertyChanges {
 				target: tweet_button
-				onClick: console.log("TODO : cannot tweet")
+				onClick: {
+					showInfoMessage(qsTr("Your tweet gets more than 140 characters."))
+					console.log("TODO : tweeting with TwitLonger")
+				}
+			}
+		},
+
+		// When the tweet gets invalid characters
+		State {
+			name: "InvalidCharacters"
+			when: TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) === "invalid_characters"
+
+			PropertyChanges {
+				target: chars_left_indicator
+				color: constant.red
+				font.bold: true
+				reason: "( " + qsTr("invalid character(s)") + ')'
+			}
+
+			PropertyChanges {
+				target: tweet_button
+				onClick: showInfoMessage(qsTr("Your tweet gets some invalid character(s)."))
 			}
 		},
 
@@ -173,7 +193,7 @@ Rectangle {
 
 			PropertyChanges {
 				target: tweet_button
-				onClick: console.log("TODO : write something before tweeting")
+				onClick: showInfoMessage(qsTr("You have to write something to tweet."))
 			}
 		}
 	]
@@ -217,29 +237,6 @@ Rectangle {
 		}
 
 		return charsAllowed;
-	}
-
-	// Knowing why the tweet cannot be posted
-	function getInvalidReason() {
-		var invalidMsg = TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text)
-		var finalReason = " ("
-
-		switch (invalidMsg) {
-			case "too_long":
-				finalReason = finalReason.concat(qsTr("too long"))
-				break;
-
-			case "invalid_characters":
-				finalReason = finalReason.concat(qsTr("invalid character(s)"))
-				break;
-
-			default:	// "empty", false or other unexpected values
-				finalReason = finalReason.concat(invalidMsg)
-				break;
-		}
-
-		finalReason = finalReason.concat(')')
-		return finalReason
 	}
 
 

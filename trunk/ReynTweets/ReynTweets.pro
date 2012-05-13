@@ -115,6 +115,7 @@ SOURCES += \
 	logic/processes/posttweetprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
+	logic/controls/genericcontrol.cpp \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
@@ -122,8 +123,7 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	main.cpp \
-    logic/controls/genericcontrol.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -208,6 +208,7 @@ HEADERS  += \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
 	logic/reyncore.hpp \
+	logic/controls/genericcontrol.hpp \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/logincontrol.hpp \
@@ -215,8 +216,7 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp \
-    logic/controls/genericcontrol.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -241,23 +241,30 @@ TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 # Extra targets - General definitions #
 #-------------------------------------#
 
-# SRC_FOLDER : Source folder
+# SEPARATOR : Separator in path systems
 # RMDIR_CMD : Command to delete directories
 # RMFILE_CMD : Command to delete files
 
 win32 {
 	# Leave an empty line because of the backslash at the end of the variable
-	SRC_FOLDER = ..\\ReynTweets\\
+	SEPARATOR = \\
 
 	RMDIR_CMD = rd /s /q
 	RMFILE_CMD = del /s /q
+	COPY_CMD = copy /y
+	SCRIPT_EXT = bat
 }
 
 linux-g++ {
-	SRC_FOLDER = ../ReynTweets/
+	SEPARATOR = /
 	RMDIR_CMD = rm -rfv
 	RMFILE_CMD = rm -rfv
+	COPY_CMD = cp -v
+	SCRIPT_EXT = sh
 }
+
+# SRC_FOLDER : Source folder
+SRC_FOLDER = ..$${SEPARATOR}ReynTweets$${SEPARATOR}
 
 
 #-----------------------#
@@ -266,12 +273,10 @@ linux-g++ {
 
 win32 {
 	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
-	DOC_FOLDERS = ..\\doc\\html
 }
 
 linux-g++ {
 	DOXYGEN_CMD = doxygen
-	DOC_FOLDERS = ../doc/html
 }
 
 # Create doc
@@ -280,7 +285,7 @@ doc.commands = $${DOXYGEN_CMD} $${SRC_FOLDER}Doxyfile.txt
 
 # Clean doc
 cleandoc.target = cleandoc
-cleandoc.commands = $${RMDIR_CMD} $${DOC_FOLDERS}
+cleandoc.commands = $${RMDIR_CMD} ..$${SEPARATOR}doc$${SEPARATOR}html
 
 QMAKE_EXTRA_TARGETS += doc cleandoc
 
@@ -289,9 +294,12 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 # Translation targets #
 #---------------------#
 
+# Folder containing translations
+TR_FOLDER = $${SRC_FOLDER}i18n$${SEPARATOR}
+
 # lupdate
-LUPDATE_FR = lupdate -noobsolete $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_fr.ts
-LUPDATE_EN = lupdate -noobsolete $${SRC_FOLDER} -ts $${SRC_FOLDER}reyntweets_en.ts
+LUPDATE_FR = lupdate -noobsolete $${SRC_FOLDER} -ts $${TR_FOLDER}reyntweets_fr.ts
+LUPDATE_EN = lupdate -noobsolete $${SRC_FOLDER} -ts $${TR_FOLDER}reyntweets_en.ts
 
 trupdate.target = trupdate
 win32 {
@@ -302,8 +310,8 @@ linux-g++ {
 }
 
 # lrelease
-LRELEASE_FR = lrelease $${SRC_FOLDER}reyntweets_fr.ts
-LRELEASE_EN = lrelease $${SRC_FOLDER}reyntweets_en.ts
+LRELEASE_FR = lrelease $${TR_FOLDER}reyntweets_fr.ts
+LRELEASE_EN = lrelease $${TR_FOLDER}reyntweets_en.ts
 
 trrelease.target = trrelease
 win32 {
@@ -313,11 +321,15 @@ linux-g++ {
 	trrelease.commands = $${LRELEASE_FR} ; $${LRELEASE_EN}
 }
 
+# Deploy .qm files in build directories
+trdeploy.target = trdeploy
+trdeploy.commands = $${COPY_CMD} $${TR_FOLDER}*.qm .
+
 # Delete .qm files
 trclean.target = trclean
-trclean.commands = $${RMFILE_CMD} $${SRC_FOLDER}*.qm
+trclean.commands = $${RMFILE_CMD} $${TR_FOLDER}*.qm
 
-QMAKE_EXTRA_TARGETS += trupdate trrelease trclean
+QMAKE_EXTRA_TARGETS += trupdate trrelease trdeploy trclean
 
 
 #------------------------#

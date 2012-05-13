@@ -427,12 +427,12 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="130"/>
+        <location filename="ui/qml/TimelinePane.qml" line="129"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="134"/>
+        <location filename="ui/qml/TimelinePane.qml" line="133"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -474,8 +474,9 @@
     </message>
     <message>
         <location filename="logic/controls/tweetcontrol.cpp" line="370"/>
-        <source>Retweet expected in Twiiter reply.</source>
-        <translation>Retweet expected in Twiiter reply.</translation>
+        <source>Retweet expected in Twitter reply.</source>
+        <oldsource>Retweet expected in Twiiter reply.</oldsource>
+        <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
         <location filename="logic/controls/tweetcontrol.cpp" line="384"/>
@@ -574,7 +575,7 @@
 <context>
     <name>WarningTransientPane</name>
     <message>
-        <location filename="ui/qml/WarningTransientPane.qml" line="34"/>
+        <location filename="ui/qml/WarningTransientPane.qml" line="31"/>
         <source>A problem occured :</source>
         <translation>A problem occured :</translation>
     </message>
@@ -601,12 +602,12 @@
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="227"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="170"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="231"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

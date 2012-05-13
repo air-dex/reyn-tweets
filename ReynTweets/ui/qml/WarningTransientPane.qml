@@ -28,7 +28,7 @@ TransientPane {
 
 	Constants { id:constant }
 
-	message: '<strong>' + qsTr("A problem occured :") + "</strong><br/>"
+	message: '<strong>' + qsTr("A problem occured :") + "</strong>\n"
 			 + warning_transient_message.warning_msg
 
 	// Message describing the warning

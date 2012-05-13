@@ -25,16 +25,14 @@
 #include "timelinecontrol.hpp"
 
 TimelineControl::TimelineControl() :
-	QObject(),
-	reyn(this),
-	timeline()
+    GenericControl()
 {}
 
 // Declaring TweetControl to the QML system
 void TimelineControl::declareQML() {
-	qmlRegisterType<TimelineControl>("ReynTweetsControls",
-									 0, 1,
-									 "TimelineControl");
+    qmlRegisterType<TimelineControl>("ReynTweetsControls",
+                                     0, 1,
+                                     "TimelineControl");
 }
 
 
@@ -44,37 +42,37 @@ void TimelineControl::declareQML() {
 
 // Getting a pointer on a tweet in the timeline.
 Tweet * TimelineControl::getTweet(int tweetIndex) {
-	if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
-		return &(timeline[tweetIndex]);
-	} else {
-		return new Tweet;
-	}
+    if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
+        return &(timeline[tweetIndex]);
+    } else {
+        return new Tweet;
+    }
 }
 
 // Reading the property tl_length
 int TimelineControl::getTimelineLength() {
-	return timeline.size();
+    return timeline.size();
 }
 
 // Replacing a tweet
 void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
-	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-		return;
-	}
+    if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+        return;
+    }
 
-	Tweet & tweet = timeline[tweetIndex];
-	tweet.reset();
-	tweet.fillWithVariant(updatedTweet.toMap());
+    Tweet & tweet = timeline[tweetIndex];
+    tweet.reset();
+    tweet.fillWithVariant(updatedTweet.toMap());
 }
 
 // Replacing a tweet
 void TimelineControl::deleteTweet(int tweetIndex) {
-	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-		return;
-	}
+    if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+        return;
+    }
 
-	timeline.removeAt(tweetIndex);
-	emit timelineChanged();
+    timeline.removeAt(tweetIndex);
+    emit timelineChanged();
 }
 
 
@@ -84,56 +82,61 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 
 // Loading the home timeline
 void TimelineControl::loadHomeTimeline() {
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(loadTimelineEnded(ProcessWrapper)));
+    if (processing) {
+        return;
+    }
 
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(loadTimelineEnded(ProcessWrapper)));
+
+    processing = true;
     emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
     reyn.loadHomeTimeline(-1, -1, 50, false, true, true, false, 0);
-    //reyn.loadHomeTimeline(190128971562758144, 190129309267140611, 50, false, true, true, false, 0);
 }
 
 
 // After loading a timeline
 void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
-	ProcessResult result = res.accessResult(this);
+    ProcessResult result = res.accessResult(this);
 
-	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
-		return;
-	}
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = true;
+        return;
+    }
 
-	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(loadTimelineEnded(ProcessWrapper)));
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-	CoreResult issue = result.processIssue;
-	QVariantList resList = result.results.toList();
+    CoreResult issue = result.processIssue;
+    QVariantList resList = result.results.toList();
 
-	switch (issue) {
-		case TIMELINE_RETRIEVED:
-			timeline.fillWithVariant(resList);
-			emit timelineChanged();
-			// Process successful
-            emit loadEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
-			break;
+    switch (issue) {
+        case TIMELINE_RETRIEVED:
+            timeline.fillWithVariant(resList);
+            emit timelineChanged();
+            // Process successful
+            emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
+            break;
 
-		case TOKENS_NOT_AUTHORIZED:
-			// An authentication is needed. So let's do it!
-			emit authenticationNeeded();
-			return;
+        case TOKENS_NOT_AUTHORIZED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            return;
 
-		// Problems that can be solved trying later
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
-			emit loadEnded(false, result.errorMsg, false);
-			break;
+        // Problems that can be solved trying later
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
 
-		// Unknown ends
-		case UNKNOWN_PROBLEM:
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
 
-		default:
-			emit loadEnded(false, result.errorMsg, true);
-			break;
-	}
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
 }

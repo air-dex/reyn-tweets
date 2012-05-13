@@ -29,15 +29,14 @@
 
 // Constructor
 LaunchingControl::LaunchingControl() :
-	QObject(),
-	reyn(this)
+    GenericControl()
 {}
 
 // Declaring to the QML components
 void LaunchingControl::declareQML() {
-	qmlRegisterType<LaunchingControl>("ReynTweetsControls",
-									  0, 1,
-									  "LaunchingControl");
+    qmlRegisterType<LaunchingControl>("ReynTweetsControls",
+                                      0, 1,
+                                      "LaunchingControl");
 }
 
 
@@ -50,58 +49,65 @@ void LaunchingControl::declareQML() {
 /////////////////////////////////////////////////////////
 
 void LaunchingControl::launchReynTweets() {
-	// Connection for the end of the launch process
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(launchOK(ProcessWrapper)));
+    if (processing) {
+        return;
+    }
 
-	reyn.launchReynTweets();
+    // Connection for the end of the launch process
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(launchOK(ProcessWrapper)));
+
+    // Message not necessary
+    processing = true;
+    reyn.launchReynTweets();
 }
 
 // After launching
 void LaunchingControl::launchOK(ProcessWrapper res) {
-	ProcessResult result = res.accessResult(this);
+    ProcessResult result = res.accessResult(this);
 
-	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
-		return;
-	}
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = false;
+        return;
+    }
 
-	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(launchOK(ProcessWrapper)));
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(launchOK(ProcessWrapper)));
 
-	CoreResult issue = result.processIssue;
+    CoreResult issue = result.processIssue;
 
-	switch (issue) {
-		case LAUNCH_SUCCESSFUL:
+    switch (issue) {
+        case LAUNCH_SUCCESSFUL:
             // Process successful
-            emit launchEnded(true,
+            emit actionEnded(true,
                              LaunchingControl::trUtf8("Reyn Tweets launched"),
                              false);
-			break;
+            break;
 
-		case AUTHENTICATION_REQUIRED:
-			// An authentication is needed. So let's do it!
-			emit authenticationNeeded();
-			break;
+        case AUTHENTICATION_REQUIRED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            break;
 
-		// Problems that can be solved trying later
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
-			emit launchEnded(false, result.errorMsg, false);
-			break;
+        // Problems that can be solved trying later
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
 
-		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case LOADING_CONFIGURATION_ERROR:
+        // Problems with configuration file
+        case CONFIGURATION_FILE_UNKNOWN:
+        case CONFIGURATION_FILE_NOT_OPEN:
+        case LOADING_CONFIGURATION_ERROR:
 
-		// Unknown ends
-		case UNKNOWN_PROBLEM:
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
 
-		default:
-			emit launchEnded(false, result.errorMsg, true);
-			break;
-	}
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
 }

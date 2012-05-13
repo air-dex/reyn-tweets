@@ -104,7 +104,7 @@ Rectangle {
 		// Wiring
 
 		// After loading a timeline
-		control.loadEnded.connect(afterLoading)
+		control.actionEnded.connect(afterLoading)
 
 		// For authentications
 		control.authenticationNeeded.connect(needAuthentication)

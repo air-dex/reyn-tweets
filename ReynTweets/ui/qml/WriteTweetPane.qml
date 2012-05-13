@@ -180,7 +180,7 @@ Rectangle {
 
 	Component.onCompleted: {
 		// Wiring
-		control.postEnded.connect(write_tweet_pane.endWriting)
+		control.actionEnded.connect(write_tweet_pane.endWriting)
 		control.authenticationNeeded.connect(write_tweet_pane.needAuthentication)
 		control.showInfoMessage.connect(write_tweet_pane.showInfoMessage)
 	}
@@ -242,6 +242,7 @@ Rectangle {
 		return finalReason
 	}
 
+
 	/////////////
 	// Signals //
 	/////////////
@@ -250,7 +251,7 @@ Rectangle {
 	signal needAuthentication
 
 	// Sent after writing a tweet
-	signal endWriting(bool endOK, string errMsg, bool fatalEnd)
+	signal endWriting(bool endOK, string endMsg, bool fatalEnd)
 
 	// Sent to update the timeline
 	signal updateTimeline

@@ -24,72 +24,44 @@
 #ifndef WRITETWEETCONTROL_HPP
 #define WRITETWEETCONTROL_HPP
 
-#include <QObject>
 #include "../../model/tweets/tweet.hpp"
 #include "../reyncore.hpp"
+#include "genericcontrol.hpp"
 
 /// @class WriteTweetControl
 /// @brief Control behind a pane used for writing and posting tweets.
-class WriteTweetControl : public QObject
+class WriteTweetControl : public GenericControl
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn WriteTweetControl();
-		/// @brief Constructor
-		WriteTweetControl();
+    public:
+        /// @fn WriteTweetControl();
+        /// @brief Constructor
+        WriteTweetControl();
 
-		/// @fn static void declareQML();
-		/// @brief Declaring TweetControl to the QML system
-		static void declareQML();
+        /// @fn static void declareQML();
+        /// @brief Declaring TweetControl to the QML system
+        static void declareQML();
 
-		/// @fn Q_INVOKABLE void postTweet(QString tweet,
-		///								   QString inReplyToTweetID = -1);
-		/// @brief Posting a tweet without medias
-		/// @param tweet The text of the tweet
-		/// @param inReplyToTweetID ID of the tweet
-		Q_INVOKABLE void postTweet(QString tweet,
-								   QString inReplyToTweetID = "-1");
+        /// @fn Q_INVOKABLE void postTweet(QString tweet,
+        ///								   QString inReplyToTweetID = -1);
+        /// @brief Posting a tweet without medias
+        /// @param tweet The text of the tweet
+        /// @param inReplyToTweetID ID of the tweet
+        Q_INVOKABLE void postTweet(QString tweet,
+                                   QString inReplyToTweetID = "-1");
 
 
-	signals:
-		/// @fn void tweetPosted();
-		/// @brief Signal sent if the tweet was posted successfully
-		void tweetPosted();
+    signals:
+        /// @fn void tweetPosted();
+        /// @brief Signal sent if the tweet was posted successfully
+        void tweetPosted();
 
-		/// @fn void postEnded(bool launchOK,
-		///					   QString errorMsg,
-		///					   bool isFatal);
-		/// @brief Signal sent after posting the tweet
-		/// @param launchOK Did the launching process end successfully ?
-		/// @param errorMsg Error message
-		/// @param isFatal Did the launching process end with a fatal error ?
-		void postEnded(bool launchOK,
-					   QString errorMsg,
-					   bool isFatal);
-
-		/// @fn void authenticationNeeded();
-		/// @brief Signal sent if Reyn Tweets has to be allowed again
-		void authenticationNeeded();
-
-        /// @fn void showInfoMessage(QString message);
-        /// @brief Signal sent for announcing something, often at the beginning
-        /// of an action
-        /// @param message Thye message to display.
-        void showInfoMessage(QString message);
-
-	protected slots:
-		/// @fn void postTweetEnded(ProcessWrapper res);
-		/// @brief Slot executed after posting a tweet.
-		/// @param res Result of the post
-		void postTweetEnded(ProcessWrapper res);
-
-	protected:
-		/// @brief Heart of Reyn Tweets
-		ReynCore reyn;
-
-        /// @brief Boolean indicating if the control is in a process
-        bool processing;
+    protected slots:
+        /// @fn void postTweetEnded(ProcessWrapper res);
+        /// @brief Slot executed after posting a tweet.
+        /// @param res Result of the post
+        void postTweetEnded(ProcessWrapper res);
 };
 
 #endif // WRITETWEETCONTROL_HPP

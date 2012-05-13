@@ -462,8 +462,6 @@ Rectangle {
 		}
 	}
 
-	// TODO : for treatments like authentication and errors
-
 	states: [
 		// Base state : classic tweet
 		State {
@@ -604,7 +602,7 @@ Rectangle {
 		// Wiring
 		control.destroyTweet.connect(tweet_pane.destroyTweet)
 		control.updateTimeline.connect(tweet_pane.updateTweet)
-		control.tweetEnded.connect(tweet_pane.endTweeting)
+		control.actionEnded.connect(tweet_pane.endTweeting)
 		control.authenticationNeeded.connect(tweet_pane.needAuthentication)
 		control.showInfoMessage.connect(tweet_pane.showInfoMessage)
 
@@ -691,7 +689,7 @@ Rectangle {
 	signal needAuthentication
 
 	// After an action was made
-	signal endTweeting(bool endOK, string errMsg, bool fatalEnd)
+	signal endTweeting(bool endOK, string endMsg, bool fatalEnd)
 
 	// Showing an information message
 	signal showInfoMessage(string infoMsg)

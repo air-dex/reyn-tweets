@@ -24,46 +24,43 @@
 #ifndef SETTINGSCONTROL_HPP
 #define SETTINGSCONTROL_HPP
 
-#include <QObject>
+#include "genericcontrol.hpp"
 #include "../reyncore.hpp"
 #include "../../model/configuration/reyntweetsconfiguration.hpp"
 
 /// @class SettingsControl
 /// @brief Control for managing the configuration
-class SettingsControl : public QObject
+class SettingsControl : public GenericControl
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn SettingsControl();
-		/// @brief Constructor
-		SettingsControl();
+    public:
+        /// @fn SettingsControl();
+        /// @brief Constructor
+        SettingsControl();
 
-		/// @fn static void declareQML();
-		/// @brief Declaring SettingsControl to the QML system
-		static void declareQML();
+        /// @fn static void declareQML();
+        /// @brief Declaring SettingsControl to the QML system
+        static void declareQML();
 
-	signals:
-		/// @fn void configurationChanged();
-		/// @brief Emitted to notify changes about the configuration property
-		void configurationChanged();
+    signals:
+        /// @fn void configurationChanged();
+        /// @brief Emitted to notify changes about the configuration property
+        void configurationChanged();
 
-	protected:
-		/// @brief Heart of Reyn Tweets. Unused for the moment
-		ReynCore reyn;
+    protected:
+        /// @brief Reference on the configuration of Reyn Tweets
+        ReynTweetsConfiguration & conf;
 
-		/// @brief Reference on the configuration of Reyn Tweets
-		ReynTweetsConfiguration & conf;
+        /// @property configuration
+        /// @brief Read only property to access to the configuration for QML.
+        Q_PROPERTY(ReynTweetsConfiguration * configuration
+                   READ getConfiguration
+                   NOTIFY configurationChanged)
 
-		/// @property configuration
-		/// @brief Read only property to access to the configuration for QML.
-		Q_PROPERTY(ReynTweetsConfiguration * configuration
-				   READ getConfiguration
-				   NOTIFY configurationChanged)
-
-		/// @fn ReynTweetsConfiguration * getConfiguration();
-		/// @brief Reading the configuration property
-		ReynTweetsConfiguration * getConfiguration();
+        /// @fn ReynTweetsConfiguration * getConfiguration();
+        /// @brief Reading the configuration property
+        ReynTweetsConfiguration * getConfiguration();
 };
 
 #endif // SETTINGSCONTROL_HPP

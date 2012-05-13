@@ -629,7 +629,8 @@ Rectangle {
 
 		// Treatments if it is a retweet
 		if (shown_tweet.isRetweetedByPeople()
-				|| tweet_pane.tweet.isRetweet())
+				|| tweet_pane.tweet.isRetweet()
+				|| shown_tweet.retweeted)
 		{
 			// The retweeter is not in retweet_count. So there is a problem if
 			// the author of the retweet is the only retweeter.

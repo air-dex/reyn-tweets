@@ -429,12 +429,12 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="130"/>
+        <location filename="ui/qml/TimelinePane.qml" line="129"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="ui/qml/TimelinePane.qml" line="134"/>
+        <location filename="ui/qml/TimelinePane.qml" line="133"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
@@ -476,7 +476,8 @@
     </message>
     <message>
         <location filename="logic/controls/tweetcontrol.cpp" line="370"/>
-        <source>Retweet expected in Twiiter reply.</source>
+        <source>Retweet expected in Twitter reply.</source>
+        <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet attendu dans la réponse de Twitter.</translation>
     </message>
     <message>
@@ -576,7 +577,7 @@
 <context>
     <name>WarningTransientPane</name>
     <message>
-        <location filename="ui/qml/WarningTransientPane.qml" line="34"/>
+        <location filename="ui/qml/WarningTransientPane.qml" line="31"/>
         <source>A problem occured :</source>
         <translation>Un problème est arrivé :</translation>
     </message>
@@ -602,12 +603,12 @@
         <translation>Tweeter</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="166"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="227"/>
         <source>too long</source>
         <translation>trop long</translation>
     </message>
     <message>
-        <location filename="ui/qml/WriteTweetPane.qml" line="170"/>
+        <location filename="ui/qml/WriteTweetPane.qml" line="231"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>caractère(s) invalide(s)</translation>

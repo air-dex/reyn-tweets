@@ -367,7 +367,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 					// It's a tweet written by the user and should not be kept
 					// in the timeline. This is an error.
 					emit tweetEnded(false,
-									TweetControl::trUtf8("Retweet expected in Twiiter reply."),
+                                    TweetControl::trUtf8("Retweet expected in Twitter reply."),
 									false);
 					return;
 				}

@@ -123,8 +123,7 @@ Rectangle {
 		var action, messageDisplayed;
 
 		if (endOK) {
-			// Nothing to do for the moment
-			return;
+			messageDisplayed = errMsg
 		} else if (isFatal) {
 			// Bad and fatal error. Show the quit pane.
 			messageDisplayed = qsTr("A fatal error occured while loading the timeline:")

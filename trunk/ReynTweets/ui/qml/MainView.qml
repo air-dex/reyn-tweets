@@ -125,6 +125,8 @@ Rectangle {
 
 	// After an action was made
 	function endAction(endOK, errMsg, fatalEnd) {
+		console.log("Basta !")
+
 		var pane	// Pane to show the message
 
 		if (endOK) {

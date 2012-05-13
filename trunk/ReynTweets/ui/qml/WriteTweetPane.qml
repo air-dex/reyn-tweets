@@ -179,8 +179,8 @@ Rectangle {
 	]
 
 	Component.onCompleted: {
-		control.postTweetEnded.connect(endWriting)
-		control.authenticationNeeded.connect(needAuthentication)
+		control.postEnded.connect(write_tweet_pane.endWriting)
+		control.authenticationNeeded.connect(write_tweet_pane.needAuthentication)
 	}
 
 	// Writing a reply to a tweet by specifying the text and the person to reply

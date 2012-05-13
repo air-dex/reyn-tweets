@@ -1,0 +1,27 @@
+#summary Gestion des cas non triviaux au niveau des vues QML
+
+= Gestion des cas non triviaux au niveau des vues QML =
+
+Il existe plusieurs fin possibles (pas nécessairement bonnes) et dont le résultat est affiché au niveau de l'interface.
+
+Voici les différentes possibilités :
+
+== Affichage d'un message d'information ==
+
+Utilisation d'un TransientPane qui affiche le message qu'on lui donne.
+
+
+== Affichage d'un message d'avertissement ==
+
+=== *Avec* intervention de l'utilisateur ===
+
+Utilisation d'un TryAgainPane qui laisse le choix entre Réessayer ou Quitter
+
+=== *Sans* intervention de l'utilisateur ===
+
+Utilisation d'un WarningTransientPane (TransientPane particulier) qui affiche le message qu'on lui donne après avoir signalé qu'il y a un couac..
+
+
+== Fin catastrophiques ==
+
+Utilisation d'un QuitPane pour quitter l'application.

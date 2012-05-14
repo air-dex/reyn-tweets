@@ -47,6 +47,14 @@ class TimelineControl : public GenericControl
         /// @brief Loading the home timeline
         Q_INVOKABLE void loadHomeTimeline();
 
+        /// @fn Q_INVOKABLE void refreshHomeTimeline();
+        /// @brief Refreshing the home timeline
+        Q_INVOKABLE void refreshHomeTimeline();
+
+        /// @fn Q_INVOKABLE void moreOldHomeTimeline();
+        /// @brief Getting more old tweets the home timeline
+        Q_INVOKABLE void moreOldHomeTimeline();
+
         /// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
         /// @brief Getting a pointer on a tweet in the timeline.
         ///
@@ -83,6 +91,16 @@ class TimelineControl : public GenericControl
         /// @brief Slot executed after loading a timeline
         /// @param res Result of the load
         void loadTimelineEnded(ProcessWrapper res);
+
+        /// @fn void loadTimelineEnded(ProcessWrapper res);
+        /// @brief Slot executed after refreshing a timeline
+        /// @param res Result of the load
+        void refreshTimelineEnded(ProcessWrapper res);
+
+        /// @fn void loadTimelineEnded(ProcessWrapper res);
+        /// @brief Slot executed after getting older tweets a timeline
+        /// @param res Result of the load
+        void moreOldTimelineEnded(ProcessWrapper res);
 
     protected:
         /// @brief The timeline

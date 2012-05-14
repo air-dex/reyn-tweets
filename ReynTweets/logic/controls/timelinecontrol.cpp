@@ -91,7 +91,7 @@ void TimelineControl::loadHomeTimeline() {
 
     processing = true;
     emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
-    reyn.loadHomeTimeline(-1, -1, 50, false, true, true, false, 0);
+    reyn.loadHomeTimeline(-1, -1, 50);
 }
 
 
@@ -118,6 +118,159 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
             emit timelineChanged();
             // Process successful
             emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
+            break;
+
+        case TOKENS_NOT_AUTHORIZED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            return;
+
+        // Problems that can be solved trying later
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
+
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
+
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
+}
+
+
+//////////////////////////
+// Refreshing timelines //
+//////////////////////////
+
+// Loading the home timeline
+void TimelineControl::refreshHomeTimeline() {
+    if (processing) {
+        return;
+    }
+
+    // Refreshing an empty timeline == loading the timeline
+    if (timeline.isEmpty()) {
+        return loadHomeTimeline();
+    }
+
+    qlonglong sinceTweetID = timeline[0].getID() + 1;
+
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+
+    processing = true;
+    emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+    reyn.loadHomeTimeline(sinceTweetID, -1, 50);
+}
+
+
+// After loading a timeline
+void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
+    ProcessResult result = res.accessResult(this);
+
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = true;
+        return;
+    }
+
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+
+    CoreResult issue = result.processIssue;
+    QVariantList resList = result.results.toList();
+    Timeline newTweets;
+
+    switch (issue) {
+        case TIMELINE_RETRIEVED:
+            newTweets.fillWithVariant(resList);
+            // Equivalent to timeline.prepend(newTweets);
+            newTweets.append(timeline);
+            timeline.clear();
+            timeline.append(newTweets);
+            emit timelineChanged();
+            // Process successful
+            emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+            break;
+
+        case TOKENS_NOT_AUTHORIZED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            return;
+
+        // Problems that can be solved trying later
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
+
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
+
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
+}
+
+
+///////////////////////
+// Loading timelines //
+///////////////////////
+
+// Loading the home timeline
+void TimelineControl::moreOldHomeTimeline() {
+    if (processing) {
+        return;
+    }
+
+    // Getting older tweets in an empty timeline == loading the timeline
+    if (timeline.isEmpty()) {
+        return loadHomeTimeline();
+    }
+
+    qlonglong maxTweetID = timeline[timeline.size() -1].getID() - 1;
+
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+
+    processing = true;
+    emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
+    reyn.loadHomeTimeline(-1, maxTweetID, 50);
+}
+
+
+// After loading a timeline
+void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
+    ProcessResult result = res.accessResult(this);
+
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = true;
+        return;
+    }
+
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+
+    CoreResult issue = result.processIssue;
+    QVariantList resList = result.results.toList();
+    Timeline newTweets;
+
+    switch (issue) {
+        case TIMELINE_RETRIEVED:
+            newTweets.fillWithVariant(resList);
+            timeline.append(newTweets);
+            emit timelineChanged();
+            // Process successful
+            emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
             break;
 
         case TOKENS_NOT_AUTHORIZED:

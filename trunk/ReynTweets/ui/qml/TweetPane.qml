@@ -140,7 +140,10 @@ Rectangle {
 			MouseArea {
 				id: avatar_mouse_area
 				anchors.fill: parent
-				onClicked: console.log("TODO : Show @" + shown_tweet.author.screen_name)
+				onClicked: {
+					Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
+					console.log("TODO : Show @" + shown_tweet.author.screen_name)
+				}
 			}
 		}
 
@@ -157,7 +160,10 @@ Rectangle {
 			visible: false
 			MouseArea {
 				anchors.fill: parent
-				onClicked: console.log("TODO : Show @" + tweet.author.screen_name)
+				onClicked: {
+					Qt.openUrlExternally("https://twitter.com/#!/" + tweet.author.screen_name)	// MOCKUP
+					console.log("TODO : Show @" + tweet.author.screen_name)
+				}
 			}
 		}
 	}
@@ -179,7 +185,10 @@ Rectangle {
 		anchors.leftMargin: 2*margin + tweet_pane.avatar_side /4
 		anchors.right: date_text.left
 		anchors.rightMargin: 2*margin
-		onLinkActivated: console.log('TODO : show user @' + shown_tweet.author.screen_name)
+		onLinkActivated: {
+			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
+			console.log('TODO : show user @' + shown_tweet.author.screen_name)
+		}
 	}
 
 	// Label displaying when the tweet was posted
@@ -218,11 +227,13 @@ Rectangle {
 			switch (link[0]) {
 				case '#':
 					// It is an hashtag. Launch a search about it !
+					Qt.openUrlExternally("http://twitter.com/#!/search/\%23" + link.substr(1))	// MOCKUP
 					console.log("TODO : search hashtag " + link)
 					break;
 
 				case '@':
 					// It is a mentionned used. Show him !
+					Qt.openUrlExternally("https://twitter.com/#!/" + link.substr(1))	// MOCKUP
 					console.log("TODO : show user " + link)
 					break;
 
@@ -273,6 +284,7 @@ Rectangle {
 			switch (link[0]) {
 				case '@':
 					// It is a mentionned used. Show him !
+					Qt.openUrlExternally("https://twitter.com/#!/" + link.substr(1))	// MOCKUP
 					console.log("TODO : show " + link)
 					break;
 
@@ -304,6 +316,7 @@ Rectangle {
 			switch (link[0]) {
 				case '@':
 					// The retweeter was mentionned. Show him !
+					Qt.openUrlExternally("https://twitter.com/#!/" + link.substr(1))	// MOCKUP
 					console.log("TODO : show " + link)
 					break;
 

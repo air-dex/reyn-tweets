@@ -433,16 +433,51 @@
         <source>Timeline loaded</source>
         <translation>Timeline loaded</translation>
     </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="166"/>
+        <source>Refreshing timeline...</source>
+        <translation>Refreshing timeline...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="195"/>
+        <source>Timeline refreshed</source>
+        <translation>Timeline refreshed</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="241"/>
+        <source>Loading more tweets...</source>
+        <translation>Loading more tweets...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="270"/>
+        <source>Tweets loaded</source>
+        <translation>Tweets loaded</translation>
+    </message>
 </context>
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="135"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="61"/>
+        <source>Pull down to refresh</source>
+        <translation>Pull down to refresh</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/TimelinePane.qml" line="69"/>
+        <source>Release to refresh</source>
+        <translation>Release to refresh</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/TimelinePane.qml" line="123"/>
+        <source>More...</source>
+        <translation>More...</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/TimelinePane.qml" line="196"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="139"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="200"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -518,87 +553,87 @@
 <context>
     <name>TweetPane</name>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="257"/>
+        <location filename="../ui/qml/TweetPane.qml" line="268"/>
         <source>In reply to </source>
         <translation>In reply to </translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="259"/>
+        <location filename="../ui/qml/TweetPane.qml" line="270"/>
         <source>Show conversation</source>
         <translation>Show conversation</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="322"/>
+        <location filename="../ui/qml/TweetPane.qml" line="335"/>
         <source>Retweeted by</source>
         <translation>Retweeted by</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="337"/>
-        <location filename="../ui/qml/TweetPane.qml" line="352"/>
+        <location filename="../ui/qml/TweetPane.qml" line="350"/>
+        <location filename="../ui/qml/TweetPane.qml" line="365"/>
         <source>me</source>
         <translation>me</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="368"/>
+        <location filename="../ui/qml/TweetPane.qml" line="381"/>
         <source>other</source>
         <translation>other</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="368"/>
+        <location filename="../ui/qml/TweetPane.qml" line="381"/>
         <source>others</source>
         <translation>others</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="369"/>
+        <location filename="../ui/qml/TweetPane.qml" line="382"/>
         <source>and</source>
         <translation>and</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="375"/>
+        <location filename="../ui/qml/TweetPane.qml" line="388"/>
         <source>person</source>
         <translation>person</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="375"/>
+        <location filename="../ui/qml/TweetPane.qml" line="388"/>
         <source>people</source>
         <translation>people</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="399"/>
+        <location filename="../ui/qml/TweetPane.qml" line="412"/>
         <source>Reply</source>
         <translation>Reply</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="412"/>
+        <location filename="../ui/qml/TweetPane.qml" line="425"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="424"/>
-        <location filename="../ui/qml/TweetPane.qml" line="503"/>
+        <location filename="../ui/qml/TweetPane.qml" line="437"/>
+        <location filename="../ui/qml/TweetPane.qml" line="516"/>
         <source>Retweeted</source>
         <translation>Retweeted</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="424"/>
-        <location filename="../ui/qml/TweetPane.qml" line="517"/>
+        <location filename="../ui/qml/TweetPane.qml" line="437"/>
+        <location filename="../ui/qml/TweetPane.qml" line="530"/>
         <source>Retweet</source>
         <translation>Retweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="440"/>
+        <location filename="../ui/qml/TweetPane.qml" line="453"/>
         <source>Quote</source>
         <translation>Quote</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="452"/>
-        <location filename="../ui/qml/TweetPane.qml" line="531"/>
+        <location filename="../ui/qml/TweetPane.qml" line="465"/>
+        <location filename="../ui/qml/TweetPane.qml" line="544"/>
         <source>Favorited</source>
         <translation>Favorited</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="452"/>
-        <location filename="../ui/qml/TweetPane.qml" line="545"/>
+        <location filename="../ui/qml/TweetPane.qml" line="465"/>
+        <location filename="../ui/qml/TweetPane.qml" line="558"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
     </message>
@@ -650,7 +685,7 @@
     <message>
         <location filename="../ui/qml/WriteTweetPane.qml" line="196"/>
         <source>You have to write something to tweet.</source>
-        <translation type="unfinished"></translation>
+        <translation>You have to write something to tweet.</translation>
     </message>
     <message>
         <location filename="../ui/qml/WriteTweetPane.qml" line="159"/>

@@ -66,7 +66,6 @@ Rectangle {
 		onTweetPosted: {
 			tweet_edit.text = ""
 			in_reply_to_tweet_id = "-1"
-			console.log("Posted")
 			write_tweet_pane.updateTimeline()
 		}
 	}

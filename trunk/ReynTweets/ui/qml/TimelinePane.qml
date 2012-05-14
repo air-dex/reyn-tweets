@@ -41,9 +41,41 @@ Rectangle {
 		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
 	}
 
+	// Text announcing what to do to refesh the timeline
+	Text {
+		id: refresh_text
+		text: ""
+		horizontalAlignment: Text.AlignHCenter
+		anchors.top: timeline_pane.top
+		anchors.horizontalCenter: timeline_pane.horizontalCenter
+		font.family: constant.font
+		font.pixelSize: constant.font_size
+		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+		states: [
+			State {
+				name: "pull"
+				when: !timeline_view.earlyRefreshMode
+				PropertyChanges {
+					target: refresh_text
+					text: qsTr("Pull down to refresh")
+				}
+			},
+			State {
+				name: "release"
+				when: timeline_view.earlyRefreshMode
+				PropertyChanges {
+					target: refresh_text
+					text: qsTr("Release to refresh")
+				}
+			}
+		]
+	}
+
 	// List of all the tweets
 	ListView {
 		id: timeline_view
+		z: refresh_text.z + 1
 		anchors.fill: parent
 		clip: true
 
@@ -85,20 +117,49 @@ Rectangle {
 
 		model: TimelineModel { id: timeline_model }
 
-		// Loading tweets
-		onMovingChanged: {
-			if (timeline_view.atYBeginning) {
-				// If you are at the top -> get earlier tweets
-				console.log("TODO : get earlier tweets")
-			} else if (timeline_view.atYEnd) {
-				// If you are at the bottom -> get older tweets
-				console.log("TODO : get older tweets")
+		footer: Component {
+			Text {
+				id: timeline_footer
+				text: qsTr("More...")
+				horizontalAlignment: Text.AlignHCenter
+				font.family: constant.font
+				font.pixelSize: constant.font_size
+				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+				visible: timeline_view.model.count > 0
 			}
-
-			timeline_view.returnToBounds()
 		}
 
+		// Loading tweets
+		property bool earlyRefreshMode: false
+		property bool canUpdate: false
+
+		property bool olderDiscoverMode: false
+
+		onMovementStarted: {
+			if (timeline_view.atYBeginning && !earlyRefreshMode) {
+				// If you are at the top -> get earlier tweets
+				earlyRefreshMode = true
+			} else if (timeline_view.atYEnd && !olderDiscoverMode) {
+				// If you are at the bottom -> get older tweets
+				olderDiscoverMode = true
+			}
+
+			//timeline_view.returnToBounds()
+		}
+
+		onMovementEnded: {
+			if (timeline_view.atYBeginning && earlyRefreshMode) {
+				// If you are at the top -> get earlier tweets
+				earlyRefreshMode = false
+				control.refreshHomeTimeline()
+			} else if (timeline_view.atYEnd && olderDiscoverMode) {
+				// If you are at the bottom -> get older tweets
+				olderDiscoverMode = false
+				control.moreOldHomeTimeline()
+			}
+		}
 	}
+
 
 	Component.onCompleted: {
 		// Wiring
@@ -111,6 +172,8 @@ Rectangle {
 
 		// For displaying informations
 		control.showInfoMessage.connect(timeline_pane.showInfoMessage)
+
+
 	}
 
 	// Loading the home timeline
@@ -118,10 +181,10 @@ Rectangle {
 		control.loadHomeTimeline();
 	}
 
-	// Loading the home timeline
+	// Refreshing the home timeline
 	function updateTimeline() {
-		console.log("TODO : update the timeline")
-		//control.updateTimeline();
+		console.log("REFRESH !")
+		control.refreshHomeTimeline()
 	}
 
 	// What happened after loading the timeline
@@ -141,6 +204,7 @@ Rectangle {
 			messageDisplayed = errMsg
 		}
 
+		refresh_text.state = "pull"
 		timeline_pane.endAction(endOK, messageDisplayed, isFatal)
 	}
 

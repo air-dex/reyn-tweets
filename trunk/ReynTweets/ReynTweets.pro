@@ -220,8 +220,8 @@ HEADERS  += \
 
 
 OTHER_FILES = \
-	reyntweets_en.ts \
-	reyntweets_fr.ts \
+	i18n/reyntweets_en.ts \
+	i18n/reyntweets_fr.ts \
 	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
 	resources/Logo Reyn Tweets.png \
@@ -244,6 +244,8 @@ TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 # SEPARATOR : Separator in path systems
 # RMDIR_CMD : Command to delete directories
 # RMFILE_CMD : Command to delete files
+# COPY_CMD : Command to copy files
+# SRC_FOLDER : Source folder
 
 win32 {
 	# Leave an empty line because of the backslash at the end of the variable
@@ -252,7 +254,6 @@ win32 {
 	RMDIR_CMD = rd /s /q
 	RMFILE_CMD = del /s /q
 	COPY_CMD = copy /y
-	SCRIPT_EXT = bat
 }
 
 linux-g++ {
@@ -260,10 +261,8 @@ linux-g++ {
 	RMDIR_CMD = rm -rfv
 	RMFILE_CMD = rm -rfv
 	COPY_CMD = cp -v
-	SCRIPT_EXT = sh
 }
 
-# SRC_FOLDER : Source folder
 SRC_FOLDER = ..$${SEPARATOR}ReynTweets$${SEPARATOR}
 
 
@@ -287,6 +286,7 @@ doc.commands = $${DOXYGEN_CMD} $${SRC_FOLDER}Doxyfile.txt
 cleandoc.target = cleandoc
 cleandoc.commands = $${RMDIR_CMD} ..$${SEPARATOR}doc$${SEPARATOR}html
 
+# Extra targets
 QMAKE_EXTRA_TARGETS += doc cleandoc
 
 
@@ -329,6 +329,7 @@ trdeploy.commands = $${COPY_CMD} $${TR_FOLDER}*.qm .
 trclean.target = trclean
 trclean.commands = $${RMFILE_CMD} $${TR_FOLDER}*.qm
 
+# Extra targets
 QMAKE_EXTRA_TARGETS += trupdate trrelease trdeploy trclean
 
 

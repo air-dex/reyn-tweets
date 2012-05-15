@@ -58,29 +58,52 @@ Rectangle {
 	// Components for non successful ends //
 	////////////////////////////////////////
 
+	// MainView width minus 2 margins on each side
+	property int interiorWidth: main_view.width - 2* main_view.margin
+
 	// Component for potential authentications
 	LoginComponents {
 		id: log_component
-		z: main_view.z + 10
 		width: parent.width
+		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
+		visible: false
 		onAllowOK: loadHomeTimeline();
 	}
 
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: main_view.z + 10
-		width: parent.width
+		width: main_view.interiorWidth
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 	}
 
+	// Pane for reauthentications
+	TwoButtonsActionPane {
+		id: reauth_pane
+		width: main_view.interiorWidth
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		visible: false
+
+		// Pane parameters
+		pane_text: qsTr("The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.")
+				   + "\n\n" + qsTr("Would to like to authorize Reyn Tweets again ?")
+
+		// Left button
+		left_button_text: qsTr("Reauthorize")
+		onActLeft: log_component.allowReynTweets()
+
+		// Right button
+		right_button_text: qsTr("No")
+		onActRight: reauth_pane.visible = false
+	}
+
 	// Popup to show a message.
 	TransientPane {
 		id: info_pane
-		//z: main_view.z + 10
 		anchors.bottom: main_view.bottom
 		anchors.bottomMargin: 10* main_view.margin
 		anchors.horizontalCenter: main_view.horizontalCenter
@@ -92,7 +115,6 @@ Rectangle {
 	// Popup to show a warnig and not fatal problem message.
 	WarningTransientPane {
 		id: warning_pane
-		//z: main_view.z + 10
 		anchors.top: main_view.top
 		anchors.horizontalCenter: main_view.horizontalCenter
 
@@ -113,11 +135,11 @@ Rectangle {
 		timeline.writeReply.connect(write_tweet.writeReply)
 		timeline.writeTweet.connect(write_tweet.writeTweet)
 		timeline.endAction.connect(main_view.endAction)
-		timeline.needAuthentication.connect(log_component.allowReynTweets)
+		timeline.needAuthentication.connect(needNewAuth)
 		timeline.showInfoMessage.connect(main_view.displayInfoMessage)
 
 		// Wiring write_tweet
-		write_tweet.needAuthentication.connect(log_component.allowReynTweets)
+		write_tweet.needAuthentication.connect(needNewAuth)
 		write_tweet.endWriting.connect(main_view.endAction)
 		write_tweet.updateTimeline.connect(timeline.updateTimeline)
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
@@ -148,5 +170,10 @@ Rectangle {
 	function displayInfoMessage(msg) {
 		info_pane.pane_text = msg
 		info_pane.visible = true
+	}
+
+	// New authentication
+	function needNewAuth() {
+		reauth_pane.visible = true
 	}
 }

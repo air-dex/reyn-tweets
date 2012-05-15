@@ -71,15 +71,46 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 	if (httpCode / 100 == 5) {
 		issue = TWITTER_DOWN;
 		errorMsg = QObject::trUtf8("Twitter seems down:");
-	} else if (httpCode == 401) {
-		issue = TOKENS_NOT_AUTHORIZED;
-		errorMsg = QObject::trUtf8("Tokens were not authorized:");
-	} else if (httpCode == 420) {
-		issue = RATE_LIMITED;
-		errorMsg = QObject::trUtf8("You reach the authentication rate:");
-	} else {
-		issue = UNKNOWN_PROBLEM;
-		errorMsg = QObject::trUtf8("Unexpected result:");
+	} else switch(httpCode) {
+		case 304:
+			issue = NO_MORE_DATA;
+			errorMsg = QObject::trUtf8("Twitter do not return new datas:");
+			break;
+
+		case 400:
+			issue = BAD_REQUEST;
+			errorMsg = QObject::trUtf8("Your request was invalid:");
+			break;
+
+		case 401:
+			issue = TOKENS_NOT_AUTHORIZED;
+			errorMsg = QObject::trUtf8("Tokens were not authorized:");
+			break;
+
+		case 403:
+			issue = REFUSED_REQUEST;
+			errorMsg = QObject::trUtf8("Twitter refuses to treat your request:");
+			break;
+
+		case 404:
+			issue = RESOURCE_NOT_FOUND;
+			errorMsg = QObject::trUtf8("There is something invalid in your request:");
+			break;
+
+		case 406:
+			issue = INVALID_SEARCH;
+			errorMsg = QObject::trUtf8("Your research was invalid:");
+			break;
+
+		case 420:
+			issue = RATE_LIMITED;
+			errorMsg = QObject::trUtf8("You reach the authentication rate:");
+			break;
+
+		default:
+			issue = UNKNOWN_PROBLEM;
+			errorMsg = QObject::trUtf8("Unexpected result:");
+			break;
 	}
 
 	// Building error message

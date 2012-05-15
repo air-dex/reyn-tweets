@@ -149,7 +149,9 @@ Rectangle {
 		// When the tweet is too long (> 140 characters)
 		State {
 			name: "TooLong"
-			when: TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text) === "too_long"
+			// Don't use TwitterTextJS.twttr.txt.isInvalidTweet(tweet_edit.text)
+			// because it takes real URLs length instead of shortened URLs length.
+			when: chars_left < 0
 
 			PropertyChanges {
 				target: chars_left_indicator

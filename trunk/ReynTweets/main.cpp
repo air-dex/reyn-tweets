@@ -26,68 +26,72 @@
 #include <QScriptEngine>
 #include <QTranslator>
 #include <QIcon>
-#include <QDir>
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
 
+#ifndef Q_OS_LINUX
+	// Include QDir for setting the working path correctly
+	#include <QDir>
+#endif
+
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
-    IndexBounds::initSystem();
-    MediaSize::initSystem();
-    MediaSizes::initSystem();
-    Media::initSystem();
-    MediaList::initSystem();
-    URLEntity::initSystem();
-    URLEntityList::initSystem();
-    Hashtag::initSystem();
-    HashtagList::initSystem();
-    UserMention::initSystem();
-    UserMentionList::initSystem();
-    TweetEntities::initSystem();
-    UserInfos::initSystem();
-    Tweet::initSystem();
-    Timeline::initSystem();
-    User::initSystem();
-    UserAccount::initSystem();
-    ReynTweetsConfiguration::initSystem();
+	IndexBounds::initSystem();
+	MediaSize::initSystem();
+	MediaSizes::initSystem();
+	Media::initSystem();
+	MediaList::initSystem();
+	URLEntity::initSystem();
+	URLEntityList::initSystem();
+	Hashtag::initSystem();
+	HashtagList::initSystem();
+	UserMention::initSystem();
+	UserMentionList::initSystem();
+	TweetEntities::initSystem();
+	UserInfos::initSystem();
+	Tweet::initSystem();
+	Timeline::initSystem();
+	User::initSystem();
+	UserAccount::initSystem();
+	ReynTweetsConfiguration::initSystem();
 }
 
 /// @fn void declareReynTweetsControls();
 /// @brief Declares all the controls and classes used by QML widgets
 void declareReynTweetsControls() {
-    WriteTweetControl::declareQML();
-    AllowControl::declareQML();
-    LaunchingControl::declareQML();
-    LoginControl::declareQML();
-    ReynTweetsConfiguration::declareQML();
-    UserAccount::declareQML();
-    Tweet::declareQML();
-    UserInfos::declareQML();
-    User::declareQML();
-    Timeline::declareQML();
-    TimelineControl::declareQML();
-    TweetControl::declareQML();
-    SettingsControl::declareQML();
+	WriteTweetControl::declareQML();
+	AllowControl::declareQML();
+	LaunchingControl::declareQML();
+	LoginControl::declareQML();
+	ReynTweetsConfiguration::declareQML();
+	UserAccount::declareQML();
+	Tweet::declareQML();
+	UserInfos::declareQML();
+	User::declareQML();
+	Timeline::declareQML();
+	TimelineControl::declareQML();
+	TweetControl::declareQML();
+	SettingsControl::declareQML();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);
 /// @brief Loading the translation of the program
 /// @param a The application
 void loadTranslation(QScopedPointer<QApplication> & a) {
-    static QTranslator translator;	// It must not be deleted ! (issue 64)
+	static QTranslator translator;	// It must not be deleted ! (issue 64)
 
-    // Program in French
+	// Program in French
 //	QString locale = "fr";
 
-    // Defalult idiom : local idiom
-    QString locale = QLocale::system().name().section('_', 0, 0);
+	// Defalult idiom : local idiom
+	QString locale = QLocale::system().name().section('_', 0, 0);
 
-    // Loading translation files
-    translator.load(QString("reyntweets_") + locale);
+	// Loading translation files
+	translator.load(QString("reyntweets_") + locale);
 
-    a->installTranslator(&translator);
+	a->installTranslator(&translator);
 }
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
@@ -97,43 +101,42 @@ void loadTranslation(QScopedPointer<QApplication> & a) {
 /// @return The result of the execution.
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
+	QScopedPointer<QApplication> app(createApplication(argc, argv));
 
-    // Setting the current directory to the application directory.
-    // Very useful for loading QML, configuration and translation files.
-    QDir::setCurrent(app->applicationDirPath());
+	// Init the random generator used for generating nonces
+	qsrand(QDateTime::currentMSecsSinceEpoch());
 
-    // Init the random generator used for generating nonces
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+	// Init for serialization
+	initReynTweetsSystem();
+	declareReynTweetsControls();
 
-    // Init for serialization
-    initReynTweetsSystem();
-    declareReynTweetsControls();
+	// Loading translation files
+	loadTranslation(app);
 
-    // Loading translation files
-    loadTranslation(app);
+	// Init Main QML file
+	#ifdef Q_OS_WIN32
+		QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
+	#endif
+	#ifdef Q_OS_LINUX
+		// Setting the current directory to the application directory.
+		// Very useful for loading QML, configuration and translation files.
+		QDir::setCurrent(app->applicationDirPath());
+		QString mainQMLFile("./ui/qml/main_desktop.qml");
+	#endif
+	#ifdef Q_OS_SYMBIAN
+		QLatin1String mainQMLFile("./ui/qml/main_symbian.qml");
+	#endif
 
-    // Init Main QML file
-    #ifdef Q_OS_WIN32
-        QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
-    #endif
-    #ifdef Q_OS_LINUX
-        QString mainQMLFile("./ui/qml/main_desktop.qml");
-    #endif
-    #ifdef Q_OS_SYMBIAN
-        QLatin1String mainQMLFile("./ui/qml/main_symbian.qml");
-    #endif
+	QmlApplicationViewer viewer;
+	viewer.setWindowTitle("Reyn Tweets");
+	const QString iconName = "./ReynTweets.ico";
+	QIcon icone(iconName);
+	if (icone.isNull())
+		qDebug("Pas bon!");
 
-    QmlApplicationViewer viewer;
-    viewer.setWindowTitle("Reyn Tweets");
-    const QString iconName = "./ReynTweets.ico";
-    QIcon icone(iconName);
-    if (icone.isNull())
-        qDebug("Pas bon!");
+	viewer.setWindowIcon(icone);
+	viewer.setMainQmlFile(mainQMLFile);
+	viewer.showExpanded();
 
-    viewer.setWindowIcon(icone);
-    viewer.setMainQmlFile(mainQMLFile);
-    viewer.showExpanded();
-
-    return app->exec();
+	return app->exec();
 }

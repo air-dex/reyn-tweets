@@ -79,28 +79,28 @@
 <context>
     <name>DeleteTweetProcess</name>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="79"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="80"/>
         <source>The user is not the author of the tweet</source>
         <translation>L&apos;utilisateur n&apos;est pas l&apos;auteur de ce tweet</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="90"/>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="214"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="91"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="215"/>
         <source>Dead end</source>
         <translation>Fausse fin</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="102"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="103"/>
         <source>Retrieving retweet ID:</source>
         <translation>Recherche de l&apos;ID du retweet à effacer :</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="144"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="145"/>
         <source>Reweet ID unreachable</source>
         <translation>ID du retweet à effacer inaccessible</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="191"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="192"/>
         <source>Unknown tweet ID &apos;</source>
         <translation>ID d&apos;un tweet inconnu &apos;</translation>
     </message>
@@ -438,20 +438,20 @@
     <message>
         <location filename="../logic/controls/timelinecontrol.cpp" line="166"/>
         <source>Refreshing timeline...</source>
-        <translation>Actualisation de la timeline en cours...</translation>
+        <translation>Actualisation de la timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="195"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="198"/>
         <source>Timeline refreshed</source>
         <translation>Timeline actualisée</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="241"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="244"/>
         <source>Loading more tweets...</source>
         <translation>Obtention de plus de tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="270"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="273"/>
         <source>Tweets loaded</source>
         <translation>Tweets chargés</translation>
     </message>
@@ -474,12 +474,12 @@
         <translation>Plus...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="196"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="197"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="200"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="201"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
@@ -664,37 +664,37 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="82"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="81"/>
         <source>What is happening ?</source>
         <translation>Quoi de neuf ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="141"/>
         <source>Tweet</source>
         <translation>Tweeter</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="165"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="164"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Le tweet dépasse les 140 caractères.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="185"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="184"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Le tweet comporte un ou plusieurs caractère(s) invalide(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="196"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="195"/>
         <source>You have to write something to tweet.</source>
         <translation>Vous devez écrire quelque chose pour pouvoir le tweeter.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="159"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="158"/>
         <source>too long</source>
         <translation>trop long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="180"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="179"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>caractère(s) invalide(s)</translation>

@@ -37,17 +37,17 @@
 <context>
     <name>AllowProcess</name>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="166"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="168"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="170"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="172"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="174"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="176"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
@@ -260,6 +260,29 @@
     </message>
 </context>
 <context>
+    <name>MainView</name>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="92"/>
+        <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
+        <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="93"/>
+        <source>Would to like to authorize Reyn Tweets again ?</source>
+        <translation>Would to like to authorize Reyn Tweets again ?</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="96"/>
+        <source>Reauthorize</source>
+        <translation>Reauthorize</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="100"/>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+</context>
+<context>
     <name>OAuthProcess</name>
     <message>
         <location filename="../logic/processes/oauthprocess.cpp" line="119"/>
@@ -351,48 +374,73 @@
         <translation>Twitter seems down:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="76"/>
+        <location filename="../tools/processutils.cpp" line="77"/>
+        <source>Twitter do not return new datas:</source>
+        <translation>Twitter do not return new datas:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="82"/>
+        <source>Your request was invalid:</source>
+        <translation>Your request was invalid:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="87"/>
         <source>Tokens were not authorized:</source>
         <translation>Tokens were not authorized:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="79"/>
+        <location filename="../tools/processutils.cpp" line="92"/>
+        <source>Twitter refuses to treat your request:</source>
+        <translation>Twitter refuses to treat your request:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="97"/>
+        <source>There is something invalid in your request:</source>
+        <translation>There is something invalid in your request:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="102"/>
+        <source>Your research was invalid:</source>
+        <translation>Your research was invalid:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="107"/>
         <source>You reach the authentication rate:</source>
         <translation>You reach the authentication rate:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="82"/>
+        <location filename="../tools/processutils.cpp" line="112"/>
         <source>Unexpected result:</source>
         <translation>Unexpected result:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="114"/>
+        <location filename="../tools/processutils.cpp" line="145"/>
         <source>Error </source>
         <translation>Error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="119"/>
+        <location filename="../tools/processutils.cpp" line="150"/>
         <source>Request : </source>
         <translation>Request: </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="132"/>
+        <location filename="../tools/processutils.cpp" line="163"/>
         <source>Network error </source>
         <translation>Network error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="149"/>
-        <location filename="../tools/processutils.cpp" line="165"/>
+        <location filename="../tools/processutils.cpp" line="180"/>
+        <location filename="../tools/processutils.cpp" line="196"/>
         <source>Parsing error:</source>
         <translation>Parsing error:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="151"/>
+        <location filename="../tools/processutils.cpp" line="182"/>
         <source>Line </source>
         <translation>Line </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="178"/>
+        <location filename="../tools/processutils.cpp" line="209"/>
         <source>Unexpected problem:</source>
         <translation>Unexpected problem:</translation>
     </message>
@@ -434,22 +482,22 @@
         <translation>Timeline loaded</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="166"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="168"/>
         <source>Refreshing timeline...</source>
         <translation>Refreshing timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="198"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="200"/>
         <source>Timeline refreshed</source>
         <translation>Timeline refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="244"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="248"/>
         <source>Loading more tweets...</source>
         <translation>Loading more tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="273"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="277"/>
         <source>Tweets loaded</source>
         <translation>Tweets loaded</translation>
     </message>
@@ -457,27 +505,27 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="61"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="60"/>
         <source>Pull down to refresh</source>
         <translation>Pull down to refresh</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="69"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="68"/>
         <source>Release to refresh</source>
         <translation>Release to refresh</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="123"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="122"/>
         <source>More...</source>
         <translation>More...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="197"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="196"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="201"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="200"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -514,38 +562,38 @@
         <translation>Tweet retweeted</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="198"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="200"/>
         <source>Favoriting...</source>
         <translation>Favoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="227"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="229"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="261"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="265"/>
         <source>Unfavoriting...</source>
         <translation>Unfavoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="296"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="300"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet unfavorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="334"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="340"/>
         <source>Deleting the tweet...</source>
         <translation>Deleting the tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="367"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="373"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="380"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="386"/>
         <source>Tweet deleted</source>
         <translation>Tweet deleted</translation>
     </message>
@@ -673,27 +721,27 @@
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="164"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="166"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Your tweet gets more than 140 characters.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="184"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="186"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Your tweet gets some invalid character(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="195"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="197"/>
         <source>You have to write something to tweet.</source>
         <translation>You have to write something to tweet.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="158"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="160"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="179"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="181"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

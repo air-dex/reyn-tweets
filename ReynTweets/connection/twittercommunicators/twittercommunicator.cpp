@@ -122,7 +122,8 @@ QNetworkRequest * TwitterCommunicator::prepareRequest(QByteArray & postArgs) {
 		requestToTwitter->setRawHeader("Authorization", authHeader);
 	}
 
-#ifdef Q_OS_LINUX
+#ifndef Q_OS_SYMBIAN
+	// Needed for Qt 4.8.x (Windows and Linux) and Symbian version is 4.7.4.
 	requestToTwitter->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #endif
 
@@ -168,7 +169,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	response->deleteLater();
 
 	// responseBuffer (for debug purposes)
-    /*
+	//*
 	qDebug("responseBuffer :");
 	qDebug(responseBuffer.data());
 	qDebug("\n");

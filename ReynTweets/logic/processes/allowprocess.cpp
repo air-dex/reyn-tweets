@@ -40,8 +40,8 @@ void AllowProcess::endProcess() {
 		authEnded = true;
 
 		// Is it an anticipated end (auth does not end successfully) ?
-        bool anticipatedEnd = (!processResult.processOK)
-                || (processResult.processOK && processResult.processIssue == DENIED);
+		bool anticipatedEnd = (!processResult.processOK)
+				|| (processResult.processOK && processResult.processIssue == DENIED);
 
 		processResult.results.toMap().value("is_authorized",
 											processResult.processIssue == AUTHORIZED);
@@ -112,9 +112,6 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 		}return;
 
 		case TWITTER_ERRORS:
-			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
-
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
@@ -123,6 +120,11 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			} else {
 				issue = NO_TOKENS;
 			}
+
+			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+
+			// Building error message
+			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
 			break;
 
 		case API_CALL:

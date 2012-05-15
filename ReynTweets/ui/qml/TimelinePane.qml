@@ -37,7 +37,6 @@ Rectangle {
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onAuthenticationNeeded: log_component.allowReynTweets()
 		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
 	}
 

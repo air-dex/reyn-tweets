@@ -31,8 +31,62 @@
 /// @enum CoreResult
 /// @brief Unified error for all the possible ends of all treatments
 enum CoreResult {
+	///////////////////////////////////////////////
+	// Rresults independant from Twitter actions //
+	///////////////////////////////////////////////
+
 	/// @brief Issue for fake process results
 	INVALID_ISSUE,
+
+	/// @brief The request ends with an unknown problem
+	UNKNOWN_PROBLEM,
+
+	/// @brief There were an error while parsing results
+	PARSE_ERROR,
+
+	/// @brief There were an error while calling the network
+	NETWORK_CALL,
+
+
+	/////////////////////////////////////////////////
+	// Problems linked to Twitter requests problem //
+	/////////////////////////////////////////////////
+
+	/// @brief There was no more data to return.
+	///
+	/// Corresponding Twitter return code is 304.
+	NO_MORE_DATA,
+
+	/// @brief The request was invalid.
+	///
+	/// Corresponding Twitter return code is 400.
+	BAD_REQUEST,
+
+	/// @brief Twitter did not treat the request.
+	///
+	/// Corresponding Twitter return code is 403.
+	REFUSED_REQUEST,
+
+	/// @brief The URI of the request or the requested resource is invalid.
+	///
+	/// Corresponding Twitter return code is 404.
+	RESOURCE_NOT_FOUND,
+
+	/// @brief The search format is invalid.
+	///
+	/// Corresponding Twitter return code is 406.
+	INVALID_SEARCH,
+
+	/// @brief Rate limit was hit.
+	///
+	/// Corresponding Twitter return code is 420.
+	RATE_LIMITED,
+
+	/// @brief Twitter got problems.
+	///
+	/// Corresponding Twitter return code looks like 5xx.
+	TWITTER_DOWN,
+
 
 	//////////////////////////////////////////////////
 	// Results while manipulating the configuration //
@@ -61,7 +115,9 @@ enum CoreResult {
 	/// @brief Credentials were right
 	TOKENS_OK,
 
-	/// @brief Credentials were wrong
+	/// @brief Credentials were wrong.
+	///
+	/// Corresponds to the Twitter return code 401 too.
 	TOKENS_NOT_AUTHORIZED,
 
 	/// @brief Not obtained tokens (OAuth Authentication Flow)
@@ -80,26 +136,6 @@ enum CoreResult {
 
 	/// @brief Unexpected redirection during POST authorizing
 	POST_AUTHORIZING_FAILED,
-
-
-	/////////////////////////////////////////////////
-	// Problems linked to Twitter requests problem //
-	/////////////////////////////////////////////////
-
-	/// @brief Rate limit was hit
-	RATE_LIMITED,
-
-	/// @brief Twitter got problems (Twitter return code looking like 5xx)
-	TWITTER_DOWN,
-
-	/// @brief The request ends with an unknown problem
-	UNKNOWN_PROBLEM,
-
-	/// @brief There were an error while parsing results
-	PARSE_ERROR,
-
-	/// @brief There were an error while calling the network
-	NETWORK_CALL,
 
 
 	//////////

@@ -131,9 +131,11 @@ Rectangle {
 
 		// Loading tweets
 		property bool earlyRefreshMode: false
-		property bool canUpdate: false
-
 		property bool olderDiscoverMode: false
+
+		// Backup of the index at the top of the flickable surface.
+		// Used to be nearly at the same place after getting older tweets
+		property int indexBackup
 
 		onMovementStarted: {
 			if (timeline_view.atYBeginning && !earlyRefreshMode) {
@@ -143,18 +145,17 @@ Rectangle {
 				// If you are at the bottom -> get older tweets
 				olderDiscoverMode = true
 			}
-
-			//timeline_view.returnToBounds()
 		}
 
 		onMovementEnded: {
 			if (timeline_view.atYBeginning && earlyRefreshMode) {
 				// If you are at the top -> get earlier tweets
 				earlyRefreshMode = false
-				control.refreshHomeTimeline()
+				timeline_pane.updateTimeline()
 			} else if (timeline_view.atYEnd && olderDiscoverMode) {
 				// If you are at the bottom -> get older tweets
 				olderDiscoverMode = false
+				indexBackup = timeline_view.indexAt(contentX, contentY)
 				control.moreOldHomeTimeline()
 			}
 		}
@@ -183,28 +184,28 @@ Rectangle {
 
 	// Refreshing the home timeline
 	function updateTimeline() {
-		console.log("REFRESH !")
+		timeline_view.indexBackup = timeline_view.currentIndex
 		control.refreshHomeTimeline()
 	}
 
 	// What happened after loading the timeline
-	function afterLoading(endOK, errMsg, isFatal) {
+	function afterLoading(endOK, endMsg, isFatal) {
 		var action, messageDisplayed;
 
-		if (endOK) {
-			messageDisplayed = errMsg
-		} else if (isFatal) {
+		if (!endOK && isFatal) {
 			// Bad and fatal error. Show the quit pane.
 			messageDisplayed = qsTr("A fatal error occured while loading the timeline:")
-					+ "\n\n"
-					+ errMsg
-					+ "\n\n"
-					+ qsTr("The application will quit.");
+									.concat("\n\n")
+									.concat(endMsg)
+									.concat("\n\n")
+									.concat(qsTr("The application will quit."));
 		} else {
-			messageDisplayed = errMsg
+			messageDisplayed = endMsg
 		}
 
 		refresh_text.state = "pull"
+		timeline_view.positionViewAtIndex(timeline_view.indexBackup,
+										  ListView.Beginning);
 		timeline_pane.endAction(endOK, messageDisplayed, isFatal)
 	}
 

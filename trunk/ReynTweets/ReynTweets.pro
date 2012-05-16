@@ -227,7 +227,18 @@ OTHER_FILES = \
 	resources/Logo Reyn Tweets.png \
 	ui/qml/tools.js \
 	ui/qml/twitter-text-js-wrapper.js \
-	ui/qml/twitter-text-1.4.16.js
+	ui/qml/twitter-text-1.4.16.js \
+	ReynTweets.rc
+
+
+#----------------------#
+# Icon for the program #
+#----------------------#
+win32 {
+	RC_FILE = ReynTweets.rc
+}
+
+# TODO : Linux, Symbian
 
 
 #--------------#

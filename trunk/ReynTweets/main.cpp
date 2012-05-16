@@ -129,12 +129,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
 	QmlApplicationViewer viewer;
 	viewer.setWindowTitle("Reyn Tweets");
-	const QString iconName = "./ReynTweets.ico";
-	QIcon icone(iconName);
-	if (icone.isNull())
-		qDebug("Pas bon!");
 
+	// Setting the icon
+	const QString iconName = "./resources/ReynTweets.svg";
+	QIcon icone(iconName);
 	viewer.setWindowIcon(icone);
+
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
 

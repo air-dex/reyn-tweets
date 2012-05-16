@@ -30,7 +30,7 @@
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
 
-#ifndef Q_OS_LINUX
+#ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
 	#include <QDir>
 #endif

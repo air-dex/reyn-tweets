@@ -154,9 +154,13 @@ Rectangle {
 			} else if (timeline_view.atYEnd && olderDiscoverMode) {
 				// If you are at the bottom -> get older tweets
 				olderDiscoverMode = false
-				indexBackup = timeline_view.indexAt(contentX, contentY)
+				backupIndex()
 				control.moreOldHomeTimeline()
 			}
+		}
+
+		function backupIndex() {
+			indexBackup = timeline_view.indexAt(contentX, contentY)
 		}
 	}
 
@@ -172,8 +176,6 @@ Rectangle {
 
 		// For displaying informations
 		control.showInfoMessage.connect(timeline_pane.showInfoMessage)
-
-
 	}
 
 	// Loading the home timeline
@@ -183,7 +185,7 @@ Rectangle {
 
 	// Refreshing the home timeline
 	function updateTimeline() {
-		timeline_view.indexBackup = timeline_view.currentIndex
+		timeline_view.backupIndex()
 		control.refreshHomeTimeline()
 	}
 

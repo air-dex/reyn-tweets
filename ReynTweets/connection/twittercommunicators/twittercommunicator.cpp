@@ -169,7 +169,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	response->deleteLater();
 
 	// responseBuffer (for debug purposes)
-	//*
+	/*
 	qDebug("responseBuffer :");
 	qDebug(responseBuffer.data());
 	qDebug("\n");

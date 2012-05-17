@@ -36,7 +36,7 @@ DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,
     tweetToDelete(statusToDelete),
     includeEntities(withEntities),
     trimUser(userIDonly),
-    keepInTimeline(tweetToDelete.getAuthor()->isFollowedByMe())
+    keepInTimeline(true)
 {
     connect(this, SIGNAL(allowDelete(bool,QString)),
             this, SLOT(deleteTweet(bool,QString)));
@@ -58,12 +58,20 @@ void DeleteTweetProcess::canDeleteTweet() {
     if (user.getID() == tweetToDelete.getAuthor()->getID()) {
         // The user is the author of the tweet
         // The tweet can be deleted and the ID is already known :) !
-        keepInTimeline = !tweetToDelete.isRetweet();
+
+        keepInTimeline = tweetToDelete.isRetweet() ?
+                    tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
+                  : false;
+
         emit allowDelete(true, tweetToDelete.getIDstr());
     }
     else if (tweetToDelete.isRetweetedByMe()) {
         // Tweet can be deleted only if the user retweeted it.
         // But the retweet ID is unknown. So let's search it !
+
+        keepInTimeline = tweetToDelete.isRetweet() ?
+                    tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
+                  : tweetToDelete.getAuthor()->isFollowedByMe();
 
         // The ID is in the timeline of the user's retweets.
         connect(&twitter, SIGNAL(sendResult(ResultWrapper)),

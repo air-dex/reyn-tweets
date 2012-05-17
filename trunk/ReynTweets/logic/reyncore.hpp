@@ -192,8 +192,8 @@ class ReynCore : public QObject
 
         /// @fn void postTweet(QString tweet,
         ///					   qlonglong replyToTweetID,
-        ///					   bool trimUser = true,
-        ///					   bool includeEntities = false,
+        ///					   bool trimUser = false,
+        ///					   bool includeEntities = true,
         ///					   float latitude = -361,
         ///					   float longitude = -361,
         ///					   QString reversePlace = "",
@@ -213,8 +213,8 @@ class ReynCore : public QObject
         /// @see https://dev.twitter.com/docs/api/1/post/statuses/update
         void postTweet(QString tweet,
                        qlonglong replyToTweetID = -1,
-                       bool trimUser = true,
-                       bool includeEntities = false,
+                       bool trimUser = false,
+                       bool includeEntities = true,
                        float latitude = -361,
                        float longitude = -361,
                        QString reversePlace = "",
@@ -222,8 +222,8 @@ class ReynCore : public QObject
 
         /// @fn void postTweet(QString tweet,
         ///					   QString replyToTweetID = "-1",
-        ///					   bool trimUser = true,
-        ///					   bool includeEntities = false,
+        ///					   bool trimUser = false,
+        ///					   bool includeEntities = true,
         ///					   float latitude = -361,
         ///					   float longitude = -361,
         ///					   QString reversePlace = "",
@@ -243,8 +243,8 @@ class ReynCore : public QObject
         /// @see https://dev.twitter.com/docs/api/1/post/statuses/update
         void postTweet(QString tweet,
                        QString replyToTweetID = "-1",
-                       bool trimUser = true,
-                       bool includeEntities = false,
+                       bool trimUser = false,
+                       bool includeEntities = true,
                        float latitude = -361,
                        float longitude = -361,
                        QString reversePlace = "",

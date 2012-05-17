@@ -53,9 +53,10 @@ class WriteTweetControl : public GenericControl
 
 
     signals:
-        /// @fn void tweetPosted();
+        /// @fn void tweetPosted(QVariant newTweetVariant);
         /// @brief Signal sent if the tweet was posted successfully
-        void tweetPosted();
+        /// @param newTweetVariant Posted tweet under a QVariant form.
+        void tweetPosted(QVariant newTweetVariant);
 
     protected slots:
         /// @fn void postTweetEnded(ProcessWrapper res);

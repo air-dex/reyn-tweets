@@ -197,7 +197,7 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
         errMsg = addInfos;
     }
 
-    // Failed end
+    // Failed ends
     processResult = ProcessUtils::buildProcessResult(false,
                                                      TWEET_UNDESTROYABLE,
                                                      errMsg,

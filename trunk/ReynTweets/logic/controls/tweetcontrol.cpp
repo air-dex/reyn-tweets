@@ -156,6 +156,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
             getShownTweet()->reset();
             getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
             getShownTweet()->setRetweeted(true);
+            status->setRetweeted(true);
             emit tweetChanged();
             emit actionEnded(true, TweetControl::trUtf8("Tweet retweeted"), false);
             break;
@@ -166,6 +167,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
             break;
 
         // Problems that can be solved trying later
+        case TWEET_UNDESTROYABLE:
         case BAD_REQUEST:
         case REFUSED_REQUEST:
         case RATE_LIMITED:	// The user reached rates.

@@ -517,17 +517,17 @@
         <translation>Relâchez pour actualiser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="122"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="123"/>
         <source>More...</source>
         <translation>Plus...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="198"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="199"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="202"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="203"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
@@ -569,33 +569,33 @@
         <translation>Mise en favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="229"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="228"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorisé</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="265"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="270"/>
         <source>Unfavoriting...</source>
         <translation>Retrait des favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="300"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="304"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet retiré des favoris</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="340"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="344"/>
         <source>Deleting the tweet...</source>
         <translation>Suppression du tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="373"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="377"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet attendu dans la réponse de Twitter.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="386"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="390"/>
         <source>Tweet deleted</source>
         <translation>Tweet supprimé</translation>
     </message>
@@ -605,7 +605,7 @@
     <message>
         <location filename="../ui/qml/TweetPane.qml" line="268"/>
         <source>In reply to </source>
-        <translation>En réponse à</translation>
+        <translation>En réponse à </translation>
     </message>
     <message>
         <location filename="../ui/qml/TweetPane.qml" line="270"/>
@@ -613,77 +613,78 @@
         <translation>Voir la conversation</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="335"/>
+        <location filename="../ui/qml/TweetPane.qml" line="337"/>
         <source>Retweeted by</source>
         <translation>Retweeté par</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="350"/>
-        <location filename="../ui/qml/TweetPane.qml" line="365"/>
+        <location filename="../ui/qml/TweetPane.qml" line="353"/>
+        <location filename="../ui/qml/TweetPane.qml" line="366"/>
         <source>me</source>
         <translation>moi</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="381"/>
+        <location filename="../ui/qml/TweetPane.qml" line="403"/>
         <source>other</source>
         <translation>autre</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="381"/>
+        <location filename="../ui/qml/TweetPane.qml" line="407"/>
         <source>others</source>
         <translation>autres</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="382"/>
+        <location filename="../ui/qml/TweetPane.qml" line="378"/>
+        <location filename="../ui/qml/TweetPane.qml" line="393"/>
         <source>and</source>
         <translation>et</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="388"/>
+        <location filename="../ui/qml/TweetPane.qml" line="404"/>
         <source>person</source>
         <translation>personne</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="388"/>
+        <location filename="../ui/qml/TweetPane.qml" line="408"/>
         <source>people</source>
         <translation>personnes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="412"/>
+        <location filename="../ui/qml/TweetPane.qml" line="435"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="425"/>
+        <location filename="../ui/qml/TweetPane.qml" line="448"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="437"/>
-        <location filename="../ui/qml/TweetPane.qml" line="516"/>
+        <location filename="../ui/qml/TweetPane.qml" line="460"/>
+        <location filename="../ui/qml/TweetPane.qml" line="539"/>
         <source>Retweeted</source>
         <translation>Retweeté</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="437"/>
-        <location filename="../ui/qml/TweetPane.qml" line="530"/>
+        <location filename="../ui/qml/TweetPane.qml" line="460"/>
+        <location filename="../ui/qml/TweetPane.qml" line="553"/>
         <source>Retweet</source>
         <translation>Retweeter</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="453"/>
+        <location filename="../ui/qml/TweetPane.qml" line="476"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="465"/>
-        <location filename="../ui/qml/TweetPane.qml" line="544"/>
+        <location filename="../ui/qml/TweetPane.qml" line="488"/>
+        <location filename="../ui/qml/TweetPane.qml" line="567"/>
         <source>Favorited</source>
         <translation>Favorisé</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="465"/>
-        <location filename="../ui/qml/TweetPane.qml" line="558"/>
+        <location filename="../ui/qml/TweetPane.qml" line="488"/>
+        <location filename="../ui/qml/TweetPane.qml" line="581"/>
         <source>Favorite</source>
         <translation>Favoriser</translation>
     </message>

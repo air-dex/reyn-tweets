@@ -71,6 +71,12 @@ QtObject {
 	// Blue for Direct messages (middle_color)
 	property string light_blue_dm: "#b3d3fd"
 
+	// Orange for own tweets (separator_color)
+	property string orange_author: "#ffd35e"
+
+	// Orange for own tweets (middle_color)
+	property string light_orange_author: "#ffe08d"
+
 
 	//////////
 	// Font //

@@ -629,6 +629,20 @@ Rectangle {
 					tweet_pane.middle_color = constant.light_green_mention;
 				}
 			}
+		},
+
+		// Tweet whose author is the user
+		State {
+			// The tweet is a mention
+			name: "Author"
+
+			StateChangeScript {
+				name: "author_script"
+				script: {
+					tweet_pane.separator_color = constant.orange_author;
+					tweet_pane.middle_color = constant.light_orange_author;
+				}
+			}
 		}
 	]
 
@@ -675,6 +689,10 @@ Rectangle {
 
 		if (control.isMention()) {
 			tweet_pane.state = "Mention"
+		}
+
+		if (iam_author)  {
+			tweet_pane.state = "Author"
 		}
 	}
 

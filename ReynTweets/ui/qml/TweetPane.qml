@@ -265,9 +265,10 @@ Rectangle {
 	Text {
 		id: reply_info
 		text: buildImageTag("../../resources/icons/reply_on.png")
-			  + ' ' + qsTr("In reply to ")
-			  + wrapEntity('@' + shown_tweet.in_reply_to_screen_name)
-			  + '. ' + wrapEntity(qsTr("Show conversation")) + '.'
+			.concat(' ').concat(qsTr("In reply to "))
+			.concat(wrapEntity('@' + shown_tweet.in_reply_to_screen_name))
+			.concat('. ').concat(wrapEntity(qsTr("Show conversation")))
+			.concat('.')
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
@@ -331,65 +332,87 @@ Rectangle {
 
 		// Text to announce the retweeters
 		function retweetInfoText() {
+			// The beginning (icon + first words)
 			var message = buildImageTag(retweet_info.icon_source)
-					+ ' ' + qsTr("Retweeted by")
+			message = message.concat(' ').concat(qsTr("Retweeted by"))
+
+
+			// Known people who retweeted
+			var knownPeopleArray = new Array()
+			var spottedAsRetweeter = false
 
 			// Nb of other people that retweeted
 			var nbOtherRetweeters = shown_tweet.retweet_count
-			var spottedAsRetweeter = false
 
-			// Catching the potential retweeter if it is a retweet
+			// 1°) The official retweeter
 			if (tweet.isRetweet()) {
-				// There is at least one retweeter : the one that bring it to the TL.
 				var myID = current_user.id_str
+				var name;
 
-				var iamTheRetweeter = (myID == tweet.author.id_str)
-				spottedAsRetweeter = iamTheRetweeter
-
-				if (iamTheRetweeter) {
-					message = message + ' ' + qsTr("me")
+				if (myID === tweet.author.id_str) {
+					name = qsTr("me")
+					spottedAsRetweeter = true
 				} else {
-					message = message + ' '
-							+ wrapEntity('@' + tweet.author.screen_name)
+					name = wrapEntity('@' + tweet.author.screen_name)
 					nbOtherRetweeters--
 				}
+
+				knownPeopleArray.push(name);
 			}
 
-			// Did I retweet this ? No need to tell it again if I am the retweeter.
+			// 2°) Me if I retweeted the tweet.
+			// No need to tell it again if I am the the official retweeter.
 			if (tweet.retweeted && !spottedAsRetweeter) {
-				if (tweet.isRetweet()) {
-					// The author of the retweet is already written. Let's write a comma after its name
-					message = message + ','
-				}
-
-				message = message + ' ' + qsTr("me")
+				knownPeopleArray.push(qsTr("me"))
 				spottedAsRetweeter = true
 			}
 
-			// Writing if other people retweeted
+			// Writing known retweeters
+			var separator
+
 			if (nbOtherRetweeters > 0) {
-				// Enclosing in a tag to show retweeters
-				message = message + ' <a href="showRTers" style="color: '
-						+ shown_tweet.author.profile_link_color
-						+ ' ; text-decoration: none">'
-
-				// People already written in var message
-				var peopleAlreadyCaught = shown_tweet.retweet_count - nbOtherRetweeters
-				var singularForOtherRTers = (nbOtherRetweeters == 1)
-
-				if (peopleAlreadyCaught > 0) {
-					var otherString = singularForOtherRTers ? qsTr("other") : qsTr("others")
-					message = message + qsTr("and") + ' ' + nbOtherRetweeters
-							+ ' ' + otherString
-				} else {
-					message = message + ' ' + nbOtherRetweeters
-				}
-
-				var peopleString = singularForOtherRTers ? qsTr("person") : qsTr("people")
-				message = message + ' ' + peopleString + '</a>'
+				// First retweeters, separated by a comma
+				separator = ", "
+			} else {
+				// The two only retweeters : "1°) and 2°)"
+				separator = ' '.concat(qsTr("and")).concat(' ')
 			}
 
-			message = message + '.'
+			message = message.concat(' ').concat(knownPeopleArray.join(separator))
+
+
+			// If other people retweeted
+			if (nbOtherRetweeters > 0) {
+				// Enclosing in a tag to show retweeters
+				message = message.concat(' <a href="showRTers" style="color: ')
+				message = message.concat(shown_tweet.author.profile_link_color)
+				message = message.concat(' ; text-decoration: none">')
+
+				// No "and" if nobody was written before.
+				if (knownPeopleArray.length > 0) {
+					message = message.concat(qsTr("and")).concat(' ')
+				}
+
+				// Writing the number of other people
+				message = message.concat(nbOtherRetweeters.toString())
+				message = message.concat(' ')
+
+				// Singular or plural ?
+				if (nbOtherRetweeters == 1) {
+					// one other person
+					message = message.concat(qsTr("other")).concat(' ')
+					message = message.concat(qsTr("person"))
+				} else {
+					// other people
+					message = message.concat(qsTr("others")).concat(' ')
+					message = message.concat(qsTr("people"))
+				}
+
+				// Closing the tag
+				message = message.concat('</a>')
+			}
+
+			message = message.concat('.')
 
 			return message
 		}
@@ -434,9 +457,9 @@ Rectangle {
 		ActionElement {
 			id: retweet_action
 			image_source: "../../resources/icons/retweet_off2.png"
-			legend: tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
+			legend: shown_tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
-				if (tweet.retweeted) {
+				if (shown_tweet.retweeted) {
 					control.deleteTweet();
 				} else {
 					control.retweet();
@@ -462,16 +485,16 @@ Rectangle {
 		ActionElement {
 			id: favorite_action
 			image_source: "../../resources/icons/favorite_" + fav_suffix + ".png"
-			legend: tweet.favorited ? qsTr("Favorited") : qsTr("Favorite")
+			legend: shown_tweet.favorited ? qsTr("Favorited") : qsTr("Favorite")
 			onAct: {
-				if (tweet.favorited) {
+				if (shown_tweet.favorited) {
 					control.unfavorite()
 				} else {
 					control.favorite()
 				}
 			}
 
-			property string fav_suffix: tweet.favorited ? "on" : "off"
+			property string fav_suffix: shown_tweet.favorited ? "on" : "off"
 		}
 	}
 

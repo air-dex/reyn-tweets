@@ -119,6 +119,7 @@ Rectangle {
 		footer: Component {
 			Text {
 				id: timeline_footer
+				width: timeline_view.width
 				text: qsTr("More...")
 				horizontalAlignment: Text.AlignHCenter
 				font.family: constant.font

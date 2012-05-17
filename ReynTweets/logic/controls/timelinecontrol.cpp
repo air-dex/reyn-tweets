@@ -243,7 +243,7 @@ void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
     qlonglong sinceTweetID = timeline[0].getID() + 1;
 
     connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+            this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
     processing = true;
     emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
@@ -263,7 +263,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
     // Disconnect
     disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+               this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
     CoreResult issue = result.processIssue;
     QVariantList resList = result.results.toList();

@@ -191,11 +191,13 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
     switch (issue) {
         case TIMELINE_RETRIEVED:
             newTweets.fillWithVariant(resList);
+            emit loadedMoreTweets(newTweets.size());
+
             // Equivalent to timeline.prepend(newTweets);
             newTweets.append(timeline);
-            emit loadedMoreTweets(newTweets.size());
             timeline.clear();
             timeline.append(newTweets);
+
             emit timelineChanged();
             // Process successful
             emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);

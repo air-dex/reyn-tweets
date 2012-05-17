@@ -520,12 +520,12 @@
         <translation>More...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="196"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="198"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="200"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="202"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -715,33 +715,33 @@
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="141"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="166"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="167"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Your tweet gets more than 140 characters.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="186"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="187"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Your tweet gets some invalid character(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="197"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
         <source>You have to write something to tweet.</source>
         <translation>You have to write something to tweet.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="160"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="161"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="181"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="182"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

@@ -132,6 +132,7 @@ Rectangle {
 		}
 	}
 
+	// Click on it to tweet !
 	RTButton {
 		id: tweet_button
 		anchors.right: write_tweet_pane.right

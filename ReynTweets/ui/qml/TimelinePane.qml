@@ -177,6 +177,9 @@ Rectangle {
 
 		// For displaying informations
 		control.showInfoMessage.connect(timeline_pane.showInfoMessage)
+
+		// For a better placement in the timeline
+		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
 	}
 
 	// Loading the home timeline
@@ -209,6 +212,13 @@ Rectangle {
 		timeline_view.positionViewAtIndex(timeline_view.indexBackup,
 										  ListView.Beginning);
 		timeline_pane.endAction(endOK, messageDisplayed, isFatal)
+	}
+
+	// Executed after refreshing a timeline
+	function moreTweets(nbTweets) {
+		console.debug(timeline_view.indexBackup)
+		timeline_view.indexBackup = timeline_view.indexBackup + nbTweets
+		console.debug(timeline_view.indexBackup)
 	}
 
 	signal needAuthentication

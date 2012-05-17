@@ -86,6 +86,11 @@ class TimelineControl : public GenericControl
         /// @brief Signal sent when the timeline property changes
         void timelineChanged();
 
+        /// @fn void loadedMoreTweets(int tweetsLoaded);
+        /// @brief Signal sent to indicate how many more tweets were loaded
+        /// @param tweetsLoaded Number of tweets
+        void loadedMoreTweets(int tweetsLoaded);
+
     protected slots:
         /// @fn void loadTimelineEnded(ProcessWrapper res);
         /// @brief Slot executed after loading a timeline

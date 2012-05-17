@@ -23,7 +23,7 @@ Où en est Reyn Tweets ?
     * Résoudre le bug des dates (issue 51) -> Fait avec une classe spéciale ReynTweetsDateTime.
   * Documentation :
     * Génération de la documentation Doxygen de Reyn Tweets.
-    * Automatisation de la génération de documentation.
+    * Automatisation de la génération de documentation avec des règles Makefile supplémentaires (doc et cleandoc).
     * Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement (retard).
     * License dans la documentation des fichiers.
   * Modèle de données
@@ -48,21 +48,26 @@ Où en est Reyn Tweets ?
   * Implémentation des fonctionnalités de base.
     * Téléchargement de la timeline perso de l'utilisateur
     * Mise en place de l'architecture pour des composants listes
+    * Ecrire un tweet et le poster.
   * Interface graphique (UI) :
     * Timelines (listes de tweets)
+    * UI d'un tweet (format résumé).
+  * Traduction
+    * Règles Makefile supplémentaires pour lupdate (trupdate), lrelease (trrelease), déployer les .qm (trdeploy) et effacer les .qm (trclean).
 
 
 == Ce qui reste à faire ==
 
   # Implémentation des fonctionnalités de base.
-    # Ecrire un tweet et le poster.
   # Modèle de données
+    # Memento
+    # Types de timelines et particularités.
   # Interface graphique (UI) :
     # Interface desktop à designer.
-    # UI d'un tweet (format résumé et détaillé).
+    # UI d'un tweet : câblage.
     # UI d'un user (résumé et détaillé)
     # Listes d'utilisateurs
-    # UI de la partie options, popur les paramètres.
+    # UI de la partie options, pour les paramètres.
     # ...
   # Documentation :
     # Mettre à jour la documentation Doxygen après que l'architecture soit au point et que le lancement s'effectue correctement
@@ -71,8 +76,7 @@ Où en est Reyn Tweets ?
     # Publication quelque part (Google Sites ?)
   # Faire des tests unitaires et d'intégration (issue 20).
   # Portage sur Symbian
-  # Traduction
-    # Faire un script pour la traduction (Windws, Linux) qui sera appelé.
+    # UI d'un tweet (format résumé) inutile sur desktop.
   # Revue de code
     # TwitterCommunicator pour requêtes authentifiées (issue 33)
     # Sérialisation et requesters (issue 44)

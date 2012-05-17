@@ -8,6 +8,7 @@
 || trupdate || Traduction - Mise à jour des fichiers .ts ||
 || trrelease || Traduction - Création des fichiers .qm ||
 || trclean || Traduction - Suppression des fichiers .qm  ||
+|| trdeploy|| Traduction - Déploiement des fichiers .qm ||
 
 Chaque règle de traduction génère les fichiers pour l'ensemble des langues.
 

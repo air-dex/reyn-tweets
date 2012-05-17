@@ -141,7 +141,7 @@ Rectangle {
 		// Wiring write_tweet
 		write_tweet.needAuthentication.connect(needNewAuth)
 		write_tweet.endWriting.connect(main_view.endAction)
-		write_tweet.updateTimeline.connect(timeline.updateTimeline)
+		write_tweet.updateAfterWrite.connect(timeline.updateAfterWrite)
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
 	}
 

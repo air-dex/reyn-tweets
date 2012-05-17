@@ -25,7 +25,8 @@
 #include "timelinecontrol.hpp"
 
 TimelineControl::TimelineControl() :
-    GenericControl()
+    GenericControl(),
+    backupedNewTweet()
 {}
 
 // Declaring TweetControl to the QML system
@@ -191,6 +192,89 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
     switch (issue) {
         case TIMELINE_RETRIEVED:
             newTweets.fillWithVariant(resList);
+            emit loadedMoreTweets(newTweets.size());
+
+            // Equivalent to timeline.prepend(newTweets);
+            newTweets.append(timeline);
+            timeline.clear();
+            timeline.append(newTweets);
+
+            emit timelineChanged();
+            // Process successful
+            emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+            break;
+
+        case TOKENS_NOT_AUTHORIZED:
+            // An authentication is needed. So let's do it!
+            emit authenticationNeeded();
+            return;
+
+        // Problems that can be solved trying later
+        case BAD_REQUEST:
+        case REFUSED_REQUEST:
+        case RATE_LIMITED:	// The user reached rates.
+        case TWITTER_DOWN:	// Twitter does not respond.
+        case NETWORK_CALL:
+            emit actionEnded(false, result.errorMsg, false);
+            break;
+
+        // Unknown ends
+        case UNKNOWN_PROBLEM:
+
+        default:
+            emit actionEnded(false, result.errorMsg, true);
+            break;
+    }
+}
+
+// Refreshing after writing a tweet
+void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
+    if (processing) {
+        return;
+    }
+
+    // Refreshing an empty timeline == loading the timeline
+    if (timeline.isEmpty()) {
+        return loadHomeTimeline();
+    }
+
+    backupedNewTweet = newTweetVariant;
+
+    qlonglong sinceTweetID = timeline[0].getID() + 1;
+
+    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+            this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+
+    processing = true;
+    emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+    reyn.loadHomeTimeline(sinceTweetID, -1);
+}
+
+
+// After refreshHomeTimelineAfterWrite
+void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
+    ProcessResult result = res.accessResult(this);
+
+    // The result was not for the object. Stop the treatment.
+    if (INVALID_ISSUE == result.processIssue) {
+        processing = true;
+        return;
+    }
+
+    // Disconnect
+    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+               this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+
+    CoreResult issue = result.processIssue;
+    QVariantList resList = result.results.toList();
+    Timeline newTweets;
+    Tweet lastTweet;
+
+    switch (issue) {
+        case TIMELINE_RETRIEVED:
+            newTweets.fillWithVariant(resList);
+            lastTweet.fillWithVariant(backupedNewTweet.toMap());
+            newTweets.prepend(lastTweet);
             emit loadedMoreTweets(newTweets.size());
 
             // Equivalent to timeline.prepend(newTweets);

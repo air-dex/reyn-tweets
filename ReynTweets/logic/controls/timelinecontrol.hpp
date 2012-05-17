@@ -51,6 +51,11 @@ class TimelineControl : public GenericControl
         /// @brief Refreshing the home timeline
         Q_INVOKABLE void refreshHomeTimeline();
 
+        /// @fn Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
+        /// @brief Refreshing the home timeline after writing a tweet
+        /// @param newTweetVariant Newly written tweet under its QVariant form
+        Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
+
         /// @fn Q_INVOKABLE void moreOldHomeTimeline();
         /// @brief Getting more old tweets the home timeline
         Q_INVOKABLE void moreOldHomeTimeline();
@@ -102,6 +107,11 @@ class TimelineControl : public GenericControl
         /// @param res Result of the load
         void refreshTimelineEnded(ProcessWrapper res);
 
+        /// @fn void refreshTimelineAfterWriteEnded(ProcessWrapper res);
+        /// @brief Slot executed after refreshHomeTimelineAfterWrite
+        /// @param res Result of the process
+        void refreshTimelineAfterWriteEnded(ProcessWrapper res);
+
         /// @fn void loadTimelineEnded(ProcessWrapper res);
         /// @brief Slot executed after getting older tweets a timeline
         /// @param res Result of the load
@@ -119,6 +129,9 @@ class TimelineControl : public GenericControl
         /// @fn Timeline getTimelineLength();
         /// @brief Reading the property tl_length
         int getTimelineLength();
+
+        /// @brief New tweet saved while updating after reading.
+        QVariant backupedNewTweet;
 };
 
 #endif // TIMELINECONTROL_HPP

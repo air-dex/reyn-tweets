@@ -193,6 +193,12 @@ Rectangle {
 		control.refreshHomeTimeline()
 	}
 
+	// Refreshing the home timeline
+	function updateAfterWrite(newTweet) {
+		timeline_view.backupIndex()
+		control.refreshHomeTimelineAfterWrite(newTweet)
+	}
+
 	// What happened after loading the timeline
 	function afterLoading(endOK, endMsg, isFatal) {
 		var action, messageDisplayed;
@@ -216,9 +222,7 @@ Rectangle {
 
 	// Executed after refreshing a timeline
 	function moreTweets(nbTweets) {
-		console.debug(timeline_view.indexBackup)
 		timeline_view.indexBackup = timeline_view.indexBackup + nbTweets
-		console.debug(timeline_view.indexBackup)
 	}
 
 	signal needAuthentication

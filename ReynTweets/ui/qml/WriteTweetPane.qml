@@ -61,14 +61,7 @@ Rectangle {
 
 	Constants { id: constant }
 
-	WriteTweetControl {
-		id: control
-		onTweetPosted: {
-			tweet_edit.text = ""
-			in_reply_to_tweet_id = "-1"
-			write_tweet_pane.updateTimeline()
-		}
-	}
+	WriteTweetControl { id: control }
 
 	// Introduction message
 	Text {
@@ -205,6 +198,7 @@ Rectangle {
 		control.actionEnded.connect(write_tweet_pane.endWriting)
 		control.authenticationNeeded.connect(write_tweet_pane.needAuthentication)
 		control.showInfoMessage.connect(write_tweet_pane.showInfoMessage)
+		control.tweetPosted.connect(write_tweet_pane.afterPosting)
 	}
 
 	// Writing a reply to a tweet by specifying the text and the person to reply
@@ -241,6 +235,12 @@ Rectangle {
 		return charsAllowed;
 	}
 
+	function afterPosting(newTweetVariant) {
+		tweet_edit.text = ""
+		in_reply_to_tweet_id = "-1"
+		write_tweet_pane.updateAfterWrite(newTweetVariant)
+	}
+
 
 	/////////////
 	// Signals //
@@ -253,7 +253,7 @@ Rectangle {
 	signal endWriting(bool endOK, string endMsg, bool fatalEnd)
 
 	// Sent to update the timeline
-	signal updateTimeline
+	signal updateAfterWrite(variant newTweetVariant)
 
 	// Showing an information message
 	signal showInfoMessage(string infoMsg)

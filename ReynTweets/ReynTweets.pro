@@ -364,7 +364,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	#conf_files
+	conf_files
 
 
 #-------#

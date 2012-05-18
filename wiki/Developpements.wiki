@@ -83,4 +83,11 @@ Où en est Reyn Tweets ?
     # Remontage des tokens (issue 46)
     # Composants graphique non faits manu militari sur desktop (issue 56)
     # ... (cf. bug reporter)
+  # Créer des structures pour releaser :
+    # Sur Windows :
+      # Script pour créer des installateurs
+    # Sur Linux :
+      # Création de tarballs
+      # Créations de binaires : .deb, .rpm, .bin ?
+      # Création d'un PPA pour Linux.
   # Releaser publiquement dès que je jugerai que ce sera suffisemment bon.

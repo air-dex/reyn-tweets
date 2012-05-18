@@ -89,5 +89,5 @@ Où en est Reyn Tweets ?
     # Sur Linux :
       # Création de tarballs
       # Créations de binaires : .deb, .rpm, .bin ?
-      # Création d'un PPA pour Linux.
+      # Création de PPAs pour Ubuntu (stable, advanced).
   # Releaser publiquement dès que je jugerai que ce sera suffisemment bon.

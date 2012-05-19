@@ -25,97 +25,97 @@
 #define DELETETWEETPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../../connection/reyntwittercalls.hpp"
+#include "../../connection/calls/reyntwittercalls.hpp"
 #include "../../model/tweets/tweet.hpp"
 
 /// @class DeleteTweetProcess
 /// @brief Processus for deleting a tweet
 class DeleteTweetProcess : public GenericProcess
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn DeleteTweetProcess(UserInfos & u,
-		///						   Tweet statusToDelete,
-		///						   bool withEntities = true,
-		///						   bool userIDonly = false);
-		/// @brief Constructor
-		/// @param u User who want to delete the tweet.
-		/// @param statusToDelete The tweet to delete
-		/// @param withEntities Including Tweet Entities ?
-		/// @param userIDonly Omit user details in the reply ?
-		DeleteTweetProcess(UserInfos & u,
-						   Tweet statusToDelete,
-						   bool withEntities = true,
-						   bool userIDonly = false);
+    public:
+        /// @fn DeleteTweetProcess(UserInfos & u,
+        ///						   Tweet statusToDelete,
+        ///						   bool withEntities = true,
+        ///						   bool userIDonly = false);
+        /// @brief Constructor
+        /// @param u User who want to delete the tweet.
+        /// @param statusToDelete The tweet to delete
+        /// @param withEntities Including Tweet Entities ?
+        /// @param userIDonly Omit user details in the reply ?
+        DeleteTweetProcess(UserInfos & u,
+                           Tweet statusToDelete,
+                           bool withEntities = true,
+                           bool userIDonly = false);
 
-		/// @fn ~DeleteTweetProcess();
-		/// @brief Destructor
-		~DeleteTweetProcess();
+        /// @fn ~DeleteTweetProcess();
+        /// @brief Destructor
+        ~DeleteTweetProcess();
 
-		/// @fn void startProcess();
-		/// @brief Starting the process by determining if the tweet can be deleted.
-		void startProcess();
-
-
-	protected:
-		/// @brief Entity calling Twitter
-		ReynTwitterCalls twitter;
-
-		/// @brief Configuration
-		UserInfos & user;
-
-		/// @brief ID of the tweet to favorite
-		Tweet tweetToDelete;
-
-		/// @brief Include Tweet Entities of the tweet in the reply ?
-		bool includeEntities;
-
-		/// @brief Only include the userID in the "user" field of a tweet
-		bool trimUser;
-
-		/// @brief Indicates if the tweet has to be kept in the timeline
-		/// after the deletion.
-		bool keepInTimeline;
+        /// @fn void startProcess();
+        /// @brief Starting the process by determining if the tweet can be deleted.
+        void startProcess();
 
 
-	/////////////////
-	// The process //
-	/////////////////
+    protected:
+        /// @brief Entity calling Twitter
+        ReynTwitterCalls twitter;
 
-		/// @fn void canDeleteTweet();
-		/// @brief Determining if the tweet can be deleted
-		void canDeleteTweet();
+        /// @brief Configuration
+        UserInfos & user;
 
-	signals:
-		/// @fn void allowDelete(bool allowToDelete, QString addInfos);
-		/// @brief Send after determining if the tweet can be deleted
-		/// @param allowToDelete Boolean determining if the tweet can be deleted
-		/// (true, false otherwise).
-		/// @param addInfos Additionnal informations for the deletion
-		/// (ID of the tweet to delete or message explaining why the tweet
-		/// won't be destroyed).
-		void allowDelete(bool allowToDelete, QString addInfos);
+        /// @brief ID of the tweet to favorite
+        Tweet tweetToDelete;
 
-	protected slots:
-		/// @fn void searchRetweetIDEnded(RequestResult res);
-		/// @brief After searching the ID of the retweet
-		/// @param res Result of the request
-		void searchRetweetIDEnded(ResultWrapper res);
+        /// @brief Include Tweet Entities of the tweet in the reply ?
+        bool includeEntities;
 
-		/// @fn void deleteTweet(bool allowToDelete, QString addInfos);
-		/// @brief Deleting the tweet
-		/// @param allowToDelete Boolean determining if the tweet can be deleted
-		/// (true, false otherwise).
-		/// @param addInfos Additionnal informations for the deletion
-		/// (ID of the tweet to delete or message explaining why the tweet
-		/// won't be destroyed).
-		void deleteTweet(bool allowToDelete, QString addInfos);
+        /// @brief Only include the userID in the "user" field of a tweet
+        bool trimUser;
 
-		/// @fn void deleteEnded(RequestResult res);
-		/// @brief After deleting the tweet
-		/// @param res Result of the request
-		void deleteEnded(ResultWrapper res);
+        /// @brief Indicates if the tweet has to be kept in the timeline
+        /// after the deletion.
+        bool keepInTimeline;
+
+
+    /////////////////
+    // The process //
+    /////////////////
+
+        /// @fn void canDeleteTweet();
+        /// @brief Determining if the tweet can be deleted
+        void canDeleteTweet();
+
+    signals:
+        /// @fn void allowDelete(bool allowToDelete, QString addInfos);
+        /// @brief Send after determining if the tweet can be deleted
+        /// @param allowToDelete Boolean determining if the tweet can be deleted
+        /// (true, false otherwise).
+        /// @param addInfos Additionnal informations for the deletion
+        /// (ID of the tweet to delete or message explaining why the tweet
+        /// won't be destroyed).
+        void allowDelete(bool allowToDelete, QString addInfos);
+
+    protected slots:
+        /// @fn void searchRetweetIDEnded(RequestResult res);
+        /// @brief After searching the ID of the retweet
+        /// @param res Result of the request
+        void searchRetweetIDEnded(ResultWrapper res);
+
+        /// @fn void deleteTweet(bool allowToDelete, QString addInfos);
+        /// @brief Deleting the tweet
+        /// @param allowToDelete Boolean determining if the tweet can be deleted
+        /// (true, false otherwise).
+        /// @param addInfos Additionnal informations for the deletion
+        /// (ID of the tweet to delete or message explaining why the tweet
+        /// won't be destroyed).
+        void deleteTweet(bool allowToDelete, QString addInfos);
+
+        /// @fn void deleteEnded(RequestResult res);
+        /// @brief After deleting the tweet
+        /// @param res Result of the request
+        void deleteEnded(ResultWrapper res);
 };
 
 #endif // DELETETWEETPROCESS_HPP

@@ -79,7 +79,9 @@ SOURCES += \
 	connection/requests/users/showuserrequester.cpp \
 	connection/requests/requestinfos.cpp \
 	connection/requests/requestermanager.cpp \
-	connection/reyntwittercalls.cpp \
+	connection/calls/genericcalls.cpp \
+	connection/calls/reyntwittercalls.cpp \
+	connection/calls/twitlongercalls.cpp \
 	model/reyntweetslistable.cpp \
 	model/reyntweetsmappable.cpp \
 	model/tweets/tweetentity.cpp \
@@ -164,10 +166,13 @@ HEADERS  += \
 	connection/requests/tweets/retweetrequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
-	connection/requests/requests.hpp \
+	connection/requests/twitterrequests.hpp \
+	connection/requests/twitlongerrequests.hpp \
 	connection/requests/requestinfos.hpp \
 	connection/requests/requestermanager.hpp \
-	connection/reyntwittercalls.hpp \
+	connection/calls/genericcalls.hpp \
+	connection/calls/reyntwittercalls.hpp \
+	connection/calls/twitlongercalls.hpp \
 	model/reyntweetsserializable.hpp \
 	model/reyntweetslistable.hpp \
 	model/reyntweetslistable.tpp \

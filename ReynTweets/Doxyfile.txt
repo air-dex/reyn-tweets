@@ -125,41 +125,14 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = .		# Reyn Tweets source directory
+INPUT                  = ../ReynTweets		# Reyn Tweets source directory
 INPUT_ENCODING         = UTF-8
-FILE_PATTERNS          = *.c \
-						 *.cc \
-						 *.cxx \
-						 *.cpp \
+FILE_PATTERNS          = *.cpp \
 						 *.tpp \
-						 *.c++ \
-						 *.d \
-						 *.java \
-						 *.ii \
-						 *.ixx \
-						 *.ipp \
-						 *.i++ \
-						 *.inl \
-						 *.h \
-						 *.hh \
-						 *.hxx \
 						 *.hpp \
-						 *.h++ \
-						 *.idl \
-						 *.odl \
-						 *.cs \
-						 *.php \
-						 *.php3 \
+						 *.js \
 						 *.qml \
-						 *.inc \
-						 *.m \
-						 *.mm \
-						 *.dox \
-						 *.py \
-						 *.f90 \
-						 *.f \
-						 *.vhd \
-						 *.vhdl
+						 *.dox
 RECURSIVE              = YES
 EXCLUDE                =
 EXCLUDE_SYMLINKS       = NO

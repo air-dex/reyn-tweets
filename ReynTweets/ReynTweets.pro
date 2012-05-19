@@ -136,6 +136,7 @@ HEADERS  += \
 	tools/parsers/oauthparser.hpp \
 	model/configuration/reyntweetssettings.hpp \
 	connection/requests/requesttype.hpp \
+	connection/headersmap.hpp \
 	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
 	connection/errortypes.hpp \

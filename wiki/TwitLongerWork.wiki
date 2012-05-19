@@ -16,8 +16,13 @@ Le service TwitLonger ( http://www.twitlonger.com/ ) sera intégré à Reyn Twee
       * CallbackIDRequester : pour màj le message avec son ID Twitter
       * ReadMessageRequester : pour lire un message
     * TwitLonger renvoie des réponses au format XML -> Création d'un parser XML.
-  * Au niveau des Communicators :
-    * Rien dans le header a priori. Il faudra donc faire une hiérarchisation côté communicators (issue 74). En profiter pour y faire les quelques revues déjà notées (issue 24, issue 25, issue 34)
-    * Modifications en conséquence dans le code.
+  * ~~Au niveau des Communicators :~~
+    * ~~Rien dans le header a priori. Il faudra donc faire une hiérarchisation côté communicators (issue 74). En profiter pour y faire les quelques revues déjà notées (issue 24, issue 25, issue 34)~~
+    * ~~Modifications en conséquence dans le code.~~
   * Autres :
     * Réfléchir à l'intégration de l'API Key dans l'appli (issue 75).
+
+== Travail réalisé ==
+
+  * Au niveau des Communicators :
+    * Refonte du TwitterCommunicator (r409) qui donne un communicator unique pour tout le monde (Twitter, TwitLonger, futurs services ?).

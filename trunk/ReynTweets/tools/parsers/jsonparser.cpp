@@ -30,7 +30,8 @@
 QVariantMap JSONParser::parse(QByteArray data,
 							  bool & parseOK,
 							  QString & parseError,
-							  int * lineError)
+							  int * lineError,
+							  int *)
 {
 	// Parsing with QJson
 	QJson::Parser parser;

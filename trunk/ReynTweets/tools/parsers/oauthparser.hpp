@@ -30,24 +30,28 @@
 
 /// @class OAuthParser
 /// @brief Parser for data which are under the form <code>
-/// arg1=val1&arg2=val2&...&argN=valN</code>. This kind of parser is used for
-/// parsing OAuth results.
+/// arg1=val1&arg2=val2&...&argN=valN</code>.
+///
+/// This kind of parser is used for parsing OAuth results.
 class OAuthParser : public GenericParser<QVariantMap>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
 		///						  bool & parseOK,
 		///						  QString & parseError,
-		///						  int * lineError = 0);
+		///						  int * lineError = 0,
+		///						  int * columnError = 0);
 		/// @brief Parsing datas for OAuth
 		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error. Unused.
+		/// @param columnError Column of the error. Unused.
 		QVariantMap parse(QByteArray data,
 						  bool & parseOK,
 						  QString & parseError,
-						  int * lineError = 0);
+						  int * lineError = 0,
+						  int * columnError = 0);
 
 		/// @fn QVariant extractParameter(QVariantMap & parsedMap,
 		///								  QString parameterName,

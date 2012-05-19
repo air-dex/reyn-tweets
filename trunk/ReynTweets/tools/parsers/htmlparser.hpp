@@ -37,16 +37,19 @@ class HTMLParser : public GenericParser<QWebElement>
 		/// @fn QWebElement parse(QByteArray data,
 		///						  bool & parseOK,
 		///						  QString & parseError,
-		///						  int * lineError = 0);
+		///						  int * lineError = 0,
+		///						  int * columnError = 0);
 		/// @brief Method for parsing results
 		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error. Unused
+		/// @param columnError Column of the error. Unused
 		QWebElement parse(QByteArray data,
 						  bool & parseOK,
 						  QString & parseError,
-						  int * lineError = 0);
+						  int * lineError = 0,
+						  int * columnError = 0);
 };
 
 #endif // HTMLPARSER_HPP

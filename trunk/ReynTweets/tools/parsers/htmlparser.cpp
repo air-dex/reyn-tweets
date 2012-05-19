@@ -31,7 +31,7 @@
 QWebElement HTMLParser::parse(QByteArray data,
 							  bool & parseOK,
 							  QString & parseError,
-							  int *)
+							  int *, int *)
 {
 	QWebPage webPage;
 	QWebFrame * frame = webPage.mainFrame();

@@ -51,7 +51,10 @@ enum ErrorType {
 	OAUTH_PARSING,
 
 	/// @brief Code indicating that there was an error while parsing HTML.
-	HTML_PARSING
+	HTML_PARSING,
+
+	/// @brief Code indicating that there was an error while parsing XML.
+	XML_PARSING
 };
 
 #endif // ERRORTYPES_HPP

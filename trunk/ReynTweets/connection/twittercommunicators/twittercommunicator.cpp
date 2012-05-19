@@ -1,4 +1,4 @@
-/// @file twittercommunicator.hpp
+/// @file twittercommunicator.cpp
 /// @brief Implementation of TwitterCommunicator.
 ///
 /// SVN revisions of this file that are older than r80 are in the folder

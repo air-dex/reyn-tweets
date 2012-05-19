@@ -28,135 +28,135 @@
 #define OAUTHPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../connection/reyntwittercalls.hpp"
+#include "../connection/calls/reyntwittercalls.hpp"
 
 /// @class OAuthProcess
 /// @brief Controller for the execution of the Twitter's OAuth Authentication Flow
 class OAuthProcess : public GenericProcess
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn OAuthProcess();
-		/// @brief Constructor
-		OAuthProcess();
+    public:
+        /// @fn OAuthProcess();
+        /// @brief Constructor
+        OAuthProcess();
 
-		/// @fn ~OAuthProcess();
-		/// @brief Destructor
-		~OAuthProcess();
+        /// @fn ~OAuthProcess();
+        /// @brief Destructor
+        ~OAuthProcess();
 
-		/// @fn void startProcess();
-		/// @brief Starting the OAuth Authentication flow
-		void startProcess();
+        /// @fn void startProcess();
+        /// @brief Starting the OAuth Authentication flow
+        void startProcess();
 
-		/// @fn void resetTokens();
-		/// @brief Resetting the tokens. A full new OAuth authentication process
-		/// has to be launch to get tokens and for authentication in requests
-		void resetTokens();
-
-
-	signals:
-		/// @fn void userCredentialsRequired();
-		/// @brief Signal sent when the process requires user credentials
-		void userCredentialsRequired();
-
-		/// @fn void credentialsOK(bool ok);
-		/// @brief Signal sent to show or to hide an error message telling
-		/// the user if the credentials he gave were right.
-		/// @param ok Boolean indicating if the credentials sent to Twitter
-		/// were right.
-		void credentialsOK(bool ok);
-
-	private:
-		/// @fn void requestToken();
-		/// @brief Demanding a Request Token
-		void requestToken();
-
-		/// @fn void authorize();
-		/// @brief Authorize the request tokens
-		void authorize();
-
-		/// @fn void accessToken();
-		/// @brief Demanding an Access Token
-		void accessToken();
-
-	protected:
-		/// @fn virtual void buildResult(bool processOK,
-		///								 CoreResult issue,
-		///								 QString errMsg = "",
-		///								 bool isFatal = false);
-		/// @brief Building the process result
-		/// @param processOK Value indicating how the process has ended correctly.
-		/// @param issue Tag describing the issue of the process
-		/// @param errMsg Error message
-		/// @param isFatal Has the process ended fatally.
-		virtual void buildResult(bool processOK,
-								 CoreResult issue,
-								 QString errMsg = "",
-								 bool isFatal = false);
-
-		/// @fn virtual void buildResult(QByteArray accessToken,
-		///								 QByteArray tokenSecret,
-		///								 qlonglong userID,
-		///								 QString screenName);
-		/// @brief Building the process result if Reyn Tweets is authorized.
-		/// @param accessToken User access token
-		/// @param tokenSecret User token secret
-		/// @param userID ID of the user who has just authorized the application
-		/// @param screenName Screen name of the user who has just authorized
-		/// the application.
-		virtual void buildResult(QByteArray accessToken,
-								 QByteArray tokenSecret,
-								 qlonglong userID,
-								 QString screenName);
+        /// @fn void resetTokens();
+        /// @brief Resetting the tokens. A full new OAuth authentication process
+        /// has to be launch to get tokens and for authentication in requests
+        void resetTokens();
 
 
-	public slots:
-		/////////////////////////
-		// Requests to Twitter //
-		/////////////////////////
+    signals:
+        /// @fn void userCredentialsRequired();
+        /// @brief Signal sent when the process requires user credentials
+        void userCredentialsRequired();
 
-		/// @fn void requestTokenDemanded(ResultWrapper res);
-		/// @brief Treatments after the request for Request Tokens
-		/// @param res Result of the request
-		void requestTokenDemanded(ResultWrapper res);
+        /// @fn void credentialsOK(bool ok);
+        /// @brief Signal sent to show or to hide an error message telling
+        /// the user if the credentials he gave were right.
+        /// @param ok Boolean indicating if the credentials sent to Twitter
+        /// were right.
+        void credentialsOK(bool ok);
 
-		/// @fn void authorizeDemanded(ResultWrapper res);
-		/// @brief Treatments after the request for authorizing Request Tokens
-		/// @param res Result of the request
-		void authorizeDemanded(ResultWrapper res);
+    private:
+        /// @fn void requestToken();
+        /// @brief Demanding a Request Token
+        void requestToken();
 
-		/// @fn void postAuthorizeDemanded(ResultWrapper res);
-		/// @brief Treatments after the POST authorizing request
-		/// @param res Result of the request
-		void postAuthorizeDemanded(ResultWrapper res);
+        /// @fn void authorize();
+        /// @brief Authorize the request tokens
+        void authorize();
 
-		/// @fn void accessTokenDemanded(ResultWrapper res);
-		/// @brief Treatments after the request for Access Tokens
-		/// @param res Result of the request
-		void accessTokenDemanded(ResultWrapper res);
+        /// @fn void accessToken();
+        /// @brief Demanding an Access Token
+        void accessToken();
+
+    protected:
+        /// @fn virtual void buildResult(bool processOK,
+        ///								 CoreResult issue,
+        ///								 QString errMsg = "",
+        ///								 bool isFatal = false);
+        /// @brief Building the process result
+        /// @param processOK Value indicating how the process has ended correctly.
+        /// @param issue Tag describing the issue of the process
+        /// @param errMsg Error message
+        /// @param isFatal Has the process ended fatally.
+        virtual void buildResult(bool processOK,
+                                 CoreResult issue,
+                                 QString errMsg = "",
+                                 bool isFatal = false);
+
+        /// @fn virtual void buildResult(QByteArray accessToken,
+        ///								 QByteArray tokenSecret,
+        ///								 qlonglong userID,
+        ///								 QString screenName);
+        /// @brief Building the process result if Reyn Tweets is authorized.
+        /// @param accessToken User access token
+        /// @param tokenSecret User token secret
+        /// @param userID ID of the user who has just authorized the application
+        /// @param screenName Screen name of the user who has just authorized
+        /// the application.
+        virtual void buildResult(QByteArray accessToken,
+                                 QByteArray tokenSecret,
+                                 qlonglong userID,
+                                 QString screenName);
 
 
-		//////////////////////////
-		// OAuthWidget requests //
-		//////////////////////////
+    public slots:
+        /////////////////////////
+        // Requests to Twitter //
+        /////////////////////////
 
-		/// @fn void authorizeReynTweets(QString login, QString password);
-		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void authorizeReynTweets(QString login, QString password);
+        /// @fn void requestTokenDemanded(ResultWrapper res);
+        /// @brief Treatments after the request for Request Tokens
+        /// @param res Result of the request
+        void requestTokenDemanded(ResultWrapper res);
 
-		/// @fn void denyReynTweets(QString login, QString password);
-		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void denyReynTweets(QString login, QString password);
+        /// @fn void authorizeDemanded(ResultWrapper res);
+        /// @brief Treatments after the request for authorizing Request Tokens
+        /// @param res Result of the request
+        void authorizeDemanded(ResultWrapper res);
+
+        /// @fn void postAuthorizeDemanded(ResultWrapper res);
+        /// @brief Treatments after the POST authorizing request
+        /// @param res Result of the request
+        void postAuthorizeDemanded(ResultWrapper res);
+
+        /// @fn void accessTokenDemanded(ResultWrapper res);
+        /// @brief Treatments after the request for Access Tokens
+        /// @param res Result of the request
+        void accessTokenDemanded(ResultWrapper res);
 
 
-	protected:
-		/// @brief Entity calling Twitter
-		ReynTwitterCalls twitter;
+        //////////////////////////
+        // OAuthWidget requests //
+        //////////////////////////
+
+        /// @fn void authorizeReynTweets(QString login, QString password);
+        /// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
+        /// @param login User login, i.e. its username or its email.
+        /// @param password User password
+        void authorizeReynTweets(QString login, QString password);
+
+        /// @fn void denyReynTweets(QString login, QString password);
+        /// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
+        /// @param login User login, i.e. its username or its email.
+        /// @param password User password
+        void denyReynTweets(QString login, QString password);
+
+
+    protected:
+        /// @brief Entity calling Twitter
+        ReynTwitterCalls twitter;
 };
 
 #endif // OAUTHPROCESS_HPP

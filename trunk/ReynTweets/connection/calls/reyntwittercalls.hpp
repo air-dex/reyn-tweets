@@ -1,5 +1,8 @@
 /// @file reyntwittercalls.hpp
 /// @brief Header of ReynTwitterCalls
+///
+/// SVN revisions of this file that are older than r411 are in the folder
+/// /trunk/ReynTweets/connection.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -24,24 +27,14 @@
 #ifndef REYNTWITTERCALLS_HPP
 #define REYNTWITTERCALLS_HPP
 
-#include <QObject>
-#include <QMap>
-#include <QUuid>
-#include "requests/genericrequester.hpp"
-#include "requests/resultwrapper.hpp"
-#include "requests/requestermanager.hpp"
-#include "oauthmanager.hpp"
+#include "genericcalls.hpp"
+#include "../oauthmanager.hpp"
 
 /// @class ReynTwitterCalls
-/// @brief ReynTwitterCalls is a class which manages calls to Twitter. It is a
-/// singleton. To use it
-class ReynTwitterCalls : public QObject
+/// @brief ReynTwitterCalls is a class which manages calls to Twitter.
+class ReynTwitterCalls : public GenericCalls
 {
     Q_OBJECT
-
-    //////////////////////////////////
-    // Core management of the class //
-    //////////////////////////////////
 
     public:
         /// @fn ReynTwitterCalls(QObject * requester);
@@ -53,48 +46,9 @@ class ReynTwitterCalls : public QObject
         /// @brief Destructor
         ~ReynTwitterCalls();
 
-    signals:
-        /// @fn void sendResult(ResultWrapper res);
-        /// @brief Signal emitted to the QObject that sends the request
-        /// @param res Result of a request
-        void sendResult(ResultWrapper res);
-
-    public slots:
-        /// @fn void endRequest();
-        /// @brief Slot executed when a requester has finished its work
-        void endRequest();
-
     protected:
-        /// @brief QObject that asks for the request
-        QObject * requestDemander;
-
-        /// @brief Entity which manages requests that are running
-        static RequesterManager requesterManager;
-
         /// @brief OAuth information
         static OAuthManager oauthManager;
-
-    private:
-        /// @fn void addRequester(GenericRequester * requester);
-        /// @brief Adding a requester to the requester manager
-        /// @param requester Address of the requester
-        void addRequester(GenericRequester * requester);
-
-        /// @fn void removeRequester(GenericRequester * requester);
-        /// @brief Removing a requester of the requester manager
-        /// @param requester Address of the requester
-        void removeRequester(GenericRequester * requester);
-
-        /// @fn ResultSender buildResultSender(GenericRequester * endedRequest);
-        /// @brief Method that builds the wrapper of a result
-        /// @param endedRequest Ended request that contaons the result
-        /// @return The wrapper of the request result
-        ResultWrapper buildResultSender(GenericRequester * endedRequest);
-
-        /// @fn inline void executeRequest(GenericRequester * requester);
-        /// @brief Inline method for executing requests
-        /// @param requester The requester
-        inline void executeRequest(GenericRequester * requester);
 
 
     /////////////////////////////

@@ -29,24 +29,28 @@
 #include "genericparser.hpp"
 
 /// @class JSONParser
-/// @brief Parser for JSON datas. It uses the <a href="http://qjson.sourceforge.net">
-/// QJSON</a> library to parse.
+/// @brief Parser for JSON datas.
+///
+/// It uses the <a href="http://qjson.sourceforge.net"> QJSON</a> library to parse.
 class JSONParser : public GenericParser<QVariantMap>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
 		///						  bool & parseOK,
 		///						  QString & parseError,
-		///						  int * lineError = 0);
+		///						  int * lineError = 0,
+		///						  int * columnError = 0);
 		/// @brief Parsing JSON datas
 		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
+		/// @param columnError Column of the error. Unused
 		QVariantMap parse(QByteArray data,
 						  bool & parseOK,
 						  QString & parseError,
-						  int * lineError = 0);
+						  int * lineError = 0,
+						  int * columnError = 0);
 };
 
 #endif // JSONPARSER_HPP

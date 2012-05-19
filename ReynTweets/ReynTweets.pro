@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkit declarative script
+QT += core gui network webkit declarative xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -53,6 +53,7 @@ SOURCES += \
 	tools/parsers/htmlparser.cpp \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
+	tools/parsers/xmlparser.cpp \
 	connection/requests/twitterurls.cpp \
 	model/configuration/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
@@ -136,6 +137,7 @@ HEADERS  += \
 	tools/parsers/htmlparser.hpp \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
+	tools/parsers/xmlparser.hpp \
 	model/configuration/reyntweetssettings.hpp \
 	connection/requests/requesttype.hpp \
 	connection/headersmap.hpp \

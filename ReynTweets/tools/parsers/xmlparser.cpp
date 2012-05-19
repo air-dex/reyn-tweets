@@ -1,5 +1,5 @@
-/// @file genericcontrol.cpp
-/// @brief Implementation of GenericControl
+/// @file xmlparser.cpp
+/// @brief Implementation of XMLParser
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,18 +21,16 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "genericcontrol.hpp"
+#include "xmlparser.hpp"
 
-// Constructor
-GenericControl::GenericControl() :
-	QObject(),
-	reyn(this),
-	processing(false)
+// Parsing an XML document
+QDomDocument XMLParser::parse(QByteArray data,
+							  bool &parseOK,
+							  QString &parseError,
+							  int * lineError,
+							  int * columnError)
 {
-	connect(this, SIGNAL(actionEnded(bool,QString,bool)),
-			this, SLOT(processAgain(bool,QString,bool)));
-}
-
-void GenericControl::processAgain(bool, QString, bool) {
-	processing = false;
+	QDomDocument res("XMLdoc");
+	parseOK = res.setContent(data, &parseError, lineError, columnError);
+	return res;
 }

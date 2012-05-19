@@ -30,7 +30,7 @@
 QVariantMap OAuthParser::parse(QByteArray data,
 							   bool & parseOK,
 							   QString & parseError,
-							   int *)
+							   int *, int *)
 {
 	QVariantMap res;
 	QString errorMsg = QObject::trUtf8("Following arguments are invalid : ");

@@ -1,7 +1,7 @@
 /// @file reyntwittercalls.cpp
 /// @brief Implementation of ReynTwitterCalls
 ///
-/// SVN revisions of this file that are older than r411 are in the folder
+/// SVN revisions of this file that are older than r412 are in the folder
 /// /trunk/ReynTweets/connection.
 /// @author Romain Ducher
 ///

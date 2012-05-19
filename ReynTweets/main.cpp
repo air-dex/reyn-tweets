@@ -23,7 +23,6 @@
 
 #include <QtGui/QApplication>
 #include <QLocale>
-#include <QScriptEngine>
 #include <QTranslator>
 #include <QIcon>
 #include "ui/qmlapplicationviewer.hpp"

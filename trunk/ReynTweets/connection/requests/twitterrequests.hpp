@@ -1,5 +1,7 @@
-/// @file requests.hpp
-/// @brief Header including all the request classes
+/// @file twitterrequests.hpp
+/// @brief Header including all the request classes which call the Twitter API.
+///
+/// This file was known as requests.hpp until r410.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,8 +23,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REQUESTS_HPP
-#define REQUESTS_HPP
+#ifndef TWITTERREQUESTS_HPP
+#define TWITTERREQUESTS_HPP
 
 #include "accounts/verifycredentialsrequester.hpp"
 #include "favorites/favoriterequester.hpp"
@@ -41,4 +43,4 @@
 #include "tweets/showtweetrequester.hpp"
 #include "users/showuserrequester.hpp"
 
-#endif // REQUESTS_HPP
+#endif // TWITTERREQUESTS_HPP

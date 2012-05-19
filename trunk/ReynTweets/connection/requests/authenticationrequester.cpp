@@ -25,31 +25,33 @@
 
 // Constructor
 AuthenticationRequester::AuthenticationRequester(RequestType type,
-												 QString url,
-												 OAuthManager &authManager,
-												 ErrorType parseError,
-												 bool tokenNeeded,
-												 bool callbackURLNeeded,
-												 bool verifierNeeded) :
-	GenericRequester(type, url, parseError),
-	oauthManager(authManager),
-	oauthTokenNeeded(tokenNeeded),
-	oauthCallbackUrlNeeded(callbackURLNeeded),
-	oauthVerifierNeeded(verifierNeeded)
+                                                 QString url,
+                                                 OAuthManager &authManager,
+                                                 ErrorType parseError,
+                                                 bool tokenNeeded,
+                                                 bool callbackURLNeeded,
+                                                 bool verifierNeeded) :
+    GenericRequester(type, url, parseError),
+    oauthManager(authManager),
+    oauthTokenNeeded(tokenNeeded),
+    oauthCallbackUrlNeeded(callbackURLNeeded),
+    oauthVerifierNeeded(verifierNeeded)
 {}
 
+// Building HTTP Headers
+void AuthenticationRequester::buildHTTPHeaders() {
+    // For the Content-Type
+    GenericRequester::buildHTTPHeaders();
 
-// Initialize the communicator
-void AuthenticationRequester::initCommunicator() {
-	communicator = new TwitterCommunicator(requestURL,
-										   requestType,
-										   getParameters,
-										   postParameters,
-										   true,
-										   &oauthManager,
-										   oauthTokenNeeded,
-										   oauthCallbackUrlNeeded,
-										   oauthVerifierNeeded);
-	connect(communicator, SIGNAL(requestDone()),
-			this, SLOT(treatResults()));
+    // OAuth header
+    // Building the header
+    QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
+                                                                requestURL,
+                                                                getParameters,
+                                                                postParameters,
+                                                                oauthTokenNeeded,
+                                                                oauthCallbackUrlNeeded,
+                                                                oauthVerifierNeeded);
+
+    headers.insert("Authorization", authHeader);
 }

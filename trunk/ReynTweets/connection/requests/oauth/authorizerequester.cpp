@@ -28,107 +28,107 @@
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
-	OAuthRequester(GET,
-				   TwitterURL::AUTHORIZE_URL,
-				   authManager,
-				   HTML_PARSING)
+    OAuthRequester(GET,
+                   TwitterURL::AUTHORIZE_URL,
+                   authManager,
+                   HTML_PARSING)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
-	getParameters.insert("oauth_token",
-						 QString::fromAscii(oauthManager.getOAuthToken().data()));
+    getParameters.insert("oauth_token",
+                         QString::fromAscii(oauthManager.getOAuthToken().data()));
 }
 
 // Parsing results
 QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
-	// Flags for treatment
-	bool treatmentOK;
-	QString errTreatment = "";
+    // Flags for treatment
+    bool treatmentOK;
+    QString errTreatment = "";
 
-	// Error message for the whole parsing process
-	QString errorMsg = "";
+    // Error message for the whole parsing process
+    QString errorMsg = "";
 
-	// Getting the HTML document
-	HTMLParser parser;
-	QWebElement htmlDocument = parser.parse(communicator->getResponseBuffer(),
-											parseOK,
-											errTreatment);
-	errorMsg.append(errTreatment);
+    // Getting the HTML document
+    HTMLParser parser;
+    QWebElement htmlDocument = parser.parse(weblink->getResponseBuffer(),
+                                            parseOK,
+                                            errTreatment);
+    errorMsg.append(errTreatment);
 
-	treatmentOK = !htmlDocument.isNull();
-	parseOK = parseOK && treatmentOK;
+    treatmentOK = !htmlDocument.isNull();
+    parseOK = parseOK && treatmentOK;
 
-	if (treatmentOK) {
-		// Getting the parameters (auth token, oauth_token and deny)
+    if (treatmentOK) {
+        // Getting the parameters (auth token, oauth_token and deny)
 
-		// Boolean indicating if the parameters are found
-		bool authenticityTokenFound = false;
-		bool oauthTokenFound = false;
-		bool denyFound = false;
+        // Boolean indicating if the parameters are found
+        bool authenticityTokenFound = false;
+        bool oauthTokenFound = false;
+        bool denyFound = false;
 
-		// treatmentOK : 3 parameters found
-		// treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound
-		treatmentOK = false;
+        // treatmentOK : 3 parameters found
+        // treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound
+        treatmentOK = false;
 
-		QWebElementCollection inputs = htmlDocument.findAll("input");
+        QWebElementCollection inputs = htmlDocument.findAll("input");
 
-		// It stops when the 3 parameters are found xor when all is seen in the collection
-		for (QWebElementCollection::iterator it = inputs.begin();
-			 it != inputs.end() && !treatmentOK;
-			 ++it)
-		{
-			QWebElement input = *it;
-			QString inputName = input.attribute("name");
-			QString inputValue = input.attribute("value");
+        // It stops when the 3 parameters are found xor when all is seen in the collection
+        for (QWebElementCollection::iterator it = inputs.begin();
+             it != inputs.end() && !treatmentOK;
+             ++it)
+        {
+            QWebElement input = *it;
+            QString inputName = input.attribute("name");
+            QString inputValue = input.attribute("value");
 
-			// Is a parameter found ?
-			if (!authenticityTokenFound && inputName == "authenticity_token") {
-				// The authenticity token is found !
-				oauthManager.setAuthenticityToken(inputValue.toAscii());
-				authenticityTokenFound = true;
-			} else if (!oauthTokenFound && inputName == "oauth_token") {
-				// The oauth token is found. (WTF)
-				oauthManager.setOAuthToken(inputValue.toAscii());
-				oauthTokenFound = true;
-			} else if (!denyFound && inputName == "deny") {
-				// The deny value is found !
-				oauthManager.setDeny(inputValue);
-				denyFound = true;
-			}
+            // Is a parameter found ?
+            if (!authenticityTokenFound && inputName == "authenticity_token") {
+                // The authenticity token is found !
+                oauthManager.setAuthenticityToken(inputValue.toAscii());
+                authenticityTokenFound = true;
+            } else if (!oauthTokenFound && inputName == "oauth_token") {
+                // The oauth token is found. (WTF)
+                oauthManager.setOAuthToken(inputValue.toAscii());
+                oauthTokenFound = true;
+            } else if (!denyFound && inputName == "deny") {
+                // The deny value is found !
+                oauthManager.setDeny(inputValue);
+                denyFound = true;
+            }
 
-			treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
-		}
+            treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
+        }
 
-		parseOK = parseOK && treatmentOK;
+        parseOK = parseOK && treatmentOK;
 
-		// Are all the parameters found ?
-		if (!treatmentOK) {
-			if (!authenticityTokenFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("Authenticity token not found."))
-						.append('\n');
-			}
+        // Are all the parameters found ?
+        if (!treatmentOK) {
+            if (!authenticityTokenFound) {
+                errorMsg.append(AuthorizeRequester::trUtf8("Authenticity token not found."))
+                        .append('\n');
+            }
 
-			if (!oauthTokenFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("OAuth token not found."))
-						.append('\n');
-			}
+            if (!oauthTokenFound) {
+                errorMsg.append(AuthorizeRequester::trUtf8("OAuth token not found."))
+                        .append('\n');
+            }
 
-			if (!denyFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("Deny value not found."))
-						.append('\n');
-			}
-		}
-	} else {
-		errorMsg.append(AuthorizeRequester::trUtf8("Empty HTML page.\n"))
-				.append('\n');
-	}
+            if (!denyFound) {
+                errorMsg.append(AuthorizeRequester::trUtf8("Deny value not found."))
+                        .append('\n');
+            }
+        }
+    } else {
+        errorMsg.append(AuthorizeRequester::trUtf8("Empty HTML page.\n"))
+                .append('\n');
+    }
 
 
-	// There was a problem while parsing -> fill the parsingErrors map !
-	if (!parseOK) {
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
-	}
+    // There was a problem while parsing -> fill the parsingErrors map !
+    if (!parseOK) {
+        parsingErrors.insert("errorMsg", QVariant(errorMsg));
+    }
 
-	return QVariant();
+    return QVariant();
 }

@@ -54,6 +54,16 @@ class ReynTweetsSettings {
 		/// @return A reference on the value contained in the instance pointer.
 		static ReynTweetsSettings & getInstance();
 
+		/// @fn CoreResult getLoadResult();
+		/// @brief Getter on the loading result
+		/// @return loadResult
+		CoreResult getLoadResult();
+
+		/// @fn QString getErrorLoading();
+		/// @brief Getter on the error message after loading the settings
+		/// @return errorLoading
+		QString getErrorLoading();
+
 		/// @fn QByteArray getConsumerKey();
 		/// @brief Getter on the Twitter OAuth consumer key.
 		/// @return CONSUMER_KEY
@@ -97,12 +107,18 @@ class ReynTweetsSettings {
 		/// @brief Private constructor
 		ReynTweetsSettings();
 
-		/// @fn CoreResult loadSettings();
+		/// @fn void loadSettings();
 		/// @brief Loading the settings from the settings file.
-		CoreResult loadSettings();
+		void loadSettings();
 
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;
+
+		/// @brief Result of the loading of settings
+		CoreResult loadResult;
+
+		/// @brief Error while loading the settings
+		QString errorLoading;
 
 
 	protected:

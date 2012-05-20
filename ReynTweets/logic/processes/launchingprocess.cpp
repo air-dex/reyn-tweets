@@ -34,12 +34,45 @@ LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
 
 // Starting the process
 void LaunchingProcess::startProcess() {
-	loadConfiguration();
+	checkSettingsLoad();
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// Step 1 : checking if the application settings were loaded correctly //
+/////////////////////////////////////////////////////////////////////////
+
+// Starting the process
+void LaunchingProcess::checkSettingsLoad() {
+	// Check if the application settings were loaded correctly
+	CoreResult loadIssue = configuration.getAppSettings().getLoadResult();
+
+	switch(configuration.getAppSettings().getLoadResult()) {
+		case LOAD_CONFIGURATION_SUCCESSFUL:
+			return loadConfiguration();
+
+		// Expected errors
+		case CONFIGURATION_FILE_NOT_OPEN:
+		case PARSE_ERROR:
+		case CONFIGURATION_FILE_UNKNOWN:
+			break;
+
+		default:
+			loadIssue = UNKNOWN_PROBLEM;
+			break;
+	}
+
+	// Telling the component that the launching process has ended fatally.
+	buildResult(false,
+				loadIssue,
+				configuration.getAppSettings().getErrorLoading(),
+				true);
+	endProcess();
 }
 
 
 ////////////////////////////////////////
-// Step 1 : loading the configuration //
+// Step 2 : loading the configuration //
 ////////////////////////////////////////
 
 // Loading the configuartion from the configuration file
@@ -80,7 +113,7 @@ void LaunchingProcess::loadConfiguration() {
 
 
 ////////////////////////////////////////
-// Step 2 : verifying the credentials //
+// Step 3 : verifying the credentials //
 ////////////////////////////////////////
 
 // Checks if the access tokens seem legit.
@@ -236,7 +269,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 
 ////////////////////////////////////////////////////
-// Step 3 : updating and saving the configuration //
+// Step 4 : updating and saving the configuration //
 ////////////////////////////////////////////////////
 
 // Saving the configuartion in the configuration file
@@ -282,8 +315,8 @@ void LaunchingProcess::saveConfiguration() {
 void LaunchingProcess::fillOAuthManager() {
 	ReynTwitterCalls::setNewTokens(configuration.getUserAccount().getAccessToken(),
 								   configuration.getUserAccount().getTokenSecret(),
-								   ReynTweetsConfiguration::getConsumerKey(),
-								   ReynTweetsConfiguration::getConsumerSecret());
+								   ReynTweetsConfiguration::getAppSettings().getConsumerKey(),
+								   ReynTweetsConfiguration::getAppSettings().getConsumerSecret());
 }
 
 // Building the process results

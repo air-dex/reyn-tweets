@@ -26,7 +26,6 @@
 #include <QFile>
 #include <QtDeclarative>
 #include "reyntweetsconfiguration.hpp"
-#include "reyntweetssettings.hpp"
 #include "../../tools/utils.hpp"
 
 //////////////////////////////
@@ -130,11 +129,8 @@ UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
 // Static members //
 ////////////////////
 
-// Consumer Key
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::getInstance().getConsumerKey();
-
-// Consumer Secret
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::getInstance().getConsumerSecret();
+// Application settings
+ReynTweetsSettings & ReynTweetsConfiguration::APP_SETTINGS = ReynTweetsSettings::getInstance();
 
 // Configuration namefile
 QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf";
@@ -145,14 +141,9 @@ QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf"
 // Configuration management //
 //////////////////////////////
 
-// Getting the consumer key
-QByteArray ReynTweetsConfiguration::getConsumerKey() {
-	return REYN_TWEETS_CONSUMER_KEY;
-}
-
-// Getting the consumer secret
-QByteArray ReynTweetsConfiguration::getConsumerSecret() {
-	return REYN_TWEETS_CONSUMER_SECRET;
+// Getting the application's settings
+ReynTweetsSettings & ReynTweetsConfiguration::getAppSettings() {
+	return APP_SETTINGS;
 }
 
 // Getter on userAccount

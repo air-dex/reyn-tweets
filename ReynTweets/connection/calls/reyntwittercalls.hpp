@@ -140,8 +140,8 @@ class ReynTwitterCalls : public GenericCalls
 
 		/// @fn static void setNewTokens(QByteArray accessToken,
 		///								 QByteArray tokenSecret,
-		///								 QByteArray consumerKey = ReynTweetsSettings::CONSUMER_KEY,
-		///								 QByteArray consumerSecret = ReynTweetsSettings::CONSUMER_SECRET);
+		///								 QByteArray consumerKey = ReynTweetsSettings::getInstance().getConsumerKey(),
+		///								 QByteArray consumerSecret = ReynTweetsSettings::getInstance().getConsumerSecret());
 		/// @brief Giving new tokens to the oauthManager
 		/// @param accessToken New access token
 		/// @param tokenSecret New token secret

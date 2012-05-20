@@ -113,6 +113,9 @@ Rectangle {
 	// Components for non successful ends //
 	////////////////////////////////////////
 
+	// LaunchingPane width minus 2 margins on each side
+	property int interiorWidth: launching_pane.width - 2* launching_pane.margin
+
 	// Component for potential authentications
 	LoginComponents {
 		id: log_component
@@ -126,7 +129,6 @@ Rectangle {
 	TransientPane {
 		id: info_pane
 		z: launching_pane.z + 10
-		width: parent.width
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: 10* launching_pane.margin
 		anchors.horizontalCenter: parent.horizontalCenter
@@ -141,7 +143,7 @@ Rectangle {
 	QuitPane {
 		id: abort_pane
 		z: launching_pane.z + 10
-		width: parent.width
+		width: interiorWidth
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
@@ -151,7 +153,7 @@ Rectangle {
 	TryAgainPane {
 		id: try_again_pane
 		z: launching_pane.z + 10
-		width: parent.width
+		width: interiorWidth
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false

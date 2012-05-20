@@ -30,10 +30,10 @@ Rectangle {
 	property alias pane_text: description_action.text
 
 	/// @brief Text of the left button
-	property string left_button_text: left_button.text
+	property alias left_button_text: left_button.button_text
 
 	/// @brief Text of the right button
-	property string right_button_text: right_button.text
+	property alias right_button_text: right_button.button_text
 
 	/// @brief Value for marges
 	property int margin_value: 5

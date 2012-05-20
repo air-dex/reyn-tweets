@@ -29,46 +29,34 @@
 #include <QJson/Serializer>
 #include "reyntweetssettings.hpp"
 
+////////////////////
+// Static members //
+////////////////////
 
-////////////////////////////////
-//// Twitter Settings (OAuth) //
-////////////////////////////////
-
-//// Consumer key
-//QByteArray ReynTweetsSettings::CONSUMER_KEY = "";
-
-//// Reyn Tweets' consumer secret
-//QByteArray ReynTweetsSettings::CONSUMER_SECRET = "";
-
-//// Reyn Tweets' callback URL. QString::fromUtf8(); is used to avoid problem with character conversion.
-//QString ReynTweetsSettings::CALLBACK_URL = "";
-
-
-//////////////////
-//// TwitLonger //
-//////////////////
-
-///// @brief Name of Reyn Tweets in the TwitLonger API
-//QString ReynTweetsSettings::TWITLONGER_APP_NAME = "";
-
-///// @brief TwitLonger API key.
-//QByteArray ReynTweetsSettings::TWITLONGER_API_KEY = "";
-
-
-//////////////////////////////////////////////////
-//// Pocket (formerly known as "Read It Later") //
-//////////////////////////////////////////////////
-
-///// @brief Pocket API key.
-//QByteArray ReynTweetsSettings::POCKET_API_KEY = "";
-
-
-////////////////////////
-// Loading management //
-////////////////////////
+// Unique instance
 ReynTweetsSettings * ReynTweetsSettings::instance = 0;
+
 // Name of the file containing the settings
 QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
+
+
+/////////////////////
+// Core management //
+/////////////////////
+
+// Private constructor
+ReynTweetsSettings::ReynTweetsSettings() {
+	loadSettings();
+}
+
+// Getting a reference on the unique instance.
+ReynTweetsSettings & ReynTweetsSettings::getInstance() {
+	if (!instance) {
+		instance = new ReynTweetsSettings;
+	}
+
+	return *instance;
+}
 
 // Loading the settings from the settings file.
 CoreResult ReynTweetsSettings::loadSettings() {
@@ -87,24 +75,49 @@ CoreResult ReynTweetsSettings::loadSettings() {
 	QJson::Parser parser;
 	QVariant jsonSettings = parser.parse(&confFile);
 
-	QByteArray * b;
-	QString * s;
-
 	QVariantMap map = jsonSettings.toMap();
 
 	CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
-
 	CONSUMER_SECRET = QByteArray::fromBase64(map.value("consumer_secret").toByteArray());
-
 	CALLBACK_URL = QString::fromUtf8(map.value("callback_url").toByteArray());
-
 	TWITLONGER_APP_NAME = QString::fromUtf8(map.value("twitlonger_application_name").toByteArray());
-
 	TWITLONGER_API_KEY = QByteArray::fromBase64(map.value("twitlonger_api_key").toByteArray());
-
 	POCKET_API_KEY = QByteArray::fromBase64(map.value("pocket_api_key").toByteArray());
 
-	qDebug("Settings ok");
-
 	return LOAD_CONFIGURATION_SUCCESSFUL;
+}
+
+
+////////////////////////
+// Getter on settings //
+////////////////////////
+
+// Getter on the Twitter OAuth consumer key.
+QByteArray ReynTweetsSettings::getConsumerKey() {
+	return CONSUMER_KEY;
+}
+
+// Getter on the Twitter OAuth consumer secret.
+QByteArray ReynTweetsSettings::getConsumerSecret() {
+	return CONSUMER_SECRET;
+}
+
+// Getter on the Twitter callback URL.
+QString ReynTweetsSettings::getCallbackURL() {
+	return CALLBACK_URL;
+}
+
+// Getter on the TwitLonger application name.
+QString ReynTweetsSettings::getTwitLongerAppName() {
+	return TWITLONGER_APP_NAME;
+}
+
+// Getter on the TwitLonger API key.
+QByteArray ReynTweetsSettings::getTwitLongerAPIKey() {
+	return TWITLONGER_API_KEY;
+}
+
+// Getter on the Pocket API key.
+QByteArray ReynTweetsSettings::getPocketAPIKey() {
+	return POCKET_API_KEY;
 }

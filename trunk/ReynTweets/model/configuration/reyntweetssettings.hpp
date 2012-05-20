@@ -32,66 +32,8 @@
 #include "../../logic/coreresult.hpp"
 #include "../reyntweetsmappable.hpp"
 
-///// @namespace ReynTweetsSettings
-///// @brief Namespace with Reyn Tweets settings.
-/////
-///// The settings are keys, constants and passwords for the following APIs or
-///// services :<ul>
-///// <li><a href="https://dev.twitter.com/">Twitter API</a></li>
-///// <li><a href="http://www.twitlonger.com">TwitLonger</a></li>
-///// <li><a href="http://getpocket.com">Pocket</a></li>
-///// <li>More to come...</li>
-///// <ul>
-//namespace ReynTweetsSettings {
-//	/////////////////////////
-//	// Settings management //
-//	/////////////////////////
-
-//	/// @fn CoreResult loadSettings();
-//	/// @brief Loading the settings from the settings file.
-//	QVariantMap loadSettings();
-
-//	/// @brief Name of the file containing the settings
-//	extern QString SETTINGS_NAMEFILE;
-
-//	extern QVariantMap settingsMap;
-
-
-//	//////////////////////////////
-//	// Twitter Settings (OAuth) //
-//	//////////////////////////////
-
-//	/// @brief Twitter OAuth consumer key.
-//	extern QByteArray CONSUMER_KEY;
-
-//	/// @brief Twitter OAuth consumer secret.
-//	extern QByteArray CONSUMER_SECRET;
-
-//	/// @brief Twitter callback URL
-//	extern QString CALLBACK_URL;
-
-
-//	////////////////
-//	// TwitLonger //
-//	////////////////
-
-//	/// @brief Name of Reyn Tweets in the TwitLonger API
-//	extern QString TWITLONGER_APP_NAME;
-
-//	/// @brief TwitLonger API key.
-//	extern QByteArray TWITLONGER_API_KEY;
-
-
-//	////////////////////////////////////////////////
-//	// Pocket (formerly known as "Read It Later") //
-//	////////////////////////////////////////////////
-
-//	/// @brief Pocket API key.
-//	extern QByteArray POCKET_API_KEY;
-//}
-
 /// @class ReynTweetsSettings
-/// @brief Namespace with Reyn Tweets settings.
+/// @brief Class with Reyn Tweets settings.
 ///
 /// The settings are keys, constants and passwords for the following APIs or
 /// services :<ul>
@@ -103,65 +45,102 @@
 class ReynTweetsSettings {
 
 	public:
-		static ReynTweetsSettings & getInstance() {
-			if (!instance) {
-				instance = new ReynTweetsSettings;
-			}
+		////////////////////////
+		// Getter on settings //
+		////////////////////////
 
-			return *instance;
-		}
+		/// @fn static ReynTweetsSettings & getInstance()
+		/// @brief Getting a reference on the unique instance.
+		/// @return A reference on the value contained in the instance pointer.
+		static ReynTweetsSettings & getInstance();
 
+		/// @fn QByteArray getConsumerKey();
+		/// @brief Getter on the Twitter OAuth consumer key.
+		/// @return CONSUMER_KEY
+		QByteArray getConsumerKey();
+
+		/// @fn QByteArray getConsumerSecret();
+		/// @brief Getter on the Twitter OAuth consumer secret.
+		/// @return CONSUMER_SECRET
+		QByteArray getConsumerSecret();
+
+		/// @fn QString getCallbackURL();
+		/// @brief Getter on the Twitter callback URL.
+		/// @return CALLBACK_URL
+		QString getCallbackURL();
+
+		/// @fn QString getTwitLongerAppName();
+		/// @brief Getter on the TwitLonger application name.
+		/// @return TWITLONGER_APP_NAME
+		QString getTwitLongerAppName();
+
+		/// @fn QByteArray getTwitLongerAPIKey();
+		/// @brief Getter on the TwitLonger API key.
+		/// @return TWITLONGER_API_KEY
+		QByteArray getTwitLongerAPIKey();
+
+		/// @fn QByteArray getPocketAPIKey();
+		/// @brief Getter on the Pocket API key.
+		/// @return POCKET_API_KEY
+		QByteArray getPocketAPIKey();
+
+
+	private:
+		/////////////////////
+		// Core management //
+		/////////////////////
+
+		/// @brief Unique instance of the class
 		static ReynTweetsSettings * instance;
 
-		ReynTweetsSettings() {
-			loadSettings();
-		}
+		/// @fn ReynTweetsSettings();
+		/// @brief Private constructor
+		ReynTweetsSettings();
 
-	/////////////////////////
-	// Settings management //
-	/////////////////////////
+		/// @fn CoreResult loadSettings();
+		/// @brief Loading the settings from the settings file.
+		CoreResult loadSettings();
 
-	/// @fn CoreResult loadSettings();
-	/// @brief Loading the settings from the settings file.
-	CoreResult loadSettings();
-
-	/// @brief Name of the file containing the settings
-	static QString SETTINGS_NAMEFILE;
-
-	QVariantMap settingsMap;
+		/// @brief Name of the file containing the settings
+		static QString SETTINGS_NAMEFILE;
 
 
-	//////////////////////////////
-	// Twitter Settings (OAuth) //
-	//////////////////////////////
+	protected:
+		//////////////
+		// Settings //
+		//////////////
 
-	/// @brief Twitter OAuth consumer key.
-	QByteArray CONSUMER_KEY;
+		//////////////////////////////
+		// Twitter Settings (OAuth) //
+		//////////////////////////////
 
-	/// @brief Twitter OAuth consumer secret.
-	QByteArray CONSUMER_SECRET;
+		/// @brief Twitter OAuth consumer key.
+		QByteArray CONSUMER_KEY;
 
-	/// @brief Twitter callback URL
-	QString CALLBACK_URL;
+		/// @brief Twitter OAuth consumer secret.
+		QByteArray CONSUMER_SECRET;
 
-
-	////////////////
-	// TwitLonger //
-	////////////////
-
-	/// @brief Name of Reyn Tweets in the TwitLonger API
-	QString TWITLONGER_APP_NAME;
-
-	/// @brief TwitLonger API key.
-	QByteArray TWITLONGER_API_KEY;
+		/// @brief Twitter callback URL
+		QString CALLBACK_URL;
 
 
-	////////////////////////////////////////////////
-	// Pocket (formerly known as "Read It Later") //
-	////////////////////////////////////////////////
+		////////////////
+		// TwitLonger //
+		////////////////
 
-	/// @brief Pocket API key.
-	QByteArray POCKET_API_KEY;
+		/// @brief Name of Reyn Tweets in the TwitLonger API
+		QString TWITLONGER_APP_NAME;
+
+		/// @brief TwitLonger API key.
+		QByteArray TWITLONGER_API_KEY;
+
+
+		////////////////////////////////////////////////
+		// Pocket (formerly known as "Read It Later") //
+		////////////////////////////////////////////////
+
+		/// @brief Pocket API key.
+		QByteArray POCKET_API_KEY;
 };
 
 #endif // REYNTWEETSSETTINGS_HPP

@@ -131,10 +131,10 @@ UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
 ////////////////////
 
 // Consumer Key
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::getInstance().CONSUMER_KEY;
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::getInstance().getConsumerKey();
 
 // Consumer Secret
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::getInstance().CONSUMER_SECRET;
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::getInstance().getConsumerSecret();
 
 // Configuration namefile
 QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf";

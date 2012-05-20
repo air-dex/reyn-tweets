@@ -107,6 +107,9 @@ enum CoreResult {
 	/// @brief The launching was successful
 	SAVE_SUCCESSFUL,
 
+	/// @brief The launching was successful
+	EXPECTED_KEY,
+
 
 	////////////////////////////
 	// Ends with token issues //

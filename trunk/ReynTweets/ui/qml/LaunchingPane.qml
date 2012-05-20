@@ -169,19 +169,23 @@ Rectangle {
 	signal endLaunch
 
 	/// @brief Control behind the component
-	LaunchingControl {
-		id: control
-		onAuthenticationNeeded: log_component.allowReynTweets();
-	}
+	LaunchingControl { id: control }
 
 	Component.onCompleted: {
 		// Wiring
-		control.actionEnded.connect(afterLaunching)
+		control.actionEnded.connect(launching_pane.afterLaunching)
+		control.authenticationNeeded.connect(log_component.allowReynTweets)
 
 		// Wiring log_component
-		log_component.allowKO.connect(afterAllowing)
-		log_component.showInfoMessage.connect(displayInfoMessage)
+		log_component.allowKO.connect(launching_pane.afterAllowing)
+		log_component.showInfoMessage.connect(launching_pane.displayInfoMessage)
+
+		completedBuild = true
 	}
+
+	// This property was set to start launching the app after the component
+	// finishes building. It is not ensured without it.
+	property bool completedBuild: false
 
 	/// @fn function launchReynTweets();
 	/// @brief Launching the application
@@ -212,20 +216,20 @@ Rectangle {
 			// Bad and fatal error. Show the quit pane.
 			pane = abort_pane
 			messageDisplayed = qsTr("A fatal error occured while launching Reyn Tweets:")
-					+ "\n\n"
-					+ errMsg
-					+ "\n\n"
-					+ qsTr("The application will quit.");
+					.concat("\n\n")
+					.concat(errMsg)
+					.concat("\n\n")
+					.concat(qsTr("The application will quit."));
 		} else {
 			// Bad end but not fatal.
 
 			// Display warning popup to ask the user to try again or to quit.
 			pane = try_again_pane
 			messageDisplayed = qsTr("An hitch occured while launching Reyn Tweets:")
-					+ "\n\n"
-					+ errMsg
-					+ "\n\n"
-					+ qsTr("Do you want to try to launch Reyn Tweets again or to quit ?");
+					.concat("\n\n")
+					.concat(errMsg)
+					.concat("\n\n")
+					.concat(qsTr("Do you want to try to launch Reyn Tweets again or to quit ?"));
 		}
 
 		pane.pane_text = messageDisplayed;

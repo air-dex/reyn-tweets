@@ -33,4 +33,4 @@ Le service TwitLonger ( http://www.twitlonger.com/ ) sera intégré à Reyn Twee
   * Au niveau des Communicators (r408, r409) :
     * Refonte du TwitterCommunicator (r409) qui donne un communicator unique pour tout le monde (Twitter, TwitLonger, futurs services ?).
   * Autres :
-    * Réfléchir à l'intégration de l'API Key dans l'appli (issue 75).
+    * issue 75 : déplacement des paramètres de l'application dans un fichier de configuration à part.

@@ -36,64 +36,64 @@
 /// class can focused on the methods calling a service and not the core management.
 class GenericCalls : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    //////////////////////////////////
-    // Core management of the class //
-    //////////////////////////////////
+	//////////////////////////////////
+	// Core management of the class //
+	//////////////////////////////////
 
-    public:
-        /// @fn GenericCalls(QObject * requester);
-        /// @brief Constructor
-        /// @param requester Entity asking for the request
-        GenericCalls(QObject * requester);
+	public:
+		/// @fn GenericCalls(QObject * requester);
+		/// @brief Constructor
+		/// @param requester Entity asking for the request
+		GenericCalls(QObject * requester);
 
-        /// @fn ~ReynTwitterCalls();
-        /// @brief Destructor
-        ~GenericCalls();
+		/// @fn ~GenericCalls();
+		/// @brief Destructor
+		~GenericCalls();
 
-    signals:
-        /// @fn void sendResult(ResultWrapper res);
-        /// @brief Signal emitted to the QObject that sends the request
-        /// @param res Result of a request
-        void sendResult(ResultWrapper res);
+	signals:
+		/// @fn void sendResult(ResultWrapper res);
+		/// @brief Signal emitted to the QObject that sends the request
+		/// @param res Result of a request
+		void sendResult(ResultWrapper res);
 
-    public slots:
-        /// @fn void endRequest();
-        /// @brief Slot executed when a requester has finished its work
-        void endRequest();
+	public slots:
+		/// @fn void endRequest();
+		/// @brief Slot executed when a requester has finished its work
+		void endRequest();
 
-    protected:
-        /// @brief QObject that asks for the request
-        QObject * requestDemander;
+	protected:
+		/// @brief QObject that asks for the request
+		QObject * requestDemander;
 
-        /// @brief Entity which manages requests that are running
-        static RequesterManager requesterManager;
+		/// @brief Entity which manages requests that are running
+		static RequesterManager requesterManager;
 
-        ///////////////////////////
-        // Requesters management //
-        ///////////////////////////
+		///////////////////////////
+		// Requesters management //
+		///////////////////////////
 
-        /// @fn void addRequester(GenericRequester * requester);
-        /// @brief Adding a requester to the requester manager
-        /// @param requester Address of the requester
-        void addRequester(GenericRequester * requester);
+		/// @fn void addRequester(GenericRequester * requester);
+		/// @brief Adding a requester to the requester manager
+		/// @param requester Address of the requester
+		void addRequester(GenericRequester * requester);
 
-        /// @fn void removeRequester(GenericRequester * requester);
-        /// @brief Removing a requester of the requester manager
-        /// @param requester Address of the requester
-        void removeRequester(GenericRequester * requester);
+		/// @fn void removeRequester(GenericRequester * requester);
+		/// @brief Removing a requester of the requester manager
+		/// @param requester Address of the requester
+		void removeRequester(GenericRequester * requester);
 
-        /// @fn ResultSender buildResultSender(GenericRequester * endedRequest);
-        /// @brief Method that builds the wrapper of a result
-        /// @param endedRequest Ended request that contaons the result
-        /// @return The wrapper of the request result
-        ResultWrapper buildResultSender(GenericRequester * endedRequest);
+		/// @fn ResultSender buildResultSender(GenericRequester * endedRequest);
+		/// @brief Method that builds the wrapper of a result
+		/// @param endedRequest Ended request that contaons the result
+		/// @return The wrapper of the request result
+		ResultWrapper buildResultSender(GenericRequester * endedRequest);
 
-        /// @fn void executeRequest(GenericRequester * requester);
-        /// @brief Inline method for executing requests
-        /// @param requester The requester
-        void executeRequest(GenericRequester * requester);
+		/// @fn void executeRequest(GenericRequester * requester);
+		/// @brief Inline method for executing requests
+		/// @param requester The requester
+		void executeRequest(GenericRequester * requester);
 };
 
 #endif // GENERICCALLS_HPP

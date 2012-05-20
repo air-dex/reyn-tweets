@@ -34,17 +34,19 @@ class RetweetsByMeRequester : public AuthenticationRequester
 	Q_OBJECT
 
 	public:
-		/// @fn RetweetsByMeRequester(qlonglong sinceID = -1,
-		///							  qlonglong maxID = -1,
-		///							  int count = 20,
-		///							  bool trimUser = false,
-		///							  bool includeEntities = false);
+		/// @fn RetweetsByMeRequester(OAuthManager & authManager,
+		///							  qlonglong oldestID = -1,
+		///							  qlonglong youngestID = -1,
+		///							  int nbRetweets = 20,
+		///							  bool userIDonly = false,
+		///							  bool withEntities = false);
 		/// @brief Constructor
-		/// @param sinceID Minimum tweet ID possible in the timeline
-		/// @param maxID Maximum tweet ID possible in the timeline
-		/// @param count Number of tweets
-		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param authManager Entity with authentication datas
+		/// @param oldestID Minimum tweet ID possible in the timeline
+		/// @param youngestID Maximum tweet ID possible in the timeline
+		/// @param nbRetweets Number of tweets
+		/// @param userIDonly In tweets, giving only the ID of the author (true).
+		/// @param withEntities Including Tweet Entities in the tweets (true).
 		RetweetsByMeRequester(OAuthManager & authManager,
 							  qlonglong oldestID = -1,
 							  qlonglong youngestID = -1,

@@ -1129,7 +1129,7 @@ class UserInfos : public ReynTweetsMappable
 
 		/// @fn void setFollowing(bool newFollowing);
 		/// @brief Setter on following
-		/// @param newVerified The new value of followedByMe
+		/// @param newFollowing The new value of followedByMe
 		void setFollowing(bool newFollowing);
 
 		/// @fn QString getLocation();

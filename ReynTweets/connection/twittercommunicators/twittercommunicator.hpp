@@ -58,150 +58,135 @@ extern QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
 /// response. <strong>The content of the QByteArray is not parsed.</strong>
 class TwitterCommunicator : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn TwitterCommunicator(QString url,
-        ///							RequestType type,
-        ///							ArgsMap getArgs,
-        ///							ArgsMap postArgs,
-        ///							bool authRequired,
-        ///							OAuthManager * authManager = 0,
-        ///							bool tokenNeeded = true,
-        ///							bool callbackURLNeeded = false,
-        ///							bool verifierNeeded = false);
-        /// @brief Constructor
-        /// @param url String representation of the URL
-        /// @param type Type of the request (GET ou POST).
-        /// @param authRequired Boolean indicating whether an authentication
-        /// is required for the request
-        /// @param authManager The authentication manager. A pointer is kept
-        /// for cases where an authentication is not required
-        /// @param getArgs GET arguments
-        /// @param postArgs POST arguments
-        /// @param tokenNeeded Boolean indicating if the oauth_token parameter
-        /// is required for authentication.
-        /// @param callbackURLNeeded Boolean indicating if the oauth_callback
-        /// parameter is required for authentication.
-        /// @param verifierNeeded Boolean indicating if the oauth_verifier
-        /// parameter is required for authentication.
-        TwitterCommunicator(QString url,
-                        RequestType type,
-                        ArgsMap getArgs,
-                        ArgsMap postArgs,
-                        HeadersMap headersParam);
+	public:
+		/// @fn TwitterCommunicator(QString url,
+		///							RequestType type,
+		///							ArgsMap getArgs,
+		///							ArgsMap postArgs,
+		///							HeadersMap headersParam);
+		/// @brief Constructor
+		/// @param url String representation of the URL
+		/// @param type Type of the request (GET ou POST).
+		/// @param getArgs GET arguments
+		/// @param postArgs POST arguments
+		/// @param headersParam HTTP headers
+		TwitterCommunicator(QString url,
+							RequestType type,
+							ArgsMap getArgs,
+							ArgsMap postArgs,
+							HeadersMap headersParam);
 
-        /// @fn ~TwitterCommunicator();
-        /// @brief Destructor
-        ~TwitterCommunicator();
+		/// @fn ~TwitterCommunicator();
+		/// @brief Destructor
+		~TwitterCommunicator();
 
-        /// @fn QNetworkRequest * prepareRequest();
-        /// @brief Preparing the request. It builds the parameters for GET
-        /// and POST and the Authorization header if needed.
-        /// @param postArgs QByteArrray for storing the POST argument under
-        /// the form arg1=val1&arg2=val2&...&argN=valN if needed.
-        /// @return A pointer on the request
-        QNetworkRequest * prepareRequest();
+		/// @fn QNetworkRequest * prepareRequest();
+		/// @brief Preparing the request. It builds the parameters for GET
+		/// and POST and the Authorization header if needed.
+		/// @return A pointer on the request
+		QNetworkRequest * prepareRequest();
 
-        /// @fn virtual void executeRequest();
-        /// @brief Executing the request
-        virtual void executeRequest();
+		/// @fn virtual void executeRequest();
+		/// @brief Executing the request
+		virtual void executeRequest();
 
-        /// @fn QByteArray getResponseBuffer();
-        /// @brief Getting the content of the response
-        /// @return The buffer containing the response
-        QByteArray getResponseBuffer();
+		/// @fn QByteArray getResponseBuffer();
+		/// @brief Getting the content of the response
+		/// @return The buffer containing the response
+		QByteArray getResponseBuffer();
 
-        /// @fn ResponseInfos getHttpResponse();
-        /// @brief Getting the HTTP response (code and reason).
-        /// @return The description of the HTTP return code.
-        ResponseInfos getHttpResponse();
+		/// @fn ResponseInfos getHttpResponse();
+		/// @brief Getting the HTTP response (code and reason).
+		/// @return The description of the HTTP return code.
+		ResponseInfos getHttpResponse();
 
-        /// @fn QString getReplyURL();
-        /// @brief Getting the URL of the reply.
-        /// @return replyURL
-        QString getReplyURL();
+		/// @fn QString getReplyURL();
+		/// @brief Getting the URL of the reply.
+		/// @return replyURL
+		QString getReplyURL();
 
-        /// @fn QString getErrorMessage();
-        /// @brief Getter on the error massage
-        /// @return The error message
-        QString getErrorMessage();
+		/// @fn QString getErrorMessage();
+		/// @brief Getter on the error massage
+		/// @return The error message
+		QString getErrorMessage();
 
 
-    signals:
-        /// @fn void requestDone();
-        /// @brief Signal indicating the end of a request
-        void requestDone();
+	signals:
+		/// @fn void requestDone();
+		/// @brief Signal indicating the end of a request
+		void requestDone();
 
 
-    protected slots:
-        /// @fn void endRequest(QNetworkReply * response);
-        /// @brief Slot called at the end of the request.
-        /// @param response The network reply.
-        void endRequest(QNetworkReply * response);
+	protected slots:
+		/// @fn void endRequest(QNetworkReply * response);
+		/// @brief Slot called at the end of the request.
+		/// @param response The network reply.
+		void endRequest(QNetworkReply * response);
 
-    protected:
-        // Entities for request
+	protected:
+		// Entities for request
 
-        /// @brief URL of the service
-        QString serviceURL;
+		/// @brief URL of the service
+		QString serviceURL;
 
-        /// @brief Request type
-        RequestType requestType;
+		/// @brief Request type
+		RequestType requestType;
 
-        /// @brief GET datas
-        ArgsMap getParameters;
+		/// @brief GET datas
+		ArgsMap getParameters;
 
-        /// @brief POST datas
-        ArgsMap postParameters;
+		/// @brief POST datas
+		ArgsMap postParameters;
 
-        /// @brief HTTP headers
-        HeadersMap headers;
-
-
-        // Entities for response
-
-        /// @brief Content of the response
-        QByteArray responseBuffer;
-
-        /// @brief HTTP response code and reason
-        ResponseInfos httpResponse;
-
-        /// @brief Error message
-        QString errorMessage;
-
-        /// @brief URL of the reply
-        QString replyURL;
+		/// @brief HTTP headers
+		HeadersMap headers;
 
 
-    private:
-        /// @fn QString buildGetDatas();
-        /// @brief Building the string that will contain all the GET arguments
-        /// and go through the Internet
-        /// @return A QString containing all the GET arguments or an empty
-        /// string if there is no GET arguments. This string will be appended
-        /// at the end of the URL with a '?' between the URL and the string.
-        QString buildGetDatas();
+		// Entities for response
 
-        /// @fn QByteArray buildPostDatas();
-        /// @brief Building the array that will contain all the POST arguments
-        /// and go through the Internet
-        /// @return A QByteArray containing all the POST arguments or an empty
-        /// string if there is no POST arguments. If the string is not empty,
-        /// it will be passed to the post method of the QNetworkAccessManager
-        QByteArray buildPostDatas();
+		/// @brief Content of the response
+		QByteArray responseBuffer;
 
-        /// @fn QString buildDatas(ArgsMap argsMap);
-        /// @brief Building the string that will contain all the arguments
-        /// of the given ArgsMap just like in an URL.
-        /// @param argsMap The argument map
-        /// @return A QString representation looks like val1=arg1&val2=arg2...
-        QString buildDatas(ArgsMap argsMap);
+		/// @brief HTTP response code and reason
+		ResponseInfos httpResponse;
 
-        /// @fn void extractHttpStatuses(QNetworkReply * reply);
-        /// @brief Extract the HTTP return code and reason of the request
-        /// @param reply Network reply containing the statuses.
-        void extractHttpStatuses(QNetworkReply * reply);
+		/// @brief Error message
+		QString errorMessage;
+
+		/// @brief URL of the reply
+		QString replyURL;
+
+
+	private:
+		/// @fn QString buildGetDatas();
+		/// @brief Building the string that will contain all the GET arguments
+		/// and go through the Internet
+		/// @return A QString containing all the GET arguments or an empty
+		/// string if there is no GET arguments. This string will be appended
+		/// at the end of the URL with a '?' between the URL and the string.
+		QString buildGetDatas();
+
+		/// @fn QByteArray buildPostDatas();
+		/// @brief Building the array that will contain all the POST arguments
+		/// and go through the Internet
+		/// @return A QByteArray containing all the POST arguments or an empty
+		/// string if there is no POST arguments. If the string is not empty,
+		/// it will be passed to the post method of the QNetworkAccessManager
+		QByteArray buildPostDatas();
+
+		/// @fn QString buildDatas(ArgsMap argsMap);
+		/// @brief Building the string that will contain all the arguments
+		/// of the given ArgsMap just like in an URL.
+		/// @param argsMap The argument map
+		/// @return A QString representation looks like val1=arg1&val2=arg2...
+		QString buildDatas(ArgsMap argsMap);
+
+		/// @fn void extractHttpStatuses(QNetworkReply * reply);
+		/// @brief Extract the HTTP return code and reason of the request
+		/// @param reply Network reply containing the statuses.
+		void extractHttpStatuses(QNetworkReply * reply);
 };
 
 #endif // TWITTERCOMMUNICATOR_HPP

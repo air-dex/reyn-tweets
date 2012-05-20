@@ -25,6 +25,7 @@
 
 
 #include <QFile>
+#include <QObject>
 #include "reyntweetssettings.hpp"
 #include "../../tools/parsers/jsonparser.hpp"
 
@@ -93,16 +94,82 @@ void ReynTweetsSettings::loadSettings() {
 
 
 	// Filling the settings
+
+	QString errorFilling = QObject::trUtf8("The following setting(s) are missing: ");
+	bool allSettingsOK = true;
+	bool settingOK;
+	QStringList missingKeys;
 	QVariantMap map = jsonSettings.toMap();
 
-	CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
-	CONSUMER_SECRET = QByteArray::fromBase64(map.value("consumer_secret").toByteArray());
-	CALLBACK_URL = QString::fromUtf8(map.value("callback_url").toByteArray());
-	TWITLONGER_APP_NAME = QString::fromUtf8(map.value("twitlonger_application_name").toByteArray());
-	TWITLONGER_API_KEY = QByteArray::fromBase64(map.value("twitlonger_api_key").toByteArray());
-	POCKET_API_KEY = QByteArray::fromBase64(map.value("pocket_api_key").toByteArray());
+	// Twitter OAuth consumer key
+	settingOK = detectSetting(map, "consumer_key", missingKeys);
+	if (settingOK) {
+		CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
 
-	loadResult = LOAD_CONFIGURATION_SUCCESSFUL;
+	// Twitter OAuth consumer secret
+	settingOK = detectSetting(map, "consumer_secret", missingKeys);
+	if (settingOK) {
+		CONSUMER_SECRET = QByteArray::fromBase64(map.value("consumer_secret").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
+
+	// Twitter callback URL
+	settingOK = detectSetting(map, "callback_url", missingKeys);
+	if (settingOK) {
+		CALLBACK_URL = QString::fromUtf8(map.value("callback_url").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
+
+	// TwitLonger application name
+	settingOK = detectSetting(map, "twitlonger_application_name", missingKeys);
+	if (settingOK) {
+		TWITLONGER_APP_NAME = QString::fromUtf8(map.value("twitlonger_application_name").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
+
+	// TwitLonger API Key
+	settingOK = detectSetting(map, "twitlonger_api_key", missingKeys);
+	if (settingOK) {
+		TWITLONGER_API_KEY = QByteArray::fromBase64(map.value("twitlonger_api_key").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
+
+	// Pocket API Key
+	settingOK = detectSetting(map, "pocket_api_key", missingKeys);
+	if (settingOK) {
+		POCKET_API_KEY = QByteArray::fromBase64(map.value("pocket_api_key").toByteArray());
+	}
+	allSettingsOK = allSettingsOK && settingOK;
+
+	if (allSettingsOK) {
+		loadResult = LOAD_CONFIGURATION_SUCCESSFUL;
+	} else {
+		if (missingKeys.size() > 0) {
+			errorFilling.append(missingKeys.join(", "));
+		} else {
+			errorFilling.append(QObject::trUtf8("no one"));
+		}
+
+		errorFilling.append('.');
+		errorLoading.append(errorFilling);
+		loadResult = EXPECTED_KEY;
+	}
+}
+
+// Detecting if an application setting is here or not
+bool ReynTweetsSettings::detectSetting(QVariantMap settingsMap,
+									   const char * settingKey,
+									   QStringList & missingKeys)
+{
+	bool containsKey = settingsMap.contains(settingKey);
+
+	if (!containsKey) {
+		missingKeys.append(settingKey);
+	}
+
+	return containsKey;
 }
 
 

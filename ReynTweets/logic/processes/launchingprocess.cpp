@@ -55,6 +55,7 @@ void LaunchingProcess::checkSettingsLoad() {
 		case CONFIGURATION_FILE_NOT_OPEN:
 		case PARSE_ERROR:
 		case CONFIGURATION_FILE_UNKNOWN:
+		case EXPECTED_KEY:
 			break;
 
 		default:

@@ -32,7 +32,15 @@ Rectangle {
 		id: splash_screen
 		anchors.fill: parent
 		visible: false
-		onEndLaunch: {reyn_tweets.state = "Tweeting"; view.loadHomeTimeline(); }
+		onEndLaunch: {
+			reyn_tweets.state = "Tweeting";
+			view.loadHomeTimeline();
+		}
+		onCompletedBuildChanged: {
+			if (completedBuild) {
+				splash_screen.launchReynTweets();
+			}
+		}
 	}
 
 	MainView {
@@ -41,6 +49,15 @@ Rectangle {
 		anchors.fill: reyn_tweets
 	}
 
+	Timer {
+		id: timex
+		interval: 100
+		repeat: false
+		onTriggered: {
+			splash_screen.launchReynTweets();
+			console.log("launch")
+		}
+	}
 
 	states: [
 		State {
@@ -70,6 +87,5 @@ Rectangle {
 	Component.onCompleted: {
 		// Launching the application
 		reyn_tweets.state = "Launching";
-		splash_screen.launchReynTweets();
 	}
 }

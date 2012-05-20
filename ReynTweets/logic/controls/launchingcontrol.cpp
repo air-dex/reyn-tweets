@@ -104,6 +104,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		case CONFIGURATION_FILE_UNKNOWN:
 		case CONFIGURATION_FILE_NOT_OPEN:
 		case LOADING_CONFIGURATION_ERROR:
+		case EXPECTED_KEY:
 
 		// Unknown ends
 		case UNKNOWN_PROBLEM:

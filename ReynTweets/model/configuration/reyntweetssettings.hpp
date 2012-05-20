@@ -28,6 +28,8 @@
 
 #include <QByteArray>
 #include <QString>
+#include <QStringList>
+#include <QVariantMap>
 #include "../../logic/coreresult.hpp"
 
 /// @class ReynTweetsSettings
@@ -107,6 +109,17 @@ class ReynTweetsSettings {
 		/// @fn void loadSettings();
 		/// @brief Loading the settings from the settings file.
 		void loadSettings();
+
+		/// @fn bool detectSetting(QVariantMap settingsMap,
+		///						   const char * settingKey,
+		///						   QStringList & missingKeys);
+		/// @brief Detecting if an application setting is here or not
+		/// @param settingKey Key of the setting (in the JSON file)
+		/// @param missingKeys List of missing keys.
+		/// @return true if the key exists, false otherwise.
+		bool detectSetting(QVariantMap settingsMap,
+						   const char * settingKey,
+						   QStringList & missingKeys);
 
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;

@@ -29,9 +29,6 @@ TwoButtonsActionPane {
 
 	id: try_again_pane
 
-	width: constant.reyn_tweets_width
-	height: constant.reyn_tweets_height
-
 	Constants { id:constant }
 
 	// Left button

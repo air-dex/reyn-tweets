@@ -228,14 +228,17 @@ HEADERS  += \
 
 
 OTHER_FILES = \
+	conf/ReynTweets.conf \
+	conf/ReynTweetsEmpty.conf \
+	conf/ReynTweetsSettings.conf \
 	i18n/reyntweets_en.ts \
 	i18n/reyntweets_fr.ts \
-	Doxyfile.txt \
 	resources/Logo Reyn Tweets.svg \
 	resources/Logo Reyn Tweets.png \
 	ui/qml/tools.js \
 	ui/qml/twitter-text-js-wrapper.js \
 	ui/qml/twitter-text-1.4.16.js \
+	Doxyfile.txt \
 	ReynTweets.rc
 
 

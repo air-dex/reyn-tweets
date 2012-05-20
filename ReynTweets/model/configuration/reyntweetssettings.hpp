@@ -26,19 +26,66 @@
 #ifndef REYNTWEETSSETTINGS_HPP
 #define REYNTWEETSSETTINGS_HPP
 
+#include <QDataStream>
 #include <QString>
+#include <QVariant>
+#include "../../logic/coreresult.hpp"
+#include "../reyntweetsmappable.hpp"
 
 /// @namespace ReynTweetsSettings
-/// @brief Namespace with Reyn Tweets settings for OAuth
+/// @brief Namespace with Reyn Tweets settings.
+///
+/// The settings are keys, constants and passwords for the following APIs or
+/// services :<ul>
+/// <li><a href="https://dev.twitter.com/">Twitter API</a></li>
+/// <li><a href="http://www.twitlonger.com">TwitLonger</a></li>
+/// <li><a href="http://getpocket.com">Pocket</a></li>
+/// <li>More to come...</li>
+/// <ul>
 namespace ReynTweetsSettings {
-	/// @brief Reyn Tweets' consumer key
+	/////////////////////////
+	// Settings management //
+	/////////////////////////
+
+	/// @fn CoreResult loadSettings();
+	/// @brief Loading the settings from the settings file.
+	extern CoreResult loadSettings();
+
+	/// @brief Name of the file containing the settings
+	extern QString SETTINGS_NAMEFILE;
+
+
+	//////////////////////////////
+	// Twitter Settings (OAuth) //
+	//////////////////////////////
+
+	/// @brief Twitter OAuth consumer key.
 	extern QByteArray CONSUMER_KEY;
 
-	/// @brief Reyn Tweets' consumer secret
+	/// @brief Twitter OAuth consumer secret.
 	extern QByteArray CONSUMER_SECRET;
 
-	/// @brief Reyn Tweets' callback URL
+	/// @brief Twitter callback URL
 	extern QString CALLBACK_URL;
+
+
+	////////////////
+	// TwitLonger //
+	////////////////
+
+	/// @brief Name of Reyn Tweets in the TwitLonger API
+	extern QString TWITLONGER_APP_NAME;
+
+	/// @brief TwitLonger API key.
+	extern QByteArray TWITLONGER_API_KEY;
+
+
+	////////////////////////////////////////////////
+	// Pocket (formerly known as "Read It Later") //
+	////////////////////////////////////////////////
+
+	/// @brief Pocket API key.
+	extern QByteArray POCKET_API_KEY;
 }
 
 #endif // REYNTWEETSSETTINGS_HPP

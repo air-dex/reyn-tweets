@@ -46,7 +46,7 @@ ReynTweetsConfiguration::~ReynTweetsConfiguration() {}
 
 // Copy constructor
 ReynTweetsConfiguration::ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration) :
-    ReynTweetsMappable()
+	ReynTweetsMappable()
 {
 	recopie(configuration);
 }
@@ -186,13 +186,13 @@ CoreResult ReynTweetsConfiguration::load() {
 	readStream >> confVariant;
 	confFile.close();
 
-	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
+	if (!confVariant.canConvert<ReynTweetsConfiguration>()) {
 		// The content of the file cannot be converted into a configuration.
 		return LOADING_CONFIGURATION_ERROR;
 	}
 
-	*this = qVariantValue<ReynTweetsConfiguration>(confVariant);
-	//fillOAuthManager();
+	fillWithVariant(confVariant.toMap());
+
 	return LOAD_CONFIGURATION_SUCCESSFUL;
 }
 
@@ -213,7 +213,7 @@ CoreResult ReynTweetsConfiguration::save() {
 
 	// Saving the configuration
 	QDataStream readStream(&confFile);
-	QVariant confVariant = qVariantFromValue(*this);
+	QVariant confVariant = toVariant();
 
 	readStream << confVariant;
 	confFile.close();

@@ -23,13 +23,77 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+
+#include <QFile>
+#include <QJson/Parser>
+#include <QJson/Serializer>
 #include "reyntweetssettings.hpp"
 
+//////////////////////////////
+// Twitter Settings (OAuth) //
+//////////////////////////////
+
 // Consumer key
-QByteArray ReynTweetsSettings::CONSUMER_KEY = "WUlUMzFFNGE4N29CVFdqeURlUnc=";
+QByteArray ReynTweetsSettings::CONSUMER_KEY = "";
 
 // Reyn Tweets' consumer secret
-QByteArray ReynTweetsSettings::CONSUMER_SECRET = "dzk3enV0UEpnNkZ6dFZleTNXNkVicG52N0x2MWZtNEVUWGpsbzZFeVQw";
+QByteArray ReynTweetsSettings::CONSUMER_SECRET = "";
 
 // Reyn Tweets' callback URL. QString::fromUtf8(); is used to avoid problem with character conversion.
-QString ReynTweetsSettings::CALLBACK_URL = QString::fromUtf8("http://twitter.com");
+QString ReynTweetsSettings::CALLBACK_URL = "";
+
+
+////////////////
+// TwitLonger //
+////////////////
+
+/// @brief Name of Reyn Tweets in the TwitLonger API
+QString ReynTweetsSettings::TWITLONGER_APP_NAME = "";
+
+/// @brief TwitLonger API key.
+QByteArray ReynTweetsSettings::TWITLONGER_API_KEY = "";
+
+
+////////////////////////////////////////////////
+// Pocket (formerly known as "Read It Later") //
+////////////////////////////////////////////////
+
+/// @brief Pocket API key.
+QByteArray ReynTweetsSettings::POCKET_API_KEY = "";
+
+
+////////////////////////
+// Loading management //
+////////////////////////
+
+// Name of the file containing the settings
+QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
+
+// Loading the settings from the settings file.
+CoreResult ReynTweetsSettings::loadSettings() {
+	// Opening the settings file
+	QFile confFile(SETTINGS_NAMEFILE);
+
+	if (!confFile.exists()) {
+		return CONFIGURATION_FILE_UNKNOWN;
+	}
+
+	bool openOK = confFile.open(QFile::ReadOnly);
+	if (!openOK) {
+		return CONFIGURATION_FILE_NOT_OPEN;
+	}
+
+	QJson::Parser parser;
+	QVariant jsonSettings = parser.parse(&confFile);
+
+	QVariantMap map = jsonSettings.toMap();
+
+	CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
+	CONSUMER_SECRET = QByteArray::fromBase64(map.value("consumer_secret").toByteArray());
+	CALLBACK_URL = QString::fromUtf8(map.value("callback_url").toByteArray());
+	TWITLONGER_APP_NAME = QString::fromUtf8(map.value("twitlonger_application_name").toByteArray());
+	TWITLONGER_API_KEY = QByteArray::fromBase64(map.value("twitlonger_api_key").toByteArray());
+	POCKET_API_KEY = QByteArray::fromBase64(map.value("pocket_api_key").toByteArray());
+
+	return LOAD_CONFIGURATION_SUCCESSFUL;
+}

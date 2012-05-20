@@ -60,10 +60,10 @@ void OAuthProcess::buildResult(QByteArray accessToken,
 							   QString screenName)
 {
 	QVariantMap resultMap;
-	resultMap.insert("access_token", qVariantFromValue(accessToken));
-	resultMap.insert("token_secret", qVariantFromValue(tokenSecret));
-	resultMap.insert("user_id", qVariantFromValue(userID));
-	resultMap.insert("screen_name", qVariantFromValue(screenName));
+	resultMap.insert("access_token", QVariant::fromValue(accessToken));
+	resultMap.insert("token_secret", QVariant::fromValue(tokenSecret));
+	resultMap.insert("user_id", QVariant::fromValue(userID));
+	resultMap.insert("screen_name", QVariant::fromValue(screenName));
 
 	processResult = ProcessUtils::buildProcessResult(AUTHORIZED,
 													 QVariant(resultMap));

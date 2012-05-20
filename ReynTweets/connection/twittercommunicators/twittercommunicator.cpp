@@ -30,10 +30,10 @@
 
 // Network manager
 #ifdef Q_OS_WIN32
-    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
+	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 #ifdef Q_OS_LINUX
-    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
+	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
 #endif
 #ifdef Q_OS_SYMBIAN    // TODO
 //    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
@@ -45,31 +45,31 @@
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
-                                 RequestType type,
-                                 ArgsMap getArgs,
-                                 ArgsMap postArgs,
-                                 HeadersMap headersParam) :
-    QObject(),
-    serviceURL(url),
-    requestType(type),
-    getParameters(getArgs),
-    postParameters(postArgs),
-    headers(headersParam),
-    responseBuffer(""),
-    httpResponse(),
-    errorMessage("Request not done"),
-    replyURL("")
+								 RequestType type,
+								 ArgsMap getArgs,
+								 ArgsMap postArgs,
+								 HeadersMap headersParam) :
+	QObject(),
+	serviceURL(url),
+	requestType(type),
+	getParameters(getArgs),
+	postParameters(postArgs),
+	headers(headersParam),
+	responseBuffer(""),
+	httpResponse(),
+	errorMessage("Request not done"),
+	replyURL("")
 {
-    // Connection for receiving the response
-    connect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(endRequest(QNetworkReply*)));
+	// Connection for receiving the response
+	connect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
+			this, SLOT(endRequest(QNetworkReply*)));
 }
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
-    // Unwiring
-    disconnect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
-               this, SLOT(endRequest(QNetworkReply*)));
+	// Unwiring
+	disconnect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
+			   this, SLOT(endRequest(QNetworkReply*)));
 }
 
 
@@ -79,42 +79,42 @@ TwitterCommunicator::~TwitterCommunicator() {
 
 // Preparing the request
 QNetworkRequest * TwitterCommunicator::prepareRequest() {
-    // GET arguments
-    QString getArgs = buildGetDatas();
+	// GET arguments
+	QString getArgs = buildGetDatas();
 
-    // Adding the potential GET arguments at the end of the URL
-    if ("" != getArgs) {
-        serviceURL.append('?').append(getArgs);
-    }
+	// Adding the potential GET arguments at the end of the URL
+	if ("" != getArgs) {
+		serviceURL.append('?').append(getArgs);
+	}
 
-    QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
+	QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
 
-    for (HeadersMap::Iterator it = headers.begin();
-         it != headers.end();
-         ++it)
-    {
-       requestToTwitter->setRawHeader(it.key(), it.value());
-    }
+	for (HeadersMap::Iterator it = headers.begin();
+		 it != headers.end();
+		 ++it)
+	{
+	   requestToTwitter->setRawHeader(it.key(), it.value());
+	}
 
-    return requestToTwitter;
+	return requestToTwitter;
 }
 
 // Executing the request
 void TwitterCommunicator::executeRequest() {
-    // Preparing the request
-    QNetworkRequest * request = prepareRequest();
+	// Preparing the request
+	QNetworkRequest * request = prepareRequest();
 
-    // Executing the request
-    if (POST == requestType) {
-        // POST arguments
-        QByteArray postArgs = buildPostDatas();
+	// Executing the request
+	if (POST == requestType) {
+		// POST arguments
+		QByteArray postArgs = buildPostDatas();
 
-        // There is some POST arguments -> networkManager.post()
-        REYN_TWEETS_NETWORK_MANAGER.post(*request, postArgs);
-    } else {
-        // There is not any POST arguments -> networkManager.get()
-        REYN_TWEETS_NETWORK_MANAGER.get(*request);
-    }
+		// There is some POST arguments -> networkManager.post()
+		REYN_TWEETS_NETWORK_MANAGER.post(*request, postArgs);
+	} else {
+		// There is not any POST arguments -> networkManager.get()
+		REYN_TWEETS_NETWORK_MANAGER.get(*request);
+	}
 }
 
 
@@ -124,29 +124,29 @@ void TwitterCommunicator::executeRequest() {
 
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest(QNetworkReply * response) {
-    // Treating the response
-    if (!response) {
-        return;
-    }
+	// Treating the response
+	if (!response) {
+		return;
+	}
 
-    // Analysing the response
-    extractHttpStatuses(response);
-    errorMessage = response->errorString();
-    replyURL = response->url().toString();
+	// Analysing the response
+	extractHttpStatuses(response);
+	errorMessage = response->errorString();
+	replyURL = response->url().toString();
 
-    // Extracting informations
-    responseBuffer = response->readAll();
-    response->deleteLater();
+	// Extracting informations
+	responseBuffer = response->readAll();
+	response->deleteLater();
 
-    // responseBuffer (for debug purposes)
-    /*
-    qDebug("responseBuffer :");
-    qDebug(responseBuffer.data());
-    qDebug("\n");
-    //*/
+	// responseBuffer (for debug purposes)
+	//*
+	qDebug("responseBuffer :");
+	qDebug(responseBuffer.data());
+	qDebug("\n");
+	//*/
 
-    // Ending the request
-    emit requestDone();
+	// Ending the request
+	emit requestDone();
 }
 
 
@@ -156,22 +156,22 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 
 // Getting the raw response
 QByteArray TwitterCommunicator::getResponseBuffer() {
-    return responseBuffer;
+	return responseBuffer;
 }
 
 // Getting the HTTP response (code and reason)
 ResponseInfos TwitterCommunicator::getHttpResponse() {
-    return httpResponse;
+	return httpResponse;
 }
 
 // Getting the URL of the reply
 QString TwitterCommunicator::getReplyURL() {
-    return replyURL;
+	return replyURL;
 }
 
 // Getter on the error massage
 QString TwitterCommunicator::getErrorMessage() {
-    return errorMessage;
+	return errorMessage;
 }
 
 
@@ -181,43 +181,43 @@ QString TwitterCommunicator::getErrorMessage() {
 
 // Building a string that will contain all the GET arguments
 QString TwitterCommunicator::buildGetDatas() {
-    return buildDatas(getParameters);
+	return buildDatas(getParameters);
 }
 
 // Building a QByteArray that will contain all the POST arguments
 QByteArray TwitterCommunicator::buildPostDatas() {
-    QString postString = buildDatas(postParameters);
-    return QByteArray().append(postString);
+	QString postString = buildDatas(postParameters);
+	return QByteArray().append(postString);
 }
 
 // Building the string that will contain all the arguments
 // of the given ArgsMap just like in an URL.
 QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
-    QString res = "";
+	QString res = "";
 
-    // Writing the arguments
-    for (ArgsMap::iterator argsIterator = argsMap.begin();
-         argsIterator != argsMap.end();
-         ++argsIterator) {
-        // Getting the value of the argument
-        QString argValue = argsIterator.value();
+	// Writing the arguments
+	for (ArgsMap::iterator argsIterator = argsMap.begin();
+		 argsIterator != argsMap.end();
+		 ++argsIterator) {
+		// Getting the value of the argument
+		QString argValue = argsIterator.value();
 
-        if (argValue.isEmpty()) {
-            continue;
-        }
+		if (argValue.isEmpty()) {
+			continue;
+		}
 
-        // Getting the name of the argument
-        QString argName = argsIterator.key();
+		// Getting the name of the argument
+		QString argName = argsIterator.key();
 
-        // Append the argument in the argument string
-        res.append(formatParam(argName, argValue));
-        res.append('&');
-    }
+		// Append the argument in the argument string
+		res.append(formatParam(argName, argValue));
+		res.append('&');
+	}
 
-    // Erasing the last '&'
-    res.chop(1);
+	// Erasing the last '&'
+	res.chop(1);
 
-    return res;
+	return res;
 }
 
 
@@ -226,17 +226,17 @@ QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
 ////////////////////////////////////////////
 
 void TwitterCommunicator::extractHttpStatuses(QNetworkReply * reply) {
-    if (reply == 0) {
-        return;
-    }
+	if (reply == 0) {
+		return;
+	}
 
-    QVariant httpStatus;
+	QVariant httpStatus;
 
-    // Extract return code
-    httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    httpResponse.code = httpStatus.toInt();
+	// Extract return code
+	httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+	httpResponse.code = httpStatus.toInt();
 
-    // Extract return reason
-    httpStatus = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
-    httpResponse.message = QString::fromAscii(httpStatus.toByteArray());
+	// Extract return reason
+	httpStatus = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
+	httpResponse.message = QString::fromAscii(httpStatus.toByteArray());
 }

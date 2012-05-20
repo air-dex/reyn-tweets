@@ -131,10 +131,10 @@ UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
 ////////////////////
 
 // Consumer Key
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::CONSUMER_KEY;
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_KEY = ReynTweetsSettings::getInstance().CONSUMER_KEY;
 
 // Consumer Secret
-QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::CONSUMER_SECRET;
+QByteArray ReynTweetsConfiguration::REYN_TWEETS_CONSUMER_SECRET = ReynTweetsSettings::getInstance().CONSUMER_SECRET;
 
 // Configuration namefile
 QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf";
@@ -186,12 +186,12 @@ CoreResult ReynTweetsConfiguration::load() {
 	readStream >> confVariant;
 	confFile.close();
 
-	if (!confVariant.canConvert<ReynTweetsConfiguration>()) {
+	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
 		// The content of the file cannot be converted into a configuration.
 		return LOADING_CONFIGURATION_ERROR;
 	}
 
-	fillWithVariant(confVariant.toMap());
+	*this = qVariantValue<ReynTweetsConfiguration>(confVariant);
 
 	return LOAD_CONFIGURATION_SUCCESSFUL;
 }
@@ -213,7 +213,7 @@ CoreResult ReynTweetsConfiguration::save() {
 
 	// Saving the configuration
 	QDataStream readStream(&confFile);
-	QVariant confVariant = toVariant();
+	QVariant confVariant = qVariantFromValue(*this);
 
 	readStream << confVariant;
 	confFile.close();

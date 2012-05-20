@@ -31,8 +31,15 @@ GenericControl::GenericControl() :
 {
 	connect(this, SIGNAL(actionEnded(bool,QString,bool)),
 			this, SLOT(processAgain(bool,QString,bool)));
+
+	connect(this, SIGNAL(authenticationNeeded()),
+			this, SLOT(processAgain()));
 }
 
 void GenericControl::processAgain(bool, QString, bool) {
+	processing = false;
+}
+
+void GenericControl::processAgain() {
 	processing = false;
 }

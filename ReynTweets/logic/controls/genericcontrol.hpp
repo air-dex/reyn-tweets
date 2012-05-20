@@ -31,55 +31,62 @@
 /// @brief Base class for all the controls
 class GenericControl : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn GenericControl();
-        /// @brief Constructor
-        GenericControl();
+	public:
+		/// @fn GenericControl();
+		/// @brief Constructor
+		GenericControl();
 
-    signals:
-        /// @fn void authenticationNeeded();
-        /// @brief Signal sent if Reyn Tweets has to be allowed again
-        void authenticationNeeded();
+	signals:
+		/// @fn void authenticationNeeded();
+		/// @brief Signal sent if Reyn Tweets has to be allowed again
+		void authenticationNeeded();
 
-        /// @fn void showInfoMessage(QString message);
-        /// @brief Signal sent for announcing something, often at the beginning
-        /// of an action
-        /// @param message Thye message to display.
-        void showInfoMessage(QString message);
+		/// @fn void showInfoMessage(QString message);
+		/// @brief Signal sent for announcing something, often at the beginning
+		/// of an action
+		/// @param message Thye message to display.
+		void showInfoMessage(QString message);
 
-        /// @fn void actionEnded(bool launchOK,
-        ///                      QString issueMsg,
-        ///						 bool isFatal);
-        /// @brief Signal sent after an operation made by the control.
-        /// @param launchOK Did the process end successfully ?
-        /// @param issueMsg Error message
-        /// @param isFatal Did the process end with a fatal error ?
-        void actionEnded(bool launchOK,
-                         QString issueMsg,
-                         bool isFatal);
+		/// @fn void actionEnded(bool launchOK,
+		///                      QString issueMsg,
+		///						 bool isFatal);
+		/// @brief Signal sent after an operation made by the control.
+		/// @param launchOK Did the process end successfully ?
+		/// @param issueMsg Error message
+		/// @param isFatal Did the process end with a fatal error ?
+		void actionEnded(bool launchOK,
+						 QString issueMsg,
+						 bool isFatal);
 
-    public slots:
-        /// @fn void processAgain(bool launchOK,
-        ///                       QString issueMsg,
-        ///                       bool isFatal);
-        /// @brief Slot executed automatically after an action was ended.
-        ///
-        /// It is connected with the actionEnded signal and just sets the
-        /// processing value to true. That's why its 3 parameters are unused.
-        /// @param launchOK Did the process end successfully ?
-        /// @param issueMsg Error message
-        /// @param isFatal Did the process end with a fatal error ?
-        void processAgain(bool, QString, bool);
+	public slots:
+		/// @fn void processAgain(bool launchOK,
+		///                       QString issueMsg,
+		///                       bool isFatal);
+		/// @brief Slot executed automatically after an action was ended.
+		///
+		/// It is connected with the actionEnded signal and just sets the
+		/// processing value to true. That's why its 3 parameters are unused.
+		/// @param launchOK Did the process end successfully ?
+		/// @param issueMsg Error message
+		/// @param isFatal Did the process end with a fatal error ?
+		void processAgain(bool, QString, bool);
+
+		/// @fn void processAgain();
+		/// @brief Slot executed automatically after an action was ended.
+		///
+		/// It is connected with the authenticationNeeded signal and just
+		/// sets the processing value to true.
+		void processAgain();
 
 
-    protected:
-        /// @brief Entity which realizes treatments
-        ReynCore reyn;
+	protected:
+		/// @brief Entity which realizes treatments
+		ReynCore reyn;
 
-        /// @brief Boolean indicating if the control is in a process
-        bool processing;
+		/// @brief Boolean indicating if the control is in a process
+		bool processing;
 };
 
 #endif // GENERICCONTROL_HPP

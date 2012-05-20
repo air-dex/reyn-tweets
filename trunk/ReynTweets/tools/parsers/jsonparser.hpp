@@ -31,7 +31,7 @@
 /// @class JSONParser
 /// @brief Parser for JSON datas.
 ///
-/// It uses the <a href="http://qjson.sourceforge.net"> QJSON</a> library to parse.
+/// It uses the <a href="http://qjson.sourceforge.net">QJSON</a> library to parse.
 class JSONParser : public GenericParser<QVariantMap>
 {
 	public:

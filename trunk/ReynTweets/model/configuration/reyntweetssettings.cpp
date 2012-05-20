@@ -25,9 +25,8 @@
 
 
 #include <QFile>
-#include <QJson/Parser>
-#include <QJson/Serializer>
 #include "reyntweetssettings.hpp"
+#include "../../tools/parsers/jsonparser.hpp"
 
 ////////////////////
 // Static members //
@@ -45,7 +44,10 @@ QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf"
 /////////////////////
 
 // Private constructor
-ReynTweetsSettings::ReynTweetsSettings() {
+ReynTweetsSettings::ReynTweetsSettings() :
+	loadResult(INVALID_ISSUE),
+	errorLoading("")
+{
 	loadSettings();
 }
 
@@ -59,22 +61,38 @@ ReynTweetsSettings & ReynTweetsSettings::getInstance() {
 }
 
 // Loading the settings from the settings file.
-CoreResult ReynTweetsSettings::loadSettings() {
+void ReynTweetsSettings::loadSettings() {
 	// Opening the settings file
 	QFile confFile(ReynTweetsSettings::SETTINGS_NAMEFILE);
 
 	if (!confFile.exists()) {
-		return CONFIGURATION_FILE_UNKNOWN;
+		errorLoading = QObject::trUtf8("Settings file unknown.");
+		loadResult = CONFIGURATION_FILE_UNKNOWN;
+		return;
 	}
 
 	bool openOK = confFile.open(QFile::ReadOnly);
 	if (!openOK) {
-		return CONFIGURATION_FILE_NOT_OPEN;
+		errorLoading = QObject::trUtf8("Cannot open the settings file.");
+		loadResult = CONFIGURATION_FILE_NOT_OPEN;
+		return;
 	}
 
-	QJson::Parser parser;
-	QVariant jsonSettings = parser.parse(&confFile);
 
+	// Parsing datas
+	bool parseOK = false;
+	JSONParser parser;
+	QVariant jsonSettings = parser.parse(confFile.readAll(),
+										 parseOK,
+										 errorLoading);
+
+	if (!parseOK) {
+		loadResult = PARSE_ERROR;
+		return;
+	}
+
+
+	// Filling the settings
 	QVariantMap map = jsonSettings.toMap();
 
 	CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
@@ -84,13 +102,23 @@ CoreResult ReynTweetsSettings::loadSettings() {
 	TWITLONGER_API_KEY = QByteArray::fromBase64(map.value("twitlonger_api_key").toByteArray());
 	POCKET_API_KEY = QByteArray::fromBase64(map.value("pocket_api_key").toByteArray());
 
-	return LOAD_CONFIGURATION_SUCCESSFUL;
+	loadResult = LOAD_CONFIGURATION_SUCCESSFUL;
 }
 
 
 ////////////////////////
 // Getter on settings //
 ////////////////////////
+
+// Getter on the loading result
+CoreResult ReynTweetsSettings::getLoadResult() {
+	return loadResult;
+}
+
+// Getter on the error message after loading the settings
+QString ReynTweetsSettings::getErrorLoading() {
+	return errorLoading;
+}
 
 // Getter on the Twitter OAuth consumer key.
 QByteArray ReynTweetsSettings::getConsumerKey() {

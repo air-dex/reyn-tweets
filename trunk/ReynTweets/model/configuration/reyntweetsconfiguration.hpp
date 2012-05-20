@@ -33,6 +33,7 @@
 #include <QVariant>
 #include "../../logic/coreresult.hpp"
 #include "../reyntweetsmappable.hpp"
+#include "reyntweetssettings.hpp"
 #include "useraccount.hpp"
 
 /// @class ReynTweetsConfiguration
@@ -163,6 +164,9 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		CoreResult save();
 
 	protected:
+		/// @brief Twitter Account
+		static ReynTweetsSettings & APP_SETTINGS;
+
 		/// @brief Consumer Key
 		static QByteArray REYN_TWEETS_CONSUMER_KEY;
 
@@ -172,11 +176,11 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		/// @brief Twitter Account
 		UserAccount userAccount;
 
-		/// @brief
-		// oauth manager ?
-
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
+
+//		/// @brief
+//		// oauth manager ?
 
 
 	/////////////////////////
@@ -184,15 +188,10 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	/////////////////////////
 
 	public:
-		/// @fn static QByteArray getConsumerKey();
-		/// @brief Getting the consumer key
-		/// @return The consumer key
-		static QByteArray getConsumerKey();
-
-		/// @fn static QByteArray getConsumerSecret();
-		/// @brief Getting the consumer secret
-		/// @return The consumer secret
-		static QByteArray getConsumerSecret();
+		/// @fn static ReynTweetsSettings & getAppSettings();
+		/// @brief Getting the application's settings
+		/// @return APP_SETTINGS
+		static ReynTweetsSettings & getAppSettings();
 
 		/// @fn UserAccount getUserAccount();
 		/// @brief Getter on the user account

@@ -53,9 +53,9 @@ class OAuthManager
 		/// @param signatureAlgorithm Algorithm used for signing requests.
 		/// @param version Version of the OAuth protocol used for the
 		/// authentication. Reyn Tweets uses OAuth 1.0.
-		OAuthManager(QByteArray clientKey = ReynTweetsSettings::getInstance().CONSUMER_KEY,
-					 QByteArray clientSecret = ReynTweetsSettings::getInstance().CONSUMER_SECRET,
-					 QString clientUrl = ReynTweetsSettings::getInstance().CALLBACK_URL,
+		OAuthManager(QByteArray clientKey = ReynTweetsSettings::getInstance().getConsumerKey(),
+					 QByteArray clientSecret = ReynTweetsSettings::getInstance().getConsumerSecret(),
+					 QString clientUrl = ReynTweetsSettings::getInstance().getCallbackURL(),
 					 QString signatureAlgorithm = "HMAC-SHA1",
 					 QString version = "1.0");
 

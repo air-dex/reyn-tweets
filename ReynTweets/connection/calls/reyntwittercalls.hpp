@@ -149,8 +149,8 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param consumerSecret New consumer secret
 		static void setNewTokens(QByteArray accessToken,
 								 QByteArray tokenSecret,
-								 QByteArray consumerKey = ReynTweetsSettings::getInstance().CONSUMER_KEY,
-								 QByteArray consumerSecret = ReynTweetsSettings::getInstance().CONSUMER_SECRET);
+								 QByteArray consumerKey = ReynTweetsSettings::getInstance().getConsumerKey(),
+								 QByteArray consumerSecret = ReynTweetsSettings::getInstance().getConsumerSecret());
 
 		/// @fn void requestToken();
 		/// @brief Method for getting a request token

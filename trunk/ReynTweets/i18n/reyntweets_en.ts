@@ -121,22 +121,22 @@
         <translation>Website : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="212"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="214"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>A fatal error occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="216"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="218"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="222"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="224"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translation>An hitch occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="226"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="228"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Do you want to try to launch Reyn Tweets again or to quit ?</translation>
     </message>
@@ -144,55 +144,55 @@
 <context>
     <name>LaunchingProcess</name>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="58"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="258"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="91"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="291"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="62"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="262"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="95"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="295"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="66"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="99"/>
         <source>Configuration cannot be loaded.</source>
         <translation>Configuration cannot be loaded.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="71"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="267"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="104"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="300"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="177"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="210"/>
         <source>The user was not the right one.</source>
         <translation>The user was not the right one.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="187"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="220"/>
         <source>Tokens for authentication to Twitter were wrong.</source>
         <translation>Tokens for authentication to Twitter were wrong.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="195"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="228"/>
         <source>You reach the authentication rate:</source>
         <translation>You reach the authentication rate:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="203"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="236"/>
         <source>Twitter is down:</source>
         <translation>Twitter is down:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="211"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="244"/>
         <source>Problem while connecting to Twitter:</source>
         <translation>Problem while connecting to Twitter:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="226"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="259"/>
         <source>Unexpected result:</source>
         <translation>Unexpected result:</translation>
     </message>
@@ -443,6 +443,16 @@
         <location filename="../tools/processutils.cpp" line="209"/>
         <source>Unexpected problem:</source>
         <translation>Unexpected problem:</translation>
+    </message>
+    <message>
+        <location filename="../model/configuration/reyntweetssettings.cpp" line="69"/>
+        <source>Settings file unknown.</source>
+        <translation>Settings file unknown.</translation>
+    </message>
+    <message>
+        <location filename="../model/configuration/reyntweetssettings.cpp" line="76"/>
+        <source>Cannot open the settings file.</source>
+        <translation>Cannot open the settings file.</translation>
     </message>
 </context>
 <context>

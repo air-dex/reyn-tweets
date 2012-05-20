@@ -26,11 +26,9 @@
 #ifndef REYNTWEETSSETTINGS_HPP
 #define REYNTWEETSSETTINGS_HPP
 
-#include <QDataStream>
+#include <QByteArray>
 #include <QString>
-#include <QVariant>
 #include "../../logic/coreresult.hpp"
-#include "../reyntweetsmappable.hpp"
 
 /// @class ReynTweetsSettings
 /// @brief Class with Reyn Tweets settings.
@@ -41,9 +39,8 @@
 /// <li><a href="http://www.twitlonger.com">TwitLonger</a></li>
 /// <li><a href="http://getpocket.com">Pocket</a></li>
 /// <li>More to come...</li>
-/// <ul>
+/// </ul>
 class ReynTweetsSettings {
-
 	public:
 		////////////////////////
 		// Getter on settings //

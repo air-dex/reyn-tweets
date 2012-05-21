@@ -1,7 +1,5 @@
-/// @file twitlongerrequests.hpp
-/// @brief Header including all the requesters which call the TwitLonger API.
-///
-/// This file was known as requests.hpp until r410.
+/// @file twitlongerurls.cpp
+/// @brief Implementation of the TwitLongerURLs namespace.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -23,7 +21,15 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TWITLONGERREQUESTS_HPP
-#define TWITLONGERREQUESTS_HPP
+#include "twitlongerurls.hpp"
 
-#endif // TWITLONGERREQUESTS_HPP
+// NB : QString::fromUtf8(); is used to avoid problem with character conversion.
+
+// Posting the long messages to TwitLonger
+QString TwitLongerURL::POST_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_post");
+
+// Updating informations about the long message
+QString TwitLongerURL::UPDATE_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_set_id");
+
+// Reading the long message
+QString TwitLongerURL::READ_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_read/message_id");

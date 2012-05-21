@@ -54,10 +54,11 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
-	connection/requests/twitterurls.cpp \
 	model/configuration/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
+	connection/requests/urls/twitlongerurls.cpp \
+	connection/requests/urls/twitterurls.cpp \
 	connection/requests/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
@@ -139,15 +140,16 @@ HEADERS  += \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
 	model/configuration/reyntweetssettings.hpp \
+	connection/oauthmanager.hpp \
 	connection/requests/requesttype.hpp \
 	connection/headersmap.hpp \
-	connection/oauthmanager.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
 	connection/errortypes.hpp \
 	connection/responseinfos.hpp \
+	connection/requests/urls/twitlongerurls.hpp \
+	connection/requests/urls/twitterurls.hpp \
 	connection/requests/requestresult.hpp \
 	connection/requests/resultwrapper.hpp \
-	connection/requests/twitterurls.hpp \
 	connection/requests/identificationway.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
@@ -224,7 +226,8 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+    connection/requests/urls/apiurls.hpp
 
 
 OTHER_FILES = \

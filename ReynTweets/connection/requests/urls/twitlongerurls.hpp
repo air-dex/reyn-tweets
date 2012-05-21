@@ -1,7 +1,5 @@
-/// @file twitlongerrequests.hpp
-/// @brief Header including all the requesters which call the TwitLonger API.
-///
-/// This file was known as requests.hpp until r410.
+/// @file twitlongerurls.hpp
+/// @brief Declaration of the TwitLongerURL namespace.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -23,7 +21,23 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TWITLONGERREQUESTS_HPP
-#define TWITLONGERREQUESTS_HPP
+#ifndef TWITLONGERURLS_HPP
+#define TWITLONGERURLS_HPP
 
-#endif // TWITLONGERREQUESTS_HPP
+#include <QString>
+
+/// @namespace TwitLongerURL
+/// @brief Namespace containing all the TwitLonger API URLs.
+namespace TwitLongerURL
+{
+	/// @brief URL for posting the long messages to TwitLonger
+	extern QString POST_LONG_TWEET_URL;
+
+	/// @brief URL for updating informations about the long message
+	extern QString UPDATE_LONG_TWEET_URL;
+
+	/// @brief URL for reading the long message
+	extern QString READ_TWEET_URL;
+}
+
+#endif // TWITLONGERURLS_HPP

@@ -2,6 +2,7 @@
 /// @brief Declaration of the TwitterURL namespace.
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions from r243 to r426 were in /trunk/ReynTweets/connection/requests
 /// @author Romain Ducher
 ///
 /// @section LICENSE

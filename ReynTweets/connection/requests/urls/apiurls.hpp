@@ -1,5 +1,6 @@
-/// @file twitlongerrequests.hpp
-/// @brief Header including all the requesters which call the TwitLonger API.
+/// @file apiurls.hpp
+/// @brief Header with all the URLs to the different APIs (Twitter,
+/// TwitLonger, Pocket, ...)
 ///
 /// This file was known as requests.hpp until r410.
 /// @author Romain Ducher
@@ -23,7 +24,10 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TWITLONGERREQUESTS_HPP
-#define TWITLONGERREQUESTS_HPP
+#ifndef APIURLS_HPP
+#define APIURLS_HPP
 
-#endif // TWITLONGERREQUESTS_HPP
+#include "twitlongerurls.hpp"
+#include "twitterurls.hpp"
+
+#endif // APIURLS_HPP

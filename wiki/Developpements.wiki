@@ -54,6 +54,7 @@ Où en est Reyn Tweets ?
     * UI d'un tweet (format résumé).
   * Traduction
     * Règles Makefile supplémentaires pour lupdate (trupdate), lrelease (trrelease), déployer les .qm (trdeploy) et effacer les .qm (trclean).
+  * Intégration de TwitLonger : TwitLongerWork.
 
 
 == Ce qui reste à faire ==

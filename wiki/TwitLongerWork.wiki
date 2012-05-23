@@ -12,8 +12,8 @@ Le service TwitLonger ( http://www.twitlonger.com/ ) sera intégré à Reyn Twee
     * ~~Modifications en conséquence dans le code.~~
   * Au niveau des Requesters :
     * Plusieurs requesters nécessaires :
-      * PostToTwitLongerRequester : poster les messages sur TwitLonger.
-      * CallbackIDRequester : pour màj le message avec son ID Twitter
+      * ~~PostToTwitLongerRequester : poster les messages sur TwitLonger.~~
+      * ~~CallbackIDRequester : pour màj le message avec son ID Twitter~~
       * ReadMessageRequester : pour lire un message
     * ~~TwitLonger renvoie des réponses au format XML -> Création d'un parser XML.~~
   * Au niveau des Communicators :
@@ -28,9 +28,17 @@ Le service TwitLonger ( http://www.twitlonger.com/ ) sera intégré à Reyn Twee
     * Création d'un TwitLongerCalls pour wrapper l'API REST de TwitLonger.
     * Création d'un dossier connection/calls pour y mettre tous les calls (dont le TwitLongerCalls et les ReynTwitterCalls).
     * Modifications en conséquence dans le code.
-  * Au niveau des Requesters :
+  * Au niveau des Requesters (r414, r427) :
     * TwitLonger renvoie des réponses au format XML -> Création d'un parser XML (r414).
+    * Header dédié pour les URLs de l'API TwitLonger (r426).
+    * Header dédié pour les requesters requêtant l'API TwitLonger (r427).
+    * Plusieurs requesters nécessaires (r427) :
+      * PostToTwitLongerRequester : poster les messages sur TwitLonger (r427).
+      * SendIDToTwitLongerRequester : pour màj le message avec son ID Twitter (r427).
+      * TwitLongerRequester : requester générique pour les requêtes à l'API TwitLonger (r427).
+    * Nouvelle hiérarchie des requesters avec un TwitterRequester héritant du GenericRequester pour toutes les requêtes à l'API Twitter (r427).
   * Au niveau des Communicators (r408, r409) :
     * Refonte du TwitterCommunicator (r409) qui donne un communicator unique pour tout le monde (Twitter, TwitLonger, futurs services ?).
   * Autres :
     * issue 75 : déplacement des paramètres de l'application dans un fichier de configuration à part.
+    * Création d'un TwitLongerManager qui est le pendant de l'OAuthManager pour les identifiants TwitLonger de Reyn Tweets (r427).

@@ -433,10 +433,7 @@ Rectangle {
 			id: reply_action
 			image_source: "../../resources/icons/reply_off.png"
 			legend: qsTr("Reply")
-			onAct: {
-				reply('@' + shown_tweet.author.screen_name + ' ',
-					  shown_tweet.id_str)
-			}
+			onAct: reply(shown_tweet.author.screen_name, shown_tweet.id_str)
 
 			property string reply_switch: "off"
 		}

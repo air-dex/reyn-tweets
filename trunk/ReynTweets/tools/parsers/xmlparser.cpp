@@ -21,10 +21,11 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include <QDomDocument>
 #include "xmlparser.hpp"
 
 // Parsing an XML document
-QDomDocument XMLParser::parse(QByteArray data,
+QDomElement XMLParser::parse(QByteArray data,
 							  bool &parseOK,
 							  QString &parseError,
 							  int * lineError,
@@ -32,5 +33,5 @@ QDomDocument XMLParser::parse(QByteArray data,
 {
 	QDomDocument res("XMLdoc");
 	parseOK = res.setContent(data, &parseError, lineError, columnError);
-	return res;
+	return res.documentElement();
 }

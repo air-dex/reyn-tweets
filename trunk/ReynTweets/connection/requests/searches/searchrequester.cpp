@@ -25,7 +25,7 @@
 
 // Constructor
 SearchRequester::SearchRequester(QString q) :
-	GenericRequester(GET, TwitterURL::SEARCH_URL),
+	TwitterRequester(GET, TwitterURL::SEARCH_URL),
 	query(q)
 {}
 

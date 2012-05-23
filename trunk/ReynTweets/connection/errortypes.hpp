@@ -39,8 +39,8 @@ enum ErrorType {
 	/// Twitter API.
 	API_CALL,
 
-	/// @brief Code indicating that Twitter has returned errors.
-	TWITTER_ERRORS,
+	/// @brief Code indicating that the service (ex. Twitter) has returned errors.
+	SERVICE_ERRORS,
 
 	/// @brief Code indicating that there was an error while parsing results
 	/// with <a href="http://qjson.sourceforge.net">QJson</a>.

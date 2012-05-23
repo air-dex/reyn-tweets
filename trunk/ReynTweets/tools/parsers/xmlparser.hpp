@@ -24,30 +24,30 @@
 #ifndef XMLPARSER_HPP
 #define XMLPARSER_HPP
 
-#include <QDomDocument>
+#include <QDomElement>
 #include "genericparser.hpp"
 
 /// @class XMLParser
 /// @brief Parsing an XML document.
-class XMLParser : public GenericParser<QDomDocument>
+class XMLParser : public GenericParser<QDomElement>
 {
 	public:
-		/// @fn QDomDocument parse(QByteArray data,
-		///						   bool & parseOK,
-		///						   QString & parseError,
-		///						   int * lineError = 0,
-		///						   int * columnError = 0);
+		/// @fn QDomElement parse(QByteArray data,
+		///						  bool & parseOK,
+		///						  QString & parseError,
+		///						  int * lineError = 0,
+		///						  int * columnError = 0);
 		/// @brief Method for parsing results
 		/// @param data datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		/// @param columnError Column of the error
-		QDomDocument parse(QByteArray data,
-						   bool & parseOK,
-						   QString & parseError,
-						   int * lineError = 0,
-						   int * columnError = 0);
+		QDomElement parse(QByteArray data,
+						  bool & parseOK,
+						  QString & parseError,
+						  int * lineError = 0,
+						  int * columnError = 0);
 };
 
 #endif // XMLPARSER_HPP

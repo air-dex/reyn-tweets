@@ -127,7 +127,13 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	main.cpp
+	main.cpp \
+    logic/processes/postviatwitlongerprocess.cpp \
+    connection/twitlongermanager.cpp \
+    connection/requests/twitlonger/twitlongerrequester.cpp \
+    connection/requests/twitlonger/posttotwitlongerrequester.cpp \
+    connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
+    connection/requests/twitterrequester.cpp
 
 
 HEADERS  += \
@@ -227,7 +233,13 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/controls/controls.hpp \
-    connection/requests/urls/apiurls.hpp
+    connection/requests/urls/apiurls.hpp \
+    logic/processes/postviatwitlongerprocess.hpp \
+    connection/twitlongermanager.hpp \
+    connection/requests/twitlonger/twitlongerrequester.hpp \
+    connection/requests/twitlonger/posttotwitlongerrequester.hpp \
+    connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
+    connection/requests/twitterrequester.hpp
 
 
 OTHER_FILES = \

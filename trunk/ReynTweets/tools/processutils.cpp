@@ -28,9 +28,9 @@
 /////////////////////////////
 
 ProcessResult ProcessUtils::buildProcessResult(bool processOK,
-									  CoreResult issue,
-									  QString errMsg,
-									  bool isFatal)
+											   CoreResult issue,
+											   QString errMsg,
+											   bool isFatal)
 {
 	ProcessResult processResult;
 
@@ -115,7 +115,7 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 
 	// Building error message
 	errorMsg.append('\n')
-			.append(writeTwitterErrors(result.twitterErrors));
+			.append(writeTwitterErrors(result.serviceErrors));
 }
 
 QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
@@ -187,7 +187,26 @@ void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 	issue = PARSE_ERROR;
 }
 
-// For unparsable JSON results
+// For unparsable XML results
+void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
+										 QString & errorMsg,
+										 CoreResult & issue)
+{
+	// Building error message
+	errorMsg = QObject::trUtf8("Parsing error:");
+	errorMsg.append('\n')
+			.append(QObject::trUtf8("Line "))
+			.append(QString::number(parsingErrors.code))
+			.append(" , ")
+			.append(QObject::trUtf8("Column "))
+			.append(QString::number(parsingErrors.code))
+			.append(" : ")
+			.append(parsingErrors.message);
+
+	issue = PARSE_ERROR;
+}
+
+// For unparsable OAuth results
 void ProcessUtils::treatOAuthParsingResult(QString parsingErrorsMsg,
 										   QString & errorMsg,
 										   CoreResult & issue)

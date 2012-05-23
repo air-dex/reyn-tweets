@@ -24,65 +24,65 @@
 #ifndef AUTHENTICATIONREQUESTER_HPP
 #define AUTHENTICATIONREQUESTER_HPP
 
-#include "genericrequester.hpp"
+#include "twitterrequester.hpp"
 #include "../oauthmanager.hpp"
 
 /// @class AuthenticationRequester
 /// @brief Requester specialized for requests which needs authentication.
-class AuthenticationRequester : public GenericRequester
+class AuthenticationRequester : public TwitterRequester
 {
-        Q_OBJECT
-    public:
-        /// @fn AuthenticationRequester(RequestType type,
-        ///								QString url,
-        ///								OAuthManager & authManager,
-        ///								ErrorType parseError = QJSON_PARSING,
-        ///								bool tokenNeeded = true,
-        ///								bool callbackURLNeeded = false,
-        ///								bool verifierNeeded = false);
-        /// @brief Constructor
-        /// @param type Type of the request (GET ou POST).
-        /// @param url URL called by the requester
-        /// @param authManager Entity with information for OAuth
-        /// @param parseError Error type if an error occurs while parsing. Most
-        /// of the time, this value is set to QJSON_PARSING because results are
-        /// QJson stream parsed with QJson. However, OAuth requesters use their
-        /// own parsing process so they need a special value called OAUTH_PARSING.
-        /// @param tokenNeeded Boolean indicating if the oauth_token parameter
-        /// is required for authentication.
-        /// @param callbackURLNeeded Boolean indicating if the oauth_callback
-        /// parameter is required for authentication.
-        /// @param verifierNeeded Boolean indicating if the oauth_verifier
-        /// parameter is required for authentication.
-        AuthenticationRequester(RequestType type,
-                                QString url,
-                                OAuthManager & authManager,
-                                ErrorType parseError = QJSON_PARSING,
-                                bool tokenNeeded = true,
-                                bool callbackURLNeeded = false,
-                                bool verifierNeeded = false);
+		Q_OBJECT
+	public:
+		/// @fn AuthenticationRequester(RequestType type,
+		///								QString url,
+		///								OAuthManager & authManager,
+		///								ErrorType parseError = QJSON_PARSING,
+		///								bool tokenNeeded = true,
+		///								bool callbackURLNeeded = false,
+		///								bool verifierNeeded = false);
+		/// @brief Constructor
+		/// @param type Type of the request (GET ou POST).
+		/// @param url URL called by the requester
+		/// @param authManager Entity with information for OAuth
+		/// @param parseError Error type if an error occurs while parsing. Most
+		/// of the time, this value is set to QJSON_PARSING because results are
+		/// QJson stream parsed with QJson. However, OAuth requesters use their
+		/// own parsing process so they need a special value called OAUTH_PARSING.
+		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
+		/// is required for authentication.
+		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
+		/// parameter is required for authentication.
+		/// @param verifierNeeded Boolean indicating if the oauth_verifier
+		/// parameter is required for authentication.
+		AuthenticationRequester(RequestType type,
+								QString url,
+								OAuthManager & authManager,
+								ErrorType parseError = QJSON_PARSING,
+								bool tokenNeeded = true,
+								bool callbackURLNeeded = false,
+								bool verifierNeeded = false);
 
 
-    protected:
-        /// @brief Entity with authentication information
-        OAuthManager & oauthManager;
+	protected:
+		/// @brief Entity with authentication information
+		OAuthManager & oauthManager;
 
-        /// @brief Boolean indicating if the oauth_token parameter is required
-        /// for authentication.
-        bool oauthTokenNeeded;
+		/// @brief Boolean indicating if the oauth_token parameter is required
+		/// for authentication.
+		bool oauthTokenNeeded;
 
-        /// @brief Boolean indicating if the oauth_callback parameter
-        /// is required for authentication.
-        bool oauthCallbackUrlNeeded;
+		/// @brief Boolean indicating if the oauth_callback parameter
+		/// is required for authentication.
+		bool oauthCallbackUrlNeeded;
 
-        /// @brief Boolean indicating if the oauth_token parameter is required
-        /// for authentication.
-        bool oauthVerifierNeeded;
+		/// @brief Boolean indicating if the oauth_token parameter is required
+		/// for authentication.
+		bool oauthVerifierNeeded;
 
-    private:
-        /// @fn virtual void buildHTTPHeaders();
-        /// @brief Building Content-Type and Authorize headers
-        virtual void buildHTTPHeaders();
+	private:
+		/// @fn virtual void buildHTTPHeaders();
+		/// @brief Building Content-Type and Authorize headers
+		virtual void buildHTTPHeaders();
 };
 
 #endif // AUTHENTICATIONREQUESTER_HPP

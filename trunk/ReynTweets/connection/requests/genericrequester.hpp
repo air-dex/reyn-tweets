@@ -132,7 +132,7 @@ class GenericRequester : public QObject
 		RequestResult requestResult;
 
 		/// @fn virtual QVariant parseResult(bool & parseOK,
-		///									 QVariantMap & parsingErrors);
+		///									 QVariantMap & parsingErrors) = 0;
 		/// @brief Method that will parse the raw results of the request.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
@@ -140,7 +140,11 @@ class GenericRequester : public QObject
 		/// errors that may occur while parsing.
 		/// @return Parsed results
 		virtual QVariant parseResult(bool & parseOK,
-									 QVariantMap & parsingErrors);
+									 QVariantMap & parsingErrors) = 0;
+
+		/// @fn virtual void treatParsedResult() = 0;
+		/// @brief Treating parsed results
+		virtual void treatParsedResult() = 0;
 
 	signals:
 		/// @fn void requestDone();

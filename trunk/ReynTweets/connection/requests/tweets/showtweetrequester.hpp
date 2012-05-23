@@ -24,12 +24,12 @@
 #ifndef SHOWTWEETREQUESTER_HPP
 #define SHOWTWEETREQUESTER_HPP
 
-#include "../genericrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class ShowTweetRequester
 /// @brief Requester for getting details about a tweet identified by its ID.
 /// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
-class ShowTweetRequester : public GenericRequester
+class ShowTweetRequester : public TwitterRequester
 {
 	Q_OBJECT
 

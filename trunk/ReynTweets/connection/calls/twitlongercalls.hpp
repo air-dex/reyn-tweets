@@ -25,20 +25,51 @@
 #define TWITLONGERCALLS_HPP
 
 #include "genericcalls.hpp"
+#include "../twitlongermanager.hpp"
 
 /// @class TwitLongerCalls
 /// @brief Class managing calls to the TwitLonger API.
 class TwitLongerCalls : public GenericCalls
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        TwitLongerCalls(QObject * requester);
+	public:
+		/// @fn TwitLongerCalls(QObject * requester);
+		/// @brief Constructor
+		/// @param requester QObject that asks for something.
+		TwitLongerCalls(QObject * requester);
 
-    ////////////////////////
-    // Calling TwitLonger //
-    ////////////////////////
+	protected:
+		/// @brief Settings of the application on TwitLonger
+		static TwitLongerManager twitlongerManager;
 
+
+	////////////////////////
+	// Calling TwitLonger //
+	////////////////////////
+
+	public:
+		/// @fn void postOnTwitLonger(QString username,
+		///							  QString message,
+		///							  qlonglong replyToTweetID = -1,
+		///							  QString replyToUser = "");
+		/// @brief Posting the long message on TwitLonger
+		/// @param username Name of the user that wants to shorten the tweet
+		/// @param message Message to shorten
+		/// @param replyToTweetID If the message to shorten is a reply, this
+		/// parameter will be the ID of the tweet that the user replies to.
+		/// @param replyToUser If the message to shorten is a reply, this
+		/// parameter will be the twittos that the tweet replies to.
+		void postOnTwitLonger(QString username,
+							  QString message,
+							  qlonglong replyToTweetID = -1,
+							  QString replyToUser = "");
+
+		/// @fn void updateLongTweet(QString messageID, qlonglong tweetID);
+		/// @brief Updating the message informations on TwitLonger.
+		/// @param messageID ID of the long message on TwitLonger.
+		/// @param tweetID ID of the shortened message on Twitter.
+		void updateLongTweet(QString messageID, qlonglong tweetID);
 };
 
 #endif // TWITLONGERCALLS_HPP

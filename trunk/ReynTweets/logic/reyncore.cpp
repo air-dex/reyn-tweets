@@ -39,7 +39,7 @@ ReynCore::~ReynCore() {
 
 // Copy constructor
 ReynCore::ReynCore(const ReynCore & heart) :
-    QObject()
+	QObject()
 {
 	recopie(heart);
 }
@@ -283,6 +283,56 @@ void ReynCore::postTweet(QString tweet,
 	executeProcess(process);
 }
 
+// Posting a tweet without media
+void ReynCore::postTweetViaTwitLonger(QString tweet,
+									  qlonglong replyToTweetID,
+									  QString replyToUser,
+									  bool trimUser,
+									  bool includeEntities,
+									  float latitude,
+									  float longitude,
+									  QString reversePlace,
+									  bool displayCoord)
+{
+	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
+																	  configuration.getUserAccount().getUser().getScreenName(),
+																	  replyToTweetID,
+																	  replyToUser,
+																	  trimUser,
+																	  includeEntities,
+																	  latitude,
+																	  longitude,
+																	  reversePlace,
+																	  displayCoord);
+
+	executeProcess(process);
+}
+
+// Posting a tweet without media
+void ReynCore::postTweetViaTwitLonger(QString tweet,
+									  QString replyToTweetID,
+									  QString replyToUser,
+									  bool trimUser,
+									  bool includeEntities,
+									  float latitude,
+									  float longitude,
+									  QString reversePlace,
+									  bool displayCoord)
+{
+	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
+																	  configuration.getUserAccount().getUser().getScreenName(),
+																	  replyToTweetID,
+																	  replyToUser,
+																	  trimUser,
+																	  includeEntities,
+																	  latitude,
+																	  longitude,
+																	  reversePlace,
+																	  displayCoord);
+
+	executeProcess(process);
+}
+
 // Reweeting a tweet
 void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
 	RetweetProcess * process = new RetweetProcess(tweetID,
@@ -294,7 +344,7 @@ void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
 
 // Deleting a tweet
 void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimUser) {
-    DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUserRef(),
+	DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUserRef(),
 														  tweetToDelete,
 														  includeEntities,
 														  trimUser);

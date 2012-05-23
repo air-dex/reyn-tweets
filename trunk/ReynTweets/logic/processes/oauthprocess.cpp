@@ -122,9 +122,9 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -191,9 +191,9 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			emit userCredentialsRequired();
 			return;
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -291,9 +291,9 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
@@ -373,9 +373,9 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			endProcess();
 		}return;
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {

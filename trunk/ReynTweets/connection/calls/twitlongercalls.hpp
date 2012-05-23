@@ -39,6 +39,14 @@ class TwitLongerCalls : public GenericCalls
 		/// @param requester QObject that asks for something.
 		TwitLongerCalls(QObject * requester);
 
+		/// @fn static void setAppTokens(QString appName,
+		///								 QByteArray apiKey);
+		/// @brief Setting the application's tokens to the twitlongerManager
+		/// @param consumerKey New consumer key
+		/// @param consumerSecret New consumer secret
+		static void setAppTokens(QString appName,
+								 QByteArray apiKey);
+
 	protected:
 		/// @brief Settings of the application on TwitLonger
 		static TwitLongerManager twitlongerManager;

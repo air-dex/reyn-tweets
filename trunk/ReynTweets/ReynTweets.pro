@@ -54,7 +54,6 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
-	model/configuration/reyntweetssettings.cpp \
 	connection/oauthmanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
 	connection/requests/urls/twitlongerurls.cpp \
@@ -104,7 +103,6 @@ SOURCES += \
 	model/timelines/timeline.cpp \
 	model/users/user.cpp \
 	model/configuration/useraccount.cpp \
-	model/configuration/reyntweetsconfiguration.cpp \
 	logic/processes/processwrapper.cpp \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
@@ -133,7 +131,9 @@ SOURCES += \
     connection/requests/twitlonger/twitlongerrequester.cpp \
     connection/requests/twitlonger/posttotwitlongerrequester.cpp \
     connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
-    connection/requests/twitterrequester.cpp
+    connection/requests/twitterrequester.cpp \
+    model/configuration/reyntweetsuserconfiguration.cpp \
+    model/configuration/reyntweetsappconfiguration.cpp
 
 
 HEADERS  += \
@@ -145,7 +145,6 @@ HEADERS  += \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
-	model/configuration/reyntweetssettings.hpp \
 	connection/oauthmanager.hpp \
 	connection/requests/requesttype.hpp \
 	connection/headersmap.hpp \
@@ -205,7 +204,6 @@ HEADERS  += \
 	model/timelines/timeline.hpp \
 	model/users/user.hpp \
 	model/configuration/useraccount.hpp \
-	model/configuration/reyntweetsconfiguration.hpp \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
@@ -239,7 +237,9 @@ HEADERS  += \
     connection/requests/twitlonger/twitlongerrequester.hpp \
     connection/requests/twitlonger/posttotwitlongerrequester.hpp \
     connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
-    connection/requests/twitterrequester.hpp
+    connection/requests/twitterrequester.hpp \
+    model/configuration/reyntweetsuserconfiguration.hpp \
+    model/configuration/reyntweetsappconfiguration.hpp
 
 
 OTHER_FILES = \

@@ -28,7 +28,7 @@
 #include "ui/qmlapplicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
-#include "model/configuration/reyntweetssettings.hpp"
+#include "model/configuration/reyntweetsappconfiguration.hpp"
 
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
@@ -55,7 +55,7 @@ void initReynTweetsSystem() {
 	Timeline::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();
-	ReynTweetsConfiguration::initSystem();
+	ReynTweetsUserConfiguration::initSystem();
 }
 
 /// @fn void declareReynTweetsControls();
@@ -65,7 +65,7 @@ void declareReynTweetsControls() {
 	AllowControl::declareQML();
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
-	ReynTweetsConfiguration::declareQML();
+	ReynTweetsUserConfiguration::declareQML();
 	UserAccount::declareQML();
 	Tweet::declareQML();
 	UserInfos::declareQML();
@@ -111,9 +111,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 		 */
 		QDir::setCurrent(app->applicationDirPath());
 	#endif
-
-	// Loading the settings. The current directory has to be set correctly for this.
-	ReynTweetsSettings::getInstance().loadSettings();
 
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());

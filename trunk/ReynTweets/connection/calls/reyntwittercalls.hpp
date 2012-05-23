@@ -138,19 +138,22 @@ class ReynTwitterCalls : public GenericCalls
 		/// has to be launch to get tokens and for authentication in requests
 		static void resetTokens();
 
-		/// @fn static void setNewTokens(QByteArray accessToken,
-		///								 QByteArray tokenSecret,
-		///								 QByteArray consumerKey = ReynTweetsSettings::getInstance().getConsumerKey(),
-		///								 QByteArray consumerSecret = ReynTweetsSettings::getInstance().getConsumerSecret());
-		/// @brief Giving new tokens to the oauthManager
+		/// @fn static void setUserTokens(QByteArray accessToken,
+		///								  QByteArray tokenSecret);
+		/// @brief Setting the user's tokens to the oauthManager
 		/// @param accessToken New access token
 		/// @param tokenSecret New token secret
+		static void setUserTokens(QByteArray accessToken,
+								 QByteArray tokenSecret);
+
+		/// @fn static void setAppTokens(QByteArray consumerKey,
+		///								 QByteArray consumerSecret);
+		/// @brief Setting the application's tokens to the oauthManager
 		/// @param consumerKey New consumer key
 		/// @param consumerSecret New consumer secret
-		static void setNewTokens(QByteArray accessToken,
-								 QByteArray tokenSecret,
-								 QByteArray consumerKey = ReynTweetsSettings::getInstance().getConsumerKey(),
-								 QByteArray consumerSecret = ReynTweetsSettings::getInstance().getConsumerSecret());
+		static void setAppTokens(QByteArray consumerKey,
+								 QByteArray consumerSecret,
+								 QString callbackURL);
 
 		/// @fn void requestToken();
 		/// @brief Method for getting a request token

@@ -24,9 +24,9 @@
 #include "twitlongermanager.hpp"
 
 // Constructor
-TwitLongerManager::TwitLongerManager(QString appName, QByteArray key) :
-	applicationName(appName),
-	apiKey(key)
+TwitLongerManager::TwitLongerManager() :
+	applicationName(""),
+	apiKey("")
 {}
 
 // Getting the application name
@@ -34,7 +34,17 @@ QString TwitLongerManager::getApplicationName() {
 	return applicationName;
 }
 
-// Getting the OAuth Token
+// Setting the application name
+void TwitLongerManager::setApplicationName(QString newAppName) {
+	applicationName = newAppName;
+}
+
+// Getting the API Key
 QByteArray TwitLongerManager::getAPIKey(bool isClear) {
 	return isClear ? QByteArray::fromBase64(apiKey) : apiKey;
+}
+
+// Setting the API Key
+void TwitLongerManager::setAPIKey(QByteArray newAPIKey) {
+	apiKey = newAPIKey;
 }

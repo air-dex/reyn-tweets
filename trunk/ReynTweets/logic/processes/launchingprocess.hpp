@@ -25,7 +25,7 @@
 #define LAUNCHINGPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../../model/configuration/reyntweetsconfiguration.hpp"
+#include "../../model/configuration/reyntweetsuserconfiguration.hpp"
 #include "../../connection/calls/reyntwittercalls.hpp"
 #include "../coreresult.hpp"
 #include "processwrapper.hpp"
@@ -37,10 +37,10 @@ class LaunchingProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn explicit LaunchingProcess(ReynTweetsConfiguration & conf);
+		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf);
 		/// @brief Constructor
 		/// @param conf Configuration of Reyn Tweets
-		explicit LaunchingProcess(ReynTweetsConfiguration & conf);
+		LaunchingProcess(ReynTweetsUserConfiguration & userConf, ReynTweetsAppConfiguration &appConf);
 
 		/// @fn void startProcess();
 		/// @brief Starting the process
@@ -63,7 +63,10 @@ class LaunchingProcess : public GenericProcess
 		ReynTwitterCalls twitter;
 
 		/// @brief Configuration
-		ReynTweetsConfiguration & configuration;
+		ReynTweetsUserConfiguration & userConfiguration;
+
+		/// @brief Configuration
+		ReynTweetsAppConfiguration & appConfiguration;
 
 	private:
 		/// @fn void checkSettingsLoad();
@@ -99,9 +102,17 @@ class LaunchingProcess : public GenericProcess
 						 QString errMsg = "",
 						 bool isFatal = false);
 
+		/// @fn void fillOAuthAppSettings();
+		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		void fillTwitterOAuthAppSettings();
+
+		/// @fn void fillOAuthManagerUserSettings();
+		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		void fillTwitterOAuthUserSettings();
+
 		/// @fn void fillOAuthManager();
 		/// @brief Filling the OAuthManager of twitter with configuration tokens
-		void fillOAuthManager();
+		void fillTwitLongerAppSettings();
 };
 
 #endif // LAUNCHINGPROCESS_HPP

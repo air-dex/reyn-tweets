@@ -24,12 +24,15 @@
 #include <QFile>
 #include "launchingprocess.hpp"
 #include "../../tools/processutils.hpp"
+#include "../../connection/calls/twitlongercalls.hpp"
 
 // Constructor
-LaunchingProcess::LaunchingProcess(ReynTweetsConfiguration & conf) :
+LaunchingProcess::LaunchingProcess(ReynTweetsUserConfiguration & userConf,
+								   ReynTweetsAppConfiguration & appConf) :
 	GenericProcess(),
 	twitter(this),
-	configuration(conf)
+	userConfiguration(userConf),
+	appConfiguration(appConf)
 {}
 
 // Starting the process
@@ -38,17 +41,19 @@ void LaunchingProcess::startProcess() {
 }
 
 
-/////////////////////////////////////////////////////////////////////////
-// Step 1 : checking if the application settings were loaded correctly //
-/////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+// Step 1 : loading the application configuration //
+////////////////////////////////////////////////////
 
 // Starting the process
 void LaunchingProcess::checkSettingsLoad() {
 	// Check if the application settings were loaded correctly
-	CoreResult loadIssue = configuration.getAppSettings().getLoadResult();
+	CoreResult loadIssue = appConfiguration.loadSettings();
 
-	switch(configuration.getAppSettings().getLoadResult()) {
+	switch(loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
+			fillTwitterOAuthAppSettings();
+			fillTwitLongerAppSettings();
 			return loadConfiguration();
 
 		// Expected errors
@@ -66,26 +71,26 @@ void LaunchingProcess::checkSettingsLoad() {
 	// Telling the component that the launching process has ended fatally.
 	buildResult(false,
 				loadIssue,
-				configuration.getAppSettings().getErrorLoading(),
+				appConfiguration.getErrorLoading(),
 				true);
 	endProcess();
 }
 
 
-////////////////////////////////////////
-// Step 2 : loading the configuration //
-////////////////////////////////////////
+/////////////////////////////////////////////
+// Step 2 : loading the user configuration //
+/////////////////////////////////////////////
 
 // Loading the configuartion from the configuration file
 void LaunchingProcess::loadConfiguration() {
-	CoreResult loadIssue = configuration.load();
+	CoreResult loadIssue = userConfiguration.load();
 
 	QString errorMsg = "";
 
 	switch (loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
-			fillOAuthManager();
+			fillTwitterOAuthUserSettings();
 			return checkTokens();
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -150,7 +155,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;
 			userOfCredentials.fillWithVariant(userMap);
-			UserAccount account = configuration.getUserAccount();
+			UserAccount account = userConfiguration.getUserAccount();
 			UserInfos confUser = account.getUser();
 			bool rightUser = confUser.getID() == userOfCredentials.getID();
 			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;
@@ -275,7 +280,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
-	CoreResult saveIssue = configuration.save();
+	CoreResult saveIssue = userConfiguration.save();
 	bool processOK = false;
 	QString errorMsg = "";
 	bool isFatal = true;
@@ -313,11 +318,22 @@ void LaunchingProcess::saveConfiguration() {
 //////////
 
 // Filling the OAuth manager of the ReynTwitterCalls with right credentials
-void LaunchingProcess::fillOAuthManager() {
-	ReynTwitterCalls::setNewTokens(configuration.getUserAccount().getAccessToken(),
-								   configuration.getUserAccount().getTokenSecret(),
-								   ReynTweetsConfiguration::getAppSettings().getConsumerKey(),
-								   ReynTweetsConfiguration::getAppSettings().getConsumerSecret());
+void LaunchingProcess::fillTwitterOAuthAppSettings() {
+	ReynTwitterCalls::setAppTokens(appConfiguration.getConsumerKey(),
+								   appConfiguration.getConsumerSecret(),
+								   appConfiguration.getCallbackURL());
+}
+
+// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+void LaunchingProcess::fillTwitterOAuthUserSettings() {
+	ReynTwitterCalls::setUserTokens(userConfiguration.getUserAccount().getAccessToken(),
+									userConfiguration.getUserAccount().getTokenSecret());
+}
+
+// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+void LaunchingProcess::fillTwitLongerAppSettings() {
+	TwitLongerCalls::setAppTokens(appConfiguration.getTwitLongerAppName(),
+								  appConfiguration.getTwitLongerAPIKey());
 }
 
 // Building the process results

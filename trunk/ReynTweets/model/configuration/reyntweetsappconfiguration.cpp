@@ -1,4 +1,4 @@
-/// @file reyntweetssettings.cpp
+/// @file reyntweetsappconfiguration.cpp
 /// @brief Values of ReynTweetsSettings namespace.
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
@@ -27,18 +27,15 @@
 #include <QApplication>
 #include <QFile>
 #include <QObject>
-#include "reyntweetssettings.hpp"
+#include "reyntweetsappconfiguration.hpp"
 #include "../../tools/parsers/jsonparser.hpp"
 
 ////////////////////
 // Static members //
 ////////////////////
 
-// Unique instance
-ReynTweetsSettings * ReynTweetsSettings::instance = 0;
-
 // Name of the file containing the settings.
-QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
+QString ReynTweetsAppConfiguration::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
 
 
 /////////////////////
@@ -46,37 +43,24 @@ QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf"
 /////////////////////
 
 // Private constructor
-ReynTweetsSettings::ReynTweetsSettings() :
-	loadResult(INVALID_ISSUE),
+ReynTweetsAppConfiguration::ReynTweetsAppConfiguration() :
 	errorLoading("")
 {}
 
-// Getting a reference on the unique instance.
-ReynTweetsSettings & ReynTweetsSettings::getInstance() {
-	if (!instance) {
-		instance = new ReynTweetsSettings;
-	}
-
-	return *instance;
-}
-
 // Loading the settings from the settings file.
-void ReynTweetsSettings::loadSettings() {
-	qDebug(ReynTweetsSettings::SETTINGS_NAMEFILE.toUtf8().data());
+CoreResult ReynTweetsAppConfiguration::loadSettings() {
 	// Opening the settings file
-	QFile confFile(ReynTweetsSettings::SETTINGS_NAMEFILE);
+	QFile confFile(SETTINGS_NAMEFILE);
 
 	if (!confFile.exists()) {
 		errorLoading = QObject::trUtf8("Settings file unknown.");
-		loadResult = CONFIGURATION_FILE_UNKNOWN;
-		return;
+		return  CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	bool openOK = confFile.open(QFile::ReadOnly);
 	if (!openOK) {
 		errorLoading = QObject::trUtf8("Cannot open the settings file.");
-		loadResult = CONFIGURATION_FILE_NOT_OPEN;
-		return;
+		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 
@@ -88,8 +72,7 @@ void ReynTweetsSettings::loadSettings() {
 										 errorLoading);
 
 	if (!parseOK) {
-		loadResult = PARSE_ERROR;
-		return;
+		return PARSE_ERROR;
 	}
 
 
@@ -144,7 +127,7 @@ void ReynTweetsSettings::loadSettings() {
 	allSettingsOK = allSettingsOK && settingOK;
 
 	if (allSettingsOK) {
-		loadResult = LOAD_CONFIGURATION_SUCCESSFUL;
+		return LOAD_CONFIGURATION_SUCCESSFUL;
 	} else {
 		if (missingKeys.size() > 0) {
 			errorFilling.append(missingKeys.join(", "));
@@ -154,12 +137,12 @@ void ReynTweetsSettings::loadSettings() {
 
 		errorFilling.append('.');
 		errorLoading.append(errorFilling);
-		loadResult = EXPECTED_KEY;
+		return EXPECTED_KEY;
 	}
 }
 
 // Detecting if an application setting is here or not
-bool ReynTweetsSettings::detectSetting(QVariantMap settingsMap,
+bool ReynTweetsAppConfiguration::detectSetting(QVariantMap settingsMap,
 									   const char * settingKey,
 									   QStringList & missingKeys)
 {
@@ -177,42 +160,37 @@ bool ReynTweetsSettings::detectSetting(QVariantMap settingsMap,
 // Getter on settings //
 ////////////////////////
 
-// Getter on the loading result
-CoreResult ReynTweetsSettings::getLoadResult() {
-	return loadResult;
-}
-
 // Getter on the error message after loading the settings
-QString ReynTweetsSettings::getErrorLoading() {
+QString ReynTweetsAppConfiguration::getErrorLoading() {
 	return errorLoading;
 }
 
 // Getter on the Twitter OAuth consumer key.
-QByteArray ReynTweetsSettings::getConsumerKey() {
+QByteArray ReynTweetsAppConfiguration::getConsumerKey() {
 	return CONSUMER_KEY;
 }
 
 // Getter on the Twitter OAuth consumer secret.
-QByteArray ReynTweetsSettings::getConsumerSecret() {
+QByteArray ReynTweetsAppConfiguration::getConsumerSecret() {
 	return CONSUMER_SECRET;
 }
 
 // Getter on the Twitter callback URL.
-QString ReynTweetsSettings::getCallbackURL() {
+QString ReynTweetsAppConfiguration::getCallbackURL() {
 	return CALLBACK_URL;
 }
 
 // Getter on the TwitLonger application name.
-QString ReynTweetsSettings::getTwitLongerAppName() {
+QString ReynTweetsAppConfiguration::getTwitLongerAppName() {
 	return TWITLONGER_APP_NAME;
 }
 
 // Getter on the TwitLonger API key.
-QByteArray ReynTweetsSettings::getTwitLongerAPIKey() {
+QByteArray ReynTweetsAppConfiguration::getTwitLongerAPIKey() {
 	return TWITLONGER_API_KEY;
 }
 
 // Getter on the Pocket API key.
-QByteArray ReynTweetsSettings::getPocketAPIKey() {
+QByteArray ReynTweetsAppConfiguration::getPocketAPIKey() {
 	return POCKET_API_KEY;
 }

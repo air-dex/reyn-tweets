@@ -28,7 +28,7 @@
 
 #include <QObject>
 #include "coreresult.hpp"
-#include "../model/configuration/reyntweetsconfiguration.hpp"
+#include "../model/configuration/reyntweetsuserconfiguration.hpp"
 #include "processes/genericprocess.hpp"
 #include "processes/oauthprocess.hpp"
 #include "processes/processmanager.hpp"
@@ -86,7 +86,10 @@ class ReynCore : public QObject
 		static ProcessManager processManager;
 
 		/// @brief Configuration of the program
-		static ReynTweetsConfiguration configuration;
+		static ReynTweetsUserConfiguration userConfiguration;
+
+		/// @brief Configuration of the program
+		static ReynTweetsAppConfiguration appConfiguration;
 
 	private:
 		/// @fn void recopie(const ReynCore & heart);
@@ -124,7 +127,12 @@ class ReynCore : public QObject
 		/// @fn static ReynTweetsConfiguration & getConfiguration();
 		/// @brief Getting a reference on the configuration
 		/// @return Reference on configuration
-		static ReynTweetsConfiguration & getConfiguration();
+		static ReynTweetsUserConfiguration & getUserConfiguration();
+
+		/// @fn static ReynTweetsConfiguration & getConfiguration();
+		/// @brief Getting a reference on the configuration
+		/// @return Reference on configuration
+		static ReynTweetsAppConfiguration & getAppConfiguration();
 
 		//////////////////////////////////
 		// Launching and authentication //

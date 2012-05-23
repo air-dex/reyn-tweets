@@ -32,6 +32,12 @@ TwitLongerCalls::TwitLongerCalls(QObject * requester) :
 	GenericCalls(requester)
 {}
 
+// Writing the TwitLonger Settings
+void TwitLongerCalls::setAppTokens(QString appName, QByteArray apiKey) {
+	twitlongerManager.setApplicationName(appName);
+	twitlongerManager.setAPIKey(apiKey);
+}
+
 // Posting the long message on TwitLonger
 void TwitLongerCalls::postOnTwitLonger(QString username,
 									   QString message,

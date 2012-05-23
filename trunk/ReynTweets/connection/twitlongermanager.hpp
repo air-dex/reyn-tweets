@@ -26,28 +26,37 @@
 
 #include <QByteArray>
 #include <QString>
-#include "../model/configuration/reyntweetssettings.hpp"
+#include "../model/configuration/reyntweetsappconfiguration.hpp"
 
 class TwitLongerManager {
 	public:
 		/// @fn TwitLongerManager(QString appName = ReynTweetsSettings::getInstance().getTwitLongerAppName(),
 		///						  QByteArray key = ReynTweetsSettings::getInstance().getTwitLongerAPIKey());
-		/// @brief Constructor
+		/// @brief Default constructor. Settings will be filled later.
 		/// @param appName Name of the application on TwitLonger
 		/// @param key Key of the application on TwitLonger
-		TwitLongerManager(QString appName = ReynTweetsSettings::getInstance().getTwitLongerAppName(),
-						  QByteArray key = ReynTweetsSettings::getInstance().getTwitLongerAPIKey());
+		TwitLongerManager();
 
 		/// @fn QString getApplicationName();
 		/// @brief Getting the application name
 		/// @return applicationName
 		QString getApplicationName();
 
+		/// @fn QString getApplicationName();
+		/// @brief Getting the application name
+		/// @return applicationName
+		void setApplicationName(QString newAppName);
+
 		/// @fn QByteArray getAPIKey(bool isClear = true);
 		/// @brief Getting the OAuth Token
 		/// @param isClear Boolean indicating if the clear value is asked
 		/// @return apiKey
 		QByteArray getAPIKey(bool isClear = true);
+
+		/// @fn QString getApplicationName();
+		/// @brief Getting the application name
+		/// @return applicationName
+		void setAPIKey(QByteArray newAPIKey);
 
 	protected:
 		/// @brief Name of the application on TwitLonger

@@ -112,6 +112,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 		QDir::setCurrent(app->applicationDirPath());
 	#endif
 
+	// Loading the settings. The current directory has to be set correctly for this.
+	ReynTweetsSettings::getInstance().loadSettings();
+
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 

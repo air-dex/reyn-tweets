@@ -61,7 +61,10 @@ void ReynCore::recopie(const ReynCore & heart) {
 ////////////////////
 
 // Configuration
-ReynTweetsConfiguration ReynCore::configuration = ReynTweetsConfiguration();
+ReynTweetsUserConfiguration ReynCore::userConfiguration = ReynTweetsUserConfiguration();
+
+// Configuration
+ReynTweetsAppConfiguration ReynCore::appConfiguration = ReynTweetsAppConfiguration();
 
 // Process manager
 ProcessManager ReynCore::processManager = ProcessManager();
@@ -153,8 +156,13 @@ void ReynCore::denyReynTweets(QString login, QString password) {
 ////////////////////////
 
 // Getting a reference on the configuration
-ReynTweetsConfiguration & ReynCore::getConfiguration() {
-	return configuration;
+ReynTweetsUserConfiguration & ReynCore::getUserConfiguration() {
+	return userConfiguration;
+}
+
+// Getting a reference on the configuration
+ReynTweetsAppConfiguration & ReynCore::getAppConfiguration() {
+	return appConfiguration;
 }
 
 //////////////////////////////////
@@ -163,7 +171,8 @@ ReynTweetsConfiguration & ReynCore::getConfiguration() {
 
 // Launching the app
 void ReynCore::launchReynTweets() {
-	LaunchingProcess * process = new LaunchingProcess(configuration);
+	LaunchingProcess * process = new LaunchingProcess(userConfiguration,
+													  appConfiguration);
 	executeProcess(process);
 }
 
@@ -176,7 +185,7 @@ void ReynCore::authorizeReynTweets() {
 
 // Allowing Reyn Tweets
 void ReynCore::allowReynTweets() {
-	AllowProcess * process = new AllowProcess(configuration);
+	AllowProcess * process = new AllowProcess(userConfiguration);
 	oauthSpecialWiring(process);
 	executeProcess(process);
 }
@@ -295,7 +304,7 @@ void ReynCore::postTweetViaTwitLonger(QString tweet,
 									  bool displayCoord)
 {
 	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
-																	  configuration.getUserAccount().getUser().getScreenName(),
+																	  userConfiguration.getUserAccount().getUser().getScreenName(),
 																	  replyToTweetID,
 																	  replyToUser,
 																	  trimUser,
@@ -320,7 +329,7 @@ void ReynCore::postTweetViaTwitLonger(QString tweet,
 									  bool displayCoord)
 {
 	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
-																	  configuration.getUserAccount().getUser().getScreenName(),
+																	  userConfiguration.getUserAccount().getUser().getScreenName(),
 																	  replyToTweetID,
 																	  replyToUser,
 																	  trimUser,
@@ -344,7 +353,7 @@ void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
 
 // Deleting a tweet
 void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimUser) {
-	DeleteTweetProcess * process = new DeleteTweetProcess(configuration.getUserAccount().getUserRef(),
+	DeleteTweetProcess * process = new DeleteTweetProcess(userConfiguration.getUserAccount().getUserRef(),
 														  tweetToDelete,
 														  includeEntities,
 														  trimUser);

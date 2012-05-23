@@ -32,7 +32,7 @@ OAuthManager ReynTwitterCalls::oauthManager = OAuthManager();
 
 // Protected constructor
 ReynTwitterCalls::ReynTwitterCalls(QObject * requester) :
-    GenericCalls(requester)
+	GenericCalls(requester)
 {}
 
 // Destructor
@@ -49,10 +49,10 @@ ReynTwitterCalls::~ReynTwitterCalls() {}
 
 // Verifying credentials
 void ReynTwitterCalls::verifyCredentials(bool entities, bool skipStatus) {
-    VerifyCredentialsRequester * requester = new VerifyCredentialsRequester(oauthManager,
-                                                                            entities,
-                                                                            skipStatus);
-    executeRequest(requester);
+	VerifyCredentialsRequester * requester = new VerifyCredentialsRequester(oauthManager,
+																			entities,
+																			skipStatus);
+	executeRequest(requester);
 }
 
 
@@ -62,48 +62,48 @@ void ReynTwitterCalls::verifyCredentials(bool entities, bool skipStatus) {
 
 // Favoriting a tweet
 void ReynTwitterCalls::favoriteTweet(qlonglong id, bool entities) {
-    FavoriteRequester * requester = new FavoriteRequester(oauthManager,
-                                                          id,
-                                                          entities);
-    executeRequest(requester);
+	FavoriteRequester * requester = new FavoriteRequester(oauthManager,
+														  id,
+														  entities);
+	executeRequest(requester);
 }
 
 // Retrieving the timeline with the favorite tweets of the userwhose ID is id.
 void ReynTwitterCalls::getFavoriteTimeline(qlonglong id,
-                                           qlonglong sinceID,
-                                           bool entities,
-                                           int page,
-                                           int count)
+										   qlonglong sinceID,
+										   bool entities,
+										   int page,
+										   int count)
 {
-    FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
-                                                                            id,
-                                                                            count,
-                                                                            sinceID,
-                                                                            page,
-                                                                            entities);
-    executeRequest(requester);
+	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
+																			id,
+																			count,
+																			sinceID,
+																			page,
+																			entities);
+	executeRequest(requester);
 }
 
 // Retrieving the timeline with the favorite tweets of the user whose screen name is id.
 void ReynTwitterCalls::getFavoriteTimeline(QString id,
-                                           qlonglong sinceID,
-                                           bool entities,
-                                           int page,
-                                           int count)
+										   qlonglong sinceID,
+										   bool entities,
+										   int page,
+										   int count)
 {
-    FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
-                                                                            id,
-                                                                            count,
-                                                                            sinceID,
-                                                                            page,
-                                                                            entities);
-    executeRequest(requester);
+	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
+																			id,
+																			count,
+																			sinceID,
+																			page,
+																			entities);
+	executeRequest(requester);
 }
 
 // Unavoriting a tweet
 void ReynTwitterCalls::unfavoriteTweet(qlonglong id) {
-    UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager, id);
-    executeRequest(requester);
+	UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager, id);
+	executeRequest(requester);
 }
 
 
@@ -113,46 +113,52 @@ void ReynTwitterCalls::unfavoriteTweet(qlonglong id) {
 
 // Method for getting a request token
 void ReynTwitterCalls::requestToken() {
-    RequestTokenRequester * requester = new RequestTokenRequester(oauthManager);
-    executeRequest(requester);
+	RequestTokenRequester * requester = new RequestTokenRequester(oauthManager);
+	executeRequest(requester);
 }
 
 // Authorizing request Tokens
 void ReynTwitterCalls::authorize() {
-    AuthorizeRequester * requester = new AuthorizeRequester(oauthManager);
-    executeRequest(requester);
+	AuthorizeRequester * requester = new AuthorizeRequester(oauthManager);
+	executeRequest(requester);
 }
 
 // POST authorize() requests to allow or to deny the application.
 void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny) {
-    PostAuthorizeRequester * requester = new PostAuthorizeRequester(oauthManager,
-                                                                    login,
-                                                                    password,
-                                                                    deny);
-    executeRequest(requester);
+	PostAuthorizeRequester * requester = new PostAuthorizeRequester(oauthManager,
+																	login,
+																	password,
+																	deny);
+	executeRequest(requester);
 }
 
 // Getting the access tokens
 void ReynTwitterCalls::accessToken() {
-    AccessTokenRequester * requester = new AccessTokenRequester(oauthManager);
-    executeRequest(requester);
+	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager);
+	executeRequest(requester);
 }
 
 // Resetting the credentials to connect to Twitter
 void ReynTwitterCalls::resetTokens() {
-    oauthManager.resetTokens();
+	oauthManager.resetTokens();
 }
 
 // Setting new credentials to connect to Twitter
-void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
-                                    QByteArray tokenSecret,
-                                    QByteArray consumerKey,
-                                    QByteArray consumerSecret)
+void ReynTwitterCalls::setUserTokens(QByteArray accessToken,
+									 QByteArray tokenSecret)
 {
-    oauthManager.setOAuthToken(accessToken, false);
-    oauthManager.setOAuthSecret(tokenSecret, false);
-    oauthManager.setConsumerKey(consumerKey);
-    oauthManager.setConsumerSecret(consumerSecret);
+	oauthManager.setOAuthToken(accessToken, false);
+	oauthManager.setOAuthSecret(tokenSecret, false);
+}
+
+// Setting new credentials to connect to Twitter
+void ReynTwitterCalls::setAppTokens(QByteArray consumerKey,
+									QByteArray consumerSecret,
+									QString callbackURL)
+{
+	oauthManager.setConsumerKey(consumerKey);
+	oauthManager.setConsumerSecret(consumerSecret);
+	oauthManager.setCallbackUrl(callbackURL);
 }
 
 
@@ -162,8 +168,8 @@ void ReynTwitterCalls::setNewTokens(QByteArray accessToken,
 
 // Method that launch searches
 void ReynTwitterCalls::search(QString q) {
-    SearchRequester * requester = new SearchRequester(q);
-    executeRequest(requester);
+	SearchRequester * requester = new SearchRequester(q);
+	executeRequest(requester);
 }
 
 
@@ -173,42 +179,42 @@ void ReynTwitterCalls::search(QString q) {
 
 // Retrieving the timeline with the tweets of the user's friends
 void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
-                                            qlonglong maxID,
-                                            bool trimUser,
-                                            bool includeRTS,
-                                            bool includeEntities,
-                                            bool excludeReplies,
-                                            int page,
-                                            int count,
-                                            bool contributorsDetails)
+											qlonglong maxID,
+											bool trimUser,
+											bool includeRTS,
+											bool includeEntities,
+											bool excludeReplies,
+											int page,
+											int count,
+											bool contributorsDetails)
 {
-    HomeTimelineRequester * requester = new HomeTimelineRequester(oauthManager,
-                                                                  sinceID,
-                                                                  maxID,
-                                                                  trimUser,
-                                                                  includeRTS,
-                                                                  includeEntities,
-                                                                  excludeReplies,
-                                                                  page,
-                                                                  count,
-                                                                  contributorsDetails);
-    executeRequest(requester);
+	HomeTimelineRequester * requester = new HomeTimelineRequester(oauthManager,
+																  sinceID,
+																  maxID,
+																  trimUser,
+																  includeRTS,
+																  includeEntities,
+																  excludeReplies,
+																  page,
+																  count,
+																  contributorsDetails);
+	executeRequest(requester);
 }
 
 // Retrieving the timeline with the tweets of the user's friends
 void ReynTwitterCalls::userRetweetsTimeline(qlonglong sinceID,
-                                            qlonglong maxID,
-                                            int count,
-                                            bool trimUser,
-                                            bool includeEntities)
+											qlonglong maxID,
+											int count,
+											bool trimUser,
+											bool includeEntities)
 {
-    RetweetsByMeRequester * requester = new RetweetsByMeRequester(oauthManager,
-                                                                  sinceID,
-                                                                  maxID,
-                                                                  count,
-                                                                  trimUser,
-                                                                  includeEntities);
-    executeRequest(requester);
+	RetweetsByMeRequester * requester = new RetweetsByMeRequester(oauthManager,
+																  sinceID,
+																  maxID,
+																  count,
+																  trimUser,
+																  includeEntities);
+	executeRequest(requester);
 }
 
 
@@ -218,53 +224,53 @@ void ReynTwitterCalls::userRetweetsTimeline(qlonglong sinceID,
 
 // Destroying (deleting) a tweet
 void ReynTwitterCalls::destroyTweet(qlonglong tweetID,
-                                    bool entities,
-                                    bool trimUser)
+									bool entities,
+									bool trimUser)
 {
-    DestroyTweetRequester * requester = new DestroyTweetRequester(oauthManager,
-                                                                  tweetID,
-                                                                  entities,
-                                                                  trimUser);
-    executeRequest(requester);
+	DestroyTweetRequester * requester = new DestroyTweetRequester(oauthManager,
+																  tweetID,
+																  entities,
+																  trimUser);
+	executeRequest(requester);
 }
 
 // Retweeting a tweet
 void ReynTwitterCalls::retweet(qlonglong tweetID, bool entities, bool trimUser) {
-    RetweetRequester * requester = new RetweetRequester(oauthManager,
-                                                        tweetID,
-                                                        entities,
-                                                        trimUser);
-    executeRequest(requester);
+	RetweetRequester * requester = new RetweetRequester(oauthManager,
+														tweetID,
+														entities,
+														trimUser);
+	executeRequest(requester);
 }
 
 // Showing a tweet
 void ReynTwitterCalls::showTweet(qlonglong tweetID, bool entities, bool trimUser) {
-    ShowTweetRequester * requester = new ShowTweetRequester(tweetID,
-                                                            entities,
-                                                            trimUser);
-    executeRequest(requester);
+	ShowTweetRequester * requester = new ShowTweetRequester(tweetID,
+															entities,
+															trimUser);
+	executeRequest(requester);
 }
 
 // Posting a tweet without media
 void ReynTwitterCalls::updateTweet(QString tweet,
-                                   qlonglong replyToTweetID,
-                                   float latitude,
-                                   float longitude,
-                                   QString reversePlace,
-                                   bool displayCoord,
-                                   bool trimUser,
-                                   bool includeEntities)
+								   qlonglong replyToTweetID,
+								   float latitude,
+								   float longitude,
+								   QString reversePlace,
+								   bool displayCoord,
+								   bool trimUser,
+								   bool includeEntities)
 {
-    PostTweetRequester * requester = new PostTweetRequester(oauthManager,
-                                                            tweet,
-                                                            replyToTweetID,
-                                                            latitude,
-                                                            longitude,
-                                                            reversePlace,
-                                                            displayCoord,
-                                                            trimUser,
-                                                            includeEntities);
-    executeRequest(requester);
+	PostTweetRequester * requester = new PostTweetRequester(oauthManager,
+															tweet,
+															replyToTweetID,
+															latitude,
+															longitude,
+															reversePlace,
+															displayCoord,
+															trimUser,
+															includeEntities);
+	executeRequest(requester);
 }
 
 
@@ -274,16 +280,16 @@ void ReynTwitterCalls::updateTweet(QString tweet,
 
 // Showing a user identified by its ID
 void ReynTwitterCalls::showUser(qlonglong userID, bool entities) {
-    ShowUserRequester * requester = new ShowUserRequester(oauthManager,
-                                                          userID,
-                                                          entities);
-    executeRequest(requester);
+	ShowUserRequester * requester = new ShowUserRequester(oauthManager,
+														  userID,
+														  entities);
+	executeRequest(requester);
 }
 
 // Showing a user identified by its screen name
 void ReynTwitterCalls::showUser(QString screenName, bool entities) {
-    ShowUserRequester * requester = new ShowUserRequester(oauthManager,
-                                                          screenName,
-                                                          entities);
-    executeRequest(requester);
+	ShowUserRequester * requester = new ShowUserRequester(oauthManager,
+														  screenName,
+														  entities);
+	executeRequest(requester);
 }

@@ -27,7 +27,7 @@
 #include <QByteArray>
 #include <QMap>
 #include <QString>
-#include "../model/configuration/reyntweetssettings.hpp"
+#include "../model/configuration/reyntweetsappconfiguration.hpp"
 #include "requests/requesttype.hpp"
 #include "headersmap.hpp"
 
@@ -43,7 +43,7 @@ class OAuthManager
 		///					 QString clientUrl = ReynTweetsConfiguration::CALLBACK_URL,
 		///					 QString signatureAlgorithm = "SHA-1",
 		///					 QString version = "1.0");
-		/// @brief Constructor
+		/// @brief Constructor. Application settings will be filled later.
 		/// @param clientKey Consumer key of the application. Reyn Tweets'
 		/// consumer key is its default value.
 		/// @param clientSecret Consumer secret of the application.
@@ -53,10 +53,7 @@ class OAuthManager
 		/// @param signatureAlgorithm Algorithm used for signing requests.
 		/// @param version Version of the OAuth protocol used for the
 		/// authentication. Reyn Tweets uses OAuth 1.0.
-		OAuthManager(QByteArray clientKey = ReynTweetsSettings::getInstance().getConsumerKey(),
-					 QByteArray clientSecret = ReynTweetsSettings::getInstance().getConsumerSecret(),
-					 QString clientUrl = ReynTweetsSettings::getInstance().getCallbackURL(),
-					 QString signatureAlgorithm = "HMAC-SHA1",
+		OAuthManager(QString signatureAlgorithm = "HMAC-SHA1",
 					 QString version = "1.0");
 
 		/// @fn virtual ~OAuthManager();
@@ -72,6 +69,11 @@ class OAuthManager
 		/// @brief Getter for callbackUrl
 		/// @return The callback URL
 		QString getCallbackUrl();
+
+		/// @fn QString getCallbackUrl();
+		/// @brief Getter for callbackUrl
+		/// @return The callback URL
+		void setCallbackUrl(QString newURL);
 
 		/// @fn void setConsumerKey(QByteArray clientKey);
 		/// @brief Setter on the consumer key

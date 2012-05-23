@@ -52,7 +52,7 @@ bool TweetControl::isMention() {
         return false;
     }
 
-    qlonglong userID = reyn.getConfiguration().getUserAccount().getUser().getID();
+    qlonglong userID = reyn.getUserConfiguration().getUserAccount().getUser().getID();
 
     Tweet & shownTweet = status->isRetweet() ?
                 *(status->getRetweetedStatus())
@@ -112,7 +112,7 @@ void TweetControl::retweet() {
 
     // Protection to not attempt to retweet its own tweets.
     if (status->getAuthor()->getID() ==
-            reyn.getConfiguration().getUserAccount().getUser().getID())
+            reyn.getUserConfiguration().getUserAccount().getUser().getID())
     {
         return;
     }

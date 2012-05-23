@@ -1,4 +1,4 @@
-/// @file reyntweetsconfiguration.hpp
+/// @file reyntweetsuserconfiguration.hpp
 /// @brief Header of ReynTweetsConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
@@ -23,8 +23,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REYNTWEETSCONFIGURATION_HPP
-#define REYNTWEETSCONFIGURATION_HPP
+#ifndef REYNTWEETSUSERCONFIGURATION_HPP
+#define REYNTWEETSUSERCONFIGURATION_HPP
 
 #include <QByteArray>
 #include <QDataStream>
@@ -33,12 +33,12 @@
 #include <QVariant>
 #include "../../logic/coreresult.hpp"
 #include "../reyntweetsmappable.hpp"
-#include "reyntweetssettings.hpp"
+#include "reyntweetsappconfiguration.hpp"
 #include "useraccount.hpp"
 
 /// @class ReynTweetsConfiguration
 /// @brief Configuration of Reyn Tweets
-class ReynTweetsConfiguration : public ReynTweetsMappable
+class ReynTweetsUserConfiguration : public ReynTweetsMappable
 {
 	Q_OBJECT
 
@@ -47,24 +47,24 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	//////////////////////////////
 
 	public:
-		/// @fn ReynTweetsConfiguration();
+		/// @fn ReynTweetsUserConfiguration();
 		/// @brief Default constructor
-		ReynTweetsConfiguration();
+		ReynTweetsUserConfiguration();
 
-		/// @fn virtual ~ReynTweetsConfiguration();
+		/// @fn virtual ~ReynTweetsUserConfiguration();
 		/// @brief Destructor
-		virtual ~ReynTweetsConfiguration();
+		virtual ~ReynTweetsUserConfiguration();
 
-		/// @fn ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration);
+		/// @fn ReynTweetsUserConfiguration(const ReynTweetsUserConfiguration & configuration);
 		/// @brief Copy constructor
 		/// @param configuration Configuration to copy
-		ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration);
+		ReynTweetsUserConfiguration(const ReynTweetsUserConfiguration & configuration);
 
-		/// @fn const ReynTweetsConfiguration & operator=(const ReynTweetsConfiguration & configuration);
+		/// @fn const ReynTweetsUserConfiguration & operator=(const ReynTweetsUserConfiguration & configuration);
 		/// @brief Affectation
 		/// @param configuration Configuration to copy
 		/// @return Copy of the original configuration
-		const ReynTweetsConfiguration & operator=(const ReynTweetsConfiguration & configuration);
+		const ReynTweetsUserConfiguration & operator=(const ReynTweetsUserConfiguration & configuration);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
@@ -75,30 +75,30 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		static void declareQML();
 
 	private:
-		/// @fn void recopie(const ReynTweetsConfiguration & configuration);
+		/// @fn void recopie(const ReynTweetsUserConfiguration & configuration);
 		/// @brief Copy of a ReynTweetsConfiguration
 		/// @param configuration Configuration to copy
-		void recopie(const ReynTweetsConfiguration & configuration);
+		void recopie(const ReynTweetsUserConfiguration & configuration);
 
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,
-		///										const ReynTweetsConfiguration & configuration);
+		///										const ReynTweetsUserConfiguration & configuration);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
 		/// @param configuration Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator<<(QDataStream & out,
-										const ReynTweetsConfiguration & configuration);
+										const ReynTweetsUserConfiguration & configuration);
 
 		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										ReynTweetsConfiguration & configuration);
+		///										ReynTweetsUserConfiguration & configuration);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param configuration Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
-										ReynTweetsConfiguration & configuration);
+										ReynTweetsUserConfiguration & configuration);
 
 	////////////////
 	// Properties //
@@ -165,22 +165,10 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 
 	protected:
 		/// @brief Twitter Account
-		static ReynTweetsSettings & APP_SETTINGS;
-
-		/// @brief Consumer Key
-		static QByteArray REYN_TWEETS_CONSUMER_KEY;
-
-		/// @brief Consumer Secret
-		static QByteArray REYN_TWEETS_CONSUMER_SECRET;
-
-		/// @brief Twitter Account
 		UserAccount userAccount;
 
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
-
-//		/// @brief
-//		// oauth manager ?
 
 
 	/////////////////////////
@@ -188,11 +176,6 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 	/////////////////////////
 
 	public:
-		/// @fn static ReynTweetsSettings & getAppSettings();
-		/// @brief Getting the application's settings
-		/// @return APP_SETTINGS
-		static ReynTweetsSettings & getAppSettings();
-
 		/// @fn UserAccount getUserAccount();
 		/// @brief Getter on the user account
 		/// @return The user account
@@ -208,25 +191,25 @@ class ReynTweetsConfiguration : public ReynTweetsMappable
 		void reset();
 };
 
-// Serialization of ReynTweetsConfiguration
-Q_DECLARE_METATYPE(ReynTweetsConfiguration)
+// Serialization of ReynTweetsUserConfiguration
+Q_DECLARE_METATYPE(ReynTweetsUserConfiguration)
 
 /// @fn friend QDataStream & operator<<(QDataStream & out,
-///										const ReynTweetsConfiguration & configuration);
+///										const ReynTweetsUserConfiguration & configuration);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
 /// @param configuration Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator<<(QDataStream & out,
-						 const ReynTweetsConfiguration & configuration);
+						 const ReynTweetsUserConfiguration & configuration);
 
 /// @fn friend QDataStream & operator>>(QDataStream & in,
-///										ReynTweetsConfiguration & configuration);
+///										ReynTweetsUserConfiguration & configuration);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param configuration Object to put in the stream
 /// @return The stream with the object
 QDataStream & operator>>(QDataStream & in,
-						 ReynTweetsConfiguration & configuration);
+						 ReynTweetsUserConfiguration & configuration);
 
 #endif // REYNTWEETSCONFIGURATION_HPP

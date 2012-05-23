@@ -1,4 +1,4 @@
-/// @file reyntweetsconfiguration.cpp
+/// @file reyntweetsuserconfiguration.cpp
 /// @brief Implementation of ReynTweetsConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
@@ -25,7 +25,7 @@
 
 #include <QFile>
 #include <QtDeclarative>
-#include "reyntweetsconfiguration.hpp"
+#include "reyntweetsuserconfiguration.hpp"
 #include "../../tools/utils.hpp"
 
 //////////////////////////////
@@ -33,7 +33,7 @@
 //////////////////////////////
 
 // Default constructor
-ReynTweetsConfiguration::ReynTweetsConfiguration() :
+ReynTweetsUserConfiguration::ReynTweetsUserConfiguration() :
 	ReynTweetsMappable(),
 	userAccount()
 {
@@ -41,43 +41,43 @@ ReynTweetsConfiguration::ReynTweetsConfiguration() :
 }
 
 // Destructor
-ReynTweetsConfiguration::~ReynTweetsConfiguration() {}
+ReynTweetsUserConfiguration::~ReynTweetsUserConfiguration() {}
 
 // Copy constructor
-ReynTweetsConfiguration::ReynTweetsConfiguration(const ReynTweetsConfiguration & configuration) :
+ReynTweetsUserConfiguration::ReynTweetsUserConfiguration(const ReynTweetsUserConfiguration & configuration) :
 	ReynTweetsMappable()
 {
 	recopie(configuration);
 }
 
 // Affectation
-const ReynTweetsConfiguration & ReynTweetsConfiguration::operator=(const ReynTweetsConfiguration & configuration) {
+const ReynTweetsUserConfiguration & ReynTweetsUserConfiguration::operator=(const ReynTweetsUserConfiguration & configuration) {
 	recopie(configuration);
 	return *this;
 }
 
 // Copy of a ReynTweetsConfiguration
-void ReynTweetsConfiguration::recopie(const ReynTweetsConfiguration & configuration) {
+void ReynTweetsUserConfiguration::recopie(const ReynTweetsUserConfiguration & configuration) {
 	ReynTweetsMappable::recopie(configuration);
 	userAccount = configuration.userAccount;
 }
 
 // Serialization declaration
-void ReynTweetsConfiguration::initSystem() {
-	qRegisterMetaTypeStreamOperators<ReynTweetsConfiguration>("ReynTweetsConfiguration");
-	qMetaTypeId<ReynTweetsConfiguration>();
+void ReynTweetsUserConfiguration::initSystem() {
+	qRegisterMetaTypeStreamOperators<ReynTweetsUserConfiguration>("ReynTweetsUserConfiguration");
+	qMetaTypeId<ReynTweetsUserConfiguration>();
 }
 
 // Declaring ReynTweetsConfiguration to the QML system
-void ReynTweetsConfiguration::declareQML() {
-	qmlRegisterType<ReynTweetsConfiguration>("ReynTweetsEntities",
-											 0, 1,
-											 "ReynTweetsConfiguration");
+void ReynTweetsUserConfiguration::declareQML() {
+	qmlRegisterType<ReynTweetsUserConfiguration>("ReynTweetsEntities",
+												 0, 1,
+												 "ReynTweetsUserConfiguration");
 }
 
 // Resets the mappable to a default value
-void ReynTweetsConfiguration::reset() {
-	*this = ReynTweetsConfiguration();
+void ReynTweetsUserConfiguration::reset() {
+	*this = ReynTweetsUserConfiguration();
 }
 
 
@@ -87,14 +87,14 @@ void ReynTweetsConfiguration::reset() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out,
-						 const ReynTweetsConfiguration & configuration)
+						 const ReynTweetsUserConfiguration & configuration)
 {
 	return jsonStreamingOut(out, configuration);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in,
-						 ReynTweetsConfiguration & configuration)
+						 ReynTweetsUserConfiguration & configuration)
 {
 	return jsonStreamingIn(in, configuration);
 }
@@ -105,22 +105,22 @@ QDataStream & operator>>(QDataStream & in,
 ///////////////////////////
 
 // Blacklisting the "current_account"
-void ReynTweetsConfiguration::blacklistProperties() {
+void ReynTweetsUserConfiguration::blacklistProperties() {
 	transientProperties.append(QString(QLatin1String("current_account")));
 }
 
 // Reading the property p_userAccount
-QVariantMap ReynTweetsConfiguration::getUserAccountProperty() {
+QVariantMap ReynTweetsUserConfiguration::getUserAccountProperty() {
 	return userAccount.toVariant();
 }
 
 // Writing the property p_userAccount
-void ReynTweetsConfiguration::setUserAccount(QVariantMap accountMap) {
+void ReynTweetsUserConfiguration::setUserAccount(QVariantMap accountMap) {
 	userAccount.fillWithVariant(accountMap);
 }
 
 // Reading the property current_account
-UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
+UserAccount * ReynTweetsUserConfiguration::getCurrentAccount() {
 	return &userAccount;
 }
 
@@ -129,35 +129,26 @@ UserAccount * ReynTweetsConfiguration::getCurrentAccount() {
 // Static members //
 ////////////////////
 
-// Application settings
-ReynTweetsSettings & ReynTweetsConfiguration::APP_SETTINGS = ReynTweetsSettings::getInstance();
-
 // Configuration namefile
-QString ReynTweetsConfiguration::CONFIGURATION_NAMEFILE = "conf/ReynTweets.conf";
-
+QString ReynTweetsUserConfiguration::CONFIGURATION_NAMEFILE = "./conf/ReynTweets.conf";
 
 
 //////////////////////////////
 // Configuration management //
 //////////////////////////////
 
-// Getting the application's settings
-ReynTweetsSettings & ReynTweetsConfiguration::getAppSettings() {
-	return APP_SETTINGS;
-}
-
 // Getter on userAccount
-UserAccount ReynTweetsConfiguration::getUserAccount() {
+UserAccount ReynTweetsUserConfiguration::getUserAccount() {
 	return userAccount;
 }
 
 // Setter on userAccount
-void ReynTweetsConfiguration::setUserAccount(UserAccount account) {
+void ReynTweetsUserConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
 }
 
 // Loading the configuration
-CoreResult ReynTweetsConfiguration::load() {
+CoreResult ReynTweetsUserConfiguration::load() {
 	// Opening the configuration file
 	QFile confFile(CONFIGURATION_NAMEFILE);
 
@@ -177,18 +168,18 @@ CoreResult ReynTweetsConfiguration::load() {
 	readStream >> confVariant;
 	confFile.close();
 
-	if (!qVariantCanConvert<ReynTweetsConfiguration>(confVariant)) {
+	if (!qVariantCanConvert<ReynTweetsUserConfiguration>(confVariant)) {
 		// The content of the file cannot be converted into a configuration.
 		return LOADING_CONFIGURATION_ERROR;
 	}
 
-	*this = qVariantValue<ReynTweetsConfiguration>(confVariant);
+	*this = qVariantValue<ReynTweetsUserConfiguration>(confVariant);
 
 	return LOAD_CONFIGURATION_SUCCESSFUL;
 }
 
 // Saving the configuration
-CoreResult ReynTweetsConfiguration::save() {
+CoreResult ReynTweetsUserConfiguration::save() {
 	// Opening the configuration file
 	QFile confFile(CONFIGURATION_NAMEFILE);
 

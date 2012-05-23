@@ -28,14 +28,11 @@
 #include "../tools/utils.hpp"
 
 // Constructor
-OAuthManager::OAuthManager(QByteArray clientKey,
-						   QByteArray clientSecret,
-						   QString clientUrl,
-						   QString signatureAlgorithm,
+OAuthManager::OAuthManager(QString signatureAlgorithm,
 						   QString version) :
-	consumerKey(clientKey),
-	consumerSecret(clientSecret),
-	callbackUrl(clientUrl),
+	consumerKey(""),
+	consumerSecret(""),
+	callbackUrl(""),
 	oauthSignatureMethod(signatureAlgorithm),
 	oauthVersion(version),
 	oauthToken(""),
@@ -56,6 +53,11 @@ OAuthManager::~OAuthManager() {}
 // Getter for callbackUrl
 QString OAuthManager::getCallbackUrl() {
 	return callbackUrl;
+}
+
+// Setter for callbackUrl
+void OAuthManager::setCallbackUrl(QString newURL) {
+	callbackUrl = newURL;
 }
 
 // Setter on the consumer key

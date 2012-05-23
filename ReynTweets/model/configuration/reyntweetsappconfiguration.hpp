@@ -1,4 +1,4 @@
-/// @file reyntweetssettings.hpp
+/// @file reyntweetsappconfiguration.hpp
 /// @brief Declaration of the ReynTweetsSettings namespace
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
@@ -23,8 +23,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REYNTWEETSSETTINGS_HPP
-#define REYNTWEETSSETTINGS_HPP
+#ifndef REYNTWEETSAPPCONFIGURATION_HPP
+#define REYNTWEETSAPPCONFIGURATION_HPP
 
 #include <QByteArray>
 #include <QString>
@@ -42,16 +42,15 @@
 /// <li><a href="http://getpocket.com">Pocket</a></li>
 /// <li>More to come...</li>
 /// </ul>
-class ReynTweetsSettings {
+class ReynTweetsAppConfiguration {
 	public:
+		/// @fn ReynTweetsSettings();
+		/// @brief Private constructor
+		ReynTweetsAppConfiguration();
+
 		////////////////////////
 		// Getter on settings //
 		////////////////////////
-
-		/// @fn static ReynTweetsSettings & getInstance()
-		/// @brief Getting a reference on the unique instance.
-		/// @return A reference on the value contained in the instance pointer.
-		static ReynTweetsSettings & getInstance();
 
 		/// @fn CoreResult getLoadResult();
 		/// @brief Getter on the loading result
@@ -95,20 +94,13 @@ class ReynTweetsSettings {
 
 		/// @fn void loadSettings();
 		/// @brief Loading the settings from the settings file.
-		void loadSettings();
+		CoreResult loadSettings();
 
 
 	private:
 		/////////////////////
 		// Core management //
 		/////////////////////
-
-		/// @brief Unique instance of the class
-		static ReynTweetsSettings * instance;
-
-		/// @fn ReynTweetsSettings();
-		/// @brief Private constructor
-		ReynTweetsSettings();
 
 		/// @fn bool detectSetting(QVariantMap settingsMap,
 		///						   const char * settingKey,
@@ -123,9 +115,6 @@ class ReynTweetsSettings {
 
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;
-
-		/// @brief Result of the loading of settings
-		CoreResult loadResult;
 
 		/// @brief Error while loading the settings
 		QString errorLoading;
@@ -169,4 +158,4 @@ class ReynTweetsSettings {
 		QByteArray POCKET_API_KEY;
 };
 
-#endif // REYNTWEETSSETTINGS_HPP
+#endif // REYNTWEETSAPPCONFIGURATION_HPP

@@ -27,7 +27,7 @@
 // Constructor
 SettingsControl::SettingsControl() :
     GenericControl(),
-    conf(ReynCore::getConfiguration())
+    conf(ReynCore::getUserConfiguration())
 {}
 
 // Declaring SettingsControl to the QML system
@@ -38,6 +38,6 @@ void SettingsControl::declareQML() {
 }
 
 // Reading the configuration property
-ReynTweetsConfiguration * SettingsControl::getConfiguration() {
+ReynTweetsUserConfiguration * SettingsControl::getConfiguration() {
     return &conf;
 }

@@ -24,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 
+#include <QApplication>
 #include <QFile>
 #include <QObject>
 #include "reyntweetssettings.hpp"
@@ -36,7 +37,7 @@
 // Unique instance
 ReynTweetsSettings * ReynTweetsSettings::instance = 0;
 
-// Name of the file containing the settings
+// Name of the file containing the settings.
 QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
 
 
@@ -48,9 +49,7 @@ QString ReynTweetsSettings::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf"
 ReynTweetsSettings::ReynTweetsSettings() :
 	loadResult(INVALID_ISSUE),
 	errorLoading("")
-{
-	loadSettings();
-}
+{}
 
 // Getting a reference on the unique instance.
 ReynTweetsSettings & ReynTweetsSettings::getInstance() {
@@ -63,6 +62,7 @@ ReynTweetsSettings & ReynTweetsSettings::getInstance() {
 
 // Loading the settings from the settings file.
 void ReynTweetsSettings::loadSettings() {
+	qDebug(ReynTweetsSettings::SETTINGS_NAMEFILE.toUtf8().data());
 	// Opening the settings file
 	QFile confFile(ReynTweetsSettings::SETTINGS_NAMEFILE);
 

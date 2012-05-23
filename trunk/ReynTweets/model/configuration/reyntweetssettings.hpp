@@ -93,6 +93,10 @@ class ReynTweetsSettings {
 		/// @return POCKET_API_KEY
 		QByteArray getPocketAPIKey();
 
+		/// @fn void loadSettings();
+		/// @brief Loading the settings from the settings file.
+		void loadSettings();
+
 
 	private:
 		/////////////////////
@@ -105,10 +109,6 @@ class ReynTweetsSettings {
 		/// @fn ReynTweetsSettings();
 		/// @brief Private constructor
 		ReynTweetsSettings();
-
-		/// @fn void loadSettings();
-		/// @brief Loading the settings from the settings file.
-		void loadSettings();
 
 		/// @fn bool detectSetting(QVariantMap settingsMap,
 		///						   const char * settingKey,

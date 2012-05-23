@@ -140,6 +140,17 @@ enum CoreResult {
 	/// @brief Unexpected redirection during POST authorizing
 	POST_AUTHORIZING_FAILED,
 
+	////////////////
+	// TwitLonger //
+	////////////////
+
+	/// @brief While using TwitLonger, if the tweet cannot be shortened.
+	UNSHORTENABLE_MESSAGE,
+
+	/// @brief While using TwitLonger, if the long message in TwitLonger cannot
+	/// be updated with the final tweet ID.
+	MESSAGE_NOT_UPDATED,
+
 
 	//////////
 	// Misc //

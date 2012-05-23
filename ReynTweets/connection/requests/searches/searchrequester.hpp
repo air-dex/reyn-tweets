@@ -24,12 +24,12 @@
 #ifndef SEARCHREQUESTER_HPP
 #define SEARCHREQUESTER_HPP
 
-#include "../genericrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class SearchRequester
 /// @brief Requester for searches
 /// @see https://dev.twitter.com/docs/api/1/get/search
-class SearchRequester : public GenericRequester
+class SearchRequester : public TwitterRequester
 {
 	Q_OBJECT
 

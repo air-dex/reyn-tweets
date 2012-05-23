@@ -25,33 +25,33 @@
 
 // Constructor
 AuthenticationRequester::AuthenticationRequester(RequestType type,
-                                                 QString url,
-                                                 OAuthManager &authManager,
-                                                 ErrorType parseError,
-                                                 bool tokenNeeded,
-                                                 bool callbackURLNeeded,
-                                                 bool verifierNeeded) :
-    GenericRequester(type, url, parseError),
-    oauthManager(authManager),
-    oauthTokenNeeded(tokenNeeded),
-    oauthCallbackUrlNeeded(callbackURLNeeded),
-    oauthVerifierNeeded(verifierNeeded)
+												 QString url,
+												 OAuthManager &authManager,
+												 ErrorType parseError,
+												 bool tokenNeeded,
+												 bool callbackURLNeeded,
+												 bool verifierNeeded) :
+	TwitterRequester(type, url, parseError),
+	oauthManager(authManager),
+	oauthTokenNeeded(tokenNeeded),
+	oauthCallbackUrlNeeded(callbackURLNeeded),
+	oauthVerifierNeeded(verifierNeeded)
 {}
 
 // Building HTTP Headers
 void AuthenticationRequester::buildHTTPHeaders() {
-    // For the Content-Type
-    GenericRequester::buildHTTPHeaders();
+	// For the Content-Type
+	TwitterRequester::buildHTTPHeaders();
 
-    // OAuth header
-    // Building the header
-    QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
-                                                                requestURL,
-                                                                getParameters,
-                                                                postParameters,
-                                                                oauthTokenNeeded,
-                                                                oauthCallbackUrlNeeded,
-                                                                oauthVerifierNeeded);
+	// OAuth header
+	// Building the header
+	QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
+																requestURL,
+																getParameters,
+																postParameters,
+																oauthTokenNeeded,
+																oauthCallbackUrlNeeded,
+																oauthVerifierNeeded);
 
-    headers.insert("Authorization", authHeader);
+	headers.insert("Authorization", authHeader);
 }

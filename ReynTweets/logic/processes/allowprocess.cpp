@@ -111,7 +111,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			saveConfiguration();
 		}return;
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			// Looking for specific value of the return code
 			if (httpCode / 100 == 5) {
 				issue = TWITTER_DOWN;
@@ -124,7 +124,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.twitterErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 			break;
 
 		case API_CALL:

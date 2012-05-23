@@ -31,10 +31,17 @@ Rectangle {
 	width: 360
 	height: 4*margin + announce.height + write_zone.height + tweet_button.height
 
+	// Number of characters which can be written by the user.
 	property int chars_left: getCharsLeft()
 
+	// ID of the user that the tweet replies to
 	property string in_reply_to_tweet_id: '-1'
 
+	// Screen name of the user that the tweet replies to
+	property string in_reply_to_user: ""
+
+
+	// Background
 	gradient: Gradient {
 		GradientStop {
 			position: 0
@@ -158,7 +165,7 @@ Rectangle {
 				target: tweet_button
 				onClick: {
 					showInfoMessage(qsTr("Your tweet gets more than 140 characters."))
-					console.log("TODO : tweeting with TwitLonger")
+					askTwitLonger()
 				}
 			}
 		},
@@ -201,11 +208,14 @@ Rectangle {
 		control.tweetPosted.connect(write_tweet_pane.afterPosting)
 	}
 
-	// Writing a reply to a tweet by specifying the text and the person to reply
-	function writeReply(tweetText, replyToTweetID) {
-		tweet_edit.text = tweetText
-		tweet_edit.cursorPosition = tweetText.length
+	// Writing a reply to a tweet
+	function writeReply(replyToScreenName, replyToTweetID) {
+		tweet_edit.text = '@'.concat(replyToScreenName).concat(' ')
+		tweet_edit.cursorPosition = tweet_edit.text.length
 		in_reply_to_tweet_id = replyToTweetID
+		in_reply_to_user = replyToScreenName
+
+		// TODO : a box asking if it is a reply for the user
 	}
 
 	// Writing a tweet by specifying the text
@@ -235,10 +245,16 @@ Rectangle {
 		return charsAllowed;
 	}
 
+	// What to do after posting a tweet
 	function afterPosting(newTweetVariant) {
 		tweet_edit.text = ""
 		in_reply_to_tweet_id = "-1"
 		write_tweet_pane.updateAfterWrite(newTweetVariant)
+	}
+
+	// Posting a Tweet via TwitLonger
+	function postViaTwitLonger() {
+		control.postViaTwitLonger(tweet_edit.text, in_reply_to_tweet_id, in_reply_to_user)
 	}
 
 
@@ -257,4 +273,7 @@ Rectangle {
 
 	// Showing an information message
 	signal showInfoMessage(string infoMsg)
+
+	// Asking the user if he want to post the tweet via TwitLonger
+	signal askTwitLonger
 }

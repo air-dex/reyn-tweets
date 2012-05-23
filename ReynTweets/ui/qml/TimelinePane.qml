@@ -228,7 +228,7 @@ Rectangle {
 	signal needAuthentication
 	signal endAction(bool endOK, string errMsg, bool fatalEnd)
 
-	signal writeReply(string text, string replyID)
+	signal writeReply(string replyScreenName, string replyID)
 	signal writeTweet(string text)
 
 	// Showing an information message

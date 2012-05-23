@@ -101,7 +101,7 @@ namespace ProcessUtils {
 							QString &errorMsg,
 							CoreResult &issue);
 
-	/// @fn void treatQjsonParsingResult(ResponseInfos parsingErrors,,
+	/// @fn void treatQjsonParsingResult(ResponseInfos parsingErrors,
 	///									 QString &errorMsg,
 	///									 CoreResult &issue);
 	/// @brief Default treatment when JSON results cannot be parsed by QJSON.
@@ -111,6 +111,17 @@ namespace ProcessUtils {
 	void treatQjsonParsingResult(ResponseInfos parsingErrors,
 								 QString &errorMsg,
 								 CoreResult &issue);
+
+	/// @fn void treatXMLParsingResult(ResponseInfos parsingErrors,
+	///								   QString &errorMsg,
+	///								   CoreResult &issue);
+	/// @brief Default treatment when XML results cannot be parsed.
+	/// @param parsingErrors Errors that occured while parsing results
+	/// @param errorMsg Error message of the process
+	/// @param issue Reference on the issue of the request
+	void treatXMLParsingResult(ResponseInfos parsingErrors,
+							   QString &errorMsg,
+							   CoreResult &issue);
 
 	/// @fn void treatOAuthParsingResult(QString parsingErrorsMsg,
 	///									 QString &errorMsg,

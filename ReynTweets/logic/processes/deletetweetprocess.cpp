@@ -156,7 +156,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
             emit allowDelete(idFound, addInfos);
             return;
 
-        case TWITTER_ERRORS:
+        case SERVICE_ERRORS:
             ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
             break;
 
@@ -247,7 +247,7 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
                                                              QVariant(deletionResult));
             return endProcess();
 
-        case TWITTER_ERRORS:
+        case SERVICE_ERRORS:
             ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
             break;
 

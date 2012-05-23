@@ -28,7 +28,7 @@
 ShowTweetRequester::ShowTweetRequester(qlonglong id,
 									   bool entities,
 									   bool userIdsOnly) :
-	GenericRequester(GET, TwitterURL::SHOW_TWEET_URL),
+	TwitterRequester(GET, TwitterURL::SHOW_TWEET_URL),
 	tweetID(id),
 	includeEntities(entities),
 	trimUser(userIdsOnly)

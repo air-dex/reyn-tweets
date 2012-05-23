@@ -31,8 +31,12 @@ Rectangle {
 
 	Constants {	id:constant	}
 
-	width: 360
-	height: 640
+	width: constant.reyn_tweets_width
+	height: constant.reyn_tweets_height
+
+	/////////////////////
+	// Writing a tweet //
+	/////////////////////
 
 	// Component displayed while launching the application
 	WriteTweetPane {
@@ -40,6 +44,35 @@ Rectangle {
 		width: parent.width
 		anchors.top: main_view.top
 		anchors.horizontalCenter: parent.horizontalCenter
+	}
+
+	// Pane displayed to show a tweet via TwitLonger
+	TwoButtonsActionPane {
+		id: twitlonger_pane
+		width: main_view.interiorWidth
+		z: main_view.z + 5
+		opacity: 1
+		visible: false
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+
+		pane_text: qsTr("Your tweet is too long. Would you post it with TwitLonger ?")
+
+		// Left button
+		left_button_text: qsTr("Yes")
+		onActLeft: {
+			write_tweet.postViaTwitLonger()
+			twitlonger_pane.visible = false
+		}
+
+		// Right button
+		right_button_text: qsTr("No")
+		onActRight: twitlonger_pane.visible = false
+
+		// Slot executed when TwitLonger was asked
+		function twitLongerAsked() {
+			twitlonger_pane.visible = true
+		}
 	}
 
 	// Home timeline (subject to future changes)
@@ -90,7 +123,7 @@ Rectangle {
 
 		// Pane parameters
 		pane_text: qsTr("The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.")
-				   + "\n\n" + qsTr("Would to like to authorize Reyn Tweets again ?")
+				   .concat("\n\n").concat(qsTr("Would to like to authorize Reyn Tweets again ?"))
 
 		// Left button
 		left_button_text: qsTr("Reauthorize")
@@ -143,6 +176,9 @@ Rectangle {
 		write_tweet.endWriting.connect(main_view.endAction)
 		write_tweet.updateAfterWrite.connect(timeline.updateAfterWrite)
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
+		write_tweet.askTwitLonger.connect(twitlonger_pane.twitLongerAsked)
+
+		// Wiring twitlonger_pane
 	}
 
 	// Loading the home timeline

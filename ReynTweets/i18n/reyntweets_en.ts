@@ -262,22 +262,33 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="92"/>
+        <location filename="../ui/qml/MainView.qml" line="56"/>
+        <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
+        <translation>Your tweet is too long. Would you post it with TwitLonger ?</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="59"/>
+        <source>Yes</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/MainView.qml" line="122"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="93"/>
+        <location filename="../ui/qml/MainView.qml" line="123"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Would to like to authorize Reyn Tweets again ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="96"/>
+        <location filename="../ui/qml/MainView.qml" line="126"/>
         <source>Reauthorize</source>
         <translation>Reauthorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="100"/>
+        <location filename="../ui/qml/MainView.qml" line="66"/>
+        <location filename="../ui/qml/MainView.qml" line="130"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -323,6 +334,26 @@
         <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="217"/>
         <source>Wrong URL.</source>
         <translation>Wrong URL.</translation>
+    </message>
+</context>
+<context>
+    <name>PostViaTwitLongerProcess</name>
+    <message>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="117"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="206"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="275"/>
+        <source>Dead end</source>
+        <translation>Dead end</translation>
+    </message>
+    <message>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="160"/>
+        <source>Tweet cannot be shortened</source>
+        <translation>Tweet cannot be shortened</translation>
+    </message>
+    <message>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="301"/>
+        <source>Message on TwitLonger cannot be updated.</source>
+        <translation>Message on TwitLonger cannot be updated.</translation>
     </message>
 </context>
 <context>
@@ -431,16 +462,23 @@
     <message>
         <location filename="../tools/processutils.cpp" line="180"/>
         <location filename="../tools/processutils.cpp" line="196"/>
+        <location filename="../tools/processutils.cpp" line="215"/>
         <source>Parsing error:</source>
         <translation>Parsing error:</translation>
     </message>
     <message>
         <location filename="../tools/processutils.cpp" line="182"/>
+        <location filename="../tools/processutils.cpp" line="198"/>
         <source>Line </source>
         <translation>Line </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="209"/>
+        <location filename="../tools/processutils.cpp" line="201"/>
+        <source>Column </source>
+        <translation>Column </translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="228"/>
         <source>Unexpected problem:</source>
         <translation>Unexpected problem:</translation>
     </message>
@@ -484,7 +522,7 @@
 <context>
     <name>SingleTwitterCallProcess</name>
     <message>
-        <location filename="../logic/processes/singletwittercallprocess.cpp" line="45"/>
+        <location filename="../logic/processes/singletwittercallprocess.cpp" line="46"/>
         <source>Dead end</source>
         <translation>Dead end</translation>
     </message>
@@ -675,36 +713,36 @@
         <translation>Reply</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="448"/>
+        <location filename="../ui/qml/TweetPane.qml" line="445"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="460"/>
-        <location filename="../ui/qml/TweetPane.qml" line="539"/>
+        <location filename="../ui/qml/TweetPane.qml" line="457"/>
+        <location filename="../ui/qml/TweetPane.qml" line="536"/>
         <source>Retweeted</source>
         <translation>Retweeted</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="460"/>
-        <location filename="../ui/qml/TweetPane.qml" line="553"/>
+        <location filename="../ui/qml/TweetPane.qml" line="457"/>
+        <location filename="../ui/qml/TweetPane.qml" line="550"/>
         <source>Retweet</source>
         <translation>Retweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="476"/>
+        <location filename="../ui/qml/TweetPane.qml" line="473"/>
         <source>Quote</source>
         <translation>Quote</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="488"/>
-        <location filename="../ui/qml/TweetPane.qml" line="567"/>
+        <location filename="../ui/qml/TweetPane.qml" line="485"/>
+        <location filename="../ui/qml/TweetPane.qml" line="564"/>
         <source>Favorited</source>
         <translation>Favorited</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="488"/>
-        <location filename="../ui/qml/TweetPane.qml" line="581"/>
+        <location filename="../ui/qml/TweetPane.qml" line="485"/>
+        <location filename="../ui/qml/TweetPane.qml" line="578"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
     </message>
@@ -720,51 +758,58 @@
 <context>
     <name>WriteTweetControl</name>
     <message>
-        <location filename="../logic/controls/writetweetcontrol.cpp" line="51"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="56"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="127"/>
         <source>Posting tweet...</source>
         <translation>Posting tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/writetweetcontrol.cpp" line="77"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="82"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="147"/>
         <source>Tweet sent successfully</source>
         <translation>Tweet sent successfully</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="154"/>
+        <source> but the message is not updated on TwitLonger.</source>
+        <translation> but the message is not updated on TwitLonger.</translation>
     </message>
 </context>
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="74"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="81"/>
         <source>What is happening ?</source>
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="135"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="160"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="167"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Your tweet gets more than 140 characters.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="180"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="187"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Your tweet gets some invalid character(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="191"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
         <source>You have to write something to tweet.</source>
         <translation>You have to write something to tweet.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="154"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="161"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="175"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="182"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

@@ -98,10 +98,10 @@ void GenericRequester::executeRequest() {
 
 	// Init the communicator
 	weblink = new TwitterCommunicator(requestURL,
-								  requestType,
-								  getParameters,
-								  postParameters,
-								  headers);
+									  requestType,
+									  getParameters,
+									  postParameters,
+									  headers);
 
 	connect(weblink, SIGNAL(requestDone()),
 			this, SLOT(treatResults()));
@@ -116,7 +116,7 @@ void GenericRequester::executeRequest() {
 
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults() {
-	// Looking the HHTP request
+	// Looking the HTTP request
 	requestResult.httpResponse = weblink->getHttpResponse();
 	requestResult.errorMessage = weblink->getErrorMessage();
 
@@ -138,121 +138,10 @@ void GenericRequester::treatResults() {
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(weblink->getResponseBuffer());
 		} else {
-			// Is it a map with error messages
-			switch (httpReturnCode) {
-				case 200:
-					break;
-
-				// Uncomment when the following feature is deployed :
-				// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
-					/*
-				case 404:
-				case 500:
-				case 503:
-					if (parsingErrorType == QJSON_PARSING
-							&& requestResult.parsedResult.type() == QVariant::Map
-						)
-					{
-						// Table error : one row ("errors"; QVariantList)
-						QVariantMap resultMap = requestResult.parsedResult.toMap();
-
-						if (resultMap.size() == 1
-								&& resultMap.contains("errors")
-								&& resultMap.value("errors").type() == QVariant::List
-							)
-						{
-							QVariantList errorList = resultMap.value("errors").toList();
-
-							// Building the list of errors
-							for (QVariantList::Iterator it = errorList.begin();
-								 it != errorList.end();
-								 ++it)
-							{
-								QVariantMap error = it->toMap();
-								ResponseInfos twitterError;
-								twitterError.code = error.value("code").toInt();
-								twitterError.message = error.value("message").toString();
-								requestResult.twitterErrors.append(twitterError);
-							}
-
-							requestResult.resultType = TWITTER_ERRORS;
-						}
-					}
-					break;
-					//*/
-
-				case 304:
-				case 400:
-				case 401:
-				case 403:
-				case 406:
-				case 420:
-				case 502:
-					if (parsingErrorType == QJSON_PARSING
-							&& requestResult.parsedResult.type() == QVariant::Map
-						)
-					{
-						// Table error : two rows called "error" and "request"
-						QVariantMap resultMap = requestResult.parsedResult.toMap();
-
-						if (resultMap.size() == 2
-								&& resultMap.contains("error")
-								&& resultMap.contains("request")
-							)
-						{
-							ResponseInfos twitterError;
-							twitterError.code = httpReturnCode;
-
-							twitterError.message = resultMap.value("error").toString();
-							requestResult.twitterErrors.append(twitterError);
-
-							twitterError.message = resultMap.value("request").toString();
-							requestResult.twitterErrors.append(twitterError);
-
-							requestResult.resultType = TWITTER_ERRORS;
-						}
-					}
-					break;
-
-				default:
-					requestResult.resultType = API_CALL;
-					break;
-			}
+			this->treatParsedResult();
 		}
 	}
 
 	// Telling the ReynTwitterCalls that the request is finished
 	emit requestDone();
-}
-
-// Method that will parse the raw results of the request.
-QVariant GenericRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-	JSONParser parser;
-	QByteArray rawResponse = weblink->getResponseBuffer();
-	QString errorMsg;
-	int lineMsg;
-
-	// Special treatment for lists because of a QJSON bug while parsing lists
-	bool isList = rawResponse.startsWith('[');
-
-	// Bugfixer : the list to parse is the "reslist" value of a JSON object.
-	if (isList) {
-		rawResponse.prepend("{\"reslist\":");
-		rawResponse.append('}');
-	}
-
-	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
-
-	if (!parseOK) {
-		// There was a problem while parsing -> fill the parsingErrors map !
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
-		parsingErrors.insert("lineError", QVariant(lineMsg));
-	}
-
-	// Retrieveing the list to parse
-	if (isList) {
-		result = QVariant(result.toMap().value("reslist"));
-	}
-
-	return result;
 }

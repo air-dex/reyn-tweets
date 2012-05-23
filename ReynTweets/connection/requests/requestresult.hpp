@@ -42,8 +42,8 @@ struct RequestResult {
 	/// @brief HTTP response (code and reason)
 	ResponseInfos httpResponse;
 
-	/// @brief Twitter response (code and reason)
-	QList<ResponseInfos> twitterErrors;
+	/// @brief Services (ex. Twitter) error responses (code and reason)
+	QList<ResponseInfos> serviceErrors;
 
 	/// @brief Potential errors that can occur while parsing results.
 	///
@@ -60,7 +60,7 @@ struct RequestResult {
 		resultType(INVALID_RESULT),
 		parsedResult(),
 		httpResponse(),
-		twitterErrors(),
+		serviceErrors(),
 		parsingErrors(),
 		errorMessage("")
 	{}

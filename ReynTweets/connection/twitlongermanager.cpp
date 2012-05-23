@@ -1,7 +1,5 @@
-/// @file twitlongerrequests.hpp
-/// @brief Header including all the requesters which call the TwitLonger API.
-///
-/// This file was known as requests.hpp until r410.
+/// @file twitlongermanager.cpp
+/// @brief Implementation of TwitLongerManager
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -23,10 +21,20 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TWITLONGERREQUESTS_HPP
-#define TWITLONGERREQUESTS_HPP
+#include "twitlongermanager.hpp"
 
-#include "twitlonger/posttotwitlongerrequester.hpp"
-#include "twitlonger/sendidtotwitlongerrequester.hpp"
+// Constructor
+TwitLongerManager::TwitLongerManager(QString appName, QByteArray key) :
+	applicationName(appName),
+	apiKey(key)
+{}
 
-#endif // TWITLONGERREQUESTS_HPP
+// Getting the application name
+QString TwitLongerManager::getApplicationName() {
+	return applicationName;
+}
+
+// Getting the OAuth Token
+QByteArray TwitLongerManager::getAPIKey(bool isClear) {
+	return isClear ? QByteArray::fromBase64(apiKey) : apiKey;
+}

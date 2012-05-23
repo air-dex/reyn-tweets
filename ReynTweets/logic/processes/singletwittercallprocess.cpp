@@ -39,6 +39,7 @@ void SingleTwitterCallProcess::startProcess() {
 void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
+
 	if (result.resultType == INVALID_RESULT) {
 		ProcessUtils::buildProcessResult(false,
 										 INVALID_ISSUE,
@@ -62,7 +63,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 		case NO_ERROR:
 			return treatSuccessfulResult(result.parsedResult);
 
-		case TWITTER_ERRORS:
+		case SERVICE_ERRORS:
 			treatTwitterErrorResult(result, errorMsg, issue);
 			break;
 

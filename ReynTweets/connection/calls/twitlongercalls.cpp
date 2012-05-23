@@ -24,7 +24,32 @@
 #include "twitlongercalls.hpp"
 #include "../requests/twitlongerrequests.hpp"
 
+// Static member
+TwitLongerManager TwitLongerCalls::twitlongerManager = TwitLongerManager();
+
 // Constructor
 TwitLongerCalls::TwitLongerCalls(QObject * requester) :
-    GenericCalls(requester)
+	GenericCalls(requester)
 {}
+
+// Posting the long message on TwitLonger
+void TwitLongerCalls::postOnTwitLonger(QString username,
+									   QString message,
+									   qlonglong replyToTweetID,
+									   QString replyToUser)
+{
+	PostToTwitLongerRequester * requester = new PostToTwitLongerRequester(twitlongerManager,
+																		  message,
+																		  username,
+																		  replyToTweetID,
+																		  replyToUser);
+	executeRequest(requester);
+}
+
+// Updating the informations on TwitLonger
+void TwitLongerCalls::updateLongTweet(QString messageID, qlonglong tweetID) {
+	SendIDToTwitLongerRequester * requester = new SendIDToTwitLongerRequester(twitlongerManager,
+																			  messageID,
+																			  tweetID);
+	executeRequest(requester);
+}

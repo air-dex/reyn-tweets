@@ -32,37 +32,53 @@
 /// @brief Control behind a pane used for writing and posting tweets.
 class WriteTweetControl : public GenericControl
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn WriteTweetControl();
-        /// @brief Constructor
-        WriteTweetControl();
+	public:
+		/// @fn WriteTweetControl();
+		/// @brief Constructor
+		WriteTweetControl();
 
-        /// @fn static void declareQML();
-        /// @brief Declaring TweetControl to the QML system
-        static void declareQML();
+		/// @fn static void declareQML();
+		/// @brief Declaring TweetControl to the QML system
+		static void declareQML();
 
-        /// @fn Q_INVOKABLE void postTweet(QString tweet,
-        ///								   QString inReplyToTweetID = -1);
-        /// @brief Posting a tweet without medias
-        /// @param tweet The text of the tweet
-        /// @param inReplyToTweetID ID of the tweet
-        Q_INVOKABLE void postTweet(QString tweet,
-                                   QString inReplyToTweetID = "-1");
+		/// @fn Q_INVOKABLE void postTweet(QString tweet,
+		///								   QString inReplyToTweetID = -1);
+		/// @brief Posting a tweet without medias
+		/// @param tweet The text of the tweet
+		/// @param inReplyToTweetID ID of the tweet that the tweet replies to.
+		Q_INVOKABLE void postTweet(QString tweet,
+								   QString inReplyToTweetID = "-1");
+
+		/// @fn Q_INVOKABLE void postViaTwitLonger(QString tweet,
+		///										   QString inReplyToTweetID = "-1",
+		///										   QString inReplyToUser = "");
+		/// @brief Posting a long tweet using TwitLonger
+		/// @param tweet The text of the tweet
+		/// @param inReplyToTweetID ID of the tweet that the tweet replies to.
+		/// @param inReplyToUser Username of the user that the tweet replies to.
+		Q_INVOKABLE void postViaTwitLonger(QString tweet,
+										   QString inReplyToTweetID = "-1",
+										   QString inReplyToUser = "");
 
 
-    signals:
-        /// @fn void tweetPosted(QVariant newTweetVariant);
-        /// @brief Signal sent if the tweet was posted successfully
-        /// @param newTweetVariant Posted tweet under a QVariant form.
-        void tweetPosted(QVariant newTweetVariant);
+	signals:
+		/// @fn void tweetPosted(QVariant newTweetVariant);
+		/// @brief Signal sent if the tweet was posted successfully
+		/// @param newTweetVariant Posted tweet under a QVariant form.
+		void tweetPosted(QVariant newTweetVariant);
 
-    protected slots:
-        /// @fn void postTweetEnded(ProcessWrapper res);
-        /// @brief Slot executed after posting a tweet.
-        /// @param res Result of the post
-        void postTweetEnded(ProcessWrapper res);
+	protected slots:
+		/// @fn void postTweetEnded(ProcessWrapper res);
+		/// @brief Slot executed after posting a tweet.
+		/// @param res Result of the post
+		void postTweetEnded(ProcessWrapper res);
+
+		/// @fn void postViaTwitLongerEnded(ProcessWrapper res);
+		/// @brief Slot executed after postViaTwitLonger.
+		/// @param res Result of the post
+		void postViaTwitLongerEnded(ProcessWrapper res);
 };
 
 #endif // WRITETWEETCONTROL_HPP

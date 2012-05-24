@@ -354,7 +354,7 @@ Rectangle {
 					spottedAsRetweeter = true
 				} else {
 					name = wrapEntity('@' + tweet.author.screen_name)
-					nbOtherRetweeters--
+					nbOtherRetweeters = nbOtherRetweeters - 1
 				}
 
 				knownPeopleArray.push(name);
@@ -472,7 +472,7 @@ Rectangle {
 			image_source: "../../resources/icons/quote.png"
 			legend: qsTr("Quote")
 			onAct: {
-				quote('RT @' + tweet.author.screen_name + ': ' + shown_tweet.text);
+				quote('RT @' + shown_tweet.author.screen_name + ': ' + shown_tweet.text);
 			}
 
 			visible: !iam_author

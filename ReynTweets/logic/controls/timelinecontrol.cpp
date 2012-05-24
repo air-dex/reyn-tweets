@@ -25,15 +25,15 @@
 #include "timelinecontrol.hpp"
 
 TimelineControl::TimelineControl() :
-    GenericControl(),
-    backupedNewTweet()
+	GenericControl(),
+	backupedNewTweet()
 {}
 
 // Declaring TweetControl to the QML system
 void TimelineControl::declareQML() {
-    qmlRegisterType<TimelineControl>("ReynTweetsControls",
-                                     0, 1,
-                                     "TimelineControl");
+	qmlRegisterType<TimelineControl>("ReynTweetsControls",
+									 0, 1,
+									 "TimelineControl");
 }
 
 
@@ -43,37 +43,76 @@ void TimelineControl::declareQML() {
 
 // Getting a pointer on a tweet in the timeline.
 Tweet * TimelineControl::getTweet(int tweetIndex) {
-    if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
-        return &(timeline[tweetIndex]);
-    } else {
-        return new Tweet;
-    }
+	if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
+		return &(timeline[tweetIndex]);
+	} else {
+		return new Tweet;
+	}
 }
 
 // Reading the property tl_length
 int TimelineControl::getTimelineLength() {
-    return timeline.size();
+	return timeline.size();
 }
 
 // Replacing a tweet
 void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
-    if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-        return;
-    }
+	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+		return;
+	}
 
-    Tweet & tweet = timeline[tweetIndex];
-    tweet.reset();
-    tweet.fillWithVariant(updatedTweet.toMap());
+	Tweet & tweet = timeline[tweetIndex];
+	tweet.reset();
+	tweet.fillWithVariant(updatedTweet.toMap());
 }
 
 // Replacing a tweet
 void TimelineControl::deleteTweet(int tweetIndex) {
-    if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-        return;
-    }
+	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
+		return;
+	}
 
-    timeline.removeAt(tweetIndex);
-    emit timelineChanged();
+	timeline.removeAt(tweetIndex);
+	emit timelineChanged();
+}
+
+// Inserting a tweet in a timeline
+void TimelineControl::insertInTimeline(Timeline & tl, Tweet newTweet) {
+
+	if (tl.isEmpty()) {
+		// Just add the tweet.
+		return tl.append(newTweet);
+	}
+
+	int newTweetIndex;
+	qlonglong newTweetID = newTweet.getID();
+	qlonglong tlMaxID = tl.last().getID();
+
+	if (newTweetID < tlMaxID) {
+		newTweetIndex = tl.size();
+	} else {
+		int a = 0;
+		int b = tl.size();
+
+		while (a != b) {
+			int m = (a + b) /2;
+			qlonglong midTweetID = tl[m].getID();
+
+			if (newTweetID >= midTweetID) {
+				b = m;
+			} else {
+				a = m + 1;
+			}
+		}
+
+		newTweetIndex = a;
+	}
+
+	if (newTweetIndex >= tl.size()
+			|| newTweet.getID() != tl[newTweetIndex].getID())
+	{
+		tl.insert(newTweetIndex, newTweet);
+	}
 }
 
 
@@ -83,65 +122,65 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 
 // Loading the home timeline
 void TimelineControl::loadHomeTimeline() {
-    if (processing) {
-        return;
-    }
+	if (processing) {
+		return;
+	}
 
-    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(loadTimelineEnded(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-    processing = true;
-    emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
-    reyn.loadHomeTimeline(-1, -1, 50);
+	processing = true;
+	emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
+	reyn.loadHomeTimeline(-1, -1, 50);
 }
 
 
 // After loading a timeline
 void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
-    ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-    // The result was not for the object. Stop the treatment.
-    if (INVALID_ISSUE == result.processIssue) {
-        processing = true;
-        return;
-    }
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		processing = true;
+		return;
+	}
 
-    // Disconnect
-    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(loadTimelineEnded(ProcessWrapper)));
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
-    CoreResult issue = result.processIssue;
-    QVariantList resList = result.results.toList();
+	CoreResult issue = result.processIssue;
+	QVariantList resList = result.results.toList();
 
-    switch (issue) {
-        case TIMELINE_RETRIEVED:
-            timeline.fillWithVariant(resList);
-            emit timelineChanged();
-            // Process successful
-            emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
-            break;
+	switch (issue) {
+		case TIMELINE_RETRIEVED:
+			timeline.fillWithVariant(resList);
+			emit timelineChanged();
+			// Process successful
+			emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
+			break;
 
-        case TOKENS_NOT_AUTHORIZED:
-            // An authentication is needed. So let's do it!
-            emit authenticationNeeded();
-            return;
+		case TOKENS_NOT_AUTHORIZED:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
 
-        // Problems that can be solved trying later
-        case BAD_REQUEST:
-        case REFUSED_REQUEST:
-        case RATE_LIMITED:	// The user reached rates.
-        case TWITTER_DOWN:	// Twitter does not respond.
-        case NETWORK_CALL:
-            emit actionEnded(false, result.errorMsg, false);
-            break;
+		// Problems that can be solved trying later
+		case BAD_REQUEST:
+		case REFUSED_REQUEST:
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit actionEnded(false, result.errorMsg, false);
+			break;
 
-        // Unknown ends
-        case UNKNOWN_PROBLEM:
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
 
-        default:
-            emit actionEnded(false, result.errorMsg, true);
-            break;
-    }
+		default:
+			emit actionEnded(false, result.errorMsg, true);
+			break;
+	}
 }
 
 
@@ -151,163 +190,165 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 // Loading the home timeline
 void TimelineControl::refreshHomeTimeline() {
-    if (processing) {
-        return;
-    }
+	if (processing) {
+		return;
+	}
 
-    // Refreshing an empty timeline == loading the timeline
-    if (timeline.isEmpty()) {
-        return loadHomeTimeline();
-    }
+	// Refreshing an empty timeline == loading the timeline
+	if (timeline.isEmpty()) {
+		return loadHomeTimeline();
+	}
 
-    qlonglong sinceTweetID = timeline[0].getID() + 1;
+	qlonglong sinceTweetID = timeline[0].getID() + 1;
 
-    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
-    processing = true;
-    emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-    reyn.loadHomeTimeline(sinceTweetID, -1);
+	processing = true;
+	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+	reyn.loadHomeTimeline(sinceTweetID, -1);
 }
 
 
 // After loading a timeline
 void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
-    ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-    // The result was not for the object. Stop the treatment.
-    if (INVALID_ISSUE == result.processIssue) {
-        processing = true;
-        return;
-    }
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		processing = true;
+		return;
+	}
 
-    // Disconnect
-    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
-    CoreResult issue = result.processIssue;
-    QVariantList resList = result.results.toList();
-    Timeline newTweets;
+	CoreResult issue = result.processIssue;
+	QVariantList resList = result.results.toList();
+	Timeline newTweets;
 
-    switch (issue) {
-        case TIMELINE_RETRIEVED:
-            newTweets.fillWithVariant(resList);
-            emit loadedMoreTweets(newTweets.size());
+	switch (issue) {
+		case TIMELINE_RETRIEVED:
+			newTweets.fillWithVariant(resList);
+			emit loadedMoreTweets(newTweets.size());
 
-            // Equivalent to timeline.prepend(newTweets);
-            newTweets.append(timeline);
-            timeline.clear();
-            timeline.append(newTweets);
+			// Equivalent to timeline.prepend(newTweets);
+			newTweets.append(timeline);
+			timeline.clear();
+			timeline.append(newTweets);
 
-            emit timelineChanged();
-            // Process successful
-            emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
-            break;
+			emit timelineChanged();
+			// Process successful
+			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+			break;
 
-        case TOKENS_NOT_AUTHORIZED:
-            // An authentication is needed. So let's do it!
-            emit authenticationNeeded();
-            return;
+		case TOKENS_NOT_AUTHORIZED:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
 
-        // Problems that can be solved trying later
-        case BAD_REQUEST:
-        case REFUSED_REQUEST:
-        case RATE_LIMITED:	// The user reached rates.
-        case TWITTER_DOWN:	// Twitter does not respond.
-        case NETWORK_CALL:
-            emit actionEnded(false, result.errorMsg, false);
-            break;
+		// Problems that can be solved trying later
+		case BAD_REQUEST:
+		case REFUSED_REQUEST:
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit actionEnded(false, result.errorMsg, false);
+			break;
 
-        // Unknown ends
-        case UNKNOWN_PROBLEM:
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
 
-        default:
-            emit actionEnded(false, result.errorMsg, true);
-            break;
-    }
+		default:
+			emit actionEnded(false, result.errorMsg, true);
+			break;
+	}
 }
 
 // Refreshing after writing a tweet
 void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
-    if (processing) {
-        return;
-    }
+	if (processing) {
+		return;
+	}
 
-    // Refreshing an empty timeline == loading the timeline
-    if (timeline.isEmpty()) {
-        return loadHomeTimeline();
-    }
+	// Refreshing an empty timeline == loading the timeline
+	if (timeline.isEmpty()) {
+		return loadHomeTimeline();
+	}
 
-    backupedNewTweet = newTweetVariant;
+	backupedNewTweet = newTweetVariant;
 
-    qlonglong sinceTweetID = timeline[0].getID() + 1;
+	qlonglong sinceTweetID = timeline[0].getID() + 1;
 
-    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
-    processing = true;
-    emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-    reyn.loadHomeTimeline(sinceTweetID, -1);
+	processing = true;
+	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+	reyn.loadHomeTimeline(sinceTweetID, -1);
 }
 
 
 // After refreshHomeTimelineAfterWrite
 void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
-    ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-    // The result was not for the object. Stop the treatment.
-    if (INVALID_ISSUE == result.processIssue) {
-        processing = true;
-        return;
-    }
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		processing = true;
+		return;
+	}
 
-    // Disconnect
-    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
-    CoreResult issue = result.processIssue;
-    QVariantList resList = result.results.toList();
-    Timeline newTweets;
-    Tweet lastTweet;
+	CoreResult issue = result.processIssue;
+	QVariantList resList = result.results.toList();
+	Timeline newTweets;
+	Tweet lastTweet;
 
-    switch (issue) {
-        case TIMELINE_RETRIEVED:
-            newTweets.fillWithVariant(resList);
-            lastTweet.fillWithVariant(backupedNewTweet.toMap());
-            newTweets.prepend(lastTweet);
-            emit loadedMoreTweets(newTweets.size());
+	switch (issue) {
+		case TIMELINE_RETRIEVED:
+			newTweets.fillWithVariant(resList);
+			lastTweet.fillWithVariant(backupedNewTweet.toMap());
 
-            // Equivalent to timeline.prepend(newTweets);
-            newTweets.append(timeline);
-            timeline.clear();
-            timeline.append(newTweets);
+			// Inserting the new Tweet in the timeline of new tweets
+			insertInTimeline(newTweets, lastTweet);
+			emit loadedMoreTweets(newTweets.size());
 
-            emit timelineChanged();
-            // Process successful
-            emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
-            break;
+			// Equivalent to timeline.prepend(newTweets);
+			newTweets.append(timeline);
+			timeline.clear();
+			timeline.append(newTweets);
 
-        case TOKENS_NOT_AUTHORIZED:
-            // An authentication is needed. So let's do it!
-            emit authenticationNeeded();
-            return;
+			emit timelineChanged();
+			// Process successful
+			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+			break;
 
-        // Problems that can be solved trying later
-        case BAD_REQUEST:
-        case REFUSED_REQUEST:
-        case RATE_LIMITED:	// The user reached rates.
-        case TWITTER_DOWN:	// Twitter does not respond.
-        case NETWORK_CALL:
-            emit actionEnded(false, result.errorMsg, false);
-            break;
+		case TOKENS_NOT_AUTHORIZED:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
 
-        // Unknown ends
-        case UNKNOWN_PROBLEM:
+		// Problems that can be solved trying later
+		case BAD_REQUEST:
+		case REFUSED_REQUEST:
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit actionEnded(false, result.errorMsg, false);
+			break;
 
-        default:
-            emit actionEnded(false, result.errorMsg, true);
-            break;
-    }
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
+
+		default:
+			emit actionEnded(false, result.errorMsg, true);
+			break;
+	}
 }
 
 
@@ -317,72 +358,72 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 // Loading the home timeline
 void TimelineControl::moreOldHomeTimeline() {
-    if (processing) {
-        return;
-    }
+	if (processing) {
+		return;
+	}
 
-    // Getting older tweets in an empty timeline == loading the timeline
-    if (timeline.isEmpty()) {
-        return loadHomeTimeline();
-    }
+	// Getting older tweets in an empty timeline == loading the timeline
+	if (timeline.isEmpty()) {
+		return loadHomeTimeline();
+	}
 
-    qlonglong maxTweetID = timeline[timeline.size() -1].getID() - 1;
+	qlonglong maxTweetID = timeline[timeline.size() -1].getID() - 1;
 
-    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 
-    processing = true;
-    emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
-    reyn.loadHomeTimeline(-1, maxTweetID, 50);
+	processing = true;
+	emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
+	reyn.loadHomeTimeline(-1, maxTweetID, 50);
 }
 
 
 // After loading a timeline
 void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
-    ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-    // The result was not for the object. Stop the treatment.
-    if (INVALID_ISSUE == result.processIssue) {
-        processing = true;
-        return;
-    }
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		processing = true;
+		return;
+	}
 
-    // Disconnect
-    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 
-    CoreResult issue = result.processIssue;
-    QVariantList resList = result.results.toList();
-    Timeline newTweets;
+	CoreResult issue = result.processIssue;
+	QVariantList resList = result.results.toList();
+	Timeline newTweets;
 
-    switch (issue) {
-        case TIMELINE_RETRIEVED:
-            newTweets.fillWithVariant(resList);
-            timeline.append(newTweets);
-            emit timelineChanged();
-            // Process successful
-            emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
-            break;
+	switch (issue) {
+		case TIMELINE_RETRIEVED:
+			newTweets.fillWithVariant(resList);
+			timeline.append(newTweets);
+			emit timelineChanged();
+			// Process successful
+			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
+			break;
 
-        case TOKENS_NOT_AUTHORIZED:
-            // An authentication is needed. So let's do it!
-            emit authenticationNeeded();
-            return;
+		case TOKENS_NOT_AUTHORIZED:
+			// An authentication is needed. So let's do it!
+			emit authenticationNeeded();
+			return;
 
-        // Problems that can be solved trying later
-        case BAD_REQUEST:
-        case REFUSED_REQUEST:
-        case RATE_LIMITED:	// The user reached rates.
-        case TWITTER_DOWN:	// Twitter does not respond.
-        case NETWORK_CALL:
-            emit actionEnded(false, result.errorMsg, false);
-            break;
+		// Problems that can be solved trying later
+		case BAD_REQUEST:
+		case REFUSED_REQUEST:
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+		case NETWORK_CALL:
+			emit actionEnded(false, result.errorMsg, false);
+			break;
 
-        // Unknown ends
-        case UNKNOWN_PROBLEM:
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
 
-        default:
-            emit actionEnded(false, result.errorMsg, true);
-            break;
-    }
+		default:
+			emit actionEnded(false, result.errorMsg, true);
+			break;
+	}
 }

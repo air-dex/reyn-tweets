@@ -32,106 +32,115 @@
 /// @brief Control behind a TimelinePane
 class TimelineControl : public GenericControl
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn TimelineControl();
-        /// @brief Constructor
-        TimelineControl();
+	public:
+		/// @fn TimelineControl();
+		/// @brief Constructor
+		TimelineControl();
 
-        /// @fn static void declareQML();
-        /// @brief Declaring TweetControl to the QML system
-        static void declareQML();
+		/// @fn static void declareQML();
+		/// @brief Declaring TweetControl to the QML system
+		static void declareQML();
 
-        /// @fn Q_INVOKABLE void loadHomeTimeline();
-        /// @brief Loading the home timeline
-        Q_INVOKABLE void loadHomeTimeline();
+		/// @fn Q_INVOKABLE void loadHomeTimeline();
+		/// @brief Loading the home timeline
+		Q_INVOKABLE void loadHomeTimeline();
 
-        /// @fn Q_INVOKABLE void refreshHomeTimeline();
-        /// @brief Refreshing the home timeline
-        Q_INVOKABLE void refreshHomeTimeline();
+		/// @fn Q_INVOKABLE void refreshHomeTimeline();
+		/// @brief Refreshing the home timeline
+		Q_INVOKABLE void refreshHomeTimeline();
 
-        /// @fn Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
-        /// @brief Refreshing the home timeline after writing a tweet
-        /// @param newTweetVariant Newly written tweet under its QVariant form
-        Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
+		/// @fn Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
+		/// @brief Refreshing the home timeline after writing a tweet
+		/// @param newTweetVariant Newly written tweet under its QVariant form
+		Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
 
-        /// @fn Q_INVOKABLE void moreOldHomeTimeline();
-        /// @brief Getting more old tweets the home timeline
-        Q_INVOKABLE void moreOldHomeTimeline();
+		/// @fn Q_INVOKABLE void moreOldHomeTimeline();
+		/// @brief Getting more old tweets the home timeline
+		Q_INVOKABLE void moreOldHomeTimeline();
 
-        /// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-        /// @brief Getting a pointer on a tweet in the timeline.
-        ///
-        /// Used by QML delegates of the ListView in the TimelinePane
-        /// to attribute a tweet to TweetPane in the delegate in the list.
-        /// @param tweetIndex Index of the tweet in the timeline
-        /// @return The tweet &#135;tweetIndex in the timeline if the index
-        /// is ok, a default tweet otherwise.
-        Q_INVOKABLE Tweet * getTweet(int tweetIndex);
+		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
+		/// @brief Getting a pointer on a tweet in the timeline.
+		///
+		/// Used by QML delegates of the ListView in the TimelinePane
+		/// to attribute a tweet to TweetPane in the delegate in the list.
+		/// @param tweetIndex Index of the tweet in the timeline
+		/// @return The tweet &#135;tweetIndex in the timeline if the index
+		/// is ok, a default tweet otherwise.
+		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 
-        /// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-        /// @brief Replacing a tweet in a timeline
-        ///
-        /// It can be used after retweeting a tweet, for example.
-        /// @param updatedTweet New value of the tweet
-        /// @param tweetIndex Index of the tweet in the timeline
-        Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
+		/// @brief Replacing a tweet in a timeline
+		///
+		/// It can be used after retweeting a tweet, for example.
+		/// @param updatedTweet New value of the tweet
+		/// @param tweetIndex Index of the tweet in the timeline
+		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
 
-        /// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
-        /// @brief Deleting a tweet in a timeline
-        ///
-        /// It can be used after retweeting a tweet, for example.
-        /// @param tweetIndex Index of the tweet in the timeline
-        Q_INVOKABLE void deleteTweet(int tweetIndex);
+		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
+		/// @brief Deleting a tweet in a timeline
+		///
+		/// It can be used after retweeting a tweet, for example.
+		/// @param tweetIndex Index of the tweet in the timeline
+		Q_INVOKABLE void deleteTweet(int tweetIndex);
 
 
-    signals:
-        /// @fn void timelineChanged();
-        /// @brief Signal sent when the timeline property changes
-        void timelineChanged();
+	signals:
+		/// @fn void timelineChanged();
+		/// @brief Signal sent when the timeline property changes
+		void timelineChanged();
 
-        /// @fn void loadedMoreTweets(int tweetsLoaded);
-        /// @brief Signal sent to indicate how many more tweets were loaded
-        /// @param tweetsLoaded Number of tweets
-        void loadedMoreTweets(int tweetsLoaded);
+		/// @fn void loadedMoreTweets(int tweetsLoaded);
+		/// @brief Signal sent to indicate how many more tweets were loaded
+		/// @param tweetsLoaded Number of tweets
+		void loadedMoreTweets(int tweetsLoaded);
 
-    protected slots:
-        /// @fn void loadTimelineEnded(ProcessWrapper res);
-        /// @brief Slot executed after loading a timeline
-        /// @param res Result of the load
-        void loadTimelineEnded(ProcessWrapper res);
+	protected slots:
+		/// @fn void loadTimelineEnded(ProcessWrapper res);
+		/// @brief Slot executed after loading a timeline
+		/// @param res Result of the load
+		void loadTimelineEnded(ProcessWrapper res);
 
-        /// @fn void loadTimelineEnded(ProcessWrapper res);
-        /// @brief Slot executed after refreshing a timeline
-        /// @param res Result of the load
-        void refreshTimelineEnded(ProcessWrapper res);
+		/// @fn void loadTimelineEnded(ProcessWrapper res);
+		/// @brief Slot executed after refreshing a timeline
+		/// @param res Result of the load
+		void refreshTimelineEnded(ProcessWrapper res);
 
-        /// @fn void refreshTimelineAfterWriteEnded(ProcessWrapper res);
-        /// @brief Slot executed after refreshHomeTimelineAfterWrite
-        /// @param res Result of the process
-        void refreshTimelineAfterWriteEnded(ProcessWrapper res);
+		/// @fn void refreshTimelineAfterWriteEnded(ProcessWrapper res);
+		/// @brief Slot executed after refreshHomeTimelineAfterWrite
+		/// @param res Result of the process
+		void refreshTimelineAfterWriteEnded(ProcessWrapper res);
 
-        /// @fn void loadTimelineEnded(ProcessWrapper res);
-        /// @brief Slot executed after getting older tweets a timeline
-        /// @param res Result of the load
-        void moreOldTimelineEnded(ProcessWrapper res);
+		/// @fn void loadTimelineEnded(ProcessWrapper res);
+		/// @brief Slot executed after getting older tweets a timeline
+		/// @param res Result of the load
+		void moreOldTimelineEnded(ProcessWrapper res);
 
-    protected:
-        /// @brief The timeline
-        Timeline timeline;
+	protected:
+		/// @brief The timeline
+		Timeline timeline;
 
-        /// @brief Length of the timeline. Used by QML for the list model.
-        Q_PROPERTY(int tl_length
-                   READ getTimelineLength
-                   NOTIFY timelineChanged)
+		/// @brief Length of the timeline. Used by QML for the list model.
+		Q_PROPERTY(int tl_length
+				   READ getTimelineLength
+				   NOTIFY timelineChanged)
 
-        /// @fn Timeline getTimelineLength();
-        /// @brief Reading the property tl_length
-        int getTimelineLength();
+		/// @fn Timeline getTimelineLength();
+		/// @brief Reading the property tl_length
+		int getTimelineLength();
 
-        /// @brief New tweet saved while updating after reading.
-        QVariant backupedNewTweet;
+		/// @brief New tweet saved while updating after reading.
+		QVariant backupedNewTweet;
+
+		/// @fn void insertInTimeline(Timeline & tl, Tweet newTweet);
+		/// @brief Insert a tweet in a timeline.
+		///
+		/// This method is used to insert a newly written tweet in the
+		/// home timeline while refreshing it.
+		/// @param tl The timeline
+		/// @param newTweet The tweet
+		void insertInTimeline(Timeline & tl, Tweet newTweet);
 };
 
 #endif // TIMELINECONTROL_HPP

@@ -75,7 +75,7 @@ class TwitLongerRequester : public GenericRequester
 		/// of the root "twitlonger" node. That is this "post" node that this
 		/// method will return because its children contain crucial informations
 		/// just like the message ID and the shortened tweet.
-		/// @param Root of the XML reply.
+		/// @param xmlRoot Root of the XML reply.
 		/// @return The XML element whose children contained the informations.
 		virtual QDomElement getInfoElement(QDomElement xmlRoot) = 0;
 };

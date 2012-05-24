@@ -48,7 +48,7 @@ void LaunchingProcess::startProcess() {
 // Starting the process
 void LaunchingProcess::checkSettingsLoad() {
 	// Check if the application settings were loaded correctly
-	CoreResult loadIssue = appConfiguration.loadSettings();
+	CoreResult loadIssue = appConfiguration.load();
 
 	switch(loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
@@ -313,28 +313,33 @@ void LaunchingProcess::saveConfiguration() {
 }
 
 
-//////////
-// Misc //
-//////////
+///////////////////////////
+// Filling configuration //
+///////////////////////////
 
-// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+// Filling the OAuthManager of Twitter with consumer tokens
 void LaunchingProcess::fillTwitterOAuthAppSettings() {
 	ReynTwitterCalls::setAppTokens(appConfiguration.getConsumerKey(),
 								   appConfiguration.getConsumerSecret(),
 								   appConfiguration.getCallbackURL());
 }
 
-// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+// Filling the OAuthManager of Twitter with access tokens
 void LaunchingProcess::fillTwitterOAuthUserSettings() {
 	ReynTwitterCalls::setUserTokens(userConfiguration.getUserAccount().getAccessToken(),
 									userConfiguration.getUserAccount().getTokenSecret());
 }
 
-// Filling the OAuth manager of the ReynTwitterCalls with right credentials
+// Filling the TwitLongerManager with the TwitLonger IDs of the application.
 void LaunchingProcess::fillTwitLongerAppSettings() {
 	TwitLongerCalls::setAppTokens(appConfiguration.getTwitLongerAppName(),
 								  appConfiguration.getTwitLongerAPIKey());
 }
+
+
+//////////
+// Misc //
+//////////
 
 // Building the process results
 void LaunchingProcess::buildResult(bool processOK,

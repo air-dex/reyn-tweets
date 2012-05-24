@@ -28,13 +28,13 @@
 #include <QString>
 #include "../model/configuration/reyntweetsappconfiguration.hpp"
 
+/// @class TwitLongerManager
+/// @brief Entity with all the informations needed for transactions with the
+/// TwitLonger API.
 class TwitLongerManager {
 	public:
-		/// @fn TwitLongerManager(QString appName = ReynTweetsSettings::getInstance().getTwitLongerAppName(),
-		///						  QByteArray key = ReynTweetsSettings::getInstance().getTwitLongerAPIKey());
+		/// @fn TwitLongerManager();
 		/// @brief Default constructor. Settings will be filled later.
-		/// @param appName Name of the application on TwitLonger
-		/// @param key Key of the application on TwitLonger
 		TwitLongerManager();
 
 		/// @fn QString getApplicationName();
@@ -42,20 +42,21 @@ class TwitLongerManager {
 		/// @return applicationName
 		QString getApplicationName();
 
-		/// @fn QString getApplicationName();
-		/// @brief Getting the application name
-		/// @return applicationName
+		/// @fn void setApplicationName(QString newAppName);
+		/// @brief Setting the application name
+		/// @param newAppName New value for applicationName
 		void setApplicationName(QString newAppName);
 
 		/// @fn QByteArray getAPIKey(bool isClear = true);
-		/// @brief Getting the OAuth Token
+		/// @brief Getting the API key
 		/// @param isClear Boolean indicating if the clear value is asked
+		/// (instead of the encrypted value).
 		/// @return apiKey
 		QByteArray getAPIKey(bool isClear = true);
 
-		/// @fn QString getApplicationName();
-		/// @brief Getting the application name
-		/// @return applicationName
+		/// @fn void setAPIKey(QByteArray newAPIKey);
+		/// @brief Setting the API key
+		/// @param newAPIKey New value for apiKey
 		void setAPIKey(QByteArray newAPIKey);
 
 	protected:

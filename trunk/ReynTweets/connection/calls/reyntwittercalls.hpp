@@ -140,17 +140,21 @@ class ReynTwitterCalls : public GenericCalls
 
 		/// @fn static void setUserTokens(QByteArray accessToken,
 		///								  QByteArray tokenSecret);
-		/// @brief Setting the user's tokens to the oauthManager
+		/// @brief Setting new OAuth access tokens in the OAuthManager
+		/// to connect to Twitter
 		/// @param accessToken New access token
 		/// @param tokenSecret New token secret
 		static void setUserTokens(QByteArray accessToken,
-								 QByteArray tokenSecret);
+								  QByteArray tokenSecret);
 
 		/// @fn static void setAppTokens(QByteArray consumerKey,
-		///								 QByteArray consumerSecret);
-		/// @brief Setting the application's tokens to the oauthManager
+		///								 QByteArray consumerSecret,
+		///								 QString callbackURL);
+		/// @brief Setting new OAuth consumer credentials and callback URL
+		/// in the OAuthManager to connect to Twitter.
 		/// @param consumerKey New consumer key
 		/// @param consumerSecret New consumer secret
+		/// @param callbackURL New callback URL
 		static void setAppTokens(QByteArray consumerKey,
 								 QByteArray consumerSecret,
 								 QString callbackURL);

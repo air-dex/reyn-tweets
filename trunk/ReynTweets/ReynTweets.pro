@@ -44,7 +44,7 @@ TEMPLATE = app
 # Source files #
 #--------------#
 
-# NB : the QML Application Viewer is in another .pri is here :
+# NB : the QML Application Viewer is here in a .pri :
 # ui/qmlapplicationviewer.pri
 
 SOURCES += \
@@ -55,11 +55,13 @@ SOURCES += \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
 	connection/oauthmanager.cpp \
+	connection/twitlongermanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
 	connection/requests/urls/twitlongerurls.cpp \
 	connection/requests/urls/twitterurls.cpp \
 	connection/requests/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
+	connection/requests/twitterrequester.cpp \
 	connection/requests/authenticationrequester.cpp \
 	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requests/favorites/favoriterequester.cpp \
@@ -77,6 +79,9 @@ SOURCES += \
 	connection/requests/tweets/posttweetrequester.cpp \
 	connection/requests/tweets/retweetrequester.cpp \
 	connection/requests/tweets/showtweetrequester.cpp \
+	connection/requests/twitlonger/twitlongerrequester.cpp \
+	connection/requests/twitlonger/posttotwitlongerrequester.cpp \
+	connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
 	connection/requests/users/showuserrequester.cpp \
 	connection/requests/requestinfos.cpp \
 	connection/requests/requestermanager.cpp \
@@ -102,7 +107,9 @@ SOURCES += \
 	model/tweets/tweet.cpp \
 	model/timelines/timeline.cpp \
 	model/users/user.cpp \
+	model/configuration/reyntweetsappconfiguration.cpp \
 	model/configuration/useraccount.cpp \
+	model/configuration/reyntweetsuserconfiguration.cpp \
 	logic/processes/processwrapper.cpp \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
@@ -115,6 +122,7 @@ SOURCES += \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/loadinghometimelineprocess.cpp \
 	logic/processes/posttweetprocess.cpp \
+	logic/processes/postviatwitlongerprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/reyncore.cpp \
 	logic/controls/genericcontrol.cpp \
@@ -125,15 +133,7 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	main.cpp \
-    logic/processes/postviatwitlongerprocess.cpp \
-    connection/twitlongermanager.cpp \
-    connection/requests/twitlonger/twitlongerrequester.cpp \
-    connection/requests/twitlonger/posttotwitlongerrequester.cpp \
-    connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
-    connection/requests/twitterrequester.cpp \
-    model/configuration/reyntweetsuserconfiguration.cpp \
-    model/configuration/reyntweetsappconfiguration.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -146,6 +146,7 @@ HEADERS  += \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
 	connection/oauthmanager.hpp \
+	connection/twitlongermanager.hpp \
 	connection/requests/requesttype.hpp \
 	connection/headersmap.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
@@ -153,10 +154,12 @@ HEADERS  += \
 	connection/responseinfos.hpp \
 	connection/requests/urls/twitlongerurls.hpp \
 	connection/requests/urls/twitterurls.hpp \
+	connection/requests/urls/apiurls.hpp \
 	connection/requests/requestresult.hpp \
 	connection/requests/resultwrapper.hpp \
 	connection/requests/identificationway.hpp \
 	connection/requests/genericrequester.hpp \
+	connection/requests/twitterrequester.hpp \
 	connection/requests/authenticationrequester.hpp \
 	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/favorites/favoriterequester.hpp \
@@ -174,6 +177,9 @@ HEADERS  += \
 	connection/requests/tweets/posttweetrequester.hpp \
 	connection/requests/tweets/retweetrequester.hpp \
 	connection/requests/tweets/showtweetrequester.hpp \
+	connection/requests/twitlonger/twitlongerrequester.hpp \
+	connection/requests/twitlonger/posttotwitlongerrequester.hpp \
+	connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
 	connection/requests/users/showuserrequester.hpp \
 	connection/requests/twitterrequests.hpp \
 	connection/requests/twitlongerrequests.hpp \
@@ -203,7 +209,9 @@ HEADERS  += \
 	model/tweets/tweet.hpp \
 	model/timelines/timeline.hpp \
 	model/users/user.hpp \
+	model/configuration/reyntweetsappconfiguration.hpp \
 	model/configuration/useraccount.hpp \
+	model/configuration/reyntweetsuserconfiguration.hpp \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
@@ -217,6 +225,7 @@ HEADERS  += \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/loadinghometimelineprocess.hpp \
 	logic/processes/posttweetprocess.hpp \
+	logic/processes/postviatwitlongerprocess.hpp \
 	logic/processes/retweetprocess.hpp \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
@@ -230,16 +239,7 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp \
-    connection/requests/urls/apiurls.hpp \
-    logic/processes/postviatwitlongerprocess.hpp \
-    connection/twitlongermanager.hpp \
-    connection/requests/twitlonger/twitlongerrequester.hpp \
-    connection/requests/twitlonger/posttotwitlongerrequester.hpp \
-    connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
-    connection/requests/twitterrequester.hpp \
-    model/configuration/reyntweetsuserconfiguration.hpp \
-    model/configuration/reyntweetsappconfiguration.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \
@@ -398,7 +398,7 @@ DEPLOYMENTFOLDERS = qml_files \
 #-------#
 
 # QJSON (http://qjson.sourceforge.net/) is an open source parser for JSON
-# written in Qt (LGPLv2.1 license). Itis compatible with Windows, Mac, Linux,
+# written in Qt (LGPLv2.1 license). It is compatible with Windows, Mac, Linux,
 # Symbian and MeeGo.
 # QJSON_PATH is the location of QJSON in the system.
 

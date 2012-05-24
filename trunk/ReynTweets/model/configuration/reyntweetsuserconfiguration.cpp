@@ -1,7 +1,8 @@
 /// @file reyntweetsuserconfiguration.cpp
-/// @brief Implementation of ReynTweetsConfiguration
+/// @brief Implementation of ReynTweetsUserConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions until r431 were known as ReynTweetsConfiguration
 /// @author Romain Ducher
 ///
 /// @section LICENSE

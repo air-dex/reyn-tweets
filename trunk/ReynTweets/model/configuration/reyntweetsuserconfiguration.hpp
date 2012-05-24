@@ -1,7 +1,8 @@
 /// @file reyntweetsuserconfiguration.hpp
-/// @brief Header of ReynTweetsConfiguration
+/// @brief Header of ReynTweetsUserConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions until r431 were known as ReynTweetsConfiguration
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -33,11 +34,10 @@
 #include <QVariant>
 #include "../../logic/coreresult.hpp"
 #include "../reyntweetsmappable.hpp"
-#include "reyntweetsappconfiguration.hpp"
 #include "useraccount.hpp"
 
-/// @class ReynTweetsConfiguration
-/// @brief Configuration of Reyn Tweets
+/// @class ReynTweetsUserConfiguration
+/// @brief User configuration of Reyn Tweets
 class ReynTweetsUserConfiguration : public ReynTweetsMappable
 {
 	Q_OBJECT

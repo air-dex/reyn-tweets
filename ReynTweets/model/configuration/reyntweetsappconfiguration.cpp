@@ -1,12 +1,13 @@
 /// @file reyntweetsappconfiguration.cpp
-/// @brief Values of ReynTweetsSettings namespace.
+/// @brief Implementation of ReynTweetsAppConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions until r431 were known as ReynTweetsSettings
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2012 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -48,7 +49,7 @@ ReynTweetsAppConfiguration::ReynTweetsAppConfiguration() :
 {}
 
 // Loading the settings from the settings file.
-CoreResult ReynTweetsAppConfiguration::loadSettings() {
+CoreResult ReynTweetsAppConfiguration::load() {
 	// Opening the settings file
 	QFile confFile(SETTINGS_NAMEFILE);
 

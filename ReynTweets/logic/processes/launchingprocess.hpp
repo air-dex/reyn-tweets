@@ -25,6 +25,7 @@
 #define LAUNCHINGPROCESS_HPP
 
 #include "genericprocess.hpp"
+#include "../../model/configuration/reyntweetsappconfiguration.hpp"
 #include "../../model/configuration/reyntweetsuserconfiguration.hpp"
 #include "../../connection/calls/reyntwittercalls.hpp"
 #include "../coreresult.hpp"
@@ -37,10 +38,13 @@ class LaunchingProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf);
+		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf,
+		///						 ReynTweetsAppConfiguration & appConf);
 		/// @brief Constructor
-		/// @param conf Configuration of Reyn Tweets
-		LaunchingProcess(ReynTweetsUserConfiguration & userConf, ReynTweetsAppConfiguration &appConf);
+		/// @param userConf User configuration
+		/// @param appConf Configuration of Reyn Tweets
+		LaunchingProcess(ReynTweetsUserConfiguration & userConf,
+						 ReynTweetsAppConfiguration & appConf);
 
 		/// @fn void startProcess();
 		/// @brief Starting the process
@@ -102,16 +106,21 @@ class LaunchingProcess : public GenericProcess
 						 QString errMsg = "",
 						 bool isFatal = false);
 
-		/// @fn void fillOAuthAppSettings();
-		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		///////////////////////////
+		// Filling configuration //
+		///////////////////////////
+
+		/// @fn void fillTwitterOAuthAppSettings();
+		/// @brief Filling the OAuthManager of Twitter with consumer tokens
 		void fillTwitterOAuthAppSettings();
 
-		/// @fn void fillOAuthManagerUserSettings();
-		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		/// @fn void fillTwitterOAuthUserSettings();
+		/// @brief Filling the OAuthManager of twitter with access tokens
 		void fillTwitterOAuthUserSettings();
 
-		/// @fn void fillOAuthManager();
-		/// @brief Filling the OAuthManager of twitter with configuration tokens
+		/// @fn void fillTwitLongerAppSettings();
+		/// @brief Filling the TwitLongerManager with the TwitLonger IDs
+		/// of the application.
 		void fillTwitLongerAppSettings();
 };
 

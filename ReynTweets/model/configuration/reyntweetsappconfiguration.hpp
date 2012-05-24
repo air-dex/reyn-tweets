@@ -1,12 +1,13 @@
 /// @file reyntweetsappconfiguration.hpp
-/// @brief Declaration of the ReynTweetsSettings namespace
+/// @brief Header of ReynTweetsAppConfiguration
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions until r431 were known as ReynTweetsSettings
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2012 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -32,7 +33,7 @@
 #include <QVariantMap>
 #include "../../logic/coreresult.hpp"
 
-/// @class ReynTweetsSettings
+/// @class ReynTweetsAppConfiguration
 /// @brief Class with Reyn Tweets settings.
 ///
 /// The settings are keys, constants and passwords for the following APIs or
@@ -44,18 +45,18 @@
 /// </ul>
 class ReynTweetsAppConfiguration {
 	public:
-		/// @fn ReynTweetsSettings();
-		/// @brief Private constructor
+		/// @fn ReynTweetsAppConfiguration();
+		/// @brief Constructor
 		ReynTweetsAppConfiguration();
+
+		/// @fn CoreResult load();
+		/// @brief Loading the settings from the settings file.
+		/// @return Tag describing what happened
+		CoreResult load();
 
 		////////////////////////
 		// Getter on settings //
 		////////////////////////
-
-		/// @fn CoreResult getLoadResult();
-		/// @brief Getter on the loading result
-		/// @return loadResult
-		CoreResult getLoadResult();
 
 		/// @fn QString getErrorLoading();
 		/// @brief Getter on the error message after loading the settings
@@ -92,10 +93,6 @@ class ReynTweetsAppConfiguration {
 		/// @return POCKET_API_KEY
 		QByteArray getPocketAPIKey();
 
-		/// @fn void loadSettings();
-		/// @brief Loading the settings from the settings file.
-		CoreResult loadSettings();
-
 
 	private:
 		/////////////////////
@@ -106,6 +103,7 @@ class ReynTweetsAppConfiguration {
 		///						   const char * settingKey,
 		///						   QStringList & missingKeys);
 		/// @brief Detecting if an application setting is here or not
+		/// @param settingsMap Map with all the settings
 		/// @param settingKey Key of the setting (in the JSON file)
 		/// @param missingKeys List of missing keys.
 		/// @return true if the key exists, false otherwise.

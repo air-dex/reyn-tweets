@@ -42,8 +42,8 @@ class TwitLongerCalls : public GenericCalls
 		/// @fn static void setAppTokens(QString appName,
 		///								 QByteArray apiKey);
 		/// @brief Setting the application's tokens to the twitlongerManager
-		/// @param consumerKey New consumer key
-		/// @param consumerSecret New consumer secret
+		/// @param appName New application name
+		/// @param apiKey New TwitLonger API key
 		static void setAppTokens(QString appName,
 								 QByteArray apiKey);
 

@@ -53,7 +53,7 @@ class SendIDToTwitLongerRequester : public TwitLongerRequester
 		/// The XML reply of this kind of request get a "twitlonger" root tag
 		/// which gets a unique child with th interesting informations so the
 		/// method will return it.
-		/// @param Root of the XML reply.
+		/// @param xmlRoot Root of the XML reply.
 		/// @return The node which contains the informations.
 		QDomElement getInfoElement(QDomElement xmlRoot);
 };

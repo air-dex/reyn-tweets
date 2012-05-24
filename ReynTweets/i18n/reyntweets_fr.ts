@@ -145,55 +145,55 @@
 <context>
     <name>LaunchingProcess</name>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="92"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="292"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="97"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="297"/>
         <source>Configuration file does not exist.</source>
         <translation>Le fichier de configuration n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="96"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="296"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="101"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="301"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Le fichier de configuration ne peut pas s&apos;ouvrir.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="100"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="105"/>
         <source>Configuration cannot be loaded.</source>
         <translation>Le fichier de configuration ne se charge pas.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="105"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="301"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="110"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="306"/>
         <source>Unknown problem</source>
         <translation>Problème inconnu</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="211"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="216"/>
         <source>The user was not the right one.</source>
         <translation>L&apos;utilisateur n&apos;est pas le bon.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="221"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="226"/>
         <source>Tokens for authentication to Twitter were wrong.</source>
         <translation>Vos identifiants à Twitter sont faux.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="229"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="234"/>
         <source>You reach the authentication rate:</source>
         <translation>Vous avez trop appelé Twitter :</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="237"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="242"/>
         <source>Twitter is down:</source>
         <translation>Twitter est KO :</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="245"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="250"/>
         <source>Problem while connecting to Twitter:</source>
         <translation>Probème lors de la connexion à Twitter :</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="260"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="265"/>
         <source>Unexpected result:</source>
         <translation>Résultat inattendu :</translation>
     </message>
@@ -263,34 +263,34 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="56"/>
+        <location filename="../ui/qml/MainView.qml" line="59"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translatorcomment>À reformuler</translatorcomment>
         <translation>Votre tweet est trop long. Voulez vous l&apos;envoyer avec TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="59"/>
+        <location filename="../ui/qml/MainView.qml" line="62"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="122"/>
+        <location filename="../ui/qml/MainView.qml" line="125"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>Les tokens OAuth n&apos;ont pas été jugés bon. Vous devriez réautoriser Reyn Tweets.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="123"/>
+        <location filename="../ui/qml/MainView.qml" line="126"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Voulez-vous réautoriser Reyn Tweets ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="126"/>
+        <location filename="../ui/qml/MainView.qml" line="129"/>
         <source>Reauthorize</source>
         <translation>Réautoriser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="66"/>
-        <location filename="../ui/qml/MainView.qml" line="130"/>
+        <location filename="../ui/qml/MainView.qml" line="69"/>
+        <location filename="../ui/qml/MainView.qml" line="133"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -343,18 +343,18 @@
     <name>PostViaTwitLongerProcess</name>
     <message>
         <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="117"/>
-        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="206"/>
-        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="275"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="205"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="274"/>
         <source>Dead end</source>
         <translation>Fausse fin</translation>
     </message>
     <message>
-        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="160"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="159"/>
         <source>Tweet cannot be shortened</source>
         <translation>Le tweet ne peut être raccourci</translation>
     </message>
     <message>
-        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="301"/>
+        <location filename="../logic/processes/postviatwitlongerprocess.cpp" line="300"/>
         <source>Message on TwitLonger cannot be updated.</source>
         <translation>La version du tweet sur TwitLonger n&apos;a pu être mise à jour.</translation>
     </message>
@@ -486,22 +486,22 @@
         <translation>Problème inattendu :</translation>
     </message>
     <message>
-        <location filename="../model/configuration/reyntweetssettings.cpp" line="70"/>
+        <location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="57"/>
         <source>Settings file unknown.</source>
         <translation>Fichier de réglages inconnu.</translation>
     </message>
     <message>
-        <location filename="../model/configuration/reyntweetssettings.cpp" line="77"/>
+        <location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="63"/>
         <source>Cannot open the settings file.</source>
         <translation>Impossible d&apos;ouvrir de fichier de réglages.</translation>
     </message>
     <message>
-        <location filename="../model/configuration/reyntweetssettings.cpp" line="98"/>
+        <location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="82"/>
         <source>The following setting(s) are missing: </source>
         <translation>Il manque le(s) identifiant(s) suivant(s) : </translation>
     </message>
     <message>
-        <location filename="../model/configuration/reyntweetssettings.cpp" line="152"/>
+        <location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="136"/>
         <source>no one</source>
         <translation>aucun</translation>
     </message>

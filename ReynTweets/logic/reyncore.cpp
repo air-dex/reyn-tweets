@@ -155,12 +155,12 @@ void ReynCore::denyReynTweets(QString login, QString password) {
 // Actions to realize //
 ////////////////////////
 
-// Getting a reference on the configuration
+// Getting a reference on the user configuration
 ReynTweetsUserConfiguration & ReynCore::getUserConfiguration() {
 	return userConfiguration;
 }
 
-// Getting a reference on the configuration
+// Getting a reference on the configuration of Reyn Tweets
 ReynTweetsAppConfiguration & ReynCore::getAppConfiguration() {
 	return appConfiguration;
 }

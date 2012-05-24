@@ -82,7 +82,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 		/// <a href="http://is.gd/">is.gd</a>) of the long tweet in TwitLonger.
 		/// In this case, the method will return the child of the root.</li>
 		/// </ul>
-		/// @param Root of the XML reply.
+		/// @param xmlRoot Root of the XML reply.
 		/// @return The node which contains the informations.
 		QDomElement getInfoElement(QDomElement xmlRoot);
 };

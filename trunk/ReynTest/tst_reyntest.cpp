@@ -5,10 +5,10 @@
 class ReynTest : public QObject
 {
 		Q_OBJECT
-		
+
 	public:
 		ReynTest();
-		
+
 	private Q_SLOTS:
 		void initTestCase();
 		void cleanupTestCase();

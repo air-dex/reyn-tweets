@@ -110,6 +110,8 @@ Inheritance diagram for PostTweetProcess:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_post_tweet_process.html#ae33a6b090fffd4b016b9cbfffe7ef59f">PostTweetProcess</a> (QString status, qlonglong replyTostatusID=-1, bool userIDonly=true, bool withEntities=false, float lat=-361, float lon=-361, QString place=&quot;&quot;, bool showCoord=false)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#ae33a6b090fffd4b016b9cbfffe7ef59f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_post_tweet_process.html#a2f7581f0e58a8b6ca189e2b08d81e20b">PostTweetProcess</a> (QString status, QString replyTostatusID=&quot;-1&quot;, bool userIDonly=true, bool withEntities=false, float lat=-361, float lon=-361, QString place=&quot;&quot;, bool showCoord=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a2f7581f0e58a8b6ca189e2b08d81e20b"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_post_tweet_process.html#a13391b511269f5dd8cad2c0e5b50c6cd">callTwitter</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updating the tweet.  <a href="#a13391b511269f5dd8cad2c0e5b50c6cd"></a><br/></td></tr>
@@ -136,6 +138,86 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00031">31</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2f7581f0e58a8b6ca189e2b08d81e20b"></a><!-- doxytag: member="PostTweetProcess::PostTweetProcess" ref="a2f7581f0e58a8b6ca189e2b08d81e20b" args="(QString status, QString replyTostatusID=&quot;&#45;1&quot;, bool userIDonly=true, bool withEntities=false, float lat=&#45;361, float lon=&#45;361, QString place=&quot;&quot;, bool showCoord=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PostTweetProcess::PostTweetProcess </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>replyTostatusID</em> = <code>&quot;-1&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>userIDonly</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>withEntities</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>lat</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>lon</em> = <code>-361</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>place</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>showCoord</em> = <code>false</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>status</em>&nbsp;</td><td>Text of the tweet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>replyTostatusID</em>&nbsp;</td><td>If the tweet is a reply, this parameter is the ID of the tweet that this tweet replies to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>userIDonly</em>&nbsp;</td><td>In tweets, giving only the ID of the author (true). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>withEntities</em>&nbsp;</td><td>Including <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in the tweets (true). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>lat</em>&nbsp;</td><td>For geolocation, your longitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>lon</em>&nbsp;</td><td>For geolocation, your latitude. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>place</em>&nbsp;</td><td>For geolocation, ID of the place where the tweet is supposed to be sent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>showCoord</em>&nbsp;</td><td>Displaying the coordonates of the tweet with a pin on a map </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="posttweetprocess_8cpp_source.html#l00027">27</a> of file <a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae33a6b090fffd4b016b9cbfffe7ef59f"></a><!-- doxytag: member="PostTweetProcess::PostTweetProcess" ref="ae33a6b090fffd4b016b9cbfffe7ef59f" args="(QString status, qlonglong replyTostatusID=&#45;1, bool userIDonly=true, bool withEntities=false, float lat=&#45;361, float lon=&#45;361, QString place=&quot;&quot;, bool showCoord=false)" -->
 <div class="memitem">
 <div class="memproto">
@@ -212,7 +294,7 @@ Inheritance diagram for PostTweetProcess:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8cpp_source.html#l00027">27</a> of file <a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8cpp_source.html#l00054">54</a> of file <a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +318,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Implements <a class="el" href="class_single_twitter_call_process.html#aebbf64514abda5acd54c58fbf7fd81da">SingleTwitterCallProcess</a>.</p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8cpp_source.html#l00047">47</a> of file <a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8cpp_source.html#l00074">74</a> of file <a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +336,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Displaying coordonates on a map. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00089">89</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00119">119</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -271,7 +353,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Including <a class="el" href="class_tweet.html" title="Model of a tweet.">Tweet</a> Entities in tweets. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00077">77</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00107">107</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +370,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Latitude of the tweet. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00083">83</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00113">113</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +387,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Longitude of the tweet. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00080">80</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00110">110</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -322,7 +404,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>ID of the tweet that this status replies to. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00071">71</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00101">101</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -339,7 +421,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>place where the tweet was supposed to be sent </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00086">86</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00116">116</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -356,7 +438,7 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Only include the userID in the "user" field of a tweet. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00074">74</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00104">104</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
@@ -373,13 +455,13 @@ Inheritance diagram for PostTweetProcess:</div>
 
 <p>Text to post. </p>
 
-<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00068">68</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
+<p>Definition at line <a class="el" href="posttweetprocess_8hpp_source.html#l00098">98</a> of file <a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>logic/processes/<a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a></li>
-<li>logic/processes/<a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/<a class="el" href="posttweetprocess_8hpp_source.html">posttweetprocess.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/<a class="el" href="posttweetprocess_8cpp_source.html">posttweetprocess.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -396,7 +478,7 @@ Inheritance diagram for PostTweetProcess:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:50 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:21 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

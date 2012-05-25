@@ -107,15 +107,15 @@ Inheritance diagram for HTMLParser:</div>
 <p><a href="class_h_t_m_l_parser-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QWebElement&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l_parser.html#adaa23f88562c4dca5d6a167323b935ee">parse</a> (QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for parsing results.  <a href="#adaa23f88562c4dca5d6a167323b935ee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QWebElement&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h_t_m_l_parser.html#a4bdf9a4e7ed468b29a274b1fef524258">parse</a> (QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0, int *columnError=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for parsing results.  <a href="#a4bdf9a4e7ed468b29a274b1fef524258"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Parser for HTML pages. </p>
 
 <p>Definition at line <a class="el" href="htmlparser_8hpp_source.html#l00034">34</a> of file <a class="el" href="htmlparser_8hpp_source.html">htmlparser.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="adaa23f88562c4dca5d6a167323b935ee"></a><!-- doxytag: member="HTMLParser::parse" ref="adaa23f88562c4dca5d6a167323b935ee" args="(QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0)" -->
+<a class="anchor" id="a4bdf9a4e7ed468b29a274b1fef524258"></a><!-- doxytag: member="HTMLParser::parse" ref="a4bdf9a4e7ed468b29a274b1fef524258" args="(QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0, int *columnError=0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -141,7 +141,13 @@ Inheritance diagram for HTMLParser:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&nbsp;</td>
-          <td class="paramname"> <em>lineError</em> = <code>0</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>lineError</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>columnError</em> = <code>0</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -159,19 +165,20 @@ Inheritance diagram for HTMLParser:</div>
     <tr><td valign="top"></td><td valign="top"><em>parseOK</em>&nbsp;</td><td>Boolean indicating if the parcing process was successful </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>parseError</em>&nbsp;</td><td>Error message about a parsing error </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>lineError</em>&nbsp;</td><td>Line of the error. Unused </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>columnError</em>&nbsp;</td><td>Column of the error. Unused </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_generic_parser.html#aa8af753bb227f28eb22f4b4da226a689">GenericParser&lt; QWebElement &gt;</a>.</p>
+<p>Implements <a class="el" href="class_generic_parser.html#a9d3dc4115101858214fffbcf0d275c73">GenericParser&lt; QWebElement &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="htmlparser_8cpp_source.html#l00031">31</a> of file <a class="el" href="htmlparser_8cpp_source.html">htmlparser.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>tools/parsers/<a class="el" href="htmlparser_8hpp_source.html">htmlparser.hpp</a></li>
-<li>tools/parsers/<a class="el" href="htmlparser_8cpp_source.html">htmlparser.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/<a class="el" href="htmlparser_8hpp_source.html">htmlparser.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/<a class="el" href="htmlparser_8cpp_source.html">htmlparser.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -188,7 +195,7 @@ Inheritance diagram for HTMLParser:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:48 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:19 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/genericrequester.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/genericrequester.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
   </div>
 </div>
 <div class="contents">
@@ -117,7 +117,7 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QUuid&gt;</span>
 <a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QVariant&gt;</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="twitterurls_8hpp.html" title="Declaration of the TwitterURL namespace.">twitterurls.hpp</a>&quot;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="apiurls_8hpp.html" title="Header with all the URLs to the different APIs (Twitter, TwitLonger, Pocket, ...)...">urls/apiurls.hpp</a>&quot;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="requestresult_8hpp.html" title="Header of RequestResult.">requestresult.hpp</a>&quot;</span>
 <a name="l00032"></a>00032 <span class="preprocessor">#include &quot;../twittercommunicators/twittercommunicator.hpp&quot;</span>
 <a name="l00033"></a>00033 
@@ -145,40 +145,43 @@ window.onload = initDynSections;
 <a name="l00081"></a>00081 
 <a name="l00083"></a><a class="code" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58">00083</a>                 <a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af" title="Enum indicating the type of the request.">RequestType</a> <a class="code" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58" title="Request type.">requestType</a>;
 <a name="l00084"></a>00084 
-<a name="l00086"></a><a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565">00086</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>;
+<a name="l00086"></a><a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565">00086</a>                 <a class="code" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642" title="Convinience to designate QMaps that contains GET and POST arguments.">ArgsMap</a> <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>;
 <a name="l00087"></a>00087 
 <a name="l00090"></a>00090                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a57b686d3c5ca68ff64a4e5b2b4e5bc50" title="Virtual method building getParameters.">buildGETParameters</a>();
 <a name="l00091"></a>00091 
-<a name="l00093"></a><a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2">00093</a>                 <a class="code" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4" title="Convinience to designate QMaps that contains arguments.">ArgsMap</a> <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>;
+<a name="l00093"></a><a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2">00093</a>                 <a class="code" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642" title="Convinience to designate QMaps that contains GET and POST arguments.">ArgsMap</a> <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>;
 <a name="l00094"></a>00094 
 <a name="l00097"></a>00097                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#ac725aed910a90e3b46ca4121218068e1" title="Virtual method building postParameters.">buildPOSTParameters</a>();
 <a name="l00098"></a>00098 
-<a name="l00101"></a><a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b">00101</a>                 <a class="code" href="class_twitter_communicator.html" title="Class managing communication with the Twitter API.">TwitterCommunicator</a> * <a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a>;
-<a name="l00102"></a>00102 
-<a name="l00104"></a><a class="code" href="class_generic_requester.html#a0c93c955ee1a72fbc04138b94f8940eb">00104</a>                 <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> <a class="code" href="class_generic_requester.html#a0c93c955ee1a72fbc04138b94f8940eb" title="Type of parsing error.">parsingErrorType</a>;
+<a name="l00100"></a><a class="code" href="class_generic_requester.html#a7d9cb59b7f3a76dbaf1ca9b5f588045f">00100</a>                 <a class="code" href="headersmap_8hpp.html#a5c1b82f940087bf01bc93e613b62a788" title="Convinience to designate QMaps that contains HTTP headers.">HeadersMap</a> <a class="code" href="class_generic_requester.html#a7d9cb59b7f3a76dbaf1ca9b5f588045f" title="HTTP headers that will be passed to the Communicator.">headers</a>;
+<a name="l00101"></a>00101 
+<a name="l00104"></a>00104                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a7728e99634a506fe72a7fa3631cca983">buildHTTPHeaders</a>();
 <a name="l00105"></a>00105 
-<a name="l00110"></a>00110                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a5e051448a3c3d5792c407129536b5b9d" title="Setting parsingErrorType in classes which inherits from GenericRequesters.">setParsingErrorType</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> parseErrorType);
-<a name="l00111"></a>00111 
+<a name="l00108"></a><a class="code" href="class_generic_requester.html#a7662c59ebf76a5cfa0d698082fe807a3">00108</a>                 <a class="code" href="class_twitter_communicator.html" title="Class managing communication with the Twitter API.">TwitterCommunicator</a> * <a class="code" href="class_generic_requester.html#a7662c59ebf76a5cfa0d698082fe807a3" title="Pointer on the Twitter Communicator that will purely execute the request and get...">weblink</a>;
+<a name="l00109"></a>00109 
+<a name="l00111"></a><a class="code" href="class_generic_requester.html#a0c93c955ee1a72fbc04138b94f8940eb">00111</a>                 <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> <a class="code" href="class_generic_requester.html#a0c93c955ee1a72fbc04138b94f8940eb" title="Type of parsing error.">parsingErrorType</a>;
 <a name="l00112"></a>00112 
-<a name="l00114"></a>00114         <span class="comment">// Treatment of results //</span>
-<a name="l00116"></a>00116 <span class="comment"></span>
-<a name="l00117"></a>00117         <span class="keyword">private</span>:
-<a name="l00121"></a>00121                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a296b8637e3e86cdff9e54865e43d6de2" title="Initialize the communicator. This a template method because requests with authentication...">initCommunicator</a>();
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123         <span class="keyword">public</span> slots:
-<a name="l00127"></a>00127                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a3aef8eba6b6e3a074f0c4de500b2eee2" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>();
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129         <span class="keyword">protected</span>:
-<a name="l00131"></a><a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6">00131</a>                 <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6" title="Result of the request.">requestResult</a>;
-<a name="l00132"></a>00132 
-<a name="l00141"></a>00141                 <span class="keyword">virtual</span> QVariant <a class="code" href="class_generic_requester.html#a653ea483faea1662fb9276837708a6e3" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00142"></a>00142                                                                          QVariantMap &amp; parsingErrors);
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144         signals:
-<a name="l00148"></a>00148                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>();
-<a name="l00149"></a>00149 };
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 <span class="preprocessor">#endif // GENERICREQUESTER_HPP</span>
+<a name="l00117"></a>00117                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a5e051448a3c3d5792c407129536b5b9d" title="Setting parsingErrorType in classes which inherits from GenericRequesters.">setParsingErrorType</a>(<a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> parseErrorType);
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 
+<a name="l00121"></a>00121         <span class="comment">// Treatment of results //</span>
+<a name="l00123"></a>00123 <span class="comment"></span>
+<a name="l00124"></a>00124         <span class="keyword">public</span> slots:
+<a name="l00128"></a>00128                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a3aef8eba6b6e3a074f0c4de500b2eee2" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>();
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130         <span class="keyword">protected</span>:
+<a name="l00132"></a><a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6">00132</a>                 <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> <a class="code" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6" title="Result of the request.">requestResult</a>;
+<a name="l00133"></a>00133 
+<a name="l00142"></a>00142                 <span class="keyword">virtual</span> QVariant <a class="code" href="class_generic_requester.html#aff0fd5da733ed7b47938d5569137126b" title="Method that will parse the raw results of the request.">parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00143"></a>00143                                                                          QVariantMap &amp; parsingErrors) = 0;
+<a name="l00144"></a>00144 
+<a name="l00147"></a>00147                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a3ce9fee5a39a603b702deb07a91a507d" title="Treating parsed results.">treatParsedResult</a>() = 0;
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149         signals:
+<a name="l00153"></a>00153                 <span class="keywordtype">void</span> <a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>();
+<a name="l00154"></a>00154 };
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 <span class="preprocessor">#endif // GENERICREQUESTER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -194,7 +197,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:04 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

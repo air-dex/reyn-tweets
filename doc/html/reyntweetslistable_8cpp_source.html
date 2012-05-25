@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/reyntweetslistable.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/model/reyntweetslistable.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
   </div>
 </div>
 <div class="contents">
@@ -147,9 +147,9 @@ window.onload = initDynSections;
 <a name="l00059"></a>00059 <span class="comment">// Copy of a ReynTweetsListable</span>
 <a name="l00060"></a>00060 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
 <a name="l00061"></a><a class="code" href="class_reyn_tweets_listable.html#a0fbfb6b62a8ad4b4ab7217ca0296ea38">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_listable.html#a0fbfb6b62a8ad4b4ab7217ca0296ea38" title="Copy of a ReynTweetsListable.">ReynTweetsListable&lt;S&gt;::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;</a> &amp; list) {
-<a name="l00062"></a>00062         clear();
+<a name="l00062"></a>00062     this-&gt;clear();
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064         <span class="keywordflow">for</span> (<a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;::const_iterator</a> it = list.begin();
+<a name="l00064"></a>00064     <span class="keywordflow">for</span> (<span class="keyword">typename</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;::const_iterator</a> it = list.begin();
 <a name="l00065"></a>00065                  it != list.end();
 <a name="l00066"></a>00066                  ++it)
 <a name="l00067"></a>00067         {
@@ -163,7 +163,7 @@ window.onload = initDynSections;
 <a name="l00077"></a>00077 <span class="comment">// Converting a QVariantList serialized by QJSON into a list of entities.</span>
 <a name="l00078"></a>00078 <span class="keyword">template</span> &lt;<span class="keyword">class</span> S&gt;
 <a name="l00079"></a><a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_listable.html#a336b20d8d3e342ca1390e225ab5bc1d5" title="Filling the list with the contentnt of a QVariantList.">ReynTweetsListable&lt;S&gt;::fillWithVariant</a>(QVariantList entities) {
-<a name="l00080"></a>00080         clear();
+<a name="l00080"></a>00080     this-&gt;clear();
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082         <span class="keywordflow">for</span> (QVariantList::Iterator it = entities.begin();
 <a name="l00083"></a>00083                  it != entities.end();
@@ -181,8 +181,8 @@ window.onload = initDynSections;
 <a name="l00095"></a><a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2">00095</a> QVariantList <a class="code" href="class_reyn_tweets_listable.html#a0dc71b9fa5f8a96b6b3c354a53c11df2" title="Converting the list of serializables into a QVariantList.">ReynTweetsListable&lt;S&gt;::toVariant</a>()<span class="keyword"> const </span>{
 <a name="l00096"></a>00096         QVariantList res;
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098         <span class="keywordflow">for</span> (<a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;::const_iterator</a> it = begin();
-<a name="l00099"></a>00099                  it != end();
+<a name="l00098"></a>00098     <span class="keywordflow">for</span> (<span class="keyword">typename</span> <a class="code" href="class_reyn_tweets_listable.html" title="Class for object that needs to be converted into a QVariantList.">ReynTweetsListable&lt;S&gt;::const_iterator</a> it = this-&gt;begin();
+<a name="l00099"></a>00099          it != this-&gt;end();
 <a name="l00100"></a>00100                  ++it)
 <a name="l00101"></a>00101         {
 <a name="l00102"></a>00102                 S serializable = *it;
@@ -244,7 +244,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:07 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

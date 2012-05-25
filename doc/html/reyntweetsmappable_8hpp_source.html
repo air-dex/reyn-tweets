@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/reyntweetsmappable.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/model/reyntweetsmappable.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>
   </div>
 </div>
 <div class="contents">
@@ -138,18 +138,20 @@ window.onload = initDynSections;
 <a name="l00094"></a>00094 
 <a name="l00100"></a>00100                 QStringList &amp; <a class="code" href="class_reyn_tweets_mappable.html#a25e353403517ac87fbf96606271f773b" title="Getter on transientProperties.">getTransientProperties</a>();
 <a name="l00101"></a>00101 
-<a name="l00102"></a>00102         <span class="keyword">protected</span>:
-<a name="l00111"></a><a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d">00111</a>                 QStringList <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>;
-<a name="l00112"></a>00112 
-<a name="l00116"></a>00116                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
-<a name="l00117"></a>00117 
-<a name="l00122"></a>00122                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1" title="Building transientProperties.">blacklistProperties</a>(<span class="keywordtype">bool</span> blacklistObjectName);
-<a name="l00123"></a>00123 };
-<a name="l00124"></a>00124 
-<a name="l00135"></a>00135 QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(QDataStream &amp; out,
-<a name="l00136"></a>00136                                                            <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="preprocessor">#endif // REYNTWEETSMAPPABLE_HPP</span>
+<a name="l00104"></a>00104                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a501105d8144b2916dc98b7372eacb64c" title="Resets the mappable to a default value.">reset</a>() = 0;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106         <span class="keyword">protected</span>:
+<a name="l00115"></a><a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d">00115</a>                 QStringList <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>;
+<a name="l00116"></a>00116 
+<a name="l00120"></a>00120                 <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a1b204e79e2445fb8c4ea63d0c8b474f7" title="Core method for recopying a ReynTweetsMappable.">recopie</a>(<span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
+<a name="l00121"></a>00121 
+<a name="l00126"></a>00126                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1" title="Building transientProperties.">blacklistProperties</a>(<span class="keywordtype">bool</span> blacklistObjectName);
+<a name="l00127"></a>00127 };
+<a name="l00128"></a>00128 
+<a name="l00139"></a>00139 QDataStream &amp; <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(QDataStream &amp; out,
+<a name="l00140"></a>00140                                                            <span class="keyword">const</span> <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a> &amp; mappable);
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 <span class="preprocessor">#endif // REYNTWEETSMAPPABLE_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -165,7 +167,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:07 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

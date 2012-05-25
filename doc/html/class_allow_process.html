@@ -111,8 +111,8 @@ Inheritance diagram for AllowProcess:</div>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#a02ce0ea1d4a83848c78820cf9ab625ad">retrieveUserEnded</a> (<a class="el" href="class_result_wrapper.html">ResultWrapper</a> res)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting a user after requesting it to Twitter.  <a href="#a02ce0ea1d4a83848c78820cf9ab625ad"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#ab7fdbbf1dc0b9dfb3bc7f544ac705d90">AllowProcess</a> (<a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a> &amp;conf)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#ab7fdbbf1dc0b9dfb3bc7f544ac705d90"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#a806095acdfb0a7c717138c002ecd29e5">AllowProcess</a> (<a class="el" href="class_reyn_tweets_user_configuration.html">ReynTweetsUserConfiguration</a> &amp;conf)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a806095acdfb0a7c717138c002ecd29e5"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#ada81b5aae08df1bf5fa4a4b4441b2912">endProcess</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Redefinition of <code>GenericProcess::endprocess();</code>  <a href="#ada81b5aae08df1bf5fa4a4b4441b2912"></a><br/></td></tr>
@@ -122,22 +122,22 @@ Inheritance diagram for AllowProcess:</div>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#a5512925f30a20a17d5ecf33d281d24a4">authEnded</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boolean indicating if the OAuth Process has already ended.  <a href="#a5512925f30a20a17d5ecf33d281d24a4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#ac68c78855c7d798fb984872fd9d2e5fa">configuration</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Configuration of Reyn Tweets.  <a href="#ac68c78855c7d798fb984872fd9d2e5fa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_reyn_tweets_user_configuration.html">ReynTweetsUserConfiguration</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_allow_process.html#a7bed09c29555a480c5b98d5d906b4ea6">configuration</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Configuration of Reyn Tweets.  <a href="#a7bed09c29555a480c5b98d5d906b4ea6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>OAuth Authentication Flow + updating the configuration. </p>
 
 <p>Definition at line <a class="el" href="allowprocess_8hpp_source.html#l00032">32</a> of file <a class="el" href="allowprocess_8hpp_source.html">allowprocess.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab7fdbbf1dc0b9dfb3bc7f544ac705d90"></a><!-- doxytag: member="AllowProcess::AllowProcess" ref="ab7fdbbf1dc0b9dfb3bc7f544ac705d90" args="(ReynTweetsConfiguration &amp;conf)" -->
+<a class="anchor" id="a806095acdfb0a7c717138c002ecd29e5"></a><!-- doxytag: member="AllowProcess::AllowProcess" ref="a806095acdfb0a7c717138c002ecd29e5" args="(ReynTweetsUserConfiguration &amp;conf)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AllowProcess::AllowProcess </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_reyn_tweets_user_configuration.html">ReynTweetsUserConfiguration</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>conf</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [explicit]</code></td>
@@ -226,7 +226,7 @@ Inheritance diagram for AllowProcess:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="allowprocess_8cpp_source.html#l00151">151</a> of file <a class="el" href="allowprocess_8cpp_source.html">allowprocess.cpp</a>.</p>
+<p>Definition at line <a class="el" href="allowprocess_8cpp_source.html#l00153">153</a> of file <a class="el" href="allowprocess_8cpp_source.html">allowprocess.cpp</a>.</p>
 
 </div>
 </div>
@@ -301,12 +301,12 @@ Inheritance diagram for AllowProcess:</div>
 
 </div>
 </div>
-<a class="anchor" id="ac68c78855c7d798fb984872fd9d2e5fa"></a><!-- doxytag: member="AllowProcess::configuration" ref="ac68c78855c7d798fb984872fd9d2e5fa" args="" -->
+<a class="anchor" id="a7bed09c29555a480c5b98d5d906b4ea6"></a><!-- doxytag: member="AllowProcess::configuration" ref="a7bed09c29555a480c5b98d5d906b4ea6" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_reyn_tweets_configuration.html">ReynTweetsConfiguration</a>&amp; <a class="el" href="class_allow_process.html#ac68c78855c7d798fb984872fd9d2e5fa">AllowProcess::configuration</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_reyn_tweets_user_configuration.html">ReynTweetsUserConfiguration</a>&amp; <a class="el" href="class_allow_process.html#a7bed09c29555a480c5b98d5d906b4ea6">AllowProcess::configuration</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -319,8 +319,8 @@ Inheritance diagram for AllowProcess:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>logic/processes/<a class="el" href="allowprocess_8hpp_source.html">allowprocess.hpp</a></li>
-<li>logic/processes/<a class="el" href="allowprocess_8cpp_source.html">allowprocess.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/<a class="el" href="allowprocess_8hpp_source.html">allowprocess.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/<a class="el" href="allowprocess_8cpp_source.html">allowprocess.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -337,7 +337,7 @@ Inheritance diagram for AllowProcess:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:46 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

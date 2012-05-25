@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/writetweetcontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/writetweetcontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -114,11 +114,11 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef WRITETWEETCONTROL_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define WRITETWEETCONTROL_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../../model/tweets/tweet.hpp&quot;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;../../model/tweets/tweet.hpp&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00030"></a>00030 
-<a name="l00033"></a><a class="code" href="class_write_tweet_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_write_tweet_control.html" title="Control behind a pane used for writing and posting tweets.">WriteTweetControl</a> : <span class="keyword">public</span> QObject
+<a name="l00033"></a><a class="code" href="class_write_tweet_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_write_tweet_control.html" title="Control behind a pane used for writing and posting tweets.">WriteTweetControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
 <a name="l00034"></a>00034 {
 <a name="l00035"></a>00035         Q_OBJECT
 <a name="l00036"></a>00036 
@@ -127,27 +127,24 @@ window.onload = initDynSections;
 <a name="l00041"></a>00041 
 <a name="l00044"></a>00044                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#ae35565d58a469c7e80857f077788de4c" title="Declaring TweetControl to the QML system.">declareQML</a>();
 <a name="l00045"></a>00045 
-<a name="l00051"></a>00051                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#aaebb3f28d3f47bdb8ef3a1d23e7eb2c4" title="Posting a tweet without medias.">postTweet</a>(QString tweet,
-<a name="l00052"></a>00052                                                                    qlonglong inReplyToTweetID = -1);
+<a name="l00051"></a>00051                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#aa8648f8f989f65c11f2dbb1342ced661" title="Posting a tweet without medias.">postTweet</a>(QString tweet,
+<a name="l00052"></a>00052                                                                    QString inReplyToTweetID = <span class="stringliteral">&quot;-1&quot;</span>);
 <a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055         signals:
-<a name="l00058"></a>00058                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#a6449f80ef3e8dc203da4c7ad8e3e7f8b" title="Signal sent if the tweet was posted successfully.">tweetPosted</a>();
-<a name="l00059"></a>00059 
-<a name="l00067"></a>00067                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#abf3775ae546fca90c3ed998dba3ac96d" title="Signal sent after posting the tweet.">postEnded</a>(<span class="keywordtype">bool</span> launchOK,
-<a name="l00068"></a>00068                                            QString errorMsg,
-<a name="l00069"></a>00069                                            <span class="keywordtype">bool</span> isFatal);
-<a name="l00070"></a>00070 
-<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#ac992bded66fc6d6c39437e0cf0a968da" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075         <span class="keyword">protected</span> slots:
-<a name="l00079"></a>00079                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#a5091b827fdc02bdb1f71568be23bb84d" title="Slot executed after posting a tweet.">postTweetEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081         <span class="keyword">protected</span>:
-<a name="l00083"></a><a class="code" href="class_write_tweet_control.html#ae28b61cd0aa6522a6924f99672595233">00083</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_write_tweet_control.html#ae28b61cd0aa6522a6924f99672595233" title="Heart of Reyn Tweets.">reyn</a>;
-<a name="l00084"></a>00084 };
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="preprocessor">#endif // WRITETWEETCONTROL_HPP</span>
+<a name="l00061"></a>00061                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#a3802bcb708bc9e3fb8d2c79a3230ba48" title="Posting a long tweet using TwitLonger.">postViaTwitLonger</a>(QString tweet,
+<a name="l00062"></a>00062                                                                                    QString inReplyToTweetID = <span class="stringliteral">&quot;-1&quot;</span>,
+<a name="l00063"></a>00063                                                                                    QString inReplyToUser = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066         signals:
+<a name="l00070"></a>00070                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#a8b9cdd6a4d1da6d791f79302e32b0912" title="Signal sent if the tweet was posted successfully.">tweetPosted</a>(QVariant newTweetVariant);
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072         <span class="keyword">protected</span> slots:
+<a name="l00076"></a>00076                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#a5091b827fdc02bdb1f71568be23bb84d" title="Slot executed after posting a tweet.">postTweetEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00077"></a>00077 
+<a name="l00081"></a>00081                 <span class="keywordtype">void</span> <a class="code" href="class_write_tweet_control.html#ad0a61cdad1a66684612274406882f6fc" title="Slot executed after postViaTwitLonger.">postViaTwitLongerEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00082"></a>00082 };
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 <span class="preprocessor">#endif // WRITETWEETCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -163,7 +160,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

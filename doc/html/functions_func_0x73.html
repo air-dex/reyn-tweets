@@ -129,7 +129,7 @@ window.onload = initDynSections;
 
 <h3><a class="anchor" id="index_s">- s -</a></h3><ul>
 <li>save()
-: <a class="el" href="class_reyn_tweets_configuration.html#a9e0cce528bcb7e7699e86db86512d7c9">ReynTweetsConfiguration</a>
+: <a class="el" href="class_reyn_tweets_user_configuration.html#a28a370b414e4f12a9da5b162767aab62">ReynTweetsUserConfiguration</a>
 </li>
 <li>saveConfiguration()
 : <a class="el" href="class_allow_process.html#a888ab486c526c717048b758079c7c50e">AllowProcess</a>
@@ -144,9 +144,15 @@ window.onload = initDynSections;
 <li>SearchRequester()
 : <a class="el" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c">SearchRequester</a>
 </li>
+<li>searchRetweetIDEnded()
+: <a class="el" href="class_delete_tweet_process.html#a439b389d22e3e689c389174570425f56">DeleteTweetProcess</a>
+</li>
+<li>SendIDToTwitLongerRequester()
+: <a class="el" href="class_send_i_d_to_twit_longer_requester.html#a3780aedb904d2bb0f78a74e09ccd9aa1">SendIDToTwitLongerRequester</a>
+</li>
 <li>sendResult()
-: <a class="el" href="class_reyn_core.html#af8e5febafb2925af4ca4d68e4e8107fd">ReynCore</a>
-, <a class="el" href="class_reyn_twitter_calls.html#ac16c647f67abd118fc5a39b98ed60371">ReynTwitterCalls</a>
+: <a class="el" href="class_generic_calls.html#a9c4ae671e91238971dafe8088152f193">GenericCalls</a>
+, <a class="el" href="class_reyn_core.html#af8e5febafb2925af4ca4d68e4e8107fd">ReynCore</a>
 </li>
 <li>sensibleChanged()
 : <a class="el" href="class_tweet.html#a811df1cc02be932edbffae982ed17327">Tweet</a>
@@ -154,11 +160,24 @@ window.onload = initDynSections;
 <li>setAccessToken()
 : <a class="el" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08">UserAccount</a>
 </li>
+<li>setAPIKey()
+: <a class="el" href="class_twit_longer_manager.html#a7d05370454eca9b1440f1a8ff9bfbd4b">TwitLongerManager</a>
+</li>
+<li>setApplicationName()
+: <a class="el" href="class_twit_longer_manager.html#a2e9995b42a4c35b0f06e5752b337529c">TwitLongerManager</a>
+</li>
+<li>setAppTokens()
+: <a class="el" href="class_twit_longer_calls.html#a40f72716fabf92e0b67f232d7b85770d">TwitLongerCalls</a>
+, <a class="el" href="class_reyn_twitter_calls.html#ac427e3c8c1ba162908f2ae5de287cee3">ReynTwitterCalls</a>
+</li>
 <li>setAuthenticityToken()
 : <a class="el" href="class_o_auth_manager.html#a4ce9bd4c4561d87d75c255a960ed5d0b">OAuthManager</a>
 </li>
 <li>setAuthor()
 : <a class="el" href="class_tweet.html#ab6fa48a88177bd77e7d283fbeba67dcc">Tweet</a>
+</li>
+<li>setCallbackUrl()
+: <a class="el" href="class_o_auth_manager.html#af6dda468b4ded2faa1ff1cc8aa63f53e">OAuthManager</a>
 </li>
 <li>setConsumerKey()
 : <a class="el" href="class_o_auth_manager.html#af90d4f82fe2fe48447b689ed4f8e12e2">OAuthManager</a>
@@ -205,6 +224,9 @@ window.onload = initDynSections;
 </li>
 <li>setFollowersCount()
 : <a class="el" href="class_user_infos.html#ae6be9d738adbf0dd8a1ed5f640a262b5">UserInfos</a>
+</li>
+<li>setFollowing()
+: <a class="el" href="class_user_infos.html#a61607cd998dc2dec9c0aedc8111d6e1e">UserInfos</a>
 </li>
 <li>setFollowRequestSent()
 : <a class="el" href="class_user_infos.html#aa28452c7a75d590707361963af6d13d5">UserInfos</a>
@@ -288,9 +310,6 @@ window.onload = initDynSections;
 : <a class="el" href="class_user_mention.html#a4b9238679ed45f4fe417c3130b035cc2">UserMention</a>
 , <a class="el" href="class_user_infos.html#aeec055a80cdec484fad33b06eca6052d">UserInfos</a>
 </li>
-<li>setNewTokens()
-: <a class="el" href="class_reyn_twitter_calls.html#a471cb15774ef12fc78823673461ffbfe">ReynTwitterCalls</a>
-</li>
 <li>setNotifications()
 : <a class="el" href="class_user_infos.html#ab1ca9371ff22949b184f3ec1c8a20baf">UserInfos</a>
 </li>
@@ -331,7 +350,7 @@ window.onload = initDynSections;
 : <a class="el" href="class_user_infos.html#a6522a2c9a10960d6a448b9701e741c33">UserInfos</a>
 </li>
 <li>setProfileSidebarFillColor()
-: <a class="el" href="class_user_infos.html#a7aa0f79024648f5aa0190fb619458d0c">UserInfos</a>
+: <a class="el" href="class_user_infos.html#a53d047a6e232c217c4b960b683d991f8">UserInfos</a>
 </li>
 <li>setProfileTextColor()
 : <a class="el" href="class_user_infos.html#a712da7423917da40af1926957aa78581">UserInfos</a>
@@ -352,7 +371,7 @@ window.onload = initDynSections;
 : <a class="el" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd">Tweet</a>
 </li>
 <li>setRetweetedStatus()
-: <a class="el" href="class_tweet.html#af0e4a79866beb71d96a3cb9da8350e7f">Tweet</a>
+: <a class="el" href="class_tweet.html#a57dd8c03439e9709f2721fb1e1aaf2bc">Tweet</a>
 </li>
 <li>setScreenName()
 : <a class="el" href="class_user_mention.html#a75620b4dc09388edda21d01c25a1ba3e">UserMention</a>
@@ -368,7 +387,7 @@ window.onload = initDynSections;
 : <a class="el" href="class_media.html#af959b5c320ee7f52712f56782dc057f1">Media</a>
 </li>
 <li>setSmall()
-: <a class="el" href="class_media_sizes.html#a91631b301b94f6a2c1e3a93e52c236b8">MediaSizes</a>
+: <a class="el" href="class_media_sizes.html#aa9d31fcfd23241388845607e66c6836e">MediaSizes</a>
 </li>
 <li>setSource()
 : <a class="el" href="class_tweet.html#a6aefa854992bc3bec9d6e0c612ab8d66">Tweet</a>
@@ -380,8 +399,8 @@ window.onload = initDynSections;
 : <a class="el" href="class_user_infos.html#ad648de5413941696e82fbbebddbe4e2c">UserInfos</a>
 </li>
 <li>setText()
-: <a class="el" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">Hashtag</a>
-, <a class="el" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e">Tweet</a>
+: <a class="el" href="class_tweet.html#a4ccb712b53dba4766a9373f657c49e8e">Tweet</a>
+, <a class="el" href="class_hashtag.html#a3e095cc558f6936fa244a3057edafa54">Hashtag</a>
 </li>
 <li>setThumb()
 : <a class="el" href="class_media_sizes.html#ac6ff8cf10b233cfa8c9ab70511cd6004">MediaSizes</a>
@@ -415,14 +434,19 @@ window.onload = initDynSections;
 : <a class="el" href="class_tweet_entities.html#a84ceba883bf65c1b5975cfd833fc74aa">TweetEntities</a>
 </li>
 <li>setUser()
-: <a class="el" href="class_tweet.html#a706f2d7b449f3ed2e3f4e2a1390cf487">Tweet</a>
-, <a class="el" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4">UserAccount</a>
+: <a class="el" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4">UserAccount</a>
+, <a class="el" href="class_tweet.html#a706f2d7b449f3ed2e3f4e2a1390cf487">Tweet</a>
+, <a class="el" href="class_user_account.html#a6c2a5eda7d4d3606eb9061538583646b">UserAccount</a>
+, <a class="el" href="class_tweet.html#a03f3cfd0c6690f671f253db2852e3a8c">Tweet</a>
 </li>
 <li>setUserAccount()
-: <a class="el" href="class_reyn_tweets_configuration.html#a642fcc01c3f1eccfccfd71a14be99339">ReynTweetsConfiguration</a>
+: <a class="el" href="class_reyn_tweets_user_configuration.html#a5df1682cd5f9f4529828a80381d90ca2">ReynTweetsUserConfiguration</a>
 </li>
 <li>setUserMentions()
-: <a class="el" href="class_tweet_entities.html#a9dd524289a4d72e8a1995900c324629f">TweetEntities</a>
+: <a class="el" href="class_tweet_entities.html#a05003d27bbe09820d805d35629b08497">TweetEntities</a>
+</li>
+<li>setUserTokens()
+: <a class="el" href="class_reyn_twitter_calls.html#a70155725656a303bd2cb0ace1344a2bb">ReynTwitterCalls</a>
 </li>
 <li>setUTCoffset()
 : <a class="el" href="class_user_infos.html#a6a21e17b2ec8abc36e76b200a7e72ed8">UserInfos</a>
@@ -438,6 +462,9 @@ window.onload = initDynSections;
 </li>
 <li>showExpanded()
 : <a class="el" href="class_qml_application_viewer.html#ad899dc23f1a2c01276ec428db92215b8">QmlApplicationViewer</a>
+</li>
+<li>showInfoMessage()
+: <a class="el" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856">GenericControl</a>
 </li>
 <li>showLoginPopup()
 : <a class="el" href="class_allow_control.html#ab94fe22e8d23fe7833e5a285978ebecb">AllowControl</a>
@@ -467,10 +494,12 @@ window.onload = initDynSections;
 : <a class="el" href="class_tweet.html#a5d57538368e183d6aa92966d2cc42b7e">Tweet</a>
 </li>
 <li>startProcess()
-: <a class="el" href="class_launching_process.html#ade5368b609b3fbd4f39c8dfac80305c0">LaunchingProcess</a>
+: <a class="el" href="class_single_twitter_call_process.html#aa4f96c3bd094ba7acb647f482e728ebc">SingleTwitterCallProcess</a>
+, <a class="el" href="class_delete_tweet_process.html#a407b344e27a0d5f1ba7797950541efdf">DeleteTweetProcess</a>
 , <a class="el" href="class_o_auth_process.html#aa397aa0cbaa217acd98e9696f1b28674">OAuthProcess</a>
-, <a class="el" href="class_single_twitter_call_process.html#aa4f96c3bd094ba7acb647f482e728ebc">SingleTwitterCallProcess</a>
 , <a class="el" href="class_generic_process.html#ac113e2d39b237fa898493dff25b86cb7">GenericProcess</a>
+, <a class="el" href="class_launching_process.html#ade5368b609b3fbd4f39c8dfac80305c0">LaunchingProcess</a>
+, <a class="el" href="class_post_via_twit_longer_process.html#ad0b6daaaac823dac1cc50801b647589d">PostViaTwitLongerProcess</a>
 </li>
 <li>statusesCountChanged()
 : <a class="el" href="class_user_infos.html#a3733f1be579eeb72206cfa23556624db">UserInfos</a>
@@ -494,7 +523,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:46 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

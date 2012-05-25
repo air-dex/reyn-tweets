@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/searches/searchrequester.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/searches/searchrequester.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_99507c8f916f2c3f3a67e8c862d84d5e.html">searches</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_99507c8f916f2c3f3a67e8c862d84d5e.html">searches</a>
   </div>
 </div>
 <div class="contents">
@@ -115,7 +115,7 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026 <span class="comment">// Constructor</span>
 <a name="l00027"></a><a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c">00027</a> <a class="code" href="class_search_requester.html#a6043cc21212f95f22c7fd489fbc60a1c" title="Constructor.">SearchRequester::SearchRequester</a>(QString q) :
-<a name="l00028"></a>00028         <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">SEARCH_URL</a>),
+<a name="l00028"></a>00028         <a class="code" href="class_twitter_requester.html" title="Base class for requesters that use the Twitter API.">TwitterRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa12a8dcf59c16b5aadfda3a08ba67d529" title="GET requests.">GET</a>, TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b" title="URL for search requests.">SEARCH_URL</a>),
 <a name="l00029"></a>00029         query(q)
 <a name="l00030"></a>00030 {}
 <a name="l00031"></a>00031 
@@ -138,7 +138,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:05 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

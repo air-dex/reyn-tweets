@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/launchingcontrol.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/launchingcontrol.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -119,75 +119,87 @@ window.onload = initDynSections;
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030 <span class="comment">// Constructor</span>
 <a name="l00031"></a><a class="code" href="class_launching_control.html#ad0aff0f2ea9098e81fc3f8e6b7731d2a">00031</a> <a class="code" href="class_launching_control.html#ad0aff0f2ea9098e81fc3f8e6b7731d2a" title="Constructor.">LaunchingControl::LaunchingControl</a>() :
-<a name="l00032"></a>00032         QObject(),
-<a name="l00033"></a>00033         reyn(this)
-<a name="l00034"></a>00034 {}
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="comment">// Declaring to the QML components</span>
-<a name="l00037"></a><a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120">00037</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120" title="Declaring to the QML system.">LaunchingControl::declareQML</a>() {
-<a name="l00038"></a>00038         qmlRegisterType&lt;LaunchingControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>,
-<a name="l00039"></a>00039                                                                           0, 1,
-<a name="l00040"></a>00040                                                                           <span class="stringliteral">&quot;LaunchingControl&quot;</span>);
-<a name="l00041"></a>00041 }
+<a name="l00032"></a>00032         <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>()
+<a name="l00033"></a>00033 {}
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment">// Declaring to the QML components</span>
+<a name="l00036"></a><a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120">00036</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120" title="Declaring to the QML system.">LaunchingControl::declareQML</a>() {
+<a name="l00037"></a>00037         qmlRegisterType&lt;LaunchingControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>,
+<a name="l00038"></a>00038                                                                           0, 1,
+<a name="l00039"></a>00039                                                                           <span class="stringliteral">&quot;LaunchingControl&quot;</span>);
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 
-<a name="l00045"></a>00045 <span class="comment">// Execution of the process //</span>
-<a name="l00047"></a>00047 <span class="comment"></span>
-<a name="l00049"></a>00049 <span class="comment">// Step 1 : starting ReynTweets by a launching process //</span>
-<a name="l00051"></a>00051 <span class="comment"></span>
-<a name="l00052"></a><a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986">00052</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986" title="Lauching Reyn Tweets.">LaunchingControl::launchReynTweets</a>() {
-<a name="l00053"></a>00053         <span class="comment">// Connection for the end of the launch process</span>
-<a name="l00054"></a>00054         connect(&amp;<a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00055"></a>00055                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057         <a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>.<a class="code" href="class_reyn_core.html#a139949eb30e527576d7bc475c004f0f3" title="Launching the app.">launchReynTweets</a>();
-<a name="l00058"></a>00058 }
+<a name="l00044"></a>00044 <span class="comment">// Execution of the process //</span>
+<a name="l00046"></a>00046 <span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">// Step 1 : starting ReynTweets by a launching process //</span>
+<a name="l00050"></a>00050 <span class="comment"></span>
+<a name="l00051"></a><a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986">00051</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986" title="Lauching Reyn Tweets.">LaunchingControl::launchReynTweets</a>() {
+<a name="l00052"></a>00052         <span class="keywordflow">if</span> (<a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a>) {
+<a name="l00053"></a>00053                 <span class="keywordflow">return</span>;
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="comment">// Connection for the end of the launch process</span>
+<a name="l00057"></a>00057         connect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00058"></a>00058                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment">// After launching</span>
-<a name="l00061"></a><a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f">00061</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">LaunchingControl::launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00062"></a>00062         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00065"></a>00065         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
-<a name="l00066"></a>00066                 <span class="keywordflow">return</span>;
-<a name="l00067"></a>00067         }
+<a name="l00060"></a>00060         <span class="comment">// Message not necessary</span>
+<a name="l00061"></a>00061         <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">true</span>;
+<a name="l00062"></a>00062         <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#a139949eb30e527576d7bc475c004f0f3" title="Launching the app.">launchReynTweets</a>();
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="comment">// After launching</span>
+<a name="l00066"></a><a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f">00066</a> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">LaunchingControl::launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00067"></a>00067         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069         <span class="comment">// Disconnect</span>
-<a name="l00070"></a>00070         disconnect(&amp;<a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00071"></a>00071                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00069"></a>00069         <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00070"></a>00070         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00071"></a>00071                 <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">false</span>;
+<a name="l00072"></a>00072                 <span class="keywordflow">return</span>;
+<a name="l00073"></a>00073         }
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075         <span class="keywordflow">switch</span> (issue) {
-<a name="l00076"></a>00076                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a" title="LaunchingProcess ended successfully.">LAUNCH_SUCCESSFUL</a>:
-<a name="l00077"></a>00077                         <span class="comment">// Process successful</span>
-<a name="l00078"></a>00078                         emit <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keyword">true</span>, QString(), <span class="keyword">false</span>);
-<a name="l00079"></a>00079                         <span class="keywordflow">break</span>;
+<a name="l00075"></a>00075         <span class="comment">// Disconnect</span>
+<a name="l00076"></a>00076         disconnect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00077"></a>00077                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
 <a name="l00080"></a>00080 
-<a name="l00081"></a>00081                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad" title="An authentication to Twitter is required.">AUTHENTICATION_REQUIRED</a>:
-<a name="l00082"></a>00082                         <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
-<a name="l00083"></a>00083                         emit <a class="code" href="class_launching_control.html#ae0771cab52fe1a33cee95a2a2d920a6b" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
-<a name="l00084"></a>00084                         <span class="keywordflow">break</span>;
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086                 <span class="comment">// Problems that can be solved trying later</span>
-<a name="l00087"></a>00087                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
-<a name="l00088"></a>00088                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
-<a name="l00089"></a>00089                         emit <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
-<a name="l00090"></a>00090                         <span class="keywordflow">break</span>;
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092                 <span class="comment">// Problems with configuration file</span>
-<a name="l00093"></a>00093                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>:
-<a name="l00094"></a>00094                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>:
-<a name="l00095"></a>00095                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>:
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097                 <span class="comment">// Unknown ends</span>
-<a name="l00098"></a>00098                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100                 <span class="keywordflow">default</span>:
-<a name="l00101"></a>00101                         emit <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
-<a name="l00102"></a>00102                         <span class="keywordflow">break</span>;
-<a name="l00103"></a>00103         }
-<a name="l00104"></a>00104 }
+<a name="l00081"></a>00081         <span class="keywordflow">switch</span> (issue) {
+<a name="l00082"></a>00082                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a2488d65779594ac26a8792db423fee5a" title="LaunchingProcess ended successfully.">LAUNCH_SUCCESSFUL</a>:
+<a name="l00083"></a>00083                         <span class="comment">// Process successful</span>
+<a name="l00084"></a>00084                         emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">true</span>,
+<a name="l00085"></a>00085                                                          LaunchingControl::trUtf8(<span class="stringliteral">&quot;Reyn Tweets launched&quot;</span>),
+<a name="l00086"></a>00086                                                          <span class="keyword">false</span>);
+<a name="l00087"></a>00087                         <span class="keywordflow">break</span>;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1323718fb7d3cd25d2a3ffe0f20627ad" title="An authentication to Twitter is required.">AUTHENTICATION_REQUIRED</a>:
+<a name="l00090"></a>00090                         <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00091"></a>00091                         emit <a class="code" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00092"></a>00092                         <span class="keywordflow">break</span>;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094                 <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00095"></a>00095                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aef4e18cf5dacaf9d0cb90c72663a1b60" title="The request was invalid.">BAD_REQUEST</a>:
+<a name="l00096"></a>00096                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a718e7809977a36e90dce5ad47e1008ea" title="Twitter did not treat the request.">REFUSED_REQUEST</a>:
+<a name="l00097"></a>00097                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00098"></a>00098                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems.">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00099"></a>00099                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
+<a name="l00100"></a>00100                         emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00101"></a>00101                         <span class="keywordflow">break</span>;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103                 <span class="comment">// Problems with configuration file</span>
+<a name="l00104"></a>00104                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ab07e72a7497968dbcf98feeed8338cb8" title="The configuration file does not exist.">CONFIGURATION_FILE_UNKNOWN</a>:
+<a name="l00105"></a>00105                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a1f620f2e490d3390b0060b7f3e265c6b" title="The configuration file cannot be opened.">CONFIGURATION_FILE_NOT_OPEN</a>:
+<a name="l00106"></a>00106                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aeebc5651e301ce47859a65f857b8709d" title="The configuration cannot be launched.">LOADING_CONFIGURATION_ERROR</a>:
+<a name="l00107"></a>00107                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa503870342c20bbb9415ba6e1dee4f43" title="The launching was successful.">EXPECTED_KEY</a>:
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109                 <span class="comment">// Unknown ends</span>
+<a name="l00110"></a>00110                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112                 <span class="keywordflow">default</span>:
+<a name="l00113"></a>00113                         emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00114"></a>00114                         <span class="keywordflow">break</span>;
+<a name="l00115"></a>00115         }
+<a name="l00116"></a>00116 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -203,7 +215,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/timelinecontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/timelinecontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -114,11 +114,11 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef TIMELINECONTROL_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define TIMELINECONTROL_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../../model/timelines/timeline.hpp&quot;</span>
 <a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
 <a name="l00030"></a>00030 
-<a name="l00033"></a><a class="code" href="class_timeline_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_timeline_control.html" title="Control behind a TimelinePane.">TimelineControl</a> : <span class="keyword">public</span> QObject
+<a name="l00033"></a><a class="code" href="class_timeline_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_timeline_control.html" title="Control behind a TimelinePane.">TimelineControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
 <a name="l00034"></a>00034 {
 <a name="l00035"></a>00035         Q_OBJECT
 <a name="l00036"></a>00036 
@@ -129,36 +129,50 @@ window.onload = initDynSections;
 <a name="l00045"></a>00045 
 <a name="l00048"></a>00048                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a3c5106d7ea7b3ed34d8376d979b4bcba" title="Loading the home timeline.">loadHomeTimeline</a>();
 <a name="l00049"></a>00049 
-<a name="l00058"></a>00058                 Q_INVOKABLE <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_timeline_control.html#a21afc91443a1d7bd3dd021279529799e" title="Getting a pointer on a tweet in the timeline.">getTweet</a>(<span class="keywordtype">int</span> tweetIndex);
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061         signals:
-<a name="l00064"></a>00064                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#ab4faa402905eacf9ae83a9ff8e2f1bd7" title="Signal sent when the timeline property changes.">timelineChanged</a>();
-<a name="l00065"></a>00065 
-<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a75d88919e6c568a505823f94744ddefd" title="Signal sent after launching.">loadEnded</a>(<span class="keywordtype">bool</span> launchOK,
-<a name="l00074"></a>00074                                            QString errorMsg,
-<a name="l00075"></a>00075                                            <span class="keywordtype">bool</span> isFatal);
-<a name="l00076"></a>00076 
-<a name="l00079"></a>00079                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#aadc3f8d5581287446b581341ff136abe" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00052"></a>00052                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a3e4b21983988acfc5fa559cbbc868393" title="Refreshing the home timeline.">refreshHomeTimeline</a>();
+<a name="l00053"></a>00053 
+<a name="l00057"></a>00057                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a3865c6690dae300ac56db1b5edc56094" title="Refreshing the home timeline after writing a tweet.">refreshHomeTimelineAfterWrite</a>(QVariant newTweetVariant);
+<a name="l00058"></a>00058 
+<a name="l00061"></a>00061                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#ac66b552c30895a4340be5caaaf6c252c" title="Getting more old tweets the home timeline.">moreOldHomeTimeline</a>();
+<a name="l00062"></a>00062 
+<a name="l00071"></a>00071                 Q_INVOKABLE <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_timeline_control.html#a21afc91443a1d7bd3dd021279529799e" title="Getting a pointer on a tweet in the timeline.">getTweet</a>(<span class="keywordtype">int</span> tweetIndex);
+<a name="l00072"></a>00072 
+<a name="l00079"></a>00079                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a1866dd2827fa0c10d4e92ab9115a3038" title="Replacing a tweet in a timeline.">replaceTweet</a>(QVariant updatedTweet, <span class="keywordtype">int</span> tweetIndex);
 <a name="l00080"></a>00080 
-<a name="l00081"></a>00081         <span class="keyword">protected</span> slots:
-<a name="l00085"></a>00085                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087         <span class="keyword">protected</span>:
-<a name="l00089"></a><a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f">00089</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f" title="Heart of Reyn Tweets.">reyn</a>;
-<a name="l00090"></a>00090 
-<a name="l00092"></a><a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1">00092</a>                 <a class="code" href="class_timeline.html" title="Definition of a Twitter timeline : a list of tweets.">Timeline</a> <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>;
+<a name="l00086"></a>00086                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a9510e7faab10058017796b93d8a79238" title="Deleting a tweet in a timeline.">deleteTweet</a>(<span class="keywordtype">int</span> tweetIndex);
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089         signals:
+<a name="l00092"></a>00092                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#ab4faa402905eacf9ae83a9ff8e2f1bd7" title="Signal sent when the timeline property changes.">timelineChanged</a>();
 <a name="l00093"></a>00093 
-<a name="l00095"></a>00095                 Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_timeline_control.html#ae03eafe461f1b91c5af61c9e4c1f5f1f" title="Length of the timeline. Used by QML for the list model.">tl_length</a>
-<a name="l00096"></a>00096                                    READ <a class="code" href="class_timeline_control.html#aaf81efdc9a9b8a42caf604392db069a1" title="Reading the property tl_length.">getTimelineLength</a>
-<a name="l00097"></a><a class="code" href="class_timeline_control.html#ae03eafe461f1b91c5af61c9e4c1f5f1f">00097</a>                                    NOTIFY timelineChanged)
+<a name="l00097"></a>00097                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#ada5c05e161702adae184480cfff0db9d" title="Signal sent to indicate how many more tweets were loaded.">loadedMoreTweets</a>(<span class="keywordtype">int</span> tweetsLoaded);
 <a name="l00098"></a>00098 
-<a name="l00099"></a>00099                 
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101                 <span class="keywordtype">int</span> <a class="code" href="class_timeline_control.html#aaf81efdc9a9b8a42caf604392db069a1" title="Reading the property tl_length.">getTimelineLength</a>();
-<a name="l00102"></a>00102 };
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="preprocessor">#endif // TIMELINECONTROL_HPP</span>
+<a name="l00099"></a>00099         <span class="keyword">protected</span> slots:
+<a name="l00103"></a>00103                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a23f887ca2a93668112dd12e5353132b7" title="Slot executed after loading a timeline.">loadTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00104"></a>00104 
+<a name="l00108"></a>00108                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a0acb3316bb360301fcdd1773fe407f09">refreshTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00109"></a>00109 
+<a name="l00113"></a>00113                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#ae5b65e294c1da227180280d03840a481" title="Slot executed after refreshHomeTimelineAfterWrite.">refreshTimelineAfterWriteEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00114"></a>00114 
+<a name="l00118"></a>00118                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a8120bc7c9514fe20b82f9be37ba6a1ce">moreOldTimelineEnded</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         <span class="keyword">protected</span>:
+<a name="l00122"></a><a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1">00122</a>                 <a class="code" href="class_timeline.html" title="Definition of a Twitter timeline : a list of tweets.">Timeline</a> <a class="code" href="class_timeline_control.html#a73452e9c68075c6fc2e13cbf68cacba1" title="The timeline.">timeline</a>;
+<a name="l00123"></a>00123 
+<a name="l00125"></a>00125                 Q_PROPERTY(<span class="keywordtype">int</span> <a class="code" href="class_timeline_control.html#ae03eafe461f1b91c5af61c9e4c1f5f1f" title="Length of the timeline. Used by QML for the list model.">tl_length</a>
+<a name="l00126"></a>00126                                    READ <a class="code" href="class_timeline_control.html#aaf81efdc9a9b8a42caf604392db069a1" title="Reading the property tl_length.">getTimelineLength</a>
+<a name="l00127"></a><a class="code" href="class_timeline_control.html#ae03eafe461f1b91c5af61c9e4c1f5f1f">00127</a>                                    NOTIFY timelineChanged)
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129                 
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131                 <span class="keywordtype">int</span> <a class="code" href="class_timeline_control.html#aaf81efdc9a9b8a42caf604392db069a1" title="Reading the property tl_length.">getTimelineLength</a>();
+<a name="l00132"></a>00132 
+<a name="l00134"></a><a class="code" href="class_timeline_control.html#a9fcb340d2ba750ab1ca7e807928430d5">00134</a>                 QVariant <a class="code" href="class_timeline_control.html#a9fcb340d2ba750ab1ca7e807928430d5" title="New tweet saved while updating after reading.">backupedNewTweet</a>;
+<a name="l00135"></a>00135 
+<a name="l00143"></a>00143                 <span class="keywordtype">void</span> <a class="code" href="class_timeline_control.html#a57d6f6e1e14b533994db673fb2fdbb2e" title="Insert a tweet in a timeline.">insertInTimeline</a>(<a class="code" href="class_timeline.html" title="Definition of a Twitter timeline : a list of tweets.">Timeline</a> &amp; tl, <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> newTweet);
+<a name="l00144"></a>00144 };
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 <span class="preprocessor">#endif // TIMELINECONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -174,7 +188,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: tools/parsers/genericparser.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/genericparser.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
   </div>
 </div>
 <div class="contents">
@@ -123,13 +123,14 @@ window.onload = initDynSections;
 <a name="l00036"></a><a class="code" href="class_generic_parser.html">00036</a> <span class="keyword">class </span><a class="code" href="class_generic_parser.html" title="Base class for all the parsers.">GenericParser</a>
 <a name="l00037"></a>00037 {
 <a name="l00038"></a>00038         <span class="keyword">public</span>:
-<a name="l00048"></a>00048                 <span class="keyword">virtual</span> T <a class="code" href="class_generic_parser.html#aa8af753bb227f28eb22f4b4da226a689" title="Method for parsing results.">parse</a>(QByteArray data,
-<a name="l00049"></a>00049                                                 <span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00050"></a>00050                                                 QString &amp; parseError,
-<a name="l00051"></a>00051                                                 <span class="keywordtype">int</span> * lineError = 0) = 0;
-<a name="l00052"></a>00052 };
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="preprocessor">#endif // GENERICPARSER_HPP</span>
+<a name="l00050"></a>00050                 <span class="keyword">virtual</span> T <a class="code" href="class_generic_parser.html#a9d3dc4115101858214fffbcf0d275c73" title="Method for parsing results.">parse</a>(QByteArray data,
+<a name="l00051"></a>00051                                                 <span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00052"></a>00052                                                 QString &amp; parseError,
+<a name="l00053"></a>00053                                                 <span class="keywordtype">int</span> * lineError = 0,
+<a name="l00054"></a>00054                                                 <span class="keywordtype">int</span> * columnError = 0) = 0;
+<a name="l00055"></a>00055 };
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="preprocessor">#endif // GENERICPARSER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -145,7 +146,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:08 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/processes/singletwittercallprocess.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/singletwittercallprocess.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
   </div>
 </div>
 <div class="contents">
@@ -129,97 +129,102 @@ window.onload = initDynSections;
 <a name="l00039"></a><a class="code" href="class_single_twitter_call_process.html#a9642d1f73033326a3961d47e43909ff9">00039</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a9642d1f73033326a3961d47e43909ff9" title="Slot executed after the treatment.">SingleTwitterCallProcess::callEnded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a> res) {
 <a name="l00040"></a>00040         <span class="comment">// Ensures that res is for the process</span>
 <a name="l00041"></a>00041         <a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> result = res.<a class="code" href="class_result_wrapper.html#af2da3459b5c11224475b2e4ac62247e2" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
-<a name="l00042"></a>00042         <span class="keywordflow">if</span> (result.<a class="code" href="struct_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>) {
-<a name="l00043"></a>00043                 <span class="keywordflow">return</span>;
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046         disconnect(&amp;<a class="code" href="class_single_twitter_call_process.html#a4c92a237c6fb0439054b397839ed725e" title="Entity calling Twitter.">twitter</a>, SIGNAL(sendResult(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a>)),
-<a name="l00047"></a>00047                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_single_twitter_call_process.html#a9642d1f73033326a3961d47e43909ff9" title="Slot executed after the treatment.">callEnded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a>)));
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049         <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType = result.<a class="code" href="struct_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a>;
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043         <span class="keywordflow">if</span> (result.<a class="code" href="struct_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a> == <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441" title="Code for an invalid request result.">INVALID_RESULT</a>) {
+<a name="l00044"></a>00044                 <a class="code" href="namespace_process_utils.html#af6d6fcd83735c9320a971e91b23b453a" title="Building process results for unsuccessful ends.">ProcessUtils::buildProcessResult</a>(<span class="keyword">false</span>,
+<a name="l00045"></a>00045                                                                                  <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a>,
+<a name="l00046"></a>00046                                                                                  SingleTwitterCallProcess::trUtf8(<span class="stringliteral">&quot;Dead end&quot;</span>),
+<a name="l00047"></a>00047                                                                                  <span class="keyword">false</span>);
+<a name="l00048"></a>00048                 <span class="keywordflow">return</span> <a class="code" href="class_generic_process.html#a8a13178a63d21ad28f2a5704e03d73ce" title="Ending the process.">endProcess</a>();
+<a name="l00049"></a>00049         }
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <span class="comment">// For a potenitial anticipated end</span>
-<a name="l00052"></a>00052         QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00053"></a>00053         <span class="keywordtype">bool</span> isFatal = <span class="keyword">false</span>;
-<a name="l00054"></a>00054         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue;
+<a name="l00051"></a>00051         disconnect(&amp;<a class="code" href="class_single_twitter_call_process.html#a4c92a237c6fb0439054b397839ed725e" title="Entity calling Twitter.">twitter</a>, SIGNAL(sendResult(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a>)),
+<a name="l00052"></a>00052                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_single_twitter_call_process.html#a9642d1f73033326a3961d47e43909ff9" title="Slot executed after the treatment.">callEnded</a>(<a class="code" href="class_result_wrapper.html" title="Class containg result of requests (field &amp;quot;result&amp;quot;) and the QObject which...">ResultWrapper</a>)));
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054         <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45a" title="Enumeration which indicates if something bad happened during the request. It can...">ErrorType</a> errorType = result.<a class="code" href="struct_request_result.html#ae6c71493b8e79feda533f39683807643" title="Code indicating whether an error occured during the request.">resultType</a>;
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056         <span class="comment">// Analysing the Twitter response</span>
-<a name="l00057"></a>00057         <span class="keywordflow">switch</span> (errorType) {
-<a name="l00058"></a>00058                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>:
-<a name="l00059"></a>00059                         <span class="keywordflow">return</span> <a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5" title="Default treatment when the request was successful.">treatSuccessfulResult</a>(result.<a class="code" href="struct_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>);
+<a name="l00056"></a>00056         <span class="comment">// For a potenitial anticipated end</span>
+<a name="l00057"></a>00057         QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00058"></a>00058         <span class="keywordtype">bool</span> isFatal = <span class="keyword">false</span>;
+<a name="l00059"></a>00059         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue;
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa28810383a368dd92ccd57895f7962442" title="Code indicating that Twitter has returned errors.">TWITTER_ERRORS</a>:
-<a name="l00062"></a>00062                         <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">treatTwitterErrorResult</a>(result, errorMsg, issue);
-<a name="l00063"></a>00063                         <span class="keywordflow">break</span>;
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54" title="Code indicating that there were an error while calling the Twitter API.">API_CALL</a>:
-<a name="l00066"></a>00066                         <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">treatApiCallResult</a>(result, errorMsg, issue);
-<a name="l00067"></a>00067                         <span class="keywordflow">break</span>;
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e" title="Code indicating that there was an error while parsing results with QJson.">QJSON_PARSING</a>:
-<a name="l00070"></a>00070                         <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">treatQjsonParsingResult</a>(result.<a class="code" href="struct_request_result.html#a7374edbfa16370cddf26b7e7fd30cfaf" title="Potential errors that can occur while parsing results.">parsingErrors</a>, errorMsg, issue);
-<a name="l00071"></a>00071                         <span class="keywordflow">break</span>;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073                 <span class="keywordflow">default</span>:
-<a name="l00074"></a>00074                         <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">treatUnknownResult</a>(result.<a class="code" href="struct_request_result.html#af289f4b16f426be6c998c8e95ab7791d" title="Error message.">errorMessage</a>, errorMsg, issue, isFatal);
-<a name="l00075"></a>00075                         <span class="keywordflow">break</span>;
-<a name="l00076"></a>00076         }
+<a name="l00061"></a>00061         <span class="comment">// Analysing the Twitter response</span>
+<a name="l00062"></a>00062         <span class="keywordflow">switch</span> (errorType) {
+<a name="l00063"></a>00063                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94" title="Code indicating that there was no error.">NO_ERROR</a>:
+<a name="l00064"></a>00064                         <span class="keywordflow">return</span> <a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5" title="Default treatment when the request was successful.">treatSuccessfulResult</a>(result.<a class="code" href="struct_request_result.html#a6e37052c30aa5232a6255e00d8da031e" title="Results of the request parsed by QJson.">parsedResult</a>);
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa7195cc7e5941c9fa66492293783548ec" title="Code indicating that the service (ex. Twitter) has returned errors.">SERVICE_ERRORS</a>:
+<a name="l00067"></a>00067                         <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">treatTwitterErrorResult</a>(result, errorMsg, issue);
+<a name="l00068"></a>00068                         <span class="keywordflow">break</span>;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54" title="Code indicating that there were an error while calling the Twitter API.">API_CALL</a>:
+<a name="l00071"></a>00071                         <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">treatApiCallResult</a>(result, errorMsg, issue);
+<a name="l00072"></a>00072                         <span class="keywordflow">break</span>;
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074                 <span class="keywordflow">case</span> <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e" title="Code indicating that there was an error while parsing results with QJson.">QJSON_PARSING</a>:
+<a name="l00075"></a>00075                         <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">treatQjsonParsingResult</a>(result.<a class="code" href="struct_request_result.html#a7374edbfa16370cddf26b7e7fd30cfaf" title="Potential errors that can occur while parsing results.">parsingErrors</a>, errorMsg, issue);
+<a name="l00076"></a>00076                         <span class="keywordflow">break</span>;
 <a name="l00077"></a>00077 
-<a name="l00078"></a>00078         <span class="comment">// Failed end</span>
-<a name="l00079"></a>00079         <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">buildResult</a>(<span class="keyword">false</span>, issue, errorMsg, isFatal);
-<a name="l00080"></a>00080         emit <a class="code" href="class_generic_process.html#a435ffe5e2071876d667762d582335e7f" title="Signal sent when the process has just ended.">processEnded</a>();
-<a name="l00081"></a>00081 }
+<a name="l00078"></a>00078                 <span class="keywordflow">default</span>:
+<a name="l00079"></a>00079                         <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">treatUnknownResult</a>(result.<a class="code" href="struct_request_result.html#af289f4b16f426be6c998c8e95ab7791d" title="Error message.">errorMessage</a>, errorMsg, issue, isFatal);
+<a name="l00080"></a>00080                         <span class="keywordflow">break</span>;
+<a name="l00081"></a>00081         }
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="comment">// Building the process results</span>
-<a name="l00084"></a><a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f">00084</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">SingleTwitterCallProcess::buildResult</a>(<span class="keywordtype">bool</span> processOK,
-<a name="l00085"></a>00085                                                                                    <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue,
-<a name="l00086"></a>00086                                                                                    QString errMsg,
-<a name="l00087"></a>00087                                                                                    <span class="keywordtype">bool</span> isFatal)
-<a name="l00088"></a>00088 {
-<a name="l00089"></a>00089         <a class="code" href="class_generic_process.html#a445168673b5884881e9b1a15147a7b18" title="Result of the process.">processResult</a> = <a class="code" href="namespace_process_utils.html#af6d6fcd83735c9320a971e91b23b453a" title="Building process results for unsuccessful ends.">ProcessUtils::buildProcessResult</a>(processOK,
-<a name="l00090"></a>00090                                                                                                          issue,
-<a name="l00091"></a>00091                                                                                                          errMsg,
-<a name="l00092"></a>00092                                                                                                          isFatal);
-<a name="l00093"></a>00093 }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="comment">// Building the process results</span>
-<a name="l00096"></a><a class="code" href="class_single_twitter_call_process.html#a8ca91f7e2999b2162ee4b0ba91b0517f">00096</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">SingleTwitterCallProcess::buildResult</a>(QVariant result) {
-<a name="l00097"></a>00097         <a class="code" href="class_generic_process.html#a445168673b5884881e9b1a15147a7b18" title="Result of the process.">processResult</a> = <a class="code" href="namespace_process_utils.html#af6d6fcd83735c9320a971e91b23b453a" title="Building process results for unsuccessful ends.">ProcessUtils::buildProcessResult</a>(<a class="code" href="class_single_twitter_call_process.html#ae92dddd706dc57eca6eef19a2287e994" title="Issue if the request was successful.">successfullIssue</a>, result);
+<a name="l00083"></a>00083         <span class="comment">// Failed end</span>
+<a name="l00084"></a>00084         <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">buildResult</a>(<span class="keyword">false</span>, issue, errorMsg, isFatal);
+<a name="l00085"></a>00085         <a class="code" href="class_generic_process.html#a8a13178a63d21ad28f2a5704e03d73ce" title="Ending the process.">endProcess</a>();
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="comment">// Building the process results</span>
+<a name="l00089"></a><a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f">00089</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">SingleTwitterCallProcess::buildResult</a>(<span class="keywordtype">bool</span> processOK,
+<a name="l00090"></a>00090                                                                                    <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue,
+<a name="l00091"></a>00091                                                                                    QString errMsg,
+<a name="l00092"></a>00092                                                                                    <span class="keywordtype">bool</span> isFatal)
+<a name="l00093"></a>00093 {
+<a name="l00094"></a>00094         <a class="code" href="class_generic_process.html#a445168673b5884881e9b1a15147a7b18" title="Result of the process.">processResult</a> = <a class="code" href="namespace_process_utils.html#af6d6fcd83735c9320a971e91b23b453a" title="Building process results for unsuccessful ends.">ProcessUtils::buildProcessResult</a>(processOK,
+<a name="l00095"></a>00095                                                                                                          issue,
+<a name="l00096"></a>00096                                                                                                          errMsg,
+<a name="l00097"></a>00097                                                                                                          isFatal);
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a><a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5">00100</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5" title="Default treatment when the request was successful.">SingleTwitterCallProcess::treatSuccessfulResult</a>(QVariant result) {
-<a name="l00101"></a>00101         <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">buildResult</a>(result);
-<a name="l00102"></a>00102         emit <a class="code" href="class_generic_process.html#a435ffe5e2071876d667762d582335e7f" title="Signal sent when the process has just ended.">processEnded</a>();
+<a name="l00100"></a>00100 <span class="comment">// Building the process results</span>
+<a name="l00101"></a><a class="code" href="class_single_twitter_call_process.html#a8ca91f7e2999b2162ee4b0ba91b0517f">00101</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">SingleTwitterCallProcess::buildResult</a>(QVariant result) {
+<a name="l00102"></a>00102         <a class="code" href="class_generic_process.html#a445168673b5884881e9b1a15147a7b18" title="Result of the process.">processResult</a> = <a class="code" href="namespace_process_utils.html#af6d6fcd83735c9320a971e91b23b453a" title="Building process results for unsuccessful ends.">ProcessUtils::buildProcessResult</a>(<a class="code" href="class_single_twitter_call_process.html#ae92dddd706dc57eca6eef19a2287e994" title="Issue if the request was successful.">successfullIssue</a>, result);
 <a name="l00103"></a>00103 }
 <a name="l00104"></a>00104 
-<a name="l00105"></a><a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51">00105</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">SingleTwitterCallProcess::treatTwitterErrorResult</a>(<a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> result,
-<a name="l00106"></a>00106                                                                                                            QString &amp; errorMsg,
-<a name="l00107"></a>00107                                                                                                            <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
-<a name="l00108"></a>00108 {
-<a name="l00109"></a>00109         <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">ProcessUtils::treatTwitterErrorResult</a>(result, errorMsg, issue);
-<a name="l00110"></a>00110 }
-<a name="l00111"></a>00111 
-<a name="l00112"></a><a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093">00112</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">SingleTwitterCallProcess::treatApiCallResult</a>(<a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> result,
-<a name="l00113"></a>00113                                                                                                   QString &amp; errorMsg,
-<a name="l00114"></a>00114                                                                                                   <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
-<a name="l00115"></a>00115 {
-<a name="l00116"></a>00116         <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">ProcessUtils::treatApiCallResult</a>(result, errorMsg, issue);
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 
-<a name="l00119"></a><a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19">00119</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">SingleTwitterCallProcess::treatQjsonParsingResult</a>(<a class="code" href="struct_response_infos.html" title="Struct with an integer (field &amp;quot;code&amp;quot;) and its meaning (field &amp;quot;message&amp;quot;)...">ResponseInfos</a> parsingErrors,
-<a name="l00120"></a>00120                                                                                                            QString &amp; errorMsg,
-<a name="l00121"></a>00121                                                                                                            <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
-<a name="l00122"></a>00122 {
-<a name="l00123"></a>00123         <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">ProcessUtils::treatQjsonParsingResult</a>(parsingErrors, errorMsg, issue);
-<a name="l00124"></a>00124 }
-<a name="l00125"></a>00125 
-<a name="l00126"></a><a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8">00126</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">SingleTwitterCallProcess::treatUnknownResult</a>(QString resultErrorMessage,
-<a name="l00127"></a>00127                                                                                                   QString &amp;errorMsg,
-<a name="l00128"></a>00128                                                                                                   <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue,
-<a name="l00129"></a>00129                                                                                                   <span class="keywordtype">bool</span> &amp;fatal)
-<a name="l00130"></a>00130 {
-<a name="l00131"></a>00131         <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">ProcessUtils::treatUnknownResult</a>(resultErrorMessage, errorMsg, issue, fatal);
-<a name="l00132"></a>00132 }
+<a name="l00105"></a><a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5">00105</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a55ea931c8c8d00a6cd1382c1877a1bd5" title="Default treatment when the request was successful.">SingleTwitterCallProcess::treatSuccessfulResult</a>(QVariant result) {
+<a name="l00106"></a>00106         <a class="code" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f" title="Building process results for unsuccessful ends.">buildResult</a>(result);
+<a name="l00107"></a>00107         <a class="code" href="class_generic_process.html#a8a13178a63d21ad28f2a5704e03d73ce" title="Ending the process.">endProcess</a>();
+<a name="l00108"></a>00108 }
+<a name="l00109"></a>00109 
+<a name="l00110"></a><a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">SingleTwitterCallProcess::treatTwitterErrorResult</a>(<a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> result,
+<a name="l00111"></a>00111                                                                                                            QString &amp; errorMsg,
+<a name="l00112"></a>00112                                                                                                            <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
+<a name="l00113"></a>00113 {
+<a name="l00114"></a>00114         <a class="code" href="class_single_twitter_call_process.html#a04991e384951ca531af41d5d0634df51" title="Default treatment when Twitter says that the request was unsuccessful.">ProcessUtils::treatTwitterErrorResult</a>(result, errorMsg, issue);
+<a name="l00115"></a>00115 }
+<a name="l00116"></a>00116 
+<a name="l00117"></a><a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093">00117</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">SingleTwitterCallProcess::treatApiCallResult</a>(<a class="code" href="struct_request_result.html" title="Results of a request.">RequestResult</a> result,
+<a name="l00118"></a>00118                                                                                                   QString &amp; errorMsg,
+<a name="l00119"></a>00119                                                                                                   <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
+<a name="l00120"></a>00120 {
+<a name="l00121"></a>00121         <a class="code" href="class_single_twitter_call_process.html#a481cf643eb1a8ae83132a13680c41093" title="Default treatment when there was a problem while calling Twitter.">ProcessUtils::treatApiCallResult</a>(result, errorMsg, issue);
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a><a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19">00124</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">SingleTwitterCallProcess::treatQjsonParsingResult</a>(<a class="code" href="struct_response_infos.html" title="Struct with an integer (field &amp;quot;code&amp;quot;) and its meaning (field &amp;quot;message&amp;quot;)...">ResponseInfos</a> parsingErrors,
+<a name="l00125"></a>00125                                                                                                            QString &amp; errorMsg,
+<a name="l00126"></a>00126                                                                                                            <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue)
+<a name="l00127"></a>00127 {
+<a name="l00128"></a>00128         <a class="code" href="class_single_twitter_call_process.html#aecb94bf186c75a6267280db0722e7a19" title="Default treatment when results cannot be parsed.">ProcessUtils::treatQjsonParsingResult</a>(parsingErrors, errorMsg, issue);
+<a name="l00129"></a>00129 }
+<a name="l00130"></a>00130 
+<a name="l00131"></a><a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8">00131</a> <span class="keywordtype">void</span> <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">SingleTwitterCallProcess::treatUnknownResult</a>(QString resultErrorMessage,
+<a name="l00132"></a>00132                                                                                                   QString &amp;errorMsg,
+<a name="l00133"></a>00133                                                                                                   <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue,
+<a name="l00134"></a>00134                                                                                                   <span class="keywordtype">bool</span> &amp;fatal)
+<a name="l00135"></a>00135 {
+<a name="l00136"></a>00136         <a class="code" href="class_single_twitter_call_process.html#a3aee92100235c211aeb0b85b1a85c1d8" title="Default treatment when the issue was unexpected.">ProcessUtils::treatUnknownResult</a>(resultErrorMessage, errorMsg, issue, fatal);
+<a name="l00137"></a>00137 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -235,7 +240,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:07 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

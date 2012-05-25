@@ -99,7 +99,7 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ae91f7ac3fbf9f496ac0fb344c2514859">getAuthenticityToken</a> (bool isClear=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the Authenticity Token.  <a href="#ae91f7ac3fbf9f496ac0fb344c2514859"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a57e45bdea5c67b05a7cfd8da387fa26b">getAuthorizationHeader</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a57e45bdea5c67b05a7cfd8da387fa26b">getAuthorizationHeader</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> getDatas, <a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> postDatas, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting that will be written in the "Authorization" field of requests.  <a href="#a57e45bdea5c67b05a7cfd8da387fa26b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#aad8cf88e751405f20abbaf01dbd2b8f4">getCallbackUrl</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter for callbackUrl.  <a href="#aad8cf88e751405f20abbaf01dbd2b8f4"></a><br/></td></tr>
@@ -109,12 +109,14 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getting the OAuth Token.  <a href="#acec92b2355ae874ec4a5893250d2a682"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QByteArray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a7d31afcbca96aeab04a3524f1a6600a1">getVerifier</a> (bool isClear=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Getter on the verifier.  <a href="#a7d31afcbca96aeab04a3524f1a6600a1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a1f3c0442a309c1f14db73f5c8b6ee525">OAuthManager</a> (QByteArray clientKey=<a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a>, QByteArray clientSecret=<a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a>, QString clientUrl=<a class="el" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">ReynTweetsSettings::CALLBACK_URL</a>, QString signatureAlgorithm=&quot;HMAC-SHA1&quot;, QString version=&quot;1.0&quot;)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a1f3c0442a309c1f14db73f5c8b6ee525"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a97e929125644af89d837c02ebbf8a5d8">OAuthManager</a> (QString signatureAlgorithm=&quot;HMAC-SHA1&quot;, QString version=&quot;1.0&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a97e929125644af89d837c02ebbf8a5d8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a7b1a85a67ca7052e178ae829d5d02189">resetTokens</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests.  <a href="#a7b1a85a67ca7052e178ae829d5d02189"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4ce9bd4c4561d87d75c255a960ed5d0b">setAuthenticityToken</a> (QByteArray authToken)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the Authenticity Token.  <a href="#a4ce9bd4c4561d87d75c255a960ed5d0b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af6dda468b4ded2faa1ff1cc8aa63f53e">setCallbackUrl</a> (QString newURL)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter for callbackUrl.  <a href="#af6dda468b4ded2faa1ff1cc8aa63f53e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af90d4f82fe2fe48447b689ed4f8e12e2">setConsumerKey</a> (QByteArray clientKey)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Setter on the consumer key.  <a href="#af90d4f82fe2fe48447b689ed4f8e12e2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a8972a6bcbcf6ec139ed1d712b5f6921f">setConsumerSecret</a> (QByteArray clientSecret)</td></tr>
@@ -153,45 +155,27 @@ window.onload = initDynSections;
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a6690f38a748be1f265e6c8008414c774">buildOAuthParameterString</a> (QString nonce, QString timestamp, QString separator, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded, bool putDoubleQuotes, bool signatureNeeded, QString signature=&quot;&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generic method to build strings with OAuth parameters.  <a href="#a6690f38a748be1f265e6c8008414c774"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ade64df62fce8e574954f7f48184068b4">buildSignatureBaseString</a> (<a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, QString oauthString)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#ade64df62fce8e574954f7f48184068b4">buildSignatureBaseString</a> (<a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> getDatas, <a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> postDatas, QString oauthString)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method builing the base string for the OAuth Signature.  <a href="#ade64df62fce8e574954f7f48184068b4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#af18d4d67eb87f8f8b13788443d07703b">generateNonce</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a nonce for a request. To generate a nonce, a random string is generated by taking 32 times one letter in the alphabet. The letter could be in upper case or lower case. The final nonce is the 64 base-encoding of the random string.  <a href="#af18d4d67eb87f8f8b13788443d07703b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a4a0f48bd00b456590803dd327f3f3c09">generateTimestamp</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a timestamp for a request. The timestamp is the number of seconds since the Unix Epoch (1/1/1970 at midnight).  <a href="#a4a0f48bd00b456590803dd327f3f3c09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a3c7b1522b9c9fa749a5ca14443de43e9">signDatas</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> getDatas, <a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a> postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_manager.html#a3c7b1522b9c9fa749a5ca14443de43e9">signDatas</a> (<a class="el" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5af">RequestType</a> type, QString baseURL, <a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> getDatas, <a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a> postDatas, QString nonce, QString timestamp, bool oauthTokenNeeded, bool callbackUrlNeeded, bool oauthVerifierNeeded)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Method for signing datas. It is described <a href="https://dev.twitter.com/docs/auth/creating-signature">here </a>.  <a href="#a3c7b1522b9c9fa749a5ca14443de43e9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Class managing OAuth authentication to Twitter. For the security, tokens are kept secret. They are encoded for that. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00041">41</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00037">37</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1f3c0442a309c1f14db73f5c8b6ee525"></a><!-- doxytag: member="OAuthManager::OAuthManager" ref="a1f3c0442a309c1f14db73f5c8b6ee525" args="(QByteArray clientKey=ReynTweetsSettings::CONSUMER_KEY, QByteArray clientSecret=ReynTweetsSettings::CONSUMER_SECRET, QString clientUrl=ReynTweetsSettings::CALLBACK_URL, QString signatureAlgorithm=&quot;HMAC&#45;SHA1&quot;, QString version=&quot;1.0&quot;)" -->
+<a class="anchor" id="a97e929125644af89d837c02ebbf8a5d8"></a><!-- doxytag: member="OAuthManager::OAuthManager" ref="a97e929125644af89d837c02ebbf8a5d8" args="(QString signatureAlgorithm=&quot;HMAC&#45;SHA1&quot;, QString version=&quot;1.0&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">OAuthManager::OAuthManager </td>
           <td>(</td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>clientKey</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a66225be68ac324fe9607f9c6e3722cd8">ReynTweetsSettings::CONSUMER_KEY</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QByteArray&nbsp;</td>
-          <td class="paramname"> <em>clientSecret</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a4c01298a60b14be3a7ffa491056abe8d">ReynTweetsSettings::CONSUMER_SECRET</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">QString&nbsp;</td>
-          <td class="paramname"> <em>clientUrl</em> = <code><a class="el" href="namespace_reyn_tweets_settings.html#a8ffecbd801f571dc847e3b7c4df1f84a">ReynTweetsSettings::CALLBACK_URL</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">QString&nbsp;</td>
           <td class="paramname"> <em>signatureAlgorithm</em> = <code>&quot;HMAC-SHA1&quot;</code>, </td>
         </tr>
@@ -211,11 +195,9 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>Constructor. </p>
+<p>Application settings (callback URL, consumer credentials) will be filled later. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>clientKey</em>&nbsp;</td><td>Consumer key of the application. Reyn Tweets' consumer key is its default value. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>clientSecret</em>&nbsp;</td><td>Consumer secret of the application. Reyn Tweets' consumer secret is its default value. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>clientUrl</em>&nbsp;</td><td>Callback URL of the application Reyn Tweets' callback URL is its default value. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>signatureAlgorithm</em>&nbsp;</td><td>Algorithm used for signing requests. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>version</em>&nbsp;</td><td>Version of the OAuth protocol used for the authentication. Reyn Tweets uses OAuth 1.0. </td></tr>
   </table>
@@ -243,7 +225,7 @@ window.onload = initDynSections;
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00049">49</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00046">46</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -333,7 +315,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The string with the parameters. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00248">248</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00250">250</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,13 +326,13 @@ window.onload = initDynSections;
         <tr>
           <td class="memname">QString OAuthManager::buildSignatureBaseString </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>getDatas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>postDatas</em>, </td>
         </tr>
         <tr>
@@ -379,7 +361,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The string built just like Twitter describes <a href="https://dev.twitter.com/docs/auth/creating-signature">here</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00339">339</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00341">341</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +383,7 @@ window.onload = initDynSections;
 <p>Generates a nonce for a request. To generate a nonce, a random string is generated by taking 32 times one letter in the alphabet. The letter could be in upper case or lower case. The final nonce is the 64 base-encoding of the random string. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A nonce for a request. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00170">170</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -423,7 +405,7 @@ window.onload = initDynSections;
 <p>Generates a timestamp for a request. The timestamp is the number of seconds since the Unix Epoch (1/1/1970 at midnight). </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A timestamp corresponding to the current date. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00187">187</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00189">189</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,7 +434,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The Authenticity Token </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00097">97</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00099">99</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,13 +457,13 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>getDatas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>postDatas</em>, </td>
         </tr>
         <tr>
@@ -526,7 +508,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Value of the "Authorization" header. </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00131">131</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00133">133</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +530,7 @@ window.onload = initDynSections;
 <p>Getter for callbackUrl. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The callback URL </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00057">57</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00054">54</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -570,7 +552,7 @@ window.onload = initDynSections;
 <p>Getter on the deny tag. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The verifier </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00107">107</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00109">109</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +581,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The OAuth Token </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00072">72</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00074">74</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -628,7 +610,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The verifier </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00087">87</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00089">89</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -649,7 +631,7 @@ window.onload = initDynSections;
 
 <p>Resetting the tokens. A full new OAuth authentication process has to be launch to get tokens and for authentication in requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00122">122</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00124">124</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,7 +659,35 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00102">102</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00104">104</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6dda468b4ded2faa1ff1cc8aa63f53e"></a><!-- doxytag: member="OAuthManager::setCallbackUrl" ref="af6dda468b4ded2faa1ff1cc8aa63f53e" args="(QString newURL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OAuthManager::setCallbackUrl </td>
+          <td>(</td>
+          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramname"> <em>newURL</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Setter for callbackUrl. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>newURL</em>&nbsp;</td><td>New value for the callback URL </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00059">59</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -705,7 +715,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00062">62</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00064">64</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +743,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00067">67</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00069">69</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -761,7 +771,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00112">112</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00114">114</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -799,7 +809,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00082">82</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00084">84</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -837,7 +847,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00077">77</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00079">79</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -865,7 +875,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00092">92</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00094">94</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -888,13 +898,13 @@ window.onload = initDynSections;
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>getDatas</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="oauthmanager_8hpp.html#a83e4d8c39ad8b7b65422efdcdfce2db4">ArgsMap</a>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="headersmap_8hpp.html#a041efcb96e21bba4cc1ccfc561911642">ArgsMap</a>&nbsp;</td>
           <td class="paramname"> <em>postDatas</em>, </td>
         </tr>
         <tr>
@@ -940,7 +950,7 @@ window.onload = initDynSections;
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>Request type (GET or POST) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>baseURL</em>&nbsp;</td><td>URL of the service </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>baseURL</em>&nbsp;</td><td>URL of the service, without the GET arguments. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>getDatas</em>&nbsp;</td><td>GET datas to sign </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>postDatas</em>&nbsp;</td><td>POST datas to sign </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>nonce</em>&nbsp;</td><td>Nonce of the request </td></tr>
@@ -953,7 +963,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The signature of the given datas </dd></dl>
 
-<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00193">193</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8cpp_source.html#l00195">195</a> of file <a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -971,7 +981,7 @@ window.onload = initDynSections;
 
 <p>Authenticity token for POST authorizing(). </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00206">206</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00198">198</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -988,7 +998,7 @@ window.onload = initDynSections;
 
 <p>Callback URL of the application. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00188">188</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00180">180</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1005,7 +1015,7 @@ window.onload = initDynSections;
 
 <p>Consumer key. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00182">182</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00174">174</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +1032,7 @@ window.onload = initDynSections;
 
 <p>Consumer secret. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00185">185</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00177">177</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1049,7 @@ window.onload = initDynSections;
 
 <p>Value used to tell Twitter that an application is denied. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00209">209</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00201">201</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1056,7 +1066,7 @@ window.onload = initDynSections;
 
 <p>Secret used for signatures. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00200">200</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00192">192</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1073,7 +1083,7 @@ window.onload = initDynSections;
 
 <p>Algorithm used for signing requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00191">191</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00183">183</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +1100,7 @@ window.onload = initDynSections;
 
 <p>Token used for requests. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00197">197</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00189">189</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1107,7 +1117,7 @@ window.onload = initDynSections;
 
 <p>Verifier for authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00203">203</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00195">195</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
@@ -1124,13 +1134,13 @@ window.onload = initDynSections;
 
 <p>Version of the OAuth protocol used for the authentication. </p>
 
-<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00194">194</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthmanager_8hpp_source.html#l00186">186</a> of file <a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>connection/<a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a></li>
-<li>connection/<a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/<a class="el" href="oauthmanager_8hpp_source.html">oauthmanager.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/<a class="el" href="oauthmanager_8cpp_source.html">oauthmanager.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -1147,7 +1157,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:20 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

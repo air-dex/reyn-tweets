@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/processes/allowprocess.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/allowprocess.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
   </div>
 </div>
 <div class="contents">
@@ -115,14 +115,14 @@ window.onload = initDynSections;
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define ALLOWPROCESS_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="oauthprocess_8hpp.html" title="Header of OAuthProcess.">oauthprocess.hpp</a>&quot;</span>
-<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../../model/configuration/reyntweetsconfiguration.hpp&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../../model/configuration/reyntweetsuserconfiguration.hpp&quot;</span>
 <a name="l00029"></a>00029 
 <a name="l00032"></a><a class="code" href="class_allow_process.html">00032</a> <span class="keyword">class </span><a class="code" href="class_allow_process.html" title="OAuth Authentication Flow + updating the configuration.">AllowProcess</a> : <span class="keyword">public</span> <a class="code" href="class_o_auth_process.html" title="Controller for the execution of the Twitter&amp;#39;s OAuth Authentication Flow.">OAuthProcess</a>
 <a name="l00033"></a>00033 {
 <a name="l00034"></a>00034         Q_OBJECT
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036         <span class="keyword">public</span>:
-<a name="l00040"></a>00040                 <span class="keyword">explicit</span> <a class="code" href="class_allow_process.html#ab7fdbbf1dc0b9dfb3bc7f544ac705d90" title="Constructor.">AllowProcess</a>(<a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; conf);
+<a name="l00040"></a>00040                 <span class="keyword">explicit</span> <a class="code" href="class_allow_process.html#a806095acdfb0a7c717138c002ecd29e5" title="Constructor.">AllowProcess</a>(<a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> &amp; conf);
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042         <span class="keyword">public</span> slots:
 <a name="l00043"></a>00043 
@@ -131,7 +131,7 @@ window.onload = initDynSections;
 <a name="l00049"></a>00049         <span class="keyword">protected</span>:
 <a name="l00051"></a><a class="code" href="class_allow_process.html#a5512925f30a20a17d5ecf33d281d24a4">00051</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_allow_process.html#a5512925f30a20a17d5ecf33d281d24a4" title="Boolean indicating if the OAuth Process has already ended.">authEnded</a>;
 <a name="l00052"></a>00052 
-<a name="l00054"></a><a class="code" href="class_allow_process.html#ac68c78855c7d798fb984872fd9d2e5fa">00054</a>                 <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; <a class="code" href="class_allow_process.html#ac68c78855c7d798fb984872fd9d2e5fa" title="Configuration of Reyn Tweets.">configuration</a>;
+<a name="l00054"></a><a class="code" href="class_allow_process.html#a7bed09c29555a480c5b98d5d906b4ea6">00054</a>                 <a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> &amp; <a class="code" href="class_allow_process.html#a7bed09c29555a480c5b98d5d906b4ea6" title="Configuration of Reyn Tweets.">configuration</a>;
 <a name="l00055"></a>00055 
 <a name="l00058"></a>00058                 <span class="keywordtype">void</span> <a class="code" href="class_allow_process.html#a888ab486c526c717048b758079c7c50e">saveConfiguration</a>();
 <a name="l00059"></a>00059 
@@ -159,7 +159,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

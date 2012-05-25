@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/logincontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/logincontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -123,40 +123,38 @@ window.onload = initDynSections;
 <a name="l00033"></a>00033 
 <a name="l00036"></a><a class="code" href="class_login_control.html">00036</a> <span class="keyword">class </span><a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> : <span class="keyword">public</span> QObject
 <a name="l00037"></a>00037 {
-<a name="l00038"></a>00038         Q_OBJECT
+<a name="l00038"></a>00038     Q_OBJECT
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <a class="code" href="class_login_control.html#a115ddb1821cfc2e747cc7f6a3b0e8aa7" title="Constructor.">LoginControl</a>();
+<a name="l00040"></a>00040     <span class="keyword">public</span>:
+<a name="l00043"></a>00043         <a class="code" href="class_login_control.html#a115ddb1821cfc2e747cc7f6a3b0e8aa7" title="Constructor.">LoginControl</a>();
 <a name="l00044"></a>00044 
-<a name="l00047"></a>00047                 <a class="code" href="class_login_control.html#af1a0a1fe3b72fb2a0114e7d1ae9b9711" title="Destructor.">~LoginControl</a>();
+<a name="l00047"></a>00047         <a class="code" href="class_login_control.html#af1a0a1fe3b72fb2a0114e7d1ae9b9711" title="Destructor.">~LoginControl</a>();
 <a name="l00048"></a>00048 
-<a name="l00052"></a>00052                 <a class="code" href="class_login_control.html#a115ddb1821cfc2e747cc7f6a3b0e8aa7" title="Constructor.">LoginControl</a>(<span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; control);
+<a name="l00052"></a>00052         <a class="code" href="class_login_control.html#a115ddb1821cfc2e747cc7f6a3b0e8aa7" title="Constructor.">LoginControl</a>(<span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; control);
 <a name="l00053"></a>00053 
-<a name="l00058"></a>00058                 <span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; <a class="code" href="class_login_control.html#a1a92c42d8058030f908bed18de74cdad" title="Affectation.">operator =</a>(<span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; control);
+<a name="l00058"></a>00058         <span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; <a class="code" href="class_login_control.html#a1a92c42d8058030f908bed18de74cdad" title="Affectation.">operator =</a>(<span class="keyword">const</span> <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> &amp; control);
 <a name="l00059"></a>00059 
-<a name="l00062"></a>00062                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a8e5263d8db2136145cb71b85c0af75c7" title="Declaring to the QML system.">declareQML</a>();
+<a name="l00062"></a>00062         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a8e5263d8db2136145cb71b85c0af75c7" title="Declaring to the QML system.">declareQML</a>();
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064         signals:
-<a name="l00067"></a>00067                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#ae5174cd136e0601aaa3ea0b233138906">invalidCredentials</a>();
+<a name="l00064"></a>00064     signals:
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#ae5174cd136e0601aaa3ea0b233138906">invalidCredentials</a>();
 <a name="l00068"></a>00068 
-<a name="l00074"></a>00074                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a9b85fc24363aba5890ba1d2058b8b299" title="Signal sent by authorizeReynTweets();, when the LoginPane emits a signal to authorize...">authorize</a>(QString username, QString password);
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a9b85fc24363aba5890ba1d2058b8b299" title="Signal sent by authorizeReynTweets();, when the LoginPane emits a signal to authorize...">authorize</a>(QString username, QString password);
 <a name="l00075"></a>00075 
-<a name="l00081"></a>00081                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a22035de36c89148b5efe6605f21edf6c" title="Signal sent by denyReynTweets();, when the LoginPane emits a signal to deny Reyn...">deny</a>(QString username, QString password);
+<a name="l00081"></a>00081         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a22035de36c89148b5efe6605f21edf6c" title="Signal sent by denyReynTweets();, when the LoginPane emits a signal to deny Reyn...">deny</a>(QString username, QString password);
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083         <span class="keyword">public</span> slots:
-<a name="l00087"></a>00087                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a3c23b091052764c4f16df6b08bcdd564" title="Slot executed when reyn informs the control that the user credentials he gave to...">wrongCredentials</a>();
+<a name="l00083"></a>00083     <span class="keyword">public</span> slots:
+<a name="l00087"></a>00087         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a3c23b091052764c4f16df6b08bcdd564" title="Slot executed when reyn informs the control that the user credentials he gave to...">wrongCredentials</a>();
 <a name="l00088"></a>00088 
-<a name="l00094"></a>00094                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a7bad84b9dbc87dcce6de125937b21d8e" title="Slot executed when the LoginPane emits its signal to authorize Reyn Tweets.">authorizeReynTweets</a>(QString username, QString password);
+<a name="l00094"></a>00094         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a7bad84b9dbc87dcce6de125937b21d8e" title="Slot executed when the LoginPane emits its signal to authorize Reyn Tweets.">authorizeReynTweets</a>(QString username, QString password);
 <a name="l00095"></a>00095 
-<a name="l00101"></a>00101                 <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a1fec54c8aa50a5b63b9e20a47d366135" title="Slot executed when the LoginPane emits its signal to deny Reyn Tweets.">denyReynTweets</a>(QString username, QString password);
+<a name="l00101"></a>00101         <span class="keywordtype">void</span> <a class="code" href="class_login_control.html#a1fec54c8aa50a5b63b9e20a47d366135" title="Slot executed when the LoginPane emits its signal to deny Reyn Tweets.">denyReynTweets</a>(QString username, QString password);
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103         <span class="keyword">protected</span>:
-<a name="l00105"></a><a class="code" href="class_login_control.html#a235fbe38552e3c29e3d3e6a1e6d1e486">00105</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_login_control.html#a235fbe38552e3c29e3d3e6a1e6d1e486" title="Heart of Reyn Tweets.">reyn</a>;
+<a name="l00103"></a>00103     <span class="keyword">protected</span>:
+<a name="l00105"></a><a class="code" href="class_login_control.html#a235fbe38552e3c29e3d3e6a1e6d1e486">00105</a>         <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_login_control.html#a235fbe38552e3c29e3d3e6a1e6d1e486" title="Heart of Reyn Tweets.">reyn</a>;
 <a name="l00106"></a>00106 };
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108 Q_DECLARE_METATYPE(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a>)
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110 <span class="preprocessor">#endif // LOGINCONTROL_HPP</span>
+<a name="l00108"></a>00108 <span class="preprocessor">#endif // LOGINCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -172,7 +170,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

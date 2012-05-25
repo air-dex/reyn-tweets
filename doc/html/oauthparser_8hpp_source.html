@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: tools/parsers/oauthparser.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/oauthparser.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
   </div>
 </div>
 <div class="contents">
@@ -118,26 +118,27 @@ window.onload = initDynSections;
 <a name="l00028"></a>00028 <span class="preprocessor"></span>
 <a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="genericparser_8hpp.html" title="Header of GenericParser.">genericparser.hpp</a>&quot;</span>
 <a name="l00030"></a>00030 
-<a name="l00035"></a><a class="code" href="class_o_auth_parser.html">00035</a> <span class="keyword">class </span><a class="code" href="class_o_auth_parser.html" title="Parser for data which are under the form  arg1=val1&amp;amp;arg2=val2&amp;amp;...&amp;amp;argN=valN...">OAuthParser</a> : <span class="keyword">public</span> <a class="code" href="class_generic_parser.html" title="Base class for all the parsers.">GenericParser</a>&lt;QVariantMap&gt;
-<a name="l00036"></a>00036 {
-<a name="l00037"></a>00037         <span class="keyword">public</span>:
-<a name="l00047"></a>00047                 QVariantMap <a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8" title="Parsing datas for OAuth.">parse</a>(QByteArray data,
-<a name="l00048"></a>00048                                                   <span class="keywordtype">bool</span> &amp; parseOK,
-<a name="l00049"></a>00049                                                   QString &amp; parseError,
-<a name="l00050"></a>00050                                                   <span class="keywordtype">int</span> * lineError = 0);
-<a name="l00051"></a>00051 
-<a name="l00062"></a>00062                 QVariant <a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(QVariantMap &amp; parsedMap,
-<a name="l00063"></a>00063                                                                   QString parameterName,
-<a name="l00064"></a>00064                                                                   <span class="keywordtype">bool</span> &amp; extractOK,
-<a name="l00065"></a>00065                                                                   QString &amp; extractError);
-<a name="l00066"></a>00066 
-<a name="l00076"></a>00076                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b" title="Rewriting one parameter of the parsed result as a boolean.">rewriteAsBool</a>(QVariantMap &amp; parsedMap,
-<a name="l00077"></a>00077                                                    QString parameterName,
-<a name="l00078"></a>00078                                                    <span class="keywordtype">bool</span> &amp; rewriteOK,
-<a name="l00079"></a>00079                                                    QString &amp; rewriteError);
-<a name="l00080"></a>00080 };
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#endif // OAUTHPARSER_HPP</span>
+<a name="l00036"></a><a class="code" href="class_o_auth_parser.html">00036</a> <span class="keyword">class </span><a class="code" href="class_o_auth_parser.html" title="Parser for data which are under the form  arg1=val1&amp;amp;arg2=val2&amp;amp;...&amp;amp;argN=valN...">OAuthParser</a> : <span class="keyword">public</span> <a class="code" href="class_generic_parser.html" title="Base class for all the parsers.">GenericParser</a>&lt;QVariantMap&gt;
+<a name="l00037"></a>00037 {
+<a name="l00038"></a>00038         <span class="keyword">public</span>:
+<a name="l00050"></a>00050                 QVariantMap <a class="code" href="class_o_auth_parser.html#a544acead360bd08c1e12589126e5484f" title="Parsing datas for OAuth.">parse</a>(QByteArray data,
+<a name="l00051"></a>00051                                                   <span class="keywordtype">bool</span> &amp; parseOK,
+<a name="l00052"></a>00052                                                   QString &amp; parseError,
+<a name="l00053"></a>00053                                                   <span class="keywordtype">int</span> * lineError = 0,
+<a name="l00054"></a>00054                                                   <span class="keywordtype">int</span> * columnError = 0);
+<a name="l00055"></a>00055 
+<a name="l00066"></a>00066                 QVariant <a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(QVariantMap &amp; parsedMap,
+<a name="l00067"></a>00067                                                                   QString parameterName,
+<a name="l00068"></a>00068                                                                   <span class="keywordtype">bool</span> &amp; extractOK,
+<a name="l00069"></a>00069                                                                   QString &amp; extractError);
+<a name="l00070"></a>00070 
+<a name="l00080"></a>00080                 <span class="keywordtype">void</span> <a class="code" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b" title="Rewriting one parameter of the parsed result as a boolean.">rewriteAsBool</a>(QVariantMap &amp; parsedMap,
+<a name="l00081"></a>00081                                                    QString parameterName,
+<a name="l00082"></a>00082                                                    <span class="keywordtype">bool</span> &amp; rewriteOK,
+<a name="l00083"></a>00083                                                    QString &amp; rewriteError);
+<a name="l00084"></a>00084 };
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="preprocessor">#endif // OAUTHPARSER_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -153,7 +154,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:08 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

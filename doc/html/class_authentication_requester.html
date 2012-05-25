@@ -88,7 +88,7 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>AuthenticationRequester Class Reference</h1><!-- doxytag: class="AuthenticationRequester" --><!-- doxytag: inherits="GenericRequester" -->
+<h1>AuthenticationRequester Class Reference</h1><!-- doxytag: class="AuthenticationRequester" --><!-- doxytag: inherits="TwitterRequester" -->
 <p>Requester specialized for requests which needs authentication.  
 <a href="#_details">More...</a></p>
 
@@ -99,15 +99,19 @@ Inheritance diagram for AuthenticationRequester:</div>
  <div class="center">
   <img src="class_authentication_requester.png" usemap="#AuthenticationRequester_map" alt=""/>
   <map id="AuthenticationRequester_map" name="AuthenticationRequester_map">
+<area href="class_twitter_requester.html" alt="TwitterRequester" shape="rect" coords="0,56,167,80"/>
 <area href="class_generic_requester.html" alt="GenericRequester" shape="rect" coords="0,0,167,24"/>
-<area href="class_favorite_requester.html" alt="FavoriteRequester" shape="rect" coords="177,112,344,136"/>
-<area href="class_favorites_timeline_requester.html" alt="FavoritesTimelineRequester" shape="rect" coords="177,168,344,192"/>
-<area href="class_home_timeline_requester.html" alt="HomeTimelineRequester" shape="rect" coords="177,224,344,248"/>
-<area href="class_o_auth_requester.html" alt="OAuthRequester" shape="rect" coords="177,280,344,304"/>
-<area href="class_post_tweet_requester.html" alt="PostTweetRequester" shape="rect" coords="177,336,344,360"/>
-<area href="class_show_user_requester.html" alt="ShowUserRequester" shape="rect" coords="177,392,344,416"/>
-<area href="class_unfavorite_requester.html" alt="UnfavoriteRequester" shape="rect" coords="177,448,344,472"/>
-<area href="class_verify_credentials_requester.html" alt="VerifyCredentialsRequester" shape="rect" coords="177,504,344,528"/>
+<area href="class_destroy_tweet_requester.html" alt="DestroyTweetRequester" shape="rect" coords="177,168,344,192"/>
+<area href="class_favorite_requester.html" alt="FavoriteRequester" shape="rect" coords="177,224,344,248"/>
+<area href="class_favorites_timeline_requester.html" alt="FavoritesTimelineRequester" shape="rect" coords="177,280,344,304"/>
+<area href="class_home_timeline_requester.html" alt="HomeTimelineRequester" shape="rect" coords="177,336,344,360"/>
+<area href="class_o_auth_requester.html" alt="OAuthRequester" shape="rect" coords="177,392,344,416"/>
+<area href="class_post_tweet_requester.html" alt="PostTweetRequester" shape="rect" coords="177,448,344,472"/>
+<area href="class_retweet_requester.html" alt="RetweetRequester" shape="rect" coords="177,504,344,528"/>
+<area href="class_retweets_by_me_requester.html" alt="RetweetsByMeRequester" shape="rect" coords="177,560,344,584"/>
+<area href="class_show_user_requester.html" alt="ShowUserRequester" shape="rect" coords="177,616,344,640"/>
+<area href="class_unfavorite_requester.html" alt="UnfavoriteRequester" shape="rect" coords="177,672,344,696"/>
+<area href="class_verify_credentials_requester.html" alt="VerifyCredentialsRequester" shape="rect" coords="177,728,344,752"/>
 </map>
  </div>
 </div>
@@ -127,13 +131,13 @@ Inheritance diagram for AuthenticationRequester:</div>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849">oauthVerifierNeeded</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boolean indicating if the oauth_token parameter is required for authentication.  <a href="#a239abc9f612a00da79feea596e394849"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e">initCommunicator</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize the communicator. This a template method because of the authorize() request and its special Twitter Communicator.  <a href="#a4a8095862382e80d8ed2e4910226786e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_authentication_requester.html#a0c1d2b4f34eb5ce1b2d32083200ef370">buildHTTPHeaders</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Building Content-Type and Authorize headers.  <a href="#a0c1d2b4f34eb5ce1b2d32083200ef370"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Requester specialized for requests which needs authentication. </p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00031">31</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00032">32</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a56f1c2c11fce844c83639d726cfa9fc8"></a><!-- doxytag: member="AuthenticationRequester::AuthenticationRequester" ref="a56f1c2c11fce844c83639d726cfa9fc8" args="(RequestType type, QString url, OAuthManager &amp;authManager, ErrorType parseError=QJSON_PARSING, bool tokenNeeded=true, bool callbackURLNeeded=false, bool verifierNeeded=false)" -->
 <div class="memitem">
@@ -209,12 +213,12 @@ Inheritance diagram for AuthenticationRequester:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4a8095862382e80d8ed2e4910226786e"></a><!-- doxytag: member="AuthenticationRequester::initCommunicator" ref="a4a8095862382e80d8ed2e4910226786e" args="()" -->
+<a class="anchor" id="a0c1d2b4f34eb5ce1b2d32083200ef370"></a><!-- doxytag: member="AuthenticationRequester::buildHTTPHeaders" ref="a0c1d2b4f34eb5ce1b2d32083200ef370" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AuthenticationRequester::initCommunicator </td>
+          <td class="memname">void AuthenticationRequester::buildHTTPHeaders </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -224,11 +228,11 @@ Inheritance diagram for AuthenticationRequester:</div>
 </div>
 <div class="memdoc">
 
-<p>Initialize the communicator. This a template method because of the authorize() request and its special Twitter Communicator. </p>
+<p>Building Content-Type and Authorize headers. </p>
 
-<p>Reimplemented from <a class="el" href="class_generic_requester.html#a296b8637e3e86cdff9e54865e43d6de2">GenericRequester</a>.</p>
+<p>Reimplemented from <a class="el" href="class_generic_requester.html#a7728e99634a506fe72a7fa3631cca983">GenericRequester</a>.</p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8cpp_source.html#l00043">43</a> of file <a class="el" href="authenticationrequester_8cpp_source.html">authenticationrequester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8cpp_source.html#l00042">42</a> of file <a class="el" href="authenticationrequester_8cpp_source.html">authenticationrequester.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +250,7 @@ Inheritance diagram for AuthenticationRequester:</div>
 
 <p>Boolean indicating if the oauth_callback parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00075">75</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00076">76</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +267,7 @@ Inheritance diagram for AuthenticationRequester:</div>
 
 <p>Entity with authentication information. </p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00067">67</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00068">68</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +284,7 @@ Inheritance diagram for AuthenticationRequester:</div>
 
 <p>Boolean indicating if the oauth_token parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00071">71</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00072">72</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
 
 </div>
 </div>
@@ -297,13 +301,13 @@ Inheritance diagram for AuthenticationRequester:</div>
 
 <p>Boolean indicating if the oauth_token parameter is required for authentication. </p>
 
-<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00079">79</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
+<p>Definition at line <a class="el" href="authenticationrequester_8hpp_source.html#l00080">80</a> of file <a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>connection/requests/<a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a></li>
-<li>connection/requests/<a class="el" href="authenticationrequester_8cpp_source.html">authenticationrequester.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/<a class="el" href="authenticationrequester_8hpp_source.html">authenticationrequester.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/<a class="el" href="authenticationrequester_8cpp_source.html">authenticationrequester.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -320,7 +324,7 @@ Inheritance diagram for AuthenticationRequester:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:47 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:17 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

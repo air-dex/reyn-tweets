@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/twitterurls.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/urls/twitterurls.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_9171dba390edfe08140035dc87b7212c.html">urls</a>
   </div>
 </div>
 <div class="contents">
@@ -120,19 +120,19 @@ window.onload = initDynSections;
 <a name="l00031"></a>00031 <span class="comment">// Accounts //</span>
 <a name="l00033"></a>00033 <span class="comment"></span>
 <a name="l00034"></a>00034 <span class="comment">// Verify credentials</span>
-<a name="l00035"></a><a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">00035</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194" title="URL to verify if credentials are right.">TwitterURL::VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/account/verify_credentials.json&quot;</span>);
+<a name="l00035"></a><a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">00035</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194" title="URL to verify if credentials are right.">TwitterURL::VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/account/verify_credentials.json&quot;</span>);
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 
 <a name="l00039"></a>00039 <span class="comment">// Favorites //</span>
 <a name="l00041"></a>00041 <span class="comment"></span>
 <a name="l00042"></a>00042 <span class="comment">// Favorite a tweet</span>
-<a name="l00043"></a><a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">00043</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f" title="URL to favorite a tweet.">TwitterURL::CREATE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites/create/:id.json&quot;</span>);
+<a name="l00043"></a><a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">00043</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f" title="URL to favorite a tweet.">TwitterURL::CREATE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/favorites/create/:id.json&quot;</span>);
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="comment">// Unfavorite a tweet</span>
-<a name="l00046"></a><a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">00046</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04" title="URL to unfavorite a tweet.">TwitterURL::DELETE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites/destroy/:id.json&quot;</span>);
+<a name="l00046"></a><a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">00046</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04" title="URL to unfavorite a tweet.">TwitterURL::DELETE_FAVORITE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/favorites/destroy/:id.json&quot;</span>);
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="comment">// Getting the timeline of the favorite tweets of a user</span>
-<a name="l00049"></a><a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">00049</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9" title="URL to get the timeline of the favorite tweets of a user.">TwitterURL::FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/favorites.json&quot;</span>);
+<a name="l00049"></a><a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">00049</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9" title="URL to get the timeline of the favorite tweets of a user.">TwitterURL::FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/favorites.json&quot;</span>);
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051 
 <a name="l00053"></a>00053 <span class="comment">// OAuth //</span>
@@ -159,25 +159,34 @@ window.onload = initDynSections;
 <a name="l00078"></a>00078 <span class="comment">// Timelines //</span>
 <a name="l00080"></a>00080 <span class="comment"></span>
 <a name="l00081"></a>00081 <span class="comment">// Getting the timeline with friends tweets</span>
-<a name="l00082"></a><a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">00082</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3" title="URL to getting the timeline with friends tweets.">TwitterURL::HOME_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/home_timeline.json&quot;</span>);
+<a name="l00082"></a><a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">00082</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3" title="URL to getting the timeline with friends tweets.">TwitterURL::HOME_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/home_timeline.json&quot;</span>);
 <a name="l00083"></a>00083 
-<a name="l00084"></a>00084 
-<a name="l00086"></a>00086 <span class="comment">// Tweets //</span>
-<a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">// Getting informations about a given tweet</span>
-<a name="l00090"></a><a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">00090</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/show.json&quot;</span>);
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="comment">// Updating a tweet without medias</span>
-<a name="l00093"></a><a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">00093</a> QString <a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236" title="URL to update a tweet.">TwitterURL::UPDATE_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/statuses/update.json&quot;</span>);
+<a name="l00084"></a>00084 <span class="comment">// Getting the timeline with retweets retweeted by the user</span>
+<a name="l00085"></a><a class="code" href="namespace_twitter_u_r_l.html#acccc54badeb7d0d7e8b7f97e49221096">00085</a> QString <a class="code" href="namespace_twitter_u_r_l.html#acccc54badeb7d0d7e8b7f97e49221096" title="URL to getting the timeline with retweets of the user.">TwitterURL::RETWEETED_BY_ME_TIMELINE_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/retweeted_by_me.json&quot;</span>);
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 
+<a name="l00089"></a>00089 <span class="comment">// Tweets //</span>
+<a name="l00091"></a>00091 <span class="comment"></span>
+<a name="l00092"></a>00092 <span class="comment">// Deleting a tweet (or a retweet)</span>
+<a name="l00093"></a><a class="code" href="namespace_twitter_u_r_l.html#a6139b31984e8e867ec0d1520d324f093">00093</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a6139b31984e8e867ec0d1520d324f093" title="URL to delete a tweet (or a retweet).">TwitterURL::DELETE_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/destroy/:id.json&quot;</span>);
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="comment">// Updating a tweet with medias</span>
-<a name="l00096"></a><a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">00096</a> QString <a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504" title="URL to update a tweet with medias.">TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://upload.twitter.com/1/statuses/update_with_media.json&quot;</span>);
+<a name="l00095"></a>00095 <span class="comment">// Retweeting a tweet</span>
+<a name="l00096"></a><a class="code" href="namespace_twitter_u_r_l.html#a87e9bf9cc4833adf0d6cd61c0b7e11ea">00096</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a87e9bf9cc4833adf0d6cd61c0b7e11ea" title="URL to retweet a tweet.">TwitterURL::RETWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/retweet/:id.json&quot;</span>);
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098 
-<a name="l00100"></a>00100 <span class="comment">// Users //</span>
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">// Getting informations about a given user</span>
-<a name="l00104"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00104</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
+<a name="l00098"></a>00098 <span class="comment">// Getting informations about a given tweet</span>
+<a name="l00099"></a><a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">00099</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d" title="URL to get informations about a given tweet.">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/show.json&quot;</span>);
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="comment">// Updating a tweet without medias</span>
+<a name="l00102"></a><a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">00102</a> QString <a class="code" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236" title="URL to update a tweet.">TwitterURL::UPDATE_TWEET_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://api.twitter.com/1/statuses/update.json&quot;</span>);
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="comment">// Updating a tweet with medias</span>
+<a name="l00105"></a><a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">00105</a> QString <a class="code" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504" title="URL to update a tweet with medias.">TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;http://upload.twitter.com/1/statuses/update_with_media.json&quot;</span>);
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 
+<a name="l00109"></a>00109 <span class="comment">// Users //</span>
+<a name="l00111"></a>00111 <span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">// Getting informations about a given user</span>
+<a name="l00113"></a><a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">00113</a> QString <a class="code" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e" title="URL to get informations about a given user.">TwitterURL::SHOW_USER_URL</a> = QString::fromUtf8(<span class="stringliteral">&quot;https://api.twitter.com/1/users/show.json&quot;</span>);
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -193,7 +202,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:05 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

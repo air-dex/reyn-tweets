@@ -38,7 +38,7 @@ class LaunchingProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn LaunchingProcess(ReynTweetsConfiguration & conf,
+		/// @fn LaunchingProcess(ReynTweetsUserConfiguration & userConf,
 		///						 ReynTweetsAppConfiguration & appConf);
 		/// @brief Constructor
 		/// @param userConf User configuration

@@ -126,6 +126,9 @@ class TwitterCommunicator : public QObject
 		void endRequest(QNetworkReply * response);
 
 	protected:
+		/// @brief Entity managing the Network (Internet).
+		QNetworkAccessManager * network;
+
 		// Entities for request
 
 		/// @brief URL of the service

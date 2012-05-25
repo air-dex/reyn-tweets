@@ -1,8 +1,8 @@
-#----------------------------------#
-# ReynTweets.pro                   #
-# Fichier projet Qt de Reyn Tweets #
-# Auteur : Romain Ducher           #
-#----------------------------------#
+#-----------------------------------#
+# ReynTweets.pro                    #
+# Reyn Tweets' Qt .pro project file #
+# Auteur : Romain Ducher            #
+#-----------------------------------#
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -255,6 +255,14 @@ OTHER_FILES = \
 	ui/qml/twitter-text-1.4.16.js \
 	Doxyfile.txt \
 	ReynTweets.rc
+
+
+#---------------------------------------#
+# Directories for mocs and object files #
+#---------------------------------------#
+
+MOC_DIR = mocs
+OBJECTS_DIR = obj
 
 
 #----------------------#

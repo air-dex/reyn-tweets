@@ -108,6 +108,7 @@ window.onload = initDynSections;
       <li><a href="functions_vars_0x67.html#index_g"><span>g</span></a></li>
       <li><a href="functions_vars_0x68.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_0x69.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_vars_0x6b.html#index_k"><span>k</span></a></li>
       <li><a href="functions_vars_0x6c.html#index_l"><span>l</span></a></li>
       <li><a href="functions_vars_0x6d.html#index_m"><span>m</span></a></li>
       <li><a href="functions_vars_0x6e.html#index_n"><span>n</span></a></li>
@@ -119,6 +120,7 @@ window.onload = initDynSections;
       <li><a href="functions_vars_0x74.html#index_t"><span>t</span></a></li>
       <li><a href="functions_vars_0x75.html#index_u"><span>u</span></a></li>
       <li><a href="functions_vars_0x76.html#index_v"><span>v</span></a></li>
+      <li><a href="functions_vars_0x77.html#index_w"><span>w</span></a></li>
     </ul>
   </div>
 </div>
@@ -131,11 +133,17 @@ window.onload = initDynSections;
 </li>
 <li>replyToTweetID
 : <a class="el" href="class_post_tweet_requester.html#a78f9e978b3cf130ba35856c687ffa999">PostTweetRequester</a>
-, <a class="el" href="class_tweet.html#a0434efac395b5640293053571fa8d75c">Tweet</a>
 , <a class="el" href="class_post_tweet_process.html#a0044cf1a5155f1e191a773b4613bdaa1">PostTweetProcess</a>
+, <a class="el" href="class_post_via_twit_longer_process.html#aecd3cd8b927cd73ace97e828da43e20a">PostViaTwitLongerProcess</a>
+, <a class="el" href="class_post_to_twit_longer_requester.html#ad430f5a0827af10362f6d1db66e42815">PostToTwitLongerRequester</a>
+, <a class="el" href="class_tweet.html#a0434efac395b5640293053571fa8d75c">Tweet</a>
 </li>
 <li>replyToTweetIDstr
 : <a class="el" href="class_tweet.html#af40b203cdac2fdf3288e2f3214d20ea3">Tweet</a>
+</li>
+<li>replyToUser
+: <a class="el" href="class_post_to_twit_longer_requester.html#ac7fe781f92d2f0e969b18d9004de6381">PostToTwitLongerRequester</a>
+, <a class="el" href="class_post_via_twit_longer_process.html#a86f6c2a43ed934197eb3449389b0da5e">PostViaTwitLongerProcess</a>
 </li>
 <li>replyToUserID
 : <a class="el" href="class_tweet.html#a3086864a1c4c7e8fea29b358efe63370">Tweet</a>
@@ -146,25 +154,22 @@ window.onload = initDynSections;
 <li>replyURL
 : <a class="el" href="class_twitter_communicator.html#ac067f4273c1ffa3d7ef7c442c476e2a0">TwitterCommunicator</a>
 </li>
-<li>request
-: <a class="el" href="class_twitter_communicator.html#a5438c134ec84279a83c05d2379cfc985">TwitterCommunicator</a>
-</li>
 <li>requestDemander
-: <a class="el" href="class_reyn_twitter_calls.html#ab42d1b335c0dcb6f09347782ed57dcab">ReynTwitterCalls</a>
+: <a class="el" href="class_generic_calls.html#abe0bb6df755ae7671696fa9a3f4104e0">GenericCalls</a>
 , <a class="el" href="class_reyn_core.html#a94022db854f428003230dda3957e47ab">ReynCore</a>
 </li>
 <li>requester
 : <a class="el" href="class_request_infos.html#a0570562068328d825f3fd28cc7d41796">RequestInfos</a>
 </li>
 <li>requesterManager
-: <a class="el" href="class_reyn_twitter_calls.html#af8e02bd83c32de3982caeb4b388fafac">ReynTwitterCalls</a>
+: <a class="el" href="class_generic_calls.html#a1cc57f83d3078e52ee3a1c6c0073cd1b">GenericCalls</a>
 </li>
 <li>requestResult
 : <a class="el" href="class_generic_requester.html#a230d0efc747fcdae4ccd73d124b5e1d6">GenericRequester</a>
 </li>
 <li>requestType
-: <a class="el" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af">TwitterCommunicator</a>
-, <a class="el" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58">GenericRequester</a>
+: <a class="el" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58">GenericRequester</a>
+, <a class="el" href="class_twitter_communicator.html#abd6b3c1c64450fcc68affdb0c25c30af">TwitterCommunicator</a>
 </li>
 <li>requestURL
 : <a class="el" href="class_generic_requester.html#ab5fd70327cbd649bfcb14c31361b70da">GenericRequester</a>
@@ -179,8 +184,8 @@ window.onload = initDynSections;
 : <a class="el" href="class_reyn_tweets_date_time.html#a0360f351bf9c08740b421ab41996004a">ReynTweetsDateTime</a>
 </li>
 <li>result
-: <a class="el" href="class_result_wrapper.html#a353ec4ab30e5567341c95db79862dd4d">ResultWrapper</a>
-, <a class="el" href="class_process_wrapper.html#a6b7aee0dca979bb037f1fdda3d95d5c1">ProcessWrapper</a>
+: <a class="el" href="class_process_wrapper.html#a6b7aee0dca979bb037f1fdda3d95d5c1">ProcessWrapper</a>
+, <a class="el" href="class_result_wrapper.html#a353ec4ab30e5567341c95db79862dd4d">ResultWrapper</a>
 </li>
 <li>results
 : <a class="el" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f">ProcessResult</a>
@@ -199,22 +204,12 @@ window.onload = initDynSections;
 </li>
 <li>reversePlace
 : <a class="el" href="class_post_tweet_process.html#a106e3edd27a3b92a6108288b9a103db6">PostTweetProcess</a>
+, <a class="el" href="class_post_via_twit_longer_process.html#a154a0b9d70297fca98d2aaab7f8d2cd6">PostViaTwitLongerProcess</a>
 , <a class="el" href="class_post_tweet_requester.html#af5231ee7b311f70263410d9974ba7a23">PostTweetRequester</a>
 </li>
 <li>reyn
-: <a class="el" href="class_allow_control.html#a717df07d086b142d4d200ee518d2477b">AllowControl</a>
-, <a class="el" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49">LaunchingControl</a>
+: <a class="el" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359">GenericControl</a>
 , <a class="el" href="class_login_control.html#a235fbe38552e3c29e3d3e6a1e6d1e486">LoginControl</a>
-, <a class="el" href="class_write_tweet_control.html#ae28b61cd0aa6522a6924f99672595233">WriteTweetControl</a>
-, <a class="el" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef">TweetControl</a>
-, <a class="el" href="class_timeline_control.html#a926e9dea3071c22e17d7b92cdddccf2f">TimelineControl</a>
-, <a class="el" href="class_settings_control.html#a801c263ab51c51d2523f22cabfd2d595">SettingsControl</a>
-</li>
-<li>REYN_TWEETS_CONSUMER_KEY
-: <a class="el" href="class_reyn_tweets_configuration.html#aecbc69c57b10c62d82845f38d1c90b2e">ReynTweetsConfiguration</a>
-</li>
-<li>REYN_TWEETS_CONSUMER_SECRET
-: <a class="el" href="class_reyn_tweets_configuration.html#aa1b10014d21bf86775571c88f0c56c48">ReynTweetsConfiguration</a>
 </li>
 </ul>
 </div>
@@ -232,7 +227,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:46 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

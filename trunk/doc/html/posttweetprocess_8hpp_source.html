@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/processes/posttweetprocess.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/processes/posttweetprocess.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_5fa6447f636639bde16ac2d1c3be7261.html">processes</a>
   </div>
 </div>
 <div class="contents">
@@ -121,8 +121,8 @@ window.onload = initDynSections;
 <a name="l00033"></a>00033         Q_OBJECT
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035         <span class="keyword">public</span>:
-<a name="l00056"></a>00056                 <a class="code" href="class_post_tweet_process.html#ae33a6b090fffd4b016b9cbfffe7ef59f" title="Constructor.">PostTweetProcess</a>(QString status,
-<a name="l00057"></a>00057                                                  qlonglong replyTostatusID = -1,
+<a name="l00056"></a>00056                 <a class="code" href="class_post_tweet_process.html#a2f7581f0e58a8b6ca189e2b08d81e20b" title="Constructor.">PostTweetProcess</a>(QString status,
+<a name="l00057"></a>00057                                                  QString replyTostatusID = <span class="stringliteral">&quot;-1&quot;</span>,
 <a name="l00058"></a>00058                                                  <span class="keywordtype">bool</span> userIDonly = <span class="keyword">true</span>,
 <a name="l00059"></a>00059                                                  <span class="keywordtype">bool</span> withEntities = <span class="keyword">false</span>,
 <a name="l00060"></a>00060                                                  <span class="keywordtype">float</span> lat = -361,
@@ -130,28 +130,38 @@ window.onload = initDynSections;
 <a name="l00062"></a>00062                                                  QString place = <span class="stringliteral">&quot;&quot;</span>,
 <a name="l00063"></a>00063                                                  <span class="keywordtype">bool</span> showCoord = <span class="keyword">false</span>);
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066         <span class="keyword">protected</span>:
-<a name="l00068"></a><a class="code" href="class_post_tweet_process.html#a1846369b2be1f8a308e88b03ccd8f720">00068</a>                 QString <a class="code" href="class_post_tweet_process.html#a1846369b2be1f8a308e88b03ccd8f720" title="Text to post.">tweet</a>;
-<a name="l00069"></a>00069 
-<a name="l00071"></a><a class="code" href="class_post_tweet_process.html#a0044cf1a5155f1e191a773b4613bdaa1">00071</a>                 qlonglong <a class="code" href="class_post_tweet_process.html#a0044cf1a5155f1e191a773b4613bdaa1" title="ID of the tweet that this status replies to.">replyToTweetID</a>;
-<a name="l00072"></a>00072 
-<a name="l00074"></a><a class="code" href="class_post_tweet_process.html#afbcd30a3d972174df1564f433a91a0b6">00074</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#afbcd30a3d972174df1564f433a91a0b6" title="Only include the userID in the &amp;quot;user&amp;quot; field of a tweet.">trimUser</a>;
-<a name="l00075"></a>00075 
-<a name="l00077"></a><a class="code" href="class_post_tweet_process.html#ab5de539a88995abf541995c7791d45e7">00077</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#ab5de539a88995abf541995c7791d45e7" title="Including Tweet Entities in tweets.">includeEntities</a>;
-<a name="l00078"></a>00078 
-<a name="l00080"></a><a class="code" href="class_post_tweet_process.html#aee4edb0bb48ce546d4faa824056d7b87">00080</a>                 <span class="keywordtype">float</span> <a class="code" href="class_post_tweet_process.html#aee4edb0bb48ce546d4faa824056d7b87" title="Longitude of the tweet.">longitude</a>;
-<a name="l00081"></a>00081 
-<a name="l00083"></a><a class="code" href="class_post_tweet_process.html#a6f6ae68f87ea7347ad05b6f19106300c">00083</a>                 <span class="keywordtype">float</span> <a class="code" href="class_post_tweet_process.html#a6f6ae68f87ea7347ad05b6f19106300c" title="Latitude of the tweet.">latitude</a>;
-<a name="l00084"></a>00084 
-<a name="l00086"></a><a class="code" href="class_post_tweet_process.html#a106e3edd27a3b92a6108288b9a103db6">00086</a>                 QString <a class="code" href="class_post_tweet_process.html#a106e3edd27a3b92a6108288b9a103db6" title="place where the tweet was supposed to be sent">reversePlace</a>;
-<a name="l00087"></a>00087 
-<a name="l00089"></a><a class="code" href="class_post_tweet_process.html#adfa6dbab07f658e98d454a4cd375af24">00089</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#adfa6dbab07f658e98d454a4cd375af24" title="Displaying coordonates on a map.">displayCoord</a>;
-<a name="l00090"></a>00090 
-<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_post_tweet_process.html#a13391b511269f5dd8cad2c0e5b50c6cd" title="Updating the tweet.">callTwitter</a>();
-<a name="l00094"></a>00094 };
+<a name="l00085"></a>00085                 <a class="code" href="class_post_tweet_process.html#a2f7581f0e58a8b6ca189e2b08d81e20b" title="Constructor.">PostTweetProcess</a>(QString status,
+<a name="l00086"></a>00086                                                  qlonglong replyTostatusID = -1,
+<a name="l00087"></a>00087                                                  <span class="keywordtype">bool</span> userIDonly = <span class="keyword">true</span>,
+<a name="l00088"></a>00088                                                  <span class="keywordtype">bool</span> withEntities = <span class="keyword">false</span>,
+<a name="l00089"></a>00089                                                  <span class="keywordtype">float</span> lat = -361,
+<a name="l00090"></a>00090                                                  <span class="keywordtype">float</span> lon = -361,
+<a name="l00091"></a>00091                                                  QString place = <span class="stringliteral">&quot;&quot;</span>,
+<a name="l00092"></a>00092                                                  <span class="keywordtype">bool</span> showCoord = <span class="keyword">false</span>);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="preprocessor">#endif // POSTTWEETPROCESS_HPP</span>
+<a name="l00096"></a>00096         <span class="keyword">protected</span>:
+<a name="l00098"></a><a class="code" href="class_post_tweet_process.html#a1846369b2be1f8a308e88b03ccd8f720">00098</a>                 QString <a class="code" href="class_post_tweet_process.html#a1846369b2be1f8a308e88b03ccd8f720" title="Text to post.">tweet</a>;
+<a name="l00099"></a>00099 
+<a name="l00101"></a><a class="code" href="class_post_tweet_process.html#a0044cf1a5155f1e191a773b4613bdaa1">00101</a>                 qlonglong <a class="code" href="class_post_tweet_process.html#a0044cf1a5155f1e191a773b4613bdaa1" title="ID of the tweet that this status replies to.">replyToTweetID</a>;
+<a name="l00102"></a>00102 
+<a name="l00104"></a><a class="code" href="class_post_tweet_process.html#afbcd30a3d972174df1564f433a91a0b6">00104</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#afbcd30a3d972174df1564f433a91a0b6" title="Only include the userID in the &amp;quot;user&amp;quot; field of a tweet.">trimUser</a>;
+<a name="l00105"></a>00105 
+<a name="l00107"></a><a class="code" href="class_post_tweet_process.html#ab5de539a88995abf541995c7791d45e7">00107</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#ab5de539a88995abf541995c7791d45e7" title="Including Tweet Entities in tweets.">includeEntities</a>;
+<a name="l00108"></a>00108 
+<a name="l00110"></a><a class="code" href="class_post_tweet_process.html#aee4edb0bb48ce546d4faa824056d7b87">00110</a>                 <span class="keywordtype">float</span> <a class="code" href="class_post_tweet_process.html#aee4edb0bb48ce546d4faa824056d7b87" title="Longitude of the tweet.">longitude</a>;
+<a name="l00111"></a>00111 
+<a name="l00113"></a><a class="code" href="class_post_tweet_process.html#a6f6ae68f87ea7347ad05b6f19106300c">00113</a>                 <span class="keywordtype">float</span> <a class="code" href="class_post_tweet_process.html#a6f6ae68f87ea7347ad05b6f19106300c" title="Latitude of the tweet.">latitude</a>;
+<a name="l00114"></a>00114 
+<a name="l00116"></a><a class="code" href="class_post_tweet_process.html#a106e3edd27a3b92a6108288b9a103db6">00116</a>                 QString <a class="code" href="class_post_tweet_process.html#a106e3edd27a3b92a6108288b9a103db6" title="place where the tweet was supposed to be sent">reversePlace</a>;
+<a name="l00117"></a>00117 
+<a name="l00119"></a><a class="code" href="class_post_tweet_process.html#adfa6dbab07f658e98d454a4cd375af24">00119</a>                 <span class="keywordtype">bool</span> <a class="code" href="class_post_tweet_process.html#adfa6dbab07f658e98d454a4cd375af24" title="Displaying coordonates on a map.">displayCoord</a>;
+<a name="l00120"></a>00120 
+<a name="l00123"></a>00123                 <span class="keywordtype">void</span> <a class="code" href="class_post_tweet_process.html#a13391b511269f5dd8cad2c0e5b50c6cd" title="Updating the tweet.">callTwitter</a>();
+<a name="l00124"></a>00124 };
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="preprocessor">#endif // POSTTWEETPROCESS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -167,7 +177,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

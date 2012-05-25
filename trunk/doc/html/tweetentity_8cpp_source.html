@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/tweets/tweetentity.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/model/tweets/tweetentity.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ddaef8fb73602a57805889eeb9608e17.html">tweets</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ddaef8fb73602a57805889eeb9608e17.html">tweets</a>
   </div>
 </div>
 <div class="contents">
@@ -123,47 +123,49 @@ window.onload = initDynSections;
 <a name="l00033"></a><a class="code" href="class_tweet_entity.html#a905be3b2b34113a1cabedf358c6821cf">00033</a> <a class="code" href="class_tweet_entity.html#a905be3b2b34113a1cabedf358c6821cf" title="Destructor.">TweetEntity::~TweetEntity</a>() {}
 <a name="l00034"></a>00034 
 <a name="l00035"></a>00035 <span class="comment">// Copy constructor</span>
-<a name="l00036"></a><a class="code" href="class_tweet_entity.html#a2a6992f72bab66dd2af06a70c859c84c">00036</a> <a class="code" href="class_tweet_entity.html#a18a69f1517ed11671bb7ab5b191fe629" title="Constructor.">TweetEntity::TweetEntity</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) {
-<a name="l00037"></a>00037         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(entity);
-<a name="l00038"></a>00038 }
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">// Affectation</span>
-<a name="l00041"></a><a class="code" href="class_tweet_entity.html#aa63e470a541d79b4524cc1dc4b9efa69">00041</a> <span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; <a class="code" href="class_tweet_entity.html#aa63e470a541d79b4524cc1dc4b9efa69" title="Affectation.">TweetEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) {
-<a name="l00042"></a>00042         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(entity);
-<a name="l00043"></a>00043         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment">// Copy of a Hashtag</span>
-<a name="l00047"></a><a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af">00047</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">TweetEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) {
-<a name="l00048"></a>00048         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">ReynTweetsMappable::recopie</a>(entity);
-<a name="l00049"></a>00049         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a> = entity.<a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00054"></a>00054 <span class="comment">// Properties management //</span>
-<a name="l00056"></a>00056 <span class="comment"></span>
-<a name="l00057"></a>00057 <span class="comment">// Reading method for the property indices</span>
-<a name="l00058"></a><a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d">00058</a> QVariantList <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">TweetEntity::getIndicesProperty</a>() {
-<a name="l00059"></a>00059         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
-<a name="l00060"></a>00060 }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="comment">// Writing method for the property indices</span>
-<a name="l00063"></a><a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb">00063</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">TweetEntity::setIndices</a>(QVariantList newIndexList) {
-<a name="l00064"></a>00064         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(newIndexList);
-<a name="l00065"></a>00065 }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00069"></a>00069 <span class="comment">// Getter and setters //</span>
-<a name="l00071"></a>00071 <span class="comment"></span>
-<a name="l00072"></a>00072 <span class="comment">// Reading indexes</span>
-<a name="l00073"></a><a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12">00073</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">TweetEntity::getIndices</a>() {
-<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="comment">// Writing indexes</span>
-<a name="l00078"></a><a class="code" href="class_tweet_entity.html#ae6e879eda17ee2cc2a8c5747771b60fa">00078</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">TweetEntity::setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
-<a name="l00079"></a>00079         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a> = newIndexes;
-<a name="l00080"></a>00080 }
+<a name="l00036"></a><a class="code" href="class_tweet_entity.html#a2a6992f72bab66dd2af06a70c859c84c">00036</a> <a class="code" href="class_tweet_entity.html#a18a69f1517ed11671bb7ab5b191fe629" title="Constructor.">TweetEntity::TweetEntity</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) :
+<a name="l00037"></a>00037     <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>()
+<a name="l00038"></a>00038 {
+<a name="l00039"></a>00039         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(entity);
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment">// Affectation</span>
+<a name="l00043"></a><a class="code" href="class_tweet_entity.html#aa63e470a541d79b4524cc1dc4b9efa69">00043</a> <span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; <a class="code" href="class_tweet_entity.html#aa63e470a541d79b4524cc1dc4b9efa69" title="Affectation.">TweetEntity::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) {
+<a name="l00044"></a>00044         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">recopie</a>(entity);
+<a name="l00045"></a>00045         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00046"></a>00046 }
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 <span class="comment">// Copy of a Hashtag</span>
+<a name="l00049"></a><a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af">00049</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">TweetEntity::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_tweet_entity.html" title="Base class for all Tweet Entities.">TweetEntity</a> &amp; entity) {
+<a name="l00050"></a>00050         <a class="code" href="class_tweet_entity.html#ad6cccc11b1336b58b89495941918e4af" title="Copy of a Tweet entity.">ReynTweetsMappable::recopie</a>(entity);
+<a name="l00051"></a>00051         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a> = entity.<a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
+<a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 
+<a name="l00056"></a>00056 <span class="comment">// Properties management //</span>
+<a name="l00058"></a>00058 <span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment">// Reading method for the property indices</span>
+<a name="l00060"></a><a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d">00060</a> QVariantList <a class="code" href="class_tweet_entity.html#ad57198dae3245a389f3313edeb3a361d" title="Reading method for the property indices.">TweetEntity::getIndicesProperty</a>() {
+<a name="l00061"></a>00061         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2fbe0bd60e7291bc321f59465e105756" title="Converting the bounds into a QVariantList.">toVariant</a>();
+<a name="l00062"></a>00062 }
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="comment">// Writing method for the property indices</span>
+<a name="l00065"></a><a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb">00065</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">TweetEntity::setIndices</a>(QVariantList newIndexList) {
+<a name="l00066"></a>00066         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>.<a class="code" href="class_index_bounds.html#a2b3a769d8763b93260769fdd95f3ff7a" title="Filling the object with a QVariantList.">fillWithVariant</a>(newIndexList);
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00071"></a>00071 <span class="comment">// Getter and setters //</span>
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">// Reading indexes</span>
+<a name="l00075"></a><a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12">00075</a> <a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> <a class="code" href="class_tweet_entity.html#aa5ba17fe1a02a937770a5910984e4b12" title="Reading indexes.">TweetEntity::getIndices</a>() {
+<a name="l00076"></a>00076         <span class="keywordflow">return</span> <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a>;
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="comment">// Writing indexes</span>
+<a name="l00080"></a><a class="code" href="class_tweet_entity.html#ae6e879eda17ee2cc2a8c5747771b60fa">00080</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_entity.html#a3ddd07cf11fff6cbeea0e1457aac9bcb" title="Writing method for the property indices.">TweetEntity::setIndices</a>(<a class="code" href="class_index_bounds.html" title="Indices of an entity in a tweet.">IndexBounds</a> newIndexes) {
+<a name="l00081"></a>00081         <a class="code" href="class_tweet_entity.html#a7718bbcfdf3f2a23795fe2b4b00591fa" title="Indexes of the hashtag in the tweet.">indexes</a> = newIndexes;
+<a name="l00082"></a>00082 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -179,7 +181,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:08 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

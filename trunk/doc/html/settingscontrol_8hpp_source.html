@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/settingscontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/settingscontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -114,11 +114,11 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="preprocessor">#ifndef SETTINGSCONTROL_HPP</span>
 <a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#define SETTINGSCONTROL_HPP</span>
 <a name="l00026"></a>00026 <span class="preprocessor"></span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
-<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../../model/configuration/reyntweetsconfiguration.hpp&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;../../model/configuration/reyntweetsuserconfiguration.hpp&quot;</span>
 <a name="l00030"></a>00030 
-<a name="l00033"></a><a class="code" href="class_settings_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_settings_control.html" title="Control for managing the configuration.">SettingsControl</a> : <span class="keyword">public</span> QObject
+<a name="l00033"></a><a class="code" href="class_settings_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_settings_control.html" title="Control for managing the configuration.">SettingsControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
 <a name="l00034"></a>00034 {
 <a name="l00035"></a>00035         Q_OBJECT
 <a name="l00036"></a>00036 
@@ -131,20 +131,18 @@ window.onload = initDynSections;
 <a name="l00049"></a>00049                 <span class="keywordtype">void</span> <a class="code" href="class_settings_control.html#af2ffd68796b450e130733c8a5a4a65d9" title="Emitted to notify changes about the configuration property.">configurationChanged</a>();
 <a name="l00050"></a>00050 
 <a name="l00051"></a>00051         <span class="keyword">protected</span>:
-<a name="l00053"></a><a class="code" href="class_settings_control.html#a801c263ab51c51d2523f22cabfd2d595">00053</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_settings_control.html#a801c263ab51c51d2523f22cabfd2d595" title="Heart of Reyn Tweets. Unused for the moment.">reyn</a>;
+<a name="l00053"></a><a class="code" href="class_settings_control.html#ace9ac9e28228c44c814504bf81d80297">00053</a>                 <a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> &amp; <a class="code" href="class_settings_control.html#ace9ac9e28228c44c814504bf81d80297" title="Reference on the configuration of Reyn Tweets.">conf</a>;
 <a name="l00054"></a>00054 
-<a name="l00056"></a><a class="code" href="class_settings_control.html#ac1582bf9cb5322ccc6b91462c3a1ff4c">00056</a>                 <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> &amp; <a class="code" href="class_settings_control.html#ac1582bf9cb5322ccc6b91462c3a1ff4c" title="Reference on the configuration of Reyn Tweets.">conf</a>;
-<a name="l00057"></a>00057 
-<a name="l00060"></a>00060                 Q_PROPERTY(<a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> * <a class="code" href="class_settings_control.html#a20ff17cdc50b74e817e1ad860d61c456" title="Read only property to access to the configuration for QML.">configuration</a>
-<a name="l00061"></a>00061                                    READ <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">getConfiguration</a>
-<a name="l00062"></a><a class="code" href="class_settings_control.html#a20ff17cdc50b74e817e1ad860d61c456">00062</a>                                    NOTIFY configurationChanged)
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064                 
+<a name="l00057"></a>00057                 Q_PROPERTY(<a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> * <a class="code" href="class_settings_control.html#a20ff17cdc50b74e817e1ad860d61c456" title="Read only property to access to the configuration for QML.">configuration</a>
+<a name="l00058"></a>00058                                    READ <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">getConfiguration</a>
+<a name="l00059"></a><a class="code" href="class_settings_control.html#a20ff17cdc50b74e817e1ad860d61c456">00059</a>                                    NOTIFY configurationChanged)
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061                 
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063                 <a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> * <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">getConfiguration</a>();
+<a name="l00064"></a>00064 };
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066                 <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> * <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">getConfiguration</a>();
-<a name="l00067"></a>00067 };
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#endif // SETTINGSCONTROL_HPP</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#endif // SETTINGSCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -160,7 +158,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

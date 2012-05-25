@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/timelines/hometimelinerequester.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/timelines/hometimelinerequester.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_f207150426cae55a902c0bdf7d7f7938.html">timelines</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_f207150426cae55a902c0bdf7d7f7938.html">timelines</a>
   </div>
 </div>
 <div class="contents">
@@ -139,27 +139,29 @@ window.onload = initDynSections;
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 <span class="comment">// Building getParameters</span>
 <a name="l00051"></a><a class="code" href="class_home_timeline_requester.html#a9971db1d33b510e92512f5711301fcc3">00051</a> <span class="keywordtype">void</span> <a class="code" href="class_home_timeline_requester.html#a9971db1d33b510e92512f5711301fcc3" title="Building getParameters.">HomeTimelineRequester::buildGETParameters</a>() {
-<a name="l00052"></a>00052         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;count&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#afddd4938ff6ff01c1780270ee0079c8f" title="Number of tweets in the timeline. count &amp;lt; 200">count</a>));
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#a63066a68a6f811c1942a6f389b5f31d1" title="Minimum tweet ID allowed in the timeline.">sinceID</a> &gt; -1) {
-<a name="l00055"></a>00055                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;since_id&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#a63066a68a6f811c1942a6f389b5f31d1" title="Minimum tweet ID allowed in the timeline.">sinceID</a>));
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#ae23df84ef2a005e01b16cf025ae442ea" title="Maximum tweet ID allowed in the timeline.">maxID</a> &gt; -1) {
-<a name="l00060"></a>00060                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;max_id&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#ae23df84ef2a005e01b16cf025ae442ea" title="Maximum tweet ID allowed in the timeline.">maxID</a>));
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#ac35e42584995e9e1f0a2ad6c569c570f" title="Number of pages to retrieve. Start at 1, not 0.">page</a> &gt; 0) {
-<a name="l00064"></a>00064                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;page&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#ac35e42584995e9e1f0a2ad6c569c570f" title="Number of pages to retrieve. Start at 1, not 0.">page</a>));
-<a name="l00065"></a>00065         }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;trim_user&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a7120d3568b5334babb3a69e08292acc8" title="Only include the userID in the &amp;quot;user&amp;quot; field of a tweet.">trimUser</a>));
-<a name="l00068"></a>00068         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_rts&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a048220db17e784c179165a8f77fc176c" title="Includng retweets.">includeRetweets</a>));
-<a name="l00069"></a>00069         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_entities&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#af579862501c42ba8be1f5364a2d7ed87" title="Including Tweet Entities in tweets.">includeEntities</a>));
-<a name="l00070"></a>00070         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;exclude_replies&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a2bee5a7c3ce71e0866300d0c46a8ed09" title="Prevent the return timeline from replies.">excludeReplies</a>));
-<a name="l00071"></a>00071         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;contributors_details&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a7ed04085a290f51d520d0a17960e5b93" title="Including details about contributors.">contributorsDetails</a>));
-<a name="l00072"></a>00072 }
+<a name="l00052"></a>00052         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#afddd4938ff6ff01c1780270ee0079c8f" title="Number of tweets in the timeline. count &amp;lt; 200">count</a> != 20) {
+<a name="l00053"></a>00053                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;count&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#afddd4938ff6ff01c1780270ee0079c8f" title="Number of tweets in the timeline. count &amp;lt; 200">count</a>));
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#a63066a68a6f811c1942a6f389b5f31d1" title="Minimum tweet ID allowed in the timeline.">sinceID</a> &gt; -1) {
+<a name="l00057"></a>00057                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;since_id&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#a63066a68a6f811c1942a6f389b5f31d1" title="Minimum tweet ID allowed in the timeline.">sinceID</a>));
+<a name="l00058"></a>00058         }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#ae23df84ef2a005e01b16cf025ae442ea" title="Maximum tweet ID allowed in the timeline.">maxID</a> &gt; -1) {
+<a name="l00062"></a>00062                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;max_id&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#ae23df84ef2a005e01b16cf025ae442ea" title="Maximum tweet ID allowed in the timeline.">maxID</a>));
+<a name="l00063"></a>00063         }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="keywordflow">if</span> (<a class="code" href="class_home_timeline_requester.html#ac35e42584995e9e1f0a2ad6c569c570f" title="Number of pages to retrieve. Start at 1, not 0.">page</a> &gt; 0) {
+<a name="l00066"></a>00066                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;page&quot;</span>, QString::number(<a class="code" href="class_home_timeline_requester.html#ac35e42584995e9e1f0a2ad6c569c570f" title="Number of pages to retrieve. Start at 1, not 0.">page</a>));
+<a name="l00067"></a>00067         }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;trim_user&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a7120d3568b5334babb3a69e08292acc8" title="Only include the userID in the &amp;quot;user&amp;quot; field of a tweet.">trimUser</a>));
+<a name="l00070"></a>00070         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_rts&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a048220db17e784c179165a8f77fc176c" title="Includng retweets.">includeRetweets</a>));
+<a name="l00071"></a>00071         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;include_entities&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#af579862501c42ba8be1f5364a2d7ed87" title="Including Tweet Entities in tweets.">includeEntities</a>));
+<a name="l00072"></a>00072         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;exclude_replies&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a2bee5a7c3ce71e0866300d0c46a8ed09" title="Prevent the return timeline from replies.">excludeReplies</a>));
+<a name="l00073"></a>00073         <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>.insert(<span class="stringliteral">&quot;contributors_details&quot;</span>, <a class="code" href="utils_8cpp.html#a116f736d8b7083822a97783b1e85c052" title="Converting a bool into a QString.">boolInString</a>(<a class="code" href="class_home_timeline_requester.html#a7ed04085a290f51d520d0a17960e5b93" title="Including details about contributors.">contributorsDetails</a>));
+<a name="l00074"></a>00074 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -175,7 +177,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:05 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: ui/qml/Constants.qml Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/ui/qml/Constants.qml Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_ae97b7e4b1031c2547fb36343251c069.html">ui</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_b1ec1ca443888167af1b35eea38e1c42.html">qml</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ae97b7e4b1031c2547fb36343251c069.html">ui</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_b1ec1ca443888167af1b35eea38e1c42.html">qml</a>
   </div>
 </div>
 <div class="contents">
@@ -114,50 +114,65 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="keyword">import</span> QtQuick 1.1
 <a name="l00025"></a>00025 
 <a name="l00028"></a>00028 QtObject {
-<a name="l00030"></a>00030         <span class="comment">// Colors //</span>
+<a name="l00030"></a>00030         <span class="comment">// Application size //</span>
 <a name="l00032"></a>00032 <span class="comment"></span>
-<a name="l00033"></a>00033         <span class="comment">// Orange Reyn Tweets</span>
-<a name="l00034"></a>00034         <span class="keyword">property</span> <span class="keywordtype">string</span> orange: <span class="stringliteral">&quot;#d9781d&quot;</span>
+<a name="l00033"></a>00033         <span class="comment">// Width</span>
+<a name="l00034"></a>00034         <span class="keyword">property</span> <span class="keywordtype">int</span> reyn_tweets_width: 360
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036         <span class="comment">// Grey</span>
-<a name="l00037"></a>00037         <span class="keyword">property</span> <span class="keywordtype">string</span> grey: <span class="stringliteral">&quot;#c4c4c4&quot;</span>
+<a name="l00036"></a>00036         <span class="comment">// Height</span>
+<a name="l00037"></a>00037         <span class="keyword">property</span> <span class="keywordtype">int</span> reyn_tweets_height: 640
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <span class="comment">// Grey</span>
-<a name="l00040"></a>00040         <span class="keyword">property</span> <span class="keywordtype">string</span> very_light_grey: <span class="stringliteral">&quot;#fafafa&quot;</span>
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042         <span class="comment">// White</span>
-<a name="l00043"></a>00043         <span class="keyword">property</span> <span class="keywordtype">string</span> white: <span class="stringliteral">&quot;#ffffff&quot;</span>
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <span class="comment">// Black</span>
-<a name="l00046"></a>00046         <span class="keyword">property</span> <span class="keywordtype">string</span> black: <span class="stringliteral">&quot;#000000&quot;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048         <span class="comment">// Black</span>
-<a name="l00049"></a>00049         <span class="keyword">property</span> <span class="keywordtype">string</span> red: <span class="stringliteral">&quot;#ff0000&quot;</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00053"></a>00053         <span class="comment">// Font //</span>
-<a name="l00055"></a>00055 <span class="comment"></span>
-<a name="l00056"></a>00056         <span class="comment">// Font used for Reyn Tweets</span>
-<a name="l00057"></a>00057         <span class="keyword">property</span> <span class="keywordtype">string</span> font: <span class="stringliteral">&quot;Ubuntu&quot;</span>
+<a name="l00039"></a>00039 
+<a name="l00041"></a>00041         <span class="comment">// Colors //</span>
+<a name="l00043"></a>00043 <span class="comment"></span>
+<a name="l00044"></a>00044         <span class="comment">// Orange Reyn Tweets</span>
+<a name="l00045"></a>00045         <span class="keyword">property</span> <span class="keywordtype">string</span> orange: <span class="stringliteral">&quot;#eb8801&quot;</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="comment">// Grey</span>
+<a name="l00048"></a>00048         <span class="keyword">property</span> <span class="keywordtype">string</span> grey: <span class="stringliteral">&quot;#c4c4c4&quot;</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050         <span class="comment">// Light grey</span>
+<a name="l00051"></a>00051         <span class="keyword">property</span> <span class="keywordtype">string</span> very_light_grey: <span class="stringliteral">&quot;#fafafa&quot;</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         <span class="comment">// White</span>
+<a name="l00054"></a>00054         <span class="keyword">property</span> <span class="keywordtype">string</span> white: <span class="stringliteral">&quot;#ffffff&quot;</span>
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="comment">// Black</span>
+<a name="l00057"></a>00057         <span class="keyword">property</span> <span class="keywordtype">string</span> black: <span class="stringliteral">&quot;#000000&quot;</span>
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059         <span class="comment">// Font size</span>
-<a name="l00060"></a>00060         <span class="keyword">property</span> <span class="keywordtype">int</span> font_size: 14
+<a name="l00059"></a>00059         <span class="comment">// Red</span>
+<a name="l00060"></a>00060         <span class="keyword">property</span> <span class="keywordtype">string</span> red: <span class="stringliteral">&quot;#ff0000&quot;</span>
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="comment">// Font size</span>
-<a name="l00063"></a>00063         <span class="keyword">property</span> <span class="keywordtype">int</span> font_small_size: 12
+<a name="l00062"></a>00062         <span class="comment">// Green for mentions (separator_color)</span>
+<a name="l00063"></a>00063         <span class="keyword">property</span> <span class="keywordtype">string</span> green_mention: <span class="stringliteral">&quot;#b8fe86&quot;</span>
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00067"></a>00067         <span class="comment">// Actions after errors //</span>
-<a name="l00069"></a>00069 <span class="comment"></span>
-<a name="l00070"></a>00070         <span class="comment">// Showing temporary message</span>
-<a name="l00071"></a>00071         <span class="keyword">property</span> <span class="keywordtype">string</span> info_msg_action: <span class="stringliteral">&quot;Info message&quot;</span>
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073         <span class="comment">// Font size</span>
-<a name="l00074"></a>00074         <span class="keyword">property</span> <span class="keywordtype">string</span> try_again_action: <span class="stringliteral">&quot;Try again&quot;</span>
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076         <span class="comment">// Font size</span>
-<a name="l00077"></a>00077         <span class="keyword">property</span> <span class="keywordtype">string</span> quit_action: <span class="stringliteral">&quot;Quit&quot;</span>
-<a name="l00078"></a>00078 }
+<a name="l00065"></a>00065         <span class="comment">// Green for mentions (middle_color)</span>
+<a name="l00066"></a>00066         <span class="keyword">property</span> <span class="keywordtype">string</span> light_green_mention: <span class="stringliteral">&quot;#d3ffb4&quot;</span>
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="comment">// Blue for Direct messages (separator_color)</span>
+<a name="l00069"></a>00069         <span class="keyword">property</span> <span class="keywordtype">string</span> blue_dm: <span class="stringliteral">&quot;#90c0fd&quot;</span>
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071         <span class="comment">// Blue for Direct messages (middle_color)</span>
+<a name="l00072"></a>00072         <span class="keyword">property</span> <span class="keywordtype">string</span> light_blue_dm: <span class="stringliteral">&quot;#b3d3fd&quot;</span>
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074         <span class="comment">// Orange for own tweets (separator_color)</span>
+<a name="l00075"></a>00075         <span class="keyword">property</span> <span class="keywordtype">string</span> orange_author: <span class="stringliteral">&quot;#ffd35e&quot;</span>
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077         <span class="comment">// Orange for own tweets (middle_color)</span>
+<a name="l00078"></a>00078         <span class="keyword">property</span> <span class="keywordtype">string</span> light_orange_author: <span class="stringliteral">&quot;#ffe08d&quot;</span>
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 
+<a name="l00082"></a>00082         <span class="comment">// Font //</span>
+<a name="l00084"></a>00084 <span class="comment"></span>
+<a name="l00085"></a>00085         <span class="comment">// Font used for Reyn Tweets</span>
+<a name="l00086"></a>00086         <span class="keyword">property</span> <span class="keywordtype">string</span> font: <span class="stringliteral">&quot;Ubuntu&quot;</span>
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088         <span class="comment">// Font size</span>
+<a name="l00089"></a>00089         <span class="keyword">property</span> <span class="keywordtype">int</span> font_size: 14
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="comment">// Font size</span>
+<a name="l00092"></a>00092         <span class="keyword">property</span> <span class="keywordtype">int</span> font_small_size: 12
+<a name="l00093"></a>00093 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -173,7 +188,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:09 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

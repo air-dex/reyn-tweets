@@ -89,7 +89,7 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>OAuthParser Class Reference</h1><!-- doxytag: class="OAuthParser" --><!-- doxytag: inherits="GenericParser&lt; QVariantMap &gt;" -->
-<p>Parser for data which are under the form <code> arg1=val1&amp;arg2=val2&amp;...&amp;argN=valN</code>. This kind of parser is used for parsing OAuth results.  
+<p>Parser for data which are under the form <code> arg1=val1&amp;arg2=val2&amp;...&amp;argN=valN</code>.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="oauthparser_8hpp_source.html">oauthparser.hpp</a>&gt;</code></p>
@@ -109,15 +109,16 @@ Inheritance diagram for OAuthParser:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07">extractParameter</a> (QVariantMap &amp;parsedMap, QString parameterName, bool &amp;extractOK, QString &amp;extractError)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Extracting one parameter from the parsed result.  <a href="#ae225c6d367fe29c605352101954f5f07"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8">parse</a> (QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parsing datas for OAuth.  <a href="#a7867911db3c1a20e15a060996a7867f8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QVariantMap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_parser.html#a544acead360bd08c1e12589126e5484f">parse</a> (QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0, int *columnError=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parsing datas for OAuth.  <a href="#a544acead360bd08c1e12589126e5484f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_auth_parser.html#af0c2bdf3747124c06d0a786757992c9b">rewriteAsBool</a> (QVariantMap &amp;parsedMap, QString parameterName, bool &amp;rewriteOK, QString &amp;rewriteError)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rewriting one parameter of the parsed result as a boolean.  <a href="#af0c2bdf3747124c06d0a786757992c9b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Parser for data which are under the form <code> arg1=val1&amp;arg2=val2&amp;...&amp;argN=valN</code>. This kind of parser is used for parsing OAuth results. </p>
+<p>Parser for data which are under the form <code> arg1=val1&amp;arg2=val2&amp;...&amp;argN=valN</code>. </p>
+<p>This kind of parser is used for parsing OAuth results. </p>
 
-<p>Definition at line <a class="el" href="oauthparser_8hpp_source.html#l00035">35</a> of file <a class="el" href="oauthparser_8hpp_source.html">oauthparser.hpp</a>.</p>
+<p>Definition at line <a class="el" href="oauthparser_8hpp_source.html#l00036">36</a> of file <a class="el" href="oauthparser_8hpp_source.html">oauthparser.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ae225c6d367fe29c605352101954f5f07"></a><!-- doxytag: member="OAuthParser::extractParameter" ref="ae225c6d367fe29c605352101954f5f07" args="(QVariantMap &amp;parsedMap, QString parameterName, bool &amp;extractOK, QString &amp;extractError)" -->
 <div class="memitem">
@@ -172,7 +173,7 @@ Inheritance diagram for OAuthParser:</div>
 
 </div>
 </div>
-<a class="anchor" id="a7867911db3c1a20e15a060996a7867f8"></a><!-- doxytag: member="OAuthParser::parse" ref="a7867911db3c1a20e15a060996a7867f8" args="(QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0)" -->
+<a class="anchor" id="a544acead360bd08c1e12589126e5484f"></a><!-- doxytag: member="OAuthParser::parse" ref="a544acead360bd08c1e12589126e5484f" args="(QByteArray data, bool &amp;parseOK, QString &amp;parseError, int *lineError=0, int *columnError=0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -198,7 +199,13 @@ Inheritance diagram for OAuthParser:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&nbsp;</td>
-          <td class="paramname"> <em>lineError</em> = <code>0</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>lineError</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>columnError</em> = <code>0</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -216,11 +223,12 @@ Inheritance diagram for OAuthParser:</div>
     <tr><td valign="top"></td><td valign="top"><em>parseOK</em>&nbsp;</td><td>Boolean indicating if the parcing process was successful </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>parseError</em>&nbsp;</td><td>Error message about a parsing error </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>lineError</em>&nbsp;</td><td>Line of the error. Unused. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>columnError</em>&nbsp;</td><td>Column of the error. Unused. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_generic_parser.html#aa8af753bb227f28eb22f4b4da226a689">GenericParser&lt; QVariantMap &gt;</a>.</p>
+<p>Implements <a class="el" href="class_generic_parser.html#a9d3dc4115101858214fffbcf0d275c73">GenericParser&lt; QVariantMap &gt;</a>.</p>
 
 <p>Definition at line <a class="el" href="oauthparser_8cpp_source.html#l00030">30</a> of file <a class="el" href="oauthparser_8cpp_source.html">oauthparser.cpp</a>.</p>
 
@@ -279,8 +287,8 @@ Inheritance diagram for OAuthParser:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>tools/parsers/<a class="el" href="oauthparser_8hpp_source.html">oauthparser.hpp</a></li>
-<li>tools/parsers/<a class="el" href="oauthparser_8cpp_source.html">oauthparser.cpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/<a class="el" href="oauthparser_8hpp_source.html">oauthparser.hpp</a></li>
+<li>C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/<a class="el" href="oauthparser_8cpp_source.html">oauthparser.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -297,7 +305,7 @@ Inheritance diagram for OAuthParser:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:49 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:20 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

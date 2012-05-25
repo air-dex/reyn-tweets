@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/tweetcontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/tweetcontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -117,61 +117,70 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#ifndef TWEETCONTROL_HPP</span>
 <a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#define TWEETCONTROL_HPP</span>
 <a name="l00029"></a>00029 <span class="preprocessor"></span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
 <a name="l00032"></a>00032 <span class="preprocessor">#include &quot;../../model/tweets/tweet.hpp&quot;</span>
 <a name="l00033"></a>00033 
-<a name="l00036"></a><a class="code" href="class_tweet_control.html">00036</a> <span class="keyword">class </span><a class="code" href="class_tweet_control.html" title="Control behind a TweetPane.">TweetControl</a> : <span class="keyword">public</span> QObject
+<a name="l00036"></a><a class="code" href="class_tweet_control.html">00036</a> <span class="keyword">class </span><a class="code" href="class_tweet_control.html" title="Control behind a TweetPane.">TweetControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
 <a name="l00037"></a>00037 {
-<a name="l00038"></a>00038         Q_OBJECT
+<a name="l00038"></a>00038     Q_OBJECT
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a" title="Constructor.">TweetControl</a>();
+<a name="l00040"></a>00040     <span class="keyword">public</span>:
+<a name="l00043"></a>00043         <a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a" title="Constructor.">TweetControl</a>();
 <a name="l00044"></a>00044 
-<a name="l00047"></a>00047                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9" title="Declaring TweetControl to the QML system.">declareQML</a>();
+<a name="l00047"></a>00047         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9" title="Declaring TweetControl to the QML system.">declareQML</a>();
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049         signals:
-<a name="l00052"></a>00052                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054         <span class="keyword">public</span> slots:
-<a name="l00057"></a>00057                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ab34ca653bd33855d7bdbcb80c7def218" title="Reply to the tweet.">reply</a>();
-<a name="l00058"></a>00058 
-<a name="l00061"></a>00061                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523" title="Retweet the tweet.">retweet</a>();
-<a name="l00062"></a>00062 
-<a name="l00065"></a>00065                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a03173d2d045d681712ec9adccdd49923" title="Quote the tweet (old retweet method).">quote</a>();
-<a name="l00066"></a>00066 
-<a name="l00069"></a>00069                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee" title="Favorite the tweet.">favorite</a>();
+<a name="l00051"></a>00051         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523" title="Retweet the tweet.">retweet</a>();
+<a name="l00052"></a>00052 
+<a name="l00055"></a>00055         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee" title="Favorite the tweet.">favorite</a>();
+<a name="l00056"></a>00056 
+<a name="l00059"></a>00059         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d" title="Unfavorite the tweet.">unfavorite</a>();
+<a name="l00060"></a>00060 
+<a name="l00063"></a>00063         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#aa4d3fe0b1338a520799a99fdbeb56812" title="Delete the tweet.">deleteTweet</a>();
+<a name="l00064"></a>00064 
+<a name="l00068"></a>00068         Q_INVOKABLE <span class="keywordtype">bool</span> <a class="code" href="class_tweet_control.html#a86a12e1c583b5be8fa86306474ddf081" title="Method indicating if the tweet mentions the user.">isMention</a>();
+<a name="l00069"></a>00069 
 <a name="l00070"></a>00070 
-<a name="l00073"></a>00073                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d" title="Unfavorite the tweet.">unfavorite</a>();
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075         <span class="keyword">protected</span> slots:
-<a name="l00078"></a>00078                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a4f4080b3a4d878a8afcb05b29b5a1340" title="Slot executed after replying to the tweet.">replyEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00079"></a>00079 
-<a name="l00082"></a>00082                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00083"></a>00083 
-<a name="l00086"></a>00086                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#afba6a51dcb82a03fa3337fa3a3d6c37d" title="Slot executed after quoting the tweet (old retweet method).">quoteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00087"></a>00087 
-<a name="l00090"></a>00090                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00091"></a>00091 
-<a name="l00094"></a>00094                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096         <span class="keyword">protected</span>:
-<a name="l00098"></a><a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef">00098</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>;
-<a name="l00099"></a>00099 
-<a name="l00102"></a>00102                 Q_PROPERTY(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a10e5299dd92d4b157dab3d75c03d2a2c" title="Model of the tweet manipulated by the control.">tweet</a>
-<a name="l00103"></a>00103                                    READ <a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">getTweet</a>
-<a name="l00104"></a>00104                                    WRITE <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">setTweet</a>
-<a name="l00105"></a><a class="code" href="class_tweet_control.html#a10e5299dd92d4b157dab3d75c03d2a2c">00105</a>                                    NOTIFY tweetChanged)
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107                 
-<a name="l00108"></a><a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1">00108</a>                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> <a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>;
-<a name="l00109"></a>00109 
-<a name="l00113"></a>00113                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">getTweet</a>();
-<a name="l00114"></a>00114 
-<a name="l00118"></a>00118                 <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">setTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> *newStatus);
-<a name="l00119"></a>00119 };
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 <span class="preprocessor">#endif // TWEETCONTROL_HPP</span>
+<a name="l00071"></a>00071     signals:
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00075"></a>00075 
+<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a68292f40d127158c901a2973bb5e0c27" title="Signal sent when a tweet has to be updated in the timeline.">updateTimeline</a>(QVariant updatedTweet);
+<a name="l00080"></a>00080 
+<a name="l00083"></a>00083         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a4a56253afece6529538f7fb2be238130" title="Emitted if the tweet has to be destroyed.">destroyTweet</a>();
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086     <span class="keyword">protected</span> slots:
+<a name="l00089"></a>00089         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00090"></a>00090 
+<a name="l00093"></a>00093         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00094"></a>00094 
+<a name="l00097"></a>00097         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00098"></a>00098 
+<a name="l00101"></a>00101         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a39526c5dd45a0045d05d273adfb6090d" title="Slot executed after deleting a tweet.">deleteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00102"></a>00102 
+<a name="l00107"></a>00107         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#aadeef9b3aa00cca2df75ea89a31e1486" title="Slot executed after sending the tweetChanged(); signal. It sends the updateTimeline();...">changeTimeline</a>();
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109     <span class="keyword">protected</span>:
+<a name="l00112"></a>00112         Q_PROPERTY(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a10e5299dd92d4b157dab3d75c03d2a2c" title="Model of the tweet manipulated by the control.">tweet</a>
+<a name="l00113"></a>00113                    READ <a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">getTweet</a>
+<a name="l00114"></a>00114                    WRITE <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">setTweet</a>
+<a name="l00115"></a><a class="code" href="class_tweet_control.html#a10e5299dd92d4b157dab3d75c03d2a2c">00115</a>                    NOTIFY tweetChanged)
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117         
+<a name="l00118"></a><a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab">00118</a>         <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>;
+<a name="l00119"></a>00119 
+<a name="l00123"></a>00123         <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">getTweet</a>();
+<a name="l00124"></a>00124 
+<a name="l00128"></a>00128         <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">setTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * newStatus);
+<a name="l00129"></a>00129 
+<a name="l00135"></a>00135         Q_PROPERTY(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a5f21569341a36580583e022c735f0f87" title="Tweet that is really displayed on the screen.">shown_tweet</a>
+<a name="l00136"></a>00136                    READ <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>
+<a name="l00137"></a><a class="code" href="class_tweet_control.html#a5f21569341a36580583e022c735f0f87">00137</a>                    NOTIFY tweetChanged)
+<a name="l00138"></a>00138 
+<a name="l00143"></a>00143         <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>();
+<a name="l00144"></a>00144 };
+<a name="l00145"></a>00145 
+<a name="l00146"></a>00146 <span class="preprocessor">#endif // TWEETCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -187,7 +196,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

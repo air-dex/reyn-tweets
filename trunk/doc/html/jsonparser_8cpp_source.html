@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: tools/parsers/jsonparser.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/parsers/jsonparser.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_27cbf62fadca350b553b0d5025ed505a.html">parsers</a>
   </div>
 </div>
 <div class="contents">
@@ -117,24 +117,25 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="jsonparser_8hpp.html" title="Header of JSONParser.">jsonparser.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 <span class="comment">// Parsing method</span>
-<a name="l00030"></a><a class="code" href="class_j_s_o_n_parser.html#aaa9719cb7ad966e3b975534dba3601ad">00030</a> QVariantMap <a class="code" href="class_j_s_o_n_parser.html#aaa9719cb7ad966e3b975534dba3601ad" title="Parsing JSON datas.">JSONParser::parse</a>(QByteArray data,
+<a name="l00030"></a><a class="code" href="class_j_s_o_n_parser.html#ad7b8f62becd1470d31f1a934960b6119">00030</a> QVariantMap <a class="code" href="class_j_s_o_n_parser.html#ad7b8f62becd1470d31f1a934960b6119" title="Parsing JSON datas.">JSONParser::parse</a>(QByteArray data,
 <a name="l00031"></a>00031                                                           <span class="keywordtype">bool</span> &amp; parseOK,
 <a name="l00032"></a>00032                                                           QString &amp; parseError,
-<a name="l00033"></a>00033                                                           <span class="keywordtype">int</span> * lineError)
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035         <span class="comment">// Parsing with QJson</span>
-<a name="l00036"></a>00036         QJson::Parser parser;
-<a name="l00037"></a>00037         QVariant result = parser.parse(data, &amp;parseOK);
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <span class="keywordflow">if</span> (!parseOK) {
-<a name="l00040"></a>00040                 parseError = parser.errorString();
-<a name="l00041"></a>00041                 <span class="keywordflow">if</span> (lineError) {
-<a name="l00042"></a>00042                         *lineError = parser.errorLine();
-<a name="l00043"></a>00043                 }
-<a name="l00044"></a>00044         }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046         <span class="keywordflow">return</span> result.toMap();
-<a name="l00047"></a>00047 }
+<a name="l00033"></a>00033                                                           <span class="keywordtype">int</span> * lineError,
+<a name="l00034"></a>00034                                                           <span class="keywordtype">int</span> *)
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036         <span class="comment">// Parsing with QJson</span>
+<a name="l00037"></a>00037         QJson::Parser parser;
+<a name="l00038"></a>00038         QVariant result = parser.parse(data, &amp;parseOK);
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040         <span class="keywordflow">if</span> (!parseOK) {
+<a name="l00041"></a>00041                 parseError = parser.errorString();
+<a name="l00042"></a>00042                 <span class="keywordflow">if</span> (lineError) {
+<a name="l00043"></a>00043                         *lineError = parser.errorLine();
+<a name="l00044"></a>00044                 }
+<a name="l00045"></a>00045         }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="keywordflow">return</span> result.toMap();
+<a name="l00048"></a>00048 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -150,7 +151,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:08 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

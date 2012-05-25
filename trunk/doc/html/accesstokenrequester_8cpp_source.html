@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/oauth/accesstokenrequester.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/oauth/accesstokenrequester.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1deca09b2001694333a923deec42f2.html">oauth</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1deca09b2001694333a923deec42f2.html">oauth</a>
   </div>
 </div>
 <div class="contents">
@@ -116,93 +116,93 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="comment">// Constructor</span>
 <a name="l00028"></a><a class="code" href="class_access_token_requester.html#a51cff18504d43f498c78c4cd314f0b0c">00028</a> <a class="code" href="class_access_token_requester.html#a51cff18504d43f498c78c4cd314f0b0c" title="Constructor.">AccessTokenRequester::AccessTokenRequester</a>(<a class="code" href="class_o_auth_manager.html" title="Class managing OAuth authentication to Twitter. For the security, tokens are kept...">OAuthManager</a> &amp;authManager) :
-<a name="l00029"></a>00029         <a class="code" href="class_o_auth_requester.html" title="Generic requester for requests dealing with OAuth.">OAuthRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa368c5bc07109370b819193871352b926" title="POST requests.">POST</a>,
-<a name="l00030"></a>00030                                    TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">ACCESS_TOKEN_URL</a>,
-<a name="l00031"></a>00031                                    authManager,
-<a name="l00032"></a>00032                                    <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2cf4c616514a232dd94f4f8f465cdb74" title="Code indicating that there was an error while parsing results under the form arg1=val1&amp;amp;arg2=val2...">OAUTH_PARSING</a>,
-<a name="l00033"></a>00033                                    true,
-<a name="l00034"></a>00034                                    false,
-<a name="l00035"></a>00035                                    true)
+<a name="l00029"></a>00029     <a class="code" href="class_o_auth_requester.html" title="Generic requester for requests dealing with OAuth.">OAuthRequester</a>(<a class="code" href="requesttype_8hpp.html#ae10b07f2d0feb103db7fe4cfd192e5afa368c5bc07109370b819193871352b926" title="POST requests.">POST</a>,
+<a name="l00030"></a>00030                    TwitterURL::<a class="code" href="namespace_twitter_u_r_l.html#aed8806c4b6f2faf6f74fb2002e44c448" title="URL to get access tokens.">ACCESS_TOKEN_URL</a>,
+<a name="l00031"></a>00031                    authManager,
+<a name="l00032"></a>00032                    <a class="code" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2cf4c616514a232dd94f4f8f465cdb74" title="Code indicating that there was an error while parsing results under the form arg1=val1&amp;amp;arg2=val2...">OAUTH_PARSING</a>,
+<a name="l00033"></a>00033                    true,
+<a name="l00034"></a>00034                    false,
+<a name="l00035"></a>00035                    true)
 <a name="l00036"></a>00036 {}
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038 <span class="comment">// Building POST Parameters</span>
 <a name="l00039"></a><a class="code" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080">00039</a> <span class="keywordtype">void</span> <a class="code" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080" title="Method building POST Parameters.">AccessTokenRequester::buildPOSTParameters</a>() {
-<a name="l00040"></a>00040         <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>.insert(<span class="stringliteral">&quot;oauth_verifier&quot;</span>,
-<a name="l00041"></a>00041                                                   QString::fromAscii(<a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a7d31afcbca96aeab04a3524f1a6600a1" title="Getter on the verifier.">getVerifier</a>().data()));
+<a name="l00040"></a>00040     <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>.insert(<span class="stringliteral">&quot;oauth_verifier&quot;</span>,
+<a name="l00041"></a>00041                           QString::fromAscii(<a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a7d31afcbca96aeab04a3524f1a6600a1" title="Getter on the verifier.">getVerifier</a>().data()));
 <a name="l00042"></a>00042 }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044 <span class="comment">// Parse the raw results of the request.</span>
 <a name="l00045"></a><a class="code" href="class_access_token_requester.html#af3cb805ecf6b9abe4ccee4e022161bef">00045</a> QVariant <a class="code" href="class_access_token_requester.html#af3cb805ecf6b9abe4ccee4e022161bef" title="Method that will parse the raw results of the request.">AccessTokenRequester::parseResult</a>(<span class="keywordtype">bool</span> &amp; parseOK, QVariantMap &amp; parsingErrors) {
-<a name="l00046"></a>00046         <a class="code" href="class_o_auth_parser.html" title="Parser for data which are under the form  arg1=val1&amp;amp;arg2=val2&amp;amp;...&amp;amp;argN=valN...">OAuthParser</a> parser;
-<a name="l00047"></a>00047         QByteArray rawResponse = <a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a>-&gt;<a class="code" href="class_twitter_communicator.html#a69ad6476590374e490ddd927c42f2ad3" title="Getting the content of the response.">getResponseBuffer</a>();
-<a name="l00048"></a>00048         QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00046"></a>00046     <a class="code" href="class_o_auth_parser.html" title="Parser for data which are under the form  arg1=val1&amp;amp;arg2=val2&amp;amp;...&amp;amp;argN=valN...">OAuthParser</a> parser;
+<a name="l00047"></a>00047     QByteArray rawResponse = <a class="code" href="class_generic_requester.html#a7662c59ebf76a5cfa0d698082fe807a3" title="Pointer on the Twitter Communicator that will purely execute the request and get...">weblink</a>-&gt;<a class="code" href="class_twitter_communicator.html#a69ad6476590374e490ddd927c42f2ad3" title="Getting the content of the response.">getResponseBuffer</a>();
+<a name="l00048"></a>00048     QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050         <span class="comment">// For treatments</span>
-<a name="l00051"></a>00051         QVariant extractedCredential;
-<a name="l00052"></a>00052         <span class="keywordtype">bool</span> treatmentOK;
-<a name="l00053"></a>00053         QString treatmentErrorMsg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00050"></a>00050     <span class="comment">// For treatments</span>
+<a name="l00051"></a>00051     QVariant extractedCredential;
+<a name="l00052"></a>00052     <span class="keywordtype">bool</span> treatmentOK;
+<a name="l00053"></a>00053     QString treatmentErrorMsg = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 
-<a name="l00056"></a>00056         <span class="comment">// Parsing</span>
-<a name="l00057"></a>00057         QVariantMap resultMap = parser.<a class="code" href="class_o_auth_parser.html#a7867911db3c1a20e15a060996a7867f8" title="Parsing datas for OAuth.">parse</a>(rawResponse, parseOK, errorMsg);
-<a name="l00058"></a>00058         errorMsg.append(treatmentErrorMsg);
+<a name="l00056"></a>00056     <span class="comment">// Parsing</span>
+<a name="l00057"></a>00057     QVariantMap resultMap = parser.<a class="code" href="class_o_auth_parser.html#a544acead360bd08c1e12589126e5484f" title="Parsing datas for OAuth.">parse</a>(rawResponse, parseOK, errorMsg);
+<a name="l00058"></a>00058     errorMsg.append(treatmentErrorMsg);
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061         <span class="comment">// Extracting the &quot;oauth_token&quot; parameter</span>
-<a name="l00062"></a>00062         extractedCredential = parser.<a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(resultMap,
-<a name="l00063"></a>00063                                                                                                   <span class="stringliteral">&quot;oauth_token&quot;</span>,
-<a name="l00064"></a>00064                                                                                                   treatmentOK,
-<a name="l00065"></a>00065                                                                                                   treatmentErrorMsg);
-<a name="l00066"></a>00066         parseOK = parseOK &amp;&amp; treatmentOK;
-<a name="l00067"></a>00067         errorMsg.append(treatmentErrorMsg);
-<a name="l00068"></a>00068         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(extractedCredential.toByteArray());
+<a name="l00061"></a>00061     <span class="comment">// Extracting the &quot;oauth_token&quot; parameter</span>
+<a name="l00062"></a>00062     extractedCredential = parser.<a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(resultMap,
+<a name="l00063"></a>00063                                                   <span class="stringliteral">&quot;oauth_token&quot;</span>,
+<a name="l00064"></a>00064                                                   treatmentOK,
+<a name="l00065"></a>00065                                                   treatmentErrorMsg);
+<a name="l00066"></a>00066     parseOK = parseOK &amp;&amp; treatmentOK;
+<a name="l00067"></a>00067     errorMsg.append(treatmentErrorMsg);
+<a name="l00068"></a>00068     <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a15518c373b76b1abf9b4781b58263944" title="Setter on the OAuth token.">setOAuthToken</a>(extractedCredential.toByteArray());
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070         <span class="comment">// Put back in the map because the configuration needs it.</span>
-<a name="l00071"></a>00071         resultMap.insert(<span class="stringliteral">&quot;oauth_token&quot;</span>, extractedCredential);
+<a name="l00070"></a>00070     <span class="comment">// Put back in the map because the configuration needs it.</span>
+<a name="l00071"></a>00071     resultMap.insert(<span class="stringliteral">&quot;oauth_token&quot;</span>, extractedCredential);
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 
-<a name="l00074"></a>00074         <span class="comment">// Extracting the &quot;oauth_token_secret&quot; parameter</span>
-<a name="l00075"></a>00075         extractedCredential = parser.<a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(resultMap,
-<a name="l00076"></a>00076                                                                                                   <span class="stringliteral">&quot;oauth_token_secret&quot;</span>,
-<a name="l00077"></a>00077                                                                                                   treatmentOK,
-<a name="l00078"></a>00078                                                                                                   treatmentErrorMsg);
-<a name="l00079"></a>00079         parseOK = parseOK &amp;&amp; treatmentOK;
-<a name="l00080"></a>00080         errorMsg.append(treatmentErrorMsg);
-<a name="l00081"></a>00081         <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4" title="Setter on the OAuth secret.">setOAuthSecret</a>(extractedCredential.toByteArray());
+<a name="l00074"></a>00074     <span class="comment">// Extracting the &quot;oauth_token_secret&quot; parameter</span>
+<a name="l00075"></a>00075     extractedCredential = parser.<a class="code" href="class_o_auth_parser.html#ae225c6d367fe29c605352101954f5f07" title="Extracting one parameter from the parsed result.">extractParameter</a>(resultMap,
+<a name="l00076"></a>00076                                                   <span class="stringliteral">&quot;oauth_token_secret&quot;</span>,
+<a name="l00077"></a>00077                                                   treatmentOK,
+<a name="l00078"></a>00078                                                   treatmentErrorMsg);
+<a name="l00079"></a>00079     parseOK = parseOK &amp;&amp; treatmentOK;
+<a name="l00080"></a>00080     errorMsg.append(treatmentErrorMsg);
+<a name="l00081"></a>00081     <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#ac4eb00a391b918081c372ce9553f4be4" title="Setter on the OAuth secret.">setOAuthSecret</a>(extractedCredential.toByteArray());
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083         <span class="comment">// Put back in the map because the configuration needs it.</span>
-<a name="l00084"></a>00084         resultMap.insert(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>, extractedCredential);
+<a name="l00083"></a>00083     <span class="comment">// Put back in the map because the configuration needs it.</span>
+<a name="l00084"></a>00084     resultMap.insert(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>, extractedCredential);
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087         <span class="comment">// Ensures that there were not any additionnal arguments.</span>
-<a name="l00088"></a>00088         treatmentOK = resultMap.size() == 4
-<a name="l00089"></a>00089                         &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;oauth_token&quot;</span>)
-<a name="l00090"></a>00090                         &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>)
-<a name="l00091"></a>00091                         &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;user_id&quot;</span>)
-<a name="l00092"></a>00092                         &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;screen_name&quot;</span>);
-<a name="l00093"></a>00093         parseOK = parseOK &amp;&amp; treatmentOK;
+<a name="l00087"></a>00087     <span class="comment">// Ensures that there were not any additionnal arguments.</span>
+<a name="l00088"></a>00088     treatmentOK = resultMap.size() == 4
+<a name="l00089"></a>00089             &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;oauth_token&quot;</span>)
+<a name="l00090"></a>00090             &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>)
+<a name="l00091"></a>00091             &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;user_id&quot;</span>)
+<a name="l00092"></a>00092             &amp;&amp; resultMap.contains(<span class="stringliteral">&quot;screen_name&quot;</span>);
+<a name="l00093"></a>00093     parseOK = parseOK &amp;&amp; treatmentOK;
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <span class="comment">// Listing all the unexpected parameters</span>
-<a name="l00096"></a>00096         <span class="keywordflow">if</span> (!treatmentOK) {
-<a name="l00097"></a>00097                 <a class="code" href="class_q_list.html">QList&lt;QString&gt;</a> argNames = resultMap.keys();
-<a name="l00098"></a>00098                 argNames.removeOne(<span class="stringliteral">&quot;oauth_token&quot;</span>);
-<a name="l00099"></a>00099                 argNames.removeOne(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>);
-<a name="l00100"></a>00100                 argNames.removeOne(<span class="stringliteral">&quot;user_id&quot;</span>);
-<a name="l00101"></a>00101                 argNames.removeOne(<span class="stringliteral">&quot;screen_name&quot;</span>);
-<a name="l00102"></a>00102                 <span class="keywordflow">foreach</span> (QString argName, argNames) {
-<a name="l00103"></a>00103                         errorMsg.append(AccessTokenRequester::trUtf8(<span class="stringliteral">&quot;Unexpected parameter &#39;&quot;</span>))
-<a name="l00104"></a>00104                                         .append(argName)
-<a name="l00105"></a>00105                                         .append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
-<a name="l00106"></a>00106                 }
-<a name="l00107"></a>00107         }
+<a name="l00095"></a>00095     <span class="comment">// Listing all the unexpected parameters</span>
+<a name="l00096"></a>00096     <span class="keywordflow">if</span> (!treatmentOK) {
+<a name="l00097"></a>00097         <a class="code" href="class_q_list.html">QList&lt;QString&gt;</a> argNames = resultMap.keys();
+<a name="l00098"></a>00098         argNames.removeOne(<span class="stringliteral">&quot;oauth_token&quot;</span>);
+<a name="l00099"></a>00099         argNames.removeOne(<span class="stringliteral">&quot;oauth_token_secret&quot;</span>);
+<a name="l00100"></a>00100         argNames.removeOne(<span class="stringliteral">&quot;user_id&quot;</span>);
+<a name="l00101"></a>00101         argNames.removeOne(<span class="stringliteral">&quot;screen_name&quot;</span>);
+<a name="l00102"></a>00102         <span class="keywordflow">foreach</span> (QString argName, argNames) {
+<a name="l00103"></a>00103             errorMsg.append(AccessTokenRequester::trUtf8(<span class="stringliteral">&quot;Unexpected parameter &#39;&quot;</span>))
+<a name="l00104"></a>00104                     .append(argName)
+<a name="l00105"></a>00105                     .append(<span class="stringliteral">&quot;&#39;.\n&quot;</span>);
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107     }
 <a name="l00108"></a>00108 
 <a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
-<a name="l00111"></a>00111         <span class="keywordflow">if</span> (!parseOK) {
-<a name="l00112"></a>00112                 parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
-<a name="l00113"></a>00113         }
+<a name="l00110"></a>00110     <span class="comment">// There was a problem while parsing -&gt; fill the parsingErrors map !</span>
+<a name="l00111"></a>00111     <span class="keywordflow">if</span> (!parseOK) {
+<a name="l00112"></a>00112         parsingErrors.insert(<span class="stringliteral">&quot;errorMsg&quot;</span>, QVariant(errorMsg));
+<a name="l00113"></a>00113     }
 <a name="l00114"></a>00114 
-<a name="l00115"></a>00115         <span class="keywordflow">return</span> QVariant(resultMap);
+<a name="l00115"></a>00115     <span class="keywordflow">return</span> QVariant(resultMap);
 <a name="l00116"></a>00116 }
 <a name="l00117"></a>00117 
 </pre></div></div>
@@ -220,7 +220,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:04 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

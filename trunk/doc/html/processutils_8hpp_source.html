@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: tools/processutils.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/tools/processutils.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_2c1b50cbe49afe8e87abaac7d75834cf.html">tools</a>
   </div>
 </div>
 <div class="contents">
@@ -151,17 +151,21 @@ window.onload = initDynSections;
 <a name="l00112"></a>00112                                                                  QString &amp;errorMsg,
 <a name="l00113"></a>00113                                                                  <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue);
 <a name="l00114"></a>00114 
-<a name="l00122"></a>00122         <span class="keywordtype">void</span> <a class="code" href="namespace_process_utils.html#a0795e623198e7d3871e3de9c65bae1f9" title="Default treatment when OAuth results cannot be parsed.">treatOAuthParsingResult</a>(QString parsingErrorsMsg,
-<a name="l00123"></a>00123                                                                  QString &amp;errorMsg,
-<a name="l00124"></a>00124                                                                  <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue);
+<a name="l00122"></a>00122         <span class="keywordtype">void</span> <a class="code" href="namespace_process_utils.html#a93c7562ed7d0f3e4d81e7cc7b816bc8c" title="Default treatment when XML results cannot be parsed.">treatXMLParsingResult</a>(<a class="code" href="struct_response_infos.html" title="Struct with an integer (field &amp;quot;code&amp;quot;) and its meaning (field &amp;quot;message&amp;quot;)...">ResponseInfos</a> parsingErrors,
+<a name="l00123"></a>00123                                                            QString &amp;errorMsg,
+<a name="l00124"></a>00124                                                            <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue);
 <a name="l00125"></a>00125 
-<a name="l00135"></a>00135         <span class="keywordtype">void</span> <a class="code" href="namespace_process_utils.html#a18a7b869c542e5e4ecd12a1342c27ba5" title="Default treatment when the issue was unexpected.">treatUnknownResult</a>(QString resultErrorMessage,
-<a name="l00136"></a>00136                                                         QString &amp;errorMsg,
-<a name="l00137"></a>00137                                                         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue,
-<a name="l00138"></a>00138                                                         <span class="keywordtype">bool</span> &amp; fatal);
-<a name="l00139"></a>00139 }
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="preprocessor">#endif // PROCESSUTILS_HPP</span>
+<a name="l00133"></a>00133         <span class="keywordtype">void</span> <a class="code" href="namespace_process_utils.html#a0795e623198e7d3871e3de9c65bae1f9" title="Default treatment when OAuth results cannot be parsed.">treatOAuthParsingResult</a>(QString parsingErrorsMsg,
+<a name="l00134"></a>00134                                                                  QString &amp;errorMsg,
+<a name="l00135"></a>00135                                                                  <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp;issue);
+<a name="l00136"></a>00136 
+<a name="l00146"></a>00146         <span class="keywordtype">void</span> <a class="code" href="namespace_process_utils.html#a18a7b869c542e5e4ecd12a1342c27ba5" title="Default treatment when the issue was unexpected.">treatUnknownResult</a>(QString resultErrorMessage,
+<a name="l00147"></a>00147                                                         QString &amp;errorMsg,
+<a name="l00148"></a>00148                                                         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> &amp; issue,
+<a name="l00149"></a>00149                                                         <span class="keywordtype">bool</span> &amp; fatal);
+<a name="l00150"></a>00150 }
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 <span class="preprocessor">#endif // PROCESSUTILS_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -177,7 +181,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:09 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

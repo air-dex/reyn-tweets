@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/tweetcontrol.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/tweetcontrol.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -117,145 +117,384 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="tweetcontrol_8hpp.html" title="Header of TweetControl.">tweetcontrol.hpp</a>&quot;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QtDeclarative&gt;</span>
 <a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a">00030</a> <a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a" title="Constructor.">TweetControl::TweetControl</a>() :
-<a name="l00031"></a>00031         QObject(),
-<a name="l00032"></a>00032         reyn(this),
-<a name="l00033"></a>00033         status()
-<a name="l00034"></a>00034 {}
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="comment">// Declaring TweetControl to the QML system</span>
-<a name="l00037"></a><a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9">00037</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9" title="Declaring TweetControl to the QML system.">TweetControl::declareQML</a>() {
-<a name="l00038"></a>00038         qmlRegisterType&lt;TweetControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>, 0, 1, <span class="stringliteral">&quot;TweetControl&quot;</span>);
-<a name="l00039"></a>00039 }
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 
-<a name="l00043"></a>00043 <span class="comment">// Property management //</span>
-<a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="comment">// Reading the tweet property</span>
-<a name="l00047"></a><a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869">00047</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> *<a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">TweetControl::getTweet</a>() {
-<a name="l00048"></a>00048         <span class="keywordflow">return</span> &amp;<a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>;
-<a name="l00049"></a>00049 }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="comment">// Writing the tweet property</span>
-<a name="l00052"></a><a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991">00052</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">TweetControl::setTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * newStatus) {
-<a name="l00053"></a>00053         <a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a> = newStatus ? *newStatus : <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>();
-<a name="l00054"></a>00054         emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
-<a name="l00055"></a>00055 }
+<a name="l00030"></a>00030 <span class="comment">// Constructor</span>
+<a name="l00031"></a><a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a">00031</a> <a class="code" href="class_tweet_control.html#aa06cf7fad89c2c873d17bddc1fc7876a" title="Constructor.">TweetControl::TweetControl</a>() :
+<a name="l00032"></a>00032     <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>(),
+<a name="l00033"></a>00033     status(new <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a>)
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035     connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>()),
+<a name="l00036"></a>00036             <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#aadeef9b3aa00cca2df75ea89a31e1486" title="Slot executed after sending the tweetChanged(); signal. It sends the updateTimeline();...">changeTimeline</a>()));
+<a name="l00037"></a>00037 }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="comment">// Declaring TweetControl to the QML system</span>
+<a name="l00040"></a><a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9">00040</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a95a24ccb0de396fb5d851a2717710ed9" title="Declaring TweetControl to the QML system.">TweetControl::declareQML</a>() {
+<a name="l00041"></a>00041     qmlRegisterType&lt;TweetControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>, 0, 1, <span class="stringliteral">&quot;TweetControl&quot;</span>);
+<a name="l00042"></a>00042 }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="comment">// Updating the timeline</span>
+<a name="l00045"></a><a class="code" href="class_tweet_control.html#aadeef9b3aa00cca2df75ea89a31e1486">00045</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#aadeef9b3aa00cca2df75ea89a31e1486" title="Slot executed after sending the tweetChanged(); signal. It sends the updateTimeline();...">TweetControl::changeTimeline</a>() {
+<a name="l00046"></a>00046     emit <a class="code" href="class_tweet_control.html#a68292f40d127158c901a2973bb5e0c27" title="Signal sent when a tweet has to be updated in the timeline.">updateTimeline</a>(QVariant(<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>()));
+<a name="l00047"></a>00047 }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="comment">// Method indicating if the tweet mentions the user.</span>
+<a name="l00050"></a><a class="code" href="class_tweet_control.html#a86a12e1c583b5be8fa86306474ddf081">00050</a> <span class="keywordtype">bool</span> <a class="code" href="class_tweet_control.html#a86a12e1c583b5be8fa86306474ddf081" title="Method indicating if the tweet mentions the user.">TweetControl::isMention</a>() {
+<a name="l00051"></a>00051     <span class="keywordflow">if</span> (!<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>) {
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     qlonglong userID = <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#abf3c083956a1ce52aba8b56d9b8c0886" title="Getting a reference on the user configuration.">getUserConfiguration</a>().<a class="code" href="class_reyn_tweets_user_configuration.html#ac673d55bb6d6203516313b80d2f14090" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c" title="Getter on the user.">getUser</a>().<a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">getID</a>();
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057 
-<a name="l00059"></a>00059 <span class="comment">// Actions //</span>
-<a name="l00061"></a>00061 <span class="comment"></span>
-<a name="l00062"></a>00062 <span class="comment">// Reply</span>
-<a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="class_tweet_control.html#ab34ca653bd33855d7bdbcb80c7def218">00064</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ab34ca653bd33855d7bdbcb80c7def218" title="Reply to the tweet.">TweetControl::reply</a>() {
-<a name="l00065"></a>00065         <span class="comment">// TODO</span>
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="class_tweet_control.html#a4f4080b3a4d878a8afcb05b29b5a1340">00068</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a4f4080b3a4d878a8afcb05b29b5a1340" title="Slot executed after replying to the tweet.">TweetControl::replyEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00069"></a>00069         <span class="comment">//</span>
-<a name="l00070"></a>00070 }
+<a name="l00057"></a>00057     <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> &amp; shownTweet = <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#a1b323e18f221ab60c31d1e35f9dc8d04" title="Method indicating if the tweet is a retweet or not.">isRetweet</a>() ?
+<a name="l00058"></a>00058                 *(<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#a43e939f3e36d20d8f93ebed6fe74ece9" title="Reading retweeted_status.">getRetweetedStatus</a>())
+<a name="l00059"></a>00059               : *<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>;
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061     <a class="code" href="class_user_mention_list.html" title="List of user mentions.">UserMentionList</a> mentions = shownTweet.<a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">getEntities</a>().<a class="code" href="class_tweet_entities.html#a497b00669527ed66515d80f48e9a1ed5" title="Reading userMentions.">getUserMentions</a>();
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063     <span class="keywordflow">for</span>(UserMentionList::Iterator it = mentions.begin();
+<a name="l00064"></a>00064         it != mentions.end();
+<a name="l00065"></a>00065         ++it)
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067         <span class="keywordflow">if</span> (it-&gt;getID() == userID) {
+<a name="l00068"></a>00068             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070     }
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="comment">// Retweet</span>
+<a name="l00072"></a>00072     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00073"></a>00073 }
 <a name="l00074"></a>00074 
-<a name="l00075"></a><a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523">00075</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523" title="Retweet the tweet.">TweetControl::retweet</a>() {
-<a name="l00076"></a>00076         <span class="comment">// TODO</span>
-<a name="l00077"></a>00077 }
-<a name="l00078"></a>00078 
-<a name="l00079"></a><a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">TweetControl::retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00080"></a>00080         <span class="comment">//</span>
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="comment">// Quote</span>
-<a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="class_tweet_control.html#a03173d2d045d681712ec9adccdd49923">00086</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a03173d2d045d681712ec9adccdd49923" title="Quote the tweet (old retweet method).">TweetControl::quote</a>() {
-<a name="l00087"></a>00087         <span class="comment">// TODO</span>
+<a name="l00075"></a>00075 
+<a name="l00077"></a>00077 <span class="comment">// Property management //</span>
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">// Reading the shown_tweet property</span>
+<a name="l00081"></a><a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c">00081</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">TweetControl::getShownTweet</a>() {
+<a name="l00082"></a>00082     <span class="keywordflow">return</span> <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#a1b323e18f221ab60c31d1e35f9dc8d04" title="Method indicating if the tweet is a retweet or not.">isRetweet</a>() ? <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#a43e939f3e36d20d8f93ebed6fe74ece9" title="Reading retweeted_status.">getRetweetedStatus</a>() : <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>;
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="comment">// Reading the tweet property</span>
+<a name="l00086"></a><a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869">00086</a> <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * <a class="code" href="class_tweet_control.html#aaab302b1dd579b01da6fd2ed4ade7869" title="Reading the tweet property.">TweetControl::getTweet</a>() {
+<a name="l00087"></a>00087     <span class="keywordflow">return</span> <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>;
 <a name="l00088"></a>00088 }
 <a name="l00089"></a>00089 
-<a name="l00090"></a><a class="code" href="class_tweet_control.html#afba6a51dcb82a03fa3337fa3a3d6c37d">00090</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#afba6a51dcb82a03fa3337fa3a3d6c37d" title="Slot executed after quoting the tweet (old retweet method).">TweetControl::quoteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00091"></a>00091         <span class="comment">//</span>
-<a name="l00092"></a>00092 }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="comment">// Favorite</span>
-<a name="l00096"></a>00096 
-<a name="l00097"></a><a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee">00097</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee" title="Favorite the tweet.">TweetControl::favorite</a>() {
-<a name="l00098"></a>00098         connect(&amp;<a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00099"></a>00099                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00100"></a>00100         <a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#a1391134cebaf8d30905d13cb531a05ea" title="Favoriting a tweet.">favoriteTweet</a>(<a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>.<a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0" title="Reading.">getID</a>());
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223">00103</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">TweetControl::favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00104"></a>00104         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00107"></a>00107         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
-<a name="l00108"></a>00108                 <span class="keywordflow">return</span>;
-<a name="l00109"></a>00109         }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111         <span class="comment">// Disconnect</span>
-<a name="l00112"></a>00112         disconnect(&amp;<a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00113"></a>00113                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117         <span class="comment">// TODO</span>
-<a name="l00118"></a>00118         <span class="keywordflow">switch</span> (issue) {
-<a name="l00119"></a>00119                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d" title="FavoriteProcess ended successfully.">FAVORITE_SUCCESSFUL</a>:
-<a name="l00120"></a>00120                         <a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>.<a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keyword">true</span>);
-<a name="l00121"></a>00121                         <span class="keywordflow">break</span>;
+<a name="l00090"></a>00090 <span class="comment">// Writing the tweet property</span>
+<a name="l00091"></a><a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af3e0c2c9e5b85c2755a92c1ad242b991" title="Writing the tweet property.">TweetControl::setTweet</a>(<a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> * newStatus) {
+<a name="l00092"></a>00092     <span class="keywordflow">if</span> (newStatus) {
+<a name="l00093"></a>00093         <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a> = newStatus;
+<a name="l00094"></a>00094         emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 
+<a name="l00100"></a>00100 <span class="comment">// Actions //</span>
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">// Retweet //</span>
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a><a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523">00107</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#ac68a439cee56c820c0c344fe98567523" title="Retweet the tweet.">TweetControl::retweet</a>() {
+<a name="l00108"></a>00108     <span class="comment">// No new process if the control has not finished the last one</span>
+<a name="l00109"></a>00109     <span class="keywordflow">if</span> (<a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a>) {
+<a name="l00110"></a>00110         <span class="keywordflow">return</span>;
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113     <span class="comment">// Protection to not attempt to retweet its own tweets.</span>
+<a name="l00114"></a>00114     <span class="keywordflow">if</span> (<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#afa1b8df4d995c5ad9022c173b449f944" title="Reading author.">getAuthor</a>()-&gt;<a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">getID</a>() ==
+<a name="l00115"></a>00115             <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#abf3c083956a1ce52aba8b56d9b8c0886" title="Getting a reference on the user configuration.">getUserConfiguration</a>().<a class="code" href="class_reyn_tweets_user_configuration.html#ac673d55bb6d6203516313b80d2f14090" title="Getter on the user account.">getUserAccount</a>().<a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c" title="Getter on the user.">getUser</a>().<a class="code" href="class_user_infos.html#aa55cc893a762225bb54277d7e6ccb3b8" title="Getter on ID.">getID</a>())
+<a name="l00116"></a>00116     {
+<a name="l00117"></a>00117         <span class="keywordflow">return</span>;
+<a name="l00118"></a>00118     }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     connect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00121"></a>00121             <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>:
-<a name="l00124"></a>00124                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:
-<a name="l00125"></a>00125                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
-<a name="l00126"></a>00126                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
-<a name="l00127"></a>00127                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e" title="There were an error while parsing results.">PARSE_ERROR</a>:
-<a name="l00128"></a>00128                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
-<a name="l00129"></a>00129                 <span class="keywordflow">default</span>:
-<a name="l00130"></a>00130                         <span class="keywordflow">break</span>;
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132 }
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135 <span class="comment">// Unfavorite</span>
+<a name="l00123"></a>00123     <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">true</span>;
+<a name="l00124"></a>00124     emit <a class="code" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856" title="Signal sent for announcing something, often at the beginning of an action.">showInfoMessage</a>(TweetControl::trUtf8(<span class="stringliteral">&quot;Retweeting...&quot;</span>));
+<a name="l00125"></a>00125     <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#aca96bd86a69cb4ddaa22554e89a2d1a2" title="Reweeting a tweet.">retweet</a>(<a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;getID());
+<a name="l00126"></a>00126 }
+<a name="l00127"></a>00127 
+<a name="l00128"></a><a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41">00128</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">TweetControl::retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00129"></a>00129     <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131     <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00132"></a>00132     <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00133"></a>00133         <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">false</span>;
+<a name="l00134"></a>00134         <span class="keywordflow">return</span>;
+<a name="l00135"></a>00135     }
 <a name="l00136"></a>00136 
-<a name="l00137"></a><a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d">00137</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d" title="Unfavorite the tweet.">TweetControl::unfavorite</a>() {
-<a name="l00138"></a>00138         connect(&amp;<a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00139"></a>00139                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00140"></a>00140         <a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#ad8d9fb7055879124026598634a7421a8" title="Unfavoriting a tweet.">unfavoriteTweet</a>(<a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>.<a class="code" href="class_tweet.html#a72be854eea9b3c2703220a4139e7f7f0" title="Reading.">getID</a>());
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
-<a name="l00143"></a><a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c">00143</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">TweetControl::unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
-<a name="l00144"></a>00144         <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146         <span class="comment">// The result was not for the object. Stop the treatment.</span>
-<a name="l00147"></a>00147         <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
-<a name="l00148"></a>00148                 <span class="keywordflow">return</span>;
-<a name="l00149"></a>00149         }
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151         <span class="comment">// Disconnect</span>
-<a name="l00152"></a>00152         disconnect(&amp;<a class="code" href="class_tweet_control.html#aac1980027c1badc6741fee1f06aad3ef" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
-<a name="l00153"></a>00153                            <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155         <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157         <span class="comment">// TODO</span>
-<a name="l00158"></a>00158         <span class="keywordflow">switch</span> (issue) {
-<a name="l00159"></a>00159                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d" title="FavoriteProcess ended successfully.">FAVORITE_SUCCESSFUL</a>:
-<a name="l00160"></a>00160                         <a class="code" href="class_tweet_control.html#a7d60a76f05aa7f241c9f6980e437c1c1" title="Tweet entity behind the tweet property.">status</a>.<a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keyword">false</span>);
-<a name="l00161"></a>00161                         <span class="keywordflow">break</span>;
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems (Twitter return code looking like 5xx).">TWITTER_DOWN</a>:
-<a name="l00164"></a>00164                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:
-<a name="l00165"></a>00165                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
-<a name="l00166"></a>00166                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
-<a name="l00167"></a>00167                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811ad73f40ad2eef48a6ca24988909c66c3e" title="There were an error while parsing results.">PARSE_ERROR</a>:
-<a name="l00168"></a>00168                 <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
-<a name="l00169"></a>00169                 <span class="keywordflow">default</span>:
-<a name="l00170"></a>00170                         <span class="keywordflow">break</span>;
-<a name="l00171"></a>00171         }
-<a name="l00172"></a>00172 }
+<a name="l00137"></a>00137     <span class="comment">// Disconnect</span>
+<a name="l00138"></a>00138     disconnect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00139"></a>00139                <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a2ace4505035237be49b9c441fbe85d41" title="Slot executed after retweeting the tweet.">retweetEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141     <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00142"></a>00142     QVariantMap parsedResults;
+<a name="l00143"></a>00143     <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> resultTweet;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145     <span class="keywordflow">switch</span> (issue) {
+<a name="l00146"></a>00146         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9770afb88906af0bdcbdfb362e3e8304" title="After retweeting a tweet.">TWEET_RETWEETED</a>:
+<a name="l00147"></a>00147             parsedResults = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toMap();
+<a name="l00148"></a>00148             resultTweet.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(parsedResults);
+<a name="l00149"></a>00149             <span class="keywordflow">if</span> (!resultTweet.<a class="code" href="class_tweet.html#a1b323e18f221ab60c31d1e35f9dc8d04" title="Method indicating if the tweet is a retweet or not.">isRetweet</a>()) {
+<a name="l00150"></a>00150                 <span class="comment">// The retweet is not in the timeline and cannot be updated</span>
+<a name="l00151"></a>00151                 emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>,
+<a name="l00152"></a>00152                                  TweetControl::trUtf8(<span class="stringliteral">&quot;No retweet in the retweeted status&quot;</span>),
+<a name="l00153"></a>00153                                  <span class="keyword">false</span>);
+<a name="l00154"></a>00154                 <span class="keywordflow">break</span>;
+<a name="l00155"></a>00155             }
+<a name="l00156"></a>00156             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a8ea7a5804183829fc7459aa48f7f3bbc" title="Resets the mappable to a default value.">reset</a>();
+<a name="l00157"></a>00157             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(resultTweet.<a class="code" href="class_tweet.html#a301a6f985b8cfbc39fae112cd9429c53" title="Reading retweeted_status.">getRetweetedStatusVariant</a>());
+<a name="l00158"></a>00158             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>(<span class="keyword">true</span>);
+<a name="l00159"></a>00159             <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>(<span class="keyword">true</span>);
+<a name="l00160"></a>00160             emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00161"></a>00161             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">true</span>, TweetControl::trUtf8(<span class="stringliteral">&quot;Tweet retweeted&quot;</span>), <span class="keyword">false</span>);
+<a name="l00162"></a>00162             <span class="keywordflow">break</span>;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
+<a name="l00165"></a>00165             <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00166"></a>00166             emit <a class="code" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00167"></a>00167             <span class="keywordflow">break</span>;
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169         <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00170"></a>00170         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a8f0c745b705a4b3aaa1b7255ec448938" title="If a tweet cannot be deleted.">TWEET_UNDESTROYABLE</a>:
+<a name="l00171"></a>00171         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aef4e18cf5dacaf9d0cb90c72663a1b60" title="The request was invalid.">BAD_REQUEST</a>:
+<a name="l00172"></a>00172         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a718e7809977a36e90dce5ad47e1008ea" title="Twitter did not treat the request.">REFUSED_REQUEST</a>:
+<a name="l00173"></a>00173         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00174"></a>00174         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems.">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00175"></a>00175         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
+<a name="l00176"></a>00176             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00177"></a>00177             <span class="keywordflow">break</span>;
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179         <span class="comment">// Unknown ends</span>
+<a name="l00180"></a>00180         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182         <span class="keywordflow">default</span>:
+<a name="l00183"></a>00183             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00184"></a>00184             <span class="keywordflow">break</span>;
+<a name="l00185"></a>00185     }
+<a name="l00186"></a>00186 }
+<a name="l00187"></a>00187 
+<a name="l00189"></a>00189 <span class="comment">// Favorite and unfavorite //</span>
+<a name="l00191"></a>00191 <span class="comment"></span>
+<a name="l00192"></a><a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee">00192</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a53b60eed1c54db3972eca24a8ebea2ee" title="Favorite the tweet.">TweetControl::favorite</a>() {
+<a name="l00193"></a>00193     <span class="comment">// No new process if the control has not finished the last one</span>
+<a name="l00194"></a>00194     <span class="keywordflow">if</span> (<a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a>) {
+<a name="l00195"></a>00195         <span class="keywordflow">return</span>;
+<a name="l00196"></a>00196     }
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198     connect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00199"></a>00199             <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201     <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">true</span>;
+<a name="l00202"></a>00202     emit <a class="code" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856" title="Signal sent for announcing something, often at the beginning of an action.">showInfoMessage</a>(TweetControl::trUtf8(<span class="stringliteral">&quot;Favoriting...&quot;</span>));
+<a name="l00203"></a>00203     <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#a1391134cebaf8d30905d13cb531a05ea" title="Favoriting a tweet.">favoriteTweet</a>(<a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;getID());
+<a name="l00204"></a>00204 }
+<a name="l00205"></a>00205 
+<a name="l00206"></a><a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223">00206</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">TweetControl::favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00207"></a>00207     <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209     <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00210"></a>00210     <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00211"></a>00211         <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">false</span>;
+<a name="l00212"></a>00212         <span class="keywordflow">return</span>;
+<a name="l00213"></a>00213     }
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215     <span class="comment">// Disconnect</span>
+<a name="l00216"></a>00216     disconnect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00217"></a>00217                <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a43d5f1f01d1c4790343ae88f8de6e223" title="Slot executed after favoriting the tweet.">favoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219     <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00220"></a>00220     QVariantMap parsedResults;
+<a name="l00221"></a>00221 
+<a name="l00222"></a>00222     <span class="keywordflow">switch</span> (issue) {
+<a name="l00223"></a>00223         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d" title="FavoriteProcess ended successfully.">FAVORITE_SUCCESSFUL</a>:
+<a name="l00224"></a>00224             <span class="comment">// Don&#39;t forget to update the tweet</span>
+<a name="l00225"></a>00225             parsedResults = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toMap();
+<a name="l00226"></a>00226             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a8ea7a5804183829fc7459aa48f7f3bbc" title="Resets the mappable to a default value.">reset</a>();
+<a name="l00227"></a>00227             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(parsedResults);
+<a name="l00228"></a>00228             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keyword">true</span>);
+<a name="l00229"></a>00229             emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00230"></a>00230             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">true</span>, TweetControl::trUtf8(<span class="stringliteral">&quot;Tweet favorited&quot;</span>), <span class="keyword">false</span>);
+<a name="l00231"></a>00231             <span class="keywordflow">break</span>;
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
+<a name="l00234"></a>00234             <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00235"></a>00235             emit <a class="code" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00236"></a>00236             <span class="keywordflow">break</span>;
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238         <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00239"></a>00239         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aef4e18cf5dacaf9d0cb90c72663a1b60" title="The request was invalid.">BAD_REQUEST</a>:
+<a name="l00240"></a>00240             <span class="keywordflow">if</span> (result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>.contains(<span class="stringliteral">&quot;You have already favorited this status&quot;</span>)) {
+<a name="l00241"></a>00241                 <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keyword">true</span>);
+<a name="l00242"></a>00242             }
+<a name="l00243"></a>00243             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00244"></a>00244             <span class="keywordflow">break</span>;
+<a name="l00245"></a>00245 
+<a name="l00246"></a>00246         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a718e7809977a36e90dce5ad47e1008ea" title="Twitter did not treat the request.">REFUSED_REQUEST</a>:
+<a name="l00247"></a>00247         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00248"></a>00248         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems.">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00249"></a>00249         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
+<a name="l00250"></a>00250             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00251"></a>00251             <span class="keywordflow">break</span>;
+<a name="l00252"></a>00252 
+<a name="l00253"></a>00253         <span class="comment">// Unknown ends</span>
+<a name="l00254"></a>00254         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00255"></a>00255 
+<a name="l00256"></a>00256         <span class="keywordflow">default</span>:
+<a name="l00257"></a>00257             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00258"></a>00258             <span class="keywordflow">break</span>;
+<a name="l00259"></a>00259     }
+<a name="l00260"></a>00260 }
+<a name="l00261"></a>00261 
+<a name="l00262"></a><a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d">00262</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#af384f409fea8d36b92510d8fec91213d" title="Unfavorite the tweet.">TweetControl::unfavorite</a>() {
+<a name="l00263"></a>00263     <span class="comment">// No new process if the control has not finished the last one</span>
+<a name="l00264"></a>00264     <span class="keywordflow">if</span> (<a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a>) {
+<a name="l00265"></a>00265         <span class="keywordflow">return</span>;
+<a name="l00266"></a>00266     }
+<a name="l00267"></a>00267 
+<a name="l00268"></a>00268     connect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00269"></a>00269             <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271     <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">true</span>;
+<a name="l00272"></a>00272     emit <a class="code" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856" title="Signal sent for announcing something, often at the beginning of an action.">showInfoMessage</a>(TweetControl::trUtf8(<span class="stringliteral">&quot;Unfavoriting...&quot;</span>));
+<a name="l00273"></a>00273     <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#ad8d9fb7055879124026598634a7421a8" title="Unfavoriting a tweet.">unfavoriteTweet</a>(<a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;getID());
+<a name="l00274"></a>00274 }
+<a name="l00275"></a>00275 
+<a name="l00276"></a><a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c">00276</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">TweetControl::unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00277"></a>00277     <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
+<a name="l00278"></a>00278 
+<a name="l00279"></a>00279     <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00280"></a>00280     <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00281"></a>00281         <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">false</span>;
+<a name="l00282"></a>00282         <span class="keywordflow">return</span>;
+<a name="l00283"></a>00283     }
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285     <span class="comment">// Disconnect</span>
+<a name="l00286"></a>00286     disconnect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00287"></a>00287                <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a106b5c6d061db44cd0af8e7cfcd8005c" title="Slot executed after unfavoriting the tweet.">unfavoriteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00288"></a>00288 
+<a name="l00289"></a>00289     <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00290"></a>00290     QVariantMap parsedResults;
+<a name="l00291"></a>00291     <a class="code" href="class_tweet_entities.html" title="Entities of a tweet, such as its hashtags, its mentions and its URLs.">TweetEntities</a> entities;
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293     <span class="keywordflow">switch</span> (issue) {
+<a name="l00294"></a>00294         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a21f659930ebff1f154d5b2a626fc487d" title="FavoriteProcess ended successfully.">FAVORITE_SUCCESSFUL</a>:
+<a name="l00295"></a>00295             <span class="comment">// Don&#39;t forget to update the tweet</span>
+<a name="l00296"></a>00296             parsedResults = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toMap();
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298             <span class="comment">// Saving tweet entities because Twitter API doesn&#39;t return them here !</span>
+<a name="l00299"></a>00299             entities = <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#af2fc5063967805abbd1c443330abd844" title="Reading entities.">getEntities</a>();
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a8ea7a5804183829fc7459aa48f7f3bbc" title="Resets the mappable to a default value.">reset</a>();
+<a name="l00302"></a>00302             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(parsedResults);
+<a name="l00303"></a>00303             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a5c110faa7352835653ab412b73850474" title="Writing the property entities.">setEntities</a>(entities);
+<a name="l00304"></a>00304             <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a718a6f6543f67b2d84b48a070c2299e0" title="Writing favorited.">setFavorited</a>(<span class="keyword">false</span>);
+<a name="l00305"></a>00305             emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00306"></a>00306             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">true</span>, TweetControl::trUtf8(<span class="stringliteral">&quot;Tweet unfavorited&quot;</span>), <span class="keyword">false</span>);
+<a name="l00307"></a>00307             <span class="keywordflow">break</span>;
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
+<a name="l00310"></a>00310             <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00311"></a>00311             emit <a class="code" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00312"></a>00312             <span class="keywordflow">break</span>;
+<a name="l00313"></a>00313 
+<a name="l00314"></a>00314         <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00315"></a>00315         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aef4e18cf5dacaf9d0cb90c72663a1b60" title="The request was invalid.">BAD_REQUEST</a>:
+<a name="l00316"></a>00316         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a718e7809977a36e90dce5ad47e1008ea" title="Twitter did not treat the request.">REFUSED_REQUEST</a>:
+<a name="l00317"></a>00317         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00318"></a>00318         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems.">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00319"></a>00319         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
+<a name="l00320"></a>00320             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00321"></a>00321             <span class="keywordflow">break</span>;
+<a name="l00322"></a>00322 
+<a name="l00323"></a>00323         <span class="comment">// Unknown ends</span>
+<a name="l00324"></a>00324         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00325"></a>00325 
+<a name="l00326"></a>00326         <span class="keywordflow">default</span>:
+<a name="l00327"></a>00327             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00328"></a>00328             <span class="keywordflow">break</span>;
+<a name="l00329"></a>00329     }
+<a name="l00330"></a>00330 }
+<a name="l00331"></a>00331 
+<a name="l00333"></a>00333 <span class="comment">// Deleting a tweet //</span>
+<a name="l00335"></a>00335 <span class="comment"></span>
+<a name="l00336"></a><a class="code" href="class_tweet_control.html#aa4d3fe0b1338a520799a99fdbeb56812">00336</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#aa4d3fe0b1338a520799a99fdbeb56812" title="Delete the tweet.">TweetControl::deleteTweet</a>() {
+<a name="l00337"></a>00337     <span class="comment">// No new process if the control has not finished the last one</span>
+<a name="l00338"></a>00338     <span class="keywordflow">if</span> (<a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a>) {
+<a name="l00339"></a>00339         <span class="keywordflow">return</span>;
+<a name="l00340"></a>00340     }
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342     connect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00343"></a>00343             <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a39526c5dd45a0045d05d273adfb6090d" title="Slot executed after deleting a tweet.">deleteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00344"></a>00344 
+<a name="l00345"></a>00345     <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">true</span>;
+<a name="l00346"></a>00346     emit <a class="code" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856" title="Signal sent for announcing something, often at the beginning of an action.">showInfoMessage</a>(TweetControl::trUtf8(<span class="stringliteral">&quot;Deleting the tweet...&quot;</span>));
+<a name="l00347"></a>00347     <a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>.<a class="code" href="class_reyn_core.html#aad133d872af7c8a991eba10bf967c521" title="Deleting a tweet.">deleteTweet</a>(*<a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>);
+<a name="l00348"></a>00348 }
+<a name="l00349"></a>00349 
+<a name="l00350"></a><a class="code" href="class_tweet_control.html#a39526c5dd45a0045d05d273adfb6090d">00350</a> <span class="keywordtype">void</span> <a class="code" href="class_tweet_control.html#a39526c5dd45a0045d05d273adfb6090d" title="Slot executed after deleting a tweet.">TweetControl::deleteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res) {
+<a name="l00351"></a>00351     <a class="code" href="struct_process_result.html" title="Results of a process.">ProcessResult</a> result = res.<a class="code" href="class_process_wrapper.html#a0b97cf618cfe1c8f032a5faad8c8325d" title="Method to access to the result.">accessResult</a>(<span class="keyword">this</span>);
+<a name="l00352"></a>00352 
+<a name="l00353"></a>00353     <span class="comment">// The result was not for the object. Stop the treatment.</span>
+<a name="l00354"></a>00354     <span class="keywordflow">if</span> (<a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a9e9f412dfa563bea2fe31a70b7827e68" title="Issue for fake process results.">INVALID_ISSUE</a> == result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>) {
+<a name="l00355"></a>00355         <a class="code" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6" title="Boolean indicating if the control is in a process.">processing</a> = <span class="keyword">false</span>;
+<a name="l00356"></a>00356         <span class="keywordflow">return</span>;
+<a name="l00357"></a>00357     }
+<a name="l00358"></a>00358 
+<a name="l00359"></a>00359     <span class="comment">// Disconnect</span>
+<a name="l00360"></a>00360     disconnect(&amp;<a class="code" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359" title="Entity which realizes treatments.">reyn</a>, SIGNAL(sendResult(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)),
+<a name="l00361"></a>00361                <span class="keyword">this</span>, SLOT(<a class="code" href="class_tweet_control.html#a39526c5dd45a0045d05d273adfb6090d" title="Slot executed after deleting a tweet.">deleteEnd</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a>)));
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363     <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811" title="Unified error for all the possible ends of all treatments.">CoreResult</a> issue = result.<a class="code" href="struct_process_result.html#a520a7d013cc716a2d2e9163f41b54dc2" title="Information about how the process ended.">processIssue</a>;
+<a name="l00364"></a>00364     QVariantMap parsedResults;
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366     <span class="keywordflow">switch</span> (issue) {
+<a name="l00367"></a>00367         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a71a8fe98de025ed6894c385d54122777" title="After deleting a tweet.">TWEET_DELETED</a>:
+<a name="l00368"></a>00368             parsedResults = result.<a class="code" href="struct_process_result.html#abcf3b6c96f77a6f58a3049c8c12bea4f" title="Results.">results</a>.toMap();
+<a name="l00369"></a>00369 
+<a name="l00370"></a>00370             <span class="comment">// Delete the tweet in the timeline ?</span>
+<a name="l00371"></a>00371             <span class="keywordflow">if</span> (parsedResults.value(<span class="stringliteral">&quot;keep_in_timeline&quot;</span>).toBool()) {
+<a name="l00372"></a>00372                 <a class="code" href="class_tweet.html" title="Model of a tweet.">Tweet</a> resultTweet;
+<a name="l00373"></a>00373                 resultTweet.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(parsedResults.value(<span class="stringliteral">&quot;twitter_result&quot;</span>).toMap());
+<a name="l00374"></a>00374 
+<a name="l00375"></a>00375                 <span class="keywordflow">if</span> (!resultTweet.<a class="code" href="class_tweet.html#a1b323e18f221ab60c31d1e35f9dc8d04" title="Method indicating if the tweet is a retweet or not.">isRetweet</a>()) {
+<a name="l00376"></a>00376                     <span class="comment">// It&#39;s a tweet written by the user and should not be kept</span>
+<a name="l00377"></a>00377                     <span class="comment">// in the timeline. This is an error.</span>
+<a name="l00378"></a>00378                     emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>,
+<a name="l00379"></a>00379                                     TweetControl::trUtf8(<span class="stringliteral">&quot;Retweet expected in Twitter reply.&quot;</span>),
+<a name="l00380"></a>00380                                     <span class="keyword">false</span>);
+<a name="l00381"></a>00381                     <span class="keywordflow">return</span>;
+<a name="l00382"></a>00382                 }
+<a name="l00383"></a>00383 
+<a name="l00384"></a>00384                 <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_tweet.html#a8ea7a5804183829fc7459aa48f7f3bbc" title="Resets the mappable to a default value.">reset</a>();
+<a name="l00385"></a>00385                 <a class="code" href="class_tweet_control.html#a206e8aa2c85be7e7affdf5e4959a878c" title="Reading the shown_tweet property.">getShownTweet</a>()-&gt;<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(resultTweet.<a class="code" href="class_tweet.html#a301a6f985b8cfbc39fae112cd9429c53" title="Reading retweeted_status.">getRetweetedStatusVariant</a>());
+<a name="l00386"></a>00386                 <a class="code" href="class_tweet_control.html#a86389f67d9c22aaa8c235c72f95e84ab" title="Tweet entity behind the tweet property.">status</a>-&gt;<a class="code" href="class_tweet.html#aa7facd10253d1b086f9e59c7dc4adcbd" title="Writing retweeted.">setRetweeted</a>(<span class="keyword">false</span>);
+<a name="l00387"></a>00387                 emit <a class="code" href="class_tweet_control.html#a5e3a9a5d236d368a4fee3c74cfeb783e" title="Emitted when the tweet property (status attribute) is modified.">tweetChanged</a>();
+<a name="l00388"></a>00388             } <span class="keywordflow">else</span> {
+<a name="l00389"></a>00389                 emit <a class="code" href="class_tweet_control.html#a4a56253afece6529538f7fb2be238130" title="Emitted if the tweet has to be destroyed.">destroyTweet</a>();
+<a name="l00390"></a>00390             }
+<a name="l00391"></a>00391 
+<a name="l00392"></a>00392             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">true</span>, TweetControl::trUtf8(<span class="stringliteral">&quot;Tweet deleted&quot;</span>), <span class="keyword">false</span>);
+<a name="l00393"></a>00393             <span class="keywordflow">break</span>;
+<a name="l00394"></a>00394 
+<a name="l00395"></a>00395         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aae8b29752f79eaf73b8130c027fcddf2" title="Credentials were wrong.">TOKENS_NOT_AUTHORIZED</a>:
+<a name="l00396"></a>00396             <span class="comment">// An authentication is needed. So let&#39;s do it!</span>
+<a name="l00397"></a>00397             emit <a class="code" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
+<a name="l00398"></a>00398             <span class="keywordflow">break</span>;
+<a name="l00399"></a>00399 
+<a name="l00400"></a>00400 
+<a name="l00401"></a>00401         <span class="comment">// Problems that can be solved trying later</span>
+<a name="l00402"></a>00402         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aef4e18cf5dacaf9d0cb90c72663a1b60" title="The request was invalid.">BAD_REQUEST</a>:
+<a name="l00403"></a>00403         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a718e7809977a36e90dce5ad47e1008ea" title="Twitter did not treat the request.">REFUSED_REQUEST</a>:
+<a name="l00404"></a>00404         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a36a398a24afdc1a5af1e649f8498406b" title="Rate limit was hit.">RATE_LIMITED</a>:      <span class="comment">// The user reached rates.</span>
+<a name="l00405"></a>00405         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811acc5d42572d86fa1712a01a023bf842fb" title="Twitter got problems.">TWITTER_DOWN</a>:      <span class="comment">// Twitter does not respond.</span>
+<a name="l00406"></a>00406         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811aa49263c54b4ea94601ae8912e2cfdb37" title="There were an error while calling the network.">NETWORK_CALL</a>:
+<a name="l00407"></a>00407         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a8f0c745b705a4b3aaa1b7255ec448938" title="If a tweet cannot be deleted.">TWEET_UNDESTROYABLE</a>: <span class="comment">// Tweet not deleted</span>
+<a name="l00408"></a>00408             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">false</span>);
+<a name="l00409"></a>00409             <span class="keywordflow">break</span>;
+<a name="l00410"></a>00410 
+<a name="l00411"></a>00411         <span class="comment">// Unknown ends</span>
+<a name="l00412"></a>00412         <span class="keywordflow">case</span> <a class="code" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811a32f2d1719341ee78a2bab1d2bdfffb07" title="The request ends with an unknown problem.">UNKNOWN_PROBLEM</a>:
+<a name="l00413"></a>00413         <span class="keywordflow">default</span>:
+<a name="l00414"></a>00414             emit <a class="code" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334" title="Signal sent after an operation made by the control.">actionEnded</a>(<span class="keyword">false</span>, result.<a class="code" href="struct_process_result.html#abae22a80a21af500f542dda7b10c21ef" title="Error message.">errorMsg</a>, <span class="keyword">true</span>);
+<a name="l00415"></a>00415             <span class="keywordflow">break</span>;
+<a name="l00416"></a>00416     }
+<a name="l00417"></a>00417 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -271,7 +510,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

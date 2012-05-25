@@ -89,13 +89,20 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>WriteTweetControl Member List</h1>This is the complete list of members for <a class="el" href="class_write_tweet_control.html">WriteTweetControl</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#ac992bded66fc6d6c39437e0cf0a968da">authenticationNeeded</a>()</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [signal]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a795d3d6bc9f0027bb68d28cc1d894334">actionEnded</a>(bool launchOK, QString issueMsg, bool isFatal)</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [signal]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a93ab927cdc6288cc59cedf556f6d56d1">authenticationNeeded</a>()</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [signal]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#ae35565d58a469c7e80857f077788de4c">declareQML</a>()</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#abf3775ae546fca90c3ed998dba3ac96d">postEnded</a>(bool launchOK, QString errorMsg, bool isFatal)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [signal]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#aaebb3f28d3f47bdb8ef3a1d23e7eb2c4">postTweet</a>(QString tweet, qlonglong inReplyToTweetID=-1)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a5cf81a156483a4c5661c57c67c8b5eaf">GenericControl</a>()</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#aa8648f8f989f65c11f2dbb1342ced661">postTweet</a>(QString tweet, QString inReplyToTweetID=&quot;-1&quot;)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#a5091b827fdc02bdb1f71568be23bb84d">postTweetEnded</a>(ProcessWrapper res)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [protected, slot]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#ae28b61cd0aa6522a6924f99672595233">reyn</a></td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#a6449f80ef3e8dc203da4c7ad8e3e7f8b">tweetPosted</a>()</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [signal]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#a3802bcb708bc9e3fb8d2c79a3230ba48">postViaTwitLonger</a>(QString tweet, QString inReplyToTweetID=&quot;-1&quot;, QString inReplyToUser=&quot;&quot;)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#ad0a61cdad1a66684612274406882f6fc">postViaTwitLongerEnded</a>(ProcessWrapper res)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [protected, slot]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a3fa2162ca512d7848ffd3247f6daf286">processAgain</a>(bool, QString, bool)</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [slot]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#aa3d5817da4f151de7231d005dfd08643">processAgain</a>()</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [slot]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a5e5a620677480c128af6163b00cb6ca6">processing</a></td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#a228dc5084c67327d18b7ae90b4084359">reyn</a></td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_generic_control.html#aae7f74f861e1f495166c33ec66e50856">showInfoMessage</a>(QString message)</td><td><a class="el" href="class_generic_control.html">GenericControl</a></td><td><code> [signal]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#a8b9cdd6a4d1da6d791f79302e32b0912">tweetPosted</a>(QVariant newTweetVariant)</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td><code> [signal]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_write_tweet_control.html#a8f0a24ea42e8101210b92b82b77ebaf4">WriteTweetControl</a>()</td><td><a class="el" href="class_write_tweet_control.html">WriteTweetControl</a></td><td></td></tr>
 </table></div>
 <!--- window showing the filter options -->
@@ -112,7 +119,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:26 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

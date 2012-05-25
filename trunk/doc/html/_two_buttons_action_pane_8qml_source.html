@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: ui/qml/TwoButtonsActionPane.qml Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/ui/qml/TwoButtonsActionPane.qml Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_ae97b7e4b1031c2547fb36343251c069.html">ui</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_b1ec1ca443888167af1b35eea38e1c42.html">qml</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_ae97b7e4b1031c2547fb36343251c069.html">ui</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_b1ec1ca443888167af1b35eea38e1c42.html">qml</a>
   </div>
 </div>
 <div class="contents">
@@ -114,11 +114,11 @@ window.onload = initDynSections;
 <a name="l00024"></a>00024 <span class="keyword">import</span> QtQuick 1.1
 <a name="l00025"></a>00025 
 <a name="l00028"></a>00028 Rectangle {
-<a name="l00030"></a>00030         <span class="keyword">property</span> <span class="keywordtype">string</span> pane_text: <span class="stringliteral">&quot;Yeah ! It&#39;s Reyn time !&quot;</span>
+<a name="l00030"></a>00030         <span class="keyword">property</span> alias pane_text: description_action.text
 <a name="l00031"></a>00031 
-<a name="l00033"></a>00033         <span class="keyword">property</span> <span class="keywordtype">string</span> left_button_text: <span class="stringliteral">&quot;Leave it to Reyn !&quot;</span>
+<a name="l00033"></a>00033         <span class="keyword">property</span> alias left_button_text: left_button.button_text
 <a name="l00034"></a>00034 
-<a name="l00036"></a>00036         <span class="keyword">property</span> <span class="keywordtype">string</span> right_button_text: <span class="stringliteral">&quot;Here we go... LARIAT !&quot;</span>
+<a name="l00036"></a>00036         <span class="keyword">property</span> alias right_button_text: right_button.button_text
 <a name="l00037"></a>00037 
 <a name="l00039"></a>00039         <span class="keyword">property</span> <span class="keywordtype">int</span> margin_value: 5
 <a name="l00040"></a>00040 
@@ -142,7 +142,7 @@ window.onload = initDynSections;
 <a name="l00062"></a>00062         <span class="comment">// Description</span>
 <a name="l00063"></a>00063         Text {
 <a name="l00064"></a>00064                 <span class="keywordtype">id</span>: description_action
-<a name="l00065"></a>00065                 text: two_buttons_pane.pane_text
+<a name="l00065"></a>00065                 text:  <span class="stringliteral">&quot;Yeah ! It&#39;s Reyn time !&quot;</span> <span class="comment">// Mockup</span>
 <a name="l00066"></a>00066                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 <a name="l00067"></a>00067                 anchors.right: parent.right
 <a name="l00068"></a>00068                 anchors.rightMargin: margin_value
@@ -159,7 +159,7 @@ window.onload = initDynSections;
 <a name="l00079"></a>00079         <span class="comment">// Left button</span>
 <a name="l00080"></a>00080         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
 <a name="l00081"></a>00081                 <span class="keywordtype">id</span>: left_button
-<a name="l00082"></a>00082                 button_text: two_buttons_pane.left_button_text
+<a name="l00082"></a>00082                 button_text: <span class="stringliteral">&quot;Leave it to Reyn !&quot;</span>       <span class="comment">// Mockup</span>
 <a name="l00083"></a>00083                 anchors.right: right_button.left
 <a name="l00084"></a>00084                 anchors.rightMargin: two_buttons_pane.margin_value
 <a name="l00085"></a>00085                 anchors.bottom: two_buttons_pane.bottom
@@ -170,7 +170,7 @@ window.onload = initDynSections;
 <a name="l00090"></a>00090         <span class="comment">// Right button</span>
 <a name="l00091"></a>00091         <a class="code" href="class_r_t_button.html" title="Custom button.">RTButton</a> {
 <a name="l00092"></a>00092                 <span class="keywordtype">id</span>: right_button
-<a name="l00093"></a>00093                 button_text: two_buttons_pane.right_button_text
+<a name="l00093"></a>00093                 button_text: <span class="stringliteral">&quot;Here we goooo... LARIAT !&quot;</span>        <span class="comment">// Mockup</span>
 <a name="l00094"></a>00094                 anchors.right: two_buttons_pane.right
 <a name="l00095"></a>00095                 anchors.rightMargin: two_buttons_pane.margin_value
 <a name="l00096"></a>00096                 anchors.bottom: two_buttons_pane.bottom
@@ -193,7 +193,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:41 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:09 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

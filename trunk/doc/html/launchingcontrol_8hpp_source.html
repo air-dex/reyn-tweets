@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/launchingcontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/launchingcontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -117,38 +117,26 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#ifndef LAUNCHINGCONTROL_HPP</span>
 <a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#define LAUNCHINGCONTROL_HPP</span>
 <a name="l00029"></a>00029 <span class="preprocessor"></span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="logincontrol_8hpp.html" title="Header of LoginControl.">logincontrol.hpp</a>&quot;</span>
 <a name="l00032"></a>00032 <span class="preprocessor">#include &quot;../reyncore.hpp&quot;</span>
 <a name="l00033"></a>00033 
-<a name="l00036"></a><a class="code" href="class_launching_control.html">00036</a> <span class="keyword">class </span><a class="code" href="class_launching_control.html" title="Control behind a LaunchingPane.">LaunchingControl</a> : <span class="keyword">public</span> QObject
+<a name="l00036"></a><a class="code" href="class_launching_control.html">00036</a> <span class="keyword">class </span><a class="code" href="class_launching_control.html" title="Control behind a LaunchingPane.">LaunchingControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
 <a name="l00037"></a>00037 {
-<a name="l00038"></a>00038         Q_OBJECT
+<a name="l00038"></a>00038     Q_OBJECT
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040         <span class="keyword">public</span>:
-<a name="l00043"></a>00043                 <a class="code" href="class_launching_control.html#ad0aff0f2ea9098e81fc3f8e6b7731d2a" title="Constructor.">LaunchingControl</a>();
+<a name="l00040"></a>00040     <span class="keyword">public</span>:
+<a name="l00043"></a>00043         <a class="code" href="class_launching_control.html#ad0aff0f2ea9098e81fc3f8e6b7731d2a" title="Constructor.">LaunchingControl</a>();
 <a name="l00044"></a>00044 
-<a name="l00047"></a>00047                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120" title="Declaring to the QML system.">declareQML</a>();
+<a name="l00047"></a>00047         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a1878bc6c71619d22a6cd58a9c3f05120" title="Declaring to the QML system.">declareQML</a>();
 <a name="l00048"></a>00048 
-<a name="l00051"></a>00051                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986" title="Lauching Reyn Tweets.">launchReynTweets</a>();
+<a name="l00051"></a>00051         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ad151a81ba9feea9c5cdffd86e02d2986" title="Lauching Reyn Tweets.">launchReynTweets</a>();
 <a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054         signals:
-<a name="l00062"></a>00062                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a2f32b2d06fba2dd52d835abff3c55785" title="Signal sent after launching.">launchEnded</a>(<span class="keywordtype">bool</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>,
-<a name="l00063"></a>00063                                                  QString errorMsg,
-<a name="l00064"></a>00064                                                  <span class="keywordtype">bool</span> isFatal);
-<a name="l00065"></a>00065 
-<a name="l00068"></a>00068                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#ae0771cab52fe1a33cee95a2a2d920a6b" title="Signal sent if Reyn Tweets has to be allowed again.">authenticationNeeded</a>();
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="keyword">protected</span> slots:
-<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077         <span class="keyword">protected</span>:
-<a name="l00079"></a><a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49">00079</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_launching_control.html#a653c58cc355816d94f12ba6b10495a49" title="Core of the application.">reyn</a>;
-<a name="l00080"></a>00080 };
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#endif // LAUNCHINGCONTROL_HPP</span>
+<a name="l00053"></a>00053     <span class="keyword">protected</span> slots:
+<a name="l00057"></a>00057         <span class="keywordtype">void</span> <a class="code" href="class_launching_control.html#a67204d582f888226fe918a7cde6bf54f" title="Slot executed at the end of the launch process.">launchOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00058"></a>00058 };
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="preprocessor">#endif // LAUNCHINGCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -164,7 +152,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

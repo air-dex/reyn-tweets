@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/requests/authenticationrequester.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/requests/authenticationrequester.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_639796e78bd99f3e884ae12d6fa276d8.html">requests</a>
   </div>
 </div>
 <div class="contents">
@@ -121,28 +121,30 @@ window.onload = initDynSections;
 <a name="l00031"></a>00031                                                                                                  <span class="keywordtype">bool</span> tokenNeeded,
 <a name="l00032"></a>00032                                                                                                  <span class="keywordtype">bool</span> callbackURLNeeded,
 <a name="l00033"></a>00033                                                                                                  <span class="keywordtype">bool</span> verifierNeeded) :
-<a name="l00034"></a>00034         <a class="code" href="class_generic_requester.html" title="Base class for all the requesters.">GenericRequester</a>(type, url, parseError),
+<a name="l00034"></a>00034         <a class="code" href="class_twitter_requester.html" title="Base class for requesters that use the Twitter API.">TwitterRequester</a>(type, url, parseError),
 <a name="l00035"></a>00035         oauthManager(authManager),
 <a name="l00036"></a>00036         oauthTokenNeeded(tokenNeeded),
 <a name="l00037"></a>00037         oauthCallbackUrlNeeded(callbackURLNeeded),
 <a name="l00038"></a>00038         oauthVerifierNeeded(verifierNeeded)
 <a name="l00039"></a>00039 {}
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="comment">// Initialize the communicator</span>
-<a name="l00043"></a><a class="code" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e">00043</a> <span class="keywordtype">void</span> <a class="code" href="class_authentication_requester.html#a4a8095862382e80d8ed2e4910226786e" title="Initialize the communicator. This a template method because of the authorize() request...">AuthenticationRequester::initCommunicator</a>() {
-<a name="l00044"></a>00044         <a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a> = <span class="keyword">new</span> <a class="code" href="class_twitter_communicator.html" title="Class managing communication with the Twitter API.">TwitterCommunicator</a>(<a class="code" href="class_generic_requester.html#ab5fd70327cbd649bfcb14c31361b70da" title="URL called by the requester.">requestURL</a>,
-<a name="l00045"></a>00045                                                                                    <a class="code" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58" title="Request type.">requestType</a>,
-<a name="l00046"></a>00046                                                                                    <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>,
-<a name="l00047"></a>00047                                                                                    <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>,
-<a name="l00048"></a>00048                                                                                    <span class="keyword">true</span>,
-<a name="l00049"></a>00049                                                                                    &amp;<a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>,
-<a name="l00050"></a>00050                                                                                    <a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>,
-<a name="l00051"></a>00051                                                                                    <a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae" title="Boolean indicating if the oauth_callback parameter is required for authentication...">oauthCallbackUrlNeeded</a>,
-<a name="l00052"></a>00052                                                                                    <a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthVerifierNeeded</a>);
-<a name="l00053"></a>00053         connect(<a class="code" href="class_generic_requester.html#ae03119220091f86d86deac155f7dea8b" title="Pointer on the Twitter Communicator that will purely execute the request and get...">communicator</a>, SIGNAL(<a class="code" href="class_generic_requester.html#a1cbc1b1af35e16e624ebce7f9610967d" title="Signal sent when the results of the request received by the Twitter Communicator...">requestDone</a>()),
-<a name="l00054"></a>00054                         <span class="keyword">this</span>, SLOT(<a class="code" href="class_generic_requester.html#a3aef8eba6b6e3a074f0c4de500b2eee2" title="Slot that is executed when the Twitter Communicator has just finished its work.">treatResults</a>()));
-<a name="l00055"></a>00055 }
+<a name="l00041"></a>00041 <span class="comment">// Building HTTP Headers</span>
+<a name="l00042"></a><a class="code" href="class_authentication_requester.html#a0c1d2b4f34eb5ce1b2d32083200ef370">00042</a> <span class="keywordtype">void</span> <a class="code" href="class_authentication_requester.html#a0c1d2b4f34eb5ce1b2d32083200ef370" title="Building Content-Type and Authorize headers.">AuthenticationRequester::buildHTTPHeaders</a>() {
+<a name="l00043"></a>00043         <span class="comment">// For the Content-Type</span>
+<a name="l00044"></a>00044         <a class="code" href="class_authentication_requester.html#a0c1d2b4f34eb5ce1b2d32083200ef370" title="Building Content-Type and Authorize headers.">TwitterRequester::buildHTTPHeaders</a>();
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046         <span class="comment">// OAuth header</span>
+<a name="l00047"></a>00047         <span class="comment">// Building the header</span>
+<a name="l00048"></a>00048         QByteArray authHeader = <a class="code" href="class_authentication_requester.html#a1393746f8dcd2a65a44424e49029a2a3" title="Entity with authentication information.">oauthManager</a>.<a class="code" href="class_o_auth_manager.html#a57e45bdea5c67b05a7cfd8da387fa26b" title="Getting that will be written in the &amp;quot;Authorization&amp;quot; field of requests.">getAuthorizationHeader</a>(<a class="code" href="class_generic_requester.html#a51c76bc8d925ef4d8d97e5a15f74fe58" title="Request type.">requestType</a>,
+<a name="l00049"></a>00049                                                                                                                                 <a class="code" href="class_generic_requester.html#ab5fd70327cbd649bfcb14c31361b70da" title="URL called by the requester.">requestURL</a>,
+<a name="l00050"></a>00050                                                                                                                                 <a class="code" href="class_generic_requester.html#a7027e39510c1e6e09faa5b5054360565" title="GET parameters that will be passed to the Communicator.">getParameters</a>,
+<a name="l00051"></a>00051                                                                                                                                 <a class="code" href="class_generic_requester.html#afc410426d0032217c2f9aa93fb3d0ca2" title="POST parameters that will be passed to the Communicator.">postParameters</a>,
+<a name="l00052"></a>00052                                                                                                                                 <a class="code" href="class_authentication_requester.html#a202ba85ccadb1993cd9f3373b3f76fff" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthTokenNeeded</a>,
+<a name="l00053"></a>00053                                                                                                                                 <a class="code" href="class_authentication_requester.html#a49d20a1eaeaff793e84d212830e563ae" title="Boolean indicating if the oauth_callback parameter is required for authentication...">oauthCallbackUrlNeeded</a>,
+<a name="l00054"></a>00054                                                                                                                                 <a class="code" href="class_authentication_requester.html#a239abc9f612a00da79feea596e394849" title="Boolean indicating if the oauth_token parameter is required for authentication.">oauthVerifierNeeded</a>);
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <a class="code" href="class_generic_requester.html#a7d9cb59b7f3a76dbaf1ca9b5f588045f" title="HTTP headers that will be passed to the Communicator.">headers</a>.insert(<span class="stringliteral">&quot;Authorization&quot;</span>, authHeader);
+<a name="l00057"></a>00057 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -158,7 +160,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:37 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:04 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

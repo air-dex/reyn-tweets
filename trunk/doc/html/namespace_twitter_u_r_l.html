@@ -97,27 +97,33 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL for authentication.  <a href="#a4dfd3dd410e8ce8c75db0569975f3194"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#acc646eeb0e37b7ebac281f3c34a232f3">AUTHORIZE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/oauth/authorize&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to authorize the application.  <a href="#acc646eeb0e37b7ebac281f3c34a232f3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">CREATE_FAVORITE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites/create/:id.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">CREATE_FAVORITE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites/create/:id.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to favorite a tweet.  <a href="#a6803d56c1152f41872d8a2e34e125a7f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">DELETE_FAVORITE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites/destroy/:id.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">DELETE_FAVORITE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites/destroy/:id.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to unfavorite a tweet.  <a href="#a4f6c7314e80f2b5c2134d4a866d52b04"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a6139b31984e8e867ec0d1520d324f093">DELETE_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/destroy/:id.json&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to delete a tweet (or a retweet).  <a href="#a6139b31984e8e867ec0d1520d324f093"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to get the timeline of the favorite tweets of a user.  <a href="#a30cfa8ade1eb530a4f38a4a9c8b3b5c9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">HOME_TIMELINE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/home_timeline.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">HOME_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/home_timeline.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to getting the timeline with friends tweets.  <a href="#a0f41dfb4b3d85d09fdf99a7f749fd1c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a572e0897cf3c1690abe8b79bd7ef61ca">REQUEST_TOKEN_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/oauth/request_token&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to get request tokens.  <a href="#a572e0897cf3c1690abe8b79bd7ef61ca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a87e9bf9cc4833adf0d6cd61c0b7e11ea">RETWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/retweet/:id.json&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to retweet a tweet.  <a href="#a87e9bf9cc4833adf0d6cd61c0b7e11ea"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#acccc54badeb7d0d7e8b7f97e49221096">RETWEETED_BY_ME_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/retweeted_by_me.json&quot;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to getting the timeline with retweets of the user.  <a href="#acccc54badeb7d0d7e8b7f97e49221096"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a54abee8376d9aaf6a6e1a324a33af29b">SEARCH_URL</a> = QString::fromUtf8(&quot;http://search.twitter.com/search.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL for search requests.  <a href="#a54abee8376d9aaf6a6e1a324a33af29b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">SHOW_TWEET_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/show.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">SHOW_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/show.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to get informations about a given tweet.  <a href="#a2c306fbf6a70bbe7ec4a20e57947107d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a1a57ee95776f3c72d445d6d9dcc8166e">SHOW_USER_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/users/show.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to get informations about a given user.  <a href="#a1a57ee95776f3c72d445d6d9dcc8166e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">UPDATE_TWEET_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/update.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">UPDATE_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/update.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to update a tweet.  <a href="#abb2bf81468195b74112c6fdf72ef0236"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(&quot;https://upload.twitter.com/1/statuses/update_with_media.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(&quot;http://upload.twitter.com/1/statuses/update_with_media.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to update a tweet with medias.  <a href="#ae242c00f6b10962933988689d738f504"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/account/verify_credentials.json&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/account/verify_credentials.json&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL to verify if credentials are right.  <a href="#a3e41ef195ca31629ec85a1927e42f194"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
@@ -179,7 +185,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">TwitterURL::CREATE_FAVORITE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites/create/:id.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a6803d56c1152f41872d8a2e34e125a7f">TwitterURL::CREATE_FAVORITE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites/create/:id.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -196,7 +202,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">TwitterURL::DELETE_FAVORITE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites/destroy/:id.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a4f6c7314e80f2b5c2134d4a866d52b04">TwitterURL::DELETE_FAVORITE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites/destroy/:id.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -208,12 +214,29 @@ window.onload = initDynSections;
 
 </div>
 </div>
+<a class="anchor" id="a6139b31984e8e867ec0d1520d324f093"></a><!-- doxytag: member="TwitterURL::DELETE_TWEET_URL" ref="a6139b31984e8e867ec0d1520d324f093" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a6139b31984e8e867ec0d1520d324f093">TwitterURL::DELETE_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/destroy/:id.json&quot;)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>URL to delete a tweet (or a retweet). </p>
+
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00093">93</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a30cfa8ade1eb530a4f38a4a9c8b3b5c9"></a><!-- doxytag: member="TwitterURL::FAVORITE_TIMELINE_URL" ref="a30cfa8ade1eb530a4f38a4a9c8b3b5c9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">TwitterURL::FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/favorites.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a30cfa8ade1eb530a4f38a4a9c8b3b5c9">TwitterURL::FAVORITE_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/favorites.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -230,7 +253,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">TwitterURL::HOME_TIMELINE_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/home_timeline.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a0f41dfb4b3d85d09fdf99a7f749fd1c3">TwitterURL::HOME_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/home_timeline.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -259,6 +282,40 @@ window.onload = initDynSections;
 
 </div>
 </div>
+<a class="anchor" id="a87e9bf9cc4833adf0d6cd61c0b7e11ea"></a><!-- doxytag: member="TwitterURL::RETWEET_URL" ref="a87e9bf9cc4833adf0d6cd61c0b7e11ea" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a87e9bf9cc4833adf0d6cd61c0b7e11ea">TwitterURL::RETWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/retweet/:id.json&quot;)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>URL to retweet a tweet. </p>
+
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00096">96</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acccc54badeb7d0d7e8b7f97e49221096"></a><!-- doxytag: member="TwitterURL::RETWEETED_BY_ME_TIMELINE_URL" ref="acccc54badeb7d0d7e8b7f97e49221096" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#acccc54badeb7d0d7e8b7f97e49221096">TwitterURL::RETWEETED_BY_ME_TIMELINE_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/retweeted_by_me.json&quot;)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>URL to getting the timeline with retweets of the user. </p>
+
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00085">85</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a54abee8376d9aaf6a6e1a324a33af29b"></a><!-- doxytag: member="TwitterURL::SEARCH_URL" ref="a54abee8376d9aaf6a6e1a324a33af29b" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +338,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/show.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a2c306fbf6a70bbe7ec4a20e57947107d">TwitterURL::SHOW_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/show.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -289,7 +346,7 @@ window.onload = initDynSections;
 
 <p>URL to get informations about a given tweet. </p>
 
-<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00090">90</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00099">99</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +363,7 @@ window.onload = initDynSections;
 
 <p>URL to get informations about a given user. </p>
 
-<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00104">104</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00113">113</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +372,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">TwitterURL::UPDATE_TWEET_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/statuses/update.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#abb2bf81468195b74112c6fdf72ef0236">TwitterURL::UPDATE_TWEET_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/statuses/update.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -323,7 +380,7 @@ window.onload = initDynSections;
 
 <p>URL to update a tweet. </p>
 
-<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00093">93</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00102">102</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +389,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(&quot;https://upload.twitter.com/1/statuses/update_with_media.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#ae242c00f6b10962933988689d738f504">TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL</a> = QString::fromUtf8(&quot;http://upload.twitter.com/1/statuses/update_with_media.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -340,7 +397,7 @@ window.onload = initDynSections;
 
 <p>URL to update a tweet with medias. </p>
 
-<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00096">96</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
+<p>Definition at line <a class="el" href="twitterurls_8cpp_source.html#l00105">105</a> of file <a class="el" href="twitterurls_8cpp_source.html">twitterurls.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +406,7 @@ window.onload = initDynSections;
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">TwitterURL::VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(&quot;https://api.twitter.com/1/account/verify_credentials.json&quot;)</td>
+          <td class="memname">QString <a class="el" href="namespace_twitter_u_r_l.html#a3e41ef195ca31629ec85a1927e42f194">TwitterURL::VERIFY_CREDENTIALS_URL</a> = QString::fromUtf8(&quot;http://api.twitter.com/1/account/verify_credentials.json&quot;)</td>
         </tr>
       </table>
 </div>
@@ -376,7 +433,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:26 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: model/configuration/useraccount.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/model/configuration/useraccount.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_3812dca71195e49d2b766a64bf2bf287.html">configuration</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_bc54ce0fcd0946190b89f31351af4104.html">model</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_3812dca71195e49d2b766a64bf2bf287.html">configuration</a>
   </div>
 </div>
 <div class="contents">
@@ -131,105 +131,117 @@ window.onload = initDynSections;
 <a name="l00043"></a><a class="code" href="class_user_account.html#a46223ca619485dc5ec940eb882542524">00043</a> <a class="code" href="class_user_account.html#a46223ca619485dc5ec940eb882542524" title="Destructor.">UserAccount::~UserAccount</a>() {}
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="comment">// Copy constructor</span>
-<a name="l00046"></a><a class="code" href="class_user_account.html#a39c1c4d0463f90f5b095ee38d24b30f8">00046</a> <a class="code" href="class_user_account.html#a558b12d52cf7c5b807532aaf38e779c0" title="Default constructor.">UserAccount::UserAccount</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
-<a name="l00047"></a>00047         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">recopie</a>(account);
-<a name="l00048"></a>00048 }
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="comment">// Affectation</span>
-<a name="l00051"></a><a class="code" href="class_user_account.html#a5a8adced6a3a83bb958bbb68d5959d5d">00051</a> <span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; <a class="code" href="class_user_account.html#a5a8adced6a3a83bb958bbb68d5959d5d" title="Affectation.">UserAccount::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
-<a name="l00052"></a>00052         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">recopie</a>(account);
-<a name="l00053"></a>00053         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="comment">// Recopying a UserAccount</span>
-<a name="l00057"></a><a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6">00057</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">UserAccount::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
-<a name="l00058"></a>00058         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">ReynTweetsMappable::recopie</a>(account);
-<a name="l00059"></a>00059         <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a> = account.<a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
-<a name="l00060"></a>00060         <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a> = account.<a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
-<a name="l00061"></a>00061         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a> = account.<a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 <span class="comment">// Serialization declaration</span>
-<a name="l00065"></a><a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851">00065</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851" title="Serialization declaration.">UserAccount::initSystem</a>() {
-<a name="l00066"></a>00066         qRegisterMetaTypeStreamOperators&lt;UserAccount&gt;(<span class="stringliteral">&quot;UserAccount&quot;</span>);
-<a name="l00067"></a>00067         qMetaTypeId&lt;UserAccount&gt;();
-<a name="l00068"></a>00068 }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="comment">// Declaring ReynTweetsConfiguration to the QML system</span>
-<a name="l00071"></a><a class="code" href="class_user_account.html#a0cd91b1912c7c3e0f9badfac666303a6">00071</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a0cd91b1912c7c3e0f9badfac666303a6" title="Declaring ReynTweetsConfiguration to the QML system.">UserAccount::declareQML</a>() {
-<a name="l00072"></a>00072         qmlRegisterType&lt;UserAccount&gt;(<span class="stringliteral">&quot;ReynTweetsEntities&quot;</span>,
-<a name="l00073"></a>00073                                                                  0, 1,
-<a name="l00074"></a>00074                                                                  <span class="stringliteral">&quot;UserAccount&quot;</span>);
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00079"></a>00079 <span class="comment">// JSON Streaming //</span>
-<a name="l00081"></a>00081 <span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">// Output stream operator for serialization</span>
-<a name="l00083"></a><a class="code" href="useraccount_8hpp.html#a38ff137ad7e815da19cc7b96300bc518">00083</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#a23188b4b7b562d0145aa744efc1c47ba" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
-<a name="l00084"></a>00084         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, account);
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="comment">// Input stream operator for serialization</span>
-<a name="l00088"></a><a class="code" href="useraccount_8hpp.html#a976779a598a874f8f3a055b4aa45d3c3">00088</a> QDataStream &amp; <a class="code" href="reyntweetsconfiguration_8cpp.html#ae136d398cc18208979c98c2d1b4e1735" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
-<a name="l00089"></a>00089         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, account);
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 
-<a name="l00094"></a>00094 <span class="comment">// Properties management //</span>
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">// Blacklisting the &quot;current_user&quot;</span>
-<a name="l00098"></a><a class="code" href="class_user_account.html#a79cbc27ee2b3df1e99e78d8590adf695">00098</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a79cbc27ee2b3df1e99e78d8590adf695" title="Blacklisting properties used only for and by QML views.">UserAccount::blacklistProperties</a>() {
-<a name="l00099"></a>00099         <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>.append(QString(QLatin1String(<span class="stringliteral">&quot;current_user&quot;</span>)));
-<a name="l00100"></a>00100 }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="comment">// Reading the property twitter_user</span>
-<a name="l00103"></a><a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d">00103</a> QVariantMap <a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d" title="Reading the property twitter_user.">UserAccount::getUserProperty</a>() {
-<a name="l00104"></a>00104         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
-<a name="l00105"></a>00105 }
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="comment">// Writing the property twitter_user</span>
-<a name="l00108"></a><a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4">00108</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">UserAccount::setUser</a>(QVariantMap newUserMap) {
-<a name="l00109"></a>00109         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newUserMap);
-<a name="l00110"></a>00110 }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 <span class="comment">// Reading the property current_user</span>
-<a name="l00113"></a><a class="code" href="class_user_account.html#aca7d30504150acf7ae3c044900f5fca6">00113</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> * <a class="code" href="class_user_account.html#aca7d30504150acf7ae3c044900f5fca6" title="Reading the property current_user.">UserAccount::getCurrentUser</a>() {
-<a name="l00114"></a>00114         <span class="keywordflow">return</span> &amp;<a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
-<a name="l00115"></a>00115 }
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 
-<a name="l00119"></a>00119 <span class="comment">// Configuration management //</span>
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">// Getter on accessToken</span>
-<a name="l00123"></a><a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5">00123</a> QByteArray <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">UserAccount::getAccessToken</a>() {
-<a name="l00124"></a>00124         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
-<a name="l00125"></a>00125 }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="comment">// Setter on accessToken</span>
-<a name="l00128"></a><a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08">00128</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">UserAccount::setAccessToken</a>(QByteArray token) {
-<a name="l00129"></a>00129         <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a> = token;
-<a name="l00130"></a>00130 }
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132 <span class="comment">// Getter on tokenSecret</span>
-<a name="l00133"></a><a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b">00133</a> QByteArray <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">UserAccount::getTokenSecret</a>() {
-<a name="l00134"></a>00134         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
-<a name="l00135"></a>00135 }
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137 <span class="comment">// Setter on tokenSecret</span>
-<a name="l00138"></a><a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d">00138</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">UserAccount::setTokenSecret</a>(QByteArray secret) {
-<a name="l00139"></a>00139         <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a> = secret;
-<a name="l00140"></a>00140 }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142 <span class="comment">// Getter on user</span>
-<a name="l00143"></a><a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c">00143</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c" title="Getter on the user.">UserAccount::getUser</a>() {
-<a name="l00144"></a>00144         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
-<a name="l00145"></a>00145 }
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147 <span class="comment">// Setter on user</span>
-<a name="l00148"></a><a class="code" href="class_user_account.html#a6c2a5eda7d4d3606eb9061538583646b">00148</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">UserAccount::setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> u) {
-<a name="l00149"></a>00149         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a> = u;
-<a name="l00150"></a>00150 }
+<a name="l00046"></a><a class="code" href="class_user_account.html#a39c1c4d0463f90f5b095ee38d24b30f8">00046</a> <a class="code" href="class_user_account.html#a558b12d52cf7c5b807532aaf38e779c0" title="Default constructor.">UserAccount::UserAccount</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) :
+<a name="l00047"></a>00047     <a class="code" href="class_reyn_tweets_mappable.html" title="Serializable objects that needed to be converted into a QVariantMap.">ReynTweetsMappable</a>()
+<a name="l00048"></a>00048 {
+<a name="l00049"></a>00049         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">recopie</a>(account);
+<a name="l00050"></a>00050 }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="comment">// Affectation</span>
+<a name="l00053"></a><a class="code" href="class_user_account.html#a5a8adced6a3a83bb958bbb68d5959d5d">00053</a> <span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; <a class="code" href="class_user_account.html#a5a8adced6a3a83bb958bbb68d5959d5d" title="Affectation.">UserAccount::operator=</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
+<a name="l00054"></a>00054         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">recopie</a>(account);
+<a name="l00055"></a>00055         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00056"></a>00056 }
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="comment">// Recopying a UserAccount</span>
+<a name="l00059"></a><a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6">00059</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">UserAccount::recopie</a>(<span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
+<a name="l00060"></a>00060         <a class="code" href="class_user_account.html#a8add17168c7b105784537b3b012ea5a6" title="Copy of a UserAccount.">ReynTweetsMappable::recopie</a>(account);
+<a name="l00061"></a>00061         <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a> = account.<a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
+<a name="l00062"></a>00062         <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a> = account.<a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
+<a name="l00063"></a>00063         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a> = account.<a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="comment">// Serialization declaration</span>
+<a name="l00067"></a><a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851">00067</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#af1e18c14d177bdc91e621a5470e08851" title="Serialization declaration.">UserAccount::initSystem</a>() {
+<a name="l00068"></a>00068         qRegisterMetaTypeStreamOperators&lt;UserAccount&gt;(<span class="stringliteral">&quot;UserAccount&quot;</span>);
+<a name="l00069"></a>00069         qMetaTypeId&lt;UserAccount&gt;();
+<a name="l00070"></a>00070 }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="comment">// Declaring ReynTweetsConfiguration to the QML system</span>
+<a name="l00073"></a><a class="code" href="class_user_account.html#a0cd91b1912c7c3e0f9badfac666303a6">00073</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a0cd91b1912c7c3e0f9badfac666303a6" title="Declaring ReynTweetsConfiguration to the QML system.">UserAccount::declareQML</a>() {
+<a name="l00074"></a>00074         qmlRegisterType&lt;UserAccount&gt;(<span class="stringliteral">&quot;ReynTweetsEntities&quot;</span>,
+<a name="l00075"></a>00075                                                                  0, 1,
+<a name="l00076"></a>00076                                                                  <span class="stringliteral">&quot;UserAccount&quot;</span>);
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="comment">// Resets the mappable to a default value</span>
+<a name="l00080"></a><a class="code" href="class_user_account.html#a2d60488b0db68ebf25b5b92d373290fa">00080</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a2d60488b0db68ebf25b5b92d373290fa" title="Resets the mappable to a default value.">UserAccount::reset</a>() {
+<a name="l00081"></a>00081         *<span class="keyword">this</span> = <a class="code" href="class_user_account.html#a558b12d52cf7c5b807532aaf38e779c0" title="Default constructor.">UserAccount</a>();
+<a name="l00082"></a>00082 }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00086"></a>00086 <span class="comment">// JSON Streaming //</span>
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">// Output stream operator for serialization</span>
+<a name="l00090"></a><a class="code" href="useraccount_8hpp.html#a38ff137ad7e815da19cc7b96300bc518">00090</a> QDataStream &amp; <a class="code" href="reyntweetsuserconfiguration_8cpp.html#ad5dafcdc8df8b184d26e5b9368642c36" title="Output stream operator for serialization.">operator&lt;&lt;</a>(QDataStream &amp; out, <span class="keyword">const</span> <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a69f3a47cf4b262e8bbc92d4acd1322ea" title="Output stream operator for serialization.">jsonStreamingOut</a>(out, account);
+<a name="l00092"></a>00092 }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="comment">// Input stream operator for serialization</span>
+<a name="l00095"></a><a class="code" href="useraccount_8hpp.html#a976779a598a874f8f3a055b4aa45d3c3">00095</a> QDataStream &amp; <a class="code" href="reyntweetsuserconfiguration_8cpp.html#a6a88279d5e4e9253fef4955b5a2f7cc2" title="Input stream operator for serialization.">operator&gt;&gt;</a>(QDataStream &amp; in, <a class="code" href="class_user_account.html" title="User account.">UserAccount</a> &amp; account) {
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> <a class="code" href="reyntweetslistable_8cpp.html#a4839975fed108e22ca5dbea64de42538" title="Input stream operator for serialization.">jsonStreamingIn</a>(in, account);
+<a name="l00097"></a>00097 }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00101"></a>00101 <span class="comment">// Properties management //</span>
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">// Blacklisting the &quot;current_user&quot;</span>
+<a name="l00105"></a><a class="code" href="class_user_account.html#a79cbc27ee2b3df1e99e78d8590adf695">00105</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a79cbc27ee2b3df1e99e78d8590adf695" title="Blacklisting properties used only for and by QML views.">UserAccount::blacklistProperties</a>() {
+<a name="l00106"></a>00106         <a class="code" href="class_reyn_tweets_mappable.html#a69f40acaf8ef38ba4cc7f57e18293e3d" title="List of properties to ignore while converting the object into a QVariant.">transientProperties</a>.append(QString(QLatin1String(<span class="stringliteral">&quot;current_user&quot;</span>)));
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">// Reading the property twitter_user</span>
+<a name="l00110"></a><a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d">00110</a> QVariantMap <a class="code" href="class_user_account.html#acec9437ca4f07a49db9456464060ab6d" title="Reading the property twitter_user.">UserAccount::getUserProperty</a>() {
+<a name="l00111"></a>00111         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>.<a class="code" href="class_reyn_tweets_mappable.html#a88cff280495661b2e368f1cff5c2ba5d" title="Converting the object into a QVariantMap.">toVariant</a>();
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="comment">// Writing the property twitter_user</span>
+<a name="l00115"></a><a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4">00115</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">UserAccount::setUser</a>(QVariantMap newUserMap) {
+<a name="l00116"></a>00116         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>.<a class="code" href="class_reyn_tweets_mappable.html#afcd6b562a33e4b8d9edf8145cdaa58d8" title="Filling a serializable object with the informations contained in a map.">fillWithVariant</a>(newUserMap);
+<a name="l00117"></a>00117 }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="comment">// Reading the property current_user</span>
+<a name="l00120"></a><a class="code" href="class_user_account.html#aca7d30504150acf7ae3c044900f5fca6">00120</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> * <a class="code" href="class_user_account.html#aca7d30504150acf7ae3c044900f5fca6" title="Reading the property current_user.">UserAccount::getCurrentUser</a>() {
+<a name="l00121"></a>00121         <span class="keywordflow">return</span> &amp;<a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 
+<a name="l00126"></a>00126 <span class="comment">// Configuration management //</span>
+<a name="l00128"></a>00128 <span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment">// Getter on accessToken</span>
+<a name="l00130"></a><a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5">00130</a> QByteArray <a class="code" href="class_user_account.html#a17f9cd52136e3964e80f1958e3d24cf5" title="Getter on the access token.">UserAccount::getAccessToken</a>() {
+<a name="l00131"></a>00131         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a>;
+<a name="l00132"></a>00132 }
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="comment">// Setter on accessToken</span>
+<a name="l00135"></a><a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08">00135</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a8edc19c043fae1465a99ca630d306b08" title="Setter on the Access Token.">UserAccount::setAccessToken</a>(QByteArray token) {
+<a name="l00136"></a>00136         <a class="code" href="class_user_account.html#a287011bf132146225e16aa9e6aabb991" title="Access token.">accessToken</a> = token;
+<a name="l00137"></a>00137 }
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 <span class="comment">// Getter on tokenSecret</span>
+<a name="l00140"></a><a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b">00140</a> QByteArray <a class="code" href="class_user_account.html#a143ba5ebc47eec831637b9b068eaf12b" title="Getter on the secret token.">UserAccount::getTokenSecret</a>() {
+<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a>;
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="comment">// Setter on tokenSecret</span>
+<a name="l00145"></a><a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d">00145</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a6e960e0e3341871cf719cdc2252a016d" title="Setter on the secret token.">UserAccount::setTokenSecret</a>(QByteArray secret) {
+<a name="l00146"></a>00146         <a class="code" href="class_user_account.html#a9c82dce3d559e37690137dd1714b2567" title="Token Secret.">tokenSecret</a> = secret;
+<a name="l00147"></a>00147 }
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 <span class="comment">// Getter on user</span>
+<a name="l00150"></a><a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c">00150</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> <a class="code" href="class_user_account.html#ac542a55bb9588f396010bf298ea5732c" title="Getter on the user.">UserAccount::getUser</a>() {
+<a name="l00151"></a>00151         <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
+<a name="l00152"></a>00152 }
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 <span class="comment">// Getter on user</span>
+<a name="l00155"></a><a class="code" href="class_user_account.html#a6d9018c2155656cf6dc9139ae57c6359">00155</a> <a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> &amp; <a class="code" href="class_user_account.html#a6d9018c2155656cf6dc9139ae57c6359" title="Getting a reference on the user.">UserAccount::getUserRef</a>() {
+<a name="l00156"></a>00156     <span class="keywordflow">return</span> <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a>;
+<a name="l00157"></a>00157 }
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 <span class="comment">// Setter on user</span>
+<a name="l00160"></a><a class="code" href="class_user_account.html#a6c2a5eda7d4d3606eb9061538583646b">00160</a> <span class="keywordtype">void</span> <a class="code" href="class_user_account.html#a476f73255f025378cc5c76e8ad283dc4" title="Writing the property twitter_user.">UserAccount::setUser</a>(<a class="code" href="class_user_infos.html" title="Twitter profile without its last tweet. This class was introduced in order to avoid...">UserInfos</a> u) {
+<a name="l00161"></a>00161         <a class="code" href="class_user_account.html#ad6fe7f03b06a4c902fb7fa2303aaf4fd" title="User of the account.">user</a> = u;
+<a name="l00162"></a>00162 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -245,7 +257,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:40 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:07 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

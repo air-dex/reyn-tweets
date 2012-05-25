@@ -129,7 +129,7 @@ window.onload = initDynSections;
 
 <h3><a class="anchor" id="index_b">- b -</a></h3><ul>
 <li>blacklistProperties()
-: <a class="el" href="class_reyn_tweets_configuration.html#a26954eae784b72454eba063cf7258243">ReynTweetsConfiguration</a>
+: <a class="el" href="class_reyn_tweets_user_configuration.html#ac0bba43be3be6c3b8f2cceb534d974ba">ReynTweetsUserConfiguration</a>
 , <a class="el" href="class_user_account.html#a79cbc27ee2b3df1e99e78d8590adf695">UserAccount</a>
 , <a class="el" href="class_tweet.html#af4dbc21b62d8638712a4cede72d8bee6">Tweet</a>
 , <a class="el" href="class_reyn_tweets_mappable.html#a5dcf2459f13687e3ba81f5e04ccb13f1">ReynTweetsMappable</a>
@@ -142,14 +142,19 @@ window.onload = initDynSections;
 </li>
 <li>buildGETParameters()
 : <a class="el" href="class_favorites_timeline_requester.html#acd1d6fd20b5d264c2a75ccaac6190238">FavoritesTimelineRequester</a>
+, <a class="el" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d">ShowUserRequester</a>
 , <a class="el" href="class_generic_requester.html#a57b686d3c5ca68ff64a4e5b2b4e5bc50">GenericRequester</a>
 , <a class="el" href="class_authenticate_requester.html#af0e9c4cb2dd2162032acf8d3e7b52053">AuthenticateRequester</a>
 , <a class="el" href="class_authorize_requester.html#a04997f5c1dad90e7313204daf8e2d397">AuthorizeRequester</a>
 , <a class="el" href="class_search_requester.html#a6bf216620c5aef7c4f40a0d345676e9d">SearchRequester</a>
 , <a class="el" href="class_home_timeline_requester.html#a9971db1d33b510e92512f5711301fcc3">HomeTimelineRequester</a>
 , <a class="el" href="class_verify_credentials_requester.html#adefedafb771825549b1a43cf6efaa369">VerifyCredentialsRequester</a>
+, <a class="el" href="class_retweets_by_me_requester.html#a1b34c94b5f32682b4df8f3b1354b844f">RetweetsByMeRequester</a>
 , <a class="el" href="class_show_tweet_requester.html#a5f5903f2faf869aace11897ffbbcb80d">ShowTweetRequester</a>
-, <a class="el" href="class_show_user_requester.html#a8587ccbdd0ee042561f237037956e66d">ShowUserRequester</a>
+</li>
+<li>buildHTTPHeaders()
+: <a class="el" href="class_authentication_requester.html#a0c1d2b4f34eb5ce1b2d32083200ef370">AuthenticationRequester</a>
+, <a class="el" href="class_generic_requester.html#a7728e99634a506fe72a7fa3631cca983">GenericRequester</a>
 </li>
 <li>buildOAuthParameterString()
 : <a class="el" href="class_o_auth_manager.html#a6690f38a748be1f265e6c8008414c774">OAuthManager</a>
@@ -158,23 +163,26 @@ window.onload = initDynSections;
 : <a class="el" href="class_twitter_communicator.html#a8bc4c59514a281bd53b8a1d8eb4aacc3">TwitterCommunicator</a>
 </li>
 <li>buildPOSTParameters()
-: <a class="el" href="class_post_tweet_requester.html#a9544e8ffe3490a1976a4150216f1c6dd">PostTweetRequester</a>
+: <a class="el" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080">AccessTokenRequester</a>
+, <a class="el" href="class_post_to_twit_longer_requester.html#a971e23349dc725f676092e936d988efd">PostToTwitLongerRequester</a>
 , <a class="el" href="class_favorite_requester.html#ac7380a1074f9a982ecbb6f072f9be87f">FavoriteRequester</a>
-, <a class="el" href="class_access_token_requester.html#a1e95b19bd4c4ec7572d2ea90397d7080">AccessTokenRequester</a>
+, <a class="el" href="class_send_i_d_to_twit_longer_requester.html#afb63f8a4583b37d5d4f3ecb0747f2952">SendIDToTwitLongerRequester</a>
+, <a class="el" href="class_generic_requester.html#ac725aed910a90e3b46ca4121218068e1">GenericRequester</a>
+, <a class="el" href="class_post_tweet_requester.html#a9544e8ffe3490a1976a4150216f1c6dd">PostTweetRequester</a>
+, <a class="el" href="class_destroy_tweet_requester.html#a4a949d1e1af0780a2c3d702bfbebf6c2">DestroyTweetRequester</a>
+, <a class="el" href="class_retweet_requester.html#a392f7876d470d850cd196dabe06842f1">RetweetRequester</a>
 , <a class="el" href="class_authenticate_requester.html#a12b86ea8932ba023eedc84cf23eea109">AuthenticateRequester</a>
 , <a class="el" href="class_post_authorize_requester.html#a921fa9d1a2c62a91cb7cbbb5e2210a3b">PostAuthorizeRequester</a>
-, <a class="el" href="class_generic_requester.html#ac725aed910a90e3b46ca4121218068e1">GenericRequester</a>
 </li>
 <li>buildResult()
-: <a class="el" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f">SingleTwitterCallProcess</a>
-, <a class="el" href="class_o_auth_process.html#a4e5d3dbc43540f1a398461bbb199a0c0">OAuthProcess</a>
-, <a class="el" href="class_single_twitter_call_process.html#a8ca91f7e2999b2162ee4b0ba91b0517f">SingleTwitterCallProcess</a>
+: <a class="el" href="class_o_auth_process.html#a4e5d3dbc43540f1a398461bbb199a0c0">OAuthProcess</a>
+, <a class="el" href="class_single_twitter_call_process.html#a0a25b52e7bba940a9e17e1d59b887f5f">SingleTwitterCallProcess</a>
 , <a class="el" href="class_launching_process.html#ab113ee5b6e1ab424f867039ded7cd9fd">LaunchingProcess</a>
-, <a class="el" href="class_o_auth_process.html#a22608dab50bcce6d8f80b68dcf1140f1">OAuthProcess</a>
+, <a class="el" href="class_single_twitter_call_process.html#a8ca91f7e2999b2162ee4b0ba91b0517f">SingleTwitterCallProcess</a>
 </li>
 <li>buildResultSender()
-: <a class="el" href="class_reyn_core.html#a3863e6c6386c499b497e955faab30ef5">ReynCore</a>
-, <a class="el" href="class_reyn_twitter_calls.html#aca294cc5c13a7ac9a2fc0032361bea5a">ReynTwitterCalls</a>
+: <a class="el" href="class_generic_calls.html#a4564959b81ab2daa10cabcdb1a8718de">GenericCalls</a>
+, <a class="el" href="class_reyn_core.html#a3863e6c6386c499b497e955faab30ef5">ReynCore</a>
 </li>
 <li>buildSignatureBaseString()
 : <a class="el" href="class_o_auth_manager.html#ade64df62fce8e574954f7f48184068b4">OAuthManager</a>
@@ -195,7 +203,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:45 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:16 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

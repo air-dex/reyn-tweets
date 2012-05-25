@@ -107,6 +107,8 @@ window.onload = initDynSections;
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default treatment when Twitter says that the request was unsuccessful.  <a href="#a9916010aff45d93ffdcfeccc4da9fd8a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_process_utils.html#a18a7b869c542e5e4ecd12a1342c27ba5">treatUnknownResult</a> (QString resultErrorMessage, QString &amp;errorMsg, <a class="el" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">CoreResult</a> &amp;issue, bool &amp;fatal)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default treatment when the issue was unexpected.  <a href="#a18a7b869c542e5e4ecd12a1342c27ba5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_process_utils.html#a93c7562ed7d0f3e4d81e7cc7b816bc8c">treatXMLParsingResult</a> (<a class="el" href="struct_response_infos.html">ResponseInfos</a> parsingErrors, QString &amp;errorMsg, <a class="el" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">CoreResult</a> &amp;issue)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default treatment when XML results cannot be parsed.  <a href="#a93c7562ed7d0f3e4d81e7cc7b816bc8c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_process_utils.html#ac9f5efa24331d3445eaa3ce20c39b24d">writeTwitterErrors</a> (<a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="struct_response_infos.html">ResponseInfos</a> &gt; twitterErrors)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writing an error message with Twitter errors.  <a href="#ac9f5efa24331d3445eaa3ce20c39b24d"></a><br/></td></tr>
 </table>
@@ -246,7 +248,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00127">127</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00158">158</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -291,7 +293,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00160">160</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00210">210</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,7 +338,7 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00144">144</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00175">175</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -459,7 +461,52 @@ window.onload = initDynSections;
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00172">172</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00222">222</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93c7562ed7d0f3e4d81e7cc7b816bc8c"></a><!-- doxytag: member="ProcessUtils::treatXMLParsingResult" ref="a93c7562ed7d0f3e4d81e7cc7b816bc8c" args="(ResponseInfos parsingErrors, QString &amp;errorMsg, CoreResult &amp;issue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProcessUtils::treatXMLParsingResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_response_infos.html">ResponseInfos</a>&nbsp;</td>
+          <td class="paramname"> <em>parsingErrors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>errorMsg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="coreresult_8hpp.html#aaf573b213ad2cc4e694f53d9546ea811">CoreResult</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>issue</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Default treatment when XML results cannot be parsed. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>parsingErrors</em>&nbsp;</td><td>Errors that occured while parsing results </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>errorMsg</em>&nbsp;</td><td>Error message of the process </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>issue</em>&nbsp;</td><td>Reference on the issue of the request </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00191">191</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +535,7 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The corresponding message </dd></dl>
 
-<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00090">90</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="processutils_8cpp_source.html#l00121">121</a> of file <a class="el" href="processutils_8cpp_source.html">processutils.cpp</a>.</p>
 
 </div>
 </div>
@@ -507,7 +554,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:54 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:26 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

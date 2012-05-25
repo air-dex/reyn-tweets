@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/allowcontrol.hpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/allowcontrol.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -117,56 +117,51 @@ window.onload = initDynSections;
 <a name="l00027"></a>00027 <span class="preprocessor">#ifndef ALLOWCONTROL_HPP</span>
 <a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#define ALLOWCONTROL_HPP</span>
 <a name="l00029"></a>00029 <span class="preprocessor"></span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="genericcontrol_8hpp.html" title="Header of GenericControl.">genericcontrol.hpp</a>&quot;</span>
 <a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="logincontrol_8hpp.html" title="Header of LoginControl.">logincontrol.hpp</a>&quot;</span>
 <a name="l00032"></a>00032 
-<a name="l00033"></a><a class="code" href="class_allow_control.html">00033</a> <span class="keyword">class </span><a class="code" href="class_allow_control.html">AllowControl</a> : <span class="keyword">public</span> QObject
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035                 Q_OBJECT
-<a name="l00036"></a>00036         <span class="keyword">public</span>:
-<a name="l00037"></a>00037                 <a class="code" href="class_allow_control.html#a9e42475d04c0d1564e582b48e5f08878">AllowControl</a>();
+<a name="l00035"></a><a class="code" href="class_allow_control.html">00035</a> <span class="keyword">class </span><a class="code" href="class_allow_control.html" title="Control behind a LoginComponent.">AllowControl</a> : <span class="keyword">public</span> <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>
+<a name="l00036"></a>00036 {
+<a name="l00037"></a>00037     Q_OBJECT
 <a name="l00038"></a>00038 
-<a name="l00041"></a>00041                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a59854c47f619b9267793704463493a6a" title="Declaring to the QML system.">declareQML</a>();
-<a name="l00042"></a>00042 
-<a name="l00045"></a>00045                 Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a7e631aeffec89ab40383a04a1c4e5889" title="Allowing Reyn Tweets to use a Twitter Account.">allowReynTweets</a>();
-<a name="l00046"></a>00046 
-<a name="l00050"></a>00050                 <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#ad1083fb7beb00c72e7389047b29d9276" title="Reading the login_control property.">getLoginControl</a>();
+<a name="l00039"></a>00039     <span class="keyword">public</span>:
+<a name="l00042"></a>00042         <a class="code" href="class_allow_control.html#a9e42475d04c0d1564e582b48e5f08878" title="Constructor.">AllowControl</a>();
+<a name="l00043"></a>00043 
+<a name="l00046"></a>00046         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a59854c47f619b9267793704463493a6a" title="Declaring to the QML system.">declareQML</a>();
+<a name="l00047"></a>00047 
+<a name="l00050"></a>00050         Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a7e631aeffec89ab40383a04a1c4e5889" title="Allowing Reyn Tweets to use a Twitter Account.">allowReynTweets</a>();
 <a name="l00051"></a>00051 
-<a name="l00055"></a>00055                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#afefa812e7097f4f8b2d7bccad2d2945d" title="Writing the login_control property.">setLoginControl</a>(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * ctrl);
+<a name="l00055"></a>00055         <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#ad1083fb7beb00c72e7389047b29d9276" title="Reading the login_control property.">getLoginControl</a>();
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058         signals:
-<a name="l00066"></a>00066                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#aeeda23ef6b234bdbb269c70cf7fb6abb" title="Signal sent after launching.">allowEnded</a>(<span class="keywordtype">bool</span> launchOK,
-<a name="l00067"></a>00067                                                 QString errorMsg,
-<a name="l00068"></a>00068                                                 <span class="keywordtype">bool</span> isFatal);
-<a name="l00069"></a>00069 
-<a name="l00075"></a>00075                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#ab94fe22e8d23fe7833e5a285978ebecb" title="Signal sent to modify the visibility of the popup used to ask the user to give its...">showLoginPopup</a>(<span class="keywordtype">bool</span> popupVisible);
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078         <span class="keyword">protected</span> slots:
-<a name="l00083"></a>00083                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a467cd1b08d93cfa5bcb258f93de15718" title="Slot executed when reyn tells the control if the credentials given by the user were...">validCredentials</a>(<span class="keywordtype">bool</span> valid);
-<a name="l00084"></a>00084 
-<a name="l00088"></a>00088                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#aea867f5d287ab2eafb1565599d089ee7" title="Slot executed when reyn tells the control that it needs user credentials.">credentialsNeeded</a>();
-<a name="l00089"></a>00089 
-<a name="l00093"></a>00093                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#adca74aac8fb88b35c147c519eded4e88" title="Slot executed after an authentication, if needed.">allowOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <span class="keyword">protected</span>:
-<a name="l00097"></a><a class="code" href="class_allow_control.html#a717df07d086b142d4d200ee518d2477b">00097</a>                 <a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a> <a class="code" href="class_allow_control.html#a717df07d086b142d4d200ee518d2477b" title="Core of the application.">reyn</a>;
+<a name="l00060"></a>00060         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#afefa812e7097f4f8b2d7bccad2d2945d" title="Writing the login_control property.">setLoginControl</a>(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * ctrl);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063     signals:
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#ab94fe22e8d23fe7833e5a285978ebecb" title="Signal sent to modify the visibility of the popup used to ask the user to give its...">showLoginPopup</a>(<span class="keywordtype">bool</span> popupVisible);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072     <span class="keyword">protected</span> slots:
+<a name="l00077"></a>00077         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a467cd1b08d93cfa5bcb258f93de15718" title="Slot executed when reyn tells the control if the credentials given by the user were...">validCredentials</a>(<span class="keywordtype">bool</span> valid);
+<a name="l00078"></a>00078 
+<a name="l00082"></a>00082         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#aea867f5d287ab2eafb1565599d089ee7" title="Slot executed when reyn tells the control that it needs user credentials.">credentialsNeeded</a>();
+<a name="l00083"></a>00083 
+<a name="l00087"></a>00087         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#adca74aac8fb88b35c147c519eded4e88" title="Slot executed after an authentication, if needed.">allowOK</a>(<a class="code" href="class_process_wrapper.html" title="Class wrapping ProcessResult.">ProcessWrapper</a> res);
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     <span class="keyword">protected</span>:
+<a name="l00092"></a>00092         Q_PROPERTY(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#a17920cca6b205da35ad87746d47eedf8" title="Control behind the authentication popup.">login_control</a>
+<a name="l00093"></a>00093                    READ getLoginControl
+<a name="l00094"></a><a class="code" href="class_allow_control.html#a17920cca6b205da35ad87746d47eedf8">00094</a>                    WRITE setLoginControl)
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096         
+<a name="l00097"></a><a class="code" href="class_allow_control.html#ab65aca3a481d49ae178b894aed641c3a">00097</a>         <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#ab65aca3a481d49ae178b894aed641c3a" title="Value behind login_control property.">control</a>;
 <a name="l00098"></a>00098 
-<a name="l00101"></a>00101                 Q_PROPERTY(<a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#a17920cca6b205da35ad87746d47eedf8" title="Control behind the authentication popup.">login_control</a>
-<a name="l00102"></a>00102                                    READ getLoginControl
-<a name="l00103"></a><a class="code" href="class_allow_control.html#a17920cca6b205da35ad87746d47eedf8">00103</a>                                    WRITE setLoginControl)
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105                 
-<a name="l00106"></a><a class="code" href="class_allow_control.html#ab65aca3a481d49ae178b894aed641c3a">00106</a>                 <a class="code" href="class_login_control.html" title="Control behind a LoginPane.">LoginControl</a> * <a class="code" href="class_allow_control.html#ab65aca3a481d49ae178b894aed641c3a" title="Value behind login_control property.">control</a>;
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         private:
-<a name="l00111"></a>00111                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a8e472c3e5abfbed2737ea827eeb2cfc2" title="Wiring for authentication process.">allowWiring</a>();
-<a name="l00112"></a>00112 
-<a name="l00116"></a>00116                 <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a82a2798f12f70d066e6de7ab339879f2" title="Disconnect what was connected while executing allowWiring();.">allowUnwiring</a>();
-<a name="l00117"></a>00117 };
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119 <span class="preprocessor">#endif // ALLOWCONTROL_HPP</span>
+<a name="l00099"></a>00099     private:
+<a name="l00102"></a>00102         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a8e472c3e5abfbed2737ea827eeb2cfc2" title="Wiring for authentication process.">allowWiring</a>();
+<a name="l00103"></a>00103 
+<a name="l00107"></a>00107         <span class="keywordtype">void</span> <a class="code" href="class_allow_control.html#a82a2798f12f70d066e6de7ab339879f2" title="Disconnect what was connected while executing allowWiring();.">allowUnwiring</a>();
+<a name="l00108"></a>00108 };
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 <span class="preprocessor">#endif // ALLOWCONTROL_HPP</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -182,7 +177,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:38 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

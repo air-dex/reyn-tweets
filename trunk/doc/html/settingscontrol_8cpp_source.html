@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: logic/controls/settingscontrol.cpp Source File</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/logic/controls/settingscontrol.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_106688e5bc2a1e7823b6581883b63c5f.html">logic</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_7a00af564e78be05fdada9ddd4a37215.html">controls</a>
   </div>
 </div>
 <div class="contents">
@@ -116,22 +116,21 @@ window.onload = initDynSections;
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="comment">// Constructor</span>
 <a name="l00028"></a><a class="code" href="class_settings_control.html#aef9c8aa19f95b47d13d27156e946ba3d">00028</a> <a class="code" href="class_settings_control.html#aef9c8aa19f95b47d13d27156e946ba3d" title="Constructor.">SettingsControl::SettingsControl</a>() :
-<a name="l00029"></a>00029         QObject(),
-<a name="l00030"></a>00030         reyn(this),
-<a name="l00031"></a>00031         conf(<a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a>::getConfiguration())
-<a name="l00032"></a>00032 {}
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="comment">// Declaring SettingsControl to the QML system</span>
-<a name="l00035"></a><a class="code" href="class_settings_control.html#a8eb3e8311caef63b220c4001f2395bb5">00035</a> <span class="keywordtype">void</span> <a class="code" href="class_settings_control.html#a8eb3e8311caef63b220c4001f2395bb5" title="Declaring SettingsControl to the QML system.">SettingsControl::declareQML</a>() {
-<a name="l00036"></a>00036         qmlRegisterType&lt;SettingsControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>,
-<a name="l00037"></a>00037                                                                          0, 1,
-<a name="l00038"></a>00038                                                                          <span class="stringliteral">&quot;SettingsControl&quot;</span>);
-<a name="l00039"></a>00039 }
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="comment">// Reading the configuration property</span>
-<a name="l00042"></a><a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987">00042</a> <a class="code" href="class_reyn_tweets_configuration.html" title="Configuration of Reyn Tweets.">ReynTweetsConfiguration</a> * <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">SettingsControl::getConfiguration</a>() {
-<a name="l00043"></a>00043         <span class="keywordflow">return</span> &amp;<a class="code" href="class_settings_control.html#ac1582bf9cb5322ccc6b91462c3a1ff4c" title="Reference on the configuration of Reyn Tweets.">conf</a>;
-<a name="l00044"></a>00044 }
+<a name="l00029"></a>00029     <a class="code" href="class_generic_control.html" title="Base class for all the controls.">GenericControl</a>(),
+<a name="l00030"></a>00030     conf(<a class="code" href="class_reyn_core.html" title="Heart of Reyn Tweets.">ReynCore</a>::getUserConfiguration())
+<a name="l00031"></a>00031 {}
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="comment">// Declaring SettingsControl to the QML system</span>
+<a name="l00034"></a><a class="code" href="class_settings_control.html#a8eb3e8311caef63b220c4001f2395bb5">00034</a> <span class="keywordtype">void</span> <a class="code" href="class_settings_control.html#a8eb3e8311caef63b220c4001f2395bb5" title="Declaring SettingsControl to the QML system.">SettingsControl::declareQML</a>() {
+<a name="l00035"></a>00035     qmlRegisterType&lt;SettingsControl&gt;(<span class="stringliteral">&quot;ReynTweetsControls&quot;</span>,
+<a name="l00036"></a>00036                                      0, 1,
+<a name="l00037"></a>00037                                      <span class="stringliteral">&quot;SettingsControl&quot;</span>);
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="comment">// Reading the configuration property</span>
+<a name="l00041"></a><a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987">00041</a> <a class="code" href="class_reyn_tweets_user_configuration.html" title="User configuration of Reyn Tweets.">ReynTweetsUserConfiguration</a> * <a class="code" href="class_settings_control.html#a60761e303d0de7fa2a2877b7d15b1987" title="Reading the configuration property.">SettingsControl::getConfiguration</a>() {
+<a name="l00042"></a>00042     <span class="keywordflow">return</span> &amp;<a class="code" href="class_settings_control.html#ace9ac9e28228c44c814504bf81d80297" title="Reference on the configuration of Reyn Tweets.">conf</a>;
+<a name="l00043"></a>00043 }
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -147,7 +146,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:39 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:06 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

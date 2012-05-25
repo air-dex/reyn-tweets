@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>ReynTweets: connection/errortypes.hpp File Reference</title>
+<title>ReynTweets: C:/Users/Romain/Documents/ReynTweets/trunk/ReynTweets/connection/errortypes.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -84,7 +84,7 @@ window.onload = initDynSections;
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>
+  <div class="navpath"><a class="el" href="dir_8cb0ec7a6e1cb731dcebf9eb7fd56bc0.html">ReynTweets</a>&nbsp;&raquo;&nbsp;<a class="el" href="dir_1ea473cdd50d29c82da7724a11c527a1.html">connection</a>
   </div>
 </div>
 <div class="contents">
@@ -99,11 +99,12 @@ window.onload = initDynSections;
 &nbsp;&nbsp;<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aabf350750d0d4fabd8954c0f1e9bbae94">NO_ERROR</a>, 
 <a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaaa55b8a9aec727343eedde132b806441">INVALID_RESULT</a>, 
 <a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54">API_CALL</a>, 
-<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa28810383a368dd92ccd57895f7962442">TWITTER_ERRORS</a>, 
+<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa7195cc7e5941c9fa66492293783548ec">SERVICE_ERRORS</a>, 
 <br/>
 &nbsp;&nbsp;<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e">QJSON_PARSING</a>, 
 <a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2cf4c616514a232dd94f4f8f465cdb74">OAUTH_PARSING</a>, 
-<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2fb719c17d2d2f3467d3221e2dacfc5c">HTML_PARSING</a>
+<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa2fb719c17d2d2f3467d3221e2dacfc5c">HTML_PARSING</a>, 
+<a class="el" href="errortypes_8hpp.html#ab0df38968e4f03a3f1f6d6df0f31f45aa04ce97557ea4c03d32e92c62fb7c65e1">XML_PARSING</a>
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Enumeration which indicates if something bad happened during the request. It can takes three values depending on what happened. See the enum values for more details. </p>
@@ -144,8 +145,8 @@ LICENSE</a></h2>
 <tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54"></a><!-- doxytag: member="API_CALL" ref="ab0df38968e4f03a3f1f6d6df0f31f45aaf1686fcfb7d3b0d386c557faa25cdb54" args="" -->API_CALL</em>&nbsp;</td><td>
 <p>Code indicating that there were an error while calling the Twitter API. </p>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aa28810383a368dd92ccd57895f7962442"></a><!-- doxytag: member="TWITTER_ERRORS" ref="ab0df38968e4f03a3f1f6d6df0f31f45aa28810383a368dd92ccd57895f7962442" args="" -->TWITTER_ERRORS</em>&nbsp;</td><td>
-<p>Code indicating that Twitter has returned errors. </p>
+<tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aa7195cc7e5941c9fa66492293783548ec"></a><!-- doxytag: member="SERVICE_ERRORS" ref="ab0df38968e4f03a3f1f6d6df0f31f45aa7195cc7e5941c9fa66492293783548ec" args="" -->SERVICE_ERRORS</em>&nbsp;</td><td>
+<p>Code indicating that the service (ex. Twitter) has returned errors. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e"></a><!-- doxytag: member="QJSON_PARSING" ref="ab0df38968e4f03a3f1f6d6df0f31f45aa535720856a151314824ea2e3f267d83e" args="" -->QJSON_PARSING</em>&nbsp;</td><td>
 <p>Code indicating that there was an error while parsing results with <a href="http://qjson.sourceforge.net">QJson</a>. </p>
@@ -155,6 +156,9 @@ LICENSE</a></h2>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aa2fb719c17d2d2f3467d3221e2dacfc5c"></a><!-- doxytag: member="HTML_PARSING" ref="ab0df38968e4f03a3f1f6d6df0f31f45aa2fb719c17d2d2f3467d3221e2dacfc5c" args="" -->HTML_PARSING</em>&nbsp;</td><td>
 <p>Code indicating that there was an error while parsing HTML. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ab0df38968e4f03a3f1f6d6df0f31f45aa04ce97557ea4c03d32e92c62fb7c65e1"></a><!-- doxytag: member="XML_PARSING" ref="ab0df38968e4f03a3f1f6d6df0f31f45aa04ce97557ea4c03d32e92c62fb7c65e1" args="" -->XML_PARSING</em>&nbsp;</td><td>
+<p>Code indicating that there was an error while parsing XML. </p>
 </td></tr>
 </table>
 </dd>
@@ -179,7 +183,7 @@ LICENSE</a></h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Apr 13 19:51:42 2012 for ReynTweets by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 25 02:44:09 2012 for ReynTweets by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

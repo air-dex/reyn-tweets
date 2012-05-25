@@ -50,6 +50,7 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 								 ArgsMap postArgs,
 								 HeadersMap headersParam) :
 	QObject(),
+	network(&REYN_TWEETS_NETWORK_MANAGER),
 	serviceURL(url),
 	requestType(type),
 	getParameters(getArgs),
@@ -61,15 +62,17 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	replyURL("")
 {
 	// Connection for receiving the response
-	connect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
+	connect(network, SIGNAL(finished(QNetworkReply*)),
 			this, SLOT(endRequest(QNetworkReply*)));
 }
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
 	// Unwiring
-	disconnect(&REYN_TWEETS_NETWORK_MANAGER, SIGNAL(finished(QNetworkReply*)),
+	disconnect(network, SIGNAL(finished(QNetworkReply*)),
 			   this, SLOT(endRequest(QNetworkReply*)));
+
+	network = 0;
 }
 
 
@@ -110,10 +113,10 @@ void TwitterCommunicator::executeRequest() {
 		QByteArray postArgs = buildPostDatas();
 
 		// There is some POST arguments -> networkManager.post()
-		REYN_TWEETS_NETWORK_MANAGER.post(*request, postArgs);
+		network->post(*request, postArgs);
 	} else {
 		// There is not any POST arguments -> networkManager.get()
-		REYN_TWEETS_NETWORK_MANAGER.get(*request);
+		network->get(*request);
 	}
 }
 

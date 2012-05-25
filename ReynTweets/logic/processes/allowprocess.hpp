@@ -34,7 +34,7 @@ class AllowProcess : public OAuthProcess
 	Q_OBJECT
 
 	public:
-		/// @fn explicit AllowProcess(ReynTweetsConfiguration & conf);
+		/// @fn explicit AllowProcess(ReynTweetsUserConfiguration & conf);
 		/// @brief Constructor
 		/// @param conf Reference on the configuration
 		explicit AllowProcess(ReynTweetsUserConfiguration & conf);

@@ -60,18 +60,10 @@ TwitterCommunicator::TwitterCommunicator(QString url,
 	httpResponse(),
 	errorMessage("Request not done"),
 	replyURL("")
-{
-	// Connection for receiving the response
-	connect(network, SIGNAL(finished(QNetworkReply*)),
-			this, SLOT(endRequest(QNetworkReply*)));
-}
+{}
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
-	// Unwiring
-	disconnect(network, SIGNAL(finished(QNetworkReply*)),
-			   this, SLOT(endRequest(QNetworkReply*)));
-
 	network = 0;
 }
 
@@ -107,6 +99,10 @@ void TwitterCommunicator::executeRequest() {
 	// Preparing the request
 	QNetworkRequest * request = prepareRequest();
 
+	// Connection for receiving the response
+	connect(network, SIGNAL(finished(QNetworkReply*)),
+			this, SLOT(endRequest(QNetworkReply*)));
+
 	// Executing the request
 	if (POST == requestType) {
 		// POST arguments
@@ -131,6 +127,9 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	if (!response) {
 		return;
 	}
+	// Unwiring
+	disconnect(network, SIGNAL(finished(QNetworkReply*)),
+			   this, SLOT(endRequest(QNetworkReply*)));
 
 	// Analysing the response
 	extractHttpStatuses(response);

@@ -105,7 +105,7 @@ class GenericRequester : public QObject
 
 		/// @brief Pointer on the Twitter Communicator that will purely execute
 		/// the request and get the raw result of it.
-		TwitterCommunicator * weblink;
+		TwitterCommunicator weblink;
 
 		/// @brief Type of parsing error
 		ErrorType parsingErrorType;

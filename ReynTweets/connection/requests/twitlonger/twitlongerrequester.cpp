@@ -37,7 +37,7 @@ TwitLongerRequester::TwitLongerRequester(RequestType type,
 // Method that will parse the raw results of the request.
 QVariant TwitLongerRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
 	XMLParser parser;
-	QByteArray rawResponse = weblink->getResponseBuffer();
+	QByteArray rawResponse = weblink.getResponseBuffer();
 	QString errorMsg;
 	int lineMsg;
 

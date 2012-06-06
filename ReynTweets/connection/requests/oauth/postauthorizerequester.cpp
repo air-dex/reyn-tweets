@@ -62,7 +62,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 	QString errorMsg = "";			// Error message written while parsing
 
 	// Looking at the URL. Is it the right one ?
-	QString replyURL = weblink->getReplyURL();
+	QString replyURL = weblink.getReplyURL();
 	bool urlOK = replyURL.startsWith(TwitterURL::AUTHORIZE_URL);
 	parsedResults.insert("urlOK", QVariant(urlOK));
 	parseOK = urlOK;
@@ -74,7 +74,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 
 		// Getting the HTML document
 		HTMLParser parser;
-		QWebElement htmlDocument = parser.parse(weblink->getResponseBuffer(),
+		QWebElement htmlDocument = parser.parse(weblink.getResponseBuffer(),
 												treatmentOK,
 												errTreatment);
 		parseOK = parseOK && treatmentOK;

@@ -35,20 +35,14 @@ GenericRequester::GenericRequester(RequestType type,
 	getParameters(),
 	postParameters(),
 	headers(),
-	weblink(0),
+	weblink(requestURL, requestType, getParameters, postParameters, headers),
 	parsingErrorType(parseError),
 	requestResult()
 {}
 
 
 // Destructor
-GenericRequester::~GenericRequester() {
-	// Deleting the communicator
-	if (weblink != 0) {
-		delete weblink;
-		weblink = 0;
-	}
-}
+GenericRequester::~GenericRequester() {}
 
 
 /////////////
@@ -96,17 +90,11 @@ void GenericRequester::executeRequest() {
 	buildPOSTParameters();
 	buildHTTPHeaders();
 
-	// Init the communicator
-	weblink = new TwitterCommunicator(requestURL,
-									  requestType,
-									  getParameters,
-									  postParameters,
-									  headers);
-
-	connect(weblink, SIGNAL(requestDone()),
+	// Request time !
+	connect(&weblink, SIGNAL(requestDone()),
 			this, SLOT(treatResults()));
 
-	weblink->executeRequest();
+	weblink.executeRequest();
 }
 
 
@@ -116,14 +104,14 @@ void GenericRequester::executeRequest() {
 
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults() {
-	disconnect(weblink, SIGNAL(requestDone()),
+	disconnect(&weblink, SIGNAL(requestDone()),
 			   this, SLOT(treatResults()));
 
 	// Looking the HTTP request
-	requestResult.httpResponse = weblink->getHttpResponse();
-	requestResult.errorMessage = weblink->getErrorMessage();
+	requestResult.httpResponse = weblink.getHttpResponse();
+	requestResult.errorMessage = weblink.getErrorMessage();
 
-	int httpReturnCode = weblink->getHttpResponse().code;
+	int httpReturnCode = weblink.getHttpResponse().code;
 
 	if (httpReturnCode == 0) {
 		// No response => API_CALL
@@ -139,7 +127,7 @@ void GenericRequester::treatResults() {
 
 		if (!parseOK) {
 			// Giving the response just in case the user would like to do sthg with it.
-			requestResult.parsedResult = QVariant::fromValue(weblink->getResponseBuffer());
+			requestResult.parsedResult = QVariant::fromValue(weblink.getResponseBuffer());
 		} else {
 			this->treatParsedResult();
 		}

@@ -45,10 +45,10 @@
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString url,
-								 RequestType type,
-								 ArgsMap getArgs,
-								 ArgsMap postArgs,
-								 HeadersMap headersParam) :
+										 RequestType type,
+										 ArgsMap & getArgs,
+										 ArgsMap & postArgs,
+										 HeadersMap & headersParam) :
 	QObject(),
 	network(&REYN_TWEETS_NETWORK_MANAGER),
 	serviceURL(url),

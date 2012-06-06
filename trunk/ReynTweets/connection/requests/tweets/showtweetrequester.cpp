@@ -25,13 +25,16 @@
 #include "../../../tools/utils.hpp"
 
 // Constructor
-ShowTweetRequester::ShowTweetRequester(qlonglong id,
+ShowTweetRequester::ShowTweetRequester(OAuthManager & authManager,
+									   qlonglong id,
 									   bool entities,
-									   bool userIdsOnly) :
-	TwitterRequester(GET, TwitterURL::SHOW_TWEET_URL),
+									   bool userIdsOnly,
+									   bool withRTid) :
+	AuthenticationRequester(GET, TwitterURL::SHOW_TWEET_URL, authManager),
 	tweetID(id),
 	includeEntities(entities),
-	trimUser(userIdsOnly)
+	trimUser(userIdsOnly),
+	includeMyRetweet(withRTid)
 {}
 
 // Virtual method building getParameters
@@ -39,4 +42,5 @@ void ShowTweetRequester::buildGETParameters() {
 	getParameters.insert("id", QString::number(tweetID));
 	getParameters.insert("include_entities", boolInString(includeEntities));
 	getParameters.insert("trim_user", boolInString(trimUser));
+	getParameters.insert("include_my_retweet", boolInString(includeMyRetweet));
 }

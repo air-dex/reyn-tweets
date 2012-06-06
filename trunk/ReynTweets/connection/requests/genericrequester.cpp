@@ -116,6 +116,9 @@ void GenericRequester::executeRequest() {
 
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults() {
+	disconnect(weblink, SIGNAL(requestDone()),
+			   this, SLOT(treatResults()));
+
 	// Looking the HTTP request
 	requestResult.httpResponse = weblink->getHttpResponse();
 	requestResult.errorMessage = weblink->getErrorMessage();

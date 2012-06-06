@@ -168,6 +168,22 @@ Rectangle {
 		}
 	}
 
+	// Image to refresh the tweet
+	Image {
+		id: refresh_tweet
+		source: "../../resources/icons/refresh.png"
+		anchors.top: avatar_zone.bottom
+		anchors.topMargin: margin
+		anchors.left: parent.left
+		anchors.leftMargin: margin
+
+		// Click to refresh the tweet
+		MouseArea {
+			anchors.fill: parent
+			onClicked: control.refresh();
+		}
+	}
+
 	// Label displaying the author of the tweet
 	Text {
 		id: author_text

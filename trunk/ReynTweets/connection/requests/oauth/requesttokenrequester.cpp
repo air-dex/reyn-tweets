@@ -25,80 +25,80 @@
 #include "../../../tools/parsers/oauthparser.hpp"
 
 RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
-    OAuthRequester(POST,
-                   TwitterURL::REQUEST_TOKEN_URL,
-                   authManager,
-                   OAUTH_PARSING,
-                   false,
-                   true)
+	OAuthRequester(POST,
+				   TwitterURL::REQUEST_TOKEN_URL,
+				   authManager,
+				   OAUTH_PARSING,
+				   false,
+				   true)
 {}
 
 // Parse the raw results of the request.
 QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
-    OAuthParser parser;
-    QByteArray rawResponse = weblink->getResponseBuffer();
-    QString errorMsg = "";
+	OAuthParser parser;
+	QByteArray rawResponse = weblink->getResponseBuffer();
+	QString errorMsg = "";
 
-    // For treatments
-    QVariant extractedCredential;
-    bool treatmentOK;
-    QString treatmentErrorMsg = "";
-
-
-    // Parsing
-    QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
-    errorMsg.append(treatmentErrorMsg);
+	// For treatments
+	QVariant extractedCredential;
+	bool treatmentOK;
+	QString treatmentErrorMsg = "";
 
 
-    // Extracting the "oauth_token" parameter
-    extractedCredential = parser.extractParameter(resultMap,
-                                                  "oauth_token",
-                                                  treatmentOK,
-                                                  treatmentErrorMsg);
-    parseOK = parseOK && treatmentOK;
-    errorMsg.append(treatmentErrorMsg);
-    oauthManager.setOAuthToken(extractedCredential.toByteArray());
+	// Parsing
+	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
+	errorMsg.append(treatmentErrorMsg);
 
 
-    // Extracting the "oauth_token_secret" parameter
-    extractedCredential = parser.extractParameter(resultMap,
-                                                  "oauth_token_secret",
-                                                  treatmentOK,
-                                                  treatmentErrorMsg);
-    parseOK = parseOK && treatmentOK;
-    errorMsg.append(treatmentErrorMsg);
-    oauthManager.setOAuthSecret(extractedCredential.toByteArray());
+	// Extracting the "oauth_token" parameter
+	extractedCredential = parser.extractParameter(resultMap,
+												  "oauth_token",
+												  treatmentOK,
+												  treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
+	oauthManager.setOAuthToken(extractedCredential.toByteArray());
 
 
-    // Rewriting the "oauth_callback_confirmed" parameter as a boolean
-    parser.rewriteAsBool(resultMap,
-                         "oauth_callback_confirmed",
-                         treatmentOK,
-                         treatmentErrorMsg);
-    parseOK = parseOK && treatmentOK;
-    errorMsg.append(treatmentErrorMsg);
+	// Extracting the "oauth_token_secret" parameter
+	extractedCredential = parser.extractParameter(resultMap,
+												  "oauth_token_secret",
+												  treatmentOK,
+												  treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
+	oauthManager.setOAuthSecret(extractedCredential.toByteArray());
 
 
-    // Ensures that "oauth_callback_confirmed" is the last argument of the list.
-    treatmentOK = resultMap.size() == 1 && resultMap.contains("oauth_callback_confirmed");
-    parseOK = parseOK && treatmentOK;
-
-    // Listing all the unexpected parameters
-    if (!treatmentOK) {
-        QList<QString> argNames = resultMap.keys();
-        argNames.removeOne("oauth_callback_confirmed");
-        foreach (QString argName, argNames) {
-            errorMsg.append(RequestTokenRequester::trUtf8("Unexpected parameter '"))
-                    .append(argName)
-                    .append("'.\n");
-        }
-    }
+	// Rewriting the "oauth_callback_confirmed" parameter as a boolean
+	parser.rewriteAsBool(resultMap,
+						 "oauth_callback_confirmed",
+						 treatmentOK,
+						 treatmentErrorMsg);
+	parseOK = parseOK && treatmentOK;
+	errorMsg.append(treatmentErrorMsg);
 
 
-    // There was a problem while parsing -> fill the parsingErrors map !
-    if (!parseOK) {
-        parsingErrors.insert("errorMsg", QVariant(errorMsg));
-    }
+	// Ensures that "oauth_callback_confirmed" is the last argument of the list.
+	treatmentOK = resultMap.size() == 1 && resultMap.contains("oauth_callback_confirmed");
+	parseOK = parseOK && treatmentOK;
 
-    return QVariant(resultMap);
+	// Listing all the unexpected parameters
+	if (!treatmentOK) {
+		QList<QString> argNames = resultMap.keys();
+		argNames.removeOne("oauth_callback_confirmed");
+		foreach (QString argName, argNames) {
+			errorMsg.append(RequestTokenRequester::trUtf8("Unexpected parameter '"))
+					.append(argName)
+					.append("'.\n");
+		}
+	}
+
+
+	// There was a problem while parsing -> fill the parsingErrors map !
+	if (!parseOK) {
+		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+	}
+
+	return QVariant(resultMap);
 }

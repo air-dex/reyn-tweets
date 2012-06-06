@@ -360,3 +360,16 @@ void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimU
 
 	executeProcess(process);
 }
+
+// Getting a tweet with a given ID.
+void ReynCore::getTweet(qlonglong tweetID,
+						bool trimUser,
+						bool includeEntities,
+						bool includeMyRetweet)
+{
+	GetTweetProcess * process = new GetTweetProcess(tweetID,
+													trimUser,
+													includeEntities,
+													includeMyRetweet);
+	executeProcess(process);
+}

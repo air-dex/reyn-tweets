@@ -281,15 +281,19 @@ class ReynTwitterCalls : public GenericCalls
 
 		/// @fn void showTweet(qlonglong tweetID,
 		///					   bool entities = true,
-		///					   bool trimUser = false);
+		///					   bool trimUser = false,
+		///					   bool includeMyRetweet = true);
 		/// @brief Showing a tweet
 		/// @param tweetID ID of the tweet
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param trimUser Return only user IDs instead of all the values ?
+		/// @param includeMyRetweet If set to true and if the user retweeted
+		/// the tweet, including the user's retweet ID.
 		/// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
 		void showTweet(qlonglong tweetID,
 					   bool entities = true,
-					   bool trimUser = false);
+					   bool trimUser = false,
+					   bool includeMyRetweet = true);
 
 		/// @fn void updateTweet(QString tweet,
 		///						 qlonglong replyToTweetID,

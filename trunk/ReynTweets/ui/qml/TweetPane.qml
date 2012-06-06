@@ -404,8 +404,10 @@ Rectangle {
 				message = message.concat(shown_tweet.author.profile_link_color)
 				message = message.concat(' ; text-decoration: none">')
 
+				var theseAreOtherRetweeters = knownPeopleArray.length > 0
+
 				// No "and" if nobody was written before.
-				if (knownPeopleArray.length > 0) {
+				if (theseAreOtherRetweeters) {
 					message = message.concat(qsTr("and")).concat(' ')
 				}
 
@@ -413,16 +415,26 @@ Rectangle {
 				message = message.concat(nbOtherRetweeters.toString())
 				message = message.concat(' ')
 
+				var otherString;	// String whose content is "other(s)"
+				var peopleString;	// String whose content is "person(s)"
+
 				// Singular or plural ?
 				if (nbOtherRetweeters == 1) {
 					// one other person
-					message = message.concat(qsTr("other")).concat(' ')
-					message = message.concat(qsTr("person"))
+					otherString = qsTr("other")
+					peopleString = qsTr("person")
 				} else {
 					// other people
-					message = message.concat(qsTr("others")).concat(' ')
-					message = message.concat(qsTr("people"))
+					otherString = qsTr("others")
+					peopleString = qsTr("people")
 				}
+
+				// Writing "other(s)" if necessary
+				if (theseAreOtherRetweeters) {
+					message = message.concat(otherString).concat(' ')
+				}
+
+				message = message.concat(peopleString)
 
 				// Closing the tag
 				message = message.concat('</a>')
@@ -434,6 +446,7 @@ Rectangle {
 		}
 	}
 
+	// Getting the settings
 	SettingsControl { id: settings_control }
 
 	// Row with actions on the tweet

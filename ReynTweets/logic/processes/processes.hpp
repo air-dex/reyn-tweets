@@ -27,6 +27,7 @@
 #include "allowprocess.hpp"
 #include "deletetweetprocess.hpp"
 #include "favoriteprocess.hpp"
+#include "gettweetprocess.hpp"
 #include "launchingprocess.hpp"
 #include "loadinghometimelineprocess.hpp"
 #include "oauthprocess.hpp"

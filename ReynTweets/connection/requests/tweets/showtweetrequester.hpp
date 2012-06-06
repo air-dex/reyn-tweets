@@ -24,26 +24,33 @@
 #ifndef SHOWTWEETREQUESTER_HPP
 #define SHOWTWEETREQUESTER_HPP
 
-#include "../twitterrequester.hpp"
+#include "../authenticationrequester.hpp"
 
 /// @class ShowTweetRequester
 /// @brief Requester for getting details about a tweet identified by its ID.
 /// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
-class ShowTweetRequester : public TwitterRequester
+class ShowTweetRequester : public AuthenticationRequester
 {
 	Q_OBJECT
 
 	public:
-		/// @fn ShowTweetRequester(qlonglong id,
+		/// @fn ShowTweetRequester(OAuthManager & authManager,
+		///						   qlonglong id,
 		///						   bool entities = true,
-		///						   bool userIdsOnly = false);
+		///						   bool userIdsOnly = false,
+		///						   bool withRTid = false);
 		/// @brief Constructor
+		/// @param authManager OAuthManager with authentication informations
 		/// @param id ID of the tweet
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param userIdsOnly Return only user IDs instead of all the values ?
-		ShowTweetRequester(qlonglong iD,
+		/// @param withRTid If the user retweeted the tweet and if this
+		/// boolean is set to true, this would include the id of the retweet.
+		ShowTweetRequester(OAuthManager & authManager,
+						   qlonglong id,
 						   bool entities = true,
-						   bool userIdsOnly = false);
+						   bool userIdsOnly = false,
+						   bool withRTid = false);
 
 	protected:
 		/// @brief ID of the tweet
@@ -56,6 +63,10 @@ class ShowTweetRequester : public TwitterRequester
 		/// @brief When this value is set to true, only the id and id_str values
 		/// of the user are returned.
 		bool trimUser;
+
+		/// @brief If set to true and if the user retweeted the tweet,
+		/// including the user's retweet ID.
+		bool includeMyRetweet;
 
 		/// @fn void buildGETParameters();
 		/// @brief Building getParameters

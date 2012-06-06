@@ -244,10 +244,16 @@ void ReynTwitterCalls::retweet(qlonglong tweetID, bool entities, bool trimUser) 
 }
 
 // Showing a tweet
-void ReynTwitterCalls::showTweet(qlonglong tweetID, bool entities, bool trimUser) {
-	ShowTweetRequester * requester = new ShowTweetRequester(tweetID,
+void ReynTwitterCalls::showTweet(qlonglong tweetID,
+								 bool entities,
+								 bool trimUser,
+								 bool includeMyRetweet)
+{
+	ShowTweetRequester * requester = new ShowTweetRequester(oauthManager,
+															tweetID,
 															entities,
-															trimUser);
+															trimUser,
+															includeMyRetweet);
 	executeRequest(requester);
 }
 

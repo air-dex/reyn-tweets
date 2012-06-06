@@ -221,7 +221,7 @@ Rectangle {
 	// Writing a tweet by specifying the text
 	function writeTweet(tweetText) {
 		tweet_edit.text = tweetText
-		tweet_edit.cursorPosition = tweetText.length
+		tweet_edit.cursorPosition = 0
 	}
 
 	// Readjusting the number depending on the URLS contained in the text.

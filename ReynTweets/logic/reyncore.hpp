@@ -349,6 +349,22 @@ class ReynCore : public QObject
 						 bool includeEntities = true,
 						 bool trimUser = false);
 
+		/// @fn void getTweet(qlonglong tweetID,
+		///					  bool trimUser = false,
+		///					  bool includeEntities = true,
+		///					  bool includeMyRetweet = true);
+		/// @brief Getting a tweet with a given ID.
+		/// @param tweetID ID of the tweet to retweet
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param includeMyRetweet If the user retweeted the tweet and if this
+		/// boolean is set to true, this would include the id of the retweet.
+		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+		void getTweet(qlonglong tweetID,
+					  bool trimUser = false,
+					  bool includeEntities = true,
+					  bool includeMyRetweet = true);
+
 
 	protected:
 		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);

@@ -73,7 +73,6 @@ void TwitterRequester::treatParsedResult() {
 
 		// Uncomment when the following feature is deployed :
 		// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
-			/*
 		case 404:
 		case 500:
 		case 503:
@@ -100,14 +99,13 @@ void TwitterRequester::treatParsedResult() {
 						ResponseInfos twitterError;
 						twitterError.code = error.value("code").toInt();
 						twitterError.message = error.value("message").toString();
-						requestResult.twitterErrors.append(twitterError);
+						requestResult.serviceErrors.append(twitterError);
 					}
 
-					requestResult.resultType = TWITTER_ERRORS;
+					requestResult.resultType = SERVICE_ERRORS;
 				}
 			}
 			break;
-			//*/
 
 		case 304:
 		case 400:

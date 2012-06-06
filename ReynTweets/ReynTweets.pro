@@ -119,6 +119,7 @@ SOURCES += \
 	logic/processes/allowprocess.cpp \
 	logic/processes/deletetweetprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
+	logic/processes/gettweetprocess.cpp \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/loadinghometimelineprocess.cpp \
 	logic/processes/posttweetprocess.cpp \
@@ -222,6 +223,7 @@ HEADERS  += \
 	logic/processes/allowprocess.hpp \
 	logic/processes/deletetweetprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
+	logic/processes/gettweetprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/loadinghometimelineprocess.hpp \
 	logic/processes/posttweetprocess.hpp \

@@ -30,12 +30,14 @@ SingleTwitterCallProcess::SingleTwitterCallProcess(CoreResult rightIssue) :
 	successfullIssue(rightIssue)
 {}
 
+// Starting the process by calling Twitter
 void SingleTwitterCallProcess::startProcess() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(callEnded(ResultWrapper)));
 	callTwitter();
 }
 
+// After calling Twitter
 void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);

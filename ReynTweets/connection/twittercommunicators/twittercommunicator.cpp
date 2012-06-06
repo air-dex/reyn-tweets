@@ -127,6 +127,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	if (!response) {
 		return;
 	}
+
 	// Unwiring
 	disconnect(network, SIGNAL(finished(QNetworkReply*)),
 			   this, SLOT(endRequest(QNetworkReply*)));

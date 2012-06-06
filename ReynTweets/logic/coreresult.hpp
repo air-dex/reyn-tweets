@@ -180,6 +180,9 @@ enum CoreResult {
 	/// @brief After retweeting a tweet
 	TWEET_RETWEETED,
 
+	/// @brief After retrieving a tweet
+	TWEET_RETRIEVED,
+
 	/// @brief The user was wrong
 	WRONG_USER,
 

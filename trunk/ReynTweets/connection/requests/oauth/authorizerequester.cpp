@@ -51,7 +51,7 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 
 	// Getting the HTML document
 	HTMLParser parser;
-	QWebElement htmlDocument = parser.parse(weblink->getResponseBuffer(),
+	QWebElement htmlDocument = parser.parse(weblink.getResponseBuffer(),
 											parseOK,
 											errTreatment);
 	errorMsg.append(errTreatment);

@@ -34,7 +34,7 @@ TwitterRequester::TwitterRequester(RequestType type,
 // Method that will parse the raw results of the request.
 QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
 	JSONParser parser;
-	QByteArray rawResponse = weblink->getResponseBuffer();
+	QByteArray rawResponse = weblink.getResponseBuffer();
 	QString errorMsg;
 	int lineMsg;
 
@@ -64,7 +64,7 @@ QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 }
 
 void TwitterRequester::treatParsedResult() {
-	int httpReturnCode = weblink->getHttpResponse().code;
+	int httpReturnCode = weblink.getHttpResponse().code;
 
 	// Is it a map with error messages
 	switch (httpReturnCode) {

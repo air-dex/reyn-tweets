@@ -63,9 +63,9 @@ class TwitterCommunicator : public QObject
 	public:
 		/// @fn TwitterCommunicator(QString url,
 		///							RequestType type,
-		///							ArgsMap getArgs,
-		///							ArgsMap postArgs,
-		///							HeadersMap headersParam);
+		///							ArgsMap &getArgs,
+		///							ArgsMap &postArgs,
+		///							HeadersMap &headersParam);
 		/// @brief Constructor
 		/// @param url String representation of the URL
 		/// @param type Type of the request (GET ou POST).
@@ -74,9 +74,9 @@ class TwitterCommunicator : public QObject
 		/// @param headersParam HTTP headers
 		TwitterCommunicator(QString url,
 							RequestType type,
-							ArgsMap getArgs,
-							ArgsMap postArgs,
-							HeadersMap headersParam);
+							ArgsMap &getArgs,
+							ArgsMap &postArgs,
+							HeadersMap &headersParam);
 
 		/// @fn ~TwitterCommunicator();
 		/// @brief Destructor
@@ -138,13 +138,13 @@ class TwitterCommunicator : public QObject
 		RequestType requestType;
 
 		/// @brief GET datas
-		ArgsMap getParameters;
+		ArgsMap & getParameters;
 
 		/// @brief POST datas
-		ArgsMap postParameters;
+		ArgsMap & postParameters;
 
 		/// @brief HTTP headers
-		HeadersMap headers;
+		HeadersMap & headers;
 
 
 		// Entities for response

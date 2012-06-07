@@ -163,6 +163,38 @@ Rectangle {
 		function backupIndex() {
 			indexBackup = timeline_view.indexAt(contentX, contentY)
 		}
+
+		///////////////////////////
+		// Scroll bar management //
+		///////////////////////////
+
+		ScrollBar {
+			id: verticalScrollBar
+			width: 5
+			height: timeline_view.height
+			z: timeline_view.z + 1
+			anchors.right: timeline_view.right
+			opacity: 0.5
+			orientation: Qt.Vertical
+			position: timeline_view.visibleArea.yPosition
+			ratio: timeline_view.visibleArea.heightRatio
+		}
+
+		// Only show the scrollbars when the view is moving.
+		states: [
+			State {
+				name: "timeline_move"
+				when: timeline_view.moving && !verticalScrollBar.dragging
+				PropertyChanges {
+					target: verticalScrollBar
+					position: timeline_view.visibleArea.yPosition
+				}
+			}
+		]
+
+		function scroll(newPos) {
+			timeline_view.contentY = newPos * timeline_view.contentHeight
+		}
 	}
 
 
@@ -180,6 +212,9 @@ Rectangle {
 
 		// For a better placement in the timeline
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
+
+		// Scrolling
+		verticalScrollBar.newPosition.connect(timeline_view.scroll)
 	}
 
 	// Loading the home timeline
@@ -224,6 +259,11 @@ Rectangle {
 	function moreTweets(nbTweets) {
 		timeline_view.indexBackup = timeline_view.indexBackup + nbTweets
 	}
+
+
+	/////////////
+	// Signals //
+	/////////////
 
 	signal needAuthentication
 	signal endAction(bool endOK, string errMsg, bool fatalEnd)

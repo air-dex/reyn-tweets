@@ -9,7 +9,7 @@ Rectangle {
 	// Generic margin
 	property int margin: 5
 
-	radius: margin
+	radius: 2*margin
 	color: constant.orange_author
 
 	Constants { id: constant }

@@ -106,6 +106,14 @@
     </message>
 </context>
 <context>
+    <name>HomeTimelineTab</name>
+    <message>
+        <location filename="../ui/qml/HomeTimelineTab.qml" line="19"/>
+        <source>Home timeline</source>
+        <translation>Timeline</translation>
+    </message>
+</context>
+<context>
     <name>LaunchingControl</name>
     <message>
         <location filename="../logic/controls/launchingcontrol.cpp" line="85"/>
@@ -121,23 +129,23 @@
         <translation>Internet : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="218"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="219"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>Une erreur fatale s&apos;est produite au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="222"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="223"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="228"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="229"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translatorcomment>Trouver une meilleure traduction pour &quot;hitch&quot;.</translatorcomment>
         <translation>Un pépin s&apos;est produit au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="232"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="233"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Voulez-vous essayer de relancer Reyn Tweets ou l&apos;arrêter ?</translation>
     </message>
@@ -202,7 +210,7 @@
     <name>LoginComponents</name>
     <message>
         <location filename="../ui/qml/LoginComponents.qml" line="62"/>
-        <location filename="../ui/qml/LoginComponents.qml" line="120"/>
+        <location filename="../ui/qml/LoginComponents.qml" line="121"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
     </message>
@@ -274,23 +282,23 @@
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="125"/>
+        <location filename="../ui/qml/MainView.qml" line="130"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>Les tokens OAuth n&apos;ont pas été jugés bon. Vous devriez réautoriser Reyn Tweets.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="126"/>
+        <location filename="../ui/qml/MainView.qml" line="131"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Voulez-vous réautoriser Reyn Tweets ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="129"/>
+        <location filename="../ui/qml/MainView.qml" line="134"/>
         <source>Reauthorize</source>
         <translation>Réautoriser</translation>
     </message>
     <message>
         <location filename="../ui/qml/MainView.qml" line="69"/>
-        <location filename="../ui/qml/MainView.qml" line="133"/>
+        <location filename="../ui/qml/MainView.qml" line="141"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -583,12 +591,12 @@
         <translation>Plus...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="208"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="243"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="212"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="247"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>

@@ -123,6 +123,7 @@ Rectangle {
 		width: parent.width
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: launching_pane.endLaunch();
+		visible: false
 	}
 
 	// Popup to show a message.

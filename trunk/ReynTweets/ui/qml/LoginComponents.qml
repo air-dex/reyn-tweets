@@ -41,7 +41,7 @@ Item {
 	// Popup displayed when the user has to enter its credentials
 	LoginPane {
 		id: login_popup
-		z: 2
+		z: login_component.z + 2
 		anchors.left: parent.left
 		anchors.leftMargin: login_component.margin
 		anchors.right: parent.right
@@ -53,7 +53,7 @@ Item {
 	// Popup after denying ReynTweets
 	TwoButtonsActionPane {
 		id: deny_pane
-		z: 3
+		z: login_component.z + 3
 		width: login_component.width - 2* login_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -80,7 +80,7 @@ Item {
 	// Popup to make the user quit the application
 	QuitPane {
 		id: abort_pane
-		z: 3
+		z: login_component.z + 3
 		width: login_component.width - 2* login_component.margin
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
@@ -104,8 +104,9 @@ Item {
 	/// @fn function setLoginPopupVisible(visible);
 	/// @brief Showing / hiding the login popup
 	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
-	function setLoginPopupVisible(visible) {
-		login_popup.visible = visible;
+	function setLoginPopupVisible(isVisible) {
+		login_component.visible = isVisible
+		login_popup.visible = isVisible;
 	}
 
 	/// @fn function afterLaunching(endOK, errMsg, fatal);

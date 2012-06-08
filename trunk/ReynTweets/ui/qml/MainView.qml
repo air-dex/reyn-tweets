@@ -75,12 +75,17 @@ Rectangle {
 		}
 	}
 
+
+	////////////////////
+	// Showing tweets //
+	////////////////////
+	property alias timeline: htl_tab.timeline
+
 	// Home timeline (subject to future changes)
-	TimelinePane {
-		id: timeline
+	HomeTimelineTab {
+		id: htl_tab
 		width: parent.width
 		anchors.top: write_tweet.bottom
-		anchors.topMargin: 0
 		anchors.right: main_view.right
 		anchors.left: main_view.left
 		anchors.bottom: main_view.bottom
@@ -117,9 +122,9 @@ Rectangle {
 	TwoButtonsActionPane {
 		id: reauth_pane
 		width: main_view.interiorWidth
+		visible: false
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
-		visible: false
 
 		// Pane parameters
 		pane_text: qsTr("The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.")
@@ -127,7 +132,10 @@ Rectangle {
 
 		// Left button
 		left_button_text: qsTr("Reauthorize")
-		onActLeft: log_component.allowReynTweets()
+		onActLeft: {
+			reauth_pane.visible = false
+			log_component.allowReynTweets()
+		}
 
 		// Right button
 		right_button_text: qsTr("No")

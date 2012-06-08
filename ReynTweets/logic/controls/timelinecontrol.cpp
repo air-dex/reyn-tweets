@@ -206,7 +206,7 @@ void TimelineControl::refreshHomeTimeline() {
 
 	processing = true;
 	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(sinceTweetID, -1);
+	reyn.loadHomeTimeline(sinceTweetID, LLONG_MAX -1);
 }
 
 
@@ -286,7 +286,7 @@ void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
 
 	processing = true;
 	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(sinceTweetID, -1);
+	reyn.loadHomeTimeline(sinceTweetID, LLONG_MAX -1);
 }
 
 

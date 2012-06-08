@@ -181,6 +181,11 @@ class ReynTweetsUserConfiguration : public ReynTweetsMappable
 		/// @return The user account
 		UserAccount getUserAccount();
 
+		/// @fn UserAccount & getUserAccountRef();
+		/// @brief Getting a reference on the user account
+		/// @return The user account
+		UserAccount & getUserAccountRef();
+
 		/// @fn void setUserAccount(UserAccount account);
 		/// @brief Setter on the user account
 		/// @param account New value for the account

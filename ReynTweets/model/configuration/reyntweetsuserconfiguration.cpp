@@ -143,6 +143,11 @@ UserAccount ReynTweetsUserConfiguration::getUserAccount() {
 	return userAccount;
 }
 
+// Getter on userAccount
+UserAccount & ReynTweetsUserConfiguration::getUserAccountRef() {
+	return userAccount;
+}
+
 // Setter on userAccount
 void ReynTweetsUserConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;

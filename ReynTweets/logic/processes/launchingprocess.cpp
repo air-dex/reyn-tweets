@@ -155,7 +155,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;
 			userOfCredentials.fillWithVariant(userMap);
-			UserAccount account = userConfiguration.getUserAccount();
+			UserAccount & account = userConfiguration.getUserAccountRef();
 			UserInfos confUser = account.getUser();
 			bool rightUser = confUser.getID() == userOfCredentials.getID();
 			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;

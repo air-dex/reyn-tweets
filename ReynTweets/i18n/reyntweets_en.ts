@@ -806,33 +806,38 @@
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="153"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="167"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="178"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Your tweet gets more than 140 characters.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="187"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Your tweet gets some invalid character(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="209"/>
         <source>You have to write something to tweet.</source>
         <translation>You have to write something to tweet.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="161"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="172"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="182"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <source>Erase</source>
+        <translation>Erase</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="193"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

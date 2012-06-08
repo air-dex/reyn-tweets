@@ -44,7 +44,7 @@
 /////////////
 
 // Constructor
-TwitterCommunicator::TwitterCommunicator(QString url,
+TwitterCommunicator::TwitterCommunicator(QString &url,
 										 RequestType type,
 										 ArgsMap & getArgs,
 										 ArgsMap & postArgs,

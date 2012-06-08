@@ -61,7 +61,7 @@ class TwitterCommunicator : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn TwitterCommunicator(QString url,
+		/// @fn TwitterCommunicator(QString &url,
 		///							RequestType type,
 		///							ArgsMap &getArgs,
 		///							ArgsMap &postArgs,
@@ -72,7 +72,7 @@ class TwitterCommunicator : public QObject
 		/// @param getArgs GET arguments
 		/// @param postArgs POST arguments
 		/// @param headersParam HTTP headers
-		TwitterCommunicator(QString url,
+		TwitterCommunicator(QString & url,
 							RequestType type,
 							ArgsMap &getArgs,
 							ArgsMap &postArgs,
@@ -132,7 +132,7 @@ class TwitterCommunicator : public QObject
 		// Entities for request
 
 		/// @brief URL of the service
-		QString serviceURL;
+		QString & serviceURL;
 
 		/// @brief Request type
 		RequestType requestType;

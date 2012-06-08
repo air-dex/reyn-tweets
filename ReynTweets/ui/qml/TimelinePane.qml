@@ -260,6 +260,11 @@ Rectangle {
 		timeline_view.indexBackup = timeline_view.indexBackup + nbTweets
 	}
 
+	// Going at the top of the timeline
+	function goToTop() {
+		timeline_view.contentY = 0
+	}
+
 
 	/////////////
 	// Signals //

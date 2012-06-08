@@ -132,6 +132,17 @@ Rectangle {
 		}
 	}
 
+	// Click on it to delete what is written !
+	RTButton {
+		id: delete_button
+		anchors.right: tweet_button.left
+		anchors.bottom: write_tweet_pane.bottom
+		anchors.rightMargin: margin
+		anchors.bottomMargin: margin
+		button_text: qsTr("Erase")
+		onClick: tweet_edit.text = ""
+	}
+
 	// Click on it to tweet !
 	RTButton {
 		id: tweet_button

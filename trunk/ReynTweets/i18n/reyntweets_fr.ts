@@ -809,32 +809,37 @@
         <translation>Quoi de neuf ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="153"/>
         <source>Tweet</source>
         <translation>Tweeter</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="167"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="178"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Le tweet dépasse les 140 caractères.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="187"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Le tweet comporte un ou plusieurs caractère(s) invalide(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="209"/>
         <source>You have to write something to tweet.</source>
         <translation>Vous devez écrire quelque chose pour pouvoir le tweeter.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="161"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="172"/>
         <source>too long</source>
         <translation>trop long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="182"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <source>Erase</source>
+        <translation>Effacer</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="193"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>caractère(s) invalide(s)</translation>

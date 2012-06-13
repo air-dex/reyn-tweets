@@ -169,7 +169,7 @@ Rectangle {
 				target: chars_left_indicator
 				color: constant.red
 				font.bold: true
-				reason: "( " + qsTr("too long") + ')'
+				reason: " (".concat(qsTr("too long")).concat(')')
 			}
 
 			PropertyChanges {
@@ -265,7 +265,9 @@ Rectangle {
 
 	// Posting a Tweet via TwitLonger
 	function postViaTwitLonger() {
-		control.postViaTwitLonger(tweet_edit.text, in_reply_to_tweet_id, in_reply_to_user)
+		control.postViaTwitLonger(tweet_edit.text,
+								  in_reply_to_tweet_id,
+								  in_reply_to_user)
 	}
 
 

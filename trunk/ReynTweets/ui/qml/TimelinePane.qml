@@ -174,26 +174,26 @@ Rectangle {
 			height: timeline_view.height
 			z: timeline_view.z + 1
 			anchors.right: timeline_view.right
-			opacity: 0.5
+			opacity: 1
 			orientation: Qt.Vertical
 			position: timeline_view.visibleArea.yPosition
 			ratio: timeline_view.visibleArea.heightRatio
-		}
 
-		// Only show the scrollbars when the view is moving.
-		states: [
-			State {
-				name: "timeline_move"
+			Binding {
 				when: timeline_view.moving && !verticalScrollBar.dragging
-				PropertyChanges {
-					target: verticalScrollBar
-					position: timeline_view.visibleArea.yPosition
-				}
-			}
-		]
 
-		function scroll(newPos) {
-			timeline_view.contentY = newPos * timeline_view.contentHeight
+				target: verticalScrollBar
+				property: "position"
+				value: timeline_view.visibleArea.yPosition
+			}
+
+			Binding {
+				when: verticalScrollBar.dragging
+
+				target: timeline_view
+				property: "contentY"
+				value: verticalScrollBar.dragPosition * timeline_view.contentHeight
+			}
 		}
 	}
 
@@ -212,9 +212,6 @@ Rectangle {
 
 		// For a better placement in the timeline
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
-
-		// Scrolling
-		verticalScrollBar.newPosition.connect(timeline_view.scroll)
 	}
 
 	// Loading the home timeline

@@ -23,7 +23,7 @@
 
 import QtQuick 1.1
 
-Rectangle {
+Item {
 	id: scroll_bar
 
 	// Relative position of the content of what you scroll. If you scroll
@@ -40,97 +40,79 @@ Rectangle {
 	// Reyn Tweets constants
 	Constants { id: constant }
 
-	color: constant.white
-	opacity: 0.1
-
-	// Showing the scroll bar when the mouse is on it
-	MouseArea {
-		id: hover_zone
+	Rectangle {
+		id: background
 		anchors.fill: parent
-		hoverEnabled: true
-		preventStealing: true
 
-		// Scroller, i.e. the rectangle that the user will drag.
-		Rectangle {
-			id: scroller
-			color: constant.orange
-			opacity: 1
+		color: constant.white
+		opacity: 0.1
 
-			// Area to drag scroller
-			MouseArea {
-				id: drag_zone
-				anchors.fill: parent
-				drag.target: scroller
-				preventStealing: true
-				onPositionChanged: {
-					// Updating the position of what is scrolled
+		// Showing the scroll bar when the mouse is on it
+		MouseArea {
+			id: hover_zone
+			anchors.fill: parent
+			hoverEnabled: true
+		}
+	}
 
-					var newPosse = 0
+	// Scroller, i.e. the rectangle that the user will drag.
+	Rectangle {
+		id: scroller
+		z: background.z + 1
+		color: constant.orange
+		opacity: 1
 
-					if (orientation == Qt.Vertical) {
-						newPosse = parseFloat(scroller.y) / parseFloat(scroll_bar.height)
-					} else if (orientation == Qt.Horizontal) {
-						newPosse = parseFloat(scroller.x) / parseFloat(scroll_bar.width)
-					}
+		// Area to drag scroller
+		MouseArea {
+			id: drag_zone
+			anchors.fill: scroller
+			drag.target: scroller
+			onPositionChanged: {
+				// Updating the position of what is scrolled
 
-					scroll_bar.newPosition(newPosse)
+				var newPosse = 0
+
+				if (orientation == Qt.Vertical) {
+					newPosse = parseFloat(scroller.y) / parseFloat(background.height)
+				} else if (orientation == Qt.Horizontal) {
+					newPosse = parseFloat(scroller.x) / parseFloat(background.width)
 				}
 
-				// Show the scroll bar when the mouse is on it
-				states: [
-					State {
-						name: "drag_and_hover"
-						when: hover_zone.containsMouse || scroll_bar.dragging
-						PropertyChanges {
-							target: scroller
-							opacity: 1
-						}
-					}
-				]
+				scroll_bar.position = newPosse
 			}
 
 			// Show the scroll bar when the mouse is on it
 			states: [
 				State {
-					name: "hovered"
-					when: hover_zone.containsMouse
+					name: "drag_and_hover"
+					when: hover_zone.containsMouse || scroll_bar.dragging
 					PropertyChanges {
 						target: scroller
 						opacity: 1
 					}
-
-					PropertyChanges {
-						target: scroll_bar
-						width: 3*scroll_bar.minWidth
-					}
 				}
 			]
 		}
+
+		// Show the scroll bar when the mouse is on it
+		states: [
+			State {
+				name: "hovered"
+				when: hover_zone.containsMouse
+				PropertyChanges {
+					target: scroller
+					opacity: 1
+				}
+
+				PropertyChanges {
+					target: scroll_bar
+					width: 3*scroll_bar.minWidth
+				}
+			}
+		]
 	}
 
 	Component.onCompleted: scroll_bar.minWidth = scroll_bar.width
-
-
-	////////////////////
-	// Hover handling //
-	////////////////////
-
-	// Minimal width
-	property int minWidth
-
-	// Boolean telling if the scroller is dragged
-	property bool mouseIn: hover_zone.containsMouse
-
-
-	///////////////////
-	// Drag handling //
-	///////////////////
-
-	// Boolean telling if the scroller is dragged
-	property bool dragging: drag_zone.drag.active
-
-	// Sent when scroller moves in order to update what is scrolled
-	signal newPosition(real newPos)
 
 
 	//////////////////////////
@@ -148,19 +130,22 @@ Rectangle {
 
 			PropertyChanges {
 				target: scroll_bar
+				dragPosition: parseFloat(scroller.y) / parseFloat(background.height)
+			}
+
+			PropertyChanges {
+				target: background
 				radius: width / 2
 			}
 
 			// Placing the scroller
 			PropertyChanges {
 				target: scroller
-				anchors.left: parent.left
-				anchors.leftMargin: 1
-				anchors.right: parent.right
-				anchors.rightMargin: 1
+				anchors.horizontalCenter: background.horizontalCenter
 
-				y: scroll_bar.position * scroll_bar.height
-				height: scroll_bar.ratio * scroll_bar.height
+				y: scroll_bar.position * background.height
+				width: scroll_bar.width - 2
+				height: scroll_bar.ratio * background.height
 				radius: scroller.width / 2
 			}
 
@@ -169,7 +154,7 @@ Rectangle {
 				target: drag_zone
 				drag.axis: Drag.YAxis
 				drag.minimumY: 0
-				drag.maximumY: scroll_bar.height - scroller.height
+				drag.maximumY: background.height - scroller.height
 			}
 		},
 
@@ -180,19 +165,22 @@ Rectangle {
 
 			PropertyChanges {
 				target: scroll_bar
+				dragPosition: parseFloat(scroller.x) / parseFloat(background.width)
+			}
+
+			PropertyChanges {
+				target: background
 				radius: height / 2
 			}
 
 			// Placing the scroller
 			PropertyChanges {
 				target: scroller
-				anchors.top: parent.top
-				anchors.topMargin: 1
-				anchors.bottom: parent.bottom
-				anchors.bottomMargin: 1
+				anchors.verticalCenter: background.verticalCenter
 
-				x: scroll_bar.position * scroll_bar.width
-				width: scroll_bar.ratio * scroll_bar.width
+				x: scroll_bar.position * background.width
+				height: scroll_bar.height - 2
+				width: scroll_bar.ratio * background.width
 				radius: scroller.height / 2
 			}
 
@@ -201,8 +189,29 @@ Rectangle {
 				target: drag_zone
 				drag.axis: Drag.XAxis
 				drag.minimumX: 0
-				drag.maximumX: scroll_bar.width - scroller.width
+				drag.maximumX: background.width - scroller.width
 			}
 		}
 	]
+
+
+	////////////////////
+	// Hover handling //
+	////////////////////
+
+	// Minimal width
+	property int minWidth
+
+	// Boolean telling if the scroller is dragged
+	property alias mouseIn: hover_zone.containsMouse
+
+
+	///////////////////
+	// Drag handling //
+	///////////////////
+
+	// Boolean telling if the scroller is dragged
+	property bool dragging: drag_zone.drag.active
+
+	property real dragPosition
 }

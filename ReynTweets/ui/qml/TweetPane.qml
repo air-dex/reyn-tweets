@@ -168,21 +168,68 @@ Rectangle {
 		}
 	}
 
-	// Image to refresh the tweet
-	Image {
-		id: refresh_tweet
-		source: "../../resources/icons/refresh.png"
+
+
+	Row {
+		id: more_zone
 		anchors.top: avatar_zone.bottom
 		anchors.topMargin: margin
-		anchors.left: parent.left
-		anchors.leftMargin: margin
+		anchors.horizontalCenter: avatar_zone.horizontalCenter
+		spacing: 2*margin
 
-		// Click to refresh the tweet
-		MouseArea {
-			anchors.fill: parent
-			onClicked: control.refresh();
+		Image {
+			id: refresh_tweet
+			source: "../../resources/icons/refresh.png"
+
+			// Click to refresh the tweet
+			MouseArea {
+				anchors.fill: parent
+				onClicked: control.refresh();
+			}
+		}
+
+		// Image to share the tweet (by mail)
+		Image {
+			id: share_tweet
+			source: "../../resources/icons/share.png"
+
+			// Click to refresh the tweet
+			MouseArea {
+				anchors.fill: parent
+				onClicked: {
+					// Writing what to send by mail
+
+					var mailURL = "mailto://?"
+
+					// Writing the subject
+					var subject = qsTr("Tweet by ").concat(shown_tweet.author.name)
+					mailURL = mailURL.concat("subject=").concat(subject)
+
+					mailURL = mailURL.concat('&')
+
+					// Writing the body
+					var body = shown_tweet.getTweetURL().toString()
+					body = body.concat("\n\n")
+						.concat(qsTr("If you cannot open this url by clicking on it, \
+								copy the link and paste it in the address bar of \
+								your web browser."))
+						.concat("\n\n")
+						.concat(qsTr("Sent via Reyn Tweets"))
+						.concat(' ( http://code.google.com/p/reyn-tweets/ ).');
+
+					mailURL = mailURL.concat("body=").concat(body)
+
+
+					// Send it
+					Qt.openUrlExternally(mailURL)
+				}
+			}
 		}
 	}
+
+
+	// Image to refresh the tweet
+
 
 	// Label displaying the author of the tweet
 	Text {
@@ -452,7 +499,7 @@ Rectangle {
 	// Row with actions on the tweet
 	Row {
 		id: action_row
-		spacing: 2*margin
+		spacing: margin
 		anchors.bottom: parent.bottom
 		anchors.bottomMargin: 2*margin
 		anchors.horizontalCenter: parent.horizontalCenter

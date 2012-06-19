@@ -199,14 +199,12 @@ void TimelineControl::refreshHomeTimeline() {
 		return loadHomeTimeline();
 	}
 
-	qlonglong sinceTweetID = timeline[0].getID() + 1;
-
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
 	processing = true;
 	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(sinceTweetID, LLONG_MAX -1);
+	reyn.loadHomeTimeline(timeline[0].getID());
 }
 
 
@@ -225,21 +223,46 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-	QVariantList resList = result.results.toList();
 	Timeline newTweets;
+
+	// newerTweets is static because it contains all the new tweets of the TL.
+	static Timeline newerTweets;
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			newTweets.fillWithVariant(resList);
-			emit loadedMoreTweets(newTweets.size());
+			// Retrieving the new tweets
+			newTweets.fillWithVariant(result.results.toList());
 
-			// Equivalent to timeline.prepend(newTweets);
-			newTweets.append(timeline);
+			if (!newTweets.isEmpty()) {
+				qlonglong newMinID = newTweets.last().getID();
+				qlonglong maxID = timeline.first().getID();
+
+				// Is there missing tweets in the timeline ?
+				if (newMinID == maxID) {
+					newTweets.removeLast();
+				} else {
+					// There's a gap to fill
+
+					// Save the the retrieved tweets before
+					newerTweets.append(newTweets);
+
+					// Fill the gap
+					connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+							this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+					return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+				}
+			}
+
+			newerTweets.append(newTweets);
+			emit loadedMoreTweets(newerTweets.size());
+
+			// Equivalent to timeline.prepend(newerTweets);
+			newerTweets.append(timeline);
 			timeline.clear();
-			timeline.append(newTweets);
+			timeline.append(newerTweets);
 
-			emit timelineChanged();
 			// Process successful
+			emit timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -264,6 +287,9 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			emit actionEnded(false, result.errorMsg, true);
 			break;
 	}
+
+	// Resetting this static variable (no former "new tweets" for the next refresh)
+	newerTweets.clear();
 }
 
 // Refreshing after writing a tweet
@@ -279,14 +305,12 @@ void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
 
 	backupedNewTweet = newTweetVariant;
 
-	qlonglong sinceTweetID = timeline[0].getID() + 1;
-
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
 	processing = true;
 	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(sinceTweetID, LLONG_MAX -1);
+	reyn.loadHomeTimeline(timeline[0].getID());
 }
 
 
@@ -305,26 +329,49 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-	QVariantList resList = result.results.toList();
 	Timeline newTweets;
 	Tweet lastTweet;
 
+	// newerTweets is static because it contains all the new tweets of the TL.
+	static Timeline newerTweets;
+
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			newTweets.fillWithVariant(resList);
-			lastTweet.fillWithVariant(backupedNewTweet.toMap());
+			newTweets.fillWithVariant(result.results.toList());
+
+			if (!newTweets.isEmpty()) {
+				qlonglong newMinID = newTweets.last().getID();
+				qlonglong maxID = timeline.first().getID();
+
+				// Is there missing tweets in the timeline ?
+				if (newMinID == maxID) {
+					newTweets.removeLast();
+				} else {
+					// There's a gap to fill
+
+					// Save the the retrieved tweets before
+					newerTweets.append(newTweets);
+
+					// Fill the gap
+					connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+							this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+					return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+				}
+			}
 
 			// Inserting the new Tweet in the timeline of new tweets
-			insertInTimeline(newTweets, lastTweet);
-			emit loadedMoreTweets(newTweets.size());
+			lastTweet.fillWithVariant(backupedNewTweet.toMap());
+			insertInTimeline(newerTweets, lastTweet);
 
-			// Equivalent to timeline.prepend(newTweets);
-			newTweets.append(timeline);
+			emit loadedMoreTweets(newerTweets.size());
+
+			// Equivalent to timeline.prepend(newerTweets);
+			newerTweets.append(timeline);
 			timeline.clear();
-			timeline.append(newTweets);
+			timeline.append(newerTweets);
 
-			emit timelineChanged();
 			// Process successful
+			emit timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -349,6 +396,9 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			emit actionEnded(false, result.errorMsg, true);
 			break;
 	}
+
+	// Resetting this static variable
+	newerTweets.clear();
 }
 
 

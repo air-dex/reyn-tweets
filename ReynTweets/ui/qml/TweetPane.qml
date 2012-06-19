@@ -168,8 +168,7 @@ Rectangle {
 		}
 	}
 
-
-
+	// More actions (refresh and share)
 	Row {
 		id: more_zone
 		anchors.top: avatar_zone.bottom
@@ -177,6 +176,7 @@ Rectangle {
 		anchors.horizontalCenter: avatar_zone.horizontalCenter
 		spacing: 2*margin
 
+		// Image to refresh the tweet
 		Image {
 			id: refresh_tweet
 			source: "../../resources/icons/refresh.png"
@@ -196,40 +196,10 @@ Rectangle {
 			// Click to refresh the tweet
 			MouseArea {
 				anchors.fill: parent
-				onClicked: {
-					// Writing what to send by mail
-
-					var mailURL = "mailto://?"
-
-					// Writing the subject
-					var subject = qsTr("Tweet by ").concat(shown_tweet.author.name)
-					mailURL = mailURL.concat("subject=").concat(subject)
-
-					mailURL = mailURL.concat('&')
-
-					// Writing the body
-					var body = shown_tweet.getTweetURL().toString()
-					body = body.concat("\n\n")
-						.concat(qsTr("If you cannot open this url by clicking on it, \
-								copy the link and paste it in the address bar of \
-								your web browser."))
-						.concat("\n\n")
-						.concat(qsTr("Sent via Reyn Tweets"))
-						.concat(' ( http://code.google.com/p/reyn-tweets/ ).');
-
-					mailURL = mailURL.concat("body=").concat(body)
-
-
-					// Send it
-					Qt.openUrlExternally(mailURL)
-				}
+				onClicked: control.shareByMail()
 			}
 		}
 	}
-
-
-	// Image to refresh the tweet
-
 
 	// Label displaying the author of the tweet
 	Text {

@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkit declarative xml
+QT += core gui network webkit declarative xml script
 
 TARGET = ReynTweets
 TEMPLATE = app

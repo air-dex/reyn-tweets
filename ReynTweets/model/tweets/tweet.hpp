@@ -51,16 +51,16 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Destructor
 		virtual ~Tweet();
 
-		/// @fn Tweet(const Tweet & tweet);
+		/// @fn Tweet(const Tweet & status);
 		/// @brief Copy constructor
-		/// @param tweet Tweet to copy
-		Tweet(const Tweet & tweet);
+		/// @param status Tweet to copy
+		Tweet(const Tweet & status);
 
-		/// @fn const Tweet & operator=(const Tweet & tweet);
+		/// @fn const Tweet & operator=(const Tweet & status);
 		/// @brief Affectation
-		/// @param tweet Tweet to copy
+		/// @param status Tweet to copy
 		/// @return Copy of the original tweet
-		const Tweet & operator=(const Tweet & tweet);
+		const Tweet & operator=(const Tweet & status);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
@@ -73,6 +73,15 @@ class Tweet : public ReynTweetsMappable
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();
+
+		/// @fn bool operator==(const Tweet & status);
+		/// @brief Equality between tweets.
+		///
+		/// Tweets are considered equals if they have got the same ID.
+		/// @param status Tweet to compare
+		/// @return true if they are equals, false otherwise.
+		bool operator==(const Tweet & status);
+
 
 	private:
 		/// @fn void recopie(const Tweet & status);

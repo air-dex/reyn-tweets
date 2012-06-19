@@ -68,16 +68,16 @@ Tweet::~Tweet() {
 }
 
 // Copy constructor
-Tweet::Tweet(const Tweet & tweet) :
+Tweet::Tweet(const Tweet & status) :
 	ReynTweetsMappable(),
 	retweetSource(0)
 {
-	recopie(tweet);
+	recopie(status);
 }
 
 // Affectation
-const Tweet & Tweet::operator=(const Tweet & tweet) {
-	recopie(tweet);
+const Tweet & Tweet::operator=(const Tweet & status) {
+	recopie(status);
 	return *this;
 }
 
@@ -143,6 +143,11 @@ QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
 // Resets the mappable to a default value
 void Tweet::reset() {
 	*this = Tweet();
+}
+
+// Equality between tweets
+bool Tweet::operator==(const Tweet & status) {
+	return this->tweetID == status.tweetID;
 }
 
 

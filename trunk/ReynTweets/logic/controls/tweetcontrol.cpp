@@ -26,6 +26,7 @@
 
 #include "tweetcontrol.hpp"
 #include <QtDeclarative>
+#include <QDesktopServices>
 
 // Constructor
 TweetControl::TweetControl() :
@@ -110,13 +111,6 @@ void TweetControl::refresh() {
 		return;
 	}
 
-	// Protection to not attempt to retweet its own tweets.
-	if (status->getAuthor()->getID() ==
-			reyn.getUserConfiguration().getUserAccount().getUser().getID())
-	{
-		return;
-	}
-
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(refreshEnd(ProcessWrapper)));
 
@@ -179,6 +173,46 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 			emit actionEnded(false, result.errorMsg, true);
 			break;
 	}
+}
+
+
+/////////////
+// Refresh //
+/////////////
+
+void TweetControl::shareByMail() {
+	// Writing what to send by mail
+
+	QString mailURL = "mailto:?";
+
+	// Writing the subject
+	QString subject = TweetControl::trUtf8("Tweet by ");
+	subject.append(getShownTweet()->getAuthor()->getName());
+
+	// Need to encode it on Windows
+	#ifdef Q_OS_WIN32
+		subject = QUrl::toPercentEncoding(subject);
+	#endif
+
+	mailURL.append("subject=").append(subject).append('&');
+
+	// Writing the body
+	QString body = getShownTweet()->getTweetURL().toString();
+	body.append(" \n\n");
+	body.append(TweetControl::trUtf8("If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser."));
+	body.append(" \n\n");
+	body.append(TweetControl::trUtf8("Sent via Reyn Tweets"));
+	body.append(" ( http://code.google.com/p/reyn-tweets/ ).");
+
+	// Need to encode it on Windows
+	#ifdef Q_OS_WIN32
+		body = QUrl::toPercentEncoding(body);
+	#endif
+
+	mailURL.append("body=").append(body);
+
+	// Send it
+	QDesktopServices::openUrl(mailURL);
 }
 
 /////////////

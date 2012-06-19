@@ -71,6 +71,16 @@ class TweetControl : public GenericControl
 		///	@return true if the user is mentionned, false otherwise.
 		Q_INVOKABLE bool isMention();
 
+		/// @fn Q_INVOKABLE void shareByMail();
+		/// @brief Sharing a tweet by mail.
+		///
+		/// The method writes the email and then send it to the email client
+		/// thanks to a mailto URI.
+		/// On Windows, the different parts of the email (subject, body)
+		/// have to be percent encoded. That's why this is done by the Qt
+		/// control instead of the QML component (TimelinePane).
+		Q_INVOKABLE void shareByMail();
+
 
 	signals:
 		/// @fn void tweetChanged();

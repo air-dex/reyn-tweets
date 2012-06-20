@@ -37,6 +37,21 @@ void TimelineControl::declareQML() {
 }
 
 
+/////////////////////////
+// Property management //
+/////////////////////////
+
+// Read
+QVariantList TimelineControl::getVariantTimeline() {
+	return timeline.toVariant();
+}
+
+// Write
+void TimelineControl::setVariantTimeline(QVariantList variantTimeline) {
+	timeline.fillWithVariant(variantTimeline);
+}
+
+
 ///////////////////////////////////
 // Accessing tweets in QML views //
 ///////////////////////////////////
@@ -50,11 +65,6 @@ Tweet * TimelineControl::getTweet(int tweetIndex) {
 	}
 }
 
-// Reading the property tl_length
-int TimelineControl::getTimelineLength() {
-	return timeline.size();
-}
-
 // Replacing a tweet
 void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
@@ -64,6 +74,8 @@ void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 	Tweet & tweet = timeline[tweetIndex];
 	tweet.reset();
 	tweet.fillWithVariant(updatedTweet.toMap());
+
+	emit tweetUpdated(tweetIndex);
 }
 
 // Replacing a tweet
@@ -78,7 +90,6 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 
 // Inserting a tweet in a timeline
 void TimelineControl::insertInTimeline(Timeline & tl, Tweet newTweet) {
-
 	if (tl.isEmpty()) {
 		// Just add the tweet.
 		return tl.append(newTweet);

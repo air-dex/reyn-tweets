@@ -37,7 +37,6 @@ Rectangle {
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onTimelineChanged: timeline_model.syncWithTimeline(control.tl_length)
 	}
 
 	// Text announcing what to do to refesh the timeline
@@ -81,15 +80,19 @@ Rectangle {
 		delegate: Component {
 			TweetPane {
 				width: timeline_pane.width
-				tweet: control.getTweet(index)
+
+				// Be careful when index is out of range (here -1).
+				variant_tweet: (index < 0 || index >= timeline_model.statuses.length) ?
+								   {}
+								 : timeline_model.get(index).tweetVar
+
+				// Updating the timeline
+				onVariant_tweetChanged: control.replaceTweet(variant_tweet, index)
 
 				Component.onCompleted: {
 					// When a tweet is quoted or reply to a tweet
 					reply.connect(writeReply)
 					quote.connect(writeTweet)
-
-					// Updating the timeline
-					updateTweet.connect(updateTL)
 
 					// Destroying the tweet
 					destroyTweet.connect(deleteTweet)
@@ -104,17 +107,41 @@ Rectangle {
 					showInfoMessage.connect(timeline_pane.showInfoMessage)
 				}
 
-				function updateTL(newTweet) {
-					control.replaceTweet(newTweet, index)
-				}
-
 				function deleteTweet(newTweet) {
 					control.deleteTweet(index)
 				}
 			}
 		}
 
-		model: TimelineModel { id: timeline_model }
+		model: ListModel {
+			id: timeline_model
+
+			// Alias on the timeline (variant form)
+			property alias statuses: control.variant_timeline
+
+			// Syncing the timeline control and the data model
+			function syncWithTimeline() {
+				timeline_model.clear();
+
+				for (var j = 0; j < statuses.length; j++) {
+					var obj = {}
+					obj.tweetVar = statuses[j]
+					timeline_model.append(obj)
+				}
+			}
+
+			// Syncing a particular tweet
+			function syncATweet(tweetIndex) {
+				// Do not be out of range
+				if (tweetIndex < 0 || tweetIndex >= statuses.length) {
+					return
+				}
+
+				timeline_model.setProperty(tweetIndex,
+										   "tweetVar",
+										   statuses[tweetIndex])
+			}
+		}
 
 		footer: Component {
 			Text {
@@ -212,6 +239,10 @@ Rectangle {
 
 		// For a better placement in the timeline
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
+
+		// Sync between the timeline and the list model
+		control.timelineChanged.connect(timeline_model.syncWithTimeline)
+		control.tweetUpdated.connect(timeline_model.syncATweet)
 	}
 
 	// Loading the home timeline

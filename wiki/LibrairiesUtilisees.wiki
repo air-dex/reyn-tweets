@@ -3,7 +3,7 @@
 = Versions de Qt & compilateurs =
 
 == Windows ==
-Qt 4.8.1 avec MSVC 2008. Un passage à MinGW a été envisagé à l'occasion de l'issue 54.
+Qt 4.8.1 avec MSVC 2010 depuis la révision r453 (MSVC 25008 avant). Un passage à MinGW a été envisagé à l'occasion de l'issue 54.
 
 == Linux ==
 Qt 4.8.1 avec gcc (g++ pour être précis)

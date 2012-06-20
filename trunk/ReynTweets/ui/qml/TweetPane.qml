@@ -41,6 +41,9 @@ Rectangle {
 	// Tweet
 	property alias shown_tweet: control.shown_tweet
 
+	// Tweet under a variant form
+	property alias variant_tweet: control.variant_tweet
+
 	// User behind the timeline
 	property UserInfos current_user: settings_control.configuration.current_account.current_user
 
@@ -67,7 +70,6 @@ Rectangle {
 	// Control behind the pane
 	TweetControl {
 		id: control
-		tweet: tweet_pane.tweet
 		onTweetChanged: {
 			tweet_pane.state = "Scratch"
 			displayTweet()
@@ -694,7 +696,6 @@ Rectangle {
 
 		// Wiring
 		control.destroyTweet.connect(tweet_pane.destroyTweet)
-		control.updateTimeline.connect(tweet_pane.updateTweet)
 		control.actionEnded.connect(tweet_pane.endTweeting)
 		control.authenticationNeeded.connect(tweet_pane.needAuthentication)
 		control.showInfoMessage.connect(tweet_pane.showInfoMessage)
@@ -775,9 +776,6 @@ Rectangle {
 
 	// Quoting a tweet
 	signal quote(string text)
-
-	// Updating a tweet in the timeline
-	signal updateTweet(variant updatedTweet)
 
 	// Destroying a tweet
 	signal destroyTweet

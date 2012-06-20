@@ -32,19 +32,11 @@
 TweetControl::TweetControl() :
 	GenericControl(),
 	status(new Tweet)
-{
-	connect(this, SIGNAL(tweetChanged()),
-			this, SLOT(changeTimeline()));
-}
+{}
 
 // Declaring TweetControl to the QML system
 void TweetControl::declareQML() {
 	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 1, "TweetControl");
-}
-
-// Updating the timeline
-void TweetControl::changeTimeline() {
-	emit updateTimeline(QVariant(status->toVariant()));
 }
 
 // Method indicating if the tweet mentions the user.
@@ -94,6 +86,20 @@ void TweetControl::setTweet(Tweet * newStatus) {
 		status = newStatus;
 		emit tweetChanged();
 	}
+}
+
+// Reading the tweet property
+QVariantMap TweetControl::getVariantTweet() {
+	return status->toVariant();
+}
+
+// Writing the tweet property
+void TweetControl::setVariantTweet(QVariantMap newStatus) {
+	//if (newStatus.type() == QVariant::Map) {
+		status->reset();
+		status->fillWithVariant(newStatus);
+		emit tweetChanged();
+	//}
 }
 
 

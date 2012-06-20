@@ -91,6 +91,11 @@ class TimelineControl : public GenericControl
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
 
+		/// @fn void tweetUpdated(int tweetIndex);
+		/// @brief Signal sent when a tweet in the timeline was updated
+		/// @param tweetIndex Index of the tweet
+		void tweetUpdated(int tweetIndex);
+
 		/// @fn void loadedMoreTweets(int tweetsLoaded);
 		/// @brief Signal sent to indicate how many more tweets were loaded
 		/// @param tweetsLoaded Number of tweets
@@ -118,17 +123,34 @@ class TimelineControl : public GenericControl
 		void moreOldTimelineEnded(ProcessWrapper res);
 
 	protected:
+		/////////////////////////
+		// Timeline management //
+		/////////////////////////
+
 		/// @brief The timeline
 		Timeline timeline;
 
-		/// @brief Length of the timeline. Used by QML for the list model.
-		Q_PROPERTY(int tl_length
-				   READ getTimelineLength
+		/// @property variant_timeline
+		/// @brief Timeline under a variant form. Used by QML for the list model.
+		Q_PROPERTY(QVariantList variant_timeline
+				   READ getVariantTimeline
+				   WRITE setVariantTimeline
 				   NOTIFY timelineChanged)
 
-		/// @fn Timeline getTimelineLength();
-		/// @brief Reading the property tl_length
-		int getTimelineLength();
+		/// @fn QVariantList getVariantTimeline();
+		/// @brief Reading the variant_timeline property
+		/// @return The corresponding QVariantList of timeline
+		QVariantList getVariantTimeline();
+
+		/// @fn void setVariantTimeline(QVariantList variantTimeline);
+		/// @brief Writing the variant_timeline property
+		/// @param variantTimeline The new timeline
+		void setVariantTimeline(QVariantList variantTimeline);
+
+
+		////////////////////////////////////////////////////////////
+		// Handling new tweets in the timeline after writing them //
+		////////////////////////////////////////////////////////////
 
 		/// @brief New tweet saved while updating after reading.
 		QVariant backupedNewTweet;

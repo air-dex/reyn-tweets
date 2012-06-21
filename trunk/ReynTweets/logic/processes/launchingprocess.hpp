@@ -91,21 +91,6 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Saving the configuartion in the configuration file
 		void saveConfiguration();
 
-		/// @fn void buildResult(bool processOK,
-		///						 CoreResult issue,
-		///						 QString errMsg = "",
-		///						 bool isFatal = false);
-		/// @brief Building process results
-		/// @param processOK Did the process end successfully ?
-		/// @param issue Enum value describing how it ended.
-		/// @param errMsg Error message
-		/// @param isFatal Is the issue fatal (i.e. requiring to abort
-		/// the application) ?
-		void buildResult(bool processOK,
-						 CoreResult issue,
-						 QString errMsg = "",
-						 bool isFatal = false);
-
 		///////////////////////////
 		// Filling configuration //
 		///////////////////////////

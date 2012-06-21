@@ -24,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "genericprocess.hpp"
+#include "../../tools/processutils.hpp"
 
 // Constructor
 GenericProcess::GenericProcess() :
@@ -45,4 +46,29 @@ ProcessResult GenericProcess::getProcessResult() {
 // End of a process
 void GenericProcess::endProcess() {
 	emit processEnded();
+}
+
+// Building the process results
+void GenericProcess::buildResult(bool processOK,
+								 CoreResult &issue,
+								 QString &errMsg,
+								 bool &isFatal)
+{
+	processResult = ProcessUtils::buildProcessResult(processOK,
+													 issue,
+													 errMsg,
+													 isFatal);
+}
+
+// Invalid ends
+void GenericProcess::invalidEnd() {
+	CoreResult issue = INVALID_ISSUE;
+	QString errMsg = GenericProcess::trUtf8("Dead end");
+	bool fatal = false;
+
+	buildResult(false,
+				issue,
+				errMsg,
+				fatal);
+	endProcess();
 }

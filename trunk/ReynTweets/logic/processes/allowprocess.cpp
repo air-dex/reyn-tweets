@@ -84,8 +84,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, AllowProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -145,7 +144,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -177,6 +176,6 @@ void AllowProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	buildResult(processOK, saveIssue, errorMsg, isFatal);
+	GenericProcess::buildResult(processOK, saveIssue, errorMsg, isFatal);
 	endProcess();
 }

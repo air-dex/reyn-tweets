@@ -69,10 +69,12 @@ void LaunchingProcess::checkSettingsLoad() {
 	}
 
 	// Telling the component that the launching process has ended fatally.
+	bool isFatal = true;
+	QString errMsg = appConfiguration.getErrorLoading();
 	buildResult(false,
 				loadIssue,
-				appConfiguration.getErrorLoading(),
-				true);
+				errMsg,
+				isFatal);
 	endProcess();
 }
 
@@ -86,6 +88,7 @@ void LaunchingProcess::loadConfiguration() {
 	CoreResult loadIssue = userConfiguration.load();
 
 	QString errorMsg = "";
+	bool isFatal = true;
 
 	switch (loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
@@ -113,7 +116,7 @@ void LaunchingProcess::loadConfiguration() {
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	buildResult(false, loadIssue, errorMsg, true);
+	buildResult(false, loadIssue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -134,8 +137,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, LaunchingProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -335,21 +337,4 @@ void LaunchingProcess::fillTwitterOAuthUserSettings() {
 void LaunchingProcess::fillTwitLongerAppSettings() {
 	TwitLongerCalls::setAppTokens(appConfiguration.getTwitLongerAppName(),
 								  appConfiguration.getTwitLongerAPIKey());
-}
-
-
-//////////
-// Misc //
-//////////
-
-// Building the process results
-void LaunchingProcess::buildResult(bool processOK,
-								   CoreResult issue,
-								   QString errMsg,
-								   bool isFatal)
-{
-	processResult = ProcessUtils::buildProcessResult(processOK,
-													 issue,
-													 errMsg,
-													 isFatal);
 }

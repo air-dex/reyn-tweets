@@ -39,14 +39,9 @@ void LaunchingControl::declareQML() {
 									  "LaunchingControl");
 }
 
-
-//////////////////////////////
-// Execution of the process //
-//////////////////////////////
-
-/////////////////////////////////////////////////////////
-// Step 1 : starting ReynTweets by a launching process //
-/////////////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Starting ReynTweets by a launching process //
+////////////////////////////////////////////////
 
 void LaunchingControl::launchReynTweets() {
 	if (processing) {
@@ -68,8 +63,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect

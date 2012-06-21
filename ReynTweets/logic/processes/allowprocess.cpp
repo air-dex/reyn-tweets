@@ -69,10 +69,9 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 									   qlonglong id, QString)
 {
 	// Updating the tokens
-	UserAccount account = configuration.getUserAccount();
+	UserAccount & account = configuration.getUserAccountRef();
 	account.setAccessToken(accessToken.toBase64());
 	account.setTokenSecret(tokenSecret.toBase64());
-	configuration.setUserAccount(account);
 
 	// Getting informations about the user behind the account
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -85,7 +84,8 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, AllowProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -105,9 +105,8 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			UserInfos u;
 			u.fillWithVariant(parsedResults);
-			UserAccount account = configuration.getUserAccount();
+			UserAccount & account = configuration.getUserAccountRef();
 			account.setUser(u);
-			configuration.setUserAccount(account);
 			saveConfiguration();
 		}return;
 

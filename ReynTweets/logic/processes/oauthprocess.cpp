@@ -80,6 +80,10 @@ void OAuthProcess::startProcess() {
 	requestToken();
 }
 
+/////////////////////////////
+// Step 1 : Request tokens //
+/////////////////////////////
+
 // Demanding a Request Token
 void OAuthProcess::requestToken() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -92,7 +96,8 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -159,6 +164,10 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	endProcess();
 }
 
+//////////////////////////////////////
+// Step 2 : Authorizing Reyn Tweets //
+//////////////////////////////////////
+
 // Authorize the request tokens
 void OAuthProcess::authorize() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -171,7 +180,8 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -230,6 +240,10 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	endProcess();
 }
 
+/////////////////////////////
+// Step 2bis : User choice //
+/////////////////////////////
+
 // Allowing Reyn Tweets :)
 void OAuthProcess::authorizeReynTweets(QString login, QString password) {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -249,7 +263,8 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -331,6 +346,10 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	endProcess();
 }
 
+////////////////////////////
+// Step 3 : Access tokens //
+////////////////////////////
+
 // Demanding an Access Token
 void OAuthProcess::accessToken() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -343,7 +362,8 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),

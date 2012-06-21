@@ -64,8 +64,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -135,8 +134,7 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -147,12 +145,12 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 	QString successMessage = WriteTweetControl::trUtf8("Tweet sent successfully");
 
 	switch (issue) {
-		case TWEET_POSTED:
+		// Process successful
 		case MESSAGE_NOT_UPDATED:
-			// Process successful
-			if (issue == MESSAGE_NOT_UPDATED) {
-				successMessage.append(WriteTweetControl::trUtf8(" but the message is not updated on TwitLonger."));
-			}
+			// One more thing specific to MESSAGE_NOT_UPDATED before the successful end.
+			successMessage.append(WriteTweetControl::trUtf8(" but the message is not updated on TwitLonger."));
+
+		case TWEET_POSTED:
 			emit tweetPosted(result.results);
 			emit actionEnded(true,
 							 successMessage,

@@ -34,6 +34,7 @@
 #include <QByteArray>
 #include <QUrl>
 #include <QMap>
+#include <QTimer>
 #include "../responseinfos.hpp"
 #include "../headersmap.hpp"
 #include "../requests/requesttype.hpp"
@@ -125,9 +126,16 @@ class TwitterCommunicator : public QObject
 		/// @param response The network reply.
 		void endRequest(QNetworkReply * response);
 
+		/// @fn void timeout();
+		/// @brief Slot called it there is a network timeout.
+		void timeout();
+
 	protected:
 		/// @brief Entity managing the Network (Internet).
 		QNetworkAccessManager * network;
+
+		/// @brief Timer to avoid to wait for responses ad vitam aeternam.
+		QTimer timeoutTimer;
 
 		// Entities for request
 

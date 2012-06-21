@@ -29,15 +29,15 @@
 
 // Constructor
 AllowControl::AllowControl() :
-    GenericControl(),
-    control(0)
+	GenericControl(),
+	control(0)
 {}
 
 // Declaring to the QML components
 void AllowControl::declareQML() {
-    qmlRegisterType<AllowControl>("ReynTweetsControls",
-                                  0, 1,
-                                  "AllowControl");
+	qmlRegisterType<AllowControl>("ReynTweetsControls",
+								  0, 1,
+								  "AllowControl");
 }
 
 
@@ -46,11 +46,11 @@ void AllowControl::declareQML() {
 /////////////////////////
 
 LoginControl * AllowControl::getLoginControl() {
-    return control;
+	return control;
 }
 
 void AllowControl::setLoginControl(LoginControl * ctrl) {
-    control = ctrl;
+	control = ctrl;
 }
 
 
@@ -61,72 +61,71 @@ void AllowControl::setLoginControl(LoginControl * ctrl) {
 
 // Allowing Reyn Tweets to use a Twitter Account
 void AllowControl::allowReynTweets() {
-    if (processing) {
-        return;
-    }
+	if (processing) {
+		return;
+	}
 
-    connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-            this, SLOT(allowOK(ProcessWrapper)));
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(allowOK(ProcessWrapper)));
 
-    allowWiring();
-    processing = true;
-    emit showInfoMessage(AllowControl::trUtf8("Authorizing Reyn Tweets..."));
-    reyn.allowReynTweets();
+	allowWiring();
+	processing = true;
+	emit showInfoMessage(AllowControl::trUtf8("Authorizing Reyn Tweets..."));
+	reyn.allowReynTweets();
 }
 
 // After an authentication, if needed.
 void AllowControl::allowOK(ProcessWrapper res) {
-    ProcessResult result = res.accessResult(this);
+	ProcessResult result = res.accessResult(this);
 
-    // The result was not for the object. Stop the treatment.
-    if (INVALID_ISSUE == result.processIssue) {
-        processing = false;
-        return;
-    }
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		return invalidEnd();
+	}
 
-    // Disconnect
-    disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-               this, SLOT(allowOK(ProcessWrapper)));
-    allowUnwiring();
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(allowOK(ProcessWrapper)));
+	allowUnwiring();
 
-    QString displayMessage = result.errorMsg;
-    CoreResult issue = result.processIssue;
+	QString displayMessage = result.errorMsg;
+	CoreResult issue = result.processIssue;
 
-    switch (issue) {
-        case ALLOW_SUCCESSFUL:
-            // Process successful
-            emit actionEnded(true,
-                            AllowControl::trUtf8("Reyn Tweets was authorized"),
-                            false);
-            break;
+	switch (issue) {
+		case ALLOW_SUCCESSFUL:
+			// Process successful
+			emit actionEnded(true,
+							AllowControl::trUtf8("Reyn Tweets was authorized"),
+							false);
+			break;
 
-        case DENIED:
-            // Process successful but Reyn Tweets was denied :(
-            displayMessage = AllowControl::trUtf8("Reyn Tweets was denied.");
+		case DENIED:
+			// Process successful but Reyn Tweets was denied :(
+			displayMessage = AllowControl::trUtf8("Reyn Tweets was denied.");
 
-        // Problems that can be solved trying later
-        case RATE_LIMITED:	// The user reached rates.
-        case TWITTER_DOWN:	// Twitter does not respond.
-            emit actionEnded(false, displayMessage, false);
-            break;
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+			emit actionEnded(false, displayMessage, false);
+			break;
 
-        // Problems during process
-        case TOKENS_NOT_AUTHORIZED:
-        case PARSE_ERROR:
-        case POST_AUTHORIZING_FAILED:
-        case NO_TOKENS:
+		// Problems during process
+		case TOKENS_NOT_AUTHORIZED:
+		case PARSE_ERROR:
+		case POST_AUTHORIZING_FAILED:
+		case NO_TOKENS:
 
-        // Problems with configuration file
-        case CONFIGURATION_FILE_UNKNOWN:
-        case CONFIGURATION_FILE_NOT_OPEN:
+		// Problems with configuration file
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 
-        // Unknown ends
-        case UNKNOWN_PROBLEM:
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
 
-        default:
-            emit actionEnded(false, displayMessage, false);
-            break;
-    }
+		default:
+			emit actionEnded(false, displayMessage, false);
+			break;
+	}
 }
 
 
@@ -136,48 +135,48 @@ void AllowControl::allowOK(ProcessWrapper res) {
 
 // Wiring
 void AllowControl::allowWiring() {
-    if (!control) {
-        emit actionEnded(false, AllowControl::trUtf8("No control"), true);
-        processing = false;
-        return;
-    }
+	if (!control) {
+		emit actionEnded(false, AllowControl::trUtf8("No control"), true);
+		processing = false;
+		return;
+	}
 
-    // Telling the user that its credentials are required
-    connect(&reyn, SIGNAL(userCredentialsNeeded()),
-            this, SLOT(credentialsNeeded()));
+	// Telling the user that its credentials are required
+	connect(&reyn, SIGNAL(userCredentialsNeeded()),
+			this, SLOT(credentialsNeeded()));
 
-    // Authorizing (or denying) Reyn Tweets
-    connect(control, SIGNAL(authorize(QString,QString)),
-            &reyn, SLOT(authorizeReynTweets(QString,QString)));
-    connect(control, SIGNAL(deny(QString,QString)),
-            &reyn, SLOT(denyReynTweets(QString,QString)));
+	// Authorizing (or denying) Reyn Tweets
+	connect(control, SIGNAL(authorize(QString,QString)),
+			&reyn, SLOT(authorizeReynTweets(QString,QString)));
+	connect(control, SIGNAL(deny(QString,QString)),
+			&reyn, SLOT(denyReynTweets(QString,QString)));
 
-    // When credentials given by the user are right or wrong
-    connect(&reyn, SIGNAL(credentialsValid(bool)),
-            this, SLOT(validCredentials(bool)));
+	// When credentials given by the user are right or wrong
+	connect(&reyn, SIGNAL(credentialsValid(bool)),
+			this, SLOT(validCredentials(bool)));
 }
 
 // Unwiring
 void AllowControl::allowUnwiring() {
-    if (!control) {
-        emit actionEnded(false, AllowControl::trUtf8("No control"), true);
-        processing = false;
-        return;
-    }
+	if (!control) {
+		emit actionEnded(false, AllowControl::trUtf8("No control"), true);
+		processing = false;
+		return;
+	}
 
-    // Telling the user that its credentials are required
-    disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
-               this, SLOT(credentialsNeeded()));
+	// Telling the user that its credentials are required
+	disconnect(&reyn, SIGNAL(userCredentialsNeeded()),
+			   this, SLOT(credentialsNeeded()));
 
-    // Authorizing (or denying) Reyn Tweets
-    disconnect(control, SIGNAL(authorize(QString,QString)),
-               &reyn, SLOT(authorizeReynTweets(QString,QString)));
-    disconnect(control, SIGNAL(deny(QString,QString)),
-               &reyn, SLOT(denyReynTweets(QString,QString)));
+	// Authorizing (or denying) Reyn Tweets
+	disconnect(control, SIGNAL(authorize(QString,QString)),
+			   &reyn, SLOT(authorizeReynTweets(QString,QString)));
+	disconnect(control, SIGNAL(deny(QString,QString)),
+			   &reyn, SLOT(denyReynTweets(QString,QString)));
 
-    // When credentials given by the user are right or wrong
-    disconnect(&reyn, SIGNAL(credentialsValid(bool)),
-               this, SLOT(validCredentials(bool)));
+	// When credentials given by the user are right or wrong
+	disconnect(&reyn, SIGNAL(credentialsValid(bool)),
+			   this, SLOT(validCredentials(bool)));
 }
 
 
@@ -187,23 +186,23 @@ void AllowControl::allowUnwiring() {
 
 // Credentials OK ?
 void AllowControl::validCredentials(bool valid) {
-    if (!control) {
-        emit actionEnded(false, AllowControl::trUtf8("No control"), true);
-        processing = false;
-        return;
-    }
+	if (!control) {
+		emit actionEnded(false, AllowControl::trUtf8("No control"), true);
+		processing = false;
+		return;
+	}
 
-    if (valid) {
-        // Hiding the login popup
-        emit showLoginPopup(false);
-    } else {
-        // Informing the user that the credentials are wrong
-        control->wrongCredentials();
-    }
+	if (valid) {
+		// Hiding the login popup
+		emit showLoginPopup(false);
+	} else {
+		// Informing the user that the credentials are wrong
+		control->wrongCredentials();
+	}
 }
 
 // Reyn needs credentials
 void AllowControl::credentialsNeeded() {
-    // Displaying the popup to enter credentials
-    emit showLoginPopup(true);
+	// Displaying the popup to enter credentials
+	emit showLoginPopup(true);
 }

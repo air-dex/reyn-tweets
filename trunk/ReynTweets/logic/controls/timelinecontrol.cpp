@@ -152,8 +152,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = true;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -225,8 +224,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = true;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -331,8 +329,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = true;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -445,8 +442,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = true;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect

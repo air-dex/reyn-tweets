@@ -87,6 +87,10 @@ class GenericControl : public QObject
 
 		/// @brief Boolean indicating if the control is in a process
 		bool processing;
+
+		/// @fn void invalidEnd();
+		/// @brief Generic treatment for invalid issues.
+		void invalidEnd();
 };
 
 #endif // GENERICCONTROL_HPP

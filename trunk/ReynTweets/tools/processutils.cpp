@@ -161,10 +161,16 @@ void ProcessUtils::treatApiCallResult(RequestResult result,
 {
 	// Building error message
 	errorMsg = QObject::trUtf8("Network error ");
-	errorMsg.append(QString::number(result.httpResponse.code))
+	errorMsg.append(QString::number(result.httpResponse.code));
+
+	if (!result.httpResponse.message.isEmpty()) {
+		errorMsg.append(" (")
+				.append(result.httpResponse.message)
+				.append(")");
+	}
+
+	errorMsg.append(result.httpResponse.message)
 			.append(" : ")
-			.append(result.httpResponse.message)
-			.append(" :\n")
 			.append(result.errorMessage)
 			.append('.');
 

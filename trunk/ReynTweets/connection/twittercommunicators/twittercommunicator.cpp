@@ -176,7 +176,7 @@ void TwitterCommunicator::timeout() {
 
 	// Analysing the response
 	httpResponse.code = 0;
-	httpResponse.message = "timeout";
+	httpResponse.message = "";
 	errorMessage = "timeout";
 	replyURL = serviceURL;
 	responseBuffer = "";

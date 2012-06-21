@@ -95,11 +95,9 @@ QVariantMap TweetControl::getVariantTweet() {
 
 // Writing the tweet property
 void TweetControl::setVariantTweet(QVariantMap newStatus) {
-	//if (newStatus.type() == QVariant::Map) {
-		status->reset();
-		status->fillWithVariant(newStatus);
-		emit tweetChanged();
-	//}
+	status->reset();
+	status->fillWithVariant(newStatus);
+	emit tweetChanged();
 }
 
 
@@ -130,8 +128,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -183,7 +180,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 
 
 /////////////
-// Refresh //
+// Sharing //
 /////////////
 
 void TweetControl::shareByMail() {
@@ -251,8 +248,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -329,8 +325,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -399,8 +394,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect
@@ -473,8 +467,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 
 	// The result was not for the object. Stop the treatment.
 	if (INVALID_ISSUE == result.processIssue) {
-		processing = false;
-		return;
+		return invalidEnd();
 	}
 
 	// Disconnect

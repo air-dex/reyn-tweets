@@ -134,7 +134,8 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		return;
+		buildResult(false, INVALID_ISSUE, LaunchingProcess::trUtf8("Dead end"), false);
+		return endProcess();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),

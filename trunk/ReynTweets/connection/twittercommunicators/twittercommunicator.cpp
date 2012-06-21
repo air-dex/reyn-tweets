@@ -51,6 +51,7 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 										 HeadersMap & headersParam) :
 	QObject(),
 	network(&REYN_TWEETS_NETWORK_MANAGER),
+	timeoutTimer(),
 	serviceURL(url),
 	requestType(type),
 	getParameters(getArgs),
@@ -60,10 +61,18 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 	httpResponse(),
 	errorMessage("Request not done"),
 	replyURL("")
-{}
+{
+	// Setting the timer
+	timeoutTimer.setInterval(10*1000); // 10 seconds
+	timeoutTimer.setSingleShot(true);
+	connect(&timeoutTimer, SIGNAL(timeout()),
+			this, SLOT(timeout()));
+}
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
+	disconnect(&timeoutTimer, SIGNAL(timeout()),
+			   this, SLOT(timeout()));
 	network = 0;
 }
 
@@ -114,6 +123,8 @@ void TwitterCommunicator::executeRequest() {
 		// There is not any POST arguments -> networkManager.get()
 		network->get(*request);
 	}
+
+	timeoutTimer.start();
 }
 
 
@@ -127,6 +138,9 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	if (!response) {
 		return;
 	}
+
+	// No timeout : stop the timer
+	timeoutTimer.stop();
 
 	// Unwiring
 	disconnect(network, SIGNAL(finished(QNetworkReply*)),
@@ -147,6 +161,25 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	qDebug(responseBuffer.data());
 	qDebug("\n");
 	//*/
+
+	// Ending the request
+	emit requestDone();
+}
+
+// Network timeout
+void TwitterCommunicator::timeout() {
+	// It seems that no response will arrive. That's enough ! Stop it !
+
+	// Unwiring
+	disconnect(network, SIGNAL(finished(QNetworkReply*)),
+			   this, SLOT(endRequest(QNetworkReply*)));
+
+	// Analysing the response
+	httpResponse.code = 0;
+	httpResponse.message = "timeout";
+	errorMessage = "timeout";
+	replyURL = serviceURL;
+	responseBuffer = "";
 
 	// Ending the request
 	emit requestDone();

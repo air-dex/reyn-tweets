@@ -42,18 +42,6 @@ void OAuthProcess::resetTokens() {
 }
 
 // Building the result of the process
-void OAuthProcess::buildResult(bool processOK,
-							   CoreResult issue,
-							   QString errMsg,
-							   bool isFatal)
-{
-	processResult = ProcessUtils::buildProcessResult(processOK,
-													 issue,
-													 errMsg,
-													 isFatal);
-}
-
-// Building the result of the process
 void OAuthProcess::buildResult(QByteArray accessToken,
 							   QByteArray tokenSecret,
 							   qlonglong userID,
@@ -96,8 +84,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -160,7 +147,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -180,8 +167,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -236,7 +222,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -263,8 +249,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -275,6 +260,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
+	bool isOK = false;
 	bool isFatal = false;
 	CoreResult issue;
 
@@ -290,15 +276,14 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 				if (rightCrdentials) {
 					if (resultMap.value("denied").toBool()) {
 						// Reyn Tweets is denied. The process ends.
-						buildResult(true, DENIED);
-						emit processEnded();
+						isOK = true;	// The process does not fail for the moment
+						issue = DENIED;
+						errorMsg = OAuthProcess::trUtf8("Reyn Tweets was denied.");
 					} else {
 						// Request tokens are authorized. Let's get access tokens.
-						accessToken();
+						return accessToken();
 					}
 				}
-
-				return;		// The process does not fail for the moment
 			} else {
 				errorMsg = OAuthProcess::trUtf8("Unexpected redirection. Process aborted.").append('\n');
 				isFatal = true;
@@ -342,7 +327,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(isOK, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -362,8 +347,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 	if (result.resultType == INVALID_RESULT) {
-		buildResult(false, INVALID_ISSUE, OAuthProcess::trUtf8("Dead end"), false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -428,6 +412,6 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }

@@ -112,11 +112,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 	RequestResult result = res.accessResult(this);
 
 	if (result.resultType == INVALID_RESULT) {
-		processResult = ProcessUtils::buildProcessResult(false,
-														 INVALID_ISSUE,
-														 PostViaTwitLongerProcess::trUtf8("Dead end"),
-														 false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
@@ -173,7 +169,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	processResult = ProcessUtils::buildProcessResult(false, issue, errorMsg, isFatal);
+	buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -200,11 +196,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 	RequestResult result = res.accessResult(this);
 
 	if (result.resultType == INVALID_RESULT) {
-		processResult = ProcessUtils::buildProcessResult(false,
-														 INVALID_ISSUE,
-														 PostViaTwitLongerProcess::trUtf8("Dead end"),
-														 false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -249,7 +241,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	processResult = ProcessUtils::buildProcessResult(false, issue, errorMsg, isFatal);
+	buildResult(false, issue, errorMsg, isFatal);
 	endProcess();
 }
 
@@ -269,11 +261,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	RequestResult result = res.accessResult(this);
 
 	if (result.resultType == INVALID_RESULT) {
-		processResult = ProcessUtils::buildProcessResult(false,
-														 INVALID_ISSUE,
-														 PostViaTwitLongerProcess::trUtf8("Dead end"),
-														 false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
@@ -321,7 +309,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	 * (TwitLonger errors, network problems, failed to parse the TwitLonger XML
 	 * response). The most important is done (posting the tweet) !
 	 */
-	processResult = ProcessUtils::buildProcessResult(isOK, issue, errorMsg, isFatal);
+	buildResult(isOK, issue, errorMsg, isFatal);
 	processResult.results = postedTweet.toVariant();
 	endProcess();
 }

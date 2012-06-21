@@ -70,6 +70,25 @@ class GenericProcess : public QObject
 		/// @fn virtual void endProcess();
 		/// @brief Ending the process
 		virtual void endProcess();
+
+		/// @fn void invalidEnd();
+		/// @brief Generic treatment for invalid issues.
+		void invalidEnd();
+
+		/// @fn void buildResult(bool processOK,
+		///						 CoreResult issue,
+		///						 QString errMsg = "",
+		///						 bool isFatal = false);
+		/// @brief Building process results
+		/// @param processOK Did the process end successfully ?
+		/// @param issue Enum value describing how it ended.
+		/// @param errMsg Error message
+		/// @param isFatal Is the issue fatal (i.e. requiring to abort
+		/// the application) ?
+		virtual void buildResult(bool processOK,
+								 CoreResult & issue,
+								 QString & errMsg,
+								 bool & isFatal);
 };
 
 #endif // GENERICPROCESS_HPP

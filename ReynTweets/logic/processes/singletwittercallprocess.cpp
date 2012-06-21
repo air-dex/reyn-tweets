@@ -43,11 +43,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	RequestResult result = res.accessResult(this);
 
 	if (result.resultType == INVALID_RESULT) {
-		ProcessUtils::buildProcessResult(false,
-										 INVALID_ISSUE,
-										 SingleTwitterCallProcess::trUtf8("Dead end"),
-										 false);
-		return endProcess();
+		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),

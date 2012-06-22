@@ -44,7 +44,7 @@ UserAccount::~UserAccount() {}
 
 // Copy constructor
 UserAccount::UserAccount(const UserAccount & account) :
-    ReynTweetsMappable()
+	ReynTweetsMappable()
 {
 	recopie(account);
 }
@@ -114,6 +114,7 @@ QVariantMap UserAccount::getUserProperty() {
 // Writing the property twitter_user
 void UserAccount::setUser(QVariantMap newUserMap) {
 	user.fillWithVariant(newUserMap);
+	emit currentUserChanged();
 }
 
 // Reading the property current_user
@@ -153,10 +154,11 @@ UserInfos UserAccount::getUser() {
 
 // Getter on user
 UserInfos & UserAccount::getUserRef() {
-    return user;
+	return user;
 }
 
 // Setter on user
 void UserAccount::setUser(UserInfos u) {
 	user = u;
+	emit currentUserChanged();
 }

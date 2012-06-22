@@ -126,7 +126,8 @@ class UserAccount : public ReynTweetsMappable
 		/// @brief Twitter user
 		Q_PROPERTY(QVariantMap twitter_user
 				   READ getUserProperty
-				   WRITE setUser)
+				   WRITE setUser
+				   NOTIFY currentUserChanged)
 
 		/// @fn QVariantMap getUserProperty();
 		/// @brief Reading the property twitter_user
@@ -195,10 +196,10 @@ class UserAccount : public ReynTweetsMappable
 		/// @return The user
 		UserInfos getUser();
 
-        /// @fn UserInfos & getUserRef();
-        /// @brief Getting a reference on the user
-        /// @return The user
-        UserInfos & getUserRef();
+		/// @fn UserInfos & getUserRef();
+		/// @brief Getting a reference on the user
+		/// @return The user
+		UserInfos & getUserRef();
 
 		/// @fn void setUser(UserInfos u);
 		/// @brief Setter on the user

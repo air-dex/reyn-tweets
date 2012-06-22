@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import ReynTweetsControls 0.1
 
 /// @class MainView
 /// @brief Main page for desktop
@@ -32,6 +33,8 @@ Rectangle {
 	property int icon_bar_size: 30
 
 	Constants {	id:constant	}
+
+	SettingsControl { id:settings }
 
 	width: constant.reyn_tweets_width
 	height: constant.reyn_tweets_height
@@ -46,6 +49,7 @@ Rectangle {
 		width: parent.width
 		height: menu_icon.height + 2*margin
 		anchors.top: main_view.top
+		anchors.topMargin: margin
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		Image {
@@ -61,6 +65,28 @@ Rectangle {
 				anchors.fill: parent
 				onClicked: menu.visible = !menu.visible
 			}
+		}
+
+//		AccountPane {
+//			id: account
+//			height: icon_bar_size
+//			anchors.horizontalCenter: parent.horizontalCenter
+//			anchors.verticalCenter: parent.verticalCenter
+//			onShowProfile: console.log("TODO : show profile")
+//		}
+
+		ActionElement {
+			id: account
+			height: icon_bar_size
+			image_source: settings.configuration.current_account.current_user.profile_image_url
+			legend: '<strong style="color: '
+				.concat(settings.configuration.current_account.current_user.profile_link_color)
+				.concat('">@')
+				.concat(settings.configuration.current_account.current_user.screen_name)
+				.concat("</strong>")
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.verticalCenter: parent.verticalCenter
+			onAct: console.log("TODO : show profile")
 		}
 
 		Image {

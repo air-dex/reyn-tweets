@@ -118,7 +118,8 @@ class ReynTweetsUserConfiguration : public ReynTweetsMappable
 		/// @brief Serializable form of the account
 		Q_PROPERTY(QVariantMap user_account
 				   READ getUserAccountProperty
-				   WRITE setUserAccount)
+				   WRITE setUserAccount
+				   NOTIFY currentAccountChanged)
 
 		/// @fn QVariantMap getUserAccountProperty();
 		/// @brief Reading the property user_account

@@ -280,33 +280,33 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="87"/>
+        <location filename="../ui/qml/MainView.qml" line="136"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translation>Your tweet is too long. Would you post it with TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="90"/>
+        <location filename="../ui/qml/MainView.qml" line="139"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="158"/>
+        <location filename="../ui/qml/MainView.qml" line="207"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="159"/>
+        <location filename="../ui/qml/MainView.qml" line="208"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Would to like to authorize Reyn Tweets again ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="162"/>
+        <location filename="../ui/qml/MainView.qml" line="211"/>
         <source>Reauthorize</source>
         <translation>Reauthorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="97"/>
-        <location filename="../ui/qml/MainView.qml" line="169"/>
+        <location filename="../ui/qml/MainView.qml" line="146"/>
+        <location filename="../ui/qml/MainView.qml" line="218"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -474,35 +474,30 @@
         <translation>Error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="150"/>
-        <source>Request : </source>
-        <translation>Request: </translation>
-    </message>
-    <message>
-        <location filename="../tools/processutils.cpp" line="163"/>
+        <location filename="../tools/processutils.cpp" line="160"/>
         <source>Network error </source>
         <translation>Network error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="186"/>
-        <location filename="../tools/processutils.cpp" line="202"/>
-        <location filename="../tools/processutils.cpp" line="221"/>
+        <location filename="../tools/processutils.cpp" line="183"/>
+        <location filename="../tools/processutils.cpp" line="199"/>
+        <location filename="../tools/processutils.cpp" line="218"/>
         <source>Parsing error:</source>
         <translation>Parsing error:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="188"/>
-        <location filename="../tools/processutils.cpp" line="204"/>
+        <location filename="../tools/processutils.cpp" line="185"/>
+        <location filename="../tools/processutils.cpp" line="201"/>
         <source>Line </source>
         <translation>Line </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="207"/>
+        <location filename="../tools/processutils.cpp" line="204"/>
         <source>Column </source>
         <translation>Column </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="234"/>
+        <location filename="../tools/processutils.cpp" line="231"/>
         <source>Unexpected problem:</source>
         <translation>Unexpected problem:</translation>
     </message>
@@ -536,6 +531,29 @@
     </message>
 </context>
 <context>
+    <name>RTDesktopMenu</name>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="75"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="82"/>
+        <source>About Reyn Tweets</source>
+        <translation>About Reyn Tweets</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="90"/>
+        <source>Help</source>
+        <translation>Help</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="98"/>
+        <source>Quit</source>
+        <translation>Quit</translation>
+    </message>
+</context>
+<context>
     <name>RequestTokenRequester</name>
     <message>
         <location filename="../connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
@@ -546,34 +564,34 @@
 <context>
     <name>TimelineControl</name>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="144"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="152"/>
         <source>Loading timeline...</source>
         <translation>Loading timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="170"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="178"/>
         <source>Timeline loaded</source>
         <translation>Timeline loaded</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="216"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="321"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="224"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="329"/>
         <source>Refreshing timeline...</source>
         <translation>Refreshing timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="275"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="383"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="283"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="391"/>
         <source>Timeline refreshed</source>
         <translation>Timeline refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="434"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="442"/>
         <source>Loading more tweets...</source>
         <translation>Loading more tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="462"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="470"/>
         <source>Tweets loaded</source>
         <translation>Tweets loaded</translation>
     </message>
@@ -791,6 +809,14 @@
         <location filename="../ui/qml/TweetPane.qml" line="626"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
+    </message>
+</context>
+<context>
+    <name>TwitterRequester</name>
+    <message>
+        <location filename="../connection/requests/twitterrequester.cpp" line="132"/>
+        <source>Error in request </source>
+        <translation>Error in request </translation>
     </message>
 </context>
 <context>

@@ -225,6 +225,7 @@ Rectangle {
 		tweet_edit.cursorPosition = tweet_edit.text.length
 		in_reply_to_tweet_id = replyToTweetID
 		in_reply_to_user = replyToScreenName
+		visible = true
 
 		// TODO : a box asking if it is a reply for the user
 	}
@@ -233,6 +234,7 @@ Rectangle {
 	function writeTweet(tweetText) {
 		tweet_edit.text = tweetText
 		tweet_edit.cursorPosition = 0
+		visible = true
 	}
 
 	// Readjusting the number depending on the URLS contained in the text.

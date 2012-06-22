@@ -146,9 +146,6 @@ QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
 	errorMsg.append(QString::number(twitterErrors.at(0).code))
 			.append(" : ")
 			.append(twitterErrors.at(0).message)
-			.append(".\n")
-			.append(QObject::trUtf8("Request : "))
-			.append(twitterErrors.at(1).message)
 			.append('.');
 
 	return errorMsg;

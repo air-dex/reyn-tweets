@@ -129,10 +129,12 @@ void TwitterRequester::treatParsedResult() {
 					ResponseInfos twitterError;
 					twitterError.code = httpReturnCode;
 
-					twitterError.message = resultMap.value("error").toString();
-					requestResult.serviceErrors.append(twitterError);
+					twitterError.message = TwitterRequester::trUtf8("Error in request ");
+					twitterError.message.append(resultMap.value("request").toString());
+					twitterError.message.append(" : ");
+					twitterError.message.append(resultMap.value("error").toString());
+					twitterError.message.append('.');
 
-					twitterError.message = resultMap.value("request").toString();
 					requestResult.serviceErrors.append(twitterError);
 
 					requestResult.resultType = SERVICE_ERRORS;

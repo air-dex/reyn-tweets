@@ -27,7 +27,9 @@ import QtQuick 1.1
 /// @brief Main page for desktop
 Rectangle {
 	id: main_view
+
 	property int margin: 5
+	property int icon_bar_size: 30
 
 	Constants {	id:constant	}
 
@@ -38,11 +40,58 @@ Rectangle {
 	// Header //
 	////////////
 
+	// First bar with menu
 	Item {
 		id: header
 		width: parent.width
-		height: write_icon.height + 2*margin
+		height: menu_icon.height + 2*margin
 		anchors.top: main_view.top
+		anchors.horizontalCenter: parent.horizontalCenter
+
+		Image {
+			id: menu_icon
+			source: "../../resources/Logo Reyn Tweets PNG.png"
+			anchors.left: parent.left
+			anchors.leftMargin: margin
+			anchors.verticalCenter: parent.verticalCenter
+			sourceSize.height: icon_bar_size
+			fillMode: Image.PreserveAspectFit
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: menu.visible = !menu.visible
+			}
+		}
+
+		Image {
+			id: close_icon
+			source: "../../resources/icons/close_cross.png"
+			anchors.right: parent.right
+			anchors.rightMargin: margin
+			anchors.verticalCenter: parent.verticalCenter
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: Qt.quit()
+			}
+		}
+	}
+
+	// The menu
+//	ReynTweetsDesktopMenu {
+//		id: menu
+//		z: timeline.z + 1
+//		anchors.left: parent.left
+//		anchors.top: header.bottom
+//		visible: false
+//	}
+
+	// Second bar with actions
+	Item {
+		id: icon_bar
+		width: parent.width
+		height: write_icon.height + 2*margin
+		anchors.top: header.bottom
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		Image {
@@ -69,7 +118,7 @@ Rectangle {
 		id: write_tweet
 		z: htl_tab.z + 1
 		width: parent.width
-		anchors.top: header.bottom
+		anchors.top: icon_bar.bottom
 		anchors.horizontalCenter: parent.horizontalCenter
 		visible: false
 	}
@@ -113,7 +162,7 @@ Rectangle {
 	HomeTimelineTab {
 		id: htl_tab
 		width: parent.width
-		anchors.top: write_tweet.visible ? write_tweet.bottom : header.bottom
+		anchors.top: write_tweet.visible ? write_tweet.bottom : icon_bar.bottom
 		anchors.right: main_view.right
 		anchors.left: main_view.left
 		anchors.bottom: main_view.bottom

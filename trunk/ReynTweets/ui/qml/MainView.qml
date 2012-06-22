@@ -34,16 +34,44 @@ Rectangle {
 	width: constant.reyn_tweets_width
 	height: constant.reyn_tweets_height
 
+	////////////
+	// Header //
+	////////////
+
+	Item {
+		id: header
+		width: parent.width
+		height: write_icon.height + 2*margin
+		anchors.top: main_view.top
+		anchors.horizontalCenter: parent.horizontalCenter
+
+		Image {
+			id: write_icon
+			source: "../../resources/icons/stylo.png"
+			anchors.right: parent.right
+			anchors.rightMargin: margin
+			anchors.verticalCenter: parent.verticalCenter
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: write_tweet.visible = !write_tweet.visible
+			}
+		}
+	}
+
+
 	/////////////////////
 	// Writing a tweet //
 	/////////////////////
 
-	// Component displayed while launching the application
+	// Pane to write a tweet
 	WriteTweetPane {
 		id: write_tweet
+		z: htl_tab.z + 1
 		width: parent.width
-		anchors.top: main_view.top
+		anchors.top: header.bottom
 		anchors.horizontalCenter: parent.horizontalCenter
+		visible: false
 	}
 
 	// Pane displayed to show a tweet via TwitLonger
@@ -85,7 +113,7 @@ Rectangle {
 	HomeTimelineTab {
 		id: htl_tab
 		width: parent.width
-		anchors.top: write_tweet.bottom
+		anchors.top: write_tweet.visible ? write_tweet.bottom : header.bottom
 		anchors.right: main_view.right
 		anchors.left: main_view.left
 		anchors.bottom: main_view.bottom

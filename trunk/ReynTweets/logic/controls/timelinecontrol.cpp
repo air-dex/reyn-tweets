@@ -43,12 +43,20 @@ void TimelineControl::declareQML() {
 
 // Read
 QVariantList TimelineControl::getVariantTimeline() {
-	return timeline.toVariant();
+	return variantTimeline;
 }
 
 // Write
-void TimelineControl::setVariantTimeline(QVariantList variantTimeline) {
-	timeline.fillWithVariant(variantTimeline);
+void TimelineControl::setVariantTimeline(QVariantList newVariantTimeline) {
+	variantTimeline = newVariantTimeline;
+	timeline.fillWithVariant(newVariantTimeline);
+	emit timelineChanged();
+}
+
+// Updating variantTimeline with timeline
+void TimelineControl::updateVariantTimeline() {
+	variantTimeline = timeline.toVariant();
+	emit timelineChanged();
 }
 
 
@@ -165,7 +173,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
 			timeline.fillWithVariant(resList);
-			emit timelineChanged();
+			updateVariantTimeline();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
 			break;
@@ -271,7 +279,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			timeline.append(newerTweets);
 
 			// Process successful
-			emit timelineChanged();
+			updateVariantTimeline();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -379,7 +387,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			timeline.append(newerTweets);
 
 			// Process successful
-			emit timelineChanged();
+			updateVariantTimeline();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -457,7 +465,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 		case TIMELINE_RETRIEVED:
 			newTweets.fillWithVariant(resList);
 			timeline.append(newTweets);
-			emit timelineChanged();
+			updateVariantTimeline();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
 			break;

@@ -37,14 +37,14 @@ Rectangle {
 	radius: margin
 
 	// Border properties
-	border.color: constant.grey
+	border.color: constant.light_orange_author
 	border.width: 1
 
 	// Background Gradation
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: constant.grey
+			color: constant.light_orange_author
 		}
 
 		GradientStop {
@@ -54,7 +54,7 @@ Rectangle {
 
 		GradientStop {
 			position: 1
-			color: constant.grey
+			color: constant.light_orange_author
 		}
 	}
 
@@ -86,6 +86,7 @@ Rectangle {
 		// Show help
 		ActionElement {
 			id: help_action
+			image_source: "../../resources/icons/help.png"
 			legend: qsTr("Help")
 			onAct: console.log("The Beatles rules !")
 		}

@@ -118,6 +118,7 @@ QVariantMap ReynTweetsUserConfiguration::getUserAccountProperty() {
 // Writing the property p_userAccount
 void ReynTweetsUserConfiguration::setUserAccount(QVariantMap accountMap) {
 	userAccount.fillWithVariant(accountMap);
+	emit currentAccountChanged();
 }
 
 // Reading the property current_account
@@ -151,6 +152,7 @@ UserAccount & ReynTweetsUserConfiguration::getUserAccountRef() {
 // Setter on userAccount
 void ReynTweetsUserConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
+	emit currentAccountChanged();
 }
 
 // Loading the configuration

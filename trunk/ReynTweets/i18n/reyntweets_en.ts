@@ -118,7 +118,7 @@
 <context>
     <name>HomeTimelineTab</name>
     <message>
-        <location filename="../ui/qml/HomeTimelineTab.qml" line="19"/>
+        <location filename="../ui/qml/HomeTimelineTab.qml" line="42"/>
         <source>Home timeline</source>
         <translation>Home timeline</translation>
     </message>
@@ -280,35 +280,43 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="59"/>
+        <location filename="../ui/qml/MainView.qml" line="87"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translation>Your tweet is too long. Would you post it with TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="62"/>
+        <location filename="../ui/qml/MainView.qml" line="90"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="130"/>
+        <location filename="../ui/qml/MainView.qml" line="158"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="131"/>
+        <location filename="../ui/qml/MainView.qml" line="159"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Would to like to authorize Reyn Tweets again ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="134"/>
+        <location filename="../ui/qml/MainView.qml" line="162"/>
         <source>Reauthorize</source>
         <translation>Reauthorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="69"/>
-        <location filename="../ui/qml/MainView.qml" line="141"/>
+        <location filename="../ui/qml/MainView.qml" line="97"/>
+        <location filename="../ui/qml/MainView.qml" line="169"/>
         <source>No</source>
         <translation>No</translation>
+    </message>
+</context>
+<context>
+    <name>MentionsTimelineTab</name>
+    <message>
+        <location filename="../ui/qml/MentionsTimelineTab.qml" line="42"/>
+        <source>Mentions</source>
+        <translation>Mentions</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<!--
+
+Created with Inkscape (http://www.inkscape.org/)
+
+Copyright (C) 2012 Romain Ducher
+
+This file is part of Reyn Tweets.
+
+Reyn Tweets is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Reyn Tweets is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Reyn Tweets.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
 
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -16,8 +37,8 @@
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="close_cross.svg"
    inkscape:export-filename="/home/ducher/ReynTweets/trunk/ReynTweets/resources/icons/close_cross.png"
-   inkscape:export-xdpi="27"
-   inkscape:export-ydpi="27">
+   inkscape:export-xdpi="14.400001"
+   inkscape:export-ydpi="14.400001">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -28,7 +49,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-176.42857"
+     inkscape:cx="-173.57143"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="g3793"

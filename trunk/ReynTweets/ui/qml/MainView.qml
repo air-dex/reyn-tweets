@@ -78,13 +78,13 @@ Rectangle {
 	}
 
 	// The menu
-//	ReynTweetsDesktopMenu {
-//		id: menu
-//		z: timeline.z + 1
-//		anchors.left: parent.left
-//		anchors.top: header.bottom
-//		visible: false
-//	}
+	RTDesktopMenu {
+		id: menu
+		z: write_tweet.z + 1
+		anchors.left: parent.left
+		anchors.top: header.bottom
+		visible: false
+	}
 
 	// Second bar with actions
 	Item {

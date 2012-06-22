@@ -26,6 +26,9 @@
 
 #include "twitlongerrequester.hpp"
 
+/// @class PostToTwitLongerRequester
+/// @brief Posting a long message on TwitLonger and receive a shortened version
+/// of this message.
 class PostToTwitLongerRequester : public TwitLongerRequester
 {
 	Q_OBJECT

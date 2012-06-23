@@ -24,6 +24,36 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+Qt.include("twitter-text-js-wrapper.js")
+
+// Maximum between two numbers
 function max(a, b) {
 	return (a > b) ? a : b;
+}
+
+// Minimum between two numbers
+function min(a, b) {
+	return (a < b) ? a : b;
+}
+
+/*
+ * Number of characters that the user is allowed to write
+ * in a tweet whose text would be "message".
+ */
+function getCharactersLeft(message) {
+	var charsAllowed = 140 - message.length
+
+	// Readjusting the number depending on the URLS contained in the text
+	var urls = twttr.txt.extractUrls(message);
+
+	for (var i in urls) {
+		var url = urls[i]
+
+		// Length of the t.co shortened URL
+		var tcoLength = (url.search("https") === 0) ? 21 : 20
+
+		charsAllowed += (url.length - tcoLength)
+	}
+
+	return charsAllowed;
 }

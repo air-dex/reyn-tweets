@@ -30,7 +30,7 @@ Rectangle {
 	id: main_view
 
 	property int margin: 5
-	property int icon_bar_size: 30
+	property int icon_bar_size: 40
 
 	Constants {	id:constant	}
 
@@ -47,7 +47,7 @@ Rectangle {
 	Item {
 		id: header
 		width: parent.width
-		height: menu_icon.height + 2*margin
+		height: icon_bar_size
 		anchors.top: main_view.top
 		anchors.topMargin: margin
 		anchors.horizontalCenter: parent.horizontalCenter
@@ -67,26 +67,13 @@ Rectangle {
 			}
 		}
 
-//		AccountPane {
-//			id: account
-//			height: icon_bar_size
-//			anchors.horizontalCenter: parent.horizontalCenter
-//			anchors.verticalCenter: parent.verticalCenter
-//			onShowProfile: console.log("TODO : show profile")
-//		}
-
-		ActionElement {
+		AccountPane {
 			id: account
-			height: icon_bar_size
-			image_source: settings.configuration.current_account.current_user.profile_image_url
-			legend: '<strong style="color: '
-				.concat(settings.configuration.current_account.current_user.profile_link_color)
-				.concat('">@')
-				.concat(settings.configuration.current_account.current_user.screen_name)
-				.concat("</strong>")
+			freeSizeMode: false
+			givenSize: icon_bar_size
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.verticalCenter: parent.verticalCenter
-			onAct: console.log("TODO : show profile")
+			onShowProfile: console.log("TODO : show profile")
 		}
 
 		Image {
@@ -110,14 +97,29 @@ Rectangle {
 		anchors.left: parent.left
 		anchors.top: header.bottom
 		visible: false
+
+		onSayHello: console.log("TODO : Reyn Tweets settings")
+
+		// Show settings
+		onSetReyn: {
+			settings_pane.visible = true
+			menu.visible = false
+		}
+
+		onAboutReyn: console.log("TODO : Reyn Tweets is an awesome Twitter client.")
+		onHelpReyn: console.log("TODO : The Beatles rules !")
+
+		// Quit the app
+		onQuit: Qt.quit()
 	}
 
 	// Second bar with actions
 	Item {
 		id: icon_bar
 		width: parent.width
-		height: write_icon.height + 2*margin
+		height: write_icon.height
 		anchors.top: header.bottom
+		anchors.topMargin: margin
 		anchors.horizontalCenter: parent.horizontalCenter
 
 		Image {
@@ -179,20 +181,43 @@ Rectangle {
 	}
 
 
-	////////////////////
-	// Showing tweets //
-	////////////////////
-	property alias timeline: htl_tab.timeline
-
-	// Home timeline (subject to future changes)
-	HomeTimelineTab {
-		id: htl_tab
+	// Body of the page
+	Item {
+		id: body_view
 		width: parent.width
 		anchors.top: write_tweet.visible ? write_tweet.bottom : icon_bar.bottom
+		anchors.topMargin: write_tweet.visible ? 0 : margin
 		anchors.right: main_view.right
 		anchors.left: main_view.left
 		anchors.bottom: main_view.bottom
+
+		//////////////
+		// Settings //
+		//////////////
+
+		// Pane with settings
+		SettingsPane {
+			id: settings_pane
+			z: htl_tab.z + 1
+			width: parent.width
+			anchors.fill: parent
+			visible: false
+		}
+
+
+		////////////////////
+		// Showing tweets //
+		////////////////////
+
+		// Home timeline (subject to future changes)
+		HomeTimelineTab {
+			id: htl_tab
+			width: parent.width
+			anchors.fill: parent
+		}
 	}
+
+	property alias timeline: htl_tab.timeline
 
 
 	////////////////////////////////////////
@@ -289,7 +314,9 @@ Rectangle {
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
 		write_tweet.askTwitLonger.connect(twitlonger_pane.twitLongerAsked)
 
-		// Wiring twitlonger_pane
+		// Wiring settings_pane
+		settings_pane.endAction.connect(main_view.endAction)
+		settings_pane.showInfoMessage.connect(main_view.displayInfoMessage)
 	}
 
 	// Loading the home timeline

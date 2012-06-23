@@ -160,10 +160,16 @@ ReynTweetsUserConfiguration & ReynCore::getUserConfiguration() {
 	return userConfiguration;
 }
 
+// Setting the user configuration
+void ReynCore::setUserConfiguration(ReynTweetsUserConfiguration userConf) {
+	userConfiguration = userConf;
+}
+
 // Getting a reference on the configuration of Reyn Tweets
 ReynTweetsAppConfiguration & ReynCore::getAppConfiguration() {
 	return appConfiguration;
 }
+
 
 //////////////////////////////////
 // Launching and authentication //

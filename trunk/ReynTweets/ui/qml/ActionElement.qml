@@ -23,20 +23,26 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import "jstools.js" as Tools
 
 // QML Component with an icon and a description that can be clicked to do sthg
 Item {
 	id: action_element
 	width: act_icon.width + action_row.spacing + act_legend.width
-	height: (act_icon.height < act_legend.height) ?
-				act_legend.height
-			  : act_icon.height
+	height: Tools.max(freeSizeMode ? act_icon.height : givenSize,
+					  act_legend.height)
 
 	// Source of the image in the icon
 	property string image_source
 
 	// Description of the action to realize
 	property string legend
+
+	// Source of the image in the icon
+	property bool freeSizeMode: true
+
+	// Source of the image in the icon
+	property int givenSize: act_legend.height
 
 	// That will be done while clicking
 	signal act
@@ -69,4 +75,30 @@ Item {
 		anchors.fill: parent
 		onClicked: action_element.act();
 	}
+
+	states: [
+		State {
+			name: "free_size"
+			when: freeSizeMode
+			PropertyChanges {
+				target: action_element
+				height: Tools.max(act_icon.height, act_legend.height)
+			}
+		},
+		State {
+			name: "limit_size"
+			when: !freeSizeMode
+			PropertyChanges {
+				target: action_element
+				height: Tools.max(givenSize, act_legend.height)
+			}
+
+			PropertyChanges {
+				target: act_icon
+				height: givenSize
+				sourceSize.height: givenSize
+				fillMode: Image.PreserveAspectFit
+			}
+		}
+	]
 }

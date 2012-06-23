@@ -1,5 +1,5 @@
 /// @file AccountPane.qml
-/// @brief Pane dealing with accounts
+/// @brief Pane displaying informations about Reyn Tweets
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -22,23 +22,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
-import ReynTweetsControls 0.1
-import ReynTweetsEntities 0.1
 
-ActionElement {
-	id: account_pane
-
-	// Access to the settings
-	SettingsControl { id: settings }
-
-	// Sent to show a profile
-	signal showProfile
-
-	image_source: settings.configuration.current_account.current_user.profile_image_url
-	legend: '<strong style="color: '
-		.concat(settings.configuration.current_account.current_user.profile_link_color)
-		.concat('">@')
-		.concat(settings.configuration.current_account.current_user.screen_name)
-		.concat("</strong>")
-	onAct: showProfile()
+Rectangle {
+	width: 100
+	height: 62
 }

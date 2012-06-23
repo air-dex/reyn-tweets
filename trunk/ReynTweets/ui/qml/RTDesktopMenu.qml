@@ -71,16 +71,23 @@ Rectangle {
 
 		// Settings of the application
 		ActionElement {
+			id: hello_action
+			legend: qsTr("Say hello")
+			onAct: sayHello()
+		}
+
+		// Settings of the application
+		ActionElement {
 			id: settings_action
 			legend: qsTr("Settings")
-			onAct: console.log("Reyn Tweets settings")
+			onAct: setReyn()
 		}
 
 		// About Reyn Tweets
 		ActionElement {
 			id: about_action
 			legend: qsTr("About Reyn Tweets")
-			onAct: console.log("Reyn Tweets is an awesome Twitter client.")
+			onAct: aboutReyn()
 		}
 
 		// Show help
@@ -88,7 +95,7 @@ Rectangle {
 			id: help_action
 			image_source: "../../resources/icons/help.png"
 			legend: qsTr("Help")
-			onAct: console.log("The Beatles rules !")
+			onAct: helpReyn()
 		}
 
 		// Quit the application
@@ -96,9 +103,20 @@ Rectangle {
 			id: quit_action
 			image_source: "../../resources/icons/close_cross.png"
 			legend: qsTr("Quit")
-			onAct: Qt.quit()
+			onAct: quit()
 		}
 	}
+
+	/////////////
+	// Signals //
+	/////////////
+
+	// In the same order of the actions
+	signal sayHello
+	signal setReyn
+	signal aboutReyn
+	signal helpReyn
+	signal quit
 }
 
 

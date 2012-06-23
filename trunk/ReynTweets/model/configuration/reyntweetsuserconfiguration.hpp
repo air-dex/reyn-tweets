@@ -135,12 +135,18 @@ class ReynTweetsUserConfiguration : public ReynTweetsMappable
 		/// @brief QML read only property to access to the user account.
 		Q_PROPERTY(UserAccount * current_account
 				   READ getCurrentAccount
+				   WRITE setCurrentAccount
 				   NOTIFY currentAccountChanged)
 
 		/// @fn UserAccount * getCurrentAccount();
 		/// @brief Reading the property current_account
 		/// @return The user account
 		UserAccount * getCurrentAccount();
+
+		/// @fn void setCurrentAccount(UserAccount * account);
+		/// @brief Writing the property current_account
+		/// @param account New value for the account
+		void setCurrentAccount(UserAccount * account);
 
 
 	signals:

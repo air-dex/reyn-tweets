@@ -126,6 +126,17 @@ UserAccount * ReynTweetsUserConfiguration::getCurrentAccount() {
 	return &userAccount;
 }
 
+// Writing the property current_account
+void ReynTweetsUserConfiguration::setCurrentAccount(UserAccount * account) {
+	if (account) {
+		userAccount = *account;
+	} else {
+		userAccount.reset();
+	}
+
+	emit currentAccountChanged();
+}
+
 
 ////////////////////
 // Static members //

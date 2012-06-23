@@ -43,10 +43,18 @@ class SettingsControl : public GenericControl
 		/// @brief Declaring SettingsControl to the QML system
 		static void declareQML();
 
+		/// @fn Q_INVOKABLE void saveChanges();
+		/// @brief Saving changes in the configuration
+		Q_INVOKABLE void saveChanges();
+
 	signals:
 		/// @fn void configurationChanged();
 		/// @brief Emitted to notify changes about the configuration property
 		void configurationChanged();
+
+		/// @fn void currentAccountChanged();
+		/// @brief Emitted to notify changes about the current_account property
+		void currentAccountChanged();
 
 	protected:
 		/// @brief Reference on the configuration of Reyn Tweets
@@ -56,11 +64,35 @@ class SettingsControl : public GenericControl
 		/// @brief Read only property to access to the configuration for QML.
 		Q_PROPERTY(ReynTweetsUserConfiguration * configuration
 				   READ getConfiguration
+				   WRITE setConfiguration
 				   NOTIFY configurationChanged)
 
 		/// @fn ReynTweetsConfiguration * getConfiguration();
 		/// @brief Reading the configuration property
+		/// @return Pointer on conf.
 		ReynTweetsUserConfiguration * getConfiguration();
+
+		/// @fn void setConfiguration(ReynTweetsUserConfiguration * config);
+		/// @brief Writing the configuration property
+		/// @param config New value for the configuration
+		void setConfiguration(ReynTweetsUserConfiguration * config);
+
+		/// @property current_account
+		/// @brief Shortcut for configuration.current_account
+		Q_PROPERTY(UserAccount * current_account
+				   READ getCurrentAccount
+				   WRITE setCurrentAccount
+				   NOTIFY currentAccountChanged)
+
+		/// @fn UserAccount * getCurrentAccount();
+		/// @brief Reading the current_account property
+		/// @return Pointer on conf.current_account
+		UserAccount * getCurrentAccount();
+
+		/// @fn void setCurrentAccount(UserAccount * account);
+		/// @brief Writing the current_account property
+		/// @param account New value for the account
+		void setCurrentAccount(UserAccount *account);
 };
 
 #endif // SETTINGSCONTROL_HPP

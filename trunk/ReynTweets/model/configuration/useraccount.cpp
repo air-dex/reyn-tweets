@@ -34,7 +34,8 @@ UserAccount::UserAccount() :
 	ReynTweetsMappable(),
 	accessToken(""),
 	tokenSecret(""),
-	user()
+	user(),
+	helloMessage("")
 {
 	blacklistProperties();
 }
@@ -61,6 +62,7 @@ void UserAccount::recopie(const UserAccount & account) {
 	accessToken = account.accessToken;
 	tokenSecret = account.tokenSecret;
 	user = account.user;
+	helloMessage = account.helloMessage;
 }
 
 // Serialization declaration
@@ -161,4 +163,15 @@ UserInfos & UserAccount::getUserRef() {
 void UserAccount::setUser(UserInfos u) {
 	user = u;
 	emit currentUserChanged();
+}
+
+// Reading hello_message
+QString UserAccount::getHelloMessage() {
+	return helloMessage;
+}
+
+// Writing hello_message
+void UserAccount::setHelloMessage(QString newMsg) {
+	helloMessage = newMsg;
+	emit helloMessageChanged();
 }

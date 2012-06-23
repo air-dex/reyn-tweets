@@ -24,6 +24,7 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
+import "jstools.js" as Tools
 import "twitter-text-js-wrapper.js" as TwitterTextJS
 
 Rectangle {
@@ -241,21 +242,7 @@ Rectangle {
 	// In the final tweet, URLs will be shortened with t.co and the corresponding
 	// t.co URLs have got fixed lengthes : 21 chars for https URLs, 20 otherwise.
 	function getCharsLeft() {
-		var charsAllowed = 140 - tweet_edit.text.length
-
-		// Readjusting the number depending on the URLS contained in the text
-		var urls = TwitterTextJS.twttr.txt.extractUrls(tweet_edit.text);
-
-		for (var i in urls) {
-			var url = urls[i]
-
-			// Length of the t.co shortened URL
-			var tcoLength = (url.search("https") === 0) ? 21 : 20
-
-			charsAllowed += (url.length - tcoLength)
-		}
-
-		return charsAllowed;
+		return Tools.getCharactersLeft(tweet_edit.text);
 	}
 
 	// What to do after posting a tweet

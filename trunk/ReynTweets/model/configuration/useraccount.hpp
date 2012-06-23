@@ -107,6 +107,10 @@ class UserAccount : public ReynTweetsMappable
 		/// </ul>
 		void blacklistProperties();
 
+		//////////////
+		// Settings //
+		//////////////
+
 		// Access Token
 		/// @property access_token
 		/// @brief Access token
@@ -150,10 +154,26 @@ class UserAccount : public ReynTweetsMappable
 		/// @return A pointer on user
 		UserInfos * getCurrentUser();
 
+
+		// Hello message
+		/// @property hello_message
+		/// @brief Message to say hello.
+		///
+		/// The helloMessage attribute is behind this property.
+		Q_PROPERTY(QString hello_message
+				   READ getHelloMessage
+				   WRITE setHelloMessage
+				   NOTIFY helloMessageChanged)
+
+
 	signals:
 		/// @fn void currentUserChanged();
 		/// @brief Notifying changes about current_user
 		void currentUserChanged();
+
+		/// @fn void helloMessageChanged();
+		/// @brief Notifying changes about hello_message
+		void helloMessageChanged();
 
 
 	//////////////////////////////
@@ -169,6 +189,9 @@ class UserAccount : public ReynTweetsMappable
 
 		/// @brief User of the account
 		UserInfos user;
+
+		/// @brief Message to say hello
+		QString helloMessage;
 
 	public:
 		/// @fn QByteArray getAccessToken();
@@ -205,6 +228,16 @@ class UserAccount : public ReynTweetsMappable
 		/// @brief Setter on the user
 		/// @param u The new user
 		void setUser(UserInfos u);
+
+		/// @fn QString getHelloMessage();
+		/// @brief Reading the property hello_message
+		/// @return helloMessage
+		QString getHelloMessage();
+
+		/// @fn void setHelloMessage(QString newMsg);
+		/// @brief Writing the property hello_message
+		/// @param newMsg New value for helloMessage
+		void setHelloMessage(QString newMsg);
 };
 
 // Serialization of UserAccount

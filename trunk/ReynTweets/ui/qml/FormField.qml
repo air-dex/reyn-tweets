@@ -39,7 +39,7 @@ Rectangle {
 	property string legend: "Description:"
 
 	/// @brief Default text in the input
-	property string field_text: field.text
+	property alias field_text: field.text
 
 	id: form_field
 	property int spacing: 10

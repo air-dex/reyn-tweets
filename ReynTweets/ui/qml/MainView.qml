@@ -98,7 +98,11 @@ Rectangle {
 		anchors.top: header.bottom
 		visible: false
 
-		onSayHello: console.log("TODO : Reyn Tweets settings")
+		onSayHello: {
+			// Display the pane to write with the hello message
+			write_tweet.writeTweet(settings.configuration.user_account.hello_message)
+			menu.visible = false
+		}
 
 		// Show settings
 		onSetReyn: {

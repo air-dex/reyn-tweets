@@ -31,6 +31,7 @@ Rectangle {
 	id: timeline_pane
 	width: 360
 	height: 640
+	color: constant.orange_author
 
 	Constants { id: constant }
 

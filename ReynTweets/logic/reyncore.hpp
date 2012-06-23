@@ -130,6 +130,11 @@ class ReynCore : public QObject
 		/// @return Reference on userConfiguration
 		static ReynTweetsUserConfiguration & getUserConfiguration();
 
+		/// @fn static void setUserConfiguration(ReynTweetsUserConfiguration userConf);
+		/// @brief Setting the user configuration
+		/// @param userConf New value for userConfiguration
+		static void setUserConfiguration(ReynTweetsUserConfiguration userConf);
+
 		/// @fn static ReynTweetsAppConfiguration & getAppConfiguration();
 		/// @brief Getting a reference on the application configuration
 		/// @return Reference on appConfiguration

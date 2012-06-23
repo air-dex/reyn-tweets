@@ -281,34 +281,34 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="136"/>
+        <location filename="../ui/qml/MainView.qml" line="164"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translatorcomment>À reformuler</translatorcomment>
         <translation>Votre tweet est trop long. Voulez vous l&apos;envoyer avec TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="139"/>
+        <location filename="../ui/qml/MainView.qml" line="167"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="207"/>
+        <location filename="../ui/qml/MainView.qml" line="258"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>Les tokens OAuth n&apos;ont pas été jugés bon. Vous devriez réautoriser Reyn Tweets.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="208"/>
+        <location filename="../ui/qml/MainView.qml" line="259"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Voulez-vous réautoriser Reyn Tweets ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="211"/>
+        <location filename="../ui/qml/MainView.qml" line="262"/>
         <source>Reauthorize</source>
         <translation>Réautoriser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="146"/>
-        <location filename="../ui/qml/MainView.qml" line="218"/>
+        <location filename="../ui/qml/MainView.qml" line="174"/>
+        <location filename="../ui/qml/MainView.qml" line="269"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -537,21 +537,26 @@
     <name>RTDesktopMenu</name>
     <message>
         <location filename="../ui/qml/RTDesktopMenu.qml" line="75"/>
+        <source>Say hello</source>
+        <translation>Dire bonjour</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="82"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="82"/>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="89"/>
         <source>About Reyn Tweets</source>
         <translation>À propos de Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="90"/>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="97"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="98"/>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="105"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
@@ -562,6 +567,57 @@
         <location filename="../connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
         <source>Unexpected parameter &apos;</source>
         <translation>Paramètre inattendu : &apos;</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsControl</name>
+    <message>
+        <location filename="../logic/controls/settingscontrol.cpp" line="47"/>
+        <source>Updating configuration...</source>
+        <translation>Mise à jour de la configuration...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/settingscontrol.cpp" line="57"/>
+        <source>Settings updated</source>
+        <translation>Configuration à jour</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/settingscontrol.cpp" line="63"/>
+        <source>Configuration file not found</source>
+        <translation>Fichier de configuration introuvable</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/settingscontrol.cpp" line="69"/>
+        <source>Cannot open configuration file</source>
+        <translation>Impossible d&apos;ouvrir le fichier de configuration</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/settingscontrol.cpp" line="75"/>
+        <source>Unknown problem</source>
+        <translation>Problème inconnu</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPane</name>
+    <message>
+        <location filename="../ui/qml/SettingsPane.qml" line="52"/>
+        <source>Settings</source>
+        <translation>Paramètres</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/SettingsPane.qml" line="113"/>
+        <source>Hello message :</source>
+        <translation>Message de bienvenue :</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/SettingsPane.qml" line="168"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/SettingsPane.qml" line="191"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -602,27 +658,27 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="59"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="60"/>
         <source>Pull down to refresh</source>
         <translation>Tirez pour actualiser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="67"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="68"/>
         <source>Release to refresh</source>
         <translation>Relâchez pour actualiser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="150"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="151"/>
         <source>More...</source>
         <translation>Plus...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="271"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="272"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="275"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="276"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
@@ -853,42 +909,42 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="81"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="82"/>
         <source>What is happening ?</source>
         <translation>Quoi de neuf ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="153"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="154"/>
         <source>Tweet</source>
         <translation>Tweeter</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="178"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="179"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Le tweet dépasse les 140 caractères.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="199"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Le tweet comporte un ou plusieurs caractère(s) invalide(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="209"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="210"/>
         <source>You have to write something to tweet.</source>
         <translation>Vous devez écrire quelque chose pour pouvoir le tweeter.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="172"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="173"/>
         <source>too long</source>
         <translation>trop long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="142"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="143"/>
         <source>Erase</source>
         <translation>Effacer</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="193"/>
+        <location filename="../ui/qml/WriteTweetPane.qml" line="194"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>caractère(s) invalide(s)</translation>

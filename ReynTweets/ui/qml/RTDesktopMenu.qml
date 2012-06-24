@@ -90,6 +90,13 @@ Rectangle {
 			onAct: aboutReyn()
 		}
 
+		// About Reyn Tweets
+		ActionElement {
+			id: about_qt
+			legend: qsTr("About Qt")
+			onAct: aboutQt()
+		}
+
 		// Show help
 		ActionElement {
 			id: help_action
@@ -115,6 +122,7 @@ Rectangle {
 	signal sayHello
 	signal setReyn
 	signal aboutReyn
+	signal aboutQt
 	signal helpReyn
 	signal quit
 }

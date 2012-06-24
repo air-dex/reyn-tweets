@@ -40,7 +40,7 @@ class TimelineControl : public GenericControl
 		TimelineControl();
 
 		/// @fn static void declareQML();
-		/// @brief Declaring TweetControl to the QML system
+		/// @brief Declaring TimelineControl to the QML system
 		static void declareQML();
 
 		/// @fn Q_INVOKABLE void loadHomeTimeline();

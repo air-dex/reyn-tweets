@@ -4,32 +4,37 @@
 <context>
     <name>AboutPane</name>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="52"/>
+        <location filename="../ui/qml/AboutPane.qml" line="51"/>
         <source>About Reyn Tweets</source>
         <translation>About Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="170"/>
+        <location filename="../ui/qml/AboutPane.qml" line="150"/>
+        <source>Website : </source>
+        <translation>Website: </translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="171"/>
         <source>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</source>
         <translation>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="173"/>
+        <location filename="../ui/qml/AboutPane.qml" line="174"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="178"/>
+        <location filename="../ui/qml/AboutPane.qml" line="179"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
         <translation>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="183"/>
+        <location filename="../ui/qml/AboutPane.qml" line="184"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
         <translation>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="206"/>
+        <location filename="../ui/qml/AboutPane.qml" line="226"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -169,7 +174,7 @@
     <message>
         <location filename="../ui/qml/LaunchingPane.qml" line="99"/>
         <source>Website : </source>
-        <translation>Website : </translation>
+        <translation>Website: </translation>
     </message>
     <message>
         <location filename="../ui/qml/LaunchingPane.qml" line="219"/>

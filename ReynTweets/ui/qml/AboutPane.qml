@@ -24,7 +24,6 @@
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
-import "jstools.js" as Tools
 
 Rectangle {
 	id: about_pane
@@ -88,11 +87,12 @@ Rectangle {
 		Rectangle {
 			id: about_board
 			width: about_pane.width
-			height: 8*margin + reyn_tweets_icon.height
+			height: 10*margin + reyn_tweets_icon.height
 					+ program_name_label.height + version_label.height
 					+ copyright_label.height + body_label.height
+					+ website_label.height
 
-			anchors.fill: about_pane
+			//anchors.fill: about_pane
 			z: about_flick.z + 1
 			color: constant.white
 
@@ -139,22 +139,23 @@ Rectangle {
 				font.pixelSize: constant.font_size
 			}
 
-			// Text for copyright
+			// Text for website
 			Text {
-				id: copyright_label
+				id: website_label
 
-				anchors.horizontalCenter: parent.horizontalCenter
 				anchors.top: version_label.bottom
-				anchors.topMargin: margin
+				anchors.topMargin: 2*margin
+				anchors.horizontalCenter: parent.horizontalCenter
 
-				text: '(C) 2012 Romain DUCHER (<a href="https://twitter.com/#!/air_dex" \
-					   style="text-decoration: none; color: '.concat(constant.orange)
-					  .concat('">@air_dex</a>)')
+				text: qsTr("Website : ").concat('<a href="http://code.google.com/p/reyn-tweets/"')
+					.concat('style="text-decoration:none; color: ')
+					.concat(constant.orange)
+					.concat('">http://code.google.com/p/reyn-tweeets/</a>')
 				font.family: constant.font
 				font.bold: false
-				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
-				font.pixelSize: constant.font_small_size
+				verticalAlignment: Text.AlignVCenter
+				font.pixelSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 			}
 
@@ -164,7 +165,7 @@ Rectangle {
 				width: parent.width - 2*margin
 
 				anchors.horizontalCenter: parent.horizontalCenter
-				anchors.top: copyright_label.bottom
+				anchors.top: website_label.bottom
 				anchors.topMargin: 2*margin
 
 				text: qsTr('Reyn Tweets is an open source Twitter client for \
@@ -182,8 +183,8 @@ Public License for more details.'))
 				.concat('<br/><br/>')
 				.concat(qsTr('You should have received a copy of the GNU Lesser \
 General Public License along with Reyn Tweets. If not, see '))
-.concat('<a style="color: ').concat(constant.orange).concat('" href=\
-"http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.')
+.concat('<a style="text-decoration:none; color: ').concat(constant.orange)
+.concat('" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.')
 				textFormat: Text.RichText
 				font.family: constant.font
 				font.bold: false
@@ -192,6 +193,25 @@ General Public License along with Reyn Tweets. If not, see '))
 				font.pixelSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+			}
+
+			// Text for copyright
+			Text {
+				id: copyright_label
+
+				anchors.horizontalCenter: parent.horizontalCenter
+				anchors.top: body_label.bottom
+				anchors.topMargin: 2*margin
+
+				text: '(C) 2012 Romain DUCHER (<a href="https://twitter.com/#!/air_dex" \
+					   style="text-decoration: none; color: '.concat(constant.orange)
+					  .concat('">@air_dex</a>)')
+				font.family: constant.font
+				font.bold: false
+				verticalAlignment: Text.AlignVCenter
+				horizontalAlignment: Text.AlignHCenter
+				font.pixelSize: constant.font_small_size
+				onLinkActivated: Qt.openUrlExternally(link)
 			}
 		}
 	}

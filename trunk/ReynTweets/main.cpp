@@ -74,6 +74,7 @@ void declareReynTweetsControls() {
 	TimelineControl::declareQML();
 	TweetControl::declareQML();
 	SettingsControl::declareQML();
+	ReynControl::declareQML();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);

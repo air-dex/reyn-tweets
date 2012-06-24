@@ -40,7 +40,7 @@ class WriteTweetControl : public GenericControl
 		WriteTweetControl();
 
 		/// @fn static void declareQML();
-		/// @brief Declaring TweetControl to the QML system
+		/// @brief Declaring WriteTweetControl to the QML system
 		static void declareQML();
 
 		/// @fn Q_INVOKABLE void postTweet(QString tweet,

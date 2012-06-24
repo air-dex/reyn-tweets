@@ -66,7 +66,7 @@ class UserAccount : public ReynTweetsMappable
 		static void initSystem();
 
 		/// @fn static void declareQML();
-		/// @brief Declaring ReynTweetsConfiguration to the QML system
+		/// @brief Declaring UserAccount to the QML system
 		static void declareQML();
 
 		/// @fn void reset();

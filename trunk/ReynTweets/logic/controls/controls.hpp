@@ -27,6 +27,7 @@
 #include "allowcontrol.hpp"
 #include "launchingcontrol.hpp"
 #include "logincontrol.hpp"
+#include "reyncontrol.hpp"
 #include "settingscontrol.hpp"
 #include "tweetcontrol.hpp"
 #include "timelinecontrol.hpp"

@@ -2,6 +2,39 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="en_US" sourcelanguage="en">
 <context>
+    <name>AboutPane</name>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="52"/>
+        <source>About Reyn Tweets</source>
+        <translation>About Reyn Tweets</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="170"/>
+        <source>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</source>
+        <translation>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="173"/>
+        <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
+        <translation>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="178"/>
+        <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
+        <translation>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="183"/>
+        <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
+        <translation>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/AboutPane.qml" line="206"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+</context>
+<context>
     <name>AccessTokenRequester</name>
     <message>
         <location filename="../connection/requests/oauth/accesstokenrequester.cpp" line="103"/>
@@ -280,33 +313,33 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="164"/>
+        <location filename="../ui/qml/MainView.qml" line="192"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translation>Your tweet is too long. Would you post it with TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="167"/>
+        <location filename="../ui/qml/MainView.qml" line="195"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="258"/>
+        <location filename="../ui/qml/MainView.qml" line="298"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="259"/>
+        <location filename="../ui/qml/MainView.qml" line="299"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Would to like to authorize Reyn Tweets again ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="262"/>
+        <location filename="../ui/qml/MainView.qml" line="302"/>
         <source>Reauthorize</source>
         <translation>Reauthorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="174"/>
-        <location filename="../ui/qml/MainView.qml" line="269"/>
+        <location filename="../ui/qml/MainView.qml" line="202"/>
+        <location filename="../ui/qml/MainView.qml" line="309"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -548,12 +581,17 @@
         <translation>About Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="97"/>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="96"/>
+        <source>About Qt</source>
+        <translation>About Qt</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="104"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="105"/>
+        <location filename="../ui/qml/RTDesktopMenu.qml" line="112"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>
@@ -569,27 +607,27 @@
 <context>
     <name>SettingsControl</name>
     <message>
-        <location filename="../logic/controls/settingscontrol.cpp" line="47"/>
+        <location filename="../logic/controls/settingscontrol.cpp" line="79"/>
         <source>Updating configuration...</source>
         <translation>Updating configuration...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/settingscontrol.cpp" line="57"/>
+        <location filename="../logic/controls/settingscontrol.cpp" line="89"/>
         <source>Settings updated</source>
         <translation>Settings updated</translation>
     </message>
     <message>
-        <location filename="../logic/controls/settingscontrol.cpp" line="63"/>
+        <location filename="../logic/controls/settingscontrol.cpp" line="95"/>
         <source>Configuration file not found</source>
         <translation>Configuration file not found</translation>
     </message>
     <message>
-        <location filename="../logic/controls/settingscontrol.cpp" line="69"/>
+        <location filename="../logic/controls/settingscontrol.cpp" line="101"/>
         <source>Cannot open configuration file</source>
         <translation>Cannot open configuration file</translation>
     </message>
     <message>
-        <location filename="../logic/controls/settingscontrol.cpp" line="75"/>
+        <location filename="../logic/controls/settingscontrol.cpp" line="107"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
@@ -607,7 +645,7 @@
         <translation>Hello message:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="168"/>
+        <location filename="../ui/qml/SettingsPane.qml" line="172"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>

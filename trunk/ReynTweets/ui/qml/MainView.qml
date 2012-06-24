@@ -34,7 +34,7 @@ Rectangle {
 
 	Constants {	id:constant	}
 
-	SettingsControl { id:settings }
+	ReynControl { id:reyn_control }
 
 	width: constant.reyn_tweets_width
 	height: constant.reyn_tweets_height
@@ -98,6 +98,12 @@ Rectangle {
 		anchors.top: header.bottom
 		visible: false
 
+		function shutAllPanes() {
+			settings_pane.visible = false
+			about_pane.visible = false
+			//help_pane.visible = false
+		}
+
 		onSayHello: {
 			// Display the pane to write with the hello message
 			write_tweet.writeTweet(settings.configuration.user_account.hello_message)
@@ -106,12 +112,30 @@ Rectangle {
 
 		// Show settings
 		onSetReyn: {
+			shutAllPanes()
 			settings_pane.visible = true
 			menu.visible = false
 		}
 
-		onAboutReyn: console.log("TODO : Reyn Tweets is an awesome Twitter client.")
-		onHelpReyn: console.log("TODO : The Beatles rules !")
+		onAboutReyn: {
+			// Display the pane to write with the hello message
+			shutAllPanes()
+			about_pane.visible = true
+			menu.visible = false
+		}
+
+		onAboutQt: {
+			// Display the pane with informations about Qt
+			menu.visible = false
+			reyn_control.aboutQt()
+		}
+
+		onHelpReyn: {
+			// Display the pane to write with the hello message
+			console.log("TODO : The Beatles rules !")
+			shutAllPanes()
+			menu.visible = false
+		}
 
 		// Quit the app
 		onQuit: Qt.quit()
@@ -218,6 +242,18 @@ Rectangle {
 			id: htl_tab
 			width: parent.width
 			anchors.fill: parent
+		}
+
+
+		///////////////////////
+		// About Reyn Tweets //
+		///////////////////////
+		AboutPane {
+			id: about_pane
+			z: htl_tab.z + 1
+			width: parent.width
+			anchors.fill: parent
+			visible: false
 		}
 	}
 

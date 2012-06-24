@@ -89,7 +89,6 @@ Rectangle {
 			id: settings_board
 			width: settings_pane.width
 			height: say_hello.height + 2*margin
-			anchors.fill: parent
 			z: settings_flick.z + 1
 			color: constant.orange//_author
 

@@ -92,7 +92,6 @@ Rectangle {
 					+ copyright_label.height + body_label.height
 					+ website_label.height
 
-			//anchors.fill: about_pane
 			z: about_flick.z + 1
 			color: constant.white
 

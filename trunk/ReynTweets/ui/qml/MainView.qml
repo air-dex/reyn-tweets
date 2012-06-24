@@ -34,6 +34,8 @@ Rectangle {
 
 	Constants {	id:constant	}
 
+	SettingsControl { id: settings }
+
 	ReynControl { id:reyn_control }
 
 	width: constant.reyn_tweets_width

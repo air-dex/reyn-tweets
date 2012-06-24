@@ -9,32 +9,32 @@
         <translation>À propos de Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="150"/>
+        <location filename="../ui/qml/AboutPane.qml" line="149"/>
         <source>Website : </source>
         <translation>Site Internet : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="171"/>
+        <location filename="../ui/qml/AboutPane.qml" line="170"/>
         <source>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</source>
         <translation>Reyn Tweets est un client Twitter open source pour Windows, Linux et Symbian (version non encore disponible) écrit en Qt.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="174"/>
+        <location filename="../ui/qml/AboutPane.qml" line="173"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Reyn Tweets est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale GNU, telle que publiée par la Free Software Foundation, version 3 de la licence, ou (à votre discrétion) toute version ultérieure.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="179"/>
+        <location filename="../ui/qml/AboutPane.qml" line="178"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
         <translation>Reyn Tweets est distribué dans l&apos;espoir qu&apos;il vous sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de VALEUR MARCHANDE ou D&apos;ADÉQUATION À UN BESOIN PARTICULIER. Consultez la Licence Publique Générale GNU pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="184"/>
+        <location filename="../ui/qml/AboutPane.qml" line="183"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
         <translation>Vous avez dû recevoir une copie de la Licence Publique Générale GNU en même temps que Reyn Tweets. Si ce n&apos;est pas le cas, visitez </translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="226"/>
+        <location filename="../ui/qml/AboutPane.qml" line="225"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -319,34 +319,34 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="192"/>
+        <location filename="../ui/qml/MainView.qml" line="194"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translatorcomment>À reformuler</translatorcomment>
         <translation>Votre tweet est trop long. Voulez vous l&apos;envoyer avec TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="195"/>
+        <location filename="../ui/qml/MainView.qml" line="197"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="298"/>
+        <location filename="../ui/qml/MainView.qml" line="300"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>Les tokens OAuth n&apos;ont pas été jugés bon. Vous devriez réautoriser Reyn Tweets.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="299"/>
+        <location filename="../ui/qml/MainView.qml" line="301"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Voulez-vous réautoriser Reyn Tweets ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="302"/>
+        <location filename="../ui/qml/MainView.qml" line="304"/>
         <source>Reauthorize</source>
         <translation>Réautoriser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="202"/>
-        <location filename="../ui/qml/MainView.qml" line="309"/>
+        <location filename="../ui/qml/MainView.qml" line="204"/>
+        <location filename="../ui/qml/MainView.qml" line="311"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -648,17 +648,17 @@
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="113"/>
+        <location filename="../ui/qml/SettingsPane.qml" line="112"/>
         <source>Hello message :</source>
         <translation>Message de bienvenue :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="172"/>
+        <location filename="../ui/qml/SettingsPane.qml" line="171"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="191"/>
+        <location filename="../ui/qml/SettingsPane.qml" line="190"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>

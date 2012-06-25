@@ -114,6 +114,7 @@ Rectangle {
 			// Name of the program
 			Text {
 				id: program_name_label
+				width: parent.width - 2*margin
 
 				anchors.top: reyn_tweets_icon.bottom
 				anchors.topMargin: margin
@@ -123,11 +124,14 @@ Rectangle {
 				font.bold: true
 				font.family: constant.font
 				font.pixelSize: constant.font_title_size
+				verticalAlignment: Text.AlignVCenter
+				horizontalAlignment: Text.AlignHCenter
 			}
 
 			// Version of the program
 			Text {
 				id: version_label
+				width: parent.width - 2*margin
 
 				anchors.top: program_name_label.bottom
 				anchors.topMargin: margin
@@ -136,11 +140,14 @@ Rectangle {
 				text: "Version ".concat(constant.getVersion())
 				font.family: constant.font
 				font.pixelSize: constant.font_size
+				verticalAlignment: Text.AlignVCenter
+				horizontalAlignment: Text.AlignHCenter
 			}
 
 			// Text for website
 			Text {
 				id: website_label
+				width: parent.width - 2*margin
 
 				anchors.top: version_label.bottom
 				anchors.topMargin: 2*margin
@@ -197,6 +204,7 @@ General Public License along with Reyn Tweets. If not, see '))
 			// Text for copyright
 			Text {
 				id: copyright_label
+				width: parent.width - 2*margin
 
 				anchors.horizontalCenter: parent.horizontalCenter
 				anchors.top: body_label.bottom

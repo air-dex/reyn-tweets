@@ -21,17 +21,17 @@
     <message>
         <location filename="../ui/qml/AboutPane.qml" line="173"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
-        <translation>Reyn Tweets est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale GNU, telle que publiée par la Free Software Foundation, version 3 de la licence, ou (à votre discrétion) toute version ultérieure.</translation>
+        <translation>Reyn Tweets est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale Limitée GNU, telle que publiée par la Free Software Foundation, version 3 de la licence, ou (à votre discrétion) toute version ultérieure.</translation>
     </message>
     <message>
         <location filename="../ui/qml/AboutPane.qml" line="178"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
-        <translation>Reyn Tweets est distribué dans l&apos;espoir qu&apos;il vous sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de VALEUR MARCHANDE ou D&apos;ADÉQUATION À UN BESOIN PARTICULIER. Consultez la Licence Publique Générale GNU pour plus de détails.</translation>
+        <translation>Reyn Tweets est distribué dans l&apos;espoir qu&apos;il vous sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de VALEUR MARCHANDE ou D&apos;ADÉQUATION À UN BESOIN PARTICULIER. Consultez la Licence Publique Générale Limitée GNU pour plus de détails.</translation>
     </message>
     <message>
         <location filename="../ui/qml/AboutPane.qml" line="183"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
-        <translation>Vous avez dû recevoir une copie de la Licence Publique Générale GNU en même temps que Reyn Tweets. Si ce n&apos;est pas le cas, visitez </translation>
+        <translation>Vous avez dû recevoir une copie de la Licence Publique Générale Limitée GNU en même temps que Reyn Tweets. Si ce n&apos;est pas le cas, visitez </translation>
     </message>
     <message>
         <location filename="../ui/qml/AboutPane.qml" line="225"/>
@@ -742,84 +742,84 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="122"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="128"/>
         <source>Refreshing tweet...</source>
         <translation>Rafraîchissement du tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="147"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="153"/>
         <source>Tweet refreshed</source>
         <translation>Tweet mis à jour</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="154"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="160"/>
         <source>Twitter did not find the tweet.</source>
         <translation>Twitter n&apos;a pas trouvé le tweet.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="192"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="198"/>
         <source>Tweet by </source>
         <translation>Tweet de </translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="205"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="211"/>
         <source>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</source>
         <translation>Si vous ne pouvez pas ouvrir le lien en cliquant dessus, copiez-le et collez-le dans la barre d&apos;adresse de votre navigateur Web.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="207"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="213"/>
         <source>Sent via Reyn Tweets</source>
         <translation>Envoyé via Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="242"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="248"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweet en cours...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="269"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="275"/>
         <source>No retweet in the retweeted status</source>
         <translation>Pas de retweet dans le tweet retweeté</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="278"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="284"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeté</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="319"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="325"/>
         <source>Favoriting...</source>
         <translation>Mise en favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="346"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="352"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorisé</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="388"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="394"/>
         <source>Unfavoriting...</source>
         <translation>Retrait des favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="421"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="427"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet retiré des favoris</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="461"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="467"/>
         <source>Deleting the tweet...</source>
         <translation>Suppression du tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="493"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="499"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet attendu dans la réponse de Twitter.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="506"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="512"/>
         <source>Tweet deleted</source>
         <translation>Tweet supprimé</translation>
     </message>

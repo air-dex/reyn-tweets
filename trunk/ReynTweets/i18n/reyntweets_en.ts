@@ -739,84 +739,84 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="122"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="128"/>
         <source>Refreshing tweet...</source>
         <translation>Refreshing tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="147"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="153"/>
         <source>Tweet refreshed</source>
         <translation>Tweet refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="154"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="160"/>
         <source>Twitter did not find the tweet.</source>
         <translation>Twitter did not find the tweet.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="192"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="198"/>
         <source>Tweet by </source>
         <translation>Tweet by </translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="205"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="211"/>
         <source>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</source>
         <translation>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="207"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="213"/>
         <source>Sent via Reyn Tweets</source>
         <translation>Sent via Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="242"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="248"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweeting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="269"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="275"/>
         <source>No retweet in the retweeted status</source>
         <translation>No retweet in the retweeted status</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="278"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="284"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeted</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="319"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="325"/>
         <source>Favoriting...</source>
         <translation>Favoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="346"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="352"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="388"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="394"/>
         <source>Unfavoriting...</source>
         <translation>Unfavoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="421"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="427"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet unfavorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="461"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="467"/>
         <source>Deleting the tweet...</source>
         <translation>Deleting the tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="493"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="499"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="506"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="512"/>
         <source>Tweet deleted</source>
         <translation>Tweet deleted</translation>
     </message>

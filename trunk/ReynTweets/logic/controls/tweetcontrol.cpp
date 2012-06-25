@@ -34,6 +34,12 @@ TweetControl::TweetControl() :
 	status(new Tweet)
 {}
 
+// Destructor
+TweetControl::~TweetControl() {
+	delete status;
+	status = 0;
+}
+
 // Declaring TweetControl to the QML system
 void TweetControl::declareQML() {
 	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 1, "TweetControl");

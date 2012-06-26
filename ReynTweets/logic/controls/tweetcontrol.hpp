@@ -102,6 +102,12 @@ class TweetControl : public GenericControl
 
 
 	protected slots:
+		/// @fn void commitTweet();
+		/// @brief Slot executed after sending the tweetChanged(); signal. It
+		/// sends the updateTimeline(); signal to update the new value of
+		/// the tweet.
+		void commitTweet();
+
 		/// @fn void refreshEnd(ProcessWrapper res);
 		/// @brief Slot executed after refreshing the tweet
 		void refreshEnd(ProcessWrapper res);
@@ -164,28 +170,6 @@ class TweetControl : public GenericControl
 		/// @return status->getRetweetedStatus() if the tweet is a retweet,
 		/// status otherwise
 		Tweet * getShownTweet();
-
-		/// @property variant_tweet
-		/// @brief Variant form of the tweet property for syncing the tweet
-		/// displayed by the QML pane (TweetPane) and the corresponding tweet
-		/// in the timeline (Qt TimelineControl and the list model of the QML
-		/// TimelinePane).
-		///
-		/// status->toVariant() is behind this property.
-		Q_PROPERTY(QVariantMap variant_tweet
-				   READ getVariantTweet
-				   WRITE setVariantTweet
-				   NOTIFY tweetChanged)
-
-		/// @fn QVariant getVariantTweet();
-		/// @brief Reading the variant_tweet property
-		/// @return status
-		QVariantMap getVariantTweet();
-
-		/// @fn void setVariantTweet(QVariant newStatus);
-		/// @brief Writing the variant_tweet property
-		/// @param newStatus New value for variant_tweet.
-		void setVariantTweet(QVariantMap newStatus);
 };
 
 #endif // TWEETCONTROL_HPP

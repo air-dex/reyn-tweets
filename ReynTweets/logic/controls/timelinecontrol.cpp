@@ -26,6 +26,7 @@
 
 TimelineControl::TimelineControl() :
 	GenericControl(),
+	timeline(),
 	backupedNewTweet()
 {}
 
@@ -41,22 +42,9 @@ void TimelineControl::declareQML() {
 // Property management //
 /////////////////////////
 
-// Read
-QVariantList TimelineControl::getVariantTimeline() {
-	return variantTimeline;
-}
-
-// Write
-void TimelineControl::setVariantTimeline(QVariantList newVariantTimeline) {
-	variantTimeline = newVariantTimeline;
-	timeline.fillWithVariant(newVariantTimeline);
-	emit timelineChanged();
-}
-
-// Updating variantTimeline with timeline
-void TimelineControl::updateVariantTimeline() {
-	variantTimeline = timeline.toVariant();
-	emit timelineChanged();
+// Reading the property tl_length
+int TimelineControl::getTimelineLength() {
+	return timeline.size();
 }
 
 
@@ -82,8 +70,6 @@ void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 	Tweet & tweet = timeline[tweetIndex];
 	tweet.reset();
 	tweet.fillWithVariant(updatedTweet.toMap());
-
-	emit tweetUpdated(tweetIndex);
 }
 
 // Replacing a tweet
@@ -153,7 +139,6 @@ void TimelineControl::loadHomeTimeline() {
 	reyn.loadHomeTimeline(-1, -1, 50);
 }
 
-
 // After loading a timeline
 void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
@@ -173,7 +158,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
 			timeline.fillWithVariant(resList);
-			updateVariantTimeline();
+			emit timelineChanged();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
 			break;
@@ -279,7 +264,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			timeline.append(newerTweets);
 
 			// Process successful
-			updateVariantTimeline();
+			emit timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -387,7 +372,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			timeline.append(newerTweets);
 
 			// Process successful
-			updateVariantTimeline();
+			emit timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -465,7 +450,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 		case TIMELINE_RETRIEVED:
 			newTweets.fillWithVariant(resList);
 			timeline.append(newTweets);
-			updateVariantTimeline();
+			emit timelineChanged();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
 			break;

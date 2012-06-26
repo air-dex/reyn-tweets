@@ -32,12 +32,15 @@
 TweetControl::TweetControl() :
 	GenericControl(),
 	status(new Tweet)
-{}
+{
+	connect(this, SIGNAL(tweetChanged()),
+			this, SLOT(commitTweet()));
+}
 
 // Destructor
 TweetControl::~TweetControl() {
-	delete status;
-	status = 0;
+	disconnect(this, SIGNAL(tweetChanged()),
+			   this, SLOT(commitTweet()));
 }
 
 // Declaring TweetControl to the QML system
@@ -71,6 +74,10 @@ bool TweetControl::isMention() {
 	return false;
 }
 
+// Updating the timeline
+void TweetControl::commitTweet() {
+	emit updateTimeline(status->toVariant());
+}
 
 /////////////////////////
 // Property management //
@@ -92,18 +99,6 @@ void TweetControl::setTweet(Tweet * newStatus) {
 		status = newStatus;
 		emit tweetChanged();
 	}
-}
-
-// Reading the tweet property
-QVariantMap TweetControl::getVariantTweet() {
-	return status->toVariant();
-}
-
-// Writing the tweet property
-void TweetControl::setVariantTweet(QVariantMap newStatus) {
-	status->reset();
-	status->fillWithVariant(newStatus);
-	emit tweetChanged();
 }
 
 

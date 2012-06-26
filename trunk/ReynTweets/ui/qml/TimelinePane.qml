@@ -38,6 +38,7 @@ Rectangle {
 	// Control behind the pane
 	TimelineControl {
 		id: control
+		onTimelineChanged: timeline_model.syncWithTimeline()
 	}
 
 	// Text announcing what to do to refesh the timeline
@@ -81,14 +82,7 @@ Rectangle {
 		delegate: Component {
 			TweetPane {
 				width: timeline_pane.width
-
-				// Be careful when index is out of range (here -1).
-				variant_tweet: (index < 0 || index >= timeline_model.statuses.length) ?
-								   {}
-								 : timeline_model.get(index).tweetVar
-
-				// Updating the timeline
-				onVariant_tweetChanged: control.replaceTweet(variant_tweet, index)
+				tweet: control.getTweet(index)
 
 				Component.onCompleted: {
 					// When a tweet is quoted or reply to a tweet
@@ -106,10 +100,17 @@ Rectangle {
 
 					// For displaying informations
 					showInfoMessage.connect(timeline_pane.showInfoMessage)
+
+					// Updating the timeline
+					commitTweet.connect(majTweet)
 				}
 
 				function deleteTweet(newTweet) {
 					control.deleteTweet(index)
+				}
+
+				function majTweet(newTweet) {
+					control.replaceTweet(newTweet, index)
 				}
 			}
 		}
@@ -117,30 +118,13 @@ Rectangle {
 		model: ListModel {
 			id: timeline_model
 
-			// Alias on the timeline (variant form)
-			property alias statuses: control.variant_timeline
-
 			// Syncing the timeline control and the data model
 			function syncWithTimeline() {
 				timeline_model.clear();
 
-				for (var j = 0; j < statuses.length; j++) {
-					var obj = {}
-					obj.tweetVar = statuses[j]
-					timeline_model.append(obj)
+				for (var j = 0; j < control.nb_tweets; j++) {
+					timeline_model.append({})
 				}
-			}
-
-			// Syncing a particular tweet
-			function syncATweet(tweetIndex) {
-				// Do not be out of range
-				if (tweetIndex < 0 || tweetIndex >= statuses.length) {
-					return
-				}
-
-				timeline_model.setProperty(tweetIndex,
-										   "tweetVar",
-										   statuses[tweetIndex])
 			}
 		}
 
@@ -243,7 +227,6 @@ Rectangle {
 
 		// Sync between the timeline and the list model
 		control.timelineChanged.connect(timeline_model.syncWithTimeline)
-		control.tweetUpdated.connect(timeline_model.syncATweet)
 	}
 
 	// Loading the home timeline

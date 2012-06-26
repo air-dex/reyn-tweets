@@ -130,33 +130,16 @@ class TimelineControl : public GenericControl
 		/// @brief The timeline
 		Timeline timeline;
 
-		/// @brief toVariant(); version of the timeline.
-		///
-		/// This attribute is dinstinct from timeline because of performance
-		/// issues (<a href="http://code.google.com/p/reyn-tweets/issues/detail?id=104">
-		/// issue 104</a>).
-		QVariantList variantTimeline;
-
 		/// @property variant_timeline
 		/// @brief Timeline under a variant form. Used by QML for the list model.
-		Q_PROPERTY(QVariantList variant_timeline
-				   READ getVariantTimeline
-				   WRITE setVariantTimeline
+		Q_PROPERTY(int nb_tweets
+				   READ getTimelineLength
 				   NOTIFY timelineChanged)
 
-		/// @fn QVariantList getVariantTimeline();
-		/// @brief Reading the variant_timeline property
-		/// @return The corresponding QVariantList of timeline
-		QVariantList getVariantTimeline();
-
-		/// @fn void setVariantTimeline(QVariantList newVariantTimeline);
-		/// @brief Writing the variant_timeline property
-		/// @param newVariantTimeline The new timeline
-		void setVariantTimeline(QVariantList newVariantTimeline);
-
-		/// @fn void updateVariantTimeline();
-		/// @brief Updating variantTimeline with timeline
-		void updateVariantTimeline();
+		/// @fn Timeline getTimelineLength();
+		/// @brief Reading the property nb_tweets
+		/// @return timeline.length();
+		int getTimelineLength();
 
 
 		////////////////////////////////////////////////////////////

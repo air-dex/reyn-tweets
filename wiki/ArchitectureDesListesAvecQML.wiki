@@ -3,9 +3,9 @@
 
 = Architecture des listes avec QML =
 
-Aucours des développements de Reyn Tweets, il y a eu deux architectures différentes. Le changement d'architecture a eu lieu à la révision SVN r456.
+Au cours des développements de Reyn Tweets, il y a eu deux architectures différentes pour les listes. Le changement d'architecture a eu lieu à la révision SVN r456 puis il a été "annulé" (retour à l'ancienne architecture) à la révision r476.
 
-== Ancienne architecture (jusqu'à la révision r455) ==
+== Architecture en cours(jusqu'à la révision r455 et depuis la révision r476) ==
 
 Dans la vue, les listes sont des ListViews avec des ListModels derrière
 
@@ -16,14 +16,21 @@ Le délégué de la ListView va piocher l'entité dont il a besoin via une méth
 Lors d'une mise à jour, le Contrôle de l'entité simple passe la nouvelle valeur de l'entité sous forme d'un QVariant dans différents signaux jusqu'au Contrôle de la liste (via l'affichage de l'entité simple situé dans le délégué de la ListView). Le contrôle de la liste se charge ensuite de réajuster la longueur de la liste des jsobjects du ListModel.
 
 
-=== Pourquoi cette architecture peu ragoutante ? ===
+=== Pourquoi cette architecture ? ===
 
   * On évite la manipulation du QML côté Qt avec des setContext(); et autres méthodes dans ce genre. *C'est même une ligne de conduite du code de Reyn Tweets. QML contexts in Qt parts of the code are EVIL (and bullshit).*
-  * Mauvais interfaçage QML/JS (à mon avis). Incompatibilités entre jsobjects et les objets de QML et/ou objets Qt du programme déclarés via qmlRegisterTypes();. Idem entre listes QML et Arrays JS.
+  * Mauvais interfaçage QML/JS (à mon avis). Incompatibilités entre jsobjects et les objets de QML et/ou objets Qt du programme déclarés via qmlRegisterTypes();. Idem avec les listes QML pour qui on ne peut faire facilement de customisation côté Qt et qui ne s'interfacent pas avec des Arrays JS.
+
+=== Défauts ===
+  * Mauvaise approche car les données à afficher dans la liste ne sont pas dans le ListModel.
+  * Obligation de passer la valeur des nouveaux tweets lors des màj
+  * Liste de jsobjects qui sert à rien si ce n'est sa longueur.
+
+=== Avantage ===
+  * Ne passe pas par l'usine à gaz (avis personnel) des QDeclarativeXXX et des xxx_cast<> à faire côté Qt.
 
 
-
-== Nouvelle architecture (depuis la révision r456) ==
+== Architecture révisée éphémère (entre les révisions r456 et r476) ==
 
 Dans la vue QML, les listes sont des ListViews avec des ListModels derrière
 
@@ -45,11 +52,8 @@ Lors d'une mise à jour du côté de l'entité simple, les composants gérant l'
 === Inconvénients par rapport à la précédente architecture ===
   * Propriétés supplémentaires à gérer.
   * Complexité supplémentaire avec le champ "entVar" des jsobjects de la liste des jsobjects du ListModel.
+  * Plus de mémoire au final car il faut bien stocker les variant quelque part.
 
-
-
-== Évolutions possibles ==
+=== Évolutions possibles de cette seconde architecture ===
   * Réécriture des méthodes du ListModel pour qu'il aille chercher directement les infos nécessaires dans la "liste_variante" du ListModel au lieu de la liste des jsobjects. Cela éliminerait la complexité engendrée par l'encapsulation des éléments de "liste_variante" dans la liste des jsobjects. Et puis ça ferait des économies de mémoire.
-
-
 

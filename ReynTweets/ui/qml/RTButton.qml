@@ -29,13 +29,10 @@ import QtQuick 1.1
 /// @brief Custom button
 Rectangle {
 	/// @brief Distance between the text and the border
-	property int margin_value: 5
-
-	/// @brief Radius of buttons round corners
-	property int button_radius: 5
+	property int margin_value: constant.margin
 
 	/// @brief Default text for the button
-	property string button_text: "OK"
+	property alias button_text: action_text.text
 
 	/// @brief ID of the button
 	id: button
@@ -52,15 +49,18 @@ Rectangle {
 
 	// Button design
 	// Border colors and interior
-	radius: button_radius
+	radius: constant.margin
 
 	/// @brief Proportion for the gradient
 	property real bordeur: 0.25
 
+	/// @brief Proportion for the gradient
+	property string border_color: constant.grey
+
 	gradient: Gradient {
 		GradientStop {
 			position: 0
-			color: constant.grey
+			color: border_color
 		}
 
 		GradientStop {
@@ -75,7 +75,7 @@ Rectangle {
 
 		GradientStop {
 			position: 1
-			color: constant.grey
+			color: border_color
 		}
 	}
 	//border.color: "#000000"
@@ -89,7 +89,7 @@ Rectangle {
 	// Text written in the button
 	Text {
 		id: action_text
-		text: button_text
+		text: "OK"
 		horizontalAlignment: Text.AlignHCenter
 		verticalAlignment: Text.AlignVCenter
 		anchors.horizontalCenter: parent.horizontalCenter

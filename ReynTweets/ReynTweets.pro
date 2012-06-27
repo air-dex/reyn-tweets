@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkit declarative xml script
+QT += core gui network webkit declarative xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -130,12 +130,12 @@ SOURCES += \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
 	logic/controls/logincontrol.cpp \
+	logic/controls/reyncontrol.cpp \
 	logic/controls/settingscontrol.cpp \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	main.cpp \
-	logic/controls/reyncontrol.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -238,12 +238,12 @@ HEADERS  += \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
 	logic/controls/logincontrol.hpp \
+	logic/controls/reyncontrol.hpp \
 	logic/controls/settingscontrol.hpp \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp \
-	logic/controls/reyncontrol.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \

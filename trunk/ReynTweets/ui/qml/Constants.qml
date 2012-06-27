@@ -69,6 +69,9 @@ QtObject {
 	// Height
 	property int reyn_tweets_height: 640
 
+	// Margin
+	property int margin: 5
+
 
 	////////////
 	// Colors //

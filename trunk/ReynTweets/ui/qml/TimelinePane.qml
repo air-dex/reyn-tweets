@@ -132,27 +132,20 @@ Rectangle {
 			Item {
 				id: timeline_footer
 				width: timeline_view.width
-				height: timeline_footer_text.implicitHeight + 2*constant.margin
+				height: timeline_footer_button.height + 2*constant.margin
 
-				Text {
-					id: timeline_footer_text
+				RTButton {
+					id: timeline_footer_button
 					anchors.horizontalCenter: timeline_footer.horizontalCenter
 					anchors.verticalCenter: timeline_footer.verticalCenter
-					anchors.margins: constant.margin
-					text: qsTr("More...")
-					horizontalAlignment: Text.AlignHCenter
-					verticalAlignment: Text.AlignVCenter
-					font.family: constant.font
-					font.pixelSize: constant.font_size
-					wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-					visible: timeline_view.model.count > 0
+
+					border_color: constant.orange_author
+
+					button_text: qsTr("More...")
+					onClick: timeline_view.loadMore()
 				}
 
-				// Click to load more tweets
-				MouseArea {
-					anchors.fill: parent
-					onClicked: timeline_view.loadMore()
-				}
+				visible: control.nb_tweets > 0
 			}
 		}
 

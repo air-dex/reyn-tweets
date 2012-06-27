@@ -129,15 +129,30 @@ Rectangle {
 		}
 
 		footer: Component {
-			Text {
+			Item {
 				id: timeline_footer
 				width: timeline_view.width
-				text: qsTr("More...")
-				horizontalAlignment: Text.AlignHCenter
-				font.family: constant.font
-				font.pixelSize: constant.font_size
-				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-				visible: timeline_view.model.count > 0
+				height: timeline_footer_text.implicitHeight + 2*constant.margin
+
+				Text {
+					id: timeline_footer_text
+					anchors.horizontalCenter: timeline_footer.horizontalCenter
+					anchors.verticalCenter: timeline_footer.verticalCenter
+					anchors.margins: constant.margin
+					text: qsTr("More...")
+					horizontalAlignment: Text.AlignHCenter
+					verticalAlignment: Text.AlignVCenter
+					font.family: constant.font
+					font.pixelSize: constant.font_size
+					wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+					visible: timeline_view.model.count > 0
+				}
+
+				// Click to load more tweets
+				MouseArea {
+					anchors.fill: parent
+					onClicked: timeline_view.loadMore()
+				}
 			}
 		}
 
@@ -167,13 +182,18 @@ Rectangle {
 			} else if (timeline_view.atYEnd && olderDiscoverMode) {
 				// If you are at the bottom -> get older tweets
 				olderDiscoverMode = false
-				backupIndex()
-				control.moreOldHomeTimeline()
+				loadMore()
 			}
 		}
 
 		function backupIndex() {
 			indexBackup = timeline_view.indexAt(contentX, contentY)
+		}
+
+		// Loading more tweets
+		function loadMore() {
+			backupIndex()
+			control.moreOldHomeTimeline()
 		}
 
 		///////////////////////////

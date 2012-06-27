@@ -69,7 +69,11 @@ Rectangle {
 
 	Constants { id: constant }
 
-	WriteTweetControl { id: control }
+	WriteTweetControl {
+		id: control
+		onActionEnded: write_tweet_pane.visible = false
+		onAuthenticationNeeded: write_tweet_pane.visible = false
+	}
 
 	// Introduction message
 	Text {

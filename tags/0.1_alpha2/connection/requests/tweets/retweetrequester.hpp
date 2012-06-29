@@ -1,0 +1,65 @@
+/// @file retweetrequester.hpp
+/// @brief Header of RetweetRequester
+/// @author Romain Ducher
+///
+/// @section LICENSE
+///
+/// Copyright 2012 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
+#ifndef RETWEETREQUESTER_HPP
+#define RETWEETREQUESTER_HPP
+
+#include "../authenticationrequester.hpp"
+
+/// @class RetweetRequester
+/// @brief Request consisting in retweeting a tweet
+/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+class RetweetRequester : public AuthenticationRequester
+{
+		Q_OBJECT
+	public:
+		/// @fn RetweetRequester(OAuthManager & authManager,
+		///						 qlonglong statusID,
+		///						 bool withEntities = true,
+		///						 bool userIDonly = false);
+		/// @brief Constructor
+		/// @param authManager Entities with OAuth values
+		/// @param statusID ID of the tweet
+		/// @param withEntities Including Tweet Entities ?
+		/// @param userIDonly Omit user details in the reply ?
+		RetweetRequester(OAuthManager & authManager,
+						 qlonglong statusID,
+						 bool withEntities = true,
+						 bool userIDonly = false);
+
+	protected:
+		/// @brief ID of the tweet to favorite
+		qlonglong tweetID;
+
+		/// @brief Include Tweet Entities of the tweet in the reply ?
+		bool includeEntities;
+
+		/// @brief Only include the userID in the "user" field of a tweet
+		bool trimUser;
+
+		/// @fn void buildPOSTParameters();
+		/// @brief Building postParameters
+		void buildPOSTParameters();
+};
+
+#endif // RETWEETREQUESTER_HPP

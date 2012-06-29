@@ -27,7 +27,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+; (To generate a new GUID, click Tools | Generate GUID inside the IDE.) 
 AppId={{1E1EAE3F-A065-490E-AB42-D9CF40115930}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -43,8 +43,8 @@ LicenseFile=C:\Users\Romain\Documents\ReynTweets\misc\Licenses\COPYING.LESSER
 OutputDir=C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild
 OutputBaseFilename=Reyn_Tweets_Setup
 Compression=lzma
-SolidCompression=yes
-
+SolidCompression=yes 
+                 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
@@ -68,7 +68,9 @@ Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\QtWebKi
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\QtXml4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\QtXmlPatterns4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\reyntweets_en.qm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\reyntweets_fr.qm"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild\release\reyntweets_fr.qm"; DestDir: "{app}"; Flags: ignoreversion  
+Source: "C:\Users\Romain\Documents\ReynTweets\misc\Licenses\COPYING"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Romain\Documents\ReynTweets\misc\Licenses\COPYING.LESSER"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\ReynTweets\conf\*"; DestDir: "{app}\conf"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\ReynTweets\ui\*"; DestDir: "{app}\ui"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\Romain\Documents\ReynTweets\trunk\ReynTweets\resources\*"; DestDir: "{app}\resources"; Flags: ignoreversion recursesubdirs createallsubdirs

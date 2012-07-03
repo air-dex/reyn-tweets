@@ -91,6 +91,10 @@ class TimelineControl : public GenericControl
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
 
+		/// @fn void timelineChanged();
+		/// @brief Signal sent when the timeline_type property changes
+		void timelineTypeChanged();
+
 		/// @fn void tweetUpdated(int tweetIndex);
 		/// @brief Signal sent when a tweet in the timeline was updated
 		/// @param tweetIndex Index of the tweet
@@ -130,8 +134,8 @@ class TimelineControl : public GenericControl
 		/// @brief The timeline
 		Timeline timeline;
 
-		/// @property variant_timeline
-		/// @brief Timeline under a variant form. Used by QML for the list model.
+		/// @property nb_tweets
+		/// @brief Number of tweets in the timeline (timeline.size()).
 		Q_PROPERTY(int nb_tweets
 				   READ getTimelineLength
 				   NOTIFY timelineChanged)
@@ -140,6 +144,23 @@ class TimelineControl : public GenericControl
 		/// @brief Reading the property nb_tweets
 		/// @return timeline.length();
 		int getTimelineLength();
+
+		/// @property timeline_type
+		/// @brief Type of the timeline handled by the control
+		Q_PROPERTY(Timeline::TimelineType timeline_type
+				   READ getTimelineType
+				   WRITE setTimelineType
+				   NOTIFY timelineTypeChanged)
+
+		/// @fn Timeline::TimelineType getTimelineType();
+		/// @brief Reading the property timeline_type
+		/// @return timeline.getType();
+		Timeline::TimelineType getTimelineType();
+
+		/// @fn void setTimelineType(Timeline::TimelineType newType);
+		/// @brief Writing the property timeline_type
+		/// @param newType New type for the timeline
+		void setTimelineType(Timeline::TimelineType newType);
 
 
 		////////////////////////////////////////////////////////////

@@ -152,6 +152,39 @@ Rectangle {
 		anchors.topMargin: margin
 		anchors.horizontalCenter: parent.horizontalCenter
 
+		// Show home timeline
+		Image {
+			id: home_icon
+			source: "../../resources/icons/home.png"
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.horizontalCenterOffset: -margin -home_icon.width /2
+			anchors.verticalCenter: parent.verticalCenter
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: {
+					settings_pane.visible = false
+					about_pane.visible = false
+					htl_tab.visible = true
+				}
+			}
+		}
+
+		// Show mentions
+		Image {
+			id: mention_icon
+			source: "../../resources/icons/mention.png"
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.horizontalCenterOffset: margin + mention_icon.width /2
+			anchors.verticalCenter: parent.verticalCenter
+
+			MouseArea {
+				anchors.fill: parent
+				onClicked: console.log("TODO : Show mentions")
+			}
+		}
+
+		// Writing a tweet
 		Image {
 			id: write_icon
 			source: "../../resources/icons/stylo.png"

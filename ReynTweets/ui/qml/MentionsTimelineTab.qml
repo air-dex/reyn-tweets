@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import ReynTweetsEntities 0.1
 
 Rectangle {
 	id: mentions_timeline_tab
@@ -61,6 +62,7 @@ Rectangle {
 	TimelinePane {
 		id: mentions_pane
 		width: parent.width
+		timeline_type: Timeline.MENTIONS
 		anchors.right: parent.right
 		anchors.left: parent.left
 		anchors.bottom: parent.bottom

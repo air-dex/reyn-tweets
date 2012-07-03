@@ -37,9 +37,44 @@ class Timeline : public QObject, public ReynTweetsListable<Tweet>
 	Q_OBJECT
 
 	public:
-		/// @fn Timeline();
-		/// @brief Constructor
-		Timeline();
+		/// @enum TimelineType
+		/// @brief Type of timeline
+		enum TimelineType {
+			/// @brief Invalid type
+			INVALID,
+
+			/// @brief Home timeline
+			HOME,
+
+			/// @brief Timeline with mentions
+			MENTIONS,
+
+			/// @brief Timeline with favorites
+			FAVORITES,
+
+			/// @brief Timeline with DMs the user sent
+			DM_SENT,
+
+			/// @brief Timeline with DMs the user received
+			DM_RECEIVED,
+
+			/// @brief Timeline with tweets retweeted by the user
+			RT_BY_ME,
+
+			/// @brief Timeline with tweets written by the user that have been
+			/// retweeted.
+			RT_OF_ME,
+
+			/// @brief Timeline containing result of searches
+			SEARCH
+		};
+		Q_ENUMS(TimelineType)
+
+	public:
+		/// @fn Timeline(TimelineType tlType);
+		/// @brief Constructor with the type of timeline
+		/// @param tlType Type of timeline. INVALID by default.
+		Timeline(TimelineType tlType = INVALID);
 
 		/// @fn virtual ~Timeline();
 		/// @brief Destructor
@@ -83,6 +118,38 @@ class Timeline : public QObject, public ReynTweetsListable<Tweet>
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
 										Timeline & list);
+
+		///////////////////////////
+		// Properties management //
+		///////////////////////////
+
+		/// @property type
+		/// @brief Type of the timeline.
+		///
+		/// timelineType is the attribute behind the property.
+		Q_PROPERTY(TimelineType type
+				   READ getType
+				   WRITE setType
+				   NOTIFY typeChanged)
+
+		/// @brief Type of timeline
+		TimelineType timelineType;
+
+	signals:
+		/// @fn void typeChanged();
+		/// @brief Notifying changes about the property type.
+		void typeChanged();
+
+	public:
+		/// @fn TimelineType getType();
+		/// @brief Reading the property type.
+		/// @return timelineType
+		TimelineType getType();
+
+		/// @fn void setType(TimelineType newType);
+		/// @brief Writing the property type.
+		/// @param newType New value for timelineType
+		void setType(TimelineType newType);
 };
 
 // Serialization of Timeline

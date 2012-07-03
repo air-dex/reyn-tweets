@@ -37,12 +37,6 @@ TweetControl::TweetControl() :
 			this, SLOT(commitTweet()));
 }
 
-// Destructor
-TweetControl::~TweetControl() {
-	disconnect(this, SIGNAL(tweetChanged()),
-			   this, SLOT(commitTweet()));
-}
-
 // Declaring TweetControl to the QML system
 void TweetControl::declareQML() {
 	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 1, "TweetControl");

@@ -47,6 +47,17 @@ int TimelineControl::getTimelineLength() {
 	return timeline.size();
 }
 
+// Reading the property timeline_type
+Timeline::TimelineType TimelineControl::getTimelineType() {
+	return timeline.getType();
+}
+
+// Writing the property timeline_type
+void TimelineControl::setTimelineType(Timeline::TimelineType newType) {
+	timeline.setType(newType);
+	emit timelineTypeChanged();
+}
+
 
 ///////////////////////////////////
 // Accessing tweets in QML views //

@@ -27,8 +27,9 @@
 #include "timeline.hpp"
 
 // Constructor
-Timeline::Timeline() :
-	ReynTweetsListable<Tweet>()
+Timeline::Timeline(TimelineType tlType) :
+	ReynTweetsListable<Tweet>(),
+	timelineType(tlType)
 {}
 
 // Destructor
@@ -36,7 +37,7 @@ Timeline::~Timeline() {}
 
 // Copy constructor
 Timeline::Timeline(const Timeline & list) :
-    QObject(),
+	QObject(),
 	ReynTweetsListable<Tweet>()
 {
 	recopie(list);
@@ -69,4 +70,20 @@ QDataStream & operator<<(QDataStream & out, const Timeline & list) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Timeline & list) {
 	return jsonStreamingIn<Tweet>(in, list);
+}
+
+
+///////////////////////////
+// Properties management //
+///////////////////////////
+
+// Reading the property type.
+Timeline::TimelineType Timeline::getType() {
+	return timelineType;
+}
+
+// Writing the property type.
+void Timeline::setType(Timeline::TimelineType newType) {
+	timelineType = newType;
+	emit typeChanged();
 }

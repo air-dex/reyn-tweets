@@ -33,6 +33,8 @@ Rectangle {
 	height: 640
 	color: constant.orange_author
 
+	property alias timeline_type: control.timeline_type
+
 	Constants { id: constant }
 
 	// Control behind the pane
@@ -122,7 +124,12 @@ Rectangle {
 			function syncWithTimeline() {
 				timeline_model.clear();
 
-				for (var j = 0; j < control.nb_tweets; j++) {
+				console.log(typeof control.tl)
+				console.log(control.tl)
+				console.log(typeof control.tl.length)
+				console.log(control.tl.length)
+
+				for (var j = 0; j < control.tl.length; j++) {
 					timeline_model.append({})
 				}
 			}

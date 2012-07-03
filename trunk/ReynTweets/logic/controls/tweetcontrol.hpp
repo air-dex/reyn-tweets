@@ -42,10 +42,6 @@ class TweetControl : public GenericControl
 		/// @brief Constructor
 		TweetControl();
 
-		/// @fn ~TweetControl();
-		/// @brief Destructor
-		~TweetControl();
-
 		/// @fn static void declareQML();
 		/// @brief Declaring TweetControl to the QML system
 		static void declareQML();

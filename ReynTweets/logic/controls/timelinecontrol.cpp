@@ -153,6 +153,11 @@ void TimelineControl::loadTimeline() {
 			reyn.loadHomeTimeline(-1, -1, 50);
 			break;
 
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TimelineControl::trUtf8("Loading mentions..."));
+			reyn.loadMentionsTimeline(-1, -1, 50);
+			break;
+
 		default:
 			processing = false;
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
@@ -236,6 +241,11 @@ void TimelineControl::refreshTimeline() {
 		case Timeline::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
 			reyn.loadHomeTimeline(timeline.first().getID());
+			break;
+
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
+			reyn.loadMentionsTimeline(timeline.first().getID());
 			break;
 
 		default:
@@ -355,6 +365,36 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
 			reyn.loadHomeTimeline(timeline.first().getID());
 			break;
+
+		case Timeline::MENTIONS: {
+			// Refresh after write only if the user mentions himself
+			Tweet backupedTweet;
+			backupedTweet.fillWithVariant(backupedNewTweet.toMap());
+
+			ReynTweetsUserConfiguration & conf = reyn.getUserConfiguration();
+			qlonglong authorID = conf.getUserAccount().getUser().getID();
+			UserMentionList tweetMentions = backupedTweet.getEntities().getUserMentions();
+
+			for (UserMentionList::Iterator it = tweetMentions.begin();
+				 it != tweetMentions.end();
+				 ++it)
+			{
+				qlonglong userID = it->getID();
+
+				if (userID == authorID) {
+					// The user mentions itself
+					emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
+					return reyn.loadMentionsTimeline(timeline.first().getID());
+				}
+			}
+
+			// The user desn't mention itself. Just do a simple refresh.
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+
+			return refreshTimeline();
+		}break;
 
 		default:
 			processing = false;
@@ -481,6 +521,11 @@ void TimelineControl::moreOldTimeline() {
 		case Timeline::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
 			reyn.loadHomeTimeline(-1, maxTweetID, 50);
+			break;
+
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TimelineControl::trUtf8("Loading more mentions..."));
+			reyn.loadMentionsTimeline(-1, maxTweetID, 50);
 			break;
 
 		default:

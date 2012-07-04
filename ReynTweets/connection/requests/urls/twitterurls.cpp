@@ -81,6 +81,9 @@ QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/se
 // Getting the timeline with friends tweets
 QString TwitterURL::HOME_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/home_timeline.json");
 
+// Getting the timeline containing the user's mentions
+QString TwitterURL::MENTIONS_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/mentions.json");
+
 // Getting the timeline with retweets retweeted by the user
 QString TwitterURL::RETWEETED_BY_ME_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/retweeted_by_me.json");
 

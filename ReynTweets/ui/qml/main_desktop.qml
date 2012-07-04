@@ -35,7 +35,9 @@ Rectangle {
 		onEndLaunch: {
 			reyn_tweets.state = "Tweeting";
 			view.loadHomeTimeline();
+			view.loadMentionsTimeline();
 		}
+
 		onCompletedBuildChanged: {
 			if (completedBuild) {
 				splash_screen.launchReynTweets();
@@ -47,16 +49,6 @@ Rectangle {
 		id: view
 		visible: false
 		anchors.fill: reyn_tweets
-	}
-
-	Timer {
-		id: timex
-		interval: 100
-		repeat: false
-		onTriggered: {
-			splash_screen.launchReynTweets();
-			console.log("launch")
-		}
 	}
 
 	states: [

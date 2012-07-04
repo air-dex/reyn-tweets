@@ -30,6 +30,7 @@
 #include "gettweetprocess.hpp"
 #include "launchingprocess.hpp"
 #include "loadinghometimelineprocess.hpp"
+#include "loadmentionstimelineprocess.hpp"
 #include "oauthprocess.hpp"
 #include "posttweetprocess.hpp"
 #include "postviatwitlongerprocess.hpp"

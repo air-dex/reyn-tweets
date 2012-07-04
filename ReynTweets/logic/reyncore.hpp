@@ -190,6 +190,30 @@ class ReynCore : public QObject
 							  int page = 0,
 							  bool contributorsDetails = false);
 
+		/// @fn void loadMentionsTimeline(qlonglong sinceID = -1,
+		///								  qlonglong maxID = -1,
+		///								  int count = 20,
+		///								  bool trimUser = false,
+		///								  bool includeRTS = true,
+		///								  bool includeEntities = true,
+		///								  bool contributorsDetails = false);
+		/// @brief Loading the home timeline containing the mentions of the user
+		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param maxID Maximum tweet ID possible in the timeline
+		/// @param count Number of tweets
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeRTS Including retweets
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param contributorsDetails Including details about contributors
+		/// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
+		void loadMentionsTimeline(qlonglong sinceID = -1,
+								  qlonglong maxID = -1,
+								  int count = 20,
+								  bool trimUser = false,
+								  bool includeRTS = true,
+								  bool includeEntities = true,
+								  bool contributorsDetails = false);
+
 		////////////
 		// Tweets //
 		////////////

@@ -156,7 +156,7 @@
 <context>
     <name>HomeTimelineTab</name>
     <message>
-        <location filename="../ui/qml/HomeTimelineTab.qml" line="42"/>
+        <location filename="../ui/qml/HomeTimelineTab.qml" line="43"/>
         <source>Home timeline</source>
         <translation>Timeline</translation>
     </message>
@@ -319,34 +319,34 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="194"/>
+        <location filename="../ui/qml/MainView.qml" line="233"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translatorcomment>À reformuler</translatorcomment>
         <translation>Votre tweet est trop long. Voulez vous l&apos;envoyer avec TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="197"/>
+        <location filename="../ui/qml/MainView.qml" line="236"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="300"/>
+        <location filename="../ui/qml/MainView.qml" line="349"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>Les tokens OAuth n&apos;ont pas été jugés bon. Vous devriez réautoriser Reyn Tweets.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="301"/>
+        <location filename="../ui/qml/MainView.qml" line="350"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Voulez-vous réautoriser Reyn Tweets ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="304"/>
+        <location filename="../ui/qml/MainView.qml" line="353"/>
         <source>Reauthorize</source>
         <translation>Réautoriser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="204"/>
-        <location filename="../ui/qml/MainView.qml" line="311"/>
+        <location filename="../ui/qml/MainView.qml" line="243"/>
+        <location filename="../ui/qml/MainView.qml" line="360"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -354,7 +354,7 @@
 <context>
     <name>MentionsTimelineTab</name>
     <message>
-        <location filename="../ui/qml/MentionsTimelineTab.qml" line="42"/>
+        <location filename="../ui/qml/MentionsTimelineTab.qml" line="43"/>
         <source>Mentions</source>
         <translation>Mentions</translation>
     </message>
@@ -666,34 +666,58 @@
 <context>
     <name>TimelineControl</name>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="138"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="152"/>
         <source>Loading timeline...</source>
         <translation>Chargement de la timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="163"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="157"/>
+        <source>Loading mentions...</source>
+        <translation>Chargement des mentions...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="166"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="256"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="404"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="536"/>
+        <source>Invalid type of timeline</source>
+        <translation>Type de timeline invalide</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="193"/>
         <source>Timeline loaded</source>
         <translation>Timeline chargée</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="209"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="314"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="242"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="365"/>
         <source>Refreshing timeline...</source>
         <translation>Actualisation de la timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="268"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="376"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="247"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="386"/>
+        <source>Refreshing mentions...</source>
+        <translation>Actualisation des mentions...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="317"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="468"/>
         <source>Timeline refreshed</source>
         <translation>Timeline actualisée</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="427"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="522"/>
         <source>Loading more tweets...</source>
         <translation>Obtention de plus de tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="455"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="527"/>
+        <source>Loading more mentions...</source>
+        <translation>Obtention de plus de mentions...</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="566"/>
         <source>Tweets loaded</source>
         <translation>Tweets chargés</translation>
     </message>
@@ -701,27 +725,27 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="61"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="63"/>
         <source>Pull down to refresh</source>
         <translation>Tirez pour actualiser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="69"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="71"/>
         <source>Release to refresh</source>
         <translation>Relâchez pour actualiser</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="144"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="146"/>
         <source>More...</source>
         <translation>Plus...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="268"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="270"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>Une erreur fatale s&apos;est produite lors du chargement de la timeline :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="272"/>
+        <location filename="../ui/qml/TimelinePane.qml" line="274"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
@@ -742,84 +766,84 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="123"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="117"/>
         <source>Refreshing tweet...</source>
         <translation>Rafraîchissement du tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="148"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="142"/>
         <source>Tweet refreshed</source>
         <translation>Tweet mis à jour</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="155"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="149"/>
         <source>Twitter did not find the tweet.</source>
         <translation>Twitter n&apos;a pas trouvé le tweet.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="193"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="187"/>
         <source>Tweet by </source>
         <translation>Tweet de </translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="206"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="200"/>
         <source>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</source>
         <translation>Si vous ne pouvez pas ouvrir le lien en cliquant dessus, copiez-le et collez-le dans la barre d&apos;adresse de votre navigateur Web.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="208"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="202"/>
         <source>Sent via Reyn Tweets</source>
         <translation>Envoyé via Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="243"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="237"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweet en cours...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="270"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="264"/>
         <source>No retweet in the retweeted status</source>
         <translation>Pas de retweet dans le tweet retweeté</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="279"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="273"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeté</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="320"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="314"/>
         <source>Favoriting...</source>
         <translation>Mise en favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="347"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="341"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorisé</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="389"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="383"/>
         <source>Unfavoriting...</source>
         <translation>Retrait des favoris...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="422"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="416"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet retiré des favoris</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="462"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="456"/>
         <source>Deleting the tweet...</source>
         <translation>Suppression du tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="494"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="488"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet attendu dans la réponse de Twitter.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="507"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="501"/>
         <source>Tweet deleted</source>
         <translation>Tweet supprimé</translation>
     </message>

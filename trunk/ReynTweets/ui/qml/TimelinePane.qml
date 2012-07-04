@@ -124,12 +124,7 @@ Rectangle {
 			function syncWithTimeline() {
 				timeline_model.clear();
 
-				console.log(typeof control.tl)
-				console.log(control.tl)
-				console.log(typeof control.tl.length)
-				console.log(control.tl.length)
-
-				for (var j = 0; j < control.tl.length; j++) {
+				for (var j = 0; j < control.nb_tweets; j++) {
 					timeline_model.append({})
 				}
 			}
@@ -193,7 +188,7 @@ Rectangle {
 		// Loading more tweets
 		function loadMore() {
 			backupIndex()
-			control.moreOldHomeTimeline()
+			control.moreOldTimeline()
 		}
 
 		///////////////////////////
@@ -250,20 +245,20 @@ Rectangle {
 	}
 
 	// Loading the home timeline
-	function loadHomeTimeline() {
-		control.loadHomeTimeline();
+	function loadTimeline() {
+		control.loadTimeline();
 	}
 
 	// Refreshing the home timeline
 	function updateTimeline() {
 		timeline_view.backupIndex()
-		control.refreshHomeTimeline()
+		control.refreshTimeline()
 	}
 
 	// Refreshing the home timeline
 	function updateAfterWrite(newTweet) {
 		timeline_view.backupIndex()
-		control.refreshHomeTimelineAfterWrite(newTweet)
+		control.refreshTimelineAfterWrite(newTweet)
 	}
 
 	// What happened after loading the timeline

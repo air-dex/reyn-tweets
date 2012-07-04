@@ -43,22 +43,10 @@ class TimelineControl : public GenericControl
 		/// @brief Declaring TimelineControl to the QML system
 		static void declareQML();
 
-		/// @fn Q_INVOKABLE void loadHomeTimeline();
-		/// @brief Loading the home timeline
-		Q_INVOKABLE void loadHomeTimeline();
 
-		/// @fn Q_INVOKABLE void refreshHomeTimeline();
-		/// @brief Refreshing the home timeline
-		Q_INVOKABLE void refreshHomeTimeline();
-
-		/// @fn Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
-		/// @brief Refreshing the home timeline after writing a tweet
-		/// @param newTweetVariant Newly written tweet under its QVariant form
-		Q_INVOKABLE void refreshHomeTimelineAfterWrite(QVariant newTweetVariant);
-
-		/// @fn Q_INVOKABLE void moreOldHomeTimeline();
-		/// @brief Getting more old tweets the home timeline
-		Q_INVOKABLE void moreOldHomeTimeline();
+		///////////////////////
+		// Timeline handling //
+		///////////////////////
 
 		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
 		/// @brief Getting a pointer on a tweet in the timeline.
@@ -84,6 +72,28 @@ class TimelineControl : public GenericControl
 		/// It can be used after retweeting a tweet, for example.
 		/// @param tweetIndex Index of the tweet in the timeline
 		Q_INVOKABLE void deleteTweet(int tweetIndex);
+
+
+		/////////////////////////////
+		// Actions on the timeline //
+		/////////////////////////////
+
+		/// @fn Q_INVOKABLE void loadTimeline();
+		/// @brief Loading the home timeline
+		Q_INVOKABLE void loadTimeline();
+
+		/// @fn Q_INVOKABLE void refreshTimeline();
+		/// @brief Refreshing the home timeline
+		Q_INVOKABLE void refreshTimeline();
+
+		/// @fn Q_INVOKABLE void refreshTimelineAfterWrite(QVariant newTweetVariant);
+		/// @brief Refreshing the home timeline after writing a tweet
+		/// @param newTweetVariant Newly written tweet under its QVariant form
+		Q_INVOKABLE void refreshTimelineAfterWrite(QVariant newTweetVariant);
+
+		/// @fn Q_INVOKABLE void moreOldTimeline();
+		/// @brief Getting more old tweets the home timeline
+		Q_INVOKABLE void moreOldTimeline();
 
 
 	signals:

@@ -137,7 +137,7 @@ void TimelineControl::insertInTimeline(Timeline & tl, Tweet newTweet) {
 ///////////////////////
 
 // Loading the home timeline
-void TimelineControl::loadHomeTimeline() {
+void TimelineControl::loadTimeline() {
 	if (processing) {
 		return;
 	}
@@ -146,8 +146,22 @@ void TimelineControl::loadHomeTimeline() {
 			this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
-	reyn.loadHomeTimeline(-1, -1, 50);
+
+	switch (timeline.getType()) {
+		case Timeline::HOME:
+			emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
+			reyn.loadHomeTimeline(-1, -1, 50);
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(loadTimelineEnded(ProcessWrapper)));
+			emit actionEnded(false,
+							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 false);
+			break;
+	}
 }
 
 // After loading a timeline
@@ -203,22 +217,36 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 //////////////////////////
 
 // Loading the home timeline
-void TimelineControl::refreshHomeTimeline() {
+void TimelineControl::refreshTimeline() {
 	if (processing) {
 		return;
 	}
 
 	// Refreshing an empty timeline == loading the timeline
 	if (timeline.isEmpty()) {
-		return loadHomeTimeline();
+		return loadTimeline();
 	}
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(timeline[0].getID());
+
+	switch (timeline.getType()) {
+		case Timeline::HOME:
+			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+			reyn.loadHomeTimeline(timeline.first().getID());
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+			emit actionEnded(false,
+							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 false);
+			break;
+	}
 }
 
 
@@ -306,24 +334,37 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 }
 
 // Refreshing after writing a tweet
-void TimelineControl::refreshHomeTimelineAfterWrite(QVariant newTweetVariant) {
+void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 	if (processing) {
 		return;
 	}
 
 	// Refreshing an empty timeline == loading the timeline
 	if (timeline.isEmpty()) {
-		return loadHomeTimeline();
+		return loadTimeline();
 	}
 
 	backupedNewTweet = newTweetVariant;
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
-
 	processing = true;
-	emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-	reyn.loadHomeTimeline(timeline[0].getID());
+
+	switch (timeline.getType()) {
+		case Timeline::HOME:
+			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
+			reyn.loadHomeTimeline(timeline.first().getID());
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+			emit actionEnded(false,
+							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 false);
+			break;
+	}
 }
 
 
@@ -419,24 +460,38 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 ///////////////////////
 
 // Loading the home timeline
-void TimelineControl::moreOldHomeTimeline() {
+void TimelineControl::moreOldTimeline() {
 	if (processing) {
 		return;
 	}
 
 	// Getting older tweets in an empty timeline == loading the timeline
 	if (timeline.isEmpty()) {
-		return loadHomeTimeline();
+		return loadTimeline();
 	}
 
-	qlonglong maxTweetID = timeline[timeline.size() -1].getID() - 1;
+	qlonglong maxTweetID = timeline.last().getID() - 1;
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
-	reyn.loadHomeTimeline(-1, maxTweetID, 50);
+
+	switch (timeline.getType()) {
+		case Timeline::HOME:
+			emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
+			reyn.loadHomeTimeline(-1, maxTweetID, 50);
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+			emit actionEnded(false,
+							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 false);
+			break;
+	}
 }
 
 

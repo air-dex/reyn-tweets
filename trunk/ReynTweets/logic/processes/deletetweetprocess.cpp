@@ -37,16 +37,10 @@ DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,
 	includeEntities(withEntities),
 	trimUser(userIDonly),
 	keepInTimeline(true)
-{
-	connect(this, SIGNAL(allowDelete(bool,QString)),
-			this, SLOT(deleteTweet(bool,QString)));
-}
+{}
 
 // Destructor
-DeleteTweetProcess::~DeleteTweetProcess() {
-	disconnect(this, SIGNAL(allowDelete(bool,QString)),
-			   this, SLOT(deleteTweet(bool,QString)));
-}
+DeleteTweetProcess::~DeleteTweetProcess() {}
 
 // Starting the process by determining if the tweet can be deleted.
 void DeleteTweetProcess::startProcess() {
@@ -63,7 +57,7 @@ void DeleteTweetProcess::canDeleteTweet() {
 					tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
 				  : false;
 
-		emit allowDelete(true, tweetToDelete.getIDstr());
+		deleteTweet(true, tweetToDelete.getIDstr());
 	}
 	else if (user.getID() == tweetToDelete.getRetweetedStatus()->getAuthor()->getID()
 			 && tweetToDelete.isRetweet())
@@ -71,7 +65,7 @@ void DeleteTweetProcess::canDeleteTweet() {
 		// The user is the author of the retweet. Delete the retweet
 
 		keepInTimeline = false;
-		emit allowDelete(true, tweetToDelete.getRetweetedStatus()->getIDstr());
+		deleteTweet(true, tweetToDelete.getRetweetedStatus()->getIDstr());
 	}
 	else if (tweetToDelete.isRetweetedByMe()) {
 		// Tweet can be deleted only if the user retweeted it.
@@ -92,8 +86,8 @@ void DeleteTweetProcess::canDeleteTweet() {
 	}
 	else {
 		// Tweet cannot be deleted
-		emit allowDelete(false,
-						 DeleteTweetProcess::trUtf8("The user is not the author of the tweet"));
+		deleteTweet(false,
+					DeleteTweetProcess::trUtf8("The user is not the author of the tweet"));
 	}
 }
 
@@ -152,12 +146,10 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 				addInfos = tweetToDeleteIDstr;
 			} else {
 				// Tweet cannot be deleted because the ID is still unknown
-				addInfos = beginErrMsg
-						+ DeleteTweetProcess::trUtf8("Reweet ID unreachable");
+				addInfos = beginErrMsg.append(DeleteTweetProcess::trUtf8("Reweet ID unreachable"));
 			}
 
-			emit allowDelete(idFound, addInfos);
-			return;
+			return deleteTweet(idFound, addInfos);
 
 		case SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);

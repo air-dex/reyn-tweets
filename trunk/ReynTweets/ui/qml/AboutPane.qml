@@ -226,6 +226,7 @@ General Public License along with Reyn Tweets. If not, see '))
 	// Quit the page
 	RTButton {
 		id: ok_button
+		border_color: constant.orange_author
 		anchors.rightMargin: margin
 		anchors.right: parent.right
 		anchors.bottomMargin: margin

@@ -30,6 +30,7 @@
 #include "genericcontrol.hpp"
 #include "../reyncore.hpp"
 #include "../../model/tweets/tweet.hpp"
+#include "../../model/timelines/timeline.hpp"
 
 /// @class TweetControl
 /// @brief Control behind a TweetPane
@@ -87,6 +88,10 @@ class TweetControl : public GenericControl
 		/// @brief Emitted when the tweet property (status attribute) is modified.
 		void tweetChanged();
 
+		/// @fn void timelineTypeChanged();
+		/// @brief Signal sent when the timeline_type property changes
+		void timelineTypeChanged();
+
 		/// @fn void updateTimeline(QVariant updatedTweet);
 		/// @brief Signal sent when a tweet has to be updated in the timeline
 		/// @param updatedTweet The updatedTweet after an operation on it.
@@ -126,6 +131,28 @@ class TweetControl : public GenericControl
 
 
 	protected:
+		/// @property timeline_type
+		/// @brief Type of the timeline where is the tweet handled by the control
+		///
+		/// timelineType is the attribute behind the property
+		Q_PROPERTY(Timeline::TimelineType timeline_type
+				   READ getTimelineType
+				   WRITE setTimelineType
+				   NOTIFY timelineTypeChanged)
+
+		/// @brief Type of the timeline where is the tweet handled by the control
+		Timeline::TimelineType timelineType;
+
+		/// @fn Timeline::TimelineType getTimelineType();
+		/// @brief Reading the property timeline_type
+		/// @return timeline.getType();
+		Timeline::TimelineType getTimelineType();
+
+		/// @fn void setTimelineType(Timeline::TimelineType newType);
+		/// @brief Writing the property timeline_type
+		/// @param newType New type for the timeline
+		void setTimelineType(Timeline::TimelineType newType);
+
 		////////////////////
 		// Tweet handling //
 		////////////////////

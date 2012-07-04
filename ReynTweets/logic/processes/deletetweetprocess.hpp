@@ -87,22 +87,6 @@ class DeleteTweetProcess : public GenericProcess
 		/// @brief Determining if the tweet can be deleted
 		void canDeleteTweet();
 
-	signals:
-		/// @fn void allowDelete(bool allowToDelete, QString addInfos);
-		/// @brief Send after determining if the tweet can be deleted
-		/// @param allowToDelete Boolean determining if the tweet can be deleted
-		/// (true, false otherwise).
-		/// @param addInfos Additionnal informations for the deletion
-		/// (ID of the tweet to delete or message explaining why the tweet
-		/// won't be destroyed).
-		void allowDelete(bool allowToDelete, QString addInfos);
-
-	protected slots:
-		/// @fn void searchRetweetIDEnded(ResultWrapper res);
-		/// @brief After searching the ID of the retweet
-		/// @param res Result of the request
-		void searchRetweetIDEnded(ResultWrapper res);
-
 		/// @fn void deleteTweet(bool allowToDelete, QString addInfos);
 		/// @brief Deleting the tweet
 		/// @param allowToDelete Boolean determining if the tweet can be deleted
@@ -111,6 +95,12 @@ class DeleteTweetProcess : public GenericProcess
 		/// (ID of the tweet to delete or message explaining why the tweet
 		/// won't be destroyed).
 		void deleteTweet(bool allowToDelete, QString addInfos);
+
+	protected slots:
+		/// @fn void searchRetweetIDEnded(ResultWrapper res);
+		/// @brief After searching the ID of the retweet
+		/// @param res Result of the request
+		void searchRetweetIDEnded(ResultWrapper res);
 
 		/// @fn void deleteEnded(ResultWrapper res);
 		/// @brief After deleting the tweet

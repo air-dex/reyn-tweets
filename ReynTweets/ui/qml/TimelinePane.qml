@@ -84,6 +84,7 @@ Rectangle {
 		delegate: Component {
 			TweetPane {
 				width: timeline_pane.width
+				timeline_type: timeline_pane.timeline_type
 				tweet: control.getTweet(index)
 
 				Component.onCompleted: {

@@ -101,7 +101,7 @@ class TimelineControl : public GenericControl
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
 
-		/// @fn void timelineChanged();
+		/// @fn void timelineTypeChanged();
 		/// @brief Signal sent when the timeline_type property changes
 		void timelineTypeChanged();
 

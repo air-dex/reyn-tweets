@@ -77,6 +77,17 @@ void TweetControl::commitTweet() {
 // Property management //
 /////////////////////////
 
+// Reading the property timeline_type
+Timeline::TimelineType TweetControl::getTimelineType() {
+	return timelineType;
+}
+
+// Writing the property timeline_type
+void TweetControl::setTimelineType(Timeline::TimelineType newType) {
+	timelineType = newType;
+	emit timelineTypeChanged();
+}
+
 // Reading the shown_tweet property
 Tweet * TweetControl::getShownTweet() {
 	return status->isRetweet() ? status->getRetweetedStatus() : status;
@@ -234,8 +245,39 @@ void TweetControl::retweet() {
 			this, SLOT(retweetEnd(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
-	reyn.retweet(getShownTweet()->getID());
+
+	switch (timelineType) {
+		case Timeline::HOME:
+			emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
+			reyn.retweet(getShownTweet()->getID());
+			break;
+
+		case Timeline::MENTIONS:
+			// Do not retweet if the user was retweeted
+			if (getShownTweet()->getID() ==
+					reyn.getUserConfiguration().getUserAccount().getUser().getID())
+			{
+				processing = false;
+				disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+						   this, SLOT(retweetEnd(ProcessWrapper)));
+				emit actionEnded(false,
+								 TweetControl::trUtf8("Cannot retweet this tweet"),
+								 false);
+			} else {
+				emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
+				reyn.retweet(getShownTweet()->getID());
+			}
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(retweetEnd(ProcessWrapper)));
+			emit actionEnded(false,
+							 TweetControl::trUtf8("Cannot retweet this tweet"),
+							 false);
+			break;
+	}
 }
 
 void TweetControl::retweetEnd(ProcessWrapper res) {
@@ -311,8 +353,23 @@ void TweetControl::favorite() {
 			this, SLOT(favoriteEnd(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TweetControl::trUtf8("Favoriting..."));
-	reyn.favoriteTweet(getShownTweet()->getID());
+
+	switch (timelineType) {
+		case Timeline::HOME:
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TweetControl::trUtf8("Favoriting..."));
+			reyn.favoriteTweet(getShownTweet()->getID());
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(favoriteEnd(ProcessWrapper)));
+			emit actionEnded(false,
+							 TweetControl::trUtf8("Cannot favorite this tweet"),
+							 false);
+			break;
+	}
 }
 
 void TweetControl::favoriteEnd(ProcessWrapper res) {
@@ -380,8 +437,23 @@ void TweetControl::unfavorite() {
 			this, SLOT(unfavoriteEnd(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TweetControl::trUtf8("Unfavoriting..."));
-	reyn.unfavoriteTweet(getShownTweet()->getID());
+
+	switch (timelineType) {
+		case Timeline::HOME:
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TweetControl::trUtf8("Unfavoriting..."));
+			reyn.unfavoriteTweet(getShownTweet()->getID());
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(unfavoriteEnd(ProcessWrapper)));
+			emit actionEnded(false,
+							 TweetControl::trUtf8("Cannot unfavorite this tweet"),
+							 false);
+			break;
+	}
 }
 
 void TweetControl::unfavoriteEnd(ProcessWrapper res) {
@@ -453,8 +525,23 @@ void TweetControl::deleteTweet() {
 			this, SLOT(deleteEnd(ProcessWrapper)));
 
 	processing = true;
-	emit showInfoMessage(TweetControl::trUtf8("Deleting the tweet..."));
-	reyn.deleteTweet(*status);
+
+	switch (timelineType) {
+		case Timeline::HOME:
+		case Timeline::MENTIONS:
+			emit showInfoMessage(TweetControl::trUtf8("Deleting the tweet..."));
+			reyn.deleteTweet(*status);
+			break;
+
+		default:
+			processing = false;
+			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+					   this, SLOT(deleteEnd(ProcessWrapper)));
+			emit actionEnded(false,
+							 TweetControl::trUtf8("Cannot delete this tweet"),
+							 false);
+			break;
+	}
 }
 
 void TweetControl::deleteEnd(ProcessWrapper res) {

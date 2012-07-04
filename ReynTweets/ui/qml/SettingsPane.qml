@@ -165,6 +165,7 @@ Rectangle {
 	// Save changes
 	RTButton {
 		id: commit_button
+		border_color: constant.orange_author
 		anchors.right: cancel_button.left
 		anchors.rightMargin: margin
 		anchors.verticalCenter: cancel_button.verticalCenter
@@ -183,6 +184,7 @@ Rectangle {
 	// Cancel changes
 	RTButton {
 		id: cancel_button
+		border_color: constant.orange_author
 		anchors.rightMargin: margin
 		anchors.right: parent.right
 		anchors.bottomMargin: margin

@@ -50,6 +50,8 @@ Rectangle {
 
 	property bool iam_author: shown_tweet.author.id_str === current_user.id_str
 
+	property alias timeline_type: control.timeline_type
+
 	width: 360
 	height:  min_height
 			 + (shown_tweet.isReply() ?
@@ -520,8 +522,6 @@ Rectangle {
 			onAct: {
 				quote('RT @' + shown_tweet.author.screen_name + ': ' + shown_tweet.text);
 			}
-
-			visible: !iam_author
 		}
 
 		// Favorite

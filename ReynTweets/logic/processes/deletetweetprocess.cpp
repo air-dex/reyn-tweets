@@ -65,6 +65,14 @@ void DeleteTweetProcess::canDeleteTweet() {
 
 		emit allowDelete(true, tweetToDelete.getIDstr());
 	}
+	else if (user.getID() == tweetToDelete.getRetweetedStatus()->getAuthor()->getID()
+			 && tweetToDelete.isRetweet())
+	{
+		// The user is the author of the retweet. Delete the retweet
+
+		keepInTimeline = false;
+		emit allowDelete(true, tweetToDelete.getRetweetedStatus()->getIDstr());
+	}
 	else if (tweetToDelete.isRetweetedByMe()) {
 		// Tweet can be deleted only if the user retweeted it.
 		// But the retweet ID is unknown. So let's search it !

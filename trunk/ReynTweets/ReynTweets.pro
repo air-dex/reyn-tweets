@@ -74,6 +74,7 @@ SOURCES += \
 	connection/requests/oauth/accesstokenrequester.cpp \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/timelines/hometimelinerequester.cpp \
+	connection/requests/timelines/mentionstimelinerequester.cpp \
 	connection/requests/timelines/retweetsbymerequester.cpp \
 	connection/requests/tweets/destroytweetrequester.cpp \
 	connection/requests/tweets/posttweetrequester.cpp \
@@ -122,6 +123,7 @@ SOURCES += \
 	logic/processes/gettweetprocess.cpp \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/loadinghometimelineprocess.cpp \
+	logic/processes/loadmentionstimelineprocess.cpp \
 	logic/processes/posttweetprocess.cpp \
 	logic/processes/postviatwitlongerprocess.cpp \
 	logic/processes/processmanager.cpp \
@@ -174,6 +176,7 @@ HEADERS  += \
 	connection/requests/oauth/accesstokenrequester.hpp \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/timelines/hometimelinerequester.hpp \
+	connection/requests/timelines/mentionstimelinerequester.hpp \
 	connection/requests/timelines/retweetsbymerequester.hpp \
 	connection/requests/tweets/destroytweetrequester.hpp \
 	connection/requests/tweets/posttweetrequester.hpp \
@@ -227,6 +230,7 @@ HEADERS  += \
 	logic/processes/gettweetprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/loadinghometimelineprocess.hpp \
+	logic/processes/loadmentionstimelineprocess.hpp \
 	logic/processes/posttweetprocess.hpp \
 	logic/processes/postviatwitlongerprocess.hpp \
 	logic/processes/retweetprocess.hpp \

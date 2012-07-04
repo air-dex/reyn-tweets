@@ -215,7 +215,7 @@ void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 // Timelines //
 ///////////////
 
-// Unfavoriting a tweet
+// Loading the Home Timeline
 void ReynCore::loadHomeTimeline(qlonglong sinceID,
 								qlonglong maxID,
 								int count,
@@ -235,6 +235,25 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 																		  page,
 																		  count,
 																		  contributorsDetails);
+	executeProcess(process);
+}
+
+// Loading mentions
+void ReynCore::loadMentionsTimeline(qlonglong sinceID,
+									qlonglong maxID,
+									int count,
+									bool trimUser,
+									bool includeRTS,
+									bool includeEntities,
+									bool contributorsDetails)
+{
+	LoadMentionsTimelineProcess * process = new LoadMentionsTimelineProcess(sinceID,
+																			maxID,
+																			trimUser,
+																			includeRTS,
+																			includeEntities,
+																			count,
+																			contributorsDetails);
 	executeProcess(process);
 }
 
@@ -298,7 +317,7 @@ void ReynCore::postTweet(QString tweet,
 	executeProcess(process);
 }
 
-// Posting a tweet without media
+// Posting a long tweet without media
 void ReynCore::postTweetViaTwitLonger(QString tweet,
 									  qlonglong replyToTweetID,
 									  QString replyToUser,
@@ -323,7 +342,7 @@ void ReynCore::postTweetViaTwitLonger(QString tweet,
 	executeProcess(process);
 }
 
-// Posting a tweet without media
+// Posting a long tweet without media
 void ReynCore::postTweetViaTwitLonger(QString tweet,
 									  QString replyToTweetID,
 									  QString replyToUser,

@@ -232,6 +232,30 @@ class ReynTwitterCalls : public GenericCalls
 								  int count = 20,
 								  bool contributorsDetails = false);
 
+		/// @fn void retrieveMentionsTimeline(qlonglong sinceID = -1,
+		///									  qlonglong maxID = -1,
+		///									  bool trimUser = false,
+		///									  bool includeRTS = false,
+		///									  bool includeEntities = false,
+		///									  int count = 20,
+		///									  bool contributorsDetails = false);
+		/// @brief Retrieving the timeline containing the mentions of the user
+		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param maxID Maximum tweet ID possible in the timeline
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeRTS Including retweets
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param count Number of tweets
+		/// @param contributorsDetails Including details about contributors
+		/// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
+		void retrieveMentionsTimeline(qlonglong sinceID = -1,
+									  qlonglong maxID = -1,
+									  bool trimUser = false,
+									  bool includeRTS = false,
+									  bool includeEntities = false,
+									  int count = 20,
+									  bool contributorsDetails = false);
+
 		/// @fn void userRetweetsTimeline(qlonglong sinceID = -1,
 		///								  qlonglong maxID = -1,
 		///								  int count = 20,

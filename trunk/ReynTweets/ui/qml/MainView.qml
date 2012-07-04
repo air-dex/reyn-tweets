@@ -166,6 +166,7 @@ Rectangle {
 					settings_pane.visible = false
 					about_pane.visible = false
 					htl_tab.visible = true
+					mentions_tab.visible = false
 				}
 			}
 		}
@@ -180,7 +181,12 @@ Rectangle {
 
 			MouseArea {
 				anchors.fill: parent
-				onClicked: console.log("TODO : Show mentions")
+				onClicked: {
+					settings_pane.visible = false
+					about_pane.visible = false
+					htl_tab.visible = false
+					mentions_tab.visible = true
+				}
 			}
 		}
 
@@ -268,6 +274,18 @@ Rectangle {
 		}
 
 
+		///////////////////////
+		// About Reyn Tweets //
+		///////////////////////
+		AboutPane {
+			id: about_pane
+			z: htl_tab.z + 1
+			width: parent.width
+			anchors.fill: parent
+			visible: false
+		}
+
+
 		////////////////////
 		// Showing tweets //
 		////////////////////
@@ -279,20 +297,18 @@ Rectangle {
 			anchors.fill: parent
 		}
 
-
-		///////////////////////
-		// About Reyn Tweets //
-		///////////////////////
-		AboutPane {
-			id: about_pane
-			z: htl_tab.z + 1
+		// Mentions timeline (subject to future changes)
+		MentionsTimelineTab {
+			id: mentions_tab
 			width: parent.width
 			anchors.fill: parent
 			visible: false
 		}
 	}
 
+	// Aliases on timeline panes
 	property alias home_timeline: htl_tab.timeline
+	property alias mentions_timeline: mentions_tab.timeline
 
 
 	////////////////////////////////////////
@@ -375,13 +391,6 @@ Rectangle {
 		// Wiring log_component
 		log_component.showInfoMessage.connect(main_view.displayInfoMessage)
 
-		// Wiring timeline
-		home_timeline.writeReply.connect(write_tweet.writeReply)
-		home_timeline.writeTweet.connect(write_tweet.writeTweet)
-		home_timeline.endAction.connect(main_view.endAction)
-		home_timeline.needAuthentication.connect(needNewAuth)
-		home_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
-
 		// Wiring write_tweet
 		write_tweet.needAuthentication.connect(needNewAuth)
 		write_tweet.endWriting.connect(main_view.endAction)
@@ -392,11 +401,30 @@ Rectangle {
 		// Wiring settings_pane
 		settings_pane.endAction.connect(main_view.endAction)
 		settings_pane.showInfoMessage.connect(main_view.displayInfoMessage)
+
+		// Wiring home_timeline
+		home_timeline.writeReply.connect(write_tweet.writeReply)
+		home_timeline.writeTweet.connect(write_tweet.writeTweet)
+		home_timeline.endAction.connect(main_view.endAction)
+		home_timeline.needAuthentication.connect(needNewAuth)
+		home_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
+
+		// Wiring mentions_timeline
+		mentions_timeline.writeReply.connect(write_tweet.writeReply)
+		mentions_timeline.writeTweet.connect(write_tweet.writeTweet)
+		mentions_timeline.endAction.connect(main_view.endAction)
+		mentions_timeline.needAuthentication.connect(needNewAuth)
+		mentions_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
 	}
 
 	// Loading the home timeline
 	function loadHomeTimeline() {
 		home_timeline.loadTimeline();
+	}
+
+	// Loading the mentions timeline
+	function loadMentionsTimeline() {
+		mentions_timeline.loadTimeline();
 	}
 
 	// After an action was made

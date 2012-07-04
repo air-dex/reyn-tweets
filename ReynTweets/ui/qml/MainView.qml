@@ -292,7 +292,7 @@ Rectangle {
 		}
 	}
 
-	property alias timeline: htl_tab.timeline
+	property alias home_timeline: htl_tab.timeline
 
 
 	////////////////////////////////////////
@@ -376,16 +376,16 @@ Rectangle {
 		log_component.showInfoMessage.connect(main_view.displayInfoMessage)
 
 		// Wiring timeline
-		timeline.writeReply.connect(write_tweet.writeReply)
-		timeline.writeTweet.connect(write_tweet.writeTweet)
-		timeline.endAction.connect(main_view.endAction)
-		timeline.needAuthentication.connect(needNewAuth)
-		timeline.showInfoMessage.connect(main_view.displayInfoMessage)
+		home_timeline.writeReply.connect(write_tweet.writeReply)
+		home_timeline.writeTweet.connect(write_tweet.writeTweet)
+		home_timeline.endAction.connect(main_view.endAction)
+		home_timeline.needAuthentication.connect(needNewAuth)
+		home_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
 
 		// Wiring write_tweet
 		write_tweet.needAuthentication.connect(needNewAuth)
 		write_tweet.endWriting.connect(main_view.endAction)
-		write_tweet.updateAfterWrite.connect(timeline.updateAfterWrite)
+		write_tweet.updateAfterWrite.connect(home_timeline.updateAfterWrite)
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
 		write_tweet.askTwitLonger.connect(twitlonger_pane.twitLongerAsked)
 
@@ -396,7 +396,7 @@ Rectangle {
 
 	// Loading the home timeline
 	function loadHomeTimeline() {
-		timeline.loadHomeTimeline();
+		home_timeline.loadTimeline();
 	}
 
 	// After an action was made

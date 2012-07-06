@@ -87,3 +87,55 @@ void Timeline::setType(Timeline::TimelineType newType) {
 	timelineType = newType;
 	emit typeChanged();
 }
+
+// Inserting a tweet in the timeline
+void Timeline::insertTweet(Tweet newTweet) {
+	int newTweetIndex = tweetIndex(newTweet);
+
+	if (newTweetIndex >= 0 && newTweetIndex < this->size()) {
+		if (newTweet == this->at(newTweetIndex)) {
+			this->replace(newTweetIndex, newTweet);
+		} else {
+			this->insert(newTweetIndex, newTweet);
+		}
+	} else if (newTweetIndex >= this->size()) {
+		this->append(newTweet);
+	}
+}
+
+// Finding the index of a tweet in the timeline.
+int Timeline::tweetIndex(Tweet tweet) {
+	qlonglong tweetID = tweet.getID();
+
+	// Special case for default tweets.
+	if (tweetID == -1) {
+		return -1;
+	}
+
+	// Empty lists
+	if (this->isEmpty()) {
+		return 0;
+	}
+
+	qlonglong tlMaxID = this->last().getID();
+
+	if (tweetID < tlMaxID) {
+		return this->size();
+	} else {
+		int a = 0;
+		int b = this->size();
+
+		while (a != b) {
+			int m = (a + b) /2;
+			qlonglong midTweetID = (*this)[m].getID();
+
+			if (tweetID >= midTweetID) {
+				b = m;
+			} else {
+				a = m + 1;
+			}
+		}
+
+		return a;
+	}
+}

@@ -66,12 +66,26 @@ class TimelineControl : public GenericControl
 		/// @param tweetIndex Index of the tweet in the timeline
 		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
 
+		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
+		/// @brief Replacing a tweet in a timeline
+		///
+		/// Invoked when an update of the tweet is asked.
+		/// @param updatedTweet New value of the tweet
+		Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
+
 		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
 		/// @brief Deleting a tweet in a timeline
 		///
 		/// It can be used after retweeting a tweet, for example.
 		/// @param tweetIndex Index of the tweet in the timeline
 		Q_INVOKABLE void deleteTweet(int tweetIndex);
+
+		/// @fn Q_INVOKABLE void deleteTweet(QVariant variantTweet);
+		/// @brief Deleting a tweet in a timeline
+		///
+		/// Invoked when a tweet is asked for deletion.
+		/// @param variantTweet The tweet (QVariant form)
+		Q_INVOKABLE void deleteTweet(QVariant variantTweet);
 
 
 		/////////////////////////////
@@ -179,15 +193,6 @@ class TimelineControl : public GenericControl
 
 		/// @brief New tweet saved while updating after reading.
 		QVariant backupedNewTweet;
-
-		/// @fn void insertInTimeline(Timeline & tl, Tweet newTweet);
-		/// @brief Insert a tweet in a timeline.
-		///
-		/// This method is used to insert a newly written tweet in the
-		/// home timeline while refreshing it.
-		/// @param tl The timeline
-		/// @param newTweet The tweet
-		void insertInTimeline(Timeline & tl, Tweet newTweet);
 };
 
 #endif // TIMELINECONTROL_HPP

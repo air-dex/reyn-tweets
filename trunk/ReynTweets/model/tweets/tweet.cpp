@@ -193,12 +193,10 @@ void Tweet::setUser(QVariantMap newUserMap) {
 
 // Reading retweeted_status
 QVariantMap Tweet::getRetweetedStatusVariant() {
-	if (retweetSource) {
-		// Return an empty QVariantMap for a default tweet to avoid stack problems
-		return retweetSource->tweetID == -1 ?
-					QVariantMap()
-				  : retweetSource->toVariant();
+	if (retweetSource && retweetSource->tweetID != -1) {
+		return retweetSource->toVariant();
 	} else {
+		// Return an empty QVariantMap for a default tweet to avoid stack problems
 		return QVariantMap();
 	}
 }
@@ -548,4 +546,9 @@ QUrl Tweet::getTweetURL() {
 	  << "/status/" << tweetIDstr;
 
 	return QUrl(t.readAll());
+}
+
+// The shown tweet
+Tweet * Tweet::getShownTweet() {
+	return this->isRetweet() ? this->retweetSource : this;
 }

@@ -414,20 +414,22 @@ Rectangle {
 		timelineToWire.writeReply.connect(write_tweet.writeReply)
 		timelineToWire.writeTweet.connect(write_tweet.writeTweet)
 		timelineToWire.endAction.connect(main_view.endAction)
-		timelineToWire.needAuthentication.connect(needNewAuth)
+		timelineToWire.needAuthentication.connect(main_view.needNewAuth)
 		timelineToWire.showInfoMessage.connect(main_view.displayInfoMessage)
+		timelineToWire.destroyTweet.connect(main_view.destroyTweet)
 		write_tweet.updateAfterWrite.connect(timelineToWire.updateAfterWrite)
 	}
 
 	// Unwiring a timeline tab
-	function unwireTimeline(timelineToWire) {
-		// Unwiring timelineToWire
-		timelineToWire.writeReply.disconnect(write_tweet.writeReply)
-		timelineToWire.writeTweet.disconnect(write_tweet.writeTweet)
-		timelineToWire.endAction.disconnect(main_view.endAction)
-		timelineToWire.needAuthentication.disconnect(needNewAuth)
-		timelineToWire.showInfoMessage.disconnect(main_view.displayInfoMessage)
-		write_tweet.updateAfterWrite.disconnect(timelineToWire.updateAfterWrite)
+	function unwireTimeline(timelineToUnwire) {
+		// Unwiring timelineToUnwire
+		timelineToUnwire.writeReply.disconnect(write_tweet.writeReply)
+		timelineToUnwire.writeTweet.disconnect(write_tweet.writeTweet)
+		timelineToUnwire.endAction.disconnect(main_view.endAction)
+		timelineToUnwire.needAuthentication.disconnect(main_view.needNewAuth)
+		timelineToUnwire.showInfoMessage.disconnect(main_view.displayInfoMessage)
+		timelineToUnwire.destroyTweet.disconnect(main_view.destroyTweet)
+		write_tweet.updateAfterWrite.disconnect(timelineToUnwire.updateAfterWrite)
 	}
 
 	// Loading the home timeline
@@ -438,6 +440,18 @@ Rectangle {
 	// Loading the mentions timeline
 	function loadMentionsTimeline() {
 		mentions_timeline.loadTimeline();
+	}
+
+	// Updating a tweet in all the timelines
+	function updateTweet(newTweet) {
+		home_timeline.updateATweet(newTweet)
+		mentions_timeline.updateATweet(newTweet)
+	}
+
+	// Destroying a tweet in all the timelines
+	function destroyTweet(newTweet) {
+		home_timeline.deleteATweet(newTweet)
+		mentions_timeline.deleteATweet(newTweet)
 	}
 
 	// After an action was made

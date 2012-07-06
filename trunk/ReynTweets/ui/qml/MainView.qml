@@ -394,7 +394,6 @@ Rectangle {
 		// Wiring write_tweet
 		write_tweet.needAuthentication.connect(needNewAuth)
 		write_tweet.endWriting.connect(main_view.endAction)
-		write_tweet.updateAfterWrite.connect(home_timeline.updateAfterWrite)
 		write_tweet.showInfoMessage.connect(main_view.displayInfoMessage)
 		write_tweet.askTwitLonger.connect(twitlonger_pane.twitLongerAsked)
 
@@ -403,18 +402,32 @@ Rectangle {
 		settings_pane.showInfoMessage.connect(main_view.displayInfoMessage)
 
 		// Wiring home_timeline
-		home_timeline.writeReply.connect(write_tweet.writeReply)
-		home_timeline.writeTweet.connect(write_tweet.writeTweet)
-		home_timeline.endAction.connect(main_view.endAction)
-		home_timeline.needAuthentication.connect(needNewAuth)
-		home_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
+		wireTimeline(home_timeline)
 
 		// Wiring mentions_timeline
-		mentions_timeline.writeReply.connect(write_tweet.writeReply)
-		mentions_timeline.writeTweet.connect(write_tweet.writeTweet)
-		mentions_timeline.endAction.connect(main_view.endAction)
-		mentions_timeline.needAuthentication.connect(needNewAuth)
-		mentions_timeline.showInfoMessage.connect(main_view.displayInfoMessage)
+		wireTimeline(mentions_timeline)
+	}
+
+	// Wiring a timeline tab
+	function wireTimeline(timelineToWire) {
+		// Wiring timelineToWire
+		timelineToWire.writeReply.connect(write_tweet.writeReply)
+		timelineToWire.writeTweet.connect(write_tweet.writeTweet)
+		timelineToWire.endAction.connect(main_view.endAction)
+		timelineToWire.needAuthentication.connect(needNewAuth)
+		timelineToWire.showInfoMessage.connect(main_view.displayInfoMessage)
+		write_tweet.updateAfterWrite.connect(timelineToWire.updateAfterWrite)
+	}
+
+	// Unwiring a timeline tab
+	function unwireTimeline(timelineToWire) {
+		// Unwiring timelineToWire
+		timelineToWire.writeReply.disconnect(write_tweet.writeReply)
+		timelineToWire.writeTweet.disconnect(write_tweet.writeTweet)
+		timelineToWire.endAction.disconnect(main_view.endAction)
+		timelineToWire.needAuthentication.disconnect(needNewAuth)
+		timelineToWire.showInfoMessage.disconnect(main_view.displayInfoMessage)
+		write_tweet.updateAfterWrite.disconnect(timelineToWire.updateAfterWrite)
 	}
 
 	// Loading the home timeline

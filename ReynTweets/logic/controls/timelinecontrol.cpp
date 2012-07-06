@@ -83,6 +83,24 @@ void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 	tweet.fillWithVariant(updatedTweet.toMap());
 }
 
+void TimelineControl::replaceTweet(QVariant updatedTweet) {
+	Tweet newTweet;
+	newTweet.fillWithVariant(updatedTweet.toMap());
+
+	int tweetIndex = timeline.tweetIndex(newTweet);
+
+	if (tweetIndex < 0 || tweetIndex >= timeline.size()) {
+		return;
+	}
+
+	// Delete only if he's really in the timeline
+	if (newTweet == timeline[tweetIndex]) {
+		Tweet & tweet = timeline[tweetIndex];
+		tweet.reset();
+		tweet.fillWithVariant(updatedTweet.toMap());
+	}
+}
+
 // Replacing a tweet
 void TimelineControl::deleteTweet(int tweetIndex) {
 	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
@@ -93,41 +111,21 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 	emit timelineChanged();
 }
 
-// Inserting a tweet in a timeline
-void TimelineControl::insertInTimeline(Timeline & tl, Tweet newTweet) {
-	if (tl.isEmpty()) {
-		// Just add the tweet.
-		return tl.append(newTweet);
+// Replacing a tweet
+void TimelineControl::deleteTweet(QVariant variantTweet) {
+	Tweet tweet;
+	tweet.fillWithVariant(variantTweet.toMap());
+
+	int tweetIndex = timeline.tweetIndex(tweet);
+
+	if (tweetIndex < 0 || tweetIndex >= timeline.size()) {
+		return;
 	}
 
-	int newTweetIndex;
-	qlonglong newTweetID = newTweet.getID();
-	qlonglong tlMaxID = tl.last().getID();
-
-	if (newTweetID < tlMaxID) {
-		newTweetIndex = tl.size();
-	} else {
-		int a = 0;
-		int b = tl.size();
-
-		while (a != b) {
-			int m = (a + b) /2;
-			qlonglong midTweetID = tl[m].getID();
-
-			if (newTweetID >= midTweetID) {
-				b = m;
-			} else {
-				a = m + 1;
-			}
-		}
-
-		newTweetIndex = a;
-	}
-
-	if (newTweetIndex >= tl.size()
-			|| newTweet.getID() != tl[newTweetIndex].getID())
-	{
-		tl.insert(newTweetIndex, newTweet);
+	// Delete only if he's really in the timeline
+	if (tweet == timeline[tweetIndex]) {
+		timeline.removeAt(tweetIndex);
+		emit timelineChanged();
 	}
 }
 
@@ -484,7 +482,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 			// Inserting the new Tweet in the timeline of new tweets
 			lastTweet.fillWithVariant(backupedNewTweet.toMap());
-			insertInTimeline(newerTweets, lastTweet);
+			newerTweets.insertTweet(lastTweet);
 
 			emit loadedMoreTweets(newerTweets.size());
 

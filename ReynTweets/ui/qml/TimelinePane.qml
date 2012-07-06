@@ -93,7 +93,8 @@ Rectangle {
 					quote.connect(writeTweet)
 
 					// Destroying the tweet
-					destroyTweet.connect(deleteTweet)
+					//destroyTweet.connect(deleteTweet)
+					destroyTweet.connect(timeline_pane.destroyTweet)
 
 					// End of an action
 					endTweeting.connect(timeline_pane.endAction)
@@ -105,7 +106,8 @@ Rectangle {
 					showInfoMessage.connect(timeline_pane.showInfoMessage)
 
 					// Updating the timeline
-					commitTweet.connect(majTweet)
+					//commitTweet.connect(majTweet)
+					commitTweet.connect(timeline_pane.updateTweet)
 				}
 
 				function deleteTweet(newTweet) {
@@ -262,6 +264,16 @@ Rectangle {
 		control.refreshTimelineAfterWrite(newTweet)
 	}
 
+	// When an update is asked for a tweet
+	function updateATweet(tweet) {
+		control.replaceTweet(tweet)
+	}
+
+	// When a tweet is asked for deletion
+	function deleteATweet(tweet) {
+		control.deleteTweet(tweet)
+	}
+
 	// What happened after loading the timeline
 	function afterLoading(endOK, endMsg, isFatal) {
 		var action, messageDisplayed;
@@ -303,6 +315,9 @@ Rectangle {
 
 	signal writeReply(string replyScreenName, string replyID)
 	signal writeTweet(string text)
+
+	signal updateTweet(variant updatedTweet)
+	signal destroyTweet(variant destroyTweet)
 
 	// Showing an information message
 	signal showInfoMessage(string infoMsg)

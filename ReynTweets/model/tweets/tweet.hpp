@@ -469,11 +469,20 @@ class Tweet : public ReynTweetsMappable
 		bool truncatedTweet;
 
 
-	/////////////////////////
-	// Getters and setters //
-	/////////////////////////
-
 	public:
+		/// @fn Tweet * getShownTweet();
+		/// @brief Returns the "shown tweet".
+		///
+		/// The shown tweet is the original tweet. If the Tweet object is a
+		/// retweet, the shown tweet will be the retweetSource and if it's not
+		/// a retweet, it will be the object.
+		/// @return retweetSource if the object is a retweet, this otherwise.
+		Tweet * getShownTweet();
+
+		/////////////////////////
+		// Getters and setters //
+		/////////////////////////
+
 		// entities
 		/// @fn TweetEntities getEntities();
 		/// @brief Reading entities

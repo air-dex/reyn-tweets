@@ -98,6 +98,27 @@ class Timeline : public QObject, public ReynTweetsListable<Tweet>
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
+		/////////////////////
+		// Tweet searching //
+		/////////////////////
+
+		/// @fn void insertTweet(Tweet newTweet);
+		/// @brief Inserting a tweet in the timeline.
+		///
+		/// All the tweets in a timeline are supposed to be sorted decreasingly
+		/// with their ID, so the dichotomy method is used here.
+		/// @param newTweet The tweet to insert.
+		void insertTweet(Tweet newTweet);
+
+		/// @fn int tweetIndex(Tweet newTweet);
+		/// @brief Finding the index of a tweet in the timeline.
+		///
+		/// All the tweets in a timeline are supposed to be sorted decreasingly
+		/// with their ID, so the dichotomy method is used here.
+		/// @param newTweet The tweet to insert.
+		/// @return The index where the tweet should be inserted in the timeline
+		int tweetIndex(Tweet tweet);
+
 	protected:
 		// Friends serialization operators
 

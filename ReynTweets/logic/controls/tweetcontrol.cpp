@@ -50,11 +50,7 @@ bool TweetControl::isMention() {
 
 	qlonglong userID = reyn.getUserConfiguration().getUserAccount().getUser().getID();
 
-	Tweet & shownTweet = status->isRetweet() ?
-				*(status->getRetweetedStatus())
-			  : *status;
-
-	UserMentionList mentions = shownTweet.getEntities().getUserMentions();
+	UserMentionList mentions = status->getShownTweet()->getEntities().getUserMentions();
 
 	for(UserMentionList::Iterator it = mentions.begin();
 		it != mentions.end();
@@ -90,7 +86,7 @@ void TweetControl::setTimelineType(Timeline::TimelineType newType) {
 
 // Reading the shown_tweet property
 Tweet * TweetControl::getShownTweet() {
-	return status->isRetweet() ? status->getRetweetedStatus() : status;
+	return status->getShownTweet();
 }
 
 // Reading the tweet property
@@ -224,6 +220,7 @@ void TweetControl::shareByMail() {
 	QDesktopServices::openUrl(mailURL);
 }
 
+
 /////////////
 // Retweet //
 /////////////
@@ -311,6 +308,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
 			getShownTweet()->setRetweeted(true);
 			status->setRetweeted(true);
+			// NB : status.id do not change.
 			emit tweetChanged();
 			emit actionEnded(true, TweetControl::trUtf8("Tweet retweeted"), false);
 			break;

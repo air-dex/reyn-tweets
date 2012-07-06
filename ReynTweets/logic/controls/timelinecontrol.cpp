@@ -298,9 +298,24 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 					newerTweets.append(newTweets);
 
 					// Fill the gap
-					connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-							this, SLOT(refreshTimelineEnded(ProcessWrapper)));
-					return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+					switch (timeline.getType()) {
+						case Timeline::HOME:
+							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+
+						case Timeline::MENTIONS:
+							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
+
+						default:
+							newerTweets.clear();
+							emit actionEnded(false,
+											 TimelineControl::trUtf8("Invalid type of timeline"),
+											 false);
+							return;
+					}
 				}
 			}
 
@@ -367,7 +382,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			break;
 
 		case Timeline::MENTIONS: {
-			// Refresh after write only if the user mentions himself
+			// "Refresh after write" only if the user mentions himself. "Refrsh" otherwise.
 			Tweet backupedTweet;
 			backupedTweet.fillWithVariant(backupedNewTweet.toMap());
 
@@ -446,9 +461,24 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 					newerTweets.append(newTweets);
 
 					// Fill the gap
-					connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-							this, SLOT(refreshTimelineEnded(ProcessWrapper)));
-					return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+					switch (timeline.getType()) {
+						case Timeline::HOME:
+							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
+
+						case Timeline::MENTIONS:
+							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
+
+						default:
+							newerTweets.clear();
+							emit actionEnded(false,
+											 TimelineControl::trUtf8("Invalid type of timeline"),
+											 false);
+							return;
+					}
 				}
 			}
 

@@ -69,11 +69,7 @@ Rectangle {
 
 	Constants { id: constant }
 
-	WriteTweetControl {
-		id: control
-		onActionEnded: write_tweet_pane.visible = false
-		onAuthenticationNeeded: write_tweet_pane.visible = false
-	}
+	WriteTweetControl { id: control }
 
 	// Introduction message
 	Text {
@@ -218,8 +214,8 @@ Rectangle {
 
 	Component.onCompleted: {
 		// Wiring
-		control.actionEnded.connect(write_tweet_pane.endWriting)
-		control.authenticationNeeded.connect(write_tweet_pane.needAuthentication)
+		control.actionEnded.connect(write_tweet_pane.afterWriting)
+		control.authenticationNeeded.connect(write_tweet_pane.afterAuth)
 		control.showInfoMessage.connect(write_tweet_pane.showInfoMessage)
 		control.tweetPosted.connect(write_tweet_pane.afterPosting)
 	}
@@ -261,6 +257,16 @@ Rectangle {
 		control.postViaTwitLonger(tweet_edit.text,
 								  in_reply_to_tweet_id,
 								  in_reply_to_user)
+	}
+
+	function afterWriting(endOK, endMsg, fatalEnd) {
+		write_tweet_pane.visible = false
+		write_tweet_pane.endWriting(endOK, endMsg, fatalEnd)
+	}
+
+	function afterAuth() {
+		write_tweet_pane.visible = false
+		write_tweet_pane.needAuthentication()
 	}
 
 

@@ -23,10 +23,10 @@
 
 #include "reyntweetsdatetime.hpp"
 
-// Date format in Twitter Search API
+// Date format in Twitter REST API
 QString ReynTweetsDateTime::REST_FORMAT = "M dd hh:mm:ss +0000 yyyy";
 
-// Date format in the Twitter REST API
+// Date format in the Twitter Search API
 QString ReynTweetsDateTime::SEARCH_FORMAT = ", dd M yyyy hh:mm:ss +0000";
 
 

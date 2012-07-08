@@ -107,6 +107,7 @@ QNetworkRequest * TwitterCommunicator::prepareRequest() {
 void TwitterCommunicator::executeRequest() {
 	// Preparing the request
 	QNetworkRequest * request = prepareRequest();
+	request->setOriginatingObject(this);
 
 	// Connection for receiving the response
 	connect(network, SIGNAL(finished(QNetworkReply*)),
@@ -135,11 +136,16 @@ void TwitterCommunicator::executeRequest() {
 // Treatments that have to be done at the end of the request
 void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// Treating the response
-	if (!response) {
+
+	// Is it the response of that precise request ?
+	if (!response || this != response->request().originatingObject()) {
+		// Null response or bad origin : doing nothing
 		return;
 	}
 
-	// No timeout : stop the timer
+	// That's our request. Let's do the treatments !
+
+	// No timeout : stop the timer.
 	timeoutTimer.stop();
 
 	// Unwiring

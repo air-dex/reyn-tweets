@@ -23,6 +23,11 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
+import "base_components"
+import "info_display"
+import "login"
+import "mainview_panes"
+import "mainview_panes/timeline_panes"
 
 /// @class MainView
 /// @brief Main page for desktop

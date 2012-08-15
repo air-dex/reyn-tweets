@@ -1,6 +1,7 @@
 /// @file WriteTweetPane.qml
 /// @brief Text entry to write and send a tweet
 ///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -24,8 +25,9 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
-import "jstools.js" as Tools
-import "twitter-text-js-wrapper.js" as TwitterTextJS
+import "../js/jstools.js" as Tools
+import "../js/twitter-text-js-wrapper.js" as TwitterTextJS
+import "../base_components"
 
 Rectangle {
 	id: write_tweet_pane

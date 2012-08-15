@@ -1,5 +1,7 @@
 /// @file SettingsPane.qml
 /// @brief Pane displaying settings
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -24,7 +26,8 @@
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
-import "jstools.js" as Tools
+import "../js/jstools.js" as Tools
+import "../base_components"
 
 Rectangle {
 	id: settings_pane

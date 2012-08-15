@@ -1,5 +1,7 @@
 /// @file TweetPane.qml
 /// @brief Pane to show a tweet
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -24,6 +26,7 @@
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
+import "../base_components"
 
 // Pane to show a tweet
 Rectangle {
@@ -48,9 +51,14 @@ Rectangle {
 	property int min_height: author_text.height + text.height
 							 + source_text.height + action_row.height + 9*margin
 
+	// Is the user the author of the tweet ?
 	property bool iam_author: shown_tweet.author.id_str === current_user.id_str
 
+	// Type of the timeline where the tweet is displayed
 	property alias timeline_type: control.timeline_type
+
+	// Folder where the icons are stored
+	property string icons_folder: "../../..".concat(constant.icon_folder)
 
 	width: 360
 	height:  min_height
@@ -181,7 +189,7 @@ Rectangle {
 		// Image to refresh the tweet
 		Image {
 			id: refresh_tweet
-			source: "../../resources/icons/refresh.png"
+			source: tweet_pane.icons_folder.concat("/refresh.png")
 
 			// Click to refresh the tweet
 			MouseArea {
@@ -193,7 +201,7 @@ Rectangle {
 		// Image to share the tweet (by mail)
 		Image {
 			id: share_tweet
-			source: "../../resources/icons/share.png"
+			source: tweet_pane.icons_folder.concat("/share.png")
 
 			// Click to refresh the tweet
 			MouseArea {
@@ -299,7 +307,7 @@ Rectangle {
 	// Reply informations
 	Text {
 		id: reply_info
-		text: buildImageTag("../../resources/icons/reply_on.png")
+		text: buildImageTag(tweet_pane.icons_folder.concat("/reply_on.png"))
 			.concat(' ').concat(qsTr("In reply to "))
 			.concat(wrapEntity('@' + shown_tweet.in_reply_to_screen_name))
 			.concat('. ').concat(wrapEntity(qsTr("Show conversation")))
@@ -363,7 +371,7 @@ Rectangle {
 			}
 		}
 
-		property string icon_source: "../../resources/icons/retweet_off.png"
+		property string icon_source: tweet_pane.icons_folder.concat("/retweet_off.png")
 
 		// Text to announce the retweeters
 		function retweetInfoText() {
@@ -479,7 +487,7 @@ Rectangle {
 		// Reply
 		ActionElement {
 			id: reply_action
-			image_source: "../../resources/icons/reply_off.png"
+			image_source: tweet_pane.icons_folder.concat("/reply_off.png")
 			legend: qsTr("Reply")
 			onAct: reply(shown_tweet.author.screen_name, shown_tweet.id_str)
 
@@ -489,7 +497,7 @@ Rectangle {
 		// Delete tweet
 		ActionElement {
 			id: delete_action
-			image_source: "../../resources/icons/wastebin.png"
+			image_source: tweet_pane.icons_folder.concat("/wastebin.png")
 			legend: qsTr("Delete")
 			onAct: {
 				control.deleteTweet();
@@ -501,7 +509,7 @@ Rectangle {
 		// Retweet
 		ActionElement {
 			id: retweet_action
-			image_source: "../../resources/icons/retweet_off2.png"
+			image_source: tweet_pane.icons_folder.concat("/retweet_off2.png")
 			legend: shown_tweet.retweeted ? qsTr("Retweeted") : qsTr("Retweet")
 			onAct: {
 				if (shown_tweet.retweeted) {
@@ -517,17 +525,17 @@ Rectangle {
 		// Quote
 		ActionElement {
 			id: quote_action
-			image_source: "../../resources/icons/quote.png"
+			image_source: tweet_pane.icons_folder.concat("/quote.png")
 			legend: qsTr("Quote")
 			onAct: {
-				quote('RT @' + shown_tweet.author.screen_name + ': ' + shown_tweet.text);
+				quote('RT @'.concat(shown_tweet.author.screen_name).concat(': ').concat(shown_tweet.text));
 			}
 		}
 
 		// Favorite
 		ActionElement {
 			id: favorite_action
-			image_source: "../../resources/icons/favorite_" + fav_suffix + ".png"
+			image_source: tweet_pane.icons_folder.concat("/favorite_").concat(fav_suffix).concat(".png")
 			legend: shown_tweet.favorited ? qsTr("Favorited") : qsTr("Favorite")
 			onAct: {
 				if (shown_tweet.favorited) {
@@ -580,8 +588,8 @@ Rectangle {
 				name: "rt_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Retweeted");
-					retweet_action.image_source = "../../resources/icons/retweet_on2.png"
-					retweet_info.icon_source = "../../resources/icons/retweet_on.png"
+					retweet_action.image_source = tweet_pane.icons_folder.concat("/retweet_on2.png")
+					retweet_info.icon_source = tweet_pane.icons_folder.concat("/retweet_on.png")
 				}
 			}
 		},
@@ -594,8 +602,8 @@ Rectangle {
 				name: "not_rt_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Retweet");
-					retweet_action.image_source = "../../resources/icons/retweet_off2.png"
-					retweet_info.icon_source = "../../resources/icons/retweet_off.png"
+					retweet_action.image_source = tweet_pane.icons_folder.concat("/retweet_off2.png")
+					retweet_info.icon_source = tweet_pane.icons_folder.concat("/retweet_off.png")
 				}
 			}
 		},
@@ -608,8 +616,8 @@ Rectangle {
 				name: "rt_fav_me_script"
 				script: {
 					favorite_action.legend = qsTr("Favorited");
-					retweet_action.image_source = "../../resources/icons/retweet_on2.png"
-					retweet_info.icon_source = "../../resources/icons/retweet_on.png"
+					retweet_action.image_source = tweet_pane.icons_folder.concat("/retweet_on2.png")
+					retweet_info.icon_source = tweet_pane.icons_folder.concat("/retweet_on.png")
 				}
 			}
 		},
@@ -622,8 +630,8 @@ Rectangle {
 				name: "not_fav_by_me_script"
 				script: {
 					retweet_action.legend = qsTr("Favorite");
-					retweet_action.image_source = "../../resources/icons/retweet_off2.png"
-					retweet_info.icon_source = "../../resources/icons/retweet_off.png"
+					retweet_action.image_source = tweet_pane.icons_folder.concat("/retweet_off2.png")
+					retweet_info.icon_source = tweet_pane.icons_folder.concat("/retweet_off.png")
 				}
 			}
 		},

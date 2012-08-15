@@ -1,5 +1,7 @@
 /// @file TransientPane.qml
 /// @brief Pane that remains visible for a given duration (default : 5s)
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -22,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import "../base_components"
 
 Rectangle {
 	id: transient_pane

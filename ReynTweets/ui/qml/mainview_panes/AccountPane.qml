@@ -1,6 +1,8 @@
-/// @file TryAgainPane.qml
-/// @brief Pane to try again something or to quit Reyn Tweets
-/// @author Romain Ducher
+/// @file AccountPane.qml
+/// @brief Pane dealing with accounts
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
+/// @author Romain DUCHER
 ///
 /// @section LICENSE
 ///
@@ -22,23 +24,24 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import ReynTweetsControls 0.1
+import ReynTweetsEntities 0.1
+import "../base_components"
 
-TwoButtonsActionPane {
-	// Signal sent when the user wants to try again
-	signal tryAgain
+ActionElement {
+	id: account_pane
 
-	id: try_again_pane
+	// Access to the settings
+	SettingsControl { id: settings }
 
-	Constants { id:constant }
+	// Sent to show a profile
+	signal showProfile
 
-	// Left button
-	left_button_text: qsTr("Try again")
-	onActLeft: {
-		try_again_pane.visible = false;
-		tryAgain();
-	}
-
-	// Right button
-	right_button_text: qsTr("Quit")
-	onActRight: Qt.quit();
+	image_source: settings.configuration.current_account.current_user.profile_image_url
+	legend: '<strong style="color: '
+		.concat(settings.configuration.current_account.current_user.profile_link_color)
+		.concat('">@')
+		.concat(settings.configuration.current_account.current_user.screen_name)
+		.concat("</strong>")
+	onAct: showProfile()
 }

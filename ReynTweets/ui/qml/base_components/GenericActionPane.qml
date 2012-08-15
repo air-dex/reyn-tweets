@@ -1,5 +1,7 @@
 /// @file GenericActionPane.qml
 /// @brief Pane with one button
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE

@@ -1,6 +1,8 @@
 /// @file ActionElement.qml
 /// @brief QML Component with an icon and a description that can be clicked
 /// to do something
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -23,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
-import "jstools.js" as Tools
+import "../js/jstools.js" as Tools
 
 // QML Component with an icon and a description that can be clicked to do sthg
 Item {

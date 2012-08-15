@@ -1,5 +1,7 @@
 /// @file AccountPane.qml
 /// @brief Pane displaying informations about Reyn Tweets
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -24,6 +26,7 @@
 import QtQuick 1.1
 import ReynTweetsControls 0.1
 import ReynTweetsEntities 0.1
+import "../base_components"
 
 Rectangle {
 	id: about_pane
@@ -106,7 +109,7 @@ Rectangle {
 				sourceSize.width: 5* about_board.width /8
 
 				fillMode: Image.PreserveAspectFit
-				source: "../../resources/Logo Reyn Tweets PNG.png"
+				source: "../../../resources/Logo Reyn Tweets PNG.png"
 
 				width: sourceSize.width
 			}

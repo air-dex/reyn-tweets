@@ -1,5 +1,7 @@
 /// @file RTDesktopMenu.qml
 /// @brief Menu of Reyn Tweets
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -22,9 +24,13 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import "../base_components"
 
 Rectangle {
 	id: desktop_menu
+
+	// Folder where the icons are stored
+	property string icons_folder: "../../..".concat(constant.icon_folder)
 
 	// Reyn Tweets constants
 	Constants { id: constant }
@@ -100,7 +106,7 @@ Rectangle {
 		// Show help
 		ActionElement {
 			id: help_action
-			image_source: "../../resources/icons/help.png"
+			image_source: desktop_menu.icons_folder.concat("/help.png")
 			legend: qsTr("Help")
 			onAct: helpReyn()
 		}
@@ -108,7 +114,7 @@ Rectangle {
 		// Quit the application
 		ActionElement {
 			id: quit_action
-			image_source: "../../resources/icons/close_cross.png"
+			image_source: desktop_menu.icons_folder.concat("/close_cross.png")
 			legend: qsTr("Quit")
 			onAct: quit()
 		}

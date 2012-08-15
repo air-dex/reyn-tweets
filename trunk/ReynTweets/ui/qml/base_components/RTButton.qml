@@ -2,6 +2,8 @@
 /// @brief Custom button
 ///
 /// The file was known as "Button.qml" until r203.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE

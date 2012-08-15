@@ -1,5 +1,7 @@
-/// @file HelpPane.qml
-/// @brief Pane providing help about Reyn Tweets
+/// @file WarningTransientPane.qml
+/// @brief TransientPane for warning messages
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -22,8 +24,16 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import "../base_components"
 
-Rectangle {
-	width: 100
-	height: 62
+TransientPane {
+	id: warning_transient_message
+
+	Constants { id:constant }
+
+	message: '<strong>' + qsTr("A problem occured :") + "</strong>\n"
+			 + warning_transient_message.warning_msg
+
+	// Message describing the warning
+	property string warning_msg
 }

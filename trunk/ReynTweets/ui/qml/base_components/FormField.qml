@@ -1,5 +1,7 @@
 /// @file FormField.qml
 /// @brief Text Input with a description.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE

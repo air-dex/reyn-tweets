@@ -1,5 +1,7 @@
 /// @file QuitPane.qml
 /// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -22,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
+import "../base_components"
 
 /// @class QuitPane
 /// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.

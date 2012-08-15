@@ -1,5 +1,7 @@
 /// @file TwoButtonsActionPane.qml
 /// @brief Popup with 2 buttons for 2 different actions.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE

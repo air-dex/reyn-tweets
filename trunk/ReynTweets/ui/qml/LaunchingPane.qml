@@ -23,6 +23,9 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
+import "base_components"
+import "info_display"
+import "login"
 
 /// @class LaunchingPane
 /// @brief Component used to launch the app

@@ -3,6 +3,8 @@
 ///
 /// Known as LoginComponent until r372. The LoginComponent which existed until
 /// r220 is now known as LoginPane.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -26,6 +28,8 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
+import "../base_components"
+import "../info_display"
 
 Item {
 	id: login_component

@@ -2,6 +2,8 @@
 /// @brief Widget displayed to enter user credentials during authentication.
 ///
 /// The file was known as "LoginComponent.qml" until r220.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -25,7 +27,8 @@
 
 import QtQuick 1.1
 import ReynTweetsControls 0.1
-import "jstools.js" as Tools
+import "../js/jstools.js" as Tools
+import "../base_components"
 
 /// @class LoginPane
 /// @brief Component for entering user credentials during authentication

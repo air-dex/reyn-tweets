@@ -1,5 +1,7 @@
 /// @file Constants.qml
 /// @brief QML constants of Reyn Tweets.
+///
+/// It were in the /trunk/ReynTweets/ui/qml folder until r491.
 /// @author Romain DUCHER
 ///
 /// @section LICENSE
@@ -129,4 +131,12 @@ QtObject {
 
 	// Font size
 	property int font_small_size: 12
+
+
+	//////////////////
+	// Miscanellous //
+	//////////////////
+
+	// Folder storing the icons
+	property string icon_folder: "/resources/icons"
 }

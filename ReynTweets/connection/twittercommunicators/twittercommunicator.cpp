@@ -93,12 +93,16 @@ QNetworkRequest * TwitterCommunicator::prepareRequest() {
 
 	QNetworkRequest * requestToTwitter = new QNetworkRequest(serviceURL);
 
+	// Adding the headers
 	for (HeadersMap::Iterator it = headers.begin();
 		 it != headers.end();
 		 ++it)
 	{
 	   requestToTwitter->setRawHeader(it.key(), it.value());
 	}
+
+	// Tag of the request with the originatingObject to identify the reply
+	requestToTwitter->setOriginatingObject(this);
 
 	return requestToTwitter;
 }
@@ -107,7 +111,6 @@ QNetworkRequest * TwitterCommunicator::prepareRequest() {
 void TwitterCommunicator::executeRequest() {
 	// Preparing the request
 	QNetworkRequest * request = prepareRequest();
-	request->setOriginatingObject(this);
 
 	// Connection for receiving the response
 	connect(network, SIGNAL(finished(QNetworkReply*)),
@@ -139,7 +142,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 
 	// Is it the response of that precise request ?
 	if (!response || this != response->request().originatingObject()) {
-		// Null response or bad origin : doing nothing
+		// Null reply or bad sender -> No -> doing nothing
 		return;
 	}
 

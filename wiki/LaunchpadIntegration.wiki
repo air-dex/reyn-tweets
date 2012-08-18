@@ -1,0 +1,43 @@
+#summary Intégration de Reyn Tweets dans Launchpad
+#labels Launchpad
+
+= Reyn Tweets dans Launchpad =
+
+Reyn Tweets dispose d'une page Launchpad : [https://launchpad.net/reyn-tweets]
+
+== Sur la page d'accueil ("Overview") ==
+
+La homepage de Reyn Tweets dans Launchpad est celle de Google Code ([http://code.google.com/p/reyn-tweets/]).
+
+Le wiki de Reyn Tweets dans Launchpad est celui de Google Code ([http://code.google.com/p/reyn-tweets/w/list]).
+
+Les "external downloads" de Reyn Tweets dans Launchpad sont les téléchargements sur Google Code ([http://code.google.com/p/reyn-tweets/downloads/list]).
+
+== Sur le bugtracker Launchpad ("Bugs") ==
+
+Le bug tracker de Reyn Tweets dans Launchpad renvoie vers celui de Google Code ([http://code.google.com/p/reyn-tweets/issues/list]). Il est cependant possible que quelque chose soit mis en place afin de pouvoir profiter d'un vrai bug tracker Launchpad *devant obligatoirement* être synchronisé avec celui de Google Code. C'est une condition _sine qua non_.
+
+== Sur le code ("Code") ==
+
+Reyn Tweets possède plusieurs branches Bazaar sur Launchpad. Les branches Bazaar étant liées à ce qui est présent sur le SVN, le plugin *bzr-svn* doit être installé avant toute manipulation.
+
+=== Branche principale ===
+
+La branche principale se nomme "*trunk*". Il s'agit du code de l'application en cours de développement. Elle a été créée à partir du push d'un leightweight checkout Bazaar du répertoire `/trunk/ReynTweets` situé dans le dépôt SVN sur Google Code.
+
+On peut se la copier via la commande suivante `bzr branch lp:reyn-tweets`. On utilisera donc `bzr push lp:reyn-tweets` pour pousser les changements sur Launchpad.
+
+Cependant, les modification faites sur le Bazaar de Launchpad ne sont pas répercutées automatiquement sur le SVN de Google Code et vice-versa. Le SVN des sources (`/trunk/ReynTweets`) et le trunk Bazaar doivent êtres considérés comme deux branches Bazaar dont les URL sont :
+  * `https://<Google Code username>:<Google Code password>@reyn-tweets.googlecode.com/svn/trunk/ReynTweets` (SVN)
+  * `lp:reyn-tweets` (Bazaar)
+
+Les pushs et les pulls se font via la commande : `bzr push|pull -d <branche de départ> <branche d'arrivée>`
+
+=== Autres branches ===
+
+Il y a d'autres branches de code sur Launchpad :
+
+  * *Branche alpha1* : contient _grosso modo_ le code de la version alpha 1 de Reyn Tweets. Son contenu est celui du dossier `/tags/0.1_alpha1` dans le dépôt SVN sur Google Code. Son nom est `lp:~air-dex/reyn-tweets/alpha1`.
+  * *Branche alpha2* : contient le code de la version alpha 2 de Reyn Tweets. Son contenu est celui du dossier `/tags/0.1_alpha2` dans le dépôt SVN sur Google Code. Son nom est `lp:~air-dex/reyn-tweets/alpha2`.
+
+D'autres branches pour la documentation sont à venir.

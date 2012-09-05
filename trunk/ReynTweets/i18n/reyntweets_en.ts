@@ -4,37 +4,37 @@
 <context>
     <name>AboutPane</name>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="51"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="54"/>
         <source>About Reyn Tweets</source>
         <translation>About Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="156"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="159"/>
         <source>Website : </source>
         <translation>Website: </translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="177"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="180"/>
         <source>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</source>
         <translation>Reyn Tweets is an open source Twitter client for Windows, Linux and Symbian (version still unavailable) written in Qt.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="180"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="183"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="185"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="188"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
         <translation>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="190"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="193"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
         <translation>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </translation>
     </message>
     <message>
-        <location filename="../ui/qml/AboutPane.qml" line="233"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="237"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -117,17 +117,17 @@
 <context>
     <name>DeleteTweetProcess</name>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="88"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="90"/>
         <source>The user is not the author of the tweet</source>
         <translation>The user is not the author of the tweet</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="106"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="108"/>
         <source>Retrieving retweet ID:</source>
         <translation>Retrieving retweet ID:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/deletetweetprocess.cpp" line="148"/>
+        <location filename="../logic/processes/deletetweetprocess.cpp" line="149"/>
         <source>Reweet ID unreachable</source>
         <translation>Reweet ID unreachable</translation>
     </message>
@@ -156,7 +156,7 @@
 <context>
     <name>HomeTimelineTab</name>
     <message>
-        <location filename="../ui/qml/HomeTimelineTab.qml" line="43"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/HomeTimelineTab.qml" line="46"/>
         <source>Home timeline</source>
         <translation>Home timeline</translation>
     </message>
@@ -172,27 +172,27 @@
 <context>
     <name>LaunchingPane</name>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="99"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="102"/>
         <source>Website : </source>
         <translation>Website: </translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="219"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="222"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>A fatal error occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="223"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="226"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="229"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="232"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translation>An hitch occured while launching Reyn Tweets:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="233"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="236"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Do you want to try to launch Reyn Tweets again or to quit ?</translation>
     </message>
@@ -256,28 +256,28 @@
 <context>
     <name>LoginComponents</name>
     <message>
-        <location filename="../ui/qml/LoginComponents.qml" line="62"/>
-        <location filename="../ui/qml/LoginComponents.qml" line="121"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="66"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="125"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets was denied.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginComponents.qml" line="63"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="67"/>
         <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
         <translation>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginComponents.qml" line="66"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="70"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginComponents.qml" line="73"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="77"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginComponents.qml" line="88"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="92"/>
         <source>Reyn Tweets will quit. Bye bye !</source>
         <translation>Reyn Tweets will quit. Bye bye !</translation>
     </message>
@@ -285,32 +285,32 @@
 <context>
     <name>LoginPane</name>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="79"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="82"/>
         <source>Username or password invalid. Try again.</source>
         <translation>Username or password invalid. Try again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="113"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="116"/>
         <source>Username or email:</source>
         <translation>Username or email:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="125"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="128"/>
         <source>Password:</source>
         <translation>Password:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="171"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="174"/>
         <source>Show password</source>
         <translation>Show password</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="183"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="186"/>
         <source>Authorize</source>
         <translation>Authorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LoginPane.qml" line="195"/>
+        <location filename="../ui/qml/login/LoginPane.qml" line="198"/>
         <source>No, thanks</source>
         <translation>No, thanks</translation>
     </message>
@@ -318,33 +318,33 @@
 <context>
     <name>MainView</name>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="233"/>
+        <location filename="../ui/qml/MainView.qml" line="238"/>
         <source>Your tweet is too long. Would you post it with TwitLonger ?</source>
         <translation>Your tweet is too long. Would you post it with TwitLonger ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="236"/>
+        <location filename="../ui/qml/MainView.qml" line="241"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="349"/>
+        <location filename="../ui/qml/MainView.qml" line="354"/>
         <source>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</source>
         <translation>The OAuth tokens was not right. You ought to reauthorize Reyn Tweets again.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="350"/>
+        <location filename="../ui/qml/MainView.qml" line="355"/>
         <source>Would to like to authorize Reyn Tweets again ?</source>
         <translation>Would to like to authorize Reyn Tweets again ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="353"/>
+        <location filename="../ui/qml/MainView.qml" line="358"/>
         <source>Reauthorize</source>
         <translation>Reauthorize</translation>
     </message>
     <message>
-        <location filename="../ui/qml/MainView.qml" line="243"/>
-        <location filename="../ui/qml/MainView.qml" line="360"/>
+        <location filename="../ui/qml/MainView.qml" line="248"/>
+        <location filename="../ui/qml/MainView.qml" line="365"/>
         <source>No</source>
         <translation>No</translation>
     </message>
@@ -352,7 +352,7 @@
 <context>
     <name>MentionsTimelineTab</name>
     <message>
-        <location filename="../ui/qml/MentionsTimelineTab.qml" line="43"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/MentionsTimelineTab.qml" line="46"/>
         <source>Mentions</source>
         <translation>Mentions</translation>
     </message>
@@ -563,7 +563,7 @@
 <context>
     <name>QuitPane</name>
     <message>
-        <location filename="../ui/qml/QuitPane.qml" line="29"/>
+        <location filename="../ui/qml/info_display/QuitPane.qml" line="32"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>
@@ -571,32 +571,32 @@
 <context>
     <name>RTDesktopMenu</name>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="75"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="81"/>
         <source>Say hello</source>
         <translation>Say hello</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="82"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="88"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="89"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="95"/>
         <source>About Reyn Tweets</source>
         <translation>About Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="96"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="102"/>
         <source>About Qt</source>
         <translation>About Qt</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="104"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="110"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../ui/qml/RTDesktopMenu.qml" line="112"/>
+        <location filename="../ui/qml/mainview_panes/RTDesktopMenu.qml" line="118"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>
@@ -640,22 +640,22 @@
 <context>
     <name>SettingsPane</name>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="52"/>
+        <location filename="../ui/qml/mainview_panes/SettingsPane.qml" line="55"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="112"/>
+        <location filename="../ui/qml/mainview_panes/SettingsPane.qml" line="115"/>
         <source>Hello message :</source>
         <translation>Hello message:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="171"/>
+        <location filename="../ui/qml/mainview_panes/SettingsPane.qml" line="175"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../ui/qml/SettingsPane.qml" line="190"/>
+        <location filename="../ui/qml/mainview_panes/SettingsPane.qml" line="195"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
@@ -663,58 +663,60 @@
 <context>
     <name>TimelineControl</name>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="152"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="150"/>
         <source>Loading timeline...</source>
         <translation>Loading timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="157"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="155"/>
         <source>Loading mentions...</source>
         <translation>Loading mentions...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="166"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="256"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="404"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="536"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="164"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="254"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="313"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="417"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="476"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="564"/>
         <source>Invalid type of timeline</source>
         <translation>Invalid type of timeline</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="193"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="191"/>
         <source>Timeline loaded</source>
         <translation>Timeline loaded</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="242"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="365"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="240"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="378"/>
         <source>Refreshing timeline...</source>
         <translation>Refreshing timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="247"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="386"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="245"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="399"/>
         <source>Refreshing mentions...</source>
         <translation>Refreshing mentions...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="317"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="468"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="330"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="496"/>
         <source>Timeline refreshed</source>
         <translation>Timeline refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="522"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="550"/>
         <source>Loading more tweets...</source>
         <translation>Loading more tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="527"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="555"/>
         <source>Loading more mentions...</source>
         <translation>Loading more mentions...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="566"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="594"/>
         <source>Tweets loaded</source>
         <translation>Tweets loaded</translation>
     </message>
@@ -722,27 +724,27 @@
 <context>
     <name>TimelinePane</name>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="63"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/TimelinePane.qml" line="67"/>
         <source>Pull down to refresh</source>
         <translation>Pull down to refresh</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="71"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/TimelinePane.qml" line="75"/>
         <source>Release to refresh</source>
         <translation>Release to refresh</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="146"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/TimelinePane.qml" line="153"/>
         <source>More...</source>
         <translation>More...</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="270"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/TimelinePane.qml" line="287"/>
         <source>A fatal error occured while loading the timeline:</source>
         <translation>A fatal error occured while loading the timeline:</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TimelinePane.qml" line="274"/>
+        <location filename="../ui/qml/mainview_panes/timeline_panes/TimelinePane.qml" line="291"/>
         <source>The application will quit.</source>
         <translation>The application will quit.</translation>
     </message>
@@ -750,12 +752,12 @@
 <context>
     <name>TryAgainPane</name>
     <message>
-        <location filename="../ui/qml/TryAgainPane.qml" line="35"/>
+        <location filename="../ui/qml/info_display/TryAgainPane.qml" line="38"/>
         <source>Try again</source>
         <translation>Try again</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TryAgainPane.qml" line="42"/>
+        <location filename="../ui/qml/info_display/TryAgainPane.qml" line="45"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>
@@ -763,84 +765,106 @@
 <context>
     <name>TweetControl</name>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="117"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="124"/>
         <source>Refreshing tweet...</source>
         <translation>Refreshing tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="142"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="149"/>
         <source>Tweet refreshed</source>
         <translation>Tweet refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="149"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="156"/>
         <source>Twitter did not find the tweet.</source>
         <translation>Twitter did not find the tweet.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="187"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="194"/>
         <source>Tweet by </source>
         <translation>Tweet by </translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="200"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="207"/>
         <source>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</source>
         <translation>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="202"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="209"/>
         <source>Sent via Reyn Tweets</source>
         <translation>Sent via Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="237"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="248"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="264"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweeting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="264"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="261"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="274"/>
+        <source>Cannot retweet this tweet</source>
+        <translation>Cannot retweet this tweet</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="303"/>
         <source>No retweet in the retweeted status</source>
         <translation>No retweet in the retweeted status</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="273"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="313"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeted</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="314"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="358"/>
         <source>Favoriting...</source>
         <translation>Favoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="341"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="367"/>
+        <source>Cannot favorite this tweet</source>
+        <translation>Cannot favorite this tweet</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="396"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="383"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="442"/>
         <source>Unfavoriting...</source>
         <translation>Unfavoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="416"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="451"/>
+        <source>Cannot unfavorite this tweet</source>
+        <translation>Cannot unfavorite this tweet</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="486"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet unfavorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="456"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="530"/>
         <source>Deleting the tweet...</source>
         <translation>Deleting the tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="488"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="539"/>
+        <source>Cannot delete this tweet</source>
+        <translation>Cannot delete this tweet</translation>
+    </message>
+    <message>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="573"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="501"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="586"/>
         <source>Tweet deleted</source>
         <translation>Tweet deleted</translation>
     </message>
@@ -848,88 +872,88 @@
 <context>
     <name>TweetPane</name>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="301"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="311"/>
         <source>In reply to </source>
         <translation>In reply to </translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="303"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="313"/>
         <source>Show conversation</source>
         <translation>Show conversation</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="370"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="380"/>
         <source>Retweeted by</source>
         <translation>Retweeted by</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="386"/>
-        <location filename="../ui/qml/TweetPane.qml" line="399"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="396"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="409"/>
         <source>me</source>
         <translation>me</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="441"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="451"/>
         <source>other</source>
         <translation>other</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="445"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="455"/>
         <source>others</source>
         <translation>others</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="411"/>
-        <location filename="../ui/qml/TweetPane.qml" line="428"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="421"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="438"/>
         <source>and</source>
         <translation>and</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="442"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="452"/>
         <source>person</source>
         <translation>person</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="446"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="456"/>
         <source>people</source>
         <translation>people</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="481"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="491"/>
         <source>Reply</source>
         <translation>Reply</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="491"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="501"/>
         <source>Delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="503"/>
-        <location filename="../ui/qml/TweetPane.qml" line="582"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="513"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="590"/>
         <source>Retweeted</source>
         <translation>Retweeted</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="503"/>
-        <location filename="../ui/qml/TweetPane.qml" line="596"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="513"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="604"/>
         <source>Retweet</source>
         <translation>Retweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="519"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="529"/>
         <source>Quote</source>
         <translation>Quote</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="531"/>
-        <location filename="../ui/qml/TweetPane.qml" line="610"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="539"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="618"/>
         <source>Favorited</source>
         <translation>Favorited</translation>
     </message>
     <message>
-        <location filename="../ui/qml/TweetPane.qml" line="531"/>
-        <location filename="../ui/qml/TweetPane.qml" line="624"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="539"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="632"/>
         <source>Favorite</source>
         <translation>Favorite</translation>
     </message>
@@ -945,7 +969,7 @@
 <context>
     <name>WarningTransientPane</name>
     <message>
-        <location filename="../ui/qml/WarningTransientPane.qml" line="31"/>
+        <location filename="../ui/qml/info_display/WarningTransientPane.qml" line="34"/>
         <source>A problem occured :</source>
         <translation>A problem occured :</translation>
     </message>
@@ -973,43 +997,43 @@
 <context>
     <name>WriteTweetPane</name>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="86"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="84"/>
         <source>What is happening ?</source>
         <translation>What is happening ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="158"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="156"/>
         <source>Tweet</source>
         <translatorcomment>Sending the tweet</translatorcomment>
         <translation>Tweet</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="183"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="181"/>
         <source>Your tweet gets more than 140 characters.</source>
         <translation>Your tweet gets more than 140 characters.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="203"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="201"/>
         <source>Your tweet gets some invalid character(s).</source>
         <translation>Your tweet gets some invalid character(s).</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="214"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="212"/>
         <source>You have to write something to tweet.</source>
         <translation>You have to write something to tweet.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="177"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="175"/>
         <source>too long</source>
         <translation>too long</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="147"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="145"/>
         <source>Erase</source>
         <translation>Erase</translation>
     </message>
     <message>
-        <location filename="../ui/qml/WriteTweetPane.qml" line="198"/>
+        <location filename="../ui/qml/mainview_panes/WriteTweetPane.qml" line="196"/>
         <source>invalid character(s)</source>
         <oldsource>invalid characters</oldsource>
         <translation>invalid character(s)</translation>

@@ -420,15 +420,14 @@ DEPLOYMENTFOLDERS = qml_files \
 
 win32 {
 	QJSON_PATH = C:\\Libs\\qjson
-	INCLUDEPATH += $${QJSON_PATH}\\include
-	LIBS += -L$${QJSON_PATH}\\lib -lqjson0
 }
 
 linux-g++ {
 	QJSON_PATH = /home/ducher/Libs/qjson
-	INCLUDEPATH += $${QJSON_PATH}/include
-	LIBS += -L$${QJSON_PATH}/lib -lqjson
 }
+
+INCLUDEPATH += $${QJSON_PATH}$${SEPARATOR}include
+LIBS += -L$${QJSON_PATH}$${SEPARATOR}lib -lqjson
 
 symbian {
 #	QJSON_PATH = # TODO

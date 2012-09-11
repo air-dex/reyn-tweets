@@ -126,7 +126,7 @@ Rectangle {
 				text: "Reyn Tweets"
 				font.bold: true
 				font.family: constant.font
-				font.pixelSize: constant.font_title_size
+				font.pixelSize: constant.font_size_title
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
 			}
@@ -220,7 +220,7 @@ General Public License along with Reyn Tweets. If not, see '))
 				font.bold: false
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
-				font.pixelSize: constant.font_small_size
+				font.pixelSize: constant.font_size_s
 				onLinkActivated: Qt.openUrlExternally(link)
 			}
 		}

@@ -74,7 +74,6 @@ SOURCES += \
 	connection/requests/searches/searchrequester.cpp \
 	connection/requests/timelines/hometimelinerequester.cpp \
 	connection/requests/timelines/mentionstimelinerequester.cpp \
-	connection/requests/timelines/retweetsbymerequester.cpp \
 	connection/requests/tweets/destroytweetrequester.cpp \
 	connection/requests/tweets/posttweetrequester.cpp \
 	connection/requests/tweets/retweetrequester.cpp \
@@ -176,7 +175,6 @@ HEADERS  += \
 	connection/requests/searches/searchrequester.hpp \
 	connection/requests/timelines/hometimelinerequester.hpp \
 	connection/requests/timelines/mentionstimelinerequester.hpp \
-	connection/requests/timelines/retweetsbymerequester.hpp \
 	connection/requests/tweets/destroytweetrequester.hpp \
 	connection/requests/tweets/posttweetrequester.hpp \
 	connection/requests/tweets/retweetrequester.hpp \

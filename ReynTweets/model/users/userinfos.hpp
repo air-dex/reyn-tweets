@@ -1141,7 +1141,6 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Setter on location
 		/// @param newLocation The new value of location
 		void setLocation(QString newLocation);
-
 };
 
 // Serialization of UserInfos

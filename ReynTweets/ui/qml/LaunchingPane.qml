@@ -69,7 +69,7 @@ Rectangle {
 			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: constant.font_title_size
+			font.pixelSize: constant.font_size_title
 		}
 	}
 

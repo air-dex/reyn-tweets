@@ -37,7 +37,6 @@
 #include "searches/searchrequester.hpp"
 #include "timelines/hometimelinerequester.hpp"
 #include "timelines/mentionstimelinerequester.hpp"
-#include "timelines/retweetsbymerequester.hpp"
 #include "tweets/destroytweetrequester.hpp"
 #include "tweets/posttweetrequester.hpp"
 #include "tweets/retweetrequester.hpp"

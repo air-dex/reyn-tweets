@@ -248,24 +248,6 @@ class ReynTwitterCalls : public GenericCalls
 									  int count = 20,
 									  bool contributorsDetails = false);
 
-		/// @fn void userRetweetsTimeline(qlonglong sinceID = -1,
-		///								  qlonglong maxID = -1,
-		///								  int count = 20,
-		///								  bool trimUser = false,
-		///								  bool includeEntities = false);
-		/// @brief Retrieving the timeline with the tweets retweeted by the user
-		/// @param sinceID Minimum tweet ID possible in the timeline
-		/// @param maxID Maximum tweet ID possible in the timeline
-		/// @param count Number of tweets
-		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/retweeted_by_me
-		void userRetweetsTimeline(qlonglong sinceID = -1,
-								  qlonglong maxID = -1,
-								  int count = 20,
-								  bool trimUser = false,
-								  bool includeEntities = false);
-
 
 		////////////
 		// Tweets //

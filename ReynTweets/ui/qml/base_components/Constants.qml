@@ -123,14 +123,17 @@ QtObject {
 	// Font used for Reyn Tweets
 	property string font: "Ubuntu"
 
-	// Font size
-	property int font_title_size: 36
+	// Font size for big titles
+	property int font_size_title: 36
 
 	// Font size
 	property int font_size: 14
 
-	// Font size
-	property int font_small_size: 12
+	// Font size (small - S)
+	property int font_size_s: 12
+
+	// Font size (very small - XS)
+	property int font_size_xs: 11
 
 
 	//////////////////

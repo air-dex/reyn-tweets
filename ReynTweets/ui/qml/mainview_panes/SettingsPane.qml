@@ -127,7 +127,7 @@ Rectangle {
 
 					text: say_hello.say_hello_chars_nb
 					font.family: constant.font
-					font.pixelSize: constant.font_small_size
+					font.pixelSize: constant.font_size_s
 					wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 					font.bold: say_hello.say_hello_chars_nb < 0
 					color: say_hello.say_hello_chars_nb < 0 ?

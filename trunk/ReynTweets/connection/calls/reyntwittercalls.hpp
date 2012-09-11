@@ -221,7 +221,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param page Number of pages
 		/// @param count Number of tweets
 		/// @param contributorsDetails Including details about contributors
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/home_timeline
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
 		void retrieveHomeTimeline(qlonglong sinceID = -1,
 								  qlonglong maxID = -1,
 								  bool trimUser = false,

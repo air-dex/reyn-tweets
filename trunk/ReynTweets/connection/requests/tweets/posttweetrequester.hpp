@@ -24,12 +24,12 @@
 #ifndef POSTTWEETREQUESTER_HPP
 #define POSTTWEETREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class PostTweetRequester
 /// @brief Requester for posting a tweet without media
 /// @see https://dev.twitter.com/docs/api/1/post/statuses/update
-class PostTweetRequester : public AuthenticationRequester
+class PostTweetRequester : public TwitterRequester
 {
 	Q_OBJECT
 

@@ -24,7 +24,7 @@
 #ifndef UNFAVORITEREQUESTER_HPP
 #define UNFAVORITEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class UnfavoriteRequester
 /// @brief Requester to unfavorite a tweet.
@@ -32,7 +32,7 @@
 /// No need to override GenericRequester::buildPOSTParameters since there is not
 /// any POST arguments.
 /// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
-class UnfavoriteRequester : public AuthenticationRequester
+class UnfavoriteRequester : public TwitterRequester
 {
 	Q_OBJECT
 

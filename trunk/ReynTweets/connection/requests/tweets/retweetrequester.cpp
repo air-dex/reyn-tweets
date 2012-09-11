@@ -29,7 +29,7 @@ RetweetRequester::RetweetRequester(OAuthManager &authManager,
 								   qlonglong statusID,
 								   bool withEntities,
 								   bool userIDonly) :
-	AuthenticationRequester(POST, TwitterURL::RETWEET_URL, authManager),
+	TwitterRequester(POST, TwitterURL::RETWEET_URL, authManager),
 	tweetID(statusID),
 	includeEntities(withEntities),
 	trimUser(userIDonly)

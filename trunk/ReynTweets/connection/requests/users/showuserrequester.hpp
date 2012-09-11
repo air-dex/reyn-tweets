@@ -25,14 +25,14 @@
 #define SHOWUSERREQUESTER_HPP
 
 #include <QString>
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 #include "../identificationway.hpp"
 
 /// @class ShowUserRequester
 /// @brief Requester for getting details about a user identified by its ID
 /// or its screen name.
 /// @see https://dev.twitter.com/docs/api/1/get/users/show
-class ShowUserRequester : public AuthenticationRequester
+class ShowUserRequester : public TwitterRequester
 {
 	public:
 		/// @fn ShowUserRequester(OAuthManager & authManager,

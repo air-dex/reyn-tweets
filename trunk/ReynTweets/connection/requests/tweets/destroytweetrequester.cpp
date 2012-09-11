@@ -29,7 +29,7 @@ DestroyTweetRequester::DestroyTweetRequester(OAuthManager &authManager,
 											 qlonglong statusID,
 											 bool withEntities,
 											 bool userIDonly) :
-	AuthenticationRequester(POST, TwitterURL::DELETE_TWEET_URL, authManager),
+	TwitterRequester(POST, TwitterURL::DELETE_TWEET_URL, authManager),
 	tweetID(statusID),
 	includeEntities(withEntities),
 	trimUser(userIDonly)

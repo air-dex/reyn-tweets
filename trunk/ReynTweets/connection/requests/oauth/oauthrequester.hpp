@@ -24,11 +24,11 @@
 #ifndef OAUTHREQUESTER_HPP
 #define OAUTHREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class OAuthRequester
 /// @brief Generic requester for requests dealing with OAuth
-class OAuthRequester : public AuthenticationRequester
+class OAuthRequester : public TwitterRequester
 {
 	Q_OBJECT
 

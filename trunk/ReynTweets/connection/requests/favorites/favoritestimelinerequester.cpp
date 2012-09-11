@@ -31,9 +31,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   bool withEntities,
 													   int nbPages,
 													   int nbTweets) :
-	AuthenticationRequester(GET,
-							TwitterURL::FAVORITE_TIMELINE_URL,
-							authManager),
+	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(ID),
 	userID(uid),
 	screenName(""),
@@ -50,9 +48,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   bool withEntities,
 													   int nbPages,
 													   int nbTweets) :
-	AuthenticationRequester(GET,
-							TwitterURL::FAVORITE_TIMELINE_URL,
-							authManager),
+	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(SCREEN_NAME),
 	userID(-1),
 	screenName(userName),

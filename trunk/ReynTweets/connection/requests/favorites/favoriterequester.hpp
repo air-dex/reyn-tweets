@@ -24,12 +24,12 @@
 #ifndef FAVORITEREQUESTER_HPP
 #define FAVORITEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class FavoriteRequester
 /// @brief Requester to favorite a tweet
 /// @see https://dev.twitter.com/docs/api/1/post/favorites/create/%3Aid
-class FavoriteRequester : public AuthenticationRequester
+class FavoriteRequester : public TwitterRequester
 {
 	Q_OBJECT
 

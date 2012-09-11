@@ -164,37 +164,30 @@ class ReynCore : public QObject
 		///							  qlonglong maxID = -1,
 		///							  int count = 20,
 		///							  bool trimUser = false,
-		///							  bool includeRTS = true,
 		///							  bool includeEntities = true,
 		///							  bool excludeReplies = false,
-		///							  int page = 0,
 		///							  bool contributorsDetails = false);
 		/// @brief Loading the home timeline of a user
 		/// @param sinceID Minimum tweet ID possible in the timeline
 		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param count Number of tweets
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeRTS Including retweets
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param excludeReplies Excluding the replies
-		/// @param page Number of pages
 		/// @param contributorsDetails Including details about contributors
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/home_timeline
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
 		void loadHomeTimeline(qlonglong sinceID = -1,
 							  qlonglong maxID = -1,
 							  int count = 20,
 							  bool trimUser = false,
-							  bool includeRTS = true,
 							  bool includeEntities = true,
 							  bool excludeReplies = false,
-							  int page = 0,
 							  bool contributorsDetails = false);
 
 		/// @fn void loadMentionsTimeline(qlonglong sinceID = -1,
 		///								  qlonglong maxID = -1,
 		///								  int count = 20,
 		///								  bool trimUser = false,
-		///								  bool includeRTS = true,
 		///								  bool includeEntities = true,
 		///								  bool contributorsDetails = false);
 		/// @brief Loading the home timeline containing the mentions of the user
@@ -202,15 +195,13 @@ class ReynCore : public QObject
 		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param count Number of tweets
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeRTS Including retweets
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param contributorsDetails Including details about contributors
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions
 		void loadMentionsTimeline(qlonglong sinceID = -1,
 								  qlonglong maxID = -1,
 								  int count = 20,
 								  bool trimUser = false,
-								  bool includeRTS = true,
 								  bool includeEntities = true,
 								  bool contributorsDetails = false);
 

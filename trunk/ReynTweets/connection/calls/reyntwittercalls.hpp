@@ -205,37 +205,30 @@ class ReynTwitterCalls : public GenericCalls
 		/// @fn void retrieveHomeTimeline(qlonglong sinceID = -1,
 		///								  qlonglong maxID = -1,
 		///								  bool trimUser = false,
-		///								  bool includeRTS = false,
 		///								  bool includeEntities = false,
 		///								  bool excludeReplies = false,
-		///								  int page = 0,
 		///								  int count = 20,
 		///								  bool contributorsDetails = false);
 		/// @brief Retrieving the timeline with the tweets of the user's friends
 		/// @param sinceID Minimum tweet ID possible in the timeline
 		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeRTS Including retweets
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param excludeReplies Excluding the replies
-		/// @param page Number of pages
 		/// @param count Number of tweets
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
 		void retrieveHomeTimeline(qlonglong sinceID = -1,
 								  qlonglong maxID = -1,
 								  bool trimUser = false,
-								  bool includeRTS = false,
 								  bool includeEntities = false,
 								  bool excludeReplies = false,
-								  int page = 0,
 								  int count = 20,
 								  bool contributorsDetails = false);
 
 		/// @fn void retrieveMentionsTimeline(qlonglong sinceID = -1,
 		///									  qlonglong maxID = -1,
 		///									  bool trimUser = false,
-		///									  bool includeRTS = false,
 		///									  bool includeEntities = false,
 		///									  int count = 20,
 		///									  bool contributorsDetails = false);
@@ -243,15 +236,13 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param sinceID Minimum tweet ID possible in the timeline
 		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeRTS Including retweets
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param count Number of tweets
 		/// @param contributorsDetails Including details about contributors
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions_timeline
 		void retrieveMentionsTimeline(qlonglong sinceID = -1,
 									  qlonglong maxID = -1,
 									  bool trimUser = false,
-									  bool includeRTS = false,
 									  bool includeEntities = false,
 									  int count = 20,
 									  bool contributorsDetails = false);

@@ -32,7 +32,6 @@ class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 		/// @fn LoadMentionsTimelineProcess(qlonglong oldestTweetID = -1,
 		///									qlonglong youngestTweetID = -1,
 		///									bool userIDonly = false,
-		///									bool withRetweets = false,
 		///									bool withEntities = false,
 		///									int nbTweets = 20,
 		///									bool withContributorsDetails = false);
@@ -40,14 +39,12 @@ class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 		/// @param oldestTweetID Value of sinceID
 		/// @param youngestTweetID Value of maxID
 		/// @param userIDonly Value of trimUser
-		/// @param withRetweets Value of includeRetweets
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
 		LoadMentionsTimelineProcess(qlonglong oldestTweetID = -1,
 									qlonglong youngestTweetID = -1,
 									bool userIDonly = false,
-									bool withRetweets = false,
 									bool withEntities = false,
 									int nbTweets = 20,
 									bool withContributorsDetails = false);
@@ -66,9 +63,6 @@ class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Includng retweets
-		bool includeRetweets;
 
 		/// @brief Including Tweet Entities in tweets
 		bool includeEntities;

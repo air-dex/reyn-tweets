@@ -36,18 +36,14 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 		/// @fn LoadingHomeTimelineProcess(qlonglong oldestTweetID = -1,
 		///								   qlonglong youngestTweetID = -1,
 		///								   bool userIDonly = false,
-		///								   bool withRetweets = false,
 		///								   bool withEntities = false,
 		///								   bool withoutReplies = false,
-		///								   int nbPage = 0,
 		///								   int nbTweets = 20,
 		///								   bool withContributorsDetails = false);
 		/// @brief Constructor
 		/// @param oldestTweetID Value of sinceID
 		/// @param youngestTweetID Value of maxID
-		/// @param nbPage Value of page
 		/// @param userIDonly Value of trimUser
-		/// @param withRetweets Value of includeRetweets
 		/// @param withEntities Value of includeEntities
 		/// @param withoutReplies Value of excludeReplies
 		/// @param nbTweets Value of count
@@ -55,10 +51,8 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 		LoadingHomeTimelineProcess(qlonglong oldestTweetID = -1,
 								   qlonglong youngestTweetID = -1,
 								   bool userIDonly = false,
-								   bool withRetweets = false,
 								   bool withEntities = false,
 								   bool withoutReplies = false,
-								   int nbPage = 0,
 								   int nbTweets = 20,
 								   bool withContributorsDetails = false);
 
@@ -74,14 +68,8 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 		/// @brief Maximum tweet ID allowed in the timeline
 		qlonglong maxID;
 
-		/// @brief Number of pages to retrieve. Start at 1, not 0.
-		int page;
-
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Includng retweets
-		bool includeRetweets;
 
 		/// @brief Including Tweet Entities in tweets
 		bool includeEntities;

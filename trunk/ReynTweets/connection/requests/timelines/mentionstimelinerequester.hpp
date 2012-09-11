@@ -28,7 +28,7 @@
 
 /// @class MentionsTimelineRequester
 /// @brief Timeline containing the mentions of the user
-/// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
+/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions_timeline
 class MentionsTimelineRequester : public TwitterRequester
 {
 		Q_OBJECT
@@ -37,7 +37,6 @@ class MentionsTimelineRequester : public TwitterRequester
 		///								  qlonglong oldestTweetID = -1,
 		///								  qlonglong youngestTweetID = -1,
 		///								  bool userIDonly = false,
-		///								  bool withRetweets = false,
 		///								  bool withEntities = false,
 		///								  int nbTweets = 20,
 		///								  bool withContributorsDetails = false);
@@ -46,7 +45,6 @@ class MentionsTimelineRequester : public TwitterRequester
 		/// @param oldestTweetID Value of sinceID
 		/// @param youngestTweetID Value of maxID
 		/// @param userIDonly Value of trimUser
-		/// @param withRetweets Value of includeRetweets
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
@@ -54,7 +52,6 @@ class MentionsTimelineRequester : public TwitterRequester
 								  qlonglong oldestTweetID = -1,
 								  qlonglong youngestTweetID = -1,
 								  bool userIDonly = false,
-								  bool withRetweets = false,
 								  bool withEntities = false,
 								  int nbTweets = 20,
 								  bool withContributorsDetails = false);
@@ -72,9 +69,6 @@ class MentionsTimelineRequester : public TwitterRequester
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Includng retweets
-		bool includeRetweets;
 
 		/// @brief Including Tweet Entities in tweets
 		bool includeEntities;

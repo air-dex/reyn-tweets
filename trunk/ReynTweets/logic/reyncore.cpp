@@ -220,19 +220,15 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 								qlonglong maxID,
 								int count,
 								bool trimUser,
-								bool includeRTS,
 								bool includeEntities,
 								bool excludeReplies,
-								int page,
 								bool contributorsDetails)
 {
 	LoadingHomeTimelineProcess * process = new LoadingHomeTimelineProcess(sinceID,
 																		  maxID,
 																		  trimUser,
-																		  includeRTS,
 																		  includeEntities,
 																		  excludeReplies,
-																		  page,
 																		  count,
 																		  contributorsDetails);
 	executeProcess(process);
@@ -243,14 +239,12 @@ void ReynCore::loadMentionsTimeline(qlonglong sinceID,
 									qlonglong maxID,
 									int count,
 									bool trimUser,
-									bool includeRTS,
 									bool includeEntities,
 									bool contributorsDetails)
 {
 	LoadMentionsTimelineProcess * process = new LoadMentionsTimelineProcess(sinceID,
 																			maxID,
 																			trimUser,
-																			includeRTS,
 																			includeEntities,
 																			count,
 																			contributorsDetails);

@@ -24,14 +24,13 @@
 #include "retweetprocess.hpp"
 
 // Constructor
-RetweetProcess::RetweetProcess(qlonglong statusID, bool withEntities, bool userIDonly) :
+RetweetProcess::RetweetProcess(qlonglong statusID, bool userIDonly) :
 	SingleTwitterCallProcess(TWEET_RETWEETED),
-    tweetID(statusID),
-    includeEntities(withEntities),
-    trimUser(userIDonly)
+	tweetID(statusID),
+	trimUser(userIDonly)
 {}
 
 // Calling Twitter
 void RetweetProcess::callTwitter() {
-	twitter.retweet(tweetID, includeEntities, trimUser);
+	twitter.retweet(tweetID, trimUser);
 }

@@ -28,13 +28,11 @@
 // Constructor
 DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,
 									   Tweet statusToDelete,
-									   bool withEntities,
 									   bool userIDonly) :
 	GenericProcess(),
 	twitter(this),
 	user(u),
 	tweetToDelete(statusToDelete),
-	includeEntities(withEntities),
 	trimUser(userIDonly),
 	keepInTimeline(true)
 {}
@@ -192,7 +190,7 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 		qlonglong tweetID = addInfos.toLongLong(&toLongLongOK);
 
 		if (toLongLongOK) {
-			return twitter.destroyTweet(tweetID, includeEntities, trimUser);
+			return twitter.destroyTweet(tweetID, trimUser);
 		} else {
 			errMsg.append(DeleteTweetProcess::trUtf8("Unknown tweet ID '"));
 			errMsg.append(addInfos);

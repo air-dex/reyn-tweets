@@ -37,16 +37,13 @@ class DeleteTweetProcess : public GenericProcess
 	public:
 		/// @fn DeleteTweetProcess(UserInfos & u,
 		///						   Tweet statusToDelete,
-		///						   bool withEntities = true,
 		///						   bool userIDonly = false);
 		/// @brief Constructor
 		/// @param u User who want to delete the tweet.
 		/// @param statusToDelete The tweet to delete
-		/// @param withEntities Including Tweet Entities ?
 		/// @param userIDonly Omit user details in the reply ?
 		DeleteTweetProcess(UserInfos & u,
 						   Tweet statusToDelete,
-						   bool withEntities = true,
 						   bool userIDonly = false);
 
 		/// @fn ~DeleteTweetProcess();
@@ -67,9 +64,6 @@ class DeleteTweetProcess : public GenericProcess
 
 		/// @brief ID of the tweet to favorite
 		Tweet tweetToDelete;
-
-		/// @brief Include Tweet Entities of the tweet in the reply ?
-		bool includeEntities;
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;

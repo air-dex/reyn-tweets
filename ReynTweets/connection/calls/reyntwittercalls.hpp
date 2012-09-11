@@ -271,28 +271,20 @@ class ReynTwitterCalls : public GenericCalls
 		////////////
 
 		/// @fn void destroyTweet(qlonglong tweetID,
-		///						  bool entities = true,
 		///						  bool trimUser = false);
 		/// @brief Destroying (deleting) a tweet
 		/// @param tweetID ID of the tweet
-		/// @param entities Include Tweet Entities in th reply ?
 		/// @param trimUser Return only user IDs instead of all the values ?
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/destroy/%3Aid
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/destroy/%3Aid
 		void destroyTweet(qlonglong tweetID,
-						  bool entities = true,
 						  bool trimUser = false);
 
-		/// @fn void retweet(qlonglong tweetID,
-		///					 bool entities = true,
-		///					 bool trimUser = false);
+		/// @fn void retweet(qlonglong tweetID, bool trimUser = false);
 		/// @brief Retweeting a tweet
 		/// @param tweetID ID of the tweet
-		/// @param entities Include Tweet Entities in th reply ?
 		/// @param trimUser Return only user IDs instead of all the values ?
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
-		void retweet(qlonglong tweetID,
-					 bool entities = true,
-					 bool trimUser = false);
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/retweet/%3Aid
+		void retweet(qlonglong tweetID, bool trimUser = false);
 
 		/// @fn void showTweet(qlonglong tweetID,
 		///					   bool entities = true,
@@ -304,7 +296,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param trimUser Return only user IDs instead of all the values ?
 		/// @param includeMyRetweet If set to true and if the user retweeted
 		/// the tweet, including the user's retweet ID.
-		/// @see https://dev.twitter.com/docs/api/1/get/statuses/show/%3Aid
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/show/%3Aid
 		void showTweet(qlonglong tweetID,
 					   bool entities = true,
 					   bool trimUser = false,
@@ -316,8 +308,7 @@ class ReynTwitterCalls : public GenericCalls
 		///						 float longitude = -361,
 		///						 QString reversePlace = "",
 		///						 bool displayCoord = false,
-		///						 bool trimUser = false,
-		///						 bool includeEntities = false);
+		///						 bool trimUser = false);
 		/// @brief Posting a tweet without media
 		/// @param tweet Text of the tweet
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
@@ -329,16 +320,14 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param displayCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 		void updateTweet(QString tweet,
 						 qlonglong replyToTweetID = -1,
 						 float latitude = -361,
 						 float longitude = -361,
 						 QString reversePlace = "",
 						 bool displayCoord = false,
-						 bool trimUser = false,
-						 bool includeEntities = false);
+						 bool trimUser = false);
 
 
 		///////////

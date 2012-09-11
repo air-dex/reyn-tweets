@@ -271,7 +271,6 @@ void ReynCore::unfavoriteTweet(qlonglong id) {
 void ReynCore::postTweet(QString tweet,
 						 qlonglong replyToTweetID,
 						 bool trimUser,
-						 bool includeEntities,
 						 float latitude,
 						 float longitude,
 						 QString reversePlace,
@@ -280,7 +279,6 @@ void ReynCore::postTweet(QString tweet,
 	PostTweetProcess * process = new PostTweetProcess(tweet,
 													  replyToTweetID,
 													  trimUser,
-													  includeEntities,
 													  latitude,
 													  longitude,
 													  reversePlace,
@@ -293,7 +291,6 @@ void ReynCore::postTweet(QString tweet,
 void ReynCore::postTweet(QString tweet,
 						 QString replyToTweetID,
 						 bool trimUser,
-						 bool includeEntities,
 						 float latitude,
 						 float longitude,
 						 QString reversePlace,
@@ -302,7 +299,6 @@ void ReynCore::postTweet(QString tweet,
 	PostTweetProcess * process = new PostTweetProcess(tweet,
 													  replyToTweetID,
 													  trimUser,
-													  includeEntities,
 													  latitude,
 													  longitude,
 													  reversePlace,
@@ -362,19 +358,15 @@ void ReynCore::postTweetViaTwitLonger(QString tweet,
 }
 
 // Reweeting a tweet
-void ReynCore::retweet(qlonglong tweetID, bool includeEntities, bool trimUser) {
-	RetweetProcess * process = new RetweetProcess(tweetID,
-												  includeEntities,
-												  trimUser);
-
+void ReynCore::retweet(qlonglong tweetID, bool trimUser) {
+	RetweetProcess * process = new RetweetProcess(tweetID, trimUser);
 	executeProcess(process);
 }
 
 // Deleting a tweet
-void ReynCore::deleteTweet(Tweet tweetToDelete, bool includeEntities, bool trimUser) {
+void ReynCore::deleteTweet(Tweet tweetToDelete, bool trimUser) {
 	DeleteTweetProcess * process = new DeleteTweetProcess(userConfiguration.getUserAccount().getUserRef(),
 														  tweetToDelete,
-														  includeEntities,
 														  trimUser);
 
 	executeProcess(process);

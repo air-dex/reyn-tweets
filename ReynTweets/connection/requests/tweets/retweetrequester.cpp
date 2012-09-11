@@ -27,11 +27,9 @@
 // Constructor
 RetweetRequester::RetweetRequester(OAuthManager &authManager,
 								   qlonglong statusID,
-								   bool withEntities,
 								   bool userIDonly) :
 	TwitterRequester(POST, TwitterURL::RETWEET_URL, authManager),
 	tweetID(statusID),
-	includeEntities(withEntities),
 	trimUser(userIDonly)
 {
 	// Replacing ":id" in the URL with the tweet ID
@@ -41,6 +39,5 @@ RetweetRequester::RetweetRequester(OAuthManager &authManager,
 // Building postParameters
 void RetweetRequester::buildPOSTParameters() {
 	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
 	postParameters.insert("trim_user", boolInString(trimUser));
 }

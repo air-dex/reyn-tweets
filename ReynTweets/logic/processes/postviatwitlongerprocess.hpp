@@ -70,7 +70,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 		/// @param replyToUserScreenName If the tweet is a reply, this parameter
 		/// is the screen name of the tweet that this tweet replies to.
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param withEntities Including Tweet Entities in the tweets (true).
 		/// @param lat For geolocation, your longitude.
 		/// @param lon For geolocation, your latitude.
 		/// @param place For geolocation, ID of the place where the tweet
@@ -82,7 +81,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 								 QString replyTostatusID = "-1",
 								 QString replyToUserScreenName = "",
 								 bool userIDonly = true,
-								 bool withEntities = false,
 								 float lat = -361,
 								 float lon = -361,
 								 QString place = "",
@@ -93,7 +91,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 		///								 qlonglong replyTostatusID = -1,
 		///								 QString replyToUserScreenName = "",
 		///								 bool userIDonly = true,
-		///								 bool withEntities = false,
 		///								 float lat = -361,
 		///								 float lon = -361,
 		///								 QString place = "",
@@ -106,7 +103,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 		/// @param replyToUserScreenName If the tweet is a reply, this parameter
 		/// is the screen name of the tweet that this tweet replies to.
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param withEntities Including Tweet Entities in the tweets (true).
 		/// @param lat For geolocation, your longitude.
 		/// @param lon For geolocation, your latitude.
 		/// @param place For geolocation, ID of the place where the tweet
@@ -118,7 +114,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 								 qlonglong replyTostatusID = -1,
 								 QString replyToUserScreenName = "",
 								 bool userIDonly = true,
-								 bool withEntities = false,
 								 float lat = -361,
 								 float lon = -361,
 								 QString place = "",
@@ -159,9 +154,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Including Tweet Entities in tweets
-		bool includeEntities;
 
 		/// @brief Longitude of the tweet
 		float longitude;

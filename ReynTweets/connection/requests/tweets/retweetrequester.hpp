@@ -28,31 +28,25 @@
 
 /// @class RetweetRequester
 /// @brief Request consisting in retweeting a tweet
-/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/retweet/%3Aid
 class RetweetRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:
 		/// @fn RetweetRequester(OAuthManager & authManager,
 		///						 qlonglong statusID,
-		///						 bool withEntities = true,
 		///						 bool userIDonly = false);
 		/// @brief Constructor
 		/// @param authManager Entities with OAuth values
 		/// @param statusID ID of the tweet
-		/// @param withEntities Including Tweet Entities ?
 		/// @param userIDonly Omit user details in the reply ?
 		RetweetRequester(OAuthManager & authManager,
 						 qlonglong statusID,
-						 bool withEntities = true,
 						 bool userIDonly = false);
 
 	protected:
 		/// @brief ID of the tweet to favorite
 		qlonglong tweetID;
-
-		/// @brief Include Tweet Entities of the tweet in the reply ?
-		bool includeEntities;
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;

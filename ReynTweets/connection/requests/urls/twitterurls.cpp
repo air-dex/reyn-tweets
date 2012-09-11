@@ -93,19 +93,19 @@ QString TwitterURL::RETWEETED_BY_ME_TIMELINE_URL = QString::fromUtf8("http://api
 ////////////
 
 // Deleting a tweet (or a retweet)
-QString TwitterURL::DELETE_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/destroy/:id.json");
+QString TwitterURL::DELETE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1.1/statuses/destroy/:id.json");
 
 // Retweeting a tweet
-QString TwitterURL::RETWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/retweet/:id.json");
+QString TwitterURL::RETWEET_URL = QString::fromUtf8("https://api.twitter.com/1.1/statuses/retweet/:id.json");
 
 // Getting informations about a given tweet
-QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/show.json");
+QString TwitterURL::SHOW_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1.1/statuses/show.json");
 
 // Updating a tweet without medias
-QString TwitterURL::UPDATE_TWEET_URL = QString::fromUtf8("http://api.twitter.com/1/statuses/update.json");
+QString TwitterURL::UPDATE_TWEET_URL = QString::fromUtf8("https://api.twitter.com/1.1/statuses/update.json");
 
 // Updating a tweet with medias
-QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("http://upload.twitter.com/1/statuses/update_with_media.json");
+QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("https://upload.twitter.com/1.1/statuses/update_with_media.json");
 
 
 ///////////

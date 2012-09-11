@@ -27,11 +27,9 @@
 // Constructor
 DestroyTweetRequester::DestroyTweetRequester(OAuthManager &authManager,
 											 qlonglong statusID,
-											 bool withEntities,
 											 bool userIDonly) :
 	TwitterRequester(POST, TwitterURL::DELETE_TWEET_URL, authManager),
 	tweetID(statusID),
-	includeEntities(withEntities),
 	trimUser(userIDonly)
 {
 	// Replacing ":id" in the URL with the tweet ID
@@ -41,6 +39,5 @@ DestroyTweetRequester::DestroyTweetRequester(OAuthManager &authManager,
 // Building postParameters
 void DestroyTweetRequester::buildPOSTParameters() {
 	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
 	postParameters.insert("trim_user", boolInString(trimUser));
 }

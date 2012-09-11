@@ -222,7 +222,6 @@ class ReynCore : public QObject
 		/// @fn void postTweet(QString tweet,
 		///					   qlonglong replyToTweetID,
 		///					   bool trimUser = false,
-		///					   bool includeEntities = true,
 		///					   float latitude = -361,
 		///					   float longitude = -361,
 		///					   QString reversePlace = "",
@@ -232,18 +231,16 @@ class ReynCore : public QObject
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param longitude For geolocation, your latitude.
 		/// @param latitude For geolocation, your longitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 		void postTweet(QString tweet,
 					   qlonglong replyToTweetID = -1,
 					   bool trimUser = false,
-					   bool includeEntities = true,
 					   float latitude = -361,
 					   float longitude = -361,
 					   QString reversePlace = "",
@@ -252,7 +249,6 @@ class ReynCore : public QObject
 		/// @fn void postTweet(QString tweet,
 		///					   QString replyToTweetID = "-1",
 		///					   bool trimUser = false,
-		///					   bool includeEntities = true,
 		///					   float latitude = -361,
 		///					   float longitude = -361,
 		///					   QString reversePlace = "",
@@ -262,18 +258,16 @@ class ReynCore : public QObject
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param longitude For geolocation, your latitude.
 		/// @param latitude For geolocation, your longitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 		void postTweet(QString tweet,
 					   QString replyToTweetID = "-1",
 					   bool trimUser = false,
-					   bool includeEntities = true,
 					   float latitude = -361,
 					   float longitude = -361,
 					   QString reversePlace = "",
@@ -345,28 +339,20 @@ class ReynCore : public QObject
 									QString reversePlace = "",
 									bool displayCoord = false);
 
-		/// @fn void retweet(qlonglong tweetID,
-		///					 bool trimUser = true,
-		///					 bool includeEntities = false);
+		/// @fn void retweet(qlonglong tweetID, bool trimUser = false);
 		/// @brief Reweeting a tweet
 		/// @param tweetID ID of the tweet to retweet
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
-		void retweet(qlonglong tweetID,
-					 bool includeEntities = true,
-					 bool trimUser = false);
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/retweet/%3Aid
+		void retweet(qlonglong tweetID, bool trimUser = false);
 
 		/// @fn void deleteTweet(Tweet tweetToDelete,
-		///						 bool includeEntities = true,
 		///						 bool trimUser = false);
 		/// @brief Deleting a tweet
 		/// @param tweetToDelete The tweet to delete
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/destroy/%3Aid
+		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/destroy/%3Aid
 		void deleteTweet(Tweet tweetToDelete,
-						 bool includeEntities = true,
 						 bool trimUser = false);
 
 		/// @fn void getTweet(qlonglong tweetID,
@@ -379,7 +365,7 @@ class ReynCore : public QObject
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param includeMyRetweet If the user retweeted the tweet and if this
 		/// boolean is set to true, this would include the id of the retweet.
-		/// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/show/%3Aid
 		void getTweet(qlonglong tweetID,
 					  bool trimUser = false,
 					  bool includeEntities = true,

@@ -28,7 +28,7 @@
 
 /// @class PostTweetRequester
 /// @brief Requester for posting a tweet without media
-/// @see https://dev.twitter.com/docs/api/1/post/statuses/update
+/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 class PostTweetRequester : public TwitterRequester
 {
 	Q_OBJECT
@@ -41,8 +41,7 @@ class PostTweetRequester : public TwitterRequester
 		///						   float lon = -361,
 		///						   QString place = "",
 		///						   bool showCoord = false,
-		///						   bool userIDonly = true,
-		///						   bool withEntities = false);
+		///						   bool userIDonly = true);
 		/// @brief Posting a tweet without media
 		/// @param authManager OAuthManager with authentication informations
 		/// @param status Text of the tweet
@@ -55,7 +54,6 @@ class PostTweetRequester : public TwitterRequester
 		/// @param showCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param withEntities Including Tweet Entities in the tweets (true).
 		PostTweetRequester(OAuthManager & authManager,
 						   QString status,
 						   qlonglong replyTostatusID = -1,
@@ -63,8 +61,7 @@ class PostTweetRequester : public TwitterRequester
 						   float lon = -361,
 						   QString place = "",
 						   bool showCoord = false,
-						   bool userIDonly = true,
-						   bool withEntities = false);
+						   bool userIDonly = true);
 
 
 	protected:
@@ -76,9 +73,6 @@ class PostTweetRequester : public TwitterRequester
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Including Tweet Entities in tweets
-		bool includeEntities;
 
 		/// @brief Longitude of the tweet
 		float longitude;

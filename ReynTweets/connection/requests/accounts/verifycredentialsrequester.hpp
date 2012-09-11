@@ -29,7 +29,7 @@
 /// @class VerifyCredentialsRequester
 /// @brief Request to verify if the access tokens owned by Reyn Tweets
 /// to use a given Twitter account are the right ones.
-/// @see https://api.twitter.com/1/account/verify_credentials.json
+/// @see https://api.twitter.com/1.1/account/verify_credentials.json
 class VerifyCredentialsRequester : public TwitterRequester
 {
 		Q_OBJECT

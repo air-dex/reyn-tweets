@@ -73,14 +73,22 @@ void DeleteTweetProcess::canDeleteTweet() {
 					tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
 				  : tweetToDelete.getAuthor()->isFollowedByMe();
 
-		// The ID is in the timeline of the user's retweets.
-		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-				this, SLOT(searchRetweetIDEnded(ResultWrapper)));
+		// Looking at the "current_retweet_infos" property
+		RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
 
-		// Moreover, the user's retweet is more recent than the original
-		// tweet. So retweet ID > tweet ID
-		twitter.userRetweetsTimeline(tweetToDelete.getID(),
-									 -1, 20, true, false);
+		if (rtInfos->getID() == -1) {
+			// The retweet ID is not in the tweet. Ask it to Twitter !
+
+			// The ID is in the details of tweetToDelete.
+			connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+					this, SLOT(searchRetweetIDEnded(ResultWrapper)));
+
+			twitter.showTweet(tweetToDelete.getID());
+		} else {
+			// The retweet ID is in the tweet. Time for deletion.
+			deleteTweet(true, rtInfos->getIDstr());
+		}
+
 	}
 	else {
 		// Tweet cannot be deleted
@@ -108,46 +116,28 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 	bool isFatal = false;
 	CoreResult issue;	// Filled in ProcessUtils methods
 
-	// For NO_ERROR requests
-	Timeline retweets;
-	QString tweetToDeleteIDstr = "-1";
-	bool idFound = false;
-	QString addInfos;
-
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
-			// Let's analyse the timeline to retrieve that fucking ID
-			retweets.fillWithVariant(result.parsedResult.toList());
+		case NO_ERROR:{
+			// Updating tweetToDelete
+			tweetToDelete.reset();
+			tweetToDelete.fillWithVariant(result.parsedResult.toMap());
 
-			for (Timeline::Iterator it = retweets.begin();
-				 it != retweets.end() && !idFound;
-				 ++it)
-			{
-				Tweet & retweet = *it;
+			// Looking at the "current_retweet_infos" property
+			RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
+			bool idFound = rtInfos->getID() != -1;
 
-				if (!retweet.isRetweet()) {
-					continue;
-				}
-
-				// Is it the good ID ?
-				qlonglong originalTweetID = retweet.getRetweetedStatus()->getID();
-
-				if (originalTweetID == tweetToDelete.getID()) {
-					tweetToDeleteIDstr = retweet.getIDstr();
-					idFound = true;
-				}
-			}
-
+			QString addInfos = "";
 			if (idFound) {
-				// We got the ID. Let's delete
-				addInfos = tweetToDeleteIDstr;
+				// The retweet ID is retrieved. Time for deletion.
+				addInfos = rtInfos->getIDstr();
 			} else {
-				// Tweet cannot be deleted because the ID is still unknown
+				// It is definitely not a retweet. Abort.
 				addInfos = beginErrMsg.append(DeleteTweetProcess::trUtf8("Reweet ID unreachable"));
 			}
 
 			return deleteTweet(idFound, addInfos);
+		}break;
 
 		case SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);

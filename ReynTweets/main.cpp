@@ -51,6 +51,7 @@ void initReynTweetsSystem() {
 	UserMentionList::initSystem();
 	TweetEntities::initSystem();
 	UserInfos::initSystem();
+	RetweetInfos::initSystem();
 	Tweet::initSystem();
 	Timeline::initSystem();
 	User::initSystem();

@@ -97,9 +97,10 @@ class TweetControl : public GenericControl
 		/// @param updatedTweet The updatedTweet after an operation on it.
 		void updateTimeline(QVariant updatedTweet);
 
-		/// @fn void destroyTweet();
+		/// @fn void destroyTweet(QVariant varTweet);
 		/// @brief Emitted if the tweet has to be destroyed
-		void destroyTweet();
+		/// @param varTweet Tweet to destroy under QVariant form.
+		void destroyTweet(QVariant varTweet);
 
 
 	protected slots:

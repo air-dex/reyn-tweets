@@ -217,22 +217,6 @@ void ReynTwitterCalls::retrieveMentionsTimeline(qlonglong sinceID,
 	executeRequest(requester);
 }
 
-// Retrieving the timeline with the tweets of the user's friends
-void ReynTwitterCalls::userRetweetsTimeline(qlonglong sinceID,
-											qlonglong maxID,
-											int count,
-											bool trimUser,
-											bool includeEntities)
-{
-	RetweetsByMeRequester * requester = new RetweetsByMeRequester(oauthManager,
-																  sinceID,
-																  maxID,
-																  count,
-																  trimUser,
-																  includeEntities);
-	executeRequest(requester);
-}
-
 
 ////////////
 // Tweets //

@@ -48,8 +48,9 @@ Rectangle {
 	property UserInfos current_user: settings_control.configuration.current_account.current_user
 
 	// Minimal height
-	property int min_height: author_text.height + text.height
-							 + source_text.height + action_row.height + 9*margin
+	property int min_height: author_identity.height + author_screen_name.height
+							 + text.height + source_text.height
+							 + action_row.height + 10*margin
 
 	// Is the user the author of the tweet ?
 	property bool iam_author: shown_tweet.author.id_str === current_user.id_str
@@ -211,10 +212,10 @@ Rectangle {
 		}
 	}
 
-	// Label displaying the author of the tweet
+	// Label displaying the tweet author's identity
 	Text {
-		id: author_text
-		text: wrapEntity('@' + shown_tweet.author.screen_name)
+		id: author_identity
+		text: wrapEntity(shown_tweet.author.name)
 		elide: Text.ElideRight
 		font.bold: true
 		font.underline: false
@@ -228,6 +229,26 @@ Rectangle {
 		anchors.leftMargin: 2*margin + tweet_pane.avatar_side /4
 		anchors.right: date_text.left
 		anchors.rightMargin: 2*margin
+		onLinkActivated: {
+			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
+			console.log('TODO : show user ' + shown_tweet.author.name)
+		}
+	}
+
+	// Label displaying the tweet author's screen name
+	Text {
+		id: author_screen_name
+		text: wrapEntity('@'.concat(shown_tweet.author.screen_name))
+		elide: Text.ElideRight
+		//font.bold: true
+		font.underline: false
+		verticalAlignment: Text.AlignVCenter
+		font.family: constant.font
+		font.pixelSize: constant.font_size_xs
+		anchors.topMargin: margin
+		anchors.top: author_identity.bottom
+		anchors.left: author_identity.left
+		anchors.right: author_identity.right
 		onLinkActivated: {
 			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
 			console.log('TODO : show user @' + shown_tweet.author.screen_name)
@@ -258,9 +279,9 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
 		font.pixelSize: constant.font_size
-		anchors.left: author_text.left
+		anchors.left: author_identity.left
 		anchors.leftMargin: 0
-		anchors.top: author_text.bottom
+		anchors.top: author_screen_name.bottom
 		anchors.topMargin: 2*margin
 		anchors.right: tweet_pane.right
 		anchors.rightMargin: margin
@@ -294,8 +315,8 @@ Rectangle {
 		text: "via " + shown_tweet.getDisplaySource()
 		font.italic: true
 		font.family: constant.font
-		font.pixelSize: constant.font_small_size
-		anchors.left: author_text.left
+		font.pixelSize: constant.font_size_s
+		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: text.bottom
 		anchors.topMargin: margin
@@ -315,8 +336,8 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_small_size
-		anchors.left: author_text.left
+		font.pixelSize: constant.font_size_s
+		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
 		anchors.topMargin: 0
@@ -347,8 +368,8 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_small_size
-		anchors.left: author_text.left
+		font.pixelSize: constant.font_size_s
+		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
 		anchors.topMargin: 0
@@ -575,7 +596,7 @@ Rectangle {
 					retweeter_avatar.source = tweet.author.profile_image_url
 
 					// New author and new margin to not move the QML Component
-					author_text.anchors.leftMargin = 2*margin
+					author_identity.anchors.leftMargin = 2*margin
 				}
 			}
 		},
@@ -751,7 +772,7 @@ Rectangle {
 		avatar_zone.side = tweet_pane.avatar_side
 		retweeter_avatar.visible = false
 		retweeter_avatar.source = ""
-		author_text.anchors.leftMargin = 2*margin + tweet_pane.avatar_side /4
+		author_identity.anchors.leftMargin = 2*margin + tweet_pane.avatar_side /4
 		reply_info.visible = false
 		reply_info.anchors.topMargin = 0
 		retweet_info.visible = false

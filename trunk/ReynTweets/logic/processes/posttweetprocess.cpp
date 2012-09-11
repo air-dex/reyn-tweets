@@ -27,7 +27,6 @@
 PostTweetProcess::PostTweetProcess(QString status,
 								   QString replyTostatusID,
 								   bool userIDonly,
-								   bool withEntities,
 								   float lat,
 								   float lon,
 								   QString place,
@@ -35,9 +34,8 @@ PostTweetProcess::PostTweetProcess(QString status,
 	SingleTwitterCallProcess(TWEET_POSTED),
 	tweet(status),
 	trimUser(userIDonly),
-	includeEntities(withEntities),
-    longitude(lon),
-    latitude(lat),
+	longitude(lon),
+	latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {
@@ -54,7 +52,6 @@ PostTweetProcess::PostTweetProcess(QString status,
 PostTweetProcess::PostTweetProcess(QString status,
 								   qlonglong replyTostatusID,
 								   bool userIDonly,
-								   bool withEntities,
 								   float lat,
 								   float lon,
 								   QString place,
@@ -63,9 +60,8 @@ PostTweetProcess::PostTweetProcess(QString status,
 	tweet(status),
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
-	includeEntities(withEntities),
-    longitude(lon),
-    latitude(lat),
+	longitude(lon),
+	latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {}
@@ -78,6 +74,5 @@ void PostTweetProcess::callTwitter() {
 						longitude,
 						reversePlace,
 						displayCoord,
-						trimUser,
-						includeEntities);
+						trimUser);
 }

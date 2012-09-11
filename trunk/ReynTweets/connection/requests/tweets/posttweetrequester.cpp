@@ -32,13 +32,11 @@ PostTweetRequester::PostTweetRequester(OAuthManager & authManager,
 									   float lon,
 									   QString place,
 									   bool showCoord,
-									   bool userIDonly,
-									   bool withEntities) :
+									   bool userIDonly) :
 	TwitterRequester(POST, TwitterURL::UPDATE_TWEET_URL, authManager),
 	tweet(status),
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
-	includeEntities(withEntities),
 	longitude(lon),
 	latitude(lat),
 	reversePlace(place),
@@ -67,5 +65,4 @@ void PostTweetRequester::buildPOSTParameters() {
 
 	postParameters.insert("display_coordinates", boolInString(displayCoord));
 	postParameters.insert("trim_user", boolInString(trimUser));
-	postParameters.insert("include_entities", boolInString(includeEntities));
 }

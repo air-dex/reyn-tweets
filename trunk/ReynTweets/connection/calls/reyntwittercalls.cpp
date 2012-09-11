@@ -238,21 +238,18 @@ void ReynTwitterCalls::userRetweetsTimeline(qlonglong sinceID,
 
 // Destroying (deleting) a tweet
 void ReynTwitterCalls::destroyTweet(qlonglong tweetID,
-									bool entities,
 									bool trimUser)
 {
 	DestroyTweetRequester * requester = new DestroyTweetRequester(oauthManager,
 																  tweetID,
-																  entities,
 																  trimUser);
 	executeRequest(requester);
 }
 
 // Retweeting a tweet
-void ReynTwitterCalls::retweet(qlonglong tweetID, bool entities, bool trimUser) {
+void ReynTwitterCalls::retweet(qlonglong tweetID, bool trimUser) {
 	RetweetRequester * requester = new RetweetRequester(oauthManager,
 														tweetID,
-														entities,
 														trimUser);
 	executeRequest(requester);
 }
@@ -278,8 +275,7 @@ void ReynTwitterCalls::updateTweet(QString tweet,
 								   float longitude,
 								   QString reversePlace,
 								   bool displayCoord,
-								   bool trimUser,
-								   bool includeEntities)
+								   bool trimUser)
 {
 	PostTweetRequester * requester = new PostTweetRequester(oauthManager,
 															tweet,
@@ -288,8 +284,7 @@ void ReynTwitterCalls::updateTweet(QString tweet,
 															longitude,
 															reversePlace,
 															displayCoord,
-															trimUser,
-															includeEntities);
+															trimUser);
 	executeRequest(requester);
 }
 

@@ -33,23 +33,15 @@ class RetweetProcess : public SingleTwitterCallProcess
 	Q_OBJECT
 
 	public:
-		/// @fn RetweetProcess(qlonglong statusID,
-		///					   bool withEntities = true,
-		///					   bool userIDonly = false);
+		/// @fn RetweetProcess(qlonglong statusID, bool userIDonly = false);
 		/// @brief Constructor
 		/// @param statusID ID of the tweet
-		/// @param withEntities Including Tweet Entities ?
 		/// @param userIDonly Omit user details in the reply ?
-		RetweetProcess(qlonglong statusID,
-					   bool withEntities = true,
-					   bool userIDonly = false);
+		RetweetProcess(qlonglong statusID, bool userIDonly = false);
 
 	protected:
 		/// @brief ID of the tweet to favorite
 		qlonglong tweetID;
-
-		/// @brief Include Tweet Entities of the tweet in the reply ?
-		bool includeEntities;
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;

@@ -785,7 +785,7 @@ Rectangle {
 	signal quote(string text)
 
 	// Destroying a tweet
-	signal destroyTweet
+	signal destroyTweet(variant destroyTweet)
 
 	// Launch an authentication
 	signal needAuthentication

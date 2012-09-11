@@ -31,6 +31,7 @@
 #include "../reyntweetsmappable.hpp"
 #include "tweetentities.hpp"
 #include "../users/userinfos.hpp"
+#include "retweetinfos.hpp"
 
 /// @class Tweet
 /// @brief Model of a tweet
@@ -113,7 +114,7 @@ class Tweet : public ReynTweetsMappable
 	protected:
 		/// @fn void blacklistProperties();
 		/// @brief Blacklisting the "author" and "retweet" properties (used only
-		/// for and by QML views).
+		/// for and by QML views) and "retweet_infos" too (complex type).
 		void blacklistProperties();
 
 		// entities
@@ -307,6 +308,21 @@ class Tweet : public ReynTweetsMappable
 				   WRITE setRetweetedStatus
 				   NOTIFY retweetedStatusChanged)
 
+		// current_user_retweet
+		/// @property current_user_retweet
+		/// @brief Serializable form of retweetInfos
+		Q_PROPERTY(QVariantMap current_user_retweet
+				   READ getRetweetInfosVariant
+				   WRITE setRetweetInfos
+				   NOTIFY retweetInfosChanged)
+
+		/// @property retweet_infos
+		/// @brief The retweet to display in a TweetPane
+		Q_PROPERTY(RetweetInfos * retweet_infos
+				   READ getRetweetInfos
+				   WRITE setRetweetInfos
+				   NOTIFY retweetInfosChanged)
+
 		/*
 		 * Properties that are not here :
 		 * - place
@@ -379,6 +395,11 @@ class Tweet : public ReynTweetsMappable
 		/// @brief Emitted when the retweeted_status and retweet properties change
 		void retweetedStatusChanged();
 
+		/// @fn void retweetInfosChanged();
+		/// @brief Emitted when the current_user_retweet and retweet_infos
+		/// properties change
+		void retweetInfosChanged();
+
 
 	//////////////////////
 	// Tweet management //
@@ -413,8 +434,13 @@ class Tweet : public ReynTweetsMappable
 
 		/// @brief Initial tweet if the tweet is retweeted
 		///
-		/// It is a pointer on a tweet to avoir the compiler error C2460.
+		/// It is a pointer on a tweet to avoid the compiler error C2460 (with
+		/// MSVC compilers).
 		Tweet * retweetSource;
+
+		/// @brief Informations about a potential retweet of this tweet made by
+		/// the user.
+		RetweetInfos retweetInfos;
 
 		// Favorite management
 
@@ -639,7 +665,7 @@ class Tweet : public ReynTweetsMappable
 
 		// id
 		/// @fn qlonglong getID();
-		/// @brief Reading
+		/// @brief Reading id
 		/// @return tweetID
 		qlonglong getID();
 
@@ -684,7 +710,7 @@ class Tweet : public ReynTweetsMappable
 		// retweeted_status
 		/// @fn Tweet * getRetweetedStatus();
 		/// @brief Reading retweeted_status
-		/// @return lastTweetMap
+		/// @return retweetSource
 		Tweet * getRetweetedStatus();
 
 		/// @fn void setRetweetedStatus(Tweet * retweet);
@@ -694,13 +720,35 @@ class Tweet : public ReynTweetsMappable
 
 		/// @fn QVariantMap getRetweetedStatusVariant();
 		/// @brief Reading retweeted_status
-		/// @return lastTweetMap
+		/// @return retweetSource->toVariant();
 		QVariantMap getRetweetedStatusVariant();
 
 		/// @fn void setRetweetedStatus(QVariantMap statusMap);
 		/// @brief Writing retweeted_status
 		/// @param statusMap The new value of the property
 		void setRetweetedStatus(QVariantMap statusMap);
+
+		// retweet_infos
+		/// @fn RetweetInfos * getRetweetInfos();
+		/// @brief Reading retweet_infos
+		/// @return retweetInfos
+		RetweetInfos * getRetweetInfos();
+
+		/// @fn void setRetweetInfos(RetweetInfos * newInfos);
+		/// @brief Writing retweet_infos
+		/// @param newInfos The new value of the property
+		void setRetweetInfos(RetweetInfos * newInfos);
+
+		// current_user_retweet
+		/// @fn QVariantMap getRetweetInfosVariant();
+		/// @brief Reading current_user_retweet
+		/// @return retweetInfos.toVariant();
+		QVariantMap getRetweetInfosVariant();
+
+		/// @fn void setRetweetInfos(QVariantMap newInfos);
+		/// @brief Writing current_user_retweet
+		/// @param newInfos The new value of the property
+		void setRetweetInfos(QVariantMap newInfos);
 
 
 		//////////////////////////////////

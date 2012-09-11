@@ -151,7 +151,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 
 		case RESOURCE_NOT_FOUND:
 			// Twitter didn't find the tweet so it doesn't exist anymore. Erase it.
-			emit destroyTweet();
+			emit destroyTweet(status->toVariant());
 			emit actionEnded(false,
 							 TweetControl::trUtf8("Twitter did not find the tweet."),
 							 false);
@@ -575,7 +575,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 				status->setRetweeted(false);
 				emit tweetChanged();
 			} else {
-				emit destroyTweet();
+				emit destroyTweet(status->toVariant());
 			}
 
 			emit actionEnded(true, TweetControl::trUtf8("Tweet deleted"), false);

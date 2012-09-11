@@ -30,6 +30,24 @@
 
 /// @class DeleteTweetProcess
 /// @brief Processus for deleting a tweet
+///
+/// The processus is divided into two steps :<ol>
+/// <li>Retrieving the ID of the tweet to delete</li>
+/// <li>Deleting the tweet. It consists in a simple call to the Twitter API.</li>
+/// </ol>
+///
+/// A tweet can be deleted if its author is the authenticated user who is trying
+/// to delete the tweet. Otherwise, the tweet cannot be deleted.
+///
+/// If the tweet to delete is a retweet, the ID of the (re)tweet is notknown
+/// a priori. For this, the ID has to be retrieved. With the v1 version of the
+/// Twitter API, it can be retrieved by looking at the retweets made by the
+/// authenticated user. If the user retweeted the the tweet, the ID would have
+/// been retrievedin the timeline of retweets. But with the v1.1 version of the
+/// API, the retweets of the user cannot be retrieved. For this, Twitter
+/// introduced a property called "current_user_retweet" which contains
+/// informations about a ptential retweet of the tweet by the user (the retweet
+/// ID, more exactly). Looking at this property gives the retweet ID.
 class DeleteTweetProcess : public GenericProcess
 {
 	Q_OBJECT

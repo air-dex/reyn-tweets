@@ -45,6 +45,7 @@ Tweet::Tweet() :
 	retweetedTweet(false),
 	retweetCount(0),
 	retweetSource(0),
+	retweetInfos(),
 	favoritedTweet(false),
 	replyToScreenName(""),
 	replyToUserID(-1),
@@ -91,6 +92,7 @@ void Tweet::recopie(const Tweet & status) {
 	sensibleTweet = status.sensibleTweet;
 	retweetedTweet = status.retweetedTweet;
 	retweetCount = status.retweetCount;
+	retweetInfos = status.retweetInfos;
 	favoritedTweet = status.favoritedTweet;
 	replyToScreenName = status.replyToScreenName;
 	replyToUserID = status.replyToUserID;
@@ -159,6 +161,7 @@ bool Tweet::operator==(const Tweet & status) {
 void Tweet::blacklistProperties() {
 	transientProperties.append(QString(QLatin1String("author")));
 	transientProperties.append(QString(QLatin1String("retweet")));
+	transientProperties.append(QString(QLatin1String("retweet_infos")));
 }
 
 // Reading the property entities
@@ -425,6 +428,28 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 
 	retweetSource = retweet ? new Tweet(*retweet) : new Tweet;
 	emit retweetedStatusChanged();
+}
+
+
+// retweet_infos
+RetweetInfos * Tweet::getRetweetInfos() {
+	return &retweetInfos;
+}
+
+void Tweet::setRetweetInfos(RetweetInfos * newInfos) {
+	retweetInfos = newInfos ? *newInfos : RetweetInfos();
+	emit retweetInfosChanged();
+}
+
+// current_user_retweet
+QVariantMap Tweet::getRetweetInfosVariant() {
+	return retweetInfos.toVariant();
+}
+
+void Tweet::setRetweetInfos(QVariantMap newInfos) {
+	retweetInfos.reset();
+	retweetInfos.fillWithVariant(newInfos);
+	emit retweetInfosChanged();
 }
 
 

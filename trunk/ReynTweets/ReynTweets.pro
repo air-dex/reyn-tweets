@@ -104,6 +104,7 @@ SOURCES += \
 	model/tweets/hashtaglist.cpp \
 	model/tweets/tweetentities.cpp \
 	model/users/userinfos.cpp \
+	model/tweets/retweetinfos.cpp \
 	model/tweets/tweet.cpp \
 	model/timelines/timeline.cpp \
 	model/users/user.cpp \
@@ -209,6 +210,7 @@ HEADERS  += \
 	model/tweets/hashtaglist.hpp \
 	model/tweets/tweetentities.hpp \
 	model/users/userinfos.hpp \
+	model/tweets/retweetinfos.hpp \
 	model/tweets/tweet.hpp \
 	model/timelines/timeline.hpp \
 	model/users/user.hpp \

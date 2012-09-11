@@ -34,13 +34,13 @@ PostTweetRequester::PostTweetRequester(OAuthManager & authManager,
 									   bool showCoord,
 									   bool userIDonly,
 									   bool withEntities) :
-	AuthenticationRequester(POST, TwitterURL::UPDATE_TWEET_URL, authManager),
+	TwitterRequester(POST, TwitterURL::UPDATE_TWEET_URL, authManager),
 	tweet(status),
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
-    longitude(lon),
-    latitude(lat),
+	longitude(lon),
+	latitude(lat),
 	reversePlace(place),
 	displayCoord(showCoord)
 {}

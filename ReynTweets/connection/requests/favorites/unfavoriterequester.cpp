@@ -26,7 +26,7 @@
 // Constructor
 UnfavoriteRequester::UnfavoriteRequester(OAuthManager & authManager,
 										 qlonglong id) :
-	AuthenticationRequester(POST, TwitterURL::DELETE_FAVORITE_URL, authManager),
+	TwitterRequester(POST, TwitterURL::DELETE_FAVORITE_URL, authManager),
 	tweetID(id)
 {
 	// Replacing ":id" in the URL with the tweet ID

@@ -62,7 +62,6 @@ SOURCES += \
 	connection/requests/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
 	connection/requests/twitterrequester.cpp \
-	connection/requests/authenticationrequester.cpp \
 	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requests/favorites/favoriterequester.cpp \
 	connection/requests/favorites/unfavoriterequester.cpp \
@@ -164,7 +163,6 @@ HEADERS  += \
 	connection/requests/identificationway.hpp \
 	connection/requests/genericrequester.hpp \
 	connection/requests/twitterrequester.hpp \
-	connection/requests/authenticationrequester.hpp \
 	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/favorites/favoriterequester.hpp \
 	connection/requests/favorites/unfavoriterequester.hpp \

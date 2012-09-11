@@ -24,12 +24,12 @@
 #ifndef HOMETIMELINEREQUESTER_HPP
 #define HOMETIMELINEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class HomeTimelineRequester
 /// @brief Request to retrieve the timeline withh all the users' friends' tweets
-/// @see https://dev.twitter.com/docs/api/1/get/statuses/home_timeline
-class HomeTimelineRequester : public AuthenticationRequester
+/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
+class HomeTimelineRequester : public TwitterRequester
 {
 	Q_OBJECT
 

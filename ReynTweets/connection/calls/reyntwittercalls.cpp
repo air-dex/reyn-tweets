@@ -168,7 +168,7 @@ void ReynTwitterCalls::setAppTokens(QByteArray consumerKey,
 
 // Method that launch searches
 void ReynTwitterCalls::search(QString q) {
-	SearchRequester * requester = new SearchRequester(q);
+	SearchRequester * requester = new SearchRequester(oauthManager, q);
 	executeRequest(requester);
 }
 

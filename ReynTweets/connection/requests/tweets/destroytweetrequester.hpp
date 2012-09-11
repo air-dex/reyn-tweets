@@ -24,12 +24,12 @@
 #ifndef DESTROYTWEETREQUESTER_HPP
 #define DESTROYTWEETREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class DestroyTweetRequester
 /// @brief Deleting tweets
 /// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
-class DestroyTweetRequester : public AuthenticationRequester
+class DestroyTweetRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:

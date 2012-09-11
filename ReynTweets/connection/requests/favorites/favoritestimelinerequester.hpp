@@ -24,13 +24,13 @@
 #ifndef FAVORITESTIMELINEREQUESTER_HPP
 #define FAVORITESTIMELINEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 #include "../identificationway.hpp"
 
 /// @class FavoritesTimelineRequester
 /// @brief Requester to retrieve the timeline with the favorite tweets of a user
 /// @see https://dev.twitter.com/docs/api/1/get/favorites
-class FavoritesTimelineRequester : public AuthenticationRequester
+class FavoritesTimelineRequester : public TwitterRequester
 {
 	Q_OBJECT
 

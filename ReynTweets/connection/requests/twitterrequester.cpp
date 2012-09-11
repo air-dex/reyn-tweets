@@ -27,9 +27,34 @@
 // Constructor
 TwitterRequester::TwitterRequester(RequestType type,
 								   QString url,
-								   ErrorType parseError) :
-	GenericRequester(type, url, parseError)
+								   OAuthManager &authManager,
+								   ErrorType parseError,
+								   bool tokenNeeded,
+								   bool callbackURLNeeded,
+								   bool verifierNeeded) :
+	GenericRequester(type, url, parseError),
+	oauthManager(authManager),
+	oauthTokenNeeded(tokenNeeded),
+	oauthCallbackUrlNeeded(callbackURLNeeded),
+	oauthVerifierNeeded(verifierNeeded)
 {}
+
+// Building HTTP Headers
+void TwitterRequester::buildHTTPHeaders() {
+	// For the Content-Type
+	GenericRequester::buildHTTPHeaders();
+
+	// Building the OAuth header
+	QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
+																requestURL,
+																getParameters,
+																postParameters,
+																oauthTokenNeeded,
+																oauthCallbackUrlNeeded,
+																oauthVerifierNeeded);
+
+	headers.insert("Authorization", authHeader);
+}
 
 // Method that will parse the raw results of the request.
 QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
@@ -63,6 +88,7 @@ QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 	return result;
 }
 
+// Treating parsed results
 void TwitterRequester::treatParsedResult() {
 	int httpReturnCode = weblink.getHttpResponse().code;
 

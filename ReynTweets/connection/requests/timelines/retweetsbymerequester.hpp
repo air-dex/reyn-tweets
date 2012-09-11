@@ -24,12 +24,12 @@
 #ifndef RETWEETSBYMEREQUESTER_HPP
 #define RETWEETSBYMEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class RetweetsByMeRequester
 /// @brief Retrieving the timeline with the tweets retweeted by the user.
 /// @see https://dev.twitter.com/docs/api/1/get/statuses/retweeted_by_me
-class RetweetsByMeRequester : public AuthenticationRequester
+class RetweetsByMeRequester : public TwitterRequester
 {
 	Q_OBJECT
 

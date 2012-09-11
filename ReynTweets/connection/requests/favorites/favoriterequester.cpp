@@ -28,7 +28,7 @@
 FavoriteRequester::FavoriteRequester(OAuthManager &authManager,
 									 qlonglong id,
 									 bool withEntities) :
-	AuthenticationRequester(POST, TwitterURL::CREATE_FAVORITE_URL, authManager),
+	TwitterRequester(POST, TwitterURL::CREATE_FAVORITE_URL, authManager),
 	tweetID(id),
 	includeEntities(withEntities)
 {

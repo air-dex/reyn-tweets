@@ -24,12 +24,12 @@
 #ifndef RETWEETREQUESTER_HPP
 #define RETWEETREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class RetweetRequester
 /// @brief Request consisting in retweeting a tweet
 /// @see https://dev.twitter.com/docs/api/1/post/statuses/retweet/%3Aid
-class RetweetRequester : public AuthenticationRequester
+class RetweetRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:

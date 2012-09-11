@@ -31,11 +31,11 @@ OAuthRequester::OAuthRequester(RequestType type,
 							   bool tokenNeeded,
 							   bool callbackURLNeeded,
 							   bool verifierNeeded) :
-	AuthenticationRequester(type,
-							url,
-							authManager,
-							parseErrorType,
-							tokenNeeded,
-							callbackURLNeeded,
-							verifierNeeded)
+	TwitterRequester(type,
+					 url,
+					 authManager,
+					 parseErrorType,
+					 tokenNeeded,
+					 callbackURLNeeded,
+					 verifierNeeded)
 {}

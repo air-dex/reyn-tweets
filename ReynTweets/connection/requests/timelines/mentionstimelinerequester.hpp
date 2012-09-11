@@ -24,12 +24,12 @@
 #ifndef MENTIONSTIMELINEREQUESTER_HPP
 #define MENTIONSTIMELINEREQUESTER_HPP
 
-#include "../authenticationrequester.hpp"
+#include "../twitterrequester.hpp"
 
 /// @class MentionsTimelineRequester
 /// @brief Timeline containing the mentions of the user
 /// @see https://dev.twitter.com/docs/api/1/get/statuses/mentions
-class MentionsTimelineRequester : public AuthenticationRequester
+class MentionsTimelineRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:

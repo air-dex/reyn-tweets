@@ -24,8 +24,8 @@
 #include "searchrequester.hpp"
 
 // Constructor
-SearchRequester::SearchRequester(QString q) :
-	TwitterRequester(GET, TwitterURL::SEARCH_URL),
+SearchRequester::SearchRequester(OAuthManager &authManager, QString q) :
+	TwitterRequester(GET, TwitterURL::SEARCH_URL, authManager),
 	query(q)
 {}
 

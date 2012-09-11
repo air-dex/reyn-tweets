@@ -25,10 +25,15 @@
 
 // Constructor
 UnfavoriteRequester::UnfavoriteRequester(OAuthManager & authManager,
-										 qlonglong id) :
+										 qlonglong id,
+										 bool withEntities) :
 	TwitterRequester(POST, TwitterURL::DELETE_FAVORITE_URL, authManager),
-	tweetID(id)
-{
-	// Replacing ":id" in the URL with the tweet ID
-	requestURL.replace(":id", QString::number(tweetID));
+	tweetID(id),
+	includeEntities(withEntities)
+{}
+
+// Building postParameters
+void UnfavoriteRequester::buildPOSTParameters() {
+	postParameters.insert("id", QString::number(tweetID));
+	postParameters.insert("include_entities", boolInString(includeEntities));
 }

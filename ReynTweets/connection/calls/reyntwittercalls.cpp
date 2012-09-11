@@ -71,38 +71,40 @@ void ReynTwitterCalls::favoriteTweet(qlonglong id, bool entities) {
 // Retrieving the timeline with the favorite tweets of the userwhose ID is id.
 void ReynTwitterCalls::getFavoriteTimeline(qlonglong id,
 										   qlonglong sinceID,
+										   qlonglong maxID,
 										   bool entities,
-										   int page,
 										   int count)
 {
 	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
 																			id,
-																			count,
 																			sinceID,
-																			page,
-																			entities);
+																			maxID,
+																			entities,
+																			count);
 	executeRequest(requester);
 }
 
 // Retrieving the timeline with the favorite tweets of the user whose screen name is id.
-void ReynTwitterCalls::getFavoriteTimeline(QString id,
+void ReynTwitterCalls::getFavoriteTimeline(QString username,
 										   qlonglong sinceID,
+										   qlonglong maxID,
 										   bool entities,
-										   int page,
 										   int count)
 {
 	FavoritesTimelineRequester * requester = new FavoritesTimelineRequester(oauthManager,
-																			id,
-																			count,
+																			username,
 																			sinceID,
-																			page,
-																			entities);
+																			maxID,
+																			entities,
+																			count);
 	executeRequest(requester);
 }
 
 // Unavoriting a tweet
-void ReynTwitterCalls::unfavoriteTweet(qlonglong id) {
-	UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager, id);
+void ReynTwitterCalls::unfavoriteTweet(qlonglong id, bool entities) {
+	UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager,
+															  id,
+															  entities);
 	executeRequest(requester);
 }
 

@@ -72,18 +72,18 @@ class ReynTwitterCalls : public GenericCalls
 		// Favorites //
 		///////////////
 
-		/// @fn void favoriteTweet(qlonglong id, bool entities = false);
+		/// @fn void favoriteTweet(qlonglong id, bool entities = true);
 		/// @brief Favoriting a tweet
 		/// @param id ID of the tweet to favorite
 		/// @param entities Boolean whose value is true if the tweet
 		/// in the reply has got its entities
-		/// @see https://dev.twitter.com/docs/api/1/post/favorites/create/%3Aid
-		void favoriteTweet(qlonglong id, bool entities = false);
+		/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/create
+		void favoriteTweet(qlonglong id, bool entities = true);
 
 		/// @fn void getFavoriteTimeline(qlonglong id = -1,
 		///								 qlonglong sinceID = -1,
+		///								 qlonglong maxID = -1,
 		///								 bool entities = false,
-		///								 int page = 0,
 		///								 int count = 20);
 		/// @brief Retrieving the timeline with the favorite tweets of the user
 		/// whose ID is id.
@@ -91,42 +91,43 @@ class ReynTwitterCalls : public GenericCalls
 		/// retrieved by the request.
 		/// @param count Number of tweets in the timeline
 		/// @param sinceID Minimum ID for a tweet possible in the timeline
-		/// @param page Number of tweets page
+		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param entities Boolean whose value is true if the tweets have got
 		/// their entities
-		/// @see https://dev.twitter.com/docs/api/1/get/favorites
+		/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
 		void getFavoriteTimeline(qlonglong id = -1,
 								 qlonglong sinceID = -1,
+								 qlonglong maxID = -1,
 								 bool entities = false,
-								 int page = 0,
 								 int count = 20);
 
-		/// @fn void getFavoriteTimeline(QString id = "",
+		/// @fn void getFavoriteTimeline(QString username = "",
 		///								 qlonglong sinceID = -1,
+		///								 qlonglong maxID = -1,
 		///								 bool entities = false,
-		///								 int page = 0,
 		///								 int count = 20);
 		/// @brief Retrieving the timeline with the favorite tweets of the user
-		/// whose screen name is id.
-		/// @param id Screen name of the user whose favorites timeline
+		/// whose screen name is username.
+		/// @param username Screen name of the user whose favorites timeline
 		/// will be retrieved by the request.
 		/// @param count Number of tweets in the timeline
 		/// @param sinceID Minimum ID for a tweet possible in the timeline
-		/// @param page Number of tweets page
+		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param entities Boolean whose value is true if the tweets have got
 		/// their entities
-		/// @see https://dev.twitter.com/docs/api/1/get/favorites
-		void getFavoriteTimeline(QString id = "",
+		/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
+		void getFavoriteTimeline(QString username = "",
 								 qlonglong sinceID = -1,
+								 qlonglong maxID = -1,
 								 bool entities = false,
-								 int page = 0,
 								 int count = 20);
 
 		/// @fn void unfavoriteTweet(qlonglong id);
 		/// @brief Unavoriting a tweet
 		/// @param id ID of the tweet to unfavorite
-		/// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
-		void unfavoriteTweet(qlonglong id);
+		/// @param entities Including Tweet Entities in the favorited (true).
+		/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/destroy
+		void unfavoriteTweet(qlonglong id, bool entities = true);
 
 
 		///////////

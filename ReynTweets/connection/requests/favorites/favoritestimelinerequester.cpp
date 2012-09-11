@@ -28,8 +28,8 @@
 FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManager,
 													   qlonglong uid,
 													   qlonglong oldestTweetID,
+													   qlonglong earliestTweetID,
 													   bool withEntities,
-													   int nbPages,
 													   int nbTweets) :
 	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(ID),
@@ -37,7 +37,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 	screenName(""),
 	count(nbTweets),
 	sinceID(oldestTweetID),
-	page(nbPages),
+	maxID(earliestTweetID),
 	includeEntities(withEntities)
 {}
 
@@ -45,8 +45,8 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManager,
 													   QString userName,
 													   qlonglong oldestTweetID,
+													   qlonglong earliestTweetID,
 													   bool withEntities,
-													   int nbPages,
 													   int nbTweets) :
 	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(SCREEN_NAME),
@@ -54,28 +54,24 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 	screenName(userName),
 	count(nbTweets),
 	sinceID(oldestTweetID),
-	page(nbPages),
+	maxID(earliestTweetID),
 	includeEntities(withEntities)
 {}
 
 
 // Building getParameters
 void FavoritesTimelineRequester::buildGETParameters() {
-	QString idString = "";
-
-	// Value for "id"
+	// Value for the user identifier
 	switch (idWay) {
 		case ID:
-			idString = QString::number(userID);
+			getParameters.insert("user_id", QString::number(userID));
 			break;
 		case SCREEN_NAME:
-			idString = screenName;
+			getParameters.insert("screen_name", screenName);
 			break;
 	}
 
-	getParameters.insert("id", idString);
-
-	if (count != -1) {
+	if (count != 20) {
 		getParameters.insert("count", QString::number(count));
 	}
 
@@ -84,8 +80,9 @@ void FavoritesTimelineRequester::buildGETParameters() {
 		getParameters.insert("since_id", QString::number(sinceID));
 	}
 
-	if (page > 0) {
-		getParameters.insert("page", QString::number(page));
+
+	if (maxID != -1) {
+		getParameters.insert("max_id", QString::number(maxID));
 	}
 
 	getParameters.insert("include_entities", boolInString(includeEntities));

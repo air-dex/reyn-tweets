@@ -24,17 +24,18 @@
 #include "favoriteprocess.hpp"
 
 // Constructor
-FavoriteProcess::FavoriteProcess(qlonglong id, bool fav) :
+FavoriteProcess::FavoriteProcess(qlonglong id, bool fav, bool entities) :
 	SingleTwitterCallProcess(FAVORITE_SUCCESSFUL),
 	tweetID(id),
-	favorite(fav)
+	favorite(fav),
+	includeEntities(entities)
 {}
 
 // Start the process calling twitter to favorite the tweet
 void FavoriteProcess::callTwitter() {
 	if (favorite) {
-		twitter.favoriteTweet(tweetID, true);
+		twitter.favoriteTweet(tweetID, includeEntities);
 	} else {
-		twitter.unfavoriteTweet(tweetID);
+		twitter.unfavoriteTweet(tweetID, includeEntities);
 	}
 }

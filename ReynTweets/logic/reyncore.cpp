@@ -256,14 +256,14 @@ void ReynCore::loadMentionsTimeline(qlonglong sinceID,
 ////////////
 
 // Favoriting a tweet
-void ReynCore::favoriteTweet(qlonglong id) {
-	FavoriteProcess * process = new FavoriteProcess(id, true);
+void ReynCore::favoriteTweet(qlonglong id, bool includeEntities) {
+	FavoriteProcess * process = new FavoriteProcess(id, true, includeEntities);
 	executeProcess(process);
 }
 
 // Unfavoriting a tweet
-void ReynCore::unfavoriteTweet(qlonglong id) {
-	FavoriteProcess * process = new FavoriteProcess(id, false);
+void ReynCore::unfavoriteTweet(qlonglong id, bool includeEntities) {
+	FavoriteProcess * process = new FavoriteProcess(id, false, includeEntities);
 	executeProcess(process);
 }
 

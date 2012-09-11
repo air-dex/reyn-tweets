@@ -31,12 +31,10 @@ FavoriteRequester::FavoriteRequester(OAuthManager &authManager,
 	TwitterRequester(POST, TwitterURL::CREATE_FAVORITE_URL, authManager),
 	tweetID(id),
 	includeEntities(withEntities)
-{
-	// Replacing ":id" in the URL with the tweet ID
-	requestURL.replace(":id", QString::number(tweetID));
-}
+{}
 
 // Building postParameters
 void FavoriteRequester::buildPOSTParameters() {
+	postParameters.insert("id", QString::number(tweetID));
 	postParameters.insert("include_entities", boolInString(includeEntities));
 }

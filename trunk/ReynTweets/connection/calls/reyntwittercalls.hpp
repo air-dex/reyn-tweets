@@ -64,7 +64,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @brief Verifying credentials
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param skipStatus Include the last tweet written by the user ?
-		/// @see https://api.twitter.com/1/account/verify_credentials.json
+		/// @see https://api.twitter.com/1.1/account/verify_credentials.json
 		void verifyCredentials(bool entities, bool skipStatus);
 
 
@@ -338,14 +338,14 @@ class ReynTwitterCalls : public GenericCalls
 		/// @brief Showing a user identified by its ID
 		/// @param userID ID of the user
 		/// @param entities Include Tweet Entities in th reply ?
-		/// @see https://dev.twitter.com/docs/api/1/get/users/show
+		/// @see https://dev.twitter.com/docs/api/1.1/get/users/show
 		void showUser(qlonglong userID, bool entities = true);
 
 		/// @fn void void showUser(QString screenName, bool entities = true);
 		/// @brief Showing a user identified by its screen name
 		/// @param screenName User's screen name
 		/// @param entities Include Tweet Entities in th reply ?
-		/// @see https://dev.twitter.com/docs/api/1/get/users/show
+		/// @see https://dev.twitter.com/docs/api/1.1/get/users/show
 		void showUser(QString screenName, bool entities = true);
 };
 

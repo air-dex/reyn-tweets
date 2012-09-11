@@ -31,7 +31,7 @@
 /// @class ShowUserRequester
 /// @brief Requester for getting details about a user identified by its ID
 /// or its screen name.
-/// @see https://dev.twitter.com/docs/api/1/get/users/show
+/// @see https://dev.twitter.com/docs/api/1.1/get/users/show
 class ShowUserRequester : public TwitterRequester
 {
 	public:

@@ -32,7 +32,7 @@
 //////////////
 
 // Verify credentials
-QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("http://api.twitter.com/1/account/verify_credentials.json");
+QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twitter.com/1.1/account/verify_credentials.json");
 
 
 ///////////////
@@ -71,7 +71,7 @@ QString TwitterURL::ACCESS_TOKEN_URL = QString::fromUtf8("https://api.twitter.co
 //////////////
 
 // Search request
-QString TwitterURL::SEARCH_URL = QString::fromUtf8("http://search.twitter.com/search.json");
+QString TwitterURL::SEARCH_URL = QString::fromUtf8("https://api.twitter.com/1.1/search/tweets.json");
 
 
 ///////////////
@@ -113,4 +113,4 @@ QString TwitterURL::UPDATE_TWEET_WITH_MEDIA_URL = QString::fromUtf8("https://upl
 ///////////
 
 // Getting informations about a given user
-QString TwitterURL::SHOW_USER_URL = QString::fromUtf8("https://api.twitter.com/1/users/show.json");
+QString TwitterURL::SHOW_USER_URL = QString::fromUtf8("https://api.twitter.com/1.1/users/show.json");

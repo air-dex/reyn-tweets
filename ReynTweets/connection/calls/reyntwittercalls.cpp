@@ -181,10 +181,8 @@ void ReynTwitterCalls::search(QString q) {
 void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 											qlonglong maxID,
 											bool trimUser,
-											bool includeRTS,
 											bool includeEntities,
 											bool excludeReplies,
-											int page,
 											int count,
 											bool contributorsDetails)
 {
@@ -192,10 +190,8 @@ void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 																  sinceID,
 																  maxID,
 																  trimUser,
-																  includeRTS,
 																  includeEntities,
 																  excludeReplies,
-																  page,
 																  count,
 																  contributorsDetails);
 	executeRequest(requester);
@@ -205,7 +201,6 @@ void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 void ReynTwitterCalls::retrieveMentionsTimeline(qlonglong sinceID,
 												qlonglong maxID,
 												bool trimUser,
-												bool includeRTS,
 												bool includeEntities,
 												int count,
 												bool contributorsDetails)
@@ -214,7 +209,6 @@ void ReynTwitterCalls::retrieveMentionsTimeline(qlonglong sinceID,
 																		  sinceID,
 																		  maxID,
 																		  trimUser,
-																		  includeRTS,
 																		  includeEntities,
 																		  count,
 																		  contributorsDetails);

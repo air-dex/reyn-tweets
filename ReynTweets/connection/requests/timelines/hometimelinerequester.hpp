@@ -59,10 +59,8 @@ class HomeTimelineRequester : public TwitterRequester
 							  qlonglong oldestTweetID = -1,
 							  qlonglong youngestTweetID = -1,
 							  bool userIDonly = false,
-							  bool withRetweets = false,
 							  bool withEntities = false,
 							  bool withoutReplies = false,
-							  int nbPage = 0,
 							  int nbTweets = 20,
 							  bool withContributorsDetails = false);
 
@@ -77,14 +75,8 @@ class HomeTimelineRequester : public TwitterRequester
 		/// @brief Maximum tweet ID allowed in the timeline
 		qlonglong maxID;
 
-		/// @brief Number of pages to retrieve. Start at 1, not 0.
-		int page;
-
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Includng retweets
-		bool includeRetweets;
 
 		/// @brief Including Tweet Entities in tweets
 		bool includeEntities;

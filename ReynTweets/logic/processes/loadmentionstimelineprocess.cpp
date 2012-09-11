@@ -27,7 +27,6 @@
 LoadMentionsTimelineProcess::LoadMentionsTimelineProcess(qlonglong oldestTweetID,
 														 qlonglong youngestTweetID,
 														 bool userIDonly,
-														 bool withRetweets,
 														 bool withEntities,
 														 int nbTweets,
 														 bool withContributorsDetails) :
@@ -36,7 +35,6 @@ LoadMentionsTimelineProcess::LoadMentionsTimelineProcess(qlonglong oldestTweetID
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),
 	trimUser(userIDonly),
-	includeRetweets(withRetweets),
 	includeEntities(withEntities),
 	contributorsDetails(withContributorsDetails)
 {}
@@ -46,7 +44,6 @@ void LoadMentionsTimelineProcess::callTwitter() {
 	twitter.retrieveMentionsTimeline(sinceID,
 									 maxID,
 									 trimUser,
-									 includeRetweets,
 									 includeEntities,
 									 count,
 									 contributorsDetails);

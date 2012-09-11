@@ -29,19 +29,15 @@ HomeTimelineRequester::HomeTimelineRequester(OAuthManager & authManager,
 											 qlonglong oldestTweetID,
 											 qlonglong youngestTweetID,
 											 bool userIDonly,
-											 bool withRetweets,
 											 bool withEntities,
 											 bool withoutReplies,
-											 int nbPage,
 											 int nbTweets,
 											 bool withContributorsDetails) :
 	TwitterRequester(GET, TwitterURL::HOME_TIMELINE_URL, authManager),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),
-	page(nbPage),
 	trimUser(userIDonly),
-	includeRetweets(withRetweets),
 	includeEntities(withEntities),
 	excludeReplies(withoutReplies),
 	contributorsDetails(withContributorsDetails)
@@ -62,12 +58,7 @@ void HomeTimelineRequester::buildGETParameters() {
 		getParameters.insert("max_id", QString::number(maxID));
 	}
 
-	if (page > 0) {
-		getParameters.insert("page", QString::number(page));
-	}
-
 	getParameters.insert("trim_user", boolInString(trimUser));
-	getParameters.insert("include_rts", boolInString(includeRetweets));
 	getParameters.insert("include_entities", boolInString(includeEntities));
 	getParameters.insert("exclude_replies", boolInString(excludeReplies));
 	getParameters.insert("contributors_details", boolInString(contributorsDetails));

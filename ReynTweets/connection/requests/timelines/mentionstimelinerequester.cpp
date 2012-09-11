@@ -28,7 +28,6 @@ MentionsTimelineRequester::MentionsTimelineRequester(OAuthManager &authManager,
 													 qlonglong oldestTweetID,
 													 qlonglong youngestTweetID,
 													 bool userIDonly,
-													 bool withRetweets,
 													 bool withEntities,
 													 int nbTweets,
 													 bool withContributorsDetails) :
@@ -37,7 +36,6 @@ MentionsTimelineRequester::MentionsTimelineRequester(OAuthManager &authManager,
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),
 	trimUser(userIDonly),
-	includeRetweets(withRetweets),
 	includeEntities(withEntities),
 	contributorsDetails(withContributorsDetails)
 {}
@@ -58,7 +56,6 @@ void MentionsTimelineRequester::buildGETParameters() {
 	}
 
 	getParameters.insert("trim_user", boolInString(trimUser));
-	getParameters.insert("include_rts", boolInString(includeRetweets));
 	getParameters.insert("include_entities", boolInString(includeEntities));
 	getParameters.insert("contributors_details", boolInString(contributorsDetails));
 }

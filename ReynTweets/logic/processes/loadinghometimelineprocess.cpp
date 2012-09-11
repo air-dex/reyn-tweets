@@ -26,19 +26,15 @@
 LoadingHomeTimelineProcess::LoadingHomeTimelineProcess(qlonglong oldestTweetID,
 													   qlonglong youngestTweetID,
 													   bool userIDonly,
-													   bool withRetweets,
 													   bool withEntities,
 													   bool withoutReplies,
-													   int nbPage,
 													   int nbTweets,
 													   bool withContributorsDetails) :
 	SingleTwitterCallProcess(TIMELINE_RETRIEVED),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),
-	page(nbPage),
 	trimUser(userIDonly),
-	includeRetweets(withRetweets),
 	includeEntities(withEntities),
 	excludeReplies(withoutReplies),
 	contributorsDetails(withContributorsDetails)
@@ -49,10 +45,8 @@ void LoadingHomeTimelineProcess::callTwitter() {
 	twitter.retrieveHomeTimeline(sinceID,
 								 maxID,
 								 trimUser,
-								 includeRetweets,
 								 includeEntities,
 								 excludeReplies,
-								 page,
 								 count,
 								 contributorsDetails);
 }

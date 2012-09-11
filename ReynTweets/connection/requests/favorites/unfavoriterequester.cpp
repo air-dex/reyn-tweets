@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "unfavoriterequester.hpp"
+#include "../../../tools/utils.hpp"
 
 // Constructor
 UnfavoriteRequester::UnfavoriteRequester(OAuthManager & authManager,

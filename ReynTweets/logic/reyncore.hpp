@@ -235,8 +235,8 @@ class ReynCore : public QObject
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your latitude.
-		/// @param latitude For geolocation, your longitude.
+		/// @param longitude For geolocation, your longitude.
+		/// @param latitude For geolocation, your latitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
@@ -262,8 +262,8 @@ class ReynCore : public QObject
 		/// @param replyToTweetID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your latitude.
-		/// @param latitude For geolocation, your longitude.
+		/// @param longitude For geolocation, your longitude.
+		/// @param latitude For geolocation, your latitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
@@ -281,7 +281,6 @@ class ReynCore : public QObject
 		///									qlonglong replyToTweetID = -1,
 		///									QString replyToUser = "",
 		///									bool trimUser = false,
-		///									bool includeEntities = true,
 		///									float latitude = -361,
 		///									float longitude = -361,
 		///									QString reversePlace = "",
@@ -293,9 +292,8 @@ class ReynCore : public QObject
 		/// @param replyToUser If the tweet is a reply, this parameter is
 		/// the screen name of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @param longitude For geolocation, your latitude.
-		/// @param latitude For geolocation, your longitude.
+		/// @param longitude For geolocation, your longitude.
+		/// @param latitude For geolocation, your latitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
@@ -304,7 +302,6 @@ class ReynCore : public QObject
 									qlonglong replyToTweetID = -1,
 									QString replyToUser = "",
 									bool trimUser = false,
-									bool includeEntities = true,
 									float latitude = -361,
 									float longitude = -361,
 									QString reversePlace = "",
@@ -314,7 +311,6 @@ class ReynCore : public QObject
 		///									QString replyToTweetID = "-1",
 		///									QString replyToUser = "",
 		///									bool trimUser = false,
-		///									bool includeEntities = true,
 		///									float latitude = -361,
 		///									float longitude = -361,
 		///									QString reversePlace = "",
@@ -326,9 +322,8 @@ class ReynCore : public QObject
 		/// @param replyToUser If the tweet is a reply, this parameter is
 		/// the screen name of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param includeEntities Including Tweet Entities in the tweets (true).
-		/// @param longitude For geolocation, your latitude.
-		/// @param latitude For geolocation, your longitude.
+		/// @param longitude For geolocation, your longitude.
+		/// @param latitude For geolocation, your latitude.
 		/// @param reversePlace For geolocation, ID of the place where the tweet
 		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
@@ -337,7 +332,6 @@ class ReynCore : public QObject
 									QString replyToTweetID = "-1",
 									QString replyToUser = "",
 									bool trimUser = false,
-									bool includeEntities = true,
 									float latitude = -361,
 									float longitude = -361,
 									QString reversePlace = "",

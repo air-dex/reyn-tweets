@@ -29,7 +29,6 @@
 #include "accounts/verifycredentialsrequester.hpp"
 #include "favorites/favoriterequester.hpp"
 #include "favorites/favoritestimelinerequester.hpp"
-#include "favorites/unfavoriterequester.hpp"
 #include "oauth/accesstokenrequester.hpp"
 #include "oauth/authorizerequester.hpp"
 #include "oauth/postauthorizerequester.hpp"

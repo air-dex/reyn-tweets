@@ -64,7 +64,6 @@ SOURCES += \
 	connection/requests/twitterrequester.cpp \
 	connection/requests/accounts/verifycredentialsrequester.cpp \
 	connection/requests/favorites/favoriterequester.cpp \
-	connection/requests/favorites/unfavoriterequester.cpp \
 	connection/requests/favorites/favoritestimelinerequester.cpp \
 	connection/requests/oauth/oauthrequester.cpp \
 	connection/requests/oauth/requesttokenrequester.cpp \
@@ -165,7 +164,6 @@ HEADERS  += \
 	connection/requests/twitterrequester.hpp \
 	connection/requests/accounts/verifycredentialsrequester.hpp \
 	connection/requests/favorites/favoriterequester.hpp \
-	connection/requests/favorites/unfavoriterequester.hpp \
 	connection/requests/favorites/favoritestimelinerequester.hpp \
 	connection/requests/oauth/oauthrequester.hpp \
 	connection/requests/oauth/requesttokenrequester.hpp \

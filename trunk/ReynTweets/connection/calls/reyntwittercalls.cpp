@@ -63,6 +63,7 @@ void ReynTwitterCalls::verifyCredentials(bool entities, bool skipStatus) {
 // Favoriting a tweet
 void ReynTwitterCalls::favoriteTweet(qlonglong id, bool entities) {
 	FavoriteRequester * requester = new FavoriteRequester(oauthManager,
+														  true,
 														  id,
 														  entities);
 	executeRequest(requester);
@@ -102,9 +103,10 @@ void ReynTwitterCalls::getFavoriteTimeline(QString username,
 
 // Unavoriting a tweet
 void ReynTwitterCalls::unfavoriteTweet(qlonglong id, bool entities) {
-	UnfavoriteRequester * requester = new UnfavoriteRequester(oauthManager,
-															  id,
-															  entities);
+	FavoriteRequester * requester = new FavoriteRequester(oauthManager,
+														  false,
+														  id,
+														  entities);
 	executeRequest(requester);
 }
 

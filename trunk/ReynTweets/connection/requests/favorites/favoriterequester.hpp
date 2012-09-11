@@ -28,26 +28,35 @@
 
 /// @class FavoriteRequester
 /// @brief Requester to favorite a tweet
-/// @see https://dev.twitter.com/docs/api/1/post/favorites/create
+/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/create (favorite)
+/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/destroy (unfavorite)
 class FavoriteRequester : public TwitterRequester
 {
 	Q_OBJECT
 
 	public:
 		/// @fn FavoriteRequester(OAuthManager & authManager,
+		///						  bool favorited,
 		///						  qlonglong id,
 		///						  bool withEntities = false);
 		/// @brief Constructor with a screen name.
 		/// @param authManager Entity with authentication datas
+		/// @param favorited Boolean whose value indicates whether the tweet is favorited
+		/// (true) or not (false).
 		/// @param id ID of the tweet to favorite
 		/// @param withEntities Value of includeEntities
 		FavoriteRequester(OAuthManager & authManager,
+						  bool favorited,
 						  qlonglong id,
 						  bool withEntities = false);
 
 	protected:
 		/// @brief ID of the tweet to favorite
 		qlonglong tweetID;
+
+		/// @brief Boolean whose value indicates whether the tweet is favorited
+		/// (true) or not (false).
+		bool isFavorited;
 
 		/// @brief Include Tweet Entities of the tweet in the reply ?
 		bool includeEntities;

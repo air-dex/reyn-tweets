@@ -33,12 +33,13 @@ class FavoriteProcess : public SingleTwitterCallProcess
 	Q_OBJECT
 
 	public:
-		/// @fn FavoriteProcess(qlonglong id, bool fav);
+		/// @fn FavoriteProcess(qlonglong id, bool fav, bool entities = true);
 		/// @brief Constructor
 		/// @param id ID of the tweet
 		/// @param fav Boolean indicating if the tweet hyas to be favorited
 		/// (true) or unfavorited (false).
-		FavoriteProcess(qlonglong id, bool fav);
+		/// @param entities Including Tweet Entities in the favorited (true).
+		FavoriteProcess(qlonglong id, bool fav, bool entities = true);
 
 	protected:
 		/// @brief ID of the tweet to favorite
@@ -47,6 +48,10 @@ class FavoriteProcess : public SingleTwitterCallProcess
 		/// @brief Boolean whose value is true if the process has to favorite
 		/// the tweet or false if it has to unfavorite it.
 		bool favorite;
+
+		/// @brief Boolean telling whether Tweet Entities have to be included in
+		/// the response (when set to true).
+		bool includeEntities;
 
 		/// @fn void callTwitter();
 		/// @brief Calling the Twitter API to favorite or to unfavorite the tweet.

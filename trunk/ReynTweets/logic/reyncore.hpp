@@ -209,15 +209,19 @@ class ReynCore : public QObject
 		// Tweets //
 		////////////
 
-		/// @fn void favoriteTweet(qlonglong id);
+		/// @fn void favoriteTweet(qlonglong id, bool includeEntities = true);
 		/// @brief Favoriting a tweet
 		/// @param id ID of the tweet to favorite
-		void favoriteTweet(qlonglong id);
+		/// @param includeEntities Including Tweet Entities in the favorited
+		/// tweet (when set to true).
+		void favoriteTweet(qlonglong id, bool includeEntities = true);
 
-		/// @fn void unfavoriteTweet(qlonglong id);
+		/// @fn void unfavoriteTweet(qlonglong id, bool includeEntities = true);
 		/// @brief Unfavoriting a tweet
 		/// @param id ID of the tweet to unfavorite
-		void unfavoriteTweet(qlonglong id);
+		/// @param includeEntities Including Tweet Entities in the unfavorited
+		/// tweet (when set to true).
+		void unfavoriteTweet(qlonglong id, bool includeEntities = true);
 
 		/// @fn void postTweet(QString tweet,
 		///					   qlonglong replyToTweetID,

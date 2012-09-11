@@ -40,13 +40,13 @@ QString TwitterURL::VERIFY_CREDENTIALS_URL = QString::fromUtf8("https://api.twit
 ///////////////
 
 // Favorite a tweet
-QString TwitterURL::CREATE_FAVORITE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites/create/:id.json");
+QString TwitterURL::CREATE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1.1/favorites/create.json");
 
 // Unfavorite a tweet
-QString TwitterURL::DELETE_FAVORITE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites/destroy/:id.json");
+QString TwitterURL::DELETE_FAVORITE_URL = QString::fromUtf8("https://api.twitter.com/1.1/favorites/destroy.json");
 
 // Getting the timeline of the favorite tweets of a user
-QString TwitterURL::FAVORITE_TIMELINE_URL = QString::fromUtf8("http://api.twitter.com/1/favorites.json");
+QString TwitterURL::FAVORITE_TIMELINE_URL = QString::fromUtf8("https://api.twitter.com/1.1/favorites/list.json");
 
 
 ///////////

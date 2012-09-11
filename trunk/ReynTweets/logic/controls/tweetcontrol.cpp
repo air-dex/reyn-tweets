@@ -468,19 +468,14 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
-	TweetEntities entities;
 
 	switch (issue) {
 		case FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
 
-			// Saving tweet entities because Twitter API doesn't return them here !
-			entities = getShownTweet()->getEntities();
-
 			getShownTweet()->reset();
 			getShownTweet()->fillWithVariant(parsedResults);
-			getShownTweet()->setEntities(entities);
 			getShownTweet()->setFavorited(false);
 			emit tweetChanged();
 			emit actionEnded(true, TweetControl::trUtf8("Tweet unfavorited"), false);

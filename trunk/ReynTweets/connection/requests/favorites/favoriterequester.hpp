@@ -28,7 +28,7 @@
 
 /// @class FavoriteRequester
 /// @brief Requester to favorite a tweet
-/// @see https://dev.twitter.com/docs/api/1/post/favorites/create/%3Aid
+/// @see https://dev.twitter.com/docs/api/1/post/favorites/create
 class FavoriteRequester : public TwitterRequester
 {
 	Q_OBJECT

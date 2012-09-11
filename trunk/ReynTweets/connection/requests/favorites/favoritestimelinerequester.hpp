@@ -29,7 +29,7 @@
 
 /// @class FavoritesTimelineRequester
 /// @brief Requester to retrieve the timeline with the favorite tweets of a user
-/// @see https://dev.twitter.com/docs/api/1/get/favorites
+/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
 class FavoritesTimelineRequester : public TwitterRequester
 {
 	Q_OBJECT
@@ -52,8 +52,8 @@ class FavoritesTimelineRequester : public TwitterRequester
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   qlonglong uid = -1,
 								   qlonglong oldestTweetID = -1,
+								   qlonglong earliestTweetID = -1,
 								   bool withEntities = false,
-								   int nbPages = 0,
 								   int nbTweets = 20);
 
 		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
@@ -72,9 +72,9 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   QString userName = "",
-								   qlonglong oldestTweetID = 20,
+								   qlonglong oldestTweetID = -1,
+								   qlonglong earliestTweetID = -1,
 								   bool withEntities = false,
-								   int nbPages = 0,
 								   int nbTweets = 20);
 
 	protected:
@@ -93,8 +93,8 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @brief Minimum ID possible in the timeline
 		qlonglong sinceID;
 
-		/// @brief Number of pages
-		int page;
+		/// @brief Minimum ID possible in the timeline
+		qlonglong maxID;
 
 		/// @brief Boolean whose value is true if tweet entities have to be
 		/// included in the tweets

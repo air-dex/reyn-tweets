@@ -31,21 +31,33 @@
 ///
 /// No need to override GenericRequester::buildPOSTParameters since there is not
 /// any POST arguments.
-/// @see https://dev.twitter.com/docs/api/1/post/favorites/destroy/%3Aid
+/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/destroy
 class UnfavoriteRequester : public TwitterRequester
 {
 	Q_OBJECT
 
 	public:
-		/// @fn UnfavoriteRequester(OAuthManager & authManager, qlonglong id);
+		/// @fn UnfavoriteRequester(OAuthManager & authManager,
+		///							qlonglong id,
+		///							bool withEntities = true);
 		/// @brief Constructor
 		/// @param authManager Entity with authentication datas
 		/// @param id ID of the tweet to favorite
-		UnfavoriteRequester(OAuthManager & authManager, qlonglong id);
+		/// @param withEntities Value of includeEntities
+		UnfavoriteRequester(OAuthManager & authManager,
+							qlonglong id,
+							bool withEntities = true);
 
 	protected:
 		/// @brief ID of the tweet to unfavorite
 		qlonglong tweetID;
+
+		/// @brief Include Tweet Entities of the tweet in the reply ?
+		bool includeEntities;
+
+		/// @fn void buildPOSTParameters();
+		/// @brief Building postParameters
+		void buildPOSTParameters();
 };
 
 #endif // UNFAVORITEREQUESTER_HPP

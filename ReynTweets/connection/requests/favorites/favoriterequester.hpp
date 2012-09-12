@@ -51,12 +51,12 @@ class FavoriteRequester : public TwitterRequester
 						  bool withEntities = false);
 
 	protected:
-		/// @brief ID of the tweet to favorite
-		qlonglong tweetID;
-
 		/// @brief Boolean whose value indicates whether the tweet is favorited
 		/// (true) or not (false).
 		bool isFavorited;
+
+		/// @brief ID of the tweet to favorite
+		qlonglong tweetID;
 
 		/// @brief Include Tweet Entities of the tweet in the reply ?
 		bool includeEntities;

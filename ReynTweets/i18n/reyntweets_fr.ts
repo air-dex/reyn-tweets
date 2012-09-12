@@ -42,7 +42,7 @@
 <context>
     <name>AccessTokenRequester</name>
     <message>
-        <location filename="../connection/requests/oauth/accesstokenrequester.cpp" line="103"/>
+        <location filename="../connection/requests/twitter/oauth/accesstokenrequester.cpp" line="103"/>
         <source>Unexpected parameter &apos;</source>
         <translation>Paramètre inattendu : &apos;</translation>
     </message>
@@ -93,22 +93,22 @@
 <context>
     <name>AuthorizeRequester</name>
     <message>
-        <location filename="../connection/requests/oauth/authorizerequester.cpp" line="108"/>
+        <location filename="../connection/requests/twitter/oauth/authorizerequester.cpp" line="108"/>
         <source>Authenticity token not found.</source>
         <translation>Authenticitiy token non trouvé.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/authorizerequester.cpp" line="113"/>
+        <location filename="../connection/requests/twitter/oauth/authorizerequester.cpp" line="113"/>
         <source>OAuth token not found.</source>
         <translation>OAuth token non trouvé.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/authorizerequester.cpp" line="118"/>
+        <location filename="../connection/requests/twitter/oauth/authorizerequester.cpp" line="118"/>
         <source>Deny value not found.</source>
         <translation>Valeur &quot;deny&quot; non trouvée.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/authorizerequester.cpp" line="123"/>
+        <location filename="../connection/requests/twitter/oauth/authorizerequester.cpp" line="123"/>
         <source>Empty HTML page.
 </source>
         <translation>Page HTML vide.</translation>
@@ -383,27 +383,27 @@
 <context>
     <name>PostAuthorizeRequester</name>
     <message>
-        <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="140"/>
+        <location filename="../connection/requests/twitter/oauth/postauthorizerequester.cpp" line="140"/>
         <source>PIN code (oauth verifier) not found.</source>
         <translation>Code PIN (OAuth Verifier) non trouvé.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="204"/>
+        <location filename="../connection/requests/twitter/oauth/postauthorizerequester.cpp" line="204"/>
         <source>&amp;lt;div class=&quot;happy notice callback&quot;&amp;gt; HTML tag expected.</source>
         <translation>Balise HTML &amp;lt;div class=&quot;happy notice callback&quot;&amp;gt; attendue.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="209"/>
+        <location filename="../connection/requests/twitter/oauth/postauthorizerequester.cpp" line="209"/>
         <source>Empty HTML page.</source>
         <translation>Page HTML vide.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="213"/>
+        <location filename="../connection/requests/twitter/oauth/postauthorizerequester.cpp" line="213"/>
         <source>HTML parsing failed.</source>
         <translation>Le parsage HTML a échoué.</translation>
     </message>
     <message>
-        <location filename="../connection/requests/oauth/postauthorizerequester.cpp" line="217"/>
+        <location filename="../connection/requests/twitter/oauth/postauthorizerequester.cpp" line="217"/>
         <source>Wrong URL.</source>
         <translation>Fausse URL.</translation>
     </message>
@@ -607,7 +607,7 @@
 <context>
     <name>RequestTokenRequester</name>
     <message>
-        <location filename="../connection/requests/oauth/requesttokenrequester.cpp" line="91"/>
+        <location filename="../connection/requests/twitter/oauth/requesttokenrequester.cpp" line="91"/>
         <source>Unexpected parameter &apos;</source>
         <translation>Paramètre inattendu : &apos;</translation>
     </message>
@@ -964,7 +964,7 @@
 <context>
     <name>TwitterRequester</name>
     <message>
-        <location filename="../connection/requests/twitterrequester.cpp" line="158"/>
+        <location filename="../connection/requests/twitter/twitterrequester.cpp" line="158"/>
         <source>Error in request </source>
         <translation>Error lors de la requête</translation>
     </message>

@@ -156,7 +156,6 @@ HEADERS  += \
 	connection/model/responseinfos.hpp \
 	connection/requests/twitlonger/twitlongerurls.hpp \
 	connection/requests/twitter/twitterurls.hpp \
-	connection/requests/apiurls.hpp \
 	connection/model/requestresult.hpp \
 	connection/model/resultwrapper.hpp \
 	connection/model/identificationway.hpp \

@@ -25,6 +25,7 @@
 #define TWITTERREQUESTER_HPP
 
 #include "../genericrequester.hpp"
+#include "twitterurls.hpp"
 #include "../../model/managers/oauthmanager.hpp"
 
 /// @class TwitterRequester

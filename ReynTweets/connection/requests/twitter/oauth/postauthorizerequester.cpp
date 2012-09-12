@@ -22,8 +22,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "postauthorizerequester.hpp"
-#include "../../../tools/parsers/htmlparser.hpp"
-#include "../../../tools/parsers/oauthparser.hpp"
+#include "../../../../tools/parsers/htmlparser.hpp"
+#include "../../../../tools/parsers/oauthparser.hpp"
 
 // Constructor
 PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,

@@ -1,5 +1,5 @@
-/// @file favoriterequester.cpp
-/// @brief Implementation of FavoriteRequester
+/// @file destroytweetrequester.cpp
+/// @brief Implementation of DestroyTweetRequester
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,26 +21,23 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "favoriterequester.hpp"
-#include "../../../tools/utils.hpp"
+#include "destroytweetrequester.hpp"
+#include "../../../../tools/utils.hpp"
 
 // Constructor
-FavoriteRequester::FavoriteRequester(OAuthManager &authManager,
-									 bool favorited,
-									 qlonglong id,
-									 bool withEntities) :
-	TwitterRequester(POST,
-					 favorited ?
-						 TwitterURL::CREATE_FAVORITE_URL
-					   : TwitterURL::DELETE_FAVORITE_URL,
-					 authManager),
-	isFavorited(favorited),
-	tweetID(id),
-	includeEntities(withEntities)
-{}
+DestroyTweetRequester::DestroyTweetRequester(OAuthManager &authManager,
+											 qlonglong statusID,
+											 bool userIDonly) :
+	TwitterRequester(POST, TwitterURL::DELETE_TWEET_URL, authManager),
+	tweetID(statusID),
+	trimUser(userIDonly)
+{
+	// Replacing ":id" in the URL with the tweet ID
+	requestURL.replace(":id", QString::number(tweetID));
+}
 
 // Building postParameters
-void FavoriteRequester::buildPOSTParameters() {
+void DestroyTweetRequester::buildPOSTParameters() {
 	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
+	postParameters.insert("trim_user", boolInString(trimUser));
 }

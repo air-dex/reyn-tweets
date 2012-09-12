@@ -27,7 +27,7 @@
 #ifndef APIURLS_HPP
 #define APIURLS_HPP
 
-#include "twitlongerurls.hpp"
-#include "twitterurls.hpp"
+#include "twitlonger/twitlongerurls.hpp"
+#include "twitter/twitterurls.hpp"
 
 #endif // APIURLS_HPP

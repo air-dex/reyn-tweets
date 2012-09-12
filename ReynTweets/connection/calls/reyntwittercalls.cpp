@@ -25,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyntwittercalls.hpp"
-#include "../requests/twitterrequests.hpp"
+#include "../requests/twitter/twitterrequests.hpp"
 
 // OAuth information
 OAuthManager ReynTwitterCalls::oauthManager = OAuthManager();

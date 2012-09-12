@@ -23,8 +23,8 @@
 
 #include <QWebElement>
 #include "authorizerequester.hpp"
-#include "../../../tools/parsers/htmlparser.hpp"
-#include "../../../tools/utils.hpp"
+#include "../../../../tools/parsers/htmlparser.hpp"
+#include "../../../../tools/utils.hpp"
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :

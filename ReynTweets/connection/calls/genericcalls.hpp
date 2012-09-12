@@ -26,8 +26,8 @@
 
 #include <QObject>
 #include "../requests/genericrequester.hpp"
-#include "../requests/resultwrapper.hpp"
-#include "../requests/requestermanager.hpp"
+#include "../model/resultwrapper.hpp"
+#include "../model/requestermanager.hpp"
 
 /// @class GenericCalls
 /// @brief Base class for all classes which manage calls to services.

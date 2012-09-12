@@ -27,8 +27,8 @@
 #include <QByteArray>
 #include <QMap>
 #include <QString>
-#include "requests/requesttype.hpp"
-#include "headersmap.hpp"
+#include "../requesttype.hpp"
+#include "../headersmap.hpp"
 
 
 /// @class OAuthManager

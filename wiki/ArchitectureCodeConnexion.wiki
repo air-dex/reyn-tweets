@@ -1,0 +1,62 @@
+#summary Partie connexion
+#labels Architecture
+
+= Architecture du code de la partie connexion =
+
+Cette page traite de l'organisation du code traitant de la connexion de Reyn Tweets à Twitter et aux services tiers.
+
+L'intgralité du code de cette partie (à l'exception des utilitaires du dossier `/tools/` comme par exemple les parsers) est contenu dans le dossier `/connection/`
+
+
+== Rappel de l'architecture du code ==
+
+Dans la page Architecture du wiki, la connexion se fait via trois couches de code aux rôles prédéfinis :
+  * Les _Calls_
+  * Les _Requesters_
+  * Les _Communicators_
+
+Chacune de ces trois couches est contenue dans un sous dossier de `/connection/` :
+||Couche||Sous-dossier||
+||_Calls_||`/connection/calls/`||
+||_Requesters_||`/connection/requests/`||
+||_Communicators_||`/connection/twittercommunicators/`||
+
+===`calls`===
+
+Il contient tous les _Calls_. Twitter ainsi que chaque service tiers possède son propre front nommé "_Calls_" (`TwitLongerCalls` pour TwitLonger par exemple). Chaque _Calls_ dérive d'une classe mère abstraite `GenericCalls` présente dans le dossier.
+
+===`requests`===
+
+Il contient tous les _Requesters_. À la base de se dossier se trouve `GenericRequester`, la classe mère tous les _Requesters_. Ces derniers sont regroupés par service dans un sous-dossier portant le nom du service (`/connection/requests/twitter` pour Twitter, `/connection/requests/twitlonger` pour TwitLonger...).
+
+Chaque sous-dossier représentant un service contient :
+  * Les URLs des méthodes (REST) du service dans un module `<nom du service>urls` (ex. `twitterurls` pour les URLs Twitter).
+  * Un _Requester_ générique dérivant de `GenericRequester` pour tous les _Requesters_ faisant des requêtes à ce service (ex. `PocketRequester` pour Pocket).
+  * Les autres _Requesters_, dérivant du _Requester_ de base du service (ex. `FavoriteRequester` dérivant de `TwitterRequester` pour favoriser les tweets).
+
+===`twittercommunicators`===
+
+Il contient tous les _Communicators_. Il n'y a pour l'instant qu'un seul Communicator, le `TwitterCommunicator`, dont le rôle est de :
+  * Construire les requêtes HTTP.
+  * Les envoyer.
+  * Les recevoir.
+  * Mettre en forme la réponse HTTP pour le reste du programme.
+
+== Reste du dossier ==
+
+Le dossier `/connection/` contient un quatrième sous-dossier nommé `model`. Il contient les composants transverses aux trois couches de la connexion :
+  * `enum ErrorType` : énumération listant les erreurs pouvant arriver lors d'une requête.
+  * `headersmap.hpp` : header avec des typedefs sur les structures contenant les header HTTP (`HeadersMap`) et les arguments GET ou POST (`ArgsMap`). `HeadersMap` et `ArgsMap` sont des `QMap`s de Qt.
+  * `enum IdentificationWay` : moyen d'identification de l'utilisateur (nom ou identifiant). Utilisé seulement avec l'API Twitter pour le moment.
+  * `RequesterManager` : `QMap` gérant les requêtes HTTP en cours. Elle stocke donc les _Requesters_ dont le travail n'est pas encore terminé. Utilisé dans les _Calls_ où chaque _Calls_ gère les requêtes liées à son service.
+  * `RequestInfos` : classe avec les infos sur une requête. Il contient le _Requester_ de la requête ainsi que le composant (obligatoirement un `QObject`) ayant demandé la requête.
+  * `struct RequestResult` : structure avec les résultats d'une requête.
+  * `enum RequestType` : type de la requête HTTP (GET, POST...)
+  * `struct ResponseInfos` : structure pouvant contenir un code numérique ainsi qu'un message qui lui est lié. Exemple : code d'erreur avec la description de l'erreur.
+  * `struct RequestWrapper` : structure contenant les résultats d'une requête. L'accès au résultat est protégé par une donnée unique sur celui l'ayant demandé.
+
+`/connection/model/` contient également un sous-dossier `managers/` contenant les classes gérant des données liées aux services utilisés par ReynTweets. Ils contiennent bien souvent des identifiants confidentienls qui doivent être protégés. Ex : identifiants OAuth de Twitter.
+
+== Idées d'amélioration ==
+
+Au lieu de regrouper les composants par couche puis par service, les regrouper par service puis par couche si nécessaire). Les composants de base seraient dans un sous-dossier `general/`.

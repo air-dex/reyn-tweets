@@ -27,7 +27,6 @@
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
-#include "apiurls.hpp"
 #include "../model/requestresult.hpp"
 #include "../twittercommunicators/twittercommunicator.hpp"
 

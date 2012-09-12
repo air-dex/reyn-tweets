@@ -26,6 +26,7 @@
 
 #include "../genericrequester.hpp"
 #include "../../model/managers/twitlongermanager.hpp"
+#include "twitlongerurls.hpp"
 #include <QDomElement>
 
 /// @class TwitLongerRequester

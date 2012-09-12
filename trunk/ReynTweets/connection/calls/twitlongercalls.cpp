@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "twitlongercalls.hpp"
-#include "../requests/twitlongerrequests.hpp"
+#include "../requests/twitlonger/twitlongerrequests.hpp"
 
 // Static member
 TwitLongerManager TwitLongerCalls::twitlongerManager = TwitLongerManager();

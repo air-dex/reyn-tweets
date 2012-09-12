@@ -54,35 +54,35 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
-	connection/oauthmanager.cpp \
-	connection/twitlongermanager.cpp \
+	connection/model/managers/oauthmanager.cpp \
+	connection/model/managers/twitlongermanager.cpp \
 	connection/twittercommunicators/twittercommunicator.cpp \
-	connection/requests/urls/twitlongerurls.cpp \
-	connection/requests/urls/twitterurls.cpp \
-	connection/requests/resultwrapper.cpp \
+	connection/requests/twitlonger/twitlongerurls.cpp \
+	connection/requests/twitter/twitterurls.cpp \
+	connection/model/resultwrapper.cpp \
 	connection/requests/genericrequester.cpp \
-	connection/requests/twitterrequester.cpp \
-	connection/requests/accounts/verifycredentialsrequester.cpp \
-	connection/requests/favorites/favoriterequester.cpp \
-	connection/requests/favorites/favoritestimelinerequester.cpp \
-	connection/requests/oauth/oauthrequester.cpp \
-	connection/requests/oauth/requesttokenrequester.cpp \
-	connection/requests/oauth/authorizerequester.cpp \
-	connection/requests/oauth/postauthorizerequester.cpp \
-	connection/requests/oauth/accesstokenrequester.cpp \
-	connection/requests/searches/searchrequester.cpp \
-	connection/requests/timelines/hometimelinerequester.cpp \
-	connection/requests/timelines/mentionstimelinerequester.cpp \
-	connection/requests/tweets/destroytweetrequester.cpp \
-	connection/requests/tweets/posttweetrequester.cpp \
-	connection/requests/tweets/retweetrequester.cpp \
-	connection/requests/tweets/showtweetrequester.cpp \
+	connection/requests/twitter/twitterrequester.cpp \
+	connection/requests/twitter/accounts/verifycredentialsrequester.cpp \
+	connection/requests/twitter/favorites/favoriterequester.cpp \
+	connection/requests/twitter/favorites/favoritestimelinerequester.cpp \
+	connection/requests/twitter/oauth/oauthrequester.cpp \
+	connection/requests/twitter/oauth/requesttokenrequester.cpp \
+	connection/requests/twitter/oauth/authorizerequester.cpp \
+	connection/requests/twitter/oauth/postauthorizerequester.cpp \
+	connection/requests/twitter/oauth/accesstokenrequester.cpp \
+	connection/requests/twitter/searches/searchrequester.cpp \
+	connection/requests/twitter/timelines/hometimelinerequester.cpp \
+	connection/requests/twitter/timelines/mentionstimelinerequester.cpp \
+	connection/requests/twitter/tweets/destroytweetrequester.cpp \
+	connection/requests/twitter/tweets/posttweetrequester.cpp \
+	connection/requests/twitter/tweets/retweetrequester.cpp \
+	connection/requests/twitter/tweets/showtweetrequester.cpp \
+	connection/requests/twitter/users/showuserrequester.cpp \
 	connection/requests/twitlonger/twitlongerrequester.cpp \
 	connection/requests/twitlonger/posttotwitlongerrequester.cpp \
 	connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
-	connection/requests/users/showuserrequester.cpp \
-	connection/requests/requestinfos.cpp \
-	connection/requests/requestermanager.cpp \
+	connection/model/requestinfos.cpp \
+	connection/model/requestermanager.cpp \
 	connection/calls/genericcalls.cpp \
 	connection/calls/reyntwittercalls.cpp \
 	connection/calls/twitlongercalls.cpp \
@@ -147,44 +147,44 @@ HEADERS  += \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
-	connection/oauthmanager.hpp \
-	connection/twitlongermanager.hpp \
-	connection/requests/requesttype.hpp \
-	connection/headersmap.hpp \
+	connection/model/managers/oauthmanager.hpp \
+	connection/model/managers/twitlongermanager.hpp \
+	connection/model/requesttype.hpp \
+	connection/model/headersmap.hpp \
 	connection/twittercommunicators/twittercommunicator.hpp \
-	connection/errortypes.hpp \
-	connection/responseinfos.hpp \
-	connection/requests/urls/twitlongerurls.hpp \
-	connection/requests/urls/twitterurls.hpp \
-	connection/requests/urls/apiurls.hpp \
-	connection/requests/requestresult.hpp \
-	connection/requests/resultwrapper.hpp \
-	connection/requests/identificationway.hpp \
+	connection/model/errortypes.hpp \
+	connection/model/responseinfos.hpp \
+	connection/requests/twitlonger/twitlongerurls.hpp \
+	connection/requests/twitter/twitterurls.hpp \
+	connection/requests/apiurls.hpp \
+	connection/model/requestresult.hpp \
+	connection/model/resultwrapper.hpp \
+	connection/model/identificationway.hpp \
 	connection/requests/genericrequester.hpp \
-	connection/requests/twitterrequester.hpp \
-	connection/requests/accounts/verifycredentialsrequester.hpp \
-	connection/requests/favorites/favoriterequester.hpp \
-	connection/requests/favorites/favoritestimelinerequester.hpp \
-	connection/requests/oauth/oauthrequester.hpp \
-	connection/requests/oauth/requesttokenrequester.hpp \
-	connection/requests/oauth/authorizerequester.hpp \
-	connection/requests/oauth/postauthorizerequester.hpp \
-	connection/requests/oauth/accesstokenrequester.hpp \
-	connection/requests/searches/searchrequester.hpp \
-	connection/requests/timelines/hometimelinerequester.hpp \
-	connection/requests/timelines/mentionstimelinerequester.hpp \
-	connection/requests/tweets/destroytweetrequester.hpp \
-	connection/requests/tweets/posttweetrequester.hpp \
-	connection/requests/tweets/retweetrequester.hpp \
-	connection/requests/tweets/showtweetrequester.hpp \
+	connection/requests/twitter/twitterrequester.hpp \
+	connection/requests/twitter/accounts/verifycredentialsrequester.hpp \
+	connection/requests/twitter/favorites/favoriterequester.hpp \
+	connection/requests/twitter/favorites/favoritestimelinerequester.hpp \
+	connection/requests/twitter/oauth/oauthrequester.hpp \
+	connection/requests/twitter/oauth/requesttokenrequester.hpp \
+	connection/requests/twitter/oauth/authorizerequester.hpp \
+	connection/requests/twitter/oauth/postauthorizerequester.hpp \
+	connection/requests/twitter/oauth/accesstokenrequester.hpp \
+	connection/requests/twitter/searches/searchrequester.hpp \
+	connection/requests/twitter/timelines/hometimelinerequester.hpp \
+	connection/requests/twitter/timelines/mentionstimelinerequester.hpp \
+	connection/requests/twitter/tweets/destroytweetrequester.hpp \
+	connection/requests/twitter/tweets/posttweetrequester.hpp \
+	connection/requests/twitter/tweets/retweetrequester.hpp \
+	connection/requests/twitter/tweets/showtweetrequester.hpp \
+	connection/requests/twitter/users/showuserrequester.hpp \
+	connection/requests/twitter/twitterrequests.hpp \
 	connection/requests/twitlonger/twitlongerrequester.hpp \
 	connection/requests/twitlonger/posttotwitlongerrequester.hpp \
 	connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
-	connection/requests/users/showuserrequester.hpp \
-	connection/requests/twitterrequests.hpp \
-	connection/requests/twitlongerrequests.hpp \
-	connection/requests/requestinfos.hpp \
-	connection/requests/requestermanager.hpp \
+	connection/requests/twitlonger/twitlongerrequests.hpp \
+	connection/model/requestinfos.hpp \
+	connection/model/requestermanager.hpp \
 	connection/calls/genericcalls.hpp \
 	connection/calls/reyntwittercalls.hpp \
 	connection/calls/twitlongercalls.hpp \
@@ -258,6 +258,7 @@ OTHER_FILES = \
 	ui/qml/twitter-text-js-wrapper.js \
 	ui/qml/twitter-text-1.4.16.js \
 	Doxyfile.txt \
+	.bzrignore \
 	ReynTweets.rc
 
 

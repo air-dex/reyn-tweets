@@ -25,7 +25,7 @@
 #define FAVORITESTIMELINEREQUESTER_HPP
 
 #include "../twitterrequester.hpp"
-#include "../identificationway.hpp"
+#include "../../../model/identificationway.hpp"
 
 /// @class FavoritesTimelineRequester
 /// @brief Requester to retrieve the timeline with the favorite tweets of a user

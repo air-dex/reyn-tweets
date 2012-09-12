@@ -24,8 +24,8 @@
 #ifndef TWITTERREQUESTER_HPP
 #define TWITTERREQUESTER_HPP
 
-#include "genericrequester.hpp"
-#include "../oauthmanager.hpp"
+#include "../genericrequester.hpp"
+#include "../../model/managers/oauthmanager.hpp"
 
 /// @class TwitterRequester
 /// @brief Base class for requesters that use the Twitter API.

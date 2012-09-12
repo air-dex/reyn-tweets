@@ -1,5 +1,5 @@
-/// @file showuserrequester.cpp
-/// @brief Implementation of ShowUserRequester
+/// @file verifycredentialsrequester.cpp
+/// @brief Implementation of VerifyCredentialsRequester
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,41 +21,22 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "showuserrequester.hpp"
-#include "../../../tools/utils.hpp"
+#include "verifycredentialsrequester.hpp"
+#include "../../../../tools/utils.hpp"
 
-// Constructor with the user ID
-ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
-									 qlonglong id,
-									 bool entities) :
-	TwitterRequester(GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(ID),
-	userID(id),
+// Constructor
+VerifyCredentialsRequester::VerifyCredentialsRequester(OAuthManager & authManager,
+													   bool entities,
+													   bool skipLastTweet) :
+	TwitterRequester(GET,
+					 TwitterURL::VERIFY_CREDENTIALS_URL,
+					 authManager),
 	includeEntities(entities),
-	screenName()
-{}
-
-// Constructor with the screen name
-ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
-									 QString name,
-									 bool entities) :
-	TwitterRequester(GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(SCREEN_NAME),
-	userID(),
-	includeEntities(entities),
-	screenName(name)
+	skipStatus(skipLastTweet)
 {}
 
 // Building getParameters
-void ShowUserRequester::buildGETParameters() {
-	if (idWay == ID) {
-		getParameters.insert("id", QString::number(userID));
-	}
-
+void VerifyCredentialsRequester::buildGETParameters() {
 	getParameters.insert("include_entities", boolInString(includeEntities));
-
-	if (idWay == SCREEN_NAME) {
-		getParameters.insert("screen_name", screenName);
-	}
-
+	getParameters.insert("skip_status", boolInString(skipStatus));
 }

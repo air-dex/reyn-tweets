@@ -26,7 +26,7 @@
 #ifndef TWITLONGERREQUESTS_HPP
 #define TWITLONGERREQUESTS_HPP
 
-#include "twitlonger/posttotwitlongerrequester.hpp"
-#include "twitlonger/sendidtotwitlongerrequester.hpp"
+#include "posttotwitlongerrequester.hpp"
+#include "sendidtotwitlongerrequester.hpp"
 
 #endif // TWITLONGERREQUESTS_HPP

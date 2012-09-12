@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "showtweetrequester.hpp"
-#include "../../../tools/utils.hpp"
+#include "../../../../tools/utils.hpp"
 
 // Constructor
 ShowTweetRequester::ShowTweetRequester(OAuthManager & authManager,

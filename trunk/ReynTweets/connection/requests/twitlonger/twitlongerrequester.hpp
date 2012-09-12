@@ -25,7 +25,7 @@
 #define TWITLONGERREQUESTER_HPP
 
 #include "../genericrequester.hpp"
-#include "../../twitlongermanager.hpp"
+#include "../../model/managers/twitlongermanager.hpp"
 #include <QDomElement>
 
 /// @class TwitLongerRequester

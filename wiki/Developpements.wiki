@@ -55,6 +55,13 @@ Où en est Reyn Tweets ?
   * Traduction
     * Règles Makefile supplémentaires pour lupdate (trupdate), lrelease (trrelease), déployer les .qm (trdeploy) et effacer les .qm (trclean).
   * Intégration de TwitLonger : TwitLongerWork.
+  * Créer des structures pour releaser :
+    * Sur Windows :
+      * Script pour créer des installateurs
+    * Sur Linux :
+      * Création de tarballs
+      * Créations de binaires : .deb (perfectible).
+  * Release d'une 0.1 alpha 1 (0.1) et d'une 0.1 alpha 2 (0.2).
 
 
 == Ce qui reste à faire ==
@@ -85,10 +92,7 @@ Où en est Reyn Tweets ?
     # Composants graphique non faits manu militari sur desktop (issue 56)
     # ... (cf. bug reporter)
   # Créer des structures pour releaser :
-    # Sur Windows :
-      # Script pour créer des installateurs
     # Sur Linux :
-      # Création de tarballs
-      # Créations de binaires : .deb, .rpm, .bin ?
+      # Créations de binaires : .deb à peaufiner, .rpm, .bin ?
       # Création de PPAs pour Ubuntu (stable, advanced).
   # Releaser publiquement dès que je jugerai que ce sera suffisemment bon.

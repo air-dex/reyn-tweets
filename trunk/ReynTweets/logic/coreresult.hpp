@@ -28,6 +28,8 @@
 #ifndef CORERESULT_HPP
 #define CORERESULT_HPP
 
+#include <QMap>
+
 /// @enum CoreResult
 /// @brief Unified error for all the possible ends of all treatments
 enum CoreResult {
@@ -79,7 +81,7 @@ enum CoreResult {
 
 	/// @brief Rate limit was hit.
 	///
-	/// Corresponding Twitter return code is 420.
+	/// Corresponding Twitter return codes are 420 (v1) and 429 (stupid v1.1).
 	RATE_LIMITED,
 
 	/// @brief Twitter got problems.
@@ -189,5 +191,10 @@ enum CoreResult {
 	/// @brief If a tweet cannot be deleted
 	TWEET_UNDESTROYABLE
 };
+
+/// @brief Entity matching HTTP Return codes and CoreResult.
+extern QMap<int, CoreResult> httpResults;
+
+QMap<int, CoreResult> buildHttpResults();
 
 #endif // CORERESULT_HPP

@@ -65,46 +65,40 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 										   QString & errorMsg,
 										   CoreResult & issue)
 {
-	int httpCode = result.httpResponse.code;
-
 	// Looking for specific value of the return code
-	if (httpCode / 100 == 5) {
-		issue = TWITTER_DOWN;
-		errorMsg = QObject::trUtf8("Twitter seems down:");
-	} else switch(httpCode) {
-		case 304:
-			issue = NO_MORE_DATA;
+	int httpCode = result.httpResponse.code;
+	issue = httpResults.value(httpCode);
+	switch (issue) {
+		case NO_MORE_DATA:
 			errorMsg = QObject::trUtf8("Twitter do not return new datas:");
 			break;
 
-		case 400:
-			issue = BAD_REQUEST;
+		case BAD_REQUEST:
 			errorMsg = QObject::trUtf8("Your request was invalid:");
 			break;
 
-		case 401:
-			issue = TOKENS_NOT_AUTHORIZED;
+		case TOKENS_NOT_AUTHORIZED:
 			errorMsg = QObject::trUtf8("Tokens were not authorized:");
 			break;
 
-		case 403:
-			issue = REFUSED_REQUEST;
+		case REFUSED_REQUEST:
 			errorMsg = QObject::trUtf8("Twitter refuses to treat your request:");
 			break;
 
-		case 404:
-			issue = RESOURCE_NOT_FOUND;
+		case RESOURCE_NOT_FOUND:
 			errorMsg = QObject::trUtf8("There is something invalid in your request:");
 			break;
 
-		case 406:
-			issue = INVALID_SEARCH;
+		case INVALID_SEARCH:
 			errorMsg = QObject::trUtf8("Your research was invalid:");
 			break;
 
-		case 420:
-			issue = RATE_LIMITED;
+		case RATE_LIMITED:
 			errorMsg = QObject::trUtf8("You reach the authentication rate:");
+			break;
+
+		case TWITTER_DOWN:
+			errorMsg = QObject::trUtf8("Twitter seems down:");
 			break;
 
 		default:
@@ -119,10 +113,6 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 }
 
 QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
-	// Uncomment when the following feature is deployed :
-	// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
-
-		/*
 	// Building error message
 	QString errorMsg = QObject::trUtf8("Twitter errors:");
 	errorMsg.append('\n');
@@ -140,13 +130,6 @@ QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
 
 	// Erasing the last '\n'
 	errorMsg.chop(1);
-	//*/
-
-	QString errorMsg = QObject::trUtf8("Error ");
-	errorMsg.append(QString::number(twitterErrors.at(0).code))
-			.append(" : ")
-			.append(twitterErrors.at(0).message)
-			.append('.');
 
 	return errorMsg;
 }

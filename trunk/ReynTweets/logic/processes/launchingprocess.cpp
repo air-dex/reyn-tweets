@@ -133,11 +133,12 @@ void LaunchingProcess::checkTokens() {
 	if (ua.getAccessToken().isEmpty() || ua.getTokenSecret().isEmpty()) {
 		// There's no OAuth tokens for Twitter -> Let's authenticate !
 		CoreResult issue = AUTHENTICATION_REQUIRED;
+		QString errMsg = LaunchingProcess::trUtf8("Unexpected empty Twitter tokens.");
 		bool isFatal = false;
 
 		buildResult(true,
 					issue,
-					LaunchingProcess::trUtf8("Unexpected empty Twitter tokens."),
+					errMsg,
 					isFatal);
 		emit authenticationRequired();
 		endProcess();

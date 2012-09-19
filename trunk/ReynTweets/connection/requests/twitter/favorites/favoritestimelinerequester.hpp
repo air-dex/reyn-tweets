@@ -38,16 +38,16 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
 		///								   qlonglong uid = -1,
 		///								   qlonglong oldestTweetID = -1,
+		///								   qlonglong earliestTweetID = -1,
 		///								   bool withEntities = false,
-		///								   int nbPages = 0,
 		///								   int nbTweets = 20);
 		/// @brief Constructor with an ID.
 		/// @param authManager Entity with authentication datas
 		/// @param uid ID of the user whose favorites timeline will be
 		/// retrieved by the request.
 		/// @param oldestTweetID Value of sinceID
+		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
-		/// @param nbPages Value of page
 		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   qlonglong uid = -1,
@@ -59,16 +59,16 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
 		///								   QString userName = "",
 		///								   qlonglong oldestTweetID = -1,
+		///								   qlonglong earliestTweetID = -1,
 		///								   bool withEntities = false,
-		///								   int nbPages = 0,
 		///								   int nbTweets = 20);
 		/// @brief Constructor with a screen name.
 		/// @param authManager Entity with authentication datas
 		/// @param userName Screen name of the user whose favorites timeline
 		/// will be retrieved by the request.
 		/// @param oldestTweetID Value of sinceID
+		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
-		/// @param nbPages Value of page
 		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(OAuthManager & authManager,
 								   QString userName = "",

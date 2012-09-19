@@ -39,7 +39,6 @@ class DestroyTweetRequester : public TwitterRequester
 		/// @brief Constructor
 		/// @param authManager Entities with OAuth values
 		/// @param statusID ID of the tweet
-		/// @param withEntities Including Tweet Entities ?
 		/// @param userIDonly Omit user details in the reply ?
 		DestroyTweetRequester(OAuthManager & authManager,
 							  qlonglong statusID,

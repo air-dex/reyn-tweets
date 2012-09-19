@@ -88,6 +88,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -163,6 +164,7 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case UNSHORTENABLE_MESSAGE:		// Problems with TwitLonger
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:

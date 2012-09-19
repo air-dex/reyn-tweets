@@ -86,6 +86,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.

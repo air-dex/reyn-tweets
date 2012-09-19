@@ -101,7 +101,7 @@ void TimelineControl::replaceTweet(QVariant updatedTweet) {
 	}
 }
 
-// Replacing a tweet
+// Deleting a tweet
 void TimelineControl::deleteTweet(int tweetIndex) {
 	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
 		return;
@@ -111,7 +111,7 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 	emit timelineChanged();
 }
 
-// Replacing a tweet
+// Deleting a tweet
 void TimelineControl::deleteTweet(QVariant variantTweet) {
 	Tweet tweet;
 	tweet.fillWithVariant(variantTweet.toMap());
@@ -197,6 +197,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			return;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -336,6 +337,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			return;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -502,6 +504,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			return;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -600,6 +603,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 			return;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.

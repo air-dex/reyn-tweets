@@ -127,9 +127,26 @@ void LaunchingProcess::loadConfiguration() {
 
 // Checks if the access tokens seem legit.
 void LaunchingProcess::checkTokens() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(verifyCredentialsEnded(ResultWrapper)));
-	twitter.verifyCredentials(true, false);
+	// Looking at the user tokens
+	UserAccount ua = userConfiguration.getUserAccount();
+
+	if (ua.getAccessToken().isEmpty() || ua.getTokenSecret().isEmpty()) {
+		// There's no OAuth tokens for Twitter -> Let's authenticate !
+		CoreResult issue = AUTHENTICATION_REQUIRED;
+		bool isFatal = false;
+
+		buildResult(true,
+					issue,
+					LaunchingProcess::trUtf8("Unexpected empty Twitter tokens."),
+					isFatal);
+		emit authenticationRequired();
+		endProcess();
+	} else {
+		// Tokens seems legit. Let's ensure that's really the case
+		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+				this, SLOT(verifyCredentialsEnded(ResultWrapper)));
+		twitter.verifyCredentials(true, false);
+	}
 }
 
 // Slot executed after verifying credentials.

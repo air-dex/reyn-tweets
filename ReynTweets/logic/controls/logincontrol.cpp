@@ -55,11 +55,6 @@ void LoginControl::declareQML() {
 								  "LoginControl");
 }
 
-// Warning the user that the credentials were wrong
-void LoginControl::wrongCredentials() {
-	emit invalidCredentials();
-}
-
 // Transmitting the will of authorize
 void LoginControl::authorizeReynTweets(QString username, QString password) {
 	emit authorize(username, password);
@@ -68,4 +63,9 @@ void LoginControl::authorizeReynTweets(QString username, QString password) {
 // Transmitting the will of deny
 void LoginControl::denyReynTweets(QString username, QString password) {
 	emit deny(username, password);
+}
+
+// Warning the user that the credentials were wrong
+void LoginControl::wrongCredentials() {
+	emit invalidCredentials();
 }

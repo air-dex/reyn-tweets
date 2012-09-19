@@ -110,6 +110,7 @@ void AllowControl::allowOK(ProcessWrapper res) {
 			break;
 
 		// Problems during process
+		case NO_MORE_DATA:
 		case TOKENS_NOT_AUTHORIZED:
 		case PARSE_ERROR:
 		case POST_AUTHORIZING_FAILED:
@@ -180,9 +181,9 @@ void AllowControl::allowUnwiring() {
 }
 
 
-////////////////////////////////////////
-// Slots to communicate with the View //
-////////////////////////////////////////
+//////////////////////////////////////////
+// Methods to communicate with the View //
+//////////////////////////////////////////
 
 // Credentials OK ?
 void AllowControl::validCredentials(bool valid) {

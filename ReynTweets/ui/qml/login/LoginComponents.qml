@@ -63,8 +63,8 @@ Item {
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
 
-		pane_text: qsTr("Reyn Tweets was denied.") + "\n\n"
-				   + qsTr("Are you sure that you do not want Reyn Tweets to use your Twitter account ?");
+		pane_text: qsTr("Reyn Tweets was denied.").concat("\n\n")
+					.concat(qsTr("Are you sure that you do not want Reyn Tweets to use your Twitter account ?"));
 
 		// Left button
 		left_button_text: qsTr("Yes")
@@ -122,7 +122,7 @@ Item {
 		if (endOK) {	// Successful end
 			// Tell that's ended
 			allowOK();
-		} else if (!fatal && errMsg == qsTr("Reyn Tweets was denied.")) {
+		} else if (!fatal && errMsg === qsTr("Reyn Tweets was denied.")) {
 			// Asking the user if he is sure that he wants to deny Reny Tweets
 			deny_pane.visible = true;
 		} else {

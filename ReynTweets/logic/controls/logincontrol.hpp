@@ -35,74 +35,74 @@
 /// @brief Control behind a LoginPane
 class LoginControl : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn LoginControl();
-        /// @brief Constructor
-        LoginControl();
+	public:
+		/// @fn LoginControl();
+		/// @brief Constructor
+		LoginControl();
 
-        /// @fn ~LoginControl();
-        /// @brief Destructor
-        ~LoginControl();
+		/// @fn ~LoginControl();
+		/// @brief Destructor
+		~LoginControl();
 
-        /// @fn LoginControl(const LoginControl & control);
-        /// @brief Copy constructor
-        /// @param control Control to copy
-        LoginControl(const LoginControl & control);
+		/// @fn LoginControl(const LoginControl & control);
+		/// @brief Copy constructor
+		/// @param control Control to copy
+		LoginControl(const LoginControl & control);
 
-        /// @fn const LoginControl & operator =(const LoginControl & control);
-        /// @brief Affectation
-        /// @param control Control to copy
-        /// @return The new value of the object
-        const LoginControl & operator =(const LoginControl & control);
+		/// @fn const LoginControl & operator =(const LoginControl & control);
+		/// @brief Affectation
+		/// @param control Control to copy
+		/// @return The new value of the object
+		const LoginControl & operator =(const LoginControl & control);
 
-        /// @fn static void declareQML();
-        /// @brief Declaring to the QML system
-        static void declareQML();
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
 
-    signals:
-        /// @fn void invalidCredentials();
-        /// @brief
-        void invalidCredentials();
+		/// @fn Q_INVOKABLE void authorizeReynTweets(QString username, QString password);
+		/// @brief Executed when the LoginPane emits its signal
+		/// to authorize Reyn Tweets.
+		/// @param username User login, that is its username or its email
+		/// @param password User password
+		Q_INVOKABLE void authorizeReynTweets(QString username, QString password);
 
-        /// @fn void authorize(QString username, QString password);
-        /// @brief Signal sent by authorizeReynTweets();, when the LoginPane
-        /// emits a signal to authorize Reyn Tweets
-        /// @param username User login, that is its username or its email
-        /// @param password User password
-        void authorize(QString username, QString password);
+		/// @fn Q_INVOKABLE void denyReynTweets(QString username, QString password);
+		/// @brief Executed when the LoginPane emits its signal
+		/// to deny Reyn Tweets.
+		/// @param username User login, that is its username or its email
+		/// @param password User password
+		Q_INVOKABLE void denyReynTweets(QString username, QString password);
 
-        /// @fn void deny(QString username, QString password);
-        /// @brief Signal sent by denyReynTweets();, when the LoginPane
-        /// emits a signal to deny Reyn Tweets
-        /// @param username User login, that is its username or its email
-        /// @param password User password
-        void deny(QString username, QString password);
+	signals:
+		/// @fn void invalidCredentials();
+		/// @brief
+		void invalidCredentials();
 
-    public slots:
-        /// @fn void wrongCredentials();
-        /// @brief Slot executed when reyn informs the control that
-        /// the user credentials he gave to it were wrong.
-        void wrongCredentials();
+		/// @fn void authorize(QString username, QString password);
+		/// @brief Signal sent by authorizeReynTweets();, when the LoginPane
+		/// emits a signal to authorize Reyn Tweets
+		/// @param username User login, that is its username or its email
+		/// @param password User password
+		void authorize(QString username, QString password);
 
-        /// @fn void authorizeReynTweets(QString username, QString password);
-        /// @brief Slot executed when the LoginPane emits its signal
-        /// to authorize Reyn Tweets.
-        /// @param username User login, that is its username or its email
-        /// @param password User password
-        void authorizeReynTweets(QString username, QString password);
+		/// @fn void deny(QString username, QString password);
+		/// @brief Signal sent by denyReynTweets();, when the LoginPane
+		/// emits a signal to deny Reyn Tweets
+		/// @param username User login, that is its username or its email
+		/// @param password User password
+		void deny(QString username, QString password);
 
-        /// @fn void denyReynTweets(QString username, QString password);
-        /// @brief Slot executed when the LoginPane emits its signal
-        /// to deny Reyn Tweets.
-        /// @param username User login, that is its username or its email
-        /// @param password User password
-        void denyReynTweets(QString username, QString password);
+	public slots:
+		/// @fn void wrongCredentials();
+		/// @brief Slot executed when reyn informs the control that
+		/// the user credentials he gave to it were wrong.
+		void wrongCredentials();
 
-    protected:
-        /// @brief Heart of Reyn Tweets
-        ReynCore reyn;
+	protected:
+		/// @brief Heart of Reyn Tweets
+		ReynCore reyn;
 };
 
 #endif // LOGINCONTROL_HPP

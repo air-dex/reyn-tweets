@@ -163,6 +163,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -319,6 +320,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case TWEET_UNDESTROYABLE:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
@@ -409,6 +411,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
+		case NO_MORE_DATA:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
@@ -487,6 +490,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			break;
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.
@@ -588,6 +592,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 
 
 		// Problems that can be solved trying later
+		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
 		case RATE_LIMITED:	// The user reached rates.

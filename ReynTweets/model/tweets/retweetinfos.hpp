@@ -45,7 +45,7 @@ class RetweetInfos : public ReynTweetsMappable
 		/// @brief Destructor
 		virtual ~RetweetInfos();
 
-		/// @fn Tweet(const RetweetInfos & infos);
+		/// @fn RetweetInfos(const RetweetInfos & infos);
 		/// @brief Copy constructor
 		/// @param infos RetweetInfos to copy
 		RetweetInfos(const RetweetInfos & infos);

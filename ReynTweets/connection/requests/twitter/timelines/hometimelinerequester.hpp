@@ -48,9 +48,7 @@ class HomeTimelineRequester : public TwitterRequester
 		/// @param authManager Entity with authentication datas
 		/// @param oldestTweetID Value of sinceID
 		/// @param youngestTweetID Value of maxID
-		/// @param nbPage Value of page
 		/// @param userIDonly Value of trimUser
-		/// @param withRetweets Value of includeRetweets
 		/// @param withEntities Value of includeEntities
 		/// @param withoutReplies Value of excludeReplies
 		/// @param nbTweets Value of count

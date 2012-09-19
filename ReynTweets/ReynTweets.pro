@@ -136,7 +136,7 @@ SOURCES += \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	main.cpp \
-    logic/coreresult.cpp
+	logic/coreresult.cpp
 
 
 HEADERS  += \
@@ -403,7 +403,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	conf_files
+	#conf_files
 
 
 #-------#

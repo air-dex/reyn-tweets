@@ -57,7 +57,6 @@ class PostViaTwitLongerProcess : public GenericProcess
 		///								 QString replyTostatusID = "-1",
 		///								 QString replyToUserScreenName = "",
 		///								 bool userIDonly = true,
-		///								 bool withEntities = false,
 		///								 float lat = -361,
 		///								 float lon = -361,
 		///								 QString place = "",

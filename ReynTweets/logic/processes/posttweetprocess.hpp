@@ -45,7 +45,6 @@ class PostTweetProcess : public SingleTwitterCallProcess
 		/// @param replyTostatusID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param withEntities Including Tweet Entities in the tweets (true).
 		/// @param lat For geolocation, your longitude.
 		/// @param lon For geolocation, your latitude.
 		/// @param place For geolocation, ID of the place where the tweet

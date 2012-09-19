@@ -195,6 +195,9 @@ enum CoreResult {
 /// @brief Entity matching HTTP Return codes and CoreResult.
 extern QMap<int, CoreResult> httpResults;
 
+/// @fn QMap<int, CoreResult> buildHttpResults();
+/// @brief Function to build httpResults.
+/// @return A QMap whose content will be httpResults'.
 QMap<int, CoreResult> buildHttpResults();
 
 #endif // CORERESULT_HPP

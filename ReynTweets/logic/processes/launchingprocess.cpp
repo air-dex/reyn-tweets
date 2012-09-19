@@ -172,15 +172,13 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			verifyMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				verifyIssue = TWITTER_DOWN;
-			} else if (httpCode == 401) {
-				verifyIssue = TOKENS_NOT_AUTHORIZED;
-			} else if (httpCode == 420) {
-				verifyIssue = RATE_LIMITED;
-			} else {
-				verifyIssue = UNKNOWN_PROBLEM;
-			}
+			verifyIssue = (httpCode / 100 == 5
+						   || httpCode == 401
+						   || httpCode == 420
+						   || httpCode == 429
+						   ) ?
+						httpResults.value(httpCode)
+					  : UNKNOWN_PROBLEM;
 			break;
 
 		case API_CALL:

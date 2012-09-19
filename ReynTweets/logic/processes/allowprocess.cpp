@@ -111,13 +111,12 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
+			issue = (httpCode / 100 == 5
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
 
 			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 

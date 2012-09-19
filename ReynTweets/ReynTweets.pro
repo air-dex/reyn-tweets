@@ -135,7 +135,8 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	main.cpp
+	main.cpp \
+    logic/coreresult.cpp
 
 
 HEADERS  += \
@@ -402,7 +403,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	#conf_files
+	conf_files
 
 
 #-------#
@@ -416,14 +417,16 @@ DEPLOYMENTFOLDERS = qml_files \
 
 win32 {
 	QJSON_PATH = C:\\Libs\\qjson
+	LIB_QJSON = qjson0
 }
 
 linux-g++ {
 	QJSON_PATH = /home/ducher/Libs/qjson
+	LIB_QJSON = qjson
 }
 
 INCLUDEPATH += $${QJSON_PATH}$${SEPARATOR}include
-LIBS += -L$${QJSON_PATH}$${SEPARATOR}lib -lqjson
+LIBS += -L$${QJSON_PATH}$${SEPARATOR}lib -l$${LIB_QJSON}
 
 symbian {
 #	QJSON_PATH = # TODO

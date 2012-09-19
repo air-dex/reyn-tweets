@@ -88,6 +88,7 @@ namespace ProcessUtils {
 	/// @brief Writing an error message with Twitter errors.
 	/// @param twitterErrors The Twitter errors (with a code and a message)
 	/// @return The corresponding message
+	/// @see https://dev.twitter.com/blog/making-api-responses-match-request-content-type
 	QString writeTwitterErrors(QList<ResponseInfos> twitterErrors);
 
 	/// @fn void treatApiCallResult(RequestResult result,

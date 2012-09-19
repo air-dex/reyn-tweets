@@ -119,13 +119,12 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
+			issue = (httpCode / 100 == 5
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
 			break;
 
 		case API_CALL:
@@ -192,15 +191,13 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 401) {
-				issue = TOKENS_NOT_AUTHORIZED;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
+			issue = (httpCode / 100 == 5
+					 || httpCode == 401
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
 			break;
 
 		case API_CALL:
@@ -296,15 +293,13 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 401) {
-				issue = TOKENS_NOT_AUTHORIZED;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
+			issue = (httpCode / 100 == 5
+					 || httpCode == 401
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
 			break;
 
 		case API_CALL:
@@ -382,15 +377,13 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
 
 			// Looking for specific value of the return code
-			if (httpCode / 100 == 5) {
-				issue = TWITTER_DOWN;
-			} else if (httpCode == 401) {
-				issue = TOKENS_NOT_AUTHORIZED;
-			} else if (httpCode == 420) {
-				issue = RATE_LIMITED;
-			} else {
-				issue = NO_TOKENS;
-			}
+			issue = (httpCode / 100 == 5
+					 || httpCode == 401
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
 			break;
 
 		case API_CALL:

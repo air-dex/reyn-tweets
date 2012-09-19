@@ -128,9 +128,9 @@ void TwitterRequester::treatParsedResult() {
 						requestResult.serviceErrors.append(twitterError);
 					}
 
-					requestResult.resultType = SERVICE_ERRORS;
 				}
 			}
+			requestResult.resultType = SERVICE_ERRORS;
 			break;
 
 		case 304:
@@ -162,10 +162,9 @@ void TwitterRequester::treatParsedResult() {
 					twitterError.message.append('.');
 
 					requestResult.serviceErrors.append(twitterError);
-
-					requestResult.resultType = SERVICE_ERRORS;
 				}
 			}
+			requestResult.resultType = SERVICE_ERRORS;
 			break;
 
 		default:

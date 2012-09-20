@@ -84,12 +84,13 @@ namespace ProcessUtils {
 								 QString &errorMsg,
 								 CoreResult &issue);
 
-	/// @fn QString writeTwitterErrors(QList<ResponseInfos> twitterErrors);
+	/// @fn QString writeTwitterErrors(RequestResult result);
 	/// @brief Writing an error message with Twitter errors.
-	/// @param twitterErrors The Twitter errors (with a code and a message)
+	/// @param result Bad result with errors containing the Twitter errors
+	/// (with a code and a message) and the general error message.
 	/// @return The corresponding message
 	/// @see https://dev.twitter.com/blog/making-api-responses-match-request-content-type
-	QString writeTwitterErrors(QList<ResponseInfos> twitterErrors);
+	QString writeTwitterErrors(RequestResult result);
 
 	/// @fn void treatApiCallResult(RequestResult result,
 	///								QString &errorMsg,

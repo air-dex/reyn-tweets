@@ -1,8 +1,16 @@
 #summary Correspondance entre versions de Reyn Tweets et Révisions SVN
 
-= Correspondance entre versions de Reyn Tweets et Révisions SVN =
+= Correspondance entre versions de Reyn Tweets et Révisions SVN et Bazaar =
 
 Quelle révision de Reyn Tweets correspond à quelle révision SVN ?
 
-|| *Version* || *Révision* || *Stable ?* ||
-|| 0.1 alpha 1 || r397 || non ||
+|| *Version* || *Révision SVN* ||  *Révision Bazaar* ||   *Branche Bazaar* || *Stable ?* ||
+|| 0.1 alpha 1 || r397 ||  303 `*` || `lp:~air-dex/reyn-tweets/alpha1` || non ||
+|| 0.1 alpha 2 || r482 (approximatif) ||  359 `**` (approximatif) || `lp:~air-dex/reyn-tweets/alpha2` || non ||
+|| 0.2.1 || r527 || 394 || n/a || non ||
+
+L'historique des révisions Bazaar de ReynTweets est disponible sur la page Launchpad de la branche "trunk" du code source : https://code.launchpad.net/~air-dex/reyn-tweets/trunk . Pour avoir une révision Bazaar donnée, il faut aller à l'URL suivante : `http://bazaar.launchpad.net/~air-dex/reyn-tweets/trunk/revision/<n° de la révision Bazaar>` .
+
+`*` : code également disponible dans la branche Bazaar `lp:~air-dex/reyn-tweets/alpha1`.
+
+`**` : code également disponible dans la branche Bazaar `lp:~air-dex/reyn-tweets/alpha2` (ou ce n'est pas.

@@ -36,25 +36,16 @@ QtObject {
 	property int major_version: 0
 
 	// Minor version
-	property int minor_version: 1
+	property int minor_version: 2
 
-	// Status
-	property string status: "alpha"
-
-	// Version in this status
-	property int status_version: 2
+	// Number of bugfixes
+	property int bugfix_version: 1
 
 	function getVersion() {
-		var versionString = ""
+		var versionString = "".concat(major_version).concat('.').concat(minor_version)
 
-		versionString = versionString.concat(major_version).concat('.').concat(minor_version)
-
-		if (status !== "stable") {
-			versionString = versionString.concat(' ').concat(status)
-
-			if (status !== "dev") {
-				versionString = versionString.concat(' ').concat(status_version)
-			}
+		if (bugfix_version > 0) {
+			versionString = versionString.concat('.').concat(bugfix_version)
 		}
 
 		return versionString

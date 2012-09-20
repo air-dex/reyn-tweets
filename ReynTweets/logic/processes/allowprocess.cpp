@@ -121,7 +121,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
 			break;
 
 		case API_CALL:

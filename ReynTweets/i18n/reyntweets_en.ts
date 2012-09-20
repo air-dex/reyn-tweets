@@ -65,9 +65,9 @@
         <translation>Reyn Tweets was denied.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/allowcontrol.cpp" line="139"/>
-        <location filename="../logic/controls/allowcontrol.cpp" line="162"/>
-        <location filename="../logic/controls/allowcontrol.cpp" line="190"/>
+        <location filename="../logic/controls/allowcontrol.cpp" line="140"/>
+        <location filename="../logic/controls/allowcontrol.cpp" line="163"/>
+        <location filename="../logic/controls/allowcontrol.cpp" line="191"/>
         <source>No control</source>
         <translation>No control</translation>
     </message>
@@ -75,17 +75,17 @@
 <context>
     <name>AllowProcess</name>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="166"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="165"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="170"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="169"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/allowprocess.cpp" line="174"/>
+        <location filename="../logic/processes/allowprocess.cpp" line="173"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
@@ -201,13 +201,13 @@
     <name>LaunchingProcess</name>
     <message>
         <location filename="../logic/processes/launchingprocess.cpp" line="100"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="300"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="316"/>
         <source>Configuration file does not exist.</source>
         <translation>Configuration file does not exist.</translation>
     </message>
     <message>
         <location filename="../logic/processes/launchingprocess.cpp" line="104"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="304"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="320"/>
         <source>Configuration file cannot be opened.</source>
         <translation>Configuration file cannot be opened.</translation>
     </message>
@@ -218,37 +218,42 @@
     </message>
     <message>
         <location filename="../logic/processes/launchingprocess.cpp" line="113"/>
-        <location filename="../logic/processes/launchingprocess.cpp" line="309"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="325"/>
         <source>Unknown problem</source>
         <translation>Unknown problem</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="219"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="136"/>
+        <source>Unexpected empty Twitter tokens.</source>
+        <translation>Unexpected empty Twitter tokens.</translation>
+    </message>
+    <message>
+        <location filename="../logic/processes/launchingprocess.cpp" line="235"/>
         <source>The user was not the right one.</source>
         <translation>The user was not the right one.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="229"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="245"/>
         <source>Tokens for authentication to Twitter were wrong.</source>
         <translation>Tokens for authentication to Twitter were wrong.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="237"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="253"/>
         <source>You reach the authentication rate:</source>
         <translation>You reach the authentication rate:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="245"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="261"/>
         <source>Twitter is down:</source>
         <translation>Twitter is down:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="253"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="269"/>
         <source>Problem while connecting to Twitter:</source>
         <translation>Problem while connecting to Twitter:</translation>
     </message>
     <message>
-        <location filename="../logic/processes/launchingprocess.cpp" line="268"/>
+        <location filename="../logic/processes/launchingprocess.cpp" line="284"/>
         <source>Unexpected result:</source>
         <translation>Unexpected result:</translation>
     </message>
@@ -365,12 +370,12 @@
         <translation>Callback URL not confirmed.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/oauthprocess.cpp" line="281"/>
+        <location filename="../logic/processes/oauthprocess.cpp" line="278"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets was denied.</translation>
     </message>
     <message>
-        <location filename="../logic/processes/oauthprocess.cpp" line="288"/>
+        <location filename="../logic/processes/oauthprocess.cpp" line="285"/>
         <source>Unexpected redirection. Process aborted.</source>
         <oldsource>Unexpected redirection. Process aborted.
 </oldsource>
@@ -462,80 +467,85 @@
         <translation>Rewriting as bool : parameter &apos;</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="73"/>
+        <location filename="../tools/processutils.cpp" line="101"/>
         <source>Twitter seems down:</source>
         <translation>Twitter seems down:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="77"/>
+        <location filename="../tools/processutils.cpp" line="73"/>
         <source>Twitter do not return new datas:</source>
         <translation>Twitter do not return new datas:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="82"/>
+        <location filename="../tools/processutils.cpp" line="77"/>
         <source>Your request was invalid:</source>
         <translation>Your request was invalid:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="87"/>
+        <location filename="../tools/processutils.cpp" line="81"/>
         <source>Tokens were not authorized:</source>
         <translation>Tokens were not authorized:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="92"/>
+        <location filename="../tools/processutils.cpp" line="85"/>
         <source>Twitter refuses to treat your request:</source>
         <translation>Twitter refuses to treat your request:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="97"/>
+        <location filename="../tools/processutils.cpp" line="89"/>
         <source>There is something invalid in your request:</source>
         <translation>There is something invalid in your request:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="102"/>
+        <location filename="../tools/processutils.cpp" line="93"/>
         <source>Your research was invalid:</source>
         <translation>Your research was invalid:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="107"/>
+        <location filename="../tools/processutils.cpp" line="97"/>
         <source>You reach the authentication rate:</source>
         <translation>You reach the authentication rate:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="112"/>
+        <location filename="../tools/processutils.cpp" line="106"/>
         <source>Unexpected result:</source>
         <translation>Unexpected result:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="145"/>
+        <location filename="../tools/processutils.cpp" line="118"/>
+        <source>Twitter errors:</source>
+        <translation>Twitter errors:</translation>
+    </message>
+    <message>
+        <location filename="../tools/processutils.cpp" line="124"/>
         <source>Error </source>
         <translation>Error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="160"/>
+        <location filename="../tools/processutils.cpp" line="143"/>
         <source>Network error </source>
         <translation>Network error </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="183"/>
-        <location filename="../tools/processutils.cpp" line="199"/>
-        <location filename="../tools/processutils.cpp" line="218"/>
+        <location filename="../tools/processutils.cpp" line="166"/>
+        <location filename="../tools/processutils.cpp" line="182"/>
+        <location filename="../tools/processutils.cpp" line="201"/>
         <source>Parsing error:</source>
         <translation>Parsing error:</translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="185"/>
-        <location filename="../tools/processutils.cpp" line="201"/>
+        <location filename="../tools/processutils.cpp" line="168"/>
+        <location filename="../tools/processutils.cpp" line="184"/>
         <source>Line </source>
         <translation>Line </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="204"/>
+        <location filename="../tools/processutils.cpp" line="187"/>
         <source>Column </source>
         <translation>Column </translation>
     </message>
     <message>
-        <location filename="../tools/processutils.cpp" line="231"/>
+        <location filename="../tools/processutils.cpp" line="214"/>
         <source>Unexpected problem:</source>
         <translation>Unexpected problem:</translation>
     </message>
@@ -674,11 +684,11 @@
     </message>
     <message>
         <location filename="../logic/controls/timelinecontrol.cpp" line="164"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="254"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="313"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="417"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="476"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="564"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="255"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="314"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="419"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="478"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="567"/>
         <source>Invalid type of timeline</source>
         <translation>Invalid type of timeline</translation>
     </message>
@@ -688,35 +698,35 @@
         <translation>Timeline loaded</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="240"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="378"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="241"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="380"/>
         <source>Refreshing timeline...</source>
         <translation>Refreshing timeline...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="245"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="399"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="246"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="401"/>
         <source>Refreshing mentions...</source>
         <translation>Refreshing mentions...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="330"/>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="496"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="331"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="498"/>
         <source>Timeline refreshed</source>
         <translation>Timeline refreshed</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="550"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="553"/>
         <source>Loading more tweets...</source>
         <translation>Loading more tweets...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="555"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="558"/>
         <source>Loading more mentions...</source>
         <translation>Loading more mentions...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/timelinecontrol.cpp" line="594"/>
+        <location filename="../logic/controls/timelinecontrol.cpp" line="597"/>
         <source>Tweets loaded</source>
         <translation>Tweets loaded</translation>
     </message>
@@ -780,91 +790,91 @@
         <translation>Twitter did not find the tweet.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="194"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="195"/>
         <source>Tweet by </source>
         <translation>Tweet by </translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="207"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="208"/>
         <source>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</source>
         <translation>If you cannot open this url by clicking on it, copy the link and paste it in the address bar of your web browser.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="209"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="210"/>
         <source>Sent via Reyn Tweets</source>
         <translation>Sent via Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="248"/>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="264"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="249"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="265"/>
         <source>Retweeting...</source>
         <oldsource>Retweeting</oldsource>
         <translation>Retweeting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="261"/>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="274"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="262"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="275"/>
         <source>Cannot retweet this tweet</source>
         <translation>Cannot retweet this tweet</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="303"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="304"/>
         <source>No retweet in the retweeted status</source>
         <translation>No retweet in the retweeted status</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="313"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="314"/>
         <source>Tweet retweeted</source>
         <translation>Tweet retweeted</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="358"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="360"/>
         <source>Favoriting...</source>
         <translation>Favoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="367"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="369"/>
         <source>Cannot favorite this tweet</source>
         <translation>Cannot favorite this tweet</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="396"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="398"/>
         <source>Tweet favorited</source>
         <translation>Tweet favorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="442"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="445"/>
         <source>Unfavoriting...</source>
         <translation>Unfavoriting...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="451"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="454"/>
         <source>Cannot unfavorite this tweet</source>
         <translation>Cannot unfavorite this tweet</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="481"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="484"/>
         <source>Tweet unfavorited</source>
         <translation>Tweet unfavorited</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="525"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="529"/>
         <source>Deleting the tweet...</source>
         <translation>Deleting the tweet...</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="534"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="538"/>
         <source>Cannot delete this tweet</source>
         <translation>Cannot delete this tweet</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="568"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="572"/>
         <source>Retweet expected in Twitter reply.</source>
         <oldsource>Retweet expected in Twiiter reply.</oldsource>
         <translation>Retweet expected in Twitter reply.</translation>
     </message>
     <message>
-        <location filename="../logic/controls/tweetcontrol.cpp" line="581"/>
+        <location filename="../logic/controls/tweetcontrol.cpp" line="585"/>
         <source>Tweet deleted</source>
         <translation>Tweet deleted</translation>
     </message>
@@ -978,18 +988,18 @@
     <name>WriteTweetControl</name>
     <message>
         <location filename="../logic/controls/writetweetcontrol.cpp" line="56"/>
-        <location filename="../logic/controls/writetweetcontrol.cpp" line="126"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="127"/>
         <source>Posting tweet...</source>
         <translation>Posting tweet...</translation>
     </message>
     <message>
         <location filename="../logic/controls/writetweetcontrol.cpp" line="81"/>
-        <location filename="../logic/controls/writetweetcontrol.cpp" line="145"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="146"/>
         <source>Tweet sent successfully</source>
         <translation>Tweet sent successfully</translation>
     </message>
     <message>
-        <location filename="../logic/controls/writetweetcontrol.cpp" line="151"/>
+        <location filename="../logic/controls/writetweetcontrol.cpp" line="152"/>
         <source> but the message is not updated on TwitLonger.</source>
         <translation> but the message is not updated on TwitLonger.</translation>
     </message>

@@ -116,7 +116,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
 			issue = (httpCode / 100 == 5
@@ -188,7 +188,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
 			issue = (httpCode / 100 == 5
@@ -290,7 +290,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
 			issue = (httpCode / 100 == 5
@@ -374,7 +374,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Building error message
-			errorMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
 			issue = (httpCode / 100 == 5

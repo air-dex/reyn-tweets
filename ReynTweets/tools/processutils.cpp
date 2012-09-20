@@ -107,15 +107,15 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			break;
 	}
 
-	// Building error message
-	errorMsg.append('\n')
-			.append(writeTwitterErrors(result.serviceErrors));
+	// Building error messageb
+	errorMsg.append(' ').append(writeTwitterErrors(result));
 }
 
-QString ProcessUtils::writeTwitterErrors(QList<ResponseInfos> twitterErrors) {
+QString ProcessUtils::writeTwitterErrors(RequestResult result) {
 	// Building error message
-	QString errorMsg = QObject::trUtf8("Twitter errors:");
-	errorMsg.append('\n');
+	QList<ResponseInfos> twitterErrors = result.serviceErrors;
+	QString errorMsg = result.errorMessage;
+	errorMsg.append('\n').append(QObject::trUtf8("Twitter errors:")).append('\n');
 
 	for (QList<ResponseInfos>::Iterator it = twitterErrors.begin();
 		 it < twitterErrors.end();

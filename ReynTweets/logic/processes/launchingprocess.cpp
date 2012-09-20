@@ -187,7 +187,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 		case SERVICE_ERRORS:
 			// Building error message
-			verifyMsg = ProcessUtils::writeTwitterErrors(result.serviceErrors);
+			verifyMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
 			verifyIssue = (httpCode / 100 == 5

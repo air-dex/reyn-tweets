@@ -19,7 +19,7 @@
 
 
 #define MyAppName "Reyn Tweets"
-#define MyAppVersion "Nightly"
+#define MyAppVersion "0.2.1"
 #define MyAppPublisher "Romain Ducher (@air_dex)"
 #define MyAppURL "http://code.google.com/p/reyn-tweets"
 #define MyAppExeName "ReynTweets.exe"
@@ -36,14 +36,16 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+;DefaultDirName={pf}\{#MyAppName}     ; Should be this (install in C:\Program Files by default but there is a bug
+DefaultDirName={localappdata}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=C:\Users\Romain\Documents\ReynTweets\misc\Licenses\COPYING.LESSER
 OutputDir=C:\Users\Romain\Documents\ReynTweets\trunk\desktopBuild
 OutputBaseFilename=Reyn_Tweets_Setup
 Compression=lzma
-SolidCompression=yes 
+SolidCompression=yes
+UsePreviousAppDir=no 
                  
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

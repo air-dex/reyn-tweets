@@ -3,6 +3,8 @@
 
 = *Développement de Reyn Tweets* =
 
+== *Cette liste n'est plus à jour. La roadmap du développement de Reyn Tweets se situe désormais dans ses blueprints Launchpad ([https://blueprints.launchpad.net/reyn-tweets]).* ==
+
 Où en est Reyn Tweets ?
 
 == Ce qui est fait ==

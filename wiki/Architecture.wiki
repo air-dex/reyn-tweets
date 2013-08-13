@@ -13,8 +13,8 @@ Les 7 couches de l'architecture de Reyn Tweets :
       * Ils reçoivent les résultats des actions demandées et assurent la mise à jour des vues QML.
     * _Core_ : partie centrale de Reyn Tweets symbolisée par une classe unique, le *`ReynCore`*. Il gère la configuration et les actions à réaliser par l'application.
     * _Processes_ : classes symbolisant les actions à réaliser. Pour cela, ils doivent souvent demander des informations à Twitter (ou autre service tiers).
-  # *Communication avec Twitter et autres services tiers*
-    * _Calls_ : classes génériques recensant les appels unitaires à l'API de Twitter ou à celles des services tiers utilisés par Reyn Tweets. C'est l'équivalent du `ReynCore` pour les appels aux services (typiquement Twitter). Pour Twitter, les calls sont eux symbolisés par une classe unique, les `ReynTwitterCalls`. Ils gèrent également les paramètres d'authentification auprès de Twitter via un OAuth Manager (classe `OAuthManager`). Plus généralement, chaque service a ses _Calls_.
+  # *Communication avec Twitter et autres services tiers (libRT)*
+    * _Calls_ : classes génériques recensant les appels unitaires à l'API de Twitter ou à celles des services tiers utilisés par Reyn Tweets. C'est l'équivalent du `ReynCore` pour les appels aux services tiers (typiquement Twitter). Pour Twitter, les calls sont eux symbolisés par une classe unique, les `ReynTwitterCalls`. Ils gèrent également les paramètres d'authentification auprès de Twitter via un OAuth Manager (classe `OAuthManager`). Plus généralement, chaque service a ses _Calls_.
       * Lors d'une demande, ils invoquent des requesters chargés d'appeler le service.
       * Lors de la réponse, ils récupèrent les résultats des requesters et les encapsulent dans des `ResultWrapper`s afin que les processes ne récupèrent pas de mauvais résultats.
     * _Requesters_ : classes symbolisant un appel unitaire à un service donné (typiquement Twitter). Ils sont les équivalents des processes logiques dans la connexion aux services.

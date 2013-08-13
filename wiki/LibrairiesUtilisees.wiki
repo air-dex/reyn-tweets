@@ -3,23 +3,17 @@
 = Versions de Qt & compilateurs =
 
 == Windows ==
-Qt 4.8.1 avec MSVC 2010 depuis la révision r453 (MSVC 25008 avant). Un passage à MinGW a été envisagé à l'occasion de l'issue 54.
+Qt 5.1 avec MSVC 2010. Un passage à MinGW a été envisagé à l'occasion de l'issue 54 (sans succès).
 
 == Linux ==
-Qt 4.8.1 avec gcc (g++ pour être précis)
-
-== Symbian ==
-Qt 4.7.4 for Symbian Belle avec GCCE
+Qt 5.1 avec gcc (g++ pour être précis)
 
 
 = Librairies utilisées par Reyn Tweets =
 
 Voici la liste des librairies utilisées par Reyn Tweets :
-  * QJSON ( http://qjson.sourceforge.net ) pour le parsage JSON des réponses de Twitter
-  * twitter-text-js ( https://github.com/twitter/twitter-text-js ) pour la manipulation côté QML dees textes des tweets. La version utilisée est la 1.4.16.
+  * twitter-text-js ( https://github.com/twitter/twitter-text-js ) pour la manipulation côté QML dees textes des tweets. La version utilisée est la 1.6.1.
 
 = Dépendances =
-
-Ne *JAMAIS* oublier la librairie avec QJson (qjson0.dll / qjson0.so / qjson0.sis ? ).
 
 Sur Linux, il faut que libjpeg62 soit installé.

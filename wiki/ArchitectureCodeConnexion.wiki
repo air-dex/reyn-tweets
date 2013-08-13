@@ -1,62 +1,235 @@
 #summary Partie connexion
 #labels Architecture
 
-= Architecture du code de la partie connexion =
+= Architecture du code de la partie connexion (libRT) =
 
-Cette page traite de l'organisation du code traitant de la connexion de Reyn Tweets à Twitter et aux services tiers.
-
-L'intgralité du code de cette partie (à l'exception des utilitaires du dossier `/tools/` comme par exemple les parsers) est contenu dans le dossier `/connection/`
-
+Cette page traite de l'organisation du code traitant de la connexion de Reyn Tweets à Twitter et aux services tiers (libRT).
 
 == Rappel de l'architecture du code ==
 
-Dans la page Architecture du wiki, la connexion se fait via trois couches de code aux rôles prédéfinis :
-  * Les _Calls_
-  * Les _Requesters_
-  * Les _Communicators_
+La connexion se fait via trois couches de code aux rôles prédéfinis (cf. la page Architecture du wiki) :
+  * Les _Communicators_ (gestion réseau "bas niveau" (HTTP) des requêtes aux services tiers)
+  * Les _Requesters_ (entités uniques exécutant les requêtes aux services tiers)
+  * Les _Calls_ (appels unitaire "haut niveau" aux services tiers)
 
-Chacune de ces trois couches est contenue dans un sous dossier de `/connection/` :
-||Couche||Sous-dossier||
-||_Calls_||`/connection/calls/`||
-||_Requesters_||`/connection/requests/`||
-||_Communicators_||`/connection/twittercommunicators/`||
+== Les _Communicators_ ==
 
-===`calls`===
+Ce sont eux qui s'occupent de la partie "Réseaux" pure et dure de la requête. Ils prennent en paramètre les paramètres réseau dont ils ont besoin. Les paramètres réseau sont créés dans la couche _Requester_ à partir des informations passées au requester (par le _Calls_). Ils mettent en forme les paramètres réseau pour les envoyer au service tiers dont ils attendent la réponse. Une fois la réponse du service tiers reçue, ils extraient les informations utiles de celle-ci (par exemple la "réponse brute", des codes de retour...). Ils mettent ensuite ces informations réseau utiles dans une structure dédiée qu'ils envoient au requester.
 
-Il contient tous les _Calls_. Twitter ainsi que chaque service tiers possède son propre front nommé "_Calls_" (`TwitLongerCalls` pour TwitLonger par exemple). Chaque _Calls_ dérive d'une classe mère abstraite `GenericCalls` présente dans le dossier.
+libRT ne prend actuellement en charge qu'un type de requête, à savoir les requêtes HTTP (via des APIs REST).
 
-===`requests`===
+=== Requêtes HTTP (`TwitterCommunicator`) ===
 
-Il contient tous les _Requesters_. À la base de se dossier se trouve `GenericRequester`, la classe mère tous les _Requesters_. Ces derniers sont regroupés par service dans un sous-dossier portant le nom du service (`/connection/requests/twitter` pour Twitter, `/connection/requests/twitlonger` pour TwitLonger...).
+Les requêtes HTTP sont gérées par un _Communicator_ de type "`TwitterCommunicator`" (seul type de _Communicator_ à ce jour). Il s'appuie sur un `QNetworkAccessManager` de Qt pour faire ses requêtes HTTP.
 
-Chaque sous-dossier représentant un service contient :
-  * Les URLs des méthodes (REST) du service dans un module `<nom du service>urls` (ex. `twitterurls` pour les URLs Twitter).
-  * Un _Requester_ générique dérivant de `GenericRequester` pour tous les _Requesters_ faisant des requêtes à ce service (ex. `PocketRequester` pour Pocket).
-  * Les autres _Requesters_, dérivant du _Requester_ de base du service (ex. `FavoriteRequester` dérivant de `TwitterRequester` pour favoriser les tweets).
+Le `TwitterCommunicator` prend les paramètres suivants à sa construction :
+  * L'URL à laquelle s'adresse la requête HTTP
+  * Le type de requête (`GET`, `POST`...).
+  * Les headers HTTP, indexés selon leur nom dans une `HeadersMap` (QMap<QString, QByteArray>).
+  * Le arguments HTTP à passer dans la requête HTTP. Ils sont indexés selon leur nom dans une `ArgsMap` (QMap<QString, QString>). Il y a des `ArgsMap` différentes pour chaque type de requête (une pour les `GET`, une autre pour les `POST`...).
 
-===`twittercommunicators`===
+Les données liées à une potentielle authentification sont préparées par le requester qui utilise le `TwitterCommunicator`. Le `TwitterCommunicator`.
 
-Il contient tous les _Communicators_. Il n'y a pour l'instant qu'un seul Communicator, le `TwitterCommunicator`, dont le rôle est de :
-  * Construire les requêtes HTTP.
-  * Les envoyer.
-  * Les recevoir.
-  * Mettre en forme la réponse HTTP pour le reste du programme.
+Le `TwitterCommunicator` lance la requête HTTP via sa méthode `void executeRequest();` exécutée par le requester. Il prépare alors une `QNetworkRequest` représentant la requête HTTP qu'il passera au `QNetworkAccessManager` pour l'exécuter. Entre temps, le `TwitterCommunicator` connecte son slot `void endRequest(QNetworkReply *);` au signal `finished(QNetworkReply *)` du `QNetworkAccessManager` pour recevoir le résultat de la requête HTTP (dans la `QNetworkReply` en paramètre).
 
-== Reste du dossier ==
+=== Résultats de la requête HTTP (`NetworkResponse`) ===
 
-Le dossier `/connection/` contient un quatrième sous-dossier nommé `model`. Il contient les composants transverses aux trois couches de la connexion :
-  * `enum ErrorType` : énumération listant les erreurs pouvant arriver lors d'une requête.
-  * `headersmap.hpp` : header avec des typedefs sur les structures contenant les header HTTP (`HeadersMap`) et les arguments GET ou POST (`ArgsMap`). `HeadersMap` et `ArgsMap` sont des `QMap`s de Qt.
-  * `enum IdentificationWay` : moyen d'identification de l'utilisateur (nom ou identifiant). Utilisé seulement avec l'API Twitter pour le moment.
-  * `RequesterManager` : `QMap` gérant les requêtes HTTP en cours. Elle stocke donc les _Requesters_ dont le travail n'est pas encore terminé. Utilisé dans les _Calls_ où chaque _Calls_ gère les requêtes liées à son service.
-  * `RequestInfos` : classe avec les infos sur une requête. Il contient le _Requester_ de la requête ainsi que le composant (obligatoirement un `QObject`) ayant demandé la requête.
-  * `struct RequestResult` : structure avec les résultats d'une requête.
-  * `enum RequestType` : type de la requête HTTP (GET, POST...)
-  * `struct ResponseInfos` : structure pouvant contenir un code numérique ainsi qu'un message qui lui est lié. Exemple : code d'erreur avec la description de l'erreur.
-  * `struct RequestWrapper` : structure contenant les résultats d'une requête. L'accès au résultat est protégé par une donnée unique sur celui l'ayant demandé.
+Quand le `TwitterCommunicator` reçoit la `QNetworkReply`, il vérifie d'abord qu'elle lui est bien destiné. Si c'est bien la sienne, il va alors créer avec la `QNetworkReply` la structure dédiée avec les informations utiles. Cette structure dédiée est un objet de type `NetworkResponse`. Le `TwitterCommunicator` finit ensuite son travail en envoyant sa `NetworkResponse` via son signal `requestDone(NetworkResponse);`
 
-`/connection/model/` contient également un sous-dossier `managers/` contenant les classes gérant des données liées aux services utilisés par ReynTweets. Ils contiennent bien souvent des identifiants confidentienls qui doivent être protégés. Ex : identifiants OAuth de Twitter.
+Une `NetworkResponse` prend les informations suivantes :
+  * `httpCode` : le code de retour HTTP.
+  * `httpReason` : description du code HTTP.
+  * `response` : la réponse brute. Exemple : un texte au format JSON.
+  * `error` : le message d'erreur de la requête HTTP.
+  * `repURL` : l'URL de la requête.
+
+=== Timeout volontaire ===
+
+Si le _Communicator_ n'a pas de réponse au bout d'un certain temps (fixé à 10 secondes pour le moment), celui-ci déclarera alors de lui-même un timeout au bout de ce laps de temps.
+
+Dans le cas du `TwitterCommunicator`, celui-ci lance un timer single shot (`QTimer`) dont le signal `QTimer::timeout()` est connecté à un slot du `TwitterCommunicator` portant le même nom (`void TwitterCommunicator::timeout()`). Dans le meilleur des cas, le timer est arrêté dès que le `TwitterCommunicator` a la bonne `QNetworkReply` dans son slot `void endRequest(QNetworkReply *);`. Sinon c'est le slot de timeout qui s'en charge. Dans le second cas la `NetworkResponse` envoyée au requester aura des valeurs spécifiques signifiant ce timeout.
+
+== Les _Requesters_ ==
+
+=== `GenericRequester` ===
+
+Les _Requesters_ héritent tous de la classe `GenericRequester`. Le `GenericRequester` contient la procédure générale de l'exécution de la requête :
+  * Récupération des paramètres haut niveau donnés par les _Calls_ (à la construction).
+  * Préparation des arguments réseau (pour le _Communicator_).
+  * Exécution de la requête réseau (par le _Communicator_).
+  * Réception des résultats réseau du _Communicator_.
+  * Traitement des résultats réseau du _Communicator_ :
+    * Transformation des résultats réseau en objets Qt (résultats _transformés_ ou _parsés_).
+    * Recherche d'erreurs liées au service tiers via les résultats parsés.
+  * Envoi des résultats parsés (mais pas que) aux _Calls_.
+
+Les _Requesters_, classes héritant plus ou moins directement de `GenericRequester`, ne font que redéfinir les différentes méthodes s'occupant des diverses étapes de la requête au service tiers (via un pattern "Template Method").
+
+Comme libRT ne gère (pour le moment) que les requêtes HTTP, les requesters et donc `GenericRequester` sont optimisés pour les requêtes HTTP :
+  * Le _Communicator_ est un `TwitterCommunicator`.
+  * Préparation des arguments réseau : tri des arguments donnés par les _Calls_ dans différentes `ArgsMap` et dans l'`HeadersMap` des headers HTTP. C'est là que sont généralement mises en forme les données pour l'authentification (exemple : headers OAuth).
+  * Réception des résultats réseau : connexion d'un slot `void treatResults(NetworkResponse);` au signal `requestDone(NetworkResponse);` lancé par le `TwitterCommunicator` quand celui-ci à fini sa requête réseau.
+  * Traitement des résultats réseau du _Communicator_ :
+    * Transformation des résultats réseau : parsage du `QByteArray` contenant les résultat bruts avec un _Parser_ qui renvoie des objets dont le type est plus ou moins convertible en `QVariant`.
+  * Envoi des résultats aux _Calls_ : émission d'un signal `requestDone(RequestResult);`. Ce signal marque aussi la fin de la requête au service tiers.
+
+=== Les Parsers ===
+
+Les _Parsers_ sont des parsers servant à traduire les réponses (textuelles) des services tiers en des objets Qt réutilisables par Reyn Tweets. Ils héritent tous de la classe de base `GenericParser<T>`. Cette classe prend en paramètre template "`T`"le type de l'objet Qt retourné par l'opération de parsage. `GenericParser<T>` contient une méthode virtuelle pure `parse();` :
+
+"`virtual T parse(QByteArray data, bool * parseOK = 0, QString * parseError = 0, int * lineError = 0, int * columnError = 0) = 0;`" avec :
+  * `data` : les données à parser.
+  * `parseOK` : booléen indiquant si l'opération de parsage est un succès (ou pas).
+  * `parseError` : message d'erreur lié à l'opération de parsage.
+  * `lineError` : ligne dans `data` d'une potentielle erreur liée à l'opération de parsage.
+  * `columnError` : colonne dans `data` d'une potentielle erreur liée à l'opération de parsage.
+
+libRT contient plusieurs types de parsers :
+
+||Type de donnée parsées||Parser libRT||Type de l'objet Qt de retour||
+||HTML||`HTMLParser`||`QWebElement`||
+||JSON||`JSONParser`||`QJsonValue`||
+||XML||`XMLParser`||`QDomElement`||
+||"URL query"||`OAuthParser`||`QVariantMap`||
+
+"URL query" : données du type `arg1=val1&arg2=val2&...&argN=valN`. Ce type de données est rencontré dans le cadre de l'authentification via OAuth, d'où l nom donné aux `OAuthParser`s. Les `OAuthParser`s retournent une `QVariantMap` où les clés sont les "`argI`" (sous la forme de `QString`s) et les valeurs sont les "`valI`" correspondants (sous la forme de QVariant), 0 <= I <= N.
+
+=== Résultats de la requête unitaire au service tiers (`RequestResult`) ===
+
+Les résultats de requêtes des _Requesters_ sont contenus dans des struct de type `RequestResult`. Ils contiennent les informations suivantes :
+  * Description de l'issu de la requête via un `NetworkResultType`.
+  * Résultats parsés sous forme de `QVariant`.
+  * Résultat HTTP (code et _reason_).
+  * Erreurs de parsage.
+  * Erreurs liées au service tiers.
+  * Message d'erreur.
+
+`NetworkResultType` est une énumération pouvant prndre les valeurs suivantes :
+  * INVALID_RESULT, le code invalide.
+  * NO_REQUEST_ERROR si pas d'erreur
+  * API_CALL en cas d'erreur lors de l'appel au service tiers.
+  * SERVICE_ERRORS pour les erreurs liés aux services tiers ou retournés par eux lors de la requête.
+  * Des codes d'erreur liés au parsage :
+    * JSON_PARSING (JSON)
+    * OAUTH_PARSING ("URL query")
+    * HTML_PARSING (HTML)
+    * XML_PARSING (XML)
+    * NO_PARSING (pas de parsage)
+
+== Les _Calls_ ==
+
+=== `GenericCalls` ===
+
+Les _Calls_ de chaque services tiers sont représentés par une classe héritant d'une classe mère abstraite nommée "`GenericCalls`". 
+
+Les `GenericCalls` s'occupent principalement de la gestion des _Requesters_ :
+  * Lancement des requêtes des _Requesters_ (méthode `void executeRequest(GenericRequester *);`).
+  * Destruction des _Requesters_ ayant fini leur travail (méthode `void removeRequester(GenericRequester *);`).
+
+Ils prennent en paramètre l'objet les utilisant (attribut `requestDemander`) car celui-ci est utilisé dans la confection du résultat de la requête (cf. `ResultWrapper`).
+
+Les _Calls_ de chaque service tiers sont des classes héritant de `GenericCalls`. Ils s'occupent de l'authentification au service via les _Authenticators_ dont c'est le rôle. Ils peuvent passer les _Authenticators_ en paramètre aux _Requesters_. Chaque appel unitaire "haut niveau" à un service tiers se fait via une méthode des _Calls_ de ce service tiers ("`ServiceCalls`"). Chaque méthode crée le _Requester_ qui effectuera la requête puis lance ladite requête via "`void executeRequest(GenericRequester *);`". Du coup les _Requesters_ du service tiers ne sont inclus que dans le `servicecalls.cpp`.
+
+=== Gestion des _Requesters_ (`RequesterManager`) ===
+
+La gestion bas niveau des _Requesters_ se fait via une `QMap` de type `RequesterManager` et l'attribut statique `GenericCalls::requesterManager` de ce type.
+
+Le `RequesterManager` contient les _Requesters_ en cours d'exécution afin que ceux-ci ne se détruisent pas prématurément. En effet, s'ils ne sont pas conservés quelque part, le système détruit les requesters dès qu'ils ont fini de lancer leur requête. Le système n'attend pas alors que le requester reçoive la réponse du service tiers via le réseau et la traite.
+
+Le `RequesterManager` est un tableau (`QMap`) dont les indexes sont des UUIDs (`QUuid`) identifiant les requêtes et les valeurs sont des entités de type `RequestInfos`. Les `RequestInfos` sont des structs contenant le requester en cours d'exécution (pointeur sur lui) et l'information unique sur le requestDemander.
+
+=== Résultats de la requête (`ResultWrapper`) ===
+
+Avant que le requester ne commence sa requête, les `GenericCalls` connectent leur slot `void endRequest(RequestResult);` au signal `requestDone(RequestResult)` que les _Requesters_ émettent quand ils ont fini leur travail. À la fin de la requête, les `GenericCalls` récupère les travaux du requester (`RequestResult` en paramètre du slot). Ils combinent ensuite le `RequestResult` avec l'information unique sur le `requestDemander` pour former une entité de type `ResultWrapper`. Après ils détruisent le requester. Enfin ils émettent le résultat de la requête via leur signal `GenericCalls::sendResult(ResultWrapper res);`.
+
+Le `ResultWrapper` est censé ne pouvoir délivrer son contenu qu'à l'entité en ayant fait la demande. Cela évite que des tiers modifient le `RequestResult` qu'elle contient.
+
+== Autres entités ==
+
+=== Les Authenticators ===
+
+C'est un ensemble de classes qui contiennent les données d'authentification. Elles peuvent aider à la mise en place des données réseau d'authentification pour le _Communicator_. On trouve ces classes dans les _Calls_ et les _Requesters_.
+
+libRT possède des _Authenticators_ pour les authentifications suivantes :
+  * _Basic_ avec un login et un mot de passe (typedef `BasicAuthenticator`).
+  * _Paires de tokens_ (typedef `TokenPair`).
+  * Authentifications avec une _clé d'API_ (classe `APIKeyAuthenticator`).
+  * _OAuth_ ([http://oauth.net]) (classe de base `OAuthAuthenticator`).
+    * _OAuth 1.0a_ (classe `OAuth10aAuthenticator` héritant de `OAuthAuthenticator`).
+    * _OAuth 2_ (classe `OAuth2Authenticator` héritant de `OAuthAuthenticator`).
+
+== Organisation du code de libRT ==
+
+L'intgralité du code de libRT est contenu dans le dossier `/connection/` de Reyn Tweets.
+
+Le dossier `/connection/` contient un dossier central nommé "`common`" qui contient les structures de bases des objets de libRT. Chaque service tiers est représenté par un sous-dossier de `/connection/` à son nom (ex. `/connection/twitter/` pour Twitter). *Les structures de chaque service tiers ne doivent dépendre que des structures de bases dans `/connection/common/` et seulement de ces structures là. Interdiction d'avoir des dépendances entre services tiers.*
+
+
+== Dossier `common` ==
+
+Le dossier `/connection/common/` est composé comme suit (`dossiers` en style code, _fichiers_ en italique) :
+
+||Élément de `common`||Contenu||
+||`authenticators`||Dossier des _Authenticators_||
+||`calls`||Entités de base gérant les _Calls_||
+||`communicators`||Entités de base gérant les _Communicators_ (TwitterCommunicator)||
+||`requests`||Entités de base gérant les _Requesters_||
+||`utils`||Classes utilitaires||
+||`utils/parsers`||Dossier des _Parsers_ (sous-dossier de `utils`)||
+||_headersmap.hpp_||Définitions de `ArgsMap` et `HeadersMap`||
+||_httprequesttype.hpp_||Énumération `HTTPRequestType`||
+||Module "_networkresult_"||Classe `NetworkResponse`||
+||_networkresulttype.hpp_||Énumération `NetworkResultType`||
+||_requestresult.hpp_||Struct `RequestResult`||
+||_responseinfos.hpp_||Struct `ResponseInfos`||
+||Module "_resultwrapper_"||Classe `ResultWrapper`||
+
+(Module "_mod_" : ensemble des fichiers _mod.hpp_ et _mod.cpp_ + _mod.tpp_ dans le cas d'une template.)
+
+=== `utils` ===
+
+`/connection/common/utils/` contient les entités utilitaires suivantes :
+  * Module "_connectionutils_" avec des fonctions utilitaires pour libRT.
+  * Module "_librtconstants_" avec des constantes pour libRT.
+  * Énumération `HTTPCode` contenant tous les codes de retour HTTP.
+
+=== Autres éléments de `common` ===
+
+  * `headersmap.hpp` : header avec des typedefs sur les structures contenant les header HTTP (`HeadersMap`) et les arguments GET ou POST (`ArgsMap`) des requêtes aux services tiers. `HeadersMap` et `ArgsMap` sont des `QMap`s de Qt.
+  * Énumération `NetworkResultType` : cf. _Requesters.
+  * Énumération `HTTPRequestType` : type de la requête HTTP (GET, POST...)
+  * Struct `ResponseInfos` : structure pouvant contenir un code numérique ainsi qu'un message qui lui est lié. Exemple : code d'erreur avec la description de l'erreur. Utilisé dans les `RequestResult`s.
+  * Struct `RequestResult` :  cf. _Requesters_.
+  * Struct `RequestWrapper` :  cf. _Calls_.
+
+Dans `common/requesters` :
+  * Énumération `IdentificationWay` : moyen d'identification de l'utilisateur (nom ou identifiant). Utilisé seulement avec l'API Twitter pour le moment.
+
+Dans `common/authenticators/oauth` :
+  * Module _oauthutils_ : fonctions utilitaires pour OAuth.
+
+== Dossier d'un service tiers ==
+
+Chaque service tiers possède un sous-dossier à son nom dans `/connection/` :
+
+||Service tiers||Sous-dossier dans `/connection/`||
+||Twitter||`/connection/twitter/`||
+||TwitLonger||`/connection/twitlonger/`||
+
+=== Organisation du sous-dossier d'un service tiers ===
+
+Le sous-dossier d'un service tiers est organisé comme tel :
+  * À la racine :
+    * _Calls_ spécifiques au service héritant de `GenericCalls`.
+    * Module de constantes liées au service
+    * _Authenticator_ pour gérer l'authentification au service.
+  * Sous-dossier `requests/` pour les _Requesters_ avec :
+    * L'ensemble des URLs pour les requêtes HTTP aux services tiers dans un module dédié.
+    * Une classe abstraite "`ServiceRequester`" héritant directement de `GenericRequester` qui sert de classe de base aux autres requesters.
+    * Tous les _Requesters_ qui exécuteront des requêtes HTTP unitaires liées au service tiers du sous-dossier. Ils héritent tous de "`ServiceRequester`".
 
 == Idées d'amélioration ==
 
-Au lieu de regrouper les composants par couche puis par service, les regrouper par service puis par couche si nécessaire). Les composants de base seraient dans un sous-dossier `general/`.
+  * Séparation de Reyn Tweets et de libRT.
+  * Réorganisation des entités mineures.
+  * Tests et injections de dépendances.

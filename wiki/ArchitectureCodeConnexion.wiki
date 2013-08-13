@@ -3,7 +3,7 @@
 
 = Architecture du code de la partie connexion (libRT) =
 
-Cette page traite de l'organisation du code traitant de la connexion de Reyn Tweets à Twitter et aux services tiers (libRT).
+Cette page traite de l'organisation du code traitant de la connexion de Reyn Tweets à Twitter et aux autres services tiers ("brique connexion" ou bien libRT).
 
 == Rappel de l'architecture du code ==
 
@@ -11,6 +11,8 @@ La connexion se fait via trois couches de code aux rôles prédéfinis (cf. la p
   * Les _Communicators_ (gestion réseau "bas niveau" (HTTP) des requêtes aux services tiers)
   * Les _Requesters_ (entités uniques exécutant les requêtes aux services tiers)
   * Les _Calls_ (appels unitaire "haut niveau" aux services tiers)
+
+Toutes les composantes de libRT sont censées être dans un namespace nommé "`LibRT`").
 
 == Les _Communicators_ ==
 
@@ -228,8 +230,11 @@ Le sous-dossier d'un service tiers est organisé comme tel :
     * Une classe abstraite "`ServiceRequester`" héritant directement de `GenericRequester` qui sert de classe de base aux autres requesters.
     * Tous les _Requesters_ qui exécuteront des requêtes HTTP unitaires liées au service tiers du sous-dossier. Ils héritent tous de "`ServiceRequester`".
 
+Toutes les entités sont censées être dans un namespace au nom du service.
+
 == Idées d'amélioration ==
 
   * Séparation de Reyn Tweets et de libRT.
   * Réorganisation des entités mineures.
   * Tests et injections de dépendances.
+  * Namespaces des service tiers sous-namespaces du namespace principal `LibRT`).

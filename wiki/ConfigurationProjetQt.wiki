@@ -1,6 +1,8 @@
 #summary Notes sur la configuration du projet Qt "ReynTweets"
 
-= Règles supplémentaires dans le Makefile =
+= Notes sur la configuration du projet Qt "ReynTweets" =
+
+== Règles supplémentaires dans le Makefile ==
 
 || *Règle*  || *Description* ||
 || doc || Génération de documentation avec Doxygen ||
@@ -12,4 +14,23 @@
 
 Chaque règle de traduction génère les fichiers pour l'ensemble des langues.
 
-Une optimisation de ceci serait de pouvoir générer via des fonctions (QMake) des règles trupdate_{langue} et trrelease_{langue} pour chaque langue prise en compte (exemple pour le français : trupdate_fr et trrelease_fr). Mais QMake ne semble pas le permettre.
+== Morcellement ==
+
+Le fichier projet est morcelé en plusieurs .pri :
+  * `/connection/libRT.pri` : code source de libRT (partie connexion). Contient 2 autres .pri :
+    * `/connection/twitlonger/twitlonger.pri` : partie de libRT s'occupant de Twitter.
+    * `/connection/twitter/twitter.pri` : partie de libRT s'occupant de TwitLonger.
+  * `/logic/logic.pri` : code source de la logique de Reyn Tweets. Contient 3 autres .pri :
+    * `/logic/controls/controls.pri` : code source des _Controls_.
+    * `/logic/core/core.pri` : code source des éléments du _Core_.
+    * `/logic/processes/processes.pri` : code source des _Processes_.
+  * `/ui/reyntweetsui.pri` : fichiers relatifs à l'interface graphique. On y trouve ce qui est lié au QML. Contient 1 autres .pri :
+    * `/ui/qtquick2applicationviewer.pri` : gestion de Qt Quick et QML. Il contient aussi le `QtQuick2ApplicationViewer` généré par Qt Creator.
+  * `/resources/resources.pri` : ressources graphiques (genre icônes).
+  * `/conf/configuration.pri` : fichiers de configuration.
+  * `/doc/documentation.pri` : gestion de la génération de la documentation du code (via Doxygen).
+  * `/i18n/translation.pri` : gestion des fichiers de traduction : création, déploiement et suppression.
+
+== Idées d'amélioration ==
+
+Une optimisation de ceci serait de pouvoir générer via des fonctions (QMake) des règles trupdate{langue} et trrelease{langue} pour chaque langue prise en compte (exemple pour le français : trupdate_fr et trrelease_fr). Mais QMake ne semble pas le permettre.

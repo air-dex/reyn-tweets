@@ -1,0 +1,212 @@
+#summary Architecture du code de la logique de Reyn Tweets.
+#labels Architecture
+
+= Architecture du code de la logique de Reyn Tweets =
+
+Cette page traite de l'organisation du code de la logique de Reyn Tweets.
+
+== Rappel de l'architecture du code ==
+
+La logique de Reyn Tweets est composée de 3 couches (cf. la page Architecture du wiki) :
+  * Les _Controls_ (interfaces entre Qt et QML).
+  * Le _Core_ (`ReynCore` et autres objets haut niveau de Reyn Tweets).
+  * Les _Processes_ (entités uniques exécutant les actions du `ReynCore`).
+
+== Les _Processes_ ==
+
+Les _Process_ étant par définition l'équivalent des _Requesters_ dans libRT (entité spécialisée dans une basse besogne donnée), ils sont structurés de manière équivalente.
+
+=== `GenericProcess` ===
+
+Les _Process_ héritent tous de la classe `GenericProcess`. Le `GenericProcess` contient les grandes étapes invaraibles du processus d'exécution de l'action :
+  * Démarrage de l'action.
+  * Confection du résultat.
+  * Envoi du résultat au `ReynCore`.
+
+L'action démarre avec une méthode virtuelle pure `virtual void startProcess() = 0;` de `GenericProcess` implémentée dans les process fils. Cette méthode est censée appeler une méthode symbolisant la première chose faite par le process.
+
+Les actions réalisées par le process sont toutes implémentées dans les process fils. L'appel de la méthode `void startProcess();` du process fils est censé débuter l'enchainement de diverses méthodes symbolisant les différentes étapes du processus symbolisant l'action à réaliser. Cet enchaînement de méthodes peut se faire via des appels de méthode classiques ou bien par des connexions signaux-slots. Le second cas est fréquent puisque c'est ce qui se passe quand le process interagit avec les service tiers via libRT. Le process connecte alors un slot au signal `sendResult(ResultWrapper);` des _Calls_ du service tiers afin de récupérer les résultats de la requête unitaire à celui-ci. Contrairement aux _Requesters_, les appels aux services tiers ne sont pas nécessairement unitaires (une requête HTTP et puis c'est tout) pour les _Process_. Ils peuvent les appeler librement et autant de fois qu'ils le souhaitent.
+
+=== Résultats du process (`ProcessResult`) ===
+
+Dès que la réalisation d'une action se termine, le process réunit les résultats de l'action dans une struct de type `ProcessResult`. Cette struct contient 3 champs :
+  * `results` : les résultats de l'action sous forme de `QVariant`.
+  * `errorMsg` : un message d'erreur en cas de problème dans l'exécution du process.
+  * `processEnd` : une valeur symbolisant l'issue de l'action à réaliser. C'est une valeur de l'énumération `CoreResult`.
+
+`CoreResult` contient l'ensemble des issues possibles à toutes les actions demandées au `ReynCore`. Pour plus de détails sur les différentes valeurs de `CoreResult`, cf. la page wiki ValeursRequetes.
+
+La réunion de ces résultats se fait grâce à une méthode dédiée de `GenericProcess` nommée `endProcess()`. Cette méthode prend les 3 valeur nécessaires, les met dans le `ProcessResult` et envoie ce dernier au `ReynCore` via le signal `void processEnded(ProcessResult);` de `GenericProcess`.
+
+== Le `ReynCore` ==
+
+C'est la classe centrale de Reyn Tweets. Toutes les actions faites par le programme passent par le `ReynCore`. Cette classe est un front dont chacune des méthodes représente une action susceptible d'être demandée par l'utilisateur via les composants QML (interface utilisateur en QML) et les _Controls_ (interface C++-Qt/QML). Pour chaque action à réaliser, le `ReynCore` délègue la tâche à un _Process_ spécialisé dans l'exécution de cette tâche.
+
+Au niveau fonctionnel, le `ReynCore` est très similaire aux _Calls_ de libRT :
+  * Il s'occupe de la gestion des _Process_ en lançant la tâche à réaliser (méthode `void executeProcess(GenericProcess *);`) et en détruisant le Requester une fois qu'il a fini son travail (méthode `void removeProcess(GenericProcess *);`).
+  * Chaque méthode frontale du `ReynCore` initialise le _Process_ dédié puis lance la tâche à réaliser.
+  * Il prend en paramètre (à la construction) l'objet les utilisant (attribut `requestDemander` comme pour les `GeneralCalls`) car celui-ci est utilisé dans la confection du résultat de l'action (cf. `ProcessWrapper`).
+  * Il délègue également la gestion de ses unités de travail (_Process_ au lieu des _Requesters_ pour les _Calls_) à une entité dédiée.
+
+Le `ReynCore` contient aussi la configuration de Reyn Tweets (configurations utilisateur et de l'application).
+
+=== Gestion des _Processes_ (`ProcessManager`) ===
+
+La gestion bas niveau des _Processes_ se fait via une `QMap` de type `RequesterManager` et l'attribut statique `ReynCore::processManager` de ce type.
+
+Le `ProcessManager` est un tableau recensant les _Process_ en cours d'exécution. Il est nécessaire car comme pour les _Requesters_, les _Process_ peuvent se détruire prématurément. Étant donné qu'on a souvent une exécution du type "_le process invoque les Calls d'un service qui à son tour invoque un requester pour faire faire la requête réseau par un Communicator_", l'envoi de la (première) requête réseau par le _Communicator_ provoque la fin de la méthode de demande d'action du `ReynCore` par remontée de la pile d'appels. Et donc du _Process_ si celui-ci n'est pas conservé, étant donné qu'il est créé dans la méthode invoquée par le Control demandeur. C'est pourquoi il faut conserver les _Process_ en cours de travail et le `ProcessManager`.
+
+Le `ProcessManager` est un tableau (`QMap`) dont les indexes sont des UUIDs (`QUuid`) identifiant les processes et les valeurs sont des entités de type `ProcessInfos`. Les `RequestInfos` sont des structs contenant le process en cours d'exécution (pointeur sur lui) et l'information unique sur le requestDemander du Reyn Core.
+
+=== Résultat des actions (`ProcessWrapper`) ===
+
+Avant le lancement de la tâche à exécuter, le `ReynCore` connecte son slot `void endProcess(ProcessResult);` au signal `processEnded(ProcessResult);` du process afin de recevoir les fruits de son travail. Lorsque le process a fini son travail (et donc émis son signal `processEnded(ProcessResult);` caractéristique), le `ReynCore` récupère le résultat du process. Il récupère aussi une information unique sur l'entité ayant demandé la requête pour sécuriser le `ProcessResult` dans une entité nommée `ProcessWrapper`. Une fois le  créé, il détruit le process ayant fait le travail et envoie le résultat de l'action via un signal `sendResult(ProcessWrapper);`.
+
+Le `ProcessWrapper` est censé ne pouvoir délivrer son contenu qu'à l'entité en ayant fait la demande. Cela évite que des tiers modifient le `ProcessRésult` qu'il contient.
+
+== Les _Controls_ ==
+
+Ils sont généralement instanciés avec les composants QML dont ils font partie lorsque ceux-ci sont chargés par le système QML.
+
+Les _Controls_ étant des composants C++ manipulés côtés QML, ils ont besoin d'être déclarés comme utilisables par QML. Pour cela, chaque type de Control possède une méthode `static void declareQML();` qui s'en occupe et qui est appelée dans le `main()`.
+
+=== `GenericControl` ===
+
+Les _Controls_ héritent tous de la classe `GenericControl` (héritant elle-même de de `QObject`). La classe `GenericControl` gère le gros des interactions entre C++ et QML caractéristiques de cette couche architecturale :
+  * Avec les composants QML :
+    * Invocation par les composants QML (via des méthodes `Q_INVOKABLE`).
+    * Mise à disposition des composants QML d'objets haut niveau de Reyn Tweets (via des propriétés Qt).
+    * Mise à jour des composants visuels en QML suites aux actions demandées (via des signaux).
+  * Avec le reste du programme (partie C++) :
+    * Délégation au `ReynCore` des actions à réaliser.
+    * Mise à jour du système haut niveau de Reyn Tweets (Tweets, Timelines...) en fonctions des résultats des actions du `ReynCore` (envoyés via son signal `sendResult(ProcessWrapper);`).
+
+Le `GenericControl`possède un `ReynCore` en attribut (non statique) et qui sera utilisé par chaque méthode `Q_INVOKABLE` du control fils. Lors de chaque action, le Control fait un appel unitaire à son `ReynCore`. Ce dernier lui renvoie ses résultats via son signal `sendResult(ProcessWrapper);` de fin d'action qui aura été préalablement connecté à un slot du Control fils. À noter que chaque Control ne fait qu'une seule chose à la fois. Par conséquent si ce dernier est en train de faire quelque et qu'il est sollicité par le composant QML, le Control ignorera cette sollicitation. Chaque méthode ̀`Q_INVOKABLE` doit traduire.
+
+Lorsqu'il a fini de faire quelque chose, le Control envoie généralement un signal `actionEnded(bool endOK, QString errMsg, bool fatal);` avec :
+  * `endOK` : booléen indiquant si l'action s'est réalisée avec succès.
+  * `errMsg` : message d'erreur ou plus simplement un message à afficher.
+  * `fatal` : en cas d'erreur, ce booléen permet de savoir si l'erreur est "fatal", c'est-à-dire si elle nécessite un arrêt immédiat de Reyn Tweets.
+
+Ce signal `actionEnded(bool, QString, bool);` est en général géré côté QML où il est connecté à des slots du composant QML.
+
+À noter que le `GenericControl` possède deux autres signaux (eux aussi gérés côté QML) :
+  * `authenticationNeeded();` : Reyn Tweets a besoin d'être réauthentifié au près de Twitter.
+  * `showInfoMessage(QString message);` : ce signal envoie un message d'information (string `message`) à montrer à l'utilisateur.
+
+== Le reste du _Core_ ==
+
+Le reste du _Core_ contient les objets haut niveau de Reyn Tweets, représentant les entités manipulées dans le programme. Ils peuvent être utilisés partout dans Reyn Tweets (sauf libRT).
+
+=== Les Variantables (`Variantable<V>`) ===
+
+Les valeurs des objets haut niveau de Reyn Tweets dépendent énormément des valeurs renvoyées par les service tiers. L'architecture de Reyn Tweets prend en compte celà et base la construction de ses objets haut niveau sur la relation entre ces derniers et les résultats renvoyés par les services tiers.
+
+Mais hélas, les résultats bruts du réseau ne sont que rarement exploitables en l'état. Il faut en extraire les informations, organiser ces dernières pour pouvoir ensuite construire l'objet haut niveau avec. Pour cela l'architecture de Reyn Tweets introduit des objets intermédiaires "bas niveau" (très souvent des classes de Qt) contenant les informations renvoyées par le réseau et mises en forme. Les objets haut niveau sont ensuite construits à partir de ces objets "bas niveau".
+
+De plus, les objets haut niveau peuvent être utilisés des parties qui les reconnaissent pas toujours (exemple : les signaux QML), contrairement aux objets Qt "bas niveau" à partir desquels ils sont construits. Pour cette raison les objets haut niveau se doivent d'être convertibles en objets bas niveau pour pouvoir aller partout dans le code.
+
+Afin de gérer cette double conversion, le code de ReynTweets comporte une interface (au sens Java du terme, c'est-à-dire "_classe virtuelle pure_") nommée `Variantable<V>` qui prend en charge cette double conversion. Le type template "`V`" est celui des objets Qt bas niveau qui initialisent les `Variantable`s. La classe possède deux méthodes :
+  * `virtual void fillWithVariant(V map) = 0;` : remplissage des valeurs du `Variantable` à partir des valeurs de l'objet Qt bas niveau.
+  * `virtual V toVariant() const = 0;` : conversion du `Variantable` en objet Qt bas niveau.
+
+La plupart des objets haut niveau de Reyn Tweets héritent de `Variantable<V>` (pour ne pas dire tous).
+
+Dans le code de Reyn Tweets, la conversion entre résultats bruts et objets Qt bas niveau est assurée par libRT, lors de l'étape de parsage des résultats réseau dans les _Requesters_. Les objets Qt renvoyés par les parseurs peuvent être de type différents et c'est la raison pour laquelle les objets Qt sont mis sous forme de `QVariant` dans le `RequestResult` des résultats. L'une des conséquences de ceci est que du coup les objets haut niveau sont facilement convertibles en `QVariant` (facilement convertibles en des objets Qt qui sont eux-mêmes facilement convertibles en `QVariant` et vice versa). C'est de là que vient le nom de l'interface, les `Variantable`s étant facilement convetibles en `QVariant` et vice versa tout comme l'objet Qt bas niveau de type "`V`" (comme *V* ariant).
+
+=== La gestion du JSON ===
+
+Reyn Tweets est un client Twitter et par conséquent l'API Twitter y joue un rôle central. L'API Twitter renvoyant ses résultats (tweets, timelines, utilisateurs...) dans des textes au format JSON, la majorité (pour ne pas dire tous) des objets haut niveau de Reyn Tweets ont donc un lien particulier au JSON. Le JSON a donc un poids important dans le programme, et ce à un tel point que des structures ont été mises en place dans le code :
+  * `JSONParser` : parseur JSON dans libRT qui renvoie ses résultats dans des `QJsonValue` (genre de `QVariant` pour JSON). Il hérite de `GenericParser<QJsonValue>`.
+  * `JsonObject` : classe de base pour les Variantables représentables par des objets JSON. `JsonObject` hérite de `Variantable<QJsonObject>` (et aussi `QObject`).
+  * `JsonArray<V>` : classe de base pour les Variantables représentables par des listes JSON ayant tous leurs composants de même type. `JsonArray<V>` hérite de `Variantable<QJsonArray>` et `QList<V>`. Elle possède un paramètre template "`V`" qui est le type des objets de la liste JSON.
+
+Dans un `JsonObject`, les champs JSON ont généralement un lien avec les attributs de l'objet haut niveau qu'ils représentent dans le texte JSON. Les attributs étant très différents d'un `JsonObject` à un autre, l'implémentation de l'interface `Variantable<QJsonObject>` (`void fillWithVariant(QJsonObject map);` et `QJsonObject toVariant() const;`) est laissée aux classes filles héritant de `JsonObject`. À noter que comme beaucoup de `JsonObject` sont utilisés côté QML, leurs attributs sont très souvent exposés dans des propriétés Qt, dont les noms coïncident avec ceux des champs JSON.
+
+La conversion d'un `JsonArray<V>` en `QJsonArray` et vice versa est quant à elle beaucoup plus simple :
+  * Pour `void fillWithVariant(QJsonArray);`, il s'agit de convertir chaque élément du `QJsonArray` en élément de la liste (de type "`V`").
+  * Quant à `QJsonArray toVariant() const;`, il s'agit de transformer chaque élément (de type "`V`") du `JsonArray<V>` en `QJsonValue` à insérer dans le `QJsonArray` résultat.
+
+Comme le paramètre template `V` n'est pas connu _a priori_, `JsonArray<V>` définit deux méthodes virtuelles pures pour la conversion de l'objet de type "`V`" en `QJsonValue` (du `QJsonArray`) et vice versa. Ces méthodes incluent également la insertion dans la liste finale (`JsonArray<V>` ou bien `QJsonArray` selon le sens de la conversion) :
+  * `virtual void appendJsonValue(QJsonValue v) = 0;` pour la conversion de la `QJsonValue` issue du `QJsonArray` en élément du `JsonArray<V>` et son insertion dans celui-ci.
+  * `virtual void appendJsonArrayElement(QJsonArray & array, V elt) const = 0;` pour la conversion de l'élément du `JsonArray<V>` (de type "`V`") en `QJsonValue` pour le `QJsonArray` et l'insertion de la `QJsonValue` dans le `QJsonArray` final.
+
+Beaucoup de `JsonArray` étant des listes de `Variantable` dont des `JsonObject` et des `JsonArray`, le code de Reyn Tweets possède 3 classes filles de `JsonArray` pour ces listes là :
+  * `JsonVariantableArray<V>` pour les `JsonArray<V>` de `Variantable`. `JsonVariantableArray<V>` hérite de . *Le paramètre template "`V`" doit hériter de `Variantable`* (mais ce n'est pas précisable en C++).
+  * `JsonObjectArray<V>`  pour les `JsonArray<V>` de `JsonObject`. `JsonObjectArray<V>` hérite de `JsonVariantableArray<V>`. *Le paramètre template "`V`" doit hériter de `JsonObject`* (mais ce n'est pas précisable en C++). La majorité des `JsonArray` de Reyn Tweets sont des `JsonObjectArray`.
+  * `JsonArrayArray<V>`  pour les `JsonArray<V>` de `JsonArray`. `JsonArrayArray<V>` hérite de `JsonVariantableArray<V>`. *Le paramètre template "`V`" doit hériter de `JsonArray`* (mais ce n'est pas précisable en C++).
+
+`JsonObject` et `JsonArray<V>` ont chacun des méthodes `virtual QDataStream & fillWithStream(QDataStream & in);` et `virtual QDataStream & writeInStream(QDataStream & out) const;` qui définissent la procédure à employer lors des surcharges opérateurs de flux `>>` et `<<`, nécessaires pour la conversion en `QVariant`.
+
+=== La configuration ===
+
+La configuration de Reyn Tweets est composées de 2 parties distinctes : la _configuration de l'application_ et la _configuration utilisateur_.
+
+La _configuration de l'application_ qui contient les valeurs invariables de Reyn Tweets, comme les clés d'API et les tokens OAuth. Ces valeurs sont ici afin de ne pas se retrouver codées en dur dans un code open source. Reyn Tweets ne fait que lire cette configuration. Elle est représentée par la classe `AppConfiguration`. C'est un singleton.
+
+La _configuration utilisateur_ contient les paramètres de l'utilisateur et les paramètres variables de Reyn Tweets. Elle est représentée par la classe `UserConfiguration`. Comme certaines parties de la configuration utilisateur peuvent être des `Variantable` liés à des données JSON, le choix a été fait de lier la configuration utilisateur au JSON. Du coup, `UserConfiguration` hérite de `JsonObject` et le fichier contenant la configuration utilisateur au JSON. Reyn Tweets peut lire et écrire cette configuration.
+
+== Les _List Handlers_ (`ListHandler<HL, U>`) ==
+
+La gestion des `JsonArray` côté QML est très complexe. Ceux-ci ne sont pas gérables en l'état côté QML. Cf. la page wiki ArchitectureDesListesAvecQML pour en savoir plus sur ce problème. De plus, inclure directement les `JsonArray` dans les _Controls_ peut amener des bugs. La refonte Qt5 a résolu ces deux problèmes en introduisant les _List Handlers_. Ce sont des objets haut niveau (écrits en Qt/C++) manipulables côté QML et gérant les `JsonArray` qu'ils contiennent.
+
+Au niveau du code, les _List Handlers_ héritent tous d'une classe de base nommée `ListHandler<HL, U>`. Le paramètre template "`HL`" est celui du `JsonArray` géré par le List Handler et le paramètre template "`U`" est le type des éléments composant le `JsonArray`. `HL` doit donc hériter de `JsonArray<U>`. La gestion des templates en C++ fait que 2 paramètres templates sont utilisés. Dans l'idéal, il n'y en aurait que `U`.
+
+`ListHandler<HL, U>` possède en attribut la liste haut niveau à gérer (héritant donc de `JsonArray<U>`) : c'est l'"_handled list_". Elle est représentée l'attribut `handledList` de `ListHandler<HL, U>` et est de type `HL`. `handledList` est facilement convertible en `QJsonArray`. Cette "version `QJsonArray`" est proposée via la méthode `Q_INVOKABLE QJsonArray getHandledJSONArray();` afin d'être utilisée en tant qu'`array` JS côté QML.
+
+`ListHandler<HL, U>` possède également une panoplie de méthodes gérant `handledList` ou donnant des renseignement dessus :
+  * `Q_INVOKABLE int getHandledListSize();` : longueur de la liste
+  * `Q_INVOKABLE QJsonArray getHandledJSONArray();` : liste sous forme JSON. 
+  * `Q_INVOKABLE void replace(QVariant varelt);` : remplacement d'un élément (dans le `QVariant`). La méthode recherche l'index non précisé et remplace l'élément à l'index trouvé.
+  * `Q_INVOKABLE void replace(QVariant varelt, int index);` : remplacement d'un élément (dans le `QVariant`) à l'index précisé.
+  * `Q_INVOKABLE void remove(int index);` : suppression d'un élément à l'index donné
+  * `Q_INVOKABLE void remove(QVariant varelt);` : suppression de l'élément dans le `QVariant`. La méthode recherche l'index non précisé et supprime l'élément à l'index trouvé.
+  * `Q_INVOKABLE U * get(int index);` : obtention de l'élément à l'index donné.
+  * `void handledListChanged();` : ce n'est pas une méthode mais un signal Qt. Il signale les changements de valeurs de la liste.
+
+En réalité `ListHandler<HL, U>` n'est pas une classe unique. Les _List Handlers_ des méthodes à QML, ils doivent hériter de `QObject` et contenir la macro `Q_OBJECT` dans leur header (pour la macro `Q_INVOKABLE` ainsi que le signal `handledListChanged()`). Or `Q_OBJECT` n'assure pas le support des classes templates. Du coup la classe est séparée en deux classes :
+  * `HandlerEmitter` qui hérite de `QObject` et gère la macro `Q_OBJECT`.
+  * `ListHandler<HL, U>` qui hérite de `HandlerEmitter` et qui gère les templates.
+
+Comme dans les `JsonArray` où le paramètre template est _a priori_ inconnu, certaines parties du code de `ListHandler<HL, U>` doivent être abstraites et redéfinies selon la valeur de `U`. C'est le cas du remplissage d'un d'un élément de type `U` selon sa valeur dans un `QVariant`. La méthode de recherche de l'index d'un élément dans `handledList` est aussi virtuelle car la méthode est susceptible de changer dans les _List Handlers_ fils. On suppose qu'on à affaire par défaut à des listes triées et donc la dichotomieest utilisée par défaut pour la recherche d'index.
+
+`HandlerEmitter` possède les définitions des méthodes de la "panoplie" ci-dessus (sauf `get()` à cause du paramètre template) mais comme leur implémentation dépend énormément de `ListHandler<HL, U>::handledList`, elles sont toutes virtuelles pures. Ceci a d'autres conséquences embêtantes puisqu'il faut aussi redéfinir `Q_INVOKABLE U * get(int);` et le signal `handledListChanged();` dans les _List Handlers_ fils (cf. `TimelineHandler` qui gère les timelines, de classe "`Timeline`").
+
+Il existe également la classe `ObjectListHandler<HL, U>` qui est spécialisée dans les _List Handlers_ gérant des `JsonObjectArray`. `U` doit donc y hériter de `JsonObject` et `HL` de `JsonObjectArray<U>`.
+
+
+== Organisation du code ==
+
+La logique de Reyn Tweets est dans le dossier `/logic` et est composé des éléments suivants (`dossiers` en style code et _fichiers_ en italique) :
+
+||Élément||Signification||
+||`/logic/controls`||Dossier des _Controls_||
+||`/logic/controls/listhandlers`||Dossier des _List Handlers_||
+||`/logic/core`||Dossier de la partie _Core_ (`ReynCore` et les objets haut niveau)||
+||`/logic/processes`||Dossier des _Processes_||
+||Module _reyntweets_||Module avec les fonctions du `main()`||
+||Module _reyntweetsutils_||Module de fonctions utilitaires pour la partie logique||
+
+Module _mod_ : ensemble des fichiers _mod.hpp_ et _mod.cpp_ + _mod.tpp_ s'il y a des templates.
+
+Le dossier `/logic/core` est composé des éléments suivants (`dossiers` en style code et _fichiers et module_ en italique) :
+
+||Élément||Signification||
+||`/logic/core/configuration`||Dossier avec les objets haut niveau liés à configuration||
+||`/logic/core/geo`||Dossier avec les objets haut niveau liés à la géolocalisation||
+||`/logic/core/json`||Dossier avec les entités assurant la gestion du JSON||
+||`/logic/core/timelines`||Dossier avec les objets haut niveau liés aux tmelines||
+||`/logic/core/tweets`||Dossier avec les objets haut niveau liés aux tweets||
+||`/logic/core/users`||Dossier avec les objets haut niveau liés aux utilisateurs de Twitter||
+||Module _coreresult_||Énumération `CoreResult` et code autour de cette dernière||
+||Module _reyncore_||Classe `ReynCore`||
+||Module _reyntweetsdatetime_||Classe `ReynTweetsDateTime` (`QDateTime` personnalisé évitant les problèmes de parsage de date)||
+||_reyntweetsentities.hpp_||Ensemble des objets haut niveau pour leurs déclarations dans le module _reyntweets_||
+||_variantable.hpp_||Interface (au sens Java du terme) `Variantable<V>`||
+
+== Idées d'amélioration ==
+
+  * Place des _List Handlers_ : _Controls_ (car interfaces C++/QML) ou bien _Core_ avec les objets haut niveau (où ils sont utilisés dans les propriétés Qt) ?
+  * Si c'est possible un jour, fusionner `HandlerEmitter`, `ListHandler<HL, U>` et `ObjectListHandler<HL, U>`, cette dernière classe étant le comportement par défaut que devrait avoir `ListHandler<HL, U>`. À noter que c'est possible selon le langage de programmation (mais pas en C++).
+  * Place des Tweet Entities dans `/logic/core`.
+  * `ReynTweetsDateTime` à coupler avec un genre de "`DateParser`" ?

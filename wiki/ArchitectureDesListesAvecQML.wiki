@@ -3,57 +3,87 @@
 
 = Architecture des listes avec QML =
 
-Au cours des développements de Reyn Tweets, il y a eu deux architectures différentes pour les listes. Le changement d'architecture a eu lieu à la révision SVN r456 puis il a été "annulé" (retour à l'ancienne architecture) à la révision r476.
+Au cours des développements de Reyn Tweets, il y a eu plusieurs architectures différentes pour les listes. Le premier changement d'architecture a eu lieu à la révision SVN r456 puis il a été "annulé" (retour à l'ancienne architecture) à la révision r476. L'architecture a ensuite été remodelée lors de la refonte Qt5 ([https://blueprints.launchpad.net/reyn-tweets/+spec/refonteqt5]).
 
-== Architecture en cours(jusqu'à la révision r455 et depuis la révision r476) ==
+== Anciennes architectures ==
 
-Dans la vue, les listes sont des ListViews avec des ListModels derrière
+=== Première architecture (jusqu'à la révision SVN r455 et depuis la révision r476) ===
 
-La liste des objets dont on a besoin (Tweets, Users, ...) est dans le Contrôle.
+Dans la vue, les listes sont des `ListView`s avec des `ListModel`s derrière.
 
-Le délégué de la ListView va piocher l'entité dont il a besoin via une méthode {{{Entite * getEntite(int index);}}} (Entite = Tweet, User, etc.) du Contrôle. Pendant ce temps, le ListModel est constitué d'une liste de jsobject vides ({}) dont la longueur est celle de la liste dans le contrôle.
+La liste des objets dont on a besoin (`Tweet`s, `User`s, ...) est dans le Contrôle.
 
-Lors d'une mise à jour, le Contrôle de l'entité simple passe la nouvelle valeur de l'entité sous forme d'un QVariant dans différents signaux jusqu'au Contrôle de la liste (via l'affichage de l'entité simple situé dans le délégué de la ListView). Le contrôle de la liste se charge ensuite de réajuster la longueur de la liste des jsobjects du ListModel.
+Le délégué de la `ListView` va piocher l'entité dont il a besoin via une méthode `Entite * getEntite(int index);` (`Entite` = `Tweet`, `User`, etc.) du Contrôle. Pendant ce temps, le `ListModel` est constitué d'une liste de `jsobject` vides (`{}`) dont la longueur est celle de la liste dans le contrôle.
 
-
-=== Pourquoi cette architecture ? ===
-
-  * On évite la manipulation du QML côté Qt avec des setContext(); et autres méthodes dans ce genre. *C'est même une ligne de conduite du code de Reyn Tweets. QML contexts in Qt parts of the code are EVIL (and bullshit).*
-  * Mauvais interfaçage QML/JS (à mon avis). Incompatibilités entre jsobjects et les objets de QML et/ou objets Qt du programme déclarés via qmlRegisterTypes();. Idem avec les listes QML pour qui on ne peut faire facilement de customisation côté Qt et qui ne s'interfacent pas avec des Arrays JS.
-
-=== Défauts ===
-  * Mauvaise approche car les données à afficher dans la liste ne sont pas dans le ListModel.
-  * Obligation de passer la valeur des nouveaux tweets lors des màj
-  * Liste de jsobjects qui sert à rien si ce n'est sa longueur.
-
-=== Avantage ===
-  * Ne passe pas par l'usine à gaz (avis personnel) des QDeclarativeXXX et des xxx_cast<> à faire côté Qt.
+Lors d'une mise à jour, le Contrôle de l'entité simple passe la nouvelle valeur de l'entité sous forme d'un `QVariant` dans différents signaux jusqu'au Contrôle de la liste (via l'affichage de l'entité simple situé dans le délégué de la `ListView`). Le contrôle de la liste se charge ensuite de réajuster la longueur de la liste des `jsobject`s du `ListModel`.
 
 
-== Architecture révisée éphémère (entre les révisions r456 et r476) ==
+==== Pourquoi cette architecture ? ====
 
-Dans la vue QML, les listes sont des ListViews avec des ListModels derrière
+  * On évite la manipulation du QML côté Qt avec des `setContext();` et autres méthodes dans ce genre. *C'est même une ligne de conduite du code de Reyn Tweets : QML contexts in Qt parts of the code are EVIL (and bullshit).*
+  * Mauvais interfaçage QML/JS (à mon avis). Incompatibilités entre `jsobjects` et les objets de QML et/ou objets Qt du programme déclarés via `qmlRegisterTypes();`. Idem avec les listes QML pour qui on ne peut faire facilement de customisation côté Qt et qui ne s'interfacent pas avec des Arrays JS.
 
-La liste des objets dont on a besoin (Tweets, Users, ...) est dans le Contrôle comme dans l'ancienne architecture.
+==== Défauts ====
+  * Mauvaise approche car les données à afficher dans la liste ne sont pas dans le `ListModel`.
+  * Obligation de passer la valeur des nouveaux tweets lors des màj.
+  * Liste de `jsobject`s qui sert à rien si ce n'est sa longueur.
 
-La différence est que les contrôles ayant des listes (TimelineControl par exemple) mettent à disposition une propriété "variant_list" de type QVariantList. Cette propriété doit être synchronisée avec une nouvelle propriété "liste_variante" située dans le modèle de liste QML (ListModel), via un "property alias" par exemple. Les éléments de la propriété "liste_variante" (de type variant (QML) / QVariant (Qt)) sont indirectement insérés dans la liste de jsobjects du ListModel. En effet, comme les éléments de "liste_variante" ne sont pas des jsobjects, chaque élément est inséré dans le champ "entityVar" d'un jsobject qui est à son tour inséré dans la liste des jsobjects du ListModel.
-
-Le délégué du ListView va désormais chercher les infos dont a besoin dans la liste des jsobjects du ListModel (au lieu du Contrôle auparavant), ce qui est plus dans la logique les ListViews et des ListModel derrière. Pour cela, le délégué récupère le contenu du champ "entityVar" contenu dans le jsobject. Ce contenu (de forme variant (QML) / QVariant (Qt)) est ensuite passé aux composants gérant une entité "simple" (Tweet, User, ... i.e. pas une liste type "Timeline"). Ces composants sont le panneau d'affichage QML (TweetPane pour les tweets) et le contrôle Qt derrière le panneau QML (TweetControl pour les tweets). Le panneau QML garde l'entité dans une propriété de type variant "variant_entity" qu'il synchronise avec une propriété correspondante de type QVariant(Map) dans le contrôle (via un "property alias"). Côté contrôle, cette propriété de type QVariant est représentée par un objet avec le "vrai type" de la propriété (Tweet, User, ...).
-
-Lors d'une mise à jour du côté de l'entité simple, les composants gérant l'entité signalent que la propriété "variant_entity" a été modifiée. Le changement peut être ainsi pris en compte par la ListView via son délégué et la fonction JS onVariant_entityChanged. Lors de cette méthode, on communique la nouvelle valeur de "variant_entity" au contrôle derrière la liste qui se chargera de mettre la liste des entités à jour ainsi que "liste_variante" dans le ListModel.
+==== Avantage ====
+  * Ne passe pas par l'usine à gaz (avis personnel) des `QDeclarativeXXX` et des `xxx_cast<>` à faire côté Qt.
 
 
-=== Avantages par rapport à la précédente architecture ===
-  * La nouvelle architecture respecte plus la philosophie des listes graphiques (ListViews) avec leur modèle de données (ListModel) derrière (pattern MVC).
-  * La liste des jsobjects du ListModel contient des objects plus significatifs ("forme QVariant" des objects à afficher contre des jsobjects vides avant). Avant, seule la longueur de la liste avait un sens. Maintenant, il y a aussi son contenu.
+=== Architecture révisée éphémère (entre les révisions r456 et r476) ===
+
+Dans la vue QML, les listes sont des `ListView`s avec des `ListModel`s derrière.
+
+La liste des objets dont on a besoin (`Tweets, `User`s...) est dans le Contrôle comme dans l'ancienne architecture.
+
+La différence est que les contrôles ayant des listes (`TimelineControl` par exemple) mettent à disposition une propriété "`variant_list`" de type `QVariantList`. Cette propriété doit être synchronisée avec une nouvelle propriété "`liste_variante`" située dans le modèle de liste QML (`ListModel`), via un "`property alias`" par exemple. Les éléments de la propriété "`liste_variante`" (de type QML `variant` ou bien `QVariant` pour Qt) sont indirectement insérés dans la liste de `jsobject`s du `ListModel`. En effet, comme les éléments de "`liste_variante`" ne sont pas des `jsobject`s, chaque élément est inséré dans le champ "`entityVar`" d'un `jsobject` qui est à son tour inséré dans la liste des `jsobject`s du `ListModel`.
+
+Le délégué du `ListView` va désormais chercher les infos dont a besoin dans la liste des `jsobject`s du `ListModel` au lieu du Contrôle auparavant, ce qui est plus dans la logique les `ListView` et des `ListModel` derrière. Pour cela, le délégué récupère le contenu du champ "`entityVar`" contenu dans le `jsobject`. Ce contenu (de forme `variant` pour QML ou bien `QVariant` pour Qt) est ensuite passé aux composants gérant une entité "simple" (`Tweet`, `User`, ... i.e. pas une liste type "`Timeline`"). Ces composants sont le panneau d'affichage QML (`TweetPane` pour les tweets) et le contrôle Qt derrière le panneau QML (`TweetControl` pour les tweets). Le panneau QML garde l'entité dans une propriété de type `variant` "`variant_entity`" qu'il synchronise avec une propriété correspondante de type `QVariant`(`Map`) dans le contrôle (via un "`property alias`"). Côté contrôle, cette propriété de type `QVariant` est représentée par un objet avec le "vrai type" de la propriété (`Tweet`, `User`...).
+
+Lors d'une mise à jour du côté de l'entité simple, les composants gérant l'entité signalent que la propriété "`variant_entity`" a été modifiée. Le changement peut être ainsi pris en compte par la `ListView` via son délégué et la fonction JS `onVariant_entityChanged`. Lors de cette méthode, on communique la nouvelle valeur de "`variant_entity`" au contrôle derrière la liste qui se chargera de mettre la liste des entités à jour ainsi que "`liste_variante`" dans le `ListModel`.
+
+
+==== Avantages par rapport à la première architecture ====
+  * La nouvelle architecture respecte plus la philosophie des listes graphiques (`ListView`) avec leur modèle de données (`ListModel`) derrière (pattern MVC).
+  * La liste des `jsobject`s du `ListModel` contient des objects plus significatifs ("forme `QVariant`" des `object`s à afficher contre des `jsobject`s vides avant). Avant, seule la longueur de la liste avait un sens. Maintenant, il y a aussi son contenu.
   * Pas besoin de bouffer de la mémoire en passage de nouvelle valeur des entité simples lors des mises à jour.
 
 
-=== Inconvénients par rapport à la précédente architecture ===
+==== Inconvénients par rapport à la première architecture ====
   * Propriétés supplémentaires à gérer.
-  * Complexité supplémentaire avec le champ "entVar" des jsobjects de la liste des jsobjects du ListModel.
+  * Complexité supplémentaire avec le champ "`entVar`" des `jsobject`s de la liste des `jsobject`s du `ListModel`.
   * Plus de mémoire au final car il faut bien stocker les variant quelque part.
 
-=== Évolutions possibles de cette seconde architecture ===
-  * Réécriture des méthodes du ListModel pour qu'il aille chercher directement les infos nécessaires dans la "liste_variante" du ListModel au lieu de la liste des jsobjects. Cela éliminerait la complexité engendrée par l'encapsulation des éléments de "liste_variante" dans la liste des jsobjects. Et puis ça ferait des économies de mémoire.
+==== Évolutions possibles de cette seconde architecture ====
+  * Réécriture des méthodes du `ListModel` pour qu'il aille chercher directement les infos nécessaires dans la "`liste_variante`" du `ListModel` au lieu de la liste des `jsobject`s. Cela éliminerait la complexité engendrée par l'encapsulation des éléments de "`liste_variante`" dans la liste des `jsobject`s. Et puis ça ferait des économies de mémoire.
 
+== Architecture actuelle (depuis la refonte Qt5) ==
+
+Cette architecture se base sur la révision éphémère de la première architecture. Le passage de Qt4 à Qt5 amène dans Qt la gestion native du JSON via _Qt JSON_. _Qt JSON_ fournit des classes représentant les listes et les objets JSON. Mieux, ces classes là (`QJsonArray` et `QJsonObject`) sont très facilement utilisables côté QML/JS où elles peuvent incarner les listes et les objets JS. Du coup ceci permet de gommer les défauts de la révision éphémère de la première architecture.
+
+Lors de la refonte Qt5, la librairie chargée de la gestion du JSON dans Reyn Tweets a été changée. _QJSON_ ([http://qjson.sourceforge.net]) a laissé sa place à _Qt JSON_ inclus dans Qt. Du coup l'architecture des listes côté QML a été remodelée en conséquence pour tirer pleinement parti des avantages offerts par _Qt JSON_.
+
+L'architecture des objets haut niveau de Reyn Tweets a elle aussi changée en conséquence :
+  * Les `ReynTweetsSerializable` s'appellent désormais `Variantable`.
+  * Les `ReynTweetsMappable` représentant les objets JSON ont changé de nom et de classe avec laquelle ils ont un équivalent. Les `ReynTweetsMappable` s'appellent désormais `JsonObject` et les `QVariantMap` ont laissé place aux `QJsonObject` beaucoup plus utilisables côté QML.
+  * Les `ReynTweetsListable` représentant les listes JSON ont comme les `ReynTweetsMappable` changé de nom et de classe avec laquelle ils ont un équivalent. Les `ReynTweetsListable` s'appellent désormais `JsonArray` et les `QVariantList` ont laissé place aux `QJsonArray` beaucoup plus utilisables côté QML.
+
+Dans la vue QML, les listes sont toujours des `ListView` avec des `ListModel` derrière.
+
+Les `JsonArray` (anciennement `ReynTweetsListable`) n'étant toujours pas utilisables tels quels côté QML, ils ont été wrappés dans des entités spéciales nommées _List Handlers_. Ce wrappage a également été réalisé à cause de problème mémoire lorsque les `JsonArray` sont directement dans les Contrôles. Ce sont des `QObject` utilisables côté QML.
+
+Par contre les `JsonArray` sont désormais facilement convertibles en `QJsonArray` et donc en `array` JavaScript grâce au passage de QJSON à Qt JSON. Du coup les _List Handlers_ exposent à QML les "listes `JsonArray`" sous la forme d'une propriété Qt de type `QJsonArray` en lecture seule. Le `ListModel` est rempli avec les éléments de l'array JS proposé par le List Handler (qui est en fait le `JsonArray` haut niveau de Reyn Tweets sous forme de `QJsonArray`). Le délégué de la `ListView` utilise alors l'élément du `ListModel` à l'index désiré. Il récupérera alors un `object` JavaScript (`jsobject`) qu'il transmettra au panneau QML (exemple : `TweetPane` pour l'affichage d'un tweet). Le panneau QML gérera alors l'objet JS comme bon lui semble. Comme celui-ci possède généralement un Contrôle qui lui sert de backend, il lui transmettra alors l'objet JS et le Contrôle synchronisera alors ses données avec ce `QJsonObject`.
+
+Lors d'un rafraîchissement de liste, le `ListModel` se synchronise avec l'array JS du List Handler.
+
+
+==== Avantages par rapport à la première architecture ====
+  * Reprise des avantage de l'éphémère révision de la première architecture.
+  * Conversion en entités JavaScript plus simple, tout comme l'utilisation qui en est faite.
+
+==== Inconvénients par rapport à la première architecture ====
+  * Propriétés supplémentaires à gérer.
+  * Complexité des _List Handlers_.
+  * Implémentation actuellement optimisable au niveau du `ListModel`.

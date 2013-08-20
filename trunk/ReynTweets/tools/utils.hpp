@@ -57,76 +57,6 @@ QString boolInString(bool b);
 /// @return The corresponding color : &#135;RRGGBB
 QColor string2color(QString coloredString);
 
-//////////////////////////////////////////////////
-// Transitional functions due to QJSON removing //
-//////////////////////////////////////////////////
-
-/// @fn QStringList getPropertiesNames(const QObject &o, bool withDynamic = false);
-/// @brief Getting all the properties of a given QObject
-/// @param o The QObject
-/// @param withDynamic Boolean indicating if names of dynamic properties have to
-/// be included in the list
-/// @return A QStringList with all the properties names
-QStringList getPropertiesNames(const QObject &o, bool withDynamic = false);
-
-/// @fn QVariant object2variant(const QObject &o, QStringList transientProperties);
-/// @brief Converting a QObject into a QVariant.
-///
-/// It is a substitute to QJSON's <code>QObjectHelper::qobject2qvariant();</code>
-/// @param o The QObject to convert.
-/// @param transientProperties Properties which must not be included in the QVariant.
-/// @return The corresponding QVariant.
-QVariant object2variant(const QObject &o, QStringList transientProperties);
-
-/// @fn void variant2object(QVariantMap v, QObject &o, bool writeNewProperties = false);
-/// @brief Converting a QObject into a QVariant.
-///
-/// It is a substitute to QJSON's <code>QObjectHelper::qvariant2qobject();</code>
-/// @param v The QVariant to convert
-/// @param o The corresponding QObject.
-/// @param writeNewProperties
-void variant2object(QVariantMap v, QObject &o, bool writeNewProperties = false);
-
-/// @fn QDataStream & streamVariantIn(QDataStream & in, QVariant &var);
-/// @brief Writing the content of a QDataStream in a QVariant
-/// @param in The QDataStream
-/// @param var The QVariant
-/// @return The QDataStream after reading JSON (in)
-QDataStream & streamVariantIn(QDataStream & in, QVariant &var);
-
-/// @fn QDataStream & streamVariantOut(QDataStream & out, QVariant var);
-/// @brief Writing the content of a QVariant in a QDataStream
-/// @param out The QDataStream
-/// @param var The QVariant
-/// @return The QDataStream after writing JSON (out)
-QDataStream & streamVariantOut(QDataStream & out, QVariant var);
-
-
-////////////////////
-// JSON Streaming //
-////////////////////
-
-/// @fn QDataStream & jsonStreamingOut(QDataStream & out,
-///									   const QObject & objectToStream,
-///									   const QStringList & blacklist =
-///											QStringList(QString(QLatin1String("objectName"))));
-/// @brief Output stream operator for JSON serialization
-/// @param out The output stream
-/// @param objectToStream Object to put in the stream
-/// @param blacklist Properties to ignore while conserting the QObject into
-/// a QVariant before serializing.
-/// @return The stream with the object
-QDataStream & jsonStreamingOut(QDataStream & out,
-							   const QObject & objectToStream,
-							   const QStringList & blacklist = QStringList(QString(QLatin1String("objectName"))));
-
-/// @fn QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
-/// @brief Input stream operator for JSON serialization
-/// @param in The input stream
-/// @param objectToStream Object to put in the stream
-/// @return The stream with the object
-QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream);
-
 
 //////////////////
 // Miscanellous //
@@ -148,6 +78,7 @@ QString hmacSha1(QByteArray key, QByteArray baseString);
 /// @brief Logical XOR : <code>a XOR b == a && !b || !a && b</code>
 /// @param a 1st bool
 /// @param b 2nd bool
+/// @returns a XOR b
 bool ouBien(bool a, bool b);
 
 /// @fn QString formatParam(QString name, QString value, bool putDoubleQuotes = false);

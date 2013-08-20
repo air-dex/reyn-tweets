@@ -95,7 +95,7 @@ class Mappable : public QObject, public Variantable<QVariantMap>
 		/// @fn QStringList & getTransientProperties();
 		/// @brief Getter on transientProperties.
 		///
-		/// Used by the specialization of jsonStreamingOut for Mappables.
+		/// Used by the specialization of writing in streams for Mappables.
 		/// @return A reference on transientProperties
 		QStringList & getTransientProperties();
 

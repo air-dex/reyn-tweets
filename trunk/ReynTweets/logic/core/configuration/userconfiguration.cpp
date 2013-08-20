@@ -25,7 +25,7 @@
 #include <QtQml>
 #include <QTextStream>
 #include "userconfiguration.hpp"
-#include "../../tools/utils.hpp"
+#include "../../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

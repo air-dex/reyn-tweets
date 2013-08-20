@@ -25,7 +25,7 @@
 #define GENERICCONTROL_HPP
 
 #include <QObject>
-#include "../reyncore.hpp"
+#include "../core/reyncore.hpp"
 
 /// @class GenericControl
 /// @brief Base class for all the controls

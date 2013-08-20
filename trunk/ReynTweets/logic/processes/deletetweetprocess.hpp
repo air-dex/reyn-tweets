@@ -26,7 +26,7 @@
 
 #include "genericprocess.hpp"
 #include "../../connection/twitter/reyntwittercalls.hpp"
-#include "../../model/tweets/tweet.hpp"
+#include "../core/tweets/tweet.hpp"
 
 /// @class DeleteTweetProcess
 /// @brief Processus for deleting a tweet

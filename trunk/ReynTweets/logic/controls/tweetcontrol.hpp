@@ -28,9 +28,9 @@
 #define TWEETCONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "../reyncore.hpp"
-#include "../../model/tweets/tweet.hpp"
-#include "../../model/timelines/timelinehandler.hpp"
+#include "../core/reyncore.hpp"
+#include "../core/tweets/tweet.hpp"
+#include "../core/timelines/timelinehandler.hpp"
 
 /// @class TweetControl
 /// @brief Control behind a TweetPane

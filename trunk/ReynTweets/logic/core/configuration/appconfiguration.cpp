@@ -24,7 +24,7 @@
 #include <QFile>
 #include <QObject>
 #include "appconfiguration.hpp"
-#include "../../tools/parsers/jsonparser.hpp"
+#include "../../../tools/parsers/jsonparser.hpp"
 
 ////////////////////
 // Static members //

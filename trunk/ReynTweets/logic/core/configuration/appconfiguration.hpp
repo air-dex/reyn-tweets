@@ -28,7 +28,7 @@
 #include <QString>
 #include <QStringList>
 #include <QVariantMap>
-#include "../../logic/coreresult.hpp"
+#include "../coreresult.hpp"
 #include "../json/jsonobject.hpp"
 
 /// @class ReynTweetsAppConfiguration

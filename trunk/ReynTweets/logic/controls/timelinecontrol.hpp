@@ -25,9 +25,9 @@
 #define TIMELINECONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "../../model/timelines/timeline.hpp"
-#include "../../model/timelines/timelinehandler.hpp"
-#include "../reyncore.hpp"
+#include "../core/timelines/timeline.hpp"
+#include "../core/timelines/timelinehandler.hpp"
+#include "../core/reyncore.hpp"
 
 /// @class TimelineControl
 /// @brief Control behind a TimelinePane

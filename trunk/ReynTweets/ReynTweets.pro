@@ -91,42 +91,43 @@ SOURCES += \
 	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.cpp \
 	connection/twitlonger/twitlongercalls.cpp \
-	model/json/jsonobject.cpp \
-	model/json/jsonarray.cpp \
-	model/geo/coordinates.cpp \
-	model/geo/geocoord.cpp \
-	model/geo/geocoordlist.cpp \
-	model/geo/geoboundingbox.cpp \
-	model/geo/genericcoordinates.cpp \
-	model/geo/coordinatestype.cpp \
-	model/geo/gencoord.cpp \
-	model/geo/geocoordpolygon.cpp \
-	model/geo/twitterplace.cpp \
-	model/tweets/tweetentity.cpp \
-	model/tweets/indexbounds.cpp \
-	model/tweets/mediasize.cpp \
-	model/tweets/mediasizes.cpp \
-	model/tweets/media.cpp \
-	model/tweets/medialist.cpp \
-	model/tweets/urlentity.cpp \
-	model/tweets/urlentitylist.cpp \
-	model/tweets/usermention.cpp \
-	model/tweets/usermentionlist.cpp \
-	model/tweets/hashtag.cpp \
-	model/tweets/hashtaglist.cpp \
-	model/tweets/tweetentities.cpp \
-	model/users/userentities.cpp \
-	model/users/contributor.cpp \
-	model/users/contributorlist.cpp \
-	model/users/userinfos.cpp \
-	model/tweets/retweetinfos.cpp \
-	model/tweets/tweet.cpp \
-	model/users/user.cpp \
-	model/timelines/timeline.cpp \
-	model/timelines/timelinehandler.cpp \
-	model/configuration/appconfiguration.cpp \
-	model/configuration/useraccount.cpp \
-	model/configuration/userconfiguration.cpp \
+	logic/core/json/jsonobject.cpp \
+	logic/core/json/jsonarray.cpp \
+	logic/core/geo/coordinates.cpp \
+	logic/core/geo/geocoord.cpp \
+	logic/core/geo/geocoordlist.cpp \
+	logic/core/geo/geoboundingbox.cpp \
+	logic/core/geo/genericcoordinates.cpp \
+	logic/core/geo/coordinatestype.cpp \
+	logic/core/geo/gencoord.cpp \
+	logic/core/geo/geocoordpolygon.cpp \
+	logic/core/geo/twitterplace.cpp \
+	logic/core/tweets/tweetentity.cpp \
+	logic/core/tweets/indexbounds.cpp \
+	logic/core/tweets/mediasize.cpp \
+	logic/core/tweets/mediasizes.cpp \
+	logic/core/tweets/media.cpp \
+	logic/core/tweets/medialist.cpp \
+	logic/core/tweets/urlentity.cpp \
+	logic/core/tweets/urlentitylist.cpp \
+	logic/core/tweets/usermention.cpp \
+	logic/core/tweets/usermentionlist.cpp \
+	logic/core/tweets/hashtag.cpp \
+	logic/core/tweets/hashtaglist.cpp \
+	logic/core/tweets/tweetentities.cpp \
+	logic/core/users/userentities.cpp \
+	logic/core/users/contributor.cpp \
+	logic/core/users/contributorlist.cpp \
+	logic/core/users/userinfos.cpp \
+	logic/core/tweets/retweetinfos.cpp \
+	logic/core/tweets/tweet.cpp \
+	logic/core/users/user.cpp \
+	logic/core/timelines/timeline.cpp \
+	logic/core/timelines/timelinehandler.cpp \
+	logic/core/configuration/appconfiguration.cpp \
+	logic/core/configuration/useraccount.cpp \
+	logic/core/configuration/userconfiguration.cpp \
+	logic/core/coreresult.cpp \
 	logic/processes/processwrapper.cpp \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
@@ -143,7 +144,7 @@ SOURCES += \
 	logic/processes/posttweetprocess.cpp \
 	logic/processes/postviatwitlongerprocess.cpp \
 	logic/processes/processmanager.cpp \
-	logic/reyncore.cpp \
+	logic/core/reyncore.cpp \
 	logic/controls/genericcontrol.cpp \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
@@ -152,7 +153,6 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
-	logic/coreresult.cpp \
 	tools/reyntweets.cpp \
 	main.cpp
 
@@ -212,47 +212,47 @@ HEADERS  += \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.hpp \
 	connection/twitlonger/requests/twitlongerrequests.hpp \
 	connection/twitlonger/twitlongercalls.hpp \
-	model/variantable.hpp \
-	model/json/jsonobject.hpp \
-	model/json/jsonarray.hpp \
-	model/json/jsonarray.tpp \
-	model/geo/coordinates.hpp \
-	model/geo/geocoord.hpp \
-	model/geo/geocoordlist.hpp \
-	model/geo/geoboundingbox.hpp \
-	model/geo/genericcoordinates.hpp \
-	model/geo/genericcoordinates.tpp \
-	model/geo/coordinatestype.hpp \
-	model/geo/gencoord.hpp \
-	model/geo/geocoordpolygon.hpp \
-	model/geo/twitterplace.hpp \
-	model/tweets/tweetentity.hpp \
-	model/tweets/indexbounds.hpp \
-	model/tweets/mediasize.hpp \
-	model/tweets/mediasizes.hpp \
-	model/tweets/urlentity.hpp \
-	model/tweets/urlentitylist.hpp \
-	model/tweets/media.hpp \
-	model/tweets/medialist.hpp \
-	model/tweets/usermention.hpp \
-	model/tweets/usermentionlist.hpp \
-	model/tweets/hashtag.hpp \
-	model/tweets/hashtaglist.hpp \
-	model/tweets/tweetentities.hpp \
-	model/users/userentities.hpp \
-	model/users/userinfos.hpp \
-	model/users/contributor.hpp \
-	model/users/contributorlist.hpp \
-	model/tweets/retweetinfos.hpp \
-	model/tweets/tweet.hpp \
-	model/users/user.hpp \
-	model/timelines/timeline.hpp \
-	model/timelines/timelinehandler.hpp \
-	model/configuration/appconfiguration.hpp \
-	model/configuration/useraccount.hpp \
-	model/configuration/userconfiguration.hpp \
-	model/reyntweetsentities.hpp \
-	logic/coreresult.hpp \
+	logic/core/variantable.hpp \
+	logic/core/json/jsonobject.hpp \
+	logic/core/json/jsonarray.hpp \
+	logic/core/json/jsonarray.tpp \
+	logic/core/geo/coordinates.hpp \
+	logic/core/geo/geocoord.hpp \
+	logic/core/geo/geocoordlist.hpp \
+	logic/core/geo/geoboundingbox.hpp \
+	logic/core/geo/genericcoordinates.hpp \
+	logic/core/geo/genericcoordinates.tpp \
+	logic/core/geo/coordinatestype.hpp \
+	logic/core/geo/gencoord.hpp \
+	logic/core/geo/geocoordpolygon.hpp \
+	logic/core/geo/twitterplace.hpp \
+	logic/core/tweets/tweetentity.hpp \
+	logic/core/tweets/indexbounds.hpp \
+	logic/core/tweets/mediasize.hpp \
+	logic/core/tweets/mediasizes.hpp \
+	logic/core/tweets/urlentity.hpp \
+	logic/core/tweets/urlentitylist.hpp \
+	logic/core/tweets/media.hpp \
+	logic/core/tweets/medialist.hpp \
+	logic/core/tweets/usermention.hpp \
+	logic/core/tweets/usermentionlist.hpp \
+	logic/core/tweets/hashtag.hpp \
+	logic/core/tweets/hashtaglist.hpp \
+	logic/core/tweets/tweetentities.hpp \
+	logic/core/users/userentities.hpp \
+	logic/core/users/userinfos.hpp \
+	logic/core/users/contributor.hpp \
+	logic/core/users/contributorlist.hpp \
+	logic/core/tweets/retweetinfos.hpp \
+	logic/core/tweets/tweet.hpp \
+	logic/core/users/user.hpp \
+	logic/core/timelines/timeline.hpp \
+	logic/core/timelines/timelinehandler.hpp \
+	logic/core/configuration/appconfiguration.hpp \
+	logic/core/configuration/useraccount.hpp \
+	logic/core/configuration/userconfiguration.hpp \
+	logic/core/reyntweetsentities.hpp \
+	logic/core/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
 	tools/processutils.hpp \
@@ -272,7 +272,7 @@ HEADERS  += \
 	logic/processes/processes.hpp \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
-	logic/reyncore.hpp \
+	logic/core/reyncore.hpp \
 	logic/controls/genericcontrol.hpp \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
@@ -300,7 +300,7 @@ OTHER_FILES = \
 	Doxyfile.txt \
 	.bzrignore \
 	ReynTweets.rc \
-	model/ReynTweetsModel.pri
+	logic/core/ReynTweetsModel.pri
 
 
 #---------------------------------------#

@@ -26,7 +26,7 @@
 
 #include <QString>
 #include <QVariantMap>
-#include "../coreresult.hpp"
+#include "../core/coreresult.hpp"
 
 /// @struct ProcessResult
 /// @brief Results of a process

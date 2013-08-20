@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "tweetentities.hpp"
-#include "../../tools/utils.hpp"
+#include "../../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

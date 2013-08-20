@@ -25,9 +25,9 @@
 #define SETTINGSCONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "../reyncore.hpp"
-#include "../../model/configuration/userconfiguration.hpp"
-#include "../../model/configuration/appconfiguration.hpp"
+#include "../core/reyncore.hpp"
+#include "../core/configuration/userconfiguration.hpp"
+#include "../core/configuration/appconfiguration.hpp"
 
 /// @class SettingsControl
 /// @brief Control for managing the configuration

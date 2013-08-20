@@ -29,18 +29,18 @@
 #include <QObject>
 #include <QByteArray>
 #include "coreresult.hpp"
-#include "../model/configuration/userconfiguration.hpp"
-#include "../model/configuration/appconfiguration.hpp"
-#include "../model/tweets/tweet.hpp"
-#include "processes/genericprocess.hpp"
-#include "processes/processmanager.hpp"
-#include "processes/processwrapper.hpp"
+#include "configuration/userconfiguration.hpp"
+#include "configuration/appconfiguration.hpp"
+#include "tweets/tweet.hpp"
+#include "../processes/genericprocess.hpp"
+#include "../processes/processmanager.hpp"
+#include "../processes/processwrapper.hpp"
 
 /// @class ReynCore
 /// @brief Heart of Reyn Tweets.
 ///
-/// It is the main controller of the application. It is behind the main
-/// widget of the program (ReynTweetsWidget).
+/// It is the main controller of the application. All the Controls rely on it
+/// to do everything they have to do.
 class ReynCore : public QObject
 {
 	Q_OBJECT

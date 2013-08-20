@@ -28,7 +28,7 @@
 #define LAUNCHINGCONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "../reyncore.hpp"
+#include "../core/reyncore.hpp"
 
 /// @class LaunchingControl
 /// @brief Control behind a LaunchingPane

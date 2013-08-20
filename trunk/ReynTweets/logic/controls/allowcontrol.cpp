@@ -23,7 +23,7 @@
 
 #include "allowcontrol.hpp"
 #include <QtQml>
-#include "../../model/configuration/appconfiguration.hpp"
+#include "../core/configuration/appconfiguration.hpp"
 #include "../../connection/twitter/requests/twitterurls.hpp"
 #include "../../tools/parsers/oauthparser.hpp"
 #include "../../tools/parsers/htmlparser.hpp"

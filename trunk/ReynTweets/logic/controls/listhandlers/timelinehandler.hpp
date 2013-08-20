@@ -25,12 +25,12 @@
 #define TIMELINEHANDLER_HPP
 
 #include <QObject>
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/timelines/timeline.hpp"
 
 /// @class TimelineHandler
 /// @brief List Handler for timelines
-class TimelineHandler : public ListHandler<Timeline, Tweet>
+class TimelineHandler : public ObjectListHandler<Timeline, Tweet>
 {
 	Q_OBJECT
 

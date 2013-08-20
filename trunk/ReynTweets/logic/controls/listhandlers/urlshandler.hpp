@@ -24,12 +24,12 @@
 #ifndef URLSHANDLER_HPP
 #define URLSHANDLER_HPP
 
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/tweets/urlentitylist.hpp"
 
 /// @class UrlsHandler
 /// @brief List handler for for URLEntityList.
-class UrlsHandler : public ListHandler<URLEntityList, URLEntity>
+class UrlsHandler : public ObjectListHandler<URLEntityList, URLEntity>
 {
 	Q_OBJECT
 

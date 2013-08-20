@@ -24,12 +24,12 @@
 #ifndef HASHTAGSHANDLER_HPP
 #define HASHTAGSHANDLER_HPP
 
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/tweets/hashtaglist.hpp"
 
 /// @class HashtagsHandler
 /// @brief List handler for HashtagList
-class HashtagsHandler : public ListHandler<HashtagList, Hashtag>
+class HashtagsHandler : public ObjectListHandler<HashtagList, Hashtag>
 {
 	Q_OBJECT
 

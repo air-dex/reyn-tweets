@@ -24,12 +24,12 @@
 #ifndef CONTRIBUTORSHANDLER_HPP
 #define CONTRIBUTORSHANDLER_HPP
 
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/users/contributorlist.hpp"
 
 /// @class ContributorsHandler
 /// @brief List handler for ContributorList
-class ContributorsHandler : public ListHandler<ContributorList, Contributor>
+class ContributorsHandler : public ObjectListHandler<ContributorList, Contributor>
 {
 	Q_OBJECT
 

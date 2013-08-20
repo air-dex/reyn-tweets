@@ -125,7 +125,7 @@ Rectangle {
 				text: "Reyn Tweets"
 				font.bold: true
 				font.family: constant.font
-				font.pointSize: constant.font_size_title
+				font.pointSize: constant.font_size_xxl
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
 			}
@@ -135,13 +135,19 @@ Rectangle {
 				id: version_label
 				width: parent.width - 2*margin
 
-				anchors.top: program_name_label.bottom
-				anchors.topMargin: margin
-				anchors.horizontalCenter: parent.horizontalCenter
+				anchors {
+					top: program_name_label.bottom
+					horizontalCenter: parent.horizontalCenter
+					topMargin: margin
+				}
 
 				text: "Version ".concat(constant.getVersion())
-				font.family: constant.font
-				font.pointSize: constant.font_size
+
+				font {
+					family: constant.font
+					pointSize: constant.font_size
+				}
+
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
 			}
@@ -151,19 +157,26 @@ Rectangle {
 				id: website_label
 				width: parent.width - 2*margin
 
-				anchors.top: version_label.bottom
-				anchors.topMargin: 2*margin
-				anchors.horizontalCenter: parent.horizontalCenter
+				anchors {
+					top: version_label.bottom
+					topMargin: 2*margin
+					horizontalCenter: parent.horizontalCenter
+				}
 
 				text: qsTr("Website : ").concat('<a href="http://code.google.com/p/reyn-tweets/"')
 					.concat('style="text-decoration:none; color: ')
 					.concat(constant.orange)
 					.concat('">http://code.google.com/p/reyn-tweeets/</a>')
-				font.family: constant.font
-				font.bold: false
+
+				font {
+					family: constant.font
+					pointSize: constant.font_size
+					bold: false
+				}
+
+				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				font.pointSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 			}
 
@@ -172,9 +185,11 @@ Rectangle {
 				id: body_label
 				width: parent.width - 2*margin
 
-				anchors.horizontalCenter: parent.horizontalCenter
-				anchors.top: website_label.bottom
-				anchors.topMargin: 2*margin
+				anchors {
+					horizontalCenter: parent.horizontalCenter
+					top: website_label.bottom
+					topMargin: 2*margin
+				}
 
 				text: qsTr('Reyn Tweets is an open source Twitter client for \
 Windows and Linux written in Qt.')
@@ -194,11 +209,15 @@ General Public License along with Reyn Tweets. If not, see '))
 .concat('<a style="text-decoration:none; color: ').concat(constant.orange)
 .concat('" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.')
 				textFormat: Text.RichText
-				font.family: constant.font
-				font.bold: false
+
+				font {
+					family: constant.font
+					pointSize: constant.font_size
+					bold: false
+				}
+
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
-				font.pointSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 			}

@@ -47,7 +47,8 @@ void LaunchingProcess::startProcess() {
 // Starting the process
 void LaunchingProcess::checkSettingsLoad() {
 	// Check if the application settings were loaded correctly
-	CoreResult loadIssue = appConfiguration.load();
+	QString errMsg = "";
+	CoreResult loadIssue = appConfiguration.load(errMsg);
 
 	switch(loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
@@ -68,7 +69,6 @@ void LaunchingProcess::checkSettingsLoad() {
 	}
 
 	// Failed end
-	QString errMsg = appConfiguration.getErrorLoading();
 	endProcess(loadIssue, errMsg);
 }
 

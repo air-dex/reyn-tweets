@@ -85,6 +85,18 @@ Tweet * TimelineHandler::get(int index) {
 	return ListHandler<Timeline, Tweet>::get(index);
 }
 
+// Filling an element with a QVariant
+void TimelineHandler::fillElement(Tweet & realElt,
+								  QVariant varelt,
+								  bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}
+
 
 ///////////////////////////
 // Properties management //

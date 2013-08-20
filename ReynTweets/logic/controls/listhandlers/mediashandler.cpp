@@ -81,3 +81,15 @@ QDataStream & operator>>(QDataStream & in, MediasHandler & handler) {
 Media * MediasHandler::get(int index) {
 	return ListHandler<MediaList, Media>::get(index);
 }
+
+// Filling an element with a QVariant
+void MediasHandler::fillElement(Media & realElt,
+								QVariant varelt,
+								bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}

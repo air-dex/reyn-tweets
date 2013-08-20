@@ -26,7 +26,8 @@
 // Constructor
 TweetEntity::TweetEntity() :
 	JsonObject(),
-	indexes()
+	indexesHandler(),
+	indexes(indexesHandler.getHandledListRef())
 {}
 
 // Destructor
@@ -34,7 +35,9 @@ TweetEntity::~TweetEntity() {}
 
 // Copy constructor
 TweetEntity::TweetEntity(const TweetEntity & entity) :
-	JsonObject()
+	JsonObject(),
+	indexesHandler(),
+	indexes(indexesHandler.getHandledListRef())
 {
 	this->recopie(entity);
 }
@@ -82,16 +85,11 @@ IndexBounds TweetEntity::getIndices() {
 	return indexes;
 }
 
-QVariantList TweetEntity::getIndicesProperty() {
-	return indexes.toVariant().toVariantList();
+IndexBoundsHandler * TweetEntity::getIndicesHandler() {
+	return &indexesHandler;
 }
 
 void TweetEntity::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
-	emit indicesChanged();
-}
-
-void TweetEntity::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(QJsonArray::fromVariantList(newIndexList));
 	emit indicesChanged();
 }

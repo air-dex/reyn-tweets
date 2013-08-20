@@ -99,6 +99,17 @@ class ContributorsHandler : public ListHandler<ContributorList, Contributor>
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
 										ContributorsHandler & handler);
+
+		/// @fn virtual void fillElement(Contributor & realElt,
+		///								 QVariant varelt,
+		///								 bool resetValue = false);
+		/// @brief Filling a list element with a QVariant value.
+		/// @param realElt Real element
+		/// @param varelt QVariant value
+		/// @param resetValue Boolean indicating if the realElt has to be reset.
+		virtual void fillElement(Contributor & realElt,
+								 QVariant varelt,
+								 bool resetValue = false);
 };
 
 // Serialization of ContributorsHandler

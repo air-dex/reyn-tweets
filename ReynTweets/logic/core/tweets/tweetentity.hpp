@@ -25,7 +25,7 @@
 #define TWEETENTITY_HPP
 
 #include "../json/jsonobject.hpp"
-#include "indexbounds.hpp"
+#include "../../controls/listhandlers/indexboundshandler.hpp"
 
 /// @class TweetEntity
 /// @brief Base class for all Tweet Entities.
@@ -89,27 +89,24 @@ class TweetEntity : public JsonObject
 		/// @property indices
 		/// @brief Bounds of the entity in the tweet.
 		///
-		/// Represented by the indexes attribute.
-		Q_PROPERTY(QVariantList indices
-				   READ getIndicesProperty
-				   WRITE setIndices
+		/// Represented by the boundsHandler attribute.
+		Q_PROPERTY(IndexBoundsHandler * indices
+				   READ getIndicesHandler
 				   NOTIFY indicesChanged)
 
 		/// @brief Name of the property indices.
 		static QString INDICES_PN;
 
-		/// @fn QVariantList getIndicesProperty();
-		/// @brief Reading method for the property indices
-		/// @return indexList
-		QVariantList getIndicesProperty();
-
-		/// @fn void setIndices(QVariantList newIndexList);
-		/// @brief Writing method for the property indices
-		/// @param newIndexList New value for the property indices
-		void setIndices(QVariantList newIndexList);
+		/// @brief Handling indexes
+		IndexBoundsHandler indexesHandler;
 
 		/// @brief Indexes of the hashtag in the tweet
-		IndexBounds indexes;
+		IndexBounds & indexes;
+
+		/// @fn IndexBoundsHandler * getIndicesHandler();
+		/// @brief Reading method for the property indices
+		/// @return indexList
+		IndexBoundsHandler * getIndicesHandler();
 
 	signals:
 		/// @fn void indicesChanged();

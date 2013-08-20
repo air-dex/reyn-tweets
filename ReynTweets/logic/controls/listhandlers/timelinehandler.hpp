@@ -114,6 +114,17 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		/// a default element otherwise.
 		Q_INVOKABLE virtual Tweet * get(int index);
 
+		/// @fn virtual void fillElement(Tweet & realElt,
+		///								 QVariant varelt,
+		///								 bool resetValue = false);
+		/// @brief Filling a list element with a QVariant value.
+		/// @param realElt Real element
+		/// @param varelt QVariant value
+		/// @param resetValue Boolean indicating if the realElt has to be reset.
+		virtual void fillElement(Tweet & realElt,
+								 QVariant varelt,
+								 bool resetValue = false);
+
 		/////////////////////////////////////
 		// Friends serialization operators //
 		/////////////////////////////////////

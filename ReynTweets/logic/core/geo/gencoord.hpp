@@ -87,7 +87,7 @@ class GenCoord : public JsonObject
 				   WRITE setCoordinates
 				   NOTIFY coordinatesChanged)
 
-		/// @brief Name of the property id.
+		/// @brief Name of the property coordinates.
 		static QString COORDINATES_PN;
 
 		/// @fn virtual QVariantList getCoordinatesProperty();

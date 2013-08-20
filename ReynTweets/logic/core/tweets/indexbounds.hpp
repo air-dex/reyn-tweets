@@ -25,17 +25,14 @@
 #define INDEXBOUNDS_HPP
 
 #include <QDataStream>
-#include <QObject>
 #include <QVariant>
 #include "../json/jsonarray.tpp"
 
 /// @class IndexBounds
 /// @brief Indices of a Tweet Entity in a tweet.
-// TODO : why a QObject ?
-class IndexBounds : public QObject, public JsonArray<int>
+// TODO : class IndexBounds : public Variantable<QJsonArray> (simplifier), public QPair
+class IndexBounds : public JsonArray<int>
 {
-	Q_OBJECT
-
 	//////////////////////////////
 	// Serialization management //
 	//////////////////////////////

@@ -81,3 +81,15 @@ QDataStream & operator>>(QDataStream & in, UrlsHandler & handler) {
 URLEntity * UrlsHandler::get(int index) {
 	return ListHandler<URLEntityList, URLEntity>::get(index);
 }
+
+// Filling an element with a QVariant
+void UrlsHandler::fillElement(URLEntity & realElt,
+								QVariant varelt,
+								bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}

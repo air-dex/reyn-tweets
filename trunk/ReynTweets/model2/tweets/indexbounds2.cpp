@@ -25,7 +25,112 @@
 
 #include "indexbounds2.hpp"
 
-IndexBounds2::IndexBounds2(QObject *parent) :
-	Listable(parent)
+int IndexBounds2::FAKE_BOUND = -1;
+
+// Constructor
+IndexBounds2::IndexBounds2() :
+	JsonArray<int>(),
+	min(FAKE_BOUND),
+	max(FAKE_BOUND)
+{}
+
+// Destructor
+IndexBounds2::~IndexBounds2() {}
+
+// Copy constructor
+IndexBounds2::IndexBounds2(const IndexBounds2 & indexes) :
+	JsonArray<int>(),
+	min(FAKE_BOUND),
+	max(FAKE_BOUND)
 {
+	this->recopie(indexes);
+}
+
+// Affectation
+const IndexBounds2 & IndexBounds2::operator=(const IndexBounds & indexes) {
+	this->recopie(indexes);
+	return *this;
+}
+
+// Serialization declaration
+void IndexBounds2::initSystem() {
+	qRegisterMetaTypeStreamOperators<IndexBounds2>("IndexBounds2");
+	qMetaTypeId<IndexBounds2>();
+}
+
+// Copy of a IndexBounds
+void IndexBounds2::recopie(const IndexBounds2 & indexes) {
+	this->min = indexes.min;
+	this->max = indexes.max;
+}
+
+// Output stream operator for serialization
+QDataStream & operator<<(QDataStream & out, const IndexBounds2 & indexes) {
+	QVariantList list = indexes.toVariant();
+	out << list;
+	return out;
+}
+
+// Input stream operator for serialization
+QDataStream & operator>>(QDataStream & in, IndexBounds2 & indexes) {
+	QVariantList list;
+	in >> list;
+
+	// Filling the object
+	indexes.fillWithVariant(list);
+
+	return in;
+}
+
+
+////////////////////////
+// Indexes management //
+////////////////////////
+
+// Sorting the min and the max
+void IndexBounds2::sort() {
+	if (max < min && max != FAKE_BOUND) {
+		int tmp = max;
+		min = max;
+		max = tmp;
+	}
+}
+
+// Getter on min
+int IndexBounds2::getMin() {
+	return min;
+}
+
+// Setter on min
+void IndexBounds2::setMin(int newMin) {
+	min = newMin;
+	sort();
+}
+
+// Getter on max
+int IndexBounds2::getMax() {
+	return max;
+}
+
+// Setter on max
+void IndexBounds2::setMax(int newMax) {
+	max = newMax;
+	sort();
+}
+
+// Converting the bounds into a QVariantList
+QVariantList IndexBounds2::toVariant() const {
+	QVariantList res;
+	res.append(QVariant(min));
+	res.append(QVariant(max));
+	return res;
+}
+
+// Filling the object with a QVariantList
+void IndexBounds2::fillWithVariant(QVariantList variantList) {
+	QVariant bound = variantList.at(0);
+	setMin(bound.toInt());
+
+	bound = variantList.at(1);
+	setMax(bound.toInt());
 }

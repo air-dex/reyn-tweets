@@ -109,6 +109,9 @@ namespace ReynTweets {
 
 	/// @brief Reyn Tweets minor version.
 	extern const int MINOR_VERSION;
+
+	/// @brief Reyn Tweets bugfix version.
+	extern const int BUGFIX_VERSION;
 }
 
 #endif // REYNTWEETSUTILS_HPP

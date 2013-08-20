@@ -105,3 +105,6 @@ const int ReynTweets::MAJOR_VERSION = 0;
 
 // Reyn Tweets minor version.
 const int ReynTweets::MINOR_VERSION = 2;
+
+// Reyn Tweets bugfix version.
+const int ReynTweets::BUGFIX_VERSION = 1;

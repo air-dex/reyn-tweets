@@ -112,6 +112,13 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		// List handling //
 		///////////////////
 
+		/// @fn Q_INVOKABLE virtual Tweet * get(int index);
+		/// @brief Get an element of the handled list
+		/// @param index Index of the element
+		/// @return A pointer with the corresponding element if index is valid,
+		/// a default element otherwise.
+		Q_INVOKABLE virtual Tweet * get(int index);
+
 		/// @fn virtual int getElementIndex(Tweet listElt, bool & exactIndex);
 		/// @brief Getting the potential index of a tweet.
 		/// @param listElt Tweet that we want to know the potential index.

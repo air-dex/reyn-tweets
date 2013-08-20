@@ -81,6 +81,10 @@ QDataStream & operator>>(QDataStream & in, TimelineHandler & handler) {
 // List Handling //
 ///////////////////
 
+Tweet * TimelineHandler::get(int index) {
+	return ListHandler<Timeline, Tweet>::get(index);
+}
+
 int TimelineHandler::getElementIndex(Tweet tweet, bool & exactIndex) {
 	int index = handledList.tweetIndex(tweet);
 

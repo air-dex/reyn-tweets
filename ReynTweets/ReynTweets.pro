@@ -124,6 +124,7 @@ SOURCES += \
 	model/configuration/appconfiguration.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/userconfiguration.cpp \
+	model/declaremodel.cpp \
 	logic/processes/processwrapper.cpp \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
@@ -150,9 +151,9 @@ SOURCES += \
 	logic/controls/timelinecontrol.cpp \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
+	logic/controls/declarecontrols.cpp \
 	main.cpp \
-	logic/coreresult.cpp \
-    model/declaremodel.cpp
+	logic/coreresult.cpp
 
 
 HEADERS  += \
@@ -247,6 +248,7 @@ HEADERS  += \
 	model/configuration/appconfiguration.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/userconfiguration.hpp \
+	model/declaremodel.hpp \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
@@ -278,7 +280,7 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/controls/controls.hpp \
-    model/declaremodel.hpp
+	logic/controls/declarecontrols.hpp
 
 
 OTHER_FILES = \

@@ -275,19 +275,19 @@ CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODe
 	// Opening the configuration file
 	QFile confFile(this->getConfigurationFilePath());
 
-	if (!confFile.exists()) {
-		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : unknown configuration file. Try to create it manually");
-		return CONFIGURATION_FILE_UNKNOWN;
+	if (!confFile.open(openMode)) {
+		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened.");
+		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
-	if (!(openMode & QIODevice::WriteOnly)) {
+	if (!confFile.isWritable()) {
 		errorMsg = UserConfiguration::trUtf8("Cannot write the user configuration file.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
-	if (!confFile.open(openMode)) {
-		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened.");
-		return CONFIGURATION_FILE_NOT_OPEN;
+	if (!confFile.exists()) {
+		errorMsg = UserConfiguration::trUtf8("Cannot create the user configuration file. Try to create it manually");
+		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	// Saving the configuration
@@ -295,6 +295,7 @@ CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODe
 	QByteArray json = QJsonDocument(this->toVariant()).toJson();
 	readStream << json;
 	confFile.close();
+
 	errorMsg = "";
 	return WRITE_SUCCESSFUL;
 }

@@ -25,7 +25,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QIcon>
-#include "ui/qmlapplicationviewer.hpp"
+#include "ui/qtquick2applicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
 #include "model/configuration/reyntweetsappconfiguration.hpp"
@@ -81,7 +81,7 @@ void declareReynTweetsControls() {
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);
 /// @brief Loading the translation of the program
 /// @param a The application
-void loadTranslation(QScopedPointer<QApplication> & a) {
+void loadTranslation(QApplication & a) {
 	static QTranslator translator;	// It must not be deleted ! (issue 64)
 
 	// Program in French
@@ -93,7 +93,7 @@ void loadTranslation(QScopedPointer<QApplication> & a) {
 	// Loading translation files
 	translator.load(QString("reyntweets_") + locale);
 
-	a->installTranslator(&translator);
+	a.installTranslator(&translator);
 }
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
@@ -103,7 +103,7 @@ void loadTranslation(QScopedPointer<QApplication> & a) {
 /// @return The result of the execution.
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-	QScopedPointer<QApplication> app(createApplication(argc, argv));
+	QApplication app(argc, argv);
 
 	#ifdef Q_OS_LINUX
 		/*
@@ -135,16 +135,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 		QLatin1String mainQMLFile("./ui/qml/main_symbian.qml");
 	#endif
 
-	QmlApplicationViewer viewer;
-	viewer.setWindowTitle("Reyn Tweets");
+	QtQuick2ApplicationViewer viewer;
+	viewer.setTitle("Reyn Tweets");
 
 	// Setting the icon
 	const QString iconName = "./resources/ReynTweets.ico";
 	QIcon icone(iconName);
-	viewer.setWindowIcon(icone);
+	viewer.setIcon(icone);
 
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
 
-	return app->exec();
+	return app.exec();
 }

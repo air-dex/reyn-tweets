@@ -28,7 +28,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include "usermention.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -48,7 +48,7 @@ UserMention::~UserMention() {}
 
 // Copy constructor
 UserMention::UserMention(const UserMention & mention) :
-    TweetEntity()
+	TweetEntity()
 {
 	recopie(mention);
 }

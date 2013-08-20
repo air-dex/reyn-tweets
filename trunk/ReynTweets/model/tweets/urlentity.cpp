@@ -28,7 +28,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include "urlentity.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -47,7 +47,7 @@ URLEntity::~URLEntity() {}
 
 // Copy constructor
 URLEntity::URLEntity(const URLEntity & entity) :
-    TweetEntity()
+	TweetEntity()
 {
 	recopie(entity);
 }

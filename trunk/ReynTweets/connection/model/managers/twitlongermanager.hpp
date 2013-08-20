@@ -26,7 +26,7 @@
 
 #include <QByteArray>
 #include <QString>
-#include "../model/configuration/reyntweetsappconfiguration.hpp"
+#include "../../model/configuration/reyntweetsappconfiguration.hpp"
 
 /// @class TwitLongerManager
 /// @brief Entity with all the informations needed for transactions with the

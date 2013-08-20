@@ -28,7 +28,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include "tweet.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

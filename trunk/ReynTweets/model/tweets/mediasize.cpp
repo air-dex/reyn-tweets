@@ -24,7 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "mediasize.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -42,8 +42,8 @@ MediaSize::~MediaSize() {}
 
 // Copy constructor
 MediaSize::MediaSize(const MediaSize & size) :
-    ReynTweetsMappable(),
-    QSize(0,0)
+	ReynTweetsMappable(),
+	QSize(0,0)
 {
 	recopie(size);
 }

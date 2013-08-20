@@ -149,7 +149,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			   this, &LaunchingProcess::verifyCredentialsEnded);
 
 	// For a potenitial anticipated end
-	int httpCode = result.httpResponse.code;
 	QString verifyMsg = "";
 	ReynTweets::CoreResult verifyEnd;
 
@@ -176,13 +175,14 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			verifyMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			verifyEnd = (httpCode / 100 == 5
-						   || httpCode == 401
-						   || httpCode == 420
-						   || httpCode == 429
-						   ) ?
-						httpResults.value(httpCode)
-					  : ReynTweets::UNKNOWN_PROBLEM;
+			verifyEnd = ReynTweets::getCoreResultFromCode(result.getHTTPCode());
+
+			if (verifyEnd != ReynTweets::TWITTER_DOWN
+					&& verifyEnd != ReynTweets::RATE_LIMITED
+					&& verifyEnd != ReynTweets::AUTHENTICATION_REQUIRED)
+			{
+				verifyEnd = ReynTweets::UNKNOWN_PROBLEM;
+			}
 			break;
 
 		case LibRT::API_CALL:

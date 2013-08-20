@@ -25,6 +25,8 @@
 #define TWITTERCONSTANTS_HPP
 
 #include <QString>
+#include <QList>
+#include "../common/utils/httpcode.hpp"
 
 namespace Twitter {
 	/// @brief Constant for a fake Tweet ID (-1)
@@ -44,6 +46,15 @@ namespace Twitter {
 
 	/// @brief Fake Twitter place ID
 	extern const QString FAKE_PLACE_ID;
+
+	/// @brief Twitter API error codes
+	/// @see https://dev.twitter.com/docs/error-codes-responses
+	extern const QList<LibRT::HTTPCode> TWITTER_ERROR_CODES;
+
+	/// @fn const QList<LibRT::HTTPCode> initTwitterErrorCodes();
+	/// @brief Inits TWITTER_ERROR_CODES
+	/// @return The TWITTER_ERROR_CODES value
+	const QList<LibRT::HTTPCode> initTwitterErrorCodes();
 }
 
 #endif // TWITTERCONSTANTS_HPP

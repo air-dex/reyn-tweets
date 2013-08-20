@@ -29,6 +29,7 @@
 #include <QVariant>
 #include "networkresulttype.hpp"
 #include "responseinfos.hpp"
+#include "utils/httpcode.hpp"
 
 /// @struct RequestResult
 /// @brief Results of a request
@@ -64,6 +65,13 @@ struct RequestResult {
 		parsingErrors(),
 		errorMessage("")
 	{}
+
+	/// @fn LibRT::HTTPCode getHTTPCode();
+	/// @brief HTTP response code (shortcut)
+	/// @return The HTTP response code as a LibRT::HTTPCode.
+	LibRT::HTTPCode getHTTPCode() {
+		return LibRT::HTTPCode(httpResponse.code);
+	}
 };
 
 #endif // REQUESTRESULT_HPP

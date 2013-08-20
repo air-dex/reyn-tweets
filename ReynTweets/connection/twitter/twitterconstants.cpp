@@ -42,3 +42,28 @@ const QString Twitter::FAKE_SCREEN_NAME = LibRT::FAKE_STRING_ID;
 
 // Fake Twitter place ID
 const QString Twitter::FAKE_PLACE_ID = LibRT::FAKE_STRING_ID;
+
+// Twitter API error codes
+const QList<LibRT::HTTPCode> Twitter::TWITTER_ERROR_CODES;
+
+// Inits TWITTER_ERROR_CODES
+const QList<LibRT::HTTPCode> initTwitterErrorCodes() {
+	QList<LibRT::HTTPCode> res;
+
+	res.append(LibRT::NOT_MODIFIED);
+	res.append(LibRT::BAD_REQUEST);
+	res.append(LibRT::UNAUTHORIZED);
+	res.append(LibRT::FORBIDDEN);
+	res.append(LibRT::NOT_FOUND);
+	res.append(LibRT::NOT_ACCEPTABLE);
+	res.append(LibRT::GONE);
+	res.append(LibRT::ENHANCE_YOUR_CALM);
+	res.append(LibRT::UNPROCESSABLLE_ENTITY);
+	res.append(LibRT::TOO_MANY_REQUESTS);
+	res.append(LibRT::INTERNAL_SERVER_ERROR);
+	res.append(LibRT::BAD_GATEWAY);
+	res.append(LibRT::SERVICE_UNAVAILABLE);
+	res.append(LibRT::GATEWAY_TIMEOUT);
+
+	return res;
+}

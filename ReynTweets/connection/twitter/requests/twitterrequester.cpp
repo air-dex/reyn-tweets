@@ -135,49 +135,29 @@ QList<ResponseInfos> TwitterRequester::treatServiceErrors(QVariant parsedResults
 {
 	QList<ResponseInfos> serviceErrors;
 
-	int httpCode = netResponse.getHttpResponse().code;
+	int httpCodeInt = netResponse.getHttpResponse().code;
+	LibRT::HTTPCode httpCode = LibRT::HTTPCode(httpCodeInt);
 
-	// Is the return code expected ?
-	switch (httpCode) {
-		case 200:
-			// If the response code is 200, it is not an error
-			return QList<ResponseInfos>();
-
-		// Expected return codes
-		case 304:
-		case 400:
-		case 401:
-		case 403:
-		case 404:
-		case 406:
-		case 410:
-		case 420:
-		case 422:
-		case 429:
-		case 500:
-		case 502:
-		case 503:
-		case 504:
-			break;
-
+	if (httpCode == LibRT::OK) {
+		// If the response code is 200, it is not an error
+		return QList<ResponseInfos>();
+	} else if (!Twitter::TWITTER_ERROR_CODES.contains(httpCode)) {
 		// Unexpected return code
-		default: {
-			ResponseInfos error;
-			error.code = httpCode;
-			error.message = TwitterRequester::trUtf8("Unexpected HTTP return code")
-					.append(" '")
-					.append(QString::number(httpCode))
-					.append("'.");
+		ResponseInfos error;
+		error.code = httpCodeInt;
+		error.message = TwitterRequester::trUtf8("Unexpected HTTP return code")
+				.append(" '")
+				.append(QString::number(httpCodeInt))
+				.append("'.");
 
-			serviceErrors.append(error);
-		} break;
+		serviceErrors.append(error);
 	}
 
 
 	// Does the parsed results contain Twitter errors ?
 	bool areTwitterErrors = false;
 
-	// If there were twitter errors, parsed results are aa QJsonObject
+	// If there were twitter errors, parsed results are in a QJsonObject
 	QJsonValue resval = QJsonValue::fromVariant(parsedResults);
 
 	if (resval.isObject()) {

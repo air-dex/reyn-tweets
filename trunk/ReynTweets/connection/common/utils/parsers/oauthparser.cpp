@@ -72,7 +72,7 @@ void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
 			}
 
 			parsedMap.remove(parameterName);
-			parsedMap.insert(parameterName, QVariant(booleanValue));
+			parsedMap.insert(parameterName, QVariant::fromValue(booleanValue));
 		} else {
 			// Unexpected value. This is an error.
 			rewriteError.append(QObject::trUtf8("Rewriting as bool : unexpected value '"))

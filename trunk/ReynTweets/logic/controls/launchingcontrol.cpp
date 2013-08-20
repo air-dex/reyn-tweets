@@ -49,8 +49,8 @@ void LaunchingControl::launchReynTweets() {
 	}
 
 	// Connection for the end of the launch process
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(launchOK(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &LaunchingControl::launchOK);
 
 	// Message not necessary
 	processing = true;
@@ -67,8 +67,8 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(launchOK(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &LaunchingControl::launchOK);
 
 	CoreResult issue = result.processIssue;
 

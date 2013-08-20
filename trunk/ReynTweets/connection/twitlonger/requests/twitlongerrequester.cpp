@@ -49,8 +49,8 @@ QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
-		parsingErrors.insert("lineError", QVariant(lineMsg));
+		parsingErrors.insert("errorMsg", QVariant::fromValue(errorMsg));
+		parsingErrors.insert("lineError", QVariant::fromValue(lineMsg));
 	}
 
 	QVariantMap resultMap;
@@ -64,11 +64,11 @@ QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 		{
 			QDomElement resultElt = result.toElement();
 
-			resultMap.insert(resultElt.tagName(), QVariant(resultElt.text()));
+			resultMap.insert(resultElt.tagName(), QVariant::fromValue(resultElt.text()));
 		}
 	}
 
-	return QVariant(resultMap);
+	return QVariant::fromValue(resultMap);
 
 }
 

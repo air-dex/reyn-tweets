@@ -72,8 +72,8 @@ void AccessTokensProcess::buildOAuthResults(QByteArray accessToken,
 
 // Demanding an Access Token
 void AccessTokensProcess::accessToken() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(accessTokenDemanded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &AccessTokensProcess::accessTokenDemanded);
 	twitter.accessToken(oauthVerifier);
 }
 
@@ -85,8 +85,8 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(accessTokenDemanded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &AccessTokensProcess::accessTokenDemanded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -165,8 +165,8 @@ void AccessTokensProcess::updateConfiguration(QByteArray accessToken,
 	account.setTokenSecret(tokenSecret);
 
 	// Getting informations about the user behind the account
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(retrieveUserEnded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &AccessTokensProcess::retrieveUserEnded);
 	twitter.showUser(id);
 }
 
@@ -178,8 +178,8 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(retrieveUserEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &AccessTokensProcess::retrieveUserEnded);
 
 	NetworkResultType errorType = result.resultType;
 

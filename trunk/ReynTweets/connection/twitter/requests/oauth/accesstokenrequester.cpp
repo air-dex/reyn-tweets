@@ -107,8 +107,8 @@ QVariant AccessTokenRequester::parseResult(NetworkResponse results,
 				.append('.');
 
 		// Fill the parsingErrors map !
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+		parsingErrors.insert("errorMsg", QVariant::fromValue(errorMsg));
 	}
 
-	return QVariant(resultMap);
+	return QVariant::fromValue(resultMap);
 }

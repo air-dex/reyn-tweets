@@ -45,8 +45,8 @@ GenericCalls::~GenericCalls() {
 // Adding a requester to the requester manager
 void GenericCalls::addRequester(GenericRequester * requester) {
 	if (requester != 0) {
-		connect(requester, SIGNAL(requestDone(RequestResult)),
-				this, SLOT(endRequest(RequestResult)));
+		connect(requester, &GenericRequester::requestDone,
+				this, &GenericCalls::endRequest);
 		requesterManager.addRequest(requestDemander, requester);
 	}
 }
@@ -54,8 +54,8 @@ void GenericCalls::addRequester(GenericRequester * requester) {
 // Removing a requester of the requester manager
 void GenericCalls::removeRequester(GenericRequester * requester) {
 	if (requester != 0) {
-		disconnect(requester, SIGNAL(requestDone(RequestResult)),
-				   this, SLOT(endRequest(RequestResult)));
+		disconnect(requester, &GenericRequester::requestDone,
+				   this, &GenericCalls::endRequest);
 		requesterManager.removeRequest(requester);
 	}
 }

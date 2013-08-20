@@ -103,8 +103,8 @@ QVariant RequestTokenRequester::parseResult(NetworkResponse results,
 
 	// There was a problem while parsing -> fill the parsingErrors map !
 	if (!parseOK) {
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+		parsingErrors.insert("errorMsg", QVariant::fromValue(errorMsg));
 	}
 
-	return QVariant(resultMap);
+	return QVariant::fromValue(resultMap);
 }

@@ -60,14 +60,14 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 	// Setting the timer
 	timeoutTimer.setInterval(10*1000); // 10 seconds
 	timeoutTimer.setSingleShot(true);
-	connect(&timeoutTimer, SIGNAL(timeout()),
-			this, SLOT(timeout()));
+	connect(&timeoutTimer, &QTimer::timeout,
+			this, &TwitterCommunicator::timeout);
 }
 
 // Destructor
 TwitterCommunicator::~TwitterCommunicator() {
-	disconnect(&timeoutTimer, SIGNAL(timeout()),
-			   this, SLOT(timeout()));
+	disconnect(&timeoutTimer, &QTimer::timeout,
+			   this, &TwitterCommunicator::timeout);
 	network = 0;
 }
 
@@ -108,8 +108,8 @@ void TwitterCommunicator::executeRequest() {
 	QNetworkRequest * request = prepareRequest();
 
 	// Connection for receiving the response
-	connect(network, SIGNAL(finished(QNetworkReply*)),
-			this, SLOT(endRequest(QNetworkReply*)));
+	connect(network, &QNetworkAccessManager::finished,
+			this, &TwitterCommunicator::endRequest);
 
 	// Executing the request
 	if (Network::POST == requestType) {
@@ -147,8 +147,8 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	timeoutTimer.stop();
 
 	// Unwiring
-	disconnect(network, SIGNAL(finished(QNetworkReply*)),
-			   this, SLOT(endRequest(QNetworkReply*)));
+	disconnect(network, &QNetworkAccessManager::finished,
+			   this, &TwitterCommunicator::endRequest);
 
 	// Extracting informations
 	NetworkResponse netrep(response);
@@ -168,8 +168,8 @@ void TwitterCommunicator::timeout() {
 	// It seems that no response will arrive. That's enough ! Stop it !
 
 	// Unwiring
-	disconnect(network, SIGNAL(finished(QNetworkReply*)),
-			   this, SLOT(endRequest(QNetworkReply*)));
+	disconnect(network, &QNetworkAccessManager::finished,
+			   this, &TwitterCommunicator::endRequest);
 
 	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);
 

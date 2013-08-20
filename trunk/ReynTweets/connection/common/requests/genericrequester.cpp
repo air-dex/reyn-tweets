@@ -79,8 +79,8 @@ void GenericRequester::executeRequest() {
 	buildHTTPHeaders();
 
 	// Request time !
-	connect(&weblink, SIGNAL(requestDone(NetworkResponse)),
-			this, SLOT(treatResults(NetworkResponse)));
+	connect(&weblink, &TwitterCommunicator::requestDone,
+			this, &GenericRequester::treatResults);
 
 	weblink.executeRequest();
 }
@@ -92,8 +92,8 @@ void GenericRequester::executeRequest() {
 
 // Slot executed when the Twitter Communicator has just finished its work.
 void GenericRequester::treatResults(NetworkResponse netResponse) {
-	disconnect(&weblink, SIGNAL(requestDone(NetworkResponse)),
-			   this, SLOT(treatResults(NetworkResponse)));
+	disconnect(&weblink, &TwitterCommunicator::requestDone,
+			   this, &GenericRequester::treatResults);
 
 	RequestResult requestResult;
 

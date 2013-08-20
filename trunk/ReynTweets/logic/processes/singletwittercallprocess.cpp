@@ -32,8 +32,8 @@ SingleTwitterCallProcess::SingleTwitterCallProcess(CoreResult rightIssue) :
 
 // Starting the process by calling Twitter
 void SingleTwitterCallProcess::startProcess() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(callEnded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &SingleTwitterCallProcess::callEnded);
 	callTwitter();
 }
 
@@ -46,8 +46,8 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(callEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &SingleTwitterCallProcess::callEnded);
 
 	NetworkResultType errorType = result.resultType;
 

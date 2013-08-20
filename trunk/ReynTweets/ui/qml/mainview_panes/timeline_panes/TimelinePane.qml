@@ -147,6 +147,7 @@ Rectangle {
 
 				RTButton {
 					id: timeline_footer_button
+					z: timeline_view.z + 1
 					anchors.horizontalCenter: timeline_footer.horizontalCenter
 					anchors.verticalCenter: timeline_footer.verticalCenter
 

@@ -80,8 +80,8 @@ void DeleteTweetProcess::canDeleteTweet() {
 			// The retweet ID is not in the tweet. Ask it to Twitter !
 
 			// The ID is in the details of tweetToDelete.
-			connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-					this, SLOT(searchRetweetIDEnded(ResultWrapper)));
+			connect(&twitter, &ReynTwitterCalls::sendResult,
+					this, &DeleteTweetProcess::searchRetweetIDEnded);
 
 			twitter.showTweet(tweetToDelete.getIDstr().toLongLong());
 		} else {
@@ -105,8 +105,8 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(searchRetweetIDEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &DeleteTweetProcess::searchRetweetIDEnded);
 
 	NetworkResultType errorType = result.resultType;
 	QString errorMsg = "";
@@ -173,8 +173,8 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 
 	if (allowToDelete) {
 		// Let's destroy the tweet
-		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-				this, SLOT(deleteEnded(ResultWrapper)));
+		connect(&twitter, &ReynTwitterCalls::sendResult,
+				this, &DeleteTweetProcess::deleteEnded);
 
 		bool toLongLongOK = false;
 
@@ -203,8 +203,8 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(deleteEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &DeleteTweetProcess::deleteEnded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -219,8 +219,11 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
 			deletionResult.insert("twitter_result", result.parsedResult);
-			deletionResult.insert("keep_in_timeline", QVariant(keepInTimeline));
-			return endProcess(TWEET_DELETED, QVariant(deletionResult));
+			deletionResult.insert("keep_in_timeline",
+								  QVariant::fromValue(keepInTimeline));
+
+			return endProcess(TWEET_DELETED,
+							  QVariant::fromValue(deletionResult));
 
 		case Network::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);

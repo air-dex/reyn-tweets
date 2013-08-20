@@ -77,8 +77,8 @@ ProcessManager ReynCore::processManager = ProcessManager();
 // Adding a requester to the requester manager
 void ReynCore::addProcess(GenericProcess * process) {
 	if (process) {
-		connect(process, SIGNAL(processEnded(ProcessResult)),
-				this, SLOT(endProcess(ProcessResult)));
+		connect(process, &GenericProcess::processEnded,
+				this, &ReynCore::endProcess);
 		processManager.addProcess(requestDemander, process);
 	}
 }
@@ -86,8 +86,8 @@ void ReynCore::addProcess(GenericProcess * process) {
 // Removing a requester of the requester manager
 void ReynCore::removeProcess(GenericProcess * process) {
 	if (process) {
-		disconnect(process, SIGNAL(processEnded(ProcessResult)),
-				   this, SLOT(endProcess(ProcessResult)));
+		disconnect(process, &GenericProcess::processEnded,
+				   this, &ReynCore::endProcess);
 		processManager.removeProcess(process);
 	}
 }

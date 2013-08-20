@@ -732,7 +732,7 @@ Rectangle {
 	}
 
 	function displayTweet() {
-		// TODO : Direct Messages
+		// TODO when new features : Direct Messages
 
 		// Detects automatically if it's a retweet (put in "Retweet" state)
 		if (tweet_pane.tweet.isRetweet()) {

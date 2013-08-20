@@ -32,7 +32,10 @@ AccessTokensProcess::AccessTokensProcess(QByteArray verifier) :
 	configuration(0),
 	updateUserConfiguration(false),
 	oauthRes()
-{}
+{
+	// Not authorized for the moment
+	oauthRes.insert("authorized", QVariant::fromValue<bool>(false));
+}
 
 // Constructor
 AccessTokensProcess::AccessTokensProcess(QByteArray verifier, UserConfiguration &conf) :
@@ -42,7 +45,10 @@ AccessTokensProcess::AccessTokensProcess(QByteArray verifier, UserConfiguration 
 	configuration(&conf),
 	updateUserConfiguration(true),
 	oauthRes()
-{}
+{
+	// Not authorized for the moment
+	oauthRes.insert("authorized", QVariant::fromValue<bool>(false));
+}
 
 // Destructor
 AccessTokensProcess::~AccessTokensProcess() {
@@ -111,13 +117,13 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 
 			if (updateUserConfiguration) {
 				// Now update the configuration
-				// TODO : if fail, knowing that it was authorized
-				updateConfiguration(accessToken, tokenSecret, userID, screenName);
+				oauthRes.insert("authorized", QVariant::fromValue<bool>(true));
+				return updateConfiguration(accessToken, tokenSecret, userID, screenName);
 			} else {
 				// Don't update the configuration. Stop the process here.
-				endProcess(AUTHORIZED, oauthRes);
+				issue = AUTHORIZED;
 			}
-		}return;
+		} break;
 
 		case Network::SERVICE_ERRORS:
 			// Building error message
@@ -151,7 +157,7 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(issue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }
 
 // Uploading the configuration with the authentified user after an authentication process
@@ -232,7 +238,7 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(issue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }
 
 // Saves the configuration
@@ -245,7 +251,8 @@ void AccessTokensProcess::saveConfiguration() {
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			return endProcess(ALLOW_SUCCESSFUL, oauthRes);
+			saveIssue = ALLOW_SUCCESSFUL;
+			break;
 
 		case REINIT_SUCCESSFUL:
 			errorMsg = AccessTokensProcess::trUtf8("User configuration was reset.");
@@ -263,5 +270,5 @@ void AccessTokensProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	endProcess(saveIssue, errorMsg);
+	endProcess(saveIssue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }

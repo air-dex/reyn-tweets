@@ -24,49 +24,38 @@
 #ifndef VARIANTABLE_HPP
 #define VARIANTABLE_HPP
 
-#include <QVariant>
-
-// TODO : rewrite the @brief with new Variantables features
 /// @class Variantable
-/// @brief Class for objects that needs to be converted into QVariant Objects
-/// (such as QVariantMap or QVariantList).
+/// @brief Base class for objects that needs to be easily initialized with
+/// objects whose type is V (template parameter) and needs to be easily
+/// converted into objects whose type is the template parameter.
 ///
-/// In practice, some network replies can be parsed in QVariantMaps whose keys
-/// are the name of the different fields of the replies. The values corresponding
-/// to the fields are stocked in QVariant objects. Complex field values are
-/// stored in QVariantLists or QVariantMaps too.
+/// In Reyn Tweets, lots of classes needs a given type of object to be
+/// intialized. For example, the Twitter API gives its results in JSON format so
+/// the corresponding core objects (tweets, timelines, users...) needs to be
+/// initialized with JSON objects or arrays (QJsonObject and QJsonArray Qt JSON
+/// classes). Core objects which needs JSON objects will inherit for
+/// Variantable<QJsonObject> and Variantable<QJsonArray> will be inherited by
+/// core objects which needs JSON Arrays to be initialized.
 ///
-/// But ReynTweets do not manipulate QVariantMaps with fields but complex model
-/// objects with values which get a meaning, just like a tweet with a text
-/// (string), an ID (number), an author. Not a QVariantMap with fields named
-/// "text", "id" or "user". Informations needed by these objects are stored
-/// in QVariantMaps. As a consequence, the QVariantMaps replies have to
-/// be converted in these model objects.<br/>
-/// Moreover, the complex model objects might need to be converted into
-/// QVariant objects. It is the case when they are manipulated by QML. For this,
-/// Mappables ar first converted into QVariantMaps which are then put in a
-/// QVariant object.
-///
-/// In the complex objects, the fields of QVariantMaps are stocked in QObject
-/// properties which are represented by class members. Types of the class
-/// members are the type of the QVariant value of the field.
-///
-/// However, some properties are complex objects (ex. author of a tweet) too
-/// and they are not easily handled by Qt. These fields get an equivalent
-/// member (often a ReynTweetsSerializable - the class was made for them) that
-/// corresponds to a QVariantList or a QVariantMap property.
-/// @param V Type of Variant class (such as QVariantMap or QVariantList).
+/// Moreover, these same objects initialized by an object whose type is V often
+/// needs to be convertible into this kind of "V object". Let's keep on the
+/// example with core objects initialized by JSON entities. They may be part of
+/// other core objects which needs to be convertible into JSON objects (or
+/// arrays). QML might need a JSON version of these core objects too. That's why
+/// Variantables need to be easily converted in the same type of the entities
+/// they use to be initialized (QJsonObject and QJsonArray in the example).
+/// @param V Type of "corresponding object" (QJsonObject or QJsonArray in the
+/// description example with core objects and JSON entities).
 template <typename V>
-class Variantable
-{
+class Variantable {
 	public:
 		/// @fn virtual V toVariant() const = 0;
-		/// @brief Converting the object into its equivalent.
+		/// @brief Converting the Variantable into its V equivalent.
 		/// @return The corresponding equivalent.
 		virtual V toVariant() const = 0;
 
 		/// @fn virtual void fillWithVariant(V map) = 0;
-		/// @brief Filling a ReynTweetsSerializable object with an equivalent.
+		/// @brief Filling a Variantable object with a "V" equivalent.
 		/// contained in the map.
 		/// @param map The equivalent
 		virtual void fillWithVariant(V map) = 0;

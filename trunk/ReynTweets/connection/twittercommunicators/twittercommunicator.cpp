@@ -29,14 +29,11 @@
 #include "../../tools/utils.hpp"
 
 // Network manager
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 #ifdef Q_OS_LINUX
 	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
-#endif
-#ifdef Q_OS_SYMBIAN    // TODO
-//    QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 
 /////////////

@@ -27,7 +27,7 @@
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
-#include "../json/jsonarray.hpp"
+#include "../json/jsonarray.tpp"
 
 /// @class IndexBounds
 /// @brief Indices of a Tweet Entity in a tweet.

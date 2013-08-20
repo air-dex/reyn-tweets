@@ -1,5 +1,5 @@
-/// @file coordinates.hpp
-/// @brief Header of Coordinates
+/// @file geoboundingbox.hpp
+/// @brief Header of GeoBoundingBox
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,69 +21,38 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef COORDINATES_HPP
-#define COORDINATES_HPP
+#ifndef GEOBOUNDINGBOX_HPP
+#define GEOBOUNDINGBOX_HPP
 
 #include "../json/jsonobject.hpp"
-#include "geocoord.hpp"
+#include "geocoordlist.hpp"
+#include "coordinates.hpp"
 
-/// @class Coordinates
-/// @brief Class representing coordinates
-class Coordinates : public JsonObject
+/// @class GeoBoundingBox
+/// @brief Bounding box used for places
+class GeoBoundingBox : public JsonObject
 {
 	Q_OBJECT
 
-	//////////////////////
-	// Coordinates type //
-	//////////////////////
-
 	public:
-		/// @enum CoordinatesType
-		/// @brief Type of coordiante.
-		enum CoordinatesType {
-			/// @brief Fake type
-			FAKE_COORDINATES,
-
-			/// @brief Coordinates are a point
-			POINT,
-
-			/// @brief Coordinates are a polygon (Place)
-			POLYGON
-		};
-
-		Q_ENUMS(CoordinatesType)
-
-		/// @fn static QString coord2string(CoordinatesType coord);
-		/// @brief Converting a CoordinatesType into a QString.
-		/// @param coord The CoordinatesType
-		/// @return The corresponding QString
-		static QString coord2string(CoordinatesType coord);
-
-		/// @fn static CoordinatesType string2coord(QString coordStr);
-		/// @brief Converting a QString into a CoordinatesType.
-		/// @param coord The QString
-		/// @return The corresponding CoordinatesType
-		static CoordinatesType string2coord(QString coordStr);
-
-
-		/// @fn Coordinates();
+		/// @fn GeoBoundingBox();
 		/// @brief Default constructor
-		Coordinates();
+		GeoBoundingBox();
 
-		/// @fn virtual ~Coordinates();
+		/// @fn virtual ~GeoBoundingBox();
 		/// @brief Destructor
-		virtual ~Coordinates();
+		virtual ~GeoBoundingBox();
 
-		/// @fn Coordinates(const Coordinates & coord);
+		/// @fn GeoBoundingBox(const GeoBoundingBox & coord);
 		/// @brief Copy constructor
-		/// @param coord Coordinates to copy
-		Coordinates(const Coordinates & coord);
+		/// @param coord GeoBoundingBox to copy
+		GeoBoundingBox(const GeoBoundingBox & coord);
 
-		/// @fn const Coordinates & operator=(const Coordinates & coord);
+		/// @fn const GeoBoundingBox & operator=(const GeoBoundingBox & coord);
 		/// @brief Affectation
-		/// @param coord Coordinates to copy
+		/// @param coord GeoBoundingBox to copy
 		/// @return Copy of the original coordinates
-		const Coordinates & operator=(const Coordinates & coord);
+		const GeoBoundingBox & operator=(const GeoBoundingBox & coord);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
@@ -112,26 +81,26 @@ class Coordinates : public JsonObject
 
 
 	private:
-		/// @fn void recopie(const Coordinates & coord);
-		/// @brief Copy of a Coordinates
-		/// @param coord Coordinates to copy
-		void recopie(const Coordinates & coord);
+		/// @fn void recopie(const GeoBoundingBox & coord);
+		/// @brief Copy of a GeoBoundingBox
+		/// @param coord GeoBoundingBox to copy
+		void recopie(const GeoBoundingBox & coord);
 
 		// Friends serialization operators
 
-		/// @fn friend QDataStream & operator<<(QDataStream & out, const Coordinates & coord);
+		/// @fn friend QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
-		/// @param coord Coordinates to put in the stream
+		/// @param coord GeoBoundingBox to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator<<(QDataStream & out, const Coordinates & coord);
+		friend QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord);
 
-		/// @fn friend QDataStream & operator>>(QDataStream & in, Coordinates & coord);
+		/// @fn friend QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
-		/// @param coord Coordinates to put in the stream
+		/// @param coord GeoBoundingBox to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator>>(QDataStream & in, Coordinates & coord);
+		friend QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
 
 
 	///////////////////////////
@@ -141,7 +110,7 @@ class Coordinates : public JsonObject
 	protected:
 		// coordinates
 		/// @property id
-		/// @brief Longitude and latitude.
+		/// @brief Series of longitude and latitude points.
 		///
 		/// geoCoordinates is the attribute beneath this property.
 		Q_PROPERTY(QVariantList coordinates
@@ -197,50 +166,51 @@ class Coordinates : public JsonObject
 
 	protected:
 		/// @brief Coordinates of the point
-		GeoCoord geoCoordinates;
+		GeoCoordList geoCoordinates;
 
 		/// @brief String version of retweetID
-		CoordinatesType coordType;
+		Coordinates::CoordinatesType coordType;
 
 	public:
 		// coordinates
 		/// @fn GeoCoord getCoordinates();
 		/// @brief Reading coordinates
 		/// @return this
-		GeoCoord getCoordinates();
+		GeoCoordList getCoordinates();
 
 		/// @fn void setCoordinates(GeoCoord newValue);
 		/// @brief Writing coordinates
 		/// @param newValue New value for coordinate locations
-		void setCoordinates(GeoCoord newValue);
+		void setCoordinates(GeoCoordList newValue);
 
 		// type
-		/// @fn CoordinatesType getType();
+		/// @fn Coordinates::CoordinatesType getType();
 		/// @brief Reading type
 		/// @return coordType
-		CoordinatesType getType();
+		Coordinates::CoordinatesType getType();
 
-		/// @fn void setType(CoordinatesType newValue);
+		/// @fn void setType(Coordinates::CoordinatesType newValue);
 		/// @brief Writing type
 		/// @param newValue New value for coordType
-		void setType(CoordinatesType newValue);
+		void setType(Coordinates::CoordinatesType newValue);
+
 };
 
-// Serialization of Coordinates
-Q_DECLARE_METATYPE(Coordinates)
+// Serialization of GeoBoundingBox
+Q_DECLARE_METATYPE(GeoBoundingBox)
 
-/// @fn QDataStream & operator<<(QDataStream & out, const Coordinates & infos);
+/// @fn QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & infos);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
-/// @param infos Coordinates to put in the stream
+/// @param infos GeoBoundingBox to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const Coordinates & infos);
+QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & infos);
 
-/// @fn QDataStream & operator>>(QDataStream & in, Coordinates & infos);
+/// @fn QDataStream & operator>>(QDataStream & in, GeoBoundingBox & infos);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
-/// @param infos Coordinates to put in the stream
+/// @param infos GeoBoundingBox to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, Coordinates & infos);
+QDataStream & operator>>(QDataStream & in, GeoBoundingBox & infos);
 
-#endif // COORDINATES_HPP
+#endif // GEOBOUNDINGBOX_HPP

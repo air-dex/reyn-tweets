@@ -54,10 +54,7 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 	getParameters(getArgs),
 	postParameters(postArgs),
 	headers(headersParam),
-	responseBuffer(""),
-	httpResponse(),
-	errorMessage("Request not done"),
-	replyURL("")
+	httpResponse()
 {
 	// Setting the timer
 	timeoutTimer.setInterval(10*1000); // 10 seconds
@@ -154,12 +151,8 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 
 	// Analysing the response
 	extractHttpStatuses(response);
-	errorMessage = response->errorString();
-	replyURL = response->url().toString();
 
 	// Extracting informations
-	responseBuffer = response->readAll();
-
 	NetworkResponse netrep(response);
 	response->deleteLater();
 
@@ -185,9 +178,6 @@ void TwitterCommunicator::timeout() {
 	// Analysing the response
 	httpResponse.code = 0;
 	httpResponse.message = "";
-	errorMessage = "timeout";
-	replyURL = serviceURL;
-	responseBuffer = "";
 
 	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);
 
@@ -200,24 +190,9 @@ void TwitterCommunicator::timeout() {
 // Getters //
 /////////////
 
-// Getting the raw response
-QByteArray TwitterCommunicator::getResponseBuffer() {
-	return responseBuffer;
-}
-
 // Getting the HTTP response (code and reason)
 ResponseInfos TwitterCommunicator::getHttpResponse() {
 	return httpResponse;
-}
-
-// Getting the URL of the reply
-QString TwitterCommunicator::getReplyURL() {
-	return replyURL;
-}
-
-// Getter on the error massage
-QString TwitterCommunicator::getErrorMessage() {
-	return errorMessage;
 }
 
 

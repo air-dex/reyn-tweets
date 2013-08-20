@@ -157,17 +157,8 @@ class TwitterCommunicator : public QObject
 
 		// Entities for response
 
-		/// @brief Content of the response
-		QByteArray responseBuffer;
-
 		/// @brief HTTP response code and reason
 		ResponseInfos httpResponse;
-
-		/// @brief Error message
-		QString errorMessage;
-
-		/// @brief URL of the reply
-		QString replyURL;
 
 
 	private:

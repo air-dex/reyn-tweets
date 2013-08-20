@@ -65,15 +65,10 @@ void JsonArray<V>::recopie(const JsonArray<V> & list) {
 	this->Listable<V>::recopie(list);
 }
 
-/////////////////
-// Conversions //
-/////////////////
 
-// Converting a MappableList into a QVariantList
-template <class V>
-QVariantList JsonArray<V>::toVariant() const {
-	return this->toVariantList();
-}
+//////////////////////////////
+// Jsonable virtual methods //
+//////////////////////////////
 
 // Filling a JsonArray with a QJsonArray.
 template <class V>
@@ -85,7 +80,7 @@ void JsonArray<V>::fillWithJSON(QJsonArray json) {
 // Converting the JsonArray into a QJsonArray
 template <class V>
 QJsonArray JsonArray<V>::toJSON() const {
-	return this;
+	return QJsonArray::fromVariantList(this->toVariant());
 }
 
 

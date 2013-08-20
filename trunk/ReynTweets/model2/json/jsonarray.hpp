@@ -31,7 +31,7 @@
 /// @class JsonArray
 /// @brief Base class for all objects which can be represented by a JSON array.
 template <class V>
-class JsonArray : public Listable<V>, public Jsonable<QJsonArray>, public QJsonArray
+class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 {
 	public:
 		/// @fn JsonArray();
@@ -52,27 +52,20 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>, public QJsonA
 		/// @param list Listable to affect
 		const JsonArray<V> & operator=(const JsonArray<V> & list);
 
-		////////////////////////
-		// Overloaded methods //
-		////////////////////////
-
-		/// @fn virtual QVariantList toVariant() const;
-		/// @brief Converting the list of serializables into a QVariantList.
-		///
-		/// It is a special overload to use Qt JSON methods.
-		/// @return The corresponding QVariantList.
-		virtual QVariantList toVariant() const;
-
-		/// @fn virtual QJsonArray toJSON() const;
-		/// @brief Converting the JsonArray into a QJsonArray.
-		/// @return The corresponding QJsonArray.
-		virtual QJsonArray toJSON() const;
+		//////////////////////////////
+		// Jsonable virtual methods //
+		//////////////////////////////
 
 		/// @fn virtual void fillWithJSON(QJsonArray json);
 		/// @brief Filling a JsonArray with a QJsonArray.
 		/// contained in the map.
 		/// @param json The QJsonArray
 		virtual void fillWithJSON(QJsonArray json);
+
+		/// @fn virtual QJsonArray toJSON() const;
+		/// @brief Converting the JsonArray into a QJsonArray.
+		/// @return The corresponding QJsonArray.
+		virtual QJsonArray toJSON() const;
 
 	protected:
 		/// @fn virtual void recopie(const JsonArray<V> & list);

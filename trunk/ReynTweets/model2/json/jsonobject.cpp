@@ -24,6 +24,7 @@
 #include "jsonobject.hpp"
 #include <QJsonDocument>
 #include "../../tools/parsers/jsonparser.hpp"
+#include "../../tools/utils.hpp"
 
 /////////////
 // Coplien //
@@ -34,11 +35,7 @@ JsonObject::JsonObject(bool blacklistObjectName) :
 	Mappable(blacklistObjectName),
 	Jsonable<QJsonObject>(),
 	QJsonObject()
-{
-	if (!blacklistObjectName) {
-		this->insert("objectName", QJsonValue(this->objectName()));
-	}
-}
+{}
 
 // Destructor
 JsonObject::~JsonObject() {}
@@ -76,12 +73,7 @@ void JsonObject::fillWithVariant(QVariantMap map) {
 
 // Getting a QVariantMap representation of the JsonObject
 QVariantMap JsonObject::toVariant() {
-	return this->toVariantMap();
-}
-
-// Getting a QJsonObject representation of the JsonObject
-QJsonObject JsonObject::toJSON() {
-	return this;
+	return this->toJSON().toVariantMap();
 }
 
 
@@ -93,17 +85,17 @@ QJsonObject JsonObject::toJSON() {
 QDataStream & jsonStreamingOut(QDataStream & out,
 							   const JsonObject & jsonobj)
 {
-	/*
-	// Better ? streamVariantOut : cf. tools/utils
-	return streamVariantOut(out, list.toVariant());
-	//*/
+	return streamVariantOut(out, jsonobj.toVariant());
 
+	/*
+	// A recaser
 	QJsonDocument doc(jsonobj);
 	QByteArray serializedListable = doc.toJson();
 
 	out << serializedListable;
 
 	return out;
+	//*/
 }
 
 // Specialization of jsonStreamingIn for JsonObjects

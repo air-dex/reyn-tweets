@@ -24,12 +24,12 @@
 #ifndef COORDINATES_HPP
 #define COORDINATES_HPP
 
-#include "../json/jsonobject.hpp"
+#include "genericcoordinates.tpp"
 #include "geocoord.hpp"
 
 /// @class Coordinates
 /// @brief Class representing coordinates
-class Coordinates : public JsonObject
+class Coordinates : public GenericCoordinates<GeoCoord>
 {
 	Q_OBJECT
 
@@ -38,34 +38,6 @@ class Coordinates : public JsonObject
 	//////////////////////
 
 	public:
-		/// @enum CoordinatesType
-		/// @brief Type of coordiante.
-		enum CoordinatesType {
-			/// @brief Fake type
-			FAKE_COORDINATES,
-
-			/// @brief Coordinates are a point
-			POINT,
-
-			/// @brief Coordinates are a polygon (Place)
-			POLYGON
-		};
-
-		Q_ENUMS(CoordinatesType)
-
-		/// @fn static QString coord2string(CoordinatesType coord);
-		/// @brief Converting a CoordinatesType into a QString.
-		/// @param coord The CoordinatesType
-		/// @return The corresponding QString
-		static QString coord2string(CoordinatesType coord);
-
-		/// @fn static CoordinatesType string2coord(QString coordStr);
-		/// @brief Converting a QString into a CoordinatesType.
-		/// @param coord The QString
-		/// @return The corresponding CoordinatesType
-		static CoordinatesType string2coord(QString coordStr);
-
-
 		/// @fn Coordinates();
 		/// @brief Default constructor
 		Coordinates();
@@ -93,30 +65,8 @@ class Coordinates : public JsonObject
 		/// @brief Resets the mappable to a default value
 		void reset();
 
-		/////////////////////
-		// JSON conversion //
-		/////////////////////
-
-		/// @fn virtual void fillWithJSON(QJsonObject json);
-		/// @brief Filling the object with a QJsonObject.
-		///
-		/// The method is virtual because its implementation depends on the
-		/// object type.
-		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json);
-
-		/// @fn virtual QJsonObject toJSON();
-		/// @brief Getting a QJsonObject representation of the object
-		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
-
 
 	private:
-		/// @fn void recopie(const Coordinates & coord);
-		/// @brief Copy of a Coordinates
-		/// @param coord Coordinates to copy
-		void recopie(const Coordinates & coord);
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out, const Coordinates & coord);
@@ -133,97 +83,9 @@ class Coordinates : public JsonObject
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, Coordinates & coord);
 
-
-	///////////////////////////
-	// Properties management //
-	///////////////////////////
-
-	protected:
-		// coordinates
-		/// @property id
-		/// @brief Longitude and latitude.
-		///
-		/// geoCoordinates is the attribute beneath this property.
-		Q_PROPERTY(QVariantList coordinates
-				   READ getCoordinatesProperty
-				   WRITE setCoordinates
-				   NOTIFY coordinatesChanged)
-
-		/// @brief Name of the property id.
-		static QString COORDINATES_PN;
-
-		/// @fn QVariantList getCoordinatesProperty();
-		/// @brief Reading coordinates
-		/// @return retweetID
-		QVariantList getCoordinatesProperty();
-
-		/// @fn void setCoordinates(QVariantList newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for id
-		void setCoordinates(QVariantList newValue);
-
-		// type
-		/// @property type
-		/// @brief Type of coordinates.
-		///
-		/// coordType is the attribute beneath this property.
-		Q_PROPERTY(QString type
-				   READ getTypeProperty
-				   WRITE setType
-				   NOTIFY typeChanged)
-
-		/// @brief Name of the property type.
-		static QString TYPE_PN;
-
-		/// @fn QString getType();
-		/// @brief Reading type
-		/// @return coordType
-		QString getTypeProperty();
-
-		/// @fn void setType(QString newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(QString newValue);
-
-
-	signals:
-		/// @fn void coordinatesChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void coordinatesChanged();
-
-		/// @fn void typeChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void typeChanged();
-
-	protected:
-		/// @brief Coordinates of the point
-		GeoCoord geoCoordinates;
-
-		/// @brief String version of retweetID
-		CoordinatesType coordType;
-
-	public:
-		// coordinates
-		/// @fn GeoCoord getCoordinates();
-		/// @brief Reading coordinates
-		/// @return this
-		GeoCoord getCoordinates();
-
-		/// @fn void setCoordinates(GeoCoord newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for coordinate locations
-		void setCoordinates(GeoCoord newValue);
-
-		// type
-		/// @fn CoordinatesType getType();
-		/// @brief Reading type
-		/// @return coordType
-		CoordinatesType getType();
-
 		/// @fn void setType(CoordinatesType newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(CoordinatesType newValue);
+		/// @brief Overriden to set the CoordinatesType readonly.
+		void setType(CoordinatesType);
 };
 
 // Serialization of Coordinates

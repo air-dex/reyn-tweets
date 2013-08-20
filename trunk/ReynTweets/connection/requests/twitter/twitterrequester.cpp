@@ -78,7 +78,8 @@ QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 		rawResponse.append('}');
 	}
 
-	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
+	// TODO : improve it because of improved JSONParser
+	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg).toVariant();
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !

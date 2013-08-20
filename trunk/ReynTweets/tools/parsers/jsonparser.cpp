@@ -28,11 +28,11 @@
 #include <QJsonDocument>
 
 // Parsing method
-QVariantMap JSONParser::parse(QByteArray data,
-							  bool & parseOK,
-							  QString & parseError,
-							  int * lineError,
-							  int *)
+QJsonValue JSONParser::parse(QByteArray data,
+							 bool & parseOK,
+							 QString & parseError,
+							 int * lineError,
+							 int *)
 {
 	QJsonParseError jsonParseError;
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonParseError);
@@ -43,5 +43,7 @@ QVariantMap JSONParser::parse(QByteArray data,
 		*lineError = jsonParseError.offset;
 	}
 
-	return jsonDoc.toVariant().toMap();
+	QVariant jsonVar = jsonDoc.toVariant();
+
+	return QJsonValue::fromVariant(jsonVar);
 }

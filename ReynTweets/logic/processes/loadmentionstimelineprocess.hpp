@@ -26,6 +26,8 @@
 
 #include "singletwittercallprocess.hpp"
 
+/// @class LoadMentionsTimelineProcess
+/// @brief Process for loading mentions
 class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 {
 	public:

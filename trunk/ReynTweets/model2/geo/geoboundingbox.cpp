@@ -1,5 +1,5 @@
-/// @file coordinates.cpp
-/// @brief Implementation of Coordinates
+/// @file geoboundingbox.cpp
+/// @brief Implementation of GeoBoundingBox
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,85 +21,53 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "coordinates.hpp"
+#include "geoboundingbox.hpp"
 #include <QJsonArray>
-
-//////////////////////
-// Coordinates type //
-//////////////////////
-
-// Converting a CoordinatesType into a QString
-QString Coordinates::coord2string(Coordinates::CoordinatesType coord) {
-	switch (coord) {
-		case POINT:
-			return "Point";
-
-		case POLYGON:
-			return "Polygon";
-
-		default:
-			return "";
-	}
-}
-
-// Converting a QString into a CoordinatesType
-Coordinates::CoordinatesType Coordinates::string2coord(QString coordStr) {
-	QString coord = coordStr.toLower();
-
-	if ("point" == coord) {
-		return POINT;
-	} else if ("polygon" == coord) {
-		return POLYGON;
-	} else {
-		return FAKE_COORDINATES;
-	}
-}
-
 
 /////////////
 // Coplien //
 /////////////
 
 // Default constructor
-Coordinates::Coordinates() :
+GeoBoundingBox::GeoBoundingBox() :
 	JsonObject(),
 	geoCoordinates(),
-	coordType(FAKE_COORDINATES)
+	coordType(Coordinates::FAKE_COORDINATES)
 {}
 
 // Destructor
-Coordinates::~Coordinates() {}
+GeoBoundingBox::~GeoBoundingBox() {}
 
 // Copy constructor
-Coordinates::Coordinates(const Coordinates & coord) :
+GeoBoundingBox::GeoBoundingBox(const GeoBoundingBox & coord) :
 	JsonObject(),
 	geoCoordinates(),
-	coordType(FAKE_COORDINATES)
+	coordType(Coordinates::FAKE_COORDINATES)
 {
 	this->recopie(coord);
 }
 
 // Affectation
-const Coordinates & Coordinates::operator=(const Coordinates & coord) {
+const GeoBoundingBox & GeoBoundingBox::operator=(const GeoBoundingBox & coord) {
 	this->recopie(coord);
 	return *this;
 }
 
 // Copy of a Coordinates
-void Coordinates::recopie(const Coordinates & coord) {
+void GeoBoundingBox::recopie(const GeoBoundingBox & coord) {
 	this->geoCoordinates = coord.geoCoordinates;
 	this->coordType = coord.coordType;
 }
 
 // Serialization declaration
-void Coordinates::initSystem() {
-	qRegisterMetaTypeStreamOperators<Coordinates>("Coordinates");
-	qMetaTypeId<Coordinates>();
+void GeoBoundingBox::initSystem() {
+	qRegisterMetaTypeStreamOperators<GeoBoundingBox>("GeoBoundingBox");
+	qMetaTypeId<GeoBoundingBox>();
 }
 
 // Reset
-void Coordinates::reset() {
-	*this = Coordinates();
+void GeoBoundingBox::reset() {
+	*this = GeoBoundingBox();
 }
 
 
@@ -108,7 +76,7 @@ void Coordinates::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void Coordinates::fillWithJSON(QJsonObject json) {
+void GeoBoundingBox::fillWithJSON(QJsonObject json) {
 	// "coordinates" property
 	QJsonValue propval = json.value(COORDINATES_PN);
 
@@ -123,16 +91,16 @@ void Coordinates::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isString()) {
 		QString kind = propval.toString();
-		this->coordType = string2coord(kind);
+		this->coordType = Coordinates::string2coord(kind);
 	}
 }
 
 // QJsonObject representation of the object
-QJsonObject Coordinates::toJSON() {
+QJsonObject GeoBoundingBox::toJSON() {
 	QJsonObject json;
 
 	json.insert(COORDINATES_PN, QJsonValue(this->geoCoordinates.toJSON()));
-	json.insert(TYPE_PN, QJsonValue(coord2string(this->coordType)));
+	json.insert(TYPE_PN, QJsonValue(Coordinates::coord2string(this->coordType)));
 
 	return json;
 }
@@ -158,44 +126,44 @@ QDataStream & operator>>(QDataStream & in, Coordinates & coord) {
 ///////////////////////////
 
 // coordinates
-QString Coordinates::COORDINATES_PN = "coordinates";
+QString GeoBoundingBox::COORDINATES_PN = "coordinates";
 
-QVariantList Coordinates::getCoordinatesProperty() {
+QVariantList GeoBoundingBox::getCoordinatesProperty() {
 	return this->geoCoordinates.toVariant();
 }
 
-GeoCoord Coordinates::getCoordinates() {
+GeoCoordList GeoBoundingBox::getCoordinates() {
 	return this->geoCoordinates;
 }
 
-void Coordinates::setCoordinates(QVariantList newValue) {
+void GeoBoundingBox::setCoordinates(QVariantList newValue) {
 	this->geoCoordinates.reset();
 	this->geoCoordinates.fillWithVariant(newValue);
 	emit coordinatesChanged();
 }
 
-void Coordinates::setCoordinates(GeoCoord newValue) {
+void GeoBoundingBox::setCoordinates(GeoCoordList newValue) {
 	this->geoCoordinates = newValue;
 	emit coordinatesChanged();
 }
 
 // type
-QString Coordinates::TYPE_PN = "type";
+QString GeoBoundingBox::TYPE_PN = "type";
 
-QString Coordinates::getTypeProperty() {
-	return coord2string(this->coordType);
+QString GeoBoundingBox::getTypeProperty() {
+	return Coordinates::coord2string(this->coordType);
 }
 
-Coordinates::CoordinatesType Coordinates::getType() {
+Coordinates::CoordinatesType GeoBoundingBox::getType() {
 	return this->coordType;
 }
 
-void Coordinates::setType(Coordinates::CoordinatesType newValue) {
+void GeoBoundingBox::setType(Coordinates::CoordinatesType newValue) {
 	this->coordType = newValue;
 	emit typeChanged();
 }
 
-void Coordinates::setType(QString newValue) {
-	this->coordType = string2coord(newValue);
+void GeoBoundingBox::setType(QString newValue) {
+	this->coordType = Coordinates::string2coord(newValue);
 	emit typeChanged();
 }

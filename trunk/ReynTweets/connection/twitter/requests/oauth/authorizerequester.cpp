@@ -28,7 +28,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager, bool forceLog, QString writeLogin) :
+AuthorizeRequester::AuthorizeRequester(TwitterManager &authManager, bool forceLog, QString writeLogin) :
 	OAuthRequester(Network::GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,

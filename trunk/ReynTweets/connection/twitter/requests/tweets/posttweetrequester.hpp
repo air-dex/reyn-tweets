@@ -54,7 +54,7 @@ class PostTweetRequester : public TwitterRequester
 		/// @param showCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		PostTweetRequester(OAuthManager & authManager,
+		PostTweetRequester(TwitterManager & authManager,
 						   QString status,
 						   qlonglong replyTostatusID = -1,
 						   float lat = -361,

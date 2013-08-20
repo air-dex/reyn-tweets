@@ -49,7 +49,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
-		FavoritesTimelineRequester(OAuthManager & authManager,
+		FavoritesTimelineRequester(TwitterManager & authManager,
 								   qlonglong uid = -1,
 								   qlonglong oldestTweetID = -1,
 								   qlonglong earliestTweetID = -1,
@@ -70,7 +70,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
-		FavoritesTimelineRequester(OAuthManager & authManager,
+		FavoritesTimelineRequester(TwitterManager & authManager,
 								   QString userName = "",
 								   qlonglong oldestTweetID = -1,
 								   qlonglong earliestTweetID = -1,

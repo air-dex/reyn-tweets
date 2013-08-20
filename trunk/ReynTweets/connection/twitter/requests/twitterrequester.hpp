@@ -26,7 +26,7 @@
 
 #include "../../common/requests/genericrequester.hpp"
 #include "twitterurls.hpp"
-#include "../../twitter/oauthmanager.hpp"
+#include "../../twitter/twittermanager.hpp"
 
 /// @class TwitterRequester
 /// @brief Base class for requesters that use the Twitter API.
@@ -52,12 +52,12 @@ class TwitterRequester : public GenericRequester
 		/// own parsing process so they need a special value called OAUTH_PARSING.
 		TwitterRequester(HTTPRequestType type,
 						 QString url,
-						 OAuthManager & authManager,
+						 TwitterManager & authManager,
 						 NetworkResultType parseError = Network::JSON_PARSING);
 
 	protected:
 		/// @brief Entity with authentication information
-		OAuthManager & oauthManager;
+		TwitterManager & oauthManager;
 
 
 		////////////////////////////

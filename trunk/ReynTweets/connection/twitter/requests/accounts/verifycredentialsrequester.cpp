@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-VerifyCredentialsRequester::VerifyCredentialsRequester(OAuthManager & authManager,
+VerifyCredentialsRequester::VerifyCredentialsRequester(TwitterManager & authManager,
 													   bool entities,
 													   bool skipLastTweet) :
 	TwitterRequester(Network::GET,

@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-RetweetRequester::RetweetRequester(OAuthManager &authManager,
+RetweetRequester::RetweetRequester(TwitterManager &authManager,
 								   qlonglong statusID,
 								   bool userIDonly) :
 	TwitterRequester(Network::POST, TwitterURL::RETWEET_URL, authManager),

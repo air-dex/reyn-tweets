@@ -55,13 +55,18 @@ SOURCES += \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
 	connection/common/networkresult.cpp \
+	connection/common/authmanagers/apikeymanager.cpp \
+	connection/common/authmanagers/oauthutils.cpp \
+	connection/common/authmanagers/oauthmanager.cpp \
+	connection/common/authmanagers/oauth10aauthenticator.cpp \
+	connection/common/authmanagers/oauth2authenticator.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
 	connection/common/calls/requestinfos.cpp \
 	connection/common/calls/requestermanager.cpp \
 	connection/common/calls/genericcalls.cpp \
-	connection/twitter/oauthmanager.cpp \
+	connection/twitter/twittermanager.cpp \
 	connection/twitter/requests/twitterurls.cpp \
 	connection/twitter/requests/twitterrequester.cpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.cpp \
@@ -165,6 +170,11 @@ HEADERS  += \
 	connection/common/headersmap.hpp \
 	connection/common/networkresult.hpp \
 	connection/common/responseinfos.hpp \
+	connection/common/authmanagers/apikeymanager.hpp \
+	connection/common/authmanagers/oauthutils.hpp \
+	connection/common/authmanagers/oauthmanager.hpp \
+	connection/common/authmanagers/oauth10aauthenticator.hpp \
+	connection/common/authmanagers/oauth2authenticator.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
 	connection/common/networkresulttype.hpp \
 	connection/common/requestresult.hpp \
@@ -174,7 +184,7 @@ HEADERS  += \
 	connection/common/calls/requestinfos.hpp \
 	connection/common/calls/requestermanager.hpp \
 	connection/common/calls/genericcalls.hpp \
-	connection/twitter/oauthmanager.hpp \
+	connection/twitter/twittermanager.hpp \
 	connection/twitter/requests/twitterurls.hpp \
 	connection/twitter/requests/twitterrequester.hpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.hpp \

@@ -1,10 +1,10 @@
-/// @file oauthmanager.cpp
-/// @brief Implementation of OAuthManager
+/// @file oauth10aauthenticator.cpp
+/// @brief Implementation of OAuth10aAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,27 +21,23 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QCryptographicHash>
-#include <QDateTime>
+#include "oauth10aauthenticator.hpp"
+
 #include <QUrl>
-#include "oauthmanager.hpp"
-#include "../../tools/utils.hpp"
+#include "oauthutils.hpp"
+#include "../../../tools/utils.hpp"
 
 // Constructor
-OAuthManager::OAuthManager(QString signatureAlgorithm,
-						   QString version) :
-	consumerKey(""),
-	consumerSecret(""),
+OAuth10aAuthenticator::OAuth10aAuthenticator(QString signatureAlgorithm) :
+	OAuthManager("1.0"),
 	callbackUrl(""),
 	oauthSignatureMethod(signatureAlgorithm),
-	oauthVersion(version),
-	oauthToken(""),
-	oauthSecret(""),
+	oauthTokens(),
 	oauthVerifier("")
 {}
 
 // Destructor
-OAuthManager::~OAuthManager() {}
+OAuth10aAuthenticator::~OAuth10aAuthenticator() {}
 
 
 /////////////////////
@@ -49,72 +45,61 @@ OAuthManager::~OAuthManager() {}
 /////////////////////
 
 // Callback URL
-QString OAuthManager::getCallbackUrl() {
+QString OAuth10aAuthenticator::getCallbackUrl() {
 	return callbackUrl;
 }
 
-void OAuthManager::setCallbackUrl(QString newURL) {
+void OAuth10aAuthenticator::setCallbackUrl(QString newURL) {
 	callbackUrl = newURL;
 }
 
-// Consumer key
-void OAuthManager::setConsumerKey(QByteArray clientKey) {
-	consumerKey = clientKey;
-}
-
-// Consumer secret
-void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
-	consumerSecret = clientSecret;
-}
-
 // OAuth Token
-QByteArray OAuthManager::getOAuthToken() {
-	return oauthToken;
+QByteArray OAuth10aAuthenticator::getOAuthToken() {
+	return oauthTokens.first;
 }
 
-void OAuthManager::setOAuthToken(QByteArray authToken) {
-	oauthToken = authToken;
+void OAuth10aAuthenticator::setOAuthToken(QByteArray authToken) {
+	oauthTokens.first = authToken;
 }
 
 // OAuth secret
-void OAuthManager::setOAuthSecret(QByteArray authSecret) {
-	oauthSecret = authSecret;
+void OAuth10aAuthenticator::setOAuthSecret(QByteArray authSecret) {
+	oauthTokens.second = authSecret;
 }
 
 // OAuth verifier
-QByteArray OAuthManager::getVerifier() {
+QByteArray OAuth10aAuthenticator::getVerifier() {
 	return oauthVerifier;
 }
 
-void OAuthManager::setVerifier(QByteArray verifier) {
+void OAuth10aAuthenticator::setVerifier(QByteArray verifier) {
 	oauthVerifier = verifier;
 }
-
 
 ////////////////////////////
 // Utilities for requests //
 ////////////////////////////
 
 // Resetting tokens
-void OAuthManager::resetTokens() {
-	oauthToken = "";
-	oauthSecret = "";
+void OAuth10aAuthenticator::resetTokens() {
+	oauthTokens.first = "";
+	oauthTokens.second = "";
 	oauthVerifier = "";
 }
 
 // Getting the "Authorization" header
-QByteArray OAuthManager::getAuthorizationHeader(HTTPRequestType type,
-												QString baseURL,
-												ArgsMap getDatas,
-												ArgsMap postDatas,
-												bool oauthTokenNeeded,
-												bool callbackUrlNeeded,
-												bool oauthVerifierNeeded)
+QByteArray OAuth10aAuthenticator::getAuthorizationHeader(Network::HTTPRequestType type,
+														 QString baseURL,
+														 ArgsMap getDatas,
+														 ArgsMap postDatas,
+														 bool oauthTokenNeeded,
+														 bool callbackUrlNeeded,
+														 bool oauthVerifierNeeded)
 {
 	QString authorizationHeader = "OAuth ";
 	QString nonce = generateNonce();
 	QString timestamp = generateTimestamp();
-	QString signature = signDatas(type,
+	QByteArray signature = signDatas(type,
 								  baseURL,
 								  getDatas,
 								  postDatas,
@@ -139,63 +124,40 @@ QByteArray OAuthManager::getAuthorizationHeader(HTTPRequestType type,
 	return authorizationHeader.toLatin1();
 }
 
-// Generates a nonce for a request
-QString OAuthManager::generateNonce() {
-	QString base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	int baseLength = base.length();
-
-	QString randomString = "";
-	int randomStringLength = 32;
-
-	// Taking random word characters
-	for (int i = 0; i < randomStringLength; ++i) {
-		int position = qrand() % baseLength;
-		randomString.append(base.at(position));
-	}
-
-	QByteArray encodedNonce = randomString.toLatin1().toBase64();
-
-	return QString(encodedNonce);
-}
-
-// Generates a timestamp for a request
-QString OAuthManager::generateTimestamp() {
-	qint64 timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
-	return QString::number(timestamp);
-}
-
 // Signing datas
-QString OAuthManager::signDatas(HTTPRequestType type,
-								QString baseURL,
-								ArgsMap getDatas,
-								ArgsMap postDatas,
-								QString nonce,
-								QString timestamp,
-								bool oauthTokenNeeded,
-								bool callbackUrlNeeded,
-								bool oauthVerifierNeeded)
+QByteArray OAuth10aAuthenticator::signDatas(Network::HTTPRequestType type,
+											QString baseURL,
+											ArgsMap getDatas,
+											ArgsMap postDatas,
+											QString nonce,
+											QString timestamp,
+											bool oauthTokenNeeded,
+											bool callbackUrlNeeded,
+											bool oauthVerifierNeeded)
 {
 	// Building the key
-	QString key = "";
+	QByteArray key = "";
 
-	key.append(QUrl::toPercentEncoding(QString::fromLatin1(consumerSecret)));
+	key.append(QUrl::toPercentEncoding(QString::fromLatin1(consumerTokens.second)));
 	key.append('&');
-	key.append(QUrl::toPercentEncoding(QString::fromLatin1(oauthSecret)));
+	key.append(QUrl::toPercentEncoding(QString::fromLatin1(oauthTokens.second)));
 
 
 	// Building that will be signed
 
 	// OAuth parameters
-	QString oauthString = buildOAuthParameterString(nonce,
-													timestamp,
-													"&",
-													oauthTokenNeeded,
-													callbackUrlNeeded,
-													oauthVerifierNeeded,
-													false,
-													false);
+	QString oauthString = this->buildOAuthParameterString(nonce,
+														  timestamp,
+														  "&",
+														  oauthTokenNeeded,
+														  callbackUrlNeeded,
+														  oauthVerifierNeeded,
+														  false,
+														  false);
 
-	QString parameterString = buildSignatureBaseString(getDatas, postDatas, oauthString);
+	QString parameterString = this->buildSignatureBaseString(getDatas,
+															 postDatas,
+															 oauthString);
 
 	// Building the base String
 	QByteArray toSign = "";
@@ -206,19 +168,19 @@ QString OAuthManager::signDatas(HTTPRequestType type,
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(parameterString));
 
-	return hmacSha1(key.toLatin1(), toSign);
+	return hmacSha1(key, toSign);
 }
 
 // Generic method to build strings with OAuth parameters.
-QString OAuthManager::buildOAuthParameterString(QString nonce,
-												QString timestamp,
-												QString separator,
-												bool oauthTokenNeeded,
-												bool callbackUrlNeeded,
-												bool oauthVerifierNeeded,
-												bool putDoubleQuotes,
-												bool signatureNeeded,
-												QString signature)
+QString OAuth10aAuthenticator::buildOAuthParameterString(QString nonce,
+														 QString timestamp,
+														 QString separator,
+														 bool oauthTokenNeeded,
+														 bool callbackUrlNeeded,
+														 bool oauthVerifierNeeded,
+														 bool putDoubleQuotes,
+														 bool signatureNeeded,
+														 QByteArray signature)
 {
 	QString oauthParamString = "";		// Final string
 	QString formattedParamString = "";	// Temporary string containg a formatted parameter
@@ -234,7 +196,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 
 	// oauth_consumer_key
 	formattedParamString = formatParam("oauth_consumer_key",
-									   QString::fromLatin1(consumerKey),
+									   QString::fromLatin1(consumerTokens.first),
 									   putDoubleQuotes);
 	oauthParamString.append(formattedParamString);
 	oauthParamString.append(separator);
@@ -249,7 +211,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	// oauth_signature
 	if (signatureNeeded) {
 		formattedParamString = formatParam("oauth_signature",
-										   signature,
+										   QString::fromLatin1(signature),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);
@@ -272,7 +234,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	// oauth_token
 	if (oauthTokenNeeded) {
 		formattedParamString = formatParam("oauth_token",
-										   QString::fromLatin1(oauthToken),
+										   QString::fromLatin1(oauthTokens.first),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);
@@ -297,9 +259,9 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 }
 
 // Method builing the base string for the OAuth Signature.
-QString OAuthManager::buildSignatureBaseString(ArgsMap getDatas,
-											   ArgsMap postDatas,
-											   QString oauthString)
+QString OAuth10aAuthenticator::buildSignatureBaseString(ArgsMap getDatas,
+														ArgsMap postDatas,
+														QString oauthString)
 {
 	QString oauthKey = "oauth_*";
 

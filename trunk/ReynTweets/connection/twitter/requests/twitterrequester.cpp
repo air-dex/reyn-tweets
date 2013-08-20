@@ -30,7 +30,7 @@
 // Constructor
 TwitterRequester::TwitterRequester(HTTPRequestType type,
 								   QString url,
-								   OAuthManager &authManager,
+								   TwitterManager &authManager,
 								   NetworkResultType parseError) :
 	GenericRequester(type, url, parseError),
 	oauthManager(authManager)

@@ -45,7 +45,7 @@ class FavoriteRequester : public TwitterRequester
 		/// (true) or not (false).
 		/// @param id ID of the tweet to favorite
 		/// @param withEntities Value of includeEntities
-		FavoriteRequester(OAuthManager & authManager,
+		FavoriteRequester(TwitterManager & authManager,
 						  bool favorited,
 						  qlonglong id,
 						  bool withEntities = false);

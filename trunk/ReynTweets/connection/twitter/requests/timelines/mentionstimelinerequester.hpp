@@ -48,7 +48,7 @@ class MentionsTimelineRequester : public TwitterRequester
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
-		MentionsTimelineRequester(OAuthManager & authManager,
+		MentionsTimelineRequester(TwitterManager & authManager,
 								  qlonglong oldestTweetID = -1,
 								  qlonglong youngestTweetID = -1,
 								  bool userIDonly = false,

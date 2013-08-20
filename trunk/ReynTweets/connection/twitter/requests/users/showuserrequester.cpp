@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor with the user ID
-ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
+ShowUserRequester::ShowUserRequester(TwitterManager & authManager,
 									 qlonglong id,
 									 bool entities) :
 	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
@@ -36,7 +36,7 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 {}
 
 // Constructor with the screen name
-ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
+ShowUserRequester::ShowUserRequester(TwitterManager & authManager,
 									 QString name,
 									 bool entities) :
 	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),

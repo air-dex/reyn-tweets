@@ -41,7 +41,7 @@ class VerifyCredentialsRequester : public TwitterRequester
 		/// @param authManager OAuthManager for authentication
 		/// @param entities Include entities in the last tweet of the user ?
 		/// @param skipLastTweet Skip last tweet written by the user ?
-		VerifyCredentialsRequester(OAuthManager & authManager,
+		VerifyCredentialsRequester(TwitterManager & authManager,
 								   bool entities = false,
 								   bool skipLastTweet = false);
 

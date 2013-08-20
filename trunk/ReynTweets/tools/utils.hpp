@@ -62,18 +62,6 @@ QColor string2color(QString coloredString);
 // Miscanellous //
 //////////////////
 
-/// @fn QString hmacSha1(QByteArray key, QByteArray baseString);
-/// @brief HMAC-SHA1 algorithm for signatures.
-///
-/// Its implementation for Reyn Tweets was found on the
-/// <a href="http://developer.qt.nokia.com/">Qt Developer Network</a> here :
-/// <a href="http://developer.qt.nokia.com/wiki/HMAC-SHA1">
-/// http://developer.qt.nokia.com/wiki/HMAC-SHA1</a>.
-/// @param key Key for signature
-/// @param baseString String that we want to sign
-/// @return The signature
-QString hmacSha1(QByteArray key, QByteArray baseString);
-
 /// @fn bool ouBien(bool a, bool b);
 /// @brief Logical XOR : <code>a XOR b == a && !b || !a && b</code>
 /// @param a 1st bool

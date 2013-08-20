@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-HomeTimelineRequester::HomeTimelineRequester(OAuthManager & authManager,
+HomeTimelineRequester::HomeTimelineRequester(TwitterManager & authManager,
 											 qlonglong oldestTweetID,
 											 qlonglong youngestTweetID,
 											 bool userIDonly,

@@ -113,7 +113,6 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	QString beginErrMsg = DeleteTweetProcess::trUtf8("Retrieving retweet ID:") + '\n';
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;	// Filled in ProcessUtils methods
 
 	// Analysing the Twitter response
@@ -152,13 +151,13 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
 	// Failed end
 	errorMsg.prepend(beginErrMsg);
-	buildResult(false, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	endProcess();
 }
 
@@ -168,7 +167,6 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 {
 	CoreResult issue = TWEET_UNDESTROYABLE;
 	QString errMsg = "";
-	bool isFatal = false;
 
 	if (allowToDelete) {
 		// Let's destroy the tweet
@@ -191,7 +189,7 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 	}
 
 	// Failed ends
-	GenericProcess::buildResult(false, issue, errMsg, isFatal);
+	GenericProcess::buildResult(issue, errMsg);
 	endProcess();
 }
 
@@ -210,7 +208,6 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;	// Filled in ProcessUtils methods
 
 	// For NO_REQUEST_ERROR requests
@@ -238,11 +235,11 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	endProcess();
 }

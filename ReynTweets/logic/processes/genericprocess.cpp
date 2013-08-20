@@ -49,26 +49,15 @@ void GenericProcess::endProcess() {
 }
 
 // Building the process results
-void GenericProcess::buildResult(bool processOK,
-								 CoreResult &issue,
-								 QString &errMsg,
-								 bool &isFatal)
-{
-	processResult = ProcessUtils::buildProcessResult(processOK,
-													 issue,
-													 errMsg,
-													 isFatal);
+void GenericProcess::buildResult(CoreResult &issue, QString &errMsg) {
+	processResult = ProcessUtils::buildProcessResult(issue, errMsg);
 }
 
 // Invalid ends
 void GenericProcess::invalidEnd() {
 	CoreResult issue = INVALID_ISSUE;
 	QString errMsg = GenericProcess::trUtf8("Dead end");
-	bool fatal = false;
 
-	buildResult(false,
-				issue,
-				errMsg,
-				fatal);
+	buildResult(issue, errMsg);
 	endProcess();
 }

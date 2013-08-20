@@ -38,21 +38,12 @@ namespace ProcessUtils {
 	// Building ProcessResults //
 	/////////////////////////////
 
-	/// @fn ProcessResult buildProcessResult(bool processOK,
-	///										 CoreResult issue,
-	///										 QString errMsg = "",
-	///										 bool isFatal = false);
+	/// @fn ProcessResult buildProcessResult(CoreResult issue, QString errMsg);
 	/// @brief Building process results for unsuccessful ends
-	/// @param processOK Did the process end successfully ?
 	/// @param issue Enum value describing how it ended.
 	/// @param errMsg Error message
-	/// @param isFatal Is the issue fatal (i.e. requiring to abort
-	/// the application) ?
 	/// @return A filled process result
-	ProcessResult buildProcessResult(bool processOK,
-									 CoreResult issue,
-									 QString errMsg,
-									 bool isFatal);
+	ProcessResult buildProcessResult(CoreResult issue, QString errMsg);
 
 	/// @fn ProcessResult buildProcessResult(CoreResult issue,
 	///										 QVariant result = QVariant());
@@ -138,17 +129,14 @@ namespace ProcessUtils {
 
 	/// @fn void treatUnknownResult(QString resultErrorMessage,
 	///								QString &errorMsg,
-	///								CoreResult & issue,
-	///								bool & fatal);
+	///								CoreResult & issue);
 	/// @brief Default treatment when the issue was unexpected
 	/// @param resultErrorMessage Error message of the request
 	/// @param errorMsg Error message of the process
 	/// @param issue Reference on the issue of the request
-	/// @param fatal Boolean indicating if the request error was fatal or not.
 	void treatUnknownResult(QString resultErrorMessage,
 							QString &errorMsg,
-							CoreResult & issue,
-							bool & fatal);
+							CoreResult & issue);
 }
 
 #endif // PROCESSUTILS_HPP

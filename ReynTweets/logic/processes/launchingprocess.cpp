@@ -68,12 +68,8 @@ void LaunchingProcess::checkSettingsLoad() {
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	bool isFatal = true;
 	QString errMsg = appConfiguration.getErrorLoading();
-	buildResult(false,
-				loadIssue,
-				errMsg,
-				isFatal);
+	buildResult(loadIssue, errMsg);
 	endProcess();
 }
 
@@ -125,11 +121,7 @@ void LaunchingProcess::loadConfiguration() {
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	bool isFatal = true;
-	buildResult(false,
-				loadIssue,
-				errorMsg,
-				isFatal);
+	buildResult(loadIssue, errorMsg);
 	endProcess();
 }
 
@@ -147,12 +139,8 @@ void LaunchingProcess::checkTokens() {
 		// There's no OAuth tokens for Twitter -> Let's authenticate !
 		CoreResult issue = AUTHENTICATION_REQUIRED;
 		QString errMsg = LaunchingProcess::trUtf8("Unexpected empty Twitter tokens.");
-		bool isFatal = false;
 
-		buildResult(true,
-					issue,
-					errMsg,
-					isFatal);
+		buildResult(issue, errMsg);
 		emit authenticationRequired();
 		endProcess();
 	} else {
@@ -180,7 +168,6 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	int httpCode = result.httpResponse.code;
 	QString verifyMsg = "";
 	CoreResult verifyIssue;
-	bool isFatal;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -225,14 +212,12 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 verifyMsg,
-											 verifyIssue,
-											 isFatal);
+											 verifyIssue);
 			break;
 	}
 
 
 	// Keeping on launching Reyn Tweets depending on what happened in the request
-	bool processOK;
 	QString errorMsg = "";
 
 	switch (verifyIssue) {
@@ -243,65 +228,51 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case WRONG_USER:
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
-			processOK = true;
 			verifyIssue = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
-			isFatal = false;
 			emit authenticationRequired();
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
-			processOK = true;
 			verifyIssue = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
-			isFatal = false;
 			emit authenticationRequired();
 			break;
 
 		case RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
-			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate:");
 			errorMsg.append('\n').append(verifyMsg);
-			isFatal = false;
 			break;
 
 		case TWITTER_DOWN:
 			// Twitter problem. Asking the user to try later.
-			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Twitter is down:");
 			errorMsg.append('\n').append(verifyMsg);
-			isFatal = false;
 			break;
 
 		case NETWORK_CALL:
 			// Probably problem. Asking the user to try later.
-			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Problem while connecting to Twitter:");
 			errorMsg.append('\n').append(verifyMsg);
-			isFatal = false;
 			break;
 
 		case PARSE_ERROR:		// Parsing problem. Abort
 		case UNKNOWN_PROBLEM:	// Unknown problem. Abort
-			processOK = false;
 			errorMsg = verifyMsg;
-			isFatal = true;
 			break;
 
 		default:
 			// Unexpected result. Abort.
-			processOK = false;
 			errorMsg = LaunchingProcess::trUtf8("Unexpected result:");
 			errorMsg.append('\n').append(verifyMsg);
-			isFatal = true;
 			break;
 	}
 
 	// Telling the component wat happens
-	buildResult(processOK, verifyIssue, errorMsg, isFatal);
+	buildResult(verifyIssue, errorMsg);
 	endProcess();
 }
 
@@ -313,16 +284,12 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
 	CoreResult saveIssue = userConfiguration.save();
-	bool processOK = false;
 	QString errorMsg = "";
-	bool isFatal = true;
 
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			processOK = true;
 			saveIssue = LAUNCH_SUCCESSFUL;
-			isFatal = false;
 			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -340,7 +307,7 @@ void LaunchingProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	buildResult(processOK, saveIssue, errorMsg, isFatal);
+	buildResult(saveIssue, errorMsg);
 	endProcess();
 }
 

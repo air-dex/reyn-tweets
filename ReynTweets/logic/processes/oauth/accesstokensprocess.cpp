@@ -95,7 +95,6 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	switch (errorType) {
@@ -148,13 +147,12 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue,
-											 isFatal);
+											 issue);
 			break;
 	}
 
 	// Failed end
-	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(issue, errorMsg);
 	endProcess();
 }
 
@@ -190,7 +188,6 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	switch (errorType) {
@@ -232,29 +229,24 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue,
-											 isFatal);
+											 issue);
 			break;
 	}
 
 	// Failed end
-	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(issue, errorMsg);
 	endProcess();
 }
 
 // Saves the configuration
 void AccessTokensProcess::saveConfiguration() {
 	CoreResult saveIssue = configuration->save();
-	bool processOK = false;
 	QString errorMsg = "";
-	bool isFatal = true;
 
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			processOK = true;
 			processResult.processIssue = ALLOW_SUCCESSFUL;
-			isFatal = false;
 			endProcess();
 			return;
 
@@ -272,6 +264,6 @@ void AccessTokensProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	GenericProcess::buildResult(processOK, saveIssue, errorMsg, isFatal);
+	GenericProcess::buildResult(saveIssue, errorMsg);
 	endProcess();
 }

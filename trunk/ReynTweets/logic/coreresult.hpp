@@ -79,10 +79,20 @@ enum CoreResult {
 	/// Corresponding Twitter return code is 406.
 	INVALID_SEARCH,
 
+	/// @brief The resource does not exist anymore. It's gone.
+	///
+	/// Corresponding Twitter return code is 410.
+	GONE,
+
 	/// @brief Rate limit was hit.
 	///
 	/// Corresponding Twitter return codes are 420 (v1) and 429 (stupid v1.1).
 	RATE_LIMITED,
+
+	/// @brief When an image uploaded to Twitter cannot be processed.
+	///
+	/// Corresponding Twitter return codes are 422.
+	UNPROCESSABLE,
 
 	/// @brief Twitter got problems.
 	///

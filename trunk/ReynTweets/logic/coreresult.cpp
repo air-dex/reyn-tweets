@@ -1,5 +1,5 @@
 /// @file coreresult.hpp
-/// @brief Source file to initialize .
+/// @brief Source file to initialize httpResults.
 ///
 /// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
 /// r204 is in /trunk/ReynTweets/logic
@@ -39,7 +39,9 @@ QMap<int, CoreResult> buildHttpResults() {
 	res.insert(403, REFUSED_REQUEST);
 	res.insert(404, BAD_REQUEST);
 	res.insert(406, INVALID_SEARCH);
+	res.insert(410, GONE);
 	res.insert(420, RATE_LIMITED);
+	res.insert(422, UNPROCESSABLE);
 	res.insert(429, RATE_LIMITED);
 	res.insert(500, TWITTER_DOWN);
 	res.insert(502, TWITTER_DOWN);

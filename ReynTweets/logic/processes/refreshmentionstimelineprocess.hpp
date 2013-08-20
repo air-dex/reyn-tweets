@@ -33,17 +33,17 @@ class RefreshMentionsTimelineProcess : public RefreshTimelineProcess
 	Q_OBJECT
 
 	public:
-		/// @fn RefreshMentionsTimelineProcess(qlonglong oldestTweetID,
+		/// @fn RefreshMentionsTimelineProcess(Tweet oldestTweet,
 		///									   bool userIDonly = false,
 		///									   bool withEntities = false,
 		///									   bool withContributorsDetails = false);
 		/// @brief Constructor
-		/// @param oldestTweetID Value of sinceID
+		/// @param oldestTweet Value of latestTweet
 		/// @param userIDonly Value of trimUser
 		/// @param withEntities Value of includeEntities
 		/// @param withoutReplies Value of excludeReplies
 		/// @param withContributorsDetails Value of contributorsDetails
-		RefreshMentionsTimelineProcess(qlonglong oldestTweetID,
+		RefreshMentionsTimelineProcess(Tweet oldestTweet,
 									   bool userIDonly = false,
 									   bool withEntities = false,
 									   bool withContributorsDetails = false);

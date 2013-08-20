@@ -25,12 +25,12 @@
 #include "processutils.hpp"
 
 // Constructor
-RefreshTimelineProcess::RefreshTimelineProcess(qlonglong oldestTweetID) :
+RefreshTimelineProcess::RefreshTimelineProcess(Tweet oldestTweet) :
 	GenericProcess(),
 	twitter(this),
-	sinceID(oldestTweetID),
+	latestTweet(oldestTweet),
 	newerTweets(),
-	oldestNewTweetID(-1),
+	oldestNewTweet(),
 	finalIssue(INVALID_ISSUE)
 {}
 
@@ -93,13 +93,9 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 				finalIssue = TIMELINE_RETRIEVED;
 
 				// Need more intermediate tweets ?
+				oldestNewTweet = newerTweets.last();
 
-				// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-				// oldestNewTweetID = newerTweets.last().getID();
-				QString ontIDstr = newerTweets.last().getIDstr();
-				oldestNewTweetID = ontIDstr.toLongLong();
-
-				if (oldestNewTweetID == sinceID) {
+				if (oldestNewTweet == latestTweet) {
 					// All the newer tweets are retrieved. End the process
 					newerTweets.removeLast();
 					gap = false;
@@ -180,12 +176,9 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 			} else {
 				// The first tweet of retrievedTweets should be the last ot newerTweets
 
-				// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-				// qlonglong firstID = retrievedTweets.first().getID();
-				QString firstIDstr = retrievedTweets.first().getIDstr();
-				qlonglong firstID = firstIDstr.toLongLong();
+				Tweet firstTweet = retrievedTweets.first();
 
-				if (firstID != oldestNewTweetID) {
+				if (firstTweet != oldestNewTweet) {
 					errorMsg = RefreshTimelineProcess::trUtf8("Unexpected first tweet");
 					issue = WRONG_TIMELINE;
 				}
@@ -194,13 +187,9 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 				newerTweets.append(retrievedTweets);
 
 				// Need more intermediate tweets ?
+				oldestNewTweet = newerTweets.last();
 
-				// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-				// oldestNewTweetID = newerTweets.last().getID();
-				QString ontIDstr = newerTweets.last().getIDstr();
-				oldestNewTweetID = ontIDstr.toLongLong();
-
-				if (oldestNewTweetID == sinceID) {
+				if (oldestNewTweet == latestTweet) {
 					// All the newer tweets are retrieved. End the process
 					newerTweets.removeLast();
 					gap = false;

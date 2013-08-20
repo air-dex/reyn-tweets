@@ -164,12 +164,12 @@ void TimelineControl::refreshTimeline() {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.refreshHomeTimeline(timeline.getFirstID());
+			reyn.refreshHomeTimeline(timeline.first());
 			break;
 
 		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-			reyn.refreshMentionsTimeline(timeline.getFirstID());
+			reyn.refreshMentionsTimeline(timeline.first());
 			break;
 
 		default:
@@ -267,7 +267,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.refreshHomeTimeline(timeline.getFirstID());
+			reyn.refreshHomeTimeline(timeline.first());
 			break;
 
 		case TimelineHandler::MENTIONS: {
@@ -291,7 +291,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 				if (userID == authorID) {
 					// The user mentions itself : let's refresh !
 					emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-					return reyn.refreshMentionsTimeline(timeline.getFirstID());
+					return reyn.refreshMentionsTimeline(timeline.first());
 				}
 			}
 

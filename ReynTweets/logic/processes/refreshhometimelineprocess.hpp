@@ -33,18 +33,18 @@ class RefreshHomeTimelineProcess : public RefreshTimelineProcess
 	Q_OBJECT
 
 	public:
-		/// @fn RefreshHomeTimelineProcess(qlonglong oldestTweetID,
+		/// @fn RefreshHomeTimelineProcess(Tweet oldestTweet,
 		///								   bool userIDonly = false,
 		///								   bool withEntities = false,
 		///								   bool withoutReplies = false,
 		///								   bool withContributorsDetails = false);
 		/// @brief Constructor
-		/// @param oldestTweetID Value of sinceID
+		/// @param oldestTweet Value of latestTweet
 		/// @param userIDonly Value of trimUser
 		/// @param withEntities Value of includeEntities
 		/// @param withoutReplies Value of excludeReplies
 		/// @param withContributorsDetails Value of contributorsDetails
-		RefreshHomeTimelineProcess(qlonglong oldestTweetID,
+		RefreshHomeTimelineProcess(Tweet oldestTweet,
 								   bool userIDonly = false,
 								   bool withEntities = false,
 								   bool withoutReplies = false,

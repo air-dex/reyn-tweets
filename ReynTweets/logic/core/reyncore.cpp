@@ -175,13 +175,13 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 }
 
 // Refreshing the Home Timeline
-void ReynCore::refreshHomeTimeline(qlonglong sinceID,
+void ReynCore::refreshHomeTimeline(Tweet latestTweet,
 								   bool trimUser,
 								   bool includeEntities,
 								   bool excludeReplies,
 								   bool contributorsDetails)
 {
-	RefreshHomeTimelineProcess * process = new RefreshHomeTimelineProcess(sinceID,
+	RefreshHomeTimelineProcess * process = new RefreshHomeTimelineProcess(latestTweet,
 																		  trimUser,
 																		  includeEntities,
 																		  excludeReplies,
@@ -207,12 +207,12 @@ void ReynCore::loadMentionsTimeline(qlonglong sinceID,
 }
 
 // Refreshing the Mentions Timeline
-void ReynCore::refreshMentionsTimeline(qlonglong sinceID,
+void ReynCore::refreshMentionsTimeline(Tweet latestTweet,
 									   bool trimUser,
 									   bool includeEntities,
 									   bool contributorsDetails)
 {
-	RefreshMentionsTimelineProcess * process = new RefreshMentionsTimelineProcess(sinceID,
+	RefreshMentionsTimelineProcess * process = new RefreshMentionsTimelineProcess(latestTweet,
 																				  trimUser,
 																				  includeEntities,
 																				  contributorsDetails);

@@ -191,6 +191,11 @@ void Tweet::reset() {
 	*this = Tweet();
 }
 
+
+//////////////////////
+// Tweet comparison //
+//////////////////////
+
 // Equality between tweets
 bool Tweet::operator==(const Tweet & status) const {
 	/*
@@ -199,6 +204,11 @@ bool Tweet::operator==(const Tweet & status) const {
 	//*/
 
 	return this->tweetIDstr == status.tweetIDstr;
+}
+
+// Difference between tweets
+bool Tweet::operator!=(const Tweet & status) const {
+	return !((*this) == status);
 }
 
 

@@ -180,19 +180,19 @@ class ReynCore : public QObject
 							  bool excludeReplies = false,
 							  bool contributorsDetails = false);
 
-		/// @fn void refreshHomeTimeline(qlonglong sinceID,
+		/// @fn void refreshHomeTimeline(Tweet latestTweet,
 		///								 bool trimUser = false,
 		///								 bool includeEntities = true,
 		///								 bool excludeReplies = false,
 		///								 bool contributorsDetails = false);
 		/// @brief Refreshing the home timeline of a user
-		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param latestTweet Most recent tweet already known
 		/// @param trimUser In tweets, giving only the ID of the author (true).
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param excludeReplies Excluding the replies
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
-		void refreshHomeTimeline(qlonglong sinceID,
+		void refreshHomeTimeline(Tweet latestTweet,
 								 bool trimUser = false,
 								 bool includeEntities = true,
 								 bool excludeReplies = false,
@@ -219,17 +219,17 @@ class ReynCore : public QObject
 								  bool includeEntities = true,
 								  bool contributorsDetails = false);
 
-		/// @fn void refreshMentionsTimeline(qlonglong sinceID,
+		/// @fn void refreshMentionsTimeline(Tweet latestTweet,
 		///									 bool trimUser = false,
 		///									 bool includeEntities = true,
 		///									 bool contributorsDetails = false);
 		/// @brief Refreshing the timeline containing the mentions of the user
-		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param latestTweet Most recent tweet already known
 		/// @param trimUser In tweets, giving only the ID of the author (true).
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions
-		void refreshMentionsTimeline(qlonglong sinceID,
+		void refreshMentionsTimeline(Tweet latestTweet,
 									 bool trimUser = false,
 									 bool includeEntities = true,
 									 bool contributorsDetails = false);

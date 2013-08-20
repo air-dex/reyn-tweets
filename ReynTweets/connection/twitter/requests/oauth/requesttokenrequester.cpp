@@ -25,7 +25,7 @@
 #include "../../../../tools/parsers/oauthparser.hpp"
 
 RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
-	OAuthRequester(POST,
+	OAuthRequester(Network::POST,
 				   TwitterURL::REQUEST_TOKEN_URL,
 				   authManager,
 				   Network::OAUTH_PARSING,

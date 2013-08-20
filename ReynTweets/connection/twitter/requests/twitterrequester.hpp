@@ -59,7 +59,7 @@ class TwitterRequester : public GenericRequester
 		/// parameter is required for authentication.
 		/// @param verifierNeeded Boolean indicating if the oauth_verifier
 		/// parameter is required for authentication.
-		TwitterRequester(RequestType type,
+		TwitterRequester(HTTPRequestType type,
 						 QString url,
 						 OAuthManager & authManager,
 						 NetworkResultType parseError = Network::JSON_PARSING,

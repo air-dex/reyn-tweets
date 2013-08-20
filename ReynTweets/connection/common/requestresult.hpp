@@ -27,7 +27,7 @@
 #define REQUESTRESULT_HPP
 
 #include <QVariant>
-#include "errortypes.hpp"
+#include "networkresulttype.hpp"
 #include "responseinfos.hpp"
 
 /// @struct RequestResult

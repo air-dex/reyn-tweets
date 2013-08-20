@@ -30,7 +30,7 @@
 #include <QColor>
 #include <QDataStream>
 #include <QString>
-#include "../connection/common/requesttype.hpp"
+#include "../connection/common/httprequesttype.hpp"
 
 ///////////////////////
 // String convertion //
@@ -40,7 +40,7 @@
 /// @brief Converting a RequestType into a QString
 /// @param type The RequestType
 /// @return The corresponding QString
-QString requestTypeToString(RequestType type);
+QString requestTypeToString(HTTPRequestType type);
 
 /// @fn QString boolInString(bool b);
 /// @brief Converting a bool into a QString

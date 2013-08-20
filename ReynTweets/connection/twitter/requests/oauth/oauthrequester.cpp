@@ -27,7 +27,7 @@
 QString DENY_NAME = "cancel";
 
 // Constructor
-OAuthRequester::OAuthRequester(RequestType type,
+OAuthRequester::OAuthRequester(HTTPRequestType type,
                                QString url,
                                OAuthManager &authManager,
                                NetworkResultType parseErrorType,

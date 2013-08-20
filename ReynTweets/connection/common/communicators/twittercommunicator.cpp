@@ -42,7 +42,7 @@
 
 // Constructor
 TwitterCommunicator::TwitterCommunicator(QString &url,
-										 RequestType type,
+										 HTTPRequestType type,
 										 ArgsMap & getArgs,
 										 ArgsMap & postArgs,
 										 HeadersMap & headersParam) :
@@ -114,7 +114,7 @@ void TwitterCommunicator::executeRequest() {
 			this, SLOT(endRequest(QNetworkReply*)));
 
 	// Executing the request
-	if (POST == requestType) {
+	if (Network::POST == requestType) {
 		// POST arguments
 		QByteArray postArgs = buildPostDatas();
 

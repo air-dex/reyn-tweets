@@ -27,7 +27,7 @@
 #include <QByteArray>
 #include <QMap>
 #include <QString>
-#include "../common/requesttype.hpp"
+#include "../common/httprequesttype.hpp"
 #include "../common/headersmap.hpp"
 
 
@@ -155,7 +155,7 @@ class OAuthManager
 		/// @param oauthVerifierNeeded Boolean indicating whether
 		/// the oauth_verifier is required for the header.
 		/// @return Value of the "Authorization" header.
-		QByteArray getAuthorizationHeader(RequestType type,
+		QByteArray getAuthorizationHeader(HTTPRequestType type,
 										  QString baseURL,
 										  ArgsMap getDatas,
 										  ArgsMap postDatas,
@@ -241,7 +241,7 @@ class OAuthManager
 		/// @param oauthVerifierNeeded Boolean indicating whether
 		/// the oauth_verifier is required.
 		/// @return The signature of the given datas
-		QString signDatas(RequestType type,
+		QString signDatas(HTTPRequestType type,
 						  QString baseURL,
 						  ArgsMap getDatas,
 						  ArgsMap postDatas,

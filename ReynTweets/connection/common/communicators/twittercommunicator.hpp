@@ -37,7 +37,7 @@
 #include <QTimer>
 #include "../../common/responseinfos.hpp"
 #include "../../common/headersmap.hpp"
-#include "../../common/requesttype.hpp"
+#include "../../common/httprequesttype.hpp"
 
 
 /////////////////////
@@ -74,7 +74,7 @@ class TwitterCommunicator : public QObject
 		/// @param postArgs POST arguments
 		/// @param headersParam HTTP headers
 		TwitterCommunicator(QString & url,
-							RequestType type,
+							HTTPRequestType type,
 							ArgsMap &getArgs,
 							ArgsMap &postArgs,
 							HeadersMap &headersParam);
@@ -143,7 +143,7 @@ class TwitterCommunicator : public QObject
 		QString & serviceURL;
 
 		/// @brief Request type
-		RequestType requestType;
+		HTTPRequestType requestType;
 
 		/// @brief GET datas
 		ArgsMap & getParameters;

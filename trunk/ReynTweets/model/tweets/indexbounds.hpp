@@ -31,6 +31,8 @@
 
 /// @class IndexBounds
 /// @brief Indices of a Tweet Entity in a tweet.
+///
+// TODO : why a QObject ?
 class IndexBounds : public QObject, public JsonArray<int>
 {
 	Q_OBJECT
@@ -67,21 +69,28 @@ class IndexBounds : public QObject, public JsonArray<int>
 		// Variant handling //
 		//////////////////////
 
-		/// @fn QVariantList toVariant() const;
-		/// @brief Converting the bounds into a QVariantList
-		/// @return The QVariant List with the bounds in two QVariant objects.
-		QVariantList toVariant() const;
+		/// @fn QVariantList QJsonArray() const;
+		/// @brief Converting the bounds into a QJsonArray
+		/// @return The QJsonArray with the bounds in two QVariant objects.
+		QJsonArray toVariant() const;
 
-		/// @fn void fillWithVariant(QVariantList variantList);
-		/// @brief Filling the object with a QVariantList
-		/// @param variantList The QVariantList.
-		void fillWithVariant(QVariantList variantList);
+		/// @fn void fillWithVariant(QJsonArray variantList);
+		/// @brief Filling the object with a QJsonArray
+		/// @param variantList The QJsonArray.
+		void fillWithVariant(QJsonArray variantList);
 
 	protected:
 		/// @fn void recopie(const IndexBounds & indexes);
 		/// @brief Copy of a IndexBounds
 		/// @param indexes IndexBounds to copy
 		void recopie(const IndexBounds & indexes);
+
+		/// @fn virtual void appendJsonValue(QJsonValue v);
+		/// @brief Appending the content of a QJsonValue in the IndexBounds
+		///
+		/// Quite useless here since toVariant() is overriden.
+		/// @param v the QJsonValue
+		virtual void appendJsonValue(QJsonValue v);
 
 		// Friends serialization operators
 

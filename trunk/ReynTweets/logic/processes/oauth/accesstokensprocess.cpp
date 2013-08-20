@@ -198,7 +198,7 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			UserInfos u;
-			u.fillWithVariant(parsedResults);
+			u.fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			UserAccount & account = configuration->getUserAccountRef();
 			account.setUser(u);
 			saveConfiguration();

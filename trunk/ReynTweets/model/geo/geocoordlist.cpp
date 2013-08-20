@@ -50,6 +50,15 @@ void GeoCoordList::initSystem() {
 	qMetaTypeId<GeoCoordList>();
 }
 
+// Appending the content of a QJsonValue
+void GeoCoordList::appendJsonValue(QJsonValue v) {
+	if (v.isArray()) {
+		GeoCoord gc;
+		gc.fillWithVariant(v.toArray());
+		this->append(gc);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoCoordList & list) {
 	return list.writeInStream(out);

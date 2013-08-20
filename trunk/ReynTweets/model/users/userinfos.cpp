@@ -217,7 +217,7 @@ bool UserInfos::operator==(const UserInfos user) const {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void UserInfos::fillWithJSON(QJsonObject json) {
+void UserInfos::fillWithVariant(QJsonObject json) {
 	// "contributors_enabled" property
 	QJsonValue propval = json.value(CONTRIBUTORS_ENABLED_PN);
 
@@ -263,7 +263,7 @@ void UserInfos::fillWithJSON(QJsonObject json) {
 
 	if(!propval.isUndefined() && propval.isObject()) {
 		QJsonObject data = propval.toObject();
-		this->userEntities.fillWithJSON(data);
+		this->userEntities.fillWithVariant(data);
 	}
 
 	// "favourites_count" property
@@ -556,7 +556,7 @@ void UserInfos::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject UserInfos::toJSON() const {
+QJsonObject UserInfos::toVariant() const {
 	QJsonObject json;
 
 	json.insert(CONTRIBUTORS_ENABLED_PN, QJsonValue(this->contributorsEnabled));
@@ -564,7 +564,7 @@ QJsonObject UserInfos::toJSON() const {
 	json.insert(DEFAULT_PROFILE_PN, QJsonValue(this->defaultProfile));
 	json.insert(DEFAULT_PROFILE_IMAGE_PN, QJsonValue(this->defaultProfileImage));
 	json.insert(DESCRIPTION_PN, QJsonValue(this->userDescription));
-	json.insert(ENTITIES_PN, QJsonValue(this->userEntities.toJSON()));
+	json.insert(ENTITIES_PN, QJsonValue(this->userEntities.toVariant()));
 	json.insert(FAVOURITES_COUNT_PN, QJsonValue(this->favoritesCount));
 	json.insert(FOLLOW_REQUEST_SENT_PN, QJsonValue(this->followRequestSent));
 	json.insert(FOLLOWING_PN, QJsonValue(this->followedByMe));
@@ -689,7 +689,7 @@ UserEntities UserInfos::getEntities() {
 }
 
 QVariantMap UserInfos::getEntitiesProperty() {
-	return userEntities.toVariant();
+	return userEntities.toVariant().toVariantMap();
 }
 
 UserEntities * UserInfos::getEntitiesptr() {
@@ -697,7 +697,7 @@ UserEntities * UserInfos::getEntitiesptr() {
 }
 
 void UserInfos::setEntities(QVariantMap newValue) {
-	userEntities.fillWithVariant(newValue);
+	userEntities.fillWithVariant(QJsonObject::fromVariantMap(newValue));
 	emit entitiesChanged();
 }
 

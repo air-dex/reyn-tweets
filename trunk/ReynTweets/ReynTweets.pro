@@ -86,8 +86,6 @@ SOURCES += \
 	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.cpp \
 	connection/twitlonger/twitlongercalls.cpp \
-	model/mappable.cpp \
-	model/listable.cpp \
 	model/json/jsonobject.cpp \
 	model/json/jsonarray.cpp \
 	model/geo/coordinates.cpp \
@@ -203,10 +201,6 @@ HEADERS  += \
 	connection/twitlonger/requests/twitlongerrequests.hpp \
 	connection/twitlonger/twitlongercalls.hpp \
 	model/variantable.hpp \
-	model/mappable.hpp \
-	model/listable.hpp \
-	model/listable.tpp \
-	model/json/jsonable.hpp \
 	model/json/jsonobject.hpp \
 	model/json/jsonarray.hpp \
 	model/json/jsonarray.tpp \

@@ -32,8 +32,8 @@
 
 // Default constructor
 JsonObject::JsonObject() :
-	Mappable(),
-	Jsonable<QJsonObject>()
+	QObject(),
+	Variantable<QJsonObject>()
 {}
 
 // Destructor
@@ -41,8 +41,8 @@ JsonObject::~JsonObject() {}
 
 // Copy constructor
 JsonObject::JsonObject(const JsonObject & jsonobj) :
-	Mappable(),
-	Jsonable<QJsonObject>()
+	QObject(),
+	Variantable<QJsonObject>()
 {
 	this->recopie(jsonobj);
 }
@@ -55,23 +55,6 @@ const JsonObject & JsonObject::operator=(const JsonObject & jsonobj) {
 
 // Core method to copy a JsonObject
 void JsonObject::recopie(const JsonObject & ) {}
-
-
-////////////////////////////////////////
-// Implementation of abstract methods //
-////////////////////////////////////////
-
-// Filling the object with a QVariantMap.
-void JsonObject::fillWithVariant(QVariantMap map) {
-	QJsonObject json = QJsonObject::fromVariantMap(map);
-	this->fillWithJSON(json);
-}
-
-// Getting a QVariantMap representation of the JsonObject
-QVariantMap JsonObject::toVariant() const {
-	return this->toJSON().toVariantMap();
-}
-
 
 /////////////////////
 // Stream handling //
@@ -87,7 +70,7 @@ QDataStream & JsonObject::fillWithStream(QDataStream & in) {
 	QJsonValue parsedJson = parser.parse(json, &parseOK);
 
 	if (parseOK && parsedJson.isObject()) {
-		this->fillWithJSON(parsedJson.toObject());
+		this->fillWithVariant(parsedJson.toObject());
 	}
 
 	return in;
@@ -95,7 +78,7 @@ QDataStream & JsonObject::fillWithStream(QDataStream & in) {
 
 // Writing a QDataStream with the content of the JsonObject
 QDataStream & JsonObject::writeInStream(QDataStream & out) const {
-	QJsonObject obj = this->toJSON();
+	QJsonObject obj = this->toVariant();
 	QJsonDocument doc(obj);
 	QByteArray json = doc.toJson();
 	out << json;

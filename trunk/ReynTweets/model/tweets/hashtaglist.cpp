@@ -50,6 +50,15 @@ void HashtagList::initSystem() {
 	qMetaTypeId<HashtagList>();
 }
 
+// Appending the content of a QJsonValue
+void HashtagList::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		Hashtag hashtag;
+		hashtag.fillWithVariant(v.toObject());
+		this->append(hashtag);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
 	return list.writeInStream(out);

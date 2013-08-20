@@ -57,6 +57,11 @@ class HashtagList : public JsonArray<Hashtag>
 		static void initSystem();
 
 	protected:
+		/// @fn virtual void appendJsonValue(QJsonValue v);
+		/// @brief Appending the content of a QJsonValue in the HashtagList
+		/// @param v the QJsonValue
+		virtual void appendJsonValue(QJsonValue v);
+
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

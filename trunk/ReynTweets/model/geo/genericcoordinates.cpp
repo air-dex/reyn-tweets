@@ -71,14 +71,14 @@ void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
 
 // Filling the object with a QJsonObject.
 template <typename C>
-void GenericCoordinates<C>::fillWithJSON(QJsonObject json) {
+void GenericCoordinates<C>::fillWithVariant(QJsonObject json) {
 	// "coordinates" property
 	QJsonValue propval = json.value(COORDINATES_PN);
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray coordz = propval.toArray();
 
-		this->geoCoordinates.fillWithJSON(coordz);
+		this->geoCoordinates.fillWithVariant(coordz);
 	}
 
 	// "type" property
@@ -92,10 +92,10 @@ void GenericCoordinates<C>::fillWithJSON(QJsonObject json) {
 
 // QJsonObject representation of the object
 template <typename C>
-QJsonObject GenericCoordinates<C>::toJSON() const {
+QJsonObject GenericCoordinates<C>::toVariant() const {
 	QJsonObject json;
 
-	json.insert(COORDINATES_PN, QJsonValue(this->geoCoordinates.toJSON()));
+	json.insert(COORDINATES_PN, QJsonValue(this->geoCoordinates.toVariant()));
 	json.insert(TYPE_PN, QJsonValue(CoordType::coord2string(this->coordType)));
 
 	return json;
@@ -112,7 +112,7 @@ QString GenericCoordinates<C>::COORDINATES_PN = "coordinates";
 
 template <typename C>
 QVariantList GenericCoordinates<C>::getCoordinatesProperty() {
-	return this->geoCoordinates.toVariant();
+	return this->geoCoordinates.toVariant().toVariantList();
 }
 
 template <typename C>
@@ -122,7 +122,7 @@ C GenericCoordinates<C>::getCoordinates() {
 
 template <typename C>
 void GenericCoordinates<C>::setCoordinates(QVariantList newValue) {
-	this->geoCoordinates.fillWithVariant(newValue);
+	this->geoCoordinates.fillWithVariant(QJsonArray::fromVariantList(newValue));
 	changeCoord();
 }
 

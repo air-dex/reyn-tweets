@@ -188,7 +188,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			// Credentials were right a priori. Ensures that the user is the right one.
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;
-			userOfCredentials.fillWithVariant(userMap);
+			userOfCredentials.fillWithVariant(QJsonObject::fromVariantMap(userMap));
 			UserAccount & account = userConfiguration.getUserAccountRef();
 			UserInfos confUser = account.getUser();
 			bool rightUser = confUser == userOfCredentials;

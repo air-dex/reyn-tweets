@@ -214,7 +214,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 				return endProcess();
 			} else {
 				// Go to the next step !
-				postedTweet.fillWithVariant(result.parsedResult.toMap());
+				postedTweet.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
 				return updateTweetOnTwitLonger();
 			}
 

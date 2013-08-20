@@ -33,7 +33,7 @@
 ///
 /// The JSON coordinates array is formatted as <a href="http://www.geojson.org/">
 /// geoJSON</a> (longitude first, then latitude).
-class GeoCoord : public JsonArray<qreal>, public QPointF
+class GeoCoord : public JsonArray<double>, public QPointF
 {
 	public:
 		/// @fn GeoCoord();
@@ -63,37 +63,23 @@ class GeoCoord : public JsonArray<qreal>, public QPointF
 		/// @brief Resets the mappable to a default value
 		void reset();
 
-		////////////////////////
-		// Variant conversion //
-		////////////////////////
-
-		/// @fn virtual QVariantList toVariant() const;
-		/// @brief Converting the bounds into a QVariantList
-		/// @return The QVariant List with the bounds in two QVariant objects.
-		virtual QVariantList toVariant() const;
-
-		/// @fn virtual void fillWithVariant(QVariantList variantList);
-		/// @brief Filling the object with a QVariantList
-		/// @param variantList The QVariantList.
-		virtual void fillWithVariant(QVariantList variantList);
-
 		/////////////////////
 		// JSON conversion //
 		/////////////////////
 
-		/// @fn virtual void fillWithJSON(QJsonArray json);
+		/// @fn virtual void fillWithVariant(QJsonArray json);
 		/// @brief Filling the object with a QJsonArray.
 		///
 		/// The method is overriden because of JSON optimization
 		/// @param json The QJsonArray used to fill the GeoCoord
-		virtual void fillWithJSON(QJsonArray json);
+		virtual void fillWithVariant(QJsonArray json);
 
-		/// @fn virtual QJsonArray toJSON();
+		/// @fn virtual QJsonArray toVariant();
 		/// @brief Getting a QJsonArray representation of the object
 		///
 		/// The method is overriden because of JSON optimization
 		/// @return The QJsonArray representation
-		virtual QJsonArray toJSON() const;
+		virtual QJsonArray toVariant() const;
 
 
 	private:
@@ -101,6 +87,13 @@ class GeoCoord : public JsonArray<qreal>, public QPointF
 		/// @brief Copy of a Coordinates
 		/// @param coord GeoCoord to copy
 		void recopie(const GeoCoord & coord);
+
+		/// @fn virtual void appendJsonValue(QJsonValue v);
+		/// @brief Appending the content of a QJsonValue in the GeoCoord
+		///
+		/// Quite useless here since toVariant() is overriden.
+		/// @param v the QJsonValue
+		virtual void appendJsonValue(QJsonValue v);
 
 		// Friends serialization operators
 

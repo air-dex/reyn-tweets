@@ -86,18 +86,18 @@ class UserMention : public TweetEntity
 		// JSON conversion //
 		/////////////////////
 
-		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @fn virtual void fillWithVariant(QJsonObject json);
 		/// @brief Filling the object with a QJsonObject.
 		///
 		/// The method is virtual because its implementation depends on the
 		/// object type.
 		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json);
+		virtual void fillWithVariant(QJsonObject json);
 
-		/// @fn virtual QJsonObject toJSON() const;
+		/// @fn virtual QJsonObject toVariant() const;
 		/// @brief Getting a QJsonObject representation of the object
 		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON() const;
+		virtual QJsonObject toVariant() const;
 
 	private:
 		/// @fn void recopie(const UserMention & mention);

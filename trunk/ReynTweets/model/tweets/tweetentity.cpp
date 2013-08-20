@@ -57,21 +57,21 @@ void TweetEntity::recopie(const TweetEntity & entity) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void TweetEntity::fillWithJSON(QJsonObject json) {
+void TweetEntity::fillWithVariant(QJsonObject json) {
 	// "indices" property
 	QJsonValue propval = json.value(INDICES_PN);
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray bounds = propval.toArray();
-		this->indexes.fillWithJSON(bounds);
+		this->indexes.fillWithVariant(bounds);
 	}
 }
 
 // Getting a QJsonObject representation of the JsonObject
-QJsonObject TweetEntity::toJSON() const {
+QJsonObject TweetEntity::toVariant() const {
 	QJsonObject json;
 
-	json.insert(INDICES_PN, QJsonValue(this->indexes.toJSON()));
+	json.insert(INDICES_PN, QJsonValue(this->indexes.toVariant()));
 
 	return json;
 }
@@ -83,12 +83,12 @@ QJsonObject TweetEntity::toJSON() const {
 
 // Reading method for the property indices
 QVariantList TweetEntity::getIndicesProperty() {
-	return indexes.toVariant();
+	return indexes.toVariant().toVariantList();
 }
 
 // Writing method for the property indices
 void TweetEntity::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(newIndexList);
+	indexes.fillWithVariant(QJsonArray::fromVariantList(newIndexList));
 }
 
 

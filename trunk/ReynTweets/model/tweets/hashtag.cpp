@@ -87,9 +87,9 @@ void Hashtag::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void Hashtag::fillWithJSON(QJsonObject json) {
+void Hashtag::fillWithVariant(QJsonObject json) {
 	// Base class
-	TweetEntity::fillWithJSON(json);
+	TweetEntity::fillWithVariant(json);
 
 	// "text" property
 	QJsonValue propval = json.value(TEXT_PN);
@@ -101,8 +101,8 @@ void Hashtag::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Hashtag::toJSON() const {
-	QJsonObject json = TweetEntity::toJSON();
+QJsonObject Hashtag::toVariant() const {
+	QJsonObject json = TweetEntity::toVariant();
 
 	json.insert(TEXT_PN, QJsonValue(this->hashText));
 

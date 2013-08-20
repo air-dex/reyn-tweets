@@ -118,6 +118,11 @@ class Timeline : public QObject, public JsonArray<Tweet>
 		int tweetIndex(Tweet tweet);
 
 	protected:
+		/// @fn virtual void appendJsonValue(QJsonValue v);
+		/// @brief Appending the content of a QJsonValue in the Timeline
+		/// @param v the QJsonValue
+		virtual void appendJsonValue(QJsonValue v);
+
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

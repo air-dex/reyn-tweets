@@ -121,7 +121,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 		case Network::NO_REQUEST_ERROR:{
 			// Updating tweetToDelete
 			tweetToDelete.reset();
-			tweetToDelete.fillWithVariant(result.parsedResult.toMap());
+			tweetToDelete.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
 
 			// Looking at the "current_retweet_infos" property
 			RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();

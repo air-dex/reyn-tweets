@@ -50,6 +50,15 @@ void URLEntityList::initSystem() {
 	qMetaTypeId<URLEntityList>();
 }
 
+// Appending the content of a QJsonValue
+void URLEntityList::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		URLEntity url;
+		url.fillWithVariant(v.toObject());
+		this->append(url);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntityList & list) {
 	return list.writeInStream(out);

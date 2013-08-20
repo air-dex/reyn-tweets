@@ -59,3 +59,12 @@ QDataStream & operator<<(QDataStream & out, const GeoCoordPolygon & polygon) {
 QDataStream & operator>>(QDataStream & in, GeoCoordPolygon & polygon) {
 	return polygon.fillWithStream(in);
 }
+
+// Appending the content of a QJsonValue
+void GeoCoordPolygon::appendJsonValue(QJsonValue v) {
+	if (v.isArray()) {
+		GeoCoordList gcl;
+		gcl.fillWithVariant(v.toArray());
+		this->append(gcl);
+	}
+}

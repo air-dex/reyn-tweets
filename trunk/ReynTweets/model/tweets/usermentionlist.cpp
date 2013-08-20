@@ -50,6 +50,15 @@ void UserMentionList::initSystem() {
 	qMetaTypeId<UserMentionList>();
 }
 
+// Appending the content of a QJsonValue
+void UserMentionList::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		UserMention mention;
+		mention.fillWithVariant(v.toObject());
+		this->append(mention);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMentionList & list) {
 	return list.writeInStream(out);

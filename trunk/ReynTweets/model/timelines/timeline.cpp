@@ -62,6 +62,15 @@ void Timeline::declareQML() {
 							  "Timeline");
 }
 
+// Appending the content of a QJsonValue
+void Timeline::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		Tweet tweet;
+		tweet.fillWithVariant(v.toObject());
+		this->append(tweet);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Timeline & list) {
 	return list.writeInStream(out);

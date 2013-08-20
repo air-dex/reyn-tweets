@@ -50,6 +50,15 @@ void ContributorList::initSystem() {
 	qMetaTypeId<ContributorList>();
 }
 
+// Appending the content of a QJsonValue
+void ContributorList::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		Contributor contributor;
+		contributor.fillWithVariant(v.toObject());
+		this->append(contributor);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const ContributorList & list) {
 	return list.writeInStream(out);

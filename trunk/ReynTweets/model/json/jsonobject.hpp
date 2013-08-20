@@ -25,12 +25,12 @@
 #define JSONOBJECT_HPP
 
 #include <QJsonObject>
-#include "../mappable.hpp"
-#include "jsonable.hpp"
+#include <QDataStream>
+#include "../variantable.hpp"
 
 /// @class JsonObject
 /// @brief Base class for all objects which can be represented by a JSON object.
-class JsonObject : public Mappable, public Jsonable<QJsonObject>
+class JsonObject : public QObject, public Variantable<QJsonObject>
 {
 	Q_OBJECT
 
@@ -55,30 +55,24 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		/// @param jsonobj The JsonObject to copy
 		const JsonObject & operator=(const JsonObject & jsonobj);
 
+		/// @fn virtual void reset() = 0;
+		/// @brief Resets the object to a default value
+		virtual void reset() = 0;
+
 		// Implementation of abstract methods
 
-		/// @fn virtual void fillWithVariant(QVariantMap map);
-		/// @brief Filling the object with a QVariantMap.
-		/// @param map The QVariantMap used to fill the JsonObject
-		virtual void fillWithVariant(QVariantMap map);
-
-		/// @fn virtual QVariantMap toVariant();
-		/// @brief Getting a QVariantMap representation of the JsonObject
-		/// @return QVariantMap representation
-		virtual QVariantMap toVariant() const;
-
-		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @fn virtual void fillWithVariant(QJsonObject json) = 0;
 		/// @brief Filling the object with a QJsonObject.
 		///
 		/// The method is virtual because its implementation depends on the
 		/// object type.
 		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json) = 0;
+		virtual void fillWithVariant(QJsonObject json) = 0;
 
-		/// @fn virtual QJsonObject toJSON();
+		/// @fn virtual QJsonObject toVariant() = 0;
 		/// @brief Getting a QJsonObject representation of the JsonObject
 		/// @return QJsonObject representation, i.e. <code>this</code>
-		virtual QJsonObject toJSON() const = 0;
+		virtual QJsonObject toVariant() const = 0;
 
 		/////////////////////
 		// Stream handling //

@@ -25,7 +25,7 @@
 
 // Default constructor
 GeoCoord::GeoCoord() :
-	JsonArray<qreal>(),
+	JsonArray<double>(),
 	QPointF()
 {}
 
@@ -34,7 +34,7 @@ GeoCoord::~GeoCoord() {}
 
 // Copy constructor
 GeoCoord::GeoCoord(const GeoCoord & coord) :
-	JsonArray<qreal>(),
+	JsonArray<double>(),
 	QPointF()
 {
 	recopie(coord);
@@ -48,7 +48,7 @@ const GeoCoord & GeoCoord::operator=(const GeoCoord & coord) {
 
 // Copy of a Coordinates
 void GeoCoord::recopie(const GeoCoord & coord) {
-	JsonArray<qreal>::recopie(coord);
+	JsonArray<double>::recopie(coord);
 	this->setX(coord.x());
 	this->setY(coord.y());
 }
@@ -65,26 +65,12 @@ void GeoCoord::reset() {
 }
 
 
-////////////////////////
-// Variant conversion //
-////////////////////////
-
-// Converting the bounds into a QVariantList
-QVariantList GeoCoord::toVariant() const {
-	return this->toJSON().toVariantList();
-}
-
-// Filling the object with a QVariantList
-void GeoCoord::fillWithVariant(QVariantList variantList) {
-	this->fillWithJSON(QJsonArray::fromVariantList(variantList));
-}
-
 /////////////////////
 // JSON conversion //
 /////////////////////
 
 // Filling the object with a QJsonArray.
-void GeoCoord::fillWithJSON(QJsonArray json) {
+void GeoCoord::fillWithVariant(QJsonArray json) {
 	if (json.size() != 2) {
 		return;
 	}
@@ -94,7 +80,7 @@ void GeoCoord::fillWithJSON(QJsonArray json) {
 	// longitude
 	QJsonValue coord = json.at(0);
 	if (!coord.isUndefined() && coord.isDouble()) {
-		qreal longi = coord.toDouble();
+		double longi = coord.toDouble();
 		if (qAbs(longi) <= 180) {
 			this->setX(longi);
 		}
@@ -103,7 +89,7 @@ void GeoCoord::fillWithJSON(QJsonArray json) {
 	// latitude
 	coord = json.at(1);
 	if (!coord.isUndefined() && coord.isDouble()) {
-		qreal lati = coord.toDouble();
+		double lati = coord.toDouble();
 		if (qAbs(lati) <= 90) {
 			this->setY(lati);
 		}
@@ -111,13 +97,21 @@ void GeoCoord::fillWithJSON(QJsonArray json) {
 }
 
 // QJsonArray representation of the object
-QJsonArray GeoCoord::toJSON() const {
+QJsonArray GeoCoord::toVariant() const {
 	QJsonArray coordz;
 
 	coordz.append(QJsonValue(this->x()));
 	coordz.append(QJsonValue(this->y()));
 
 	return coordz;
+}
+
+// Appending the content of a QJsonValue
+void GeoCoord::appendJsonValue(QJsonValue v) {
+	if (v.isDouble()) {
+		double dvalue = v.toDouble();
+		this->append(dvalue);
+	}
 }
 
 

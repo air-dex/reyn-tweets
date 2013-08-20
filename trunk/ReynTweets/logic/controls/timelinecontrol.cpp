@@ -80,12 +80,12 @@ void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
 
 	Tweet & tweet = timeline[tweetIndex];
 	tweet.reset();
-	tweet.fillWithVariant(updatedTweet.toMap());
+	tweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
 }
 
 void TimelineControl::replaceTweet(QVariant updatedTweet) {
 	Tweet newTweet;
-	newTweet.fillWithVariant(updatedTweet.toMap());
+	newTweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
 
 	int tweetIndex = timeline.tweetIndex(newTweet);
 
@@ -97,7 +97,7 @@ void TimelineControl::replaceTweet(QVariant updatedTweet) {
 	if (newTweet == timeline[tweetIndex]) {
 		Tweet & tweet = timeline[tweetIndex];
 		tweet.reset();
-		tweet.fillWithVariant(updatedTweet.toMap());
+		tweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
 	}
 }
 
@@ -114,7 +114,7 @@ void TimelineControl::deleteTweet(int tweetIndex) {
 // Deleting a tweet
 void TimelineControl::deleteTweet(QVariant variantTweet) {
 	Tweet tweet;
-	tweet.fillWithVariant(variantTweet.toMap());
+	tweet.fillWithVariant(QJsonObject::fromVariantMap(variantTweet.toMap()));
 
 	int tweetIndex = timeline.tweetIndex(tweet);
 
@@ -185,7 +185,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			timeline.fillWithVariant(resList);
+			timeline.fillWithVariant(QJsonArray::fromVariantList(resList));
 			emit timelineChanged();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
@@ -281,7 +281,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
 			// Retrieving the new tweets
-			newTweets.fillWithVariant(result.results.toList());
+			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
 
 			if (!newTweets.isEmpty()) {
 				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
@@ -384,7 +384,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 		case Timeline::MENTIONS: {
 			// "Refresh after write" only if the user mentions himself. "Refrsh" otherwise.
 			Tweet backupedTweet;
-			backupedTweet.fillWithVariant(backupedNewTweet.toMap());
+			backupedTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
 
 			UserConfiguration & conf = reyn.getUserConfiguration();
 			QString authorID = conf.getUserAccount().getUser().getIDstr();
@@ -445,7 +445,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			newTweets.fillWithVariant(result.results.toList());
+			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
 
 			if (!newTweets.isEmpty()) {
 				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
@@ -483,7 +483,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			}
 
 			// Inserting the new Tweet in the timeline of new tweets
-			lastTweet.fillWithVariant(backupedNewTweet.toMap());
+			lastTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
 			newerTweets.insertTweet(lastTweet);
 
 			emit loadedMoreTweets(newerTweets.size());
@@ -590,7 +590,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 
 	switch (issue) {
 		case TIMELINE_RETRIEVED:
-			newTweets.fillWithVariant(resList);
+			newTweets.fillWithVariant(QJsonArray::fromVariantList(resList));
 			timeline.append(newTweets);
 			emit timelineChanged();
 			// Process successful

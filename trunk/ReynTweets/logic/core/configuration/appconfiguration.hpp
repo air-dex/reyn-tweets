@@ -26,11 +26,11 @@
 
 #include <QByteArray>
 #include <QDir>
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QVariantMap>
 #include "../coreresult.hpp"
-#include "../json/jsonobject.hpp"
 
 /// @class ReynTweetsAppConfiguration
 /// @brief Class with Reyn Tweets settings.
@@ -42,7 +42,10 @@
 /// <li><a href="http://getpocket.com">Pocket</a></li>
 /// <li>More to come...</li>
 /// </ul>
-class AppConfiguration : public JsonObject {
+class AppConfiguration : public QObject {
+
+	Q_OBJECT
+
 	public:
 		/// @fn static AppConfiguration & getReynTweetsConfiguration();
 		/// @brief Getting the reference on Reyn Tweets' configuration
@@ -54,64 +57,63 @@ class AppConfiguration : public JsonObject {
 		/// avoid memory leaks.
 		static void unleashReyn();
 
-		/// @fn void reset();
-		/// @brief Resets the configuration to a default value
-		void reset();
-
-		/// @fn CoreResult load();
+		/// @fn CoreResult load(QString & errorMsg);
 		/// @brief Loading the settings from the settings file.
+		/// @param errorMsg Error while loading
 		/// @return Tag describing what happened
-		CoreResult load();
+		CoreResult load(QString &errorMsg);
 
 		////////////////////////
 		// Getter on settings //
 		////////////////////////
 
+		// data_dir
 		/// @fn QString getCallbackURL();
 		/// @brief Getter on data_dir.
 		/// @return dataDir
 		QString getDataDir();
-
-		/// @fn QString getAppDataDir();
-		/// @brief Getting the directory where application datas are stored.
-		/// @return Directory where application datas are stored.
-		QDir getAppDataDir();
 
 		/// @fn QVariantMap getDataDirs();
 		/// @brief Getter on data_dirs
 		/// @return dataDirs
 		QVariantMap getDataDirs();
 
-		/// @fn QString getErrorLoading();
-		/// @brief Getter on the error message after loading the settings
-		/// @return errorLoading
-		QString getErrorLoading();
+		/// @fn QString getAppDataDir();
+		/// @brief Getting the directory where application datas are stored.
+		/// @return Directory where application datas are stored.
+		QDir getAppDataDir();
 
+		// consumer_key
 		/// @fn QByteArray getConsumerKey();
 		/// @brief Getter on the Twitter OAuth consumer key.
 		/// @return CONSUMER_KEY
 		QByteArray getConsumerKey();
 
+		// consumer_secret
 		/// @fn QByteArray getConsumerSecret();
 		/// @brief Getter on the Twitter OAuth consumer secret.
 		/// @return CONSUMER_SECRET
 		QByteArray getConsumerSecret();
 
+		// callback_url
 		/// @fn QString getCallbackURL();
 		/// @brief Getter on the Twitter callback URL.
 		/// @return CALLBACK_URL
 		QString getCallbackURL();
 
+		// twitlonger_application_name
 		/// @fn QString getTwitLongerAppName();
 		/// @brief Getter on the TwitLonger application name.
 		/// @return TWITLONGER_APP_NAME
 		QString getTwitLongerAppName();
 
+		// twitlonger_api_key
 		/// @fn QByteArray getTwitLongerAPIKey();
 		/// @brief Getter on the TwitLonger API key.
 		/// @return TWITLONGER_API_KEY
 		QByteArray getTwitLongerAPIKey();
 
+		// pocket_api_key
 		/// @fn QByteArray getPocketAPIKey();
 		/// @brief Getter on the Pocket API key.
 		/// @return POCKET_API_KEY
@@ -133,29 +135,20 @@ class AppConfiguration : public JsonObject {
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;
 
-		/// @brief Error while loading the settings
-		QString errorLoading;
-
 
 		/////////////////////
 		// JSON conversion //
 		/////////////////////
 
-		/// @fn virtual void fillWithVariant(QJsonObject json);
+		/// @fn virtual void fillWithVariant(QJsonObject json,
+		///									 QString & fillingError);
 		/// @brief Filling the object with a QJsonObject.
 		///
 		/// The method is virtual because its implementation depends on the
 		/// object type.
 		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithVariant(QJsonObject json);
-
-		/// @fn virtual QJsonObject toVariant() const;
-		/// @brief Getting a QJsonObject representation of the object
-		///
-		/// The method is unused. It is here just because it needs to be
-		/// implemented.
-		/// @return The QJsonObject representation
-		virtual QJsonObject toVariant() const;
+		/// @param fillingError Error message while filling the AppConfiguration.
+		virtual void fillWithVariant(QJsonObject json, QString & fillingError);
 
 
 		//////////////

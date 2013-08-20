@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
-#include <QObject>
+#include <QJsonObject>
 #include "appconfiguration.hpp"
 #include "../../../connection/common/utils/parsers/jsonparser.hpp"
 
@@ -51,8 +51,7 @@ void AppConfiguration::unleashReyn() {
 
 // Private constructor
 AppConfiguration::AppConfiguration() :
-	JsonObject(),
-	errorLoading(""),
+	QObject(),
 	dataDir(""),
 	dataDirs(),
 	consumerKey(""),
@@ -63,24 +62,18 @@ AppConfiguration::AppConfiguration() :
 	pocketAPIKey("")
 {}
 
-// Reset the app configuration
-void AppConfiguration::reset() {
-	*this = AppConfiguration();
-}
-
 // Loading the settings from the settings file.
-CoreResult AppConfiguration::load() {
+CoreResult AppConfiguration::load(QString & errorMsg) {
 	// Opening the settings file
 	QFile confFile(SETTINGS_NAMEFILE);
 
 	if (!confFile.exists()) {
-		errorLoading = AppConfiguration::trUtf8("Settings file unknown.");
+		errorMsg = AppConfiguration::trUtf8("Settings file unknown.");
 		return  CONFIGURATION_FILE_UNKNOWN;
 	}
 
-	bool openOK = confFile.open(QFile::ReadOnly);
-	if (!openOK) {
-		errorLoading = AppConfiguration::trUtf8("Cannot open the settings file.");
+	if (!confFile.open(QFile::ReadOnly)) {
+		errorMsg = AppConfiguration::trUtf8("Cannot open the settings file.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
@@ -95,35 +88,30 @@ CoreResult AppConfiguration::load() {
 
 	confFile.close();
 
-	if (!jsonSettings.isObject()) {
+	if (!parseOK || !jsonSettings.isObject()) {
 		// Parse error : JSON Object expected (and why it's not that).
-		errorLoading.append(AppConfiguration::trUtf8("Parse error (JSON object expected):"))
+		errorMsg.append(AppConfiguration::trUtf8("Parse error (JSON object expected):"))
 				.append(' ')
 				.append(parseErrMsg)
 				.append('.');
-		parseOK = false;
-	}
-
-	if (!parseOK) {
 		return PARSE_ERROR;
 	}
 
 
 	// Filling the settings
-
 	QJsonObject jsonConf = jsonSettings.toObject();
-	QString oldErr = errorLoading;
+	QString fillErr = "";
 
-	this->fillWithVariant(jsonConf);
+	this->fillWithVariant(jsonConf, fillErr);
 
-	bool fillOK = oldErr == errorLoading;	// More errors if it fails.
-
-	return fillOK ? LOAD_CONFIGURATION_SUCCESSFUL : EXPECTED_KEY;
-}
-
-// Getter on the error message after loading the settings
-QString AppConfiguration::getErrorLoading() {
-	return errorLoading;
+	if (fillErr.isEmpty()) {
+		// No error while filling the configuration
+		return LOAD_CONFIGURATION_SUCCESSFUL;
+	} else {
+		// Error while filling the configuration
+		errorMsg.append(' ').append(fillErr);
+		return EXPECTED_KEY;
+	}
 }
 
 // Getting the directory where application datas are stored.
@@ -139,10 +127,12 @@ QDir AppConfiguration::getAppDataDir() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void AppConfiguration::fillWithVariant(QJsonObject json) {
+void AppConfiguration::fillWithVariant(QJsonObject json, QString &fillingError) {
 	QJsonValue confValue;
 	QByteArray base64Buffer;
 	QStringList missingSettings;
+
+	fillingError = "";
 
 	// consumer_key
 	confValue = json.value(CONSUMER_KEY_PN);
@@ -223,7 +213,7 @@ void AppConfiguration::fillWithVariant(QJsonObject json) {
 		setDataDir();
 
 		if (dataDir.isEmpty()) {
-			errorLoading = AppConfiguration::trUtf8("Unknown Application Data Directory.");
+			fillingError = AppConfiguration::trUtf8("Unknown Application Data Directory.");
 		}
 	} else {
 		// Wrong value : error
@@ -233,18 +223,11 @@ void AppConfiguration::fillWithVariant(QJsonObject json) {
 	// Post treatment (missing settings)
 
 	if (!missingSettings.isEmpty()) {
-		QString errorFilling = "";
-		errorFilling.append(AppConfiguration::trUtf8("The following setting(s) are missing:"))
-				.append(' ')
+		fillingError.append(AppConfiguration::trUtf8("The following setting(s) are missing"))
+				.append(" : ")
 				.append(missingSettings.join(", "))
 				.append('.');
-		errorLoading.append(' ').append(errorFilling);
 	}
-}
-
-// QJsonObject representation of the object
-QJsonObject AppConfiguration::toVariant() const {
-	return QJsonObject();
 }
 
 

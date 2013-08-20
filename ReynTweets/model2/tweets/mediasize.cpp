@@ -39,7 +39,7 @@ MediaSize2::MediaSize2() :
 MediaSize2::~MediaSize2() {}
 
 // Copy constructor
-MediaSize2::MediaSize2(const MediaSize & size) :
+MediaSize2::MediaSize2(const MediaSize2 & size) :
 	JsonObject(),
 	QSize(0,0),
 	resizeMedia(NULL_RESIZE)
@@ -139,7 +139,7 @@ QString MediaSize2::H_PN = "h";
 // resize
 QString MediaSize2::RESIZE_PN = "resize";
 
-QString MediaSize2::getResizeProperty() {
+QString MediaSize2::getResizeProperty() const {
 	return resize2String(resizeMedia);
 }
 
@@ -153,7 +153,7 @@ void MediaSize2::setResize(QString newResize) {
 /////////////////
 
 // Conversion of a Resize into a QString.
-QString MediaSize2::resize2String(MediaSize2::Resize resizeValue) {
+QString MediaSize2::resize2String(MediaSize2::Resize resizeValue) const {
 	switch (resizeValue) {
 		case CROP:
 			return "crop";

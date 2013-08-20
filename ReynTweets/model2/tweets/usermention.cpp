@@ -68,7 +68,7 @@ void UserMention2::initSystem() {
 
 // Copy of a User Mention
 void UserMention2::recopie(const UserMention2 & mention) {
-	TweetEntity::recopie(mention);
+	TweetEntity2::recopie(mention);
 	userID = mention.userID;
 	userIDstr = mention.userIDstr;
 	screenName = mention.screenName;
@@ -137,7 +137,7 @@ void UserMention2::fillWithJSON(QJsonObject json) {
 QJsonObject UserMention2::toJSON() const {
 	QJsonObject json = TweetEntity2::toJSON();
 
-	json.insert(ID_PN, QJsonValue(this->userID));
+	json.insert(ID_PN, QJsonValue(double(this->userID)));
 	json.insert(ID_STR_PN, QJsonValue(this->userIDstr));
 	json.insert(SCREEN_NAME_PN, QJsonValue(this->screenName));
 	json.insert(NAME_PN, QJsonValue(this->userName));

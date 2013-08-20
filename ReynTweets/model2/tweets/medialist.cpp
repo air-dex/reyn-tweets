@@ -39,7 +39,7 @@ MediaList2::MediaList2(const MediaList2 & list) :
 }
 
 // Affrection operator
-const MediaList & MediaList2::operator=(const MediaList2 & list) {
+const MediaList2 & MediaList2::operator=(const MediaList2 & list) {
 	recopie(list);
 	return *this;
 }

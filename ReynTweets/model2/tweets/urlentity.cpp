@@ -45,7 +45,7 @@ URLEntity2::URLEntity2() :
 URLEntity2::~URLEntity2() {}
 
 // Copy constructor
-URLEntity2::URLEntity2(const URLEntity & entity) :
+URLEntity2::URLEntity2(const URLEntity2 & entity) :
 	TweetEntity2(),
 	extractedURL(""),
 	displayedURL(""),

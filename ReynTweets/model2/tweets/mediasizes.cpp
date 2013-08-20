@@ -63,7 +63,7 @@ void MediaSizes2::initSystem() {
 }
 
 // Copy of a MediaSizes
-void MediaSizes2::recopie(const MediaSizes & sizes) {
+void MediaSizes2::recopie(const MediaSizes2 & sizes) {
 	JsonObject::recopie(sizes);
 	largeSize = sizes.largeSize;
 	mediumSize = sizes.mediumSize;

@@ -34,7 +34,7 @@ TweetEntity2::~TweetEntity2() {}
 
 // Copy constructor
 TweetEntity2::TweetEntity2(const TweetEntity2 & entity) :
-	ReynTweetsMappable()
+	JsonObject()
 {
 	this->recopie(entity);
 }
@@ -68,10 +68,10 @@ void TweetEntity2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the JsonObject
-QJsonObject TweetEntity2::toJSON() {
+QJsonObject TweetEntity2::toJSON() const {
 	QJsonObject json;
 
-	json.insert(INDICES_PN, QJsonValue(this->indexes));
+	json.insert(INDICES_PN, QJsonValue(this->indexes.toJSON()));
 
 	return json;
 }

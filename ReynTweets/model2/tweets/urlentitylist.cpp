@@ -33,7 +33,7 @@ URLEntityList2::~URLEntityList2() {}
 
 // Copy constructor
 URLEntityList2::URLEntityList2(const URLEntityList2 & list) :
-	JsonArray<URLEntity>()
+	JsonArray<URLEntity2>()
 {
 	recopie(list);
 }

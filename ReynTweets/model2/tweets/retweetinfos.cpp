@@ -107,10 +107,10 @@ void RetweetInfos2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject RetweetInfos2::toJSON() {
+QJsonObject RetweetInfos2::toJSON() const {
 	QJsonObject json;
 
-	json.insert(ID_PN, QJsonValue(this->retweetID));
+	json.insert(ID_PN, QJsonValue(double(this->retweetID)));
 	json.insert(ID_STR_PN, QJsonValue(this->retweetIDstr));
 
 	return json;

@@ -47,7 +47,7 @@ IndexBounds2::IndexBounds2(const IndexBounds2 & indexes) :
 }
 
 // Affectation
-const IndexBounds2 & IndexBounds2::operator=(const IndexBounds & indexes) {
+const IndexBounds2 & IndexBounds2::operator=(const IndexBounds2 & indexes) {
 	this->recopie(indexes);
 	return *this;
 }

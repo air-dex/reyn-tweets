@@ -51,15 +51,15 @@ void PostTweetRequester::buildPOSTParameters() {
 		postParameters.insert("in_reply_to_status_id", QString::number(replyToTweetID));
 	}
 
-	if (latitude >= -90 && latitude <= 90) {
+	if (qAbs(latitude) <= LibRT::MAX_LATITUDE) {
 		postParameters.insert("lat", QString::number(latitude));
 	}
 
-	if (longitude >= -180 && longitude <= 180) {
+	if (qAbs(longitude) <= LibRT::MAX_LONGITUDE) {
 		postParameters.insert("long", QString::number(longitude));
 	}
 
-	if (!reversePlace.isEmpty()) {
+	if (reversePlace != Twitter::FAKE_PLACE_ID) {
 		postParameters.insert("place_id", reversePlace);
 	}
 

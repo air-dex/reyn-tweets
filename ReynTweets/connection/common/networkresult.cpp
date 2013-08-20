@@ -40,7 +40,7 @@ NetworkResponse::NetworkResponse(QNetworkReply * reply) :
 	httpResponse(extractHttpStatusesFromNetworkReply(reply)),
 	responseBody(reply ? reply->readAll() : ""),
 	requestError(reply ? reply->errorString() : "null reply"),
-	replyURL(reply ? reply->url().toString() : "")
+	replyURL(reply ? reply->url().toString() : LibRT::FAKE_URL)
 {}
 
 // Extracting the HTTP code and the HTTP reason from an HTTP reply.

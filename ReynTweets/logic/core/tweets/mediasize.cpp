@@ -23,6 +23,7 @@
 
 #include "mediasize.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -69,7 +70,10 @@ void MediaSize::initSystem() {
 
 // Declaring to the QML components
 void MediaSize::declareQML() {
-	qmlRegisterType<MediaSize>("ReynTweetsEntities", 0, 2, "MediaSize");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<MediaSize>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+							   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+							   "MediaSize");
 }
 
 // Output stream operator for serialization

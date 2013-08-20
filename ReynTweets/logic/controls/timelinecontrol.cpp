@@ -23,7 +23,6 @@
 
 #include <QtQml>
 #include "timelinecontrol.hpp"
-#include "../reyntweetsutils.hpp"
 
 // Constructor
 TimelineControl::TimelineControl() :
@@ -35,8 +34,9 @@ TimelineControl::TimelineControl() :
 
 // Declaring TweetControl to the QML system
 void TimelineControl::declareQML() {
-	qmlRegisterType<TimelineControl>("ReynTweetsControls",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<TimelineControl>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "TimelineControl");
 }
 

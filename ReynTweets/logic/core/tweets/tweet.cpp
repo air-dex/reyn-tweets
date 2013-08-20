@@ -47,7 +47,7 @@ Tweet::Tweet() :
 	retweetInfos(),
 	favoritedTweet(false),
 	favoriteCount(0),
-	replyToScreenName(""),
+	replyToScreenName(ReynTweets::FAKE_SCREEN_NAME),
 	replyToUserID(ReynTweets::FAKE_USER_ID),
 	replyToUserIDstr(ReynTweets::FAKE_USER_ID_STR),
 	replyToTweetID(ReynTweets::FAKE_TWEET_ID),
@@ -90,7 +90,7 @@ Tweet::Tweet(const Tweet & status) :
 	retweetInfos(),
 	favoritedTweet(false),
 	favoriteCount(0),
-	replyToScreenName(""),
+	replyToScreenName(ReynTweets::FAKE_SCREEN_NAME),
 	replyToUserID(ReynTweets::FAKE_USER_ID),
 	replyToUserIDstr(ReynTweets::FAKE_USER_ID_STR),
 	replyToTweetID(ReynTweets::FAKE_TWEET_ID),
@@ -171,8 +171,9 @@ void Tweet::initSystem() {
 
 // Declaring to the QML components
 void Tweet::declareQML() {
-	qmlRegisterType<Tweet>("ReynTweetsEntities",
-						   0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<Tweet>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+						   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 						   "Tweet");
 }
 
@@ -227,7 +228,7 @@ void Tweet::fillWithVariant(QJsonObject json) {
 	this->filterLevel = json.value(FILTER_LEVEL_PN).toString("");
 	this->tweetID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	this->tweetIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
-	this->replyToScreenName = json.value(IN_REPLY_TO_SCREEN_NAME_PN).toString("");
+	this->replyToScreenName = json.value(IN_REPLY_TO_SCREEN_NAME_PN).toString(ReynTweets::FAKE_SCREEN_NAME);
 	this->replyToTweetID = qlonglong(json.value(IN_REPLY_TO_STATUS_ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));
 	this->replyToTweetIDstr = json.value(IN_REPLY_TO_STATUS_ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
 	this->replyToUserID = qlonglong(json.value(IN_REPLY_TO_USER_ID_PN).toDouble(ReynTweets::FAKE_USER_ID));

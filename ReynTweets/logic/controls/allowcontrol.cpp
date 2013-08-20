@@ -35,8 +35,9 @@ AllowControl::AllowControl() :
 
 // Declaring to the QML components
 void AllowControl::declareQML() {
-	qmlRegisterType<AllowControl>("ReynTweetsControls",
-								  0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<AllowControl>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								  "AllowControl");
 }
 

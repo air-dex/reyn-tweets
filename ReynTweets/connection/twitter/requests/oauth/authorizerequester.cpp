@@ -44,7 +44,7 @@ void AuthorizeRequester::buildGETParameters() {
 
 	getParameters.insert("force_login", boolInString(forceLogin));
 
-	if (!screenName.isEmpty()) {
+	if (screenName != Twitter::FAKE_SCREEN_NAME) {
 		getParameters.insert("screen_name", screenName);
 	}
 }

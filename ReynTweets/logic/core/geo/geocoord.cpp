@@ -23,13 +23,12 @@
 
 #include "geocoord.hpp"
 
-// Constant for fake coordinates
-qreal GeoCoord::FAKE_COORD = 361;
+#include "../../reyntweetsutils.hpp"
 
 // Default constructor
 GeoCoord::GeoCoord() :
 	JsonArray<double>(),
-	QPointF(FAKE_COORD, FAKE_COORD)
+	QPointF(ReynTweets::FAKE_LONGITUDE, ReynTweets::FAKE_LATITUDE)
 {}
 
 // Destructor
@@ -38,7 +37,7 @@ GeoCoord::~GeoCoord() {}
 // Copy constructor
 GeoCoord::GeoCoord(const GeoCoord & coord) :
 	JsonArray<double>(),
-	QPointF(FAKE_COORD, FAKE_COORD)
+	QPointF(ReynTweets::FAKE_LONGITUDE, ReynTweets::FAKE_LATITUDE)
 {
 	recopie(coord);
 }
@@ -86,14 +85,14 @@ void GeoCoord::fillWithVariant(QJsonArray json) {
 	this->clear();
 
 	// longitude
-	double longi = json.at(0).toDouble(181);	// Fake longitude by default
-	if (qAbs(longi) <= 180) {
+	double longi = json.at(0).toDouble(ReynTweets::FAKE_LONGITUDE);
+	if (qAbs(longi) <= ReynTweets::MAX_LONGITUDE) {
 		this->setX(longi);
 	}
 
 	// latitude
-	double lati = json.at(1).toDouble(91);		// Fake latitude by default
-	if (qAbs(lati) <= 90) {
+	double lati = json.at(1).toDouble(ReynTweets::FAKE_LATITUDE);
+	if (qAbs(lati) <= ReynTweets::MAX_LATITUDE) {
 		this->setY(lati);
 	}
 }

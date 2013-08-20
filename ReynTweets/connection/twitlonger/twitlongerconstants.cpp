@@ -27,3 +27,9 @@
 
 // Fake tweet ID
 const qlonglong TwitLonger::FAKE_TWEET_ID = LibRT::FAKE_ID;
+
+// Fake TwitLonger message ID
+const QString TwitLonger::FAKE_MESSAGE_ID= LibRT::FAKE_STRING_ID;
+
+// Fake Twitter screen name (empty string)
+const QString TwitLonger::FAKE_SCREEN_NAME = LibRT::FAKE_STRING_ID;

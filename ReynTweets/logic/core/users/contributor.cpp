@@ -30,7 +30,7 @@ Contributor::Contributor() :
 	JsonObject(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName("")
+	screenName(ReynTweets::FAKE_SCREEN_NAME)
 {}
 
 // Destructor
@@ -41,7 +41,7 @@ Contributor::Contributor(const Contributor & contributor) :
 	JsonObject(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName("")
+	screenName(ReynTweets::FAKE_SCREEN_NAME)
 {
 	recopie(contributor);
 }
@@ -60,8 +60,9 @@ void Contributor::initSystem() {
 
 // Declaring to the QML components
 void Contributor::declareQML() {
-	qmlRegisterType<Contributor>("ReynTweetsEntities",
-								 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<Contributor>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								 "Contributor");
 }
 
@@ -97,7 +98,7 @@ void Contributor::reset() {
 void Contributor::fillWithVariant(QJsonObject json) {
 	this->userID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_USER_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	this->userIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_USER_ID_STR);
-	this->screenName = json.value(SCREEN_NAME_PN).toString("");
+	this->screenName = json.value(SCREEN_NAME_PN).toString(ReynTweets::FAKE_SCREEN_NAME);
 }
 
 // Getting a QJsonObject representation of the object

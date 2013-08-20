@@ -23,6 +23,7 @@
 
 #include "urlshandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 UrlsHandler::UrlsHandler() :
@@ -58,8 +59,9 @@ void UrlsHandler::initSystem() {
 
 // Declaring to the QML components
 void UrlsHandler::declareQML() {
-	qmlRegisterType<UrlsHandler>("ReynTweetsEntities",
-								 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UrlsHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								 "UrlsHandler");
 }
 

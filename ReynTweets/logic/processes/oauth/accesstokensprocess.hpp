@@ -98,8 +98,8 @@ class AccessTokensProcess : public GenericProcess
 		/// @brief
 		void saveConfiguration();
 
-		/// @fn void updateConfiguration(QByteArray accessToken = "",
-		///								 QByteArray tokenSecret = "",
+		/// @fn void updateConfiguration(QByteArray accessToken,
+		///								 QByteArray tokenSecret,
 		///								 qlonglong id,
 		///								 QString screenName);
 		/// @brief Uploading the configuration after an authentication process

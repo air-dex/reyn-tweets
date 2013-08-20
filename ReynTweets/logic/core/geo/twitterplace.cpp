@@ -23,6 +23,7 @@
 
 #include "twitterplace.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 TwitterPlace::TwitterPlace() :
@@ -32,7 +33,7 @@ TwitterPlace::TwitterPlace() :
 	land(""),
 	landCode(""),
 	fullName(""),
-	placeID(""),
+	placeID(ReynTweets::FAKE_PLACE_ID),
 	placeName(""),
 	placeType(""),
 	metadataURL("")
@@ -49,7 +50,7 @@ TwitterPlace::TwitterPlace(const TwitterPlace & place) :
 	land(""),
 	landCode(""),
 	fullName(""),
-	placeID(""),
+	placeID(ReynTweets::FAKE_PLACE_ID),
 	placeName(""),
 	placeType(""),
 	metadataURL("")
@@ -86,7 +87,10 @@ void TwitterPlace::initSystem() {
 
 // Declaring to the QML components
 void TwitterPlace::declareQML() {
-	qmlRegisterType<TwitterPlace>("ReynTweetsEntities", 0, 2, "TwitterPlace");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<TwitterPlace>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+								  "TwitterPlace");
 }
 
 // Resets to a default value
@@ -106,7 +110,7 @@ void TwitterPlace::fillWithVariant(QJsonObject json) {
 	this->land = json.value(COUNTRY_PN).toString("");
 	this->landCode = json.value(COUNTRY_CODE_PN).toString("");
 	this->fullName = json.value(FULL_NAME_PN).toString("");
-	this->placeID = json.value(ID_PN).toString("");
+	this->placeID = json.value(ID_PN).toString(ReynTweets::FAKE_PLACE_ID);
 	this->placeName = json.value(NAME_PN).toString("");
 	this->placeType = json.value(PLACE_TYPE_PN).toString("");
 	this->metadataURL = json.value(URL_PN).toString("");

@@ -25,6 +25,7 @@
 #include <QtQml>
 #include <QWebElement>
 #include "../../../connection/common/utils/parsers/htmlparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -61,7 +62,10 @@ void Hashtag::initSystem() {
 
 // Declaring to the QML components
 void Hashtag::declareQML() {
-	qmlRegisterType<Hashtag>("ReynTweetsEntities", 0, 2, "Hashtag");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<Hashtag>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+							 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+							 "Hashtag");
 }
 
 // Copy of a Hashtag
@@ -87,7 +91,7 @@ void Hashtag::reset() {
 
 // Equality
 bool Hashtag::operator==(const Hashtag & hashtag) const {
-	return this->hashText == hashtag.hashText;
+	return this->hashText.toLower() == hashtag.hashText.toLower();
 }
 
 

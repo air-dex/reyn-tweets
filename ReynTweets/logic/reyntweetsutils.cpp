@@ -50,25 +50,25 @@ QColor ReynTweets::string2color(QString coloredString) {
 const qlonglong ReynTweets::FAKE_TWEET_ID = Twitter::FAKE_TWEET_ID;
 
 // Constant for a fake Tweet ID (QString version)
-const QString ReynTweets::FAKE_TWEET_ID_STR = QString::number(Twitter::FAKE_TWEET_ID);
+const QString ReynTweets::FAKE_TWEET_ID_STR = QString::number(ReynTweets::FAKE_TWEET_ID);
 
 // Constant for a fake Tweet ID
 const qlonglong ReynTweets::FAKE_USER_ID = Twitter::FAKE_USER_ID;
 
 // Constant for a fake Tweet ID (QString version)
-const QString ReynTweets::FAKE_USER_ID_STR = QString::number(Twitter::FAKE_USER_ID);
+const QString ReynTweets::FAKE_USER_ID_STR = QString::number(ReynTweets::FAKE_USER_ID);
 
 // Constant for a fake Media ID
 const qlonglong ReynTweets::FAKE_MEDIA_ID = LibRT::FAKE_ID;
 
 // Constant for a fake Media ID (QString version)
-const QString ReynTweets::FAKE_MEDIA_ID_STR = QString::number(LibRT::FAKE_ID);
+const QString ReynTweets::FAKE_MEDIA_ID_STR = QString::number(ReynTweets::FAKE_MEDIA_ID);
 
 // Fake longitude
-const int ReynTweets::FAKE_LONGITUDE = LibRT::FAKE_LONGITUDE;
+const float ReynTweets::FAKE_LONGITUDE = LibRT::FAKE_LONGITUDE;
 
 // Fake latitude
-const int ReynTweets::FAKE_LATITUDE = LibRT::FAKE_LATITUDE;
+const float ReynTweets::FAKE_LATITUDE = LibRT::FAKE_LATITUDE;
 
 // Fake index in an array
 const int ReynTweets::FAKE_BOUND = -1;
@@ -78,3 +78,30 @@ const int ReynTweets::DEFAULT_TWEETS_COUNT = Twitter::DEFAULT_TWEETS_COUNT;
 
 // Maximum number of tweets that can be retrieved per call (200).
 const int ReynTweets::MAX_TWEETS_COUNT = Twitter::MAX_TWEETS_COUNT;
+
+// Fake value for a token (empty string)
+const QByteArray ReynTweets::FAKE_TOKEN = LibRT::FAKE_TOKEN;
+
+// Fake value for an URL (empty string)
+const QString ReynTweets::FAKE_URL = LibRT::FAKE_URL;
+
+// Fake Twitter screen name (empty string)
+const QString ReynTweets::FAKE_SCREEN_NAME = Twitter::FAKE_SCREEN_NAME;
+
+// Fake Twitter place ID
+const QString ReynTweets::FAKE_PLACE_ID = Twitter::FAKE_PLACE_ID;
+
+// Maximum longitude
+const float ReynTweets::MAX_LONGITUDE = LibRT::MAX_LONGITUDE;
+
+// Maximum latitude
+const float ReynTweets::MAX_LATITUDE = LibRT::MAX_LATITUDE;
+
+// Name of the QML library with the Reyn Tweets C++ components available for QML
+const QString ReynTweets::QML_LIBRARY_NAME = "ReynTweetsComponents";
+
+// Reyn Tweets major version.
+const int ReynTweets::MAJOR_VERSION = 0;
+
+// Reyn Tweets minor version.
+const int ReynTweets::MINOR_VERSION = 2;

@@ -38,7 +38,7 @@ PostViaTwitLongerProcess::PostViaTwitLongerProcess(Tweet status,
 	displayCoord(showCoord),
 	enoughShortMessage(false),
 	shortenedTweet(""),
-	messageID(""),
+	messageID(TwitLonger::FAKE_MESSAGE_ID),
 	postedTweet()
 {}
 

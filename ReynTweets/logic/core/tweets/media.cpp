@@ -34,8 +34,8 @@ Media::Media() :
 	URLEntity(),
 	mediaID(ReynTweets::FAKE_MEDIA_ID),
 	mediaIDstr(ReynTweets::FAKE_MEDIA_ID_STR),
-	mediaURL(""),
-	mediaURLhttps(""),
+	mediaURL(ReynTweets::FAKE_URL),
+	mediaURLhttps(ReynTweets::FAKE_URL),
 	mediaType(""),
 	mediaSizes(),
 	sourceID(ReynTweets::FAKE_TWEET_ID),
@@ -50,8 +50,8 @@ Media::Media(const Media & media) :
 	URLEntity(),
 	mediaID(ReynTweets::FAKE_MEDIA_ID),
 	mediaIDstr(ReynTweets::FAKE_MEDIA_ID_STR),
-	mediaURL(""),
-	mediaURLhttps(""),
+	mediaURL(ReynTweets::FAKE_URL),
+	mediaURLhttps(ReynTweets::FAKE_URL),
 	mediaType(""),
 	mediaSizes(),
 	sourceID(ReynTweets::FAKE_TWEET_ID),
@@ -74,7 +74,10 @@ void Media::initSystem() {
 
 // Declaring to the QML components
 void Media::declareQML() {
-	qmlRegisterType<Media>("ReynTweetsEntities", 0, 2, "Media");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<Media>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+						   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+						   "Media");
 }
 
 // Copy of a Media
@@ -125,8 +128,8 @@ void Media::fillWithVariant(QJsonObject json) {
 	URLEntity::fillWithVariant(json);	// Base class
 	this->mediaID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_MEDIA_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	this->mediaIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_MEDIA_ID_STR);
-	this->mediaURL = json.value(MEDIA_URL_PN).toString("");
-	this->mediaURLhttps = json.value(MEDIA_URL_HTTPS_PN).toString("");
+	this->mediaURL = json.value(MEDIA_URL_PN).toString(ReynTweets::FAKE_URL);
+	this->mediaURLhttps = json.value(MEDIA_URL_HTTPS_PN).toString(ReynTweets::FAKE_URL);
 	this->mediaType = json.value(TYPE_PN).toString("");
 	this->mediaSizes.fillWithVariant(json.value(SIZES_PN).toObject());
 	this->sourceID = qlonglong(json.value(SOURCE_STATUS_ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560

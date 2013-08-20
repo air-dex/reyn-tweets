@@ -24,7 +24,7 @@
 #ifndef TWITTERCONSTANTS_HPP
 #define TWITTERCONSTANTS_HPP
 
-#include <QtGlobal>
+#include <QString>
 
 namespace Twitter {
 	/// @brief Constant for a fake Tweet ID (-1)
@@ -38,6 +38,12 @@ namespace Twitter {
 
 	/// @brief Maximum number of tweets that can be retrieved per call (200).
 	extern const int MAX_TWEETS_COUNT;
+
+	/// @brief Constant for a fake Twitter screen name (empty string)
+	extern const QString FAKE_SCREEN_NAME;
+
+	/// @brief Fake Twitter place ID
+	extern const QString FAKE_PLACE_ID;
 }
 
 #endif // TWITTERCONSTANTS_HPP

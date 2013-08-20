@@ -24,11 +24,12 @@
 #include "oauth2authenticator.hpp"
 
 #include <QUrl>
+#include "../../utils/librtconstants.hpp"
 
 // Constructor
 OAuth2Authenticator::OAuth2Authenticator() :
 	OAuthAuthenticator("2.0"),
-	bearerToken("")
+	bearerToken(LibRT::FAKE_TOKEN)
 {}
 
 // Destructor
@@ -43,7 +44,7 @@ void OAuth2Authenticator::setBearerToken(QByteArray newBearer) {
 }
 
 void OAuth2Authenticator::resetTokens() {
-	bearerToken = "";
+	bearerToken = LibRT::FAKE_TOKEN;
 }
 
 

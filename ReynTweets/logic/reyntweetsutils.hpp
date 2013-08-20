@@ -66,10 +66,18 @@ namespace ReynTweets {
 	extern const QString FAKE_MEDIA_ID_STR;
 
 	/// @brief Fake longitude
-	extern const int FAKE_LONGITUDE;
+	extern const float FAKE_LONGITUDE;
 
 	/// @brief Fake latitude
-	extern const int FAKE_LATITUDE;
+	extern const float FAKE_LATITUDE;
+
+	/// @brief Maximum absolute value for a longitude (180 since a valid
+	/// longitude is between -180 and +180).
+	extern const float MAX_LONGITUDE;
+
+	/// @brief Maximum absolute value for a latitude (180 since a valid
+	/// latitude is between -90 and +90).
+	extern const float MAX_LATITUDE;
 
 	/// @brief Fake index in an array
 	extern const int FAKE_BOUND;
@@ -79,6 +87,28 @@ namespace ReynTweets {
 
 	/// @brief Maximum number of tweets that can be retrieved per call (200).
 	extern const int MAX_TWEETS_COUNT;
+
+	/// @brief Fake value for a token (empty string)
+	extern const QByteArray FAKE_TOKEN;
+
+	/// @brief Fake value for an URL (empty string)
+	extern const QString FAKE_URL;
+
+	/// @brief Constant for a fake Twitter screen name (empty string)
+	extern const QString FAKE_SCREEN_NAME;
+
+	/// @brief Fake Twitter place ID
+	extern const QString FAKE_PLACE_ID;
+
+	/// @brief Name of the QML library containing all the Reyn Tweets C++
+	/// classes available for pure QML objects.
+	extern const QString QML_LIBRARY_NAME;
+
+	/// @brief Reyn Tweets major version.
+	extern const int MAJOR_VERSION;
+
+	/// @brief Reyn Tweets minor version.
+	extern const int MINOR_VERSION;
 }
 
 #endif // REYNTWEETSUTILS_HPP

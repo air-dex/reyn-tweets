@@ -59,7 +59,10 @@ void RetweetInfos::initSystem() {
 
 // Declaring to the QML components
 void RetweetInfos::declareQML() {
-	qmlRegisterType<RetweetInfos>("ReynTweetsEntities", 0, 2,"RetweetInfos");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<RetweetInfos>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+								  "RetweetInfos");
 }
 
 // Resets the mappable to a default value

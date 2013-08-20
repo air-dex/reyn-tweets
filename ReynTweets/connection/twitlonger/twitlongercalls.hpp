@@ -61,7 +61,7 @@ class TwitLongerCalls : public GenericCalls
 		/// @fn void postOnTwitLonger(QString username,
 		///							  QString message,
 		///							  qlonglong replyToTweetID = TwitLonger::FAKE_TWEET_ID,
-		///							  QString replyToUser = "");
+		///							  QString replyToUser = TwitLonger::FAKE_SCREEN_NAME);
 		/// @brief Posting the long message on TwitLonger
 		/// @param username Name of the user that wants to shorten the tweet
 		/// @param message Message to shorten
@@ -72,7 +72,7 @@ class TwitLongerCalls : public GenericCalls
 		void postOnTwitLonger(QString username,
 							  QString message,
 							  qlonglong replyToTweetID = TwitLonger::FAKE_TWEET_ID,
-							  QString replyToUser = "");
+							  QString replyToUser = TwitLonger::FAKE_SCREEN_NAME);
 
 		/// @fn void updateLongTweet(QString messageID, qlonglong tweetID);
 		/// @brief Updating the message informations on TwitLonger.

@@ -23,6 +23,7 @@
 
 #include <QtQml>
 #include "useraccount.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -31,8 +32,8 @@
 // Default constructor
 UserAccount::UserAccount() :
 	JsonObject(),
-	accessToken(""),
-	tokenSecret(""),
+	accessToken(ReynTweets::FAKE_TOKEN),
+	tokenSecret(ReynTweets::FAKE_TOKEN),
 	user(),
 	helloMessage("")
 {}
@@ -43,8 +44,8 @@ UserAccount::~UserAccount() {}
 // Copy constructor
 UserAccount::UserAccount(const UserAccount & account) :
 	JsonObject(),
-	accessToken(""),
-	tokenSecret(""),
+	accessToken(ReynTweets::FAKE_TOKEN),
+	tokenSecret(ReynTweets::FAKE_TOKEN),
 	user(),
 	helloMessage("")
 {
@@ -74,8 +75,9 @@ void UserAccount::initSystem() {
 
 // Declaring ReynTweetsConfiguration to the QML system
 void UserAccount::declareQML() {
-	qmlRegisterType<UserAccount>("ReynTweetsEntities",
-								 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UserAccount>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								 "UserAccount");
 }
 
@@ -106,8 +108,8 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 
 // Filling the object with a QJsonObject.
 void UserAccount::fillWithVariant(QJsonObject json) {
-	this->accessToken = QByteArray::fromBase64(json.value(ACCESS_TOKEN_PN).toString("").toLatin1());
-	this->tokenSecret = QByteArray::fromBase64(json.value(TOKEN_SECRET_PN).toString("").toLatin1());
+	this->accessToken = QByteArray::fromBase64(json.value(ACCESS_TOKEN_PN).toString(ReynTweets::FAKE_TOKEN).toLatin1());
+	this->tokenSecret = QByteArray::fromBase64(json.value(TOKEN_SECRET_PN).toString(ReynTweets::FAKE_TOKEN).toLatin1());
 	this->user.fillWithVariant(json.value(CURRENT_USER_PN).toObject());
 	this->helloMessage = json.value(HELLO_MESSAGE_PN).toString("");
 }

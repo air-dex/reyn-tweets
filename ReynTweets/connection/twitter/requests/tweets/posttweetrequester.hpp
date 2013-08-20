@@ -37,9 +37,9 @@ class PostTweetRequester : public TwitterRequester
 		/// @fn PostTweetRequester(TwitterAuthenticator & authManager,
 		///						   QString status,
 		///						   qlonglong replyTostatusID = Twitter::FAKE_TWEET_ID,
-		///						   float lat = -361,
-		///						   float lon = -361,
-		///						   QString place = "",
+		///						   float lat = LibRT::FAKE_LATITUDE,
+		///						   float lon = LibRT::FAKE_LONGITUDE,
+		///						   QString place = Twitter::FAKE_PLACE_ID,
 		///						   bool showCoord = false,
 		///						   bool userIDonly = true);
 		/// @brief Posting a tweet without media
@@ -57,9 +57,9 @@ class PostTweetRequester : public TwitterRequester
 		PostTweetRequester(TwitterAuthenticator & authManager,
 						   QString status,
 						   qlonglong replyTostatusID = Twitter::FAKE_TWEET_ID,
-						   float lat = -361,
-						   float lon = -361,
-						   QString place = "",
+						   float lat = LibRT::FAKE_LATITUDE,
+						   float lon = LibRT::FAKE_LONGITUDE,
+						   QString place = Twitter::FAKE_PLACE_ID,
 						   bool showCoord = false,
 						   bool userIDonly = true);
 

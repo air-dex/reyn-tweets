@@ -26,8 +26,23 @@
 // Fake tweet ID
 const qlonglong LibRT::FAKE_ID = -1;
 
+/// @brief Generic fake value for ID represented by a string (empty string)
+const QString LibRT::FAKE_STRING_ID = "";
+
 // Fake longitude
-const int LibRT::FAKE_LONGITUDE = 361;
+const float LibRT::FAKE_LONGITUDE = 181;
 
 // Fake latitude
-const int LibRT::FAKE_LATITUDE = 91;
+const float LibRT::FAKE_LATITUDE = 91;
+
+// Maximum longitude
+const float LibRT::MAX_LONGITUDE = 180;
+
+// Maximum latitude
+const float LibRT::MAX_LATITUDE = 90;
+
+// Fake value for a token (empty string)
+const QByteArray LibRT::FAKE_TOKEN = "";
+
+// Fake value for an URL (empty string)
+const QString LibRT::FAKE_URL = "";

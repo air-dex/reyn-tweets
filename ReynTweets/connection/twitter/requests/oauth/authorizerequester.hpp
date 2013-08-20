@@ -35,14 +35,14 @@ class AuthorizeRequester : public OAuthRequester
 	public:
 		/// @fn AuthorizeRequester(TwitterAuthenticator & authManagerr,
 		///						   bool forceLog = false,
-		///						   QString writeLogin = "");
+		///						   QString writeLogin = Twitter::FAKE_SCREEN_NAME);
 		/// @brief Constructor
 		/// @param authManager Informations for OAuth.
 		/// @param forceLog Value for forceLogin
 		/// @param writeLogin Value for screenName
 		AuthorizeRequester(TwitterAuthenticator & authManager,
 						   bool forceLog = false,
-						   QString writeLogin = "");
+						   QString writeLogin = Twitter::FAKE_SCREEN_NAME);
 
 	protected:
 		/// @brief Boolean indicating if the user as to sign in to

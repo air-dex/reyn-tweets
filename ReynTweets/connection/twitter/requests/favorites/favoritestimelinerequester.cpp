@@ -34,7 +34,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & au
 	TwitterRequester(LibRT::GET, Twitter::FAVORITE_TIMELINE_URL, authManager),
 	idWay(LibRT::ID),
 	userID(uid),
-	screenName(""),
+	screenName(Twitter::FAKE_SCREEN_NAME),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(earliestTweetID),

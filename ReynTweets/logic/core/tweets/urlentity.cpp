@@ -25,6 +25,7 @@
 #include <QtQml>
 #include <QWebElement>
 #include "../../../connection/common/utils/parsers/htmlparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -33,9 +34,9 @@
 // Constructor
 URLEntity::URLEntity() :
 	TweetEntity(),
-	extractedURL(""),
-	displayedURL(""),
-	expandedURL("")
+	extractedURL(ReynTweets::FAKE_URL),
+	displayedURL(ReynTweets::FAKE_URL),
+	expandedURL(ReynTweets::FAKE_URL)
 {}
 
 // Destructor
@@ -44,9 +45,9 @@ URLEntity::~URLEntity() {}
 // Copy constructor
 URLEntity::URLEntity(const URLEntity & entity) :
 	TweetEntity(),
-	extractedURL(""),
-	displayedURL(""),
-	expandedURL("")
+	extractedURL(ReynTweets::FAKE_URL),
+	displayedURL(ReynTweets::FAKE_URL),
+	expandedURL(ReynTweets::FAKE_URL)
 {
 	recopie(entity);
 }
@@ -65,7 +66,10 @@ void URLEntity::initSystem() {
 
 // Declaring to the QML components
 void URLEntity::declareQML() {
-	qmlRegisterType<URLEntity>("ReynTweetsEntities", 0, 2, "URLEntity");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<URLEntity>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+							   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+							   "URLEntity");
 }
 
 // Copy of a URLEntity
@@ -106,9 +110,9 @@ bool URLEntity::operator==(const URLEntity & entity) const {
 // Filling the object with a QJsonObject.
 void URLEntity::fillWithVariant(QJsonObject json) {
 	TweetEntity::fillWithVariant(json);		// Base class
-	this->extractedURL = json.value(URL_PN).toString("");
-	this->displayedURL = json.value(DISPLAYED_URL_PN).toString("");
-	this->expandedURL = json.value(EXPANDED_URL_PN).toString("");
+	this->extractedURL = json.value(URL_PN).toString(ReynTweets::FAKE_URL);
+	this->displayedURL = json.value(DISPLAYED_URL_PN).toString(ReynTweets::FAKE_URL);
+	this->expandedURL = json.value(EXPANDED_URL_PN).toString(ReynTweets::FAKE_URL);
 }
 
 // Getting a QJsonObject representation of the object

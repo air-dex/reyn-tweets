@@ -23,6 +23,7 @@
 
 #include "tweetentities.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -73,7 +74,10 @@ void TweetEntities::initSystem() {
 
 // Declaring to the QML components
 void TweetEntities::declareQML() {
-	qmlRegisterType<TweetEntities>("ReynTweetsEntities", 0, 2,"TweetEntities");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<TweetEntities>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+								   "TweetEntities");
 }
 
 // Copy of a TwitterEntities

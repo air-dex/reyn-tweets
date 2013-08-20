@@ -38,7 +38,7 @@ class NetworkResponse {
 		///						QString httpReason = "",
 		///						QByteArray response = "",
 		///						QString error = "",
-		///						QString repURL = "");
+		///						QString repURL = LibRT::FAKE_URL);
 		/// @brief Full constructor
 		/// @param httpCode Value for httpResponse.code.
 		/// @param httpReason Value for httpResponse.message.
@@ -49,7 +49,7 @@ class NetworkResponse {
 						QString httpReason = "",
 						QByteArray response = "",
 						QString error = "",
-						QString repURL = "");
+						QString repURL = LibRT::FAKE_URL);
 
 		/// @fn NetworkResponse(QNetworkReply reply);
 		/// @brief Building a NetworkResponse with the content of a QNetworkReply.

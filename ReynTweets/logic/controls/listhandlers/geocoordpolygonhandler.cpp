@@ -23,6 +23,7 @@
 
 #include "geocoordpolygonhandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 GeoCoordPolygonHandler::GeoCoordPolygonHandler() :
@@ -58,8 +59,9 @@ void GeoCoordPolygonHandler::initSystem() {
 
 // Declaring to the QML components
 void GeoCoordPolygonHandler::declareQML() {
-	qmlRegisterType<GeoCoordPolygonHandler>("ReynTweetsEntities",
-											0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<GeoCoordPolygonHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+											ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 											"GeoCoordPolygonHandler");
 }
 

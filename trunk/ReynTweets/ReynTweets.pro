@@ -54,8 +54,8 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
-	connection/model/managers/oauthmanager.cpp \
-	connection/model/managers/twitlongermanager.cpp \
+	connection/twitter/oauthmanager.cpp \
+	connection/twitlonger/twitlongermanager.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/requests/twitlonger/twitlongerurls.cpp \
 	connection/requests/twitter/twitterurls.cpp \
@@ -162,8 +162,8 @@ HEADERS  += \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
-	connection/model/managers/oauthmanager.hpp \
-	connection/model/managers/twitlongermanager.hpp \
+	connection/twitter/oauthmanager.hpp \
+	connection/twitlonger/twitlongermanager.hpp \
 	connection/common/requesttype.hpp \
 	connection/common/headersmap.hpp \
 	connection/common/communicators/twittercommunicator.hpp \

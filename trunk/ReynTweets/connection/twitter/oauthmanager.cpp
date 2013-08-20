@@ -25,7 +25,7 @@
 #include <QDateTime>
 #include <QUrl>
 #include "oauthmanager.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 // Constructor
 OAuthManager::OAuthManager(QString signatureAlgorithm,

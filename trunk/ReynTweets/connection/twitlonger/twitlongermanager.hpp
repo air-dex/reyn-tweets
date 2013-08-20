@@ -26,7 +26,7 @@
 
 #include <QByteArray>
 #include <QString>
-#include "../model/configuration/appconfiguration.hpp"
+#include "../../model/configuration/appconfiguration.hpp" // TODO : utile ?
 
 /// @class TwitLongerManager
 /// @brief Entity with all the informations needed for transactions with the

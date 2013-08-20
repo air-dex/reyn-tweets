@@ -28,7 +28,7 @@
 #define REYNTWITTERCALLS_HPP
 
 #include "../common/calls/genericcalls.hpp"
-#include "../model/managers/oauthmanager.hpp"
+#include "../twitter/oauthmanager.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter.

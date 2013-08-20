@@ -26,7 +26,7 @@
 
 #include "../../common/requests/genericrequester.hpp"
 #include "twitterurls.hpp"
-#include "../../model/managers/oauthmanager.hpp"
+#include "../../twitter/oauthmanager.hpp"
 
 /// @class TwitterRequester
 /// @brief Base class for requesters that use the Twitter API.

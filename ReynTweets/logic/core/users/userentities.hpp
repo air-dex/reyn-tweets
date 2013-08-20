@@ -115,7 +115,7 @@ class UserEntities : public JsonObject
 
 	protected:
 		// url
-		/// @property url_ent
+		/// @property url
 		/// @brief URL entities
 		///
 		/// userURL is the attribute beneath the property.
@@ -141,7 +141,7 @@ class UserEntities : public JsonObject
 		TweetEntities userURL;
 
 		// description
-		/// @property description_ent
+		/// @property description
 		/// @brief URL entities in the description.
 		///
 		/// userDescription is the attribute beneath the property.

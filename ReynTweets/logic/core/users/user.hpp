@@ -120,35 +120,13 @@ class User : public UserInfos
 		/// @brief Serializable form of lastTweet
 		///
 		/// lastTweet is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap status
-				   READ getStatusProperty
+		Q_PROPERTY(Tweet * status
+				   READ getStatusPtr
 				   WRITE setStatus
 				   NOTIFY statusChanged)
 
 		/// @brief Name of the property status
 		static QString STATUS_PN;
-
-		/// @fn QVariantMap getStatusProperty();
-		/// @brief Reading the "status" property
-		/// @return lastTweetMap
-		QVariantMap getStatusProperty();
-
-		/// @fn void setStatus(QVariantMap statusMap);
-		/// @brief Writing the status property
-		/// @param statusMap The new value of the property
-		void setStatus(QVariantMap statusMap);
-
-		/// @property last_status
-		/// @brief Serializable form of lastTweet
-		///
-		/// lastTweet is the attribute beneath this property.
-		Q_PROPERTY(Tweet * last_status
-				   READ getStatusPtr
-				   WRITE setStatus
-				   NOTIFY statusChanged)
-
-		/// @brief Name of the property last_status
-		static QString LAST_STATUS_PN;
 
 		/// @fn Tweet * getStatusProperty();
 		/// @brief Reading the "status" property

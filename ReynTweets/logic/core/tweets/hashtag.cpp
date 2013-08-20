@@ -23,9 +23,8 @@
 
 #include "hashtag.hpp"
 #include <QtQml>
-#include <QWebPage>
-#include <QWebFrame>
 #include <QWebElement>
+#include "../../../connection/common/utils/parsers/htmlparser.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -143,14 +142,17 @@ QString Hashtag::getHashtag() {
 // Building the rich text for the entity
 QString Hashtag::getDisplayedText(QColor linkColor) {
 	QString hashtag = getHashtag();
-	QWebPage page;
-	QWebFrame * frame = page.mainFrame();
 
-	if (frame) {
-		frame->setHtml("<a></a>");
-		QWebElement link = frame->documentElement().findFirst("a");
+	// Building the HTML link
+	QString htmlHashtag = "";
+	htmlHashtag.append("<a>").append(hashtag).append("</a>");
 
-		link.setPlainText(hashtag);
+	HTMLParser parser;
+	bool parseOK = false;
+	QWebElement link = parser.parse(htmlHashtag.toUtf8(), &parseOK);
+
+	if (parseOK) {
+		link = link.findFirst("a");
 		link.setAttribute("href", hashtag);
 		link.setStyleProperty("color", linkColor.name());
 		link.setStyleProperty("text-decoration", "none");

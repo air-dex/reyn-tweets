@@ -23,9 +23,8 @@
 
 #include "urlentity.hpp"
 #include <QtQml>
-#include <QWebPage>
-#include <QWebFrame>
 #include <QWebElement>
+#include "../../../connection/common/utils/parsers/htmlparser.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -171,14 +170,16 @@ void URLEntity::setExpandedURL(QString newURL) {
 
 // Building the rich text for the entity
 QString URLEntity::getDisplayedText(QColor linkColor) {
-	QWebPage page;
-	QWebFrame * frame = page.mainFrame();
+	// Building the HTML link
+	QString htmlLink = "";
+	htmlLink.append("<a>").append(expandedURL).append("</a>");
 
-	if (frame) {
-		frame->setHtml("<a></a>");
-		QWebElement link = frame->documentElement().findFirst("a");
+	HTMLParser parser;
+	bool parseOK = false;
+	QWebElement link = parser.parse(htmlLink.toUtf8(), &parseOK);
 
-		link.setPlainText(expandedURL);
+	if (parseOK) {
+		link = link.findFirst("a");
 		link.setAttribute("href", extractedURL);
 		link.setStyleProperty("color", linkColor.name());
 		link.setStyleProperty("text-decoration", "none");

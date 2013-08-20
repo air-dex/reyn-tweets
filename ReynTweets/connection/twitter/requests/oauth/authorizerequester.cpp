@@ -24,8 +24,8 @@
 #include "authorizerequester.hpp"
 
 #include <QDomElement>
-#include "../../../../tools/parsers/xmlparser.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../../common/utils/parsers/xmlparser.hpp"
+#include "../../../common/utils/connectionutils.hpp"
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(TwitterAuthenticator &authManager, bool forceLog, QString writeLogin) :

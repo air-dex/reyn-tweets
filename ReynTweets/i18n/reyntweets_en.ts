@@ -467,85 +467,85 @@
 		<translation>Rewriting as bool : parameter &apos;</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="101"/>
+		<location filename="../logic/processes/processutils.cpp" line="101"/>
 		<source>Twitter seems down:</source>
 		<translation>Twitter seems down:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="73"/>
+		<location filename="../logic/processes/processutils.cpp" line="73"/>
 		<source>Twitter do not return new datas:</source>
 		<translation>Twitter do not return new datas:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="77"/>
+		<location filename="../logic/processes/processutils.cpp" line="77"/>
 		<source>Your request was invalid:</source>
 		<translation>Your request was invalid:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="81"/>
+		<location filename="../logic/processes/processutils.cpp" line="81"/>
 		<source>Tokens were not authorized:</source>
 		<translation>Tokens were not authorized:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="85"/>
+		<location filename="../logic/processes/processutils.cpp" line="85"/>
 		<source>Twitter refuses to treat your request:</source>
 		<translation>Twitter refuses to treat your request:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="89"/>
+		<location filename="../logic/processes/processutils.cpp" line="89"/>
 		<source>There is something invalid in your request:</source>
 		<translation>There is something invalid in your request:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="93"/>
+		<location filename="../logic/processes/processutils.cpp" line="93"/>
 		<source>Your research was invalid:</source>
 		<translation>Your research was invalid:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="97"/>
+		<location filename="../logic/processes/processutils.cpp" line="97"/>
 		<source>You reach the authentication rate:</source>
 		<translation>You reach the authentication rate:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="106"/>
+		<location filename="../logic/processes/processutils.cpp" line="106"/>
 		<source>Unexpected result:</source>
 		<translation>Unexpected result:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="118"/>
+		<location filename="../logic/processes/processutils.cpp" line="118"/>
 		<source>Twitter errors:</source>
 		<translation>Twitter errors:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="124"/>
+		<location filename="../logic/processes/processutils.cpp" line="124"/>
 		<source>Error </source>
 		<translation>Error </translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="143"/>
+		<location filename="../logic/processes/processutils.cpp" line="143"/>
 		<source>Network error </source>
 		<translation>Network error </translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="166"/>
-		<location filename="../tools/processutils.cpp" line="182"/>
-		<location filename="../tools/processutils.cpp" line="201"/>
+		<location filename="../logic/processes/processutils.cpp" line="166"/>
+		<location filename="../logic/processes/processutils.cpp" line="182"/>
+		<location filename="../logic/processes/processutils.cpp" line="201"/>
 		<source>Parsing error:</source>
 		<translation>Parsing error:</translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="168"/>
-		<location filename="../tools/processutils.cpp" line="184"/>
+		<location filename="../logic/processes/processutils.cpp" line="168"/>
+		<location filename="../logic/processes/processutils.cpp" line="184"/>
 		<source>Line </source>
 		<translation>Line </translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="187"/>
+		<location filename="../logic/processes/processutils.cpp" line="187"/>
 		<source>Column </source>
 		<translation>Column </translation>
 	</message>
 	<message>
-		<location filename="../tools/processutils.cpp" line="214"/>
+		<location filename="../logic/processes/processutils.cpp" line="214"/>
 		<source>Unexpected problem:</source>
 		<translation>Unexpected problem:</translation>
 	</message>

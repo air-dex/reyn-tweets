@@ -25,8 +25,8 @@
 #include <QtQml>
 #include "../core/configuration/appconfiguration.hpp"
 #include "../../connection/twitter/requests/twitterurls.hpp"
-#include "../../tools/parsers/oauthparser.hpp"
-#include "../../tools/parsers/htmlparser.hpp"
+#include "../../connection/common/utils/parsers/oauthparser.hpp"
+#include "../../connection/common/utils/parsers/htmlparser.hpp"
 
 // Constructor
 AllowControl::AllowControl() :

@@ -1,5 +1,5 @@
-/// @file utils.cpp
-/// @brief Implementation of the useful methods declared in utils.hpp.
+/// @file connectionutils.cpp
+/// @brief Implementation of the useful methods declared in connectionutils.hpp.
 ///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/.
 /// @author Romain Ducher
@@ -23,7 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "utils.hpp"
+#include "connectionutils.hpp"
 #include <QCryptographicHash>
 #include <QVariant>
 #include <QMapIterator>

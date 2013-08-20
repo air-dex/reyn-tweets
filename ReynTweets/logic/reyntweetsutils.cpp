@@ -1,10 +1,10 @@
-/// @file xmlparser.cpp
-/// @brief Implementation of XMLParser
+/// @file reyntweetsutils.cpp
+/// @brief Implementation of utilities for the logic part
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,22 +21,20 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QDomDocument>
-#include "xmlparser.hpp"
+#include "reyntweetsutils.hpp"
 
-// Parsing an XML document
-QDomElement XMLParser::parse(QByteArray data,
-							 bool *parseOK,
-							 QString *parseError,
-							 int * lineError,
-							 int * columnError)
-{
-	QDomDocument res("XMLdoc");
+// Converting a bool into a QString
+QString ReynTweets::boolInString(bool b) {
+	return b ? "true" : "false";
+}
 
-	bool parseRes = res.setContent(data, parseError, lineError, columnError);
-	if (parseOK) {
-		*parseOK = parseRes;
+// Converting a String into a QColor.
+QColor ReynTweets::string2color(QString coloredString) {
+	// Add a '#' at the beginning if not present
+	static QChar sharp('#');
+	if (!coloredString.startsWith(sharp)) {
+		coloredString.prepend(sharp);
 	}
 
-	return res.documentElement();
+	return QColor(coloredString);
 }

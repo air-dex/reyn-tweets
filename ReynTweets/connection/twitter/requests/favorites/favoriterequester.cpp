@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "favoriterequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../../common/utils/connectionutils.hpp"
 
 // Constructor
 FavoriteRequester::FavoriteRequester(TwitterAuthenticator &authManager,

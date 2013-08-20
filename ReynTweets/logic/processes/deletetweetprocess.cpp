@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "deletetweetprocess.hpp"
-#include "../../tools/processutils.hpp"
+#include "processutils.hpp"
 #include "../core/timelines/timeline.hpp"
 
 // Constructor

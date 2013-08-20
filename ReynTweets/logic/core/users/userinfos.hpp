@@ -26,7 +26,7 @@
 
 #include <QString>
 #include <QColor>
-#include "../../../tools/reyntweetsdatetime.hpp"
+#include "../reyntweetsdatetime.hpp"
 #include "../json/jsonobject.hpp"
 #include "userentities.hpp"
 

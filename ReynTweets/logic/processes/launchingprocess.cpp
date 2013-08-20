@@ -23,7 +23,7 @@
 
 #include <QFile>
 #include "launchingprocess.hpp"
-#include "../../tools/processutils.hpp"
+#include "processutils.hpp"
 #include "../../connection/twitlonger/twitlongercalls.hpp"
 
 // Constructor

@@ -1,5 +1,7 @@
 /// @file reyntweets.hpp
 /// @brief Header of the ReynTweets namespace
+///
+/// reyntweets.hpp is mainly used as a module for main.cpp
 /// @author Romain Ducher
 ///
 /// @section LICENSE

@@ -23,7 +23,6 @@
 
 #include "tweetentities.hpp"
 #include <QtQml>
-#include "../../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

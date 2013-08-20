@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "accesstokensprocess.hpp"
-#include "../../../tools/processutils.hpp"
+#include "../processutils.hpp"
 
 // Constructor
 AccessTokensProcess::AccessTokensProcess(QByteArray verifier) :

@@ -26,10 +26,10 @@
 
 #include <QString>
 #include <QVariant>
-#include "../logic/core/coreresult.hpp"
-#include "../logic/processes/processresult.hpp"
-#include "../connection/common/resultwrapper.hpp"
-#include "../connection/common/responseinfos.hpp"
+#include "../core/coreresult.hpp"
+#include "processresult.hpp"
+#include "../../connection/common/resultwrapper.hpp"
+#include "../../connection/common/responseinfos.hpp"
 
 /// @namespace ProcessUtils
 /// @brief Namespace with utilities for processes

@@ -24,7 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "genericprocess.hpp"
-#include "../../tools/processutils.hpp"
+#include "processutils.hpp"
 
 // Constructor
 GenericProcess::GenericProcess() :

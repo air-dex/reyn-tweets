@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "favoritestimelinerequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../../common/utils/connectionutils.hpp"
 
 // Constructor with ID
 FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & authManager,

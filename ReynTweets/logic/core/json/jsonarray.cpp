@@ -23,8 +23,7 @@
 
 #include "jsonarray.hpp"
 #include <QJsonDocument>
-#include "../../../tools/parsers/jsonparser.hpp"
-#include "../../../tools/utils.hpp"
+#include "../../../connection/common/utils/parsers/jsonparser.hpp"
 
 /////////////
 // Coplien //

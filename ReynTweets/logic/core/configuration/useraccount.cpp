@@ -23,7 +23,6 @@
 
 #include <QtQml>
 #include "useraccount.hpp"
-#include "../../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

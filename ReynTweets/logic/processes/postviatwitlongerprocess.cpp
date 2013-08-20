@@ -24,61 +24,17 @@
 #include "postviatwitlongerprocess.hpp"
 #include "processutils.hpp"
 
-// Constructor with QString ID
-PostViaTwitLongerProcess::PostViaTwitLongerProcess(QString status,
+// Constructor
+PostViaTwitLongerProcess::PostViaTwitLongerProcess(Tweet status,
 												   QString userScreenName,
-												   QString replyTostatusID,
-												   QString replyToUserScreenName,
 												   bool userIDonly,
-												   float lat,
-												   float lon,
-												   QString place,
 												   bool showCoord) :
 	GenericProcess(),
 	twitter(this),
 	twitlonger(this),
 	tweet(status),
 	username(userScreenName),
-	replyToUser(replyToUserScreenName),
 	trimUser(userIDonly),
-	longitude(lon),
-	latitude(lat),
-	reversePlace(place),
-	displayCoord(showCoord),
-	shortenedTweet(""),
-	messageID(""),
-	postedTweet()
-{
-	// Converting replyTostatusID QString into a qlonglong
-	bool convOK = false;
-
-	replyToTweetID = replyTostatusID.toLongLong(&convOK);
-	if (!convOK) {
-		replyToTweetID = -1;
-	}
-}
-
-// Constructor with qlonglong ID
-PostViaTwitLongerProcess::PostViaTwitLongerProcess(QString status,
-												   QString userScreenName,
-												   qlonglong replyTostatusID,
-												   QString replyToUserScreenName,
-												   bool userIDonly,
-												   float lat,
-												   float lon,
-												   QString place,
-												   bool showCoord) :
-	GenericProcess(),
-	twitter(this),
-	twitlonger(this),
-	tweet(status),
-	username(userScreenName),
-	replyToTweetID(replyTostatusID),
-	replyToUser(replyToUserScreenName),
-	trimUser(userIDonly),
-	longitude(lon),
-	latitude(lat),
-	reversePlace(place),
 	displayCoord(showCoord),
 	enoughShortMessage(false),
 	shortenedTweet(""),
@@ -100,7 +56,10 @@ void PostViaTwitLongerProcess::postToTwitLonger() {
 	connect(&twitlonger, &TwitLongerCalls::sendResult,
 			this, &PostViaTwitLongerProcess::postToTwitLongerEnded);
 
-	twitlonger.postOnTwitLonger(username, tweet, replyToTweetID, replyToUser);
+	twitlonger.postOnTwitLonger(username,
+								tweet.getText(),
+								tweet.getInReplyToStatusIDstr().toLongLong(),
+								tweet.getInReplyToScreenName());
 }
 
 void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
@@ -133,7 +92,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 					   && result.parsedResult.toString() == "too_short")
 			{
 				// The tweet was too short
-				shortenedTweet = tweet;
+				shortenedTweet = tweet.getText();
 				enoughShortMessage = true;
 				return postTweet();
 			} else {
@@ -178,10 +137,10 @@ void PostViaTwitLongerProcess::postTweet() {
 			this, &PostViaTwitLongerProcess::postTweetEnded);
 
 	twitter.updateTweet(shortenedTweet,
-						replyToTweetID,
-						latitude,
-						longitude,
-						reversePlace,
+						tweet.getInReplyToStatusIDstr().toLongLong(),
+						tweet.getCoordinates().getLatitude(),
+						tweet.getCoordinates().getLongitude(),
+						tweet.getPlace().getID(),
 						displayCoord,
 						trimUser);
 }

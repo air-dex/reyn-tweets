@@ -94,8 +94,8 @@ class GenericRequester : public QObject
 		/// @brief HTTP headers that will be passed to the Communicator.
 		HeadersMap headers;
 
-		/// @fn virtual void buildPOSTParameters();
-		/// @brief Virtual method building postParameters
+		/// @fn virtual void buildHTTPHeaders();
+		/// @brief Virtual method building headers
 		virtual void buildHTTPHeaders();
 
 		/// @brief Pointer on the Twitter Communicator that will purely execute

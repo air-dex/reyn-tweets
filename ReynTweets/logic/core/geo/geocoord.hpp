@@ -32,7 +32,10 @@
 /// and its latitude.
 ///
 /// The JSON coordinates array is formatted as <a href="http://www.geojson.org/">
-/// geoJSON</a> (longitude first, then latitude).
+/// geoJSON</a> (longitude first, then latitude). As for the QPointF :<ul>
+/// <li>x : the longitude</li>
+/// <li>y : the latitude</li>
+/// </ul>
 class GeoCoord : public JsonArray<double>, public QPointF
 {
 	public:
@@ -91,7 +94,10 @@ class GeoCoord : public JsonArray<double>, public QPointF
 		virtual QJsonArray toVariant() const;
 
 
-	private:
+	protected:
+		/// @brief Constant for fake coordinates
+		static qreal FAKE_COORD;
+
 		/// @fn void recopie(const GeoCoord & coord);
 		/// @brief Copy of a Coordinates
 		/// @param coord GeoCoord to copy

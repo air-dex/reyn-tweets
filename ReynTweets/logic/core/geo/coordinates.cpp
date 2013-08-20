@@ -69,6 +69,15 @@ void Coordinates::reset() {
 }
 
 
+
+qreal Coordinates::getLongitude() {
+	return getCoordinates().x();
+}
+
+qreal Coordinates::getLatitude() {
+	return getCoordinates().y();
+}
+
 /////////////////////////////////////
 // Friends serialization operators //
 /////////////////////////////////////

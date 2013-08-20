@@ -52,70 +52,19 @@ class PostViaTwitLongerProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn PostViaTwitLongerProcess(QString status,
+		/// @fn PostViaTwitLongerProcess(Tweet status,
 		///								 QString userScreenName,
-		///								 QString replyTostatusID = "-1",
-		///								 QString replyToUserScreenName = "",
 		///								 bool userIDonly = true,
-		///								 float lat = -361,
-		///								 float lon = -361,
-		///								 QString place = "",
 		///								 bool showCoord = false);
 		/// @brief Constructor
-		/// @param status Text of the tweet
+		/// @param status Tweet to shorten and post
 		/// @param userScreenName Screen name of the author of the tweet
-		/// @param replyTostatusID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param replyToUserScreenName If the tweet is a reply, this parameter
-		/// is the screen name of the tweet that this tweet replies to.
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param lat For geolocation, your longitude.
-		/// @param lon For geolocation, your latitude.
-		/// @param place For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
 		/// @param showCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
-		PostViaTwitLongerProcess(QString status,
+		PostViaTwitLongerProcess(Tweet status,
 								 QString userScreenName,
-								 QString replyTostatusID = "-1",
-								 QString replyToUserScreenName = "",
 								 bool userIDonly = true,
-								 float lat = -361,
-								 float lon = -361,
-								 QString place = "",
-								 bool showCoord = false);
-
-		/// @fn PostViaTwitLongerProcess(QString status,
-		///								 QString userScreenName,
-		///								 qlonglong replyTostatusID = -1,
-		///								 QString replyToUserScreenName = "",
-		///								 bool userIDonly = true,
-		///								 float lat = -361,
-		///								 float lon = -361,
-		///								 QString place = "",
-		///								 bool showCoord = false);
-		/// @brief Constructor
-		/// @param status Text of the tweet
-		/// @param userScreenName Screen name of the author of the tweet
-		/// @param replyTostatusID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param replyToUserScreenName If the tweet is a reply, this parameter
-		/// is the screen name of the tweet that this tweet replies to.
-		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param lat For geolocation, your longitude.
-		/// @param lon For geolocation, your latitude.
-		/// @param place For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
-		/// @param showCoord Displaying the coordonates of the tweet
-		/// with a pin on a map
-		PostViaTwitLongerProcess(QString status,
-								 QString userScreenName,
-								 qlonglong replyTostatusID = -1,
-								 QString replyToUserScreenName = "",
-								 bool userIDonly = true,
-								 float lat = -361,
-								 float lon = -361,
-								 QString place = "",
 								 bool showCoord = false);
 
 		/// @fn void startProcess();
@@ -139,29 +88,14 @@ class PostViaTwitLongerProcess : public GenericProcess
 		// Parameters //
 		////////////////
 
-		/// @brief Text to post
-		QString tweet;
+		/// @brief Tweet to shorten and to update.
+		Tweet tweet;
 
 		/// @brief Screen name of the user who wants to shorten its tweet
 		QString username;
 
-		/// @brief ID of the tweet that this status replies to
-		qlonglong replyToTweetID;
-
-		/// @brief Screen name of the user that this status replies to
-		QString replyToUser;
-
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Longitude of the tweet
-		float longitude;
-
-		/// @brief Latitude of the tweet
-		float latitude;
-
-		/// @brief place where the tweet was supposed to be sent
-		QString reversePlace;
 
 		/// @brief Displaying coordonates on a map
 		bool displayCoord;

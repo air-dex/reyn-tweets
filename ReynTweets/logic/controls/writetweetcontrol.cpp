@@ -28,7 +28,8 @@
 
 // Constructor
 WriteTweetControl::WriteTweetControl() :
-	GenericControl()
+	GenericControl(),
+	futureStatus()
 {}
 
 // Declaring WriteTweetControl to the QML system
@@ -38,13 +39,18 @@ void WriteTweetControl::declareQML() {
 									   "WriteTweetControl");
 }
 
+// Tweet to update (future_tweet)
+Tweet * WriteTweetControl::getFutureTweet() {
+	return &futureStatus;
+}
+
 
 ////////////////////////////
 // Posting without medias //
 ////////////////////////////
 
 // Posting a tweet without medias
-void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
+void WriteTweetControl::postTweet() {
 	if (processing) {
 		return;
 	}
@@ -54,7 +60,7 @@ void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
 
 	processing = true;
 	emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
-	reyn.postTweet(tweet, inReplyToTweetID);
+	reyn.postTweet(futureStatus);
 }
 
 
@@ -112,10 +118,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 ////////////////////////////
 
 // Posting a tweet via TwitLonger
-void WriteTweetControl::postViaTwitLonger(QString tweet,
-										  QString inReplyToTweetID,
-										  QString inReplyToUser)
-{
+void WriteTweetControl::postViaTwitLonger() {
 	if (processing) {
 		return;
 	}
@@ -125,7 +128,7 @@ void WriteTweetControl::postViaTwitLonger(QString tweet,
 
 	processing = true;
 	emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
-	reyn.postTweetViaTwitLonger(tweet, inReplyToTweetID, inReplyToUser);
+	reyn.postTweetViaTwitLonger(futureStatus);
 }
 
 

@@ -237,86 +237,22 @@ void ReynCore::unfavoriteTweet(qlonglong id, bool includeEntities) {
 }
 
 // Posting a tweet without media
-void ReynCore::postTweet(QString tweet,
-						 qlonglong replyToTweetID,
-						 bool trimUser,
-						 float latitude,
-						 float longitude,
-						 QString reversePlace,
-						 bool displayCoord)
-{
+void ReynCore::postTweet(Tweet tweet, bool trimUser, bool displayCoord) {
 	PostTweetProcess * process = new PostTweetProcess(tweet,
-													  replyToTweetID,
 													  trimUser,
-													  latitude,
-													  longitude,
-													  reversePlace,
 													  displayCoord);
 
 	executeProcess(process);
 }
 
-// Posting a tweet without media
-void ReynCore::postTweet(QString tweet,
-						 QString replyToTweetID,
-						 bool trimUser,
-						 float latitude,
-						 float longitude,
-						 QString reversePlace,
-						 bool displayCoord)
-{
-	PostTweetProcess * process = new PostTweetProcess(tweet,
-													  replyToTweetID,
-													  trimUser,
-													  latitude,
-													  longitude,
-													  reversePlace,
-													  displayCoord);
-
-	executeProcess(process);
-}
-
-// Posting a long tweet without media
-void ReynCore::postTweetViaTwitLonger(QString tweet,
-									  qlonglong replyToTweetID,
-									  QString replyToUser,
+// Posting a long tweet without media via TwitLonger
+void ReynCore::postTweetViaTwitLonger(Tweet tweet,
 									  bool trimUser,
-									  float latitude,
-									  float longitude,
-									  QString reversePlace,
 									  bool displayCoord)
 {
 	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
 																	  userConfiguration.getUserAccount().getUser().getScreenName(),
-																	  replyToTweetID,
-																	  replyToUser,
 																	  trimUser,
-																	  latitude,
-																	  longitude,
-																	  reversePlace,
-																	  displayCoord);
-
-	executeProcess(process);
-}
-
-// Posting a long tweet without media
-void ReynCore::postTweetViaTwitLonger(QString tweet,
-									  QString replyToTweetID,
-									  QString replyToUser,
-									  bool trimUser,
-									  float latitude,
-									  float longitude,
-									  QString reversePlace,
-									  bool displayCoord)
-{
-	PostViaTwitLongerProcess * process = new PostViaTwitLongerProcess(tweet,
-																	  userConfiguration.getUserAccount().getUser().getScreenName(),
-																	  replyToTweetID,
-																	  replyToUser,
-																	  trimUser,
-																	  latitude,
-																	  longitude,
-																	  reversePlace,
 																	  displayCoord);
 
 	executeProcess(process);

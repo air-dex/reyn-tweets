@@ -23,56 +23,23 @@
 
 #include "posttweetprocess.hpp"
 
-// Constructor with QString ID
-PostTweetProcess::PostTweetProcess(QString status,
-								   QString replyTostatusID,
+// Constructor
+PostTweetProcess::PostTweetProcess(Tweet status,
 								   bool userIDonly,
-								   float lat,
-								   float lon,
-								   QString place,
 								   bool showCoord) :
 	SingleTwitterCallProcess(TWEET_POSTED),
 	tweet(status),
 	trimUser(userIDonly),
-	longitude(lon),
-	latitude(lat),
-	reversePlace(place),
-	displayCoord(showCoord)
-{
-	// Converting replyTostatusID QString into a qlonglong
-	bool convOK = false;
-
-	replyToTweetID = replyTostatusID.toLongLong(&convOK);
-	if (!convOK) {
-		replyToTweetID = -1;
-	}
-}
-
-// Constructor with qlonglong ID
-PostTweetProcess::PostTweetProcess(QString status,
-								   qlonglong replyTostatusID,
-								   bool userIDonly,
-								   float lat,
-								   float lon,
-								   QString place,
-								   bool showCoord) :
-	SingleTwitterCallProcess(TWEET_POSTED),
-	tweet(status),
-	replyToTweetID(replyTostatusID),
-	trimUser(userIDonly),
-	longitude(lon),
-	latitude(lat),
-	reversePlace(place),
 	displayCoord(showCoord)
 {}
 
 // Calling Twitter
 void PostTweetProcess::callTwitter() {
-	twitter.updateTweet(tweet,
-						replyToTweetID,
-						latitude,
-						longitude,
-						reversePlace,
+	twitter.updateTweet(tweet.getText(),
+						tweet.getInReplyToStatusIDstr().toLongLong(),
+						tweet.getCoordinates().getLatitude(),
+						tweet.getCoordinates().getLongitude(),
+						tweet.getPlace().getID(),
 						displayCoord,
 						trimUser);
 }

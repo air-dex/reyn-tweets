@@ -71,7 +71,14 @@ Rectangle {
 
 	Constants { id: constant }
 
-	WriteTweetControl { id: control }
+	WriteTweetControl {
+		id: control
+		future_tweet {
+			in_reply_to_status_id_str: write_tweet_pane.in_reply_to_tweet_id
+			in_reply_to_screen_name: write_tweet_pane.in_reply_to_user
+			text: tweet_edit.text
+		}
+	}
 
 	// Introduction message
 	Text {
@@ -154,7 +161,7 @@ Rectangle {
 		anchors.rightMargin: margin
 		anchors.bottomMargin: margin
 		button_text: qsTr("Tweet")
-		onClick: control.postTweet(tweet_edit.text, in_reply_to_tweet_id)
+		onClick: control.postTweet()
 	}
 
 	// Changes depending on the tweet length

@@ -21,7 +21,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "networkresponse.hpp"
+#include "networkresult.hpp"
 
 // Constructor
 NetworkResponse::NetworkResponse(int httpCode,

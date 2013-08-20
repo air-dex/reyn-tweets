@@ -37,7 +37,7 @@
 #include <QTimer>
 #include "../headersmap.hpp"
 #include "../httprequesttype.hpp"
-#include "../networkresponse.hpp"
+#include "../networkresult.hpp"
 
 
 /////////////////////
@@ -93,26 +93,6 @@ class TwitterCommunicator : public QObject
 		/// @brief Executing the request
 		virtual void executeRequest();
 
-		/// @fn QByteArray getResponseBuffer();
-		/// @brief Getting the content of the response
-		/// @return The buffer containing the response
-		QByteArray getResponseBuffer();
-
-		/// @fn ResponseInfos getHttpResponse();
-		/// @brief Getting the HTTP response (code and reason).
-		/// @return The description of the HTTP return code.
-		ResponseInfos getHttpResponse();
-
-		/// @fn QString getReplyURL();
-		/// @brief Getting the URL of the reply.
-		/// @return replyURL
-		QString getReplyURL();
-
-		/// @fn QString getErrorMessage();
-		/// @brief Getter on the error massage
-		/// @return The error message
-		QString getErrorMessage();
-
 
 	signals:
 		/// @fn void requestDone(NetworkResponse result);
@@ -155,12 +135,6 @@ class TwitterCommunicator : public QObject
 		HeadersMap & headers;
 
 
-		// Entities for response
-
-		/// @brief HTTP response code and reason
-		ResponseInfos httpResponse;
-
-
 	private:
 		/// @fn QString buildGetDatas();
 		/// @brief Building the string that will contain all the GET arguments
@@ -184,11 +158,6 @@ class TwitterCommunicator : public QObject
 		/// @param argsMap The argument map
 		/// @return A QString representation looks like val1=arg1&val2=arg2...
 		QString buildDatas(ArgsMap argsMap);
-
-		/// @fn void extractHttpStatuses(QNetworkReply * reply);
-		/// @brief Extract the HTTP return code and reason of the request
-		/// @param reply Network reply containing the statuses.
-		void extractHttpStatuses(QNetworkReply * reply);
 };
 
 #endif // TWITTERCOMMUNICATOR_HPP

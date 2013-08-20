@@ -1,12 +1,10 @@
 /// @file timeline.cpp
 /// @brief Implementation of Timeline
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,7 +26,8 @@
 
 // Constructor
 Timeline::Timeline(TimelineType tlType) :
-	ReynTweetsListable<Tweet>(),
+	QObject(),
+	JsonArray<Tweet>(),
 	timelineType(tlType)
 {}
 
@@ -38,7 +37,8 @@ Timeline::~Timeline() {}
 // Copy constructor
 Timeline::Timeline(const Timeline & list) :
 	QObject(),
-	ReynTweetsListable<Tweet>()
+	JsonArray<Tweet>(),
+	timelineType(INVALID)
 {
 	recopie(list);
 }
@@ -64,12 +64,12 @@ void Timeline::declareQML() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Timeline & list) {
-	return jsonStreamingOut<Tweet>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Timeline & list) {
-	return jsonStreamingIn<Tweet>(in, list);
+	return list.fillWithStream(in);
 }
 
 
@@ -77,16 +77,20 @@ QDataStream & operator>>(QDataStream & in, Timeline & list) {
 // Properties management //
 ///////////////////////////
 
-// Reading the property type.
+// type
 Timeline::TimelineType Timeline::getType() {
 	return timelineType;
 }
 
-// Writing the property type.
 void Timeline::setType(Timeline::TimelineType newType) {
 	timelineType = newType;
 	emit typeChanged();
 }
+
+
+//////////
+// Misc //
+//////////
 
 // Inserting a tweet in the timeline
 void Timeline::insertTweet(Tweet newTweet) {

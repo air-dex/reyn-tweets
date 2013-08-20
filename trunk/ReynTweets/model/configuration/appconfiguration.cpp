@@ -45,6 +45,11 @@ AppConfiguration::AppConfiguration() :
 	errorLoading("")
 {}
 
+// Reset the app configuration
+void AppConfiguration::reset() {
+	*this = AppConfiguration();
+}
+
 // Loading the settings from the settings file.
 CoreResult AppConfiguration::load() {
 	// Opening the settings file

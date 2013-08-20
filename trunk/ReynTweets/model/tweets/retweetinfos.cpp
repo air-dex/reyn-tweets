@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -22,11 +22,10 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "retweetinfos.hpp"
-#include "../../tools/utils.hpp"
 
 // Default constructor
 RetweetInfos::RetweetInfos() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	retweetID(-1),
 	retweetIDstr("-1")
 {}
@@ -36,7 +35,9 @@ RetweetInfos::~RetweetInfos() {}
 
 // Copy constructor
 RetweetInfos::RetweetInfos(const RetweetInfos & infos) :
-	ReynTweetsMappable()
+	JsonObject(),
+	retweetID(-1),
+	retweetIDstr("-1")
 {
 	recopie(infos);
 }
@@ -73,12 +74,46 @@ void RetweetInfos::recopie(const RetweetInfos & infos) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const RetweetInfos & infos) {
-	return jsonStreamingOut(out, infos);
+	return infos.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
-	return jsonStreamingIn(in, infos);
+	return infos.fillWithStream(in);
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void RetweetInfos::fillWithJSON(QJsonObject json) {
+	// "id" property
+	QJsonValue propval = json.value(ID_PN);
+
+	if (!propval.isUndefined() && propval.isDouble()) {
+		qlonglong id = qlonglong(propval.toDouble());
+		this->retweetID = id;
+	}
+
+	// "id_str" property
+	propval = json.value(ID_STR_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString idStr = propval.toString();
+		this->retweetIDstr = idStr;
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject RetweetInfos::toJSON() const {
+	QJsonObject json;
+
+	json.insert(ID_PN, QJsonValue(double(this->retweetID)));
+	json.insert(ID_STR_PN, QJsonValue(this->retweetIDstr));
+
+	return json;
 }
 
 
@@ -87,12 +122,12 @@ QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
 ///////////////////////////
 
 // id
-// Reading id
+QString RetweetInfos::ID_PN = "id";
+
 qlonglong RetweetInfos::getID() {
 	return retweetID;
 }
 
-// Writing id
 void RetweetInfos::setID(qlonglong newValue) {
 	retweetID = newValue;
 	retweetIDstr = QString::number(newValue);
@@ -100,12 +135,12 @@ void RetweetInfos::setID(qlonglong newValue) {
 }
 
 // id_str
-// Reading id_str
+QString RetweetInfos::ID_STR_PN = "id_str";
+
 QString RetweetInfos::getIDstr() {
 	return retweetIDstr;
 }
 
-// Writing id_str
 void RetweetInfos::setIDstr(QString newValue) {
 	retweetIDstr = newValue;
 	retweetID = newValue.toLongLong();

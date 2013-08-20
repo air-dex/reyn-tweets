@@ -1,12 +1,10 @@
 /// @file mediasize.cpp
 /// @brief Implementation of MediaSize
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -32,7 +30,7 @@
 
 // Constructor
 MediaSize::MediaSize() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	QSize(0,0),
 	resizeMedia(NULL_RESIZE)
 {}
@@ -42,8 +40,9 @@ MediaSize::~MediaSize() {}
 
 // Copy constructor
 MediaSize::MediaSize(const MediaSize & size) :
-	ReynTweetsMappable(),
-	QSize(0,0)
+	JsonObject(),
+	QSize(0,0),
+	resizeMedia(NULL_RESIZE)
 {
 	recopie(size);
 }
@@ -56,7 +55,7 @@ const MediaSize & MediaSize::operator=(const MediaSize & size) {
 
 // Copy of a MediaSize
 void MediaSize::recopie(const MediaSize & size) {
-	ReynTweetsMappable::recopie(size);
+	JsonObject::recopie(size);
 	setWidth(size.width());
 	setHeight(size.height());
 	resizeMedia = size.resizeMedia;
@@ -70,12 +69,12 @@ void MediaSize::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaSize & size) {
-	return jsonStreamingOut(out, size);
+	return size.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaSize & size) {
-	return jsonStreamingIn(in, size);
+	return size.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -84,16 +83,66 @@ void MediaSize::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void MediaSize::fillWithJSON(QJsonObject json) {
+	// "w" property
+	QJsonValue propval = json.value(W_PN);
+
+	if (!propval.isUndefined() && propval.isDouble()) {
+		int w = int( propval.toDouble() );
+		this->setWidth(w);
+	}
+
+	// "h" property
+	propval = json.value(H_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		int h = int( propval.toDouble() );
+		this->setHeight(h);
+	}
+
+	// "resize" property
+	propval = json.value(RESIZE_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString resStr = propval.toString();
+		this->setResize(resStr);
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject MediaSize::toJSON() const {
+	QJsonObject json;
+
+	json.insert(W_PN, QJsonValue(this->width()));
+	json.insert(H_PN, QJsonValue(this->height()));
+	json.insert(RESIZE_PN, QJsonValue(this->getResizeProperty()));
+
+	return json;
+}
+
+
 ///////////////////////////
 // Properties management //
 ///////////////////////////
 
-// Reading method for resize
-QString MediaSize::getResizeProperty() {
+// w
+QString MediaSize::W_PN = "w";
+
+// h
+QString MediaSize::H_PN = "h";
+
+// resize
+QString MediaSize::RESIZE_PN = "resize";
+
+QString MediaSize::getResizeProperty() const {
 	return resize2String(resizeMedia);
 }
 
-// Writing method for resize
 void MediaSize::setResize(QString newResize) {
 	resizeMedia = string2Resize(newResize);
 }
@@ -104,7 +153,7 @@ void MediaSize::setResize(QString newResize) {
 /////////////////
 
 // Conversion of a Resize into a QString.
-QString MediaSize::resize2String(MediaSize::Resize resizeValue) {
+QString MediaSize::resize2String(MediaSize::Resize resizeValue) const {
 	switch (resizeValue) {
 		case CROP:
 			return "crop";

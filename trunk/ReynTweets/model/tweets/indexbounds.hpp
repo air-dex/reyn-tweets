@@ -1,12 +1,10 @@
 /// @file indexbounds.hpp
 /// @brief Implementation of IndexBounds
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -29,11 +27,11 @@
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
-#include "../reyntweetsserializable.hpp"
+#include "../json/jsonarray.hpp"
 
 /// @class IndexBounds
-/// @brief Indices of an entity in a tweet.
-class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
+/// @brief Indices of a Tweet Entity in a tweet.
+class IndexBounds : public QObject, public JsonArray<int>
 {
 	Q_OBJECT
 
@@ -64,6 +62,10 @@ class IndexBounds : public QObject, public ReynTweetsSerializable<QVariantList>
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
 		static void initSystem();
+
+		//////////////////////
+		// Variant handling //
+		//////////////////////
 
 		/// @fn QVariantList toVariant() const;
 		/// @brief Converting the bounds into a QVariantList

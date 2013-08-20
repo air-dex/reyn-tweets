@@ -25,8 +25,8 @@
 #define LAUNCHINGPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../../model/configuration/reyntweetsappconfiguration.hpp"
-#include "../../model/configuration/reyntweetsuserconfiguration.hpp"
+#include "../../model/configuration/appconfiguration.hpp"
+#include "../../model/configuration/userconfiguration.hpp"
 #include "../../connection/calls/reyntwittercalls.hpp"
 #include "../coreresult.hpp"
 #include "processwrapper.hpp"
@@ -43,8 +43,8 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Constructor
 		/// @param userConf User configuration
 		/// @param appConf Configuration of Reyn Tweets
-		LaunchingProcess(ReynTweetsUserConfiguration & userConf,
-						 ReynTweetsAppConfiguration & appConf);
+		LaunchingProcess(UserConfiguration & userConf,
+						 AppConfiguration & appConf);
 
 		/// @fn void startProcess();
 		/// @brief Starting the process
@@ -67,10 +67,10 @@ class LaunchingProcess : public GenericProcess
 		ReynTwitterCalls twitter;
 
 		/// @brief Configuration
-		ReynTweetsUserConfiguration & userConfiguration;
+		UserConfiguration & userConfiguration;
 
 		/// @brief Configuration
-		ReynTweetsAppConfiguration & appConfiguration;
+		AppConfiguration & appConfiguration;
 
 	private:
 		/// @fn void checkSettingsLoad();

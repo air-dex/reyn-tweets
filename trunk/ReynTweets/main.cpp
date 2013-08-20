@@ -28,10 +28,10 @@
 #include "ui/qtquick2applicationviewer.hpp"
 #include "logic/controls/controls.hpp"
 #include "model/timelines/timeline.hpp"
-#include "model/configuration/reyntweetsappconfiguration.hpp"
-
-#include "model2/geo/geocoord.hpp"
-#include "model2/geo/geocoordlist.hpp"
+#include "model/configuration/appconfiguration.hpp"
+#include "model/users/user.hpp"
+#include "model/geo/geocoord.hpp"
+#include "model/geo/geocoordlist.hpp"
 
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
@@ -59,7 +59,7 @@ void initReynTweetsSystem() {
 	Timeline::initSystem();
 	User::initSystem();
 	UserAccount::initSystem();
-	ReynTweetsUserConfiguration::initSystem();
+	UserConfiguration::initSystem();
 
 	GeoCoord::initSystem();
 	GeoCoordList::initSystem();
@@ -72,7 +72,7 @@ void declareReynTweetsControls() {
 	AllowControl::declareQML();
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
-	ReynTweetsUserConfiguration::declareQML();
+	UserConfiguration::declareQML();
 	UserAccount::declareQML();
 	Tweet::declareQML();
 	UserInfos::declareQML();

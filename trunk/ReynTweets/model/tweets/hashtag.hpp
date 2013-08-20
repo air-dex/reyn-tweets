@@ -1,12 +1,10 @@
 /// @file hashtag.hpp
 /// @brief Header of Hashtag
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -30,6 +28,7 @@
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-hashtags
 class Hashtag : public TweetEntity
 {
 	Q_OBJECT
@@ -74,6 +73,23 @@ class Hashtag : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 
 	private:
 		/// @fn void recopie(const Hashtag & hashtag);
@@ -105,9 +121,14 @@ class Hashtag : public TweetEntity
 		// text
 		/// @property text
 		/// @brief Text of the hashtag
+		///
+		/// hashText is the attribute beneath the property.
 		Q_PROPERTY(QString text
 				   READ getText
 				   WRITE setText)
+
+		/// @brief Name of the property text.
+		static QString TEXT_PN;
 
 
 	////////////////////////

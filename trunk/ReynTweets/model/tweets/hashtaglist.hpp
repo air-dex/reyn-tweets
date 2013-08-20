@@ -1,12 +1,10 @@
 /// @file hashtaglist.hpp
 /// @brief Header of HashtagList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -26,13 +24,14 @@
 #ifndef HASHTAGLIST_HPP
 #define HASHTAGLIST_HPP
 
+#include <QDataStream>
 #include <QVariant>
+#include "../json/jsonarray.tpp"
 #include "hashtag.hpp"
-#include "../reyntweetslistable.tpp"
 
 /// @class HashtagList
 /// @brief Lists of Hashtags
-class HashtagList : public ReynTweetsListable<Hashtag>
+class HashtagList : public JsonArray<Hashtag>
 {
 	public:
 		/// @fn HashtagList();

@@ -1,12 +1,10 @@
 /// @file usermention.hpp
 /// @brief Header of UserMention
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -30,6 +28,7 @@
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-usermention
 class UserMention : public TweetEntity
 {
 	Q_OBJECT
@@ -74,6 +73,23 @@ class UserMention : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const UserMention & mention);
 		/// @brief Copy of a User Mention
@@ -103,31 +119,51 @@ class UserMention : public TweetEntity
 	protected:
 		// id
 		/// @property id
-		/// @brief User id
+		/// @brief User id.
+		///
+		/// The userID attribute is behind this property.
 		Q_PROPERTY(qlonglong id
 				   READ getID
 				   WRITE setID)
 
+		/// @brief Name of the property id.
+		static QString ID_PN;
+
 		// id_str
 		/// @property id_str
 		/// @brief String version of id
+		///
+		/// The userIDstr attribute is behind this property.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr)
 
+		/// @brief Name of the property id_str.
+		static QString ID_STR_PN;
+
 		// screen_name
 		/// @property screen_name
 		/// @brief Screen name
+		///
+		/// The screenName attribute is behind this property.
 		Q_PROPERTY(QString screen_name
 				   READ getScreenName
 				   WRITE setScreenName)
 
+		/// @brief Name of the property screen_name.
+		static QString SCREEN_NAME_PN;
+
 		// name
 		/// @property name
 		/// @brief User full name
+		///
+		/// The userName attribute is behind this property.
 		Q_PROPERTY(QString name
 				   READ getName
 				   WRITE setName)
+
+		/// @brief Name of the property name.
+		static QString NAME_PN;
 
 
 	////////////////////////

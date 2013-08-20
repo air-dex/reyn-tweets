@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -24,14 +24,14 @@
 #ifndef TWEETENTITY_HPP
 #define TWEETENTITY_HPP
 
-#include "../reyntweetsmappable.hpp"
+#include "../json/jsonobject.hpp"
 #include "indexbounds.hpp"
 
 /// @class TweetEntity
 /// @brief Base class for all Tweet Entities.
 ///
-/// Il ncontains the indices of the Tweet Entity in the tweet.
-class TweetEntity : public ReynTweetsMappable
+/// It contains the indices of the Tweet Entity in the tweet.
+class TweetEntity : public JsonObject
 {
 	Q_OBJECT
 
@@ -61,6 +61,23 @@ class TweetEntity : public ReynTweetsMappable
 		/// @return The tweet entity with rich content
 		virtual QString getDisplayedText(QColor linkColor) = 0;
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 
 	protected:
 		/// @fn void recopie(const TweetEntity & entity);
@@ -76,6 +93,9 @@ class TweetEntity : public ReynTweetsMappable
 		Q_PROPERTY(QVariantList indices
 				   READ getIndicesProperty
 				   WRITE setIndices)
+
+		/// @brief Name of the property indices.
+		static QString INDICES_PN;
 
 		/// @fn QVariantList getIndicesProperty();
 		/// @brief Reading method for the property indices

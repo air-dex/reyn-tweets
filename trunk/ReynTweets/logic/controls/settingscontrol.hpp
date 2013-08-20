@@ -26,7 +26,7 @@
 
 #include "genericcontrol.hpp"
 #include "../reyncore.hpp"
-#include "../../model/configuration/reyntweetsuserconfiguration.hpp"
+#include "../../model/configuration/userconfiguration.hpp"
 
 /// @class SettingsControl
 /// @brief Control for managing the configuration
@@ -58,11 +58,11 @@ class SettingsControl : public GenericControl
 
 	protected:
 		/// @brief Reference on the configuration of Reyn Tweets
-		ReynTweetsUserConfiguration & conf;
+		UserConfiguration & conf;
 
 		/// @property configuration
 		/// @brief Read only property to access to the configuration for QML.
-		Q_PROPERTY(ReynTweetsUserConfiguration * configuration
+		Q_PROPERTY(UserConfiguration * configuration
 				   READ getConfiguration
 				   WRITE setConfiguration
 				   NOTIFY configurationChanged)
@@ -70,12 +70,12 @@ class SettingsControl : public GenericControl
 		/// @fn ReynTweetsConfiguration * getConfiguration();
 		/// @brief Reading the configuration property
 		/// @return Pointer on conf.
-		ReynTweetsUserConfiguration * getConfiguration();
+		UserConfiguration * getConfiguration();
 
 		/// @fn void setConfiguration(ReynTweetsUserConfiguration * config);
 		/// @brief Writing the configuration property
 		/// @param config New value for the configuration
-		void setConfiguration(ReynTweetsUserConfiguration * config);
+		void setConfiguration(UserConfiguration * config);
 
 		/// @property current_account
 		/// @brief Shortcut for configuration.current_account

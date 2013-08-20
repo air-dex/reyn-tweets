@@ -1,12 +1,10 @@
 /// @file medialist.hpp
 /// @brief Header of Medialist
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,11 +26,11 @@
 
 #include <QVariant>
 #include "media.hpp"
-#include "../reyntweetslistable.tpp"
+#include "../json/jsonarray.tpp"
 
 /// @class MediaList
 /// @brief List of Medias
-class MediaList : public ReynTweetsListable<Media>
+class MediaList : public JsonArray<Media>
 {
 	public:
 		/// @fn MediaList();

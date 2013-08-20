@@ -1,12 +1,10 @@
 /// @file timeline.hpp
 /// @brief Header of Timeline
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,11 +26,11 @@
 
 #include <QVariant>
 #include "../tweets/tweet.hpp"
-#include "../reyntweetslistable.tpp"
+#include "../json/jsonarray.tpp"
 
 /// @class Timeline
 /// @brief Definition of a Twitter timeline : a list of tweets.
-class Timeline : public QObject, public ReynTweetsListable<Tweet>
+class Timeline : public QObject, public JsonArray<Tweet>
 {
 	Q_OBJECT
 

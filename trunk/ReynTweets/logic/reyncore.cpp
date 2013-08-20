@@ -61,10 +61,10 @@ void ReynCore::recopie(const ReynCore & heart) {
 ////////////////////
 
 // Configuration
-ReynTweetsUserConfiguration ReynCore::userConfiguration = ReynTweetsUserConfiguration();
+UserConfiguration ReynCore::userConfiguration = UserConfiguration();
 
 // Configuration
-ReynTweetsAppConfiguration ReynCore::appConfiguration = ReynTweetsAppConfiguration();
+AppConfiguration ReynCore::appConfiguration = AppConfiguration();
 
 // Process manager
 ProcessManager ReynCore::processManager = ProcessManager();
@@ -156,17 +156,17 @@ void ReynCore::denyReynTweets(QString login, QString password) {
 ////////////////////////
 
 // Getting a reference on the user configuration
-ReynTweetsUserConfiguration & ReynCore::getUserConfiguration() {
+UserConfiguration & ReynCore::getUserConfiguration() {
 	return userConfiguration;
 }
 
 // Setting the user configuration
-void ReynCore::setUserConfiguration(ReynTweetsUserConfiguration userConf) {
+void ReynCore::setUserConfiguration(UserConfiguration userConf) {
 	userConfiguration = userConf;
 }
 
 // Getting a reference on the configuration of Reyn Tweets
-ReynTweetsAppConfiguration & ReynCore::getAppConfiguration() {
+AppConfiguration & ReynCore::getAppConfiguration() {
 	return appConfiguration;
 }
 

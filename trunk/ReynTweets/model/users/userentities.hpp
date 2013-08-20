@@ -42,7 +42,7 @@ class UserEntities : public JsonObject
 		/// @brief Destructor
 		virtual ~UserEntities();
 
-		/// @fn UserInfos2(const UserEntities & entities);
+		/// @fn UserEntities(const UserEntities & entities);
 		/// @brief Copy constructor
 		/// @param entities UserEntities to copy
 		UserEntities(const UserEntities & entities);
@@ -141,7 +141,7 @@ class UserEntities : public JsonObject
 		/// @brief URL entities
 		///
 		/// userURL is the attribute beneath the property.
-		Q_PROPERTY(TweetEntities2 * url_ent
+		Q_PROPERTY(TweetEntities * url_ent
 				   READ getURLptr
 				   WRITE setURL
 				   NOTIFY urlChanged)
@@ -149,18 +149,18 @@ class UserEntities : public JsonObject
 		/// @brief Name of the property url_ent.
 		static QString URL_ENT_PN;
 
-		/// @fn TweetEntities2 * getURLptr();
+		/// @fn TweetEntities * getURLptr();
 		/// @brief Reading url.
 		/// @return &userURL
-		TweetEntities2 * getURLptr();
+		TweetEntities * getURLptr();
 
-		/// @fn void setURL(TweetEntities2 * newValue);
+		/// @fn void setURL(TweetEntities * newValue);
 		/// @brief Writing url.
 		/// @param newValue New value for userURL
-		void setURL(TweetEntities2 * newValue);
+		void setURL(TweetEntities * newValue);
 
 		/// @brief URL entities
-		TweetEntities2 userURL;
+		TweetEntities userURL;
 
 		// description
 		/// @property description
@@ -189,7 +189,7 @@ class UserEntities : public JsonObject
 		/// @brief URL entities in the description.
 		///
 		/// userDescription is the attribute beneath the property.
-		Q_PROPERTY(TweetEntities2 * description_ent
+		Q_PROPERTY(TweetEntities * description_ent
 				   READ getDescriptionptr
 				   WRITE setDescription
 				   NOTIFY descriptionChanged)
@@ -197,18 +197,18 @@ class UserEntities : public JsonObject
 		/// @brief Name of the property description_ent.
 		static QString DESCRIPTION_ENT_PN;
 
-		/// @fn TweetEntities2 * getDescriptionptr();
+		/// @fn TweetEntities * getDescriptionptr();
 		/// @brief Reading description.
 		/// @return &userDescription
-		TweetEntities2 * getDescriptionptr();
+		TweetEntities * getDescriptionptr();
 
-		/// @fn void setDescription(TweetEntities2 * newValue);
+		/// @fn void setDescription(TweetEntities * newValue);
 		/// @brief Writing description.
 		/// @param newValue New value for userDescription
-		void setDescription(TweetEntities2 * newValue);
+		void setDescription(TweetEntities * newValue);
 
 		/// @brief URL entities in description
-		TweetEntities2 userDescription;
+		TweetEntities userDescription;
 
 	signals:
 		/// @fn void urlChanged();
@@ -222,26 +222,26 @@ class UserEntities : public JsonObject
 
 	public:
 		// url
-		/// @fn TweetEntities2 getURL();
+		/// @fn TweetEntities getURL();
 		/// @brief Reading url.
 		/// @return userURL
-		TweetEntities2 getURL();
+		TweetEntities getURL();
 
-		/// @fn void setURL(TweetEntities2 newValue);
+		/// @fn void setURL(TweetEntities newValue);
 		/// @brief Writing url.
 		/// @param newValue New value for
-		void setURL(TweetEntities2 newValue);
+		void setURL(TweetEntities newValue);
 
 		// description
-		/// @fn TweetEntities2 getDescription();
+		/// @fn TweetEntities getDescription();
 		/// @brief Reading description.
 		/// @return userDescription
-		TweetEntities2 getDescription();
+		TweetEntities getDescription();
 
-		/// @fn void setDescription(TweetEntities2 newValue);
+		/// @fn void setDescription(TweetEntities newValue);
 		/// @brief Writing description.
 		/// @param newValue New value for userDescription
-		void setDescription(TweetEntities2 newValue);
+		void setDescription(TweetEntities newValue);
 
 };
 

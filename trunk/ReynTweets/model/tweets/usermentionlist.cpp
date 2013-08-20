@@ -1,12 +1,10 @@
 /// @file usermentionlist.cpp
 /// @brief Implementation of UserMentionList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,7 +25,7 @@
 
 // Constructor
 UserMentionList::UserMentionList() :
-	ReynTweetsListable<UserMention>()
+	JsonArray<UserMention>()
 {}
 
 // Destructor
@@ -35,7 +33,7 @@ UserMentionList::~UserMentionList() {}
 
 // Copy constructor
 UserMentionList::UserMentionList(const UserMentionList & list) :
-	ReynTweetsListable<UserMention>()
+	JsonArray<UserMention>()
 {
 	recopie(list);
 }
@@ -54,10 +52,10 @@ void UserMentionList::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMentionList & list) {
-	return jsonStreamingOut<UserMention>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMentionList & list) {
-	return jsonStreamingIn<UserMention>(in, list);
+	return list.fillWithStream(in);
 }

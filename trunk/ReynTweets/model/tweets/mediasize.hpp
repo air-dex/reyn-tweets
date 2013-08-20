@@ -1,12 +1,10 @@
 /// @file mediasize.hpp
 /// @brief Header of MediaSize
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,11 +25,12 @@
 #define MEDIASIZE_HPP
 
 #include <QSize>
-#include "../reyntweetsmappable.hpp"
+#include "../json/jsonobject.hpp"
 
 /// @class MediaSize
 /// @brief Size for a Media object
-class MediaSize : public ReynTweetsMappable, public QSize
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-size
+class MediaSize : public JsonObject, public QSize
 {
 	Q_OBJECT
 
@@ -54,11 +53,11 @@ class MediaSize : public ReynTweetsMappable, public QSize
 		};
 		Q_ENUMS(Resize)
 
-		/// @fn QString resize2String(Resize resizeValue);
+		/// @fn QString resize2String(Resize resizeValue) const;
 		/// @brief Conversion of a Resize into a QString.
 		/// @param resizeValue Resize enum value.
 		/// @return The corresponding QString value.
-		QString resize2String(Resize resizeValue);
+		QString resize2String(Resize resizeValue) const;
 
 		/// @fn Resize string2Resize(QString resizeString);
 		/// @brief Conversion of a QString into a Resize enum.
@@ -98,6 +97,23 @@ class MediaSize : public ReynTweetsMappable, public QSize
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const MediaSize & size);
 		/// @brief Copy of a MediaSize
@@ -132,6 +148,9 @@ class MediaSize : public ReynTweetsMappable, public QSize
 				   READ width
 				   WRITE setWidth)
 
+		/// @brief Name of the property w.
+		static QString W_PN;
+
 		// h
 		/// @property h
 		/// @brief Height
@@ -139,17 +158,25 @@ class MediaSize : public ReynTweetsMappable, public QSize
 				   READ height
 				   WRITE setHeight)
 
+		/// @brief Name of the property h.
+		static QString H_PN;
+
 		// resize
 		/// @property resize
 		/// @brief How the media is resized. It is the String form of resizeMedia.
+		///
+		/// resizeMedia is the attribute behind this property.
 		Q_PROPERTY(QString resize
 				   READ getResizeProperty
 				   WRITE setResize)
 
-		/// @fn QString getResizeProperty();
+		/// @brief Name of the property resize.
+		static QString RESIZE_PN;
+
+		/// @fn QString getResizeProperty() const;
 		/// @brief Reading method for resize
 		/// @return resizeProperty
-		QString getResizeProperty();
+		QString getResizeProperty() const;
 
 		/// @fn void setResize(QString newResize);
 		/// @brief Writing method for resize

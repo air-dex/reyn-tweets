@@ -1,12 +1,10 @@
 /// @file urlentitylist.cpp
 /// @brief Implementation of URLEntityList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,7 +25,7 @@
 
 // Constructor
 URLEntityList::URLEntityList() :
-	ReynTweetsListable<URLEntity>()
+	JsonArray<URLEntity>()
 {}
 
 // Destructor
@@ -35,7 +33,7 @@ URLEntityList::~URLEntityList() {}
 
 // Copy constructor
 URLEntityList::URLEntityList(const URLEntityList & list) :
-	ReynTweetsListable<URLEntity>()
+	JsonArray<URLEntity>()
 {
 	recopie(list);
 }
@@ -54,10 +52,10 @@ void URLEntityList::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntityList & list) {
-	return jsonStreamingOut<URLEntity>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntityList & list) {
-	return jsonStreamingIn<URLEntity>(in, list);
+	return list.fillWithStream(in);
 }

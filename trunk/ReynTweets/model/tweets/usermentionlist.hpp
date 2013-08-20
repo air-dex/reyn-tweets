@@ -1,12 +1,10 @@
 /// @file usermentionlist.hpp
 /// @brief Header of UserMentionList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,11 +26,11 @@
 
 #include <QVariant>
 #include "usermention.hpp"
-#include "../reyntweetslistable.tpp"
+#include "../json/jsonarray.tpp"
 
 /// @class UserMentionList
 /// @brief List of user mentions
-class UserMentionList : public ReynTweetsListable<UserMention>
+class UserMentionList : public JsonArray<UserMention>
 {
 	public:
 		/// @fn UserMentionList();

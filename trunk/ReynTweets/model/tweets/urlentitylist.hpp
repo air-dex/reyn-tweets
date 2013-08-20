@@ -1,12 +1,10 @@
 /// @file urlentitylist.hpp
 /// @brief Header of URLEntityList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,11 +26,11 @@
 
 #include <QVariant>
 #include "urlentity.hpp"
-#include "../reyntweetslistable.tpp"
+#include "../json/jsonarray.tpp"
 
 /// @class URLEntityList
 /// @brief List of URL Entities
-class URLEntityList : public ReynTweetsListable<URLEntity>
+class URLEntityList : public JsonArray<URLEntity>
 {
 	public:
 		/// @fn URLEntityList();

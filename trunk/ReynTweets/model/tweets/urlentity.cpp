@@ -1,12 +1,10 @@
 /// @file urlentity.cpp
 /// @brief Implementation of URLEntity
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -23,12 +21,11 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include "urlentity.hpp"
 #include <QTextStream>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
-#include "urlentity.hpp"
-#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -47,7 +44,10 @@ URLEntity::~URLEntity() {}
 
 // Copy constructor
 URLEntity::URLEntity(const URLEntity & entity) :
-	TweetEntity()
+	TweetEntity(),
+	extractedURL(""),
+	displayedURL(""),
+	expandedURL("")
 {
 	recopie(entity);
 }
@@ -74,12 +74,12 @@ void URLEntity::recopie(const URLEntity & entity) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntity & entity) {
-	return jsonStreamingOut(out, entity);
+	return entity.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntity & entity) {
-	return jsonStreamingIn(in, entity);
+	return entity.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -88,36 +88,85 @@ void URLEntity::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void URLEntity::fillWithJSON(QJsonObject json) {
+	// Base class
+	TweetEntity::fillWithJSON(json);
+
+	// "url" property
+	QJsonValue propval = json.value(URL_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString url = propval.toString();
+		this->extractedURL = url;
+	}
+
+	// "displayed_url" property
+	propval = json.value(DISPLAYED_URL_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString url = propval.toString();
+		this->displayedURL = url;
+	}
+
+	// "expanded_url" property
+	propval = json.value(EXPANDED_URL_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString url = propval.toString();
+		this->expandedURL = url;
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject URLEntity::toJSON() const {
+	QJsonObject json = TweetEntity::toJSON();
+
+	json.insert(URL_PN, QJsonValue(this->extractedURL));
+	json.insert(DISPLAYED_URL_PN, QJsonValue(this->displayedURL));
+	json.insert(EXPANDED_URL_PN, QJsonValue(this->expandedURL));
+
+	return json;
+}
+
+
 ////////////////////////
 // Getter and setters //
 ////////////////////////
 
-// Reading extractedURL
+// url
+QString URLEntity::URL_PN = "url";
+
 QString URLEntity::getURL() {
 	return extractedURL;
 }
 
-// Writing extractedURL
 void URLEntity::setURL(QString newURL) {
 	extractedURL = newURL;
 }
 
-// Reading method for displayedURL
+// displayed_url
+QString URLEntity::DISPLAYED_URL_PN = "displayed_url";
+
 QString URLEntity::getDisplayedURL() {
 	return displayedURL;
 }
 
-// Writing displayedURL
 void URLEntity::setDisplayedURL(QString newURL) {
 	displayedURL = newURL;
 }
 
-// Reading method for expandedURL
+// expanded_url
+QString URLEntity::EXPANDED_URL_PN = "expanded_url";
+
 QString URLEntity::getExpandedURL() {
 	return expandedURL;
 }
 
-// Writing method for expandedURL
 void URLEntity::setExpandedURL(QString newURL) {
 	expandedURL = newURL;
 }

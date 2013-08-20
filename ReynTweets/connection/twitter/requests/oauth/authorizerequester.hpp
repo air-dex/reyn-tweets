@@ -40,7 +40,7 @@ class AuthorizeRequester : public OAuthRequester
 		/// @param authManager Informations for OAuth.
 		/// @param forceLog Value for forceLogin
 		/// @param writeLogin Value for screenName
-		AuthorizeRequester(OAuthManager & authManager,
+		AuthorizeRequester(TwitterManager & authManager,
 						   bool forceLog = false,
 						   QString writeLogin = "");
 

@@ -37,7 +37,7 @@ class RequestTokenRequester : public OAuthRequester
 		/// @fn RequestTokenRequester(OAuthManager & authManager);
 		/// @brief Constructor
 		/// @param authManager Information for OAuth.
-		RequestTokenRequester(OAuthManager & authManager);
+		RequestTokenRequester(TwitterManager & authManager);
 
 	protected:
 		/// @fn QVariant parseResult(NetworkResponse results,

@@ -24,14 +24,14 @@
 #ifndef TWITLONGERMANAGER_HPP
 #define TWITLONGERMANAGER_HPP
 
-#include <QByteArray>
 #include <QString>
-#include "../../model/configuration/appconfiguration.hpp" // TODO : utile ?
+#include "../common/authmanagers/apikeymanager.hpp"
 
 /// @class TwitLongerManager
 /// @brief Entity with all the informations needed for transactions with the
 /// TwitLonger API.
-class TwitLongerManager {
+class TwitLongerManager : public APIKeyManager
+{
 	public:
 		/// @fn TwitLongerManager();
 		/// @brief Default constructor. Settings will be filled later.
@@ -47,24 +47,9 @@ class TwitLongerManager {
 		/// @param newAppName New value for applicationName
 		void setApplicationName(QString newAppName);
 
-		/// @fn QByteArray getAPIKey(bool isClear = true);
-		/// @brief Getting the API key
-		/// @param isClear Boolean indicating if the clear value is asked
-		/// (instead of the encrypted value).
-		/// @return apiKey
-		QByteArray getAPIKey(bool isClear = true);
-
-		/// @fn void setAPIKey(QByteArray newAPIKey);
-		/// @brief Setting the API key
-		/// @param newAPIKey New value for apiKey
-		void setAPIKey(QByteArray newAPIKey);
-
 	protected:
 		/// @brief Name of the application on TwitLonger
 		QString applicationName;
-
-		/// @brief API Key of the application on TwitLonger
-		QByteArray apiKey;
 };
 
 #endif // TWITLONGERMANAGER_HPP

@@ -1,10 +1,10 @@
-/// @file favoriterequester.cpp
-/// @brief Implementation of FavoriteRequester
+/// @file apikeymanager.cpp
+/// @brief Implementation of APIKeyManager
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,26 +21,19 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "favoriterequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "apikeymanager.hpp"
 
 // Constructor
-FavoriteRequester::FavoriteRequester(TwitterManager &authManager,
-									 bool favorited,
-									 qlonglong id,
-									 bool withEntities) :
-	TwitterRequester(Network::POST,
-					 favorited ?
-						 TwitterURL::CREATE_FAVORITE_URL
-					   : TwitterURL::DELETE_FAVORITE_URL,
-					 authManager),
-	isFavorited(favorited),
-	tweetID(id),
-	includeEntities(withEntities)
+APIKeyManager::APIKeyManager():
+	apiKey("")
 {}
 
-// Building postParameters
-void FavoriteRequester::buildPOSTParameters() {
-	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
+// Getting the API Key
+QByteArray APIKeyManager::getAPIKey() {
+	return apiKey;
+}
+
+// Setting the API Key
+void APIKeyManager::setAPIKey(QByteArray newAPIKey) {
+	apiKey = newAPIKey;
 }

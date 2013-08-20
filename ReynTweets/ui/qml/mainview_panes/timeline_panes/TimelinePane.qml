@@ -86,23 +86,7 @@ Rectangle {
 		z: refresh_text.z + 1
 		anchors.fill: parent
 		clip: true
-/*
-		header: Component {
-			Text {
-				text: "voir"
-				horizontalAlignment: Text.AlignHCenter
-				anchors.top: timeline_view.top
-				anchors.horizontalCenter: timeline_view.horizontalCenter
-				font.family: constant.font
-				font.pointSize: constant.font_size
 
-				MouseArea {
-					anchors.fill: parent
-					onClicked: control.voir()
-				}
-			}
-		}
-//*/
 		delegate: Component {
 			TweetPane {
 				width: timeline_pane.width

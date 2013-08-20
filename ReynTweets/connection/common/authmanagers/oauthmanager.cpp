@@ -1,10 +1,10 @@
-/// @file favoriterequester.cpp
-/// @brief Implementation of FavoriteRequester
+/// @file oauthmanager.cpp
+/// @brief Implementation of OAuthManager
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,26 +21,26 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "favoriterequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "oauthmanager.hpp"
 
-// Constructor
-FavoriteRequester::FavoriteRequester(TwitterManager &authManager,
-									 bool favorited,
-									 qlonglong id,
-									 bool withEntities) :
-	TwitterRequester(Network::POST,
-					 favorited ?
-						 TwitterURL::CREATE_FAVORITE_URL
-					   : TwitterURL::DELETE_FAVORITE_URL,
-					 authManager),
-	isFavorited(favorited),
-	tweetID(id),
-	includeEntities(withEntities)
+OAuthManager::OAuthManager(QString version) :
+	consumerTokens(),
+	oauthVersion(version)
 {}
 
-// Building postParameters
-void FavoriteRequester::buildPOSTParameters() {
-	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
+OAuthManager::~OAuthManager() {}
+
+
+/////////////////////
+// Getters on data //
+/////////////////////
+
+// Consumer key
+void OAuthManager::setConsumerKey(QByteArray clientKey) {
+	consumerTokens.first = clientKey;
+}
+
+// Consumer secret
+void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
+	consumerTokens.second = clientSecret;
 }

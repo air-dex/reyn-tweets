@@ -25,8 +25,8 @@
 
 // Constructor
 TwitLongerManager::TwitLongerManager() :
-	applicationName(""),
-	apiKey("")
+	APIKeyManager(),
+	applicationName("")
 {}
 
 // Getting the application name
@@ -37,14 +37,4 @@ QString TwitLongerManager::getApplicationName() {
 // Setting the application name
 void TwitLongerManager::setApplicationName(QString newAppName) {
 	applicationName = newAppName;
-}
-
-// Getting the API Key
-QByteArray TwitLongerManager::getAPIKey(bool isClear) {
-	return isClear ? QByteArray::fromBase64(apiKey) : apiKey;
-}
-
-// Setting the API Key
-void TwitLongerManager::setAPIKey(QByteArray newAPIKey) {
-	apiKey = newAPIKey;
 }

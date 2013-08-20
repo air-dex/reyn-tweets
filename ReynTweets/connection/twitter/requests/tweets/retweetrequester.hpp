@@ -40,7 +40,7 @@ class RetweetRequester : public TwitterRequester
 		/// @param authManager Entities with OAuth values
 		/// @param statusID ID of the tweet
 		/// @param userIDonly Omit user details in the reply ?
-		RetweetRequester(OAuthManager & authManager,
+		RetweetRequester(TwitterManager & authManager,
 						 qlonglong statusID,
 						 bool userIDonly = false);
 

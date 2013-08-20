@@ -46,7 +46,7 @@ class ShowTweetRequester : public TwitterRequester
 		/// @param userIdsOnly Return only user IDs instead of all the values ?
 		/// @param withRTid If the user retweeted the tweet and if this
 		/// boolean is set to true, this would include the id of the retweet.
-		ShowTweetRequester(OAuthManager & authManager,
+		ShowTweetRequester(TwitterManager & authManager,
 						   qlonglong id,
 						   bool entities = true,
 						   bool userIdsOnly = false,

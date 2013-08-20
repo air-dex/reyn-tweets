@@ -51,7 +51,7 @@ class HomeTimelineRequester : public TwitterRequester
 		/// @param withoutReplies Value of excludeReplies
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
-		HomeTimelineRequester(OAuthManager & authManager,
+		HomeTimelineRequester(TwitterManager & authManager,
 							  qlonglong oldestTweetID = -1,
 							  qlonglong youngestTweetID = -1,
 							  bool userIDonly = false,

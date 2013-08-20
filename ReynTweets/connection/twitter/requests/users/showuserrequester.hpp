@@ -42,7 +42,7 @@ class ShowUserRequester : public TwitterRequester
 		/// @param authManager OAuthManager for authentication
 		/// @param id User ID
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(OAuthManager & authManager,
+		ShowUserRequester(TwitterManager & authManager,
 						  qlonglong id,
 						  bool entities = true);
 
@@ -53,7 +53,7 @@ class ShowUserRequester : public TwitterRequester
 		/// @param authManager OAuthManager for authentication
 		/// @param name Screen name
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(OAuthManager & authManager,
+		ShowUserRequester(TwitterManager & authManager,
 						  QString name,
 						  bool entities = true);
 

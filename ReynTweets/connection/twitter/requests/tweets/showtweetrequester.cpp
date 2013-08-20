@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-ShowTweetRequester::ShowTweetRequester(OAuthManager & authManager,
+ShowTweetRequester::ShowTweetRequester(TwitterManager & authManager,
 									   qlonglong id,
 									   bool entities,
 									   bool userIdsOnly,

@@ -25,7 +25,7 @@
 #include "../../../../tools/parsers/oauthparser.hpp"
 
 // Constructor
-AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager,
+AccessTokenRequester::AccessTokenRequester(TwitterManager &authManager,
 										   QByteArray verifier) :
 	OAuthRequester(Network::POST,
 				   TwitterURL::ACCESS_TOKEN_URL,

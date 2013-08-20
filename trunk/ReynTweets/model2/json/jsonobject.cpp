@@ -92,6 +92,11 @@ QJsonObject JsonObject::toJSON() {
 QDataStream & jsonStreamingOut(QDataStream & out,
 							   const JsonObject & jsonobj)
 {
+	/*
+	// Better ? streamVariantOut : cf. tools/utils
+	return streamVariantOut(out, list.toVariant());
+	//*/
+
 	QJsonDocument doc(jsonobj);
 	QByteArray serializedListable = doc.toJson();
 
@@ -104,6 +109,9 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 QDataStream & jsonStreamingIn(QDataStream & in,
 							  const JsonObject &jsonobj)
 {
+	// TODO : use an improved JSONParser
+	// TODO : handling parse errors
+
 	QByteArray jsonStream = "";
 	in >> jsonStream;
 

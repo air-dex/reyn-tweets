@@ -141,7 +141,7 @@ SOURCES += \
 	model2/listable.cpp \
 	#model2/json/jsonable.cpp \
 	model2/json/jsonobject.cpp \
-    model2/mappablelist.cpp
+	model2/json/jsonarray.cpp
 
 
 HEADERS  += \
@@ -255,7 +255,8 @@ HEADERS  += \
 	model2/listable.tpp \
 	model2/json/jsonable.hpp \
 	model2/json/jsonobject.hpp \
-    model2/mappablelist.hpp
+	model2/json/jsonarray.hpp \
+	model2/json/jsonarray.tpp
 
 
 OTHER_FILES = \

@@ -51,6 +51,7 @@ Rectangle {
 	Text {
 		id: header_text
 		text: qsTr("About Reyn Tweets")
+		textFormat: Text.RichText
 		horizontalAlignment: Text.AlignHCenter
 		anchors.top: about_pane.top
 		anchors.topMargin: margin
@@ -167,6 +168,7 @@ Rectangle {
 					.concat('style="text-decoration:none; color: ')
 					.concat(constant.orange)
 					.concat('">http://code.google.com/p/reyn-tweeets/</a>')
+				textFormat: Text.RichText
 
 				font {
 					family: constant.font
@@ -234,6 +236,7 @@ General Public License along with Reyn Tweets. If not, see '))
 				text: '(C) 2012 Romain DUCHER (<a href="https://twitter.com/#!/air_dex" \
 					   style="text-decoration: none; color: '.concat(constant.orange)
 					  .concat('">@air_dex</a>)')
+				textFormat: Text.RichText
 				font.family: constant.font
 				font.bold: false
 				verticalAlignment: Text.AlignVCenter

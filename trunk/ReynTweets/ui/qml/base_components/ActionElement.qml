@@ -65,6 +65,7 @@ Item {
 		Text {
 			id: act_legend
 			text: action_element.legend
+			textFormat: Text.RichText
 			verticalAlignment: Text.AlignVCenter
 			anchors.verticalCenter: action_row.verticalCenter
 			font.family: constants.font

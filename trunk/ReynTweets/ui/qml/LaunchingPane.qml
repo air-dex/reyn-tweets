@@ -47,9 +47,12 @@ Rectangle {
 		id: program_logo
 		width: launching_pane.width/3
 		spacing: (reyn_tweets_icon.height + program_name_label.height)/6
-		anchors.verticalCenterOffset: -footer.height
-		anchors.verticalCenter: parent.verticalCenter
-		anchors.horizontalCenter: parent.horizontalCenter
+
+		anchors {
+			verticalCenterOffset: -footer.height
+			verticalCenter: parent.verticalCenter
+			horizontalCenter: parent.horizontalCenter
+		}
 
 		// Icon
 		Image {
@@ -64,12 +67,16 @@ Rectangle {
 		Text {
 			id: program_name_label
 			text: "Reyn Tweets"
-			font.bold: true
 			anchors.horizontalCenter: parent.horizontalCenter
-			font.family: constant.font
+
+			font {
+				family: constant.font
+				pointSize: constant.font_size_xxl
+				bold: true
+			}
+
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pointSize: constant.font_size_xxl
 		}
 	}
 
@@ -79,35 +86,49 @@ Rectangle {
 		width: launching_pane.width
 		spacing: (copyright.height + website.height) / 4
 
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.bottom: parent.bottom
-		anchors.bottomMargin: height/2
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			bottom: parent.bottom
+			bottomMargin: height/2
+		}
 
 		Text {
 			id: copyright
 			text: '(C) 2012 Romain DUCHER (<a href="https://twitter.com/#!/air_dex"'
-				  + ' style="text-decoration: none; color: '+ constant.orange
-				  + '">@air_dex</a>)'
-			font.family: constant.font
-			font.bold: false
+				.concat(' style="text-decoration: none; color: ')
+				.concat(constant.orange)
+				.concat('">@air_dex</a>)')
+
+			textFormat: Text.RichText
+
+			font {
+				family: constant.font
+				pointSize: constant.font_size
+				bold: false
+			}
+
 			anchors.horizontalCenter: parent.horizontalCenter
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pointSize: constant.font_size
 			onLinkActivated: Qt.openUrlExternally(link)
 		}
 
 		Text {
 			id: website
-			text: qsTr("Website : ") +  '<a href="http://code.google.com/p/reyn-tweets/"'
-				  + 'style="text-decoration:none; color: ' + constant.orange
-				  + '">http://code.google.com/p/reyn-tweeets/</a>'
-			font.family: constant.font
-			font.bold: false
+			text: qsTr("Website : ").concat('<a href="http://code.google.com/p/reyn-tweets/"')
+				.concat('style="text-decoration:none; color: ')
+				.concat(constant.orange)
+				.concat('">http://code.google.com/p/reyn-tweeets/</a>')
+
+			font {
+				family: constant.font
+				pointSize: constant.font_size
+				bold: false
+			}
+
 			anchors.horizontalCenter: parent.horizontalCenter
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
-			font.pointSize: constant.font_size
 			onLinkActivated: Qt.openUrlExternally(link)
 		}
 	}

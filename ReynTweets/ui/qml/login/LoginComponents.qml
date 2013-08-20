@@ -34,7 +34,9 @@ import "../info_display"
 Item {
 	id: login_component
 
-	property int margin: 5
+	property int margin: constant.margin
+
+	Constants { id:constant }
 
 	// Control whose role is to allow Reyn Tweets then saving it the configuration
 	AllowControl {

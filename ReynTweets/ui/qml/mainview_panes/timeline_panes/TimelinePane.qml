@@ -32,8 +32,8 @@ import ".."
 /// @brief Pane to show a timeline
 Rectangle {
 	id: timeline_pane
-	width: 360
-	height: 640
+	width: constant.reyn_tweets_width
+	height: constant.reyn_tweets_height
 	color: constant.orange_author
 
 	property int timeline_type

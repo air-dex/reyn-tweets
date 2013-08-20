@@ -35,9 +35,9 @@ import "../base_components"
 Rectangle {
 	id: login_pane
 
-	width: 360
-	height: 640
-	property int margin: 5
+	width: constant.reyn_tweets_width
+	height: constant.reyn_tweets_height
+	property int margin: constant.margin
 
 	color: constant.orange_author
 	radius: login_pane.margin

@@ -34,7 +34,7 @@ Rectangle {
 	property alias timeline: mentions_pane
 
 	// Generic margin
-	property int margin: 5
+	property int margin: constant.margin
 
 	radius: 2*margin
 	color: constant.orange_author

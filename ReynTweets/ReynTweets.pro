@@ -149,7 +149,8 @@ SOURCES += \
     model2/tweets/usermention2.cpp \
     model2/tweets/urlentity2.cpp \
     model2/tweets/mediasize2.cpp \
-    model2/tweets/mediasizes2.cpp
+    model2/tweets/mediasizes2.cpp \
+    model2/tweets/media2.cpp
 
 
 HEADERS  += \
@@ -272,7 +273,8 @@ HEADERS  += \
     model2/tweets/usermention2.hpp \
     model2/tweets/urlentity2.hpp \
     model2/tweets/mediasize2.hpp \
-    model2/tweets/mediasizes2.hpp
+    model2/tweets/mediasizes2.hpp \
+    model2/tweets/media2.hpp
 
 
 OTHER_FILES = \

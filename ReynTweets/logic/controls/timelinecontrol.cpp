@@ -204,7 +204,6 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			// TODO : improve
 			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
 
 			if (intermediateIssue != INVALID_ISSUE) {
@@ -335,7 +334,6 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			// TODO : improve
 			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
 
 			if (intermediateIssue != INVALID_ISSUE) {

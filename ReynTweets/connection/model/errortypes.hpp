@@ -30,7 +30,7 @@
 /// enum values for more details.
 enum ErrorType {
 	/// @brief Code indicating that there was no error.
-	NO_ERROR,
+	NO_REQUEST_ERROR,
 
 	/// @brief Code for an invalid request result.
 	INVALID_RESULT,

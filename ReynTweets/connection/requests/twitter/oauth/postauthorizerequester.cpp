@@ -42,9 +42,9 @@ PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 // Building postParameters
 void PostAuthorizeRequester::buildPOSTParameters() {
 	postParameters.insert("authenticity_token",
-						  QString::fromAscii(oauthManager.getAuthenticityToken().data()));
+						  QString::fromLatin1(oauthManager.getAuthenticityToken().data()));
 	getParameters.insert("oauth_token",
-						 QString::fromAscii(oauthManager.getOAuthToken().data()));
+						 QString::fromLatin1(oauthManager.getOAuthToken().data()));
 
 	postParameters.insert("session[username_or_email]", login);
 	postParameters.insert("session[password]", password);
@@ -133,7 +133,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 
 							// Writing the verifier
 							if (treatmentOK) {
-								oauthManager.setVerifier(codeTag.toPlainText().toAscii());
+								oauthManager.setVerifier(codeTag.toPlainText().toLatin1());
 								parsedResults.insert("denied", QVariant(false));
 								parsedResults.insert("rightCredentials", QVariant(true));
 							} else {

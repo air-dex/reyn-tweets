@@ -28,16 +28,16 @@
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
-    OAuthRequester(GET,
-                   TwitterURL::AUTHORIZE_URL,
-                   authManager,
-                   HTML_PARSING)
+	OAuthRequester(GET,
+				   TwitterURL::AUTHORIZE_URL,
+				   authManager,
+				   HTML_PARSING)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
-    getParameters.insert("oauth_token",
-                         QString::fromAscii(oauthManager.getOAuthToken().data()));
+	getParameters.insert("oauth_token",
+						 QString::fromLatin1(oauthManager.getOAuthToken().data()));
 }
 
 // Parsing results
@@ -85,18 +85,18 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 			// Is a parameter found ?
 			if (!authenticityTokenFound && inputName == "authenticity_token") {
 				// The authenticity token is found !
-				oauthManager.setAuthenticityToken(inputValue.toAscii());
+				oauthManager.setAuthenticityToken(inputValue.toLatin1());
 				authenticityTokenFound = true;
 			} else if (!oauthTokenFound && inputName == "oauth_token") {
 				// The oauth token is found. (WTF)
-				oauthManager.setOAuthToken(inputValue.toAscii());
+				oauthManager.setOAuthToken(inputValue.toLatin1());
 				oauthTokenFound = true;
 			} else if (!denyFound && inputName == "deny") {
 				// The deny value is found !
 				oauthManager.setDeny(inputValue);
 				denyFound = true;
 			}
-			
+
 			// Hotfix. Remove it after Qt5 port and Authorization refactoring.
 			oauthManager.setDeny("cancel");
 			denyFound = true;

@@ -171,7 +171,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_REQUEST_ERROR: {
 			// Credentials were right a priori. Ensures that the user is the right one.
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;

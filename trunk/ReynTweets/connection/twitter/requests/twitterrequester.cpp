@@ -90,7 +90,7 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 	switch (parseval.type()) {
 		case QJsonValue::Object: {
 			// Is the QJsonObject empty ?
-			QJsonObject o;
+			QJsonObject o = parseval.toObject();
 			if (o.isEmpty()) {
 				// Buggy case
 				QVariantMap varmap;
@@ -102,7 +102,7 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 
 		case QJsonValue::Array: {
 			// Is the QJsonArray empty ?
-			QJsonArray a;
+			QJsonArray a = parseval.toArray();
 			if (a.isEmpty()) {
 				// Buggy case
 				QVariantList varlist;

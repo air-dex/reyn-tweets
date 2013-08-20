@@ -22,9 +22,10 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "authorizerequester.hpp"
+
+#include <QDomElement>
 #include "../../../../tools/parsers/xmlparser.hpp"
 #include "../../../../tools/utils.hpp"
-#include <QDomElement>
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager, bool forceLog, QString writeLogin) :
@@ -53,14 +54,16 @@ QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 										 bool &parseOK,
 										 QVariantMap &parsingErrors)
 {
-	// Look at the return code :
-	// TODO : verify it
+	parsingErrors = QVariantMap();
 
+	// Look at the return code
 	if (results.getHttpResponse().code == 200) {
 		// It's the HTML page. Send back its code
+		QVariantMap resmap;
+		resmap.insert("html", QVariant::fromValue(results.getResponseBody()));
+		resmap.insert("reply_url", QVariant::fromValue(results.getReplyURL()));
 		parseOK = true;
-		parsingErrors = QVariantMap();
-		return QVariant::fromValue(results.getResponseBody());
+		return QVariant::fromValue(resmap);
 	} else {
 		// Send an XML error message. Let's get it !
 		parsingErrorType = Network::XML_PARSING;

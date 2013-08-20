@@ -171,10 +171,11 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
-			tokensMap.insert("html", result.parsedResult);
+			tokensMap.unite(result.parsedResult.toMap());
 			processResult = ProcessUtils::buildProcessResult(REQUEST_TOKENS_OK,
 															 QVariant(tokensMap));
-			return endProcess();
+			endProcess();
+			return;
 
 		case Network::SERVICE_ERRORS:
 			// Building error message

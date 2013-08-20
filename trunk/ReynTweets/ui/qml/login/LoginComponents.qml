@@ -117,10 +117,10 @@ Item {
 	/// @fn function setLoginPopupVisible(visible);
 	/// @brief Showing / hiding the login popup
 	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
-	function showAuthPage(html) {
+	function showAuthPage(html, baseURL) {
 		login_component.visible = true;
 		login_popup.visible = true;
-		login_popup.showAuthPage(html);
+		login_popup.showAuthPage(html, baseURL);
 	}
 
 	/// @fn function afterLaunching(endOK, errMsg, fatal);

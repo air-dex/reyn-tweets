@@ -92,7 +92,8 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 			// Send HTML to QML
 			QVariantMap parsedResults = result.results.toMap();
 			QString authorizePage = parsedResults.value("html").toString();
-			emit needVerifier(authorizePage);
+			QString baseURL = parsedResults.value("reply_url").toString();
+			emit needVerifier(authorizePage, baseURL);
 			processAgain();
 		} return;
 

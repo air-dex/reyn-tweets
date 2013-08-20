@@ -30,9 +30,9 @@
 
 /// @class TimelineHandler
 /// @brief List Handler for timelines
-class TimelineHandler : public QObject, public ListHandler<Timeline, Tweet>
+class TimelineHandler : public ListHandler<Timeline, Tweet>
 {
-		Q_OBJECT
+	Q_OBJECT
 
 	public:
 		/// @enum TimelineType
@@ -96,48 +96,10 @@ class TimelineHandler : public QObject, public ListHandler<Timeline, Tweet>
 		/// @brief Declaring to the QML system
 		static void declareQML();
 
-		///////////////////
-		// List handling //
-		///////////////////
-
-		/// @fn Q_INVOKABLE virtual Tweet * get(int index);
-		/// @brief Get an element of the handled list
-		/// @param index Index of the element
-		/// @return A pointer with the corresponding element if index is valid,
-		/// a default element otherwise.
-		Q_INVOKABLE virtual Tweet * get(int index);
-
-		/// @fn Q_INVOKABLE virtual int getHandledListSize();
-		/// @brief Getting the size of the handled list.
-		/// @return handledList.size();
-		Q_INVOKABLE virtual int getHandledListSize();
-
-		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt);
-		/// @brief Replacing an element in the list
-		/// @param varelt Element under a QVariant form
-		Q_INVOKABLE virtual void replace(QVariant varelt);
-
-		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt, int index);
-		/// @brief Replacing an element in the list
-		/// @param varelt Element under a QVariant form
-		/// @param index Index of the element to replace
-		Q_INVOKABLE virtual void replace(QVariant varelt, int index);
-
-		/// @fn Q_INVOKABLE virtual void remove(int index);
-		/// @brief Removing an element of the list
-		/// @param index Index of the element to remove
-		Q_INVOKABLE virtual void remove(int index);
-
-		/// @fn Q_INVOKABLE virtual void remove(QVariant varelt);
-		/// @brief Removing an element of the list
-		/// @param varelt Element to remove
-		Q_INVOKABLE virtual void remove(QVariant varelt);
-
-
 	signals:
 		/// @fn void timelineChanged();
 		/// @brief Signal emitted when the handled timeline has got a new value.
-		void timelineChanged();
+		void handledListChanged();
 
 
 	protected:
@@ -145,6 +107,10 @@ class TimelineHandler : public QObject, public ListHandler<Timeline, Tweet>
 		/// @brief Copy of a TimelineHandler
 		/// @param handler TimelineHandler to copy
 		virtual void recopie(const TimelineHandler &handler);
+
+		///////////////////
+		// List handling //
+		///////////////////
 
 		/// @fn virtual int getElementIndex(Tweet listElt, bool & exactIndex);
 		/// @brief Getting the potential index of a tweet.
@@ -197,7 +163,7 @@ class TimelineHandler : public QObject, public ListHandler<Timeline, Tweet>
 		Q_PROPERTY(Timeline timeline
 				   READ getHandledList
 				   WRITE setHandledList
-				   NOTIFY timelineChanged)
+				   NOTIFY handledListChanged)
 
 	signals:
 		/// @fn void typeChanged();

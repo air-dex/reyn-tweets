@@ -32,6 +32,7 @@
 // Constructor
 template<typename HL, typename U>
 ListHandler<HL,U>::ListHandler() :
+	HandlerEmitter(),
 	handledList()
 {}
 
@@ -42,6 +43,7 @@ ListHandler<HL,U>::~ListHandler() {}
 // Copy constructor
 template<typename HL, typename U>
 ListHandler<HL,U>::ListHandler(const ListHandler<HL,U> & listhandler) :
+	HandlerEmitter(),
 	handledList()
 {
 	recopie(listhandler);
@@ -81,7 +83,7 @@ HL & ListHandler<HL,U>::getHandledListRef() {
 template<typename HL, typename U>
 void ListHandler<HL,U>::setHandledList(HL newlist) {
 	handledList = newlist;
-	emit signalEmitter.handledListChanged();
+	emit handledListChanged();
 }
 
 // Get an element of the handled list
@@ -114,7 +116,7 @@ void ListHandler<HL,U>::replace(QVariant varelt) {
 	if (exact) {
 		U & listElt = handledList[index];
 		listElt = realElt;
-		emit signalEmitter.handledListChanged();
+		emit handledListChanged();
 	}
 }
 
@@ -127,7 +129,7 @@ void ListHandler<HL,U>::replace(QVariant varelt, int index) {
 	U & listElt = handledList[index];
 	listElt.reset();
 	listElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
-	emit signalEmitter.handledListChanged();
+	emit handledListChanged();
 }
 
 // Removing an element of the list
@@ -135,7 +137,7 @@ template<typename HL, typename U>
 void ListHandler<HL,U>::remove(int index) {
 	if (index >= 0 || index < handledList.count()) {
 		handledList.removeAt(index);
-		emit signalEmitter.handledListChanged();
+		emit handledListChanged();
 	}
 }
 
@@ -150,6 +152,6 @@ void ListHandler<HL,U>::remove(QVariant varelt) {
 	// Delete only if it's really in the list
 	if (exact) {
 		handledList.removeAt(index);
-		emit signalEmitter.handledListChanged();
+		emit handledListChanged();
 	}
 }

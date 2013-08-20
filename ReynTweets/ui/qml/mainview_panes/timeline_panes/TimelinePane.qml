@@ -250,7 +250,7 @@ Rectangle {
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
 
 		// Sync between the timeline and the list model
-		timeline_handler.timelineChanged.connect(timeline_model.syncWithTimeline)
+		timeline_handler.handledListChanged.connect(timeline_model.syncWithTimeline)
 	}
 
 	// Loading the home timeline

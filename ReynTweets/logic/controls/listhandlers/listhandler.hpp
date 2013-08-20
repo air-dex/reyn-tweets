@@ -30,8 +30,9 @@
 /// @class HandlerEmitter
 /// @brief Class for making a list handler emitting a signal.
 ///
-/// In a perfect world this class would be nested in ListHandler. Unfortunately,
-/// meta object features are not supported for nested classes.
+/// In a perfect world this class would be merged with ListHandler.
+/// Unfortunately, template classes are not supported by Q_OBJECT. This class
+/// contains the part related to QObject.
 class HandlerEmitter : public QObject
 {
 	Q_OBJECT
@@ -50,16 +51,14 @@ class HandlerEmitter : public QObject
 /// the given list and methods to get, replace and remove elements of the
 /// handled list.
 ///
-/// Some methods have to be overriden inderived class because they have to be
-/// invokable by QML. For this, the handler has to inherit from QObject
-/// (Q_OBJECT and Q_INVOKABLE macros + signals). In a perfect world,
-/// ListHandler would inherit from QObject but template classes are not
-/// supported by Q_OBJECT. Moreover, the HandlerEmitter class would not exist too.
+/// In a perfect world this class would be merged with ListHandler.
+/// Unfortunately, template classes are not supported by Q_OBJECT. This class
+/// contains the part related to templates.
 /// @param HL Type of the list handled by the list handler. <strong>T has to
 /// inherit JsonArray&lt;U&gt;.</strong>
 /// @param U Type of the elements of the handled list.
 template <typename HL, typename U>
-class ListHandler
+class ListHandler : public HandlerEmitter
 {
 	public:
 		/// @fn ListHandler();
@@ -100,46 +99,42 @@ class ListHandler
 		/// @param newlist New value for the list
 		void setHandledList(HL newlist);
 
-		/// @fn virtual U * get(int index);
+		/// @fn Q_INVOKABLE virtual U * get(int index);
 		/// @brief Get an element of the handled list
 		/// @param index Index of the element
 		/// @return A pointer with the corresponding element if index is valid,
 		/// a default element otherwise.
-		virtual U * get(int index);
+		Q_INVOKABLE virtual U * get(int index);
 
-		/// @fn virtual int getHandledListSize();
+		/// @fn Q_INVOKABLE virtual int getHandledListSize();
 		/// @brief Getting the size of the handled list.
 		/// @return handledList.size();
-		virtual int getHandledListSize();
+		Q_INVOKABLE virtual int getHandledListSize();
 
-		/// @fn virtual void replace(QVariant varelt);
+		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt);
 		/// @brief Replacing an element in the list
 		/// @param varelt Element under a QVariant form
-		virtual void replace(QVariant varelt);
+		Q_INVOKABLE virtual void replace(QVariant varelt);
 
-		/// @fn virtual void replace(QVariant varelt, int index);
+		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt, int index);
 		/// @brief Replacing an element in the list
 		/// @param varelt Element under a QVariant form
 		/// @param index Index of the element to replace
-		virtual void replace(QVariant varelt, int index);
+		Q_INVOKABLE virtual void replace(QVariant varelt, int index);
 
-		/// @fn virtual void remove(int index);
+		/// @fn Q_INVOKABLE virtual void remove(int index);
 		/// @brief Removing an element of the list
 		/// @param index Index of the element to remove
-		virtual void remove(int index);
+		Q_INVOKABLE virtual void remove(int index);
 
-		/// @fn virtual void remove(QVariant varelt);
+		/// @fn Q_INVOKABLE virtual void remove(QVariant varelt);
 		/// @brief Removing an element of the list
 		/// @param varelt Element to remove
-		virtual void remove(QVariant varelt);
+		Q_INVOKABLE virtual void remove(QVariant varelt);
 		
 	protected:
 		/// @brief Handled list
 		HL handledList;
-
-		/// @brief Entity to emit the signal indicating that handledList values
-		/// has just changed.
-		HandlerEmitter signalEmitter;
 
 		/// @fn virtual void recopie(const ListHandler<HL,U> & listhandler);
 		/// @brief Recopy of a ListHandler

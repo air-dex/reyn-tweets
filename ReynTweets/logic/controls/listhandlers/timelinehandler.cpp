@@ -26,23 +26,15 @@
 
 // Constructor
 TimelineHandler::TimelineHandler(TimelineType tlType) :
-	QObject(),
 	ListHandler<Timeline, Tweet>(),
 	timelineType(tlType)
-{
-	connect(&signalEmitter, SIGNAL(handledListChanged()),
-			this, SIGNAL(timelineChanged()));
-}
+{}
 
 // Destructor
-TimelineHandler::~TimelineHandler() {
-	disconnect(&signalEmitter, SIGNAL(handledListChanged()),
-			   this, SIGNAL(timelineChanged()));
-}
+TimelineHandler::~TimelineHandler() {}
 
 // Copy constructor
 TimelineHandler::TimelineHandler(const TimelineHandler & handler) :
-	QObject(),
 	ListHandler<Timeline, Tweet>(),
 	timelineType(INVALID)
 {
@@ -89,30 +81,6 @@ QDataStream & operator>>(QDataStream & in, TimelineHandler & handler) {
 // List Handling //
 ///////////////////
 
-Tweet * TimelineHandler::get(int index) {
-	return ListHandler<Timeline, Tweet>::get(index);
-}
-
-int TimelineHandler::getHandledListSize() {
-	return ListHandler<Timeline, Tweet>::getHandledListSize();
-}
-
-void TimelineHandler::replace(QVariant varelt) {
-	return ListHandler<Timeline, Tweet>::replace(varelt);
-}
-
-void TimelineHandler::replace(QVariant varelt, int index) {
-	return ListHandler<Timeline, Tweet>::replace(varelt, index);
-}
-
-void TimelineHandler::remove(int index) {
-	return ListHandler<Timeline, Tweet>::remove(index);
-}
-
-void TimelineHandler::remove(QVariant varelt) {
-	return ListHandler<Timeline, Tweet>::remove(varelt);
-}
-
 int TimelineHandler::getElementIndex(Tweet tweet, bool & exactIndex) {
 	int index = handledList.tweetIndex(tweet);
 
@@ -146,16 +114,16 @@ void TimelineHandler::setType(TimelineHandler::TimelineType newType) {
 void TimelineHandler::appendTimeline(Timeline moreTL) {
 	if (!moreTL.isEmpty()) {
 		handledList.append(moreTL);
-		emit timelineChanged();
+		emit handledListChanged();
 	}
 }
 
-// Appending a timeline to the current one
+// Prepending a timeline to the current one
 void TimelineHandler::prependTimeline(Timeline moreTL) {
 	if (!moreTL.isEmpty()) {
 		moreTL.append(handledList);
 		handledList.clear();
 		handledList.append(moreTL);
-		emit timelineChanged();
+		emit handledListChanged();
 	}
 }

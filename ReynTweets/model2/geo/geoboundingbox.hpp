@@ -24,13 +24,14 @@
 #ifndef GEOBOUNDINGBOX_HPP
 #define GEOBOUNDINGBOX_HPP
 
-#include "../json/jsonobject.hpp"
+#include "genericcoordinates.tpp"
 #include "geocoordlist.hpp"
-#include "coordinates.hpp"
+
+using CoordType::CoordinatesType;
 
 /// @class GeoBoundingBox
 /// @brief Bounding box used for places
-class GeoBoundingBox : public JsonObject
+class GeoBoundingBox : public GenericCoordinates<GeoCoordList>
 {
 	Q_OBJECT
 
@@ -62,30 +63,8 @@ class GeoBoundingBox : public JsonObject
 		/// @brief Resets the mappable to a default value
 		void reset();
 
-		/////////////////////
-		// JSON conversion //
-		/////////////////////
-
-		/// @fn virtual void fillWithJSON(QJsonObject json);
-		/// @brief Filling the object with a QJsonObject.
-		///
-		/// The method is virtual because its implementation depends on the
-		/// object type.
-		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json);
-
-		/// @fn virtual QJsonObject toJSON();
-		/// @brief Getting a QJsonObject representation of the object
-		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
-
 
 	private:
-		/// @fn void recopie(const GeoBoundingBox & coord);
-		/// @brief Copy of a GeoBoundingBox
-		/// @param coord GeoBoundingBox to copy
-		void recopie(const GeoBoundingBox & coord);
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord);
@@ -102,98 +81,11 @@ class GeoBoundingBox : public JsonObject
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
 
+		// Don't change the CoordinatesType
 
-	///////////////////////////
-	// Properties management //
-	///////////////////////////
-
-	protected:
-		// coordinates
-		/// @property id
-		/// @brief Series of longitude and latitude points.
-		///
-		/// geoCoordinates is the attribute beneath this property.
-		Q_PROPERTY(QVariantList coordinates
-				   READ getCoordinatesProperty
-				   WRITE setCoordinates
-				   NOTIFY coordinatesChanged)
-
-		/// @brief Name of the property id.
-		static QString COORDINATES_PN;
-
-		/// @fn QVariantList getCoordinatesProperty();
-		/// @brief Reading coordinates
-		/// @return retweetID
-		QVariantList getCoordinatesProperty();
-
-		/// @fn void setCoordinates(QVariantList newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for id
-		void setCoordinates(QVariantList newValue);
-
-		// type
-		/// @property type
-		/// @brief Type of coordinates.
-		///
-		/// coordType is the attribute beneath this property.
-		Q_PROPERTY(QString type
-				   READ getTypeProperty
-				   WRITE setType
-				   NOTIFY typeChanged)
-
-		/// @brief Name of the property type.
-		static QString TYPE_PN;
-
-		/// @fn QString getType();
-		/// @brief Reading type
-		/// @return coordType
-		QString getTypeProperty();
-
-		/// @fn void setType(QString newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(QString newValue);
-
-
-	signals:
-		/// @fn void coordinatesChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void coordinatesChanged();
-
-		/// @fn void typeChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void typeChanged();
-
-	protected:
-		/// @brief Coordinates of the point
-		GeoCoordList geoCoordinates;
-
-		/// @brief String version of retweetID
-		Coordinates::CoordinatesType coordType;
-
-	public:
-		// coordinates
-		/// @fn GeoCoord getCoordinates();
-		/// @brief Reading coordinates
-		/// @return this
-		GeoCoordList getCoordinates();
-
-		/// @fn void setCoordinates(GeoCoord newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for coordinate locations
-		void setCoordinates(GeoCoordList newValue);
-
-		// type
-		/// @fn Coordinates::CoordinatesType getType();
-		/// @brief Reading type
-		/// @return coordType
-		Coordinates::CoordinatesType getType();
-
-		/// @fn void setType(Coordinates::CoordinatesType newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(Coordinates::CoordinatesType newValue);
-
+		/// @fn void setType(CoordinatesType newValue);
+		/// @brief Overriden to set the CoordinatesType readonly.
+		void setType(CoordinatesType);
 };
 
 // Serialization of GeoBoundingBox

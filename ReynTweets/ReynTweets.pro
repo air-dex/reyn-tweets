@@ -159,11 +159,13 @@ SOURCES += \
 	model2/tweets/retweetinfos.cpp \
 	model2/users/userinfos.cpp \
 	model2/users/user.cpp \
-    model2/geo/coordinates.cpp \
-    model2/geo/place.cpp \
-    model2/geo/geocoord.cpp \
-    model2/geo/geocoordlist.cpp \
-    model2/geo/geoboundingbox.cpp
+	model2/geo/coordinates.cpp \
+	model2/geo/place.cpp \
+	model2/geo/geocoord.cpp \
+	model2/geo/geocoordlist.cpp \
+	model2/geo/geoboundingbox.cpp \
+	model2/geo/genericcoordinates.cpp \
+    model2/geo/coordinatestype.cpp
 
 
 HEADERS  += \
@@ -296,11 +298,14 @@ HEADERS  += \
 	model2/tweets/retweetinfos.hpp \
 	model2/users/userinfos.hpp \
 	model2/users/user.hpp \
-    model2/geo/coordinates.hpp \
-    model2/geo/place.hpp \
-    model2/geo/geocoord.hpp \
-    model2/geo/geocoordlist.hpp \
-    model2/geo/geoboundingbox.hpp
+	model2/geo/coordinates.hpp \
+	model2/geo/place.hpp \
+	model2/geo/geocoord.hpp \
+	model2/geo/geocoordlist.hpp \
+	model2/geo/geoboundingbox.hpp \
+	model2/geo/genericcoordinates.hpp \
+	model2/geo/genericcoordinates.tpp \
+    model2/geo/coordinatestype.hpp
 
 
 OTHER_FILES = \

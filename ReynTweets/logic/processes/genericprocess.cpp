@@ -38,11 +38,6 @@ QUuid GenericProcess::getProcessUUID() {
 	return processUuid;
 }
 
-// Getting the process result
-ProcessResult GenericProcess::getProcessResult() {
-	return processResult;
-}
-
 // End of a process
 void GenericProcess::endProcess(CoreResult issue,
 								QVariant result,

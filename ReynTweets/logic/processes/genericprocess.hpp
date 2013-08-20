@@ -46,11 +46,6 @@ class GenericProcess : public QObject
 		/// @return processUuid
 		QUuid getProcessUUID();
 
-		/// @fn ProcessResult getProcessResult();
-		/// @brief Getting the process result
-		/// @return processResult
-		ProcessResult getProcessResult();
-
 		/// @fn virtual void startProcess() = 0;
 		/// @brief Method to call to start the process
 		virtual void startProcess() = 0;

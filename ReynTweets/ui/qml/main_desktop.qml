@@ -35,7 +35,7 @@ Rectangle {
 		onEndLaunch: {
 			reyn_tweets.state = "Tweeting";
 			view.loadHomeTimeline();
-			//view.loadMentionsTimeline();
+			view.loadMentionsTimeline();
 		}
 
 		onCompletedBuildChanged: {

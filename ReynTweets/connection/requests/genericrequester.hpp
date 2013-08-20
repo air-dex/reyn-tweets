@@ -39,17 +39,17 @@ class GenericRequester : public QObject
 	public:
 		/// @fn GenericRequester(RequestType type,
 		///						 QString url,
-		///						 ErrorType parseError = QJSON_PARSING);
+		///						 ErrorType parseError = JSON_PARSING);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
 		/// @param parseError Error type if an error occurs while parsing. Most
-		/// of the time, this value is set to QJSON_PARSING because results are
-		/// QJson stream parsed with QJson. However, OAuth requesters use their
+		/// of the time, this value is set to JSON_PARSING because results are
+		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
 		GenericRequester(RequestType type,
 						 QString url,
-						 ErrorType parseError = QJSON_PARSING);
+						 ErrorType parseError = JSON_PARSING);
 
 		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.

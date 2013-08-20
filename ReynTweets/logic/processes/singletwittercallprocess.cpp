@@ -69,7 +69,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 			treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case QJSON_PARSING:
+		case JSON_PARSING:
 			treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 

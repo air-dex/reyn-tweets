@@ -42,9 +42,8 @@ enum ErrorType {
 	/// @brief Code indicating that the service (ex. Twitter) has returned errors.
 	SERVICE_ERRORS,
 
-	/// @brief Code indicating that there was an error while parsing results
-	/// with <a href="http://qjson.sourceforge.net">QJson</a>.
-	QJSON_PARSING,
+	/// @brief Code indicating that there was an error while parsing JSON.
+	JSON_PARSING,
 
 	/// @brief Code indicating that there was an error while parsing results
 	/// under the form <code>arg1=val1&arg2=val2&...&argN=valN</code>.

@@ -203,7 +203,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyIssue);
 			break;
 
-		case QJSON_PARSING:
+		case JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  verifyMsg,
 												  verifyIssue);

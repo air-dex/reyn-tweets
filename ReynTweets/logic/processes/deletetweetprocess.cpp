@@ -147,7 +147,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case QJSON_PARSING:
+		case JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 
@@ -233,7 +233,7 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case QJSON_PARSING:
+		case JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 

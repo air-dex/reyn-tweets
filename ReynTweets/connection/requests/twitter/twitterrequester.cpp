@@ -63,6 +63,12 @@ QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErro
 	QString errorMsg;
 	int lineMsg;
 
+	/*
+	 * Kept like this for the moment for QJSON transitional compatibility.
+	 * Will be refactored after the Qt5 bump, in a more general refactoring with
+	 * more Qt5 native JSON integration.
+	 */
+
 	// Special treatment for lists because of a QJSON bug while parsing lists
 	bool isList = rawResponse.startsWith('[');
 
@@ -102,7 +108,7 @@ void TwitterRequester::treatParsedResult() {
 		case 404:
 		case 500:
 		case 503:
-			if (parsingErrorType == QJSON_PARSING
+			if (parsingErrorType == JSON_PARSING
 					&& requestResult.parsedResult.type() == QVariant::Map
 				)
 			{
@@ -140,7 +146,7 @@ void TwitterRequester::treatParsedResult() {
 		case 406:
 		case 420:
 		case 502:
-			if (parsingErrorType == QJSON_PARSING
+			if (parsingErrorType == JSON_PARSING
 					&& requestResult.parsedResult.type() == QVariant::Map
 				)
 			{

@@ -29,8 +29,8 @@
 /// @struct ResponseInfos
 /// @brief Struct with an integer (field "code") and its meaning (field "message").
 ///
-/// When used to store QJSON parsing errors, "message" is the error message and
-/// "code" the number of the line where the error occurs.
+/// When used to store JSON parsing errors, "message" is the error message and
+/// "code" the offset.
 struct ResponseInfos {
 	/// @brief Code
 	int code;

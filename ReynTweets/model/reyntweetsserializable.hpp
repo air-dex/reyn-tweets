@@ -25,11 +25,10 @@
 #define REYNTWEETSSERIALIZABLE_HPP
 
 #include <QVariant>
-#include <QJson/Serializer>
 
 /// @class ReynTweetsSerializable
-/// @brief Class for objects that needs an equivalent serializable by QJSON.
-/// @param V Type of the equivalent serializable by QJSON.
+/// @brief Class for objects that needs an equivalent serializable in JSON.
+/// @param V Type of the equivalent serializable in JSON.
 template <class V>
 class ReynTweetsSerializable
 {

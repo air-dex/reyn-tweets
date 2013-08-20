@@ -21,10 +21,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QJson/QObjectHelper>
-#include <QJson/Parser>
 #include "reyntweetsmappable.hpp"
-#include <QMetaProperty>
 #include "../tools/utils.hpp"
 
 /////////////
@@ -45,7 +42,7 @@ ReynTweetsMappable::~ReynTweetsMappable() {}
 
 // Copy constructor
 ReynTweetsMappable::ReynTweetsMappable(const ReynTweetsMappable & mappable) :
-    QObject()
+	QObject()
 {
 	recopie(mappable);
 }
@@ -75,12 +72,12 @@ void ReynTweetsMappable::blacklistProperties(bool blacklistObjectName) {
 
 // Converting the object into a QVariantMap
 QVariantMap ReynTweetsMappable::toVariant() const {
-	return QJson::QObjectHelper::qobject2qvariant(this, transientProperties);
+	return object2variant(*this, transientProperties).toMap();
 }
 
 // Filling a ReynTweetsSerializable object with the informations
 void ReynTweetsMappable::fillWithVariant(QVariantMap map) {
-	QJson::QObjectHelper::qvariant2qobject(map, this);
+	variant2object(map, *this);
 }
 
 // Specialization of jsonStreamingOut for mappables

@@ -1,12 +1,13 @@
 /// @file jsonparser.cpp
 /// @brief Implementation of JSONParser
 ///
-/// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
+/// Revisions older than r120 (SVN) are in the folder
+/// /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -23,8 +24,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QJson/Parser>
 #include "jsonparser.hpp"
+#include <QJsonDocument>
 
 // Parsing method
 QVariantMap JSONParser::parse(QByteArray data,
@@ -33,16 +34,14 @@ QVariantMap JSONParser::parse(QByteArray data,
 							  int * lineError,
 							  int *)
 {
-	// Parsing with QJson
-	QJson::Parser parser;
-	QVariant result = parser.parse(data, &parseOK);
+	QJsonParseError jsonParseError;
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonParseError);
+	parseOK = jsonParseError.error == QJsonParseError::NoError;
 
-	if (!parseOK) {
-		parseError = parser.errorString();
-		if (lineError) {
-			*lineError = parser.errorLine();
-		}
+	parseError = jsonParseError.errorString();
+	if (lineError) {
+		*lineError = jsonParseError.offset;
 	}
 
-	return result.toMap();
+	return jsonDoc.toVariant().toMap();
 }

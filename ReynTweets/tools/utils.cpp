@@ -23,12 +23,13 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QCryptographicHash>
-#include <QJson/QObjectHelper>
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#include <QUrl>
 #include "utils.hpp"
+#include <QCryptographicHash>
+#include <QVariant>
+#include <QMapIterator>
+#include <QMetaProperty>
+#include <QJsonDocument>
+#include <QUrl>
 
 ///////////////////////
 // String convertion //
@@ -62,6 +63,98 @@ QColor string2color(QString coloredString) {
 	return QColor(coloredString);
 }
 
+//////////////////////////////////////////////////
+// Transitional functions due to QJSON removing //
+//////////////////////////////////////////////////
+
+// Getting all the properties of a given QObject
+QStringList getPropertiesNames(const QObject & o, bool withDynamic) {
+	const QMetaObject * meta = o.metaObject();
+	QStringList properties;
+
+	// Base properties
+	for (int index =  meta->propertyOffset(); index < meta->propertyCount(); ++index) {
+		QString propertyName = QString::fromLatin1(meta->property(index).name());
+		properties.append(propertyName);
+	}
+
+	// Dynamic properties
+	if (withDynamic) {
+		QList<QByteArray> dynamics = o.dynamicPropertyNames();
+
+		QListIterator<QByteArray> dynit(dynamics);
+
+		while (dynit.hasNext()) {
+			QByteArray dyname = dynit.next();
+			QString name = QString::fromLatin1(dyname);
+
+			if (!properties.contains(name)) {
+				properties.append(name);
+			}
+		}
+	}
+
+	return properties;
+}
+
+// Converting a QObject into a QVariant.
+QVariant object2variant(const QObject & o, QStringList transientProperties) {
+	// Getting the properties list to serialize
+	QStringList properties = getPropertiesNames(o);
+
+	QStringListIterator it(properties);
+	QVariantMap res;
+
+	while (it.hasNext()) {
+		QString name = it.next();
+
+		// Don't write it if it is transient
+		if (!transientProperties.contains(name)) {
+			QVariant value = o.property(name.toLatin1().data());
+			res.insert(name, value);
+		}
+	}
+
+	return res;
+}
+
+// Converting a QVariant into a QObject.
+void variant2object(QVariantMap v, QObject &o, bool writeNewProperties) {
+	QMapIterator<QString, QVariant> propertyIterator(v);
+	QStringList objectProperties = getPropertiesNames(o);
+
+	while (propertyIterator.hasNext()) {
+		propertyIterator.next();
+		QString name = propertyIterator.key();
+
+		if (objectProperties.contains(name) || writeNewProperties) {
+			QVariant value = propertyIterator.value();
+			o.setProperty(name.toLatin1().data(), value);
+		}
+	}
+}
+
+// Writing the content of a QDataStream in a QVariant
+QDataStream & streamVariantIn(QDataStream &in, QVariant & var) {
+	QByteArray jsonedListable = "";
+	in >> jsonedListable;
+
+	QJsonDocument doc = QJsonDocument::fromJson(jsonedListable);
+	var = doc.toVariant();
+
+	return in;
+}
+
+// Writing the content of a QVariant in a QDataStream
+QDataStream & streamVariantOut(QDataStream &out, QVariant var) {
+	QJsonDocument doc = QJsonDocument::fromVariant(var);
+	QByteArray serializedListable = doc.toJson();
+
+	out << serializedListable;
+
+	return out;
+}
+
 
 ////////////////////
 // JSON Streaming //
@@ -72,30 +165,15 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 							   const QObject & objectToStream,
 							   const QStringList & blacklist)
 {
-	// Converting the object into a JSON file
-	QVariantMap accountMap = QJson::QObjectHelper::qobject2qvariant(&objectToStream, blacklist);
-	QJson::Serializer serializer;
-	QByteArray jsonedAccount = serializer.serialize(accountMap);
-
-	// Putting it in the stream
-	out << jsonedAccount;
-
-	return out;
+	QVariant variantObject = object2variant(objectToStream, blacklist);
+	return streamVariantOut(out, variantObject);
 }
 
 // Input stream operator for serialization
 QDataStream & jsonStreamingIn(QDataStream & in, QObject & objectToStream) {
-	QByteArray jsonedAccount = "";
-	in >> jsonedAccount;
-
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant accountVariant = parser.parse(jsonedAccount, &parseOK);
-
-	if (parseOK) {
-		QJson::QObjectHelper::qvariant2qobject(accountVariant.toMap(), &objectToStream);
-	}
-
+	QVariant variantObject;
+	streamVariantIn(in, variantObject);
+	variant2object(variantObject.toMap(), objectToStream);
 	return in;
 }
 
@@ -140,7 +218,7 @@ QString hmacSha1(QByteArray key, QByteArray baseString) {
 
 // Exclusive OR
 bool ouBien(bool a, bool b) {
-    return  (a && !b) || (!a && b);
+	return  (a && !b) || (!a && b);
 }
 
 // Formatting parameters in the Authorization header

@@ -36,7 +36,7 @@ struct RequestResult {
 	/// @brief Code indicating whether an error occured during the request.
 	ErrorType resultType;
 
-	/// @brief Results of the request parsed by QJson.
+	/// @brief Parsed JSON results.
 	QVariant parsedResult;
 
 	/// @brief HTTP response (code and reason)

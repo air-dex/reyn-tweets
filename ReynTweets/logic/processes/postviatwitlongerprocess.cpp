@@ -97,8 +97,8 @@ void PostViaTwitLongerProcess::startProcess() {
 ///////////////////////////////////////////////
 
 void PostViaTwitLongerProcess::postToTwitLonger() {
-	connect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(postToTwitLongerEnded(ResultWrapper)));
+	connect(&twitlonger, &TwitLongerCalls::sendResult,
+			this, &PostViaTwitLongerProcess::postToTwitLongerEnded);
 
 	twitlonger.postOnTwitLonger(username, tweet, replyToTweetID, replyToUser);
 }
@@ -111,8 +111,8 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(postToTwitLongerEnded(ResultWrapper)));
+	disconnect(&twitlonger, &TwitLongerCalls::sendResult,
+			   this, &PostViaTwitLongerProcess::postToTwitLongerEnded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -174,8 +174,8 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 //////////////////////////////////////////////////
 
 void PostViaTwitLongerProcess::postTweet() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(postTweetEnded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &PostViaTwitLongerProcess::postTweetEnded);
 
 	twitter.updateTweet(shortenedTweet,
 						replyToTweetID,
@@ -194,8 +194,8 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(postTweetEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &PostViaTwitLongerProcess::postTweetEnded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -241,8 +241,8 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 ///////////////////////////////////////////////////
 
 void PostViaTwitLongerProcess::updateTweetOnTwitLonger() {
-	connect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(updateTweetOnTwitLongerEnded(ResultWrapper)));
+	connect(&twitlonger, &TwitLongerCalls::sendResult,
+			this, &PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded);
 
 	twitlonger.updateLongTweet(messageID, postedTweet.getIDstr().toLongLong());
 }
@@ -255,8 +255,8 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(updateTweetOnTwitLongerEnded(ResultWrapper)));
+	disconnect(&twitlonger, &TwitLongerCalls::sendResult,
+			   this, &PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded);
 
 	NetworkResultType errorType = result.resultType;
 

@@ -55,8 +55,8 @@ void RequestTokensProcess::startProcess() {
 
 // Demanding a Request Token
 void RequestTokensProcess::requestToken() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(requestTokenDemanded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &RequestTokensProcess::requestTokenDemanded);
 	twitter.requestToken();
 }
 
@@ -68,8 +68,8 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(requestTokenDemanded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &RequestTokensProcess::requestTokenDemanded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -141,8 +141,8 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 
 // Authorize the request tokens
 void RequestTokensProcess::authorize() {
-	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			this, SLOT(authorizeDemanded(ResultWrapper)));
+	connect(&twitter, &ReynTwitterCalls::sendResult,
+			this, &RequestTokensProcess::authorizeDemanded);
 	twitter.authorize();
 }
 
@@ -154,8 +154,8 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(authorizeDemanded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &RequestTokensProcess::authorizeDemanded);
 
 	NetworkResultType errorType = result.resultType;
 
@@ -167,7 +167,7 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
 			tokensMap.unite(result.parsedResult.toMap());
-			endProcess(REQUEST_TOKENS_OK, QVariant(tokensMap));
+			endProcess(REQUEST_TOKENS_OK, QVariant::fromValue(tokensMap));
 			return;
 
 		case Network::SERVICE_ERRORS:

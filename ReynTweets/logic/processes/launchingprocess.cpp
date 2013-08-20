@@ -142,8 +142,8 @@ void LaunchingProcess::checkTokens() {
 		endProcess(issue, errMsg);
 	} else {
 		// Tokens seems legit. Let's ensure that's really the case
-		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-				this, SLOT(verifyCredentialsEnded(ResultWrapper)));
+		connect(&twitter, &ReynTwitterCalls::sendResult,
+				this, &LaunchingProcess::verifyCredentialsEnded);
 		twitter.verifyCredentials(true, false);
 	}
 }
@@ -156,8 +156,8 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		return invalidEnd();
 	}
 
-	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
-			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
+	disconnect(&twitter, &ReynTwitterCalls::sendResult,
+			   this, &LaunchingProcess::verifyCredentialsEnded);
 
 	NetworkResultType errorType = result.resultType;
 

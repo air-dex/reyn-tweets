@@ -122,8 +122,8 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
-		parsingErrors.insert("lineError", QVariant(lineMsg));
+		parsingErrors.insert("errorMsg", QVariant::fromValue(errorMsg));
+		parsingErrors.insert("lineError", QVariant::fromValue(lineMsg));
 	}
 
 	return result;

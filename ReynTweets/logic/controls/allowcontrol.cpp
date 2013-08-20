@@ -51,8 +51,8 @@ void AllowControl::allowReynTweets() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(requestTokensOK(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &AllowControl::requestTokensOK);
 
 	processing = true;
 	emit showInfoMessage(AllowControl::trUtf8("Authorizing Reyn Tweets..."));
@@ -73,8 +73,8 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(requestTokensOK(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &AllowControl::requestTokensOK);
 
 	CoreResult issue = result.processIssue;
 	bool fatal = false;
@@ -198,8 +198,8 @@ void AllowControl::getAccessTokens(QString verifier) {
 	}
 
 	processing = true;
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(accessTokensOK(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &AllowControl::accessTokensOK);
 	reyn.accessOAuthTokens(verifier.toLatin1());
 }
 
@@ -214,8 +214,8 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(requestTokensOK(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &AllowControl::accessTokensOK);
 
 	QString displayMessage = result.errorMsg;
 	CoreResult issue = result.processIssue;

@@ -49,8 +49,8 @@ void WriteTweetControl::postTweet(QString tweet, QString inReplyToTweetID) {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(postTweetEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &WriteTweetControl::postTweetEnded);
 
 	processing = true;
 	emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
@@ -68,8 +68,8 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(postTweetEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &WriteTweetControl::postTweetEnded);
 
 	CoreResult issue = result.processIssue;
 
@@ -120,8 +120,8 @@ void WriteTweetControl::postViaTwitLonger(QString tweet,
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(postViaTwitLongerEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &WriteTweetControl::postViaTwitLongerEnded);
 
 	processing = true;
 	emit showInfoMessage(WriteTweetControl::trUtf8("Posting tweet..."));
@@ -139,8 +139,8 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(postViaTwitLongerEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &WriteTweetControl::postViaTwitLongerEnded);
 
 	CoreResult issue = result.processIssue;
 	QString successMessage = WriteTweetControl::trUtf8("Tweet sent successfully");

@@ -33,8 +33,8 @@ TweetControl::TweetControl() :
 	GenericControl(),
 	status(new Tweet)
 {
-	connect(this, SIGNAL(tweetChanged()),
-			this, SLOT(commitTweet()));
+	connect(this, &TweetControl::tweetChanged,
+			this, &TweetControl::commitTweet);
 }
 
 // Declaring TweetControl to the QML system
@@ -117,8 +117,8 @@ void TweetControl::refresh() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(refreshEnd(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TweetControl::refreshEnd);
 
 	processing = true;
 	emit showInfoMessage(TweetControl::trUtf8("Refreshing tweet..."));
@@ -134,8 +134,8 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(refreshEnd(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TweetControl::refreshEnd);
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
@@ -243,8 +243,8 @@ void TweetControl::retweet() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(retweetEnd(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TweetControl::retweetEnd);
 
 	processing = true;
 
@@ -260,8 +260,8 @@ void TweetControl::retweet() {
 					reyn.getUserConfiguration().getUserAccount().getUser())
 			{
 				processing = false;
-				disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-						   this, SLOT(retweetEnd(ProcessWrapper)));
+				disconnect(&reyn, &ReynCore::sendResult,
+						   this, &TweetControl::retweetEnd);
 				emit actionEnded(false,
 								 TweetControl::trUtf8("Cannot retweet this tweet."),
 								 false);
@@ -273,8 +273,8 @@ void TweetControl::retweet() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(retweetEnd(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TweetControl::retweetEnd);
 			emit actionEnded(false,
 							 TweetControl::trUtf8("Cannot retweet this tweet"),
 							 false);
@@ -291,8 +291,8 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(retweetEnd(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TweetControl::retweetEnd);
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
@@ -355,8 +355,8 @@ void TweetControl::favorite() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(favoriteEnd(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TweetControl::favoriteEnd);
 
 	processing = true;
 
@@ -369,8 +369,8 @@ void TweetControl::favorite() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(favoriteEnd(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TweetControl::favoriteEnd);
 			emit actionEnded(false,
 							 TweetControl::trUtf8("Cannot favorite this tweet."),
 							 false);
@@ -387,8 +387,8 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(favoriteEnd(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TweetControl::favoriteEnd);
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
@@ -442,8 +442,8 @@ void TweetControl::unfavorite() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(unfavoriteEnd(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TweetControl::unfavoriteEnd);
 
 	processing = true;
 
@@ -456,8 +456,8 @@ void TweetControl::unfavorite() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(unfavoriteEnd(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TweetControl::unfavoriteEnd);
 			emit actionEnded(false,
 							 TweetControl::trUtf8("Cannot unfavorite this tweet."),
 							 false);
@@ -474,8 +474,8 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(unfavoriteEnd(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TweetControl::unfavoriteEnd);
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
@@ -528,8 +528,8 @@ void TweetControl::deleteTweet() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(deleteEnd(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TweetControl::deleteEnd);
 
 	processing = true;
 
@@ -542,8 +542,8 @@ void TweetControl::deleteTweet() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(deleteEnd(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TweetControl::deleteEnd);
 			emit actionEnded(false,
 							 TweetControl::trUtf8("Cannot delete this tweet."),
 							 false);
@@ -560,8 +560,8 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(deleteEnd(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TweetControl::deleteEnd);
 
 	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;

@@ -60,8 +60,8 @@ void TimelineControl::loadTimeline() {
 		return;
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(loadTimelineEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TimelineControl::loadTimelineEnded);
 
 	processing = true;
 
@@ -78,8 +78,8 @@ void TimelineControl::loadTimeline() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(loadTimelineEnded(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TimelineControl::loadTimelineEnded);
 			emit actionEnded(false,
 							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
@@ -97,8 +97,8 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(loadTimelineEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TimelineControl::loadTimelineEnded);
 
 	CoreResult issue = result.processIssue;
 
@@ -156,8 +156,8 @@ void TimelineControl::refreshTimeline() {
 		return loadTimeline();
 	}
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TimelineControl::refreshTimelineEnded);
 
 	processing = true;
 
@@ -174,8 +174,8 @@ void TimelineControl::refreshTimeline() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TimelineControl::refreshTimelineEnded);
 			emit actionEnded(false,
 							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
@@ -194,8 +194,8 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TimelineControl::refreshTimelineEnded);
 
 	CoreResult issue = result.processIssue;
 
@@ -260,8 +260,8 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 
 	backupedNewTweet = newTweetVariant;
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TimelineControl::refreshTimelineAfterWriteEnded);
 	processing = true;
 
 	switch (tlhandler.getType()) {
@@ -297,16 +297,16 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 
 			// The user desn't mention itself. Just do a simple refresh.
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 
 			return refreshTimeline();
 		}break;
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 			emit actionEnded(false,
 							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
@@ -325,8 +325,8 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 
 	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
@@ -401,8 +401,8 @@ void TimelineControl::moreOldTimeline() {
 
 	qlonglong maxTweetID = timeline.getLastID() - 1;
 
-	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+	connect(&reyn, &ReynCore::sendResult,
+			this, &TimelineControl::moreOldTimelineEnded);
 
 	processing = true;
 
@@ -419,8 +419,8 @@ void TimelineControl::moreOldTimeline() {
 
 		default:
 			processing = false;
-			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-					   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+			disconnect(&reyn, &ReynCore::sendResult,
+					   this, &TimelineControl::moreOldTimelineEnded);
 			emit actionEnded(false,
 							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
@@ -439,8 +439,8 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 	}
 
 	// Disconnect
-	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
+	disconnect(&reyn, &ReynCore::sendResult,
+			   this, &TimelineControl::moreOldTimelineEnded);
 
 	CoreResult issue = result.processIssue;
 

@@ -24,9 +24,9 @@
 #ifndef JSONOBJECT_HPP
 #define JSONOBJECT_HPP
 
+#include <QJsonObject>
 #include "../mappable.hpp"
 #include "jsonable.hpp"
-#include <QJsonObject>
 
 /// @class JsonObject
 /// @brief Base class for all objects which can be represented by a JSON object.

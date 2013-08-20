@@ -28,8 +28,8 @@
 #include <QVariant>
 #include "../logic/coreresult.hpp"
 #include "../logic/processes/processresult.hpp"
-#include "../connection/model/resultwrapper.hpp"
-#include "../connection/model/responseinfos.hpp"
+#include "../connection/common/resultwrapper.hpp"
+#include "../connection/common/responseinfos.hpp"
 
 /// @namespace ProcessUtils
 /// @brief Namespace with utilities for processes

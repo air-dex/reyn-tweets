@@ -32,10 +32,10 @@
 
 // Network manager
 #ifdef Q_OS_WIN
-	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
+	QNetworkAccessManager Network::REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 #ifdef Q_OS_LINUX
-	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
+	QNetworkAccessManager Network::REYN_TWEETS_NETWORK_MANAGER;
 #endif
 
 /////////////
@@ -49,7 +49,6 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 										 ArgsMap & postArgs,
 										 HeadersMap & headersParam) :
 	QObject(),
-	network(&REYN_TWEETS_NETWORK_MANAGER),
 	timeoutTimer(),
 	serviceURL(url),
 	requestType(type),
@@ -68,7 +67,6 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 TwitterCommunicator::~TwitterCommunicator() {
 	disconnect(&timeoutTimer, &QTimer::timeout,
 			   this, &TwitterCommunicator::timeout);
-	network = 0;
 }
 
 
@@ -108,7 +106,7 @@ void TwitterCommunicator::executeRequest() {
 	QNetworkRequest * request = prepareRequest();
 
 	// Connection for receiving the response
-	connect(network, &QNetworkAccessManager::finished,
+	connect(&Network::REYN_TWEETS_NETWORK_MANAGER, &QNetworkAccessManager::finished,
 			this, &TwitterCommunicator::endRequest);
 
 	// Executing the request
@@ -117,10 +115,10 @@ void TwitterCommunicator::executeRequest() {
 		QByteArray postArgs = buildPostDatas();
 
 		// There is some POST arguments -> networkManager.post()
-		network->post(*request, postArgs);
+		Network::REYN_TWEETS_NETWORK_MANAGER.post(*request, postArgs);
 	} else {
 		// There is not any POST arguments -> networkManager.get()
-		network->get(*request);
+		Network::REYN_TWEETS_NETWORK_MANAGER.get(*request);
 	}
 
 	timeoutTimer.start();
@@ -147,7 +145,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	timeoutTimer.stop();
 
 	// Unwiring
-	disconnect(network, &QNetworkAccessManager::finished,
+	disconnect(&Network::REYN_TWEETS_NETWORK_MANAGER, &QNetworkAccessManager::finished,
 			   this, &TwitterCommunicator::endRequest);
 
 	// Extracting informations
@@ -168,7 +166,7 @@ void TwitterCommunicator::timeout() {
 	// It seems that no response will arrive. That's enough ! Stop it !
 
 	// Unwiring
-	disconnect(network, &QNetworkAccessManager::finished,
+	disconnect(&Network::REYN_TWEETS_NETWORK_MANAGER, &QNetworkAccessManager::finished,
 			   this, &TwitterCommunicator::endRequest);
 
 	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);

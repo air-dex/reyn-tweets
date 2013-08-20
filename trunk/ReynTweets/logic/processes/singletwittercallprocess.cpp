@@ -49,15 +49,21 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &SingleTwitterCallProcess::callEnded);
 
-	NetworkResultType errorType = result.resultType;
+	Network::NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
 	CoreResult issue;
+	//QVariant res;
 
 	// Analysing the Twitter response
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
+			/*
+			res = result.parsedResult;
+			issue = successfullIssue;
+			break;
+			//*/
 			return treatSuccessfulResult(result.parsedResult);
 
 		case Network::SERVICE_ERRORS:
@@ -77,8 +83,8 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 			break;
 	}
 
-	// Failed end
-	endProcess(issue, errorMsg);
+	// End of the process
+	endProcess(issue, /*res,*/ errorMsg);
 }
 
 void SingleTwitterCallProcess::treatSuccessfulResult(QVariant result) {

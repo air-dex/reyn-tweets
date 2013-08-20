@@ -24,7 +24,7 @@
 #ifndef GEOCOORDPOLYGON_HPP
 #define GEOCOORDPOLYGON_HPP
 
-#include "../json/jsonarray.hpp"
+#include "../json/jsonarrayarray.tpp"
 #include "geocoordlist.hpp"
 
 /// @class GeoCoordPolygon
@@ -32,7 +32,7 @@
 ///
 /// It is used by the Twitter API for compatibility between bounding boxes for
 /// Places (GeoBoundingBox class) and polygon representations.
-class GeoCoordPolygon : public JsonArray<GeoCoordList>
+class GeoCoordPolygon : public JsonArrayArray<GeoCoordList>
 {
 	public:
 		/// @fn GeoCoordPolygon();
@@ -58,19 +58,6 @@ class GeoCoordPolygon : public JsonArray<GeoCoordList>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the GeoCoordPolygon
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											GeoCoordList elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array,
-											GeoCoordList elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

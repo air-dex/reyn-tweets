@@ -25,7 +25,7 @@
 
 // Constructor
 Timeline::Timeline() :
-	JsonArray<Tweet>()
+	JsonObjectArray<Tweet>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ Timeline::~Timeline() {}
 
 // Copy constructor
 Timeline::Timeline(const Timeline & list) :
-	JsonArray<Tweet>()
+	JsonObjectArray<Tweet>()
 {
 	recopie(list);
 }
@@ -48,20 +48,6 @@ const Timeline & Timeline::operator=(const Timeline & list) {
 void Timeline::initSystem() {
 	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
 	qMetaTypeId<Timeline>();
-}
-
-// Appending the content of a QJsonValue
-void Timeline::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		Tweet tweet;
-		tweet.fillWithVariant(v.toObject());
-		this->append(tweet);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void Timeline::appendJsonArrayElement(QJsonArray & array, Tweet elt) const {
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

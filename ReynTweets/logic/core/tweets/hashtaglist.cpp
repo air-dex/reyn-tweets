@@ -25,7 +25,7 @@
 
 // Constructor
 HashtagList::HashtagList() :
-	JsonArray<Hashtag>()
+	JsonObjectArray<Hashtag>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ HashtagList::~HashtagList() {}
 
 // Copy constructor
 HashtagList::HashtagList(const HashtagList & list) :
-	JsonArray<Hashtag>()
+	JsonObjectArray<Hashtag>()
 {
 	recopie(list);
 }
@@ -48,20 +48,6 @@ const HashtagList & HashtagList::operator=(const HashtagList & list) {
 void HashtagList::initSystem() {
 	qRegisterMetaTypeStreamOperators<HashtagList>("HashtagList");
 	qMetaTypeId<HashtagList>();
-}
-
-// Appending the content of a QJsonValue
-void HashtagList::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		Hashtag hashtag;
-		hashtag.fillWithVariant(v.toObject());
-		this->append(hashtag);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void HashtagList::appendJsonArrayElement(QJsonArray & array, Hashtag elt) const {
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

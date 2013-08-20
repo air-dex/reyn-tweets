@@ -26,11 +26,11 @@
 
 #include <QVariant>
 #include "media.hpp"
-#include "../json/jsonarray.tpp"
+#include "../json/jsonobjectarray.tpp"
 
 /// @class MediaList
 /// @brief List of Medias
-class MediaList : public JsonArray<Media>
+class MediaList : public JsonObjectArray<Media>
 {
 	public:
 		/// @fn MediaList();
@@ -56,18 +56,6 @@ class MediaList : public JsonArray<Media>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the MediaList
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											Media elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array, Media elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

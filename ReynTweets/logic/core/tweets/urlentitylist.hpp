@@ -26,11 +26,11 @@
 
 #include <QVariant>
 #include "urlentity.hpp"
-#include "../json/jsonarray.tpp"
+#include "../json/jsonobjectarray.tpp"
 
 /// @class URLEntityList
 /// @brief List of URL Entities
-class URLEntityList : public JsonArray<URLEntity>
+class URLEntityList : public JsonObjectArray<URLEntity>
 {
 	public:
 		/// @fn URLEntityList();
@@ -56,19 +56,6 @@ class URLEntityList : public JsonArray<URLEntity>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the URLEntityList
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											URLEntity elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array,
-											URLEntity elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

@@ -26,12 +26,12 @@
 
 #include <QDataStream>
 #include <QVariant>
-#include "../json/jsonarray.tpp"
+#include "../json/jsonobjectarray.tpp"
 #include "hashtag.hpp"
 
 /// @class HashtagList
 /// @brief Lists of Hashtags
-class HashtagList : public JsonArray<Hashtag>
+class HashtagList : public JsonObjectArray<Hashtag>
 {
 	public:
 		/// @fn HashtagList();
@@ -57,19 +57,6 @@ class HashtagList : public JsonArray<Hashtag>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the HashtagList
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											Hashtag elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array,
-											Hashtag elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

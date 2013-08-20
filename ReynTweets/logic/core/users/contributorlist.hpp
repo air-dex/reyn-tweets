@@ -26,11 +26,11 @@
 
 #include <QVariant>
 #include "contributor.hpp"
-#include "../json/jsonarray.tpp"
+#include "../json/jsonobjectarray.tpp"
 
 /// @class ContributorList
 /// @brief List of contributors
-class ContributorList : public JsonArray<Contributor>
+class ContributorList : public JsonObjectArray<Contributor>
 {
 	public:
 		/// @fn ContributorList();
@@ -56,19 +56,6 @@ class ContributorList : public JsonArray<Contributor>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the ContributorList
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											Contributor elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array,
-											Contributor elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

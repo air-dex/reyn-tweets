@@ -25,7 +25,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QObject>
-#include "reyntweetsconfiguration.hpp"
+#include "appconfiguration.hpp"
 #include "../../tools/parsers/jsonparser.hpp"
 
 ////////////////////
@@ -33,7 +33,7 @@
 ////////////////////
 
 // Name of the file containing the settings.
-QString ReynTweetsConfiguration::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
+QString AppConfiguration::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
 
 
 /////////////////////
@@ -41,23 +41,23 @@ QString ReynTweetsConfiguration::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.
 /////////////////////
 
 // Private constructor
-ReynTweetsConfiguration::ReynTweetsConfiguration() :
+AppConfiguration::AppConfiguration() :
 	errorLoading("")
 {}
 
 // Loading the settings from the settings file.
-CoreResult ReynTweetsConfiguration::load() {
+CoreResult AppConfiguration::load() {
 	// Opening the settings file
 	QFile confFile(SETTINGS_NAMEFILE);
 
 	if (!confFile.exists()) {
-		errorLoading = ReynTweetsConfiguration::trUtf8("Settings file unknown.");
+		errorLoading = AppConfiguration::trUtf8("Settings file unknown.");
 		return  CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	bool openOK = confFile.open(QFile::ReadOnly);
 	if (!openOK) {
-		errorLoading = ReynTweetsConfiguration::trUtf8("Cannot open the settings file.");
+		errorLoading = AppConfiguration::trUtf8("Cannot open the settings file.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
@@ -73,7 +73,7 @@ CoreResult ReynTweetsConfiguration::load() {
 
 	if (!jsonSettings.isObject()) {
 		// Parse error : JSON Object expected
-		static QString wrongJSONType = ReynTweetsConfiguration::trUtf8("Parse error : JSON object expected.");
+		static QString wrongJSONType = AppConfiguration::trUtf8("Parse error : JSON object expected.");
 		errorLoading.append(' ').append(wrongJSONType);
 		parseOK = false;
 	}
@@ -96,7 +96,7 @@ CoreResult ReynTweetsConfiguration::load() {
 }
 
 // Getter on the error message after loading the settings
-QString ReynTweetsConfiguration::getErrorLoading() {
+QString AppConfiguration::getErrorLoading() {
 	return errorLoading;
 }
 
@@ -106,7 +106,7 @@ QString ReynTweetsConfiguration::getErrorLoading() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void ReynTweetsConfiguration::fillWithJSON(QJsonObject json) {
+void AppConfiguration::fillWithJSON(QJsonObject json) {
 	QJsonValue confValue;
 	QByteArray base64Buffer;
 	QStringList missingSettings;
@@ -182,7 +182,7 @@ void ReynTweetsConfiguration::fillWithJSON(QJsonObject json) {
 	}
 
 	// Post treatment (missing settings)
-	QString errorFilling = ReynTweetsConfiguration::trUtf8("The following setting(s) are missing: ");
+	QString errorFilling = AppConfiguration::trUtf8("The following setting(s) are missing: ");
 
 	if (!missingSettings.isEmpty()) {
 		errorFilling.append(missingSettings.join(", ")).append('.');
@@ -191,7 +191,7 @@ void ReynTweetsConfiguration::fillWithJSON(QJsonObject json) {
 }
 
 // QJsonObject representation of the object
-QJsonObject ReynTweetsConfiguration::toJSON() const {
+QJsonObject AppConfiguration::toJSON() const {
 	return QJsonObject();
 }
 
@@ -201,43 +201,43 @@ QJsonObject ReynTweetsConfiguration::toJSON() const {
 ///////////////////////////
 
 // consumer_key
-QString ReynTweetsConfiguration::CONSUMER_KEY_PN = "consumer_key";
+QString AppConfiguration::CONSUMER_KEY_PN = "consumer_key";
 
-QByteArray ReynTweetsConfiguration::getConsumerKey() {
+QByteArray AppConfiguration::getConsumerKey() {
 	return consumerKey;
 }
 
 // consumer_secret
-QString ReynTweetsConfiguration::CONSUMER_SECRET_PN = "consumer_secret";
+QString AppConfiguration::CONSUMER_SECRET_PN = "consumer_secret";
 
-QByteArray ReynTweetsConfiguration::getConsumerSecret() {
+QByteArray AppConfiguration::getConsumerSecret() {
 	return consumerSecret;
 }
 
 // callback_url
-QString ReynTweetsConfiguration::CALLBACK_URL_PN = "callback_url";
+QString AppConfiguration::CALLBACK_URL_PN = "callback_url";
 
-QString ReynTweetsConfiguration::getCallbackURL() {
+QString AppConfiguration::getCallbackURL() {
 	return callbackURL;
 }
 
 // twitLonger_app_name
-QString ReynTweetsConfiguration::TWITLONGER_APP_NAME_PN = "twitLonger_app_name";
+QString AppConfiguration::TWITLONGER_APP_NAME_PN = "twitLonger_app_name";
 
-QString ReynTweetsConfiguration::getTwitLongerAppName() {
+QString AppConfiguration::getTwitLongerAppName() {
 	return twitlongerAppName;
 }
 
 // twitlonger_api_key
-QString ReynTweetsConfiguration::TWITLONGER_API_KEY_PN = "twitlonger_api_key";
+QString AppConfiguration::TWITLONGER_API_KEY_PN = "twitlonger_api_key";
 
-QByteArray ReynTweetsConfiguration::getTwitLongerAPIKey() {
+QByteArray AppConfiguration::getTwitLongerAPIKey() {
 	return twitlongerAPIKey;
 }
 
 // pocket_api_key
-QString ReynTweetsConfiguration::POCKET_API_KEY_PN = "pocket_api_key";
+QString AppConfiguration::POCKET_API_KEY_PN = "pocket_api_key";
 
-QByteArray ReynTweetsConfiguration::getPocketAPIKey() {
+QByteArray AppConfiguration::getPocketAPIKey() {
 	return pocketAPIKey;
 }

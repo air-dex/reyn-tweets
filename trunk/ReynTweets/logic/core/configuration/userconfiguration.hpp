@@ -26,6 +26,7 @@
 
 #include <QByteArray>
 #include <QDataStream>
+#include <QFile>
 #include <QList>
 #include <QObject>
 #include <QVariant>
@@ -92,7 +93,26 @@ class UserConfiguration : public JsonObject
 		/// @return The QJsonObject representation
 		virtual QJsonObject toVariant() const;
 
-	private:
+		//////////////////////////////
+		// Configuration management //
+		//////////////////////////////
+
+		/// @fn CoreResult load();
+		/// @brief Loading the configuration from its file
+		/// @return A value depending on what happened
+		CoreResult load();
+
+		/// @fn CoreResult save();
+		/// @brief Writing the configuration in its file
+		/// @return A value depending on what happened
+		CoreResult save();
+
+		/// @fn bool reinit();
+		/// @brief Reinits the configuration file
+		/// @return true
+		CoreResult reinit();
+
+	protected:
 		/// @fn void recopie(const UserConfiguration & configuration);
 		/// @brief Copy of a ReynTweetsConfiguration
 		/// @param configuration Configuration to copy
@@ -118,11 +138,10 @@ class UserConfiguration : public JsonObject
 		friend QDataStream & operator>>(QDataStream & in,
 										UserConfiguration & configuration);
 
-	////////////////
-	// Properties //
-	////////////////
+		////////////////
+		// Properties //
+		////////////////
 
-	protected:
 		// user_account
 		/// @property user_account
 		/// @brief QML property to access to the user account.
@@ -135,6 +154,9 @@ class UserConfiguration : public JsonObject
 
 		/// @brief Name of the property user_account.
 		static QString USER_ACCOUNT_PN;
+
+		/// @brief Twitter Account
+		UserAccount userAccount;
 
 		/// @fn UserAccount * getUserAccountPtr();
 		/// @brief Reading the property user_account
@@ -153,37 +175,41 @@ class UserConfiguration : public JsonObject
 		void currentAccountChanged();
 
 
-	//////////////////////////////
-	// Configuration management //
-	//////////////////////////////
-
-	public:
-		/// @fn CoreResult load();
-		/// @brief Loading the configuration from its file
-		/// @return A value depending on what happened
-		CoreResult load();
-
-		/// @fn CoreResult save();
-		/// @brief Writing the configuration in its file
-		/// @return A value depending on what happened
-		CoreResult save();
-
 	protected:
-		/// @brief Twitter Account
-		UserAccount userAccount;
+		/// @brief Error while loading the settings
+		QString errorLoading;
+
+		////////////////////////////////////////
+		// User configuration file management //
+		////////////////////////////////////////
+
+		/// @fn CoreResult checkConfigurationFile();
+		/// @brief Checks if the user configuration file exists and is writable.
+		/// @return true if the user configuration file is OK, false otherwise.
+		bool checkConfigurationFile();
+
+		/// @fn QString getConfigurationFilePath();
+		/// @brief Getting the name of the user configuration file with
+		/// its absolute path.
+		/// @return The name of the user configuration file with
+		/// its absolute path.
+		QString getConfigurationFilePath();
+
+		/// @fn CoreResult writeConfigurationInFile(QIODevice::OpenMode openMode = QIODevice::WriteOnly);
+		/// @brief Writing the configuration.
+		/// @return CONFIGURATION_FILE_UNKNOWN if the configuration file do not
+		/// exist, CONFIGURATION_FILE_NOT_OPEN if it cannot be opened and
+		/// WRITE_SUCCESSFUL if the configuration was written successfully.
+		CoreResult writeConfigurationInFile(QIODevice::OpenMode openMode = QIODevice::WriteOnly);
 
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
 
-		/// @brief Error while loading the settings
-		QString errorLoading;
-
-
-	/////////////////////////
-	// Getters and setters //
-	/////////////////////////
-
 	public:
+		/////////////////////////
+		// Getters and setters //
+		/////////////////////////
+
 		/// @fn QString getErrorLoading();
 		/// @brief Getter on the error message after loading the settings
 		/// @return errorLoading

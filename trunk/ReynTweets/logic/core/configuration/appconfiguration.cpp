@@ -51,7 +51,10 @@ void AppConfiguration::unleashReyn() {
 
 // Private constructor
 AppConfiguration::AppConfiguration() :
+	JsonObject(),
 	errorLoading(""),
+	dataDir(""),
+	dataDirs(),
 	consumerKey(""),
 	consumerSecret(""),
 	callbackURL(""),
@@ -121,6 +124,13 @@ CoreResult AppConfiguration::load() {
 // Getter on the error message after loading the settings
 QString AppConfiguration::getErrorLoading() {
 	return errorLoading;
+}
+
+// Getting the directory where application datas are stored.
+QDir AppConfiguration::getAppDataDir() {
+	QString appDataPath = QDir::homePath().append(dataDir);
+
+	return QDir(appDataPath);
 }
 
 
@@ -204,6 +214,22 @@ void AppConfiguration::fillWithVariant(QJsonObject json) {
 		missingSettings.append(POCKET_API_KEY_PN);
 	}
 
+	// data_dir & data_dirs
+	confValue = json.value(DATA_DIRS_PN);
+
+	if (!confValue.isUndefined() && confValue.isObject()) {
+		// Right value : fill the setting
+		dataDirs = confValue.toObject().toVariantMap();
+		setDataDir();
+
+		if (dataDir.isEmpty()) {
+			errorLoading = AppConfiguration::trUtf8("Unknown Application Data Directory.");
+		}
+	} else {
+		// Wrong value : error
+		missingSettings.append(DATA_DIRS_PN);
+	}
+
 	// Post treatment (missing settings)
 
 	if (!missingSettings.isEmpty()) {
@@ -225,6 +251,30 @@ QJsonObject AppConfiguration::toVariant() const {
 ///////////////////////////
 // Properties management //
 ///////////////////////////
+
+// data_dir
+QString AppConfiguration::getDataDir() {
+	return dataDir;
+}
+
+void AppConfiguration::setDataDir() {
+	#ifdef Q_OS_WIN
+		QString osName = "windows";
+	#elif defined(Q_OS_LINUX)
+		QString osName = "linux";
+	#else
+		QString osName = "";
+	#endif
+
+	dataDir = osName.isEmpty() ? "" : dataDirs.value(osName).toString();
+}
+
+// data_dirs
+QString AppConfiguration::DATA_DIRS_PN = "data_dir";
+
+QVariantMap AppConfiguration::getDataDirs() {
+	return dataDirs;
+}
 
 // consumer_key
 QString AppConfiguration::CONSUMER_KEY_PN = "consumer_key";

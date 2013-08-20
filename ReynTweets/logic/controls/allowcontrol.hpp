@@ -57,7 +57,14 @@ class AllowControl : public GenericControl
 		/// @brief Getting the final OAuth tokens after user authorization
 		/// (via the QML embedded browser)
 		Q_INVOKABLE void getAccessTokens(QString verifier);
-
+/*
+		/// @fn Q_INVOKABLE QString getBodyClass(QString html);
+		/// @brief Getting the class name of the &lt;body&gt; HTML tag of a
+		/// HTML source code.
+		/// @param html The HTML source code
+		/// @return &lt;body class="what the method returns"&gt;
+		Q_INVOKABLE QString getBodyClass(QString html);
+//*/
 		/// @fn LoginControl * getLoginControl();
 		/// @brief Reading the login_control property
 		/// @return control
@@ -127,32 +134,6 @@ class AllowControl : public GenericControl
 		/// @brief Disconnect what was connected while executing
 		/// <code>allowWiring();</code>.
 		void allowUnwiring();
-
-
-	////////////////////////////
-	// Authentication results //
-	////////////////////////////
-
-	public:
-		/// @enum AuthResult
-		/// @brief Enum to indicate if Reyn Tweets was authorized or denied.
-		enum AuthResult {
-			/// @brief Cannont conculed if Reyn Tweets was authorized or denied
-			NO_AUTH = -3,
-
-			/// @brief Reyn Tweets was authorized
-			AUTHORIZED,
-
-			/// @brief Reyn Tweets was denied
-			DENIED
-		};
-		Q_ENUMS(AuthResult)
-
-		/// @fn Q_INVOKABLE QVariantMap getAuthenticationResults(QString endAuthURL);
-		/// @brief Getting the authentication results.
-		/// @param endAuthURL URL containing the result
-		/// @return The corresponding results (GET arguments)
-		Q_INVOKABLE QVariantMap getAuthenticationResults(QString endAuthURL);
 };
 
 #endif // ALLOWCONTROL_HPP

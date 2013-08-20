@@ -107,8 +107,8 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 
 // Filling the object with a QJsonObject.
 void UserAccount::fillWithJSON(QJsonObject json) {
-	this->accessToken = json.value(ACCESS_TOKEN_PN).toString("").toLatin1();
-	this->tokenSecret = json.value(TOKEN_SECRET_PN).toString("").toLatin1();
+	this->accessToken = QByteArray::fromBase64(json.value(ACCESS_TOKEN_PN).toString("").toLatin1());
+	this->tokenSecret = QByteArray::fromBase64(json.value(TOKEN_SECRET_PN).toString("").toLatin1());
 	this->user.fillWithJSON(json.value(TWITTER_USER_PN).toObject());
 	this->helloMessage = json.value(HELLO_MESSAGE_PN).toString("");
 }
@@ -117,8 +117,8 @@ void UserAccount::fillWithJSON(QJsonObject json) {
 QJsonObject UserAccount::toJSON() const {
 	QJsonObject json;
 
-	json.insert(ACCESS_TOKEN_PN, QJsonValue(QString::fromLatin1(this->accessToken)));
-	json.insert(TOKEN_SECRET_PN, QJsonValue(QString::fromLatin1(this->tokenSecret)));
+	json.insert(ACCESS_TOKEN_PN, QJsonValue(QString::fromLatin1(this->accessToken.toBase64())));
+	json.insert(TOKEN_SECRET_PN, QJsonValue(QString::fromLatin1(this->tokenSecret.toBase64())));
 	json.insert(TWITTER_USER_PN, QJsonValue(this->user.toJSON()));
 	json.insert(HELLO_MESSAGE_PN, QJsonValue(this->helloMessage));
 

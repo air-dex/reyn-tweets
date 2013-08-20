@@ -29,6 +29,7 @@
 #include "../genericprocess.hpp"
 #include "../../../connection/common/resultwrapper.hpp"
 #include "../../../connection/twitter/reyntwittercalls.hpp"
+#include "../../../model/configuration/userconfiguration.hpp"
 
 /// @class AccessTokensProcess
 /// @brief Process to get the final tokens to authenticate
@@ -41,6 +42,11 @@ class AccessTokensProcess : public GenericProcess
 		/// @brief Constructor
 		/// @param verifier The OAuth Verifier needed for getting Access tokens.
 		AccessTokensProcess(QByteArray verifier);
+
+		/// @fn AccessTokensProcess(QByteArray verifier);
+		/// @brief Constructor
+		/// @param verifier The OAuth Verifier needed for getting Access tokens.
+		AccessTokensProcess(QByteArray verifier, UserConfiguration & conf);
 
 		/// @fn ~AccessTokensProcess();
 		/// @brief Destructor
@@ -56,6 +62,15 @@ class AccessTokensProcess : public GenericProcess
 
 		/// @brief The OAuth Verifier
 		QByteArray oauthVerifier;
+
+		/// @brief Configuration of Reyn Tweets.
+		///
+		/// It is a pointer because it could be uninitialized
+		UserConfiguration * configuration;
+
+		/// @brief Boolean indicating if the process has to update
+		/// the user configuration.
+		bool updateUserConfiguration;
 
 		/// @fn void accessToken();
 		/// @brief Demanding an Access Token
@@ -76,6 +91,27 @@ class AccessTokensProcess : public GenericProcess
 								 qlonglong userID,
 								 QString screenName);
 
+		/// @fn void saveConfiguration();
+		/// @brief
+		void saveConfiguration();
+
+		/// @fn void updateConfiguration(QByteArray accessToken = "",
+		///								 QByteArray tokenSecret = "",
+		///								 qlonglong id,
+		///								 QString screenName);
+		/// @brief Uploading the configuration after an authentication process
+		///
+		/// It will consist in updating the user with the id or the screen name
+		/// given by the process.
+		/// @param accessToken User access token
+		/// @param tokenSecret User token secret
+		/// @param id ID of the user
+		/// @param screenName Screen name of the user
+		void updateConfiguration(QByteArray accessToken,
+								 QByteArray tokenSecret,
+								 qlonglong id,
+								 QString screenName);
+
 
 	protected slots:
 		/////////////////////////
@@ -86,6 +122,11 @@ class AccessTokensProcess : public GenericProcess
 		/// @brief Treatments after the request for Access Tokens
 		/// @param res Result of the request
 		void accessTokenDemanded(ResultWrapper res);
+
+		/// @fn void retrieveUserEnded(ResultWrapper res);
+		/// @brief Getting a user after requesting it to Twitter
+		/// @param res Result of the request
+		void retrieveUserEnded(ResultWrapper res);
 
 };
 

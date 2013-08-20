@@ -40,18 +40,6 @@ void AllowControl::declareQML() {
 								  0, 2,
 								  "AllowControl");
 }
-/*
-// Get the body class name
-QString AllowControl::getBodyClass(QString html) {
-	HTMLParser parser;
-	bool parseOK;
-	QString errMsg;
-
-	QWebElement htmlElt = parser.parse(html.toUtf8(), parseOK, errMsg);
-
-	return htmlElt.findFirst("body").attribute("class");
-}
-//*/
 
 /////////////////////////
 // Property management //
@@ -64,8 +52,6 @@ LoginControl * AllowControl::getLoginControl() {
 void AllowControl::setLoginControl(LoginControl * ctrl) {
 	control = ctrl;
 }
-
-
 
 //////////////////////////////
 // Execution of the process //
@@ -250,6 +236,7 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 
 	// TODO : new treatments
 	switch (issue) {
+		case ALLOW_SUCCESSFUL:
 		case AUTHORIZED:
 			// End it !
 			endOK = true;
@@ -274,6 +261,8 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 		case INVALID_SEARCH:
 		case GONE:
 		case UNPROCESSABLE:
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 		case UNKNOWN_PROBLEM:
 			fatal = true;
 			break;

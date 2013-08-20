@@ -28,11 +28,24 @@
 AccessTokensProcess::AccessTokensProcess(QByteArray verifier) :
 	GenericProcess(),
 	twitter(this),
-	oauthVerifier(verifier)
+	oauthVerifier(verifier),
+	configuration(0),
+	updateUserConfiguration(false)
+{}
+
+// Constructor
+AccessTokensProcess::AccessTokensProcess(QByteArray verifier, UserConfiguration &conf) :
+	GenericProcess(),
+	twitter(this),
+	oauthVerifier(verifier),
+	configuration(&conf),
+	updateUserConfiguration(true)
 {}
 
 // Destructor
-AccessTokensProcess::~AccessTokensProcess() {}
+AccessTokensProcess::~AccessTokensProcess() {
+	configuration = 0;
+}
 
 // Ask for final tokens
 void AccessTokensProcess::startProcess() {
@@ -98,7 +111,14 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 
 			// Successful end
 			buildResult(accessToken, tokenSecret, userID, screenName);
-			endProcess();
+
+			if (updateUserConfiguration) {
+				// Now update the configuration
+				updateConfiguration(accessToken, tokenSecret, userID, screenName);
+			} else {
+				// Don't update the configuration. Stop the process here.
+				endProcess();
+			}
 		}return;
 
 		case Network::SERVICE_ERRORS:
@@ -135,5 +155,123 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 
 	// Failed end
 	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	endProcess();
+}
+
+// Uploading the configuration with the authentified user after an authentication process
+void AccessTokensProcess::updateConfiguration(QByteArray accessToken,
+											  QByteArray tokenSecret,
+											  qlonglong id, QString)
+{
+	// Updating the tokens
+	UserAccount & account = configuration->getUserAccountRef();
+	account.setAccessToken(accessToken.toBase64()); // TODO
+	account.setTokenSecret(tokenSecret.toBase64()); // TODO
+
+	// Getting informations about the user behind the account
+	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			this, SLOT(retrieveUserEnded(ResultWrapper)));
+	twitter.showUser(id);
+}
+
+// Updating a user after requesting it to Twitter
+void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
+	// Ensures that res is for the process
+	RequestResult result = res.accessResult(this);
+	if (result.resultType == Network::INVALID_RESULT) {
+		return invalidEnd();
+	}
+
+	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
+			   this, SLOT(retrieveUserEnded(ResultWrapper)));
+
+	NetworkResultType errorType = result.resultType;
+
+	// For a potenitial anticipated end
+	int httpCode = result.httpResponse.code;
+	QString errorMsg = "";
+	bool isFatal = false;
+	CoreResult issue;
+
+	switch (errorType) {
+		case Network::NO_REQUEST_ERROR: {
+			// Get user, put it in the conf and save
+			QVariantMap parsedResults = result.parsedResult.toMap();
+			UserInfos u;
+			u.fillWithVariant(parsedResults);
+			UserAccount & account = configuration->getUserAccountRef();
+			account.setUser(u);
+			saveConfiguration();
+		}return;
+
+		case Network::SERVICE_ERRORS:
+			// Looking for specific value of the return code
+			issue = (httpCode / 100 == 5
+					 || httpCode == 420
+					 || httpCode == 429
+					 ) ?
+						httpResults.value(httpCode)
+					  : NO_TOKENS;
+
+			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+
+			// Building error message
+			errorMsg = ProcessUtils::writeTwitterErrors(result);
+			break;
+
+		case Network::API_CALL:
+			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			break;
+
+		case Network::JSON_PARSING:
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
+												  errorMsg,
+												  issue);
+			break;
+
+		default:
+			ProcessUtils::treatUnknownResult(result.errorMessage,
+											 errorMsg,
+											 issue,
+											 isFatal);
+			break;
+	}
+
+	// Failed end
+	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	endProcess();
+}
+
+// Saves the configuration
+void AccessTokensProcess::saveConfiguration() {
+	CoreResult saveIssue = configuration->save();
+	bool processOK = false;
+	QString errorMsg = "";
+	bool isFatal = true;
+
+	switch (saveIssue) {
+		case SAVE_SUCCESSFUL:
+			// The application was saved correctly.
+			processOK = true;
+			processResult.processIssue = ALLOW_SUCCESSFUL;
+			isFatal = false;
+			endProcess();
+			return;
+
+		case CONFIGURATION_FILE_UNKNOWN:
+			errorMsg = AccessTokensProcess::trUtf8("Configuration file does not exist.");
+			break;
+
+		case CONFIGURATION_FILE_NOT_OPEN:
+			errorMsg = AccessTokensProcess::trUtf8("Configuration file cannot be opened.");
+			break;
+
+		default:
+			errorMsg = AccessTokensProcess::trUtf8("Unknown problem");
+			break;
+	}
+
+	// Ending the process
+	GenericProcess::buildResult(processOK, saveIssue, errorMsg, isFatal);
 	endProcess();
 }

@@ -124,7 +124,7 @@ QJsonObject UserConfiguration::toJSON() const {
 
 // Blacklisting the "current_account"
 void UserConfiguration::blacklistProperties() {
-	transientProperties.append(QString(QLatin1String(CURRENT_ACCOUNT_PN)));
+	transientProperties.append(QString(QLatin1String("current_account")));
 }
 
 // user_account

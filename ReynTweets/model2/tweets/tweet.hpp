@@ -150,15 +150,15 @@ class Tweet2 : public JsonObject
 		/// @brief Name of the property contributors.
 		static QString CONTRIBUTORS_PN;
 
-		/// @fn QVariantMap getContributorsProperty();
+		/// @fn QVariantList getContributorsProperty();
 		/// @brief Reading the property contributors
 		/// @return entitiesMap
-		QVariantMap getContributorsProperty();
+		QVariantList getContributorsProperty();
 
-		/// @fn void setContributors(QVariantMap newEntityMap);
+		/// @fn void setContributors(QVariantList newEntityMap);
 		/// @brief Writing the property contributors
 		/// @param newEntityMap New value for entities
-		void setContributors(QVariantMap newEntityMap);
+		void setContributors(QVariantList newEntityMap);
 
 		/// @property tweet_contributors
 		/// @brief Tweet Entities
@@ -1266,21 +1266,21 @@ class Tweet2 : public JsonObject
 		void setWithheldCopyright(bool newValue);
 
 		// withheld_in_countries
-		/// @fn bool isWithheldInCountries();
+		/// @fn QStringList getWithheldInCountries();
 		/// @brief Reading withheld_in_countries
 		/// @return withheldInCountries
-		bool isWithheldInCountries();
+		QStringList getWithheldInCountries();
 
-		/// @fn void setWithheldInCountries(bool newValue);
+		/// @fn void setWithheldInCountries(QStringList newValue);
 		/// @brief Writing withheld_in_countries
 		/// @param newValue New value for withheldInCountries
-		void setWithheldInCountries(bool newValue);
+		void setWithheldInCountries(QStringList newValue);
 
 		// withheld_scope
 		/// @fn QString isWithheldScope();
 		/// @brief Reading withheld_scope
 		/// @return withheldScope
-		QString isWithheldScope();
+		QString getWithheldScope();
 
 		/// @fn void setWithheldScope(QString newValue);
 		/// @brief Writing withheld_scope
@@ -1314,10 +1314,10 @@ class Tweet2 : public JsonObject
 		///	@return A string telling when it was posted
 		Q_INVOKABLE QString whenWasItPosted(bool encloseInHtmlTag = true);
 
-		/// @fn Q_INVOKABLE bool isRetweet();
+		/// @fn Q_INVOKABLE bool isRetweet() const;
 		/// @brief Method indicating if the tweet is a retweet or not
 		///	@return true if it is a retweet, false otherwise.
-		Q_INVOKABLE bool isRetweet();
+		Q_INVOKABLE bool isRetweet() const;
 
 		/// @fn Q_INVOKABLE bool isReply();
 		/// @brief Method indicating if the tweet replies to another one or not.

@@ -160,7 +160,7 @@ void Tweet2::recopie(const Tweet2 & status) {
 
 	// Recopying the new value if it's not NULL
 	if (status.retweetSource) {
-		retweetSource = new Tweet(*(status.retweetSource));
+		retweetSource = new Tweet2(*(status.retweetSource));
 	}
 }
 
@@ -204,7 +204,7 @@ bool Tweet2::operator==(const Tweet2 & status) const {
 
 // Filling the object with a QJsonObject.
 void Tweet2::fillWithJSON(QJsonObject json) {
-	this->tweetContributors.fillWithJSON(json.value(CONTRIBUTORS_PN).toObject());
+	this->tweetContributors.fillWithJSON(json.value(CONTRIBUTORS_PN).toArray());
 	this->tweetCoordinates.fillWithJSON(json.value(COORDINATES_PN).toObject());
 	this->retweetInfos.fillWithJSON(json.value(CURRENT_USER_RETWEET_PN).toObject());
 	this->tweetEntities.fillWithJSON(json.value(ENTITIES_PN).toObject());
@@ -270,7 +270,7 @@ QJsonObject Tweet2::toJSON() const {
 	json.insert(ID_PN, QJsonValue(double(this->tweetID)));
 	json.insert(ID_STR_PN, QJsonValue(this->tweetIDstr));
 	json.insert(IN_REPLY_TO_SCREEN_NAME_PN, QJsonValue(this->replyToScreenName));
-	json.insert(IN_REPLY_TO_STATUS_ID_PN, QJsonValue(double(this->replyToTweetID));
+	json.insert(IN_REPLY_TO_STATUS_ID_PN, QJsonValue(double(this->replyToTweetID)));
 	json.insert(IN_REPLY_TO_STATUS_ID_STR_PN, QJsonValue(this->replyToTweetIDstr));
 	json.insert(IN_REPLY_TO_USER_ID_PN, QJsonValue(double(this->replyToUserID)));
 	json.insert(IN_REPLY_TO_USER_ID_STR_PN, QJsonValue(this->replyToUserIDstr));
@@ -285,7 +285,7 @@ QJsonObject Tweet2::toJSON() const {
 	json.insert(TRUNCATED_PN, QJsonValue(this->truncatedTweet));
 	json.insert(USER_PN, QJsonValue(this->profile.toJSON()));
 	json.insert(WITHHELD_COPYRIGHT_PN, QJsonValue(this->withheldCopyright));
-	json.insert(WITHHELD_IN_COUNTRIES_PN, QJsonValue(this->withheldInCountries));
+	json.insert(WITHHELD_IN_COUNTRIES_PN, QJsonValue(QJsonArray::fromStringList(this->withheldInCountries)));
 	json.insert(WITHHELD_SCOPE_PN, QJsonValue(this->withheldScope));
 
 	// Insert retweet
@@ -317,7 +317,7 @@ QString Tweet2::CONTRIBUTORS_PN = "contributors";
 
 QString Tweet2::TWEET_CONTRIBUTORS_PN = "tweet_contributors";
 
-QVariantMap Tweet2::getContributorsProperty() {
+QVariantList Tweet2::getContributorsProperty() {
 	return tweetContributors.toVariant();
 }
 
@@ -329,7 +329,7 @@ ContributorList * Tweet2::getContributorsPtr() {
 	return &tweetContributors;
 }
 
-void Tweet2::setContributors(QVariantMap newEntityMap) {
+void Tweet2::setContributors(QVariantList newEntityMap) {
 	tweetContributors.fillWithVariant(newEntityMap);
 	emit contributorsChanged();
 }
@@ -599,11 +599,11 @@ QVariantMap Tweet2::getPlaceProperty() {
 	return tweetPlace.toVariant();
 }
 
-ContributorList Tweet2::getPlace() {
+TwitterPlace Tweet2::getPlace() {
 	return tweetPlace;
 }
 
-ContributorList * Tweet2::getPlacePtr() {
+TwitterPlace * Tweet2::getPlacePtr() {
 	return &tweetPlace;
 }
 
@@ -686,7 +686,7 @@ void Tweet2::setRetweetedStatus(QVariantMap statusMap) {
 	}
 	else {
 		if (!retweetSource) {
-			retweetSource = new Tweet;
+			retweetSource = new Tweet2;
 		} else {
 			retweetSource->reset();
 		}
@@ -916,7 +916,7 @@ QString Tweet2::whenWasItPosted(bool encloseInHtmlTag) {
 }
 
 // Indicating if the tweet is a retweet or not
-bool Tweet2::isRetweet() {
+bool Tweet2::isRetweet() const {
 	return retweetSource != 0;
 }
 

@@ -96,11 +96,6 @@ void GenCoord::setType(CoordType::CoordinatesType newValue) {
 	emit typeChanged();
 }
 
-void GenCoord::setType(QString newValue) {
-	this->coordType = CoordType::string2coord(newValue);
-	emit typeChanged();
-}
-
 
 /////////////////////////
 // Q_OBJECT workaround //

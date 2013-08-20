@@ -87,7 +87,8 @@ class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon, GeoCoordPolygo
 				   NOTIFY coordinatesChanged)
 
 	signals:
-		/// @see { @link GenCoord::coordinatesChanged(); }
+		/// @fn void coordinatesChanged();
+		/// @brief Emitted when the coordinates property changes its value.
 		void coordinatesChanged();
 
 	private:
@@ -106,12 +107,6 @@ class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon, GeoCoordPolygo
 		/// @param coord GeoBoundingBox to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
-
-		// Don't change the CoordinatesType
-
-		/// @fn void setType(CoordinatesType newValue);
-		/// @brief Overriden to set the CoordinatesType readonly.
-		void setType(CoordinatesType);
 };
 
 // Serialization of GeoBoundingBox

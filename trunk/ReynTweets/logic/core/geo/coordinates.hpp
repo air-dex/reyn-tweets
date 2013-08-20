@@ -77,7 +77,8 @@ class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 				   NOTIFY coordinatesChanged)
 
 	signals:
-		/// @see { @link GenCoord::coordinatesChanged(); }
+		/// @fn void coordinatesChanged();
+		/// @brief Emitted when the coordinates property changes its value.
 		void coordinatesChanged();
 
 	private:
@@ -96,10 +97,6 @@ class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 		/// @param coord Coordinates to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, Coordinates & coord);
-
-		/// @fn void setType(CoordinatesType newValue);
-		/// @brief Overriden to set the CoordinatesType readonly.
-		void setType(CoordinatesType);
 };
 
 // Serialization of Coordinates

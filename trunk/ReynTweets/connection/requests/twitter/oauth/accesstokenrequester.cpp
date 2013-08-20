@@ -38,7 +38,7 @@ AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager) :
 // Building POST Parameters
 void AccessTokenRequester::buildPOSTParameters() {
 	postParameters.insert("oauth_verifier",
-						  QString::fromAscii(oauthManager.getVerifier().data()));
+						  QString::fromLatin1(oauthManager.getVerifier().data()));
 }
 
 // Parse the raw results of the request.

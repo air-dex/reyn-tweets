@@ -163,7 +163,7 @@ QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
 													signature);
 	authorizationHeader.append(oauthString);
 
-	return authorizationHeader.toAscii();
+	return authorizationHeader.toLatin1();
 }
 
 // Generates a nonce for a request
@@ -180,7 +180,7 @@ QString OAuthManager::generateNonce() {
 		randomString.append(base.at(position));
 	}
 
-	QByteArray encodedNonce = randomString.toAscii().toBase64();
+	QByteArray encodedNonce = randomString.toLatin1().toBase64();
 
 	return QString(encodedNonce);
 }
@@ -206,14 +206,14 @@ QString OAuthManager::signDatas(RequestType type,
 	QString key = "";
 
 	key.append(QUrl::toPercentEncoding(
-				   QString::fromAscii(
+				   QString::fromLatin1(
 					   QByteArray::fromBase64(consumerSecret).data()
 					   )
 				   )
 			   );
 	key.append('&');
 	key.append(QUrl::toPercentEncoding(
-				   QString::fromAscii(
+				   QString::fromLatin1(
 					   QByteArray::fromBase64(oauthSecret).data()
 					   )
 				   )
@@ -237,13 +237,13 @@ QString OAuthManager::signDatas(RequestType type,
 	// Building the base String
 	QByteArray toSign = "";
 
-	toSign.append(requestTypeToString(type).toAscii());
+	toSign.append(requestTypeToString(type).toLatin1());
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(baseURL));
 	toSign.append('&');
 	toSign.append(QUrl::toPercentEncoding(parameterString));
 
-	return hmacSha1(key.toAscii(), toSign);
+	return hmacSha1(key.toLatin1(), toSign);
 }
 
 // Generic method to build strings with OAuth parameters.
@@ -273,7 +273,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	// oauth_consumer_key
 	clearToken = QByteArray::fromBase64(consumerKey);
 	formattedParamString = formatParam("oauth_consumer_key",
-									   QString::fromAscii(clearToken.data()),
+									   QString::fromLatin1(clearToken.data()),
 									   putDoubleQuotes);
 	oauthParamString.append(formattedParamString);
 	oauthParamString.append(separator);
@@ -312,7 +312,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	if (oauthTokenNeeded) {
 		clearToken = QByteArray::fromBase64(oauthToken);
 		formattedParamString = formatParam("oauth_token",
-										   QString::fromAscii(clearToken.data()),
+										   QString::fromLatin1(clearToken.data()),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);
@@ -322,7 +322,7 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	if (oauthVerifierNeeded) {
 		clearToken = QByteArray::fromBase64(oauthVerifier);
 		formattedParamString = formatParam("oauth_verifier",
-										   QString::fromAscii(clearToken.data()),
+										   QString::fromLatin1(clearToken.data()),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);

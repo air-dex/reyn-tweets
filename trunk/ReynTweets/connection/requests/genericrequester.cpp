@@ -121,7 +121,7 @@ void GenericRequester::treatResults() {
 		bool parseOK;
 		QVariantMap parseErrorMap;
 		requestResult.parsedResult = this->parseResult(parseOK, parseErrorMap);
-		requestResult.resultType = parseOK ? NO_ERROR : parsingErrorType;
+		requestResult.resultType = parseOK ? NO_REQUEST_ERROR : parsingErrorType;
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 

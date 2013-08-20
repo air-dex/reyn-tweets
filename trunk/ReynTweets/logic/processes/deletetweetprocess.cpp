@@ -118,7 +118,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:{
+		case NO_REQUEST_ERROR:{
 			// Updating tweetToDelete
 			tweetToDelete.reset();
 			tweetToDelete.fillWithVariant(result.parsedResult.toMap());
@@ -213,12 +213,12 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 	bool isFatal = false;
 	CoreResult issue;	// Filled in ProcessUtils methods
 
-	// For NO_ERROR requests
+	// For NO_REQUEST_ERROR requests
 	QVariantMap deletionResult;
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			deletionResult.insert("twitter_result", result.parsedResult);
 			deletionResult.insert("keep_in_timeline", QVariant(keepInTimeline));
 			processResult = ProcessUtils::buildProcessResult(TWEET_DELETED,

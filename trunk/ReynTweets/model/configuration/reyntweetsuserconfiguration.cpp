@@ -187,12 +187,12 @@ CoreResult ReynTweetsUserConfiguration::load() {
 	readStream >> confVariant;
 	confFile.close();
 
-	if (!qVariantCanConvert<ReynTweetsUserConfiguration>(confVariant)) {
+	if (!confVariant.canConvert<ReynTweetsUserConfiguration>()) {
 		// The content of the file cannot be converted into a configuration.
 		return LOADING_CONFIGURATION_ERROR;
 	}
 
-	*this = qVariantValue<ReynTweetsUserConfiguration>(confVariant);
+	*this = confVariant.value<ReynTweetsUserConfiguration>();
 
 	return LOAD_CONFIGURATION_SUCCESSFUL;
 }

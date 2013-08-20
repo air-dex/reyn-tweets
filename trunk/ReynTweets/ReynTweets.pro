@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkit declarative xml
+QT += core gui network webkitwidgets declarative xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -322,7 +322,7 @@ win32 {
 }
 
 linux-g++ {
-    DOXYGEN_CMD = /usr/bin/doxygen
+	DOXYGEN_CMD = /usr/bin/doxygen
 }
 
 # Create doc

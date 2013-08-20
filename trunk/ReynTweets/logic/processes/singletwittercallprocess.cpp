@@ -58,7 +58,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			return treatSuccessfulResult(result.parsedResult);
 
 		case SERVICE_ERRORS:

@@ -99,7 +99,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_REQUEST_ERROR: {
 			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			UserInfos u;

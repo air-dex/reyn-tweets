@@ -123,7 +123,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			if (result.parsedResult.canConvert<QVariantMap>()) {
 				// Request ends successfully
 				QVariantMap resMap = result.parsedResult.toMap();
@@ -206,7 +206,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			if (enoughShortMessage) {
 				// Classic post, normal end
 				processResult = ProcessUtils::buildProcessResult(TWEET_POSTED,
@@ -272,7 +272,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			// TODO : final treatment : Nothing a priori
 			isOK = true;
 			issue = TWEET_POSTED;

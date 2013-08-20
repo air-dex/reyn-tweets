@@ -100,7 +100,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_REQUEST_ERROR: {
 			// The request was successful. Was the callback URL confirmed ?
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			if (parsedResults.value("oauth_callback_confirmed").toBool()) {
@@ -181,7 +181,7 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_ERROR:
+		case NO_REQUEST_ERROR:
 			// The user can give its credentials now
 			emit userCredentialsRequired();
 			return;
@@ -262,7 +262,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_REQUEST_ERROR: {
 			QVariantMap resultMap = result.parsedResult.toMap();
 			bool urlOK = resultMap.value("urlOK").toBool();
 
@@ -357,7 +357,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_ERROR: {
+		case NO_REQUEST_ERROR: {
 			// The authentication process is ended.
 
 			// Extract the different values

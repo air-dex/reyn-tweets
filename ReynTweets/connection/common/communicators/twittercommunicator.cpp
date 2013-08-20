@@ -53,8 +53,7 @@ TwitterCommunicator::TwitterCommunicator(QString &url,
 	requestType(type),
 	getParameters(getArgs),
 	postParameters(postArgs),
-	headers(headersParam),
-	httpResponse()
+	headers(headersParam)
 {
 	// Setting the timer
 	timeoutTimer.setInterval(10*1000); // 10 seconds
@@ -149,9 +148,6 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	disconnect(network, SIGNAL(finished(QNetworkReply*)),
 			   this, SLOT(endRequest(QNetworkReply*)));
 
-	// Analysing the response
-	extractHttpStatuses(response);
-
 	// Extracting informations
 	NetworkResponse netrep(response);
 	response->deleteLater();
@@ -159,7 +155,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	// responseBuffer (for debug purposes)
 	/*
 	qDebug("responseBuffer :");
-	qDebug(responseBuffer);
+	qDebug(netrep.getResponseBody());
 	qDebug("\n");
 	//*/
 
@@ -175,24 +171,10 @@ void TwitterCommunicator::timeout() {
 	disconnect(network, SIGNAL(finished(QNetworkReply*)),
 			   this, SLOT(endRequest(QNetworkReply*)));
 
-	// Analysing the response
-	httpResponse.code = 0;
-	httpResponse.message = "";
-
 	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);
 
 	// Ending the request
 	emit requestDone(response);
-}
-
-
-/////////////
-// Getters //
-/////////////
-
-// Getting the HTTP response (code and reason)
-ResponseInfos TwitterCommunicator::getHttpResponse() {
-	return httpResponse;
 }
 
 
@@ -239,25 +221,4 @@ QString TwitterCommunicator::buildDatas(ArgsMap argsMap) {
 	res.chop(1);
 
 	return res;
-}
-
-
-////////////////////////////////////////////
-// Extracting http results from the reply //
-////////////////////////////////////////////
-
-void TwitterCommunicator::extractHttpStatuses(QNetworkReply * reply) {
-	if (reply == 0) {
-		return;
-	}
-
-	QVariant httpStatus;
-
-	// Extract return code
-	httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-	httpResponse.code = httpStatus.toInt();
-
-	// Extract return reason
-	httpStatus = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute);
-	httpResponse.message = QString::fromLatin1(httpStatus.toByteArray());
 }

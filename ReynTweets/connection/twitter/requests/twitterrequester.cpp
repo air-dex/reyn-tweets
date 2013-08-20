@@ -99,8 +99,8 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 }
 
 // Treating parsed results
-void TwitterRequester::treatParsedResult() {
-	int httpReturnCode = weblink.getHttpResponse().code;
+void TwitterRequester::treatParsedResult(NetworkResponse netResponse) {
+	int httpReturnCode = netResponse.getHttpResponse().code;
 
 	// Is it a map with error messages
 	switch (httpReturnCode) {

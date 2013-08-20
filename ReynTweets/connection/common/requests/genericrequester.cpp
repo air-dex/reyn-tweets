@@ -125,11 +125,11 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
-		if (!parseOK) {
+		if (parseOK) {
+			this->treatParsedResult(netResponse);
+		} else {
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
-		} else {
-			this->treatParsedResult();
 		}
 	}
 

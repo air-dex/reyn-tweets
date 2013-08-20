@@ -98,9 +98,10 @@ class TwitterRequester : public GenericRequester
 									 bool & parseOK,
 									 QVariantMap & parsingErrors);
 
-		/// @fn virtual void treatParsedResult();
+		/// @fn virtual void treatParsedResult(NetworkResponse netResponse);
 		/// @brief Treating parsed results
-		virtual void treatParsedResult();
+		/// @param netResponse Other network responce elements, if needed.
+		virtual void treatParsedResult(NetworkResponse netResponse);
 
 	private:
 		/// @fn virtual void buildHTTPHeaders();

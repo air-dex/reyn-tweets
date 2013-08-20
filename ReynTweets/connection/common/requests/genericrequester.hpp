@@ -27,8 +27,9 @@
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
-#include "../../common/requestresult.hpp"
+#include "../requestresult.hpp"
 #include "../communicators/twittercommunicator.hpp"
+#include "../networkresult.hpp"
 
 /// @class GenericRequester
 /// @brief Base class for all the requesters.
@@ -146,9 +147,10 @@ class GenericRequester : public QObject
 									 bool & parseOK,
 									 QVariantMap & parsingErrors) = 0;
 
-		/// @fn virtual void treatParsedResult() = 0;
+		/// @fn virtual void treatParsedResult(NetworkResponse netResponse) = 0;
 		/// @brief Treating parsed results
-		virtual void treatParsedResult() = 0;
+		/// @param netResponse Other network responce elements, if needed.
+		virtual void treatParsedResult(NetworkResponse netResponse) = 0;
 
 	signals:
 		/// @fn void requestDone();

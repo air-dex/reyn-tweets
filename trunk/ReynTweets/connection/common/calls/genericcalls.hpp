@@ -25,7 +25,7 @@
 #define GENERICCALLS_HPP
 
 #include <QObject>
-#include "../../requests/genericrequester.hpp"
+#include "../requests/genericrequester.hpp"
 #include "../../model/resultwrapper.hpp"
 #include "requestermanager.hpp"
 

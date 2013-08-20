@@ -27,8 +27,8 @@
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
-#include "../model/requestresult.hpp"
-#include "../common/communicators/twittercommunicator.hpp"
+#include "../../model/requestresult.hpp"
+#include "../communicators/twittercommunicator.hpp"
 
 /// @class GenericRequester
 /// @brief Base class for all the requesters.

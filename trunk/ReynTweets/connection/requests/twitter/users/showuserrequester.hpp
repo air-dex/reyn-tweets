@@ -26,7 +26,7 @@
 
 #include <QString>
 #include "../twitterrequester.hpp"
-#include "../../../model/identificationway.hpp"
+#include "../../../common/requests/identificationway.hpp"
 
 /// @class ShowUserRequester
 /// @brief Requester for getting details about a user identified by its ID

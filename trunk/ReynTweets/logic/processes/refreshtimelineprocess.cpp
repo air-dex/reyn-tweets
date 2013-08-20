@@ -78,7 +78,7 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR: {
 			// Getting the most recent tweets timeline
-			QJsonArray parsedResults = result.parsedResult.toJsonArray();
+			QJsonArray parsedResults = QJsonValue::fromVariant(result.parsedResult).toArray();
 			Timeline retrievedTweets;
 
 			retrievedTweets.fillWithVariant(parsedResults);
@@ -127,7 +127,7 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 			break;
 	}
 
-	// Process end (may be successful
+	// Process end (may be successful)
 	this->endProcess(errorMsg, gap);
 }
 
@@ -167,7 +167,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR: {
 			// Getting the most recent tweets timeline
-			QJsonArray parsedResults = result.parsedResult.toJsonArray();
+			QJsonArray parsedResults = QJsonValue::fromVariant(result.parsedResult).toArray();
 			Timeline retrievedTweets;
 
 			retrievedTweets.fillWithVariant(parsedResults);

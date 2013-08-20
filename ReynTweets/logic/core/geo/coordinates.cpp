@@ -82,7 +82,3 @@ QDataStream & operator<<(QDataStream & out, const Coordinates & coord) {
 QDataStream & operator>>(QDataStream & in, Coordinates & coord) {
 	return coord.fillWithStream(in);
 }
-
-
-// Do not change CoordinatesType
-void Coordinates::setType(CoordinatesType) {}

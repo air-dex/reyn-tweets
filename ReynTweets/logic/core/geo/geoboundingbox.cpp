@@ -84,10 +84,6 @@ QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord) {
 }
 
 
-// Do not change CoordinatesType
-void GeoBoundingBox::setType(CoordinatesType) {}
-
-
 // Getting all the coordinates bounds.
 GeoCoordList GeoBoundingBox::getBoundsList() const {
 	return geoCoordinates.at(0);

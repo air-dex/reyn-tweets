@@ -97,12 +97,11 @@ class GenCoord : public JsonObject
 
 		// type
 		/// @property type
-		/// @brief Type of coordinates.
+		/// @brief Type of coordinates. It is readonly.
 		///
 		/// coordType is the attribute beneath this property.
 		Q_PROPERTY(QString type
 				   READ getTypeProperty
-				   WRITE setType
 				   NOTIFY typeChanged)
 
 		/// @brief Name of the property type.
@@ -115,11 +114,6 @@ class GenCoord : public JsonObject
 		/// @brief Reading type
 		/// @return coordType
 		virtual QString getTypeProperty();
-
-		/// @fn virtual void setType(QString newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		virtual void setType(QString newValue);
 
 
 	signals:

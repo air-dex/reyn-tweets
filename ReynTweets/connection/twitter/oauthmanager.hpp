@@ -93,22 +93,20 @@ class OAuthManager
 		/// @param oauthSecret The new value of the OAuth secret
 		void setOAuthSecret(QByteArray authSecret);
 
-		/// @fn QByteArray getVerifier(bool isClear = true);
+		/// @fn QByteArray getVerifier();
 		/// @brief Getter on the verifier
-		/// @param isClear Boolean indicating if the clear value is asked
 		/// @return The verifier
-		QByteArray getVerifier(bool isClear = true);
+		QByteArray getVerifier();
 
 		/// @fn void setVerifier(QByteArray verifier);
 		/// @brief Setter on the verifier
-		/// @param verifier The new verifier (clear value)
+		/// @param verifier The new verifier
 		void setVerifier(QByteArray verifier);
 
-		/// @fn QByteArray getAuthenticityToken(bool isClear = true);
+		/// @fn QByteArray getAuthenticityToken();
 		/// @brief Getter on the Authenticity Token
-		/// @param isClear Boolean indicating if the clear value is asked
 		/// @return The Authenticity Token
-		QByteArray getAuthenticityToken(bool isClear = true);
+		QByteArray getAuthenticityToken();
 
 		/// @fn void setAuthenticityToken(QByteArray authToken);
 		/// @brief Setter on the Authenticity Token
@@ -134,9 +132,9 @@ class OAuthManager
 		///										  QString baseURL,
 		///										  ArgsMap getDatas,
 		///										  ArgsMap postDatas,
-		///										  bool oauthTokenNeeded,
-		///										  bool callbackUrlNeeded,
-		///										  bool oauthVerifierNeeded);
+		///										  bool oauthTokenNeeded = true,
+		///										  bool callbackUrlNeeded = false,
+		///										  bool oauthVerifierNeeded = false);
 		/// @brief Getting that will be written in the "Authorization" field
 		/// of requests
 		/// @param type Request type (GET or POST)
@@ -154,9 +152,9 @@ class OAuthManager
 										  QString baseURL,
 										  ArgsMap getDatas,
 										  ArgsMap postDatas,
-										  bool oauthTokenNeeded,
-										  bool callbackUrlNeeded,
-										  bool oauthVerifierNeeded);
+										  bool oauthTokenNeeded = true,
+										  bool callbackUrlNeeded = false,
+										  bool oauthVerifierNeeded = false);
 
 		/// @fn void resetTokens();
 		/// @brief Resetting the tokens. A full new OAuth authentication process
@@ -217,9 +215,9 @@ class OAuthManager
 		///						  ArgsMap postDatas,
 		///						  QString nonce,
 		///						  QString timestamp,
-		///						  bool oauthTokenNeeded,
-		///						  bool callbackUrlNeeded,
-		///						  bool oauthVerifierNeeded);
+		///						  bool oauthTokenNeeded = true,
+		///						  bool callbackUrlNeeded = false,
+		///						  bool oauthVerifierNeeded = false);
 		/// @brief Method for signing datas. It is described
 		/// <a href="https://dev.twitter.com/docs/auth/creating-signature">here
 		/// </a>.
@@ -242,9 +240,9 @@ class OAuthManager
 						  ArgsMap postDatas,
 						  QString nonce,
 						  QString timestamp,
-						  bool oauthTokenNeeded,
-						  bool callbackUrlNeeded,
-						  bool oauthVerifierNeeded);
+						  bool oauthTokenNeeded = true,
+						  bool callbackUrlNeeded = false,
+						  bool oauthVerifierNeeded = false);
 
 		/// @fn QString buildOAuthParameterString(QString nonce,
 		///										  QString timestamp,

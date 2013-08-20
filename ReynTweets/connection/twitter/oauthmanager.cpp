@@ -50,67 +50,62 @@ OAuthManager::~OAuthManager() {}
 // Getters on data //
 /////////////////////
 
-// Getter for callbackUrl
+// Callback URL
 QString OAuthManager::getCallbackUrl() {
 	return callbackUrl;
 }
 
-// Setter for callbackUrl
 void OAuthManager::setCallbackUrl(QString newURL) {
 	callbackUrl = newURL;
 }
 
-// Setter on the consumer key
+// Consumer key
 void OAuthManager::setConsumerKey(QByteArray clientKey) {
 	consumerKey = clientKey;
 }
 
-// Setter on the consumer secret
+// Consumer secret
 void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
 	consumerSecret = clientSecret;
 }
 
-// Getter on the OAuth Token
+// OAuth Token
 QByteArray OAuthManager::getOAuthToken() {
 	return oauthToken;
 }
 
-// Setter on the OAuth token
 void OAuthManager::setOAuthToken(QByteArray authToken) {
 	oauthToken = authToken;
 }
 
-// Setter on the OAuth secret
+// OAuth secret
 void OAuthManager::setOAuthSecret(QByteArray authSecret) {
 	oauthSecret = authSecret;
 }
 
-// Getter on the verifier
-QByteArray OAuthManager::getVerifier(bool isClear) {
-	return isClear ? QByteArray::fromBase64(oauthVerifier) : oauthVerifier;
+// OAuth verifier
+QByteArray OAuthManager::getVerifier() {
+	return oauthVerifier;
 }
 
-// Setter on the verifier
 void OAuthManager::setVerifier(QByteArray verifier) {
-	oauthVerifier = verifier.toBase64();
+	oauthVerifier = verifier;
 }
 
-// Getter on the Authenticity Token
-QByteArray OAuthManager::getAuthenticityToken(bool isClear) {
-	return isClear ? QByteArray::fromBase64(authenticityToken) : authenticityToken;
+// Authenticity Token
+QByteArray OAuthManager::getAuthenticityToken() {
+	return authenticityToken;
 }
 
-// Setter on the Authenticity Token
 void OAuthManager::setAuthenticityToken(QByteArray authToken) {
-	authenticityToken = authToken.toBase64();
+	authenticityToken = authToken;
 }
 
-// Getter on the deny tag
+// Deny tag
 QString OAuthManager::getDeny() {
 	return denyTag;
 }
 
-// Setter on the deny tag
 void OAuthManager::setDeny(QString denyString) {
 	denyTag = denyString;
 }
@@ -249,7 +244,6 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 {
 	QString oauthParamString = "";		// Final string
 	QString formattedParamString = "";	// Temporary string containg a formatted parameter
-	QByteArray clearToken;				// Byte array with the clear value of a token
 
 	// oauth_callback
 	if (callbackUrlNeeded) {
@@ -308,9 +302,8 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 
 	// oauth_verifier
 	if (oauthVerifierNeeded) {
-		clearToken = QByteArray::fromBase64(oauthVerifier);
 		formattedParamString = formatParam("oauth_verifier",
-										   QString::fromLatin1(clearToken.data()),
+										   QString::fromLatin1(oauthVerifier),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);

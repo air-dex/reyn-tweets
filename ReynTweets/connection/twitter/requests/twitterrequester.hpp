@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -41,10 +41,7 @@ class TwitterRequester : public GenericRequester
 		/// @fn TwitterRequester(RequestType type,
 		///						 QString url,
 		///						 OAuthManager & authManager,
-		///						 NetworkResultType parseError = Network::JSON_PARSING,
-		///						 bool tokenNeeded = true,
-		///						 bool callbackURLNeeded = false,
-		///						 bool verifierNeeded = false);
+		///						 NetworkResultType parseError = Network::JSON_PARSING);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
@@ -53,35 +50,19 @@ class TwitterRequester : public GenericRequester
 		/// of the time, this value is set to JSON_PARSING because results are
 		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
-		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
-		/// is required for authentication.
-		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
-		/// parameter is required for authentication.
-		/// @param verifierNeeded Boolean indicating if the oauth_verifier
-		/// parameter is required for authentication.
 		TwitterRequester(HTTPRequestType type,
 						 QString url,
 						 OAuthManager & authManager,
-						 NetworkResultType parseError = Network::JSON_PARSING,
-						 bool tokenNeeded = true,
-						 bool callbackURLNeeded = false,
-						 bool verifierNeeded = false);
+						 NetworkResultType parseError = Network::JSON_PARSING);
 
 	protected:
 		/// @brief Entity with authentication information
 		OAuthManager & oauthManager;
 
-		/// @brief Boolean indicating if the oauth_token parameter is required
-		/// for authentication.
-		bool oauthTokenNeeded;
 
-		/// @brief Boolean indicating if the oauth_callback parameter
-		/// is required for authentication.
-		bool oauthCallbackUrlNeeded;
-
-		/// @brief Boolean indicating if the oauth_token parameter is required
-		/// for authentication.
-		bool oauthVerifierNeeded;
+		////////////////////////////
+		// Network reply tratment //
+		////////////////////////////
 
 		/// @fn virtual QVariant parseResult(NetworkResponse results,
 		///									 bool & parseOK,
@@ -109,10 +90,21 @@ class TwitterRequester : public GenericRequester
 		virtual QList<ResponseInfos> treatServiceErrors(QVariant parsedResults,
 														NetworkResponse netResponse);
 
-	private:
+
+		///////////////////////////
+		// Building HTTP Headers //
+		///////////////////////////
+
 		/// @fn virtual void buildHTTPHeaders();
 		/// @brief Building Content-Type and Authorize headers
 		virtual void buildHTTPHeaders();
+
+		/// @fn virtual QByteArray getAuthorizationHeader();
+		/// @brief Building the "Authorization" header needed for Twitter requests
+		///
+		/// This method is virtual since it is oveeriden for OAuth requesters.
+		/// @see https://dev.twitter.com/docs/auth/authorizing-request
+		virtual QByteArray getAuthorizationHeader();
 };
 
 #endif // TWITTERREQUESTER_HPP

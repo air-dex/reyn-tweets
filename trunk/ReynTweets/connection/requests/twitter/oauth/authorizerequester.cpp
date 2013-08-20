@@ -96,6 +96,8 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 				oauthManager.setDeny(inputValue);
 				denyFound = true;
 			}
+			oauthManager.setDeny("cancel");
+			denyFound = true;
 
 			treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
 		}

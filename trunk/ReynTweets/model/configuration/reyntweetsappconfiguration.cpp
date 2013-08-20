@@ -88,14 +88,14 @@ CoreResult ReynTweetsAppConfiguration::load() {
 	// Twitter OAuth consumer key
 	settingOK = detectSetting(map, "consumer_key", missingKeys);
 	if (settingOK) {
-		CONSUMER_KEY = QByteArray::fromBase64(map.value("consumer_key").toByteArray());
+		CONSUMER_KEY = map.value("consumer_key").toByteArray();
 	}
 	allSettingsOK = allSettingsOK && settingOK;
 
 	// Twitter OAuth consumer secret
 	settingOK = detectSetting(map, "consumer_secret", missingKeys);
 	if (settingOK) {
-		CONSUMER_SECRET = QByteArray::fromBase64(map.value("consumer_secret").toByteArray());
+		CONSUMER_SECRET = map.value("consumer_secret").toByteArray();
 	}
 	allSettingsOK = allSettingsOK && settingOK;
 

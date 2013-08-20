@@ -28,6 +28,7 @@
 
 /// @class MediaSizes
 /// @brief Different sizes possible for a Media object
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-sizes
 class MediaSizes2 : public JsonObject
 {
 	Q_OBJECT

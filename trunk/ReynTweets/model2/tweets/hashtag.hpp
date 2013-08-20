@@ -28,6 +28,7 @@
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-hashtags
 class Hashtag2 : public TweetEntity2
 {
 	Q_OBJECT
@@ -120,6 +121,8 @@ class Hashtag2 : public TweetEntity2
 		// text
 		/// @property text
 		/// @brief Text of the hashtag
+		///
+		/// hashText is the attribute beneath the property.
 		Q_PROPERTY(QString text
 				   READ getText
 				   WRITE setText)

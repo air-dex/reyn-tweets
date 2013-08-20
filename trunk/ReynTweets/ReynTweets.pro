@@ -166,7 +166,9 @@ SOURCES += \
 	model2/geo/geoboundingbox.cpp \
 	model2/geo/genericcoordinates.cpp \
 	model2/geo/coordinatestype.cpp \
-    model2/geo/gencoord.cpp
+    model2/geo/gencoord.cpp \
+    model2/geo/geocoordpolygon.cpp \
+    model2/geo/twitterplace.cpp
 
 
 HEADERS  += \
@@ -307,7 +309,9 @@ HEADERS  += \
 	model2/geo/genericcoordinates.hpp \
 	model2/geo/genericcoordinates.tpp \
 	model2/geo/coordinatestype.hpp \
-    model2/geo/gencoord.hpp
+    model2/geo/gencoord.hpp \
+    model2/geo/geocoordpolygon.hpp \
+    model2/geo/twitterplace.hpp
 
 
 OTHER_FILES = \

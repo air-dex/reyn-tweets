@@ -33,6 +33,7 @@
 
 /// @class TweetEntities
 /// @brief Entities of a tweet, such as its hashtags, its mentions and its URLs.
+/// @see https://dev.twitter.com/docs/platform-objects/entities
 class TweetEntities2 : public JsonObject
 {
 	Q_OBJECT

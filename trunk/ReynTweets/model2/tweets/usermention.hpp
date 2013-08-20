@@ -28,6 +28,7 @@
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-usermention
 class UserMention2 : public TweetEntity2
 {
 	Q_OBJECT

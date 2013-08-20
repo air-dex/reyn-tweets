@@ -29,6 +29,7 @@
 
 /// @class Media
 /// @brief Media in a tweet.
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-media
 class Media2 : public URLEntity2
 {
 	Q_OBJECT

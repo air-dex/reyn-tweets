@@ -29,6 +29,7 @@
 
 /// @class MediaSize
 /// @brief Size for a Media object
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-size
 class MediaSize2 : public JsonObject, public QSize
 {
 	Q_OBJECT

@@ -196,7 +196,7 @@ void TweetControl::shareByMail() {
 	subject.append(getShownTweet()->getAuthor()->getName());
 
 	// Need to encode it on Windows
-	#ifdef Q_OS_WIN32
+	#ifdef Q_OS_WIN
 		subject = QUrl::toPercentEncoding(subject);
 	#endif
 
@@ -211,7 +211,7 @@ void TweetControl::shareByMail() {
 	body.append(" ( http://code.google.com/p/reyn-tweets/ ).");
 
 	// Need to encode it on Windows
-	#ifdef Q_OS_WIN32
+	#ifdef Q_OS_WIN
 		body = QUrl::toPercentEncoding(body);
 	#endif
 

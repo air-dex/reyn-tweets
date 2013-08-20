@@ -125,12 +125,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	loadTranslation(app);
 
 	// Init Main QML file
-	#ifdef Q_OS_WIN32
+	QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
+
+	/*
+	#ifdef Q_OS_WIN
 		QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
 	#endif
 	#ifdef Q_OS_LINUX
 		QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
 	#endif
+	//*/
 
 	QtQuick2ApplicationViewer viewer;
 	viewer.setTitle("Reyn Tweets");

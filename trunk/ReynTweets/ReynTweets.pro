@@ -138,8 +138,10 @@ SOURCES += \
 	main.cpp \
 	logic/coreresult.cpp \
 	model2/mappable.cpp \
+	model2/listable.cpp \
 	#model2/json/jsonable.cpp \
-	model2/json/jsonobject.cpp
+	model2/json/jsonobject.cpp \
+    model2/mappablelist.cpp
 
 
 HEADERS  += \
@@ -249,8 +251,11 @@ HEADERS  += \
 	logic/controls/controls.hpp \
 	model2/variantable.hpp \
 	model2/mappable.hpp \
+	model2/listable.hpp \
+	model2/listable.tpp \
 	model2/json/jsonable.hpp \
-	model2/json/jsonobject.hpp
+	model2/json/jsonobject.hpp \
+    model2/mappablelist.hpp
 
 
 OTHER_FILES = \

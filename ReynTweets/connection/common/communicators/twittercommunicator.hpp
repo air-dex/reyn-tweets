@@ -44,11 +44,14 @@
 // Network Manager //
 /////////////////////
 
-/// @brief Network manager used by all the requesters for all the request.
-/// <strong>Including him in the TwitterCommunicator
-/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=36">
-/// could cause crashes</a></strong>.
-extern QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
+
+namespace Network {
+	/// @brief Network manager used by all the requesters for all the request.
+	/// <strong>Including him in the TwitterCommunicator
+	/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=36">
+	/// could cause crashes</a></strong>.
+	extern QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER;
+}
 
 
 /// @class TwitterCommunicator
@@ -111,9 +114,6 @@ class TwitterCommunicator : public QObject
 		void timeout();
 
 	protected:
-		/// @brief Entity managing the Network (Internet).
-		QNetworkAccessManager * network;
-
 		/// @brief Timer to avoid to wait for responses ad vitam aeternam.
 		QTimer timeoutTimer;
 

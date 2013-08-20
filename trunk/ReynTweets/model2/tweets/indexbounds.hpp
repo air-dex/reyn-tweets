@@ -65,6 +65,10 @@ class IndexBounds2 : public JsonArray<int>
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		//////////////////////
+		// Variant handling //
+		//////////////////////
+
 		/// @fn QVariantList toVariant() const;
 		/// @brief Converting the bounds into a QVariantList
 		/// @return The QVariant List with the bounds in two QVariant objects.

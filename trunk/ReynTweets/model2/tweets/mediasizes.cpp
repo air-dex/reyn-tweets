@@ -78,12 +78,12 @@ void MediaSizes2::reset() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaSizes2 & sizes) {
-	return jsonObjectStreamingOut(out, sizes);
+	return sizes.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaSizes2 & sizes) {
-	return jsonObjectStreamingIn(in, sizes);
+	return sizes.fillWithStream(in);
 }
 
 

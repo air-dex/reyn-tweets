@@ -69,12 +69,12 @@ void Coordinates::reset() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Coordinates & coord) {
-	return jsonObjectStreamingOut(out, coord);
+	return coord.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Coordinates & coord) {
-	return jsonObjectStreamingIn(in, coord);
+	return coord.fillWithStream(in);
 }
 
 

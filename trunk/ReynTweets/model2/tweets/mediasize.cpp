@@ -69,12 +69,12 @@ void MediaSize2::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaSize2 & size) {
-	return jsonObjectStreamingOut(out, size);
+	return size.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaSize2 & size) {
-	return jsonObjectStreamingIn(in, size);
+	return size.fillWithStream(in);
 }
 
 // Resets the mappable to a default value

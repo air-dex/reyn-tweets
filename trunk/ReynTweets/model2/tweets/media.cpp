@@ -85,12 +85,12 @@ void Media2::recopie(const Media2 & media) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Media2 & media) {
-	return jsonObjectStreamingOut(out, media);
+	return media.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Media2 & media) {
-	return jsonObjectStreamingIn(in, media);
+	return media.fillWithStream(in);
 }
 
 // Resets the mappable to a default value

@@ -77,12 +77,12 @@ void UserMention2::recopie(const UserMention2 & mention) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMention2 & mention) {
-	return jsonObjectStreamingOut(out, mention);
+	return mention.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMention2 & mention) {
-	return jsonObjectStreamingIn(in, mention);
+	return mention.fillWithStream(in);
 }
 
 // Resets the mappable to a default value

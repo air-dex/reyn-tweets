@@ -52,10 +52,10 @@ void URLEntityList2::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntityList2 & list) {
-	return jsonArrayStreamingOut<URLEntity2>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntityList2 & list) {
-	return jsonArrayStreamingIn<URLEntity2>(in, list);
+	return list.fillWithStream(in);
 }

@@ -24,6 +24,8 @@
 #include <QtQml>
 #include "timelinecontrol.hpp"
 
+// TODO : rmplacer le plus de tlhandler.getHandledListRef() par des this->timeline
+
 TimelineControl::TimelineControl() :
 	GenericControl(),
 	tlhandler(),
@@ -196,6 +198,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
+	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
 	Timeline newTweets;
 
@@ -358,6 +361,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 
+	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
 	Timeline newTweets;
 	Tweet lastTweet;

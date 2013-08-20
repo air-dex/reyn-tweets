@@ -29,8 +29,7 @@
 // Constructor
 GenericProcess::GenericProcess() :
 	QObject(),
-	processUuid(QUuid::createUuid()),
-	processResult()
+	processUuid(QUuid::createUuid())
 {}
 
 // Getting the UUID of the process

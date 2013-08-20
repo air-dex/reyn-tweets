@@ -132,11 +132,6 @@ class Tweet : public JsonObject
 	///////////////////////////
 
 	protected:
-		/// @fn void blacklistProperties();
-		/// @brief Blacklisting the "author" and "retweet" properties (used only
-		/// for and by QML views) and "retweet_infos" too (complex type).
-		void blacklistProperties();
-
 		// contributors
 		/// @property contributors
 		/// @brief Tweet Entities

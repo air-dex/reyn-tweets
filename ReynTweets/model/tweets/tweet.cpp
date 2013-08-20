@@ -65,9 +65,7 @@ Tweet::Tweet() :
 	language("en"),
 	tweetPlace(),
 	tweetScopes()
-{
-	blacklistProperties();
-}
+{}
 
 // Destructor
 Tweet::~Tweet() {
@@ -304,13 +302,6 @@ QJsonObject Tweet::toJSON() const {
 ///////////////////////////
 // Properties management //
 ///////////////////////////
-
-// Blacklisting the "author" and "retweet"
-void Tweet::blacklistProperties() {
-	transientProperties.append(QString(QLatin1String("author")));
-	transientProperties.append(QString(QLatin1String("retweet")));
-	transientProperties.append(QString(QLatin1String("retweet_infos")));
-}
 
 // contributors
 QString Tweet::CONTRIBUTORS_PN = "contributors";

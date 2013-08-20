@@ -33,10 +33,9 @@
 // Default constructor
 UserConfiguration::UserConfiguration() :
 	JsonObject(),
-	userAccount()
-{
-	blacklistProperties();
-}
+	userAccount(),
+	errorLoading("")
+{}
 
 // Destructor
 UserConfiguration::~UserConfiguration() {}
@@ -44,7 +43,8 @@ UserConfiguration::~UserConfiguration() {}
 // Copy constructor
 UserConfiguration::UserConfiguration(const UserConfiguration & configuration) :
 	JsonObject(),
-	userAccount()
+	userAccount(),
+	errorLoading("")
 {
 	recopie(configuration);
 }
@@ -77,6 +77,11 @@ void UserConfiguration::declareQML() {
 // Resets the mappable to a default value
 void UserConfiguration::reset() {
 	*this = UserConfiguration();
+}
+
+// Getter on the error message after loading the settings
+QString UserConfiguration::getErrorLoading() {
+	return errorLoading;
 }
 
 
@@ -121,11 +126,6 @@ QJsonObject UserConfiguration::toJSON() const {
 ///////////////////////////
 // Properties management //
 ///////////////////////////
-
-// Blacklisting the "current_account"
-void UserConfiguration::blacklistProperties() {
-	transientProperties.append(QString(QLatin1String("current_account")));
-}
 
 // user_account
 QString UserConfiguration::USER_ACCOUNT_PN = "user_account";
@@ -197,20 +197,36 @@ CoreResult UserConfiguration::load() {
 	}
 
 	// Launching the configuration
-	QDataStream readStream(&confFile);
-	QVariant confVariant;
+	bool parseOK = false;
+	JSONParser parser;
+	QJsonValue jsonSettings = parser.parse(confFile.readAll(),
+										   parseOK,
+										   errorLoading);
 
-	readStream >> confVariant;
 	confFile.close();
 
-	if (!confVariant.canConvert<UserConfiguration>()) {
-		// The content of the file cannot be converted into a configuration.
-		return LOADING_CONFIGURATION_ERROR;
+	if (!jsonSettings.isObject()) {
+		// Parse error : JSON Object expected
+		static QString wrongJSONType = UserConfiguration::trUtf8("Parse error : JSON object expected.");
+		errorLoading.append(' ').append(wrongJSONType);
+		parseOK = false;
 	}
 
-	*this = confVariant.value<UserConfiguration>();
+	if (!parseOK) {
+		return PARSE_ERROR;
+	}
 
-	return LOAD_CONFIGURATION_SUCCESSFUL;
+
+	// Filling the settings
+
+	QJsonObject jsonConf = jsonSettings.toObject();
+	QString oldErr = errorLoading;
+
+	this->fillWithJSON(jsonConf);
+
+	bool fillOK = oldErr == errorLoading;	// More errors if it fails.
+
+	return fillOK ? LOAD_CONFIGURATION_SUCCESSFUL : EXPECTED_KEY;
 }
 
 // Saving the configuration

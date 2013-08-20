@@ -144,7 +144,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QByteArray consumer_key
 				   READ getConsumerKey)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property consumer_key.
 		static QString CONSUMER_KEY_PN;
 
 		/// @brief Twitter OAuth consumer key.
@@ -157,7 +157,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QByteArray consumer_secret
 				   READ getConsumerSecret)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property consumer_secret.
 		static QString CONSUMER_SECRET_PN;
 
 		/// @brief Twitter OAuth consumer secret.
@@ -170,7 +170,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QString callback_url
 				   READ getCallbackURL)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property callback_url.
 		static QString CALLBACK_URL_PN;
 
 		/// @brief Twitter callback URL
@@ -188,7 +188,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QString twitlonger_application_name
 				   READ getTwitLongerAppName)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property twitlonger_application_name.
 		static QString TWITLONGER_APP_NAME_PN;
 
 		/// @brief Name of Reyn Tweets in the TwitLonger API
@@ -201,7 +201,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QByteArray twitlonger_api_key
 				   READ getTwitLongerAPIKey)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property twitlonger_api_key.
 		static QString TWITLONGER_API_KEY_PN;
 
 		/// @brief TwitLonger API key.
@@ -219,7 +219,7 @@ class AppConfiguration : public JsonObject {
 		Q_PROPERTY(QByteArray pocket_api_key
 				   READ getPocketAPIKey)
 
-		/// @brief Name of the property .
+		/// @brief Name of the property pocket_api_key.
 		static QString POCKET_API_KEY_PN;
 
 		/// @brief Pocket API key.

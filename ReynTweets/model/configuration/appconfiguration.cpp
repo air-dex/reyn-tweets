@@ -151,7 +151,7 @@ void AppConfiguration::fillWithJSON(QJsonObject json) {
 		missingSettings.append(CALLBACK_URL_PN);
 	}
 
-	// twitLonger_app_name
+	// twitlonger_application_name
 	confValue = json.value(TWITLONGER_APP_NAME_PN);
 
 	if (!confValue.isUndefined() && confValue.isString()) {
@@ -166,12 +166,12 @@ void AppConfiguration::fillWithJSON(QJsonObject json) {
 	confValue = json.value(TWITLONGER_API_KEY_PN);
 
 	if (!confValue.isUndefined() && confValue.isString()) {
-		// Wrong value : error
-		missingSettings.append(TWITLONGER_API_KEY_PN);
-	} else {
 		// Right value : fill the setting
 		base64Buffer = confValue.toString().toLatin1();
 		this->twitlongerAPIKey = QByteArray::fromBase64(base64Buffer);
+	} else {
+		// Wrong value : error
+		missingSettings.append(TWITLONGER_API_KEY_PN);
 	}
 
 	// pocket_api_key
@@ -226,8 +226,8 @@ QString AppConfiguration::getCallbackURL() {
 	return callbackURL;
 }
 
-// twitLonger_app_name
-QString AppConfiguration::TWITLONGER_APP_NAME_PN = "twitLonger_app_name";
+// twitlonger_application_name
+QString AppConfiguration::TWITLONGER_APP_NAME_PN = "twitlonger_application_name";
 
 QString AppConfiguration::getTwitLongerAppName() {
 	return twitlongerAppName;

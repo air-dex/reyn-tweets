@@ -70,10 +70,7 @@ void GenericRequester::buildGETParameters() {}
 void GenericRequester::buildPOSTParameters() {}
 
 // Bbuilding HTTP Headers
-void GenericRequester::buildHTTPHeaders() {
-	// Be careful for update with medias
-	//headers.insert("Content-Type", "application/x-www-form-urlencoded");
-}
+void GenericRequester::buildHTTPHeaders() {}
 
 // Executing the request
 void GenericRequester::executeRequest() {

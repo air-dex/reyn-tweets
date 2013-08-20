@@ -151,7 +151,8 @@ SOURCES += \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	main.cpp \
-	logic/coreresult.cpp
+	logic/coreresult.cpp \
+    model/declaremodel.cpp
 
 
 HEADERS  += \
@@ -276,7 +277,8 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+    model/declaremodel.hpp
 
 
 OTHER_FILES = \

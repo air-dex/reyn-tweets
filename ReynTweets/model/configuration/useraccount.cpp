@@ -36,9 +36,7 @@ UserAccount::UserAccount() :
 	tokenSecret(""),
 	user(),
 	helloMessage("")
-{
-	blacklistProperties();
-}
+{}
 
 // Destructor
 UserAccount::~UserAccount() {}
@@ -131,11 +129,6 @@ QJsonObject UserAccount::toJSON() const {
 ///////////////////////////
 // Properties management //
 ///////////////////////////
-
-// Blacklisting the "current_user"
-void UserAccount::blacklistProperties() {
-	transientProperties.append(QString(QLatin1String("current_user")));
-}
 
 // access_token
 QString UserAccount::ACCESS_TOKEN_PN = "access_token";

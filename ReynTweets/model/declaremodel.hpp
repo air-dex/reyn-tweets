@@ -1,5 +1,6 @@
-/// @file mappable.cpp
-/// @brief Implementation of Mappable
+/// @file declaremodel.hpp
+/// @brief Header of functions to init model objects for QVariant and
+/// to declare them to the QML system.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,35 +22,15 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "mappable.hpp"
-#include "../tools/utils.hpp"
-/*
-/////////////
-// Coplien //
-/////////////
+#ifndef DECLAREMODEL_HPP
+#define DECLAREMODEL_HPP
 
-// Default constructor
-Mappable::Mappable() :
-	QObject(),
-	Variantable<QVariantMap>()
-{}
+/// @fn void initModelSystem();
+/// @brief Inits all the model objects for QVariant
+void initModelSystem();
 
-// Destructor
-Mappable::~Mappable() {}
+/// @fn void declareQMLModel();
+/// @brief Declares all the model objects to the QML system
+void declareQMLModel();
 
-// Copy constructor
-Mappable::Mappable(const Mappable & mappable) :
-	QObject(),
-	Variantable<QVariantMap>()
-{}
-
-// Affecting a Mappable
-const Mappable & Mappable::operator=(const Mappable & mappable) {
-	return *this;
-}
-
-// Affecting a QVariantMap
-const Mappable & Mappable::operator=(const QVariantMap & mappable) {
-	this->fillWithVariant(mappable);
-	return *this;
-}//*/
+#endif // DECLAREMODEL_HPP

@@ -23,6 +23,7 @@
 
 #include <QFile>
 #include <QtQml>
+#include <QTextStream>
 #include "userconfiguration.hpp"
 #include "../../tools/utils.hpp"
 
@@ -245,7 +246,7 @@ CoreResult UserConfiguration::save() {
 
 
 	// Saving the configuration
-	QDataStream readStream(&confFile);
+	QTextStream readStream(&confFile);
 	QByteArray json = QJsonDocument(this->toJSON()).toJson();
 	readStream << json;
 	confFile.close();

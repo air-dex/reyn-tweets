@@ -24,7 +24,7 @@
 #include "networkresult.hpp"
 
 // Constructor
-NetworkResponse::NetworkResponse(int httpCode,
+NetworkResponse::NetworkResponse(LibRT::HTTPCode httpCode,
 								 QString httpReason,
 								 QByteArray response,
 								 QString error,

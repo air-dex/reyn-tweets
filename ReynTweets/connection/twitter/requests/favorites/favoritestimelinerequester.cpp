@@ -31,7 +31,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & au
 													   qlonglong earliestTweetID,
 													   bool withEntities,
 													   int nbTweets) :
-	TwitterRequester(LibRT::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
+	TwitterRequester(LibRT::GET, Twitter::FAVORITE_TIMELINE_URL, authManager),
 	idWay(LibRT::ID),
 	userID(uid),
 	screenName(""),
@@ -48,9 +48,9 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & au
 													   qlonglong earliestTweetID,
 													   bool withEntities,
 													   int nbTweets) :
-	TwitterRequester(LibRT::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
+	TwitterRequester(LibRT::GET, Twitter::FAVORITE_TIMELINE_URL, authManager),
 	idWay(LibRT::SCREEN_NAME),
-	userID(-1),
+	userID(Twitter::FAKE_USER_ID),
 	screenName(userName),
 	count(nbTweets),
 	sinceID(oldestTweetID),
@@ -71,17 +71,17 @@ void FavoritesTimelineRequester::buildGETParameters() {
 			break;
 	}
 
-	if (count != 20) {
+	if (count != Twitter::DEFAULT_TWEETS_COUNT) {
 		getParameters.insert("count", QString::number(count));
 	}
 
 
-	if (sinceID != -1) {
+	if (sinceID != Twitter::FAKE_TWEET_ID) {
 		getParameters.insert("since_id", QString::number(sinceID));
 	}
 
 
-	if (maxID != -1) {
+	if (maxID != Twitter::FAKE_TWEET_ID) {
 		getParameters.insert("max_id", QString::number(maxID));
 	}
 

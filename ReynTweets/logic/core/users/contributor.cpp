@@ -23,12 +23,13 @@
 
 #include "contributor.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 Contributor::Contributor() :
 	JsonObject(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName("")
 {}
 
@@ -38,8 +39,8 @@ Contributor::~Contributor() {}
 // Copy constructor
 Contributor::Contributor(const Contributor & contributor) :
 	JsonObject(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName("")
 {
 	recopie(contributor);
@@ -94,8 +95,8 @@ void Contributor::reset() {
 
 // Filling the object with a QJsonObject.
 void Contributor::fillWithVariant(QJsonObject json) {
-	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->userID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_USER_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_USER_ID_STR);
 	this->screenName = json.value(SCREEN_NAME_PN).toString("");
 }
 

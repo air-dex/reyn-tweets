@@ -23,6 +23,7 @@
 
 #include <QtQml>
 #include "timelinecontrol.hpp"
+#include "../reyntweetsutils.hpp"
 
 // Constructor
 TimelineControl::TimelineControl() :
@@ -68,12 +69,16 @@ void TimelineControl::loadTimeline() {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
-			reyn.loadHomeTimeline(-1, -1, 50);
+			reyn.loadHomeTimeline(ReynTweets::FAKE_TWEET_ID,
+								  ReynTweets::FAKE_TWEET_ID,
+								  50);
 			break;
 
 		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading mentions..."));
-			reyn.loadMentionsTimeline(-1, -1, 50);
+			reyn.loadMentionsTimeline(ReynTweets::FAKE_TWEET_ID,
+									  ReynTweets::FAKE_TWEET_ID,
+									  50);
 			break;
 
 		default:
@@ -400,12 +405,12 @@ void TimelineControl::moreOldTimeline() {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
-			reyn.loadHomeTimeline(-1, maxTweetID, 50);
+			reyn.loadHomeTimeline(ReynTweets::FAKE_TWEET_ID, maxTweetID, 50);
 			break;
 
 		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading more mentions..."));
-			reyn.loadMentionsTimeline(-1, maxTweetID, 50);
+			reyn.loadMentionsTimeline(ReynTweets::FAKE_TWEET_ID, maxTweetID, 50);
 			break;
 
 		default:

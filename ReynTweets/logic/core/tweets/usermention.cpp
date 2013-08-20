@@ -25,6 +25,7 @@
 #include <QtQml>
 #include <QWebElement>
 #include "../../../connection/common/utils/parsers/htmlparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -33,8 +34,8 @@
 // Constructor
 UserMention::UserMention() :
 	TweetEntity(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName(""),
 	userName("")
 {}
@@ -45,8 +46,8 @@ UserMention::~UserMention() {}
 // Copy constructor
 UserMention::UserMention(const UserMention & mention) :
 	TweetEntity(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName(""),
 	userName("")
 {
@@ -112,8 +113,8 @@ bool UserMention::operator==(const UserMention mention) const {
 // Filling the object with a QJsonObject.
 void UserMention::fillWithVariant(QJsonObject json) {
 	TweetEntity::fillWithVariant(json);		// Base class
-	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->userID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_USER_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_USER_ID_STR);
 	this->screenName = json.value(SCREEN_NAME_PN).toString("");
 	this->userName = json.value(NAME_PN).toString("");
 }

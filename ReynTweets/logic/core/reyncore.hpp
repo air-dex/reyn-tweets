@@ -35,6 +35,7 @@
 #include "../processes/genericprocess.hpp"
 #include "../processes/processmanager.hpp"
 #include "../processes/processwrapper.hpp"
+#include "../reyntweetsutils.hpp"
 
 /// @class ReynCore
 /// @brief Heart of Reyn Tweets.
@@ -156,9 +157,9 @@ class ReynCore : public QObject
 		// Timelines //
 		///////////////
 
-		/// @fn void loadHomeTimeline(qlonglong sinceID = -1,
-		///							  qlonglong maxID = -1,
-		///							  int count = 20,
+		/// @fn void loadHomeTimeline(qlonglong sinceID = ReynTweets::FAKE_TWEET_ID,
+		///							  qlonglong maxID = ReynTweets::FAKE_TWEET_ID,
+		///							  int count = ReynTweets::DEFAULT_TWEETS_COUNT,
 		///							  bool trimUser = false,
 		///							  bool includeEntities = true,
 		///							  bool excludeReplies = false,
@@ -172,9 +173,9 @@ class ReynCore : public QObject
 		/// @param excludeReplies Excluding the replies
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
-		void loadHomeTimeline(qlonglong sinceID = -1,
-							  qlonglong maxID = -1,
-							  int count = 20,
+		void loadHomeTimeline(qlonglong sinceID = ReynTweets::FAKE_TWEET_ID,
+							  qlonglong maxID = ReynTweets::FAKE_TWEET_ID,
+							  int count = ReynTweets::DEFAULT_TWEETS_COUNT,
 							  bool trimUser = false,
 							  bool includeEntities = true,
 							  bool excludeReplies = false,
@@ -198,9 +199,9 @@ class ReynCore : public QObject
 								 bool excludeReplies = false,
 								 bool contributorsDetails = false);
 
-		/// @fn void loadMentionsTimeline(qlonglong sinceID = -1,
-		///								  qlonglong maxID = -1,
-		///								  int count = 20,
+		/// @fn void loadMentionsTimeline(qlonglong sinceID = ReynTweets::FAKE_TWEET_ID,
+		///								  qlonglong maxID = ReynTweets::FAKE_TWEET_ID,
+		///								  int count = ReynTweets::DEFAULT_TWEETS_COUNT,
 		///								  bool trimUser = false,
 		///								  bool includeEntities = true,
 		///								  bool contributorsDetails = false);
@@ -212,9 +213,9 @@ class ReynCore : public QObject
 		/// @param includeEntities Including Tweet Entities in the tweets (true).
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions
-		void loadMentionsTimeline(qlonglong sinceID = -1,
-								  qlonglong maxID = -1,
-								  int count = 20,
+		void loadMentionsTimeline(qlonglong sinceID = ReynTweets::FAKE_TWEET_ID,
+								  qlonglong maxID = ReynTweets::FAKE_TWEET_ID,
+								  int count = ReynTweets::DEFAULT_TWEETS_COUNT,
 								  bool trimUser = false,
 								  bool includeEntities = true,
 								  bool contributorsDetails = false);

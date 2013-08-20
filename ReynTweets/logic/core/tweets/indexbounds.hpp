@@ -147,10 +147,6 @@ class IndexBounds : public JsonArray<int>
 		/// @brief Setter on max
 		/// @param newMax New value for max
 		void setMax(int newMax);
-
-	private:
-		/// @brief Bound supposed to be higher than every max
-		static int FAKE_BOUND;
 };
 
 // Serialization of IndexBounds

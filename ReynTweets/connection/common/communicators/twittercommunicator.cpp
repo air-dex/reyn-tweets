@@ -169,7 +169,11 @@ void TwitterCommunicator::timeout() {
 	disconnect(&LibRT::REYN_TWEETS_NETWORK_MANAGER, &QNetworkAccessManager::finished,
 			   this, &TwitterCommunicator::endRequest);
 
-	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);
+	NetworkResponse response(LibRT::TIMEOUT_HTTP_CODE,
+							 "timeout",
+							 "",
+							 "timeout",
+							 serviceURL);
 
 	// Ending the request
 	emit requestDone(response);

@@ -81,13 +81,13 @@ class Timeline : public JsonObjectArray<Tweet>
 		/// @fn qlonglong getFirstID();
 		/// @brief Getting the ID of the first tweet of the timeline.
 		/// @return ID of the first tweet of the timeline if it's not empty,
-		/// -1 otherwise.
+		/// ReynTweets::FAKE_TWEET_ID otherwise.
 		qlonglong getFirstID();
 
 		/// @fn qlonglong getLastID();
 		/// @brief Getting the ID of the last tweet of the timeline.
 		/// @return ID of the last tweet of the timeline if it's not empty,
-		/// -1 otherwise.
+		/// ReynTweets::FAKE_TWEET_ID otherwise.
 		qlonglong getLastID();
 
 

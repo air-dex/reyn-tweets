@@ -24,6 +24,7 @@
 #include "deletetweetprocess.hpp"
 #include "processutils.hpp"
 #include "../core/timelines/timeline.hpp"
+#include "../reyntweetsutils.hpp"
 
 // Constructor
 DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,
@@ -76,7 +77,7 @@ void DeleteTweetProcess::canDeleteTweet() {
 		// Looking at the "current_user_retweet" property
 		RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
 
-		if (rtInfos->getIDstr() == "-1") {
+		if (rtInfos->getIDstr() == ReynTweets::FAKE_TWEET_ID_STR) {
 			// The retweet ID is not in the tweet. Ask it to Twitter !
 
 			// The ID is in the details of tweetToDelete.
@@ -126,7 +127,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 			// Looking at the "current_user_retweet" property
 			RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
-			bool idFound = rtInfos->getIDstr() != "-1";
+			bool idFound = rtInfos->getIDstr() != ReynTweets::FAKE_TWEET_ID_STR;
 
 			QString addInfos = "";
 			if (idFound) {

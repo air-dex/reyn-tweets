@@ -26,9 +26,9 @@
 
 #include <QString>
 
-/// @namespace TwitLongerURL
+/// @namespace TwitLonger
 /// @brief Namespace containing all the TwitLonger API URLs.
-namespace TwitLongerURL
+namespace TwitLonger
 {
 	/// @brief URL for posting the long messages to TwitLonger
 	extern QString POST_LONG_TWEET_URL;

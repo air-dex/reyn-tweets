@@ -26,6 +26,7 @@
 #include <QWebElement>
 #include <QVariant>
 #include "../../../connection/common/utils/parsers/htmlparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -35,8 +36,8 @@
 Tweet::Tweet() :
 	JsonObject(),
 	tweetContributors(),
-	tweetID(-1),
-	tweetIDstr("-1"),
+	tweetID(ReynTweets::FAKE_TWEET_ID),
+	tweetIDstr(ReynTweets::FAKE_TWEET_ID_STR),
 	tweetEntities(),
 	tweet(""),
 	sensibleTweet(false),
@@ -47,10 +48,10 @@ Tweet::Tweet() :
 	favoritedTweet(false),
 	favoriteCount(0),
 	replyToScreenName(""),
-	replyToUserID(-1),
-	replyToUserIDstr("-1"),
-	replyToTweetID(-1),
-	replyToTweetIDstr("-1"),
+	replyToUserID(ReynTweets::FAKE_USER_ID),
+	replyToUserIDstr(ReynTweets::FAKE_USER_ID_STR),
+	replyToTweetID(ReynTweets::FAKE_TWEET_ID),
+	replyToTweetIDstr(ReynTweets::FAKE_TWEET_ID_STR),
 	author(),
 	createdAt(),
 	sourceClient(""),
@@ -78,8 +79,8 @@ Tweet::~Tweet() {
 Tweet::Tweet(const Tweet & status) :
 	JsonObject(),
 	tweetContributors(),
-	tweetID(-1),
-	tweetIDstr("-1"),
+	tweetID(ReynTweets::FAKE_TWEET_ID),
+	tweetIDstr(ReynTweets::FAKE_TWEET_ID_STR),
 	tweetEntities(),
 	tweet(""),
 	sensibleTweet(false),
@@ -90,10 +91,10 @@ Tweet::Tweet(const Tweet & status) :
 	favoritedTweet(false),
 	favoriteCount(0),
 	replyToScreenName(""),
-	replyToUserID(-1),
-	replyToUserIDstr("-1"),
-	replyToTweetID(-1),
-	replyToTweetIDstr("-1"),
+	replyToUserID(ReynTweets::FAKE_USER_ID),
+	replyToUserIDstr(ReynTweets::FAKE_USER_ID_STR),
+	replyToTweetID(ReynTweets::FAKE_TWEET_ID),
+	replyToTweetIDstr(ReynTweets::FAKE_TWEET_ID_STR),
 	author(),
 	createdAt(),
 	sourceClient(""),
@@ -224,13 +225,13 @@ void Tweet::fillWithVariant(QJsonObject json) {
 	this->favoriteCount = int(json.value(FAVORITE_COUNT_PN).toDouble(0));
 	this->favoritedTweet = json.value(FAVORITED_PN).toBool(false);
 	this->filterLevel = json.value(FILTER_LEVEL_PN).toString("");
-	this->tweetID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->tweetIDstr = json.value(ID_STR_PN).toString("-1");
+	this->tweetID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->tweetIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
 	this->replyToScreenName = json.value(IN_REPLY_TO_SCREEN_NAME_PN).toString("");
-	this->replyToTweetID = qlonglong(json.value(IN_REPLY_TO_STATUS_ID_PN).toDouble(-1));
-	this->replyToTweetIDstr = json.value(IN_REPLY_TO_STATUS_ID_STR_PN).toString("-1");
-	this->replyToUserID = qlonglong(json.value(IN_REPLY_TO_USER_ID_PN).toDouble(-1));
-	this->replyToUserIDstr = json.value(IN_REPLY_TO_USER_ID_STR_PN).toString("-1");
+	this->replyToTweetID = qlonglong(json.value(IN_REPLY_TO_STATUS_ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));
+	this->replyToTweetIDstr = json.value(IN_REPLY_TO_STATUS_ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
+	this->replyToUserID = qlonglong(json.value(IN_REPLY_TO_USER_ID_PN).toDouble(ReynTweets::FAKE_USER_ID));
+	this->replyToUserIDstr = json.value(IN_REPLY_TO_USER_ID_STR_PN).toString(ReynTweets::FAKE_USER_ID_STR);
 	this->language = json.value(LANG_PN).toString("en");
 	this->tweetPlace.fillWithVariant(json.value(PLACE_PN).toObject());
 	this->sensibleTweet = json.value(POSSIBLY_SENSITIVE_PN).toBool(false);
@@ -840,7 +841,13 @@ bool Tweet::isRetweet() const {
 
 // Indicating if the tweet replies to another one or not
 bool Tweet::isReply() {
-	return replyToTweetID != -1;
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	// return replyToTweetID != ReynTweets::FAKE_TWEET_ID;
+
+	bool convok;
+	qlonglong rttid = replyToTweetIDstr.toLongLong(&convok);
+
+	return convok && rttid != ReynTweets::FAKE_TWEET_ID;
 }
 
 // Indicating if the tweet was retweeted by other users.

@@ -1,10 +1,10 @@
-/// @file twitlongerurls.cpp
-/// @brief Implementation of the TwitLongerURLs namespace.
+/// @file twitlongerconstants.cpp
+/// @brief Implementation for Reyn Tweets constants related to TwitLonger.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,15 +21,14 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "twitlongerurls.hpp"
+#ifndef TWITLONGERCONSTANTS_HPP
+#define TWITLONGERCONSTANTS_HPP
 
-// NB : QString::fromUtf8(); is used to avoid problem with character conversion.
+#include <QtGlobal>
 
-// Posting the long messages to TwitLonger
-QString TwitLonger::POST_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_post");
+namespace TwitLonger {
+	/// @brief Constant for a fake Tweet ID
+	extern const qlonglong FAKE_TWEET_ID;
+}
 
-// Updating informations about the long message
-QString TwitLonger::UPDATE_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_set_id");
-
-// Reading the long message
-QString TwitLonger::READ_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_read/message_id");
+#endif // TWITLONGERCONSTANTS_HPP

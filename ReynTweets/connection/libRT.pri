@@ -30,6 +30,7 @@
 #-------------------------------------------------#
 
 SOURCES += \
+	connection/common/utils/librtconstants.cpp \
 	connection/common/utils/connectionutils.cpp \
 	connection/common/utils/parsers/htmlparser.cpp \
 	connection/common/utils/parsers/jsonparser.cpp \
@@ -49,6 +50,8 @@ SOURCES += \
 
 
 HEADERS  += \
+	connection/common/utils/httpcode.hpp \
+	connection/common/utils/librtconstants.hpp \
 	connection/common/utils/connectionutils.hpp \
 	connection/common/utils/parsers/genericparser.hpp \
 	connection/common/utils/parsers/htmlparser.hpp \

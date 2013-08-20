@@ -24,12 +24,13 @@
 #include "retweetinfos.hpp"
 
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Default constructor
 RetweetInfos::RetweetInfos() :
 	JsonObject(),
-	retweetID(-1),
-	retweetIDstr("-1")
+	retweetID(ReynTweets::FAKE_TWEET_ID),
+	retweetIDstr(ReynTweets::FAKE_TWEET_ID_STR)
 {}
 
 // Destructor
@@ -38,8 +39,8 @@ RetweetInfos::~RetweetInfos() {}
 // Copy constructor
 RetweetInfos::RetweetInfos(const RetweetInfos & infos) :
 	JsonObject(),
-	retweetID(-1),
-	retweetIDstr("-1")
+	retweetID(ReynTweets::FAKE_TWEET_ID),
+	retweetIDstr(ReynTweets::FAKE_TWEET_ID_STR)
 {
 	recopie(infos);
 }
@@ -104,8 +105,8 @@ QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
 
 // Filling the object with a QJsonObject.
 void RetweetInfos::fillWithVariant(QJsonObject json) {
-	this->retweetID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->retweetIDstr = json.value(ID_STR_PN).toString("-1");
+	this->retweetID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->retweetIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
 }
 
 // Getting a QJsonObject representation of the object

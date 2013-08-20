@@ -1,10 +1,10 @@
-/// @file twitlongerurls.cpp
-/// @brief Implementation of the TwitLongerURLs namespace.
+/// @file twitterconstants.cpp
+/// @brief Implementation for Reyn Tweets constants related to Twitter.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,15 +21,18 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "twitlongerurls.hpp"
+#include "twitterconstants.hpp"
 
-// NB : QString::fromUtf8(); is used to avoid problem with character conversion.
+#include "../common/utils/librtconstants.hpp"
 
-// Posting the long messages to TwitLonger
-QString TwitLonger::POST_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_post");
+// Fake tweet ID
+const qlonglong Twitter::FAKE_TWEET_ID = LibRT::FAKE_ID;
 
-// Updating informations about the long message
-QString TwitLonger::UPDATE_LONG_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_set_id");
+// Fake user ID
+const qlonglong Twitter::FAKE_USER_ID = LibRT::FAKE_ID;
 
-// Reading the long message
-QString TwitLonger::READ_TWEET_URL = QString::fromUtf8("http://www.twitlonger.com/api_read/message_id");
+// Default number of tweets retrieved per call (20).
+const int Twitter::DEFAULT_TWEETS_COUNT = 20;
+
+// Maximum number of tweets that can be retrieved per call (200).
+const int Twitter::MAX_TWEETS_COUNT = 200;

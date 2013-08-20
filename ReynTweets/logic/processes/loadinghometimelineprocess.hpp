@@ -25,6 +25,7 @@
 #define LOADINGHOMETIMELINEPROCESS_HPP
 
 #include "singletwittercallprocess.hpp"
+#include "../reyntweetsutils.hpp"
 
 /// @class LoadingHomeTimelineProcess
 /// @brief Process to load the Home timeline
@@ -33,12 +34,12 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 	Q_OBJECT
 
 	public:
-		/// @fn LoadingHomeTimelineProcess(qlonglong oldestTweetID = -1,
-		///								   qlonglong youngestTweetID = -1,
+		/// @fn LoadingHomeTimelineProcess(qlonglong oldestTweetID = ReynTweets::FAKE_TWEET_ID,
+		///								   qlonglong youngestTweetID = ReynTweets::FAKE_TWEET_ID,
 		///								   bool userIDonly = false,
 		///								   bool withEntities = false,
 		///								   bool withoutReplies = false,
-		///								   int nbTweets = 20,
+		///								   int nbTweets = ReynTweets::DEFAULT_TWEETS_COUNT,
 		///								   bool withContributorsDetails = false);
 		/// @brief Constructor
 		/// @param oldestTweetID Value of sinceID
@@ -48,18 +49,18 @@ class LoadingHomeTimelineProcess : public SingleTwitterCallProcess
 		/// @param withoutReplies Value of excludeReplies
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
-		LoadingHomeTimelineProcess(qlonglong oldestTweetID = -1,
-								   qlonglong youngestTweetID = -1,
+		LoadingHomeTimelineProcess(qlonglong oldestTweetID = ReynTweets::FAKE_TWEET_ID,
+								   qlonglong youngestTweetID = ReynTweets::FAKE_TWEET_ID,
 								   bool userIDonly = false,
 								   bool withEntities = false,
 								   bool withoutReplies = false,
-								   int nbTweets = 20,
+								   int nbTweets = ReynTweets::DEFAULT_TWEETS_COUNT,
 								   bool withContributorsDetails = false);
 
 
 	protected:
-		/// @brief Number of tweets in the timeline.
-		/// <strong>count &lt; 200</strong>
+		/// @brief Number of tweets in the timeline. <strong>0 &lt; count &lt;
+		/// Twitter::MAX_TWEETS_COUNT</strong>
 		int count;
 
 		/// @brief Minimum tweet ID allowed in the timeline

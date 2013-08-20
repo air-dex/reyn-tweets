@@ -175,8 +175,6 @@ void ReynTwitterCalls::search(QString q) {
 // Timelines //
 ///////////////
 
-int ReynTwitterCalls::MAX_TWEETS_COUNT = 200;
-
 // Retrieving the timeline with the tweets of the user's friends
 void ReynTwitterCalls::retrieveHomeTimeline(qlonglong sinceID,
 											qlonglong maxID,

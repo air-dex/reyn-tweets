@@ -26,6 +26,7 @@
 
 #include "../common/calls/genericcalls.hpp"
 #include "twitlongerauthenticator.hpp"
+#include "twitlongerconstants.hpp"
 
 /// @class TwitLongerCalls
 /// @brief Class managing calls to the TwitLonger API.
@@ -59,7 +60,7 @@ class TwitLongerCalls : public GenericCalls
 	public:
 		/// @fn void postOnTwitLonger(QString username,
 		///							  QString message,
-		///							  qlonglong replyToTweetID = -1,
+		///							  qlonglong replyToTweetID = TwitLonger::FAKE_TWEET_ID,
 		///							  QString replyToUser = "");
 		/// @brief Posting the long message on TwitLonger
 		/// @param username Name of the user that wants to shorten the tweet
@@ -70,7 +71,7 @@ class TwitLongerCalls : public GenericCalls
 		/// parameter will be the twittos that the tweet replies to.
 		void postOnTwitLonger(QString username,
 							  QString message,
-							  qlonglong replyToTweetID = -1,
+							  qlonglong replyToTweetID = TwitLonger::FAKE_TWEET_ID,
 							  QString replyToUser = "");
 
 		/// @fn void updateLongTweet(QString messageID, qlonglong tweetID);

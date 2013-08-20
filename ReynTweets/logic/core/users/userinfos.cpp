@@ -32,8 +32,8 @@
 // Default constructor
 UserInfos::UserInfos() :
 	JsonObject(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName(""),
 	userName(""),
 	userDescription(""),
@@ -81,8 +81,8 @@ UserInfos::~UserInfos() {}
 // Copy constructor
 UserInfos::UserInfos(const UserInfos & user) :
 	JsonObject(),
-	userID(-1),
-	userIDstr("-1"),
+	userID(ReynTweets::FAKE_USER_ID),
+	userIDstr(ReynTweets::FAKE_USER_ID_STR),
 	screenName(""),
 	userName(""),
 	userDescription(""),
@@ -232,8 +232,8 @@ void UserInfos::fillWithVariant(QJsonObject json) {
 	this->followersCount = int(json.value(FOLLOWERS_COUNT_PN).toDouble(0));
 	this->friendsCount = int(json.value(FRIENDS_COUNT_PN).toDouble(0));
 	this->geotaggingEnabled = json.value(GEO_ENABLED_PN).toBool(false);
-	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->userID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_USER_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_USER_ID_STR);
 	this->twitterTranslator = json.value(IS_TRANSLATOR_PN).toBool(false);
 	this->language = json.value(LANG_PN).toString("en");
 	this->listsCount = int(json.value(LISTED_COUNT_PN).toDouble(0));

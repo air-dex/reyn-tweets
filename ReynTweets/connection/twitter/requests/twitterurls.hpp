@@ -1,5 +1,5 @@
 /// @file twitterurls.hpp
-/// @brief Declaration of the TwitterURL namespace.
+/// @brief Header of the "Twitter" namespace.
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// Revisions from r243 to r426 were in /trunk/ReynTweets/connection/requests
@@ -29,9 +29,9 @@
 
 #include <QString>
 
-/// @namespace TwitterURL
+/// @namespace Twitter
 /// @brief Namespace containing all the Twitter API URLs.
-namespace TwitterURL
+namespace Twitter
 {
 	/////////////
 	// Account //

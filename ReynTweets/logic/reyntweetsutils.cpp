@@ -22,6 +22,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyntweetsutils.hpp"
+#include "../connection/common/utils/librtconstants.hpp"
+#include "../connection/twitter/twitterconstants.hpp"
 
 // Converting a bool into a QString
 QString ReynTweets::boolInString(bool b) {
@@ -38,3 +40,41 @@ QColor ReynTweets::string2color(QString coloredString) {
 
 	return QColor(coloredString);
 }
+
+
+///////////////
+// Constants //
+///////////////
+
+// Constant for a fake Tweet ID
+const qlonglong ReynTweets::FAKE_TWEET_ID = Twitter::FAKE_TWEET_ID;
+
+// Constant for a fake Tweet ID (QString version)
+const QString ReynTweets::FAKE_TWEET_ID_STR = QString::number(Twitter::FAKE_TWEET_ID);
+
+// Constant for a fake Tweet ID
+const qlonglong ReynTweets::FAKE_USER_ID = Twitter::FAKE_USER_ID;
+
+// Constant for a fake Tweet ID (QString version)
+const QString ReynTweets::FAKE_USER_ID_STR = QString::number(Twitter::FAKE_USER_ID);
+
+// Constant for a fake Media ID
+const qlonglong ReynTweets::FAKE_MEDIA_ID = LibRT::FAKE_ID;
+
+// Constant for a fake Media ID (QString version)
+const QString ReynTweets::FAKE_MEDIA_ID_STR = QString::number(LibRT::FAKE_ID);
+
+// Fake longitude
+const int ReynTweets::FAKE_LONGITUDE = LibRT::FAKE_LONGITUDE;
+
+// Fake latitude
+const int ReynTweets::FAKE_LATITUDE = LibRT::FAKE_LATITUDE;
+
+// Fake index in an array
+const int ReynTweets::FAKE_BOUND = -1;
+
+// Default number of tweets retrieved per call (20).
+const int ReynTweets::DEFAULT_TWEETS_COUNT = Twitter::DEFAULT_TWEETS_COUNT;
+
+// Maximum number of tweets that can be retrieved per call (200).
+const int ReynTweets::MAX_TWEETS_COUNT = Twitter::MAX_TWEETS_COUNT;

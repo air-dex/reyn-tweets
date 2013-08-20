@@ -30,7 +30,7 @@
 // Constructor
 AuthorizeRequester::AuthorizeRequester(TwitterAuthenticator &authManager, bool forceLog, QString writeLogin) :
 	OAuthRequester(LibRT::GET,
-				   TwitterURL::AUTHORIZE_URL,
+				   Twitter::AUTHORIZE_URL,
 				   authManager,
 				   LibRT::NO_PARSING),	// Change because of pbms ?
 	forceLogin(forceLog),

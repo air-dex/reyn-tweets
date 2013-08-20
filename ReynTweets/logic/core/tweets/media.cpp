@@ -23,6 +23,7 @@
 
 #include "media.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -31,14 +32,14 @@
 // Constructor
 Media::Media() :
 	URLEntity(),
-	mediaID(-1),
-	mediaIDstr("-1"),
+	mediaID(ReynTweets::FAKE_MEDIA_ID),
+	mediaIDstr(ReynTweets::FAKE_MEDIA_ID_STR),
 	mediaURL(""),
 	mediaURLhttps(""),
 	mediaType(""),
 	mediaSizes(),
-	sourceID(-1),
-	sourceIDstr("-1")
+	sourceID(ReynTweets::FAKE_TWEET_ID),
+	sourceIDstr(ReynTweets::FAKE_TWEET_ID_STR)
 {}
 
 // Destructor
@@ -47,14 +48,14 @@ Media::~Media() {}
 // Copy constructor
 Media::Media(const Media & media) :
 	URLEntity(),
-	mediaID(-1),
-	mediaIDstr("-1"),
+	mediaID(ReynTweets::FAKE_MEDIA_ID),
+	mediaIDstr(ReynTweets::FAKE_MEDIA_ID_STR),
 	mediaURL(""),
 	mediaURLhttps(""),
 	mediaType(""),
 	mediaSizes(),
-	sourceID(-1),
-	sourceIDstr("-1")
+	sourceID(ReynTweets::FAKE_TWEET_ID),
+	sourceIDstr(ReynTweets::FAKE_TWEET_ID_STR)
 {
 	recopie(media);
 }
@@ -122,14 +123,14 @@ bool Media::operator==(const Media media) const {
 // Filling the object with a QJsonObject.
 void Media::fillWithVariant(QJsonObject json) {
 	URLEntity::fillWithVariant(json);	// Base class
-	this->mediaID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->mediaIDstr = json.value(ID_STR_PN).toString("-1");
+	this->mediaID = qlonglong(json.value(ID_PN).toDouble(ReynTweets::FAKE_MEDIA_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->mediaIDstr = json.value(ID_STR_PN).toString(ReynTweets::FAKE_MEDIA_ID_STR);
 	this->mediaURL = json.value(MEDIA_URL_PN).toString("");
 	this->mediaURLhttps = json.value(MEDIA_URL_HTTPS_PN).toString("");
 	this->mediaType = json.value(TYPE_PN).toString("");
 	this->mediaSizes.fillWithVariant(json.value(SIZES_PN).toObject());
-	this->sourceID = qlonglong(json.value(SOURCE_STATUS_ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
-	this->sourceIDstr = json.value(SOURCE_STATUS_ID_STR_PN).toString("-1");
+	this->sourceID = qlonglong(json.value(SOURCE_STATUS_ID_PN).toDouble(ReynTweets::FAKE_TWEET_ID));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->sourceIDstr = json.value(SOURCE_STATUS_ID_STR_PN).toString(ReynTweets::FAKE_TWEET_ID_STR);
 }
 
 // Getting a QJsonObject representation of the object

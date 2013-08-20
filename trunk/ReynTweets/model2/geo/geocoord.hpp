@@ -25,7 +25,7 @@
 #define GEOCOORD_HPP
 
 #include <QPointF>
-#include "../json/jsonarray.hpp"
+#include "../json/jsonarray.tpp"
 
 /// @class GeoCoord
 /// @brief Class representing a point somewhere on the Earth, with its latitude
@@ -116,7 +116,7 @@ class GeoCoord : public JsonArray<qreal>, public QPointF
 		friend QDataStream & operator>>(QDataStream & in, GeoCoord & coord);
 };
 
-// Serialization of Coordinates
+// Serialization of GeoCoord
 Q_DECLARE_METATYPE(GeoCoord)
 
 /// @fn QDataStream & operator<<(QDataStream & out, const GeoCoord & infos);

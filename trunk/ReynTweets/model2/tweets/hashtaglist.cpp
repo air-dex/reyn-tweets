@@ -52,10 +52,10 @@ void HashtagList2::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const HashtagList2 & list) {
-	return jsonStreamingOut<Hashtag2>(out, list);
+	return jsonArrayStreamingOut<Hashtag2>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, HashtagList & list) {
-	return jsonStreamingIn<Hashtag2>(in, list);
+	return jsonArrayStreamingIn<Hashtag2>(in, list);
 }

@@ -74,12 +74,12 @@ void RetweetInfos2::recopie(const RetweetInfos2 & infos) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const RetweetInfos & infos) {
-	return jsonStreamingOut(out, infos);
+	return jsonObjectStreamingOut(out, infos);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
-	return jsonStreamingIn(in, infos);
+	return jsonObjectStreamingIn(in, infos);
 }
 
 

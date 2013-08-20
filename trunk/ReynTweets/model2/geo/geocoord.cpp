@@ -48,6 +48,7 @@ const GeoCoord & GeoCoord::operator=(const GeoCoord & coord) {
 
 // Copy of a Coordinates
 void GeoCoord::recopie(const GeoCoord & coord) {
+	JsonArray<qreal>::recopie(coord);
 	this->setX(coord.x());
 	this->setY(coord.y());
 }
@@ -126,10 +127,38 @@ QJsonArray GeoCoord::toJSON() const {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoCoord & coord) {
-	return jsonStreamingOut<qreal>(out, coord);
+	// TODO : éviter de répeter cela
+	QJsonArray carray = coord.toJSON();
+	QJsonDocument doc(carray);
+	QByteArray b = doc.toJson();
+	out << b;
+	return out;
+
+	//return jsonArrayStreamingOut<qreal>(out, coord);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, GeoCoord & coord) {
-	return jsonStreamingIn<qreal>(in, coord);
+	/*
+	QByteArray b = "";
+	in >> b;
+	QJsonDocument doc = QJsonDocument::fromJson(b);
+	//*/
+
+	//return jsonArrayStreamingIn<qreal>(in, coord);
+
+	// TODO : éviter de répeter cela
+	QByteArray json = "";
+	in >> json;
+
+	JSONParser parser;
+	QString errorMsg = "";
+	bool parseOK;
+	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
+
+	if (parseOK && parsedJson.isArray()) {
+		coord.fillWithJSON(parsedJson.toArray());
+	}
+
+	return in;
 }

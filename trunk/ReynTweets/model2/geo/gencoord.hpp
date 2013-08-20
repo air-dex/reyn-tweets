@@ -132,6 +132,26 @@ class GenCoord : public JsonObject
 		/// @fn void typeChanged();
 		/// @brief Emitted when the id and id_str properties change
 		void typeChanged();
+
+
+	/////////////////////////
+	// Q_OBJECT workaround //
+	/////////////////////////
+
+	protected:
+		/// @fn void changeCoord();
+		/// @brief Emitting the coordinatesChanged signal.
+		///
+		/// It is a workaround to avoid using Q_OBJECT-related things just like
+		/// signals in GenericCoordinates (template class).
+		void changeCoord();
+
+		/// @fn void changeType();
+		/// @brief Emitting the typeChanged signal.
+		///
+		/// It is a workaround to avoid using Q_OBJECT-related things just like
+		/// signals in GenericCoordinates (template class).
+		void changeType();
 };
 
 #endif // GENCOORD_HPP

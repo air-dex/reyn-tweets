@@ -30,7 +30,7 @@
 /// @brief Class for objects that needs to be converted into Variant Objects
 /// (such as QVariantMap or QVariantList).
 /// @param V Type of Variant class (such as QVariantMap or QVariantList).
-template <class V>
+template <typename V>
 class Variantable
 {
 	public:

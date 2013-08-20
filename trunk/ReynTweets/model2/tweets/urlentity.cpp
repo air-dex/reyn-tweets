@@ -76,12 +76,12 @@ void URLEntity2::recopie(const URLEntity2 & entity) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntity2 & entity) {
-	return jsonStreamingOut(out, entity);
+	return jsonObjectStreamingOut(out, entity);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, URLEntity2 & entity) {
-	return jsonStreamingIn(in, entity);
+	return jsonObjectStreamingIn(in, entity);
 }
 
 // Resets the mappable to a default value

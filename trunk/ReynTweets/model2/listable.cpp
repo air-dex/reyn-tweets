@@ -29,18 +29,18 @@
 /////////////
 
 // Constructor
-template <class V>
+template <typename V>
 Listable<V>::Listable() :
 	Variantable<QVariantList>(),
 	QList<V>()
 {}
 
 // Destructor
-template <class V>
+template <typename V>
 Listable<V>::~Listable() {}
 
 // Copy constructor
-template <class V>
+template <typename V>
 Listable<V>::Listable(const Listable<V> & list) :
 	Variantable<QVariantList>(),
 	QList<V>()
@@ -49,14 +49,14 @@ Listable<V>::Listable(const Listable<V> & list) :
 }
 
 // Affrection operator
-template <class V>
+template <typename V>
 const Listable<V> & Listable<V>::operator=(const Listable<V> & list) {
 	this->recopie(list);
 	return *this;
 }
 
 // Copy of a Listable
-template <class V>
+template <typename V>
 void Listable<V>::recopie(const Listable<V> & list) {
 	this->clear();
 
@@ -74,7 +74,7 @@ void Listable<V>::recopie(const Listable<V> & list) {
 ////////////////////////
 
 // Filling the MappableList with a QVariantList.
-template <class V>
+template <typename V>
 void Listable<V>::fillWithVariant(QVariantList entities) {
 	this->clear();
 
@@ -88,7 +88,7 @@ void Listable<V>::fillWithVariant(QVariantList entities) {
 }
 
 // Converting a MappableList into a QVariantList
-template <class V>
+template <typename V>
 QVariantList Listable<V>::toVariant() const {
 	QVariantList res;
 

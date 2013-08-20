@@ -37,7 +37,7 @@
 /// In practice, these objects will be lists of ReynTweetsSerializable objects
 /// whose type is represented by the template type S.
 /// @param S Type of a ReynTweetsSerializable object.
-template <class S>
+template <typename S>
 class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public QList<S>
 {
 	public:
@@ -85,7 +85,7 @@ class ReynTweetsListable : public ReynTweetsSerializable<QVariantList>, public Q
 /// @param out The output stream
 /// @param list Object to put in the stream
 /// @return The stream with the object
-template <class S>
+template <typename S>
 QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list);
 
 /// @fn QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list);
@@ -93,7 +93,7 @@ QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & 
 /// @param in The input stream
 /// @param list Object to put in the stream
 /// @return The stream with the object
-template <class S>
+template <typename S>
 QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list);
 
 #endif // REYNTWEETSLISTABLE_HPP

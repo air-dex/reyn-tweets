@@ -74,12 +74,12 @@ void TweetEntities2::recopie(const TweetEntities2 & entities) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const TweetEntities & entities) {
-	return jsonStreamingOut(out, entities);
+	return jsonObjectStreamingOut(out, entities);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, TweetEntities & entities) {
-	return jsonStreamingIn(in, entities);
+	return jsonObjectStreamingIn(in, entities);
 }
 
 // Resets the mappable to a default value

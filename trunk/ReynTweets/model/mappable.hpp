@@ -59,13 +59,11 @@
 class Mappable : public QObject, public Variantable<QVariantMap>
 {
 	Q_OBJECT
-
+/*
 	public:
-		/// @fn explicit Mappable(bool blacklistObjectName = true);
+		/// @fn Mappable();
 		/// @brief Constructor
-		/// @param blacklistObjectName Boolean indicating if the "objectName"
-		/// property of QObject has to be included in transientProperties.
-		explicit Mappable(bool blacklistObjectName = true);
+		Mappable();
 
 		/// @fn virtual ~Mappable();
 		/// @brief Destructor
@@ -81,6 +79,11 @@ class Mappable : public QObject, public Variantable<QVariantMap>
 		/// @param mappable Mappable to copy
 		const Mappable & operator=(const Mappable & mappable);
 
+		/// @fn const Mappable & operator=(const QVariantMap & mappable);
+		/// @brief Affecting a QVariantMap
+		/// @param mappable QVariantMap to affect
+		const Mappable & operator=(const QVariantMap & mappable);
+
 		/// @fn virtual QVariantMap toVariant() const;
 		/// @brief Converting the object into a QVariantMap
 		/// @return A QVariantMap containing all the informations.
@@ -92,38 +95,9 @@ class Mappable : public QObject, public Variantable<QVariantMap>
 		/// @param map The map
 		virtual void fillWithVariant(QVariantMap map) = 0;
 
-		/// @fn QStringList & getTransientProperties();
-		/// @brief Getter on transientProperties.
-		///
-		/// Used by the specialization of writing in streams for Mappables.
-		/// @return A reference on transientProperties
-		QStringList & getTransientProperties();
-
 		/// @fn virtual void reset() = 0;
 		/// @brief Resets the mappable to a default value
-		virtual void reset() = 0;
-
-	protected:
-		/// @brief List of properties to ignore while converting the object into
-		/// a QVariant.
-		///
-		/// These properties might be used by QML Views and be unserializable
-		/// correctly by QJSON. They could cause problems just like what happened
-		/// for the
-		/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=50#c8">
-		/// reopening of issue 50</a>.
-		QStringList transientProperties;
-
-		/// @fn void recopie(const Mappable & mappable);
-		/// @brief Core method for recopying a Mappable
-		/// @param mappable Mappable to copy
-		void recopie(const Mappable & mappable);
-
-		/// @fn virtual void blacklistProperties(bool blacklistObjectName = true);
-		/// @brief Building transientProperties
-		/// @param blacklistObjectName Boolean indicating if the "objectName"
-		/// property of QObject has to be included in transientProperties.
-		virtual void blacklistProperties(bool blacklistObjectName);
+		virtual void reset() = 0;//*/
 };
 
 #endif // MAPPABLE_HPP

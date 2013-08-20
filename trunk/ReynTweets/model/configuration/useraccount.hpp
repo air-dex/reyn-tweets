@@ -116,14 +116,6 @@ class UserAccount : public JsonObject
 										UserAccount & account);
 
 	private:
-		/// @fn void blacklistProperties();
-		/// @brief Blacklisting properties used only for and by QML views.
-		///
-		/// The following properties are blacklisted in this class : <ul>
-		/// <li>current_user</li>
-		/// </ul>
-		void blacklistProperties();
-
 		//////////////
 		// Settings //
 		//////////////

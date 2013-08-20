@@ -27,11 +27,7 @@
 #include <QIcon>
 #include "ui/qtquick2applicationviewer.hpp"
 #include "logic/controls/controls.hpp"
-#include "model/timelines/timeline.hpp"
-#include "model/configuration/appconfiguration.hpp"
-#include "model/users/user.hpp"
-#include "model/geo/geocoord.hpp"
-#include "model/geo/geocoordlist.hpp"
+#include "model/declaremodel.hpp"
 
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
@@ -41,43 +37,17 @@
 /// @fn void initReynTweetsSystem();
 /// @brief Initializes all the serializable classes
 void initReynTweetsSystem() {
-	IndexBounds::initSystem();
-	MediaSize::initSystem();
-	MediaSizes::initSystem();
-	Media::initSystem();
-	MediaList::initSystem();
-	URLEntity::initSystem();
-	URLEntityList::initSystem();
-	Hashtag::initSystem();
-	HashtagList::initSystem();
-	UserMention::initSystem();
-	UserMentionList::initSystem();
-	TweetEntities::initSystem();
-	UserInfos::initSystem();
-	RetweetInfos::initSystem();
-	Tweet::initSystem();
-	Timeline::initSystem();
-	User::initSystem();
-	UserAccount::initSystem();
-	UserConfiguration::initSystem();
-
-	GeoCoord::initSystem();
-	GeoCoordList::initSystem();
+	initModelSystem();
 }
 
 /// @fn void declareReynTweetsControls();
 /// @brief Declares all the controls and classes used by QML widgets
 void declareReynTweetsControls() {
+	declareQMLModel();
 	WriteTweetControl::declareQML();
 	AllowControl::declareQML();
 	LaunchingControl::declareQML();
 	LoginControl::declareQML();
-	UserConfiguration::declareQML();
-	UserAccount::declareQML();
-	Tweet::declareQML();
-	UserInfos::declareQML();
-	User::declareQML();
-	Timeline::declareQML();
 	TimelineControl::declareQML();
 	TweetControl::declareQML();
 	SettingsControl::declareQML();

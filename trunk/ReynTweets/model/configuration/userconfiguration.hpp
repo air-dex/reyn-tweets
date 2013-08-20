@@ -123,14 +123,6 @@ class UserConfiguration : public JsonObject
 	////////////////
 
 	protected:
-		/// @fn void blacklistProperties();
-		/// @brief Blacklisting properties used only for and by QML views.
-		///
-		/// The following properties are blacklisted in this class : <ul>
-		/// <li>current_account</li>
-		/// </ul>
-		void blacklistProperties();
-
 		// user_account
 		/// @property user_account
 		/// @brief Serializable form of the account
@@ -206,12 +198,20 @@ class UserConfiguration : public JsonObject
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
 
+		/// @brief Error while loading the settings
+		QString errorLoading;
+
 
 	/////////////////////////
 	// Getters and setters //
 	/////////////////////////
 
 	public:
+		/// @fn QString getErrorLoading();
+		/// @brief Getter on the error message after loading the settings
+		/// @return errorLoading
+		QString getErrorLoading();
+
 		// user_account
 		/// @fn UserAccount getUserAccount();
 		/// @brief Getter on the user account

@@ -88,7 +88,6 @@ void LaunchingProcess::loadConfiguration() {
 	CoreResult loadIssue = userConfiguration.load();
 
 	QString errorMsg = "";
-	bool isFatal = true;
 
 	switch (loadIssue) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
@@ -104,6 +103,17 @@ void LaunchingProcess::loadConfiguration() {
 			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
 			break;
 
+		case PARSE_ERROR:
+			errorMsg = LaunchingProcess::trUtf8("Configuration cannot be loaded (parse error)");
+			errorMsg.append(" : ").append(userConfiguration.getErrorLoading());
+			loadIssue = LOADING_CONFIGURATION_ERROR;
+			break;
+
+		case EXPECTED_KEY:
+			errorMsg = userConfiguration.getErrorLoading();
+			loadIssue = LOADING_CONFIGURATION_ERROR;
+			break;
+
 		case LOADING_CONFIGURATION_ERROR:
 			errorMsg = LaunchingProcess::trUtf8("Configuration cannot be loaded.");
 			break;
@@ -116,7 +126,11 @@ void LaunchingProcess::loadConfiguration() {
 	}
 
 	// Telling the component that the launching process has ended fatally.
-	buildResult(false, loadIssue, errorMsg, isFatal);
+	bool isFatal = true;
+	buildResult(false,
+				loadIssue,
+				errorMsg,
+				isFatal);
 	endProcess();
 }
 

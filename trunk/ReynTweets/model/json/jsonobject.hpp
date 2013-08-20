@@ -39,9 +39,7 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 
 		/// @fn JsonObject();
 		/// @brief Constructor
-		/// @param blacklistObjectName Boolean indicating if the "objectName"
-		/// property of QObject has to be included in transientProperties.
-		JsonObject(bool blacklistObjectName = true);
+		JsonObject();
 
 		/// @fn virtual ~JsonObject();
 		/// @brief Destructor

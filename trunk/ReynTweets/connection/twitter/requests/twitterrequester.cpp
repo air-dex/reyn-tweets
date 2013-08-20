@@ -47,6 +47,9 @@ void TwitterRequester::buildHTTPHeaders() {
 	// For the Content-Type
 	GenericRequester::buildHTTPHeaders();
 
+	// Be careful for update with medias
+	headers.insert("Content-Type", "application/x-www-form-urlencoded");
+
 	// Building the OAuth header
 	QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
 																requestURL,
@@ -93,7 +96,7 @@ QList<ResponseInfos> TwitterRequester::treatServiceErrors(QVariant parsedResults
 	switch (httpCode) {
 		case 200:
 			// If the response code is 200, it is not an error
-			return serviceErrors;
+			return QList<ResponseInfos>();
 
 		// Expected return codes
 		case 304:

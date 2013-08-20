@@ -31,8 +31,8 @@
 /////////////
 
 // Default constructor
-JsonObject::JsonObject(bool blacklistObjectName) :
-	Mappable(blacklistObjectName),
+JsonObject::JsonObject() :
+	Mappable(),
 	Jsonable<QJsonObject>()
 {}
 
@@ -54,9 +54,7 @@ const JsonObject & JsonObject::operator=(const JsonObject & jsonobj) {
 }
 
 // Core method to copy a JsonObject
-void JsonObject::recopie(const JsonObject & jsonobj) {
-	this->Mappable::recopie(jsonobj);
-}
+void JsonObject::recopie(const JsonObject & jsonobj) {}
 
 
 ////////////////////////////////////////

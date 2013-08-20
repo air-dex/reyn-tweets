@@ -146,11 +146,17 @@ SOURCES += \
 	model2/tweets/indexbounds.cpp \
 	model2/tweets/tweetentity.cpp \
 	model2/tweets/hashtag.cpp \
+	model2/tweets/hashtaglist.cpp \
 	model2/tweets/usermention.cpp \
+	model2/tweets/usermentionlist.cpp \
 	model2/tweets/urlentity.cpp \
+	model2/tweets/urlentitylist.cpp \
 	model2/tweets/mediasize.cpp \
 	model2/tweets/mediasizes.cpp \
-	model2/tweets/media.cpp
+	model2/tweets/media.cpp \
+	model2/tweets/medialist.cpp \
+	model2/tweets/tweetentities.cpp \
+	model2/tweets/retweetinfos.cpp
 
 
 HEADERS  += \
@@ -270,11 +276,17 @@ HEADERS  += \
 	model2/tweets/indexbounds.hpp \
 	model2/tweets/tweetentity.hpp \
 	model2/tweets/hashtag.hpp \
+	model2/tweets/hashtaglist.hpp \
 	model2/tweets/usermention.hpp \
+	model2/tweets/usermentionlist.hpp \
 	model2/tweets/urlentity.hpp \
+	model2/tweets/urlentitylist.hpp \
 	model2/tweets/mediasize.hpp \
 	model2/tweets/mediasizes.hpp \
-	model2/tweets/media.hpp
+	model2/tweets/media.hpp \
+	model2/tweets/medialist.hpp \
+	model2/tweets/tweetentities.hpp \
+	model2/tweets/retweetinfos.hpp
 
 
 OTHER_FILES = \

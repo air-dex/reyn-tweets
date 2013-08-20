@@ -128,9 +128,9 @@ void TimelineHandler::appendTimeline(Timeline moreTL) {
 // Prepending a timeline to the current one
 void TimelineHandler::prependTimeline(Timeline moreTL) {
 	if (!moreTL.isEmpty()) {
-		moreTL.append(handledList);
+		Timeline backup = handledList;
 		handledList.clear();
-		handledList.append(moreTL);
+		handledList << moreTL << backup;
 		emit handledListChanged();
 	}
 }

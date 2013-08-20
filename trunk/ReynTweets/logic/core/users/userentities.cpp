@@ -86,21 +86,8 @@ void UserEntities::reset() {
 
 // Filling the object with a QJsonObject.
 void UserEntities::fillWithVariant(QJsonObject json) {
-	// url
-	QJsonValue propval = json.value(URL_PN);
-
-	if(!propval.isUndefined() && propval.isObject()) {
-		QJsonObject entities = propval.toObject();
-		this->userURL.fillWithVariant(entities);
-	}
-
-	// description
-	propval = json.value(DESCRIPTION_PN);
-
-	if(!propval.isUndefined() && propval.isObject()) {
-		QJsonObject entities = propval.toObject();
-		this->userDescription.fillWithVariant(entities);
-	}
+	this->userURL.fillWithVariant(json.value(URL_PN).toObject());
+	this->userDescription.fillWithVariant(json.value(DESCRIPTION_PN).toObject());
 }
 
 // QJsonObject representation of the object

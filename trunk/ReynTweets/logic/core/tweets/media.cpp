@@ -115,72 +115,15 @@ bool Media::operator==(const Media media) const {
 
 // Filling the object with a QJsonObject.
 void Media::fillWithVariant(QJsonObject json) {
-	// Base class
-	URLEntity::fillWithVariant(json);
-
-	// "id" property
-	QJsonValue propval = json.value(ID_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		qlonglong id = qlonglong(propval.toDouble());
-		this->mediaID = id;
-	}
-
-	// "id_str" property
-	propval = json.value(ID_STR_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString idStr = propval.toString();
-		this->mediaIDstr = idStr;
-	}
-
-	// "media_url" property
-	propval = json.value(MEDIA_URL_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->mediaURL = url;
-	}
-
-	// "media_url_https" property
-	propval = json.value(MEDIA_URL_HTTPS_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->mediaURLhttps = url;
-	}
-
-	// "type" property
-	propval = json.value(TYPE_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString type = propval.toString();
-		this->mediaType = type;
-	}
-
-	// "sizes" property
-	propval = json.value(SIZES_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject sizes = propval.toObject();
-		this->mediaSizes.fillWithVariant(sizes);
-	}
-
-	// "source_status_id" property
-	propval = json.value(SOURCE_STATUS_ID_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		qlonglong id = qlonglong(propval.toDouble());
-		this->sourceID = id;
-	}
-
-	// "source_status_id_str" property
-	propval = json.value(SOURCE_STATUS_ID_STR_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString idStr = propval.toString();
-		this->sourceIDstr = idStr;
-	}
+	URLEntity::fillWithVariant(json);	// Base class
+	this->mediaID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->mediaIDstr = json.value(ID_STR_PN).toString("-1");
+	this->mediaURL = json.value(MEDIA_URL_PN).toString("");
+	this->mediaURLhttps = json.value(MEDIA_URL_HTTPS_PN).toString("");
+	this->mediaType = json.value(TYPE_PN).toString("");
+	this->mediaSizes.fillWithVariant(json.value(SIZES_PN).toObject());
+	this->sourceID = qlonglong(json.value(SOURCE_STATUS_ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->sourceIDstr = json.value(SOURCE_STATUS_ID_STR_PN).toString("-1");
 }
 
 // Getting a QJsonObject representation of the object

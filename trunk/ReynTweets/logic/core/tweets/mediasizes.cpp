@@ -93,37 +93,10 @@ QDataStream & operator>>(QDataStream & in, MediaSizes & sizes) {
 
 // Filling the object with a QJsonObject.
 void MediaSizes::fillWithVariant(QJsonObject json) {
-	// "large" property
-	QJsonValue propval = json.value(LARGE_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject mediasize = propval.toObject();
-		this->largeSize.fillWithVariant(mediasize);
-	}
-
-	// "medium" property
-	propval = json.value(MEDIUM_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject mediasize = propval.toObject();
-		this->mediumSize.fillWithVariant(mediasize);
-	}
-
-	// "small" property
-	propval = json.value(SMALL_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject mediasize = propval.toObject();
-		this->smallSize.fillWithVariant(mediasize);
-	}
-
-	// "thumb" property
-	propval = json.value(THUMB_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject mediasize = propval.toObject();
-		this->thumbSize.fillWithVariant(mediasize);
-	}
+	this->largeSize.fillWithVariant(json.value(LARGE_PN).toObject());
+	this->mediumSize.fillWithVariant(json.value(MEDIUM_PN).toObject());
+	this->smallSize.fillWithVariant(json.value(SMALL_PN).toObject());
+	this->thumbSize.fillWithVariant(json.value(THUMB_PN).toObject());
 }
 
 // Getting a QJsonObject representation of the object

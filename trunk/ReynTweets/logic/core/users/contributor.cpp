@@ -94,29 +94,9 @@ void Contributor::reset() {
 
 // Filling the object with a QJsonObject.
 void Contributor::fillWithVariant(QJsonObject json) {
-	// "id" property
-	QJsonValue propval = json.value(ID_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		qlonglong id = (qlonglong) propval.toDouble();
-		this->userID = id;
-	}
-
-	// "id_str" property
-	propval = json.value(ID_STR_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString idStr = propval.toString();
-		this->userIDstr = idStr;
-	}
-
-	// "screen_name" property
-	propval = json.value(SCREEN_NAME_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString scrName = propval.toString();
-		this->screenName = scrName;
-	}
+	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->screenName = json.value(SCREEN_NAME_PN).toString("");
 }
 
 // Getting a QJsonObject representation of the object

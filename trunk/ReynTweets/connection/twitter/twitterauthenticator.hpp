@@ -32,7 +32,7 @@
 ///
 /// Twitter (and so Reyn Tweets) uses both OAuth 1.0a and OAuth 2.
 class TwitterAuthenticator :
-		public OAuth10aAuthenticator,
+		public virtual OAuth10aAuthenticator,
 		public virtual OAuth2Authenticator
 {
 	public:

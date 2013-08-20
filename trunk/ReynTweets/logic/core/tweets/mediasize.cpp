@@ -89,29 +89,9 @@ void MediaSize::reset() {
 
 // Filling the object with a QJsonObject.
 void MediaSize::fillWithVariant(QJsonObject json) {
-	// "w" property
-	QJsonValue propval = json.value(W_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		int w = int( propval.toDouble() );
-		this->setWidth(w);
-	}
-
-	// "h" property
-	propval = json.value(H_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		int h = int( propval.toDouble() );
-		this->setHeight(h);
-	}
-
-	// "resize" property
-	propval = json.value(RESIZE_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString resStr = propval.toString();
-		this->setResize(resStr);
-	}
+	this->setWidth(int(json.value(W_PN).toDouble(0)));
+	this->setHeight(int(json.value(H_PN).toDouble(0)));
+	this->setResize(json.value(RESIZE_PN).toString(""));
 }
 
 // Getting a QJsonObject representation of the object

@@ -62,7 +62,7 @@ template <typename V>
 void JsonArray<V>::recopie(const JsonArray<V> & list) {
 	this->clear();
 
-	for (JsonArray<V>::const_iterator it = list.begin();
+	for (typename JsonArray<V>::const_iterator it = list.begin();
 		 it != list.end();
 		 ++it)
 	{
@@ -95,7 +95,7 @@ template <typename V>
 QJsonArray JsonArray<V>::toVariant() const {
 	QJsonArray res;
 
-	for(JsonArray<V>::const_iterator it = this->begin();
+	for(typename JsonArray<V>::const_iterator it = this->begin();
 		it != this->end();
 		++it)
 	{

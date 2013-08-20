@@ -86,6 +86,11 @@ void IndexBounds::sort() {
 		min = max;
 		max = tmp;
 	}
+
+	// Sync the QList
+	this->clear();
+	this->append(min);
+	this->append(max);
 }
 
 // Getter on min
@@ -114,21 +119,27 @@ void IndexBounds::setMax(int newMax) {
 // Variant handling //
 //////////////////////
 
+// Filling the object with a QVariantList
+void IndexBounds::fillWithVariant(QJsonArray variantList) {
+	if (variantList.size() != 2) {
+		return;
+	}
+
+	this->clear();
+
+	QJsonValue bound = variantList.at(0);
+	setMin(bound.toDouble());
+
+	bound = variantList.at(1);
+	setMax(bound.toDouble());
+}
+
 // Converting the bounds into a QVariantList
 QJsonArray IndexBounds::toVariant() const {
 	QJsonArray res;
 	res.append(QJsonValue(min));
 	res.append(QJsonValue(max));
 	return res;
-}
-
-// Filling the object with a QVariantList
-void IndexBounds::fillWithVariant(QJsonArray variantList) {
-	QJsonValue bound = variantList.at(0);
-	setMin(bound.toDouble());
-
-	bound = variantList.at(1);
-	setMax(bound.toDouble());
 }
 
 // Appending the content of a QJsonValue

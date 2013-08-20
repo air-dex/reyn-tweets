@@ -78,21 +78,15 @@ void GeoCoord::fillWithVariant(QJsonArray json) {
 	this->clear();
 
 	// longitude
-	QJsonValue coord = json.at(0);
-	if (!coord.isUndefined() && coord.isDouble()) {
-		double longi = coord.toDouble();
-		if (qAbs(longi) <= 180) {
-			this->setX(longi);
-		}
+	double longi = json.at(0).toDouble(181);	// Fake longitude by default
+	if (qAbs(longi) <= 180) {
+		this->setX(longi);
 	}
 
 	// latitude
-	coord = json.at(1);
-	if (!coord.isUndefined() && coord.isDouble()) {
-		double lati = coord.toDouble();
-		if (qAbs(lati) <= 90) {
-			this->setY(lati);
-		}
+	double lati = json.at(1).toDouble(91);		// Fake latitude by default
+	if (qAbs(lati) <= 90) {
+		this->setY(lati);
 	}
 }
 

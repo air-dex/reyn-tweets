@@ -58,13 +58,7 @@ void TweetEntity::recopie(const TweetEntity & entity) {
 
 // Filling the object with a QJsonObject.
 void TweetEntity::fillWithVariant(QJsonObject json) {
-	// "indices" property
-	QJsonValue propval = json.value(INDICES_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray bounds = propval.toArray();
-		this->indexes.fillWithVariant(bounds);
-	}
+	this->indexes.fillWithVariant(json.value(INDICES_PN).toArray());
 }
 
 // Getting a QJsonObject representation of the JsonObject

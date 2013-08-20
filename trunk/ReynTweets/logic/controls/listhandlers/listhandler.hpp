@@ -93,7 +93,7 @@ class HandlerEmitter : public QObject
 /// However, there are some cases where U does not inherit from JsonObject
 /// (int for the IndexBoundsHandler for example). That's why some methods just
 /// like fillElement() exist and are virtual.
-/// @param HL Type of the list handled by the list handler. <strong>T has to
+/// @param HL Type of the list handled by the list handler. <strong>HL has to
 /// inherit JsonArray&lt;U&gt;.</strong>
 /// @param U Type of the elements of the handled list.
 template <typename HL, typename U>

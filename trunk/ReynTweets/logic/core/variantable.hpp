@@ -24,6 +24,7 @@
 #ifndef VARIANTABLE_HPP
 #define VARIANTABLE_HPP
 
+// TODO : rewrite it with Google Code's wiki explainations
 /// @class Variantable
 /// @brief Base class for objects that needs to be easily initialized with
 /// objects whose type is V (template parameter) and needs to be easily
@@ -54,11 +55,11 @@ class Variantable {
 		/// @return The corresponding equivalent.
 		virtual V toVariant() const = 0;
 
-		/// @fn virtual void fillWithVariant(V map) = 0;
+		/// @fn virtual void fillWithVariant(V variant) = 0;
 		/// @brief Filling a Variantable object with a "V" equivalent.
 		/// contained in the map.
-		/// @param map The equivalent
-		virtual void fillWithVariant(V map) = 0;
+		/// @param variant The equivalent
+		virtual void fillWithVariant(V variant) = 0;
 
 		//operator V () const { return this->toVariant(); }
 };

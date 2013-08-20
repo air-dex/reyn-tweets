@@ -24,8 +24,8 @@
 #ifndef MEDIA2_HPP
 #define MEDIA2_HPP
 
-#include "mediasizes2.hpp"
-#include "urlentity2.hpp"
+#include "mediasizes.hpp"
+#include "urlentity.hpp"
 
 /// @class Media
 /// @brief Media in a tweet.

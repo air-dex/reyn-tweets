@@ -142,15 +142,15 @@ SOURCES += \
 	#model2/json/jsonable.cpp \
 	model2/json/jsonobject.cpp \
 	model2/json/jsonarray.cpp \
-    model2/tweets/tweet2.cpp \
-    model2/tweets/indexbounds2.cpp \
-    model2/tweets/tweetentity2.cpp \
-    model2/tweets/hashtag2.cpp \
-    model2/tweets/usermention2.cpp \
-    model2/tweets/urlentity2.cpp \
-    model2/tweets/mediasize2.cpp \
-    model2/tweets/mediasizes2.cpp \
-    model2/tweets/media2.cpp
+	model2/tweets/tweet2.cpp \
+	model2/tweets/indexbounds.cpp \
+	model2/tweets/tweetentity.cpp \
+	model2/tweets/hashtag.cpp \
+	model2/tweets/usermention.cpp \
+	model2/tweets/urlentity.cpp \
+	model2/tweets/mediasize.cpp \
+	model2/tweets/mediasizes.cpp \
+	model2/tweets/media.cpp
 
 
 HEADERS  += \
@@ -266,15 +266,15 @@ HEADERS  += \
 	model2/json/jsonobject.hpp \
 	model2/json/jsonarray.hpp \
 	model2/json/jsonarray.tpp \
-    model2/tweets/tweet2.hpp \
-    model2/tweets/indexbounds2.hpp \
-    model2/tweets/tweetentity2.hpp \
-    model2/tweets/hashtag2.hpp \
-    model2/tweets/usermention2.hpp \
-    model2/tweets/urlentity2.hpp \
-    model2/tweets/mediasize2.hpp \
-    model2/tweets/mediasizes2.hpp \
-    model2/tweets/media2.hpp
+	model2/tweets/tweet.hpp \
+	model2/tweets/indexbounds.hpp \
+	model2/tweets/tweetentity.hpp \
+	model2/tweets/hashtag.hpp \
+	model2/tweets/usermention.hpp \
+	model2/tweets/urlentity.hpp \
+	model2/tweets/mediasize.hpp \
+	model2/tweets/mediasizes.hpp \
+	model2/tweets/media.hpp
 
 
 OTHER_FILES = \

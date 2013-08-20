@@ -24,7 +24,7 @@
 #ifndef HASHTAG2_HPP
 #define HASHTAG2_HPP
 
-#include "tweetentity2.hpp"
+#include "tweetentity.hpp"
 
 /// @class Hashtag
 /// @brief Hashtag in a tweet

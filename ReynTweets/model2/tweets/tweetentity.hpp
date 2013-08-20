@@ -25,7 +25,7 @@
 #define TWEETENTITY2_HPP
 
 #include "../json/jsonobject.hpp"
-#include "indexbounds2.hpp"
+#include "indexbounds.hpp"
 
 /// @class TweetEntity
 /// @brief Base class for all Tweet Entities.

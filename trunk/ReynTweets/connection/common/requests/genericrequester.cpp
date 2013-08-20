@@ -120,14 +120,20 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 		requestResult.parsedResult = this->parseResult(netResponse,
 													   parseOK,
 													   parseErrorMap);
-		requestResult.resultType = parseOK ? Network::NO_REQUEST_ERROR : parsingErrorType;
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
 		if (parseOK) {
-			// Other treatments (most of the time it is related to the service)
-			this->treatParsedResult(requestResult, netResponse);
+			// Other treatments related to the service
+			requestResult.serviceErrors = this->treatServiceErrors(requestResult.parsedResult,
+																   netResponse);
+			// Updating the NetworkResultType with service errors
+			requestResult.resultType = requestResult.serviceErrors.isEmpty() ?
+						Network::NO_REQUEST_ERROR
+					  : Network::SERVICE_ERRORS;
 		} else {
+			requestResult.resultType = parsingErrorType;
+
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
 		}

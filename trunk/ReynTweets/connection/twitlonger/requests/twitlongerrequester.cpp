@@ -71,21 +71,20 @@ QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 
 }
 
-void TwitLongerRequester::treatParsedResult(RequestResult & requestResult,
-											NetworkResponse netResponse)
+QList<ResponseInfos> TwitLongerRequester::treatServiceErrors(QVariant parsedResults,
+															 NetworkResponse netResponse)
 {
-	QVariantMap resultMap = requestResult.parsedResult.toMap();
+	QList<ResponseInfos> serviceErrors;
 
-	if (!resultMap.contains("error")) {
-		return;
+	QVariantMap resultMap = parsedResults.toMap();
+
+	if (resultMap.contains("error")) {
+		ResponseInfos twitLongerError;
+		twitLongerError.code = netResponse.getHttpResponse().code;
+		twitLongerError.message = resultMap.value("error").toString();
+		serviceErrors.append(twitLongerError);
 	}
 
-	ResponseInfos twitLongerError;
-
-	twitLongerError.code = requestResult.httpResponse.code;
-	twitLongerError.message = resultMap.value("error").toString();
-	requestResult.serviceErrors.append(twitLongerError);
-
-	requestResult.resultType = Network::SERVICE_ERRORS;
+	return serviceErrors;
 }
 

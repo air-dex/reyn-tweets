@@ -36,8 +36,7 @@ namespace Network {
 		/// @brief Code for an invalid request result.
 		INVALID_RESULT,
 
-		/// @brief Code indicating that there were an error while calling the
-		/// Twitter API.
+		/// @brief Code indicating that there were an error while calling the API.
 		API_CALL,
 
 		/// @brief Code indicating that the service (ex. Twitter) has returned errors.

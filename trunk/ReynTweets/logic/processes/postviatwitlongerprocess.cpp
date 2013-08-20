@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "postviatwitlongerprocess.hpp"
-#include "../../tools/processutils.hpp"
+#include "processutils.hpp"
 
 // Constructor with QString ID
 PostViaTwitLongerProcess::PostViaTwitLongerProcess(QString status,

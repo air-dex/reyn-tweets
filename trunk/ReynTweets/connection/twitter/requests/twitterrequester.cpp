@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "twitterrequester.hpp"
-#include "../../../tools/parsers/jsonparser.hpp"
+#include "../../common/utils/parsers/jsonparser.hpp"
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QTextStream>

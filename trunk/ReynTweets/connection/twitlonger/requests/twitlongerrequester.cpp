@@ -24,7 +24,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include "twitlongerrequester.hpp"
-#include "../../../tools/parsers/xmlparser.hpp"
+#include "../../common/utils/parsers/xmlparser.hpp"
 
 // Constructor
 TwitLongerRequester::TwitLongerRequester(HTTPRequestType type,

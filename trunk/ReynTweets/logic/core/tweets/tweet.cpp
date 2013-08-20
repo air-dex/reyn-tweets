@@ -21,13 +21,12 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include "tweet.hpp"
 #include <QtQml>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
 #include <QVariant>
-#include "tweet.hpp"
-#include "../../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

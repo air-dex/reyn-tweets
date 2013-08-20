@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "destroytweetrequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../../common/utils/connectionutils.hpp"
 
 // Constructor
 DestroyTweetRequester::DestroyTweetRequester(TwitterAuthenticator &authManager,

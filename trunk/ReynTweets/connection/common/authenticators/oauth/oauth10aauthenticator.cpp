@@ -25,7 +25,7 @@
 
 #include <QUrl>
 #include "oauthutils.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../utils/connectionutils.hpp"
 
 // Constructor
 OAuth10aAuthenticator::OAuth10aAuthenticator(QString signatureAlgorithm) :

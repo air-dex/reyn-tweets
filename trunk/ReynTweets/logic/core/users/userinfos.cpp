@@ -23,7 +23,7 @@
 
 #include <QtQml>
 #include "userinfos.hpp"
-#include "../../../tools/utils.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -240,17 +240,17 @@ void UserInfos::fillWithVariant(QJsonObject json) {
 	this->userLocation = json.value(LOCATION_PN).toString("");
 	this->userName = json.value(NAME_PN).toString("");
 	this->notificationsEnabled = json.value(NOTIFICATIONS_PN).toBool(false);
-	this->backgroundColor = string2color(json.value(PROFILE_BACKGROUND_COLOR_PN).toString(QColor(Qt::white).name()));
+	this->backgroundColor = ReynTweets::string2color(json.value(PROFILE_BACKGROUND_COLOR_PN).toString(QColor(Qt::white).name()));
 	this->backgroundURL = json.value(PROFILE_BACKGROUND_IMAGE_URL_PN).toString("");
 	this->backgroundURLhttps = json.value(PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN).toString("");
 	this->backgroundTile = json.value(PROFILE_BACKGROUND_TILE_PN).toBool(false);
 	this->bannerURL = json.value(PROFILE_BANNER_URL_PN).toString("");
 	this->avatarURL = json.value(PROFILE_IMAGE_URL_PN).toString("");
 	this->avatarURLhttps = json.value(PROFILE_IMAGE_URL_HTTPS_PN).toString("");
-	this->linkColor = string2color(json.value(PROFILE_LINK_COLOR_PN).toString(QColor(Qt::blue).name()));
-	this->sidebarBorderColor = string2color(json.value(PROFILE_SIDEBAR_BORDER_COLOR_PN).toString(QColor(Qt::darkCyan).name()));
-	this->sidebarColor = string2color(json.value(PROFILE_SIDEBAR_FILL_COLOR_PN).toString(QColor(Qt::cyan).name()));
-	this->textColor = string2color(json.value(PROFILE_TEXT_COLOR_PN).toString(QColor(Qt::black).name()));
+	this->linkColor = ReynTweets::string2color(json.value(PROFILE_LINK_COLOR_PN).toString(QColor(Qt::blue).name()));
+	this->sidebarBorderColor = ReynTweets::string2color(json.value(PROFILE_SIDEBAR_BORDER_COLOR_PN).toString(QColor(Qt::darkCyan).name()));
+	this->sidebarColor = ReynTweets::string2color(json.value(PROFILE_SIDEBAR_FILL_COLOR_PN).toString(QColor(Qt::cyan).name()));
+	this->textColor = ReynTweets::string2color(json.value(PROFILE_TEXT_COLOR_PN).toString(QColor(Qt::black).name()));
 	this->useBackgroundImage = json.value(PROFILE_USE_BACKGROUND_IMAGE_PN).toBool(true);
 	this->protectedAccount = json.value(PROTECTED_PN).toBool(false);
 	this->screenName = json.value(SCREEN_NAME_PN).toString("");
@@ -596,7 +596,7 @@ void UserInfos::setProfileBackgroundColor(QColor newBackgroundColor) {
 }
 
 void UserInfos::setProfileBackgroundColor(QString newBackgroundColor) {
-	backgroundColor = string2color(newBackgroundColor);
+	backgroundColor = ReynTweets::string2color(newBackgroundColor);
 	emit profileBackgroundColorChanged();
 }
 
@@ -677,7 +677,7 @@ void UserInfos::setProfileLinkColor(QColor newLinkColor) {
 }
 
 void UserInfos::setProfileLinkColor(QString newLinkColor) {
-	linkColor = string2color(newLinkColor);
+	linkColor = ReynTweets::string2color(newLinkColor);
 	emit profileLinkColorChanged();
 }
 
@@ -710,7 +710,7 @@ void UserInfos::setProfileSidebarBorderColor(QColor newSidebarBorderColor) {
 }
 
 void UserInfos::setProfileSidebarBorderColor(QString newSidebarBorderColor) {
-	sidebarBorderColor = string2color(newSidebarBorderColor);
+	sidebarBorderColor = ReynTweets::string2color(newSidebarBorderColor);
 	emit profileSidebarBorderColorChanged();
 }
 
@@ -731,7 +731,7 @@ void UserInfos::setProfileSidebarFillColor(QColor newSidebarColor) {
 }
 
 void UserInfos::setProfileSidebarFillColor(QString newSidebarColor) {
-	sidebarColor = string2color(newSidebarColor);
+	sidebarColor = ReynTweets::string2color(newSidebarColor);
 	emit profileSidebarFillColorChanged();
 }
 
@@ -752,7 +752,7 @@ void UserInfos::setProfileTextColor(QColor newTextColor) {
 }
 
 void UserInfos::setProfileTextColor(QString newTextColor) {
-	textColor = string2color(newTextColor);
+	textColor = ReynTweets::string2color(newTextColor);
 	emit profileTextColorChanged();
 }
 

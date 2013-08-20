@@ -48,12 +48,11 @@ TEMPLATE = app
 # ui/qmlapplicationviewer.pri
 
 SOURCES += \
-	tools/utils.cpp \
-	tools/reyntweetsdatetime.cpp \
-	tools/parsers/htmlparser.cpp \
-	tools/parsers/jsonparser.cpp \
-	tools/parsers/oauthparser.cpp \
-	tools/parsers/xmlparser.cpp \
+	connection/common/utils/connectionutils.cpp \
+	connection/common/utils/parsers/htmlparser.cpp \
+	connection/common/utils/parsers/jsonparser.cpp \
+	connection/common/utils/parsers/oauthparser.cpp \
+	connection/common/utils/parsers/xmlparser.cpp \
 	connection/common/networkresult.cpp \
 	connection/common/authenticators/apikeyauthenticator.cpp \
 	connection/common/authenticators/oauth/oauthutils.cpp \
@@ -90,6 +89,8 @@ SOURCES += \
 	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.cpp \
 	connection/twitlonger/twitlongercalls.cpp \
+	logic/reyntweetsutils.cpp \
+	logic/core/reyntweetsdatetime.cpp \
 	logic/core/json/jsonobject.cpp \
 	logic/core/json/jsonarray.cpp \
 	logic/core/geo/coordinates.cpp \
@@ -127,7 +128,7 @@ SOURCES += \
 	logic/core/configuration/userconfiguration.cpp \
 	logic/core/coreresult.cpp \
 	logic/processes/processwrapper.cpp \
-	tools/processutils.cpp \
+	logic/processes/processutils.cpp \
 	logic/processes/genericprocess.cpp \
 	logic/processes/singletwittercallprocess.cpp \
 	logic/processes/oauth/requesttokensprocess.cpp \
@@ -166,14 +167,12 @@ SOURCES += \
 
 
 HEADERS  += \
-	tools/qmldebug.hpp \
-	tools/utils.hpp \
-	tools/reyntweetsdatetime.hpp \
-	tools/parsers/genericparser.hpp \
-	tools/parsers/htmlparser.hpp \
-	tools/parsers/jsonparser.hpp \
-	tools/parsers/oauthparser.hpp \
-	tools/parsers/xmlparser.hpp \
+	connection/common/utils/connectionutils.hpp \
+	connection/common/utils/parsers/genericparser.hpp \
+	connection/common/utils/parsers/htmlparser.hpp \
+	connection/common/utils/parsers/jsonparser.hpp \
+	connection/common/utils/parsers/oauthparser.hpp \
+	connection/common/utils/parsers/xmlparser.hpp \
 	connection/common/httprequesttype.hpp \
 	connection/common/headersmap.hpp \
 	connection/common/networkresult.hpp \
@@ -220,6 +219,8 @@ HEADERS  += \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.hpp \
 	connection/twitlonger/requests/twitlongerrequests.hpp \
 	connection/twitlonger/twitlongercalls.hpp \
+	logic/reyntweetsutils.hpp \
+	logic/core/reyntweetsdatetime.hpp \
 	logic/core/variantable.hpp \
 	logic/core/json/jsonobject.hpp \
 	logic/core/json/jsonarray.hpp \
@@ -262,7 +263,7 @@ HEADERS  += \
 	logic/core/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
-	tools/processutils.hpp \
+	logic/processes/processutils.hpp \
 	logic/processes/genericprocess.hpp \
 	logic/processes/singletwittercallprocess.hpp \
 	logic/processes/oauth/requesttokensprocess.hpp \

@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "verifycredentialsrequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "../../../common/utils/connectionutils.hpp"
 
 // Constructor
 VerifyCredentialsRequester::VerifyCredentialsRequester(TwitterAuthenticator & authManager,

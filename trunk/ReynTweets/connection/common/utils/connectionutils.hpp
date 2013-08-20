@@ -1,4 +1,4 @@
-/// @file utils.hpp
+/// @file connectionutils.hpp
 /// @brief Header with useful methods
 ///
 /// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/
@@ -23,14 +23,14 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef CONNECTIONUTILS_HPP
+#define CONNECTIONUTILS_HPP
 
 #include <QByteArray>
 #include <QColor>
 #include <QDataStream>
 #include <QString>
-#include "../connection/common/httprequesttype.hpp"
+#include "../httprequesttype.hpp"
 
 ///////////////////////
 // String convertion //
@@ -47,15 +47,6 @@ QString requestTypeToString(HTTPRequestType type);
 /// @param b The boolean
 /// @return The corresponding QString
 QString boolInString(bool b);
-
-/// @fn QColor string2color(QString coloredString);
-/// @brief Converting a String into a QColor.
-///
-/// This function was written because of Twitter which forgets the '#'
-/// character before the hexadecimal code under the form 'RRGGBB'.
-/// @param coloredString The string with the RRGGBB format.
-/// @return The corresponding color : &#135;RRGGBB
-QColor string2color(QString coloredString);
 
 
 //////////////////
@@ -87,4 +78,4 @@ bool ouBien(bool a, bool b);
 /// @return The formatted parameters
 QString formatParam(QString name, QString value, bool putDoubleQuotes = false);
 
-#endif // UTILS_HPP
+#endif // CONNECTIONUTILS_HPP

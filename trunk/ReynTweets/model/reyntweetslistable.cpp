@@ -23,9 +23,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QJson/Parser>
-#include <QJson/Serializer>
 #include "reyntweetslistable.hpp"
+#include "../tools/utils.hpp"
 
 /////////////
 // Coplien //
@@ -34,7 +33,7 @@
 // Constructor
 template <class S>
 ReynTweetsListable<S>::ReynTweetsListable() :
-    QList<S>()
+	QList<S>()
 {}
 
 // Destructor
@@ -44,66 +43,66 @@ ReynTweetsListable<S>::~ReynTweetsListable() {}
 // Copy constructor
 template <class S>
 ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
-    QList<S>()
+	QList<S>()
 {
-    recopie(list);
+	recopie(list);
 }
 
 // Affrection operator
 template <class S>
 const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
-    recopie(list);
-    return *this;
+	recopie(list);
+	return *this;
 }
 
 // Copy of a ReynTweetsListable
 template <class S>
 void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
-    this->clear();
+	this->clear();
 
-    for (typename ReynTweetsListable<S>::const_iterator it = list.begin();
-         it != list.end();
-         ++it)
-    {
-        S serializable = *it;
-        this->append(serializable);
-    }
+	for (typename ReynTweetsListable<S>::const_iterator it = list.begin();
+		 it != list.end();
+		 ++it)
+	{
+		S serializable = *it;
+		this->append(serializable);
+	}
 }
 
 ////////////////////////
 // Variant conversion //
 ////////////////////////
 
-// Converting a QVariantList serialized by QJSON into a list of entities.
+// Converting a QVariantList into a list of entities.
 template <class S>
 void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
-    this->clear();
+	this->clear();
 
-    for (QVariantList::Iterator it = entities.begin();
-         it != entities.end();
-         ++it)
-    {
-        QVariant v = *it;
-        S entity;
-        entity.fillWithVariant(v.toMap());
-        this->append(entity);
-    }
+	for (QVariantList::Iterator it = entities.begin();
+		 it != entities.end();
+		 ++it)
+	{
+		QVariant v = *it;
+		S entity;
+		entity.fillWithVariant(v.toMap());
+		this->append(entity);
+	}
 }
 
 // Converting a list of serializables into a QVariantList
 template <class S>
 QVariantList ReynTweetsListable<S>::toVariant() const {
-    QVariantList res;
+	QVariantList res;
 
-    for (typename ReynTweetsListable<S>::const_iterator it = this->begin();
-         it != this->end();
-         ++it)
-    {
-        S serializable = *it;
-        res.append(serializable.toVariant());
-    }
+	for (typename ReynTweetsListable<S>::const_iterator it = this->begin();
+		 it != this->end();
+		 ++it)
+	{
+		S serializable = *it;
+		res.append(serializable.toVariant());
+	}
 
-    return res;
+	return res;
 }
 
 
@@ -113,30 +112,17 @@ QVariantList ReynTweetsListable<S>::toVariant() const {
 
 template <class S>
 QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list) {
-    // Serialize the QVariantList form of the listable and putting it in the stream.
-    QJson::Serializer serializer;
-    QByteArray serializedListable = serializer.serialize(list.toVariant());
-
-    out << serializedListable;
-
-    return out;
+	// Serialize the QVariantList form of the listable and putting it in the stream.
+	return streamVariantOut(out, list.toVariant());
 }
 
 // Input stream operator for serialization
 template <class S>
 QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list) {
-    QByteArray jsonedListable= "";
-    in >> jsonedListable;
-
-    QJson::Parser parser;
-    bool parseOK;
-    QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
-
-    if (parseOK) {
-        list.fillWithVariant(listableVariant.toList());
-    }
-
-    return in;
+	QVariant listableVariant;
+	streamVariantIn(in, listableVariant);
+	list.fillWithVariant(listableVariant.toList());
+	return in;
 }
 /*
 /// @fn QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<ReynTweetsMappables> & list);

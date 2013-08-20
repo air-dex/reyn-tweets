@@ -41,7 +41,7 @@ class TwitterRequester : public GenericRequester
 		/// @fn TwitterRequester(RequestType type,
 		///						 QString url,
 		///						 OAuthManager & authManager,
-		///						 ErrorType parseError = QJSON_PARSING,
+		///						 ErrorType parseError = JSON_PARSING,
 		///						 bool tokenNeeded = true,
 		///						 bool callbackURLNeeded = false,
 		///						 bool verifierNeeded = false);
@@ -50,8 +50,8 @@ class TwitterRequester : public GenericRequester
 		/// @param url URL called by the requester
 		/// @param authManager Entity with information for OAuth
 		/// @param parseError Error type if an error occurs while parsing. Most
-		/// of the time, this value is set to QJSON_PARSING because results are
-		/// QJson stream parsed with QJson. However, OAuth requesters use their
+		/// of the time, this value is set to JSON_PARSING because results are
+		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
 		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
 		/// is required for authentication.
@@ -62,7 +62,7 @@ class TwitterRequester : public GenericRequester
 		TwitterRequester(RequestType type,
 						 QString url,
 						 OAuthManager & authManager,
-						 ErrorType parseError = QJSON_PARSING,
+						 ErrorType parseError = JSON_PARSING,
 						 bool tokenNeeded = true,
 						 bool callbackURLNeeded = false,
 						 bool verifierNeeded = false);

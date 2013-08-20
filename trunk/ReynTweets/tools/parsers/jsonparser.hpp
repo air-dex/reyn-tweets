@@ -1,7 +1,8 @@
 /// @file jsonparser.hpp
 /// @brief Header of JSONParser
 ///
-/// Revisions older than r120 are in the folder /trunk/ReynTweets/connection/parsers.
+/// Revisions older than r120 (SVN) are in the folder
+/// /trunk/ReynTweets/connection/parsers.
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -30,8 +31,6 @@
 
 /// @class JSONParser
 /// @brief Parser for JSON datas.
-///
-/// It uses the <a href="http://qjson.sourceforge.net">QJSON</a> library to parse.
 class JSONParser : public GenericParser<QVariantMap>
 {
 	public:

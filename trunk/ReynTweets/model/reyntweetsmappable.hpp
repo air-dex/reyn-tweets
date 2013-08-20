@@ -29,6 +29,8 @@
 #include <QVariant>
 #include "reyntweetsserializable.hpp"
 
+// TODO: Rewriting QJSON laïus after Qt5 native JSON integration.
+
 /// @class ReynTweetsMappable
 /// @brief Serializable objects that needed to be converted into a QVariantMap.
 ///

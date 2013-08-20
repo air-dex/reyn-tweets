@@ -35,7 +35,11 @@ QJsonValue JSONParser::parse(QByteArray data,
 							 int *)
 {
 	QJsonParseError jsonParseError;
-	QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonParseError);
+
+	// Ensure that datas are encoded with UTF-8
+	QString utf8data = QString::fromLatin1(data);
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(utf8data.toUtf8(),
+													&jsonParseError);
 
 	if (parseOK) {
 		*parseOK = jsonParseError.error == QJsonParseError::NoError;

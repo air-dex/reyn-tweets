@@ -157,9 +157,14 @@ class ReynCore : public QObject
 		/// @brief Getting OAuth Request tokens for Reyn Tweets
 		void requestOAuthTokens();
 
-		/// @fn void accessOAuthTokens(QByteArray verifier);
+		/// @fn void accessOAuthTokens(QByteArray verifier,
+		///							   bool updateConfiguration = true);
 		/// @brief Getting OAuth Access tokens for Reyn Tweets
-		void accessOAuthTokens(QByteArray verifier);
+		/// @param verifier OAuth verifier
+		/// @param updateConfiguration Boolean indicating if the (user)
+		/// configuration has to be updated.
+		void accessOAuthTokens(QByteArray verifier,
+							   bool updateConfiguration = true);
 
 		///////////////
 		// Timelines //

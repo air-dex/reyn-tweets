@@ -197,8 +197,11 @@ void ReynCore::requestOAuthTokens() {
 }
 
 // Getting OAuth Access tokens for Reyn Tweets
-void ReynCore::accessOAuthTokens(QByteArray verifier) {
-	AccessTokensProcess * process = new AccessTokensProcess(verifier);
+void ReynCore::accessOAuthTokens(QByteArray verifier, bool updateConfiguration) {
+	AccessTokensProcess * process = updateConfiguration ?
+				new AccessTokensProcess(verifier, userConfiguration)
+			  : new AccessTokensProcess(verifier);
+
 	executeProcess(process);
 }
 

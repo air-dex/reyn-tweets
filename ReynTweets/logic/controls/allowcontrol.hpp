@@ -57,14 +57,7 @@ class AllowControl : public GenericControl
 		/// @brief Getting the final OAuth tokens after user authorization
 		/// (via the QML embedded browser)
 		Q_INVOKABLE void getAccessTokens(QString verifier);
-/*
-		/// @fn Q_INVOKABLE QString getBodyClass(QString html);
-		/// @brief Getting the class name of the &lt;body&gt; HTML tag of a
-		/// HTML source code.
-		/// @param html The HTML source code
-		/// @return &lt;body class="what the method returns"&gt;
-		Q_INVOKABLE QString getBodyClass(QString html);
-//*/
+
 		/// @fn LoginControl * getLoginControl();
 		/// @brief Reading the login_control property
 		/// @return control

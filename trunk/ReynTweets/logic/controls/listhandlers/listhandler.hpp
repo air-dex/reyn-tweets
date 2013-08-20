@@ -37,6 +37,33 @@ class HandlerEmitter : public QObject
 {
 	Q_OBJECT
 
+	public:
+		/// @fn Q_INVOKABLE virtual int getHandledListSize() = 0;
+		/// @brief Getting the size of the handled list.
+		/// @return handledList.size();
+		Q_INVOKABLE virtual int getHandledListSize() = 0;
+
+		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt) = 0;
+		/// @brief Replacing an element in the list
+		/// @param varelt Element under a QVariant form
+		Q_INVOKABLE virtual void replace(QVariant varelt) = 0;
+
+		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt, int index) = 0;
+		/// @brief Replacing an element in the list
+		/// @param varelt Element under a QVariant form
+		/// @param index Index of the element to replace
+		Q_INVOKABLE virtual void replace(QVariant varelt, int index) = 0;
+
+		/// @fn Q_INVOKABLE virtual void remove(int index) = 0;
+		/// @brief Removing an element of the list
+		/// @param index Index of the element to remove
+		Q_INVOKABLE virtual void remove(int index) = 0;
+
+		/// @fn Q_INVOKABLE virtual void remove(QVariant varelt) = 0;
+		/// @brief Removing an element of the list
+		/// @param varelt Element to remove
+		Q_INVOKABLE virtual void remove(QVariant varelt) = 0;
+
 	signals:
 		/// @fn void handledListChanged();
 		/// @brief Signal emitted when the handled list has got a new value.

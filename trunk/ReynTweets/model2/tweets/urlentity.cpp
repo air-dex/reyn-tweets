@@ -125,7 +125,7 @@ void URLEntity2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject URLEntity2::toJSON() {
+QJsonObject URLEntity2::toJSON() const {
 	QJsonObject json = TweetEntity2::toJSON();
 
 	json.insert(URL_PN, QJsonValue(this->extractedURL));

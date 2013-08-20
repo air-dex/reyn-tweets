@@ -127,7 +127,7 @@ void MediaSizes2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject MediaSizes2::toJSON() {
+QJsonObject MediaSizes2::toJSON() const {
 	QJsonObject json;
 
 	json.insert(LARGE_PN, QJsonValue(this->largeSize.toJSON()));

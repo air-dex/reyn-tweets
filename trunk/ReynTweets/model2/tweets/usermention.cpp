@@ -134,7 +134,7 @@ void UserMention2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject UserMention2::toJSON() {
+QJsonObject UserMention2::toJSON() const {
 	QJsonObject json = TweetEntity2::toJSON();
 
 	json.insert(ID_PN, QJsonValue(this->userID));

@@ -39,7 +39,7 @@ ContributorList::ContributorList(const ContributorList & list) :
 }
 
 // Affrection operator
-const UserMentionList & ContributorList::operator=(const ContributorList & list) {
+const ContributorList & ContributorList::operator=(const ContributorList & list) {
 	recopie(list);
 	return *this;
 }

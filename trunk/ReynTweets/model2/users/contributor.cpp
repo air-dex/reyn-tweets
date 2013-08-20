@@ -120,11 +120,11 @@ void Contributor::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Contributor::toJSON() {
+QJsonObject Contributor::toJSON() const {
 	QJsonObject json;
 
 	if (!this->isNull()) {
-		json.insert(ID_PN, QJsonValue(this->userID));
+		json.insert(ID_PN, QJsonValue(double(this->userID)));
 		json.insert(ID_STR_PN, QJsonValue(this->userIDstr));
 		json.insert(SCREEN_NAME_PN, QJsonValue(this->screenName));
 	}
@@ -183,7 +183,7 @@ bool Contributor::operator==(const Contributor & contributor) const {
 }
 
 // Testing if a Contributor is null
-bool Contributor::isNull() {
+bool Contributor::isNull() const {
 	const Contributor c;
 	return *this == c;
 }

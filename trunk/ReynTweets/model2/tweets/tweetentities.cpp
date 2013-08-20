@@ -128,7 +128,7 @@ void TweetEntities2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject TweetEntities2::toJSON() {
+QJsonObject TweetEntities2::toJSON() const {
 	QJsonObject json;
 
 	json.insert(MEDIA_PN, QJsonValue(this->medias.toJSON()));

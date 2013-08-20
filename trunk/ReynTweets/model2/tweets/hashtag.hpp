@@ -85,10 +85,10 @@ class Hashtag2 : public TweetEntity2
 		/// @param json The QJsonObject used to fill the JsonObject
 		virtual void fillWithJSON(QJsonObject json);
 
-		/// @fn virtual QJsonObject toJSON();
+		/// @fn virtual QJsonObject toJSON() const;
 		/// @brief Getting a QJsonObject representation of the object
 		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
+		virtual QJsonObject toJSON() const;
 
 
 	private:

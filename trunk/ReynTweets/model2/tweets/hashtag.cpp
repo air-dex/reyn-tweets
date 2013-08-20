@@ -101,7 +101,7 @@ void Hashtag2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Hashtag2::toJSON() {
+QJsonObject Hashtag2::toJSON() const {
 	QJsonObject json = TweetEntity2::toJSON();
 
 	json.insert(TEXT_PN, QJsonValue(this->hashText));

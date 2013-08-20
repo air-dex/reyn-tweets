@@ -36,8 +36,7 @@ GenericRequester::GenericRequester(HTTPRequestType type,
 	postParameters(),
 	headers(),
 	weblink(requestURL, requestType, getParameters, postParameters, headers),
-	parsingErrorType(parseError),
-	requestResult()
+	parsingErrorType(parseError)
 {}
 
 
@@ -48,11 +47,6 @@ GenericRequester::~GenericRequester() {}
 /////////////
 // Getters //
 /////////////
-
-// Getting parsed results
-RequestResult GenericRequester::getRequestResult() {
-	return requestResult;
-}
 
 // Getter on the requester's UUID
 QUuid GenericRequester::getUuid() {
@@ -104,6 +98,8 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 	disconnect(&weblink, SIGNAL(requestDone(NetworkResponse)),
 			   this, SLOT(treatResults(NetworkResponse)));
 
+	RequestResult requestResult;
+
 	// Looking the HTTP request
 	ResponseInfos netHTTPRep = netResponse.getHttpResponse();
 	requestResult.httpResponse = netHTTPRep;
@@ -111,11 +107,14 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 
 	int httpReturnCode = netHTTPRep.code;
 
-	if (httpReturnCode == 0) {
+	if (httpReturnCode == -1) {
+		// Invalid response => INVALID_RESULT
+		requestResult.resultType = Network::INVALID_RESULT;
+	} else if (httpReturnCode == 0) {
 		// No response => API_CALL
 		requestResult.resultType = Network::API_CALL;
 	} else {
-		// A response to parse
+		// Parsing the response and filling requestResult
 		bool parseOK;
 		QVariantMap parseErrorMap;
 		requestResult.parsedResult = this->parseResult(netResponse,
@@ -126,13 +125,14 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
 		if (parseOK) {
-			this->treatParsedResult(netResponse);
+			// Other treatments (most of the time it is related to the service)
+			this->treatParsedResult(requestResult, netResponse);
 		} else {
 			// Giving the response just in case the user would like to do sthg with it.
 			requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
 		}
 	}
 
-	// Telling the ReynTwitterCalls that the request is finished
-	emit requestDone();
+	// Telling the Calls that the request is finished
+	emit requestDone(requestResult);
 }

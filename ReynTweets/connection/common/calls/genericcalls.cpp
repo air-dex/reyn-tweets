@@ -28,13 +28,13 @@ RequesterManager GenericCalls::requesterManager = RequesterManager();
 
 // Protected constructor
 GenericCalls::GenericCalls(QObject * requester) :
-    QObject(),
-    requestDemander(requester)
+	QObject(),
+	requestDemander(requester)
 {}
 
 // Destructor
 GenericCalls::~GenericCalls() {
-    requestDemander = 0;
+	requestDemander = 0;
 }
 
 
@@ -44,45 +44,44 @@ GenericCalls::~GenericCalls() {
 
 // Adding a requester to the requester manager
 void GenericCalls::addRequester(GenericRequester * requester) {
-    if (requester != 0) {
-        connect(requester, SIGNAL(requestDone()),
-                this, SLOT(endRequest()));
-        requesterManager.addRequest(requestDemander, requester);
-    }
+	if (requester != 0) {
+		connect(requester, SIGNAL(requestDone(RequesterManager)),
+				this, SLOT(endRequest()));
+		requesterManager.addRequest(requestDemander, requester);
+	}
 }
 
 // Removing a requester of the requester manager
 void GenericCalls::removeRequester(GenericRequester * requester) {
-    if (requester != 0) {
-        disconnect(requester, SIGNAL(requestDone()),
-                   this, SLOT(endRequest()));
-        requesterManager.removeRequest(requester->getUuid());
-    }
+	if (requester != 0) {
+		disconnect(requester, SIGNAL(requestDone(RequesterManager)),
+				   this, SLOT(endRequest()));
+		requesterManager.removeRequest(requester->getUuid());
+	}
 }
 
 // Slot executed when a requester has finished its work
-void GenericCalls::endRequest() {
-    GenericRequester * requester = qobject_cast<GenericRequester *>(sender());
-    ResultWrapper res = buildResultSender(requester);
-    removeRequester(requester);
-    emit sendResult(res);
+void GenericCalls::endRequest(RequestResult requestResult) {
+	GenericRequester * requester = qobject_cast<GenericRequester *>(sender());
+	ResultWrapper res = buildResultSender(requester, requestResult);
+	removeRequester(requester);
+	emit sendResult(res);
 }
 
 // Method that builds the wrapper of a result
-ResultWrapper GenericCalls::buildResultSender(GenericRequester * endedRequest) {
-    if (endedRequest) {
-        RequestInfos & requestInfos = requesterManager.getRequestInfos(endedRequest->getUuid());
-        return ResultWrapper(requestInfos.getAsker(),
-                             requestInfos.getRequester()->getRequestResult());
-    } else {
-        return ResultWrapper();
-    }
+ResultWrapper GenericCalls::buildResultSender(GenericRequester * endedRequest,
+											  RequestResult requestResult)
+{
+	return endedRequest ?
+				ResultWrapper(requesterManager.getRequestInfos(endedRequest->getUuid()).getAsker(),
+							  requestResult)
+			  : ResultWrapper();
 }
 
 // Inline method for executing requests
 void GenericCalls::executeRequest(GenericRequester * requester) {
-    if (requester != 0) {
-        addRequester(requester);
-        requester->executeRequest();
-    }
+	if (requester != 0) {
+		addRequester(requester);
+		requester->executeRequest();
+	}
 }

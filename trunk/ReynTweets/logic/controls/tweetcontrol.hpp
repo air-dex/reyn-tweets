@@ -161,13 +161,13 @@ class TweetControl : public GenericControl
 		/// @brief Tweet entity behind the tweet property
 		Tweet * status;
 
+		// tweet
 		/// @property tweet
-		/// @brief Model of the tweet manipulated by the control.
+		/// @brief Tweet manipulated by the control.
 		///
 		/// The status attribute is behind this property
 		Q_PROPERTY(Tweet * tweet
 				   READ getTweet
-				   WRITE setTweet
 				   NOTIFY tweetChanged)
 
 		/// @fn Tweet * getTweet();
@@ -175,11 +175,7 @@ class TweetControl : public GenericControl
 		/// @return status
 		Tweet * getTweet();
 
-		/// @fn void setTweet(Tweet * newStatus);
-		/// @brief Writing the tweet property
-		/// @param newStatus New value for status.
-		void setTweet(Tweet * newStatus);
-
+		// shown_tweet
 		/// @property shown_tweet
 		/// @brief Tweet that is really displayed on the screen.
 		///
@@ -194,6 +190,26 @@ class TweetControl : public GenericControl
 		/// @return status->getRetweetedStatus() if the tweet is a retweet,
 		/// status otherwise
 		Tweet * getShownTweet();
+
+		// tweet_model
+		/// @property tweet_model
+		/// @brief Model of the tweet manipulated by the control.
+		///
+		/// The status attribute is behind this property
+		Q_PROPERTY(QJsonObject tweet_model
+				   READ getTweetModel
+				   WRITE setTweetModel
+				   NOTIFY tweetChanged)
+
+		/// @fn QJsonObject getTweetModel();
+		/// @brief Reading the tweet_model property
+		/// @return status
+		QJsonObject getTweetModel();
+
+		/// @fn void setTweetModel(QJsonObject newStatus);
+		/// @brief Writing the tweet_model property
+		/// @param newStatus New value for status.
+		void setTweetModel(QJsonObject newStatus);
 };
 
 #endif // TWEETCONTROL_HPP

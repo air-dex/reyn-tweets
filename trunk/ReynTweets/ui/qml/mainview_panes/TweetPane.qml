@@ -39,10 +39,13 @@ Rectangle {
 	property int margin: 5
 
 	// The tweet displayed in this pane
-	property alias tweet: control.tweet
+	readonly property alias tweet: control.tweet
 
 	// Tweet
-	property alias shown_tweet: control.shown_tweet
+	readonly property alias shown_tweet: control.shown_tweet
+
+	// Model of the tweet
+	property alias tweet_model: control.tweet_model
 
 	// User behind the timeline
 	property UserInfos current_user: settings_control.configuration.user_account.current_user
@@ -78,7 +81,6 @@ Rectangle {
 	// Control behind the pane
 	TweetControl {
 		id: control
-		tweet: tweet_pane.tweet
 		onTweetChanged: {
 			tweet_pane.state = "Scratch"
 			displayTweet()
@@ -719,8 +721,6 @@ Rectangle {
 	]
 
 	Component.onCompleted: {
-		tweet = control.tweet
-
 		// Wiring
 		control.destroyTweet.connect(tweet_pane.destroyTweet)
 		control.actionEnded.connect(tweet_pane.endTweeting)

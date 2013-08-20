@@ -165,10 +165,15 @@ class ReynTwitterCalls : public GenericCalls
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/request_token
 		void requestToken();
 
-		/// @fn void authorize();
+		/// @fn void authorize(bool forceLogin = false, QString writeLogin = "");
 		/// @brief Method for authorizing request Tokens
+		/// @param forceLogin Boolean indicating if the user as to sign in to
+		/// Twitter to authorize the application. Quite useless in Reyn Tweets.
+		/// @brief writeLogin Screen name of the user which want to authorize
+		/// the app, in order to write it in the authentication page which will
+		/// be returned. Quite useless in Reyn Tweets.
 		/// @see https://dev.twitter.com/docs/api/1/get/oauth/authorize
-		void authorize();
+		void authorize(bool forceLogin = false, QString writeLogin = "");
 
 		/// @fn void postAuthorize(QString login,
 		///						   QString password,
@@ -182,10 +187,11 @@ class ReynTwitterCalls : public GenericCalls
 						   QString password,
 						   bool deny);
 
-		/// @fn void accessToken();
+		/// @fn void accessToken(QByteArray verifier);
 		/// @brief Method for getting an access token
+		/// @param verifier The OAuth Verifier needed for getting Access tokens.
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/access_token
-		void accessToken();
+		void accessToken(QByteArray verifier = "");
 
 
 		//////////////

@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -24,13 +24,13 @@
 #include "requesttokenrequester.hpp"
 #include "../../../../tools/parsers/oauthparser.hpp"
 
+// Constructor
 RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
 	OAuthRequester(Network::POST,
 				   TwitterURL::REQUEST_TOKEN_URL,
 				   authManager,
 				   Network::OAUTH_PARSING,
-				   false,
-				   true)
+				   false, true, false)
 {}
 
 // Parse the raw results of the request.
@@ -38,59 +38,62 @@ QVariant RequestTokenRequester::parseResult(NetworkResponse results,
 											bool & parseOK,
 											QVariantMap & parsingErrors)
 {
+	// Key names
+	const QString OAUTH_TOKEN_KEY = "oauth_token";
+	const QString OAUTH_TOKEN_SECRET_KEY = "oauth_token_secret";
+	const QString OAUTH_CALLBACK_CONFIRMED_KEY = "oauth_callback_confirmed";
+
+	// Parsing
 	OAuthParser parser;
 	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg = "";
+	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
 
 	// For treatments
 	QVariant extractedCredential;
 	bool treatmentOK;
 	QString treatmentErrorMsg = "";
+	QList<QString> missingArgs;
 
+	// oauth_token
+	if (resultMap.contains(OAUTH_TOKEN_KEY)) {
+		// Extracting the "oauth_token" parameter
+		extractedCredential = resultMap.value(OAUTH_TOKEN_KEY);
+		oauthManager.setOAuthToken(extractedCredential.toByteArray());
+	} else {
+		// Add it to the missing arguments
+		missingArgs.append(OAUTH_TOKEN_KEY);
+	}
 
-	// Parsing
-	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
-	errorMsg.append(treatmentErrorMsg);
+	// oauth_token_secret
+	if (resultMap.contains(OAUTH_TOKEN_SECRET_KEY)) {
+		// Extracting the "oauth_token_secret" parameter
+		extractedCredential = resultMap.value(OAUTH_TOKEN_SECRET_KEY);
+		oauthManager.setOAuthToken(extractedCredential.toByteArray());
+	} else {
+		// Add it to the missing arguments
+		missingArgs.append(OAUTH_TOKEN_SECRET_KEY);
+	}
 
+	// oauth_callback_confirmed
+	if (resultMap.contains(OAUTH_CALLBACK_CONFIRMED_KEY)) {
+		// Rewriting the "oauth_callback_confirmed" parameter as a boolean
+		parser.rewriteAsBool(resultMap,
+							 OAUTH_CALLBACK_CONFIRMED_KEY,
+							 treatmentOK,
+							 treatmentErrorMsg);
+		parseOK = parseOK && treatmentOK;
+		errorMsg.append(treatmentErrorMsg);
+	} else {
+		// Add it to the missing arguments
+		missingArgs.append(OAUTH_CALLBACK_CONFIRMED_KEY);
+	}
 
-	// Extracting the "oauth_token" parameter
-	extractedCredential = parser.extractParameter(resultMap,
-												  "oauth_token",
-												  treatmentOK,
-												  treatmentErrorMsg);
-	parseOK = parseOK && treatmentOK;
-	errorMsg.append(treatmentErrorMsg);
-	oauthManager.setOAuthToken(extractedCredential.toByteArray());
+	parseOK = parseOK && missingArgs.isEmpty();
 
-
-	// Extracting the "oauth_token_secret" parameter
-	extractedCredential = parser.extractParameter(resultMap,
-												  "oauth_token_secret",
-												  treatmentOK,
-												  treatmentErrorMsg);
-	parseOK = parseOK && treatmentOK;
-	errorMsg.append(treatmentErrorMsg);
-	oauthManager.setOAuthSecret(extractedCredential.toByteArray());
-
-
-	// Rewriting the "oauth_callback_confirmed" parameter as a boolean
-	parser.rewriteAsBool(resultMap,
-						 "oauth_callback_confirmed",
-						 treatmentOK,
-						 treatmentErrorMsg);
-	parseOK = parseOK && treatmentOK;
-	errorMsg.append(treatmentErrorMsg);
-
-
-	// Ensures that "oauth_callback_confirmed" is the last argument of the list.
-	treatmentOK = resultMap.size() == 1 && resultMap.contains("oauth_callback_confirmed");
-	parseOK = parseOK && treatmentOK;
-
-	// Listing all the unexpected parameters
-	if (!treatmentOK) {
-		QList<QString> argNames = resultMap.keys();
-		argNames.removeOne("oauth_callback_confirmed");
-		foreach (QString argName, argNames) {
+	// Listing all the expected parameters
+	if (!missingArgs.isEmpty()) {
+		foreach (QString argName, missingArgs) {
 			errorMsg.append(RequestTokenRequester::trUtf8("Unexpected parameter '"))
 					.append(argName)
 					.append("'.\n");

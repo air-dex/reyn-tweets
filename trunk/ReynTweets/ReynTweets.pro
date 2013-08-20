@@ -128,6 +128,8 @@ SOURCES += \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
 	logic/processes/singletwittercallprocess.cpp \
+	logic/processes/oauth/requesttokensprocess.cpp \
+	logic/processes/oauth/accesstokensprocess.cpp \
 	logic/processes/retweetprocess.cpp \
 	logic/processes/oauthprocess.cpp \
 	logic/processes/allowprocess.cpp \
@@ -254,6 +256,8 @@ HEADERS  += \
 	tools/processutils.hpp \
 	logic/processes/genericprocess.hpp \
 	logic/processes/singletwittercallprocess.hpp \
+	logic/processes/oauth/requesttokensprocess.hpp \
+	logic/processes/oauth/accesstokensprocess.hpp \
 	logic/processes/oauthprocess.hpp \
 	logic/processes/allowprocess.hpp \
 	logic/processes/deletetweetprocess.hpp \

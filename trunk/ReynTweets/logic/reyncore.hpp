@@ -152,6 +152,14 @@ class ReynCore : public QObject
 		/// @brief Allowing Reyn Tweets
 		void allowReynTweets();
 
+		/// @fn void requestOAuthTokens();
+		/// @brief Getting OAuth Request tokens for Reyn Tweets
+		void requestOAuthTokens();
+
+		/// @fn void accessOAuthTokens(QByteArray verifier);
+		/// @brief Getting OAuth Access tokens for Reyn Tweets
+		void accessOAuthTokens(QByteArray verifier);
+
 		///////////////
 		// Timelines //
 		///////////////

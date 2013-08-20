@@ -97,10 +97,10 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		virtual QDataStream & writeInStream(QDataStream & out) const;
 
 	protected:
-		/// @fn void recopie(const JsonObject & jsonobj);
+		/// @fn void recopie(const JsonObject & );
 		/// @brief Core method to copy a JsonObject
 		/// @param jsonobj The JsonObject to copy
-		virtual void recopie(const JsonObject & jsonobj);
+		virtual void recopie(const JsonObject &);
 };
 
 #endif // JSONOBJECT_HPP

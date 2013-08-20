@@ -123,6 +123,7 @@ class IndexBoundsHandler : public ListHandler<IndexBounds, int>
 		// Properties on bounds //
 		//////////////////////////
 
+		// lower_bound
 		/// @property lower_bound
 		/// @brief Lower bound
 		Q_PROPERTY(int lower_bound
@@ -140,6 +141,7 @@ class IndexBoundsHandler : public ListHandler<IndexBounds, int>
 		/// @param newBound New value for the lower bound
 		void setLowerBound(int newBound);
 
+		// upper_bound
 		/// @property upper_bound
 		/// @brief Upper bound
 		Q_PROPERTY(int upper_bound

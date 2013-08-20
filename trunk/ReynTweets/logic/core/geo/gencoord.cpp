@@ -29,7 +29,8 @@
 
 // Default constructor
 GenCoord::GenCoord() :
-	JsonObject()
+	JsonObject(),
+	coordType(CoordType::FAKE_COORDINATES)
 {}
 
 // Destructor
@@ -37,7 +38,8 @@ GenCoord::~GenCoord() {}
 
 // Copy constructor
 GenCoord::GenCoord(const GenCoord & coord) :
-	JsonObject()
+	JsonObject(),
+	coordType(CoordType::FAKE_COORDINATES)
 {
 	recopie(coord);
 }
@@ -51,6 +53,52 @@ const GenCoord & GenCoord::operator=(const GenCoord & coord) {
 // Copy of a GenCoord
 void GenCoord::recopie(const GenCoord & coord) {
 	JsonObject::recopie(coord);
+	this->coordType = coord.coordType;
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void GenCoord::fillWithVariant(QJsonObject json) {
+	this->coordType = CoordType::string2coord(json.value(TYPE_PN).toString(""));
+}
+
+// QJsonObject representation of the object
+QJsonObject GenCoord::toVariant() const {
+	QJsonObject json;
+
+	json.insert(TYPE_PN, QJsonValue(CoordType::coord2string(this->coordType)));
+
+	return json;
+}
+
+
+////////////////
+// Properties //
+////////////////
+
+// type
+QString GenCoord::TYPE_PN = "type";
+
+QString GenCoord::getTypeProperty() {
+	return CoordType::coord2string(this->coordType);
+}
+
+CoordType::CoordinatesType GenCoord::getType() {
+	return this->coordType;
+}
+
+void GenCoord::setType(CoordType::CoordinatesType newValue) {
+	this->coordType = newValue;
+	emit typeChanged();
+}
+
+void GenCoord::setType(QString newValue) {
+	this->coordType = CoordType::string2coord(newValue);
+	emit typeChanged();
 }
 
 
@@ -61,9 +109,4 @@ void GenCoord::recopie(const GenCoord & coord) {
 // coordinatesChanged signal.
 void GenCoord::changeCoord() {
 	emit coordinatesChanged();
-}
-
-// typeChanged signal
-void GenCoord::changeType() {
-	emit typeChanged();
 }

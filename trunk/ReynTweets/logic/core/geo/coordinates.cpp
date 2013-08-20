@@ -31,7 +31,7 @@
 
 // Default constructor
 Coordinates::Coordinates() :
-	GenericCoordinates<GeoCoord>()
+	GenericCoordinates<GeoCoord, GeoCoordHandler>()
 {
 	this->coordType = CoordType::POINT;
 }
@@ -41,7 +41,7 @@ Coordinates::~Coordinates() {}
 
 // Copy constructor
 Coordinates::Coordinates(const Coordinates & coord) :
-	GenericCoordinates<GeoCoord>()
+	GenericCoordinates<GeoCoord, GeoCoordHandler>()
 {
 	this->recopie(coord);
 }

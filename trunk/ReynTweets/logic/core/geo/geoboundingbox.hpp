@@ -25,14 +25,14 @@
 #define GEOBOUNDINGBOX_HPP
 
 #include "genericcoordinates.tpp"
-#include "geocoordpolygon.hpp"
+#include "../../controls/listhandlers/geocoordpolygonhandler.hpp"
 
 using CoordType::CoordinatesType;
 
 /// @class GeoBoundingBox
 /// @brief Bounding box used for places
 /// @see https://dev.twitter.com/docs/platform-objects/places#obj-boundingbox
-class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon>
+class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon, GeoCoordPolygonHandler>
 {
 	Q_OBJECT
 
@@ -68,6 +68,27 @@ class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon>
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/// @fn GeoCoordList getBoundsList() const;
+		/// @brief Getting all the coordinates bounds.
+		/// @return The list with all the coordinates bounds.
+		GeoCoordList getBoundsList() const;
+
+
+	protected:
+		//////////////////////////
+		// coordinates property //
+		//////////////////////////
+
+		/// @property coordinates
+		/// @brief Geographic coordinates which are the bounds of the area
+		/// contained in the GeoBoundingBox.
+		Q_PROPERTY(GeoCoordPolygonHandler * coordinates
+				   READ getCoordinatesProperty
+				   NOTIFY coordinatesChanged)
+
+	signals:
+		/// @see { @link GenCoord::coordinatesChanged(); }
+		void coordinatesChanged();
 
 	private:
 		// Friends serialization operators

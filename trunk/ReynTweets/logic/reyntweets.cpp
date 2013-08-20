@@ -98,6 +98,8 @@ void ReynTweets::initSystem() {
 
 	// List handlers
 	ContributorsHandler::initSystem();
+	GeoCoordHandler::initSystem();
+	GeoCoordPolygonHandler::initSystem();
 	HashtagsHandler::initSystem();
 	IndexBoundsHandler::initSystem();
 	MediasHandler::initSystem();
@@ -142,6 +144,8 @@ void ReynTweets::declareQML() {
 
 	// List handlers
 	ContributorsHandler::declareQML();
+	GeoCoordHandler::declareQML();
+	GeoCoordPolygonHandler::declareQML();
 	HashtagsHandler::declareQML();
 	IndexBoundsHandler::declareQML();
 	MediasHandler::declareQML();

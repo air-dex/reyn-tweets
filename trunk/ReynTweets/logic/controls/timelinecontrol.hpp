@@ -26,6 +26,7 @@
 
 #include "genericcontrol.hpp"
 #include "../../model/timelines/timeline.hpp"
+#include "timelinehandler.hpp"
 #include "../reyncore.hpp"
 
 /// @class TimelineControl
@@ -42,50 +43,6 @@ class TimelineControl : public GenericControl
 		/// @fn static void declareQML();
 		/// @brief Declaring TimelineControl to the QML system
 		static void declareQML();
-
-
-		///////////////////////
-		// Timeline handling //
-		///////////////////////
-
-		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-		/// @brief Getting a pointer on a tweet in the timeline.
-		///
-		/// Used by QML delegates of the ListView in the TimelinePane
-		/// to attribute a tweet to TweetPane in the delegate in the list.
-		/// @param tweetIndex Index of the tweet in the timeline
-		/// @return The tweet &#135;tweetIndex in the timeline if the index
-		/// is ok, a default tweet otherwise.
-		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-
-		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-		/// @brief Replacing a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param updatedTweet New value of the tweet
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-
-		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
-		/// @brief Replacing a tweet in a timeline
-		///
-		/// Invoked when an update of the tweet is asked.
-		/// @param updatedTweet New value of the tweet
-		Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
-
-		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
-		/// @brief Deleting a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void deleteTweet(int tweetIndex);
-
-		/// @fn Q_INVOKABLE void deleteTweet(QVariant variantTweet);
-		/// @brief Deleting a tweet in a timeline
-		///
-		/// Invoked when a tweet is asked for deletion.
-		/// @param variantTweet The tweet (QVariant form)
-		Q_INVOKABLE void deleteTweet(QVariant variantTweet);
 
 
 		/////////////////////////////
@@ -111,13 +68,11 @@ class TimelineControl : public GenericControl
 
 
 	signals:
+		/*
 		/// @fn void timelineChanged();
 		/// @brief Signal sent when the timeline property changes
 		void timelineChanged();
-
-		/// @fn void timelineTypeChanged();
-		/// @brief Signal sent when the timeline_type property changes
-		void timelineTypeChanged();
+		//*/
 
 		/// @fn void tweetUpdated(int tweetIndex);
 		/// @brief Signal sent when a tweet in the timeline was updated
@@ -155,36 +110,22 @@ class TimelineControl : public GenericControl
 		// Timeline management //
 		/////////////////////////
 
+		/// @brief Entity handling the timeline
+		TimelineHandler tlhandler;
+
 		/// @brief The timeline
 		Timeline timeline;
 
-		/// @property nb_tweets
-		/// @brief Number of tweets in the timeline (timeline.size()).
-		Q_PROPERTY(int nb_tweets
-				   READ getTimelineLength
-				   NOTIFY timelineChanged)
-
-		/// @fn Timeline getTimelineLength();
-		/// @brief Reading the property nb_tweets
-		/// @return timeline.length();
-		int getTimelineLength();
-
+		// timeline_handler
 		/// @property timeline_type
 		/// @brief Type of the timeline handled by the control
-		Q_PROPERTY(Timeline::TimelineType timeline_type
-				   READ getTimelineType
-				   WRITE setTimelineType
-				   NOTIFY timelineTypeChanged)
+		Q_PROPERTY(TimelineHandler * timeline_handler
+				   READ getTimelineHandler)
 
-		/// @fn Timeline::TimelineType getTimelineType();
+		/// @fn Timeline::TimelineType getTimelineHandler();
 		/// @brief Reading the property timeline_type
 		/// @return timeline.getType();
-		Timeline::TimelineType getTimelineType();
-
-		/// @fn void setTimelineType(Timeline::TimelineType newType);
-		/// @brief Writing the property timeline_type
-		/// @param newType New type for the timeline
-		void setTimelineType(Timeline::TimelineType newType);
+		TimelineHandler * getTimelineHandler();
 
 
 		////////////////////////////////////////////////////////////

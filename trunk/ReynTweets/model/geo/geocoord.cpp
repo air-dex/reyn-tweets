@@ -114,6 +114,11 @@ void GeoCoord::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void GeoCoord::appendJsonArrayElement(QJsonArray & array, double elt) const {
+	array.append(elt);
+}
+
 
 /////////////////////////////////////
 // Friends serialization operators //

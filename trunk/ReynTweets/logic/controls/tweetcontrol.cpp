@@ -74,12 +74,12 @@ void TweetControl::commitTweet() {
 /////////////////////////
 
 // Reading the property timeline_type
-Timeline::TimelineType TweetControl::getTimelineType() {
+TimelineHandler::TimelineType TweetControl::getTimelineType() {
 	return timelineType;
 }
 
 // Writing the property timeline_type
-void TweetControl::setTimelineType(Timeline::TimelineType newType) {
+void TweetControl::setTimelineType(TimelineHandler::TimelineType newType) {
 	timelineType = newType;
 	emit timelineTypeChanged();
 }
@@ -245,12 +245,12 @@ void TweetControl::retweet() {
 	processing = true;
 
 	switch (timelineType) {
-		case Timeline::HOME:
+		case TimelineHandler::HOME:
 			emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
 			reyn.retweet(getShownTweet()->getIDstr().toLongLong());
 			break;
 
-		case Timeline::MENTIONS:
+		case TimelineHandler::MENTIONS:
 			// Do not retweet if the user was retweeted
 			if (*(getShownTweet()->getAuthor()) ==
 					reyn.getUserConfiguration().getUserAccount().getUser())
@@ -355,8 +355,8 @@ void TweetControl::favorite() {
 	processing = true;
 
 	switch (timelineType) {
-		case Timeline::HOME:
-		case Timeline::MENTIONS:
+		case TimelineHandler::HOME:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TweetControl::trUtf8("Favoriting..."));
 			reyn.favoriteTweet(getShownTweet()->getIDstr().toLongLong());
 			break;
@@ -440,8 +440,8 @@ void TweetControl::unfavorite() {
 	processing = true;
 
 	switch (timelineType) {
-		case Timeline::HOME:
-		case Timeline::MENTIONS:
+		case TimelineHandler::HOME:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TweetControl::trUtf8("Unfavoriting..."));
 			reyn.unfavoriteTweet(getShownTweet()->getIDstr().toLongLong());
 			break;
@@ -524,8 +524,8 @@ void TweetControl::deleteTweet() {
 	processing = true;
 
 	switch (timelineType) {
-		case Timeline::HOME:
-		case Timeline::MENTIONS:
+		case TimelineHandler::HOME:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TweetControl::trUtf8("Deleting the tweet..."));
 			reyn.deleteTweet(*status);
 			break;

@@ -65,7 +65,7 @@ Rectangle {
 	TimelinePane {
 		id: mentions_pane
 		width: parent.width
-		timeline_type: Timeline.MENTIONS
+		timeline_type: TimelineHandler.MENTIONS
 		anchors.right: parent.right
 		anchors.left: parent.left
 		anchors.bottom: parent.bottom

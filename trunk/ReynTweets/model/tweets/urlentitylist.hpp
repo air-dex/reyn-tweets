@@ -61,6 +61,14 @@ class URLEntityList : public JsonArray<URLEntity>
 		/// @param v the QJsonValue
 		virtual void appendJsonValue(QJsonValue v);
 
+		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
+		///											URLEntity elt) const;
+		/// @brief Appends an element of the list in a QJsonArray
+		/// @param array The QJsonArray
+		/// @param elt The list element
+		virtual void appendJsonArrayElement(QJsonArray & array,
+											URLEntity elt) const;
+
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

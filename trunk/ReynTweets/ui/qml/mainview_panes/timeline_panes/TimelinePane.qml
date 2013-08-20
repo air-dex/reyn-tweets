@@ -37,14 +37,16 @@ Rectangle {
 	height: 640
 	color: constant.orange_author
 
-	property alias timeline_type: control.timeline_type
+	property int timeline_type
+
+	property alias timeline_handler: control.timeline_handler
 
 	Constants { id: constant }
 
 	// Control behind the pane
 	TimelineControl {
 		id: control
-		onTimelineChanged: timeline_model.syncWithTimeline()
+		timeline_handler.type: timeline_pane.timeline_type
 	}
 
 	// Text announcing what to do to refesh the timeline
@@ -84,12 +86,28 @@ Rectangle {
 		z: refresh_text.z + 1
 		anchors.fill: parent
 		clip: true
+/*
+		header: Component {
+			Text {
+				text: "voir"
+				horizontalAlignment: Text.AlignHCenter
+				anchors.top: timeline_view.top
+				anchors.horizontalCenter: timeline_view.horizontalCenter
+				font.family: constant.font
+				font.pointSize: constant.font_size
 
+				MouseArea {
+					anchors.fill: parent
+					onClicked: control.voir()
+				}
+			}
+		}
+//*/
 		delegate: Component {
 			TweetPane {
 				width: timeline_pane.width
 				timeline_type: timeline_pane.timeline_type
-				tweet: control.getTweet(index)
+				tweet: timeline_handler.getTweet(index)
 
 				Component.onCompleted: {
 					// When a tweet is quoted or reply to a tweet
@@ -115,11 +133,11 @@ Rectangle {
 				}
 
 				function deleteTweet(newTweet) {
-					control.deleteTweet(index)
+					timeline_handler.deleteTweet(index)
 				}
 
 				function majTweet(newTweet) {
-					control.replaceTweet(newTweet, index)
+					timeline_handler.replaceTweet(newTweet, index)
 				}
 			}
 		}
@@ -131,7 +149,7 @@ Rectangle {
 			function syncWithTimeline() {
 				timeline_model.clear();
 
-				for (var j = 0; j < control.nb_tweets; j++) {
+				for (var j = 0; j < timeline_handler.nb_tweets; j++) {
 					timeline_model.append({})
 				}
 			}
@@ -154,7 +172,7 @@ Rectangle {
 					onClick: timeline_view.loadMore()
 				}
 
-				visible: control.nb_tweets > 0
+				visible: timeline_handler.nb_tweets > 0
 			}
 		}
 
@@ -201,7 +219,7 @@ Rectangle {
 		///////////////////////////
 		// Scroll bar management //
 		///////////////////////////
-
+/*
 		ScrollBar {
 			id: verticalScrollBar
 			width: 5
@@ -228,7 +246,7 @@ Rectangle {
 				property: "contentY"
 				value: verticalScrollBar.dragPosition * timeline_view.contentHeight
 			}
-		}
+		}//*/
 	}
 
 
@@ -248,7 +266,7 @@ Rectangle {
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
 
 		// Sync between the timeline and the list model
-		control.timelineChanged.connect(timeline_model.syncWithTimeline)
+		timeline_handler.timelineChanged.connect(timeline_model.syncWithTimeline)
 	}
 
 	// Loading the home timeline
@@ -270,12 +288,12 @@ Rectangle {
 
 	// When an update is asked for a tweet
 	function updateATweet(tweet) {
-		control.replaceTweet(tweet)
+		timeline_handler.replaceTweet(tweet)
 	}
 
 	// When a tweet is asked for deletion
 	function deleteATweet(tweet) {
-		control.deleteTweet(tweet)
+		timeline_handler.deleteTweet(tweet)
 	}
 
 	// What happened after loading the timeline

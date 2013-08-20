@@ -59,6 +59,11 @@ void MediaList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void MediaList::appendJsonArrayElement(QJsonArray & array, Media elt) const {
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaList & list) {
 	return list.writeInStream(out);

@@ -57,7 +57,7 @@ const JsonArray<V> & JsonArray<V>::operator=(const JsonArray<V> & list) {
 	return *this;
 }
 
-// Copy of a Listable
+// Copy of a JsonArray
 template <typename V>
 void JsonArray<V>::recopie(const JsonArray<V> & list) {
 	this->clear();
@@ -99,8 +99,9 @@ QJsonArray JsonArray<V>::toVariant() const {
 		it != this->end();
 		++it)
 	{
-		QJsonValue val(*it);
-		res.append(val);
+		//QJsonValue val(*it);
+		//res.append(val);
+		this->appendJsonArrayElement(res, *it);
 	}
 
 	return res;

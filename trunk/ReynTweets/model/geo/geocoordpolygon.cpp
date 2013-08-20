@@ -68,3 +68,10 @@ void GeoCoordPolygon::appendJsonValue(QJsonValue v) {
 		this->append(gcl);
 	}
 }
+
+// Appends an element of the list in a QJsonArray
+void GeoCoordPolygon::appendJsonArrayElement(QJsonArray & array,
+											 GeoCoordList elt) const
+{
+	array.append(elt.toVariant());
+}

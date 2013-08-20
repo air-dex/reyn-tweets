@@ -30,7 +30,7 @@
 
 /// @class JsonObject
 /// @brief Base class for all objects which can be represented by a JSON object.
-class JsonObject : public Mappable, public Jsonable<QJsonObject>, public QJsonObject
+class JsonObject : public Mappable, public Jsonable<QJsonObject>
 {
 	Q_OBJECT
 
@@ -64,6 +64,11 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>, public QJsonOb
 		/// @param map The QVariantMap used to fill the JsonObject
 		virtual void fillWithVariant(QVariantMap map);
 
+		/// @fn virtual QVariantMap toVariant();
+		/// @brief Getting a QVariantMap representation of the JsonObject
+		/// @return QVariantMap representation
+		virtual QVariantMap toVariant();
+
 		/// @fn virtual void fillWithJSON(QJsonObject json);
 		/// @brief Filling the object with a QJsonObject.
 		///
@@ -72,15 +77,10 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>, public QJsonOb
 		/// @param json The QJsonObject used to fill the JsonObject
 		virtual void fillWithJSON(QJsonObject json) = 0;
 
-		/// @fn virtual QVariantMap toVariant();
-		/// @brief Getting a QVariantMap representation of the JsonObject
-		/// @return QVariantMap representation
-		virtual QVariantMap toVariant();
-
 		/// @fn virtual QJsonObject toJSON();
 		/// @brief Getting a QJsonObject representation of the JsonObject
 		/// @return QJsonObject representation, i.e. <code>this</code>
-		virtual QJsonObject toJSON();
+		virtual QJsonObject toJSON() = 0;
 
 	protected:
 		/// @fn void recopie(const JsonObject & jsonobj);

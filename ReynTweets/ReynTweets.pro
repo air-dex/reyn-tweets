@@ -141,7 +141,9 @@ SOURCES += \
 	model2/listable.cpp \
 	#model2/json/jsonable.cpp \
 	model2/json/jsonobject.cpp \
-	model2/json/jsonarray.cpp
+	model2/json/jsonarray.cpp \
+    model2/tweets/tweet2.cpp \
+    model2/tweets/indexbounds2.cpp
 
 
 HEADERS  += \
@@ -256,7 +258,9 @@ HEADERS  += \
 	model2/json/jsonable.hpp \
 	model2/json/jsonobject.hpp \
 	model2/json/jsonarray.hpp \
-	model2/json/jsonarray.tpp
+	model2/json/jsonarray.tpp \
+    model2/tweets/tweet2.hpp \
+    model2/tweets/indexbounds2.hpp
 
 
 OTHER_FILES = \

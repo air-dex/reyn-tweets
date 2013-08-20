@@ -44,7 +44,7 @@ function getCharactersLeft(message) {
 	var charsAllowed = 140 - message.length
 
 	// Readjusting the number depending on the URLS contained in the text
-	var urls = twttr.txt.extractUrls(message);
+	var urls = /*window.*/twttr.txt.extractUrls(message);
 
 	for (var i in urls) {
 		var url = urls[i]

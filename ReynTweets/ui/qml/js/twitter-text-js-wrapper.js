@@ -25,7 +25,9 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-var window
-var twttr
+var window = { twttr: {} }
+//var twttr = {}
 
-Qt.include("twitter-text-1.4.16.js")
+Qt.include("twitter-text-1.6.1.js")
+
+var twttr = window.twttr

@@ -1,7 +1,7 @@
 #-----------------------------------#
 # ReynTweets.pro                    #
 # Reyn Tweets' Qt .pro project file #
-# Author : Romain Ducher            #
+# Auteur : Romain Ducher            #
 #-----------------------------------#
 
 #-----------------------------------------------------------------------------#
@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkitwidgets xml
+QT += core gui network webkitwidgets declarative xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -60,15 +60,12 @@ SOURCES += \
 
 OTHER_FILES = \
 	.bzrignore \
-	Doxyfile.txt \
 	connection/libRT.pri \
 	logic/logic.pri \
 	ui/reyntweetsui.pri \
 	conf/ReynTweets.conf \
 	conf/ReynTweetsEmpty.conf \
-	conf/ReynTweetsSettings.conf \
-	i18n/reyntweets_en.ts \
-	i18n/reyntweets_fr.ts
+	conf/ReynTweetsSettings.conf
 
 
 #---------------------------------------#
@@ -89,33 +86,21 @@ win32 {
 # TODO : Linux
 
 
-#--------------#
-# Translations #
-#--------------#
-
-TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
-
-
 #-------------------------------------#
 # Extra targets - General definitions #
 #-------------------------------------#
 
-# SEPARATOR : Separator in path systems
 # RMDIR_CMD : Command to delete directories
 # RMFILE_CMD : Command to delete files
 # COPY_CMD : Command to copy files
 
 win32 {
-	# Leave an empty line because of the backslash at the end of the variable
-	SEPARATOR = \\
-
 	RMDIR_CMD = rd /s /q
 	RMFILE_CMD = del /s /q
 	COPY_CMD = copy /y
 }
 
 linux-g++ {
-	SEPARATOR = /
 	RMDIR_CMD = rm -rfv
 	RMFILE_CMD = rm -rfv
 	COPY_CMD = cp -v
@@ -126,67 +111,14 @@ linux-g++ {
 # Documentation targets #
 #-----------------------#
 
-win32 {
-	DOXYGEN_CMD = C:\\Program Files\\doxygen\\bin\\doxygen.exe
-}
-
-linux-g++ {
-	DOXYGEN_CMD = /usr/bin/doxygen
-}
-
-# Create doc
-doc.target = doc
-doc.commands = $${DOXYGEN_CMD} $${PWD}Doxyfile.txt
-
-# Clean doc
-cleandoc.target = cleandoc
-cleandoc.commands = $${RMDIR_CMD} ..$${SEPARATOR}doc$${SEPARATOR}html
-
-# Extra targets
-QMAKE_EXTRA_TARGETS += doc cleandoc
+include (doc/documentation.pri)
 
 
-#---------------------#
-# Translation targets #
-#---------------------#
+#--------------#
+# Translations #
+#--------------#
 
-# Folder containing translations
-TR_FOLDER = $${PWD}i18n$${SEPARATOR}
-
-# lupdate
-LUPDATE_FR = lupdate -noobsolete $${PWD} -ts $${TR_FOLDER}reyntweets_fr.ts
-LUPDATE_EN = lupdate -noobsolete $${PWD} -ts $${TR_FOLDER}reyntweets_en.ts
-
-trupdate.target = trupdate
-win32 {
-	trupdate.commands = ($${LUPDATE_FR}) & ($${LUPDATE_EN})
-}
-linux-g++ {
-	trupdate.commands = $${LUPDATE_FR} ; $${LUPDATE_EN}
-}
-
-# lrelease
-LRELEASE_FR = lrelease $${TR_FOLDER}reyntweets_fr.ts
-LRELEASE_EN = lrelease $${TR_FOLDER}reyntweets_en.ts
-
-trrelease.target = trrelease
-win32 {
-	trrelease.commands = ($${LRELEASE_FR}) & ($${LRELEASE_EN})
-}
-linux-g++ {
-	trrelease.commands = $${LRELEASE_FR} ; $${LRELEASE_EN}
-}
-
-# Deploy .qm files in build directories
-trdeploy.target = trdeploy
-trdeploy.commands = $${COPY_CMD} $${TR_FOLDER}*.qm .
-
-# Delete .qm files
-trclean.target = trclean
-trclean.commands = $${RMFILE_CMD} $${TR_FOLDER}*.qm
-
-# Extra targets
-QMAKE_EXTRA_TARGETS += trupdate trrelease trdeploy trclean
+include(i18n/translation.pri)
 
 
 #------------------------#

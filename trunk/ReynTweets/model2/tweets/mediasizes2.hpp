@@ -64,6 +64,23 @@ class MediaSizes2 : public JsonObject
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON();
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON();
+
 	private:
 		/// @fn void recopie(const MediaSizes & sizes);
 		/// @brief Copy of a MediaSizes
@@ -85,23 +102,6 @@ class MediaSizes2 : public JsonObject
 		/// @param sizes Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, MediaSizes2 & sizes);
-
-		/////////////////////
-		// JSON conversion //
-		/////////////////////
-
-		/// @fn virtual void fillWithJSON(QJsonObject json);
-		/// @brief Filling the object with a QJsonObject.
-		///
-		/// The method is virtual because its implementation depends on the
-		/// object type.
-		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json);
-
-		/// @fn virtual QJsonObject toJSON();
-		/// @brief Getting a QJsonObject representation of the object
-		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
 
 	///////////////////////////
 	// Properties management //

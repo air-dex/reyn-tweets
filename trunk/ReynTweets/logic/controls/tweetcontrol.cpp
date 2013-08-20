@@ -48,7 +48,7 @@ bool TweetControl::isMention() {
 		return false;
 	}
 
-	qlonglong userID = reyn.getUserConfiguration().getUserAccount().getUser().getID();
+	QString userID = reyn.getUserConfiguration().getUserAccount().getUser().getIDstr();
 
 	UserMentionList mentions = status->getShownTweet()->getEntities().getUserMentions();
 
@@ -56,7 +56,7 @@ bool TweetControl::isMention() {
 		it != mentions.end();
 		++it)
 	{
-		if (it->getID() == userID) {
+		if (it->getIDstr() == userID) {
 			return true;
 		}
 	}
@@ -122,7 +122,7 @@ void TweetControl::refresh() {
 
 	processing = true;
 	emit showInfoMessage(TweetControl::trUtf8("Refreshing tweet..."));
-	reyn.getTweet(status->getID());
+	reyn.getTweet(status->getIDstr().toLongLong());
 }
 
 void TweetControl::refreshEnd(ProcessWrapper res) {
@@ -233,8 +233,8 @@ void TweetControl::retweet() {
 	}
 
 	// Protection to not attempt to retweet its own tweets.
-	if (status->getAuthor()->getID() ==
-			reyn.getUserConfiguration().getUserAccount().getUser().getID())
+	if (*(status->getAuthor()) ==
+			reyn.getUserConfiguration().getUserAccount().getUser())
 	{
 		return;
 	}
@@ -247,13 +247,13 @@ void TweetControl::retweet() {
 	switch (timelineType) {
 		case Timeline::HOME:
 			emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
-			reyn.retweet(getShownTweet()->getID());
+			reyn.retweet(getShownTweet()->getIDstr().toLongLong());
 			break;
 
 		case Timeline::MENTIONS:
 			// Do not retweet if the user was retweeted
-			if (getShownTweet()->getID() ==
-					reyn.getUserConfiguration().getUserAccount().getUser().getID())
+			if (*(getShownTweet()->getAuthor()) ==
+					reyn.getUserConfiguration().getUserAccount().getUser())
 			{
 				processing = false;
 				disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
@@ -263,7 +263,7 @@ void TweetControl::retweet() {
 								 false);
 			} else {
 				emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
-				reyn.retweet(getShownTweet()->getID());
+				reyn.retweet(getShownTweet()->getIDstr().toLongLong());
 			}
 			break;
 
@@ -358,7 +358,7 @@ void TweetControl::favorite() {
 		case Timeline::HOME:
 		case Timeline::MENTIONS:
 			emit showInfoMessage(TweetControl::trUtf8("Favoriting..."));
-			reyn.favoriteTweet(getShownTweet()->getID());
+			reyn.favoriteTweet(getShownTweet()->getIDstr().toLongLong());
 			break;
 
 		default:
@@ -443,7 +443,7 @@ void TweetControl::unfavorite() {
 		case Timeline::HOME:
 		case Timeline::MENTIONS:
 			emit showInfoMessage(TweetControl::trUtf8("Unfavoriting..."));
-			reyn.unfavoriteTweet(getShownTweet()->getID());
+			reyn.unfavoriteTweet(getShownTweet()->getIDstr().toLongLong());
 			break;
 
 		default:

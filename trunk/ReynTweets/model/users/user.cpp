@@ -123,7 +123,7 @@ Tweet User::getStatus() {
 
 QVariantMap User::getStatusProperty() {
 	// Return an empty QVariantMap for a default tweet to avoid stack problems
-	return lastTweet.getID() == -1 ?
+	return lastTweet.getIDstr() == "-1" ?
 				QVariantMap()
 			  : lastTweet.toVariant();
 }

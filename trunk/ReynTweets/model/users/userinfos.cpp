@@ -201,6 +201,16 @@ void UserInfos::reset() {
 	*this = UserInfos();
 }
 
+// Equality between users.
+bool UserInfos::operator==(const UserInfos user) const {
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	return this->userID == user->userID;
+	//*/
+
+	return this->userIDstr == user.userIDstr;
+}
+
 
 /////////////////////
 // JSON conversion //
@@ -561,7 +571,7 @@ QJsonObject UserInfos::toJSON() const {
 	json.insert(FOLLOWERS_COUNT_PN, QJsonValue(this->followersCount));
 	json.insert(FRIENDS_COUNT_PN, QJsonValue(this->friendsCount));
 	json.insert(GEO_ENABLED_PN, QJsonValue(this->geotaggingEnabled));
-	json.insert(ID_PN, QJsonValue(double(this->userID)));
+	json.insert(ID_PN, QJsonValue(double(this->userID)));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	json.insert(ID_STR_PN, QJsonValue(this->userIDstr));
 	json.insert(IS_TRANSLATOR_PN, QJsonValue(this->twitterTranslator));
 	json.insert(LANG_PN, QJsonValue(this->language));
@@ -776,13 +786,14 @@ void UserInfos::setGeoEnabled(bool newGeoEnabled) {
 // id
 QString UserInfos::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong UserInfos::getID() {
 	return userID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void UserInfos::setID(qlonglong newID) {
 	userID = newID;
-	userIDstr = QString::number(userID);
 	emit idChanged();
 }
 
@@ -795,7 +806,6 @@ QString UserInfos::getIDstr() {
 
 void UserInfos::setIDstr(QString newID) {
 	userIDstr = newID;
-	userID = userIDstr.toLongLong();
 	emit idChanged();
 }
 

@@ -162,11 +162,21 @@ class RetweetInfos : public JsonObject
 		// id
 		/// @fn qlonglong getID();
 		/// @brief Reading id
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @return retweetID
 		qlonglong getID();
 
 		/// @fn void setID(qlonglong newValue);
 		/// @brief Writing id
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @param newValue New value for id
 		void setID(qlonglong newValue);
 

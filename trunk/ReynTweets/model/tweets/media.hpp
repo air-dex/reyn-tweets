@@ -66,6 +66,14 @@ class Media : public URLEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/// @fn bool operator==(const Media media) const;
+		/// @brief Equality between medias.
+		///
+		/// 2 medias are considered as equal if they have got the same media ID.
+		/// @param media The user to compare
+		/// @return True if both Medias have got the same ID, false otherwise.
+		bool operator==(const Media media) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////
@@ -254,11 +262,21 @@ class Media : public URLEntity
 	public:
 		/// @fn qlonglong getID();
 		/// @brief Reading mediaID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @return mediaID
 		qlonglong getID();
 
 		/// @fn void setID(qlonglong newID);
 		/// @brief Writing mediaID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @param newID New value for mediaID
 		void setID(qlonglong newID);
 
@@ -312,22 +330,22 @@ class Media : public URLEntity
 		/// @param newSizes New value for mediaSizes
 		void setSizes(MediaSizes newSizes);
 
-		/// @fn qlonglong getID();
+		/// @fn qlonglong getSourceID();
 		/// @brief Reading source_status_id
 		/// @return sourceID
 		qlonglong getSourceID();
 
-		/// @fn void setID(qlonglong newID);
+		/// @fn void setSourceID(qlonglong newID);
 		/// @brief Writing source_status_id
 		/// @param newID New value for sourceID
 		void setSourceID(qlonglong newID);
 
-		/// @fn QString getIDstr();
+		/// @fn QString getSourceIDstr();
 		/// @brief Reading source_status_id_str
 		/// @return sourceIDstr
 		QString getSourceIDstr();
 
-		/// @fn void setIDstr(QString newID);
+		/// @fn void setSourceIDstr(QString newID);
 		/// @brief Writing source_status_id_str
 		/// @param newID New value for sourceIDstr
 		void setSourceIDstr(QString newID);

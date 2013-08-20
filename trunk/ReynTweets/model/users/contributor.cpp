@@ -140,13 +140,14 @@ QJsonObject Contributor::toJSON() const {
 // id
 QString Contributor::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong Contributor::getID() {
 	return userID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void Contributor::setID(qlonglong newID) {
 	userID = newID;
-	userIDstr = QString::number(userID);
 }
 
 // id_str
@@ -158,7 +159,6 @@ QString Contributor::getIDstr() {
 
 void Contributor::setIDstr(QString newID) {
 	userIDstr = newID;
-	userID = userIDstr.toLongLong();
 }
 
 // screen_name
@@ -179,7 +179,12 @@ void Contributor::setScreenName(QString newScreenName) {
 
 // Equality between contributors
 bool Contributor::operator==(const Contributor & contributor) const {
-	return this->userID == contributor.userID;
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	return this->userID == contributor->userID;
+	//*/
+
+	return this->userIDstr == contributor.userIDstr;
 }
 
 // Testing if a Contributor is null

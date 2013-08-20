@@ -239,12 +239,12 @@ void TimelineControl::refreshTimeline() {
 	switch (timeline.getType()) {
 		case Timeline::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.first().getID());
+			reyn.loadHomeTimeline(timeline.first().getIDstr().toLongLong());
 			break;
 
 		case Timeline::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-			reyn.loadMentionsTimeline(timeline.first().getID());
+			reyn.loadMentionsTimeline(timeline.first().getIDstr().toLongLong());
 			break;
 
 		default:
@@ -284,8 +284,8 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			newTweets.fillWithVariant(result.results.toList());
 
 			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.last().getID();
-				qlonglong maxID = timeline.first().getID();
+				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
+				qlonglong maxID = timeline.first().getIDstr().toLongLong();
 
 				// Is there missing tweets in the timeline ?
 				if (newMinID == maxID) {
@@ -378,7 +378,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 	switch (timeline.getType()) {
 		case Timeline::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.first().getID());
+			reyn.loadHomeTimeline(timeline.first().getIDstr().toLongLong());
 			break;
 
 		case Timeline::MENTIONS: {
@@ -387,19 +387,19 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			backupedTweet.fillWithVariant(backupedNewTweet.toMap());
 
 			UserConfiguration & conf = reyn.getUserConfiguration();
-			qlonglong authorID = conf.getUserAccount().getUser().getID();
+			QString authorID = conf.getUserAccount().getUser().getIDstr();
 			UserMentionList tweetMentions = backupedTweet.getEntities().getUserMentions();
 
 			for (UserMentionList::Iterator it = tweetMentions.begin();
 				 it != tweetMentions.end();
 				 ++it)
 			{
-				qlonglong userID = it->getID();
+				QString userID = it->getIDstr();
 
 				if (userID == authorID) {
 					// The user mentions itself
 					emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-					return reyn.loadMentionsTimeline(timeline.first().getID());
+					return reyn.loadMentionsTimeline(timeline.first().getIDstr().toLongLong());
 				}
 			}
 
@@ -448,8 +448,8 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			newTweets.fillWithVariant(result.results.toList());
 
 			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.last().getID();
-				qlonglong maxID = timeline.first().getID();
+				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
+				qlonglong maxID = timeline.first().getIDstr().toLongLong();
 
 				// Is there missing tweets in the timeline ?
 				if (newMinID == maxID) {
@@ -541,7 +541,7 @@ void TimelineControl::moreOldTimeline() {
 		return loadTimeline();
 	}
 
-	qlonglong maxTweetID = timeline.last().getID() - 1;
+	qlonglong maxTweetID = timeline.last().getIDstr().toLongLong() - 1;
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(moreOldTimelineEnded(ProcessWrapper)));

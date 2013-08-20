@@ -94,7 +94,7 @@ QDataStream & operator>>(QDataStream & in, MediaSizes2 & sizes) {
 // Filling the object with a QJsonObject.
 void MediaSizes2::fillWithJSON(QJsonObject json) {
 	// "large" property
-	propval = json.value(LARGE_PN);
+	QJsonValue propval = json.value(LARGE_PN);
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject mediasize = propval.toObject();

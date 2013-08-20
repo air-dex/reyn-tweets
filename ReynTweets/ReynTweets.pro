@@ -60,7 +60,7 @@ SOURCES += \
 	connection/requests/twitlonger/twitlongerurls.cpp \
 	connection/requests/twitter/twitterurls.cpp \
 	connection/model/resultwrapper.cpp \
-	connection/requests/genericrequester.cpp \
+	connection/common/requests/genericrequester.cpp \
 	connection/requests/twitter/twitterrequester.cpp \
 	connection/requests/twitter/accounts/verifycredentialsrequester.cpp \
 	connection/requests/twitter/favorites/favoriterequester.cpp \
@@ -173,8 +173,8 @@ HEADERS  += \
 	connection/requests/twitter/twitterurls.hpp \
 	connection/model/requestresult.hpp \
 	connection/model/resultwrapper.hpp \
-	connection/model/identificationway.hpp \
-	connection/requests/genericrequester.hpp \
+	connection/common/requests/identificationway.hpp \
+	connection/common/requests/genericrequester.hpp \
 	connection/requests/twitter/twitterrequester.hpp \
 	connection/requests/twitter/accounts/verifycredentialsrequester.hpp \
 	connection/requests/twitter/favorites/favoriterequester.hpp \

@@ -24,7 +24,7 @@
 #ifndef TWITTERREQUESTER_HPP
 #define TWITTERREQUESTER_HPP
 
-#include "../genericrequester.hpp"
+#include "../../common/requests/genericrequester.hpp"
 #include "twitterurls.hpp"
 #include "../../model/managers/oauthmanager.hpp"
 

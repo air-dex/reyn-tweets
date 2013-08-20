@@ -122,7 +122,7 @@ class ReynTwitterCalls : public GenericCalls
 								 bool entities = false,
 								 int count = 20);
 
-		/// @fn void unfavoriteTweet(qlonglong id);
+		/// @fn void unfavoriteTweet(qlonglong id, bool entities = true);
 		/// @brief Unavoriting a tweet
 		/// @param id ID of the tweet to unfavorite
 		/// @param entities Including Tweet Entities in the favorited (true).

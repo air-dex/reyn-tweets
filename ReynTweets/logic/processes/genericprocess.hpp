@@ -76,9 +76,9 @@ class GenericProcess : public QObject
 		void invalidEnd();
 
 		/// @fn void buildResult(bool processOK,
-		///						 CoreResult issue,
-		///						 QString errMsg = "",
-		///						 bool isFatal = false);
+		///						 CoreResult & issue,
+		///						 QString & errMsg,
+		///						 bool & isFatal);
 		/// @brief Building process results
 		/// @param processOK Did the process end successfully ?
 		/// @param issue Enum value describing how it ended.

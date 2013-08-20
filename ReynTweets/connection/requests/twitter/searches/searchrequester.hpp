@@ -34,7 +34,7 @@ class SearchRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn SearchRequester(QString q = "");
+		/// @fn SearchRequester(OAuthManager & authManager, QString q = "");
 		/// @brief Constructor
 		/// @param authManager Entity with authentication datas. Introduced with
 		/// Twitter API 1.1 changes.

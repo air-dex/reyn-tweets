@@ -25,6 +25,7 @@
 #include "../../../tools/parsers/jsonparser.hpp"
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QTextStream>
 
 // Constructor
 TwitterRequester::TwitterRequester(HTTPRequestType type,
@@ -81,16 +82,18 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 }
 
 // Treating parsed results
-void TwitterRequester::treatParsedResult(RequestResult & requestResult,
-										 NetworkResponse netResponse)
+QList<ResponseInfos> TwitterRequester::treatServiceErrors(QVariant parsedResults,
+														  NetworkResponse netResponse)
 {
+	QList<ResponseInfos> serviceErrors;
+
 	int httpCode = netResponse.getHttpResponse().code;
 
 	// Is the return code expected ?
 	switch (httpCode) {
 		case 200:
 			// If the response code is 200, it is not an error
-			return;
+			return serviceErrors;
 
 		// Expected return codes
 		case 304:
@@ -109,9 +112,17 @@ void TwitterRequester::treatParsedResult(RequestResult & requestResult,
 		case 504:
 			break;
 
-		default:
-			requestResult.resultType = Network::API_CALL;
-			break;
+		// Unexpected return code
+		default: {
+			ResponseInfos error;
+			error.code = httpCode;
+			error.message = TwitterRequester::trUtf8("Unexpected HTTP return code")
+					.append(" '")
+					.append(QString::number(httpCode))
+					.append("'.");
+
+			serviceErrors.append(error);
+		} break;
 	}
 
 
@@ -119,7 +130,7 @@ void TwitterRequester::treatParsedResult(RequestResult & requestResult,
 	bool areTwitterErrors = false;
 
 	// If there were twitter errors, parsed results are aa QJsonObject
-	QJsonValue resval = QJsonValue::fromVariant(requestResult.parsedResult);
+	QJsonValue resval = QJsonValue::fromVariant(parsedResults);
 
 	if (resval.isObject()) {
 		// It is a QJsonObject. Does it contain the "errors" JSON Array ?
@@ -127,30 +138,26 @@ void TwitterRequester::treatParsedResult(RequestResult & requestResult,
 		areTwitterErrors = resobj.value("errors").isArray();
 	}
 
-	// Treat if bad
+	// Fill serviceErrors if there are errors
+	if (areTwitterErrors) {
+		QJsonArray twitterErrors = resval.toObject().value("errors").toArray();
 
-	if (!areTwitterErrors) {
-		return;
-	}
+		for (QJsonArray::Iterator it = twitterErrors.begin();
+			 it != twitterErrors.end();
+			 ++it)
+		{
+			QJsonValue twitterError = *it;
 
-	requestResult.resultType = Network::SERVICE_ERRORS;
+			if (twitterError.isObject()) {
+				QJsonObject twError = twitterError.toObject();
+				ResponseInfos resError;
+				resError.code = int(twError.value("code").toDouble());
+				resError.message = twError.value("message").toString();
 
-	// Filling the service errors
-	QJsonArray twitterErrors = resval.toObject().value("errors").toArray();
-
-	for (QJsonArray::Iterator it = twitterErrors.begin();
-		 it != twitterErrors.end();
-		 ++it)
-	{
-		QJsonValue twitterError = *it;
-
-		if (twitterError.isObject()) {
-			QJsonObject twError = twitterError.toObject();
-			ResponseInfos resError;
-			resError.code = int(twError.value("code").toDouble());
-			resError.message = twError.value("message").toString();
-
-			requestResult.serviceErrors.append(resError);
+				serviceErrors.append(resError);
+			}
 		}
 	}
+
+	return serviceErrors;
 }

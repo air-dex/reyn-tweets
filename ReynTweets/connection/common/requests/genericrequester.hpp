@@ -139,14 +139,15 @@ class GenericRequester : public QObject
 									 bool & parseOK,
 									 QVariantMap & parsingErrors) = 0;
 
-		/// @fn virtual void treatParsedResult(RequestResult & requestResult,
-		///									   NetworkResponse netResponse) = 0;
+		/// @fn virtual QList<ResponseInfos> treatServiceErrors(QVariant parsedResults,
+		///														NetworkResponse netResponse) = 0;
 		/// @brief Treating parsed results
-		/// @param requestResult Reference on the request result, in order to
-		/// complete it.
+		/// @param parsedResults Parsed results to analyse in order to retrieve
+		/// service errors.
 		/// @param netResponse Other network response elements, if needed.
-		virtual void treatParsedResult(RequestResult & requestResult,
-									   NetworkResponse netResponse) = 0;
+		/// @return The list of service errors
+		virtual QList<ResponseInfos> treatServiceErrors(QVariant parsedResults,
+														NetworkResponse netResponse) = 0;
 
 	signals:
 		/// @fn void requestDone(RequestResult requestResult);

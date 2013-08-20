@@ -63,10 +63,10 @@ OTHER_FILES = \
 	connection/libRT.pri \
 	logic/logic.pri \
 	ui/reyntweetsui.pri \
-	conf/ReynTweets.conf \
-	conf/ReynTweetsEmpty.conf \
-	conf/ReynTweetsSettings.conf
-
+	conf/configuration.pri \
+	doc/documentation.pri \
+	i18n/translation.pri \
+	resources/resources.pri
 
 #---------------------------------------#
 # Directories for mocs and object files #
@@ -74,16 +74,6 @@ OTHER_FILES = \
 
 MOC_DIR = mocs
 OBJECTS_DIR = obj
-
-
-#----------------------#
-# Icon for the program #
-#----------------------#
-win32 {
-	RC_FILE = ReynTweets.rc
-}
-
-# TODO : Linux
 
 
 #-------------------------------------#
@@ -107,30 +97,21 @@ linux-g++ {
 }
 
 
-#-----------------------#
-# Documentation targets #
-#-----------------------#
+#--------------------------#
+# Non coding project parts #
+#--------------------------#
 
-include (doc/documentation.pri)
+# Configuration files
+include(conf/configuration.pri)
 
+# Documentation targets
+include(doc/documentation.pri)
 
-#----------------------#
-# Translations targets #
-#----------------------#
-
+# Translations targets
 include(i18n/translation.pri)
 
-
-#------------------------#
-# Folders with QML files #
-#------------------------#
-# Configuration files
-# Uncomment this folder in DEPLOYMENTFOLDERS if you want the configuration to
-# be reset each time the application is launched
-conf_files.source = conf
-conf_files.target = .
-
-#DEPLOYMENTFOLDERS += conf_files
+# (Graphical) resources
+include(resources/resources.pri)
 
 
 #---------------------------#

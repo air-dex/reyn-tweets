@@ -1,8 +1,8 @@
-#------------------------------------------#
-# reyntweetsui.pri                         #
-# .pri sub project file related to the GUI #
-# Author : Romain Ducher                   #
-#------------------------------------------#
+#-----------------------------------------#
+# configuration.pri                       #
+# .pri sub project file for configuration #
+# Author : Romain Ducher                  #
+#-----------------------------------------#
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -26,30 +26,17 @@
 #-----------------------------------------------------------------------------#
 
 OTHER_FILES = \
-	ui/qmlapplicationviewer.pri \
-	ui/qml/tools.js \
-	ui/qml/twitter-text-js-wrapper.js \
-	ui/qml/twitter-text-1.4.16.js \
-	ui/qml/twitter-text-1.6.1.js
+	conf/ReynTweets.conf \
+	conf/ReynTweetsEmpty.conf \
+	conf/ReynTweetsSettings.conf
 
 
-#------------------------#
-# Folders with QML files #
-#------------------------#
+#-------------------------------#
+# Deploying configuration files #
+#-------------------------------#
+# Uncomment this folder in DEPLOYMENTFOLDERS if you want the configuration to
+# be reset each time the application is launched
+conf_files.source = conf
+conf_files.target = .
 
-# QML files
-qml_files.source = ui/qml
-qml_files.target = ui
-
-DEPLOYMENTFOLDERS += qml_files
-
-
-#--------------#
-# Miscanellous #
-#--------------#
-
-# Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH =
-
-# Required for deployment.
-include(qtquick2applicationviewer.pri)
+DEPLOYMENTFOLDERS += conf_files

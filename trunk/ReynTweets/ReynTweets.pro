@@ -1,7 +1,7 @@
 #-----------------------------------#
 # ReynTweets.pro                    #
 # Reyn Tweets' Qt .pro project file #
-# Auteur : Romain Ducher            #
+# Author : Romain Ducher            #
 #-----------------------------------#
 
 #-----------------------------------------------------------------------------#
@@ -158,3 +158,4 @@ linux {
 
 # Required for deployment. DO NOT MODIFY.
 qtcAddDeployment()
+

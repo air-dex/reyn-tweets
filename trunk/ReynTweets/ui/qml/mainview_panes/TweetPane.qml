@@ -551,7 +551,7 @@ Rectangle {
 			image_source: tweet_pane.icons_folder.concat("/quote.png")
 			legend: qsTr("Quote")
 			onAct: {
-				quote('RT @'.concat(shown_tweet.user.screen_name).concat(': ').concat(shown_tweet.text));
+				quote('RT @'.concat(shown_tweet.user.screen_name).concat(': ').concat(shown_tweet.getPlainDisplayText()));
 			}
 		}
 

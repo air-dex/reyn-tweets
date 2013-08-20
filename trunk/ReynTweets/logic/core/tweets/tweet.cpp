@@ -27,6 +27,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include <QVariant>
+#include "../../../connection/common/utils/parsers/htmlparser.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -749,6 +750,20 @@ QString Tweet::getDisplayText() {
 	}
 
 	return displayedText;
+}
+
+// Getting this->getDisplayText(); as a plain text
+QString Tweet::getPlainDisplayText() {
+	QString displayedText = "";
+
+	// QWebElement::toPlainText(); needs a text encolsed in <html> tags
+	displayedText.append("<html>").append(getDisplayText()).append("</html>");
+
+	HTMLParser parser;
+	bool parseOK = false;
+	QWebElement web = parser.parse(displayedText.toUtf8(), &parseOK);
+
+	return parseOK ? web.toPlainText() : this->tweet;
 }
 
 // Getting a HTML string of the name of the Twitter client used to post the tweet

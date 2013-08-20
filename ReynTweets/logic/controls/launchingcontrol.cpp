@@ -89,6 +89,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
+		case REINIT_SUCCESSFUL:
 		case RATE_LIMITED:	// The user reached rates.
 		case TWITTER_DOWN:	// Twitter does not respond.
 		case NETWORK_CALL:

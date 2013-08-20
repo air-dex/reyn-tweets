@@ -83,7 +83,12 @@ void LaunchingProcess::loadConfiguration() {
 
 	QString errorMsg = "";
 
+	// TODO : warn when the conf is reset.
+
 	switch (loadIssue) {
+		case REINIT_SUCCESSFUL:
+			//errorMsg = userConfiguration.getErrorLoading();
+
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
 			fillTwitterOAuthUserSettings();
@@ -294,6 +299,10 @@ void LaunchingProcess::saveConfiguration() {
 
 		case CONFIGURATION_FILE_NOT_OPEN:
 			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
+			break;
+
+		case REINIT_SUCCESSFUL:
+			errorMsg = userConfiguration.getErrorLoading();
 			break;
 
 		default:

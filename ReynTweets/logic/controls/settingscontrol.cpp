@@ -71,13 +71,23 @@ void SettingsControl::saveChanges() {
 	CoreResult saveRes = conf.save();
 
 	bool isOK;
-	QString resMsg;
+	QString resMsg = "";
 	bool isFatal;
 
 	switch (saveRes) {
 		case SAVE_SUCCESSFUL:
 			isOK = true;
 			resMsg = SettingsControl::trUtf8("Settings updated.");
+			isFatal = false;
+			break;
+
+		case REINIT_SUCCESSFUL:
+			isOK = true;
+			resMsg.append(SettingsControl::trUtf8("Problem while updating the configuration"))
+					.append(" : ")
+					.append(conf.getErrorLoading())
+					.append(' ')
+					.append(SettingsControl::trUtf8("Configuration was reset."));
 			isFatal = false;
 			break;
 

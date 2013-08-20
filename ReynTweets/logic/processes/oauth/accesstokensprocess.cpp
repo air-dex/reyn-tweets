@@ -253,6 +253,10 @@ void AccessTokensProcess::saveConfiguration() {
 			errorMsg = AccessTokensProcess::trUtf8("Configuration file cannot be opened.");
 			break;
 
+		case REINIT_SUCCESSFUL:
+			errorMsg = configuration->getErrorLoading();
+			break;
+
 		default:
 			errorMsg = AccessTokensProcess::trUtf8("Unknown problem.");
 			break;

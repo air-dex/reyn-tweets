@@ -110,16 +110,25 @@ enum CoreResult {
 	/// @brief The configuration file does not exist
 	CONFIGURATION_FILE_UNKNOWN,
 
+	/// @brief The "Application Data" directory does not exist
+	APP_DATA_DIR_UNKNOWN,
+
 	/// @brief The configuration file cannot be opened
 	CONFIGURATION_FILE_NOT_OPEN,
 
 	/// @brief The configuration cannot be launched
 	LOADING_CONFIGURATION_ERROR,
 
-	/// @brief The launching was successful
+	/// @brief Saving configuration was successful
 	SAVE_SUCCESSFUL,
 
-	/// @brief The launching was successful
+	/// @brief User configuration was written successfully
+	WRITE_SUCCESSFUL,
+
+	/// @brief Reinit configuration was successful
+	REINIT_SUCCESSFUL,
+
+	/// @brief Some parameters were missing in the configuration.
 	EXPECTED_KEY,
 
 

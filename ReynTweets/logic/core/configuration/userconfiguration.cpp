@@ -21,10 +21,15 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QFile>
-#include <QtQml>
-#include <QTextStream>
 #include "userconfiguration.hpp"
+
+#include <QtQml>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+
+#include "appconfiguration.hpp"
+#include "../../../connection/common/utils/parsers/jsonparser.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -158,29 +163,36 @@ void UserConfiguration::setUserAccount(UserAccount * account) {
 }
 
 
-////////////////////
-// Static members //
-////////////////////
-
-// Configuration namefile
-QString UserConfiguration::CONFIGURATION_NAMEFILE = "./conf/ReynTweets.conf";
-
-
 //////////////////////////////
 // Configuration management //
 //////////////////////////////
 
 // Loading the configuration
 CoreResult UserConfiguration::load() {
+	// TODO : warn when the conf is reset.
+
+	// Ensures that the file can be used correctly. If not, reinit the conf.
+	if (!this->checkConfigurationFile()) {
+		CoreResult reinitRes = this->reinit();
+/*
+		if (reinitRes == REINIT_SUCCESSFUL) {
+			errorLoading = UserConfiguration::trUtf8("Warning : the configuration has been reset.");
+			reinitRes = LOAD_CONFIGURATION_SUCCESSFUL;
+		}
+//*/
+		return reinitRes;
+	}
+
 	// Opening the configuration file
-	QFile confFile(CONFIGURATION_NAMEFILE);
+	QFile confFile(this->getConfigurationFilePath());
 
 	if (!confFile.exists()) {
+		errorLoading = UserConfiguration::trUtf8("Cannot load the configuration file : unknown configuration file. Try to create it manually");
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
-	bool openOK = confFile.open(QFile::ReadOnly);
-	if (!openOK) {
+	if (!confFile.open(QFile::ReadOnly)) {
+		errorLoading = UserConfiguration::trUtf8("Cannot load the configuration file : configuration file cannot be opened. Check if you can read it.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
@@ -221,18 +233,78 @@ CoreResult UserConfiguration::load() {
 
 // Saving the configuration
 CoreResult UserConfiguration::save() {
+	// TODO : warn when the conf is reset.
+
+	// Ensures that the file can be used correctly. If not, reinit the conf.
+	if (this->checkConfigurationFile()) {
+		// Writing the configuration
+		CoreResult writeConf = this->writeConfigurationInFile();
+
+		return writeConf == WRITE_SUCCESSFUL ? SAVE_SUCCESSFUL : writeConf;
+	} else {
+		return this->reinit();
+	}
+}
+
+// Reinit the configuration file
+CoreResult UserConfiguration::reinit() {
+	// Default user configuration
+	this->reset();
+
+	// Directory where the configuration file is supposed to be
+	QDir confdir = AppConfiguration::getReynTweetsConfiguration().getAppDataDir();
+
+	if (!confdir.exists()) {
+		// The App data directory does not exist. Let's create it !
+		if (!confdir.mkpath(confdir.path())) {
+			errorLoading = UserConfiguration::trUtf8("Cannot create the configuration file because its directory cannot be created. Try to create it manually");
+			return APP_DATA_DIR_UNKNOWN;
+		}
+	}
+
+	// Writing the configuration
+	// Forces RW in order to be sure that the file file is readable.
+	CoreResult writeConf = this->writeConfigurationInFile(QIODevice::ReadWrite);
+
+	return writeConf == WRITE_SUCCESSFUL ? REINIT_SUCCESSFUL : writeConf;
+}
+
+
+////////////////////////////////////////
+// User configuration file management //
+////////////////////////////////////////
+
+// Configuration namefile
+QString UserConfiguration::CONFIGURATION_NAMEFILE = "ReynTweets.conf";
+
+// Configuration file path
+QString UserConfiguration::getConfigurationFilePath() {
+	QDir appDataDir = AppConfiguration::getReynTweetsConfiguration().getAppDataDir();
+
+	return appDataDir.filePath(CONFIGURATION_NAMEFILE);
+}
+
+// Checks if the user configuration file exists and is both readable & writable
+bool UserConfiguration::checkConfigurationFile() {
+	QFileInfo confFileInfo(this->getConfigurationFilePath());
+
+	return confFileInfo.exists()
+			&& confFileInfo.isReadable()
+			&& confFileInfo.isWritable();
+}
+
+// Writing the configuration
+CoreResult UserConfiguration::writeConfigurationInFile(QIODevice::OpenMode openMode) {
 	// Opening the configuration file
-	QFile confFile(CONFIGURATION_NAMEFILE);
+	QFile confFile(this->getConfigurationFilePath());
 
 	if (!confFile.exists()) {
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
-	bool openOK = confFile.open(QFile::WriteOnly);
-	if (!openOK) {
+	if (!confFile.open(openMode)) {
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
-
 
 	// Saving the configuration
 	QTextStream readStream(&confFile);
@@ -240,5 +312,5 @@ CoreResult UserConfiguration::save() {
 	readStream << json;
 	confFile.close();
 
-	return SAVE_SUCCESSFUL;
+	return WRITE_SUCCESSFUL;
 }

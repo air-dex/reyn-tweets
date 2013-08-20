@@ -235,6 +235,7 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 		case RATE_LIMITED:
 		case TWITTER_DOWN:
 		case NETWORK_CALL:
+		case REINIT_SUCCESSFUL:
 		case REFUSED_REQUEST:	// Update limits
 			fatal = false;
 			break;

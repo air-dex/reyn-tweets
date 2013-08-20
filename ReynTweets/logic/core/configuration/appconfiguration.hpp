@@ -25,6 +25,7 @@
 #define APPCONFIGURATION_HPP
 
 #include <QByteArray>
+#include <QDir>
 #include <QString>
 #include <QStringList>
 #include <QVariantMap>
@@ -65,6 +66,21 @@ class AppConfiguration : public JsonObject {
 		////////////////////////
 		// Getter on settings //
 		////////////////////////
+
+		/// @fn QString getCallbackURL();
+		/// @brief Getter on data_dir.
+		/// @return dataDir
+		QString getDataDir();
+
+		/// @fn QString getAppDataDir();
+		/// @brief Getting the directory where application datas are stored.
+		/// @return Directory where application datas are stored.
+		QDir getAppDataDir();
+
+		/// @fn QVariantMap getDataDirs();
+		/// @brief Getter on data_dirs
+		/// @return dataDirs
+		QVariantMap getDataDirs();
 
 		/// @fn QString getErrorLoading();
 		/// @brief Getter on the error message after loading the settings
@@ -146,10 +162,44 @@ class AppConfiguration : public JsonObject {
 		// Settings //
 		//////////////
 
+		////////////////////////////
+		// Internal configuration //
+		////////////////////////////
+
+		// data_dir
+		/// @property data_dir
+		/// @brief Dur
+		///
+		/// dataDir is the attribute beneath the property.
+		Q_PROPERTY(QString data_dir
+				   READ getDataDir)
+
+		/// @brief Twitter OAuth consumer key.
+		QString dataDir;
+
+		/// @fn void setDataDir();
+		/// @brief Setting dataDir. It depends on the OS.
+		void setDataDir();
+
+		// data_dirs
+		/// @property data_dir
+		/// @brief Dur
+		///
+		/// dataDir is the attribute beneath the property.
+		Q_PROPERTY(QVariantMap data_dirs
+				   READ getDataDirs)
+
+		/// @brief Name of the property consumer_key.
+		static QString DATA_DIRS_PN;
+
+		/// @brief Twitter OAuth consumer key.
+		QVariantMap dataDirs;
+
 		//////////////////////////////
 		// Twitter Settings (OAuth) //
 		//////////////////////////////
 
+		// consumer_key
 		/// @property consumer_key
 		/// @brief Twitter OAuth consumer key
 		///
@@ -163,6 +213,7 @@ class AppConfiguration : public JsonObject {
 		/// @brief Twitter OAuth consumer key.
 		QByteArray consumerKey;
 
+		// consumer_secret
 		/// @property consumer_secret
 		/// @brief Twitter OAuth consumer secret
 		///
@@ -176,6 +227,7 @@ class AppConfiguration : public JsonObject {
 		/// @brief Twitter OAuth consumer secret.
 		QByteArray consumerSecret;
 
+		// callback_url
 		/// @property callback_url
 		/// @brief Callback URL for Twitter OAuth authentication
 		///
@@ -194,6 +246,7 @@ class AppConfiguration : public JsonObject {
 		// TwitLonger //
 		////////////////
 
+		// twitlonger_application_name
 		/// @property twitlonger_application_name
 		/// @brief Appilcation name in Twitlonger
 		///
@@ -207,6 +260,7 @@ class AppConfiguration : public JsonObject {
 		/// @brief Name of Reyn Tweets in the TwitLonger API
 		QString twitlongerAppName;
 
+		// twitlonger_api_key
 		/// @property twitlonger_api_key
 		/// @brief Twitlonger API key
 		///
@@ -225,6 +279,7 @@ class AppConfiguration : public JsonObject {
 		// Pocket (formerly known as "Read It Later") //
 		////////////////////////////////////////////////
 
+		// pocket_api_key
 		/// @property pocket_api_key
 		/// @brief Pocket API key.
 		///

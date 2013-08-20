@@ -246,8 +246,6 @@ void AccessTokensProcess::saveConfiguration() {
 	QString errorMsg = "";
 	CoreResult saveIssue = configuration->save(errorMsg);
 
-	// NOTE : verify the reinit case
-
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.

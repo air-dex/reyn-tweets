@@ -162,17 +162,9 @@ void UserConfiguration::setUserAccount(UserAccount * account) {
 
 // Loading the configuration
 CoreResult UserConfiguration::load(QString & errorMsg) {
-	// TODO : warn when the conf is reset.
-
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (!this->checkConfigurationFile()) {
 		CoreResult reinitRes = this->reinit(errorMsg);
-/*
-		if (reinitRes == REINIT_SUCCESSFUL) {
-			errorLoading = UserConfiguration::trUtf8("Warning : the configuration has been reset.");
-			reinitRes = LOAD_CONFIGURATION_SUCCESSFUL;
-		}
-//*/
 		return reinitRes;
 	}
 
@@ -222,8 +214,6 @@ CoreResult UserConfiguration::load(QString & errorMsg) {
 
 // Saving the configuration
 CoreResult UserConfiguration::save(QString & errorMsg) {
-	// TODO : warn when the conf is reset.
-
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (this->checkConfigurationFile()) {
 		// Writing the configuration

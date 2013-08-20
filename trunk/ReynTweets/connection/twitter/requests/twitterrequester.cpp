@@ -65,7 +65,7 @@ QByteArray TwitterRequester::getAuthorizationHeader() {
 ////////////////////////////
 
 // Workaround for this bug : https://bugreports.qt-project.org/browse/QTBUG-32524
-// TODO : remove those 3 #include as soon as the bug is fixed
+// TODO quand passage à Qt 5.1.2 : remove those 3 #include as soon as the bug is fixed
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -85,7 +85,7 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 									   &lineMsg);
 
 	// Workaround for this bug : https://bugreports.qt-project.org/browse/QTBUG-32524
-	// TODO : remove it as soon as the bug is fixed
+	// TODO quand passage à Qt 5.1.2 : remove it as soon as the bug is fixed
 	QVariant result;
 	switch (parseval.type()) {
 		case QJsonValue::Object: {

@@ -93,6 +93,9 @@ SOURCES += \
 	logic/core/reyntweetsdatetime.cpp \
 	logic/core/json/jsonobject.cpp \
 	logic/core/json/jsonarray.cpp \
+	logic/core/json/jsonvariantablearray.cpp \
+	logic/core/json/jsonobjectarray.cpp \
+	logic/core/json/jsonarrayarray.cpp \
 	logic/core/geo/coordinates.cpp \
 	logic/core/geo/geocoord.cpp \
 	logic/core/geo/geocoordlist.cpp \
@@ -228,6 +231,12 @@ HEADERS  += \
 	logic/core/json/jsonobject.hpp \
 	logic/core/json/jsonarray.hpp \
 	logic/core/json/jsonarray.tpp \
+	logic/core/json/jsonvariantablearray.hpp \
+	logic/core/json/jsonvariantablearray.tpp \
+	logic/core/json/jsonobjectarray.hpp \
+	logic/core/json/jsonobjectarray.tpp \
+	logic/core/json/jsonarrayarray.hpp \
+	logic/core/json/jsonarrayarray.tpp \
 	logic/core/geo/coordinates.hpp \
 	logic/core/geo/geocoord.hpp \
 	logic/core/geo/geocoordlist.hpp \

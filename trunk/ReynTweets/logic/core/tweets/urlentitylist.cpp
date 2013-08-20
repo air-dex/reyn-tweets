@@ -25,7 +25,7 @@
 
 // Constructor
 URLEntityList::URLEntityList() :
-	JsonArray<URLEntity>()
+	JsonObjectArray<URLEntity>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ URLEntityList::~URLEntityList() {}
 
 // Copy constructor
 URLEntityList::URLEntityList(const URLEntityList & list) :
-	JsonArray<URLEntity>()
+	JsonObjectArray<URLEntity>()
 {
 	recopie(list);
 }
@@ -48,22 +48,6 @@ const URLEntityList & URLEntityList::operator=(const URLEntityList & list) {
 void URLEntityList::initSystem() {
 	qRegisterMetaTypeStreamOperators<URLEntityList>("URLEntityList");
 	qMetaTypeId<URLEntityList>();
-}
-
-// Appending the content of a QJsonValue
-void URLEntityList::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		URLEntity url;
-		url.fillWithVariant(v.toObject());
-		this->append(url);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void URLEntityList::appendJsonArrayElement(QJsonArray & array,
-										   URLEntity elt) const
-{
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

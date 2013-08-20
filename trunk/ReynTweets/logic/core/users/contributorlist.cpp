@@ -25,7 +25,7 @@
 
 // Constructor
 ContributorList::ContributorList() :
-	JsonArray<Contributor>()
+	JsonObjectArray<Contributor>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ ContributorList::~ContributorList() {}
 
 // Copy constructor
 ContributorList::ContributorList(const ContributorList & list) :
-	JsonArray<Contributor>()
+	JsonObjectArray<Contributor>()
 {
 	recopie(list);
 }
@@ -48,22 +48,6 @@ const ContributorList & ContributorList::operator=(const ContributorList & list)
 void ContributorList::initSystem() {
 	qRegisterMetaTypeStreamOperators<ContributorList>("ContributorList");
 	qMetaTypeId<ContributorList>();
-}
-
-// Appending the content of a QJsonValue
-void ContributorList::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		Contributor contributor;
-		contributor.fillWithVariant(v.toObject());
-		this->append(contributor);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void ContributorList::appendJsonArrayElement(QJsonArray & array,
-											 Contributor elt) const
-{
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

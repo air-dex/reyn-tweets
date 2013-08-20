@@ -25,7 +25,7 @@
 
 // Constructor
 MediaList::MediaList() :
-	JsonArray<Media>()
+	JsonObjectArray<Media>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ MediaList::~MediaList() {}
 
 // Copy constructor
 MediaList::MediaList(const MediaList & list) :
-	JsonArray<Media>()
+	JsonObjectArray<Media>()
 {
 	recopie(list);
 }
@@ -48,20 +48,6 @@ const MediaList & MediaList::operator=(const MediaList & list) {
 void MediaList::initSystem() {
 	qRegisterMetaTypeStreamOperators<MediaList>("MediaList");
 	qMetaTypeId<MediaList>();
-}
-
-// Appending the content of a QJsonValue
-void MediaList::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		Media media;
-		media.fillWithVariant(v.toObject());
-		this->append(media);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void MediaList::appendJsonArrayElement(QJsonArray & array, Media elt) const {
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

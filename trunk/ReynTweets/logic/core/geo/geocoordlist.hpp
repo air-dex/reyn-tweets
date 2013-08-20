@@ -26,12 +26,12 @@
 
 #include <QDataStream>
 #include <QVariant>
-#include "../json/jsonarray.tpp"
+#include "../json/jsonarrayarray.tpp"
 #include "geocoord.hpp"
 
 /// @class GeoCoordList
 /// @brief Lists of GeoCoord
-class GeoCoordList : public JsonArray<GeoCoord>
+class GeoCoordList : public JsonArrayArray<GeoCoord>
 {
 	public:
 		/// @fn GeoCoordList();
@@ -57,19 +57,6 @@ class GeoCoordList : public JsonArray<GeoCoord>
 		static void initSystem();
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the GeoCoordList
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											GeoCoord elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array,
-											GeoCoord elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

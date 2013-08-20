@@ -25,7 +25,7 @@
 
 // Constructor
 GeoCoordPolygon::GeoCoordPolygon() :
-	JsonArray<GeoCoordList>()
+	JsonArrayArray<GeoCoordList>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ GeoCoordPolygon::~GeoCoordPolygon() {}
 
 // Copy constructor
 GeoCoordPolygon::GeoCoordPolygon(const GeoCoordPolygon & polygon) :
-	JsonArray<GeoCoordList>()
+	JsonArrayArray<GeoCoordList>()
 {
 	recopie(polygon);
 }
@@ -58,20 +58,4 @@ QDataStream & operator<<(QDataStream & out, const GeoCoordPolygon & polygon) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, GeoCoordPolygon & polygon) {
 	return polygon.fillWithStream(in);
-}
-
-// Appending the content of a QJsonValue
-void GeoCoordPolygon::appendJsonValue(QJsonValue v) {
-	if (v.isArray()) {
-		GeoCoordList gcl;
-		gcl.fillWithVariant(v.toArray());
-		this->append(gcl);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void GeoCoordPolygon::appendJsonArrayElement(QJsonArray & array,
-											 GeoCoordList elt) const
-{
-	array.append(elt.toVariant());
 }

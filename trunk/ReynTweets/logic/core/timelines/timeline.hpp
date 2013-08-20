@@ -26,11 +26,11 @@
 
 #include <QVariant>
 #include "../tweets/tweet.hpp"
-#include "../json/jsonarray.tpp"
+#include "../json/jsonobjectarray.tpp"
 
 /// @class Timeline
 /// @brief Definition of a Twitter timeline : a list of tweets.
-class Timeline : public JsonArray<Tweet>
+class Timeline : public JsonObjectArray<Tweet>
 {
 
 	public:
@@ -92,18 +92,6 @@ class Timeline : public JsonArray<Tweet>
 
 
 	protected:
-		/// @fn virtual void appendJsonValue(QJsonValue v);
-		/// @brief Appending the content of a QJsonValue in the Timeline
-		/// @param v the QJsonValue
-		virtual void appendJsonValue(QJsonValue v);
-
-		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
-		///											Tweet elt) const;
-		/// @brief Appends an element of the list in a QJsonArray
-		/// @param array The QJsonArray
-		/// @param elt The list element
-		virtual void appendJsonArrayElement(QJsonArray & array, Tweet elt) const;
-
 		// Friends serialization operators
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,

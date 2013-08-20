@@ -25,7 +25,7 @@
 
 // Constructor
 UserMentionList::UserMentionList() :
-	JsonArray<UserMention>()
+	JsonObjectArray<UserMention>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ UserMentionList::~UserMentionList() {}
 
 // Copy constructor
 UserMentionList::UserMentionList(const UserMentionList & list) :
-	JsonArray<UserMention>()
+	JsonObjectArray<UserMention>()
 {
 	recopie(list);
 }
@@ -48,22 +48,6 @@ const UserMentionList & UserMentionList::operator=(const UserMentionList & list)
 void UserMentionList::initSystem() {
 	qRegisterMetaTypeStreamOperators<UserMentionList>("UserMentionList");
 	qMetaTypeId<UserMentionList>();
-}
-
-// Appending the content of a QJsonValue
-void UserMentionList::appendJsonValue(QJsonValue v) {
-	if (v.isObject()) {
-		UserMention mention;
-		mention.fillWithVariant(v.toObject());
-		this->append(mention);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void UserMentionList::appendJsonArrayElement(QJsonArray & array,
-											 UserMention elt) const
-{
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

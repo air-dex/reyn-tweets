@@ -25,7 +25,7 @@
 
 // Constructor
 GeoCoordList::GeoCoordList() :
-	JsonArray<GeoCoord>()
+	JsonArrayArray<GeoCoord>()
 {}
 
 // Destructor
@@ -33,7 +33,7 @@ GeoCoordList::~GeoCoordList() {}
 
 // Copy constructor
 GeoCoordList::GeoCoordList(const GeoCoordList & list) :
-	JsonArray<GeoCoord>()
+	JsonArrayArray<GeoCoord>()
 {
 	recopie(list);
 }
@@ -48,20 +48,6 @@ const GeoCoordList & GeoCoordList::operator=(const GeoCoordList & list) {
 void GeoCoordList::initSystem() {
 	qRegisterMetaTypeStreamOperators<GeoCoordList>("GeoCoordList");
 	qMetaTypeId<GeoCoordList>();
-}
-
-// Appending the content of a QJsonValue
-void GeoCoordList::appendJsonValue(QJsonValue v) {
-	if (v.isArray()) {
-		GeoCoord gc;
-		gc.fillWithVariant(v.toArray());
-		this->append(gc);
-	}
-}
-
-// Appends an element of the list in a QJsonArray
-void GeoCoordList::appendJsonArrayElement(QJsonArray & array, GeoCoord elt) const {
-	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization

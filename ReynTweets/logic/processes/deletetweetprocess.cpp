@@ -157,8 +157,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 	// Failed end
 	errorMsg.prepend(beginErrMsg);
-	buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 // Deleting the tweet
@@ -188,9 +187,8 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 		errMsg = addInfos;
 	}
 
-	// Failed ends
-	GenericProcess::buildResult(issue, errMsg);
-	endProcess();
+	// Failed end
+	endProcess(issue, errMsg);
 }
 
 // After deleting the tweet
@@ -218,9 +216,7 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 		case Network::NO_REQUEST_ERROR:
 			deletionResult.insert("twitter_result", result.parsedResult);
 			deletionResult.insert("keep_in_timeline", QVariant(keepInTimeline));
-			processResult = ProcessUtils::buildProcessResult(TWEET_DELETED,
-															 QVariant(deletionResult));
-			return endProcess();
+			return endProcess(TWEET_DELETED, QVariant(deletionResult));
 
 		case Network::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
@@ -240,6 +236,5 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }

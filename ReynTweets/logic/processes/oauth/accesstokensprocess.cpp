@@ -30,7 +30,8 @@ AccessTokensProcess::AccessTokensProcess(QByteArray verifier) :
 	twitter(this),
 	oauthVerifier(verifier),
 	configuration(0),
-	updateUserConfiguration(false)
+	updateUserConfiguration(false),
+	oauthRes()
 {}
 
 // Constructor
@@ -39,7 +40,8 @@ AccessTokensProcess::AccessTokensProcess(QByteArray verifier, UserConfiguration 
 	twitter(this),
 	oauthVerifier(verifier),
 	configuration(&conf),
-	updateUserConfiguration(true)
+	updateUserConfiguration(true),
+	oauthRes()
 {}
 
 // Destructor
@@ -53,19 +55,15 @@ void AccessTokensProcess::startProcess() {
 }
 
 // Building the result of the process
-void AccessTokensProcess::buildResult(QByteArray accessToken,
+void AccessTokensProcess::buildOAuthResults(QByteArray accessToken,
 									  QByteArray tokenSecret,
 									  qlonglong userID,
 									  QString screenName)
 {
-	QVariantMap resultMap;
-	resultMap.insert("access_token", QVariant::fromValue(accessToken));
-	resultMap.insert("token_secret", QVariant::fromValue(tokenSecret));
-	resultMap.insert("user_id", QVariant::fromValue(userID));
-	resultMap.insert("screen_name", QVariant::fromValue(screenName));
-
-	processResult = ProcessUtils::buildProcessResult(AUTHORIZED,
-													 QVariant(resultMap));
+	oauthRes.insert("access_token", QVariant::fromValue(accessToken));
+	oauthRes.insert("token_secret", QVariant::fromValue(tokenSecret));
+	oauthRes.insert("user_id", QVariant::fromValue(userID));
+	oauthRes.insert("screen_name", QVariant::fromValue(screenName));
 }
 
 ////////////////////////////
@@ -109,14 +107,15 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 			QString screenName = resultMap.value("screen_name").toString();
 
 			// Successful end
-			buildResult(accessToken, tokenSecret, userID, screenName);
+			buildOAuthResults(accessToken, tokenSecret, userID, screenName);
 
 			if (updateUserConfiguration) {
 				// Now update the configuration
+				// TODO : if fail, knowing that it was authorized
 				updateConfiguration(accessToken, tokenSecret, userID, screenName);
 			} else {
 				// Don't update the configuration. Stop the process here.
-				endProcess();
+				endProcess(AUTHORIZED, oauthRes);
 			}
 		}return;
 
@@ -152,8 +151,7 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	GenericProcess::buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 // Uploading the configuration with the authentified user after an authentication process
@@ -234,8 +232,7 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	GenericProcess::buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 // Saves the configuration
@@ -246,9 +243,7 @@ void AccessTokensProcess::saveConfiguration() {
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			processResult.processIssue = ALLOW_SUCCESSFUL;
-			endProcess();
-			return;
+			return endProcess(ALLOW_SUCCESSFUL, oauthRes);
 
 		case CONFIGURATION_FILE_UNKNOWN:
 			errorMsg = AccessTokensProcess::trUtf8("Configuration file does not exist.");
@@ -264,6 +259,5 @@ void AccessTokensProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	GenericProcess::buildResult(saveIssue, errorMsg);
-	endProcess();
+	endProcess(saveIssue, errorMsg);
 }

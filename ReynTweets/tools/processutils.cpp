@@ -23,31 +23,6 @@
 
 #include "processutils.hpp"
 
-/////////////////////////////
-// Building ProcessResults //
-/////////////////////////////
-
-ProcessResult ProcessUtils::buildProcessResult(CoreResult issue, QString errMsg) {
-	ProcessResult processResult;
-
-	processResult.processIssue = issue;
-	processResult.errorMsg = errMsg;
-	processResult.results = QVariant();
-
-	return processResult;
-}
-
-ProcessResult ProcessUtils::buildProcessResult(CoreResult issue, QVariant result) {
-	ProcessResult processResult;
-
-	processResult.processIssue = issue;
-	processResult.errorMsg = "";
-	processResult.results = result;
-
-	return processResult;
-}
-
-
 //////////////////////////////////////
 // Treating Twitter request results //
 //////////////////////////////////////

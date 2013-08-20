@@ -163,8 +163,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 //////////////////////////////////////////////////
@@ -206,9 +205,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 		case Network::NO_REQUEST_ERROR:
 			if (enoughShortMessage) {
 				// Classic post, normal end
-				processResult = ProcessUtils::buildProcessResult(TWEET_POSTED,
-																 result.parsedResult);
-				return endProcess();
+				return endProcess(TWEET_POSTED, result.parsedResult);
 			} else {
 				// Go to the next step !
 				postedTweet.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
@@ -233,8 +230,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 ///////////////////////////////////////////////////
@@ -298,7 +294,5 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	 * (TwitLonger errors, network problems, failed to parse the TwitLonger XML
 	 * response). The most important is done (posting the tweet) !
 	 */
-	buildResult(issue, errorMsg);
-	processResult.results = postedTweet.toVariant();
-	endProcess();
+	endProcess(issue, postedTweet.toVariant(), errorMsg);
 }

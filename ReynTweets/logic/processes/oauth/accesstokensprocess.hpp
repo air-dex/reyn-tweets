@@ -72,24 +72,27 @@ class AccessTokensProcess : public GenericProcess
 		/// the user configuration.
 		bool updateUserConfiguration;
 
+		/// @brief Map with OAuth's access_tokens results.
+		QVariantMap oauthRes;
+
 		/// @fn void accessToken();
 		/// @brief Demanding an Access Token
 		void accessToken();
 
-		/// @fn virtual void buildResult(QByteArray accessToken,
-		///								 QByteArray tokenSecret,
-		///								 qlonglong userID,
-		///								 QString screenName);
+		/// @fn void buildOAuthResults(QByteArray accessToken,
+		///							   QByteArray tokenSecret,
+		///							   qlonglong userID,
+		///							   QString screenName);
 		/// @brief Building the process result if Reyn Tweets is authorized.
 		/// @param accessToken User access token
 		/// @param tokenSecret User token secret
 		/// @param userID ID of the user who has just authorized the application
 		/// @param screenName Screen name of the user who has just authorized
 		/// the application.
-		virtual void buildResult(QByteArray accessToken,
-								 QByteArray tokenSecret,
-								 qlonglong userID,
-								 QString screenName);
+		virtual void buildOAuthResults(QByteArray accessToken,
+									   QByteArray tokenSecret,
+									   qlonglong userID,
+									   QString screenName);
 
 		/// @fn void saveConfiguration();
 		/// @brief

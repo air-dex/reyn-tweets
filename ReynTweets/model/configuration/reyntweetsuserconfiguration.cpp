@@ -25,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
-#include <QtDeclarative>
+#include <QtQml>
 #include "reyntweetsuserconfiguration.hpp"
 #include "../../tools/utils.hpp"
 

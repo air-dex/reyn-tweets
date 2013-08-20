@@ -25,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "allowcontrol.hpp"
-#include <QtDeclarative>
+#include <QtQml>
 
 // Constructor
 AllowControl::AllowControl() :

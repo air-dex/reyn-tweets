@@ -25,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "tweetcontrol.hpp"
-#include <QtDeclarative>
+#include <QtQml>
 #include <QDesktopServices>
 
 // Constructor

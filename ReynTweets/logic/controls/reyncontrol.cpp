@@ -26,7 +26,7 @@
 
 #include "reyncontrol.hpp"
 #include <QApplication>
-#include <QtDeclarative>
+#include <QtQml>
 
 // Constructor
 ReynControl::ReynControl() :

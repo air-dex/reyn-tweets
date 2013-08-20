@@ -25,7 +25,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "logincontrol.hpp"
-#include <QtDeclarative>
+#include <QtQml>
 
 // Constructor
 LoginControl::LoginControl() :

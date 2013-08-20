@@ -25,6 +25,12 @@
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
+HEADERS += \
+	ui/uiconstants.hpp
+
+SOURCES += \
+	ui/uiconstants.cpp
+
 OTHER_FILES = \
 	ui/qmlapplicationviewer.pri \
 	ui/qml/tools.js \

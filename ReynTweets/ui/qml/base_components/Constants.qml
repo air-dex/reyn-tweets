@@ -112,7 +112,24 @@ QtObject {
 	//////////
 
 	// Font used for Reyn Tweets
-	property string font: "Calibri"
+	property string font: {
+		switch (Qt.plateform.os.name) {
+			case "windows":
+				return "Calibri"
+
+			case "linux":
+				return "Ubuntu"
+
+			case "osx":
+			case "ios":
+				return "Comic Sans MS"
+
+			default:
+				return "Arial"
+		}
+
+
+	}
 
 	// Font size for big titles
 	property int font_size_title: 36

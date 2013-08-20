@@ -56,7 +56,7 @@ include(ui/reyntweetsui.pri)
 SOURCES += \
 	main.cpp
 
-#HEADERS  += \
+HEADERS  += \
 
 OTHER_FILES = \
 	.bzrignore \

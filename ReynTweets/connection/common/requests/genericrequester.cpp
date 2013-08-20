@@ -27,7 +27,7 @@
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(RequestType type,
 								   QString url,
-								   ErrorType parseError) :
+								   NetworkResultType parseError) :
 	QObject(),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
@@ -60,7 +60,7 @@ QUuid GenericRequester::getUuid() {
 }
 
 // Setting parsingErrorType
-void GenericRequester::setParsingErrorType(ErrorType parseErrorType) {
+void GenericRequester::setParsingErrorType(NetworkResultType parseErrorType) {
 	parsingErrorType = parseErrorType;
 }
 
@@ -112,13 +112,13 @@ void GenericRequester::treatResults() {
 
 	if (httpReturnCode == 0) {
 		// No response => API_CALL
-		requestResult.resultType = API_CALL;
+		requestResult.resultType = Network::API_CALL;
 	} else {
 		// A response to parse
 		bool parseOK;
 		QVariantMap parseErrorMap;
 		requestResult.parsedResult = this->parseResult(parseOK, parseErrorMap);
-		requestResult.resultType = parseOK ? NO_REQUEST_ERROR : parsingErrorType;
+		requestResult.resultType = parseOK ? Network::NO_REQUEST_ERROR : parsingErrorType;
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 

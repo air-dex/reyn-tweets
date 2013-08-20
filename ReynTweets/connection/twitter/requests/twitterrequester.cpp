@@ -28,7 +28,7 @@
 TwitterRequester::TwitterRequester(RequestType type,
 								   QString url,
 								   OAuthManager &authManager,
-								   ErrorType parseError,
+								   NetworkResultType parseError,
 								   bool tokenNeeded,
 								   bool callbackURLNeeded,
 								   bool verifierNeeded) :
@@ -109,7 +109,7 @@ void TwitterRequester::treatParsedResult() {
 		case 404:
 		case 500:
 		case 503:
-			if (parsingErrorType == JSON_PARSING
+			if (parsingErrorType == Network::JSON_PARSING
 					&& requestResult.parsedResult.type() == QVariant::Map
 				)
 			{
@@ -137,7 +137,7 @@ void TwitterRequester::treatParsedResult() {
 
 				}
 			}
-			requestResult.resultType = SERVICE_ERRORS;
+			requestResult.resultType = Network::SERVICE_ERRORS;
 			break;
 
 		case 304:
@@ -147,7 +147,7 @@ void TwitterRequester::treatParsedResult() {
 		case 406:
 		case 420:
 		case 502:
-			if (parsingErrorType == JSON_PARSING
+			if (parsingErrorType == Network::JSON_PARSING
 					&& requestResult.parsedResult.type() == QVariant::Map
 				)
 			{
@@ -171,11 +171,11 @@ void TwitterRequester::treatParsedResult() {
 					requestResult.serviceErrors.append(twitterError);
 				}
 			}
-			requestResult.resultType = SERVICE_ERRORS;
+			requestResult.resultType = Network::SERVICE_ERRORS;
 			break;
 
 		default:
-			requestResult.resultType = API_CALL;
+			requestResult.resultType = Network::API_CALL;
 			break;
 	}
 }

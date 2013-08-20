@@ -54,13 +54,14 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
-	connection/twitter/oauthmanager.cpp \
-	connection/twitlonger/twitlongermanager.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
-	connection/twitlonger/requests/twitlongerurls.cpp \
-	connection/twitter/requests/twitterurls.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
+	connection/common/calls/requestinfos.cpp \
+	connection/common/calls/requestermanager.cpp \
+	connection/common/calls/genericcalls.cpp \
+	connection/twitter/oauthmanager.cpp \
+	connection/twitter/requests/twitterurls.cpp \
 	connection/twitter/requests/twitterrequester.cpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.cpp \
 	connection/twitter/requests/favorites/favoriterequester.cpp \
@@ -78,13 +79,12 @@ SOURCES += \
 	connection/twitter/requests/tweets/retweetrequester.cpp \
 	connection/twitter/requests/tweets/showtweetrequester.cpp \
 	connection/twitter/requests/users/showuserrequester.cpp \
+	connection/twitter/reyntwittercalls.cpp \
+	connection/twitlonger/twitlongermanager.cpp \
+	connection/twitlonger/requests/twitlongerurls.cpp \
 	connection/twitlonger/requests/twitlongerrequester.cpp \
 	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.cpp \
-	connection/common/calls/requestinfos.cpp \
-	connection/common/calls/requestermanager.cpp \
-	connection/common/calls/genericcalls.cpp \
-	connection/twitter/reyntwittercalls.cpp \
 	connection/twitlonger/twitlongercalls.cpp \
 	model/mappable.cpp \
 	model/listable.cpp \
@@ -162,19 +162,20 @@ HEADERS  += \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
-	connection/twitter/oauthmanager.hpp \
-	connection/twitlonger/twitlongermanager.hpp \
 	connection/common/requesttype.hpp \
 	connection/common/headersmap.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
 	connection/common/errortypes.hpp \
 	connection/common/responseinfos.hpp \
-	connection/twitlonger/requests/twitlongerurls.hpp \
-	connection/twitter/requests/twitterurls.hpp \
 	connection/common/requestresult.hpp \
 	connection/common/resultwrapper.hpp \
 	connection/common/requests/identificationway.hpp \
 	connection/common/requests/genericrequester.hpp \
+	connection/common/calls/requestinfos.hpp \
+	connection/common/calls/requestermanager.hpp \
+	connection/common/calls/genericcalls.hpp \
+	connection/twitter/oauthmanager.hpp \
+	connection/twitter/requests/twitterurls.hpp \
 	connection/twitter/requests/twitterrequester.hpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.hpp \
 	connection/twitter/requests/favorites/favoriterequester.hpp \
@@ -193,14 +194,13 @@ HEADERS  += \
 	connection/twitter/requests/tweets/showtweetrequester.hpp \
 	connection/twitter/requests/users/showuserrequester.hpp \
 	connection/twitter/requests/twitterrequests.hpp \
+	connection/twitter/reyntwittercalls.hpp \
+	connection/twitlonger/twitlongermanager.hpp \
+	connection/twitlonger/requests/twitlongerurls.hpp \
 	connection/twitlonger/requests/twitlongerrequester.hpp \
 	connection/twitlonger/requests/posttotwitlongerrequester.hpp \
 	connection/twitlonger/requests/sendidtotwitlongerrequester.hpp \
 	connection/twitlonger/requests/twitlongerrequests.hpp \
-	connection/common/calls/requestinfos.hpp \
-	connection/common/calls/requestermanager.hpp \
-	connection/common/calls/genericcalls.hpp \
-	connection/twitter/reyntwittercalls.hpp \
 	connection/twitlonger/twitlongercalls.hpp \
 	model/variantable.hpp \
 	model/mappable.hpp \

@@ -30,7 +30,7 @@ QString DENY_NAME = "cancel";
 OAuthRequester::OAuthRequester(RequestType type,
                                QString url,
                                OAuthManager &authManager,
-                               ErrorType parseErrorType,
+                               NetworkResultType parseErrorType,
                                bool tokenNeeded,
                                bool callbackURLNeeded,
                                bool verifierNeeded) :

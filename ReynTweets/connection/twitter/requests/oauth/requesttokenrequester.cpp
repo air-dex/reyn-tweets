@@ -28,7 +28,7 @@ RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
 	OAuthRequester(POST,
 				   TwitterURL::REQUEST_TOKEN_URL,
 				   authManager,
-				   OAUTH_PARSING,
+				   Network::OAUTH_PARSING,
 				   false,
 				   true)
 {}

@@ -25,8 +25,22 @@
 #define LISTHANDLER_HPP
 
 #include <QObject>
-#include <QDataStream>
 #include <QVariant>
+
+/// @class HandlerEmitter
+/// @brief Class for making a list handler emitting a signal.
+///
+/// In a perfect world this class would be nested in ListHandler. Unfortunately,
+/// meta object features are not supported for nested classes.
+class HandlerEmitter : public QObject
+{
+	Q_OBJECT
+
+	signals:
+		/// @fn void handledListChanged();
+		/// @brief Signal emitted when the handled list has got a new value.
+		void handledListChanged();
+};
 
 /// @class ListHandler
 /// @brief Base class for all list handlers.
@@ -34,14 +48,18 @@
 /// A ListHandler manages list on the QML side of the application. It contains
 /// the given list and methods to get, replace and remove elements of the
 /// handled list.
+///
+/// Some methods have to be overriden inderived class because they have to be
+/// invokable by QML. For this, the handler has to inherit from QObject
+/// (Q_OBJECT and Q_INVOKABLE macros + signals). In a perfect world,
+/// ListHandler would inherit from QObject but template classes are not
+/// supported by Q_OBJECT. Moreover, the HandlerEmitter class would not exist too.
 /// @param HL Type of the list handled by the list handler. <strong>T has to
 /// inherit JsonArray&lt;U&gt;.</strong>
 /// @param U Type of the elements of the handled list.
 template <typename HL, typename U>
-class ListHandler : public QObject
+class ListHandler
 {
-	Q_OBJECT
-
 	public:
 		/// @fn ListHandler();
 		/// @brief Constructor
@@ -81,56 +99,53 @@ class ListHandler : public QObject
 		/// @param newlist New value for the list
 		void setHandledList(HL newlist);
 
-		/// @fn Q_INVOKABLE U * get(int index);
+		/// @fn virtual U * get(int index);
 		/// @brief Get an element of the handled list
 		/// @param index Index of the element
 		/// @return A pointer with the corresponding element if index is valid,
 		/// a default element otherwise.
-		Q_INVOKABLE U * get(int index);
+		virtual U * get(int index);
 
-		/// @fn Q_INVOKABLE int getHandledListSize();
+		/// @fn virtual int getHandledListSize();
 		/// @brief Getting the size of the handled list.
 		/// @return handledList.size();
-		int getHandledListSize();
+		virtual int getHandledListSize();
 
-		/// @fn Q_INVOKABLE void replace(QVariant varelt);
+		/// @fn virtual void replace(QVariant varelt);
 		/// @brief Replacing an element in the list
 		/// @param varelt Element under a QVariant form
-		Q_INVOKABLE void replace(QVariant varelt);
+		virtual void replace(QVariant varelt);
 
-		/// @fn Q_INVOKABLE void replace(QVariant varelt, int index);
+		/// @fn virtual void replace(QVariant varelt, int index);
 		/// @brief Replacing an element in the list
 		/// @param varelt Element under a QVariant form
 		/// @param index Index of the element to replace
-		Q_INVOKABLE void replace(QVariant varelt, int index);
+		virtual void replace(QVariant varelt, int index);
 
-		/// @fn Q_INVOKABLE void remove(int index);
+		/// @fn virtual void remove(int index);
 		/// @brief Removing an element of the list
 		/// @param index Index of the element to remove
-		Q_INVOKABLE void remove(int index);
+		virtual void remove(int index);
 
-		/// @fn Q_INVOKABLE void remove(QVariant varelt);
+		/// @fn virtual void remove(QVariant varelt);
 		/// @brief Removing an element of the list
 		/// @param varelt Element to remove
-		Q_INVOKABLE void remove(QVariant varelt);
-
-
-	signals:
-		/// @fn void handledListChanged();
-		/// @brief Signal emitted when the handled list has got a new value.
-		void handledListChanged();
-
+		virtual void remove(QVariant varelt);
 		
 	protected:
 		/// @brief Handled list
 		HL handledList;
+
+		/// @brief Entity to emit the signal indicating that handledList values
+		/// has just changed.
+		HandlerEmitter signalEmitter;
 
 		/// @fn virtual void recopie(const ListHandler<HL,U> & listhandler);
 		/// @brief Recopy of a ListHandler
 		/// @param listhandler ListHandler to copy
 		virtual void recopie(const ListHandler<HL,U> & listhandler);
 
-		/// @fn virtual int getElementIndex(U listElt) = 0;
+		/// @fn virtual int getElementIndex(U listElt, bool & exactIndex) = 0;
 		/// @brief Getting the potential index of an element in handledList.
 		///
 		/// Replacing and removing method often needs to know the potential
@@ -143,9 +158,10 @@ class ListHandler : public QObject
 		/// a timeline, for example) and the searching method is consequently
 		/// based on dichotomy.
 		/// @param listElt Element that we want to know the potential index.
+		/// @param exactIndex Boolean indicating if it is the element at
+		/// the index position is equal to the searched element.
 		/// @return Its potential index in the list.
-  // TODO : rajouter un bool pour savoir l'exactitude ?
-		virtual int getElementIndex(U listElt) = 0;
+		virtual int getElementIndex(U listElt, bool & exactIndex) = 0;
 };
 
 #endif // LISTHANDLER_HPP

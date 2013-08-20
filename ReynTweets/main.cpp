@@ -117,7 +117,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 		 * Very useful for loading QML, configuration and translation files.
 		 * Has to be done before loading these kind of file.
 		 */
-		QDir::setCurrent(app->applicationDirPath());
+		QDir::setCurrent(app.applicationDirPath());
 	#endif
 
 	// Init the random generator used for generating nonces

@@ -29,7 +29,7 @@
 #include "../genericprocess.hpp"
 #include "../../../connection/common/resultwrapper.hpp"
 #include "../../../connection/twitter/reyntwittercalls.hpp"
-#include "../../../model/configuration/userconfiguration.hpp"
+#include "../../core/configuration/userconfiguration.hpp"
 
 /// @class AccessTokensProcess
 /// @brief Process to get the final tokens to authenticate

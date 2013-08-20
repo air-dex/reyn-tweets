@@ -27,7 +27,7 @@
 #include "genericprocess.hpp"
 #include "../../connection/twitter/reyntwittercalls.hpp"
 #include "../../connection/twitlonger/twitlongercalls.hpp"
-#include "../../model/tweets/tweet.hpp"
+#include "../core/tweets/tweet.hpp"
 
 /// @class PostViaTwitLongerProcess
 /// @brief Process consisting in posting a tweet which is longer than

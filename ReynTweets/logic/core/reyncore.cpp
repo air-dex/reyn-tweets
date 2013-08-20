@@ -24,7 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "reyncore.hpp"
-#include "processes/processes.hpp"
+#include "../processes/processes.hpp"
 
 // Constructor
 ReynCore::ReynCore(QObject * actionRequester) :

@@ -2,7 +2,7 @@
 #define TIMELINEHANDLER_HPP
 
 #include <QObject>
-#include "../../model/timelines/timeline.hpp"
+#include "timeline.hpp"
 
 class TimelineHandler : public QObject
 {

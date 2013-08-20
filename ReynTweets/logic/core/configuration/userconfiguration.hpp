@@ -29,7 +29,7 @@
 #include <QList>
 #include <QObject>
 #include <QVariant>
-#include "../../logic/coreresult.hpp"
+#include "../coreresult.hpp"
 #include "../json/jsonobject.hpp"
 #include "useraccount.hpp"
 

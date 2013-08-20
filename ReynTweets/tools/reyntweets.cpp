@@ -25,7 +25,7 @@
 
 #include <QApplication>
 #include <QLocale>
-#include "../model/reyntweetsentities.hpp"
+#include "../logic/core/reyntweetsentities.hpp"
 #include "../logic/controls/controls.hpp"
 
 ////////////////////////////

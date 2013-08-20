@@ -550,22 +550,22 @@
 		<translation>Unexpected problem:</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="57"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="57"/>
 		<source>Settings file unknown.</source>
 		<translation>Settings file unknown.</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="63"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="63"/>
 		<source>Cannot open the settings file.</source>
 		<translation>Cannot open the settings file.</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="82"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="82"/>
 		<source>The following setting(s) are missing: </source>
 		<translation>The following settings are missing: </translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="136"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="136"/>
 		<source>no one</source>
 		<translation>no one</translation>
 	</message>

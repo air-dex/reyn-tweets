@@ -553,22 +553,22 @@
 		<translation>Problème inattendu :</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="57"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="57"/>
 		<source>Settings file unknown.</source>
 		<translation>Fichier de réglages inconnu.</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="63"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="63"/>
 		<source>Cannot open the settings file.</source>
 		<translation>Impossible d&apos;ouvrir de fichier de réglages.</translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="82"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="82"/>
 		<source>The following setting(s) are missing: </source>
 		<translation>Il manque le(s) identifiant(s) suivant(s) : </translation>
 	</message>
 	<message>
-		<location filename="../model/configuration/reyntweetsappconfiguration.cpp" line="136"/>
+		<location filename="../logic/core/configuration/reyntweetsappconfiguration.cpp" line="136"/>
 		<source>no one</source>
 		<translation>aucun</translation>
 	</message>

@@ -24,8 +24,8 @@
 #ifndef WRITETWEETCONTROL_HPP
 #define WRITETWEETCONTROL_HPP
 
-#include "../../model/tweets/tweet.hpp"
-#include "../reyncore.hpp"
+#include "../core/tweets/tweet.hpp"
+#include "../core/reyncore.hpp"
 #include "genericcontrol.hpp"
 
 /// @class WriteTweetControl

@@ -23,7 +23,7 @@
 
 #include "deletetweetprocess.hpp"
 #include "../../tools/processutils.hpp"
-#include "../../model/timelines/timeline.hpp"
+#include "../core/timelines/timeline.hpp"
 
 // Constructor
 DeleteTweetProcess::DeleteTweetProcess(UserInfos & u,

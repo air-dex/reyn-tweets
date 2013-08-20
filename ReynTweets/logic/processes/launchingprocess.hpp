@@ -25,10 +25,10 @@
 #define LAUNCHINGPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../../model/configuration/appconfiguration.hpp"
-#include "../../model/configuration/userconfiguration.hpp"
+#include "../core/configuration/appconfiguration.hpp"
+#include "../core/configuration/userconfiguration.hpp"
 #include "../../connection/twitter/reyntwittercalls.hpp"
-#include "../coreresult.hpp"
+#include "../core/coreresult.hpp"
 #include "processwrapper.hpp"
 
 /// @class LaunchingProcess

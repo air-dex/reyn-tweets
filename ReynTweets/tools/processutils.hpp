@@ -26,7 +26,7 @@
 
 #include <QString>
 #include <QVariant>
-#include "../logic/coreresult.hpp"
+#include "../logic/core/coreresult.hpp"
 #include "../logic/processes/processresult.hpp"
 #include "../connection/common/resultwrapper.hpp"
 #include "../connection/common/responseinfos.hpp"

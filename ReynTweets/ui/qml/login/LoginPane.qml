@@ -88,7 +88,7 @@ Rectangle {
 		anchors.top: parent.top
 		font.bold: true
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 	}
@@ -174,7 +174,7 @@ Rectangle {
 			text: qsTr("Show password")
 			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
-			font.pixelSize: constant.font_size
+			font.pointSize: constant.font_size
 		}
 	}
 

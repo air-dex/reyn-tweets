@@ -57,7 +57,7 @@ Rectangle {
 		anchors.topMargin: margin
 		anchors.horizontalCenter: about_pane.horizontalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 	}
 
@@ -126,7 +126,7 @@ Rectangle {
 				text: "Reyn Tweets"
 				font.bold: true
 				font.family: constant.font
-				font.pixelSize: constant.font_size_title
+				font.pointSize: constant.font_size_title
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
 			}
@@ -142,7 +142,7 @@ Rectangle {
 
 				text: "Version ".concat(constant.getVersion())
 				font.family: constant.font
-				font.pixelSize: constant.font_size
+				font.pointSize: constant.font_size
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
 			}
@@ -164,7 +164,7 @@ Rectangle {
 				font.bold: false
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				font.pixelSize: constant.font_size
+				font.pointSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 			}
 
@@ -199,7 +199,7 @@ General Public License along with Reyn Tweets. If not, see '))
 				font.bold: false
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
-				font.pixelSize: constant.font_size
+				font.pointSize: constant.font_size
 				onLinkActivated: Qt.openUrlExternally(link)
 				wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 			}
@@ -220,7 +220,7 @@ General Public License along with Reyn Tweets. If not, see '))
 				font.bold: false
 				verticalAlignment: Text.AlignVCenter
 				horizontalAlignment: Text.AlignHCenter
-				font.pixelSize: constant.font_size_s
+				font.pointSize: constant.font_size_s
 				onLinkActivated: Qt.openUrlExternally(link)
 			}
 		}

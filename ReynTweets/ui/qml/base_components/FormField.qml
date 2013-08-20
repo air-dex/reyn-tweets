@@ -60,7 +60,7 @@ Rectangle {
 		anchors.verticalCenter: parent.verticalCenter
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 	}
 
 	// Rectangle behind field for design concerns.
@@ -88,7 +88,7 @@ Rectangle {
 			echoMode: clear_field ? TextInput.Normal : TextInput.Password
 			font.family: constant.font
 			horizontalAlignment: TextEdit.AlignLeft
-			font.pixelSize: constant.font_size
+			font.pointSize: constant.font_size
 		}
 	}
 

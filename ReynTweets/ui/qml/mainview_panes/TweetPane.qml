@@ -221,7 +221,7 @@ Rectangle {
 		font.underline: false
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		anchors.topMargin: 2*margin
 		anchors.top: parent.top
 		anchors.left: avatar_zone.right
@@ -244,7 +244,7 @@ Rectangle {
 		font.underline: false
 		verticalAlignment: Text.AlignVCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size_xs
+		font.pointSize: constant.font_size_xs
 		anchors.topMargin: margin
 		anchors.top: author_identity.bottom
 		anchors.left: author_identity.left
@@ -267,7 +267,7 @@ Rectangle {
 		anchors.topMargin: 2*margin
 		anchors.right: parent.right
 		anchors.rightMargin: margin
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		onLinkActivated: Qt.openUrlExternally(link)
 	}
 
@@ -278,7 +278,7 @@ Rectangle {
 		textFormat: Text.RichText
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: author_screen_name.bottom
@@ -315,7 +315,7 @@ Rectangle {
 		text: "via " + shown_tweet.getDisplaySource()
 		font.italic: true
 		font.family: constant.font
-		font.pixelSize: constant.font_size_s
+		font.pointSize: constant.font_size_s
 		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: text.bottom
@@ -336,7 +336,7 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_size_s
+		font.pointSize: constant.font_size_s
 		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
@@ -368,7 +368,7 @@ Rectangle {
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
-		font.pixelSize: constant.font_size_s
+		font.pointSize: constant.font_size_s
 		anchors.left: author_identity.left
 		anchors.leftMargin: 0
 		anchors.top: source_text.bottom
@@ -787,6 +787,7 @@ Rectangle {
 		var hrefTag = '" href="';
 		var closeTag = '">';
 		var endTag = '</a>';
+
 		return beginTag + shown_tweet.author.profile_link_color
 				+ hrefTag + entity + closeTag + entity + endTag;
 	}

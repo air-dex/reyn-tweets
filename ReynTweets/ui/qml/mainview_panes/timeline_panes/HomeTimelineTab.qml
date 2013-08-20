@@ -49,7 +49,7 @@ Rectangle {
 		anchors.topMargin: margin
 		anchors.horizontalCenter: home_timeline_tab.horizontalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 	}
 

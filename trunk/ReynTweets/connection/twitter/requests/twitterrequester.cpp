@@ -57,9 +57,12 @@ void TwitterRequester::buildHTTPHeaders() {
 }
 
 // Method that will parse the raw results of the request.
-QVariant TwitterRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+QVariant TwitterRequester::parseResult(NetworkResponse results,
+									   bool & parseOK,
+									   QVariantMap & parsingErrors)
+{
 	JSONParser parser;
-	QByteArray rawResponse = weblink.getResponseBuffer();
+	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg;
 	int lineMsg;
 

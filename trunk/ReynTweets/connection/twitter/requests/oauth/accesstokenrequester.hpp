@@ -44,7 +44,9 @@ class AccessTokenRequester : public OAuthRequester
 		/// @brief Method building POST Parameters
 		void buildPOSTParameters();
 
-		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @fn QVariant parseResult(NetworkResponse results,
+		///							 bool & parseOK,
+		///							 QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
 		///
 		/// For this kind of request, results look like :<br/><code>
@@ -55,12 +57,16 @@ class AccessTokenRequester : public OAuthRequester
 		/// </code><br/>
 		/// <strong>Warning : tokens value are not encrypted in the parsed
 		/// map that contains results.</strong>
+		/// @param results Results to parse. Most of the time the method only
+		/// uses the responseBody field.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
 		/// errors that may occur while parsing.
 		/// @return Parsed results
-		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		QVariant parseResult(NetworkResponse results,
+							 bool & parseOK,
+							 QVariantMap & parsingErrors);
 };
 
 #endif // ACCESSTOKENREQUESTER_HPP

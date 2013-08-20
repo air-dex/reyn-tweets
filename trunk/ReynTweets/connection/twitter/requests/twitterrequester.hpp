@@ -83,15 +83,19 @@ class TwitterRequester : public GenericRequester
 		/// for authentication.
 		bool oauthVerifierNeeded;
 
-		/// @fn virtual QVariant parseResult(bool & parseOK,
+		/// @fn virtual QVariant parseResult(NetworkResponse results,
+		///									 bool & parseOK,
 		///									 QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request.
+		/// @param results Results to parse. Most of the time the method only
+		/// uses the responseBody field.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
 		/// errors that may occur while parsing.
 		/// @return Parsed results
-		virtual QVariant parseResult(bool & parseOK,
+		virtual QVariant parseResult(NetworkResponse results,
+									 bool & parseOK,
 									 QVariantMap & parsingErrors);
 
 		/// @fn virtual void treatParsedResult();

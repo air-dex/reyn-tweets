@@ -159,6 +159,8 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 
 	// Extracting informations
 	responseBuffer = response->readAll();
+
+	NetworkResponse netrep(response);
 	response->deleteLater();
 
 	// responseBuffer (for debug purposes)
@@ -169,7 +171,7 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	//*/
 
 	// Ending the request
-	emit requestDone();
+	emit requestDone(netrep);
 }
 
 // Network timeout
@@ -187,8 +189,10 @@ void TwitterCommunicator::timeout() {
 	replyURL = serviceURL;
 	responseBuffer = "";
 
+	NetworkResponse response(0, "timeout", "", "timeout", serviceURL);
+
 	// Ending the request
-	emit requestDone();
+	emit requestDone(response);
 }
 
 

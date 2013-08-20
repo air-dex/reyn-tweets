@@ -41,7 +41,9 @@ void AuthorizeRequester::buildGETParameters() {
 }
 
 // Parsing results
-QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErrors) {
+QVariant AuthorizeRequester::parseResult(NetworkResponse results,
+										 bool &parseOK,
+										 QVariantMap &parsingErrors) {
 	// Flags for treatment
 	bool treatmentOK;
 	QString errTreatment = "";
@@ -51,7 +53,7 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 
 	// Getting the HTML document
 	HTMLParser parser;
-	QWebElement htmlDocument = parser.parse(weblink.getResponseBuffer(),
+	QWebElement htmlDocument = parser.parse(results.getResponseBody(),
 											parseOK,
 											errTreatment);
 	errorMsg.append(errTreatment);

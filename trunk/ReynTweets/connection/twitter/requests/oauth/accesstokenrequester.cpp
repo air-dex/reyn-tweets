@@ -42,9 +42,12 @@ void AccessTokenRequester::buildPOSTParameters() {
 }
 
 // Parse the raw results of the request.
-QVariant AccessTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+QVariant AccessTokenRequester::parseResult(NetworkResponse results,
+										   bool & parseOK,
+										   QVariantMap & parsingErrors)
+{
 	OAuthParser parser;
-	QByteArray rawResponse = weblink.getResponseBuffer();
+	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg = "";
 
 	// For treatments

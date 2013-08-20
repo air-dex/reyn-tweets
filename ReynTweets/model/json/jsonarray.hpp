@@ -25,14 +25,14 @@
 #define JSONARRAY_HPP
 
 #include <QJsonArray>
-#include "../listable.tpp"
-#include "jsonable.hpp"
+#include <QDataStream>
+#include "../variantable.hpp"
 
 /// @class JsonArray
 /// @brief Base class for all objects which can be represented by a JSON array.
 /// @param V Type of the objects which composed the list.
 template <typename V>
-class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
+class JsonArray : public Variantable<QJsonArray>, public QList<V>
 {
 	public:
 		/// @fn JsonArray();
@@ -43,52 +43,57 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 		/// @brief Destructor
 		virtual ~JsonArray();
 
-		/// @fn Listable(const JsonArray<V> & list);
+		/// @fn JsonArray(const JsonArray<V> & list);
 		/// @brief Copy constructor
 		/// @param list JsonArray to copy
 		JsonArray(const JsonArray<V> & list);
 
 		/// @fn const JsonArray<V> & operator=(const JsonArray<V> & list);
-		/// @brief Affrection operator
-		/// @param list Listable to affect
+		/// @brief Affection operator
+		/// @param list JsonArray to affect
 		const JsonArray<V> & operator=(const JsonArray<V> & list);
 
-		//////////////////////////////
-		// Jsonable virtual methods //
-		//////////////////////////////
+		/////////////////////////////////
+		// Variantable virtual methods //
+		/////////////////////////////////
 
-		/// @fn virtual void fillWithJSON(QJsonArray json);
+		/// @fn virtual void fillWithVariant(QJsonArray json);
 		/// @brief Filling a JsonArray with a QJsonArray.
 		/// contained in the map.
 		/// @param json The QJsonArray
-		virtual void fillWithJSON(QJsonArray json);
+		virtual void fillWithVariant(QJsonArray json);
 
-		/// @fn virtual QJsonArray toJSON() const;
+		/// @fn virtual QJsonArray toVariant() const;
 		/// @brief Converting the JsonArray into a QJsonArray.
 		/// @return The corresponding QJsonArray.
-		virtual QJsonArray toJSON() const;
+		virtual QJsonArray toVariant() const;
 
 		/////////////////////
 		// Stream handling //
 		/////////////////////
 
 		/// @fn virtual QDataStream & fillWithStream(QDataStream & in);
-		/// @brief Filling the Jsonable with the content of a QDataStream
+		/// @brief Filling the JsonArray with the content of a QDataStream
 		/// @param in The stream
 		/// @return The stream after being read.
 		virtual QDataStream & fillWithStream(QDataStream & in);
 
 		/// @fn virtual QDataStream & writeInStream(QDataStream & out) const;
-		/// @brief Writing a QDataStream with the content of the Jsonable
+		/// @brief Writing a QDataStream with the content of the JsonArray
 		/// @param out The stream
 		/// @return The stream after being written.
 		virtual QDataStream & writeInStream(QDataStream & out) const;
 
 	protected:
 		/// @fn virtual void recopie(const JsonArray<V> & list);
-		/// @brief Copy of a Listable
+		/// @brief Copy of a JsonArray
 		/// @param list JsonArray to copy
 		virtual void recopie(const JsonArray<V> &list);
+
+		/// virtual void appendJsonValue(QJsonValue v) = 0;
+		/// @brief Appending the content of a QJsonValue in the JsonArray
+		/// @param v the QJsonValue
+		virtual void appendJsonValue(QJsonValue v) = 0;
 };
 
 #endif // JSONARRAY_HPP

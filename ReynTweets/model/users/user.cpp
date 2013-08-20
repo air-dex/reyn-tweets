@@ -93,16 +93,16 @@ void User::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void User::fillWithJSON(QJsonObject json) {
-	UserInfos::fillWithJSON(json);
-	this->lastTweet.fillWithJSON(json.value(STATUS_PN).toObject());
+void User::fillWithVariant(QJsonObject json) {
+	UserInfos::fillWithVariant(json);
+	this->lastTweet.fillWithVariant(json.value(STATUS_PN).toObject());
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject User::toJSON() const {
-	QJsonObject json = UserInfos::toJSON();
+QJsonObject User::toVariant() const {
+	QJsonObject json = UserInfos::toVariant();
 
-	json.insert(STATUS_PN, QJsonValue(this->lastTweet.toJSON()));
+	json.insert(STATUS_PN, QJsonValue(this->lastTweet.toVariant()));
 
 	return json;
 }
@@ -125,7 +125,7 @@ QVariantMap User::getStatusProperty() {
 	// Return an empty QVariantMap for a default tweet to avoid stack problems
 	return lastTweet.getIDstr() == "-1" ?
 				QVariantMap()
-			  : lastTweet.toVariant();
+			  : lastTweet.toVariant().toVariantMap();
 }
 
 Tweet * User::getStatusPtr() {
@@ -133,7 +133,7 @@ Tweet * User::getStatusPtr() {
 }
 
 void User::setStatus(QVariantMap statusMap) {
-	lastTweet.fillWithVariant(statusMap);
+	lastTweet.fillWithVariant(QJsonObject::fromVariantMap(statusMap));
 	emit statusChanged();
 }
 

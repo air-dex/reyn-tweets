@@ -144,7 +144,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 		case TWEET_RETRIEVED:
 			parsedResults = result.results.toMap();
 			status->reset();
-			status->fillWithVariant(parsedResults);
+			status->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			emit tweetChanged();
 			emit actionEnded(true, TweetControl::trUtf8("Tweet refreshed"), false);
 			break;
@@ -297,7 +297,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	switch (issue) {
 		case TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
-			resultTweet.fillWithVariant(parsedResults);
+			resultTweet.fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			if (!resultTweet.isRetweet()) {
 				// The retweet is not in the timeline and cannot be updated
 				emit actionEnded(false,
@@ -306,7 +306,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 				break;
 			}
 			getShownTweet()->reset();
-			getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
+			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(resultTweet.getRetweetedStatusVariant()));
 			getShownTweet()->setRetweeted(true);
 			status->setRetweeted(true);
 			// NB : status.id do not change.
@@ -392,7 +392,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
 			getShownTweet()->reset();
-			getShownTweet()->fillWithVariant(parsedResults);
+			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			getShownTweet()->setFavorited(true);
 			emit tweetChanged();
 			emit actionEnded(true, TweetControl::trUtf8("Tweet favorited"), false);
@@ -478,7 +478,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			parsedResults = result.results.toMap();
 
 			getShownTweet()->reset();
-			getShownTweet()->fillWithVariant(parsedResults);
+			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			getShownTweet()->setFavorited(false);
 			emit tweetChanged();
 			emit actionEnded(true, TweetControl::trUtf8("Tweet unfavorited"), false);
@@ -563,7 +563,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 			// Delete the tweet in the timeline ?
 			if (parsedResults.value("keep_in_timeline").toBool()) {
 				Tweet resultTweet;
-				resultTweet.fillWithVariant(parsedResults.value("twitter_result").toMap());
+				resultTweet.fillWithVariant(QJsonObject::fromVariantMap(parsedResults.value("twitter_result").toMap()));
 
 				if (!resultTweet.isRetweet()) {
 					// It's a tweet written by the user and should not be kept
@@ -575,7 +575,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 				}
 
 				getShownTweet()->reset();
-				getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatusVariant());
+				getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(resultTweet.getRetweetedStatusVariant()));
 				status->setRetweeted(false);
 				emit tweetChanged();
 			} else {

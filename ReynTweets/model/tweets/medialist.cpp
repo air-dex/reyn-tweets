@@ -50,6 +50,15 @@ void MediaList::initSystem() {
 	qMetaTypeId<MediaList>();
 }
 
+// Appending the content of a QJsonValue
+void MediaList::appendJsonValue(QJsonValue v) {
+	if (v.isObject()) {
+		Media media;
+		media.fillWithVariant(v.toObject());
+		this->append(media);
+	}
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaList & list) {
 	return list.writeInStream(out);

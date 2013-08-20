@@ -106,20 +106,20 @@ QDataStream & operator>>(QDataStream & in, UserAccount & account) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void UserAccount::fillWithJSON(QJsonObject json) {
+void UserAccount::fillWithVariant(QJsonObject json) {
 	this->accessToken = QByteArray::fromBase64(json.value(ACCESS_TOKEN_PN).toString("").toLatin1());
 	this->tokenSecret = QByteArray::fromBase64(json.value(TOKEN_SECRET_PN).toString("").toLatin1());
-	this->user.fillWithJSON(json.value(TWITTER_USER_PN).toObject());
+	this->user.fillWithVariant(json.value(TWITTER_USER_PN).toObject());
 	this->helloMessage = json.value(HELLO_MESSAGE_PN).toString("");
 }
 
 // QJsonObject representation of the object
-QJsonObject UserAccount::toJSON() const {
+QJsonObject UserAccount::toVariant() const {
 	QJsonObject json;
 
 	json.insert(ACCESS_TOKEN_PN, QJsonValue(QString::fromLatin1(this->accessToken.toBase64())));
 	json.insert(TOKEN_SECRET_PN, QJsonValue(QString::fromLatin1(this->tokenSecret.toBase64())));
-	json.insert(TWITTER_USER_PN, QJsonValue(this->user.toJSON()));
+	json.insert(TWITTER_USER_PN, QJsonValue(this->user.toVariant()));
 	json.insert(HELLO_MESSAGE_PN, QJsonValue(this->helloMessage));
 
 	return json;
@@ -158,7 +158,7 @@ QString UserAccount::TWITTER_USER_PN = "twitter_user";
 QString UserAccount::CURRENT_USER_PN = "current_user";
 
 QVariantMap UserAccount::getUserProperty() {
-	return user.toVariant();
+	return user.toVariant().toVariantMap();
 }
 
 UserInfos * UserAccount::getUserPtr() {
@@ -174,7 +174,7 @@ UserInfos & UserAccount::getUserRef() {
 }
 
 void UserAccount::setUser(QVariantMap newUserMap) {
-	user.fillWithVariant(newUserMap);
+	user.fillWithVariant(QJsonObject::fromVariantMap(newUserMap));
 	emit currentUserChanged();
 }
 

@@ -93,13 +93,13 @@ void TweetEntities::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void TweetEntities::fillWithJSON(QJsonObject json) {
+void TweetEntities::fillWithVariant(QJsonObject json) {
 	// "media" property
 	QJsonValue propval = json.value(MEDIA_PN);
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray mediaz = propval.toArray();
-		this->medias.fillWithJSON(mediaz);
+		this->medias.fillWithVariant(mediaz);
 	}
 
 	// "urls" property
@@ -107,7 +107,7 @@ void TweetEntities::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray urlz = propval.toArray();
-		this->tweetURLs.fillWithJSON(urlz);
+		this->tweetURLs.fillWithVariant(urlz);
 	}
 
 	// "user_mentions" property
@@ -115,7 +115,7 @@ void TweetEntities::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray mentionz = propval.toArray();
-		this->mentions.fillWithJSON(mentionz);
+		this->mentions.fillWithVariant(mentionz);
 	}
 
 	// "hashtags" property
@@ -123,18 +123,18 @@ void TweetEntities::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isArray()) {
 		QJsonArray hashtagz = propval.toArray();
-		this->tweetHashtags.fillWithJSON(hashtagz);
+		this->tweetHashtags.fillWithVariant(hashtagz);
 	}
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject TweetEntities::toJSON() const {
+QJsonObject TweetEntities::toVariant() const {
 	QJsonObject json;
 
-	json.insert(MEDIA_PN, QJsonValue(this->medias.toJSON()));
-	json.insert(URLS_PN, QJsonValue(this->tweetURLs.toJSON()));
-	json.insert(USER_MENTIONS_PN, QJsonValue(this->mentions.toJSON()));
-	json.insert(HASHTAGS_PN, QJsonValue(this->tweetHashtags.toJSON()));
+	json.insert(MEDIA_PN, QJsonValue(this->medias.toVariant()));
+	json.insert(URLS_PN, QJsonValue(this->tweetURLs.toVariant()));
+	json.insert(USER_MENTIONS_PN, QJsonValue(this->mentions.toVariant()));
+	json.insert(HASHTAGS_PN, QJsonValue(this->tweetHashtags.toVariant()));
 
 	return json;
 }
@@ -148,7 +148,7 @@ QJsonObject TweetEntities::toJSON() const {
 QString TweetEntities::MEDIA_PN = "media";
 
 QVariantList TweetEntities::getMediaProperty() {
-	return medias.toVariant();
+	return medias.toVariant().toVariantList();
 }
 
 MediaList TweetEntities::getMedia() {
@@ -156,7 +156,7 @@ MediaList TweetEntities::getMedia() {
 }
 
 void TweetEntities::setMedia(QVariantList newMediaList) {
-	medias.fillWithVariant(newMediaList);
+	medias.fillWithVariant(QJsonArray::fromVariantList(newMediaList));
 }
 
 void TweetEntities::setMedia(MediaList newMedia) {
@@ -167,7 +167,7 @@ void TweetEntities::setMedia(MediaList newMedia) {
 QString TweetEntities::URLS_PN = "urls";
 
 QVariantList TweetEntities::getURLsProperty() {
-	return tweetURLs.toVariant();
+	return tweetURLs.toVariant().toVariantList();
 }
 
 URLEntityList TweetEntities::getURLs() {
@@ -175,7 +175,7 @@ URLEntityList TweetEntities::getURLs() {
 }
 
 void TweetEntities::setURLs(QVariantList newURLList) {
-	tweetURLs.fillWithVariant(newURLList);
+	tweetURLs.fillWithVariant(QJsonArray::fromVariantList(newURLList));
 }
 
 void TweetEntities::setURLs(URLEntityList newURLs) {
@@ -186,7 +186,7 @@ void TweetEntities::setURLs(URLEntityList newURLs) {
 QString TweetEntities::USER_MENTIONS_PN = "user_mentions";
 
 QVariantList TweetEntities::getUserMentionsProperty() {
-	return mentions.toVariant();
+	return mentions.toVariant().toVariantList();
 }
 
 UserMentionList TweetEntities::getUserMentions() {
@@ -194,7 +194,7 @@ UserMentionList TweetEntities::getUserMentions() {
 }
 
 void TweetEntities::setUserMentions(QVariantList newUserMentionsList) {
-	mentions.fillWithVariant(newUserMentionsList);
+	mentions.fillWithVariant(QJsonArray::fromVariantList(newUserMentionsList));
 }
 
 void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
@@ -205,7 +205,7 @@ void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
 QString TweetEntities::HASHTAGS_PN = "hashtags";
 
 QVariantList TweetEntities::getHashtagsProperty() {
-	return tweetHashtags.toVariant();
+	return tweetHashtags.toVariant().toVariantList();
 }
 
 HashtagList TweetEntities::getHashtags() {
@@ -213,7 +213,7 @@ HashtagList TweetEntities::getHashtags() {
 }
 
 void TweetEntities::setHashtags(QVariantList newHashtagsList) {
-	 tweetHashtags.fillWithVariant(newHashtagsList);
+	 tweetHashtags.fillWithVariant(QJsonArray::fromVariantList(newHashtagsList));
 }
 
 void TweetEntities::setHashtags(HashtagList newHashtags) {

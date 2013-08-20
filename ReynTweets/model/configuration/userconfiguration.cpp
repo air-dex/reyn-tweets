@@ -110,15 +110,15 @@ QDataStream & operator>>(QDataStream & in,
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void UserConfiguration::fillWithJSON(QJsonObject json) {
-	this->userAccount.fillWithJSON(json.value(USER_ACCOUNT_PN).toObject());
+void UserConfiguration::fillWithVariant(QJsonObject json) {
+	this->userAccount.fillWithVariant(json.value(USER_ACCOUNT_PN).toObject());
 }
 
 // QJsonObject representation of the object
-QJsonObject UserConfiguration::toJSON() const {
+QJsonObject UserConfiguration::toVariant() const {
 	QJsonObject json;
 
-	json.insert(USER_ACCOUNT_PN, QJsonValue(this->userAccount.toJSON()));
+	json.insert(USER_ACCOUNT_PN, QJsonValue(this->userAccount.toVariant()));
 
 	return json;
 }
@@ -132,7 +132,7 @@ QJsonObject UserConfiguration::toJSON() const {
 QString UserConfiguration::USER_ACCOUNT_PN = "user_account";
 
 QVariantMap UserConfiguration::getUserAccountProperty() {
-	return userAccount.toVariant();
+	return userAccount.toVariant().toVariantMap();
 }
 
 UserAccount UserConfiguration::getUserAccount() {
@@ -144,7 +144,7 @@ UserAccount & UserConfiguration::getUserAccountRef() {
 }
 
 void UserConfiguration::setUserAccount(QVariantMap accountMap) {
-	userAccount.fillWithVariant(accountMap);
+	userAccount.fillWithVariant(QJsonObject::fromVariantMap(accountMap));
 	emit currentAccountChanged();
 }
 
@@ -223,7 +223,7 @@ CoreResult UserConfiguration::load() {
 	QJsonObject jsonConf = jsonSettings.toObject();
 	QString oldErr = errorLoading;
 
-	this->fillWithJSON(jsonConf);
+	this->fillWithVariant(jsonConf);
 
 	bool fillOK = oldErr == errorLoading;	// More errors if it fails.
 
@@ -247,7 +247,7 @@ CoreResult UserConfiguration::save() {
 
 	// Saving the configuration
 	QTextStream readStream(&confFile);
-	QByteArray json = QJsonDocument(this->toJSON()).toJson();
+	QByteArray json = QJsonDocument(this->toVariant()).toJson();
 	readStream << json;
 	confFile.close();
 

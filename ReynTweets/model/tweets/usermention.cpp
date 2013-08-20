@@ -106,9 +106,9 @@ bool UserMention::operator==(const UserMention mention) const {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void UserMention::fillWithJSON(QJsonObject json) {
+void UserMention::fillWithVariant(QJsonObject json) {
 	// Base class
-	TweetEntity::fillWithJSON(json);
+	TweetEntity::fillWithVariant(json);
 
 	// "id" property
 	QJsonValue propval = json.value(ID_PN);
@@ -144,8 +144,8 @@ void UserMention::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject UserMention::toJSON() const {
-	QJsonObject json = TweetEntity::toJSON();
+QJsonObject UserMention::toVariant() const {
+	QJsonObject json = TweetEntity::toVariant();
 
 	json.insert(ID_PN, QJsonValue(double(this->userID)));
 	json.insert(ID_STR_PN, QJsonValue(this->userIDstr));

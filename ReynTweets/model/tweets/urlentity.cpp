@@ -93,9 +93,9 @@ void URLEntity::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void URLEntity::fillWithJSON(QJsonObject json) {
+void URLEntity::fillWithVariant(QJsonObject json) {
 	// Base class
-	TweetEntity::fillWithJSON(json);
+	TweetEntity::fillWithVariant(json);
 
 	// "url" property
 	QJsonValue propval = json.value(URL_PN);
@@ -123,8 +123,8 @@ void URLEntity::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject URLEntity::toJSON() const {
-	QJsonObject json = TweetEntity::toJSON();
+QJsonObject URLEntity::toVariant() const {
+	QJsonObject json = TweetEntity::toVariant();
 
 	json.insert(URL_PN, QJsonValue(this->extractedURL));
 	json.insert(DISPLAYED_URL_PN, QJsonValue(this->displayedURL));

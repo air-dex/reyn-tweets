@@ -102,7 +102,7 @@ void TwitterPlace::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void TwitterPlace::fillWithJSON(QJsonObject json) {
+void TwitterPlace::fillWithVariant(QJsonObject json) {
 	// "attributes" property
 	QJsonValue propval = json.value(ATTRIBUTES_PN);
 
@@ -116,7 +116,7 @@ void TwitterPlace::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject box = propval.toObject();
-		this->placePolygon.fillWithJSON(box);
+		this->placePolygon.fillWithVariant(box);
 	}
 
 	// "country" property
@@ -177,11 +177,11 @@ void TwitterPlace::fillWithJSON(QJsonObject json) {
 }
 
 // QJsonObject representation of the object
-QJsonObject TwitterPlace::toJSON() const {
+QJsonObject TwitterPlace::toVariant() const {
 	QJsonObject json;
 
 	json.insert(ATTRIBUTES_PN, QJsonValue::fromVariant(this->placeMetadata));
-	json.insert(BOUNDING_BOX_PN, QJsonValue(this->placePolygon.toJSON()));
+	json.insert(BOUNDING_BOX_PN, QJsonValue(this->placePolygon.toVariant()));
 	json.insert(COUNTRY_PN, QJsonValue(this->land));
 	json.insert(COUNTRY_CODE_PN, QJsonValue(this->landCode));
 	json.insert(FULL_NAME_PN, QJsonValue(this->fullName));
@@ -230,7 +230,7 @@ QString TwitterPlace::BOUNDING_BOX_PN = "bounding_box";
 QString TwitterPlace::PLACE_POLYGON_PN = "place_polygon";
 
 QVariantMap TwitterPlace::getBoundingBoxProperty() {
-	return this->placePolygon.toVariant();
+	return this->placePolygon.toVariant().toVariantMap();
 }
 
 GeoBoundingBox * TwitterPlace::getBoundingBox() {
@@ -238,7 +238,7 @@ GeoBoundingBox * TwitterPlace::getBoundingBox() {
 }
 
 void TwitterPlace::setBoundingBox(QVariantMap newValue) {
-	this->placePolygon.fillWithVariant(newValue);
+	this->placePolygon.fillWithVariant(QJsonObject::fromVariantMap(newValue));
 	emit boundingBoxChanged();
 }
 

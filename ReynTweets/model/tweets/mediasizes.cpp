@@ -92,13 +92,13 @@ QDataStream & operator>>(QDataStream & in, MediaSizes & sizes) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void MediaSizes::fillWithJSON(QJsonObject json) {
+void MediaSizes::fillWithVariant(QJsonObject json) {
 	// "large" property
 	QJsonValue propval = json.value(LARGE_PN);
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject mediasize = propval.toObject();
-		this->largeSize.fillWithJSON(mediasize);
+		this->largeSize.fillWithVariant(mediasize);
 	}
 
 	// "medium" property
@@ -106,7 +106,7 @@ void MediaSizes::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject mediasize = propval.toObject();
-		this->mediumSize.fillWithJSON(mediasize);
+		this->mediumSize.fillWithVariant(mediasize);
 	}
 
 	// "small" property
@@ -114,7 +114,7 @@ void MediaSizes::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject mediasize = propval.toObject();
-		this->smallSize.fillWithJSON(mediasize);
+		this->smallSize.fillWithVariant(mediasize);
 	}
 
 	// "thumb" property
@@ -122,18 +122,18 @@ void MediaSizes::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject mediasize = propval.toObject();
-		this->thumbSize.fillWithJSON(mediasize);
+		this->thumbSize.fillWithVariant(mediasize);
 	}
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject MediaSizes::toJSON() const {
+QJsonObject MediaSizes::toVariant() const {
 	QJsonObject json;
 
-	json.insert(LARGE_PN, QJsonValue(this->largeSize.toJSON()));
-	json.insert(MEDIUM_PN, QJsonValue(this->mediumSize.toJSON()));
-	json.insert(SMALL_PN, QJsonValue(this->smallSize.toJSON()));
-	json.insert(THUMB_PN, QJsonValue(this->thumbSize.toJSON()));
+	json.insert(LARGE_PN, QJsonValue(this->largeSize.toVariant()));
+	json.insert(MEDIUM_PN, QJsonValue(this->mediumSize.toVariant()));
+	json.insert(SMALL_PN, QJsonValue(this->smallSize.toVariant()));
+	json.insert(THUMB_PN, QJsonValue(this->thumbSize.toVariant()));
 
 	return json;
 }
@@ -145,42 +145,42 @@ QJsonObject MediaSizes::toJSON() const {
 
 // Reading method for the property large
 QVariantMap MediaSizes::getLargeProperty() {
-	return largeSize.toVariant();
+	return largeSize.toVariant().toVariantMap();
 }
 
 // Writing method for the property large
 void MediaSizes::setLarge(QVariantMap newLargeMap) {
-	largeSize.fillWithVariant(newLargeMap);
+	largeSize.fillWithVariant(QJsonObject::fromVariantMap(newLargeMap));
 }
 
 // Reading method for the property medium
 QVariantMap MediaSizes::getMediumProperty() {
-	return mediumSize.toVariant();
+	return mediumSize.toVariant().toVariantMap();
 }
 
 // Writing method for the property medium
 void MediaSizes::setMedium(QVariantMap newMediumMap) {
-	mediumSize.fillWithVariant(newMediumMap);
+	mediumSize.fillWithVariant(QJsonObject::fromVariantMap(newMediumMap));
 }
 
 // Reading method for the property small
 QVariantMap MediaSizes::getSmallProperty() {
-	return smallSize.toVariant();
+	return smallSize.toVariant().toVariantMap();
 }
 
 // Writing method for the property small
 void MediaSizes::setSmall(QVariantMap newSmallMap) {
-	smallSize.fillWithVariant(newSmallMap);
+	smallSize.fillWithVariant(QJsonObject::fromVariantMap(newSmallMap));
 }
 
 // Reading method for the property thumb
 QVariantMap MediaSizes::getThumbProperty() {
-	return thumbSize.toVariant();
+	return thumbSize.toVariant().toVariantMap();
 }
 
 // Writing method for the property thumb
 void MediaSizes::setThumb(QVariantMap newThumbMap) {
-	thumbSize.fillWithVariant(newThumbMap);
+	thumbSize.fillWithVariant(QJsonObject::fromVariantMap(newThumbMap));
 }
 
 

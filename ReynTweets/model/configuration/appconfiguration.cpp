@@ -108,7 +108,7 @@ CoreResult AppConfiguration::load() {
 	QJsonObject jsonConf = jsonSettings.toObject();
 	QString oldErr = errorLoading;
 
-	this->fillWithJSON(jsonConf);
+	this->fillWithVariant(jsonConf);
 
 	bool fillOK = oldErr == errorLoading;	// More errors if it fails.
 
@@ -126,7 +126,7 @@ QString AppConfiguration::getErrorLoading() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void AppConfiguration::fillWithJSON(QJsonObject json) {
+void AppConfiguration::fillWithVariant(QJsonObject json) {
 	QJsonValue confValue;
 	QByteArray base64Buffer;
 	QStringList missingSettings;
@@ -211,7 +211,7 @@ void AppConfiguration::fillWithJSON(QJsonObject json) {
 }
 
 // QJsonObject representation of the object
-QJsonObject AppConfiguration::toJSON() const {
+QJsonObject AppConfiguration::toVariant() const {
 	return QJsonObject();
 }
 

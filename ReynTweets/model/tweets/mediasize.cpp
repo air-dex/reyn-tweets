@@ -88,7 +88,7 @@ void MediaSize::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void MediaSize::fillWithJSON(QJsonObject json) {
+void MediaSize::fillWithVariant(QJsonObject json) {
 	// "w" property
 	QJsonValue propval = json.value(W_PN);
 
@@ -115,7 +115,7 @@ void MediaSize::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject MediaSize::toJSON() const {
+QJsonObject MediaSize::toVariant() const {
 	QJsonObject json;
 
 	json.insert(W_PN, QJsonValue(this->width()));

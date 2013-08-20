@@ -114,9 +114,9 @@ bool Media::operator==(const Media media) const {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void Media::fillWithJSON(QJsonObject json) {
+void Media::fillWithVariant(QJsonObject json) {
 	// Base class
-	URLEntity::fillWithJSON(json);
+	URLEntity::fillWithVariant(json);
 
 	// "id" property
 	QJsonValue propval = json.value(ID_PN);
@@ -163,7 +163,7 @@ void Media::fillWithJSON(QJsonObject json) {
 
 	if (!propval.isUndefined() && propval.isObject()) {
 		QJsonObject sizes = propval.toObject();
-		this->mediaSizes.fillWithJSON(sizes);
+		this->mediaSizes.fillWithVariant(sizes);
 	}
 
 	// "source_status_id" property
@@ -184,15 +184,15 @@ void Media::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Media::toJSON() const {
-	QJsonObject json = URLEntity::toJSON();	// Don't forget the base class !
+QJsonObject Media::toVariant() const {
+	QJsonObject json = URLEntity::toVariant();	// Don't forget the base class !
 
 	json.insert(ID_PN, QJsonValue(double(this->mediaID)));
 	json.insert(ID_STR_PN, QJsonValue(this->mediaIDstr));
 	json.insert(MEDIA_URL_PN, QJsonValue(this->mediaURL));
 	json.insert(MEDIA_URL_HTTPS_PN, QJsonValue(this->mediaURLhttps));
 	json.insert(TYPE_PN, QJsonValue(this->mediaType));
-	json.insert(SIZES_PN, QJsonValue(this->mediaSizes.toJSON()));
+	json.insert(SIZES_PN, QJsonValue(this->mediaSizes.toVariant()));
 	json.insert(SOURCE_STATUS_ID_PN, QJsonValue(double(this->sourceID)));
 	json.insert(SOURCE_STATUS_ID_STR_PN, QJsonValue(this->sourceIDstr));
 
@@ -206,12 +206,12 @@ QJsonObject Media::toJSON() const {
 
 // Reading method for the property sizes
 QVariantMap Media::getSizesProperty() {
-	return mediaSizes.toVariant();
+	return mediaSizes.toVariant().toVariantMap();
 }
 
 // Writing method for the property sizes
 void Media::setSizes(QVariantMap newMap) {
-	mediaSizes.fillWithVariant(newMap);
+	mediaSizes.fillWithVariant(QJsonObject::fromVariantMap(newMap));
 }
 
 

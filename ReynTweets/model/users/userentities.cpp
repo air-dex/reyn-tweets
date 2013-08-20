@@ -85,13 +85,13 @@ void UserEntities::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void UserEntities::fillWithJSON(QJsonObject json) {
+void UserEntities::fillWithVariant(QJsonObject json) {
 	// url
 	QJsonValue propval = json.value(URL_PN);
 
 	if(!propval.isUndefined() && propval.isObject()) {
 		QJsonObject entities = propval.toObject();
-		this->userURL.fillWithJSON(entities);
+		this->userURL.fillWithVariant(entities);
 	}
 
 	// description
@@ -99,16 +99,16 @@ void UserEntities::fillWithJSON(QJsonObject json) {
 
 	if(!propval.isUndefined() && propval.isObject()) {
 		QJsonObject entities = propval.toObject();
-		this->userDescription.fillWithJSON(entities);
+		this->userDescription.fillWithVariant(entities);
 	}
 }
 
 // QJsonObject representation of the object
-QJsonObject UserEntities::toJSON() const {
+QJsonObject UserEntities::toVariant() const {
 	QJsonObject json;
 
-	json.insert(URL_PN, QJsonValue(this->userURL.toJSON()));
-	json.insert(DESCRIPTION_PN, QJsonValue(this->userDescription.toJSON()));
+	json.insert(URL_PN, QJsonValue(this->userURL.toVariant()));
+	json.insert(DESCRIPTION_PN, QJsonValue(this->userDescription.toVariant()));
 
 	return json;
 }
@@ -140,7 +140,7 @@ TweetEntities UserEntities::getURL() {
 }
 
 QVariantMap UserEntities::getURLProperty() {
-	return userURL.toVariant();
+	return userURL.toVariant().toVariantMap();
 }
 
 TweetEntities * UserEntities::getURLptr() {
@@ -148,7 +148,7 @@ TweetEntities * UserEntities::getURLptr() {
 }
 
 void UserEntities::setURL(QVariantMap newValue) {
-	userURL.fillWithVariant(newValue);
+	userURL.fillWithVariant(QJsonObject::fromVariantMap(newValue));
 	emit urlChanged();
 }
 
@@ -172,7 +172,7 @@ TweetEntities UserEntities::getDescription() {
 }
 
 QVariantMap UserEntities::getDescriptionProperty() {
-	return userDescription.toVariant();
+	return userDescription.toVariant().toVariantMap();
 }
 
 TweetEntities * UserEntities::getDescriptionptr() {
@@ -180,7 +180,7 @@ TweetEntities * UserEntities::getDescriptionptr() {
 }
 
 void UserEntities::setDescription(QVariantMap newValue) {
-	userDescription.fillWithVariant(newValue);
+	userDescription.fillWithVariant(QJsonObject::fromVariantMap(newValue));
 	emit descriptionChanged();
 }
 

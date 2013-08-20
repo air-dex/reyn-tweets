@@ -115,18 +115,26 @@ void IndexBounds::setMax(int newMax) {
 //////////////////////
 
 // Converting the bounds into a QVariantList
-QVariantList IndexBounds::toVariant() const {
-	QVariantList res;
-	res.append(QVariant(min));
-	res.append(QVariant(max));
+QJsonArray IndexBounds::toVariant() const {
+	QJsonArray res;
+	res.append(QJsonValue(min));
+	res.append(QJsonValue(max));
 	return res;
 }
 
 // Filling the object with a QVariantList
-void IndexBounds::fillWithVariant(QVariantList variantList) {
-	QVariant bound = variantList.at(0);
-	setMin(bound.toInt());
+void IndexBounds::fillWithVariant(QJsonArray variantList) {
+	QJsonValue bound = variantList.at(0);
+	setMin(bound.toDouble());
 
 	bound = variantList.at(1);
-	setMax(bound.toInt());
+	setMax(bound.toDouble());
+}
+
+// Appending the content of a QJsonValue
+void IndexBounds::appendJsonValue(QJsonValue v) {
+	if (v.isDouble()) {
+		int bound = int(v.toDouble());
+		this->append(bound);
+	}
 }

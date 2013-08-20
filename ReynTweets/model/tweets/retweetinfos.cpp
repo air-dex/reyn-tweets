@@ -96,7 +96,7 @@ QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void RetweetInfos::fillWithJSON(QJsonObject json) {
+void RetweetInfos::fillWithVariant(QJsonObject json) {
 	// "id" property
 	QJsonValue propval = json.value(ID_PN);
 
@@ -115,7 +115,7 @@ void RetweetInfos::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject RetweetInfos::toJSON() const {
+QJsonObject RetweetInfos::toVariant() const {
 	QJsonObject json;
 
 	json.insert(ID_PN, QJsonValue(double(this->retweetID)));

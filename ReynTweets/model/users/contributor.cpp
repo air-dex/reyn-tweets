@@ -93,7 +93,7 @@ void Contributor::reset() {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-void Contributor::fillWithJSON(QJsonObject json) {
+void Contributor::fillWithVariant(QJsonObject json) {
 	// "id" property
 	QJsonValue propval = json.value(ID_PN);
 
@@ -120,7 +120,7 @@ void Contributor::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Contributor::toJSON() const {
+QJsonObject Contributor::toVariant() const {
 	QJsonObject json;
 
 	if (!this->isNull()) {

@@ -33,8 +33,8 @@
 // Constructor
 template <typename V>
 JsonArray<V>::JsonArray() :
-	Listable<V>(),
-	Jsonable<QJsonArray>()
+	Variantable<QJsonArray>(),
+	QList<V>()
 {}
 
 // Destructor
@@ -44,8 +44,8 @@ JsonArray<V>::~JsonArray() {}
 // Copy constructor
 template <typename V>
 JsonArray<V>::JsonArray(const JsonArray<V> & list) :
-	Listable<V>(),
-	Jsonable<QJsonArray>()
+	Variantable<QJsonArray>(),
+	QList<V>()
 {
 	this->recopie(list);
 }
@@ -60,25 +60,50 @@ const JsonArray<V> & JsonArray<V>::operator=(const JsonArray<V> & list) {
 // Copy of a Listable
 template <typename V>
 void JsonArray<V>::recopie(const JsonArray<V> & list) {
-	this->Listable<V>::recopie(list);
+	this->clear();
+
+	for (JsonArray<V>::const_iterator it = list.begin();
+		 it != list.end();
+		 ++it)
+	{
+		V variantable = *it;
+		this->append(variantable);
+	}
 }
 
 
-//////////////////////////////
-// Jsonable virtual methods //
-//////////////////////////////
+/////////////////////////////////
+// Variantable virtual methods //
+/////////////////////////////////
 
 // Filling a JsonArray with a QJsonArray.
 template <typename V>
-void JsonArray<V>::fillWithJSON(QJsonArray json) {
-	QVariantList entities = json.toVariantList();
-	this->fillWithVariant(entities);
+void JsonArray<V>::fillWithVariant(QJsonArray json) {
+	this->clear();
+
+	for(QJsonArray::const_iterator it = json.begin();
+		it != json.end();
+		++it)
+	{
+		QJsonValue eltValue = *it;
+		this->appendJsonValue(eltValue);
+	}
 }
 
 // Converting the JsonArray into a QJsonArray
 template <typename V>
-QJsonArray JsonArray<V>::toJSON() const {
-	return QJsonArray::fromVariantList(this->toVariant());
+QJsonArray JsonArray<V>::toVariant() const {
+	QJsonArray res;
+
+	for(JsonArray<V>::const_iterator it = this->begin();
+		it != this->end();
+		++it)
+	{
+		QJsonValue val(*it);
+		res.append(val);
+	}
+
+	return res;
 }
 
 
@@ -86,7 +111,7 @@ QJsonArray JsonArray<V>::toJSON() const {
 // Stream handling //
 /////////////////////
 
-// Filling the Jsonable with the content of a QDataStream
+// Filling the JsonArray with the content of a QDataStream
 template <typename V>
 QDataStream & JsonArray<V>::fillWithStream(QDataStream & in) {
 	QByteArray json = "";
@@ -97,16 +122,16 @@ QDataStream & JsonArray<V>::fillWithStream(QDataStream & in) {
 	QJsonValue parsedJson = parser.parse(json, &parseOK);
 
 	if (parseOK && parsedJson.isArray()) {
-		this->fillWithJSON(parsedJson.toArray());
+		this->fillWithVariant(parsedJson.toArray());
 	}
 
 	return in;
 }
 
-// Writing a QDataStream with the content of the Jsonable
+// Writing a QDataStream with the content of the JsonArray
 template <typename V>
 QDataStream & JsonArray<V>::writeInStream(QDataStream & out) const {
-	QJsonArray array = this->toJSON();
+	QJsonArray array = this->toVariant();
 	QJsonDocument doc(array);
 	QByteArray json = doc.toJson();
 	out << json;

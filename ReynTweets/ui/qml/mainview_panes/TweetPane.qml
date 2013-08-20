@@ -217,6 +217,7 @@ Rectangle {
 	Text {
 		id: author_identity
 		text: wrapEntity(shown_tweet.user.name)
+		textFormat: Text.RichText
 		elide: Text.ElideRight
 		font.bold: true
 		font.underline: false
@@ -240,6 +241,7 @@ Rectangle {
 	Text {
 		id: author_screen_name
 		text: wrapEntity('@'.concat(shown_tweet.user.screen_name))
+		textFormat: Text.RichText
 		elide: Text.ElideRight
 		//font.bold: true
 		font.underline: false
@@ -313,7 +315,8 @@ Rectangle {
 	// Source of the tweet
 	Text {
 		id: source_text
-		text: "via " + shown_tweet.getDisplaySource()
+		text: "via ".concat(shown_tweet.getDisplaySource())
+		textFormat: Text.RichText
 		font.italic: true
 		font.family: constant.font
 		font.pointSize: constant.font_size_s
@@ -334,6 +337,7 @@ Rectangle {
 			.concat(wrapEntity('@' + shown_tweet.in_reply_to_screen_name))
 			.concat('. ').concat(wrapEntity(qsTr("Show conversation")))
 			.concat('.')
+		textFormat: Text.RichText
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font
@@ -366,6 +370,7 @@ Rectangle {
 	Text {
 		id: retweet_info
 		text: retweetInfoText();
+		textFormat: Text.RichText
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		visible: false
 		font.family: constant.font

@@ -82,19 +82,13 @@ QJsonArray JsonArray<V>::toJSON() const {
 }
 
 
-///////////////////////////
-// Serialization streams //
-///////////////////////////
+/////////////////////
+// Stream handling //
+/////////////////////
 
+// Filling the Jsonable with the content of a QDataStream
 template <typename V>
-QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<V> & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	return streamVariantOut(out, list.toVariant());
-}
-
-// Input stream operator for serialization
-template <typename V>
-QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list) {
+QDataStream & JsonArray<V>::fillWithStream(QDataStream & in) {
 	QByteArray json = "";
 	in >> json;
 
@@ -104,8 +98,18 @@ QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list) {
 	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
 
 	if (parseOK && parsedJson.isArray()) {
-		list.fillWithJSON(parsedJson.toArray());
+		this->fillWithJSON(parsedJson.toArray());
 	}
 
 	return in;
+}
+
+// Writing a QDataStream with the content of the Jsonable
+template <typename V>
+QDataStream & JsonArray<V>::writeInStream(QDataStream & out) const {
+	QJsonArray array = this->toJSON();
+	QJsonDocument doc(array);
+	QByteArray json = doc.toJson();
+	out << json;
+	return out;
 }

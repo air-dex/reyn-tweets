@@ -79,27 +79,8 @@ QVariantMap JsonObject::toVariant() const {
 // Stream handling //
 /////////////////////
 
-// Specialization of jsonStreamingOut for JsonObjects
-QDataStream & jsonObjectStreamingOut(QDataStream & out,
-							   const JsonObject & jsonobj)
-{
-	return streamVariantOut(out, jsonobj.toVariant());
-
-	/*
-	// A recaser
-	QJsonDocument doc(jsonobj);
-	QByteArray serializedListable = doc.toJson();
-
-	out << serializedListable;
-
-	return out;
-	//*/
-}
-
-// Specialization of jsonStreamingIn for JsonObjects
-QDataStream & jsonObjectStreamingIn(QDataStream & in,
-							  JsonObject &jsonobj)
-{
+// Filling the JsonObject with the content of a QDataStream
+QDataStream & JsonObject::fillWithStream(QDataStream & in) {
 	QByteArray json = "";
 	in >> json;
 
@@ -109,8 +90,17 @@ QDataStream & jsonObjectStreamingIn(QDataStream & in,
 	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
 
 	if (parseOK && parsedJson.isObject()) {
-		jsonobj.fillWithJSON(parsedJson.toObject());
+		this->fillWithJSON(parsedJson.toObject());
 	}
 
 	return in;
+}
+
+// Writing a QDataStream with the content of the JsonObject
+QDataStream & JsonObject::writeInStream(QDataStream & out) const {
+	QJsonObject obj = this->toJSON();
+	QJsonDocument doc(obj);
+	QByteArray json = doc.toJson();
+	out << json;
+	return out;
 }

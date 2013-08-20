@@ -56,7 +56,7 @@ void RetweetInfos2::initSystem() {
 
 // Resets the mappable to a default value
 void RetweetInfos2::reset() {
-	*this = RetweetInfos();
+	*this = RetweetInfos2();
 }
 
 // Equality between RetweetInfos.
@@ -73,13 +73,13 @@ void RetweetInfos2::recopie(const RetweetInfos2 & infos) {
 // Friends serialization operators
 
 // Output stream operator for serialization
-QDataStream & operator<<(QDataStream & out, const RetweetInfos & infos) {
-	return jsonObjectStreamingOut(out, infos);
+QDataStream & operator<<(QDataStream & out, const RetweetInfos2 & infos) {
+	return infos.writeInStream(out);
 }
 
 // Input stream operator for serialization
-QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
-	return jsonObjectStreamingIn(in, infos);
+QDataStream & operator>>(QDataStream & in, RetweetInfos2 & infos) {
+	return infos.fillWithStream(in);
 }
 
 

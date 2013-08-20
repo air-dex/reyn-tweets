@@ -82,42 +82,27 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		/// @return QJsonObject representation, i.e. <code>this</code>
 		virtual QJsonObject toJSON() const = 0;
 
+		/////////////////////
+		// Stream handling //
+		/////////////////////
+
+		/// @fn virtual QDataStream & fillWithStream(QDataStream & in);
+		/// @brief Filling the JsonObject with the content of a QDataStream
+		/// @param in The stream
+		/// @return The stream after being read.
+		virtual QDataStream & fillWithStream(QDataStream & in);
+
+		/// @fn virtual QDataStream & writeInStream(QDataStream & out) const;
+		/// @brief Writing a QDataStream with the content of the JsonObject
+		/// @param out The stream
+		/// @return The stream after being written.
+		virtual QDataStream & writeInStream(QDataStream & out) const;
+
 	protected:
 		/// @fn void recopie(const JsonObject & jsonobj);
 		/// @brief Core method to copy a JsonObject
 		/// @param jsonobj The JsonObject to copy
 		virtual void recopie(const JsonObject & jsonobj);
 };
-
-
-/////////////////////
-// Stream handling //
-/////////////////////
-
-/// @fn QDataStream & jsonObjectStreamingOut(QDataStream & out,
-///											 const JsonObject & jsonobj);
-/// @brief Output stream operator for serialization.
-///
-/// This method is a specialization for JsonObjects because they have
-/// got properties to ignore. These properties are blacklisted in
-/// the Mappable::transientProperties attribute.
-/// @param out The output stream
-/// @param jsonobj JsonObject to put in the stream
-/// @return The stream with the object
-QDataStream & jsonObjectStreamingOut(QDataStream & out,
-									 const JsonObject & jsonobj);
-
-/// @fn QDataStream & jsonObjectStreamingIn(QDataStream & in,
-///											JsonObject & jsonobj);
-/// @brief Input stream operator for serialization.
-///
-/// This method is a specialization for JsonObjects because they have
-/// got properties to ignore. These properties are blacklisted in
-/// the Mappable::transientProperties attribute.
-/// @param in The input stream
-/// @param jsonobj JsonObject to put in the stream
-/// @return The stream with the object
-QDataStream & jsonObjectStreamingIn(QDataStream & in,
-									JsonObject &jsonobj);
 
 #endif // JSONOBJECT_HPP

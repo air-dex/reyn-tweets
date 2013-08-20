@@ -24,6 +24,8 @@
 #ifndef JSONABLE_HPP
 #define JSONABLE_HPP
 
+#include <QDataStream>
+
 /// @class Jsonable
 /// @brief Interface for objects that can be serialized under a JSON form.
 /// @param J Name of a Qt JSON class which can handle JSON for the Jsonable.
@@ -43,6 +45,18 @@ class Jsonable
 		/// contained in the map.
 		/// @param json The equivalent
 		virtual void fillWithJSON(J json) = 0;
+
+		/// @fn virtual QDataStream & fillWithStream(QDataStream & in) = 0;
+		/// @brief Filling the Jsonable with the content of a QDataStream
+		/// @param in The stream
+		/// @return The stream after being read.
+		virtual QDataStream & fillWithStream(QDataStream & in) = 0;
+
+		/// @fn virtual QDataStream & writeInStream(QDataStream & out) const = 0;
+		/// @brief Writing a QDataStream with the content of the Jsonable
+		/// @param out The stream
+		/// @return The stream after being written.
+		virtual QDataStream & writeInStream(QDataStream & out) const = 0;
 
 };
 

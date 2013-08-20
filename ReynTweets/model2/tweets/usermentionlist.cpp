@@ -52,10 +52,10 @@ void UserMentionList2::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMentionList2 & list) {
-	return jsonArrayStreamingOut<UserMention2>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMentionList2 & list) {
-	return jsonArrayStreamingIn<UserMention2>(in, list);
+	return list.fillWithStream(in);
 }

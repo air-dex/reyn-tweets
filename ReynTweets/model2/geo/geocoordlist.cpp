@@ -52,32 +52,10 @@ void GeoCoordList::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoCoordList & list) {
-	// TODO : éviter de répeter cela
-	QJsonArray carray = list.toJSON();
-	QJsonDocument doc(carray);
-	QByteArray b = doc.toJson();
-	out << b;
-	return out;
-
-	//return jsonArrayStreamingOut<GeoCoord>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, GeoCoordList & list) {
-	//return jsonArrayStreamingIn<GeoCoord>(in, list);
-
-	// TODO : éviter de répeter cela
-	QByteArray json = "";
-	in >> json;
-
-	JSONParser parser;
-	QString errorMsg = "";
-	bool parseOK;
-	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
-
-	if (parseOK && parsedJson.isArray()) {
-		list.fillWithJSON(parsedJson.toArray());
-	}
-
-	return in;
+	return list.fillWithStream(in);
 }

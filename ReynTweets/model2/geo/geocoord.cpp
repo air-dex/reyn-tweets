@@ -127,38 +127,10 @@ QJsonArray GeoCoord::toJSON() const {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoCoord & coord) {
-	// TODO : éviter de répeter cela
-	QJsonArray carray = coord.toJSON();
-	QJsonDocument doc(carray);
-	QByteArray b = doc.toJson();
-	out << b;
-	return out;
-
-	//return jsonArrayStreamingOut<qreal>(out, coord);
+	return coord.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, GeoCoord & coord) {
-	/*
-	QByteArray b = "";
-	in >> b;
-	QJsonDocument doc = QJsonDocument::fromJson(b);
-	//*/
-
-	//return jsonArrayStreamingIn<qreal>(in, coord);
-
-	// TODO : éviter de répeter cela
-	QByteArray json = "";
-	in >> json;
-
-	JSONParser parser;
-	QString errorMsg = "";
-	bool parseOK;
-	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
-
-	if (parseOK && parsedJson.isArray()) {
-		coord.fillWithJSON(parsedJson.toArray());
-	}
-
-	return in;
+	return coord.fillWithStream(in);
 }

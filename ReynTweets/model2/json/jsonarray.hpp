@@ -68,33 +68,27 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 		/// @return The corresponding QJsonArray.
 		virtual QJsonArray toJSON() const;
 
+		/////////////////////
+		// Stream handling //
+		/////////////////////
+
+		/// @fn virtual QDataStream & fillWithStream(QDataStream & in);
+		/// @brief Filling the Jsonable with the content of a QDataStream
+		/// @param in The stream
+		/// @return The stream after being read.
+		virtual QDataStream & fillWithStream(QDataStream & in);
+
+		/// @fn virtual QDataStream & writeInStream(QDataStream & out) const;
+		/// @brief Writing a QDataStream with the content of the Jsonable
+		/// @param out The stream
+		/// @return The stream after being written.
+		virtual QDataStream & writeInStream(QDataStream & out) const;
+
 	protected:
 		/// @fn virtual void recopie(const JsonArray<V> & list);
 		/// @brief Copy of a Listable
 		/// @param list JsonArray to copy
 		virtual void recopie(const JsonArray<V> &list);
 };
-
-/////////////
-// Streams //
-/////////////
-
-/// @fn QDataStream & jsonArrayStreamingOut(QDataStream & out,
-///											const JsonArray<V> & list);
-/// @brief Output stream operator for serialization
-/// @param out The output stream
-/// @param list JsonArray to put in the stream
-/// @return The stream with the object
-template <typename V>
-QDataStream & jsonArrayStreamingOut(QDataStream & out, const JsonArray<V> & list);
-
-/// @fn QDataStream & jsonArrayStreamingIn(QDataStream & in,
-///										   JsonArray<V> & list);
-/// @brief Input stream operator for serialization
-/// @param in The input stream
-/// @param list JsonArray to put in the stream
-/// @return The stream with the object
-template <typename V>
-QDataStream & jsonArrayStreamingIn(QDataStream & in, JsonArray<V> & list);
 
 #endif // JSONARRAY_HPP

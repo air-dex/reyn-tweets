@@ -157,7 +157,7 @@ void Media2::fillWithJSON(QJsonObject json) {
 	}
 
 	// "source_status_id" property
-	QJsonValue propval = json.value(SOURCE_STATUS_ID_PN);
+	propval = json.value(SOURCE_STATUS_ID_PN);
 
 	if (!propval.isUndefined() && propval.isDouble()) {
 		qlonglong id = qlonglong(propval.toDouble());
@@ -177,13 +177,13 @@ void Media2::fillWithJSON(QJsonObject json) {
 QJsonObject Media2::toJSON() const {
 	QJsonObject json = URLEntity2::toJSON();	// Don't forget the base class !
 
-	json.insert(ID_PN, QJsonValue(this->mediaID));
+	json.insert(ID_PN, QJsonValue(double(this->mediaID)));
 	json.insert(ID_STR_PN, QJsonValue(this->mediaIDstr));
 	json.insert(MEDIA_URL_PN, QJsonValue(this->mediaURL));
 	json.insert(MEDIA_URL_HTTPS_PN, QJsonValue(this->mediaURLhttps));
 	json.insert(TYPE_PN, QJsonValue(this->mediaType));
 	json.insert(SIZES_PN, QJsonValue(this->mediaSizes.toJSON()));
-	json.insert(SOURCE_STATUS_ID_PN, QJsonValue(this->sourceID));
+	json.insert(SOURCE_STATUS_ID_PN, QJsonValue(double(this->sourceID)));
 	json.insert(SOURCE_STATUS_ID_STR_PN, QJsonValue(this->sourceIDstr));
 
 	return json;

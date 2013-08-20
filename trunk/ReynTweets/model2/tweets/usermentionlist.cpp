@@ -39,7 +39,7 @@ UserMentionList2::UserMentionList2(const UserMentionList2 & list) :
 }
 
 // Affrection operator
-const UserMentionList & UserMentionList2::operator=(const UserMentionList2 & list) {
+const UserMentionList2 & UserMentionList2::operator=(const UserMentionList2 & list) {
 	recopie(list);
 	return *this;
 }

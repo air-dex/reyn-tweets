@@ -142,7 +142,7 @@ SOURCES += \
 	#model2/json/jsonable.cpp \
 	model2/json/jsonobject.cpp \
 	model2/json/jsonarray.cpp \
-	#model2/tweets/tweet2.cpp \
+	model2/tweets/tweet.cpp \
 	model2/tweets/indexbounds.cpp \
 	model2/tweets/tweetentity.cpp \
 	model2/tweets/hashtag.cpp \
@@ -160,7 +160,6 @@ SOURCES += \
 	model2/users/userinfos.cpp \
 	#model2/users/user.cpp \
 	model2/geo/coordinates.cpp \
-	#model2/geo/place.cpp \
 	model2/geo/geocoord.cpp \
 	model2/geo/geocoordlist.cpp \
 	model2/geo/geoboundingbox.cpp \
@@ -171,7 +170,7 @@ SOURCES += \
 	model2/geo/twitterplace.cpp \
 	model2/users/contributor.cpp \
 	model2/users/contributorlist.cpp \
-    model2/users/userentities.cpp
+	model2/users/userentities.cpp
 
 
 HEADERS  += \
@@ -305,7 +304,6 @@ HEADERS  += \
 	model2/users/userinfos.hpp \
 	#model2/users/user.hpp \
 	model2/geo/coordinates.hpp \
-	#model2/geo/place.hpp \
 	model2/geo/geocoord.hpp \
 	model2/geo/geocoordlist.hpp \
 	model2/geo/geoboundingbox.hpp \
@@ -317,7 +315,7 @@ HEADERS  += \
 	model2/geo/twitterplace.hpp \
 	model2/users/contributor.hpp \
 	model2/users/contributorlist.hpp \
-    model2/users/userentities.hpp
+	model2/users/userentities.hpp
 
 
 OTHER_FILES = \

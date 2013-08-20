@@ -28,8 +28,11 @@
 #include "../json/jsonarray.tpp"
 
 /// @class GeoCoord
-/// @brief Class representing a point somewhere on the Earth, with its latitude
-/// and its longitude.
+/// @brief Class representing a point somewhere on the Earth, with its longitude
+/// and its latitude.
+///
+/// The JSON coordinates array is formatted as <a href="http://www.geojson.org/">
+/// geoJSON</a> (longitude first, then latitude).
 class GeoCoord : public JsonArray<qreal>, public QPointF
 {
 	public:

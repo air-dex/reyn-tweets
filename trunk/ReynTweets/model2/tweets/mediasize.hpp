@@ -53,11 +53,11 @@ class MediaSize2 : public JsonObject, public QSize
 		};
 		Q_ENUMS(Resize)
 
-		/// @fn QString resize2String(Resize resizeValue);
+		/// @fn QString resize2String(Resize resizeValue) const;
 		/// @brief Conversion of a Resize into a QString.
 		/// @param resizeValue Resize enum value.
 		/// @return The corresponding QString value.
-		QString resize2String(Resize resizeValue);
+		QString resize2String(Resize resizeValue) const;
 
 		/// @fn Resize string2Resize(QString resizeString);
 		/// @brief Conversion of a QString into a Resize enum.
@@ -97,6 +97,23 @@ class MediaSize2 : public JsonObject, public QSize
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const MediaSize & size);
 		/// @brief Copy of a MediaSize
@@ -118,23 +135,6 @@ class MediaSize2 : public JsonObject, public QSize
 		/// @param size Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, MediaSize2 & size);
-
-		/////////////////////
-		// JSON conversion //
-		/////////////////////
-
-		/// @fn virtual void fillWithJSON(QJsonObject json);
-		/// @brief Filling the object with a QJsonObject.
-		///
-		/// The method is virtual because its implementation depends on the
-		/// object type.
-		/// @param json The QJsonObject used to fill the JsonObject
-		virtual void fillWithJSON(QJsonObject json);
-
-		/// @fn virtual QJsonObject toJSON() const;
-		/// @brief Getting a QJsonObject representation of the object
-		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON() const;
 
 	///////////////////////////
 	// Properties management //
@@ -173,10 +173,10 @@ class MediaSize2 : public JsonObject, public QSize
 		/// @brief Name of the property resize.
 		static QString RESIZE_PN;
 
-		/// @fn QString getResizeProperty();
+		/// @fn QString getResizeProperty() const;
 		/// @brief Reading method for resize
 		/// @return resizeProperty
-		QString getResizeProperty();
+		QString getResizeProperty() const;
 
 		/// @fn void setResize(QString newResize);
 		/// @brief Writing method for resize

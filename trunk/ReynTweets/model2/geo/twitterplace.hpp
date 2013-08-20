@@ -29,7 +29,7 @@
 #include "geoboundingbox.hpp"
 
 /// @class TwitterPlace
-/// @brief A place in the world.
+/// @brief Class for representing a random place in the world
 /// @see https://dev.twitter.com/docs/platform-objects/places
 class TwitterPlace : public JsonObject
 {

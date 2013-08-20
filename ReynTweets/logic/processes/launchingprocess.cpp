@@ -24,7 +24,7 @@
 #include <QFile>
 #include "launchingprocess.hpp"
 #include "../../tools/processutils.hpp"
-#include "../../connection/calls/twitlongercalls.hpp"
+#include "../../connection/twitlonger/twitlongercalls.hpp"
 
 // Constructor
 LaunchingProcess::LaunchingProcess(UserConfiguration & userConf,

@@ -84,8 +84,8 @@ SOURCES += \
 	connection/common/calls/requestinfos.cpp \
 	connection/common/calls/requestermanager.cpp \
 	connection/common/calls/genericcalls.cpp \
-	connection/calls/reyntwittercalls.cpp \
-	connection/calls/twitlongercalls.cpp \
+	connection/twitter/reyntwittercalls.cpp \
+	connection/twitlonger/twitlongercalls.cpp \
 	model/mappable.cpp \
 	model/listable.cpp \
 	model/json/jsonobject.cpp \
@@ -200,8 +200,8 @@ HEADERS  += \
 	connection/common/calls/requestinfos.hpp \
 	connection/common/calls/requestermanager.hpp \
 	connection/common/calls/genericcalls.hpp \
-	connection/calls/reyntwittercalls.hpp \
-	connection/calls/twitlongercalls.hpp \
+	connection/twitter/reyntwittercalls.hpp \
+	connection/twitlonger/twitlongercalls.hpp \
 	model/variantable.hpp \
 	model/mappable.hpp \
 	model/listable.hpp \

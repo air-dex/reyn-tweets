@@ -38,10 +38,8 @@ class HomeTimelineRequester : public TwitterRequester
 		///							  qlonglong oldestTweetID = -1,
 		///							  qlonglong youngestTweetID = -1,
 		///							  bool userIDonly = false,
-		///							  bool withRetweets = false,
 		///							  bool withEntities = false,
 		///							  bool withoutReplies = false,
-		///							  int nbPage = 0,
 		///							  int nbTweets = 20,
 		///							  bool withContributorsDetails = false);
 		/// @brief Constructor

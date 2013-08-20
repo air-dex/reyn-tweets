@@ -237,7 +237,7 @@ Rectangle {
 		in_reply_to_user = replyToScreenName
 		visible = true
 
-		// TODO : a box asking if it is a reply for the user
+		// TODO for new UI : a box asking if it is a reply for the user
 	}
 
 	// Writing a tweet by specifying the text

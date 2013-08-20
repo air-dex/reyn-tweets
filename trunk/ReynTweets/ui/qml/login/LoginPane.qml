@@ -90,7 +90,7 @@ Rectangle {
 		button_text: qsTr("Quit")
 
 		onClick: {
-			// TODO: just quit the authentication
+			// TODO for new UI : just quit the authentication
 			Qt.quit();
 		}
 	}

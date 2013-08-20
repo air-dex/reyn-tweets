@@ -222,12 +222,25 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 	bool endOK = false;
 	bool fatal = false;
 
+	// Real issue
+	if (result.results.toMap().value("authorized").toBool()) {
+		CoreResult oldissue = issue;
+		issue = AUTHORIZED;
+
+		if (oldissue != AUTHORIZED) {
+			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized.");
+		} else {
+			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized but")
+							 .append(' ')
+							 .append(result.errorMsg);
+		}
+	}
+
 	switch (issue) {
 		case ALLOW_SUCCESSFUL:
 		case AUTHORIZED:
 			// End it !
 			endOK = true;
-			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized");
 			break;
 
 		// Problems that can be solved trying later

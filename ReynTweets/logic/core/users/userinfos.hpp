@@ -633,7 +633,7 @@ class UserInfos : public JsonObject
 
 		// screen_name
 		/// @property screen_name
-		/// @brief User's screen name : @screen_name
+		/// @brief User's screen name : &#64;screen_name
 		///
 		/// screenName is the attribute beneath the property.
 		Q_PROPERTY(QString screen_name

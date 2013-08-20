@@ -195,11 +195,11 @@ class MediaSize : public JsonObject, public QSize
 		/// @brief Signal emitted when the property w has got a new value.
 		void widthChanged();
 
-		/// @fn void textChanged();
+		/// @fn void heightChanged();
 		/// @brief Signal emitted when the property h has got a new value.
 		void heightChanged();
 
-		/// @fn void textChanged();
+		/// @fn void resizeChanged();
 		/// @brief Signal emitted when the property resize has got a new value.
 		void resizeChanged();
 

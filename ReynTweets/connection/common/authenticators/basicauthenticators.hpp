@@ -1,4 +1,4 @@
-/// @file basicauthenticators.cpp
+/// @file basicauthenticators.hpp
 /// @brief Typedefs of BasicAuthenticator and TokenPair
 /// @author Romain Ducher
 ///
@@ -31,7 +31,7 @@
 /// @typedef QPair <QString, QByteArray> BasicAuthenticator;
 /// @brief QPair for classic authentications with a login and a pasword :<ul>
 /// <li>first : the login.</li>
-/// <li>secret : the password.</li>
+/// <li>secret : the password.</li></ul>
 /// @see TokenPair
 typedef QPair<QString, QByteArray> BasicAuthenticator;
 

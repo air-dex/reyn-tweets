@@ -1,5 +1,5 @@
-/// @file reyntweetsconfiguration.hpp
-/// @brief Header of ReynTweetsConfiguration
+/// @file appconfiguration.hpp
+/// @brief Header of AppConfiguration
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -32,7 +32,7 @@
 #include <QVariantMap>
 #include "../coreresult.hpp"
 
-/// @class ReynTweetsAppConfiguration
+/// @class AppConfiguration
 /// @brief Class with Reyn Tweets settings.
 ///
 /// The settings are keys, constants and passwords for the following APIs or
@@ -125,7 +125,7 @@ class AppConfiguration : public QObject {
 		// Core management //
 		/////////////////////
 
-		/// @fn ReynTweetsAppConfiguration();
+		/// @fn AppConfiguration();
 		/// @brief Constructor
 		AppConfiguration();
 

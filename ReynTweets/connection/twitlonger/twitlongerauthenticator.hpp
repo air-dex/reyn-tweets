@@ -1,4 +1,4 @@
-/// @file twitlongermanager.hpp
+/// @file twitlongerauthenticator.hpp
 /// @brief Header of TwitLongerManager
 /// @author Romain Ducher
 ///
@@ -27,13 +27,13 @@
 #include <QString>
 #include "../common/authenticators/apikeyauthenticator.hpp"
 
-/// @class TwitLongerManager
+/// @class TwitLongerAuthenticator
 /// @brief Entity with all the informations needed for transactions with the
 /// TwitLonger API.
 class TwitLongerAuthenticator : public APIKeyAuthenticator
 {
 	public:
-		/// @fn TwitLongerManager();
+		/// @fn TwitLongerAuthenticator();
 		/// @brief Default constructor. Settings will be filled later.
 		TwitLongerAuthenticator();
 

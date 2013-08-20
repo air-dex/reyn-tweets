@@ -41,7 +41,6 @@ class RefreshMentionsTimelineProcess : public RefreshTimelineProcess
 		/// @param oldestTweet Value of latestTweet
 		/// @param userIDonly Value of trimUser
 		/// @param withEntities Value of includeEntities
-		/// @param withoutReplies Value of excludeReplies
 		/// @param withContributorsDetails Value of contributorsDetails
 		RefreshMentionsTimelineProcess(Tweet oldestTweet,
 									   bool userIDonly = false,

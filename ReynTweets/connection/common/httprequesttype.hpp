@@ -1,5 +1,5 @@
 /// @file httprequesttype.hpp
-/// @brief Header of Network::HTTPRequestType
+/// @brief Header of LibRT::HTTPRequestType
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -27,7 +27,7 @@
 #include <QString>
 
 namespace LibRT {
-	/// @enum RequestType
+	/// @enum HTTPRequestType
 	/// @brief Enum indicating the type of the request
 	enum HTTPRequestType {
 		/// @brief GET requests

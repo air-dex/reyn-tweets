@@ -110,18 +110,18 @@ class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon, GeoCoordPolygo
 // Serialization of GeoBoundingBox
 Q_DECLARE_METATYPE(GeoBoundingBox)
 
-/// @fn QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & infos);
+/// @fn QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
-/// @param infos GeoBoundingBox to put in the stream
+/// @param coord GeoBoundingBox to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & infos);
+QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord);
 
-/// @fn QDataStream & operator>>(QDataStream & in, GeoBoundingBox & infos);
+/// @fn QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
-/// @param infos GeoBoundingBox to put in the stream
+/// @param coord GeoBoundingBox to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, GeoBoundingBox & infos);
+QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord);
 
 #endif // GEOBOUNDINGBOX_HPP

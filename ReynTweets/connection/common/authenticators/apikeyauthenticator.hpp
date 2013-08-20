@@ -1,4 +1,4 @@
-/// @file apikeyauthenticator.cpp
+/// @file apikeyauthenticator.hpp
 /// @brief Header of APIKeyAuthenticator
 /// @author Romain Ducher
 ///

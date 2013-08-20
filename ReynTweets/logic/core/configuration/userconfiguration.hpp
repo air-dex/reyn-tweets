@@ -34,7 +34,7 @@
 #include "../json/jsonobject.hpp"
 #include "useraccount.hpp"
 
-/// @class ReynTweetsUserConfiguration
+/// @class UserConfiguration
 /// @brief User configuration of Reyn Tweets
 class UserConfiguration : public JsonObject
 {

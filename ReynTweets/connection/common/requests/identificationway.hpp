@@ -1,5 +1,5 @@
 /// @file identificationway.hpp
-/// @brief Header of IdentificationWay
+/// @brief Header of LibRT::IdentificationWay
 /// @author Romain Ducher
 ///
 /// @section LICENSE

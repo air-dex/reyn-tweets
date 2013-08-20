@@ -91,10 +91,10 @@ class JsonObject : public QObject, public Variantable<QJsonObject>
 		virtual QDataStream & writeInStream(QDataStream & out) const;
 
 	protected:
-		/// @fn void recopie(const JsonObject & );
+		/// @fn void recopie(const JsonObject & jsonobj);
 		/// @brief Core method to copy a JsonObject
 		/// @param jsonobj The JsonObject to copy
-		virtual void recopie(const JsonObject &);
+		virtual void recopie(const JsonObject & jsonobj);
 };
 
 #endif // JSONOBJECT_HPP

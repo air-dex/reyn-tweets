@@ -1,5 +1,5 @@
-/// @file twitlongermanager.cpp
-/// @brief Implementation of TwitLongerManager
+/// @file twitlongerauthenticator.cpp
+/// @brief Implementation of TwitLongerAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE

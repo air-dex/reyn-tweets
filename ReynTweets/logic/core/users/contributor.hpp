@@ -1,4 +1,4 @@
-/// @file contributor.cpp
+/// @file contributor.hpp
 /// @brief Header of Contributor
 /// @author Romain Ducher
 ///
@@ -82,7 +82,7 @@ class Contributor : public JsonObject
 		///
 		/// Two contributors are considered as equals if they have got the same
 		/// user ID.
-		/// @param Contributor contributor to compare
+		/// @param contributor Contributor to compare
 		/// @return true if the contributors are equals, false otherwise
 		bool operator==(const Contributor & contributor) const;
 

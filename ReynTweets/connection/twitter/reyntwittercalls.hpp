@@ -171,7 +171,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @brief Method for authorizing request Tokens
 		/// @param forceLogin Boolean indicating if the user as to sign in to
 		/// Twitter to authorize the application. Quite useless in Reyn Tweets.
-		/// @brief writeLogin Screen name of the user which want to authorize
+		/// @param writeLogin Screen name of the user which want to authorize
 		/// the app, in order to write it in the authentication page which will
 		/// be returned. Quite useless in Reyn Tweets.
 		/// @see https://dev.twitter.com/docs/api/1/get/oauth/authorize

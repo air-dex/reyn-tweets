@@ -1,5 +1,5 @@
 /// @file medialist.cpp
-/// @brief Implementation of Medialist
+/// @brief Implementation of MediaList
 /// @author Romain Ducher
 ///
 /// @section LICENSE

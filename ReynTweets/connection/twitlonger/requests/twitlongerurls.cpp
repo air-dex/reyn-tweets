@@ -1,5 +1,6 @@
 /// @file twitlongerurls.cpp
-/// @brief Implementation of the TwitLongerURLs namespace.
+/// @brief Implementation of the TwitLonger namespace part containing
+/// TwitLonger URLs.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

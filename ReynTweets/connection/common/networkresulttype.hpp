@@ -24,6 +24,8 @@
 #ifndef ERRORTYPES_HPP
 #define ERRORTYPES_HPP
 
+/// @namespace LibRT
+/// @brief General namespace for stuff related to libRT (connection part of Reyn Tweets)
 namespace LibRT {
 	/// @enum NetworkResultType
 	/// @brief Enumeration which indicates if something bad happened during the

@@ -1,4 +1,4 @@
-/// @file listhandler.hpp
+/// @file listhandler.tpp
 /// @brief Template header of ListHandler
 /// @author Romain Ducher
 ///

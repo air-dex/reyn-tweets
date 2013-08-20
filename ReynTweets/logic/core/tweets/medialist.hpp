@@ -1,5 +1,5 @@
 /// @file medialist.hpp
-/// @brief Header of Medialist
+/// @brief Header of MediaList
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -29,7 +29,7 @@
 #include "../json/jsonobjectarray.tpp"
 
 /// @class MediaList
-/// @brief List of Medias
+/// @brief List of Media
 class MediaList : public JsonObjectArray<Media>
 {
 	public:

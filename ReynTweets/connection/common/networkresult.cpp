@@ -1,5 +1,5 @@
-/// @file networkresponse.cpp
-/// @brief Implementation of extractHttpStatusesFromNetworkReply(QNetworkReply)
+/// @file networkresult.cpp
+/// @brief Implementation of NetworkResponse
 /// @author Romain Ducher
 ///
 /// @section LICENSE

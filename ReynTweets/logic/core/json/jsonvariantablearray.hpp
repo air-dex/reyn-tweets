@@ -1,4 +1,4 @@
-/// @file jsonvariantablearray.cpp
+/// @file jsonvariantablearray.hpp
 /// @brief Header of JsonVariantableArray
 /// @author Romain Ducher
 ///
@@ -27,7 +27,7 @@
 #include "jsonarray.tpp"
 
 /// @class JsonVariantableArray
-/// @brief Base class for JsonArrays containing JsonObjects.
+/// @brief Base class for JsonArray containing Variantable.
 /// @param V Type of element in the array. <strong>V has to extend
 /// Variantable.</strong>
 template <class V>

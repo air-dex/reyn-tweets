@@ -1,4 +1,4 @@
-/// @file jsonarrayarray.hpp
+/// @file jsonarrayarray.tpp
 /// @brief Template header of JsonArrayArray
 /// @author Romain Ducher
 ///

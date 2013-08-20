@@ -1,5 +1,5 @@
-/// @file coreresult.hpp
-/// @brief Source file to initialize httpResults.
+/// @file coreresult.cpp
+/// @brief Implementation of utilities around ReynTweets::CoreResult.
 ///
 /// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
 /// r204 is in /trunk/ReynTweets/logic

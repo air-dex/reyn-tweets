@@ -1,5 +1,5 @@
 /// @file variantable.hpp
-/// @brief Header of ReynTweetsSerializable
+/// @brief Header of Variantable
 /// @author Romain Ducher
 ///
 /// @section LICENSE

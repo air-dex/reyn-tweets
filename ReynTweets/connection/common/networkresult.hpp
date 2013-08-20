@@ -1,4 +1,4 @@
-/// @file networkresponse.hpp
+/// @file networkresult.hpp
 /// @brief Header of NetworkResponse
 /// @author Romain Ducher
 ///
@@ -51,7 +51,7 @@ class NetworkResponse {
 						QString error = "",
 						QString repURL = LibRT::FAKE_URL);
 
-		/// @fn NetworkResponse(QNetworkReply reply);
+		/// @fn NetworkResponse(QNetworkReply * reply);
 		/// @brief Building a NetworkResponse with the content of a QNetworkReply.
 		/// @param reply the QNetworkReply
 		NetworkResponse(QNetworkReply * reply);

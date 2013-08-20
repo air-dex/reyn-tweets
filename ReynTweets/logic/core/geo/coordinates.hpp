@@ -113,18 +113,18 @@ class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 // Serialization of Coordinates
 Q_DECLARE_METATYPE(Coordinates)
 
-/// @fn QDataStream & operator<<(QDataStream & out, const Coordinates & infos);
+/// @fn QDataStream & operator<<(QDataStream & out, const Coordinates & coord);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
-/// @param infos Coordinates to put in the stream
+/// @param coord Coordinates to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const Coordinates & infos);
+QDataStream & operator<<(QDataStream & out, const Coordinates & coord);
 
-/// @fn QDataStream & operator>>(QDataStream & in, Coordinates & infos);
+/// @fn QDataStream & operator>>(QDataStream & in, Coordinates & coord);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
-/// @param infos Coordinates to put in the stream
+/// @param coord Coordinates to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, Coordinates & infos);
+QDataStream & operator>>(QDataStream & in, Coordinates & coord);
 
 #endif // COORDINATES_HPP

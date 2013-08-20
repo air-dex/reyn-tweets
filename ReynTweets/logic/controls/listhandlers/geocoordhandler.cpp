@@ -1,5 +1,5 @@
 /// @file geocoordhandler.cpp
-/// @brief Implementation of CoordinatesListHandler
+/// @brief Implementation of GeoCoordHandler
 /// @author Romain Ducher
 ///
 /// @section LICENSE

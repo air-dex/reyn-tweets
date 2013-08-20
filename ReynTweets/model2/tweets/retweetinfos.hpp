@@ -24,6 +24,7 @@
 #ifndef RETWEETINFOS2_HPP
 #define RETWEETINFOS2_HPP
 
+#include <QVariant>
 #include "../json/jsonobject.hpp"
 
 /// @class RetweetInfos

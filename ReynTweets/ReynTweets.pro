@@ -156,7 +156,10 @@ SOURCES += \
 	model2/tweets/media.cpp \
 	model2/tweets/medialist.cpp \
 	model2/tweets/tweetentities.cpp \
-	model2/tweets/retweetinfos.cpp
+	model2/tweets/retweetinfos.cpp \
+	model2/users/userinfos.cpp \
+	model2/users/user.cpp \
+    model2/geo/coordinates.cpp
 
 
 HEADERS  += \
@@ -286,7 +289,10 @@ HEADERS  += \
 	model2/tweets/media.hpp \
 	model2/tweets/medialist.hpp \
 	model2/tweets/tweetentities.hpp \
-	model2/tweets/retweetinfos.hpp
+	model2/tweets/retweetinfos.hpp \
+	model2/users/userinfos.hpp \
+	model2/users/user.hpp \
+    model2/geo/coordinates.hpp
 
 
 OTHER_FILES = \

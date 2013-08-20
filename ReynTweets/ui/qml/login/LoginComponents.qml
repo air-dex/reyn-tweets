@@ -39,10 +39,8 @@ Item {
 	// Control whose role is to allow Reyn Tweets then saving it the configuration
 	AllowControl {
 		id: control
-		login_control: login_popup.ctrl
+//		login_control: login_popup.ctrl
 	}
-
-
 
 	// Popup displayed when the user has to enter its credentials
 	LoginPane {
@@ -99,6 +97,7 @@ Item {
 		control.showLoginPopup.connect(setLoginPopupVisible)
 		control.actionEnded.connect(afterAllowing)
 		control.showInfoMessage.connect(showInfoMessage)
+		control.needVerifier.connect(showAuthPage)
 	}
 
 	// Allowing Reyn Tweets
@@ -113,6 +112,15 @@ Item {
 	function setLoginPopupVisible(isVisible) {
 		login_component.visible = isVisible
 		login_popup.visible = isVisible;
+	}
+
+	/// @fn function setLoginPopupVisible(visible);
+	/// @brief Showing / hiding the login popup
+	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
+	function showAuthPage(html) {
+		login_component.visible = true;
+		login_popup.visible = true;
+		login_popup.showAuthPage(html);
 	}
 
 	/// @fn function afterLaunching(endOK, errMsg, fatal);

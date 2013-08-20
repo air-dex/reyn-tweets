@@ -27,6 +27,7 @@
 #define REYNCORE_HPP
 
 #include <QObject>
+#include <QByteArray>
 #include "coreresult.hpp"
 #include "../model/configuration/userconfiguration.hpp"
 #include "../model/configuration/appconfiguration.hpp"

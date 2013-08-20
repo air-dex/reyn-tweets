@@ -63,7 +63,7 @@ void AccessTokensProcess::buildResult(QByteArray accessToken,
 void AccessTokensProcess::accessToken() {
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(accessTokenDemanded(ResultWrapper)));
-	twitter.accessToken();
+	twitter.accessToken(oauthVerifier);
 }
 
 // Treatments after the request for Access Tokens

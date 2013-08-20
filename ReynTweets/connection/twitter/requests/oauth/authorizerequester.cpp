@@ -21,10 +21,10 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QWebElement>
 #include "authorizerequester.hpp"
-#include "../../../../tools/parsers/htmlparser.hpp"
+#include "../../../../tools/parsers/xmlparser.hpp"
 #include "../../../../tools/utils.hpp"
+#include <QDomElement>
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager, bool forceLog, QString writeLogin) :
@@ -62,106 +62,112 @@ QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 		parsingErrors = QVariantMap();
 		return QVariant::fromValue(results.getResponseBody());
 	} else {
-		// Perhaps it's JSON. Parse it as usual.
-		parsingErrorType = Network::JSON_PARSING;
-		return TwitterRequester::parseResult(results, parseOK, parsingErrors);
-	}
+		// Send an XML error message. Let's get it !
+		parsingErrorType = Network::XML_PARSING;
 
-	// Old HTML parsing
+		XMLParser parser;
+		QString parseErr;
+		bool parseOK;
+		int lineErr, colErr;
 
-	/*
-	// Flags for treatment
-	bool treatmentOK;
-	QString errTreatment = "";
+		QDomElement parsedError = parser.parse(results.getResponseBody(),
+											   parseOK,
+											   parseErr,
+											   &lineErr,
+											   &colErr);
 
-	// Error message for the whole parsing process
-	QString errorMsg = "";
+		if (!parseOK) {
+			parsingErrors.insert("errorMsg", parseErr);
+			parsingErrors.insert("lineError", QVariant::fromValue(lineErr));
+			parsingErrors.insert("columnError", QVariant::fromValue(colErr));
+		}
 
-	// Getting the HTML document
-	HTMLParser parser;
-	QWebElement htmlDocument = parser.parse(results.getResponseBody(),
-											parseOK,
-											errTreatment);
-	errorMsg.append(errTreatment);
+		if (parsedError.tagName() != "hash") {
+			return QVariant();
+		}
 
-	treatmentOK = !htmlDocument.isNull();
-	parseOK = parseOK && treatmentOK;
+		QVariantMap parsedResults;
 
-	if (treatmentOK) {
-		// Getting the parameters (auth token, oauth_token and deny)
-
-		// Boolean indicating if the parameters are found
-		bool authenticityTokenFound = false;
-		bool oauthTokenFound = false;
-		bool denyFound = false;
-
-		// treatmentOK : 3 parameters found
-		// treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound
-		treatmentOK = false;
-
-		QWebElementCollection inputs = htmlDocument.findAll("input");
-
-		// It stops when the 3 parameters are found xor when all is seen in the collection
-		for (QWebElementCollection::iterator it = inputs.begin();
-			 it != inputs.end() && !treatmentOK;
-			 ++it)
+		for (QDomElement elt = parsedError.firstChildElement();
+			 !elt.isNull();
+			 elt = elt.nextSiblingElement())
 		{
-			QWebElement input = *it;
-			QString inputName = input.attribute("name");
-			QString inputValue = input.attribute("value");
-
-			// Is a parameter found ?
-			if (!authenticityTokenFound && inputName == "authenticity_token") {
-				// The authenticity token is found !
-				oauthManager.setAuthenticityToken(inputValue.toLatin1());
-				authenticityTokenFound = true;
-			} else if (!oauthTokenFound && inputName == "oauth_token") {
-				// The oauth token is found. (WTF)
-				oauthManager.setOAuthToken(inputValue.toLatin1());
-				oauthTokenFound = true;
-			} else if (!denyFound && inputName == "deny") {
-				// The deny value is found !
-				oauthManager.setDeny(inputValue);
-				denyFound = true;
-			}
-
-			// Hotfix. Remove it after Qt5 port and Authorization refactoring.
-			oauthManager.setDeny("cancel");
-			denyFound = true;
-
-			treatmentOK = authenticityTokenFound && oauthTokenFound && denyFound;
+			parsedResults.insert(elt.tagName(), elt.text());
 		}
 
-		parseOK = parseOK && treatmentOK;
+		return QVariant::fromValue(parsedResults);
+	}
+}
 
-		// Are all the parameters found ?
-		if (!treatmentOK) {
-			if (!authenticityTokenFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("Authenticity token not found."))
-						.append('\n');
-			}
+QList<ResponseInfos> AuthorizeRequester::treatServiceErrors(QVariant parsedResults,
+															NetworkResponse netResponse)
+{
+	QList<ResponseInfos> serviceErrors;
 
-			if (!oauthTokenFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("OAuth token not found."))
-						.append('\n');
-			}
+	int httpCode = netResponse.getHttpResponse().code;
 
-			if (!denyFound) {
-				errorMsg.append(AuthorizeRequester::trUtf8("Deny value not found."))
-						.append('\n');
-			}
-		}
-	} else {
-		errorMsg.append(AuthorizeRequester::trUtf8("Empty HTML page.\n"))
-				.append('\n');
+	// Is the return code expected ?
+	switch (httpCode) {
+		case 200:
+			// If the response code is 200, it is not an error
+			return QList<ResponseInfos>();
+
+		// Expected return codes
+		case 304:
+		case 400:
+		case 401:
+		case 403:
+		case 404:
+		case 406:
+		case 410:
+		case 420:
+		case 422:
+		case 429:
+		case 500:
+		case 502:
+		case 503:
+		case 504:
+			break;
+
+		// Unexpected return code
+		default: {
+			ResponseInfos error;
+			error.code = httpCode;
+			error.message = TwitterRequester::trUtf8("Unexpected HTTP return code")
+					.append(" '")
+					.append(QString::number(httpCode))
+					.append("'.");
+
+			serviceErrors.append(error);
+		} break;
 	}
 
+	// Error due to code
 
-	// There was a problem while parsing -> fill the parsingErrors map !
-	if (!parseOK) {
-		parsingErrors.insert("errorMsg", QVariant(errorMsg));
+	// Does the parsed results contain Twitter errors ?
+	bool areTwitterErrors = false;
+	QVariantMap errmap;
+
+	// Twitter error : 2 fields : "error" and "request" in a QVariantMap
+
+	if (parsedResults.canConvert<QVariantMap>()) {
+		errmap = parsedResults.toMap();
+
+		areTwitterErrors = errmap.contains("error") && errmap.contains("request");
 	}
 
-	return QVariant();
-	//*/
+	if (areTwitterErrors) {
+		ResponseInfos error;
+		error.code = httpCode;
+		error.message = AuthorizeRequester::trUtf8("Error during the request ")
+				.append("https://api.twitter.com")
+				.append(errmap.value("request").toString())
+				.append(" : ")
+				.append(errmap.value("error").toString())
+				.append('.');
+
+		serviceErrors.append(error);
+	}
+
+	return serviceErrors;
 }

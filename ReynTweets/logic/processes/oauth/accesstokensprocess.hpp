@@ -24,6 +24,8 @@
 #ifndef ACCESSTOKENSPROCESS_HPP
 #define ACCESSTOKENSPROCESS_HPP
 
+#include <QObject>
+#include <QByteArray>
 #include "../genericprocess.hpp"
 #include "../../../connection/common/resultwrapper.hpp"
 #include "../../../connection/twitter/reyntwittercalls.hpp"
@@ -32,12 +34,13 @@
 /// @brief Process to get the final tokens to authenticate
 class AccessTokensProcess : public GenericProcess
 {
-		Q_OBJECT
+	Q_OBJECT
+
 	public:
-		/// @fn explicit AccessTokensProcess(QByteArray verifier);
+		/// @fn AccessTokensProcess(QByteArray verifier);
 		/// @brief Constructor
 		/// @param verifier The OAuth Verifier needed for getting Access tokens.
-		explicit AccessTokensProcess(QByteArray verifier);
+		AccessTokensProcess(QByteArray verifier);
 
 		/// @fn ~AccessTokensProcess();
 		/// @brief Destructor

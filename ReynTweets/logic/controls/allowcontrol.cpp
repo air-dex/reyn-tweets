@@ -82,7 +82,6 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(requestTokensOK(ProcessWrapper)));
-	allowUnwiring();
 
 	CoreResult issue = result.processIssue;
 	bool fatal = false;
@@ -111,7 +110,6 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case AUTHENTICATION_REQUIRED:
-		case BAD_REQUEST:
 		case INVALID_SEARCH:
 		case GONE:
 		case UNPROCESSABLE:
@@ -219,7 +217,6 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case AUTHENTICATION_REQUIRED:
-		case BAD_REQUEST:
 		case INVALID_SEARCH:
 		case GONE:
 		case UNPROCESSABLE:

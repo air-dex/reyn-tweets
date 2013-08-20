@@ -76,6 +76,19 @@ class AuthorizeRequester : public OAuthRequester
 		QVariant parseResult(NetworkResponse results,
 							 bool & parseOK,
 							 QVariantMap & parsingErrors);
+
+		/// @fn virtual QList<ResponseInfos> treatServiceErrors(QVariant parsedResults,
+		///														NetworkResponse netResponse);
+		/// @brief Treating parsed results
+		///
+		/// It is overriden because of XML results if there were errors.
+		/// @param parsedResults Parsed results to analyse in order to retrieve
+		/// service errors.
+		/// @param netResponse Other network responce elements, if needed.
+		/// @return The list of service errors
+		/// @see https://dev.twitter.com/docs/error-codes-responses
+		virtual QList<ResponseInfos> treatServiceErrors(QVariant parsedResults,
+														NetworkResponse netResponse);
 };
 
 #endif // AUTHORIZEREQUESTER_HPP

@@ -174,7 +174,7 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			tokensMap.insert("html", result.parsedResult);
 			processResult = ProcessUtils::buildProcessResult(REQUEST_TOKENS_OK,
 															 QVariant(tokensMap));
-			return;
+			return endProcess();
 
 		case Network::SERVICE_ERRORS:
 			// Building error message
@@ -198,6 +198,12 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  issue);
+			break;
+
+		case Network::XML_PARSING:
+			ProcessUtils::treatXMLParsingResult(result.parsingErrors,
+												errorMsg,
+												issue);
 			break;
 
 		default:

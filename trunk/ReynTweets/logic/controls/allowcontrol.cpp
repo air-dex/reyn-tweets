@@ -125,7 +125,7 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 
 // End of authentication
 bool AllowControl::endAuth(QString postauthURL) {
-	// Do not disturb the Control while working
+	// Do not disturb the Control while it is working
 	if (processing) {
 		return false;
 	}
@@ -148,10 +148,12 @@ bool AllowControl::endAuth(QString postauthURL) {
 											   &parseErr);
 
 		if (parseOK && veryEndArgs.contains("oauth_verifier")) {
-			// Authorized :) !
+			// Authorized :) ! Let's get the access tokens.
 			getAccessTokens(veryEndArgs.value("oauth_verifier").toByteArray());
 		} else if (parseOK && veryEndArgs.contains("denied")) {
-			// TODO : Denied :( !
+			// Denied :( !
+			// OK because of the String message which opends the corresponding QML pane
+			// TODO : simplify and improve
 			emit actionEnded(false,
 							 AllowControl::trUtf8("Reyn Tweets was denied."),
 							 false);

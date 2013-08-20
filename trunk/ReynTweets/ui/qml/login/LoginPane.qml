@@ -26,7 +26,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
-import QtWebKit 3.0	// For the new one
+import QtWebKit 3.0
 import ReynTweetsComponents 0.2
 import "../base_components"
 

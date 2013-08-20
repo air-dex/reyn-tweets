@@ -163,10 +163,6 @@ namespace ReynTweets {
 		/// @brief The application is denied
 		DENIED,
 
-		// TODO : delete ?
-		/// @brief Unexpected redirection during POST authorizing
-		POST_AUTHORIZING_FAILED,
-
 		////////////////
 		// TwitLonger //
 		////////////////

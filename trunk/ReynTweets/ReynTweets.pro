@@ -292,7 +292,8 @@ OTHER_FILES = \
 	ui/qml/twitter-text-1.6.1.js \
 	Doxyfile.txt \
 	.bzrignore \
-	ReynTweets.rc
+	ReynTweets.rc \
+	model/ReynTweetsModel.pri
 
 
 #---------------------------------------#

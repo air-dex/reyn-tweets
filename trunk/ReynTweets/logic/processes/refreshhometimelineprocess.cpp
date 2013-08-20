@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "refreshhometimelineprocess.hpp"
+#include "../reyntweetsutils.hpp"
 
 // Constructor
 RefreshHomeTimelineProcess::RefreshHomeTimelineProcess(Tweet oldestTweet,
@@ -44,11 +45,11 @@ RefreshHomeTimelineProcess::RefreshHomeTimelineProcess(Tweet oldestTweet,
 // Step 1
 void RefreshHomeTimelineProcess::retrievingFirstTweets() {
 	twitter.retrieveHomeTimeline(latestTweet.getIDstr().toLongLong() -1,
-								 -1,
+								 ReynTweets::FAKE_TWEET_ID,
 								 trimUser,
 								 includeEntities,
 								 excludeReplies,
-								 ReynTwitterCalls::MAX_TWEETS_COUNT,
+								 Twitter::MAX_TWEETS_COUNT,
 								 contributorsDetails);
 }
 
@@ -59,6 +60,6 @@ void RefreshHomeTimelineProcess::retrievingIntermediateTweets() {
 								 trimUser,
 								 includeEntities,
 								 excludeReplies,
-								 ReynTwitterCalls::MAX_TWEETS_COUNT,
+								 Twitter::MAX_TWEETS_COUNT,
 								 contributorsDetails);
 }

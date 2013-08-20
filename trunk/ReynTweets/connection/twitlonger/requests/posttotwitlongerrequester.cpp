@@ -29,7 +29,9 @@ PostToTwitLongerRequester::PostToTwitLongerRequester(TwitLongerAuthenticator &tl
 													 QString userScreenName,
 													 qlonglong replyToStatusID,
 													 QString replyToUserScreenName) :
-	TwitLongerRequester(LibRT::POST, TwitLongerURL::POST_LONG_TWEET_URL, tlmanager),
+	TwitLongerRequester(LibRT::POST,
+						TwitLonger::POST_LONG_TWEET_URL,
+						tlmanager),
 	message(longTweet),
 	username(userScreenName),
 	replyToTweetID(replyToStatusID),
@@ -56,7 +58,7 @@ void PostToTwitLongerRequester::buildPOSTParameters() {
 	}
 
 	// Optional reply
-	if (replyToTweetID != -1) {
+	if (replyToTweetID != TwitLonger::FAKE_TWEET_ID) {
 		postParameters.insert("in_reply", QString::number(replyToTweetID));
 	}
 

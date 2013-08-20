@@ -25,17 +25,18 @@
 #define LOADMENTIONSTIMELINEPROCESS_HPP
 
 #include "singletwittercallprocess.hpp"
+#include "../reyntweetsutils.hpp"
 
 /// @class LoadMentionsTimelineProcess
 /// @brief Process for loading mentions
 class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 {
 	public:
-		/// @fn LoadMentionsTimelineProcess(qlonglong oldestTweetID = -1,
-		///									qlonglong youngestTweetID = -1,
+		/// @fn LoadMentionsTimelineProcess(qlonglong oldestTweetID = ReynTweets::FAKE_TWEET_ID,
+		///									qlonglong youngestTweetID = ReynTweets::FAKE_TWEET_ID,
 		///									bool userIDonly = false,
 		///									bool withEntities = false,
-		///									int nbTweets = 20,
+		///									int nbTweets = ReynTweets::DEFAULT_TWEETS_COUNT,
 		///									bool withContributorsDetails = false);
 		/// @brief Constructor
 		/// @param oldestTweetID Value of sinceID
@@ -44,17 +45,17 @@ class LoadMentionsTimelineProcess : public SingleTwitterCallProcess
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
-		LoadMentionsTimelineProcess(qlonglong oldestTweetID = -1,
-									qlonglong youngestTweetID = -1,
+		LoadMentionsTimelineProcess(qlonglong oldestTweetID = ReynTweets::FAKE_TWEET_ID,
+									qlonglong youngestTweetID = ReynTweets::FAKE_TWEET_ID,
 									bool userIDonly = false,
 									bool withEntities = false,
-									int nbTweets = 20,
+									int nbTweets = ReynTweets::DEFAULT_TWEETS_COUNT,
 									bool withContributorsDetails = false);
 
 
 	protected:
-		/// @brief Number of tweets in the timeline.
-		/// <strong>count &lt; 200</strong>
+		/// @brief Number of tweets in the timeline. <strong>0 &lt; count &lt;
+		/// Twitter::MAX_TWEETS_COUNT</strong>
 		int count;
 
 		/// @brief Minimum tweet ID allowed in the timeline

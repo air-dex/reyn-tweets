@@ -33,7 +33,7 @@ PostTweetRequester::PostTweetRequester(TwitterAuthenticator & authManager,
 									   QString place,
 									   bool showCoord,
 									   bool userIDonly) :
-	TwitterRequester(LibRT::POST, TwitterURL::UPDATE_TWEET_URL, authManager),
+	TwitterRequester(LibRT::POST, Twitter::UPDATE_TWEET_URL, authManager),
 	tweet(status),
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),
@@ -47,7 +47,7 @@ PostTweetRequester::PostTweetRequester(TwitterAuthenticator & authManager,
 void PostTweetRequester::buildPOSTParameters() {
 	postParameters.insert("status", tweet);
 
-	if (replyToTweetID != -1) {
+	if (replyToTweetID != Twitter::FAKE_TWEET_ID) {
 		postParameters.insert("in_reply_to_status_id", QString::number(replyToTweetID));
 	}
 

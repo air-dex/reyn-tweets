@@ -26,6 +26,8 @@
 
 #include "twitlongerrequester.hpp"
 
+#include "../twitlongerconstants.hpp"
+
 /// @class PostToTwitLongerRequester
 /// @brief Posting a long message on TwitLonger and receive a shortened version
 /// of this message.
@@ -37,7 +39,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 		/// @fn PostToTwitLongerRequester(TwitLongerAuthenticator & tlmanager,
 		///								  QString longTweet,
 		///								  QString userScreenName,
-		///								  qlonglong replyToStatusID = -1,
+		///								  qlonglong replyToStatusID = TwitLonger::FAKE_TWEET_ID,
 		///								  QString replyToUserScreenName = "");
 		/// @brief Constructor
 		/// @param tlmanager Entity with TwitLonger settings.
@@ -50,7 +52,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 		PostToTwitLongerRequester(TwitLongerAuthenticator & tlmanager,
 								  QString longTweet,
 								  QString userScreenName,
-								  qlonglong replyToStatusID = -1,
+								  qlonglong replyToStatusID = TwitLonger::FAKE_TWEET_ID,
 								  QString replyToUserScreenName = "");
 
 	protected:

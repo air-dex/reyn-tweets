@@ -130,7 +130,7 @@ bool AllowControl::endAuth(QString postauthURL) {
 	}
 
 	// Have a look at the URL
-	if (postauthURL.startsWith(TwitterURL::AUTHORIZE_URL)) {
+	if (postauthURL.startsWith(Twitter::AUTHORIZE_URL)) {
 		// Still in POST authorizing
 		// TODO : passer l'HTML pour être sûr qu'on est encore en POST authorizing
 		return false;

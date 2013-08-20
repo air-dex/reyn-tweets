@@ -29,6 +29,7 @@
 
 #include "../common/calls/genericcalls.hpp"
 #include "twitterauthenticator.hpp"
+#include "twitterconstants.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter.
@@ -80,11 +81,11 @@ class ReynTwitterCalls : public GenericCalls
 		/// @see https://dev.twitter.com/docs/api/1.1/post/favorites/create
 		void favoriteTweet(qlonglong id, bool entities = true);
 
-		/// @fn void getFavoriteTimeline(qlonglong id = -1,
-		///								 qlonglong sinceID = -1,
-		///								 qlonglong maxID = -1,
+		/// @fn void getFavoriteTimeline(qlonglong id = Twitter::FAKE_USER_ID,
+		///								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+		///								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 		///								 bool entities = false,
-		///								 int count = 20);
+		///								 int count = Twitter::DEFAULT_TWEETS_COUNT);
 		/// @brief Retrieving the timeline with the favorite tweets of the user
 		/// whose ID is id.
 		/// @param id ID of the user whose favorites timeline will be
@@ -95,17 +96,17 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param entities Boolean whose value is true if the tweets have got
 		/// their entities
 		/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
-		void getFavoriteTimeline(qlonglong id = -1,
-								 qlonglong sinceID = -1,
-								 qlonglong maxID = -1,
+		void getFavoriteTimeline(qlonglong id = Twitter::FAKE_USER_ID,
+								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 								 bool entities = false,
-								 int count = 20);
+								 int count = Twitter::DEFAULT_TWEETS_COUNT);
 
 		/// @fn void getFavoriteTimeline(QString username = "",
-		///								 qlonglong sinceID = -1,
-		///								 qlonglong maxID = -1,
+		///								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+		///								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 		///								 bool entities = false,
-		///								 int count = 20);
+		///								 int count = Twitter::DEFAULT_TWEETS_COUNT);
 		/// @brief Retrieving the timeline with the favorite tweets of the user
 		/// whose screen name is username.
 		/// @param username Screen name of the user whose favorites timeline
@@ -117,10 +118,10 @@ class ReynTwitterCalls : public GenericCalls
 		/// their entities
 		/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
 		void getFavoriteTimeline(QString username = "",
-								 qlonglong sinceID = -1,
-								 qlonglong maxID = -1,
+								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 								 bool entities = false,
-								 int count = 20);
+								 int count = Twitter::DEFAULT_TWEETS_COUNT);
 
 		/// @fn void unfavoriteTweet(qlonglong id, bool entities = true);
 		/// @brief Unavoriting a tweet
@@ -197,15 +198,12 @@ class ReynTwitterCalls : public GenericCalls
 		// Timelines //
 		///////////////
 
-		/// @brief Maximum number of tweets that can be retrieved per call (200).
-		static int MAX_TWEETS_COUNT;
-
-		/// @fn void retrieveHomeTimeline(qlonglong sinceID = -1,
-		///								  qlonglong maxID = -1,
+		/// @fn void retrieveHomeTimeline(qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+		///								  qlonglong maxID = Twitter::FAKE_TWEET_ID,
 		///								  bool trimUser = false,
 		///								  bool includeEntities = false,
 		///								  bool excludeReplies = false,
-		///								  int count = 20,
+		///								  int count = Twitter::DEFAULT_TWEETS_COUNT,
 		///								  bool contributorsDetails = false);
 		/// @brief Retrieving the timeline with the tweets of the user's friends
 		/// @param sinceID Minimum tweet ID possible in the timeline
@@ -216,19 +214,19 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param count Number of tweets
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
-		void retrieveHomeTimeline(qlonglong sinceID = -1,
-								  qlonglong maxID = -1,
+		void retrieveHomeTimeline(qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+								  qlonglong maxID = Twitter::FAKE_TWEET_ID,
 								  bool trimUser = false,
 								  bool includeEntities = false,
 								  bool excludeReplies = false,
-								  int count = 20,
+								  int count = Twitter::DEFAULT_TWEETS_COUNT,
 								  bool contributorsDetails = false);
 
-		/// @fn void retrieveMentionsTimeline(qlonglong sinceID = -1,
-		///									  qlonglong maxID = -1,
+		/// @fn void retrieveMentionsTimeline(qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+		///									  qlonglong maxID = Twitter::FAKE_TWEET_ID,
 		///									  bool trimUser = false,
 		///									  bool includeEntities = false,
-		///									  int count = 20,
+		///									  int count = Twitter::DEFAULT_TWEETS_COUNT,
 		///									  bool contributorsDetails = false);
 		/// @brief Retrieving the timeline containing the mentions of the user
 		/// @param sinceID Minimum tweet ID possible in the timeline
@@ -238,11 +236,11 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param count Number of tweets
 		/// @param contributorsDetails Including details about contributors
 		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions_timeline
-		void retrieveMentionsTimeline(qlonglong sinceID = -1,
-									  qlonglong maxID = -1,
+		void retrieveMentionsTimeline(qlonglong sinceID = Twitter::FAKE_TWEET_ID,
+									  qlonglong maxID = Twitter::FAKE_TWEET_ID,
 									  bool trimUser = false,
 									  bool includeEntities = false,
-									  int count = 20,
+									  int count = Twitter::DEFAULT_TWEETS_COUNT,
 									  bool contributorsDetails = false);
 
 
@@ -283,7 +281,7 @@ class ReynTwitterCalls : public GenericCalls
 					   bool includeMyRetweet = true);
 
 		/// @fn void updateTweet(QString tweet,
-		///						 qlonglong replyToTweetID,
+		///						 qlonglong replyToTweetID = Twitter::FAKE_TWEET_ID,
 		///						 float latitude = -361,
 		///						 float longitude = -361,
 		///						 QString reversePlace = "",
@@ -302,7 +300,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param trimUser In tweets, giving only the ID of the author (true).
 		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 		void updateTweet(QString tweet,
-						 qlonglong replyToTweetID = -1,
+						 qlonglong replyToTweetID = Twitter::FAKE_TWEET_ID,
 						 float latitude = -361,
 						 float longitude = -361,
 						 QString reversePlace = "",

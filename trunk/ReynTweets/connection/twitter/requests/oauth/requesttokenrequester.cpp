@@ -29,7 +29,7 @@
 // Constructor
 RequestTokenRequester::RequestTokenRequester(TwitterAuthenticator &authManager) :
 	OAuthRequester(LibRT::POST,
-				   TwitterURL::REQUEST_TOKEN_URL,
+				   Twitter::REQUEST_TOKEN_URL,
 				   authManager,
 				   LibRT::OAUTH_PARSING,
 				   false, true, false)

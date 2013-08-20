@@ -30,7 +30,7 @@
 AccessTokenRequester::AccessTokenRequester(TwitterAuthenticator &authManager,
 										   QByteArray verifier) :
 	OAuthRequester(LibRT::POST,
-				   TwitterURL::ACCESS_TOKEN_URL,
+				   Twitter::ACCESS_TOKEN_URL,
 				   authManager,
 				   LibRT::OAUTH_PARSING,
 				   true, false, true)

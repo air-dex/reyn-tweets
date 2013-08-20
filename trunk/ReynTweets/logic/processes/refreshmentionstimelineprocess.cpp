@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "refreshmentionstimelineprocess.hpp"
+#include "../reyntweetsutils.hpp"
 
 // Constructor
 RefreshMentionsTimelineProcess::RefreshMentionsTimelineProcess(Tweet oldestTweet,
@@ -45,10 +46,10 @@ void RefreshMentionsTimelineProcess::retrievingFirstTweets() {
 			this, &RefreshMentionsTimelineProcess::loadFirstTweetsEnded);
 
 	twitter.retrieveMentionsTimeline(latestTweet.getIDstr().toLongLong() -1,
-									 -1,
+									 ReynTweets::FAKE_TWEET_ID,
 									 trimUser,
 									 includeEntities,
-									 ReynTwitterCalls::MAX_TWEETS_COUNT,
+									 Twitter::MAX_TWEETS_COUNT,
 									 contributorsDetails);
 }
 
@@ -61,6 +62,6 @@ void RefreshMentionsTimelineProcess::retrievingIntermediateTweets() {
 									 oldestNewTweet.getIDstr().toLongLong(),
 									 trimUser,
 									 includeEntities,
-									 ReynTwitterCalls::MAX_TWEETS_COUNT,
+									 Twitter::MAX_TWEETS_COUNT,
 									 contributorsDetails);
 }

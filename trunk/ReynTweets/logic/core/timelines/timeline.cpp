@@ -23,6 +23,8 @@
 
 #include "timeline.hpp"
 
+#include "../../reyntweetsutils.hpp"
+
 // Constructor
 Timeline::Timeline() :
 	JsonObjectArray<Tweet>()
@@ -85,8 +87,8 @@ int Timeline::elementIndex(Tweet tweet) {
 	qlonglong tweetID = tweet.getIDstr().toLongLong();
 
 	// Special case for default tweets.
-	if (tweetID == -1) {
-		return -1;
+	if (tweetID == ReynTweets::FAKE_TWEET_ID) {
+		return ReynTweets::FAKE_BOUND;
 	}
 
 	// Empty lists
@@ -120,21 +122,21 @@ int Timeline::elementIndex(Tweet tweet) {
 // Getting the ID of the first tweet of the timeline.
 qlonglong Timeline::getFirstID() {
 	if (this->isEmpty()) {
-		return -1;
+		return ReynTweets::FAKE_TWEET_ID;
 	} else {
 		bool ok;
 		qlonglong id = this->first().getIDstr().toLongLong(&ok);
-		return ok ? id : -1;
+		return ok ? id : ReynTweets::FAKE_TWEET_ID;
 	}
 }
 
 // Getting the ID of the first tweet of the timeline.
 qlonglong Timeline::getLastID() {
 	if (this->isEmpty()) {
-		return -1;
+		return ReynTweets::FAKE_TWEET_ID;
 	} else {
 		bool ok;
 		qlonglong id = this->last().getIDstr().toLongLong(&ok);
-		return ok ? id : -1;
+		return ok ? id : ReynTweets::FAKE_TWEET_ID;
 	}
 }

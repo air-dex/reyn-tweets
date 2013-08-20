@@ -31,7 +31,7 @@ MentionsTimelineRequester::MentionsTimelineRequester(TwitterAuthenticator &authM
 													 bool withEntities,
 													 int nbTweets,
 													 bool withContributorsDetails) :
-	TwitterRequester(LibRT::GET, TwitterURL::MENTIONS_TIMELINE_URL, authManager),
+	TwitterRequester(LibRT::GET, Twitter::MENTIONS_TIMELINE_URL, authManager),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),
@@ -42,16 +42,16 @@ MentionsTimelineRequester::MentionsTimelineRequester(TwitterAuthenticator &authM
 
 // Building getParameters
 void MentionsTimelineRequester::buildGETParameters() {
-	if (count != 20) {
+	if (count != Twitter::DEFAULT_TWEETS_COUNT) {
 		getParameters.insert("count", QString::number(count));
 	}
 
-	if (sinceID > -1) {
+	if (sinceID > Twitter::FAKE_TWEET_ID) {
 		getParameters.insert("since_id", QString::number(sinceID));
 	}
 
 
-	if (maxID > -1) {
+	if (maxID > Twitter::FAKE_TWEET_ID) {
 		getParameters.insert("max_id", QString::number(maxID));
 	}
 

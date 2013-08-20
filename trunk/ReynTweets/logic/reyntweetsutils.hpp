@@ -42,6 +42,43 @@ namespace ReynTweets {
 	/// @param coloredString The string with the RRGGBB format.
 	/// @return The corresponding color : &#135;RRGGBB
 	QColor string2color(QString coloredString);
+
+	///////////////
+	// Constants //
+	///////////////
+
+	/// @brief Constant for a fake Tweet ID
+	extern const qlonglong FAKE_TWEET_ID;
+
+	/// @brief Constant for a fake Tweet ID (QString version)
+	extern const QString FAKE_TWEET_ID_STR;
+
+	/// @brief Constant for a fake Tweet ID
+	extern const qlonglong FAKE_USER_ID;
+
+	/// @brief Constant for a fake Tweet ID (QString version)
+	extern const QString FAKE_USER_ID_STR;
+
+	/// @brief Constant for a fake Media ID
+	extern const qlonglong FAKE_MEDIA_ID;
+
+	/// @brief Constant for a fake Media ID (QString version)
+	extern const QString FAKE_MEDIA_ID_STR;
+
+	/// @brief Fake longitude
+	extern const int FAKE_LONGITUDE;
+
+	/// @brief Fake latitude
+	extern const int FAKE_LATITUDE;
+
+	/// @brief Fake index in an array
+	extern const int FAKE_BOUND;
+
+	/// @brief Default number of tweets retrieved per call (20).
+	extern const int DEFAULT_TWEETS_COUNT;
+
+	/// @brief Maximum number of tweets that can be retrieved per call (200).
+	extern const int MAX_TWEETS_COUNT;
 }
 
 #endif // REYNTWEETSUTILS_HPP

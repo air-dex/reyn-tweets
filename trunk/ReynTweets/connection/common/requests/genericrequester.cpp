@@ -23,6 +23,7 @@
 
 #include "genericrequester.hpp"
 #include "../utils/parsers/jsonparser.hpp"
+#include "../utils/librtconstants.hpp"
 
 // Constructor. It just calls the parent constructor.
 GenericRequester::GenericRequester(LibRT::HTTPRequestType type,
@@ -102,38 +103,42 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 	requestResult.httpResponse = netHTTPRep;
 	requestResult.errorMessage = netResponse.getRequestError();
 
-	int httpReturnCode = netHTTPRep.code;
+	switch (netHTTPRep.code) {
+		case LibRT::INVALID_HTTP_CODE:
+			// Invalid response => INVALID_RESULT
+			requestResult.resultType = LibRT::INVALID_RESULT;
+			break;
 
-	if (httpReturnCode == -1) {
-		// Invalid response => INVALID_RESULT
-		requestResult.resultType = LibRT::INVALID_RESULT;
-	} else if (httpReturnCode == 0) {
-		// No response => API_CALL
-		requestResult.resultType = LibRT::API_CALL;
-	} else {
-		// Parsing the response and filling requestResult
-		bool parseOK;
-		QVariantMap parseErrorMap;
-		requestResult.parsedResult = this->parseResult(netResponse,
-													   parseOK,
-													   parseErrorMap);
-		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
-		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
+		case LibRT::TIMEOUT_HTTP_CODE:
+			// No response (because of timeout) => API_CALL
+			requestResult.resultType = LibRT::API_CALL;
+			break;
 
-		if (parseOK) {
-			// Other treatments related to the service
-			requestResult.serviceErrors = this->treatServiceErrors(requestResult.parsedResult,
-																   netResponse);
-			// Updating the NetworkResultType with service errors
-			requestResult.resultType = requestResult.serviceErrors.isEmpty() ?
-						LibRT::NO_REQUEST_ERROR
-					  : LibRT::SERVICE_ERRORS;
-		} else {
-			requestResult.resultType = parsingErrorType;
+		default: {
+			// Parsing the response and filling requestResult
+			bool parseOK;
+			QVariantMap parseErrorMap;
+			requestResult.parsedResult = this->parseResult(netResponse,
+														   parseOK,
+														   parseErrorMap);
+			requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
+			requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
-			// Giving the response just in case the user would like to do sthg with it.
-			requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
-		}
+			if (parseOK) {
+				// Other treatments related to the service
+				requestResult.serviceErrors = this->treatServiceErrors(requestResult.parsedResult,
+																	   netResponse);
+				// Updating the NetworkResultType with service errors
+				requestResult.resultType = requestResult.serviceErrors.isEmpty() ?
+							LibRT::NO_REQUEST_ERROR
+						  : LibRT::SERVICE_ERRORS;
+			} else {
+				requestResult.resultType = parsingErrorType;
+
+				// Giving the response just in case the user would like to do sthg with it.
+				requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
+			}
+		} break;
 	}
 
 	// Telling the Calls that the request is finished

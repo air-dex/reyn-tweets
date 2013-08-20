@@ -36,7 +36,7 @@ class PostTweetRequester : public TwitterRequester
 	public:
 		/// @fn PostTweetRequester(TwitterAuthenticator & authManager,
 		///						   QString status,
-		///						   qlonglong replyTostatusID = -1,
+		///						   qlonglong replyTostatusID = Twitter::FAKE_TWEET_ID,
 		///						   float lat = -361,
 		///						   float lon = -361,
 		///						   QString place = "",
@@ -56,7 +56,7 @@ class PostTweetRequester : public TwitterRequester
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
 		PostTweetRequester(TwitterAuthenticator & authManager,
 						   QString status,
-						   qlonglong replyTostatusID = -1,
+						   qlonglong replyTostatusID = Twitter::FAKE_TWEET_ID,
 						   float lat = -361,
 						   float lon = -361,
 						   QString place = "",

@@ -26,13 +26,15 @@
 
 #include <QNetworkReply>
 #include "responseinfos.hpp"
+#include "utils/librtconstants.hpp"
+#include "utils/httpcode.hpp"
 
 /// @struct NetworkResponse
 /// @brief Struct with relevant elements of network reply
 class NetworkResponse {
 	public:
 
-		/// @fn NetworkResponse(int httpCode = -1,
+		/// @fn NetworkResponse(LibRT::HTTPCode httpCode = LibRT::INVALID_HTTP_CODE,
 		///						QString httpReason = "",
 		///						QByteArray response = "",
 		///						QString error = "",
@@ -43,7 +45,7 @@ class NetworkResponse {
 		/// @param response Value for responseBody.
 		/// @param error Value for requestError.
 		/// @param repURL Value for replyURL.
-		NetworkResponse(int httpCode = -1,
+		NetworkResponse(LibRT::HTTPCode httpCode = LibRT::INVALID_HTTP_CODE,
 						QString httpReason = "",
 						QByteArray response = "",
 						QString error = "",

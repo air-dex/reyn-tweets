@@ -22,14 +22,13 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "indexbounds.hpp"
-
-int IndexBounds::FAKE_BOUND = -1;
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 IndexBounds::IndexBounds() :
 	JsonArray<int>(),
-	min(FAKE_BOUND),
-	max(FAKE_BOUND)
+	min(ReynTweets::FAKE_BOUND),
+	max(ReynTweets::FAKE_BOUND)
 {}
 
 // Destructor
@@ -38,8 +37,8 @@ IndexBounds::~IndexBounds() {}
 // Copy constructor
 IndexBounds::IndexBounds(const IndexBounds & indexes) :
 	JsonArray<int>(),
-	min(FAKE_BOUND),
-	max(FAKE_BOUND)
+	min(ReynTweets::FAKE_BOUND),
+	max(ReynTweets::FAKE_BOUND)
 {
 	this->recopie(indexes);
 }
@@ -79,7 +78,7 @@ QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
 
 // Sorting the min and the max
 void IndexBounds::sort() {
-	if (max < min && max != FAKE_BOUND) {
+	if (max < min && max != ReynTweets::FAKE_BOUND) {
 		int tmp = max;
 		min = max;
 		max = tmp;

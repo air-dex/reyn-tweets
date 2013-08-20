@@ -26,6 +26,7 @@
 #-----------------------------------------------------------------------------#
 
 SOURCES += \
+	connection/twitter/twitterconstants.cpp \
 	connection/twitter/twitterauthenticator.cpp \
 	connection/twitter/requests/twitterurls.cpp \
 	connection/twitter/requests/twitterrequester.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
 
 
 HEADERS  += \
+	connection/twitter/twitterconstants.hpp \
 	connection/twitter/twitterauthenticator.hpp \
 	connection/twitter/requests/twitterurls.hpp \
 	connection/twitter/requests/twitterrequester.hpp \

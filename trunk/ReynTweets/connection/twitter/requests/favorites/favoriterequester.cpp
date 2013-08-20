@@ -31,8 +31,8 @@ FavoriteRequester::FavoriteRequester(TwitterAuthenticator &authManager,
 									 bool withEntities) :
 	TwitterRequester(LibRT::POST,
 					 favorited ?
-						 TwitterURL::CREATE_FAVORITE_URL
-					   : TwitterURL::DELETE_FAVORITE_URL,
+						 Twitter::CREATE_FAVORITE_URL
+					   : Twitter::DELETE_FAVORITE_URL,
 					 authManager),
 	isFavorited(favorited),
 	tweetID(id),

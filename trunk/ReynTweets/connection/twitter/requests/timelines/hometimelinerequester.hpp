@@ -35,12 +35,12 @@ class HomeTimelineRequester : public TwitterRequester
 
 	public:
 		/// @fn HomeTimelineRequester(TwitterAuthenticator & authManager,
-		///							  qlonglong oldestTweetID = -1,
-		///							  qlonglong youngestTweetID = -1,
+		///							  qlonglong oldestTweetID = Twitter::FAKE_TWEET_ID,
+		///							  qlonglong youngestTweetID = Twitter::FAKE_TWEET_ID,
 		///							  bool userIDonly = false,
 		///							  bool withEntities = false,
 		///							  bool withoutReplies = false,
-		///							  int nbTweets = 20,
+		///							  int nbTweets = Twitter::DEFAULT_TWEETS_COUNT,
 		///							  bool withContributorsDetails = false);
 		/// @brief Constructor
 		/// @param authManager Entity with authentication datas
@@ -52,17 +52,17 @@ class HomeTimelineRequester : public TwitterRequester
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
 		HomeTimelineRequester(TwitterAuthenticator & authManager,
-							  qlonglong oldestTweetID = -1,
-							  qlonglong youngestTweetID = -1,
+							  qlonglong oldestTweetID = Twitter::FAKE_TWEET_ID,
+							  qlonglong youngestTweetID = Twitter::FAKE_TWEET_ID,
 							  bool userIDonly = false,
 							  bool withEntities = false,
 							  bool withoutReplies = false,
-							  int nbTweets = 20,
+							  int nbTweets = Twitter::DEFAULT_TWEETS_COUNT,
 							  bool withContributorsDetails = false);
 
 	protected:
-		/// @brief Number of tweets in the timeline.
-		/// <strong>count &lt; 200</strong>
+		/// @brief Number of tweets in the timeline. <strong>0 &lt; count &lt;
+		/// Twitter::MAX_TWEETS_COUNT</strong>
 		int count;
 
 		/// @brief Minimum tweet ID allowed in the timeline

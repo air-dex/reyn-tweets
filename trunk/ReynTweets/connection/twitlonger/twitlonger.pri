@@ -26,6 +26,7 @@
 #-----------------------------------------------------------------------------#
 
 SOURCES += \
+	connection/twitlonger/twitlongerconstants.cpp \
 	connection/twitlonger/twitlongerauthenticator.cpp \
 	connection/twitlonger/requests/twitlongerurls.cpp \
 	connection/twitlonger/requests/twitlongerrequester.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
 
 
 HEADERS  += \
+	connection/twitlonger/twitlongerconstants.hpp \
 	connection/twitlonger/twitlongerauthenticator.hpp \
 	connection/twitlonger/requests/twitlongerurls.hpp \
 	connection/twitlonger/requests/twitlongerrequester.hpp \

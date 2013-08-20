@@ -36,18 +36,20 @@
 /// the most recent tweet of the timeline to refresh.</li>
 /// <li>However the Twitter API endpoint which retrieves the Home Timeline only
 /// gives a limited number of tweets. It is determined by the "count" parameter
-/// given to the endpoint, which is equal to 20 by default. But the number of
-/// newer tweets can be greater than "count" and in this case the Twitter API
-/// will not give all the tweets. So in this case Reyn Tweets will have to load
-/// the missing tweets. They are called "intermediate tweets" because they are
+/// given to the endpoint, which gets a default value
+/// (Twitter::DEFAULT_TWEETS_COUNT). But the number of newer tweets can be
+/// greater than "count" and in this case the Twitter API will not give all the
+/// tweets. So in this case Reyn Tweets will have to load the missing tweets.
+/// They are called "intermediate tweets" because they are
 /// older than the most recent tweet of the timeline before refreshing and
 /// more recent than the newer tweets already loaded.</li>
 /// </ol>
 ///
 /// In order to avoid reloading tweets, Reyn Tweets tries to load as much tweets
 /// as possible every time it loads tweets in the process. For this, Reyn Tweets
-/// uses the maxmum value allowed for "count", which is 200. But some tweets
-/// might still miss. That's why there is a second step in the process.
+/// uses the maxmum value allowed for "count" (Twitter::MAX_TWEETS_COUNT).
+/// But some tweets might still miss. That's why there is a second step
+/// in the process.
 ///
 /// The result of the process is a QVariantMap with three fields :<ul>
 /// <li><strong>"newer_tweets"</strong> : the timeline with all the newer

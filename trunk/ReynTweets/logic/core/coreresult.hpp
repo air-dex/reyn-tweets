@@ -166,6 +166,44 @@ enum CoreResult {
 	/// be updated with the final tweet ID.
 	MESSAGE_NOT_UPDATED,
 
+	///////////////
+	// Timelines //
+	///////////////
+
+	/// @brief After retrieving a timeline
+	TIMELINE_RETRIEVED,
+
+	/// @brief When getting an empty timeline while trying to retrieve tweets.
+	NO_MORE_TWEETS,
+
+	/// @brief When there is an unexpected tweet in the timeline
+	WRONG_TIMELINE,
+
+	////////////
+	// Tweets //
+	////////////
+
+	/// @brief After deleting a tweet
+	TWEET_DELETED,
+
+	/// @brief After updating a tweet
+	TWEET_POSTED,
+
+	/// @brief After retweeting a tweet
+	TWEET_RETWEETED,
+
+	/// @brief After retrieving a tweet
+	TWEET_RETRIEVED,
+
+	/// @brief If a tweet cannot be deleted
+	TWEET_UNDESTROYABLE,
+
+	///////////
+	// Users //
+	///////////
+
+	/// @brief The user was wrong
+	WRONG_USER,
 
 	//////////
 	// Misc //
@@ -181,28 +219,7 @@ enum CoreResult {
 	ALLOW_SUCCESSFUL,
 
 	/// @brief FavoriteProcess ended successfully
-	FAVORITE_SUCCESSFUL,
-
-	/// @brief After retrieving a timeline
-	TIMELINE_RETRIEVED,
-
-	/// @brief After deleting a tweet
-	TWEET_DELETED,
-
-	/// @brief After updating a tweet
-	TWEET_POSTED,
-
-	/// @brief After retweeting a tweet
-	TWEET_RETWEETED,
-
-	/// @brief After retrieving a tweet
-	TWEET_RETRIEVED,
-
-	/// @brief The user was wrong
-	WRONG_USER,
-
-	/// @brief If a tweet cannot be deleted
-	TWEET_UNDESTROYABLE
+	FAVORITE_SUCCESSFUL
 };
 
 /// @brief Entity matching HTTP Return codes and CoreResult.

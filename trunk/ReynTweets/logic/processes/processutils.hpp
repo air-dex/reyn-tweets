@@ -76,7 +76,7 @@ namespace ProcessUtils {
 	/// @fn void treatQjsonParsingResult(ResponseInfos parsingErrors,
 	///									 QString &errorMsg,
 	///									 CoreResult &issue);
-	/// @brief Default treatment when JSON results cannot be parsed by QJSON.
+	/// @brief Default treatment when JSON results cannot be parsed.
 	/// @param parsingErrors Errors that occured while parsing results
 	/// @param errorMsg Error message of the process
 	/// @param issue Reference on the issue of the request

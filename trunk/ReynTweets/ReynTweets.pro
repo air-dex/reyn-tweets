@@ -137,6 +137,9 @@ SOURCES += \
 	logic/processes/deletetweetprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
 	logic/processes/gettweetprocess.cpp \
+	logic/processes/refreshtimelineprocess.cpp \
+	logic/processes/refreshhometimelineprocess.cpp \
+	logic/processes/refreshmentionstimelineprocess.cpp \
 	logic/processes/launchingprocess.cpp \
 	logic/processes/loadinghometimelineprocess.cpp \
 	logic/processes/loadmentionstimelineprocess.cpp \
@@ -271,6 +274,9 @@ HEADERS  += \
 	logic/processes/deletetweetprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
 	logic/processes/gettweetprocess.hpp \
+	logic/processes/refreshtimelineprocess.hpp \
+	logic/processes/refreshhometimelineprocess.hpp \
+	logic/processes/refreshmentionstimelineprocess.hpp \
 	logic/processes/launchingprocess.hpp \
 	logic/processes/loadinghometimelineprocess.hpp \
 	logic/processes/loadmentionstimelineprocess.hpp \

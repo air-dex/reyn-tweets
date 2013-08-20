@@ -32,6 +32,8 @@
 #include "loadmentionstimelineprocess.hpp"
 #include "posttweetprocess.hpp"
 #include "postviatwitlongerprocess.hpp"
+#include "refreshhometimelineprocess.hpp"
+#include "refreshmentionstimelineprocess.hpp"
 #include "retweetprocess.hpp"
 #include "oauth/requesttokensprocess.hpp"
 #include "oauth/accesstokensprocess.hpp"

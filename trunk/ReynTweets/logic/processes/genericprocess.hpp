@@ -60,9 +60,6 @@ class GenericProcess : public QObject
 		/// @brief UUID of the process
 		QUuid processUuid;
 
-		/// @brief Result of the process
-		ProcessResult processResult;
-
 		/// @fn virtual void endProcess(CoreResult issue,
 		///								QVariant result,
 		///								QString errorMessage);

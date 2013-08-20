@@ -197,6 +197,9 @@ class ReynTwitterCalls : public GenericCalls
 		// Timelines //
 		///////////////
 
+		/// @brief Maximum number of tweets that can be retrieved per call (200).
+		static int MAX_TWEETS_COUNT;
+
 		/// @fn void retrieveHomeTimeline(qlonglong sinceID = -1,
 		///								  qlonglong maxID = -1,
 		///								  bool trimUser = false,

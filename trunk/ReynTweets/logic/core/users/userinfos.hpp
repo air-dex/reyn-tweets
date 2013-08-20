@@ -205,43 +205,21 @@ class UserInfos : public JsonObject
 
 		// entities
 		/// @property entities
-		/// @brief User entities (QVariant form)
+		/// @brief User entities
 		///
 		/// userEntities is the attribute beneath the property.
-		Q_PROPERTY(QVariantMap entities
-				   READ getEntitiesProperty
+		Q_PROPERTY(UserEntities * entities
+				   READ getEntitiesPtr
 				   WRITE setEntities
 				   NOTIFY entitiesChanged)
 
 		/// @brief Name of the property entities.
 		static QString ENTITIES_PN;
 
-		/// @fn QVariantMap getEntitiesProperty();
-		/// @brief Reading entities.
-		/// @return userEntities.toVariant();
-		QVariantMap getEntitiesProperty();
-
-		/// @fn void setEntities(QVariantMap newValue);
-		/// @brief Writing entities.
-		/// @param newValue Variant list containing new values for userEntities
-		void setEntities(QVariantMap newValue);
-
-		/// @property entities_ent
-		/// @brief User entities
-		///
-		/// userEntities is the attribute beneath the property.
-		Q_PROPERTY(UserEntities * entities_ent
-				   READ getEntitiesptr
-				   WRITE setEntities
-				   NOTIFY entitiesChanged)
-
-		/// @brief Name of the property entities_ent.
-		static QString ENTITIES_ENT_PN;
-
-		/// @fn UserEntities * getEntitiesptr();
+		/// @fn UserEntities * getEntitiesPtr();
 		/// @brief Reading entities.
 		/// @return &userEntities
-		UserEntities * getEntitiesptr();
+		UserEntities * getEntitiesPtr();
 
 		/// @fn void setEntities(UserEntities * newValue);
 		/// @brief Writing entities.

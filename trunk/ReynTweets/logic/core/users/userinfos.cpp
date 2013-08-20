@@ -391,23 +391,12 @@ void UserInfos::setDescription(QString newDescription) {
 // entities
 QString UserInfos::ENTITIES_PN = "entities";
 
-QString UserInfos::ENTITIES_ENT_PN = "entities_ent";
-
 UserEntities UserInfos::getEntities() {
 	return userEntities;
 }
 
-QVariantMap UserInfos::getEntitiesProperty() {
-	return userEntities.toVariant().toVariantMap();
-}
-
-UserEntities * UserInfos::getEntitiesptr() {
+UserEntities * UserInfos::getEntitiesPtr() {
 	return &userEntities;
-}
-
-void UserInfos::setEntities(QVariantMap newValue) {
-	userEntities.fillWithVariant(QJsonObject::fromVariantMap(newValue));
-	emit entitiesChanged();
 }
 
 void UserInfos::setEntities(UserEntities * newValue) {

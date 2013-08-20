@@ -115,26 +115,12 @@ QJsonObject User::toVariant() const {
 // status
 QString User::STATUS_PN = "status";
 
-QString User::LAST_STATUS_PN = "last_status";
-
 Tweet User::getStatus() {
 	return lastTweet;
 }
 
-QVariantMap User::getStatusProperty() {
-	// Return an empty QVariantMap for a default tweet to avoid stack problems
-	return lastTweet.getIDstr() == "-1" ?
-				QVariantMap()
-			  : lastTweet.toVariant().toVariantMap();
-}
-
 Tweet * User::getStatusPtr() {
 	return &lastTweet;
-}
-
-void User::setStatus(QVariantMap statusMap) {
-	lastTweet.fillWithVariant(QJsonObject::fromVariantMap(statusMap));
-	emit statusChanged();
 }
 
 void User::setStatus(Tweet newLastTweet) {

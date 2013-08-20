@@ -1,12 +1,10 @@
 /// @file userinfos.hpp
 /// @brief Header of UserInfos
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -26,18 +24,20 @@
 #ifndef USERINFOS_HPP
 #define USERINFOS_HPP
 
-#include <QObject>
 #include <QString>
 #include <QColor>
 #include "../../tools/reyntweetsdatetime.hpp"
-#include "../reyntweetsmappable.hpp"
+#include "../json/jsonobject.hpp"
+#include "userentities.hpp"
 
 /// @class UserInfos
 /// @brief Twitter profile without its last tweet. This class was introduced
 /// in order to avoid cyclic dependencies between the classes User and Tweet.
-class UserInfos : public ReynTweetsMappable
+/// @see https://dev.twitter.com/docs/platform-objects/users
+class UserInfos : public JsonObject
 {
 	Q_OBJECT
+
 	//////////////////////////////
 	// Serialization management //
 	//////////////////////////////
@@ -74,6 +74,23 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	protected:
 		/// @fn void recopie(const UserInfos & user);
 		/// @brief Copy of a User
@@ -104,151 +121,29 @@ class UserInfos : public ReynTweetsMappable
 	protected:
 		// contributors_enabled
 		/// @property contributors_enabled
-		/// @brief Serializable form of contributorsEnabled
+		/// @brief Is the "contributor mode" enabled for the user account ?
+		///
+		/// contributorsEnabled is the attribute beneath the property.
 		Q_PROPERTY(bool contributors_enabled
 				   READ isContributorsEnabled
 				   WRITE setContributorsEnabled
 				   NOTIFY contributorsEnabledChanged)
 
-		// lang
-		/// @property lang
-		/// @brief Serializable form of language
-		Q_PROPERTY(QString lang
-				   READ getLang
-				   WRITE setLang
-				   NOTIFY langChanged)
-
-		// profile_background_image_url
-		/// @property profile_background_image_url
-		/// @brief Serializable form of backgroundURL
-		Q_PROPERTY(QString profile_background_image_url
-				   READ getProfileBackgroundImageURL
-				   WRITE setProfileBackgroundImageURL
-				   NOTIFY profileBackgroundImageURLChanged)
-
-		// protected
-		/// @property protected
-		/// @brief Serializable form of protectedAccount
-		Q_PROPERTY(bool protected
-				   READ isProtected
-				   WRITE setProtected
-				   NOTIFY protectedChanged)
-
-		// profile_link_color
-		/// @property profile_link_color
-		/// @brief Serializable form of linkColor
-		Q_PROPERTY(QString profile_link_color
-				   READ getProfileLinkColorProperty
-				   WRITE setProfileLinkColor
-				   NOTIFY profileLinkColorChanged)
-
-		/// @fn QString getProfileLinkColorProperty();
-		/// @brief Reading profile_link_color
-		/// @return The value of linkColor
-		QString getProfileLinkColorProperty();
-
-		/// @fn void setProfileLinkColor(QString newLinkColor);
-		/// @brief Writing profile_link_color
-		/// @param newLinkColor The new value of linkColor
-		void setProfileLinkColor(QString newLinkColor);
-
-		// url
-		/// @property url
-		/// @brief Serializable form of userURL
-		Q_PROPERTY(QString url
-				   READ getURL
-				   WRITE setURL
-				   NOTIFY urlChanged)
-
-		// name
-		/// @property name
-		/// @brief Serializable form of userName
-		Q_PROPERTY(QString name
-				   READ getName
-				   WRITE setName
-				   NOTIFY nameChanged)
-
-		// listed_count
-		/// @property listed_count
-		/// @brief Serializable form of listedCount
-		Q_PROPERTY(int listed_count
-				   READ getListedCount
-				   WRITE setListedCount
-				   NOTIFY listedCountChanged)
-
-		// utc_offset
-		/// @property utc_offset
-		/// @brief Serializable form of timeZoneOffset
-		Q_PROPERTY(int utc_offset
-				   READ getUTCoffset
-				   WRITE setUTCoffset
-				   NOTIFY utcOffsetChanged)
-
-		// profile_background_color
-		/// @property profile_background_color
-		/// @brief Serializable form of backgroundColor
-		Q_PROPERTY(QString profile_background_color
-				   READ getProfileBackgroundColorProperty
-				   WRITE setProfileBackgroundColor
-				   NOTIFY profileBackgroundColorChanged)
-
-		/// @fn QString getProfileBackgroundColorProperty();
-		/// @brief Reading profile_background_color
-		/// @return The value of backgroundColor
-		QString getProfileBackgroundColorProperty();
-
-		/// @fn void setProfileBackgroundColor(QString newBackgroundColor);
-		/// @brief Writing profile_background_color
-		/// @param newBackgroundColor The new value of profile_background_color
-		void setProfileBackgroundColor(QString newBackgroundColor);
-
-		// followers_count
-		/// @property followers_count
-		/// @brief Serializable form of followersCount
-		Q_PROPERTY(int followers_count
-				   READ getFollowersCount
-				   WRITE setFollowersCount
-				   NOTIFY followersCountChanged)
-
-		// profile_image_url
-		/// @property profile_image_url
-		/// @brief Serializable form of avatarURL
-		Q_PROPERTY(QString profile_image_url
-				   READ getProfileImageURL
-				   WRITE setProfileImageURL
-				   NOTIFY profileImageURLChanged)
-
-		// description
-		/// @property description
-		/// @brief Serializable form of userDescription
-		Q_PROPERTY(QString description
-				   READ getDescription
-				   WRITE setDescription
-				   NOTIFY descriptionChanged)
-
-		// profile_background_tile
-		/// @property profile_background_tile
-		/// @brief Serializable form of backgroundTile
-		Q_PROPERTY(bool profile_background_tile
-				   READ isProfileBackgroundTile
-				   WRITE setProfileBackgroundTile
-				   NOTIFY profileBackgroundTileChanged)
-
-		// statuses_count
-		/// @property statuses_count
-		/// @brief Serializable form of tweetsCount
-		Q_PROPERTY(int statuses_count
-				   READ getStatusesCount
-				   WRITE setStatusesCount
-				   NOTIFY statusesCountChanged)
+		/// @brief Name of the property contributors_enabled.
+		static QString CONTRIBUTORS_ENABLED_PN;
 
 		// created_at
 		/// @property created_at
-		/// @brief Serializable form of createdAt
+		/// @brief Date when the user joined Twitter.
+		///
+		/// createdAt is the attribute beneath the property.
 		Q_PROPERTY(QString created_at
 				   READ getCreatedAtProperty
 				   WRITE setCreatedAt
 				   NOTIFY createdAtChanged)
+
+		/// @brief Name of the property created_at.
+		static QString CREATED_AT_PN;
 
 		/// @fn QString getCreatedAtProperty();
 		/// @brief Reading created_at
@@ -260,63 +155,413 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newDate The new value of createdAt
 		void setCreatedAt(QString newDate);
 
-		// profile_sidebar_fill_color
-		/// @property profile_sidebar_fill_color
-		/// @brief Serializable form of sidebarColor
-		Q_PROPERTY(QString profile_sidebar_fill_color
-				   READ getProfileSidebarFillColorProperty
-				   WRITE setProfileSidebarFillColor
-				   NOTIFY profileSidebarFillColorChanged)
+		// default_profile
+		/// @property default_profile
+		/// @brief Is the user profile the profile by default (eggshell,
+		/// blue links, background with clouds...) ?
+		///
+		/// defaultProfile is the attribute beneath the property.
+		Q_PROPERTY(bool default_profile
+				   READ isDefaultProfile
+				   WRITE setDefaultProfile
+				   NOTIFY defaultProfileChanged)
 
-		/// @fn QString getProfileSidebarFillColorProperty();
-		/// @brief Reading profile_sidebar_fill_color
-		/// @return The value of sidebarColor
-		QString getProfileSidebarFillColorProperty();
-
-		/// @fn void setProfileSidebarFillColor(QString newSidebarColor);
-		/// @brief Writing profile_sidebar_fill_color
-		/// @param newSidebarColor The new value of sidebarColor
-		void setProfileSidebarFillColor(QString newSidebarColor);
-
-		// screen_name
-		/// @property screen_name
-		/// @brief Serializable form of screenName
-		Q_PROPERTY(QString screen_name
-				   READ getScreenName
-				   WRITE setScreenName
-				   NOTIFY screenNameChanged)
-
-		// geo_enabled
-		/// @property geo_enabled
-		/// @brief Serializable form of geoEnabled
-		Q_PROPERTY(bool geo_enabled
-				   READ isGeoEnabled
-				   WRITE setGeoEnabled
-				   NOTIFY geoEnabledChanged)
+		/// @brief Name of the property default_profile.
+		static QString DEFAULT_PROFILE_PN;
 
 		// default_profile_image
 		/// @property default_profile_image
-		/// @brief Serializable form of defaultProfileImage
+		/// @brief Is the user profile picture the default one (the eggshell) ?
+		///
+		/// defaultProfileImage is the attribute beneath the property.
 		Q_PROPERTY(bool default_profile_image
 				   READ isDefaultProfileImage
 				   WRITE setDefaultProfileImage
 				   NOTIFY defaultProfileImageChanged)
 
+		/// @brief Name of the property default_profile_image.
+		static QString DEFAULT_PROFILE_IMAGE_PN;
+
+		// description
+		/// @property description
+		/// @brief Description of the user
+		///
+		/// userDescription is the attribute beneath the property.
+		Q_PROPERTY(QString description
+				   READ getDescription
+				   WRITE setDescription
+				   NOTIFY descriptionChanged)
+
+		/// @brief Name of the property description.
+		static QString DESCRIPTION_PN;
+
+		// entities
+		/// @property entities
+		/// @brief User entities (QVariant form)
+		///
+		/// userEntities is the attribute beneath the property.
+		Q_PROPERTY(QVariantMap entities
+				   READ getEntitiesProperty
+				   WRITE setEntities
+				   NOTIFY entitiesChanged)
+
+		/// @brief Name of the property entities.
+		static QString ENTITIES_PN;
+
+		/// @fn QVariantMap getEntitiesProperty();
+		/// @brief Reading entities.
+		/// @return userEntities.toVariant();
+		QVariantMap getEntitiesProperty();
+
+		/// @fn void setEntities(QVariantMap newValue);
+		/// @brief Writing entities.
+		/// @param newValue Variant list containing new values for userEntities
+		void setEntities(QVariantMap newValue);
+
+		/// @property entities_ent
+		/// @brief User entities
+		///
+		/// userEntities is the attribute beneath the property.
+		Q_PROPERTY(UserEntities * entities_ent
+				   READ getEntitiesptr
+				   WRITE setEntities
+				   NOTIFY entitiesChanged)
+
+		/// @brief Name of the property entities_ent.
+		static QString ENTITIES_ENT_PN;
+
+		/// @fn UserEntities * getEntitiesptr();
+		/// @brief Reading entities.
+		/// @return &userEntities
+		UserEntities * getEntitiesptr();
+
+		/// @fn void setEntities(UserEntities * newValue);
+		/// @brief Writing entities.
+		/// @param newValue New value for userEntities
+		void setEntities(UserEntities * newValue);
+
+		// favourites_count
+		/// @property favourites_count
+		/// @brief Number of favorites
+		///
+		/// favouritesCount is the attribute beneath the property.
+		Q_PROPERTY(int favourites_count
+				   READ getFavouritesCount
+				   WRITE setFavouritesCount
+				   NOTIFY favouritesCountChanged)
+
+		/// @brief Name of the property favourites_count.
+		static QString FAVOURITES_COUNT_PN;
+
+		// follow_request_sent
+		/// @property follow_request_sent
+		/// @brief If the user account is protected, indicates that the user
+		/// received a request to follow him.
+		///
+		/// followRequestSent is the attribute beneath the property.
+		Q_PROPERTY(bool follow_request_sent
+				   READ isFollowRequestSent
+				   WRITE setFollowRequestSent
+				   NOTIFY followRequestSentChanged)
+
+		/// @brief Name of the property follow_request_sent.
+		static QString FOLLOW_REQUEST_SENT_PN;
+
+		// following
+		/// @property following
+		/// @brief Does the authenticated user follows the user ?
+		///
+		/// followedByMe is the attribute beneath the property.
+		Q_PROPERTY(bool following
+				   READ isFollowedByMe
+				   WRITE setFollowing
+				   NOTIFY followingChanged)
+
+		/// @brief Name of the property following.
+		static QString FOLLOWING_PN;
+
+		// followers_count
+		/// @property followers_count
+		/// @brief Number of followers
+		///
+		/// followersCount is the attribute beneath the property.
+		Q_PROPERTY(int followers_count
+				   READ getFollowersCount
+				   WRITE setFollowersCount
+				   NOTIFY followersCountChanged)
+
+		/// @brief Name of the property .
+		static QString FOLLOWERS_COUNT_PN;
+
 		// friends_count
 		/// @property friends_count
-		/// @brief Serializable form of friendsCount
+		/// @brief Number of friends (people followed by the user).
+		///
+		/// friendsCount is the attribute beneath the property.
 		Q_PROPERTY(int friends_count
 				   READ getFriendsCount
 				   WRITE setFriendsCount
 				   NOTIFY friendsCountChanged)
 
+		/// @brief Name of the property friends_count.
+		static QString FRIENDS_COUNT_PN;
+
+		// geo_enabled
+		/// @property geo_enabled
+		/// @brief Indicates if it is possible to geotag user's tweets.
+		///
+		/// geoEnabled is the attribute beneath the property.
+		Q_PROPERTY(bool geo_enabled
+				   READ isGeoEnabled
+				   WRITE setGeoEnabled
+				   NOTIFY geoEnabledChanged)
+
+		/// @brief Name of the property geo_enabled.
+		static QString GEO_ENABLED_PN;
+
+		// id
+		/// @property id
+		/// @brief User ID
+		///
+		/// userID is the attribute beneath the property.
+		Q_PROPERTY(qlonglong id
+				   READ getID
+				   WRITE setID
+				   NOTIFY idChanged)
+
+		/// @brief Name of the property id.
+		static QString ID_PN;
+
+		// id_str
+		/// @property id_str
+		/// @brief User ID (String form)
+		///
+		/// userIDstr is the attribute beneath the property.
+		Q_PROPERTY(QString id_str
+				   READ getIDstr
+				   WRITE setIDstr
+				   NOTIFY idChanged)
+
+		/// @brief Name of the property id_str.
+		static QString ID_STR_PN;
+
+		// is_translator
+		/// @property is_translator
+		/// @brief Does the user help translating Twitter ?
+		///
+		/// twitterTranslator is the attribute beneath the property.
+		Q_PROPERTY(bool is_translator
+				   READ isTranslator
+				   WRITE setTranslator
+				   NOTIFY isTranslatorChanged)
+
+		/// @brief Name of the property is_translator.
+		static QString IS_TRANSLATOR_PN;
+
+		// lang
+		/// @property lang
+		/// @brief User interface language
+		///
+		/// language is the attribute beneath the property.
+		Q_PROPERTY(QString lang
+				   READ getLang
+				   WRITE setLang
+				   NOTIFY langChanged)
+
+		/// @brief Name of the property lang.
+		static QString LANG_PN;
+
+		// listed_count
+		/// @property listed_count
+		/// @brief Number of lists where the user is a member.
+		///
+		/// listedCount is the attribute beneath the property.
+		Q_PROPERTY(int listed_count
+				   READ getListedCount
+				   WRITE setListedCount
+				   NOTIFY listedCountChanged)
+
+		/// @brief Name of the property listed_count.
+		static QString LISTED_COUNT_PN;
+
+		// location
+		/// @property location
+		/// @brief User-defined location of itself.
+		///
+		/// userLocation is the attribute beneath the property.
+		Q_PROPERTY(QString location
+				   READ getLocation
+				   WRITE setLocation
+				   NOTIFY locationChanged)
+
+		/// @brief Name of the property location.
+		static QString LOCATION_PN;
+
+		// name
+		/// @property name
+		/// @brief Name given by the user. It is different from the screen name.
+		///
+		/// userName is the attribute beneath the property.
+		Q_PROPERTY(QString name
+				   READ getName
+				   WRITE setName
+				   NOTIFY nameChanged)
+
+		/// @brief Name of the property name.
+		static QString NAME_PN;
+
+		// notifications
+		/// @property notifications
+		/// @brief <strong>Deprecated by Twitter</strong>.
+		/// Does the authenticated user wants to receive tweets by SMS ?
+		///
+		/// notificationsEnabled is the attribute beneath the property.
+		Q_PROPERTY(bool notifications
+				   READ isNotifications
+				   WRITE setNotifications
+				   NOTIFY notificationsChanged)
+
+		/// @brief Name of the property notifications.
+		static QString NOTIFICATIONS_PN;
+
+		// profile_background_color
+		/// @property profile_background_color
+		/// @brief Background color chosen by the user
+		///
+		/// backgroundColor is the attribute beneath the property.
+		Q_PROPERTY(QString profile_background_color
+				   READ getProfileBackgroundColorProperty
+				   WRITE setProfileBackgroundColor
+				   NOTIFY profileBackgroundColorChanged)
+
+		/// @brief Name of the property profile_background_color.
+		static QString PROFILE_BACKGROUND_COLOR_PN;
+
+		/// @fn QString getProfileBackgroundColorProperty();
+		/// @brief Reading profile_background_color
+		/// @return The value of backgroundColor
+		QString getProfileBackgroundColorProperty();
+
+		/// @fn void setProfileBackgroundColor(QString newBackgroundColor);
+		/// @brief Writing profile_background_color
+		/// @param newBackgroundColor The new value of profile_background_color
+		void setProfileBackgroundColor(QString newBackgroundColor);
+
+
+		// profile_background_image_url
+		/// @property profile_background_image_url
+		/// @brief User's background image URL.
+		///
+		/// backgroundURL is the attribute beneath the property.
+		Q_PROPERTY(QString profile_background_image_url
+				   READ getProfileBackgroundImageURL
+				   WRITE setProfileBackgroundImageURL
+				   NOTIFY profileBackgroundImageURLChanged)
+
+		/// @brief Name of the property profile_background_image_url.
+		static QString PROFILE_BACKGROUND_IMAGE_URL_PN;
+
+		// profile_background_image_url_https
+		/// @property profile_background_image_url_https
+		/// @brief Background picture URL (HTTPS version)
+		///
+		/// backgroundURLhttps is the attribute beneath the property.
+		Q_PROPERTY(QString profile_background_image_url_https
+				   READ getProfileBackgroundImageURLhttps
+				   WRITE setProfileBackgroundImageURLhttps
+				   NOTIFY profileBackgroundImageURLhttpsChanged)
+
+		/// @brief Name of the property profile_background_image_url_https.
+		static QString PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN;
+
+		// profile_background_tile
+		/// @property profile_background_tile
+		/// @brief Is the user's background tiled ?
+		///
+		/// backgroundTile is the attribute beneath the property.
+		Q_PROPERTY(bool profile_background_tile
+				   READ isProfileBackgroundTile
+				   WRITE setProfileBackgroundTile
+				   NOTIFY profileBackgroundTileChanged)
+
+		/// @brief Name of the property profile_background_tile.
+		static QString PROFILE_BACKGROUND_TILE_PN;
+
+		// profile_banner_url
+		/// @property profile_banner_url
+		/// @brief Banner URL (HTTPS form)
+		///
+		/// bannerURL is the attribute beneath the property.
+		Q_PROPERTY(QString profile_banner_url
+				   READ getProfileBannerURL
+				   WRITE setProfileBannerURL
+				   NOTIFY profileBannerURLChanged)
+
+		/// @brief Name of the property profile_banner_url.
+		static QString PROFILE_BANNER_URL_PN;
+
+
+		// profile_image_url
+		/// @property profile_image_url
+		/// @brief Profile picture URL
+		///
+		/// avatarURL is the attribute beneath the property.
+		Q_PROPERTY(QString profile_image_url
+				   READ getProfileImageURL
+				   WRITE setProfileImageURL
+				   NOTIFY profileImageURLChanged)
+
+		/// @brief Name of the property profile_image_url.
+		static QString PROFILE_IMAGE_URL_PN;
+
+		// profile_image_url_https
+		/// @property profile_image_url_https
+		/// @brief User's profile picture URL (HTTPS form)
+		///
+		/// avatarURLhttps is the attribute beneath the property.
+		Q_PROPERTY(QString profile_image_url_https
+				   READ getProfileImageURLhttps
+				   WRITE setProfileImageURLhttps
+				   NOTIFY profileImageURLhttpsChanged)
+
+		/// @brief Name of the property profile_image_url_https.
+		static QString PROFILE_IMAGE_URL_HTTPS_PN;
+
+		// profile_link_color
+		/// @property profile_link_color
+		/// @brief Color of links chosen by the user
+		///
+		/// linkColor is the attribute beneath the property.
+		Q_PROPERTY(QString profile_link_color
+				   READ getProfileLinkColorProperty
+				   WRITE setProfileLinkColor
+				   NOTIFY profileLinkColorChanged)
+
+		/// @brief Name of the property profile_link_color.
+		static QString PROFILE_LINK_COLOR_PN;
+
+		/// @fn QString getProfileLinkColorProperty();
+		/// @brief Reading profile_link_color
+		/// @return The value of linkColor
+		QString getProfileLinkColorProperty();
+
+		/// @fn void setProfileLinkColor(QString newLinkColor);
+		/// @brief Writing profile_link_color
+		/// @param newLinkColor The new value of linkColor
+		void setProfileLinkColor(QString newLinkColor);
+
 		// profile_sidebar_border_color
 		/// @property profile_sidebar_border_color
-		/// @brief Serializable form of sidebarBorderColor
+		/// @brief Color of user's sidebar border.
+		///
+		/// sidebarBorderColor is the attribute beneath the property.
 		Q_PROPERTY(QString profile_sidebar_border_color
 				   READ getProfileSidebarBorderColorProperty
 				   WRITE setProfileSidebarBorderColor
 				   NOTIFY profileSidebarBorderColorChanged)
+
+		/// @brief Name of the property profile_sidebar_border_color.
+		static QString PROFILE_SIDEBAR_BORDER_COLOR_PN;
 
 		/// @fn QString getProfileSidebarBorderColorProperty();
 		/// @brief Reading profile_sidebar_border_color
@@ -328,117 +573,41 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newSidebarBorderColor The new value of sidebarBorderColor
 		void setProfileSidebarBorderColor(QString newSidebarBorderColor);
 
-		// id_str
-		/// @property id_str
-		/// @brief Serializable form of userIDstr
-		Q_PROPERTY(QString id_str
-				   READ getIDstr
-				   WRITE setIDstr
-				   NOTIFY idChanged)
+		// profile_sidebar_fill_color
+		/// @property profile_sidebar_fill_color
+		/// @brief Color of user's sidebar background.
+		///
+		/// sidebarColor is the attribute beneath the property.
+		Q_PROPERTY(QString profile_sidebar_fill_color
+				   READ getProfileSidebarFillColorProperty
+				   WRITE setProfileSidebarFillColor
+				   NOTIFY profileSidebarFillColorChanged)
 
-		// show_all_inline_media
-		/// @property show_all_inline_media
-		/// @brief Serializable form of showAllInlineMedia
-		Q_PROPERTY(bool show_all_inline_media
-				   READ isShowAllInlineMedia
-				   WRITE setShowAllInlineMedia
-				   NOTIFY showAllInlineMediaChanged)
+		/// @brief Name of the property profile_sidebar_fill_color.
+		static QString PROFILE_SIDEBAR_FILL_COLOR_PN;
 
-		// follow_request_sent
-		/// @property follow_request_sent
-		/// @brief Serializable form of followRequestSent
-		Q_PROPERTY(bool follow_request_sent
-				   READ isFollowRequestSent
-				   WRITE setFollowRequestSent
-				   NOTIFY followRequestSentChanged)
+		/// @fn QString getProfileSidebarFillColorProperty();
+		/// @brief Reading profile_sidebar_fill_color
+		/// @return The value of sidebarColor
+		QString getProfileSidebarFillColorProperty();
 
-		// profile_background_image_url_https
-		/// @property profile_background_image_url_https
-		/// @brief Serializable form of backgroundURLhttps
-		Q_PROPERTY(QString profile_background_image_url_https
-				   READ getProfileBackgroundImageURLhttps
-				   WRITE setProfileBackgroundImageURLhttps
-				   NOTIFY profileBackgroundImageURLhttpsChanged)
-
-		// is_translator
-		/// @property is_translator
-		/// @brief Serializable form of isTranslator
-		Q_PROPERTY(bool is_translator
-				   READ isTranslator
-				   WRITE setTranslator
-				   NOTIFY isTranslatorChanged)
-
-		// default_profile
-		/// @property default_profile
-		/// @brief Serializable form of defaultProfile
-		Q_PROPERTY(bool default_profile
-				   READ isDefaultProfile
-				   WRITE setDefaultProfile
-				   NOTIFY defaultProfileChanged)
-
-		// notifications
-		/// @property notifications
-		/// @brief Serializable form of notificationsEnabled
-		Q_PROPERTY(bool notifications
-				   READ isNotifications
-				   WRITE setNotifications
-				   NOTIFY notificationsChanged)
-
-		// profile_use_background_image
-		/// @property profile_use_background_image
-		/// @brief Serializable form of useBackgroundImage
-		Q_PROPERTY(bool profile_use_background_image
-				   READ isProfileUseBackgroundImage
-				   WRITE setProfileUseBackgroundImage
-				   NOTIFY profileUseBackgroundImageChanged)
-
-		// profile_image_url_https
-		/// @property profile_image_url_https
-		/// @brief Serializable form of avatarURLhttps
-		Q_PROPERTY(QString profile_image_url_https
-				   READ getProfileImageURLhttps
-				   WRITE setProfileImageURLhttps
-				   NOTIFY profileImageURLhttpsChanged)
-
-		// id
-		/// @property id
-		/// @brief Serializable form of userID
-		Q_PROPERTY(qlonglong id
-				   READ getID
-				   WRITE setID
-				   NOTIFY idChanged)
-
-		// verified
-		/// @property verified
-		/// @brief Serializable form of verifiedAccount
-		Q_PROPERTY(bool verified
-				   READ isVerified
-				   WRITE setVerified
-				   NOTIFY verifiedChanged)
-
-		// time_zone
-		/// @property time_zone
-		/// @brief Serializable form of timeZone
-		Q_PROPERTY(QString time_zone
-				   READ getTimeZone
-				   WRITE setTimeZone
-				   NOTIFY timeZoneChanged)
-
-		// favourites_count
-		/// @property favourites_count
-		/// @brief Serializable form of favouritesCount
-		Q_PROPERTY(int favourites_count
-				   READ getFavouritesCount
-				   WRITE setFavouritesCount
-				   NOTIFY favouritesCountChanged)
+		/// @fn void setProfileSidebarFillColor(QString newSidebarColor);
+		/// @brief Writing profile_sidebar_fill_color
+		/// @param newSidebarColor The new value of sidebarColor
+		void setProfileSidebarFillColor(QString newSidebarColor);
 
 		// profile_text_color
 		/// @property profile_text_color
-		/// @brief Serializable form of textColor
+		/// @brief Color of text chosen by the user
+		///
+		/// textColor is the attribute beneath the property.
 		Q_PROPERTY(QString profile_text_color
 				   READ getProfileTextColorProperty
 				   WRITE setProfileTextColor
 				   NOTIFY profileTextColorChanged)
+
+		/// @brief Name of the property profile_text_color.
+		static QString PROFILE_TEXT_COLOR_PN;
 
 		/// @fn QString getProfileTextColorProperty();
 		/// @brief Reading profile_text_color
@@ -450,21 +619,148 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTextColor The new value of textColor
 		void setProfileTextColor(QString newTextColor);
 
-		// following
-		/// @property following
-		/// @brief Serializable form of followedByMe
-		Q_PROPERTY(bool following
-				   READ isFollowedByMe
-				   WRITE setFollowing
-				   NOTIFY followingChanged)
+		// profile_use_background_image
+		/// @property profile_use_background_image
+		/// @brief Does the user use a background image ?
+		///
+		/// useBackgroundImage is the attribute beneath the property.
+		Q_PROPERTY(bool profile_use_background_image
+				   READ isProfileUseBackgroundImage
+				   WRITE setProfileUseBackgroundImage
+				   NOTIFY profileUseBackgroundImageChanged)
 
-		// location
-		/// @property location
-		/// @brief Serializable form of userLocation
-		Q_PROPERTY(QString location
-				   READ getLocation
-				   WRITE setLocation
-				   NOTIFY locationChanged)
+		/// @brief Name of the property profile_use_background_image.
+		static QString PROFILE_USE_BACKGROUND_IMAGE_PN;
+
+		// protected
+		/// @property protected
+		/// @brief Is this account a protected account ?
+		///
+		/// protectedAccount is the attribute beneath the property.
+		Q_PROPERTY(bool protected
+				   READ isProtected
+				   WRITE setProtected
+				   NOTIFY protectedChanged)
+
+		/// @brief Name of the property protected.
+		static QString PROTECTED_PN;
+
+		// screen_name
+		/// @property screen_name
+		/// @brief User's screen name : @screen_name
+		///
+		/// screenName is the attribute beneath the property.
+		Q_PROPERTY(QString screen_name
+				   READ getScreenName
+				   WRITE setScreenName
+				   NOTIFY screenNameChanged)
+
+		/// @brief Name of the property screen_name.
+		static QString SCREEN_NAME_PN;
+
+		// show_all_inline_media
+		/// @property show_all_inline_media
+		/// @brief Does the user want to see inline media. Quite deprecated.
+		///
+		/// showAllInlineMedia is the attribute beneath the property.
+		Q_PROPERTY(bool show_all_inline_media
+				   READ isShowAllInlineMedia
+				   WRITE setShowAllInlineMedia
+				   NOTIFY showAllInlineMediaChanged)
+
+		/// @brief Name of the property show_all_inline_media.
+		static QString SHOW_ALL_INLINE_MEDIA_PN;
+
+		// statuses_count
+		/// @property statuses_count
+		/// @brief Number of tweets already written by the user
+		///
+		/// tweetsCount is the attribute beneath the property.
+		Q_PROPERTY(int statuses_count
+				   READ getStatusesCount
+				   WRITE setStatusesCount
+				   NOTIFY statusesCountChanged)
+
+		/// @brief Name of the property statuses_count.
+		static QString STATUSES_COUNT_PN;
+
+		// time_zone
+		/// @property time_zone
+		/// @brief User's time zone (as declared by himself).
+		///
+		/// timeZone is the attribute beneath the property.
+		Q_PROPERTY(QString time_zone
+				   READ getTimeZone
+				   WRITE setTimeZone
+				   NOTIFY timeZoneChanged)
+
+		/// @brief Name of the property time_zone.
+		static QString TIME_ZONE_PN;
+
+		// url
+		/// @property url
+		/// @brief URL provided by the user
+		///
+		/// userURL is the attribute beneath the property.
+		Q_PROPERTY(QString url
+				   READ getURL
+				   WRITE setURL
+				   NOTIFY urlChanged)
+
+		/// @brief Name of the property url.
+		static QString URL_PN;
+
+		// utc_offset
+		/// @property utc_offset
+		/// @brief Offset from GMT time in seconds.
+		///
+		/// timeZoneOffset is the attribute beneath the property.
+		Q_PROPERTY(int utc_offset
+				   READ getUTCoffset
+				   WRITE setUTCoffset
+				   NOTIFY utcOffsetChanged)
+
+		/// @brief Name of the property utc_offset.
+		static QString UTC_OFFSET_PN;
+
+		// verified
+		/// @property verified
+		/// @brief Is the user account verified by Twitter ?
+		///
+		/// verifiedAccount is the attribute beneath the property.
+		Q_PROPERTY(bool verified
+				   READ isVerified
+				   WRITE setVerified
+				   NOTIFY verifiedChanged)
+
+		/// @brief Name of the property verified.
+		static QString VERIFIED_PN;
+
+		// withheld_in_countries
+		/// @property withheld_in_countries
+		/// @brief Countries where the tweet is withheld
+		///
+		/// withheldInCountries is the attribute beneath the property.
+		Q_PROPERTY(QString withheld_in_countries
+				   READ getWithheldInCountries
+				   WRITE setWithheldInCountries
+				   NOTIFY withheldInCountriesChanged)
+
+		/// @brief Name of the property withheld_in_countries.
+		static QString WITHHELD_IN_COUNTRIES_PN;
+
+		// withheld_scope
+		/// @property withheld_scope
+		/// @brief URL provided by the user
+		///
+		/// withheldScope is the attribute beneath the property.
+		Q_PROPERTY(QString withheld_scope
+				   READ getWithheldScope
+				   WRITE setWithheldScope
+				   NOTIFY withheldScopeChanged)
+
+		/// @brief Name of the property withheld_scope.
+		static QString WITHHELD_SCOPE_PN;
 
 	signals:
 		/// @fn void contributorsEnabledChanged();
@@ -616,6 +912,22 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Emitted when the property location changes
 		void locationChanged();
 
+		/// @fn void entitiesChanged();
+		/// @brief Emitted when the property entities changes
+		void entitiesChanged();
+
+		/// @fn void withheldInCountriesChanged();
+		/// @brief Emitted when the property withheld_in_countries changes
+		void withheldInCountriesChanged();
+
+		/// @fn void withheldScopeChanged();
+		/// @brief Emitted when the property withheld_scope changes
+		void withheldScopeChanged();
+
+		/// @fn void profileTextColorChanged();
+		/// @brief Emitted when the property profile_banner_url changes
+		void profileBannerURLChanged();
+
 
 	/////////////////////
 	// User management //
@@ -708,6 +1020,9 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Color of the border of sidebar panels.
 		QColor sidebarBorderColor;
 
+		/// @brief URL of the user's banner picture.
+		QString bannerURL;
+
 		// Location
 
 		/// @brief Time zone
@@ -745,6 +1060,14 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Indicates if the user is a Twitter translator
 		bool twitterTranslator;
 
+		// Withheld
+
+		/// @brief withheld_in_countries
+		QString withheldInCountries;
+
+		/// @brief withheld_scope
+		QString withheldScope;
+
 		// Miscanellous
 
 		/// @brief follow_request_sent
@@ -756,12 +1079,16 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Receive notifications from a user (by mobile phone)
 		bool notificationsEnabled;
 
+		/// @brief User entities
+		UserEntities userEntities;
+
 
 	////////////////////////
 	// Getter and setters //
 	////////////////////////
 
 	public:
+		// contributors_enabled
 		/// @fn bool isContributorsEnabled();
 		/// @brief Getter on contributorsEnabled
 		/// @return The value of contributorsEnabled
@@ -772,6 +1099,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newContributorsEnabled The new value of contributorsEnabled
 		void setContributorsEnabled(bool newContributorsEnabled);
 
+		// lang
 		/// @fn QString getLang();
 		/// @brief Getter on lang
 		/// @return The value of lang
@@ -782,6 +1110,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newLang The new value of lang
 		void setLang(QString newLang);
 
+		// profile_background_image_url
 		/// @fn QString getProfileBackgroundImageURL();
 		/// @brief Getter on backgroundURL
 		/// @return The value of backgroundURL
@@ -792,6 +1121,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newBackgroundURL The new value of backgroundURL
 		void setProfileBackgroundImageURL(QString newBackgroundURL);
 
+		// protected
 		/// @fn bool isProtected();
 		/// @brief Getter on protected
 		/// @return The value of protected
@@ -802,6 +1132,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newProtected The new value of protected
 		void setProtected(bool newProtected);
 
+		// profile_link_color
 		/// @fn QColor getProfileLinkColor();
 		/// @brief Getter on linkColor
 		/// @return The value of linkColor
@@ -812,6 +1143,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newLinkColor The new value of linkColor
 		void setProfileLinkColor(QColor newLinkColor);
 
+		// url
 		/// @fn QString getURL();
 		/// @brief Getter on url
 		/// @return The value of url
@@ -822,6 +1154,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newURL The new value of url
 		void setURL(QString newURL);
 
+		// name
 		/// @fn QString getName();
 		/// @brief Getter on name
 		/// @return The value of name
@@ -832,6 +1165,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newName The new value of name
 		void setName(QString newName);
 
+		// listed_count
 		/// @fn int getListedCount();
 		/// @brief Getter on listedCount
 		/// @return The value of listedCount
@@ -842,6 +1176,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newListedCount The new value of listedCount
 		void setListedCount(int newListedCount);
 
+		// utc_offset
 		/// @fn int getUTCoffset();
 		/// @brief Getter on timeZoneOffset
 		/// @return The value of timeZoneOffset
@@ -852,6 +1187,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTimeZoneOffset The new value of timeZoneOffset
 		void setUTCoffset(int newTimeZoneOffset);
 
+		// profile_background_color
 		/// @fn QColor getProfileBackgroundColor();
 		/// @brief Getter on backgroundColor
 		/// @return The value of backgroundColor
@@ -862,6 +1198,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newBackgroundColor The new value of backgroundColor
 		void setProfileBackgroundColor(QColor newBackgroundColor);
 
+		// followers_count
 		/// @fn int getFollowersCount();
 		/// @brief Getter on followersCount
 		/// @return The value of followersCount
@@ -872,6 +1209,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newFollowersCount The new value of followersCount
 		void setFollowersCount(int newFollowersCount);
 
+		// profile_image_url
 		/// @fn QString getProfileImageURL();
 		/// @brief Getter on avatarURL
 		/// @return The value of avatarURL
@@ -882,6 +1220,18 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newAvatarURL The new value of avatarURL
 		void setProfileImageURL(QString newAvatarURL);
 
+		// profile_banner_url
+		/// @fn QString getProfileBannerURL();
+		/// @brief Reading profile_banner_url
+		/// @return bannerURL
+		QString getProfileBannerURL();
+
+		/// @fn void setProfileBannerURL(QString newValue);
+		/// @brief Writing profile_banner_url
+		/// @param newValue The new value for bannerURL
+		void setProfileBannerURL(QString newValue);
+
+		// description
 		/// @fn QString getDescription();
 		/// @brief Getter on description
 		/// @return The value of description
@@ -892,6 +1242,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newDescription The new value of description
 		void setDescription(QString newDescription);
 
+		// profile_background_tile
 		/// @fn bool isProfileBackgroundTile();
 		/// @brief Getter on backgroundTile
 		/// @return The value of backgroundTile
@@ -902,6 +1253,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newBackgroundTile The new value of backgroundTile
 		void setProfileBackgroundTile(bool newBackgroundTile);
 
+		// statuses_count
 		/// @fn int getStatusesCount();
 		/// @brief Getter on tweetsCount
 		/// @return The value of tweetsCount
@@ -912,6 +1264,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTweetsCount The new value of tweetsCount
 		void setStatusesCount(int newTweetsCount);
 
+		// created_at
 		/// @fn ReynTweetsDateTime getCreatedAt();
 		/// @brief Getter on createdAt
 		/// @return The value of createdAt
@@ -922,6 +1275,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newDate The new value of createdAt
 		void setCreatedAt(ReynTweetsDateTime newDate);
 
+		// profile_sidebar_fill_color
 		/// @fn QColor getProfileSidebarFillColor();
 		/// @brief Getter on sidebarColor
 		/// @return The value of sidebarColor
@@ -932,6 +1286,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newSidebarColor The new value of sidebarColor
 		void setProfileSidebarFillColor(QColor newSidebarColor);
 
+		// screen_name
 		/// @fn QString getScreenName();
 		/// @brief Getter on screenName
 		/// @return The value of screenName
@@ -942,6 +1297,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newScreenName The new value of screenName
 		void setScreenName(QString newScreenName);
 
+		// geo_enabled
 		/// @fn bool isGeoEnabled();
 		/// @brief Getter on geoEnabled
 		/// @return The value of geoEnabled
@@ -952,6 +1308,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newGeoEnabled The new value of geoEnabled
 		void setGeoEnabled(bool newGeoEnabled);
 
+		// default_profile_image
 		/// @fn bool isDefaultProfileImage();
 		/// @brief Getter on defaultProfileImage
 		/// @return The value of defaultProfileImage
@@ -962,6 +1319,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newDefaultProfileImage The new value of defaultProfileImage
 		void setDefaultProfileImage(bool newDefaultProfileImage);
 
+		// friends_count
 		/// @fn int getFriendsCount();
 		/// @brief Getter on friendsCount
 		/// @return The value of friendsCount
@@ -972,6 +1330,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newfriendsCount The new value of friendsCount
 		void setFriendsCount(int newfriendsCount);
 
+		// profile_sidebar_border_color
 		/// @fn QColor getProfileSidebarBorderColor();
 		/// @brief Getter on sidebarBorderColor
 		/// @return The value of sidebarBorderColor
@@ -982,6 +1341,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newSidebarBorderColor The new value of sidebarBorderColor
 		void setProfileSidebarBorderColor(QColor newSidebarBorderColor);
 
+		// id_str
 		/// @fn QString getIDstr();
 		/// @brief Getter on IDstr
 		/// @return The value of IDstr
@@ -992,6 +1352,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newID The new value of IDstr
 		void setIDstr(QString newID);
 
+		// show_all_inline_media
 		/// @fn bool isShowAllInlineMedia();
 		/// @brief Getter on showAllInlineMedia
 		/// @return The value of showAllInlineMedia
@@ -1002,6 +1363,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newShowAllInlineMedia The new value of showAllInlineMedia
 		void setShowAllInlineMedia(bool newShowAllInlineMedia);
 
+		// follow_request_sent
 		/// @fn bool isFollowRequestSent();
 		/// @brief Getter on followRequestSent
 		/// @return The value of followRequestSent
@@ -1012,6 +1374,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newFollowRequestSent The new value of followRequestSent
 		void setFollowRequestSent(bool newFollowRequestSent);
 
+		// profile_background_image_url_https
 		/// @fn QString getProfileBackgroundImageURLhttps();
 		/// @brief Getter on backgroundURLhttps
 		/// @return The value of backgroundURLhttps
@@ -1022,6 +1385,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newBackgroundURL The new value of backgroundURLhttps
 		void setProfileBackgroundImageURLhttps(QString newBackgroundURL);
 
+		// is_translator
 		/// @fn bool isTranslator();
 		/// @brief Getter on isTranslator
 		/// @return The value of isTranslator
@@ -1032,6 +1396,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTranslator The new value of isTranslator
 		void setTranslator(bool newTranslator);
 
+		// default_profile
 		/// @fn bool isDefaultProfile();
 		/// @brief Getter on defaultProfile
 		/// @return The value of defaultProfile
@@ -1042,6 +1407,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newDefaultProfile The new value of defaultProfile
 		void setDefaultProfile(bool newDefaultProfile);
 
+		// notifications
 		/// @fn bool isNotifications();
 		/// @brief Getter on notifications
 		/// @return The value of notifications
@@ -1052,6 +1418,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newNotifications The new value of notifications
 		void setNotifications(bool newNotifications);
 
+		// profile_use_background_image
 		/// @fn bool isProfileUseBackgroundImage();
 		/// @brief Getter on useBackgroundImage
 		/// @return The value of useBackgroundImage
@@ -1062,6 +1429,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newUseBackgroundImage The new value of useBackgroundImage
 		void setProfileUseBackgroundImage(bool newUseBackgroundImage);
 
+		// profile_image_url_https
 		/// @fn QString getProfileImageURLhttps();
 		/// @brief Getter on avatarURLhttps
 		/// @return The value of avatarURLhttps
@@ -1072,6 +1440,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newAvatarURL The new value of avatarURLhttps
 		void setProfileImageURLhttps(QString newAvatarURL);
 
+		// id
 		/// @fn qlonglong getID();
 		/// @brief Getter on ID
 		/// @return The value of ID
@@ -1082,6 +1451,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newID The new value of ID
 		void setID(qlonglong newID);
 
+		// verified
 		/// @fn bool isVerified();
 		/// @brief Getter on verified
 		/// @return The value of verified
@@ -1092,6 +1462,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newVerified The new value of verified
 		void setVerified(bool newVerified);
 
+		// time_zone
 		/// @fn QString getTimeZone();
 		/// @brief Getter on timeZone
 		/// @return The value of timeZone
@@ -1102,6 +1473,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTimeZone The new value of timeZone
 		void setTimeZone(QString newTimeZone);
 
+		// favorites_count
 		/// @fn int getFavouritesCount();
 		/// @brief Getter on favoritesCount
 		/// @return The value of favoritesCount
@@ -1112,6 +1484,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newFavoritesCount The new value of favoritesCount
 		void setFavouritesCount(int newFavoritesCount);
 
+		// profile_text_color
 		/// @fn QColor getProfileTextColor();
 		/// @brief Getter on textColor
 		/// @return The value of textColor
@@ -1122,6 +1495,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newTextColor The new value of textColor
 		void setProfileTextColor(QColor newTextColor);
 
+		// following
 		/// @fn bool isFollowedByMe();
 		/// @brief Reading the following property
 		/// @return The value of followedByMe
@@ -1132,6 +1506,7 @@ class UserInfos : public ReynTweetsMappable
 		/// @param newFollowing The new value of followedByMe
 		void setFollowing(bool newFollowing);
 
+		// location
 		/// @fn QString getLocation();
 		/// @brief Getter on location
 		/// @return The value of location
@@ -1141,6 +1516,39 @@ class UserInfos : public ReynTweetsMappable
 		/// @brief Setter on location
 		/// @param newLocation The new value of location
 		void setLocation(QString newLocation);
+
+		// withheld_in_countries
+		/// @fn QString getWithheldInCountries();
+		/// @brief Getter on withheld_in_countries
+		/// @return withheldInCountries
+		QString getWithheldInCountries();
+
+		/// @fn void setWithheldInCountries(QString newValue);
+		/// @brief Setter on withheld_in_countries
+		/// @param newValue The new value of withheldInCountries
+		void setWithheldInCountries(QString newValue);
+
+		// withheld_scope
+		/// @fn QString getWithheldScope();
+		/// @brief Getter on withheld_scope
+		/// @return withheldScope
+		QString getWithheldScope();
+
+		/// @fn void setWithheldScope(QString newValue);
+		/// @brief Setter on withheld_scope
+		/// @param newValue The new value of withheldScope
+		void setWithheldScope(QString newValue);
+
+		// entities
+		/// @fn UserEntities getEntities();
+		/// @brief Reading entities.
+		/// @return userEntities
+		UserEntities getEntities();
+
+		/// @fn void setEntities(UserEntities newValue);
+		/// @brief Writing entities.
+		/// @param newValue New value for userEntities
+		void setEntities(UserEntities newValue);
 };
 
 // Serialization of UserInfos

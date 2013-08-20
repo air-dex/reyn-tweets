@@ -25,7 +25,7 @@
 #include "../../tools/processutils.hpp"
 
 // Constructor
-AllowProcess::AllowProcess(ReynTweetsUserConfiguration & conf) :
+AllowProcess::AllowProcess(UserConfiguration & conf) :
 	OAuthProcess(),
 	authEnded(false),
 	configuration(conf)

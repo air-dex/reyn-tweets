@@ -1,12 +1,10 @@
 /// @file indexbounds.cpp
 /// @brief Implementation of IndexBounds
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -30,6 +28,7 @@ int IndexBounds::FAKE_BOUND = -1;
 // Constructor
 IndexBounds::IndexBounds() :
 	QObject(),
+	JsonArray<int>(),
 	min(FAKE_BOUND),
 	max(FAKE_BOUND)
 {}
@@ -39,14 +38,17 @@ IndexBounds::~IndexBounds() {}
 
 // Copy constructor
 IndexBounds::IndexBounds(const IndexBounds & indexes) :
-    QObject()
+	QObject(),
+	JsonArray<int>(),
+	min(FAKE_BOUND),
+	max(FAKE_BOUND)
 {
-	recopie(indexes);
+	this->recopie(indexes);
 }
 
 // Affectation
 const IndexBounds & IndexBounds::operator=(const IndexBounds & indexes) {
-	recopie(indexes);
+	this->recopie(indexes);
 	return *this;
 }
 
@@ -58,26 +60,18 @@ void IndexBounds::initSystem() {
 
 // Copy of a IndexBounds
 void IndexBounds::recopie(const IndexBounds & indexes) {
-	min = indexes.min;
-	max = indexes.max;
+	this->min = indexes.min;
+	this->max = indexes.max;
 }
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const IndexBounds & indexes) {
-	QVariantList list = indexes.toVariant();
-	out << list;
-	return out;
+	return indexes.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, IndexBounds & indexes) {
-	QVariantList list;
-	in >> list;
-
-	// Filling the object
-	indexes.fillWithVariant(list);
-
-	return in;
+	return indexes.fillWithStream(in);
 }
 
 
@@ -115,6 +109,10 @@ void IndexBounds::setMax(int newMax) {
 	max = newMax;
 	sort();
 }
+
+//////////////////////
+// Variant handling //
+//////////////////////
 
 // Converting the bounds into a QVariantList
 QVariantList IndexBounds::toVariant() const {

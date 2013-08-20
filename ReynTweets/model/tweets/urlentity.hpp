@@ -1,12 +1,10 @@
 /// @file urlentity.hpp
 /// @brief Header of URLEntity
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -31,6 +29,7 @@
 
 /// @class URLEntity
 /// @brief URL in a tweet
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-url
 class URLEntity : public TweetEntity
 {
 	Q_OBJECT
@@ -75,6 +74,23 @@ class URLEntity : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 
 	protected:
 		/// @fn void recopie(const URLEntity & entity);
@@ -106,23 +122,38 @@ class URLEntity : public TweetEntity
 		// url
 		/// @property url
 		/// @brief Extracted URL
+		///
+		/// The extractedURL attribute is behind this property.
 		Q_PROPERTY(QString url
 				   READ getURL
 				   WRITE setURL)
 
+		/// @brief Name of the property url.
+		static QString URL_PN;
+
 		// displayed_url
 		/// @property displayed_url
 		/// @brief Displayed URL
+		///
+		/// The displayedURL attribute is behind this property.
 		Q_PROPERTY(QString displayed_url
 				   READ getDisplayedURL
 				   WRITE setDisplayedURL)
 
+		/// @brief Name of the property displayed_url.
+		static QString DISPLAYED_URL_PN;
+
 		// expanded_url
 		/// @property expanded_url
 		/// @brief Expanded URL
+		///
+		/// The expandedURL attribute is behind this property.
 		Q_PROPERTY(QString expanded_url
 				   READ getExpandedURL
 				   WRITE setExpandedURL)
+
+		/// @brief Name of the property expanded_url.
+		static QString EXPANDED_URL_PN;
 
 
 	////////////////////

@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -25,7 +25,7 @@
 
 // Constructor
 TweetEntity::TweetEntity() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	indexes()
 {}
 
@@ -34,21 +34,46 @@ TweetEntity::~TweetEntity() {}
 
 // Copy constructor
 TweetEntity::TweetEntity(const TweetEntity & entity) :
-    ReynTweetsMappable()
+	JsonObject()
 {
-	recopie(entity);
+	this->recopie(entity);
 }
 
 // Affectation
 const TweetEntity & TweetEntity::operator=(const TweetEntity & entity) {
-	recopie(entity);
+	this->recopie(entity);
 	return *this;
 }
 
 // Copy of a Hashtag
 void TweetEntity::recopie(const TweetEntity & entity) {
-	ReynTweetsMappable::recopie(entity);
+	JsonObject::recopie(entity);
 	indexes = entity.indexes;
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void TweetEntity::fillWithJSON(QJsonObject json) {
+	// "indices" property
+	QJsonValue propval = json.value(INDICES_PN);
+
+	if (!propval.isUndefined() && propval.isArray()) {
+		QJsonArray bounds = propval.toArray();
+		this->indexes.fillWithJSON(bounds);
+	}
+}
+
+// Getting a QJsonObject representation of the JsonObject
+QJsonObject TweetEntity::toJSON() const {
+	QJsonObject json;
+
+	json.insert(INDICES_PN, QJsonValue(this->indexes.toJSON()));
+
+	return json;
 }
 
 
@@ -71,12 +96,13 @@ void TweetEntity::setIndices(QVariantList newIndexList) {
 // Getter and setters //
 ////////////////////////
 
-// Reading indexes
+// indices
+QString TweetEntity::INDICES_PN = "indices";
+
 IndexBounds TweetEntity::getIndices() {
 	return indexes;
 }
 
-// Writing indexes
 void TweetEntity::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
 }

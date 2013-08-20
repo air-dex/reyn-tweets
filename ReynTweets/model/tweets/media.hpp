@@ -1,12 +1,10 @@
 /// @file media.hpp
 /// @brief Header of Media
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -31,6 +29,7 @@
 
 /// @class Media
 /// @brief Media in a tweet.
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-media
 class Media : public URLEntity
 {
 	Q_OBJECT
@@ -67,6 +66,23 @@ class Media : public URLEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	protected:
 		/// @fn void recopie(const Media & media);
 		/// @brief Copy of a Media
@@ -97,44 +113,74 @@ class Media : public URLEntity
 		// id
 		/// @property id
 		/// @brief User id
+		///
+		/// mediaID is the attribute behind this property.
 		Q_PROPERTY(qlonglong id
 				   READ getID
 				   WRITE setID)
 
+		/// @brief Name of the property id.
+		static QString ID_PN;
+
 		// id_str
 		/// @property id_str
 		/// @brief String version of id
+		///
+		/// mediaIDstr is the attribute behind this property.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
 				   WRITE setIDstr)
 
+		/// @brief Name of the property id_str.
+		static QString ID_STR_PN;
+
 		// media_url
 		/// @property media_url
 		/// @brief Media URL
+		///
+		/// mediaURL is the attribute behind this property.
 		Q_PROPERTY(QString media_url
 				   READ getMediaURL
 				   WRITE setMediaURL)
 
+		/// @brief Name of the property media_url.
+		static QString MEDIA_URL_PN;
+
 		// media_url_https
 		/// @property media_url_https
 		/// @brief HTTPS version of media_url
+		///
+		/// mediaURLhttps is the attribute behind this property.
 		Q_PROPERTY(QString media_url_https
 				   READ getMediaURLhttps
 				   WRITE setMediaURLhttps)
 
+		/// @brief Name of the property media_url_https.
+		static QString MEDIA_URL_HTTPS_PN;
+
 		// type
 		/// @property type
 		/// @brief Media type
+		///
+		/// mediaType is the attribute behind this property.
 		Q_PROPERTY(QString type
 				   READ getType
 				   WRITE setType)
 
+		/// @brief Name of the property type.
+		static QString TYPE_PN;
+
 		// sizes
 		/// @property sizes
 		/// @brief Different sizes for the media
+		///
+		/// mediaSizes is the attribute behind this property.
 		Q_PROPERTY(QVariantMap sizes
 				   READ getSizesProperty
 				   WRITE setSizes)
+
+		/// @brief Name of the property sizes.
+		static QString SIZES_PN;
 
 		/// @fn QVariantList getSizesProperty();
 		/// @brief Reading method for the property sizes
@@ -145,6 +191,30 @@ class Media : public URLEntity
 		/// @brief Writing method for the property sizes
 		/// @param newMap New value for the property sizes
 		void setSizes(QVariantMap newMap);
+
+		// source_status_id
+		/// @property source_status_id
+		/// @brief ID of the original tweet where the media was published
+		///
+		/// sourceID is the attribute behind this property.
+		Q_PROPERTY(qlonglong source_status_id
+				   READ getSourceID
+				   WRITE setSourceID)
+
+		/// @brief Name of the property id.
+		static QString SOURCE_STATUS_ID_PN;
+
+		// source_status_id_str
+		/// @property source_status_id_str
+		/// @brief String version of source_status_id
+		///
+		/// sourceIDstr is the attribute behind this property.
+		Q_PROPERTY(QString source_status_id_str
+				   READ getSourceIDstr
+				   WRITE setSourceIDstr)
+
+		/// @brief Name of the property id_str.
+		static QString SOURCE_STATUS_ID_STR_PN;
 
 
 	//////////////////////
@@ -169,6 +239,12 @@ class Media : public URLEntity
 
 		/// @brief Media sizes
 		MediaSizes mediaSizes;
+
+		/// @brief ID of the original tweet where the media was published
+		qlonglong sourceID;
+
+		/// @brief String version of sourceIDstr
+		QString sourceIDstr;
 
 
 	////////////////////////
@@ -235,6 +311,26 @@ class Media : public URLEntity
 		/// @brief Writing mediaSizes
 		/// @param newSizes New value for mediaSizes
 		void setSizes(MediaSizes newSizes);
+
+		/// @fn qlonglong getID();
+		/// @brief Reading source_status_id
+		/// @return sourceID
+		qlonglong getSourceID();
+
+		/// @fn void setID(qlonglong newID);
+		/// @brief Writing source_status_id
+		/// @param newID New value for sourceID
+		void setSourceID(qlonglong newID);
+
+		/// @fn QString getIDstr();
+		/// @brief Reading source_status_id_str
+		/// @return sourceIDstr
+		QString getSourceIDstr();
+
+		/// @fn void setIDstr(QString newID);
+		/// @brief Writing source_status_id_str
+		/// @param newID New value for sourceIDstr
+		void setSourceIDstr(QString newID);
 };
 
 // Serialization of Media

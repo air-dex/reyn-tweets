@@ -43,12 +43,12 @@ void SettingsControl::declareQML() {
 ///////////////////////////
 
 // Reading the configuration property
-ReynTweetsUserConfiguration * SettingsControl::getConfiguration() {
+UserConfiguration * SettingsControl::getConfiguration() {
 	return &conf;
 }
 
 // Writing the configuration property
-void SettingsControl::setConfiguration(ReynTweetsUserConfiguration * config) {
+void SettingsControl::setConfiguration(UserConfiguration * config) {
 	if (config) {
 		ReynCore::setUserConfiguration(*config);
 		emit configurationChanged();

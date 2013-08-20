@@ -1,12 +1,10 @@
 /// @file usermention.cpp
 /// @brief Implementation of UserMention
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -23,12 +21,11 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include "usermention.hpp"
 #include <QTextStream>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
-#include "usermention.hpp"
-#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -48,7 +45,11 @@ UserMention::~UserMention() {}
 
 // Copy constructor
 UserMention::UserMention(const UserMention & mention) :
-	TweetEntity()
+	TweetEntity(),
+	userID(-1),
+	userIDstr("-1"),
+	screenName(""),
+	userName("")
 {
 	recopie(mention);
 }
@@ -76,12 +77,12 @@ void UserMention::recopie(const UserMention & mention) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMention & mention) {
-	return jsonStreamingOut(out, mention);
+	return mention.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserMention & mention) {
-	return jsonStreamingIn(in, mention);
+	return mention.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -90,48 +91,107 @@ void UserMention::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void UserMention::fillWithJSON(QJsonObject json) {
+	// Base class
+	TweetEntity::fillWithJSON(json);
+
+	// "id" property
+	QJsonValue propval = json.value(ID_PN);
+
+	if (!propval.isUndefined() && propval.isDouble()) {
+		qlonglong id = (qlonglong) propval.toDouble();
+		this->userID = id;
+	}
+
+	// "id_str" property
+	propval = json.value(ID_STR_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString idStr = propval.toString();
+		this->userIDstr = idStr;
+	}
+
+	// "screen_name" property
+	propval = json.value(SCREEN_NAME_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString scrName = propval.toString();
+		this->screenName = scrName;
+	}
+
+	// "name" property
+	propval = json.value(NAME_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString uName = propval.toString();
+		this->userName = uName;
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject UserMention::toJSON() const {
+	QJsonObject json = TweetEntity::toJSON();
+
+	json.insert(ID_PN, QJsonValue(double(this->userID)));
+	json.insert(ID_STR_PN, QJsonValue(this->userIDstr));
+	json.insert(SCREEN_NAME_PN, QJsonValue(this->screenName));
+	json.insert(NAME_PN, QJsonValue(this->userName));
+
+	return json;
+}
+
+
 ////////////////////////
 // Getter and setters //
 ////////////////////////
 
-// Reading userID
+// id
+QString UserMention::ID_PN = "id";
+
 qlonglong UserMention::getID() {
 	return userID;
 }
 
-// Writing userID
 void UserMention::setID(qlonglong newID) {
 	userID = newID;
 	userIDstr = QString::number(userID);
 }
 
-// Reading userIDstr
+// id_str
+QString UserMention::ID_STR_PN = "id_str";
+
 QString UserMention::getIDstr() {
 	return userIDstr;
 }
 
-// Writing userIDstr
 void UserMention::setIDstr(QString newID) {
 	userIDstr = newID;
 	userID = userIDstr.toLongLong();
 }
 
-// Reading method for screenName
+// screen_name
+QString UserMention::SCREEN_NAME_PN = "screen_name";
+
 QString UserMention::getScreenName() {
 	return screenName;
 }
 
-// Writing displayedURL
 void UserMention::setScreenName(QString newScreenName) {
 	screenName = newScreenName;
 }
 
-// Reading method for userName
+// name
+QString UserMention::NAME_PN = "name";
+
 QString UserMention::getName() {
 	return userName;
 }
 
-// Writing method for userName
 void UserMention::setName(QString newName) {
 	userName = newName;
 }
@@ -141,7 +201,7 @@ void UserMention::setName(QString newName) {
 // Misc //
 //////////
 
-// #hashText
+// @screenName
 QString UserMention::getMention() {
 	QString s = "";
 	QTextStream t(&s);

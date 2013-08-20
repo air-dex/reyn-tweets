@@ -1,12 +1,10 @@
 /// @file tweetentities.hpp
 /// @brief Header of TweetEntities
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -26,16 +24,17 @@
 #ifndef TWEETENTITIES_HPP
 #define TWEETENTITIES_HPP
 
+#include "../json/jsonobject.hpp"
 #include "hashtaglist.hpp"
 #include "medialist.hpp"
-#include "../reyntweetsmappable.hpp"
 #include "urlentitylist.hpp"
 #include "usermentionlist.hpp"
 
 
 /// @class TweetEntities
 /// @brief Entities of a tweet, such as its hashtags, its mentions and its URLs.
-class TweetEntities : public ReynTweetsMappable
+/// @see https://dev.twitter.com/docs/platform-objects/entities
+class TweetEntities : public JsonObject
 {
 	Q_OBJECT
 
@@ -71,6 +70,23 @@ class TweetEntities : public ReynTweetsMappable
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const TweetEntities & entities);
 		/// @brief Copy of a TwitterEntities
@@ -102,9 +118,14 @@ class TweetEntities : public ReynTweetsMappable
 		// media
 		/// @property media
 		/// @brief Medias
+		///
+		/// medias is the attribute beneath this property.
 		Q_PROPERTY(QVariantList media
 				   READ getMediaProperty
 				   WRITE setMedia)
+
+		/// @brief Name of the property media.
+		static QString MEDIA_PN;
 
 		/// @fn QVariantList getMediaProperty();
 		/// @brief Reading the property media
@@ -119,9 +140,14 @@ class TweetEntities : public ReynTweetsMappable
 		// urls
 		/// @property urls
 		/// @brief URLs written in the tweet
+		///
+		/// tweetURLs is the attribute beneath this property.
 		Q_PROPERTY(QVariantList urls
 				   READ getURLsProperty
 				   WRITE setURLs)
+
+		/// @brief Name of the property urls.
+		static QString URLS_PN;
 
 		/// @fn QVariantList getURLsProperty();
 		/// @brief Reading the property urls
@@ -136,9 +162,14 @@ class TweetEntities : public ReynTweetsMappable
 		// user_mentions
 		/// @property user_mentions
 		/// @brief Users mentionned in the tweet
+		///
+		/// mentions is the attribute beneath this property.
 		Q_PROPERTY(QVariantList user_mentions
 				   READ getUserMentionsProperty
 				   WRITE setUserMentions)
+
+		/// @brief Name of the property user_mentions.
+		static QString USER_MENTIONS_PN;
 
 		/// @fn QVariantList getUserMentionsProperty();
 		/// @brief Reading the property user_mentions
@@ -153,9 +184,14 @@ class TweetEntities : public ReynTweetsMappable
 		// hashtags
 		/// @property hashtags
 		/// @brief Hashtags in the tweet
+		///
+		/// tweetHashtags is the attribute beneath this property.
 		Q_PROPERTY(QVariantList hashtags
 				   READ getHashtagsProperty
 				   WRITE setHashtags)
+
+		/// @brief Name of the property hashtags.
+		static QString HASHTAGS_PN;
 
 		/// @fn QVariantList getHashtagsProperty();
 		/// @brief Reading the property hashtags

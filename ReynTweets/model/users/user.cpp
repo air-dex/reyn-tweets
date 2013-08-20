@@ -1,12 +1,10 @@
 /// @file user.cpp
 /// @brief Implementation of User
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -25,7 +23,6 @@
 
 #include <QtQml>
 #include "user.hpp"
-#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -42,7 +39,8 @@ User::~User() {}
 
 // Copy constructor
 User::User(const User & user) :
-	UserInfos()
+	UserInfos(),
+	lastTweet()
 {
 	recopie(user);
 }
@@ -76,12 +74,12 @@ void User::declareQML() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const User & user) {
-	return jsonStreamingOut(out, user);
+	return user.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, User & user) {
-	return jsonStreamingIn(in, user);
+	return user.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -90,11 +88,39 @@ void User::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void User::fillWithJSON(QJsonObject json) {
+	UserInfos::fillWithJSON(json);
+	this->lastTweet.fillWithJSON(json.value(STATUS_PN).toObject());
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject User::toJSON() const {
+	QJsonObject json = UserInfos::toJSON();
+
+	json.insert(STATUS_PN, QJsonValue(this->lastTweet.toJSON()));
+
+	return json;
+}
+
+
 ///////////////////////////
 // Properties management //
 ///////////////////////////
 
-// Reading the "status" property
+// status
+QString User::STATUS_PN = "status";
+
+QString User::LAST_STATUS_PN = "last_status";
+
+Tweet User::getStatus() {
+	return lastTweet;
+}
+
 QVariantMap User::getStatusProperty() {
 	// Return an empty QVariantMap for a default tweet to avoid stack problems
 	return lastTweet.getID() == -1 ?
@@ -102,22 +128,21 @@ QVariantMap User::getStatusProperty() {
 			  : lastTweet.toVariant();
 }
 
-// Writing the status property
+Tweet * User::getStatusPtr() {
+	return &lastTweet;
+}
+
 void User::setStatus(QVariantMap statusMap) {
 	lastTweet.fillWithVariant(statusMap);
+	emit statusChanged();
 }
 
-
-/////////////////////////
-// Getters and setters //
-/////////////////////////
-
-// Getter on the last tweet written by the user
-Tweet User::getStatus() {
-	return lastTweet;
-}
-
-// Setter on the last tweet written by the user
 void User::setStatus(Tweet newLastTweet) {
 	lastTweet = newLastTweet;
+	emit statusChanged();
+}
+
+void User::setStatus(Tweet * newLastTweet) {
+	lastTweet = newLastTweet ? *newLastTweet : Tweet();
+	emit statusChanged();
 }

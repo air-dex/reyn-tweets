@@ -28,8 +28,9 @@
 
 #include <QObject>
 #include "coreresult.hpp"
-#include "../model/configuration/reyntweetsuserconfiguration.hpp"
-#include "../model/configuration/reyntweetsappconfiguration.hpp"
+#include "../model/configuration/userconfiguration.hpp"
+#include "../model/configuration/appconfiguration.hpp"
+#include "../model/tweets/tweet.hpp"
 #include "processes/genericprocess.hpp"
 #include "processes/oauthprocess.hpp"
 #include "processes/processmanager.hpp"
@@ -87,10 +88,10 @@ class ReynCore : public QObject
 		static ProcessManager processManager;
 
 		/// @brief Configuration of users
-		static ReynTweetsUserConfiguration userConfiguration;
+		static UserConfiguration userConfiguration;
 
 		/// @brief Configuration of the application
-		static ReynTweetsAppConfiguration appConfiguration;
+		static AppConfiguration appConfiguration;
 
 	private:
 		/// @fn void recopie(const ReynCore & heart);
@@ -128,17 +129,17 @@ class ReynCore : public QObject
 		/// @fn static ReynTweetsUserConfiguration & getUserConfiguration();
 		/// @brief Getting a reference on the user configuration
 		/// @return Reference on userConfiguration
-		static ReynTweetsUserConfiguration & getUserConfiguration();
+		static UserConfiguration & getUserConfiguration();
 
 		/// @fn static void setUserConfiguration(ReynTweetsUserConfiguration userConf);
 		/// @brief Setting the user configuration
 		/// @param userConf New value for userConfiguration
-		static void setUserConfiguration(ReynTweetsUserConfiguration userConf);
+		static void setUserConfiguration(UserConfiguration userConf);
 
 		/// @fn static ReynTweetsAppConfiguration & getAppConfiguration();
 		/// @brief Getting a reference on the application configuration
 		/// @return Reference on appConfiguration
-		static ReynTweetsAppConfiguration & getAppConfiguration();
+		static AppConfiguration & getAppConfiguration();
 
 		//////////////////////////////////
 		// Launching and authentication //

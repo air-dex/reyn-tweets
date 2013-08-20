@@ -159,7 +159,7 @@ class UserConfiguration : public JsonObject
 		/// @brief QML read only property to access to the user account.
 		///
 		/// userAccount is the property beneath this property.
-		Q_PROPERTY(UserAccount2 * current_account
+		Q_PROPERTY(UserAccount * current_account
 				   READ getCurrentAccount
 				   WRITE setCurrentAccount
 				   NOTIFY currentAccountChanged)
@@ -170,12 +170,12 @@ class UserConfiguration : public JsonObject
 		/// @fn UserAccount * getCurrentAccount();
 		/// @brief Reading the property current_account
 		/// @return The user account
-		UserAccount2 * getCurrentAccount();
+		UserAccount * getCurrentAccount();
 
 		/// @fn void setCurrentAccount(UserAccount * account);
 		/// @brief Writing the property current_account
 		/// @param account New value for the account
-		void setCurrentAccount(UserAccount2 * account);
+		void setCurrentAccount(UserAccount * account);
 
 
 	signals:
@@ -201,7 +201,7 @@ class UserConfiguration : public JsonObject
 
 	protected:
 		/// @brief Twitter Account
-		UserAccount2 userAccount;
+		UserAccount userAccount;
 
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
@@ -216,17 +216,17 @@ class UserConfiguration : public JsonObject
 		/// @fn UserAccount getUserAccount();
 		/// @brief Getter on the user account
 		/// @return The user account
-		UserAccount2 getUserAccount();
+		UserAccount getUserAccount();
 
 		/// @fn UserAccount & getUserAccountRef();
 		/// @brief Getting a reference on the user account
 		/// @return The user account
-		UserAccount2 & getUserAccountRef();
+		UserAccount & getUserAccountRef();
 
 		/// @fn void setUserAccount(UserAccount account);
 		/// @brief Setter on the user account
 		/// @param account New value for the account
-		void setUserAccount(UserAccount2 account);
+		void setUserAccount(UserAccount account);
 };
 
 // Serialization of ReynTweetsUserConfiguration

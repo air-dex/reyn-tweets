@@ -1,12 +1,10 @@
 /// @file hashtag.cpp
 /// @brief Implementation of Hashtag
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -23,12 +21,11 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
+#include "hashtag.hpp"
 #include <QTextStream>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
-#include "hashtag.hpp"
-#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -37,7 +34,7 @@
 // Constructor
 Hashtag::Hashtag() :
 	TweetEntity(),
-	hashText()
+	hashText("")
 {}
 
 // Destructor
@@ -45,7 +42,8 @@ Hashtag::~Hashtag() {}
 
 // Copy constructor
 Hashtag::Hashtag(const Hashtag & hashtag) :
-	TweetEntity()
+	TweetEntity(),
+	hashText("")
 {
 	recopie(hashtag);
 }
@@ -70,12 +68,12 @@ void Hashtag::recopie(const Hashtag & hashtag) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Hashtag & hashtag) {
-	return jsonStreamingOut(out, hashtag);
+	return hashtag.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Hashtag & hashtag) {
-	return jsonStreamingIn(in, hashtag);
+	return hashtag.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -84,16 +82,45 @@ void Hashtag::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void Hashtag::fillWithJSON(QJsonObject json) {
+	// Base class
+	TweetEntity::fillWithJSON(json);
+
+	// "text" property
+	QJsonValue propval = json.value(TEXT_PN);
+
+	if (!propval.isUndefined() && propval.isString()) {
+		QString text = propval.toString();
+		this->hashText = text;
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject Hashtag::toJSON() const {
+	QJsonObject json = TweetEntity::toJSON();
+
+	json.insert(TEXT_PN, QJsonValue(this->hashText));
+
+	return json;
+}
+
+
 ////////////////////////
 // Getter and setters //
 ////////////////////////
 
-// Reading hashText
+// text
+QString Hashtag::TEXT_PN = "text";
+
 QString Hashtag::getText() {
 	return hashText;
 }
 
-// Writing hashText
 void Hashtag::setText(QString newText) {
 	hashText = newText;
 }
@@ -138,6 +165,4 @@ QString Hashtag::getDisplayedText(QColor linkColor) {
 
 		return t.readAll();
 	}
-
-
 }

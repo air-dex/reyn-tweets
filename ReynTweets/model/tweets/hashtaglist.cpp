@@ -1,12 +1,10 @@
 /// @file hashtaglist.cpp
 /// @brief Implementation of HashtagList
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,7 +25,7 @@
 
 // Constructor
 HashtagList::HashtagList() :
-	ReynTweetsListable<Hashtag>()
+	JsonArray<Hashtag>()
 {}
 
 // Destructor
@@ -35,7 +33,7 @@ HashtagList::~HashtagList() {}
 
 // Copy constructor
 HashtagList::HashtagList(const HashtagList & list) :
-	ReynTweetsListable<Hashtag>()
+	JsonArray<Hashtag>()
 {
 	recopie(list);
 }
@@ -54,10 +52,10 @@ void HashtagList::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
-	return jsonStreamingOut<Hashtag>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, HashtagList & list) {
-	return jsonStreamingIn<Hashtag>(in, list);
+	return list.fillWithStream(in);
 }

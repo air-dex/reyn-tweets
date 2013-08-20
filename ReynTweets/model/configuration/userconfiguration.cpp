@@ -134,11 +134,11 @@ QVariantMap UserConfiguration::getUserAccountProperty() {
 	return userAccount.toVariant();
 }
 
-UserAccount2 UserConfiguration::getUserAccount() {
+UserAccount UserConfiguration::getUserAccount() {
 	return userAccount;
 }
 
-UserAccount2 & UserConfiguration::getUserAccountRef() {
+UserAccount & UserConfiguration::getUserAccountRef() {
 	return userAccount;
 }
 
@@ -147,7 +147,7 @@ void UserConfiguration::setUserAccount(QVariantMap accountMap) {
 	emit currentAccountChanged();
 }
 
-void UserConfiguration::setUserAccount(UserAccount2 account) {
+void UserConfiguration::setUserAccount(UserAccount account) {
 	userAccount = account;
 	emit currentAccountChanged();
 }
@@ -155,11 +155,11 @@ void UserConfiguration::setUserAccount(UserAccount2 account) {
 // current_account
 QString UserConfiguration::CURRENT_ACCOUNT_PN = "current_account";
 
-UserAccount2 * UserConfiguration::getCurrentAccount() {
+UserAccount * UserConfiguration::getCurrentAccount() {
 	return &userAccount;
 }
 
-void UserConfiguration::setCurrentAccount(UserAccount2 * account) {
+void UserConfiguration::setCurrentAccount(UserAccount * account) {
 	if (account) {
 		userAccount = *account;
 	} else {

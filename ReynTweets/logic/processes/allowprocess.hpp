@@ -25,7 +25,7 @@
 #define ALLOWPROCESS_HPP
 
 #include "oauthprocess.hpp"
-#include "../../model/configuration/reyntweetsuserconfiguration.hpp"
+#include "../../model/configuration/userconfiguration.hpp"
 
 /// @class AllowProcess
 /// @brief OAuth Authentication Flow + updating the configuration
@@ -37,7 +37,7 @@ class AllowProcess : public OAuthProcess
 		/// @fn explicit AllowProcess(ReynTweetsUserConfiguration & conf);
 		/// @brief Constructor
 		/// @param conf Reference on the configuration
-		explicit AllowProcess(ReynTweetsUserConfiguration & conf);
+		explicit AllowProcess(UserConfiguration & conf);
 
 	public slots:
 
@@ -51,7 +51,7 @@ class AllowProcess : public OAuthProcess
 		bool authEnded;
 
 		/// @brief Configuration of Reyn Tweets
-		ReynTweetsUserConfiguration & configuration;
+		UserConfiguration & configuration;
 
 		/// @fn void saveConfiguration();
 		/// @brief

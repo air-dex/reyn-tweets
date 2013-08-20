@@ -1,12 +1,10 @@
 /// @file mediasizes.hpp
 /// @brief Header of MediaSizes
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,11 +25,11 @@
 #define MEDIASIZES_HPP
 
 #include "mediasize.hpp"
-#include "../reyntweetsmappable.hpp"
 
 /// @class MediaSizes
 /// @brief Different sizes possible for a Media object
-class MediaSizes : public ReynTweetsMappable
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-sizes
+class MediaSizes : public JsonObject
 {
 	Q_OBJECT
 
@@ -67,6 +65,23 @@ class MediaSizes : public ReynTweetsMappable
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const MediaSizes & sizes);
 		/// @brief Copy of a MediaSizes
@@ -97,9 +112,14 @@ class MediaSizes : public ReynTweetsMappable
 		// Large size
 		/// @property large
 		/// @brief Large size for a media
+		///
+		/// largeSize is the attribute behind the property.
 		Q_PROPERTY(QVariantMap large
 				   READ getLargeProperty
 				   WRITE setLarge)
+
+		/// @brief Name of the property large.
+		static QString LARGE_PN;
 
 		/// @fn QVariantMap getLargeProperty();
 		/// @brief Reading method for the property large
@@ -114,9 +134,14 @@ class MediaSizes : public ReynTweetsMappable
 		// Medium size
 		/// @property medium
 		/// @brief Large size for a media
+		///
+		/// mediumSize is the attribute behind the property.
 		Q_PROPERTY(QVariantMap medium
 				   READ getMediumProperty
 				   WRITE setMedium)
+
+		/// @brief Name of the property medium.
+		static QString MEDIUM_PN;
 
 		/// @fn QVariantMap getMediumProperty();
 		/// @brief Reading method for the property medium
@@ -131,9 +156,14 @@ class MediaSizes : public ReynTweetsMappable
 		// Small size
 		/// @property small
 		/// @brief Large size for a media
+		///
+		/// smallSize is the attribute behind the property.
 		Q_PROPERTY(QVariantMap small
 				   READ getSmallProperty
 				   WRITE setSmall)
+
+		/// @brief Name of the property small.
+		static QString SMALL_PN;
 
 		/// @fn QVariantMap getSmallProperty();
 		/// @brief Reading method for the property small
@@ -148,9 +178,14 @@ class MediaSizes : public ReynTweetsMappable
 		// Thumb size
 		/// @property thumb
 		/// @brief Large size for a media
+		///
+		/// thumbSize is the attribute behind the property.
 		Q_PROPERTY(QVariantMap thumb
 				   READ getThumbProperty
 				   WRITE setThumb)
+
+		/// @brief Name of the property thumb.
+		static QString THUMB_PN;
 
 		/// @fn QVariantMap getThumbProperty();
 		/// @brief Reading method for the property thumb

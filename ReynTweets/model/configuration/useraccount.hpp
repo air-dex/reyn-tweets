@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,12 +28,12 @@
 #include <QDataStream>
 #include <QObject>
 #include <QVariant>
-#include "../reyntweetsmappable.hpp"
-#include "../users/user.hpp"
+#include "../json/jsonobject.hpp"
+#include "../users/userinfos.hpp"
 
 /// @class UserAccount
 /// @brief User account.
-class UserAccount : public ReynTweetsMappable
+class UserAccount : public JsonObject
 {
 	Q_OBJECT
 
@@ -73,6 +73,23 @@ class UserAccount : public ReynTweetsMappable
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 
 	private:
 		/// @fn void recopie(const UserAccount & account);
@@ -111,27 +128,42 @@ class UserAccount : public ReynTweetsMappable
 		// Settings //
 		//////////////
 
-		// Access Token
+		// access_token
 		/// @property access_token
 		/// @brief Access token
+		///
+		/// accessToken is the attribute beneath this property.
 		Q_PROPERTY(QByteArray access_token
 				   READ getAccessToken
 				   WRITE setAccessToken)
 
-		// Token Secret
+		/// @brief Name of the property access_token.
+		static QString ACCESS_TOKEN_PN;
+
+		// token_secret
 		/// @property token_secret
 		/// @brief Token secret
+		///
+		/// tokenSecret is the attribute beneath this property.
 		Q_PROPERTY(QByteArray token_secret
 				   READ getTokenSecret
 				   WRITE setTokenSecret)
 
-		// User
+		/// @brief Name of the property token_secret.
+		static QString TOKEN_SECRET_PN;
+
+		// twitter_user
 		/// @property twitter_user
 		/// @brief Twitter user
+		///
+		/// user is the attribute beneath this property.
 		Q_PROPERTY(QVariantMap twitter_user
 				   READ getUserProperty
 				   WRITE setUser
 				   NOTIFY currentUserChanged)
+
+		/// @brief Name of the property twitter_user.
+		static QString TWITTER_USER_PN;
 
 		/// @fn QVariantMap getUserProperty();
 		/// @brief Reading the property twitter_user
@@ -145,25 +177,38 @@ class UserAccount : public ReynTweetsMappable
 
 		/// @property current_user
 		/// @brief Twitter user
+		///
+		/// user is the attribute beneath this property.
 		Q_PROPERTY(UserInfos * current_user
-				   READ getCurrentUser
+				   READ getUserPtr
+				   WRITE setUser
 				   NOTIFY currentUserChanged)
 
-		/// @fn User * getCurrentUser();
+		/// @brief Name of the property current_user.
+		static QString CURRENT_USER_PN;
+
+		/// @fn UserInfos * getUserPtr();
 		/// @brief Reading the property current_user
 		/// @return A pointer on user
-		UserInfos * getCurrentUser();
+		UserInfos * getUserPtr();
 
+		/// @fn void setUser(UserInfos * u);
+		/// @brief Setter on the user
+		/// @param u The new user
+		void setUser(UserInfos * u);
 
 		// Hello message
 		/// @property hello_message
 		/// @brief Message to say hello.
 		///
-		/// The helloMessage attribute is behind this property.
+		/// The helloMessage attribute is beneath this property.
 		Q_PROPERTY(QString hello_message
 				   READ getHelloMessage
 				   WRITE setHelloMessage
 				   NOTIFY helloMessageChanged)
+
+		/// @brief Name of the property hello_message.
+		static QString HELLO_MESSAGE_PN;
 
 
 	signals:
@@ -194,6 +239,7 @@ class UserAccount : public ReynTweetsMappable
 		QString helloMessage;
 
 	public:
+		// access_token
 		/// @fn QByteArray getAccessToken();
 		/// @brief Getter on the access token
 		/// @return The access token
@@ -204,6 +250,7 @@ class UserAccount : public ReynTweetsMappable
 		/// @param token The new Access Token
 		void setAccessToken(QByteArray token);
 
+		// token_secret
 		/// @fn QByteArray getTokenSecret();
 		/// @brief Getter on the secret token
 		/// @return The secret token
@@ -214,6 +261,7 @@ class UserAccount : public ReynTweetsMappable
 		/// @param secret The new token secret
 		void setTokenSecret(QByteArray secret);
 
+		// twitter_user
 		/// @fn UserInfos getUser();
 		/// @brief Getter on the user
 		/// @return The user
@@ -229,6 +277,7 @@ class UserAccount : public ReynTweetsMappable
 		/// @param u The new user
 		void setUser(UserInfos u);
 
+		// hello_message
 		/// @fn QString getHelloMessage();
 		/// @brief Reading the property hello_message
 		/// @return helloMessage

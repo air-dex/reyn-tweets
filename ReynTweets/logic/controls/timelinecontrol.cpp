@@ -386,7 +386,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			Tweet backupedTweet;
 			backupedTweet.fillWithVariant(backupedNewTweet.toMap());
 
-			ReynTweetsUserConfiguration & conf = reyn.getUserConfiguration();
+			UserConfiguration & conf = reyn.getUserConfiguration();
 			qlonglong authorID = conf.getUserAccount().getUser().getID();
 			UserMentionList tweetMentions = backupedTweet.getEntities().getUserMentions();
 

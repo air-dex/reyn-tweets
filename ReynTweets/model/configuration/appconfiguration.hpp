@@ -1,13 +1,10 @@
-/// @file reyntweetsappconfiguration.hpp
-/// @brief Header of ReynTweetsAppConfiguration
-///
-/// Revisions older than r242 were in /trunk/ReynTweets/connection
-/// Revisions until r431 were known as ReynTweetsSettings
+/// @file reyntweetsconfiguration.hpp
+/// @brief Header of ReynTweetsConfiguration
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011, 2012 Romain Ducher
+/// Copyright 2011, 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -24,14 +21,15 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REYNTWEETSAPPCONFIGURATION_HPP
-#define REYNTWEETSAPPCONFIGURATION_HPP
+#ifndef APPCONFIGURATION_HPP
+#define APPCONFIGURATION_HPP
 
 #include <QByteArray>
 #include <QString>
 #include <QStringList>
 #include <QVariantMap>
 #include "../../logic/coreresult.hpp"
+#include "../json/jsonobject.hpp"
 
 /// @class ReynTweetsAppConfiguration
 /// @brief Class with Reyn Tweets settings.
@@ -43,11 +41,15 @@
 /// <li><a href="http://getpocket.com">Pocket</a></li>
 /// <li>More to come...</li>
 /// </ul>
-class ReynTweetsAppConfiguration {
+class AppConfiguration : public JsonObject {
 	public:
 		/// @fn ReynTweetsAppConfiguration();
 		/// @brief Constructor
-		ReynTweetsAppConfiguration();
+		AppConfiguration();
+
+		/// @fn void reset();
+		/// @brief Resets the mappable to a default value
+		void reset();
 
 		/// @fn CoreResult load();
 		/// @brief Loading the settings from the settings file.
@@ -94,22 +96,10 @@ class ReynTweetsAppConfiguration {
 		QByteArray getPocketAPIKey();
 
 
-	private:
+	protected:
 		/////////////////////
 		// Core management //
 		/////////////////////
-
-		/// @fn bool detectSetting(QVariantMap settingsMap,
-		///						   const char * settingKey,
-		///						   QStringList & missingKeys);
-		/// @brief Detecting if an application setting is here or not
-		/// @param settingsMap Map with all the settings
-		/// @param settingKey Key of the setting (in the JSON file)
-		/// @param missingKeys List of missing keys.
-		/// @return true if the key exists, false otherwise.
-		bool detectSetting(QVariantMap settingsMap,
-						   const char * settingKey,
-						   QStringList & missingKeys);
 
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;
@@ -118,7 +108,27 @@ class ReynTweetsAppConfiguration {
 		QString errorLoading;
 
 
-	protected:
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		///
+		/// The method is unused. It is here just because it needs to be
+		/// implemented.
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
+
 		//////////////
 		// Settings //
 		//////////////
@@ -127,33 +137,93 @@ class ReynTweetsAppConfiguration {
 		// Twitter Settings (OAuth) //
 		//////////////////////////////
 
+		/// @property consumer_key
+		/// @brief Twitter OAuth consumer key
+		///
+		/// CONSUMER_KEY is the attribute beneath the property.
+		Q_PROPERTY(QByteArray consumer_key
+				   READ getConsumerKey)
+
+		/// @brief Name of the property .
+		static QString CONSUMER_KEY_PN;
+
 		/// @brief Twitter OAuth consumer key.
-		QByteArray CONSUMER_KEY;
+		QByteArray consumerKey;
+
+		/// @property consumer_secret
+		/// @brief Twitter OAuth consumer secret
+		///
+		/// CONSUMER_SECRET is the attribute beneath the property.
+		Q_PROPERTY(QByteArray consumer_secret
+				   READ getConsumerSecret)
+
+		/// @brief Name of the property .
+		static QString CONSUMER_SECRET_PN;
 
 		/// @brief Twitter OAuth consumer secret.
-		QByteArray CONSUMER_SECRET;
+		QByteArray consumerSecret;
+
+		/// @property callback_url
+		/// @brief Callback URL for Twitter OAuth authentication
+		///
+		/// CALLBACK_URL is the attribute beneath the property.
+		Q_PROPERTY(QString callback_url
+				   READ getCallbackURL)
+
+		/// @brief Name of the property .
+		static QString CALLBACK_URL_PN;
 
 		/// @brief Twitter callback URL
-		QString CALLBACK_URL;
+		QString callbackURL;
 
 
 		////////////////
 		// TwitLonger //
 		////////////////
 
+		/// @property twitlonger_application_name
+		/// @brief Appilcation name in Twitlonger
+		///
+		/// TWITLONGER_APP_NAME is the attribute beneath the property.
+		Q_PROPERTY(QString twitlonger_application_name
+				   READ getTwitLongerAppName)
+
+		/// @brief Name of the property .
+		static QString TWITLONGER_APP_NAME_PN;
+
 		/// @brief Name of Reyn Tweets in the TwitLonger API
-		QString TWITLONGER_APP_NAME;
+		QString twitlongerAppName;
+
+		/// @property twitlonger_api_key
+		/// @brief Twitlonger API key
+		///
+		/// TWITLONGER_APP_NAME is the attribute beneath the property.
+		Q_PROPERTY(QByteArray twitlonger_api_key
+				   READ getTwitLongerAPIKey)
+
+		/// @brief Name of the property .
+		static QString TWITLONGER_API_KEY_PN;
 
 		/// @brief TwitLonger API key.
-		QByteArray TWITLONGER_API_KEY;
+		QByteArray twitlongerAPIKey;
 
 
 		////////////////////////////////////////////////
 		// Pocket (formerly known as "Read It Later") //
 		////////////////////////////////////////////////
 
+		/// @property pocket_api_key
 		/// @brief Pocket API key.
-		QByteArray POCKET_API_KEY;
+		///
+		/// POCKET_API_KEY is the attribute beneath the property.
+		Q_PROPERTY(QByteArray pocket_api_key
+				   READ getPocketAPIKey)
+
+		/// @brief Name of the property .
+		static QString POCKET_API_KEY_PN;
+
+		/// @brief Pocket API key.
+		QByteArray pocketAPIKey;
 };
 
-#endif // REYNTWEETSAPPCONFIGURATION_HPP
+#endif // APPCONFIGURATION_HPP

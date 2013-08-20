@@ -1,12 +1,10 @@
 /// @file tweet.cpp
 /// @brief Implementation of Tweet
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,6 +25,7 @@
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
+#include <QVariant>
 #include "tweet.hpp"
 #include "../../tools/utils.hpp"
 
@@ -36,7 +35,7 @@
 
 // Default constructor
 Tweet::Tweet() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	tweetID(-1),
 	tweetIDstr("-1"),
 	tweetEntities(),
@@ -47,6 +46,7 @@ Tweet::Tweet() :
 	retweetSource(0),
 	retweetInfos(),
 	favoritedTweet(false),
+	favoriteCount(0),
 	replyToScreenName(""),
 	replyToUserID(-1),
 	replyToUserIDstr("-1"),
@@ -55,7 +55,16 @@ Tweet::Tweet() :
 	profile(),
 	createdAt(),
 	sourceClient(""),
-	truncatedTweet(false)
+	withheldCopyright(false),
+	withheldInCountries(),
+	withheldScope(""),
+	truncatedTweet(false),
+	tweetContributors(),
+	tweetCoordinates(),
+	filterLevel(""),
+	language("en"),
+	tweetPlace(),
+	tweetScopes()
 {
 	blacklistProperties();
 }
@@ -70,8 +79,36 @@ Tweet::~Tweet() {
 
 // Copy constructor
 Tweet::Tweet(const Tweet & status) :
-	ReynTweetsMappable(),
-	retweetSource(0)
+	JsonObject(),
+	tweetID(-1),
+	tweetIDstr("-1"),
+	tweetEntities(),
+	tweet(""),
+	sensibleTweet(false),
+	retweetedTweet(false),
+	retweetCount(0),
+	retweetSource(0),
+	retweetInfos(),
+	favoritedTweet(false),
+	favoriteCount(0),
+	replyToScreenName(""),
+	replyToUserID(-1),
+	replyToUserIDstr("-1"),
+	replyToTweetID(-1),
+	replyToTweetIDstr("-1"),
+	profile(),
+	createdAt(),
+	sourceClient(""),
+	truncatedTweet(false),
+	withheldCopyright(false),
+	withheldInCountries(),
+	withheldScope(""),
+	tweetContributors(),
+	tweetCoordinates(),
+	filterLevel(""),
+	language("en"),
+	tweetPlace(),
+	tweetScopes()
 {
 	recopie(status);
 }
@@ -84,7 +121,7 @@ const Tweet & Tweet::operator=(const Tweet & status) {
 
 // Copy of a Tweet
 void Tweet::recopie(const Tweet & status) {
-	ReynTweetsMappable::recopie(status);
+	JsonObject::recopie(status);
 	tweetID = status.tweetID;
 	tweetIDstr = status.tweetIDstr;
 	tweetEntities = status.tweetEntities;
@@ -103,7 +140,15 @@ void Tweet::recopie(const Tweet & status) {
 	createdAt = status.createdAt;
 	sourceClient = status.sourceClient;
 	truncatedTweet = status.truncatedTweet;
-
+	tweetContributors = status.tweetContributors;
+	tweetCoordinates = status.tweetCoordinates;
+	filterLevel = status.filterLevel;
+	language = status.language;
+	tweetPlace = status.tweetPlace;
+	tweetScopes = status.tweetScopes;
+	withheldCopyright = status.withheldCopyright;
+	withheldInCountries = status.withheldInCountries;
+	withheldScope = status.withheldScope;
 
 	// Recopying retweetedTweet
 
@@ -134,12 +179,12 @@ void Tweet::declareQML() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Tweet & tweet) {
-	return jsonStreamingOut(out, tweet);
+	return tweet.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Tweet & tweet) {
-	return jsonStreamingIn(in, tweet);
+	return tweet.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -148,8 +193,111 @@ void Tweet::reset() {
 }
 
 // Equality between tweets
-bool Tweet::operator==(const Tweet & status) {
+bool Tweet::operator==(const Tweet & status) const {
 	return this->tweetID == status.tweetID;
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void Tweet::fillWithJSON(QJsonObject json) {
+	this->tweetContributors.fillWithJSON(json.value(CONTRIBUTORS_PN).toArray());
+	this->tweetCoordinates.fillWithJSON(json.value(COORDINATES_PN).toObject());
+	this->retweetInfos.fillWithJSON(json.value(CURRENT_USER_RETWEET_PN).toObject());
+	this->tweetEntities.fillWithJSON(json.value(ENTITIES_PN).toObject());
+	this->favoriteCount = int(json.value(FAVORITE_COUNT_PN).toDouble(0));
+	this->favoritedTweet = json.value(FAVORITED_PN).toBool(false);
+	this->filterLevel = json.value(FILTER_LEVEL_PN).toString("");
+	this->tweetID = qlonglong(json.value(ID_PN).toDouble(-1));
+	this->tweetIDstr = json.value(ID_STR_PN).toString("-1");
+	this->replyToScreenName = json.value(IN_REPLY_TO_SCREEN_NAME_PN).toString("");
+	this->replyToTweetID = qlonglong(json.value(IN_REPLY_TO_STATUS_ID_PN).toDouble(-1));
+	this->replyToTweetIDstr = json.value(IN_REPLY_TO_STATUS_ID_STR_PN).toString("-1");
+	this->replyToUserID = qlonglong(json.value(IN_REPLY_TO_USER_ID_PN).toDouble(-1));
+	this->replyToUserIDstr = json.value(IN_REPLY_TO_USER_ID_STR_PN).toString("-1");
+	this->language = json.value(LANG_PN).toString("en");
+	this->tweetPlace.fillWithJSON(json.value(PLACE_PN).toObject());
+	this->sensibleTweet = json.value(POSSIBLY_SENSITIVE_PN).toBool(false);
+	this->retweetCount = int(json.value(RETWEETED_PN).toDouble(0));
+	this->retweetedTweet = json.value(RETWEET_COUNT_PN).toBool(false);
+	this->tweetScopes = json.value(SCOPES_PN).toObject().toVariantMap();
+	this->sourceClient = json.value(SOURCE_PN).toString("");
+	this->tweet = json.value(TEXT_PN).toString("");
+	this->truncatedTweet = json.value(TRUNCATED_PN).toBool(false);
+	this->profile.fillWithJSON(json.value(USER_PN).toObject());
+	this->withheldCopyright = json.value(WITHHELD_COPYRIGHT_PN).toBool(false);
+	this->withheldScope = json.value(WITHHELD_SCOPE_PN).toString("");
+
+	// withheld_in_countries
+	QVariantList withheldCountries = json.value(WITHHELD_IN_COUNTRIES_PN).toArray().toVariantList();
+	this->withheldInCountries = QVariant::fromValue(withheldCountries).toStringList();
+
+	// created_at
+	QString currentDateStr = QDateTime::currentDateTime().toString();
+	this->createdAt.setDate(json.value(CREATED_AT_PN).toString(currentDateStr));
+
+	// retweet_source
+	if (this->retweetSource) {
+		delete retweetSource;
+		this->retweetSource = 0;
+	}
+
+	QJsonObject retweetJson = json.value(RETWEETED_STATUS_PN).toObject();
+
+	// If nothing in the object : the retweet is null so there's nothing to do.
+	if (!retweetJson.isEmpty()) {
+		// Something in the object : the retweet is not null
+		this->retweetSource = new Tweet;
+		this->retweetSource->fillWithJSON(retweetJson);
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject Tweet::toJSON() const {
+	QJsonObject json;
+
+	json.insert(CONTRIBUTORS_PN, QJsonValue(this->tweetContributors.toJSON()));
+	json.insert(COORDINATES_PN, QJsonValue(this->tweetCoordinates.toJSON()));
+	json.insert(CREATED_AT_PN, QJsonValue(this->createdAt.toString()));
+	json.insert(CURRENT_USER_RETWEET_PN, QJsonValue(this->retweetInfos.toJSON()));
+	json.insert(ENTITIES_PN, QJsonValue(this->tweetEntities.toJSON()));
+	json.insert(FAVORITE_COUNT_PN, QJsonValue(double(this->favoriteCount)));
+	json.insert(FAVORITED_PN, QJsonValue(this->favoritedTweet));
+	json.insert(FILTER_LEVEL_PN, QJsonValue(this->filterLevel));
+	json.insert(ID_PN, QJsonValue(double(this->tweetID)));
+	json.insert(ID_STR_PN, QJsonValue(this->tweetIDstr));
+	json.insert(IN_REPLY_TO_SCREEN_NAME_PN, QJsonValue(this->replyToScreenName));
+	json.insert(IN_REPLY_TO_STATUS_ID_PN, QJsonValue(double(this->replyToTweetID)));
+	json.insert(IN_REPLY_TO_STATUS_ID_STR_PN, QJsonValue(this->replyToTweetIDstr));
+	json.insert(IN_REPLY_TO_USER_ID_PN, QJsonValue(double(this->replyToUserID)));
+	json.insert(IN_REPLY_TO_USER_ID_STR_PN, QJsonValue(this->replyToUserIDstr));
+	json.insert(LANG_PN, QJsonValue(this->language));
+	json.insert(PLACE_PN, QJsonValue(this->tweetPlace.toJSON()));
+	json.insert(POSSIBLY_SENSITIVE_PN, QJsonValue(this->sensibleTweet));
+	json.insert(SCOPES_PN, QJsonValue(QJsonObject::fromVariantMap(this->tweetScopes)));
+	json.insert(RETWEET_COUNT_PN, QJsonValue(double(this->retweetCount)));
+	json.insert(RETWEETED_PN, QJsonValue(this->retweetedTweet));
+	json.insert(SOURCE_PN, QJsonValue(this->sourceClient));
+	json.insert(TEXT_PN, QJsonValue(this->tweet));
+	json.insert(TRUNCATED_PN, QJsonValue(this->truncatedTweet));
+	json.insert(USER_PN, QJsonValue(this->profile.toJSON()));
+	json.insert(WITHHELD_COPYRIGHT_PN, QJsonValue(this->withheldCopyright));
+	json.insert(WITHHELD_IN_COUNTRIES_PN, QJsonValue(QJsonArray::fromStringList(this->withheldInCountries)));
+	json.insert(WITHHELD_SCOPE_PN, QJsonValue(this->withheldScope));
+
+	// Insert retweet
+	QJsonObject retweetJson;
+
+	if (this->isRetweet()) {
+		retweetJson = this->retweetSource->toJSON();
+	}
+
+	json.insert(RETWEETED_STATUS_PN, QJsonValue(retweetJson));
+
+	return json;
 }
 
 
@@ -164,37 +312,357 @@ void Tweet::blacklistProperties() {
 	transientProperties.append(QString(QLatin1String("retweet_infos")));
 }
 
-// Reading the property entities
-QVariantMap Tweet::getEntitiesProperty() {
-	return tweetEntities.toVariant();
+// contributors
+QString Tweet::CONTRIBUTORS_PN = "contributors";
+
+QString Tweet::TWEET_CONTRIBUTORS_PN = "tweet_contributors";
+
+QVariantList Tweet::getContributorsProperty() {
+	return tweetContributors.toVariant();
 }
 
-// Writing the property entities
-void Tweet::setEntities(QVariantMap newEntityMap) {
-	tweetEntities.fillWithVariant(newEntityMap);
+ContributorList Tweet::getContributors() {
+	return tweetContributors;
 }
 
-// Reading created_at
+ContributorList * Tweet::getContributorsPtr() {
+	return &tweetContributors;
+}
+
+void Tweet::setContributors(QVariantList newEntityMap) {
+	tweetContributors.fillWithVariant(newEntityMap);
+	emit contributorsChanged();
+}
+
+void Tweet::setContributors(ContributorList newValue) {
+	tweetContributors = newValue;
+	emit contributorsChanged();
+}
+
+void Tweet::setContributors(ContributorList * newEntityMap) {
+	tweetContributors = newEntityMap ? *newEntityMap : ContributorList();
+	emit contributorsChanged();
+}
+
+// coordinates
+QString Tweet::COORDINATES_PN = "coordinates";
+
+QString Tweet::TWEET_COORDINATES_PN = "tweet_coordinates";
+
+Coordinates Tweet::getCoordinates() {
+	return tweetCoordinates;
+}
+
+Coordinates * Tweet::getCoordinatesPtr() {
+	return &tweetCoordinates;
+}
+
+QVariantMap Tweet::getCoordinatesProperty() {
+	return tweetCoordinates.toVariant();
+}
+
+void Tweet::setCoordinates(Coordinates newValue) {
+	tweetCoordinates = newValue;
+	emit coordinatesChanged();
+}
+
+void Tweet::setCoordinates(Coordinates * newValue) {
+	tweetCoordinates = newValue ? *newValue : Coordinates();
+	emit coordinatesChanged();
+}
+
+void Tweet::setCoordinates(QVariantMap newEntityMap) {
+	tweetCoordinates.fillWithVariant(newEntityMap);
+	emit coordinatesChanged();
+}
+
+// current_user_retweet
+QString Tweet::CURRENT_USER_RETWEET_PN = "current_user_retweet";
+
+QString Tweet::RETWEET_INFOS_PN = "retweet_infos";
+
+QVariantMap Tweet::getRetweetInfosVariant() {
+	return retweetInfos.toVariant();
+}
+
+RetweetInfos * Tweet::getRetweetInfos() {
+	return &retweetInfos;
+}
+
+void Tweet::setRetweetInfos(QVariantMap newInfos) {
+	retweetInfos.reset();
+	retweetInfos.fillWithVariant(newInfos);
+	emit retweetInfosChanged();
+}
+
+void Tweet::setRetweetInfos(RetweetInfos * newInfos) {
+	retweetInfos = newInfos ? *newInfos : RetweetInfos();
+	emit retweetInfosChanged();
+}
+
+// created_at
+QString Tweet::CREATED_AT_PN = "created_at";
+
 QString Tweet::getCreatedAtProperty() {
 	return createdAt.toString();
 }
 
-// Writing created_at
+ReynTweetsDateTime Tweet::getCreatedAt() {
+	return createdAt;
+}
+
 void Tweet::setCreatedAt(QString newDate) {
 	createdAt.setDate(newDate);
 }
 
-// Reading the property user
-QVariantMap Tweet::getUserProperty() {
-	return profile.toVariant();
+void Tweet::setCreatedAt(ReynTweetsDateTime newValue) {
+	createdAt = newValue;
+	emit createdAtChanged();
 }
 
-// Writing the property user
-void Tweet::setUser(QVariantMap newUserMap) {
-	profile.fillWithVariant(newUserMap);
+// entities
+QString Tweet::ENTITIES_PN = "entities";
+
+QString Tweet::TWEET_ENTITIES_PN = "tweet_entities";
+
+QVariantMap Tweet::getEntitiesProperty() {
+	return tweetEntities.toVariant();
 }
 
-// Reading retweeted_status
+TweetEntities Tweet::getEntities() {
+	return tweetEntities;
+}
+
+TweetEntities * Tweet::getEntitiesPtr() {
+	return &tweetEntities;
+}
+
+void Tweet::setEntities(QVariantMap newEntityMap) {
+	tweetEntities.fillWithVariant(newEntityMap);
+	emit entitiesChanged();
+}
+
+void Tweet::setEntities(TweetEntities newValue) {
+	tweetEntities = newValue;
+	emit entitiesChanged();
+}
+
+void Tweet::setEntities(TweetEntities * newEntityMap) {
+	tweetEntities = newEntityMap ? *newEntityMap : TweetEntities();
+	emit entitiesChanged();
+}
+
+// favorite_count
+QString Tweet::FAVORITE_COUNT_PN = "favorite_count";
+
+int Tweet::getFavoriteCount() {
+	return favoriteCount;
+}
+
+void Tweet::setFavoriteCount(int newValue) {
+	favoriteCount = newValue;
+	emit favoriteCountChanged();
+}
+
+// favorited
+QString Tweet::FAVORITED_PN = "favorited";
+
+bool Tweet::isFavorited() {
+	return favoritedTweet;
+}
+
+void Tweet::setFavorited(bool newValue) {
+	favoritedTweet = newValue;
+	emit favoritedChanged();
+}
+
+// filter_level
+QString Tweet::FILTER_LEVEL_PN = "filter_level";
+
+QString Tweet::getFilterLevel() {
+	return filterLevel;
+}
+
+void Tweet::setFilterLevel(QString newValue) {
+	filterLevel = newValue;
+	emit filterLevelChanged();
+}
+
+// id
+QString Tweet::ID_PN = "id";
+
+qlonglong Tweet::getID() {
+	return tweetID;
+}
+
+void Tweet::setID(qlonglong newValue) {
+	tweetID = newValue;
+	tweetIDstr = QString::number(tweetID);
+	emit idChanged();
+}
+
+// id_str
+QString Tweet::ID_STR_PN = "id_str";
+
+QString Tweet::getIDstr() {
+	return tweetIDstr;
+}
+
+void Tweet::setIDstr(QString newValue) {
+	tweetIDstr = newValue;
+	tweetID = tweetIDstr.toLongLong();
+	emit idChanged();
+}
+
+// in_reply_to_screen_name
+QString Tweet::IN_REPLY_TO_SCREEN_NAME_PN = "in_reply_to_screen_name";
+
+QString Tweet::getInReplyToScreenName() {
+	return replyToScreenName;
+}
+
+void Tweet::setInReplyToScreenName(QString newValue) {
+	replyToScreenName = newValue;
+	emit inReplyToScreenNameChanged();
+}
+
+// in_reply_to_status_id
+QString Tweet::IN_REPLY_TO_STATUS_ID_PN = "in_reply_to_status_id";
+
+qlonglong Tweet::getInReplyToStatusID() {
+	return replyToTweetID;
+}
+
+void Tweet::setInReplyToStatusID(qlonglong newValue) {
+	replyToTweetID = newValue;
+	replyToTweetIDstr = QString::number(replyToTweetID);
+	emit inReplyToStatusIDChanged();
+}
+
+// in_reply_to_status_id_str
+QString Tweet::IN_REPLY_TO_STATUS_ID_STR_PN = "in_reply_to_status_id_str";
+
+QString Tweet::getInReplyToStatusIDstr() {
+	return replyToTweetIDstr;
+}
+
+void Tweet::setInReplyToStatusIDstr(QString newValue) {
+	replyToTweetIDstr = newValue;
+	replyToTweetID = replyToTweetIDstr.toLongLong();
+	emit inReplyToStatusIDChanged();
+}
+
+// in_reply_to_user_id
+QString Tweet::IN_REPLY_TO_USER_ID_PN = "in_reply_to_user_id";
+
+qlonglong Tweet::getInReplyToUserID() {
+	return replyToUserID;
+}
+
+void Tweet::setInReplyToUserID(qlonglong newValue) {
+	replyToUserID = newValue;
+	replyToUserIDstr = QString::number(replyToUserID);
+	emit inReplyToUserIDChanged();
+}
+
+// in_reply_to_user_id_str
+QString Tweet::IN_REPLY_TO_USER_ID_STR_PN = "in_reply_to_user_id_str";
+
+QString Tweet::getInReplyToUserIDstr() {
+	return replyToUserIDstr;
+}
+
+void Tweet::setInReplyToUserIDstr(QString newValue) {
+	replyToUserIDstr = newValue;
+	replyToUserID = replyToUserIDstr.toLongLong();
+	emit inReplyToUserIDChanged();
+}
+
+// lang
+QString Tweet::LANG_PN = "lang";
+
+QString Tweet::getLang() {
+	return language;
+}
+
+void Tweet::setLang(QString newLang) {
+	language = newLang;
+	emit langChanged();
+}
+
+// place
+QString Tweet::PLACE_PN = "place";
+
+QString Tweet::TWEET_PLACE_PN = "tweet_place";
+
+QVariantMap Tweet::getPlaceProperty() {
+	return tweetPlace.toVariant();
+}
+
+TwitterPlace Tweet::getPlace() {
+	return tweetPlace;
+}
+
+TwitterPlace * Tweet::getPlacePtr() {
+	return &tweetPlace;
+}
+
+void Tweet::setPlace(QVariantMap newEntityMap) {
+	tweetPlace.fillWithVariant(newEntityMap);
+	emit placeChanged();
+}
+
+void Tweet::setPlace(TwitterPlace newValue) {
+	tweetPlace = newValue;
+	emit placeChanged();
+}
+
+void Tweet::setPlace(TwitterPlace * newEntityMap) {
+	tweetPlace = newEntityMap ? *newEntityMap : TwitterPlace();
+	emit placeChanged();
+}
+
+// possibly_sensitive
+QString Tweet::POSSIBLY_SENSITIVE_PN = "possibly_sensitive";
+
+bool Tweet::isPossiblySensitive() {
+	return sensibleTweet;
+}
+
+void Tweet::setPossiblySensitive(bool newValue) {
+	sensibleTweet = newValue;
+	emit possiblySensitiveChanged();
+}
+
+// retweet_count
+QString Tweet::RETWEET_COUNT_PN = "retweet_count";
+
+int Tweet::getRetweetCount() {
+	return retweetCount;
+}
+
+void Tweet::setRetweetCount(int newValue) {
+	retweetCount = newValue;
+	emit retweetCountChanged();
+}
+
+// retweeted
+QString Tweet::RETWEETED_PN = "retweeted";
+
+bool Tweet::isRetweetedByMe() {
+	return retweetedTweet;
+}
+
+void Tweet::setRetweeted(bool newValue) {
+	retweetedTweet = newValue;
+	emit retweetedChanged();
+}
+
+// retweeted_status
+QString Tweet::RETWEETED_STATUS_PN = "retweeted_status";
+
+QString Tweet::RETWEET_PN = "retweet";
+
 QVariantMap Tweet::getRetweetedStatusVariant() {
 	if (retweetSource && retweetSource->tweetID != -1) {
 		return retweetSource->toVariant();
@@ -204,7 +672,10 @@ QVariantMap Tweet::getRetweetedStatusVariant() {
 	}
 }
 
-// Writing retweeted_status
+Tweet * Tweet::getRetweetedStatus() {
+	return retweetSource ? retweetSource : new Tweet;
+}
+
 void Tweet::setRetweetedStatus(QVariantMap statusMap) {
 	if (statusMap.empty()) {
 		// This is not a retweet
@@ -224,202 +695,6 @@ void Tweet::setRetweetedStatus(QVariantMap statusMap) {
 	emit retweetedStatusChanged();
 }
 
-
-/////////////////////////
-// Getters and setters //
-/////////////////////////
-
-// entities
-TweetEntities Tweet::getEntities() {
-	return tweetEntities;
-}
-
-void Tweet::setEntities(TweetEntities newValue) {
-	tweetEntities = newValue;
-	emit entitiesChanged();
-}
-
-// in_reply_to_user_id
-qlonglong Tweet::getInReplyToUserID() {
-	return replyToUserID;
-}
-
-void Tweet::setInReplyToUserID(qlonglong newValue) {
-	replyToUserID = newValue;
-	replyToUserIDstr = QString::number(replyToUserID);
-	emit inReplyToUserIDChanged();
-}
-
-// truncated
-bool Tweet::isTruncated() {
-	return truncatedTweet;
-}
-
-void Tweet::setTruncated(bool newValue) {
-	truncatedTweet = newValue;
-	emit truncatedChanged();
-}
-
-// favorited
-bool Tweet::isFavorited() {
-	return favoritedTweet;
-}
-
-void Tweet::setFavorited(bool newValue) {
-	favoritedTweet = newValue;
-	emit favoritedChanged();
-}
-
-// retweet_count
-int Tweet::getRetweetCount() {
-	return retweetCount;
-}
-
-void Tweet::setRetweetCount(int newValue) {
-	retweetCount = newValue;
-	emit retweetCountChanged();
-}
-
-// in_reply_to_screen_name
-QString Tweet::getInReplyToScreenName() {
-	return replyToScreenName;
-}
-
-void Tweet::setInReplyToScreenName(QString newValue) {
-	replyToScreenName = newValue;
-	emit inReplyToScreenNameChanged();
-}
-
-// created_at
-ReynTweetsDateTime Tweet::getCreatedAt() {
-	return createdAt;
-}
-
-void Tweet::setCreatedAt(ReynTweetsDateTime newValue) {
-	createdAt = newValue;
-	emit createdAtChanged();
-}
-
-// in_reply_to_status_id_str
-QString Tweet::getInReplyToStatusIDstr() {
-	return replyToTweetIDstr;
-}
-
-void Tweet::setInReplyToStatusIDstr(QString newValue) {
-	replyToTweetIDstr = newValue;
-	replyToTweetID = replyToTweetIDstr.toLongLong();
-	emit inReplyToStatusIDChanged();
-}
-
-// author
-UserInfos * Tweet::getAuthor() {
-	return &profile;
-}
-
-void Tweet::setAuthor(UserInfos * newValue) {
-	profile = newValue ? *newValue : UserInfos();
-	emit userChanged();
-}
-
-// user
-UserInfos Tweet::getUser() {
-	return profile;
-}
-
-void Tweet::setUser(UserInfos newValue) {
-	profile = newValue;
-	emit userChanged();
-}
-
-// retweeted
-bool Tweet::isRetweetedByMe() {
-	return retweetedTweet;
-}
-
-void Tweet::setRetweeted(bool newValue) {
-	retweetedTweet = newValue;
-	emit retweetedChanged();
-}
-
-// in_reply_to_user_id_str
-QString Tweet::getInReplyToUserIDstr() {
-	return replyToUserIDstr;
-}
-
-void Tweet::setInReplyToUserIDstr(QString newValue) {
-	replyToUserIDstr = newValue;
-	replyToUserID = replyToUserIDstr.toLongLong();
-	emit inReplyToUserIDChanged();
-}
-
-// id_str
-QString Tweet::getIDstr() {
-	return tweetIDstr;
-}
-
-void Tweet::setIDstr(QString newValue) {
-	tweetIDstr = newValue;
-	tweetID = tweetIDstr.toLongLong();
-	emit idChanged();
-}
-
-// source
-QString Tweet::getSource() {
-	return sourceClient;
-}
-
-void Tweet::setSource(QString newValue) {
-	sourceClient = newValue;
-	emit sourceChanged();
-}
-
-// id
-qlonglong Tweet::getID() {
-	return tweetID;
-}
-
-void Tweet::setID(qlonglong newValue) {
-	tweetID = newValue;
-	tweetIDstr = QString::number(tweetID);
-	emit idChanged();
-}
-
-// in_reply_to_status_id
-qlonglong Tweet::getInReplyToStatusID() {
-	return replyToTweetID;
-}
-
-void Tweet::setInReplyToStatusID(qlonglong newValue) {
-	replyToTweetID = newValue;
-	replyToTweetIDstr = QString::number(replyToTweetID);
-	emit inReplyToStatusIDChanged();
-}
-
-// text
-QString Tweet::getText() {
-	return tweet;
-}
-
-void Tweet::setText(QString newValue) {
-	tweet = newValue;
-	emit textChanged();
-}
-
-// sensible
-bool Tweet::isSensible() {
-	return sensibleTweet;
-}
-
-void Tweet::setSensible(bool newValue) {
-	sensibleTweet = newValue;
-	emit sensibleChanged();
-}
-
-// retweeted_status
-Tweet * Tweet::getRetweetedStatus() {
-	return retweetSource ? retweetSource : new Tweet;
-}
-
 void Tweet::setRetweetedStatus(Tweet * retweet) {
 	if (retweetSource) {
 		delete retweetSource;
@@ -430,26 +705,119 @@ void Tweet::setRetweetedStatus(Tweet * retweet) {
 	emit retweetedStatusChanged();
 }
 
+// scopes
+QString Tweet::SCOPES_PN = "scopes";
 
-// retweet_infos
-RetweetInfos * Tweet::getRetweetInfos() {
-	return &retweetInfos;
+QVariantMap Tweet::getScopes() {
+	return tweetScopes;
 }
 
-void Tweet::setRetweetInfos(RetweetInfos * newInfos) {
-	retweetInfos = newInfos ? *newInfos : RetweetInfos();
-	emit retweetInfosChanged();
+void Tweet::setScopes(QVariantMap newValue) {
+	tweetScopes = newValue;
+	emit scopesChanged();
 }
 
-// current_user_retweet
-QVariantMap Tweet::getRetweetInfosVariant() {
-	return retweetInfos.toVariant();
+// source
+QString Tweet::SOURCE_PN = "source";
+
+QString Tweet::getSource() {
+	return sourceClient;
 }
 
-void Tweet::setRetweetInfos(QVariantMap newInfos) {
-	retweetInfos.reset();
-	retweetInfos.fillWithVariant(newInfos);
-	emit retweetInfosChanged();
+void Tweet::setSource(QString newValue) {
+	sourceClient = newValue;
+	emit sourceChanged();
+}
+
+// text
+QString Tweet::TEXT_PN = "text";
+
+QString Tweet::getText() {
+	return tweet;
+}
+
+void Tweet::setText(QString newValue) {
+	tweet = newValue;
+	emit textChanged();
+}
+
+// truncated
+QString Tweet::TRUNCATED_PN = "truncated";
+
+bool Tweet::isTruncated() {
+	return truncatedTweet;
+}
+
+void Tweet::setTruncated(bool newValue) {
+	truncatedTweet = newValue;
+	emit truncatedChanged();
+}
+
+// user
+QString Tweet::USER_PN = "user";
+
+QString Tweet::AUTHOR_PN = "author";
+
+QVariantMap Tweet::getUserProperty() {
+	return profile.toVariant();
+}
+
+UserInfos * Tweet::getAuthor() {
+	return &profile;
+}
+
+UserInfos Tweet::getUser() {
+	return profile;
+}
+
+void Tweet::setUser(QVariantMap newUserMap) {
+	profile.fillWithVariant(newUserMap);
+}
+
+void Tweet::setAuthor(UserInfos * newValue) {
+	profile = newValue ? *newValue : UserInfos();
+	emit userChanged();
+}
+
+void Tweet::setUser(UserInfos newValue) {
+	profile = newValue;
+	emit userChanged();
+}
+
+// withheld_copyright
+QString Tweet::WITHHELD_COPYRIGHT_PN = "withheld_copyright";
+
+bool Tweet::isWithheldCopyright() {
+	return withheldCopyright;
+}
+
+void Tweet::setWithheldCopyright(bool newValue) {
+	withheldCopyright = newValue;
+	emit withheldCopyrightChanged();
+}
+
+// withheld_in_countries
+QString Tweet::WITHHELD_IN_COUNTRIES_PN = "withheld_in_countries";
+
+QStringList Tweet::getWithheldInCountries() {
+	return withheldInCountries;
+}
+
+void Tweet::setWithheldInCountries(QStringList newValue) {
+	withheldInCountries = newValue;
+	emit withheldInCountriesChanged();
+}
+
+// withheld_scope
+QString Tweet::WITHHELD_SCOPE_PN = "withheld_scope";
+
+QString Tweet::getWithheldScope() {
+	return withheldScope;
+}
+
+void Tweet::setWithheldScope(QString newValue) {
+	withheldScope = newValue;
+	emit withheldScopeChanged();
 }
 
 
@@ -548,7 +916,7 @@ QString Tweet::whenWasItPosted(bool encloseInHtmlTag) {
 }
 
 // Indicating if the tweet is a retweet or not
-bool Tweet::isRetweet() {
+bool Tweet::isRetweet() const {
 	return retweetSource != 0;
 }
 

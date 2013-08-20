@@ -1,12 +1,10 @@
 /// @file tweetentities.cpp
 /// @brief Implementation of TweetEntities
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -32,7 +30,7 @@
 
 // Default constructor
 TweetEntities::TweetEntities() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	medias(),
 	tweetURLs(),
 	mentions(),
@@ -44,7 +42,11 @@ TweetEntities::~TweetEntities() {}
 
 // Copy constructor
 TweetEntities::TweetEntities(const TweetEntities & entities) :
-	ReynTweetsMappable()
+	JsonObject(),
+	medias(),
+	tweetURLs(),
+	mentions(),
+	tweetHashtags()
 {
 	recopie(entities);
 }
@@ -63,7 +65,7 @@ void TweetEntities::initSystem() {
 
 // Copy of a TwitterEntities
 void TweetEntities::recopie(const TweetEntities & entities) {
-	ReynTweetsMappable::recopie(entities);
+	JsonObject::recopie(entities);
 	medias = entities.medias;
 	tweetURLs = entities.tweetURLs;
 	mentions = entities.mentions;
@@ -72,12 +74,12 @@ void TweetEntities::recopie(const TweetEntities & entities) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const TweetEntities & entities) {
-	return jsonStreamingOut(out, entities);
+	return entities.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, TweetEntities & entities) {
-	return jsonStreamingIn(in, entities);
+	return entities.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
@@ -86,91 +88,134 @@ void TweetEntities::reset() {
 }
 
 
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void TweetEntities::fillWithJSON(QJsonObject json) {
+	// "media" property
+	QJsonValue propval = json.value(MEDIA_PN);
+
+	if (!propval.isUndefined() && propval.isArray()) {
+		QJsonArray mediaz = propval.toArray();
+		this->medias.fillWithJSON(mediaz);
+	}
+
+	// "urls" property
+	propval = json.value(URLS_PN);
+
+	if (!propval.isUndefined() && propval.isArray()) {
+		QJsonArray urlz = propval.toArray();
+		this->tweetURLs.fillWithJSON(urlz);
+	}
+
+	// "user_mentions" property
+	propval = json.value(USER_MENTIONS_PN);
+
+	if (!propval.isUndefined() && propval.isArray()) {
+		QJsonArray mentionz = propval.toArray();
+		this->mentions.fillWithJSON(mentionz);
+	}
+
+	// "hashtags" property
+	propval = json.value(HASHTAGS_PN);
+
+	if (!propval.isUndefined() && propval.isArray()) {
+		QJsonArray hashtagz = propval.toArray();
+		this->tweetHashtags.fillWithJSON(hashtagz);
+	}
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject TweetEntities::toJSON() const {
+	QJsonObject json;
+
+	json.insert(MEDIA_PN, QJsonValue(this->medias.toJSON()));
+	json.insert(URLS_PN, QJsonValue(this->tweetURLs.toJSON()));
+	json.insert(USER_MENTIONS_PN, QJsonValue(this->mentions.toJSON()));
+	json.insert(HASHTAGS_PN, QJsonValue(this->tweetHashtags.toJSON()));
+
+	return json;
+}
+
+
 ///////////////////////////
 // Properties management //
 ///////////////////////////
 
-// Reading the property media
+// media
+QString TweetEntities::MEDIA_PN = "media";
+
 QVariantList TweetEntities::getMediaProperty() {
 	return medias.toVariant();
 }
 
-// Writing the property media
-void TweetEntities::setMedia(QVariantList newMediaList) {
-	medias.fillWithVariant(newMediaList);
-}
-
-// Reading the property urls
-QVariantList TweetEntities::getURLsProperty() {
-	return tweetURLs.toVariant();
-}
-
-// Writing the property urls
-void TweetEntities::setURLs(QVariantList newURLList) {
-	tweetURLs.fillWithVariant(newURLList);
-}
-
-// Reading the property user_mentions
-QVariantList TweetEntities::getUserMentionsProperty() {
-	return mentions.toVariant();
-}
-
-// Writing the property user_mentions
-void TweetEntities::setUserMentions(QVariantList newUserMentionsList) {
-	mentions.fillWithVariant(newUserMentionsList);
-}
-
-// Reading the property hashtags
-QVariantList TweetEntities::getHashtagsProperty() {
-	return tweetHashtags.toVariant();
-}
-
-// Writing the property hashtags
-void TweetEntities::setHashtags(QVariantList newHashtagsList) {
-	 tweetHashtags.fillWithVariant(newHashtagsList);
-}
-
-
-///////////////
-// Accessors //
-///////////////
-
-// Reading medias
 MediaList TweetEntities::getMedia() {
 	return medias;
 }
 
-// Writing medias
+void TweetEntities::setMedia(QVariantList newMediaList) {
+	medias.fillWithVariant(newMediaList);
+}
+
 void TweetEntities::setMedia(MediaList newMedia) {
 	medias = newMedia;
 }
 
-// Reading tweetURLs
+// urls
+QString TweetEntities::URLS_PN = "urls";
+
+QVariantList TweetEntities::getURLsProperty() {
+	return tweetURLs.toVariant();
+}
+
 URLEntityList TweetEntities::getURLs() {
 	return tweetURLs;
 }
 
-// Writing tweetURLs
+void TweetEntities::setURLs(QVariantList newURLList) {
+	tweetURLs.fillWithVariant(newURLList);
+}
+
 void TweetEntities::setURLs(URLEntityList newURLs) {
 	tweetURLs = newURLs;
 }
 
-// Reading userMentions
+// user_mentions
+QString TweetEntities::USER_MENTIONS_PN = "user_mentions";
+
+QVariantList TweetEntities::getUserMentionsProperty() {
+	return mentions.toVariant();
+}
+
 UserMentionList TweetEntities::getUserMentions() {
 	return mentions;
 }
 
-// Writing userMentions
+void TweetEntities::setUserMentions(QVariantList newUserMentionsList) {
+	mentions.fillWithVariant(newUserMentionsList);
+}
+
 void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
 	mentions = newUserMentions;
 }
 
-// Reading tweetHashtags
+// hashtags
+QString TweetEntities::HASHTAGS_PN = "hashtags";
+
+QVariantList TweetEntities::getHashtagsProperty() {
+	return tweetHashtags.toVariant();
+}
+
 HashtagList TweetEntities::getHashtags() {
 	return tweetHashtags;
 }
 
-// Writing tweetHashtags
+void TweetEntities::setHashtags(QVariantList newHashtagsList) {
+	 tweetHashtags.fillWithVariant(newHashtagsList);
+}
+
 void TweetEntities::setHashtags(HashtagList newHashtags) {
 	tweetHashtags = newHashtags;
 }

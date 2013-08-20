@@ -1,12 +1,10 @@
 /// @file user.hpp
 /// @brief Header of User
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -26,7 +24,7 @@
 #ifndef USER_HPP
 #define USER_HPP
 
-#include "../reyntweetslistable.hpp"
+#include "../json/jsonarray.hpp"
 #include "../tweets/tweet.hpp"
 
 /// @class User
@@ -72,6 +70,23 @@ class User : public UserInfos
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const User & user);
 		/// @brief Copy of a User
@@ -103,9 +118,15 @@ class User : public UserInfos
 		// status
 		/// @property status
 		/// @brief Serializable form of lastTweet
+		///
+		/// lastTweet is the attribute beneath this property.
 		Q_PROPERTY(QVariantMap status
 				   READ getStatusProperty
-				   WRITE setStatus)
+				   WRITE setStatus
+				   NOTIFY statusChanged)
+
+		/// @brief Name of the property status
+		static QString STATUS_PN;
 
 		/// @fn QVariantMap getStatusProperty();
 		/// @brief Reading the "status" property
@@ -116,6 +137,33 @@ class User : public UserInfos
 		/// @brief Writing the status property
 		/// @param statusMap The new value of the property
 		void setStatus(QVariantMap statusMap);
+
+		/// @property last_status
+		/// @brief Serializable form of lastTweet
+		///
+		/// lastTweet is the attribute beneath this property.
+		Q_PROPERTY(Tweet * last_status
+				   READ getStatusPtr
+				   WRITE setStatus
+				   NOTIFY statusChanged)
+
+		/// @brief Name of the property last_status
+		static QString LAST_STATUS_PN;
+
+		/// @fn Tweet * getStatusProperty();
+		/// @brief Reading the "status" property
+		/// @return lastTweetMap
+		Tweet * getStatusPtr();
+
+		/// @fn void setStatus(Tweet * statusMap);
+		/// @brief Writing the status property
+		/// @param statusMap The new value of the property
+		void setStatus(Tweet * statusMap);
+
+	signals:
+		/// @fn void statusChanged();
+		/// @brief Signal emitted when the property status changes.
+		void statusChanged();
 
 
 	/////////////////////
@@ -132,6 +180,7 @@ class User : public UserInfos
 	////////////////////////
 
 	public:
+		// status
 		/// @fn Tweet getStatus();
 		/// @brief Getter on the last tweet written by the user
 		/// @return The value of the last tweet written by the user
@@ -161,8 +210,8 @@ QDataStream & operator<<(QDataStream & out, const User & user);
 QDataStream & operator>>(QDataStream & in, User & user);
 
 
-/// @typedef ReynTweetsSerializableList<User> UserList;
+/// @typedef JsonArray<User> UserList;
 /// @brief Shortcut for lists of users
-typedef ReynTweetsListable<User> UserList;
+typedef JsonArray<User> UserList;
 
 #endif // USER_HPP

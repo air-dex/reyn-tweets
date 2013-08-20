@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -31,7 +31,7 @@
 
 // Default constructor
 UserAccount::UserAccount() :
-	ReynTweetsMappable(),
+	JsonObject(),
 	accessToken(""),
 	tokenSecret(""),
 	user(),
@@ -45,7 +45,11 @@ UserAccount::~UserAccount() {}
 
 // Copy constructor
 UserAccount::UserAccount(const UserAccount & account) :
-	ReynTweetsMappable()
+	JsonObject(),
+	accessToken(""),
+	tokenSecret(""),
+	user(),
+	helloMessage("")
 {
 	recopie(account);
 }
@@ -58,7 +62,7 @@ const UserAccount & UserAccount::operator=(const UserAccount & account) {
 
 // Recopying a UserAccount
 void UserAccount::recopie(const UserAccount & account) {
-	ReynTweetsMappable::recopie(account);
+	JsonObject::recopie(account);
 	accessToken = account.accessToken;
 	tokenSecret = account.tokenSecret;
 	user = account.user;
@@ -90,12 +94,37 @@ void UserAccount::reset() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserAccount & account) {
-	return jsonStreamingOut(out, account);
+	return account.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, UserAccount & account) {
-	return jsonStreamingIn(in, account);
+	return account.fillWithStream(in);
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void UserAccount::fillWithJSON(QJsonObject json) {
+	this->accessToken = json.value(ACCESS_TOKEN_PN).toString("").toLatin1();
+	this->tokenSecret = json.value(TOKEN_SECRET_PN).toString("").toLatin1();
+	this->user.fillWithJSON(json.value(TWITTER_USER_PN).toObject());
+	this->helloMessage = json.value(HELLO_MESSAGE_PN).toString("");
+}
+
+// QJsonObject representation of the object
+QJsonObject UserAccount::toJSON() const {
+	QJsonObject json;
+
+	json.insert(ACCESS_TOKEN_PN, QJsonValue(QString::fromLatin1(this->accessToken)));
+	json.insert(TOKEN_SECRET_PN, QJsonValue(QString::fromLatin1(this->tokenSecret)));
+	json.insert(TWITTER_USER_PN, QJsonValue(this->user.toJSON()));
+	json.insert(HELLO_MESSAGE_PN, QJsonValue(this->helloMessage));
+
+	return json;
 }
 
 
@@ -108,69 +137,71 @@ void UserAccount::blacklistProperties() {
 	transientProperties.append(QString(QLatin1String("current_user")));
 }
 
-// Reading the property twitter_user
+// access_token
+QString UserAccount::ACCESS_TOKEN_PN = "access_token";
+
+QByteArray UserAccount::getAccessToken() {
+	return accessToken;
+}
+
+void UserAccount::setAccessToken(QByteArray token) {
+	accessToken = token;
+}
+
+// token_secret
+QString UserAccount::TOKEN_SECRET_PN = "token_secret";
+
+QByteArray UserAccount::getTokenSecret() {
+	return tokenSecret;
+}
+
+void UserAccount::setTokenSecret(QByteArray secret) {
+	tokenSecret = secret;
+}
+
+// twitter_user
+QString UserAccount::TWITTER_USER_PN = "twitter_user";
+
+QString UserAccount::CURRENT_USER_PN = "current_user";
+
 QVariantMap UserAccount::getUserProperty() {
 	return user.toVariant();
 }
 
-// Writing the property twitter_user
+UserInfos * UserAccount::getUserPtr() {
+	return &user;
+}
+
+UserInfos UserAccount::getUser() {
+	return user;
+}
+
+UserInfos & UserAccount::getUserRef() {
+	return user;
+}
+
 void UserAccount::setUser(QVariantMap newUserMap) {
 	user.fillWithVariant(newUserMap);
 	emit currentUserChanged();
 }
 
-// Reading the property current_user
-UserInfos * UserAccount::getCurrentUser() {
-	return &user;
-}
-
-
-//////////////////////////////
-// Configuration management //
-//////////////////////////////
-
-// Getter on accessToken
-QByteArray UserAccount::getAccessToken() {
-	return accessToken;
-}
-
-// Setter on accessToken
-void UserAccount::setAccessToken(QByteArray token) {
-	accessToken = token;
-}
-
-// Getter on tokenSecret
-QByteArray UserAccount::getTokenSecret() {
-	return tokenSecret;
-}
-
-// Setter on tokenSecret
-void UserAccount::setTokenSecret(QByteArray secret) {
-	tokenSecret = secret;
-}
-
-// Getter on user
-UserInfos UserAccount::getUser() {
-	return user;
-}
-
-// Getter on user
-UserInfos & UserAccount::getUserRef() {
-	return user;
-}
-
-// Setter on user
 void UserAccount::setUser(UserInfos u) {
 	user = u;
 	emit currentUserChanged();
 }
 
-// Reading hello_message
+void UserAccount::setUser(UserInfos * u) {
+	user = u ? *u : UserInfos();
+	emit currentUserChanged();
+}
+
+// hello_message
+QString UserAccount::HELLO_MESSAGE_PN = "hello_message";
+
 QString UserAccount::getHelloMessage() {
 	return helloMessage;
 }
 
-// Writing hello_message
 void UserAccount::setHelloMessage(QString newMsg) {
 	helloMessage = newMsg;
 	emit helloMessageChanged();

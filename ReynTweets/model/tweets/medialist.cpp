@@ -1,12 +1,10 @@
 /// @file medialist.cpp
 /// @brief Implementation of Medialist
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -27,7 +25,7 @@
 
 // Constructor
 MediaList::MediaList() :
-	ReynTweetsListable<Media>()
+	JsonArray<Media>()
 {}
 
 // Destructor
@@ -35,7 +33,7 @@ MediaList::~MediaList() {}
 
 // Copy constructor
 MediaList::MediaList(const MediaList & list) :
-	ReynTweetsListable<Media>()
+	JsonArray<Media>()
 {
 	recopie(list);
 }
@@ -54,10 +52,10 @@ void MediaList::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaList & list) {
-	return jsonStreamingOut<Media>(out, list);
+	return list.writeInStream(out);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaList & list) {
-	return jsonStreamingIn<Media>(in, list);
+	return list.fillWithStream(in);
 }

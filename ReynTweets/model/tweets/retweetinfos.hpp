@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -24,7 +24,8 @@
 #ifndef RETWEETINFOS_HPP
 #define RETWEETINFOS_HPP
 
-#include "../reyntweetsmappable.hpp"
+#include <QVariant>
+#include "../json/jsonobject.hpp"
 
 /// @class RetweetInfos
 /// @brief In a tweet, additionnal informations about a retweet of the tweet
@@ -32,7 +33,7 @@
 ///
 /// It just contains the ID of the retweet made by the user (under qlonglong
 /// and QString forms).
-class RetweetInfos : public ReynTweetsMappable
+class RetweetInfos : public JsonObject
 {
 	Q_OBJECT
 
@@ -71,6 +72,23 @@ class RetweetInfos : public ReynTweetsMappable
 		/// @param infos RetweetInfos to compare
 		/// @return true if they are equals, false otherwise.
 		bool operator==(const RetweetInfos & infos);
+
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
 
 
 	private:
@@ -111,6 +129,9 @@ class RetweetInfos : public ReynTweetsMappable
 				   WRITE setID
 				   NOTIFY idChanged)
 
+		/// @brief Name of the property id.
+		static QString ID_PN;
+
 		// id_str
 		/// @property id_str
 		/// @brief String version of the id property.
@@ -120,6 +141,9 @@ class RetweetInfos : public ReynTweetsMappable
 				   READ getIDstr
 				   WRITE setIDstr
 				   NOTIFY idChanged)
+
+		/// @brief Name of the property id_str.
+		static QString ID_STR_PN;
 
 
 	signals:

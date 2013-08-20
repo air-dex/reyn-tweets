@@ -135,7 +135,7 @@ QString UserEntities::URL_PN = "url";
 
 QString UserEntities::URL_ENT_PN = "url_ent";
 
-TweetEntities2 UserEntities::getURL() {
+TweetEntities UserEntities::getURL() {
 	return userURL;
 }
 
@@ -143,7 +143,7 @@ QVariantMap UserEntities::getURLProperty() {
 	return userURL.toVariant();
 }
 
-TweetEntities2 * UserEntities::getURLptr() {
+TweetEntities * UserEntities::getURLptr() {
 	return &userURL;
 }
 
@@ -152,12 +152,12 @@ void UserEntities::setURL(QVariantMap newValue) {
 	emit urlChanged();
 }
 
-void UserEntities::setURL(TweetEntities2 * newValue) {
-	userURL = newValue ? *newValue : TweetEntities2();
+void UserEntities::setURL(TweetEntities * newValue) {
+	userURL = newValue ? *newValue : TweetEntities();
 	emit urlChanged();
 }
 
-void UserEntities::setURL(TweetEntities2 newValue) {
+void UserEntities::setURL(TweetEntities newValue) {
 	userURL = newValue;
 	emit urlChanged();
 }
@@ -167,7 +167,7 @@ QString UserEntities::DESCRIPTION_PN = "description";
 
 QString UserEntities::DESCRIPTION_ENT_PN = "description_ent";
 
-TweetEntities2 UserEntities::getDescription() {
+TweetEntities UserEntities::getDescription() {
 	return userDescription;
 }
 
@@ -175,7 +175,7 @@ QVariantMap UserEntities::getDescriptionProperty() {
 	return userDescription.toVariant();
 }
 
-TweetEntities2 * UserEntities::getDescriptionptr() {
+TweetEntities * UserEntities::getDescriptionptr() {
 	return &userDescription;
 }
 
@@ -184,12 +184,12 @@ void UserEntities::setDescription(QVariantMap newValue) {
 	emit descriptionChanged();
 }
 
-void UserEntities::setDescription(TweetEntities2 * newValue) {
-	userDescription = newValue ? *newValue : TweetEntities2();
+void UserEntities::setDescription(TweetEntities * newValue) {
+	userDescription = newValue ? *newValue : TweetEntities();
 	emit descriptionChanged();
 }
 
-void UserEntities::setDescription(TweetEntities2 newValue) {
+void UserEntities::setDescription(TweetEntities newValue) {
 	userDescription = newValue;
 	emit descriptionChanged();
 }

@@ -86,8 +86,20 @@ SOURCES += \
 	connection/calls/genericcalls.cpp \
 	connection/calls/reyntwittercalls.cpp \
 	connection/calls/twitlongercalls.cpp \
-	model/reyntweetslistable.cpp \
-	model/reyntweetsmappable.cpp \
+	model/mappable.cpp \
+	model/listable.cpp \
+	#model/json/jsonable.cpp \
+	model/json/jsonobject.cpp \
+	model/json/jsonarray.cpp \
+	model/geo/coordinates.cpp \
+	model/geo/geocoord.cpp \
+	model/geo/geocoordlist.cpp \
+	model/geo/geoboundingbox.cpp \
+	model/geo/genericcoordinates.cpp \
+	model/geo/coordinatestype.cpp \
+	model/geo/gencoord.cpp \
+	model/geo/geocoordpolygon.cpp \
+	model/geo/twitterplace.cpp \
 	model/tweets/tweetentity.cpp \
 	model/tweets/indexbounds.cpp \
 	model/tweets/mediasize.cpp \
@@ -101,14 +113,17 @@ SOURCES += \
 	model/tweets/hashtag.cpp \
 	model/tweets/hashtaglist.cpp \
 	model/tweets/tweetentities.cpp \
+	model/users/userentities.cpp \
+	model/users/contributor.cpp \
+	model/users/contributorlist.cpp \
 	model/users/userinfos.cpp \
 	model/tweets/retweetinfos.cpp \
 	model/tweets/tweet.cpp \
 	model/timelines/timeline.cpp \
 	model/users/user.cpp \
-	model/configuration/reyntweetsappconfiguration.cpp \
+	model/configuration/appconfiguration.cpp \
 	model/configuration/useraccount.cpp \
-	model/configuration/reyntweetsuserconfiguration.cpp \
+	model/configuration/userconfiguration.cpp \
 	logic/processes/processwrapper.cpp \
 	tools/processutils.cpp \
 	logic/processes/genericprocess.cpp \
@@ -136,45 +151,7 @@ SOURCES += \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	main.cpp \
-	logic/coreresult.cpp \
-	model2/mappable.cpp \
-	model2/listable.cpp \
-	#model2/json/jsonable.cpp \
-	model2/json/jsonobject.cpp \
-	model2/json/jsonarray.cpp \
-	model2/tweets/tweet.cpp \
-	model2/tweets/indexbounds.cpp \
-	model2/tweets/tweetentity.cpp \
-	model2/tweets/hashtag.cpp \
-	model2/tweets/hashtaglist.cpp \
-	model2/tweets/usermention.cpp \
-	model2/tweets/usermentionlist.cpp \
-	model2/tweets/urlentity.cpp \
-	model2/tweets/urlentitylist.cpp \
-	model2/tweets/mediasize.cpp \
-	model2/tweets/mediasizes.cpp \
-	model2/tweets/media.cpp \
-	model2/tweets/medialist.cpp \
-	model2/tweets/tweetentities.cpp \
-	model2/tweets/retweetinfos.cpp \
-	model2/users/userinfos.cpp \
-	model2/users/user.cpp \
-	model2/geo/coordinates.cpp \
-	model2/geo/geocoord.cpp \
-	model2/geo/geocoordlist.cpp \
-	model2/geo/geoboundingbox.cpp \
-	model2/geo/genericcoordinates.cpp \
-	model2/geo/coordinatestype.cpp \
-	model2/geo/gencoord.cpp \
-	model2/geo/geocoordpolygon.cpp \
-	model2/geo/twitterplace.cpp \
-	model2/users/contributor.cpp \
-	model2/users/contributorlist.cpp \
-	model2/users/userentities.cpp \
-	model2/timelines/timeline.cpp \
-	model2/configuration/appconfiguration.cpp \
-	model2/configuration/useraccount.cpp \
-    model2/configuration/userconfiguration.cpp
+	logic/coreresult.cpp
 
 
 HEADERS  += \
@@ -226,10 +203,24 @@ HEADERS  += \
 	connection/calls/genericcalls.hpp \
 	connection/calls/reyntwittercalls.hpp \
 	connection/calls/twitlongercalls.hpp \
-	model/reyntweetsserializable.hpp \
-	model/reyntweetslistable.hpp \
-	model/reyntweetslistable.tpp \
-	model/reyntweetsmappable.hpp \
+	model/variantable.hpp \
+	model/mappable.hpp \
+	model/listable.hpp \
+	model/listable.tpp \
+	model/json/jsonable.hpp \
+	model/json/jsonobject.hpp \
+	model/json/jsonarray.hpp \
+	model/json/jsonarray.tpp \
+	model/geo/coordinates.hpp \
+	model/geo/geocoord.hpp \
+	model/geo/geocoordlist.hpp \
+	model/geo/geoboundingbox.hpp \
+	model/geo/genericcoordinates.hpp \
+	model/geo/genericcoordinates.tpp \
+	model/geo/coordinatestype.hpp \
+	model/geo/gencoord.hpp \
+	model/geo/geocoordpolygon.hpp \
+	model/geo/twitterplace.hpp \
 	model/tweets/tweetentity.hpp \
 	model/tweets/indexbounds.hpp \
 	model/tweets/mediasize.hpp \
@@ -243,14 +234,17 @@ HEADERS  += \
 	model/tweets/hashtag.hpp \
 	model/tweets/hashtaglist.hpp \
 	model/tweets/tweetentities.hpp \
+	model/users/userentities.hpp \
 	model/users/userinfos.hpp \
+	model/users/contributor.hpp \
+	model/users/contributorlist.hpp \
 	model/tweets/retweetinfos.hpp \
 	model/tweets/tweet.hpp \
 	model/timelines/timeline.hpp \
 	model/users/user.hpp \
-	model/configuration/reyntweetsappconfiguration.hpp \
+	model/configuration/appconfiguration.hpp \
 	model/configuration/useraccount.hpp \
-	model/configuration/reyntweetsuserconfiguration.hpp \
+	model/configuration/userconfiguration.hpp \
 	logic/coreresult.hpp \
 	logic/processes/processresult.hpp \
 	logic/processes/processwrapper.hpp \
@@ -281,49 +275,7 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp \
-	model2/variantable.hpp \
-	model2/mappable.hpp \
-	model2/listable.hpp \
-	model2/listable.tpp \
-	model2/json/jsonable.hpp \
-	model2/json/jsonobject.hpp \
-	model2/json/jsonarray.hpp \
-	model2/json/jsonarray.tpp \
-	model2/tweets/tweet.hpp \
-	model2/tweets/indexbounds.hpp \
-	model2/tweets/tweetentity.hpp \
-	model2/tweets/hashtag.hpp \
-	model2/tweets/hashtaglist.hpp \
-	model2/tweets/usermention.hpp \
-	model2/tweets/usermentionlist.hpp \
-	model2/tweets/urlentity.hpp \
-	model2/tweets/urlentitylist.hpp \
-	model2/tweets/mediasize.hpp \
-	model2/tweets/mediasizes.hpp \
-	model2/tweets/media.hpp \
-	model2/tweets/medialist.hpp \
-	model2/tweets/tweetentities.hpp \
-	model2/tweets/retweetinfos.hpp \
-	model2/users/userinfos.hpp \
-	model2/users/user.hpp \
-	model2/geo/coordinates.hpp \
-	model2/geo/geocoord.hpp \
-	model2/geo/geocoordlist.hpp \
-	model2/geo/geoboundingbox.hpp \
-	model2/geo/genericcoordinates.hpp \
-	model2/geo/genericcoordinates.tpp \
-	model2/geo/coordinatestype.hpp \
-	model2/geo/gencoord.hpp \
-	model2/geo/geocoordpolygon.hpp \
-	model2/geo/twitterplace.hpp \
-	model2/users/contributor.hpp \
-	model2/users/contributorlist.hpp \
-	model2/users/userentities.hpp \
-	model2/timelines/timeline.hpp \
-	model2/configuration/appconfiguration.hpp \
-	model2/configuration/useraccount.hpp \
-    model2/configuration/userconfiguration.hpp
+	logic/controls/controls.hpp
 
 
 OTHER_FILES = \

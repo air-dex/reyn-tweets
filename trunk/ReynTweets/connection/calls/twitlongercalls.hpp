@@ -24,7 +24,7 @@
 #ifndef TWITLONGERCALLS_HPP
 #define TWITLONGERCALLS_HPP
 
-#include "genericcalls.hpp"
+#include "../common/calls/genericcalls.hpp"
 #include "../model/managers/twitlongermanager.hpp"
 
 /// @class TwitLongerCalls

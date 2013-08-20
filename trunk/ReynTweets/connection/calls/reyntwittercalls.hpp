@@ -27,7 +27,7 @@
 #ifndef REYNTWITTERCALLS_HPP
 #define REYNTWITTERCALLS_HPP
 
-#include "genericcalls.hpp"
+#include "../common/calls/genericcalls.hpp"
 #include "../model/managers/oauthmanager.hpp"
 
 /// @class ReynTwitterCalls

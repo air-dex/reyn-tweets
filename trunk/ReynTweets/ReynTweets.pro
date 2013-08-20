@@ -56,7 +56,7 @@ SOURCES += \
 	tools/parsers/xmlparser.cpp \
 	connection/model/managers/oauthmanager.cpp \
 	connection/model/managers/twitlongermanager.cpp \
-	connection/twittercommunicators/twittercommunicator.cpp \
+	connection/common/communicators/twittercommunicator.cpp \
 	connection/requests/twitlonger/twitlongerurls.cpp \
 	connection/requests/twitter/twitterurls.cpp \
 	connection/model/resultwrapper.cpp \
@@ -81,14 +81,13 @@ SOURCES += \
 	connection/requests/twitlonger/twitlongerrequester.cpp \
 	connection/requests/twitlonger/posttotwitlongerrequester.cpp \
 	connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
-	connection/model/requestinfos.cpp \
-	connection/model/requestermanager.cpp \
-	connection/calls/genericcalls.cpp \
+	connection/common/calls/requestinfos.cpp \
+	connection/common/calls/requestermanager.cpp \
+	connection/common/calls/genericcalls.cpp \
 	connection/calls/reyntwittercalls.cpp \
 	connection/calls/twitlongercalls.cpp \
 	model/mappable.cpp \
 	model/listable.cpp \
-	#model/json/jsonable.cpp \
 	model/json/jsonobject.cpp \
 	model/json/jsonarray.cpp \
 	model/geo/coordinates.cpp \
@@ -167,7 +166,7 @@ HEADERS  += \
 	connection/model/managers/twitlongermanager.hpp \
 	connection/model/requesttype.hpp \
 	connection/model/headersmap.hpp \
-	connection/twittercommunicators/twittercommunicator.hpp \
+	connection/common/communicators/twittercommunicator.hpp \
 	connection/model/errortypes.hpp \
 	connection/model/responseinfos.hpp \
 	connection/requests/twitlonger/twitlongerurls.hpp \
@@ -198,9 +197,9 @@ HEADERS  += \
 	connection/requests/twitlonger/posttotwitlongerrequester.hpp \
 	connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
 	connection/requests/twitlonger/twitlongerrequests.hpp \
-	connection/model/requestinfos.hpp \
-	connection/model/requestermanager.hpp \
-	connection/calls/genericcalls.hpp \
+	connection/common/calls/requestinfos.hpp \
+	connection/common/calls/requestermanager.hpp \
+	connection/common/calls/genericcalls.hpp \
 	connection/calls/reyntwittercalls.hpp \
 	connection/calls/twitlongercalls.hpp \
 	model/variantable.hpp \

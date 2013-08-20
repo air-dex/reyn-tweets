@@ -56,26 +56,16 @@ void GenericCalls::removeRequester(GenericRequester * requester) {
 	if (requester != 0) {
 		disconnect(requester, SIGNAL(requestDone(RequestResult)),
 				   this, SLOT(endRequest(RequestResult)));
-		requesterManager.removeRequest(requester->getUuid());
+		requesterManager.removeRequest(requester);
 	}
 }
 
 // Slot executed when a requester has finished its work
 void GenericCalls::endRequest(RequestResult requestResult) {
 	GenericRequester * requester = qobject_cast<GenericRequester *>(sender());
-	ResultWrapper res = buildResultSender(requester, requestResult);
+	ResultWrapper res(requesterManager.getAsker(requester), requestResult);
 	removeRequester(requester);
 	emit sendResult(res);
-}
-
-// Method that builds the wrapper of a result
-ResultWrapper GenericCalls::buildResultSender(GenericRequester * endedRequest,
-											  RequestResult requestResult)
-{
-	return endedRequest ?
-				ResultWrapper(requesterManager.getRequestInfos(endedRequest->getUuid()).getAsker(),
-							  requestResult)
-			  : ResultWrapper();
 }
 
 // Inline method for executing requests

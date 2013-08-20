@@ -63,7 +63,6 @@ SOURCES += \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
-	connection/common/calls/requestinfos.cpp \
 	connection/common/calls/requestermanager.cpp \
 	connection/common/calls/genericcalls.cpp \
 	connection/twitter/twitterauthenticator.cpp \

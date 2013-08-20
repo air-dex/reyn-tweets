@@ -30,37 +30,14 @@
 #include "../requests/genericrequester.hpp"
 
 /// @class RequestInfos
-/// @brief Class containing the entity which asks for the request (the "asker")
-/// and the requester that executes the request (the "requester").
-class RequestInfos
-{
-	public:
-		/// @fn RequestInfos(QObject * requestAsker = 0,
-		///					 GenericRequester * twitterRequest = 0);
-		/// @brief Constructor
-		/// @param requestAsker The asker
-		/// @param twitterRequest The requester
-		RequestInfos(QObject * requestAsker = 0,
-					 GenericRequester * twitterRequest = 0);
+/// @struct Struct containing the entity which asks for the request
+/// (the "asker") and the requester that executes the request (the "requester").
+struct RequestInfos {
+	/// @brief Entity which asks for the request
+	QObject * asker;
 
-		/// @fn ~RequestInfos();
-		/// @brief Destructor
-		~RequestInfos();
-
-		/// @fn QObject * getAsker();
-		/// @brief Getter on the asker
-		QObject * getAsker();
-
-		/// @fn GenericRequester * getRequester();
-		/// @brief Getter on the requester
-		GenericRequester * getRequester();
-
-	protected:
-		/// @brief Entity which asks for the request
-		QObject * asker;
-
-		/// @brief Requester that executes the request
-		GenericRequester * requester;
+	/// @brief Requester that executes the request
+	GenericRequester * requester;
 };
 
 #endif // REQUESTINFOS_HPP

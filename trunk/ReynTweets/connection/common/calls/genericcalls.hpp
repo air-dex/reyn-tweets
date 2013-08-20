@@ -85,15 +85,6 @@ class GenericCalls : public QObject
 		/// @param requester Address of the requester
 		void removeRequester(GenericRequester * requester);
 
-		/// @fn ResultSender buildResultSender(GenericRequester * endedRequest,
-		///									   RequestResult requestResult);
-		/// @brief Method that builds the wrapper of a result
-		/// @param endedRequest Ended request that contaons the result
-		/// @param requestResult Result of the request.
-		/// @return The wrapper of the request result
-		ResultWrapper buildResultSender(GenericRequester * endedRequest,
-										RequestResult requestResult);
-
 		/// @fn void executeRequest(GenericRequester * requester);
 		/// @brief Inline method for executing requests
 		/// @param requester The requester

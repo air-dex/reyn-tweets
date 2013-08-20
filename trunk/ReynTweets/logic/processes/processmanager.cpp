@@ -34,27 +34,27 @@ ProcessInfos & ProcessManager::getProcessInfos(QUuid processtUuid) {
 }
 
 // Storing a process
-void ProcessManager::addProcess(QObject * asker, GenericProcess *process) {
+void ProcessManager::addProcess(QObject * asker, GenericProcess * process) {
 	if (process) {
 		ProcessInfos infos;
+
 		infos.asker = asker;
 		infos.process = process;
+
 		insert(process->getProcessUUID(), infos);
 	}
 
 }
 
 // Removing a process from the manager
-void ProcessManager::removeProcess(QUuid processUuid) {
-	if (!contains(processUuid)) {
-		return;
-	}
-
-	GenericProcess * process = value(processUuid).process;
-
+void ProcessManager::removeProcess(GenericProcess * process) {
 	if (process) {
+		remove(process->getProcessUUID());
 		delete process;
 	}
+}
 
-	remove(processUuid);
+// Getting the QObject which asked for the process
+QObject * ProcessManager::getAsker(GenericProcess * process) {
+	return process ? getProcessInfos(process->getProcessUUID()).asker : 0;
 }

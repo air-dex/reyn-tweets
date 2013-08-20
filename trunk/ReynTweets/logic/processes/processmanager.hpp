@@ -51,10 +51,17 @@ class ProcessManager : protected QMap<QUuid, ProcessInfos>
 		/// @param process Process that executing the action
 		void addProcess(QObject * asker, GenericProcess * process);
 
-		/// @fn void removeProcess(QUuid processUuid);
+		/// @fn void removeProcess(GenericProcess * process);
 		/// @brief Removing a process from the manager
-		/// @param processUuid UUID of the process
-		void removeProcess(QUuid processUuid);
+		/// @param process Process to remove
+		void removeProcess(GenericProcess *process);
+
+		/// @fn QObject * getAsker(GenericProcess * process);
+		/// @brief Getting the QObject which asked for the process
+		/// @param process The process
+		/// @return The QObject which asked for the process. It should be
+		/// a Control.
+		QObject * getAsker(GenericProcess * process);
 };
 
 #endif // PROCESSMANAGER_HPP

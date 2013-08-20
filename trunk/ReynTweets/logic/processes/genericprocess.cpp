@@ -48,10 +48,11 @@ void GenericProcess::endProcess(CoreResult issue,
 								QVariant result,
 								QString errorMessage)
 {
+	ProcessResult processResult;
 	processResult.processIssue = issue;
 	processResult.results = result;
 	processResult.errorMsg = errorMessage;
-	emit processEnded();
+	emit processEnded(processResult);
 }
 
 void GenericProcess::endProcess(CoreResult issue, QVariant result) {

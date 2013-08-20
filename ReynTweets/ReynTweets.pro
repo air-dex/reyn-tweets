@@ -54,6 +54,7 @@ SOURCES += \
 	tools/parsers/jsonparser.cpp \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
+	connection/common/networkresult.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
@@ -164,9 +165,10 @@ HEADERS  += \
 	tools/parsers/xmlparser.hpp \
 	connection/common/httprequesttype.hpp \
 	connection/common/headersmap.hpp \
+	connection/common/networkresult.hpp \
+	connection/common/responseinfos.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
 	connection/common/networkresulttype.hpp \
-	connection/common/responseinfos.hpp \
 	connection/common/requestresult.hpp \
 	connection/common/resultwrapper.hpp \
 	connection/common/requests/identificationway.hpp \

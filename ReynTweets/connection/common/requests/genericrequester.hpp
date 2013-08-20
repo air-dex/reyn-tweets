@@ -121,24 +121,29 @@ class GenericRequester : public QObject
 	//////////////////////////
 
 	public slots:
-		/// @fn void treatResults();
+		/// @fn void treatResults(NetworkResponse netResponse);
 		/// @brief Slot that is executed when the Twitter Communicator has just
 		/// finished its work.
-		void treatResults();
+		/// @param netResponse Struct with response elements
+		void treatResults(NetworkResponse netResponse);
 
 	protected:
 		/// @brief Result of the request.
 		RequestResult requestResult;
 
-		/// @fn virtual QVariant parseResult(bool & parseOK,
+		/// @fn virtual QVariant parseResult(NetworkResponse results,
+		///									 bool & parseOK,
 		///									 QVariantMap & parsingErrors) = 0;
 		/// @brief Method that will parse the raw results of the request.
+		/// @param results Results to parse. Most of the time the method only
+		/// uses the responseBody field.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
 		/// errors that may occur while parsing.
 		/// @return Parsed results
-		virtual QVariant parseResult(bool & parseOK,
+		virtual QVariant parseResult(NetworkResponse results,
+									 bool & parseOK,
 									 QVariantMap & parsingErrors) = 0;
 
 		/// @fn virtual void treatParsedResult() = 0;

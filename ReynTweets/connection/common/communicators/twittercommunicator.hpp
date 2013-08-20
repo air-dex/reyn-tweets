@@ -35,9 +35,9 @@
 #include <QUrl>
 #include <QMap>
 #include <QTimer>
-#include "../../common/responseinfos.hpp"
-#include "../../common/headersmap.hpp"
-#include "../../common/httprequesttype.hpp"
+#include "../headersmap.hpp"
+#include "../httprequesttype.hpp"
+#include "../networkresponse.hpp"
 
 
 /////////////////////
@@ -115,9 +115,9 @@ class TwitterCommunicator : public QObject
 
 
 	signals:
-		/// @fn void requestDone();
+		/// @fn void requestDone(NetworkResponse result);
 		/// @brief Signal indicating the end of a request
-		void requestDone();
+		void requestDone(NetworkResponse result);
 
 
 	protected slots:

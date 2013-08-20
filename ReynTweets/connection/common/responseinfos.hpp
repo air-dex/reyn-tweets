@@ -37,10 +37,19 @@ struct ResponseInfos {
 
 	/// @brief Decription of the code
 	QString message;
-
+/*
 	/// @fn ResponseInfos();
 	/// @brief Constructor
 	ResponseInfos() : code(-1), message("") {}
+//*/
+	/// @fn ResponseInfos(int codeNum = -1, QString msg = "");
+	/// @brief Full constructor
+	/// @param codeNum Value for code
+	/// @param msg Value for message
+	ResponseInfos(int codeNum = -1, QString msg = "") :
+		code(codeNum),
+		message(msg)
+	{}
 };
 
 #endif // RESPONSEINFOS_HPP

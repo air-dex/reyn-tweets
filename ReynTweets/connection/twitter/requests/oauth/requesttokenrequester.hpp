@@ -40,18 +40,24 @@ class RequestTokenRequester : public OAuthRequester
 		RequestTokenRequester(OAuthManager & authManager);
 
 	protected:
-		/// @fn QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		/// @fn QVariant parseResult(NetworkResponse results,
+		///							 bool & parseOK,
+		///							 QVariantMap & parsingErrors);
 		/// @brief Method that will parse the raw results of the request. For
 		/// this kind of request, results look like :<br/>
 		/// oauth_token=value of the request token&
 		/// oauth_token_secret=value of the request secret&
 		/// oauth_callback_confirmed=true or false
+		/// @param results Results to parse. Most of the time the method only
+		/// uses the responseBody field.
 		/// @param parseOK Boolean whose value will be set to true if there was
 		/// no problem while parsing, false otherwise.
 		/// @param parsingErrors QVariantMap that may contain information about
 		/// errors that may occur while parsing.
 		/// @return Parsed results
-		QVariant parseResult(bool & parseOK, QVariantMap & parsingErrors);
+		QVariant parseResult(NetworkResponse results,
+							 bool & parseOK,
+							 QVariantMap & parsingErrors);
 };
 
 #endif // REQUESTTOKENREQUESTER_HPP

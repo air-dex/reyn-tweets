@@ -55,14 +55,15 @@ void PostAuthorizeRequester::buildPOSTParameters() {
 }
 
 // Parsing the raw results of the request.
-QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
+QVariant PostAuthorizeRequester::parseResult(NetworkResponse results,
+											 bool & parseOK,
 											 QVariantMap & parsingErrors)
 {
 	QVariantMap parsedResults;		// Map for results
 	QString errorMsg = "";			// Error message written while parsing
 
 	// Looking at the URL. Is it the right one ?
-	QString replyURL = weblink.getReplyURL();
+	QString replyURL = results.getReplyURL();
 	bool urlOK = replyURL.startsWith(TwitterURL::AUTHORIZE_URL);
 	parsedResults.insert("urlOK", QVariant(urlOK));
 	parseOK = urlOK;
@@ -74,7 +75,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 
 		// Getting the HTML document
 		HTMLParser parser;
-		QWebElement htmlDocument = parser.parse(weblink.getResponseBuffer(),
+		QWebElement htmlDocument = parser.parse(results.getResponseBody(),
 												treatmentOK,
 												errTreatment);
 		parseOK = parseOK && treatmentOK;

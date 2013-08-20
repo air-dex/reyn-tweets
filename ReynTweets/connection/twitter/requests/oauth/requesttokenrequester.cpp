@@ -34,9 +34,12 @@ RequestTokenRequester::RequestTokenRequester(OAuthManager &authManager) :
 {}
 
 // Parse the raw results of the request.
-QVariant RequestTokenRequester::parseResult(bool & parseOK, QVariantMap & parsingErrors) {
+QVariant RequestTokenRequester::parseResult(NetworkResponse results,
+											bool & parseOK,
+											QVariantMap & parsingErrors)
+{
 	OAuthParser parser;
-	QByteArray rawResponse = weblink.getResponseBuffer();
+	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg = "";
 
 	// For treatments

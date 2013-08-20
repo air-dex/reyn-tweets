@@ -88,8 +88,8 @@ void GenericRequester::executeRequest() {
 	buildHTTPHeaders();
 
 	// Request time !
-	connect(&weblink, SIGNAL(requestDone()),
-			this, SLOT(treatResults()));
+	connect(&weblink, SIGNAL(requestDone(NetworkResponse)),
+			this, SLOT(treatResults(NetworkResponse)));
 
 	weblink.executeRequest();
 }
@@ -100,15 +100,16 @@ void GenericRequester::executeRequest() {
 //////////////////////////
 
 // Slot executed when the Twitter Communicator has just finished its work.
-void GenericRequester::treatResults() {
-	disconnect(&weblink, SIGNAL(requestDone()),
-			   this, SLOT(treatResults()));
+void GenericRequester::treatResults(NetworkResponse netResponse) {
+	disconnect(&weblink, SIGNAL(requestDone(NetworkResponse)),
+			   this, SLOT(treatResults(NetworkResponse)));
 
 	// Looking the HTTP request
-	requestResult.httpResponse = weblink.getHttpResponse();
-	requestResult.errorMessage = weblink.getErrorMessage();
+	ResponseInfos netHTTPRep = netResponse.getHttpResponse();
+	requestResult.httpResponse = netHTTPRep;
+	requestResult.errorMessage = netResponse.getRequestError();
 
-	int httpReturnCode = weblink.getHttpResponse().code;
+	int httpReturnCode = netHTTPRep.code;
 
 	if (httpReturnCode == 0) {
 		// No response => API_CALL
@@ -117,14 +118,16 @@ void GenericRequester::treatResults() {
 		// A response to parse
 		bool parseOK;
 		QVariantMap parseErrorMap;
-		requestResult.parsedResult = this->parseResult(parseOK, parseErrorMap);
+		requestResult.parsedResult = this->parseResult(netResponse,
+													   parseOK,
+													   parseErrorMap);
 		requestResult.resultType = parseOK ? Network::NO_REQUEST_ERROR : parsingErrorType;
 		requestResult.parsingErrors.code = parseErrorMap.value("lineError").toInt();
 		requestResult.parsingErrors.message = parseErrorMap.value("errorMsg").toString();
 
 		if (!parseOK) {
 			// Giving the response just in case the user would like to do sthg with it.
-			requestResult.parsedResult = QVariant::fromValue(weblink.getResponseBuffer());
+			requestResult.parsedResult = QVariant::fromValue(netResponse.getResponseBody());
 		} else {
 			this->treatParsedResult();
 		}

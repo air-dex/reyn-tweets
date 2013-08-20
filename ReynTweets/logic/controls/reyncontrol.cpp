@@ -35,7 +35,7 @@ ReynControl::ReynControl() :
 
 // Declaring ReynControl to the QML system
 void ReynControl::declareQML() {
-	qmlRegisterType<ReynControl>("ReynTweetsControls", 0, 1, "ReynControl");
+	qmlRegisterType<ReynControl>("ReynTweetsControls", 0, 2, "ReynControl");
 }
 
 // Showing a popup dealing with Qt

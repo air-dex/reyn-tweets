@@ -33,7 +33,7 @@ SettingsControl::SettingsControl() :
 // Declaring SettingsControl to the QML system
 void SettingsControl::declareQML() {
 	qmlRegisterType<SettingsControl>("ReynTweetsControls",
-									 0, 1,
+									 0, 2,
 									 "SettingsControl");
 }
 

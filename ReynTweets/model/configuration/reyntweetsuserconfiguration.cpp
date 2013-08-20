@@ -72,7 +72,7 @@ void ReynTweetsUserConfiguration::initSystem() {
 // Declaring ReynTweetsConfiguration to the QML system
 void ReynTweetsUserConfiguration::declareQML() {
 	qmlRegisterType<ReynTweetsUserConfiguration>("ReynTweetsEntities",
-												 0, 1,
+												 0, 2,
 												 "ReynTweetsUserConfiguration");
 }
 

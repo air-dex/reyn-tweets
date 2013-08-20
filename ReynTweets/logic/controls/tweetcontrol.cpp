@@ -39,7 +39,7 @@ TweetControl::TweetControl() :
 
 // Declaring TweetControl to the QML system
 void TweetControl::declareQML() {
-	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 1, "TweetControl");
+	qmlRegisterType<TweetControl>("ReynTweetsControls", 0, 2, "TweetControl");
 }
 
 // Method indicating if the tweet mentions the user.

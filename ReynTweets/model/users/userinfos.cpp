@@ -142,7 +142,7 @@ void UserInfos::initSystem() {
 // Declaring to the QML components
 void UserInfos::declareQML() {
 	qmlRegisterType<UserInfos>("ReynTweetsEntities",
-							   0, 1,
+							   0, 2,
 							   "UserInfos");
 }
 

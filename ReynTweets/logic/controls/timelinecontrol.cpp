@@ -33,7 +33,7 @@ TimelineControl::TimelineControl() :
 // Declaring TweetControl to the QML system
 void TimelineControl::declareQML() {
 	qmlRegisterType<TimelineControl>("ReynTweetsControls",
-									 0, 1,
+									 0, 2,
 									 "TimelineControl");
 }
 

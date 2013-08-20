@@ -58,7 +58,7 @@ void Timeline::initSystem() {
 // Declaring to the QML components
 void Timeline::declareQML() {
 	qmlRegisterType<Timeline>("ReynTweetsEntities",
-							  0, 1,
+							  0, 2,
 							  "Timeline");
 }
 

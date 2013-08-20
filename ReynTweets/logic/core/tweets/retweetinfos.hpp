@@ -61,6 +61,10 @@ class RetweetInfos : public JsonObject
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();

@@ -86,9 +86,7 @@ void TwitterPlace::initSystem() {
 
 // Declaring to the QML components
 void TwitterPlace::declareQML() {
-	qmlRegisterType<TwitterPlace>("ReynTweetsEntities",
-								  0, 2,
-								  "TwitterPlace");
+	qmlRegisterType<TwitterPlace>("ReynTweetsEntities", 0, 2, "TwitterPlace");
 }
 
 // Resets to a default value
@@ -165,18 +163,16 @@ void TwitterPlace::setAttributes(QVariantMap newValue) {
 // bounding_box
 QString TwitterPlace::BOUNDING_BOX_PN = "bounding_box";
 
-QString TwitterPlace::PLACE_POLYGON_PN = "place_polygon";
-
-QVariantMap TwitterPlace::getBoundingBoxProperty() {
-	return this->placePolygon.toVariant().toVariantMap();
+GeoBoundingBox TwitterPlace::getBoundingBox() {
+	return placePolygon;
 }
 
-GeoBoundingBox * TwitterPlace::getBoundingBox() {
+GeoBoundingBox * TwitterPlace::getBoundingBoxPtr() {
 	return &placePolygon;
 }
 
-void TwitterPlace::setBoundingBox(QVariantMap newValue) {
-	this->placePolygon.fillWithVariant(QJsonObject::fromVariantMap(newValue));
+void TwitterPlace::setBoundingBox(GeoBoundingBox newValue) {
+	this->placePolygon = newValue;
 	emit boundingBoxChanged();
 }
 

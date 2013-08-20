@@ -23,6 +23,8 @@
 
 #include "retweetinfos.hpp"
 
+#include <QtQml>
+
 // Default constructor
 RetweetInfos::RetweetInfos() :
 	JsonObject(),
@@ -52,6 +54,11 @@ const RetweetInfos & RetweetInfos::operator=(const RetweetInfos & infos) {
 void RetweetInfos::initSystem() {
 	qRegisterMetaTypeStreamOperators<RetweetInfos>("RetweetInfos");
 	qMetaTypeId<RetweetInfos>();
+}
+
+// Declaring to the QML components
+void RetweetInfos::declareQML() {
+	qmlRegisterType<RetweetInfos>("ReynTweetsEntities", 0, 2,"RetweetInfos");
 }
 
 // Resets the mappable to a default value

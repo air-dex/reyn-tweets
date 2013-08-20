@@ -61,6 +61,10 @@ class Hashtag : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the hashtag
 		///
@@ -125,10 +129,16 @@ class Hashtag : public TweetEntity
 		/// hashText is the attribute beneath the property.
 		Q_PROPERTY(QString text
 				   READ getText
-				   WRITE setText)
+				   WRITE setText
+				   NOTIFY textChanged)
 
 		/// @brief Name of the property text.
 		static QString TEXT_PN;
+
+	signals:
+		/// @fn void textChanged();
+		/// @brief Signal emitted when the property text has got a new value.
+		void textChanged();
 
 
 	////////////////////////

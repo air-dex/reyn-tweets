@@ -125,54 +125,31 @@ class UserConfiguration : public JsonObject
 	protected:
 		// user_account
 		/// @property user_account
-		/// @brief Serializable form of the account
+		/// @brief QML property to access to the user account.
 		///
 		/// userAccount is the property beneath this property.
-		Q_PROPERTY(QVariantMap user_account
-				   READ getUserAccountProperty
+		Q_PROPERTY(UserAccount * user_account
+				   READ getUserAccountPtr
 				   WRITE setUserAccount
 				   NOTIFY currentAccountChanged)
 
 		/// @brief Name of the property user_account.
 		static QString USER_ACCOUNT_PN;
 
-		/// @fn QVariantMap getUserAccountProperty();
+		/// @fn UserAccount * getUserAccountPtr();
 		/// @brief Reading the property user_account
 		/// @return The user account
-		QVariantMap getUserAccountProperty();
+		UserAccount * getUserAccountPtr();
 
-		/// @fn void setUserAccount(QVariantMap account);
+		/// @fn void setUserAccount(UserAccount * account);
 		/// @brief Writing the property user_account
 		/// @param account New value for the account
-		void setUserAccount(QVariantMap accountMap);
-
-		// current_account
-		/// @property current_account
-		/// @brief QML read only property to access to the user account.
-		///
-		/// userAccount is the property beneath this property.
-		Q_PROPERTY(UserAccount * current_account
-				   READ getCurrentAccount
-				   WRITE setCurrentAccount
-				   NOTIFY currentAccountChanged)
-
-		/// @brief Name of the property current_account.
-		static QString CURRENT_ACCOUNT_PN;
-
-		/// @fn UserAccount * getCurrentAccount();
-		/// @brief Reading the property current_account
-		/// @return The user account
-		UserAccount * getCurrentAccount();
-
-		/// @fn void setCurrentAccount(UserAccount * account);
-		/// @brief Writing the property current_account
-		/// @param account New value for the account
-		void setCurrentAccount(UserAccount * account);
+		void setUserAccount(UserAccount * account);
 
 
 	signals:
 		/// @fn void currentAccountChanged();
-		/// @brief Signal notifying about changes dealing with current_account
+		/// @brief Signal notifying about changes dealing with user_account
 		void currentAccountChanged();
 
 

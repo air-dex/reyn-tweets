@@ -92,7 +92,8 @@ class TweetEntity : public JsonObject
 		/// Represented by the indexes attribute.
 		Q_PROPERTY(QVariantList indices
 				   READ getIndicesProperty
-				   WRITE setIndices)
+				   WRITE setIndices
+				   NOTIFY indicesChanged)
 
 		/// @brief Name of the property indices.
 		static QString INDICES_PN;
@@ -109,6 +110,11 @@ class TweetEntity : public JsonObject
 
 		/// @brief Indexes of the hashtag in the tweet
 		IndexBounds indexes;
+
+	signals:
+		/// @fn void indicesChanged();
+		/// @brief Signal emitted when the property indices has got a new value.
+		void indicesChanged();
 
 
 	public:

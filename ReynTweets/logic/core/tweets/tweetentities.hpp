@@ -66,6 +66,10 @@ class TweetEntities : public JsonObject
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn virtual void reset();
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
@@ -122,7 +126,8 @@ class TweetEntities : public JsonObject
 		/// medias is the attribute beneath this property.
 		Q_PROPERTY(QVariantList media
 				   READ getMediaProperty
-				   WRITE setMedia)
+				   WRITE setMedia
+				   NOTIFY mediaChanged)
 
 		/// @brief Name of the property media.
 		static QString MEDIA_PN;
@@ -144,7 +149,8 @@ class TweetEntities : public JsonObject
 		/// tweetURLs is the attribute beneath this property.
 		Q_PROPERTY(QVariantList urls
 				   READ getURLsProperty
-				   WRITE setURLs)
+				   WRITE setURLs
+				   NOTIFY urlsChanged)
 
 		/// @brief Name of the property urls.
 		static QString URLS_PN;
@@ -166,7 +172,8 @@ class TweetEntities : public JsonObject
 		/// mentions is the attribute beneath this property.
 		Q_PROPERTY(QVariantList user_mentions
 				   READ getUserMentionsProperty
-				   WRITE setUserMentions)
+				   WRITE setUserMentions
+				   NOTIFY userMentionsChanged)
 
 		/// @brief Name of the property user_mentions.
 		static QString USER_MENTIONS_PN;
@@ -188,7 +195,8 @@ class TweetEntities : public JsonObject
 		/// tweetHashtags is the attribute beneath this property.
 		Q_PROPERTY(QVariantList hashtags
 				   READ getHashtagsProperty
-				   WRITE setHashtags)
+				   WRITE setHashtags
+				   NOTIFY hashtagsChanged)
 
 		/// @brief Name of the property hashtags.
 		static QString HASHTAGS_PN;
@@ -202,6 +210,24 @@ class TweetEntities : public JsonObject
 		/// @brief Writing the property hashtags
 		/// @param newHashtagsList New value for the property hashtags
 		void setHashtags(QVariantList newHashtagsList);
+
+	signals:
+		/// @fn void mediaChanged();
+		/// @brief Signal emitted when the property media has got a new value.
+		void mediaChanged();
+
+		/// @fn void urlsChanged();
+		/// @brief Signal emitted when the property urls has got a new value.
+		void urlsChanged();
+
+		/// @fn void userMentionsChanged();
+		/// @brief Signal emitted when the property user_mentions has got
+		/// a new value.
+		void userMentionsChanged();
+
+		/// @fn void hashtagsChanged();
+		/// @brief Signal emitted when the property hashtags has got a new value.
+		void hashtagsChanged();
 
 
 	//////////////

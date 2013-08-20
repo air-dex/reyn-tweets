@@ -72,7 +72,7 @@ void ReynTweets::initSystem() {
 	Timeline::initSystem();
 	TimelineHandler::initSystem();
 
-	// Tweets
+	// Entities
 	Hashtag::initSystem();
 	HashtagList::initSystem();
 	IndexBounds::initSystem();
@@ -80,13 +80,15 @@ void ReynTweets::initSystem() {
 	MediaList::initSystem();
 	MediaSize::initSystem();
 	MediaSizes::initSystem();
-	RetweetInfos::initSystem();
-	Tweet::initSystem();
 	TweetEntities::initSystem();
 	URLEntity::initSystem();
 	URLEntityList::initSystem();
 	UserMention::initSystem();
 	UserMentionList::initSystem();
+
+	// Tweets
+	RetweetInfos::initSystem();
+	Tweet::initSystem();
 
 	// Users
 	Contributor::initSystem();
@@ -100,16 +102,30 @@ void ReynTweets::initSystem() {
 
 // Declaring to the QML system
 void ReynTweets::declareQML() {
-	// Geolocation
+	// Configuration
 	UserAccount::declareQML();
 	UserConfiguration::declareQML();
+
+	// Geolocation
+	Coordinates::declareQML();
+	GeoBoundingBox::declareQML();
 	TwitterPlace::declareQML();
 
 	// Timelines
 	TimelineHandler::declareQML();
 
+	// Entities
+	TweetEntities::declareQML();
+	Hashtag::declareQML();
+	Media::declareQML();
+	MediaSize::declareQML();
+	MediaSizes::declareQML();
+	UserMention::declareQML();
+	URLEntity::declareQML();
+
 	// Tweets
 	Tweet::declareQML();
+	RetweetInfos::declareQML();
 
 	// Users
 	Contributor::declareQML();

@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "usermention.hpp"
-#include <QTextStream>
+#include <QtQml>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
@@ -64,6 +64,11 @@ const UserMention & UserMention::operator=(const UserMention & mention) {
 void UserMention::initSystem() {
 	qRegisterMetaTypeStreamOperators<UserMention>("UserMention");
 	qMetaTypeId<UserMention>();
+}
+
+// Declaring to the QML components
+void UserMention::declareQML() {
+	qmlRegisterType<UserMention>("ReynTweetsEntities", 0, 2, "UserMention");
 }
 
 // Copy of a User Mention
@@ -142,6 +147,7 @@ qlonglong UserMention::getID() {
 // BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void UserMention::setID(qlonglong newID) {
 	userID = newID;
+	emit idChanged();
 }
 
 // id_str
@@ -153,6 +159,7 @@ QString UserMention::getIDstr() {
 
 void UserMention::setIDstr(QString newID) {
 	userIDstr = newID;
+	emit idChanged();
 }
 
 // screen_name
@@ -164,6 +171,7 @@ QString UserMention::getScreenName() {
 
 void UserMention::setScreenName(QString newScreenName) {
 	screenName = newScreenName;
+	emit screenNameChanged();
 }
 
 // name
@@ -175,6 +183,7 @@ QString UserMention::getName() {
 
 void UserMention::setName(QString newName) {
 	userName = newName;
+	emit nameChanged();
 }
 
 
@@ -185,9 +194,8 @@ void UserMention::setName(QString newName) {
 // @screenName
 QString UserMention::getMention() {
 	QString s = "";
-	QTextStream t(&s);
-	t << '@' << screenName;
-	return t.readAll();
+	s.append('@').append(screenName);
+	return s;
 }
 
 // Building the rich text for the entity
@@ -209,14 +217,13 @@ QString UserMention::getDisplayedText(QColor linkColor) {
 		return link.toOuterXml();
 	} else {
 		// Back to basics : writing a string.
-		QString mention = getMention();
 		QString s = "";
-		QTextStream t(&s);
 
-		t << "<a href=\"" << mention
-		  << "style=\"text-decoration: none ; color:\""
-		  << linkColor.name() << "\">" << mention << "</a>";
+		s.append("<a href=\"").append(mention)
+			.append("style=\"text-decoration: none ; color:\"")
+			.append(linkColor.name()).append("\">")
+			.append(mention).append("</a>");
 
-		return t.readAll();
+		return s;
 	}
 }

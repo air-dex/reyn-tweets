@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "urlentity.hpp"
-#include <QTextStream>
+#include <QtQml>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
@@ -62,6 +62,11 @@ const URLEntity & URLEntity::operator=(const URLEntity & entity) {
 void URLEntity::initSystem() {
 	qRegisterMetaTypeStreamOperators<URLEntity>("URLEntity");
 	qMetaTypeId<URLEntity>();
+}
+
+// Declaring to the QML components
+void URLEntity::declareQML() {
+	qmlRegisterType<URLEntity>("ReynTweetsEntities", 0, 2, "URLEntity");
 }
 
 // Copy of a URLEntity
@@ -125,6 +130,7 @@ QString URLEntity::getURL() {
 
 void URLEntity::setURL(QString newURL) {
 	extractedURL = newURL;
+	emit urlChanged();
 }
 
 // displayed_url
@@ -136,6 +142,7 @@ QString URLEntity::getDisplayedURL() {
 
 void URLEntity::setDisplayedURL(QString newURL) {
 	displayedURL = newURL;
+	emit displayedURLChanged();
 }
 
 // expanded_url
@@ -147,6 +154,7 @@ QString URLEntity::getExpandedURL() {
 
 void URLEntity::setExpandedURL(QString newURL) {
 	expandedURL = newURL;
+	emit expandedURLChanged();
 }
 
 
@@ -171,12 +179,12 @@ QString URLEntity::getDisplayedText(QColor linkColor) {
 		return link.toOuterXml();
 	} else {
 		QString s = "";
-		QTextStream t(&s);
 
-		t << "<a href=\"" << extractedURL
-		  << "style=\"text-decoration: none ; color:\""
-		  << linkColor.name() << "\">" << expandedURL << "</a>";
+		s.append("<a href=\"").append(extractedURL)
+			.append("style=\"text-decoration: none ; color:\"")
+			.append(linkColor.name()).append("\">")
+			.append(expandedURL).append("</a>");
 
-		return t.readAll();
+		return s;
 	}
 }

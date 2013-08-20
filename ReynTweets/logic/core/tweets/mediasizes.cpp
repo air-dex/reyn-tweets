@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "mediasizes.hpp"
+#include <QtQml>
 
 //////////////////////////////
 // Serialization management //
@@ -60,6 +61,11 @@ const MediaSizes & MediaSizes::operator=(const MediaSizes & sizes) {
 void MediaSizes::initSystem() {
 	qRegisterMetaTypeStreamOperators<MediaSizes>("MediaSizes");
 	qMetaTypeId<MediaSizes>();
+}
+
+// Declaring to the QML components
+void MediaSizes::declareQML() {
+	qmlRegisterType<MediaSizes>("ReynTweetsEntities", 0, 2, "MediaSizes");
 }
 
 // Copy of a MediaSizes
@@ -112,51 +118,6 @@ QJsonObject MediaSizes::toVariant() const {
 }
 
 
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property large
-QVariantMap MediaSizes::getLargeProperty() {
-	return largeSize.toVariant().toVariantMap();
-}
-
-// Writing method for the property large
-void MediaSizes::setLarge(QVariantMap newLargeMap) {
-	largeSize.fillWithVariant(QJsonObject::fromVariantMap(newLargeMap));
-}
-
-// Reading method for the property medium
-QVariantMap MediaSizes::getMediumProperty() {
-	return mediumSize.toVariant().toVariantMap();
-}
-
-// Writing method for the property medium
-void MediaSizes::setMedium(QVariantMap newMediumMap) {
-	mediumSize.fillWithVariant(QJsonObject::fromVariantMap(newMediumMap));
-}
-
-// Reading method for the property small
-QVariantMap MediaSizes::getSmallProperty() {
-	return smallSize.toVariant().toVariantMap();
-}
-
-// Writing method for the property small
-void MediaSizes::setSmall(QVariantMap newSmallMap) {
-	smallSize.fillWithVariant(QJsonObject::fromVariantMap(newSmallMap));
-}
-
-// Reading method for the property thumb
-QVariantMap MediaSizes::getThumbProperty() {
-	return thumbSize.toVariant().toVariantMap();
-}
-
-// Writing method for the property thumb
-void MediaSizes::setThumb(QVariantMap newThumbMap) {
-	thumbSize.fillWithVariant(QJsonObject::fromVariantMap(newThumbMap));
-}
-
-
 ////////////////////////
 // Getter and setters //
 ////////////////////////
@@ -168,8 +129,18 @@ MediaSize MediaSizes::getLarge() {
 	return largeSize;
 }
 
+MediaSize * MediaSizes::getLargePtr() {
+	return &largeSize;
+}
+
 void MediaSizes::setLarge(MediaSize newLargeSize) {
 	largeSize = newLargeSize;
+	emit largeChanged();
+}
+
+void MediaSizes::setLarge(MediaSize * newLargeSize) {
+	largeSize = newLargeSize ? *newLargeSize : MediaSize();
+	emit largeChanged();
 }
 
 // medium
@@ -179,8 +150,18 @@ MediaSize MediaSizes::getMedium() {
 	return mediumSize;
 }
 
+MediaSize * MediaSizes::getMediumPtr() {
+	return &mediumSize;
+}
+
 void MediaSizes::setMedium(MediaSize newMediumSize) {
 	mediumSize = newMediumSize;
+	emit mediumChanged();
+}
+
+void MediaSizes::setMedium(MediaSize * newMediumSize) {
+	mediumSize = newMediumSize ? *newMediumSize : MediaSize();
+	emit mediumChanged();
 }
 
 // small
@@ -190,8 +171,18 @@ MediaSize MediaSizes::getSmall() {
 	return smallSize;
 }
 
+MediaSize * MediaSizes::getSmallPtr() {
+	return &smallSize;
+}
+
 void MediaSizes::setSmall(MediaSize newSmallSize) {
 	smallSize = newSmallSize;
+	emit smallChanged();
+}
+
+void MediaSizes::setSmall(MediaSize * newSmallSize) {
+	smallSize = newSmallSize ? *newSmallSize : MediaSize();
+	emit smallChanged();
 }
 
 // thumb
@@ -201,6 +192,16 @@ MediaSize MediaSizes::getThumb() {
 	return thumbSize;
 }
 
+MediaSize * MediaSizes::getThumbPtr() {
+	return &thumbSize;
+}
+
 void MediaSizes::setThumb(MediaSize newThumbSize) {
 	thumbSize = newThumbSize;
+	emit thumbChanged();
+}
+
+void MediaSizes::setThumb(MediaSize * newThumbSize) {
+	thumbSize = newThumbSize ? *newThumbSize : MediaSize();
+	emit thumbChanged();
 }

@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "media.hpp"
+#include <QtQml>
 
 //////////////////////////////
 // Serialization management //
@@ -68,6 +69,11 @@ const Media & Media::operator=(const Media & media) {
 void Media::initSystem() {
 	qRegisterMetaTypeStreamOperators<Media>("Media");
 	qMetaTypeId<Media>();
+}
+
+// Declaring to the QML components
+void Media::declareQML() {
+	qmlRegisterType<Media>("ReynTweetsEntities", 0, 2, "Media");
 }
 
 // Copy of a Media
@@ -143,21 +149,6 @@ QJsonObject Media::toVariant() const {
 }
 
 
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property sizes
-QVariantMap Media::getSizesProperty() {
-	return mediaSizes.toVariant().toVariantMap();
-}
-
-// Writing method for the property sizes
-void Media::setSizes(QVariantMap newMap) {
-	mediaSizes.fillWithVariant(QJsonObject::fromVariantMap(newMap));
-}
-
-
 ////////////////////////
 // Getter and setters //
 ////////////////////////
@@ -173,6 +164,7 @@ qlonglong Media::getID() {
 // BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void Media::setID(qlonglong newID) {
 	mediaID = newID;
+	emit idChanged();
 }
 
 // id_str
@@ -184,6 +176,7 @@ QString Media::getIDstr() {
 
 void Media::setIDstr(QString newID) {
 	mediaIDstr = newID;
+	emit idChanged();
 }
 
 // media_url
@@ -195,6 +188,7 @@ QString Media::getMediaURL() {
 
 void Media::setMediaURL(QString newMediaURL) {
 	mediaURL = newMediaURL;
+	emit mediaURLChanged();
 }
 
 // media_url_https
@@ -206,6 +200,7 @@ QString Media::getMediaURLhttps() {
 
 void Media::setMediaURLhttps(QString newMediaURL) {
 	mediaURLhttps = newMediaURL;
+	emit mediaURLhttpsChanged();
 }
 
 // type
@@ -217,6 +212,7 @@ QString Media::getType() {
 
 void Media::setType(QString newType) {
 	mediaType = newType;
+	emit typeChanged();
 }
 
 // sizes
@@ -226,8 +222,18 @@ MediaSizes Media::getSizes() {
 	return mediaSizes;
 }
 
+MediaSizes * Media::getSizesPtr() {
+	return &mediaSizes;
+}
+
 void Media::setSizes(MediaSizes newSizes) {
 	mediaSizes = newSizes;
+	emit sizesChanged();
+}
+
+void Media::setSizes(MediaSizes * newSizes) {
+	mediaSizes = newSizes ? *newSizes : MediaSizes();
+	emit sizesChanged();
 }
 
 // source_status_id
@@ -240,6 +246,7 @@ qlonglong Media::getSourceID() {
 void Media::setSourceID(qlonglong newID) {
 	sourceID = newID;
 	sourceIDstr = QString::number(sourceID);
+	emit sourceIDChanged();
 }
 
 // source_status_id_str
@@ -252,4 +259,5 @@ QString Media::getSourceIDstr() {
 void Media::setSourceIDstr(QString newID) {
 	sourceIDstr = newID;
 	sourceID = sourceIDstr.toLongLong();
+	emit sourceIDChanged();
 }

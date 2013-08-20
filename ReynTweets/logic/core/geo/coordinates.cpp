@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "coordinates.hpp"
+#include <QtQml>
 #include <QJsonArray>
 
 /////////////
@@ -55,6 +56,11 @@ const Coordinates & Coordinates::operator=(const Coordinates & coord) {
 void Coordinates::initSystem() {
 	qRegisterMetaTypeStreamOperators<Coordinates>("Coordinates");
 	qMetaTypeId<Coordinates>();
+}
+
+// Declaring to the QML components
+void Coordinates::declareQML() {
+	qmlRegisterType<Coordinates>("ReynTweetsEntities", 0, 2, "Coordinates");
 }
 
 // Reset

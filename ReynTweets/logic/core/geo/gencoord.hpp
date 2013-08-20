@@ -92,7 +92,7 @@ class GenCoord : public JsonObject
 
 		/// @fn virtual QVariantList getCoordinatesProperty();
 		/// @brief Reading coordinates
-		/// @return retweetID
+		/// @return geoCoordinates as a QVariantList
 		virtual QVariantList getCoordinatesProperty() = 0;
 
 		/// @fn virtual void setCoordinates(QVariantList newValue);

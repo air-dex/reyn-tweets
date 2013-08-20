@@ -193,7 +193,7 @@ void TweetControl::shareByMail() {
 
 	// Writing the subject
 	QString subject = TweetControl::trUtf8("Tweet by ");
-	subject.append(getShownTweet()->getAuthor()->getName());
+	subject.append(getShownTweet()->getUser().getName());
 
 	// Need to encode it on Windows
 	#ifdef Q_OS_WIN
@@ -233,7 +233,7 @@ void TweetControl::retweet() {
 	}
 
 	// Protection to not attempt to retweet its own tweets.
-	if (*(status->getAuthor()) ==
+	if (status->getUser() ==
 			reyn.getUserConfiguration().getUserAccount().getUser())
 	{
 		return;
@@ -252,7 +252,7 @@ void TweetControl::retweet() {
 
 		case TimelineHandler::MENTIONS:
 			// Do not retweet if the user was retweeted
-			if (*(getShownTweet()->getAuthor()) ==
+			if (getShownTweet()->getUser() ==
 					reyn.getUserConfiguration().getUserAccount().getUser())
 			{
 				processing = false;
@@ -306,7 +306,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 				break;
 			}
 			getShownTweet()->reset();
-			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(resultTweet.getRetweetedStatusVariant()));
+			getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatus()->toVariant());
 			getShownTweet()->setRetweeted(true);
 			status->setRetweeted(true);
 			// NB : status.id do not change.
@@ -575,7 +575,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 				}
 
 				getShownTweet()->reset();
-				getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(resultTweet.getRetweetedStatusVariant()));
+				getShownTweet()->fillWithVariant(resultTweet.getRetweetedStatus()->toVariant());
 				status->setRetweeted(false);
 				emit tweetChanged();
 			} else {

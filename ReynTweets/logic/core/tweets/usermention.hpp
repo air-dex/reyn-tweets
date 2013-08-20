@@ -61,6 +61,10 @@ class UserMention : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the mention.
 		///
@@ -133,7 +137,8 @@ class UserMention : public TweetEntity
 		/// The userID attribute is behind this property.
 		Q_PROPERTY(qlonglong id
 				   READ getID
-				   WRITE setID)
+				   WRITE setID
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id.
 		static QString ID_PN;
@@ -145,7 +150,8 @@ class UserMention : public TweetEntity
 		/// The userIDstr attribute is behind this property.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
-				   WRITE setIDstr)
+				   WRITE setIDstr
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id_str.
 		static QString ID_STR_PN;
@@ -157,7 +163,8 @@ class UserMention : public TweetEntity
 		/// The screenName attribute is behind this property.
 		Q_PROPERTY(QString screen_name
 				   READ getScreenName
-				   WRITE setScreenName)
+				   WRITE setScreenName
+				   NOTIFY screenNameChanged)
 
 		/// @brief Name of the property screen_name.
 		static QString SCREEN_NAME_PN;
@@ -169,10 +176,25 @@ class UserMention : public TweetEntity
 		/// The userName attribute is behind this property.
 		Q_PROPERTY(QString name
 				   READ getName
-				   WRITE setName)
+				   WRITE setName
+				   NOTIFY nameChanged)
 
 		/// @brief Name of the property name.
 		static QString NAME_PN;
+
+	signals:
+		/// @fn void idChanged();
+		/// @brief Signal emitted when the properties id or id_str change
+		/// their values.
+		void idChanged();
+
+		/// @fn void screenNameChanged();
+		/// @brief Signal emitted when the property screen_name changes its value.
+		void screenNameChanged();
+
+		/// @fn void nameChanged();
+		/// @brief Signal emitted when the property name changes its value.
+		void nameChanged();
 
 
 	////////////////////////

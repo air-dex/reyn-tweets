@@ -93,6 +93,10 @@ class MediaSize : public JsonObject, public QSize
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();
@@ -146,7 +150,8 @@ class MediaSize : public JsonObject, public QSize
 		/// @brief Width
 		Q_PROPERTY(int w
 				   READ width
-				   WRITE setWidth)
+				   WRITE setWidth
+				   NOTIFY widthChanged)
 
 		/// @brief Name of the property w.
 		static QString W_PN;
@@ -156,7 +161,8 @@ class MediaSize : public JsonObject, public QSize
 		/// @brief Height
 		Q_PROPERTY(int h
 				   READ height
-				   WRITE setHeight)
+				   WRITE setHeight
+				   NOTIFY heightChanged)
 
 		/// @brief Name of the property h.
 		static QString H_PN;
@@ -168,7 +174,8 @@ class MediaSize : public JsonObject, public QSize
 		/// resizeMedia is the attribute behind this property.
 		Q_PROPERTY(QString resize
 				   READ getResizeProperty
-				   WRITE setResize)
+				   WRITE setResize
+				   NOTIFY resizeChanged)
 
 		/// @brief Name of the property resize.
 		static QString RESIZE_PN;
@@ -183,6 +190,19 @@ class MediaSize : public JsonObject, public QSize
 		/// @param newResize New value for resizeProperty
 		void setResize(QString newResize);
 
+	signals:
+		/// @fn void widthChanged();
+		/// @brief Signal emitted when the property w has got a new value.
+		void widthChanged();
+
+		/// @fn void textChanged();
+		/// @brief Signal emitted when the property h has got a new value.
+		void heightChanged();
+
+		/// @fn void textChanged();
+		/// @brief Signal emitted when the property resize has got a new value.
+		void resizeChanged();
+
 	/////////////////////
 	// Size management //
 	/////////////////////
@@ -192,6 +212,23 @@ class MediaSize : public JsonObject, public QSize
 		Resize resizeMedia;
 
 	public:
+		// w
+		/// @fn void setWidth(int w);
+		/// @brief Overriding the QSize method because of notifications when the
+		/// w property changes its value.
+		/// @param w New width
+		/// @see QSize::setWidth(int);
+		void setWidth(int w);
+
+		// h
+		/// @fn void setHeight(int h);
+		/// @brief Overriding the QSize method because of notifications when the
+		/// h property changes its value.
+		/// @param h New height
+		/// @see QSize::setHeight(int);
+		void setHeight(int h);
+
+		// resize
 		/// @fn Resize getResizeProperty();
 		/// @brief Getter on resizeMedia
 		/// @return resizeMedia

@@ -45,7 +45,7 @@ Rectangle {
 	property alias shown_tweet: control.shown_tweet
 
 	// User behind the timeline
-	property UserInfos current_user: settings_control.configuration.current_account.current_user
+	property UserInfos current_user: settings_control.configuration.user_account.current_user
 
 	// Minimal height
 	property int min_height: author_identity.height + author_screen_name.height
@@ -53,7 +53,7 @@ Rectangle {
 							 + action_row.height + 10*margin
 
 	// Is the user the author of the tweet ?
-	property bool iam_author: shown_tweet.author.id_str === current_user.id_str
+	property bool iam_author: shown_tweet.user.id_str === current_user.id_str
 
 	// Type of the timeline where the tweet is displayed
 	property alias timeline_type: control.timeline_type
@@ -147,13 +147,13 @@ Rectangle {
 			anchors.topMargin: 0
 			anchors.left: parent.left
 			anchors.leftMargin: 0
-			source: shown_tweet.author.profile_image_url
+			source: shown_tweet.user.profile_image_url
 			MouseArea {
 				id: avatar_mouse_area
 				anchors.fill: parent
 				onClicked: {
-					Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
-					console.log("TODO : Show @" + shown_tweet.author.screen_name)
+					Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.user.screen_name)	// MOCKUP
+					console.log("TODO : Show @" + shown_tweet.user.screen_name)
 				}
 			}
 		}
@@ -172,8 +172,8 @@ Rectangle {
 			MouseArea {
 				anchors.fill: parent
 				onClicked: {
-					Qt.openUrlExternally("https://twitter.com/#!/" + tweet.author.screen_name)	// MOCKUP
-					console.log("TODO : Show @" + tweet.author.screen_name)
+					Qt.openUrlExternally("https://twitter.com/#!/" + tweet.user.screen_name)	// MOCKUP
+					console.log("TODO : Show @" + tweet.user.screen_name)
 				}
 			}
 		}
@@ -215,7 +215,7 @@ Rectangle {
 	// Label displaying the tweet author's identity
 	Text {
 		id: author_identity
-		text: wrapEntity(shown_tweet.author.name)
+		text: wrapEntity(shown_tweet.user.name)
 		elide: Text.ElideRight
 		font.bold: true
 		font.underline: false
@@ -230,15 +230,15 @@ Rectangle {
 		anchors.right: date_text.left
 		anchors.rightMargin: 2*margin
 		onLinkActivated: {
-			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
-			console.log('TODO : show user ' + shown_tweet.author.name)
+			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.user.screen_name)	// MOCKUP
+			console.log('TODO : show user ' + shown_tweet.user.name)
 		}
 	}
 
 	// Label displaying the tweet author's screen name
 	Text {
 		id: author_screen_name
-		text: wrapEntity('@'.concat(shown_tweet.author.screen_name))
+		text: wrapEntity('@'.concat(shown_tweet.user.screen_name))
 		elide: Text.ElideRight
 		//font.bold: true
 		font.underline: false
@@ -250,8 +250,8 @@ Rectangle {
 		anchors.left: author_identity.left
 		anchors.right: author_identity.right
 		onLinkActivated: {
-			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.author.screen_name)	// MOCKUP
-			console.log('TODO : show user @' + shown_tweet.author.screen_name)
+			Qt.openUrlExternally("https://twitter.com/#!/" + shown_tweet.user.screen_name)	// MOCKUP
+			console.log('TODO : show user @' + shown_tweet.user.screen_name)
 		}
 	}
 
@@ -413,11 +413,11 @@ Rectangle {
 				var myID = current_user.id_str
 				var name;
 
-				if (myID === tweet.author.id_str) {
+				if (myID === tweet.user.id_str) {
 					name = qsTr("me")
 					spottedAsRetweeter = true
 				} else {
-					name = wrapEntity('@' + tweet.author.screen_name)
+					name = wrapEntity('@' + tweet.user.screen_name)
 					nbOtherRetweeters = nbOtherRetweeters - 1
 				}
 
@@ -449,7 +449,7 @@ Rectangle {
 			if (nbOtherRetweeters > 0) {
 				// Enclosing in a tag to show retweeters
 				message = message.concat(' <a href="showRTers" style="color: ')
-				message = message.concat(shown_tweet.author.profile_link_color)
+				message = message.concat(shown_tweet.user.profile_link_color)
 				message = message.concat(' ; text-decoration: none">')
 
 				var theseAreOtherRetweeters = knownPeopleArray.length > 0
@@ -510,7 +510,7 @@ Rectangle {
 			id: reply_action
 			image_source: tweet_pane.icons_folder.concat("/reply_off.png")
 			legend: qsTr("Reply")
-			onAct: reply(shown_tweet.author.screen_name, shown_tweet.id_str)
+			onAct: reply(shown_tweet.user.screen_name, shown_tweet.id_str)
 
 			property string reply_switch: "off"
 		}
@@ -549,7 +549,7 @@ Rectangle {
 			image_source: tweet_pane.icons_folder.concat("/quote.png")
 			legend: qsTr("Quote")
 			onAct: {
-				quote('RT @'.concat(shown_tweet.author.screen_name).concat(': ').concat(shown_tweet.text));
+				quote('RT @'.concat(shown_tweet.user.screen_name).concat(': ').concat(shown_tweet.text));
 			}
 		}
 
@@ -593,7 +593,7 @@ Rectangle {
 
 					// Kept to load the image if necessary
 					retweeter_avatar.visible = true
-					retweeter_avatar.source = tweet.author.profile_image_url
+					retweeter_avatar.source = tweet.user.profile_image_url
 
 					// New author and new margin to not move the QML Component
 					author_identity.anchors.leftMargin = 2*margin
@@ -788,7 +788,7 @@ Rectangle {
 		var closeTag = '">';
 		var endTag = '</a>';
 
-		return beginTag + shown_tweet.author.profile_link_color
+		return beginTag + shown_tweet.user.profile_link_color
 				+ hrefTag + entity + closeTag + entity + endTag;
 	}
 

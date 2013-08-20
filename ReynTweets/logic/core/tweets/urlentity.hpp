@@ -62,6 +62,10 @@ class URLEntity : public TweetEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn QString getDisplayedText(QColor linkColor);
 		/// @brief Building the rich text for the url.
 		///
@@ -126,7 +130,8 @@ class URLEntity : public TweetEntity
 		/// The extractedURL attribute is behind this property.
 		Q_PROPERTY(QString url
 				   READ getURL
-				   WRITE setURL)
+				   WRITE setURL
+				   NOTIFY urlChanged)
 
 		/// @brief Name of the property url.
 		static QString URL_PN;
@@ -138,7 +143,8 @@ class URLEntity : public TweetEntity
 		/// The displayedURL attribute is behind this property.
 		Q_PROPERTY(QString displayed_url
 				   READ getDisplayedURL
-				   WRITE setDisplayedURL)
+				   WRITE setDisplayedURL
+				   NOTIFY displayedURLChanged)
 
 		/// @brief Name of the property displayed_url.
 		static QString DISPLAYED_URL_PN;
@@ -150,10 +156,26 @@ class URLEntity : public TweetEntity
 		/// The expandedURL attribute is behind this property.
 		Q_PROPERTY(QString expanded_url
 				   READ getExpandedURL
-				   WRITE setExpandedURL)
+				   WRITE setExpandedURL
+				   NOTIFY expandedURLChanged)
 
 		/// @brief Name of the property expanded_url.
 		static QString EXPANDED_URL_PN;
+
+	signals:
+		/// @fn void urlChanged();
+		/// @brief Signal emitted when the property url has got a new value.
+		void urlChanged();
+
+		/// @fn void displayedURLChanged();
+		/// @brief Signal emitted when the property displayed_url has got
+		/// a new value.
+		void displayedURLChanged();
+
+		/// @fn void expandedURLChanged();
+		/// @brief Signal emitted when the property expanded_url has got
+		/// a new value.
+		void expandedURLChanged();
 
 
 	////////////////////

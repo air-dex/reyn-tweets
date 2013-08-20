@@ -21,8 +21,6 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-
-#include <QApplication>
 #include <QFile>
 #include <QObject>
 #include "appconfiguration.hpp"
@@ -35,14 +33,31 @@
 // Name of the file containing the settings.
 QString AppConfiguration::SETTINGS_NAMEFILE = "./conf/ReynTweetsSettings.conf";
 
+AppConfiguration * AppConfiguration::REYN_TWEETS_CONFIGURATION = new AppConfiguration();
 
 /////////////////////
 // Core management //
 /////////////////////
 
+// Getter on the configuration
+AppConfiguration & AppConfiguration::getReynTweetsConfiguration() {
+	return *REYN_TWEETS_CONFIGURATION;
+}
+
+// Deletes REYN_TWEETS_CONFIGURATION pointer
+void AppConfiguration::unleashReyn() {
+	delete REYN_TWEETS_CONFIGURATION;
+}
+
 // Private constructor
 AppConfiguration::AppConfiguration() :
-	errorLoading("")
+	errorLoading(""),
+	consumerKey(""),
+	consumerSecret(""),
+	callbackURL(""),
+	twitlongerAppName(""),
+	twitlongerAPIKey(""),
+	pocketAPIKey("")
 {}
 
 // Reset the app configuration

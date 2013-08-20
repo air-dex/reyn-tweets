@@ -27,12 +27,11 @@
 #include "../../connection/twitlonger/twitlongercalls.hpp"
 
 // Constructor
-LaunchingProcess::LaunchingProcess(UserConfiguration & userConf,
-								   AppConfiguration & appConf) :
+LaunchingProcess::LaunchingProcess(UserConfiguration & userConf) :
 	GenericProcess(),
 	twitter(this),
 	userConfiguration(userConf),
-	appConfiguration(appConf)
+	appConfiguration(AppConfiguration::getReynTweetsConfiguration())
 {}
 
 // Starting the process

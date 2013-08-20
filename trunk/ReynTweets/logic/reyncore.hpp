@@ -91,7 +91,7 @@ class ReynCore : public QObject
 		static UserConfiguration userConfiguration;
 
 		/// @brief Configuration of the application
-		static AppConfiguration appConfiguration;
+		static AppConfiguration & appConfiguration;
 
 	private:
 		/// @fn void recopie(const ReynCore & heart);
@@ -135,11 +135,6 @@ class ReynCore : public QObject
 		/// @brief Setting the user configuration
 		/// @param userConf New value for userConfiguration
 		static void setUserConfiguration(UserConfiguration userConf);
-
-		/// @fn static ReynTweetsAppConfiguration & getAppConfiguration();
-		/// @brief Getting a reference on the application configuration
-		/// @return Reference on appConfiguration
-		static AppConfiguration & getAppConfiguration();
 
 		//////////////////////////////////
 		// Launching and authentication //

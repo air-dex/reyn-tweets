@@ -43,12 +43,18 @@
 /// </ul>
 class AppConfiguration : public JsonObject {
 	public:
-		/// @fn ReynTweetsAppConfiguration();
-		/// @brief Constructor
-		AppConfiguration();
+		/// @fn static AppConfiguration & getReynTweetsConfiguration();
+		/// @brief Getting the reference on Reyn Tweets' configuration
+		/// @return *REYN_TWEETS_CONFIGURATION
+		static AppConfiguration & getReynTweetsConfiguration();
+
+		/// @fn static void unleashReyn();
+		/// @brief Deletes the REYN_TWEETS_CONFIGURATION pointer, in order to
+		/// avoid memory leaks.
+		static void unleashReyn();
 
 		/// @fn void reset();
-		/// @brief Resets the mappable to a default value
+		/// @brief Resets the configuration to a default value
 		void reset();
 
 		/// @fn CoreResult load();
@@ -100,6 +106,13 @@ class AppConfiguration : public JsonObject {
 		/////////////////////
 		// Core management //
 		/////////////////////
+
+		/// @fn ReynTweetsAppConfiguration();
+		/// @brief Constructor
+		AppConfiguration();
+
+		/// @brief Unique instance of the configuration
+		static AppConfiguration * REYN_TWEETS_CONFIGURATION;
 
 		/// @brief Name of the file containing the settings
 		static QString SETTINGS_NAMEFILE;

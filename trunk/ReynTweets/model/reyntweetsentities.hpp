@@ -1,6 +1,5 @@
-/// @file declaremodel.cpp
-/// @brief Implementation of functions to init model objects for QVariant and
-/// to declare them to the QML system.
+/// @file reyntweetsentities.cpp
+/// @brief Header containing all the object models headers
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -22,8 +21,10 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "declaremodel.hpp"
+#ifndef REYNTWEETSENTITIES_HPP
+#define REYNTWEETSENTITIES_HPP
 
+#include "configuration/appconfiguration.hpp"
 #include "configuration/useraccount.hpp"
 #include "configuration/userconfiguration.hpp"
 
@@ -57,63 +58,4 @@
 #include "users/userentities.hpp"
 #include "users/userinfos.hpp"
 
-// Init for QVariant
-void initModelSystem() {
-	// Configuration
-	UserAccount::initSystem();
-	UserConfiguration::initSystem();
-
-	// Geolocation
-	Coordinates::initSystem();
-	GeoBoundingBox::initSystem();
-	GeoCoord::initSystem();
-	GeoCoordList::initSystem();
-	GeoCoordPolygon::initSystem();
-	TwitterPlace::initSystem();
-
-	// Timelines
-	Timeline::initSystem();
-
-	// Tweets
-	Hashtag::initSystem();
-	HashtagList::initSystem();
-	IndexBounds::initSystem();
-	Media::initSystem();
-	MediaList::initSystem();
-	MediaSize::initSystem();
-	MediaSizes::initSystem();
-	RetweetInfos::initSystem();
-	Tweet::initSystem();
-	TweetEntities::initSystem();
-	URLEntity::initSystem();
-	URLEntityList::initSystem();
-	UserMention::initSystem();
-	UserMentionList::initSystem();
-
-	// Users
-	Contributor::initSystem();
-	ContributorList::initSystem();
-	User::initSystem();
-	UserEntities::initSystem();
-	UserInfos::initSystem();
-}
-
-// Declaring to the QML system
-void declareQMLModel() {
-	// Geolocation
-	UserAccount::declareQML();
-	UserConfiguration::declareQML();
-	TwitterPlace::declareQML();
-
-	// Timelines
-	Timeline::declareQML();
-
-	// Tweets
-	Tweet::declareQML();
-
-	// Users
-	Contributor::declareQML();
-	User::declareQML();
-	UserEntities::declareQML();
-	UserInfos::declareQML();
-}
+#endif // REYNTWEETSENTITIES_HPP

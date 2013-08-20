@@ -23,6 +23,9 @@
 
 #include "allowcontrol.hpp"
 #include <QtQml>
+#include "../../model/configuration/appconfiguration.hpp"
+#include "../../connection/twitter/requests/twitterurls.hpp"
+#include "../../tools/parsers/oauthparser.hpp"
 
 // Constructor
 AllowControl::AllowControl() :
@@ -35,6 +38,14 @@ void AllowControl::declareQML() {
 	qmlRegisterType<AllowControl>("ReynTweetsControls",
 								  0, 2,
 								  "AllowControl");
+}
+
+// Getting the authentication results
+QVariantMap AllowControl::getAuthenticationResults(QString endAuthURL) {
+	// TODO : parse the URL and get the QVariantMap with an OAuth parser
+	QVariantMap urlGetArgs;	// TODO : fill it
+
+	return urlGetArgs;
 }
 
 
@@ -69,6 +80,10 @@ void AllowControl::allowReynTweets() {
 	emit showInfoMessage(AllowControl::trUtf8("Authorizing Reyn Tweets..."));
 	reyn.requestOAuthTokens();
 }
+
+/////////////////////////////
+// Step 1 : Request tokens //
+/////////////////////////////
 
 // After an authentication, if needed.
 void AllowControl::requestTokensOK(ProcessWrapper res) {
@@ -124,46 +139,73 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	}
 
 	emit actionEnded(false, result.errorMsg, fatal);
-
-/*
-	switch (issue) {
-		case ALLOW_SUCCESSFUL:
-			// Process successful
-			emit actionEnded(true,
-							AllowControl::trUtf8("Reyn Tweets was authorized"),
-							false);
-			break;
-
-		case DENIED:
-			// Process successful but Reyn Tweets was denied :(
-			displayMessage = AllowControl::trUtf8("Reyn Tweets was denied.");
-
-		// Problems that can be solved trying later
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-			emit actionEnded(false, displayMessage, false);
-			break;
-
-		// Problems during process
-		case NO_MORE_DATA:
-		case TOKENS_NOT_AUTHORIZED:
-		case PARSE_ERROR:
-		case POST_AUTHORIZING_FAILED:
-		case NO_TOKENS:
-
-		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-
-		// Unknown ends
-		case UNKNOWN_PROBLEM:
-
-		default:
-			emit actionEnded(false, displayMessage, false);
-			break;
-	}
-	//*/
 }
+
+
+//////////////////////////////////////
+// Step 2 : Authorizing Reyn Tweets //
+//////////////////////////////////////
+
+// End of authentication
+bool AllowControl::endAuth(QString postauthURL) {
+	// Have a look at the URL
+	if (postauthURL.startsWith(TwitterURL::AUTHORIZE_URL)) {
+		// Still in POST authorizing
+		return false;
+	} else if (postauthURL.startsWith(AppConfiguration::getReynTweetsConfiguration().getCallbackURL())) {
+		// This is the end (hold your breath & count to 10). Authorized or denied ?
+		QUrl endURL(postauthURL);
+
+		OAuthParser parser;
+		bool parseOK;
+		QString parseErr;
+
+		QVariantMap veryEndArgs = parser.parse(endURL.query().toLatin1(),
+											   parseOK,
+											   parseErr);
+
+		if (parseOK && veryEndArgs.contains("oauth_verifier")) {
+			// Authorized :) !
+			getAccessTokens(veryEndArgs.value("oauth_verifier").toByteArray());
+		} else if (parseOK && veryEndArgs.contains("denied")) {
+			// Denied :( ! TODO
+			emit actionEnded(true,
+							 AllowControl::trUtf8("Reyn Tweets was denied."),
+							 false);
+		} else {
+			// Unable to know the result.
+			QString errMsg = AllowControl::trUtf8("Cannot determine if the application was authorized or if she was denied");
+
+			errMsg.append(" :\n");
+
+			if (parseOK) {
+				errMsg.append(AllowControl::trUtf8("No clue to know a priori what you decide"));
+			} else {
+				errMsg.append(AllowControl::trUtf8("Parsing error"))
+						.append(" : ")
+						.append(parseErr);
+			}
+
+			errMsg.append('.');
+
+			emit actionEnded(false, errMsg, true);
+		}
+
+		return true;
+	} else {
+		// Awkward URL. Exit.
+		emit actionEnded(false,
+						 AllowControl::trUtf8("Callback URL expected."),
+						 true);
+		return true;
+	}
+
+}
+
+
+////////////////////////////
+// Step 3 : Access tokens //
+////////////////////////////
 
 // Allowing Reyn Tweets to use a Twitter Account
 void AllowControl::getAccessTokens(QString verifier) {
@@ -176,6 +218,7 @@ void AllowControl::getAccessTokens(QString verifier) {
 			this, SLOT(accessTokensOK(ProcessWrapper)));
 	reyn.accessOAuthTokens(verifier.toLatin1());
 }
+
 
 // After an authentication, if needed.
 void AllowControl::accessTokensOK(ProcessWrapper res) {
@@ -231,45 +274,9 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 	}
 
 	emit actionEnded(endOK, displayMessage, fatal);
-/*
-	switch (issue) {
-		case ALLOW_SUCCESSFUL:
-			// Process successful
-			emit actionEnded(true,
-							AllowControl::trUtf8("Reyn Tweets was authorized"),
-							false);
-			break;
-
-		case DENIED:
-			// Process successful but Reyn Tweets was denied :(
-			displayMessage = AllowControl::trUtf8("Reyn Tweets was denied.");
-
-		// Problems that can be solved trying later
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-			emit actionEnded(false, displayMessage, false);
-			break;
-
-		// Problems during process
-		case NO_MORE_DATA:
-		case TOKENS_NOT_AUTHORIZED:
-		case PARSE_ERROR:
-		case POST_AUTHORIZING_FAILED:
-		case NO_TOKENS:
-
-		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-
-		// Unknown ends
-		case UNKNOWN_PROBLEM:
-
-		default:
-			emit actionEnded(false, displayMessage, false);
-			break;
-	}
-	//*/
 }
+
+//
 
 
 ///////////////////////////////

@@ -27,6 +27,7 @@
 // Constructor
 SettingsControl::SettingsControl() :
 	GenericControl(),
+	reynTweetsConf(AppConfiguration::getReynTweetsConfiguration()),
 	conf(ReynCore::getUserConfiguration())
 {}
 
@@ -35,6 +36,11 @@ void SettingsControl::declareQML() {
 	qmlRegisterType<SettingsControl>("ReynTweetsControls",
 									 0, 2,
 									 "SettingsControl");
+}
+
+// Twitter callback URL
+QString SettingsControl::getCallbackURL() {
+	return reynTweetsConf.getCallbackURL();
 }
 
 

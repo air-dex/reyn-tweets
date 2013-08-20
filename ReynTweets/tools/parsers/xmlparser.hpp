@@ -33,8 +33,8 @@ class XMLParser : public GenericParser<QDomElement>
 {
 	public:
 		/// @fn QDomElement parse(QByteArray data,
-		///						  bool & parseOK,
-		///						  QString & parseError,
+		///						  bool * parseOK = 0,
+		///						  QString * parseError = 0,
 		///						  int * lineError = 0,
 		///						  int * columnError = 0);
 		/// @brief Method for parsing results
@@ -44,8 +44,8 @@ class XMLParser : public GenericParser<QDomElement>
 		/// @param lineError Line of the error
 		/// @param columnError Column of the error
 		QDomElement parse(QByteArray data,
-						  bool & parseOK,
-						  QString & parseError,
+						  bool * parseOK = 0,
+						  QString * parseError = 0,
 						  int * lineError = 0,
 						  int * columnError = 0);
 };

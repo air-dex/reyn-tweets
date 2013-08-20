@@ -29,21 +29,27 @@
 
 // Parsing results
 QWebElement HTMLParser::parse(QByteArray data,
-							  bool & parseOK,
-							  QString & parseError,
+							  bool * parseOK,
+							  QString * parseError,
 							  int *, int *)
 {
 	QWebPage webPage;
 	QWebFrame * frame = webPage.mainFrame();
 
+	if (parseOK) {
+		*parseOK = frame != 0;
+	}
+
 	if (frame) {
 		frame->setHtml(QString::fromUtf8(data.data()));
-		parseOK = true;
-		parseError = "";
+		if (parseError) {
+			*parseError = "";
+		}
 		return frame->documentElement();
 	} else {
-		parseOK = false;
-		parseError = QObject::trUtf8("No HTML parser available.").append('\n');
+		if (parseError) {
+			*parseError = QObject::trUtf8("No HTML parser available.").append('\n');
+		}
 		return QWebElement();
 	}
 }

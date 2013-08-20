@@ -25,68 +25,26 @@
 
 #include <QList>
 #include "oauthparser.hpp"
+#include <QUrlQuery>
 
 // Parsing method
 QVariantMap OAuthParser::parse(QByteArray data,
-							   bool & parseOK,
-							   QString & parseError,
+							   bool *, QString *,
 							   int *, int *)
 {
 	QVariantMap res;
-	QString errorMsg = QObject::trUtf8("Following arguments are invalid : ");
-	parseOK = true;
 
-	// Split the couples of arguments
-	QList<QByteArray> arguments = data.split('&');
+	QUrlQuery args(QString::fromLatin1(data));
 
-	foreach (QByteArray argument, arguments) {
-		QList<QByteArray> couple = argument.split('=');
-		bool validCouple = couple.length() == 2 || argument.isEmpty();
+	QList<QPair<QString, QString> > listArgs = args.queryItems();
 
-		// Ensures that there is a name and a value
-		parseOK = parseOK && validCouple;
-
-		if (validCouple) {
-			QString name = QString(couple.at(0));
-			QString value = QString(couple.at(1));
-			res.insert(name, QVariant(value));
-		} else {
-			errorMsg.append(QObject::trUtf8("OAuth parsing : cannot parse '"));
-			errorMsg.append(argument);
-			errorMsg.append("'.\n");
-		}
+	for (QList<QPair<QString, QString> >::iterator it = listArgs.begin();
+		 it != listArgs.end();
+		 ++it)
+	{
+		QPair<QString, QString> couple = *it;
+		res.insert(couple.first, QVariant::fromValue(couple.second));
 	}
-
-
-	// Writing parsing errors
-	parseError = "";
-
-	if (!parseOK) {
-		parseError = errorMsg;
-	}
-
-	return res;
-}
-
-// Extracting one parameter from the parsed result
-QVariant OAuthParser::extractParameter(QVariantMap & parsedMap,
-									   QString parameterName,
-									   bool & extractOK,
-									   QString & extractError)
-{
-	QVariant res;
-	extractError = "";
-	extractOK = parsedMap.contains(parameterName);
-
-	if (extractOK) {
-		res = parsedMap.value(parameterName);
-		parsedMap.remove(parameterName);
-	} else {
-		extractError.append(QObject::trUtf8("Parameter extraction : parameter '"));
-		extractError.append(parameterName);
-		extractError.append(QObject::trUtf8("' expected.")).append('\n');
-	}
-
 	return res;
 }
 

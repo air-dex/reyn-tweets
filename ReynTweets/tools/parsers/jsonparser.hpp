@@ -35,11 +35,11 @@
 class JSONParser : public GenericParser<QJsonValue>
 {
 	public:
-		/// @fn QVariantMap parse(QByteArray data,
-		///						  bool & parseOK,
-		///						  QString & parseError,
-		///						  int * lineError = 0,
-		///						  int * columnError = 0);
+		/// @fn QJsonValue parse(QByteArray data,
+		///						 bool * parseOK = 0,
+		///						 QString * parseError = 0,
+		///						 int * lineError = 0,
+		///						 int * columnError = 0);
 		/// @brief Parsing JSON datas
 		/// @param data Datas to parse
 		/// @param parseOK Boolean indicating if the parcing process was successful
@@ -47,8 +47,8 @@ class JSONParser : public GenericParser<QJsonValue>
 		/// @param lineError Line of the error
 		/// @param columnError Column of the error. Unused
 		QJsonValue parse(QByteArray data,
-						  bool & parseOK,
-						  QString & parseError,
+						  bool * parseOK = 0,
+						  QString * parseError = 0,
 						  int * lineError = 0,
 						  int * columnError = 0);
 };

@@ -26,12 +26,17 @@
 
 // Parsing an XML document
 QDomElement XMLParser::parse(QByteArray data,
-							  bool &parseOK,
-							  QString &parseError,
-							  int * lineError,
-							  int * columnError)
+							 bool *parseOK,
+							 QString *parseError,
+							 int * lineError,
+							 int * columnError)
 {
 	QDomDocument res("XMLdoc");
-	parseOK = res.setContent(data, &parseError, lineError, columnError);
+
+	bool parseRes = res.setContent(data, parseError, lineError, columnError);
+	if (parseOK) {
+		*parseOK = parseRes;
+	}
+
 	return res.documentElement();
 }

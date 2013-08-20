@@ -145,8 +145,8 @@ bool AllowControl::endAuth(QString postauthURL) {
 		QString parseErr;
 
 		QVariantMap veryEndArgs = parser.parse(endURL.query().toLatin1(),
-											   parseOK,
-											   parseErr);
+											   &parseOK,
+											   &parseErr);
 
 		if (parseOK && veryEndArgs.contains("oauth_verifier")) {
 			// Authorized :) !

@@ -55,10 +55,7 @@ QVariant AccessTokenRequester::parseResult(NetworkResponse results,
 
 	// Parsing
 	OAuthParser parser;
-	QByteArray rawResponse = results.getResponseBody();
-	QString errorMsg = "";
-	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
-
+	QVariantMap resultMap = parser.parse(results.getResponseBody());
 
 	// For treatments
 	QVariant extractedCredential;
@@ -96,19 +93,19 @@ QVariant AccessTokenRequester::parseResult(NetworkResponse results,
 		missingArgs.append(SCREEN_NAME_KEY);
 	}
 
-	parseOK = parseOK && missingArgs.isEmpty();
+	parseOK = missingArgs.isEmpty();
 
 	// Listing all the expected parameters
 	if (!missingArgs.isEmpty()) {
+		QString errorMsg = "";
+
 		foreach (QString argName, missingArgs) {
 			errorMsg.append(AccessTokenRequester::trUtf8("Unexpected parameter '"))
 					.append(argName)
 					.append("'.\n");
 		}
-	}
 
-	// There was a problem while parsing -> fill the parsingErrors map !
-	if (!parseOK) {
+		// Fill the parsingErrors map !
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));
 	}
 

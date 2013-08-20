@@ -70,12 +70,14 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 									   QVariantMap & parsingErrors)
 {
 	JSONParser parser;
-	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg;
 	int lineMsg;
 
 	// TODO : improve it because of improved JSONParser
-	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg).toVariant();
+	QVariant result = parser.parse(results.getResponseBody(),
+								   &parseOK, &errorMsg,
+								   &lineMsg
+								   ).toVariant();
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !

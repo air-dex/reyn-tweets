@@ -25,7 +25,7 @@
 #define TWITLONGERCALLS_HPP
 
 #include "../common/calls/genericcalls.hpp"
-#include "../model/managers/twitlongermanager.hpp"
+#include "../twitlonger/twitlongermanager.hpp"
 
 /// @class TwitLongerCalls
 /// @brief Class managing calls to the TwitLonger API.

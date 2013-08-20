@@ -32,7 +32,7 @@
 
 // Network manager
 #ifdef Q_OS_WIN
-	QNetworkAccessManager Network::REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
+	QNetworkAccessManager LibRT::REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
 #endif
 #ifdef Q_OS_LINUX
 	QNetworkAccessManager LibRT::REYN_TWEETS_NETWORK_MANAGER;

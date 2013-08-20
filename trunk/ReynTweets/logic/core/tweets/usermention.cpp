@@ -23,9 +23,8 @@
 
 #include "usermention.hpp"
 #include <QtQml>
-#include <QWebPage>
-#include <QWebFrame>
 #include <QWebElement>
+#include "../../../connection/common/utils/parsers/htmlparser.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -201,14 +200,17 @@ QString UserMention::getMention() {
 // Building the rich text for the entity
 QString UserMention::getDisplayedText(QColor linkColor) {
 	QString mention = getMention();
-	QWebPage page;
-	QWebFrame * frame = page.mainFrame();
 
-	if (frame) {
-		frame->setHtml("<a></a>");
-		QWebElement link = frame->documentElement().findFirst("a");
+	// Building the HTML link
+	QString htmlMention = "";
+	htmlMention.append("<a>").append(mention).append("</a>");
 
-		link.setPlainText(mention);
+	HTMLParser parser;
+	bool parseOK = false;
+	QWebElement link = parser.parse(htmlMention.toUtf8(), &parseOK);
+
+	if (parseOK) {
+		link = link.findFirst("a");
 		link.setAttribute("href", mention);
 		link.setStyleProperty("color", linkColor.name());
 		link.setStyleProperty("text-align", "right");

@@ -23,8 +23,6 @@
 
 #include "tweet.hpp"
 #include <QtQml>
-#include <QWebPage>
-#include <QWebFrame>
 #include <QWebElement>
 #include <QVariant>
 #include "../../../connection/common/utils/parsers/htmlparser.hpp"
@@ -774,13 +772,11 @@ QString Tweet::getDisplaySource() {
 			  : sourceClient;
 
 	// Getting the 'a' tag
-	QWebPage page;
-	QWebFrame * frame = page.mainFrame();
+	HTMLParser parser;
+	bool parseOK = false;
+	QWebElement aTag = parser.parse(htmlText.toUtf8(), &parseOK);
 
-	if (frame) {
-		frame->setHtml(htmlText);
-		QWebElement aTag = frame->documentElement().findFirst("a");
-
+	if (parseOK) {
 		// Styling
 		aTag.setStyleProperty("text-decoration", "none");
 		aTag.setStyleProperty("color", author.getProfileLinkColor().name());
@@ -804,20 +800,22 @@ QString Tweet::whenWasItPosted(bool encloseInHtmlTag) {
 
 	// Enclosing it in a HTML tag (or not)
 	if (encloseInHtmlTag) {
-		QWebPage page;
-		QWebFrame * frame = page.mainFrame();
+		// Getting the 'a' tag
+		QString htmlText = "";
+		htmlText.append("<a>").append(dateToReturn).append("</a>");
 
-		if (frame) {
-			frame->setHtml("<a></a>");
-			QWebElement aTag = frame->documentElement().findFirst("a");
+		HTMLParser parser;
+		bool parseOK = false;
+		QWebElement aTag = parser.parse(htmlText.toUtf8(), &parseOK);
 
-			aTag.setInnerXml(dateToReturn);
+		if (parseOK) {
+			aTag = aTag.findFirst("a");
 			aTag.setAttribute("href", getTweetURL().toString());
 			aTag.setStyleProperty("text-decoration", "none");
 			aTag.setStyleProperty("color", author.getProfileLinkColor().name());
 
 			// Extracting the tag under its QString form
-			return aTag.toOuterXml();
+			return aTag.toOuterXml();//*/
 		} else {
 			QString s = "";
 

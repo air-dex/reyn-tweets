@@ -24,6 +24,7 @@
 #ifndef TWEETENTITY_HPP
 #define TWEETENTITY_HPP
 
+#include <QColor>
 #include "../json/jsonobject.hpp"
 #include "../../controls/listhandlers/indexboundshandler.hpp"
 

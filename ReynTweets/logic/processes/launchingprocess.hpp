@@ -38,13 +38,10 @@ class LaunchingProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn LaunchingProcess(ReynTweetsUserConfiguration & userConf,
-		///						 ReynTweetsAppConfiguration & appConf);
+		/// @fn LaunchingProcess(ReynTweetsUserConfiguration & userConf);
 		/// @brief Constructor
 		/// @param userConf User configuration
-		/// @param appConf Configuration of Reyn Tweets
-		LaunchingProcess(UserConfiguration & userConf,
-						 AppConfiguration & appConf);
+		LaunchingProcess(UserConfiguration & userConf);
 
 		/// @fn void startProcess();
 		/// @brief Starting the process
@@ -66,10 +63,10 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Entity calling Twitter
 		ReynTwitterCalls twitter;
 
-		/// @brief Configuration
+		/// @brief Configuration related to the user
 		UserConfiguration & userConfiguration;
 
-		/// @brief Configuration
+		/// @brief Configuration of Reyn Tweets
 		AppConfiguration & appConfiguration;
 
 	private:

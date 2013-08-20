@@ -64,7 +64,7 @@ void ReynCore::recopie(const ReynCore & heart) {
 UserConfiguration ReynCore::userConfiguration = UserConfiguration();
 
 // Configuration
-AppConfiguration ReynCore::appConfiguration = AppConfiguration();
+AppConfiguration & ReynCore::appConfiguration = AppConfiguration::getReynTweetsConfiguration();
 
 // Process manager
 ProcessManager ReynCore::processManager = ProcessManager();
@@ -165,11 +165,6 @@ void ReynCore::setUserConfiguration(UserConfiguration userConf) {
 	userConfiguration = userConf;
 }
 
-// Getting a reference on the configuration of Reyn Tweets
-AppConfiguration & ReynCore::getAppConfiguration() {
-	return appConfiguration;
-}
-
 
 //////////////////////////////////
 // Launching and authentication //
@@ -177,8 +172,7 @@ AppConfiguration & ReynCore::getAppConfiguration() {
 
 // Launching the app
 void ReynCore::launchReynTweets() {
-	LaunchingProcess * process = new LaunchingProcess(userConfiguration,
-													  appConfiguration);
+	LaunchingProcess * process = new LaunchingProcess(userConfiguration);
 	executeProcess(process);
 }
 

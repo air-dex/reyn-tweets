@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -22,48 +22,15 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QApplication>
-#include <QLocale>
-#include <QTranslator>
+#include <QDateTime>
 #include <QIcon>
 #include "ui/qtquick2applicationviewer.hpp"
-#include "logic/controls/declarecontrols.hpp"
-#include "model/declaremodel.hpp"
+#include "tools/reyntweets.hpp"
 
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
 	#include <QDir>
 #endif
-
-/// @fn void initReynTweetsSystem();
-/// @brief Initializes all the serializable classes
-void initReynTweetsSystem() {
-	initModelSystem();
-}
-
-/// @fn void declareReynTweetsControls();
-/// @brief Declares all the controls and classes used by QML widgets
-void declareReynTweetsControls() {
-	declareQMLModel();
-	declareQMLControls();
-}
-
-/// @fn void loadTranslation(QScopedPointer<QApplication> & a);
-/// @brief Loading the translation of the program
-/// @param a The application
-void loadTranslation(QApplication & a) {
-	static QTranslator translator;	// It must not be deleted ! (issue 64)
-
-	// Program in French
-//	QString locale = "fr";
-
-	// Defalult idiom : local idiom
-	QString locale = QLocale::system().name().section('_', 0, 0);
-
-	// Loading translation files
-	translator.load(QString("reyntweets_") + locale);
-
-	a.installTranslator(&translator);
-}
 
 /// @fn Q_DECL_EXPORT int main(int argc, char *argv[]);
 /// @brief Main function. Entry point of the program
@@ -86,12 +53,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	// Init the random generator used for generating nonces
 	qsrand(QDateTime::currentMSecsSinceEpoch());
 
-	// Init for serialization
-	initReynTweetsSystem();
-	declareReynTweetsControls();
+	// Initializes all the serializable classes
+	ReynTweets::initSystem();
+
+	// Declares all the controls and classes used by QML widgets
+	ReynTweets::declareQML();
 
 	// Loading translation files
-	loadTranslation(app);
+	ReynTweets::loadTranslation();
 
 	// Init Main QML file
 	QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
@@ -116,5 +85,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
 
-	return app.exec();
+	// Now it's Reyn time !
+	int reynScore = app.exec();
+
+	// Post program treatments
+	ReynTweets::afterReynTime();
+
+	return reynScore;
 }

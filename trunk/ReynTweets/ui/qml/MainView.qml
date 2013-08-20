@@ -327,6 +327,7 @@ Rectangle {
 	LoginComponents {
 		id: log_component
 		width: parent.width
+		height: parent.height
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false

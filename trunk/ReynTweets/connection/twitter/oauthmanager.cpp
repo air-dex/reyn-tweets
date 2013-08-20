@@ -37,9 +37,7 @@ OAuthManager::OAuthManager(QString signatureAlgorithm,
 	oauthVersion(version),
 	oauthToken(""),
 	oauthSecret(""),
-	oauthVerifier(""),
-	authenticityToken(""),
-	denyTag("")
+	oauthVerifier("")
 {}
 
 // Destructor
@@ -92,24 +90,6 @@ void OAuthManager::setVerifier(QByteArray verifier) {
 	oauthVerifier = verifier;
 }
 
-// Authenticity Token
-QByteArray OAuthManager::getAuthenticityToken() {
-	return authenticityToken;
-}
-
-void OAuthManager::setAuthenticityToken(QByteArray authToken) {
-	authenticityToken = authToken;
-}
-
-// Deny tag
-QString OAuthManager::getDeny() {
-	return denyTag;
-}
-
-void OAuthManager::setDeny(QString denyString) {
-	denyTag = denyString;
-}
-
 
 ////////////////////////////
 // Utilities for requests //
@@ -120,8 +100,6 @@ void OAuthManager::resetTokens() {
 	oauthToken = "";
 	oauthSecret = "";
 	oauthVerifier = "";
-	authenticityToken = "";
-	denyTag = "";
 }
 
 // Getting the "Authorization" header

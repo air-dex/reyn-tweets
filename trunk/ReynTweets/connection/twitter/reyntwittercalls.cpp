@@ -129,15 +129,6 @@ void ReynTwitterCalls::authorize(bool forceLogin, QString writeLogin) {
 	executeRequest(requester);
 }
 
-// POST authorize() requests to allow or to deny the application.
-void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny) {
-	PostAuthorizeRequester * requester = new PostAuthorizeRequester(oauthManager,
-																	login,
-																	password,
-																	deny);
-	executeRequest(requester);
-}
-
 // Getting the access tokens
 void ReynTwitterCalls::accessToken(QByteArray verifier) {
 	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager,

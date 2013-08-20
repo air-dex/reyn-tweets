@@ -24,14 +24,12 @@
 #ifndef PROCESSES_HPP
 #define PROCESSES_HPP
 
-#include "allowprocess.hpp"
 #include "deletetweetprocess.hpp"
 #include "favoriteprocess.hpp"
 #include "gettweetprocess.hpp"
 #include "launchingprocess.hpp"
 #include "loadinghometimelineprocess.hpp"
 #include "loadmentionstimelineprocess.hpp"
-#include "oauthprocess.hpp"
 #include "posttweetprocess.hpp"
 #include "postviatwitlongerprocess.hpp"
 #include "retweetprocess.hpp"

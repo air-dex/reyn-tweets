@@ -31,7 +31,6 @@
 #include "favorites/favoritestimelinerequester.hpp"
 #include "oauth/accesstokenrequester.hpp"
 #include "oauth/authorizerequester.hpp"
-#include "oauth/postauthorizerequester.hpp"
 #include "oauth/requesttokenrequester.hpp"
 #include "searches/searchrequester.hpp"
 #include "timelines/hometimelinerequester.hpp"

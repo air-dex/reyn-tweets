@@ -70,7 +70,6 @@ SOURCES += \
 	connection/twitter/requests/oauth/oauthrequester.cpp \
 	connection/twitter/requests/oauth/requesttokenrequester.cpp \
 	connection/twitter/requests/oauth/authorizerequester.cpp \
-	connection/twitter/requests/oauth/postauthorizerequester.cpp \
 	connection/twitter/requests/oauth/accesstokenrequester.cpp \
 	connection/twitter/requests/searches/searchrequester.cpp \
 	connection/twitter/requests/timelines/hometimelinerequester.cpp \
@@ -131,8 +130,6 @@ SOURCES += \
 	logic/processes/oauth/requesttokensprocess.cpp \
 	logic/processes/oauth/accesstokensprocess.cpp \
 	logic/processes/retweetprocess.cpp \
-	logic/processes/oauthprocess.cpp \
-	logic/processes/allowprocess.cpp \
 	logic/processes/deletetweetprocess.cpp \
 	logic/processes/favoriteprocess.cpp \
 	logic/processes/gettweetprocess.cpp \
@@ -146,7 +143,6 @@ SOURCES += \
 	logic/controls/genericcontrol.cpp \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
-	logic/controls/logincontrol.cpp \
 	logic/controls/reyncontrol.cpp \
 	logic/controls/settingscontrol.cpp \
 	logic/controls/timelinecontrol.cpp \
@@ -188,7 +184,6 @@ HEADERS  += \
 	connection/twitter/requests/oauth/oauthrequester.hpp \
 	connection/twitter/requests/oauth/requesttokenrequester.hpp \
 	connection/twitter/requests/oauth/authorizerequester.hpp \
-	connection/twitter/requests/oauth/postauthorizerequester.hpp \
 	connection/twitter/requests/oauth/accesstokenrequester.hpp \
 	connection/twitter/requests/searches/searchrequester.hpp \
 	connection/twitter/requests/timelines/hometimelinerequester.hpp \
@@ -258,8 +253,6 @@ HEADERS  += \
 	logic/processes/singletwittercallprocess.hpp \
 	logic/processes/oauth/requesttokensprocess.hpp \
 	logic/processes/oauth/accesstokensprocess.hpp \
-	logic/processes/oauthprocess.hpp \
-	logic/processes/allowprocess.hpp \
 	logic/processes/deletetweetprocess.hpp \
 	logic/processes/favoriteprocess.hpp \
 	logic/processes/gettweetprocess.hpp \
@@ -276,7 +269,6 @@ HEADERS  += \
 	logic/controls/genericcontrol.hpp \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
-	logic/controls/logincontrol.hpp \
 	logic/controls/reyncontrol.hpp \
 	logic/controls/settingscontrol.hpp \
 	logic/controls/timelinecontrol.hpp \

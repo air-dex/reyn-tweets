@@ -174,6 +174,21 @@ void ReynCore::loadHomeTimeline(qlonglong sinceID,
 	executeProcess(process);
 }
 
+// Refreshing the Home Timeline
+void ReynCore::refreshHomeTimeline(qlonglong sinceID,
+								   bool trimUser,
+								   bool includeEntities,
+								   bool excludeReplies,
+								   bool contributorsDetails)
+{
+	RefreshHomeTimelineProcess * process = new RefreshHomeTimelineProcess(sinceID,
+																		  trimUser,
+																		  includeEntities,
+																		  excludeReplies,
+																		  contributorsDetails);
+	executeProcess(process);
+}
+
 // Loading mentions
 void ReynCore::loadMentionsTimeline(qlonglong sinceID,
 									qlonglong maxID,
@@ -190,6 +205,20 @@ void ReynCore::loadMentionsTimeline(qlonglong sinceID,
 																			contributorsDetails);
 	executeProcess(process);
 }
+
+// Refreshing the Mentions Timeline
+void ReynCore::refreshMentionsTimeline(qlonglong sinceID,
+									   bool trimUser,
+									   bool includeEntities,
+									   bool contributorsDetails)
+{
+	RefreshMentionsTimelineProcess * process = new RefreshMentionsTimelineProcess(sinceID,
+																				  trimUser,
+																				  includeEntities,
+																				  contributorsDetails);
+	executeProcess(process);
+}
+
 
 ////////////
 // Tweets //

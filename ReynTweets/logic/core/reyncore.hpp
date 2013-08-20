@@ -180,13 +180,31 @@ class ReynCore : public QObject
 							  bool excludeReplies = false,
 							  bool contributorsDetails = false);
 
+		/// @fn void refreshHomeTimeline(qlonglong sinceID,
+		///								 bool trimUser = false,
+		///								 bool includeEntities = true,
+		///								 bool excludeReplies = false,
+		///								 bool contributorsDetails = false);
+		/// @brief Refreshing the home timeline of a user
+		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param excludeReplies Excluding the replies
+		/// @param contributorsDetails Including details about contributors
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
+		void refreshHomeTimeline(qlonglong sinceID,
+								 bool trimUser = false,
+								 bool includeEntities = true,
+								 bool excludeReplies = false,
+								 bool contributorsDetails = false);
+
 		/// @fn void loadMentionsTimeline(qlonglong sinceID = -1,
 		///								  qlonglong maxID = -1,
 		///								  int count = 20,
 		///								  bool trimUser = false,
 		///								  bool includeEntities = true,
 		///								  bool contributorsDetails = false);
-		/// @brief Loading the home timeline containing the mentions of the user
+		/// @brief Loading the timeline containing the mentions of the user
 		/// @param sinceID Minimum tweet ID possible in the timeline
 		/// @param maxID Maximum tweet ID possible in the timeline
 		/// @param count Number of tweets
@@ -200,6 +218,21 @@ class ReynCore : public QObject
 								  bool trimUser = false,
 								  bool includeEntities = true,
 								  bool contributorsDetails = false);
+
+		/// @fn void refreshMentionsTimeline(qlonglong sinceID,
+		///									 bool trimUser = false,
+		///									 bool includeEntities = true,
+		///									 bool contributorsDetails = false);
+		/// @brief Refreshing the timeline containing the mentions of the user
+		/// @param sinceID Minimum tweet ID possible in the timeline
+		/// @param trimUser In tweets, giving only the ID of the author (true).
+		/// @param includeEntities Including Tweet Entities in the tweets (true).
+		/// @param contributorsDetails Including details about contributors
+		/// @see https://dev.twitter.com/docs/api/1.1/get/statuses/mentions
+		void refreshMentionsTimeline(qlonglong sinceID,
+									 bool trimUser = false,
+									 bool includeEntities = true,
+									 bool contributorsDetails = false);
 
 		////////////
 		// Tweets //

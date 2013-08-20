@@ -24,8 +24,7 @@
 #include <QtQml>
 #include "timelinecontrol.hpp"
 
-// TODO : rmplacer le plus de tlhandler.getHandledListRef() par des this->timeline
-
+// Constructor
 TimelineControl::TimelineControl() :
 	GenericControl(),
 	tlhandler(),

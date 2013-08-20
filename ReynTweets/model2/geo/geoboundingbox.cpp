@@ -30,18 +30,17 @@
 
 // Default constructor
 GeoBoundingBox::GeoBoundingBox() :
-	GenericCoordinates<GeoCoordList>(),
-	coordType(CoordType::POLYGON)
-{}
+	GenericCoordinates<GeoCoordList>()
+{
+	this->coordType = CoordType::POLYGON;
+}
 
 // Destructor
 GeoBoundingBox::~GeoBoundingBox() {}
 
 // Copy constructor
 GeoBoundingBox::GeoBoundingBox(const GeoBoundingBox & coord) :
-	GenericCoordinates<GeoCoordList>(),
-	geoCoordinates(),
-	coordType(CoordType::POLYGON)
+	GenericCoordinates<GeoCoordList>()
 {
 	this->recopie(coord);
 }
@@ -69,12 +68,12 @@ void GeoBoundingBox::reset() {
 /////////////////////////////////////
 
 // Output stream operator for serialization
-QDataStream & operator<<(QDataStream & out, const Coordinates & coord) {
+QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord) {
 	return jsonStreamingOut(out, coord);
 }
 
 // Input stream operator for serialization
-QDataStream & operator>>(QDataStream & in, Coordinates & coord) {
+QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord) {
 	return jsonStreamingIn(in, coord);
 }
 

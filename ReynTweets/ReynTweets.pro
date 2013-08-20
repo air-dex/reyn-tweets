@@ -142,7 +142,7 @@ SOURCES += \
 	#model2/json/jsonable.cpp \
 	model2/json/jsonobject.cpp \
 	model2/json/jsonarray.cpp \
-	model2/tweets/tweet2.cpp \
+	#model2/tweets/tweet2.cpp \
 	model2/tweets/indexbounds.cpp \
 	model2/tweets/tweetentity.cpp \
 	model2/tweets/hashtag.cpp \
@@ -157,15 +157,16 @@ SOURCES += \
 	model2/tweets/medialist.cpp \
 	model2/tweets/tweetentities.cpp \
 	model2/tweets/retweetinfos.cpp \
-	model2/users/userinfos.cpp \
-	model2/users/user.cpp \
+	#model2/users/userinfos.cpp \
+	#model2/users/user.cpp \
 	model2/geo/coordinates.cpp \
-	model2/geo/place.cpp \
+	#model2/geo/place.cpp \
 	model2/geo/geocoord.cpp \
 	model2/geo/geocoordlist.cpp \
 	model2/geo/geoboundingbox.cpp \
 	model2/geo/genericcoordinates.cpp \
-    model2/geo/coordinatestype.cpp
+	model2/geo/coordinatestype.cpp \
+    model2/geo/gencoord.cpp
 
 
 HEADERS  += \
@@ -281,7 +282,7 @@ HEADERS  += \
 	model2/json/jsonobject.hpp \
 	model2/json/jsonarray.hpp \
 	model2/json/jsonarray.tpp \
-	model2/tweets/tweet.hpp \
+	#model2/tweets/tweet.hpp \
 	model2/tweets/indexbounds.hpp \
 	model2/tweets/tweetentity.hpp \
 	model2/tweets/hashtag.hpp \
@@ -296,16 +297,17 @@ HEADERS  += \
 	model2/tweets/medialist.hpp \
 	model2/tweets/tweetentities.hpp \
 	model2/tweets/retweetinfos.hpp \
-	model2/users/userinfos.hpp \
-	model2/users/user.hpp \
+	#model2/users/userinfos.hpp \
+	#model2/users/user.hpp \
 	model2/geo/coordinates.hpp \
-	model2/geo/place.hpp \
+	#model2/geo/place.hpp \
 	model2/geo/geocoord.hpp \
 	model2/geo/geocoordlist.hpp \
 	model2/geo/geoboundingbox.hpp \
 	model2/geo/genericcoordinates.hpp \
 	model2/geo/genericcoordinates.tpp \
-    model2/geo/coordinatestype.hpp
+	model2/geo/coordinatestype.hpp \
+    model2/geo/gencoord.hpp
 
 
 OTHER_FILES = \

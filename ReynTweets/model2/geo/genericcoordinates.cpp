@@ -30,7 +30,7 @@
 // Default constructor
 template <class C>
 GenericCoordinates<C>::GenericCoordinates() :
-	JsonObject(),
+	GenCoord(),
 	geoCoordinates(),
 	coordType(CoordType::FAKE_COORDINATES)
 {}
@@ -42,7 +42,7 @@ GenericCoordinates<C>::~GenericCoordinates() {}
 // Copy constructor
 template <class C>
 GenericCoordinates<C>::GenericCoordinates(const GenericCoordinates<C> & coord) :
-	JsonObject(),
+	GenCoord(),
 	geoCoordinates(),
 	coordType(CoordType::FAKE_COORDINATES)
 {
@@ -56,9 +56,10 @@ const GenericCoordinates<C> & GenericCoordinates<C>::operator=(const GenericCoor
 	return *this;
 }
 
-// Copy of a Coordinates
+// Copy of a GenericCoordinates
 template <class C>
 void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
+	GenCoord::recopie(coord);
 	this->geoCoordinates = coord.geoCoordinates;
 	this->coordType = coord.coordType;
 }
@@ -91,7 +92,7 @@ void GenericCoordinates<C>::fillWithJSON(QJsonObject json) {
 
 // QJsonObject representation of the object
 template <class C>
-QJsonObject GenericCoordinates<C>::toJSON() {
+QJsonObject GenericCoordinates<C>::toJSON() const {
 	QJsonObject json;
 
 	json.insert(COORDINATES_PN, QJsonValue(this->geoCoordinates.toJSON()));
@@ -121,7 +122,6 @@ C GenericCoordinates<C>::getCoordinates() {
 
 template <class C>
 void GenericCoordinates<C>::setCoordinates(QVariantList newValue) {
-	this->geoCoordinates.reset();
 	this->geoCoordinates.fillWithVariant(newValue);
 	emit coordinatesChanged();
 }
@@ -154,6 +154,7 @@ void GenericCoordinates<C>::setType(CoordinatesType newValue) {
 
 template <class C>
 void GenericCoordinates<C>::setType(QString newValue) {
-	this->coordType = string2coord(newValue);
+	this->coordType = CoordType::string2coord(newValue);
 	emit typeChanged();
 }
+

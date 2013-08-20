@@ -34,8 +34,7 @@
 template <class V>
 JsonArray<V>::JsonArray() :
 	Listable<V>(),
-	Jsonable<QJsonArray>(),
-	QJsonArray()
+	Jsonable<QJsonArray>()
 {}
 
 // Destructor
@@ -46,8 +45,7 @@ JsonArray<V>::~JsonArray() {}
 template <class V>
 JsonArray<V>::JsonArray(const JsonArray<V> & list) :
 	Listable<V>(),
-	Jsonable<QJsonArray>(),
-	QJsonArray()
+	Jsonable<QJsonArray>()
 {
 	this->recopie(list);
 }

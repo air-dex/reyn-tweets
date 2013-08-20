@@ -117,6 +117,12 @@ void ListHandler<HL,U>::fillElement(U & realElt,
 }
 //*/
 
+// handledList as a QJsonArray
+template<typename HL, typename U>
+QJsonArray ListHandler<HL,U>::getHandledJSONArray() {
+	return handledList.toVariant();
+}
+
 // Replacing an element in the list
 template<typename HL, typename U>
 void ListHandler<HL,U>::replace(QVariant varelt) {

@@ -73,33 +73,35 @@ void TweetControl::commitTweet() {
 // Property management //
 /////////////////////////
 
-// Reading the property timeline_type
+// timeline_type
 TimelineHandler::TimelineType TweetControl::getTimelineType() {
 	return timelineType;
 }
 
-// Writing the property timeline_type
 void TweetControl::setTimelineType(TimelineHandler::TimelineType newType) {
 	timelineType = newType;
 	emit timelineTypeChanged();
 }
 
-// Reading the shown_tweet property
+// shown_tweet
 Tweet * TweetControl::getShownTweet() {
 	return status->getShownTweet();
 }
 
-// Reading the tweet property
+// tweet
 Tweet * TweetControl::getTweet() {
 	return status;
 }
 
-// Writing the tweet property
-void TweetControl::setTweet(Tweet * newStatus) {
-	if (newStatus) {
-		status = newStatus;
-		emit tweetChanged();
-	}
+// tweet_model
+QJsonObject TweetControl::getTweetModel() {
+	return status->toVariant();
+}
+
+void TweetControl::setTweetModel(QJsonObject newStatus) {
+	status->reset();
+	status->fillWithVariant(newStatus);
+	emit tweetChanged();
 }
 
 

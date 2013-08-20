@@ -24,6 +24,7 @@
 #ifndef LISTHANDLER_HPP
 #define LISTHANDLER_HPP
 
+#include <QJsonArray>
 #include <QObject>
 #include <QVariant>
 
@@ -42,6 +43,11 @@ class HandlerEmitter : public QObject
 		/// @brief Getting the size of the handled list.
 		/// @return handledList.size();
 		Q_INVOKABLE virtual int getHandledListSize() = 0;
+
+		/// @fn Q_INVOKABLE virtual QJsonArray getHandledJSONArray() = 0;
+		/// @brief Getting the handled list as a QJsonArray.
+		/// @return handledList.toVariant();
+		Q_INVOKABLE virtual QJsonArray getHandledJSONArray() = 0;
 
 		/// @fn Q_INVOKABLE virtual void replace(QVariant varelt) = 0;
 		/// @brief Replacing an element in the list
@@ -138,6 +144,11 @@ class ListHandler : public HandlerEmitter
 		/// @return A pointer with the corresponding element if index is valid,
 		/// a default element otherwise.
 		Q_INVOKABLE virtual U * get(int index);
+
+		/// @fn Q_INVOKABLE virtual QJsonArray getHandledJSONArray();
+		/// @brief Getting the handled list as a QJsonArray.
+		/// @return handledList.toVariant();
+		Q_INVOKABLE virtual QJsonArray getHandledJSONArray();
 
 		/// @fn Q_INVOKABLE virtual int getHandledListSize();
 		/// @brief Getting the size of the handled list.

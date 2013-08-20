@@ -91,7 +91,9 @@ Rectangle {
 			TweetPane {
 				width: timeline_pane.width
 				timeline_type: timeline_pane.timeline_type
-				tweet: timeline_handler.get(index)
+				tweet_model: (timeline_model.get(index) === undefined) ?
+								  {}
+								: timeline_model.get(index).tweet
 
 				Component.onCompleted: {
 					// When a tweet is quoted or reply to a tweet
@@ -133,8 +135,14 @@ Rectangle {
 			function syncWithTimeline() {
 				timeline_model.clear();
 
+				var tweetline = timeline_handler.getHandledJSONArray()
+
 				for (var j = 0; j < timeline_handler.getHandledListSize(); j++) {
-					timeline_model.append({})
+					var mo = {
+						tweet: tweetline[j]
+					}
+
+					timeline_model.append(mo)
 				}
 			}
 		}

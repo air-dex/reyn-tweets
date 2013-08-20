@@ -50,26 +50,26 @@ class GenericControl : public QObject
 		void showInfoMessage(QString message);
 
 		/// @fn void actionEnded(bool launchOK,
-		///                      QString issueMsg,
+		///                      QString procEndMsg,
 		///						 bool isFatal);
 		/// @brief Signal sent after an operation made by the control.
 		/// @param launchOK Did the process end successfully ?
-		/// @param issueMsg Error message
+		/// @param procEndMsg Error message
 		/// @param isFatal Did the process end with a fatal error ?
 		void actionEnded(bool launchOK,
-						 QString issueMsg,
+						 QString procEndMsg,
 						 bool isFatal);
 
 	public slots:
 		/// @fn void processAgain(bool launchOK,
-		///                       QString issueMsg,
+		///                       QString procEndMsg,
 		///                       bool isFatal);
 		/// @brief Slot executed automatically after an action was ended.
 		///
 		/// It is connected with the actionEnded signal and just sets the
 		/// processing value to true. That's why its 3 parameters are unused.
 		/// @param launchOK Did the process end successfully ?
-		/// @param issueMsg Error message
+		/// @param procEndMsg Error message
 		/// @param isFatal Did the process end with a fatal error ?
 		void processAgain(bool, QString, bool);
 
@@ -89,7 +89,7 @@ class GenericControl : public QObject
 		bool processing;
 
 		/// @fn void invalidEnd();
-		/// @brief Generic treatment for invalid issues.
+		/// @brief Generic treatment for invalid process ends.
 		void invalidEnd();
 };
 

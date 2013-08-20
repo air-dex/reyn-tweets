@@ -37,8 +37,8 @@ enum CoreResult {
 	// Rresults independant from Twitter actions //
 	///////////////////////////////////////////////
 
-	/// @brief Issue for fake process results
-	INVALID_ISSUE,
+	/// @brief For fake process results
+	INVALID_END,
 
 	/// @brief The request ends with an unknown problem
 	UNKNOWN_PROBLEM,

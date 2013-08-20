@@ -31,7 +31,7 @@ RefreshTimelineProcess::RefreshTimelineProcess(Tweet oldestTweet) :
 	latestTweet(oldestTweet),
 	newerTweets(),
 	oldestNewTweet(),
-	finalIssue(INVALID_ISSUE)
+	finalEnd(INVALID_END)
 {}
 
 // Starting the process
@@ -87,10 +87,10 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 			// Are all the newer tweets retrieved ?
 
 			if (retrievedTweets.isEmpty()) {
-				finalIssue = NO_MORE_TWEETS;
+				finalEnd = NO_MORE_TWEETS;
 				errorMsg = RefreshTimelineProcess::trUtf8("Unexpected empty timeline retrieved");
 			} else {
-				finalIssue = TIMELINE_RETRIEVED;
+				finalEnd = TIMELINE_RETRIEVED;
 
 				// Need more intermediate tweets ?
 				oldestNewTweet = newerTweets.last();
@@ -107,19 +107,19 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 		} break;
 
 		case Network::SERVICE_ERRORS:
-			ProcessUtils::treatTwitterErrorResult(result, errorMsg, finalIssue);
+			ProcessUtils::treatTwitterErrorResult(result, errorMsg, finalEnd);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, finalIssue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, finalEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, finalIssue);
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, finalEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, finalIssue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, finalEnd);
 			break;
 	}
 
@@ -156,7 +156,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 	bool gap = true;
 
 	// Analysing the Twitter response
@@ -172,7 +172,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 
 			if (retrievedTweets.isEmpty()) {
 				errorMsg = RefreshTimelineProcess::trUtf8("Twitter should retrieve at least one tweet");
-				issue = NO_MORE_TWEETS;
+				procEnd = NO_MORE_TWEETS;
 			} else {
 				// The first tweet of retrievedTweets should be the last ot newerTweets
 
@@ -180,7 +180,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 
 				if (firstTweet != oldestNewTweet) {
 					errorMsg = RefreshTimelineProcess::trUtf8("Unexpected first tweet");
-					issue = WRONG_TIMELINE;
+					procEnd = WRONG_TIMELINE;
 				}
 
 				retrievedTweets.removeFirst();
@@ -193,7 +193,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 					// All the newer tweets are retrieved. End the process
 					newerTweets.removeLast();
 					gap = false;
-					issue = TIMELINE_RETRIEVED;
+					procEnd = TIMELINE_RETRIEVED;
 				} else {
 					// Some tweets are missing. Load them.
 					return loadIntermediateTweets();
@@ -202,38 +202,38 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 		} break;
 
 		case Network::SERVICE_ERRORS:
-			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
-	// Process end (may be successful
-	this->endProcess(errorMsg, gap, issue);
+	// Process end (may be successful)
+	this->endProcess(errorMsg, gap, procEnd);
 }
 
 // Building the result
 void RefreshTimelineProcess::endProcess(QString errorMessage,
 										bool gap,
-										CoreResult intermediateIssue)
+										CoreResult intermediateEnd)
 {
 	QVariantMap resMap;
 
 	resMap.insert("newer_tweets", QVariant::fromValue(newerTweets));
 	resMap.insert("gap", QVariant::fromValue(gap));
-	resMap.insert("intermediate_issue", QVariant::fromValue(int(intermediateIssue)));
+	resMap.insert("intermediate_end", QVariant::fromValue(int(intermediateEnd)));
 
-	GenericProcess::endProcess(finalIssue,
+	GenericProcess::endProcess(finalEnd,
 							   QVariant::fromValue(resMap),
 							   errorMessage);
 }

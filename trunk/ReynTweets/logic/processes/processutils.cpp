@@ -32,12 +32,12 @@
 // For Twitter errors
 void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 										   QString & errorMsg,
-										   CoreResult & issue)
+										   CoreResult & procEnd)
 {
 	// Looking for specific value of the return code
 	int httpCode = result.httpResponse.code;
-	issue = httpResults.value(httpCode);
-	switch (issue) {
+	procEnd = httpResults.value(httpCode);
+	switch (procEnd) {
 		case NO_MORE_DATA:
 			errorMsg = QObject::trUtf8("Twitter do not return new datas:");
 			break;
@@ -71,7 +71,7 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			break;
 
 		default:
-			issue = UNKNOWN_PROBLEM;
+			procEnd = UNKNOWN_PROBLEM;
 			errorMsg = QObject::trUtf8("Unexpected result:");
 			break;
 	}
@@ -119,7 +119,7 @@ QString ProcessUtils::writeTwitterErrors(RequestResult result) {
 // For Twitter API callings
 void ProcessUtils::treatApiCallResult(RequestResult result,
 									  QString & errorMsg,
-									  CoreResult & issue)
+									  CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -136,13 +136,13 @@ void ProcessUtils::treatApiCallResult(RequestResult result,
 	errorMsg.append(" : ")
 			.append(result.errorMessage);
 
-	issue = NETWORK_CALL;
+	procEnd = NETWORK_CALL;
 }
 
 // For unparsable JSON results
 void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 										   QString & errorMsg,
-										   CoreResult & issue)
+										   CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -154,13 +154,13 @@ void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 			.append(" : ")
 			.append(parsingErrors.message);
 
-	issue = PARSE_ERROR;
+	procEnd = PARSE_ERROR;
 }
 
 // For unparsable XML results
 void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
 										 QString & errorMsg,
-										 CoreResult & issue)
+										 CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -176,31 +176,31 @@ void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
 			.append(" : ")
 			.append(parsingErrors.message);
 
-	issue = PARSE_ERROR;
+	procEnd = PARSE_ERROR;
 }
 
 // For unparsable OAuth results
 void ProcessUtils::treatOAuthParsingResult(QString parsingErrorsMsg,
 										   QString & errorMsg,
-										   CoreResult & issue)
+										   CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
 	errorMsg.append(QObject::trUtf8("Parsing error:"))
 			.append(' ')
 			.append(parsingErrorsMsg);
-	issue = PARSE_ERROR;
+	procEnd = PARSE_ERROR;
 }
 
 // For unknown treatments
 void ProcessUtils::treatUnknownResult(QString resultErrorMessage,
 									  QString &errorMsg,
-									  CoreResult &issue)
+									  CoreResult &procEnd)
 {
 	// Unexpected problem. Abort.
 	errorMsg = "";
 	errorMsg.append(QObject::trUtf8("Unexpected problem:"))
 			.append(' ')
 			.append(resultErrorMessage);
-	issue = UNKNOWN_PROBLEM;
+	procEnd = UNKNOWN_PROBLEM;
 }

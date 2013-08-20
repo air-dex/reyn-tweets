@@ -49,9 +49,9 @@ void LaunchingProcess::startProcess() {
 void LaunchingProcess::checkSettingsLoad() {
 	// Check if the application settings were loaded correctly
 	QString errMsg = "";
-	CoreResult loadIssue = appConfiguration.load(errMsg);
+	CoreResult loadEnd = appConfiguration.load(errMsg);
 
-	switch(loadIssue) {
+	switch(loadEnd) {
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			fillTwitterOAuthAppSettings();
 			fillTwitLongerAppSettings();
@@ -65,12 +65,12 @@ void LaunchingProcess::checkSettingsLoad() {
 			break;
 
 		default:
-			loadIssue = UNKNOWN_PROBLEM;
+			loadEnd = UNKNOWN_PROBLEM;
 			break;
 	}
 
 	// Failed end
-	endProcess(loadIssue, errMsg);
+	endProcess(loadEnd, errMsg);
 }
 
 
@@ -81,9 +81,9 @@ void LaunchingProcess::checkSettingsLoad() {
 // Loading the configuartion from the configuration file
 void LaunchingProcess::loadConfiguration() {
 	QString errorMsg = "";
-	CoreResult loadIssue = userConfiguration.load(errorMsg);
+	CoreResult loadEnd = userConfiguration.load(errorMsg);
 
-	switch (loadIssue) {
+	switch (loadEnd) {
 		case REINIT_SUCCESSFUL:
 			userconfReinit = true;
 
@@ -94,7 +94,7 @@ void LaunchingProcess::loadConfiguration() {
 
 		case PARSE_ERROR:
 		case EXPECTED_KEY:
-			loadIssue = LOADING_CONFIGURATION_ERROR;
+			loadEnd = LOADING_CONFIGURATION_ERROR;
 			break;
 
 		case LOADING_CONFIGURATION_ERROR:
@@ -104,14 +104,14 @@ void LaunchingProcess::loadConfiguration() {
 
 		default:
 			// Unknown problem.
-			loadIssue = UNKNOWN_PROBLEM;
+			loadEnd = UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
 					   .append(errorMsg);
 			break;
 	}
 
 	// Failed end
-	endProcess(loadIssue, errorMsg);
+	endProcess(loadEnd, errorMsg);
 }
 
 
@@ -126,11 +126,9 @@ void LaunchingProcess::checkTokens() {
 
 	if (ua.getAccessToken().isEmpty() || ua.getTokenSecret().isEmpty()) {
 		// There's no OAuth tokens for Twitter -> Let's authenticate !
-		CoreResult issue = AUTHENTICATION_REQUIRED;
-		QString errMsg = LaunchingProcess::trUtf8("Unexpected empty Twitter tokens.");
-
 		emit authenticationRequired();
-		endProcess(issue, errMsg);
+		endProcess(AUTHENTICATION_REQUIRED,
+				   LaunchingProcess::trUtf8("Unexpected empty Twitter tokens."));
 	} else {
 		// Tokens seems legit. Let's ensure that's really the case
 		connect(&twitter, &ReynTwitterCalls::sendResult,
@@ -155,7 +153,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString verifyMsg = "";
-	CoreResult verifyIssue;
+	CoreResult verifyEnd;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -167,7 +165,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			UserAccount & account = userConfiguration.getUserAccountRef();
 			UserInfos confUser = account.getUser();
 			bool rightUser = confUser == userOfCredentials;
-			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;
+			verifyEnd = rightUser ? TOKENS_OK : WRONG_USER;
 			if (rightUser) {
 				account.setUser(userOfCredentials);
 			}
@@ -178,7 +176,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			verifyMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			verifyIssue = (httpCode / 100 == 5
+			verifyEnd = (httpCode / 100 == 5
 						   || httpCode == 401
 						   || httpCode == 420
 						   || httpCode == 429
@@ -188,19 +186,19 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyIssue);
+			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyEnd);
 			break;
 
 		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  verifyMsg,
-												  verifyIssue);
+												  verifyEnd);
 			break;
 
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 verifyMsg,
-											 verifyIssue);
+											 verifyEnd);
 			break;
 	}
 
@@ -208,7 +206,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Keeping on launching Reyn Tweets depending on what happened in the request
 	QString errorMsg = "";
 
-	switch (verifyIssue) {
+	switch (verifyEnd) {
 		case TOKENS_OK:
 			// Credentials were right. You can save configuration now.
 			return saveConfiguration();
@@ -216,7 +214,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case WRONG_USER:
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
-			verifyIssue = AUTHENTICATION_REQUIRED;
+			verifyEnd = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
 			emit authenticationRequired();
 			break;
@@ -224,7 +222,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case TOKENS_NOT_AUTHORIZED:
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
-			verifyIssue = AUTHENTICATION_REQUIRED;
+			verifyEnd = AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
 			emit authenticationRequired();
 			break;
@@ -260,7 +258,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	}
 
 	// Telling the control wat happened
-	endProcess(verifyIssue, errorMsg);
+	endProcess(verifyEnd, errorMsg);
 }
 
 
@@ -271,12 +269,12 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
 	QString errorMsg = "";
-	CoreResult saveIssue = userConfiguration.save(errorMsg);
+	CoreResult saveEnd = userConfiguration.save(errorMsg);
 
-	switch (saveIssue) {
+	switch (saveEnd) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			saveIssue = LAUNCH_SUCCESSFUL;
+			saveEnd = LAUNCH_SUCCESSFUL;
 			break;
 
 		case REINIT_SUCCESSFUL:
@@ -288,23 +286,23 @@ void LaunchingProcess::saveConfiguration() {
 			break;
 
 		default:
-			saveIssue = UNKNOWN_PROBLEM;
+			saveEnd = UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
 					   .append(errorMsg);
 			break;
 	}
 
 	// Ending the process
-	endProcess(saveIssue, errorMsg);
+	endProcess(saveEnd, errorMsg);
 }
 
-void LaunchingProcess::endProcess(CoreResult issue, QString errorMessage) {
+void LaunchingProcess::endProcess(CoreResult procEnd, QString errorMessage) {
 	if (userconfReinit) {
 		errorMessage.append(' ')
 				.append(LaunchingProcess::trUtf8("User configuration was reset."));
 	}
 
-	GenericProcess::endProcess(issue,
+	GenericProcess::endProcess(procEnd,
 							   QVariant::fromValue<bool>(userconfReinit),
 							   errorMessage);
 }

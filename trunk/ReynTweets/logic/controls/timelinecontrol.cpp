@@ -92,7 +92,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -100,9 +100,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TimelineControl::loadTimelineEnded);
 
-	CoreResult issue = result.processIssue;
-
-	switch (issue) {
+	switch (result.processEnd) {
 		case TIMELINE_RETRIEVED: {
 			QVariantList resList = result.results.toList();
 			Timeline tl;
@@ -189,7 +187,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -197,16 +195,14 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TimelineControl::refreshTimelineEnded);
 
-	CoreResult issue = result.processIssue;
-
-	switch (issue) {
+	switch (result.processEnd) {
 		case TIMELINE_RETRIEVED: {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
+			CoreResult intermediateEnd = CoreResult(procRes.value("intermediate_end").toInt());
 
-			if (intermediateIssue != INVALID_ISSUE) {
+			if (intermediateEnd != INVALID_END) {
 				emit showInfoMessage(result.errorMsg);
 			}
 
@@ -319,7 +315,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -327,16 +323,14 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 
-	CoreResult issue = result.processIssue;
-
-	switch (issue) {
+	switch (result.processEnd) {
 		case TIMELINE_RETRIEVED: {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
+			CoreResult intermediateEnd = CoreResult(procRes.value("intermediate_end").toInt());
 
-			if (intermediateIssue != INVALID_ISSUE) {
+			if (intermediateEnd != INVALID_END) {
 				emit showInfoMessage(result.errorMsg);
 			}
 
@@ -431,7 +425,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -439,9 +433,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TimelineControl::moreOldTimelineEnded);
 
-	CoreResult issue = result.processIssue;
-
-	switch (issue) {
+	switch (result.processEnd) {
 		case TIMELINE_RETRIEVED:{
 			QVariantList resList = result.results.toList();
 			Timeline newTweets;

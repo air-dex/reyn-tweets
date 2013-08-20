@@ -62,7 +62,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -70,9 +70,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &LaunchingControl::launchOK);
 
-	CoreResult issue = result.processIssue;
-
-	switch (issue) {
+	switch (result.processEnd) {
 		case LAUNCH_SUCCESSFUL:
 			// Process successful
 			emit actionEnded(true,

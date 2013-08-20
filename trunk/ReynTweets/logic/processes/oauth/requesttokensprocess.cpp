@@ -76,7 +76,7 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 
 	switch (errorType) {
@@ -97,7 +97,7 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			} else {
 				// Cannot keep on if the URL is not confirmed
 				errorMsg = RequestTokensProcess::trUtf8("Callback URL not confirmed.");
-				issue = NO_TOKENS;
+				procEnd = NO_TOKENS;
 			}
 		}break;
 
@@ -106,7 +106,7 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			issue = (httpCode / 100 == 5
+			procEnd = (httpCode / 100 == 5
 					 || httpCode == 420
 					 || httpCode == 429
 					 ) ?
@@ -115,24 +115,24 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
-												  issue);
+												  procEnd);
 			break;
 
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue);
+											 procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }
 
 //////////////////////////////////////
@@ -162,7 +162,7 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
@@ -175,7 +175,7 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			issue = (httpCode / 100 == 5
+			procEnd = (httpCode / 100 == 5
 					 || httpCode == 401
 					 || httpCode == 420
 					 || httpCode == 429
@@ -185,28 +185,28 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::NO_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
-												  issue);
+												  procEnd);
 			break;
 
 		case Network::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors,
 												errorMsg,
-												issue);
+												procEnd);
 			break;
 
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue);
+											 procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }

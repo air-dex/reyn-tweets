@@ -31,8 +31,8 @@
 OAuth10aAuthenticator::OAuth10aAuthenticator(QString signatureAlgorithm) :
 	OAuthAuthenticator("1.0"),
 	callbackUrl(""),
-	oauthSignatureMethod(signatureAlgorithm),
 	oauthTokens(),
+	oauthSignatureMethod(signatureAlgorithm),
 	oauthVerifier("")
 {}
 

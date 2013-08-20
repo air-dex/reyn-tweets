@@ -107,40 +107,11 @@ bool UserMention::operator==(const UserMention mention) const {
 
 // Filling the object with a QJsonObject.
 void UserMention::fillWithVariant(QJsonObject json) {
-	// Base class
-	TweetEntity::fillWithVariant(json);
-
-	// "id" property
-	QJsonValue propval = json.value(ID_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		qlonglong id = (qlonglong) propval.toDouble();
-		this->userID = id;
-	}
-
-	// "id_str" property
-	propval = json.value(ID_STR_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString idStr = propval.toString();
-		this->userIDstr = idStr;
-	}
-
-	// "screen_name" property
-	propval = json.value(SCREEN_NAME_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString scrName = propval.toString();
-		this->screenName = scrName;
-	}
-
-	// "name" property
-	propval = json.value(NAME_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString uName = propval.toString();
-		this->userName = uName;
-	}
+	TweetEntity::fillWithVariant(json);		// Base class
+	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->screenName = json.value(SCREEN_NAME_PN).toString("");
+	this->userName = json.value(NAME_PN).toString("");
 }
 
 // Getting a QJsonObject representation of the object

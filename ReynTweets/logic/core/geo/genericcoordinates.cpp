@@ -23,6 +23,11 @@
 
 #include "genericcoordinates.hpp"
 
+// Apparently, g++ needs to include QJsonArray.
+#ifdef Q_OS_LINUX
+	#include <QJsonArray>
+#endif
+
 /////////////
 // Coplien //
 /////////////
@@ -72,22 +77,8 @@ void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
 // Filling the object with a QJsonObject.
 template <typename C>
 void GenericCoordinates<C>::fillWithVariant(QJsonObject json) {
-	// "coordinates" property
-	QJsonValue propval = json.value(COORDINATES_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray coordz = propval.toArray();
-
-		this->geoCoordinates.fillWithVariant(coordz);
-	}
-
-	// "type" property
-	propval = json.value(TYPE_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString kind = propval.toString();
-		this->coordType = CoordType::string2coord(kind);
-	}
+	this->geoCoordinates.fillWithVariant(json.value(COORDINATES_PN).toArray());
+	this->coordType = CoordType::string2coord(json.value(TYPE_PN).toString(""));
 }
 
 // QJsonObject representation of the object

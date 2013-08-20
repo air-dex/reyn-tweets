@@ -94,37 +94,10 @@ void TweetEntities::reset() {
 
 // Filling the object with a QJsonObject.
 void TweetEntities::fillWithVariant(QJsonObject json) {
-	// "media" property
-	QJsonValue propval = json.value(MEDIA_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray mediaz = propval.toArray();
-		this->medias.fillWithVariant(mediaz);
-	}
-
-	// "urls" property
-	propval = json.value(URLS_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray urlz = propval.toArray();
-		this->tweetURLs.fillWithVariant(urlz);
-	}
-
-	// "user_mentions" property
-	propval = json.value(USER_MENTIONS_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray mentionz = propval.toArray();
-		this->mentions.fillWithVariant(mentionz);
-	}
-
-	// "hashtags" property
-	propval = json.value(HASHTAGS_PN);
-
-	if (!propval.isUndefined() && propval.isArray()) {
-		QJsonArray hashtagz = propval.toArray();
-		this->tweetHashtags.fillWithVariant(hashtagz);
-	}
+	this->medias.fillWithVariant(json.value(MEDIA_PN).toArray());
+	this->tweetURLs.fillWithVariant(json.value(URLS_PN).toArray());
+	this->mentions.fillWithVariant(json.value(USER_MENTIONS_PN).toArray());
+	this->tweetHashtags.fillWithVariant(json.value(HASHTAGS_PN).toArray());
 }
 
 // Getting a QJsonObject representation of the object

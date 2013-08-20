@@ -68,6 +68,8 @@ UserInfos::UserInfos() :
 	verifiedAccount(false),
 	contributorsEnabled(false),
 	twitterTranslator(false),
+	withheldInCountries(""),
+	withheldScope(""),
 	followRequestSent(false),
 	showAllInlineMedia(false),
 	notificationsEnabled(false)
@@ -218,341 +220,48 @@ bool UserInfos::operator==(const UserInfos user) const {
 
 // Filling the object with a QJsonObject.
 void UserInfos::fillWithVariant(QJsonObject json) {
-	// "contributors_enabled" property
-	QJsonValue propval = json.value(CONTRIBUTORS_ENABLED_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->contributorsEnabled = data;
-	}
-
-	// "created_at" property
-	propval = json.value(CREATED_AT_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->createdAt.setDate(data);
-	}
-
-	// "default_profile" property
-	propval = json.value(DEFAULT_PROFILE_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->defaultProfile = data;
-	}
-
-	// "default_profile_image" property
-	propval = json.value(DEFAULT_PROFILE_IMAGE_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->defaultProfileImage = data;
-	}
-
-	// "description" property
-	propval = json.value(DESCRIPTION_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->userDescription = data;
-	}
-
-	// "entities" property
-	propval = json.value(ENTITIES_PN);
-
-	if(!propval.isUndefined() && propval.isObject()) {
-		QJsonObject data = propval.toObject();
-		this->userEntities.fillWithVariant(data);
-	}
-
-	// "favourites_count" property
-	propval = json.value(FAVOURITES_COUNT_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->favoritesCount = data;
-	}
-
-	// "follow_request_sent" property
-	propval = json.value(FOLLOW_REQUEST_SENT_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->followRequestSent = data;
-	}
-
-	// "following" property
-	propval = json.value(FOLLOWING_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->followedByMe = data;
-	}
-
-	// "followers_count" property
-	propval = json.value(FOLLOWERS_COUNT_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->followersCount = data;
-	}
-
-	// "friends_count" property
-	propval = json.value(FRIENDS_COUNT_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->friendsCount = data;
-	}
-
-	// "geo_enabled" property
-	propval = json.value(GEO_ENABLED_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->geotaggingEnabled = data;
-	}
-
-	// "id" property
-	propval = json.value(ID_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		qlonglong data = qlonglong(propval.toDouble());
-		this->userID = data;
-	}
-
-	// "id_str" property
-	propval = json.value(ID_STR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->userIDstr = data;
-	}
-
-	// "is_translator" property
-	propval = json.value(IS_TRANSLATOR_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->twitterTranslator = data;
-	}
-
-	// "lang" property
-	propval = json.value(LANG_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->language = data;
-	}
-
-	// "listed_count" property
-	propval = json.value(LISTED_COUNT_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->listsCount = data;
-	}
-
-	// "location" property
-	propval = json.value(LOCATION_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->userLocation = data;
-	}
-
-	// "name" property
-	propval = json.value(NAME_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->userName = data;
-	}
-
-	// "notifications" property
-	propval = json.value(NOTIFICATIONS_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->notificationsEnabled = data;
-	}
-
-	// "profile_background_color" property
-	propval = json.value(PROFILE_BACKGROUND_COLOR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->backgroundColor = string2color(data);
-	}
-
-	// "profile_background_image_url" property
-	propval = json.value(PROFILE_BACKGROUND_IMAGE_URL_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->backgroundURL = data;
-	}
-
-	// "profile_background_image_url_https" property
-	propval = json.value(PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->backgroundURLhttps = data;
-	}
-
-	// "profile_background_tile" property
-	propval = json.value(PROFILE_BACKGROUND_TILE_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->backgroundTile = data;
-	}
-
-	// "profile_banner_url" property
-	propval = json.value(PROFILE_BANNER_URL_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->bannerURL = data;
-	}
-
-	// "profile_image_url" property
-	propval = json.value(PROFILE_IMAGE_URL_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->avatarURL = data;
-	}
-
-	// "profile_image_url_https" property
-	propval = json.value(PROFILE_IMAGE_URL_HTTPS_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->avatarURLhttps = data;
-	}
-
-	// "profile_link_color" property
-	propval = json.value(PROFILE_LINK_COLOR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->linkColor = string2color(data);
-	}
-
-	// "profile_sidebar_border_color" property
-	propval = json.value(PROFILE_SIDEBAR_BORDER_COLOR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->sidebarBorderColor = string2color(data);
-	}
-
-	// "profile_sidebar_fill_color" property
-	propval = json.value(PROFILE_SIDEBAR_FILL_COLOR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->sidebarColor = string2color(data);
-	}
-
-	// "profile_text_color" property
-	propval = json.value(PROFILE_TEXT_COLOR_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->textColor = string2color(data);
-	}
-
-	// "profile_use_background_image" property
-	propval = json.value(PROFILE_USE_BACKGROUND_IMAGE_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->useBackgroundImage = data;
-	}
-
-	// "protected" property
-	propval = json.value(PROTECTED_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->protectedAccount = data;
-	}
-
-	// "screen_name" property
-	propval = json.value(SCREEN_NAME_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->screenName = data;
-	}
-
-	// "show_all_inline_media" property
-	propval = json.value(SHOW_ALL_INLINE_MEDIA_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->showAllInlineMedia = data;
-	}
-
-	// "statuses_count" property
-	propval = json.value(STATUSES_COUNT_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->tweetsCount = data;
-	}
-
-	// "time_zone" property
-	propval = json.value(TIME_ZONE_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->timeZone = data;
-	}
-
-	// "url" property
-	propval = json.value(URL_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->userURL = data;
-	}
-
-	// "utc_offset" property
-	propval = json.value(UTC_OFFSET_PN);
-
-	if(!propval.isUndefined() && propval.isDouble()) {
-		int data = int(propval.toDouble());
-		this->timeZoneOffset = data;
-	}
-
-	// "verified" property
-	propval = json.value(VERIFIED_PN);
-
-	if(!propval.isUndefined() && propval.isBool()) {
-		bool data = propval.toBool();
-		this->verifiedAccount = data;
-	}
-
-	// "withheld_in_countries" property
-	propval = json.value(WITHHELD_IN_COUNTRIES_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->withheldInCountries = data;
-	}
-
-	// "withheld_scope" property
-	propval = json.value(WITHHELD_SCOPE_PN);
-
-	if(!propval.isUndefined() && propval.isString()) {
-		QString data = propval.toString();
-		this->withheldScope = data;
-	}
+	this->contributorsEnabled = json.value(CONTRIBUTORS_ENABLED_PN).toBool(false);
+	this->createdAt.setDate(json.value(CREATED_AT_PN).toString());
+	this->defaultProfile = json.value(DEFAULT_PROFILE_PN).toBool(true);
+	this->defaultProfileImage = json.value(DEFAULT_PROFILE_IMAGE_PN).toBool(true);
+	this->userDescription = json.value(DESCRIPTION_PN).toString("");
+	this->userEntities.fillWithVariant(json.value(ENTITIES_PN).toObject());
+	this->favoritesCount = int(json.value(FAVOURITES_COUNT_PN).toDouble(0));
+	this->followRequestSent = json.value(FOLLOW_REQUEST_SENT_PN).toBool(false);
+	this->followedByMe = json.value(FOLLOWING_PN).toBool(false);
+	this->followersCount = int(json.value(FOLLOWERS_COUNT_PN).toDouble(0));
+	this->friendsCount = int(json.value(FRIENDS_COUNT_PN).toDouble(0));
+	this->geotaggingEnabled = json.value(GEO_ENABLED_PN).toBool(false);
+	this->userID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->userIDstr = json.value(ID_STR_PN).toString("-1");
+	this->twitterTranslator = json.value(IS_TRANSLATOR_PN).toBool(false);
+	this->language = json.value(LANG_PN).toString("en");
+	this->listsCount = int(json.value(LISTED_COUNT_PN).toDouble(0));
+	this->userLocation = json.value(LOCATION_PN).toString("");
+	this->userName = json.value(NAME_PN).toString("");
+	this->notificationsEnabled = json.value(NOTIFICATIONS_PN).toBool(false);
+	this->backgroundColor = string2color(json.value(PROFILE_BACKGROUND_COLOR_PN).toString(QColor(Qt::white).name()));
+	this->backgroundURL = json.value(PROFILE_BACKGROUND_IMAGE_URL_PN).toString("");
+	this->backgroundURLhttps = json.value(PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN).toString("");
+	this->backgroundTile = json.value(PROFILE_BACKGROUND_TILE_PN).toBool(false);
+	this->bannerURL = json.value(PROFILE_BANNER_URL_PN).toString("");
+	this->avatarURL = json.value(PROFILE_IMAGE_URL_PN).toString("");
+	this->avatarURLhttps = json.value(PROFILE_IMAGE_URL_HTTPS_PN).toString("");
+	this->linkColor = string2color(json.value(PROFILE_LINK_COLOR_PN).toString(QColor(Qt::blue).name()));
+	this->sidebarBorderColor = string2color(json.value(PROFILE_SIDEBAR_BORDER_COLOR_PN).toString(QColor(Qt::darkCyan).name()));
+	this->sidebarColor = string2color(json.value(PROFILE_SIDEBAR_FILL_COLOR_PN).toString(QColor(Qt::cyan).name()));
+	this->textColor = string2color(json.value(PROFILE_TEXT_COLOR_PN).toString(QColor(Qt::black).name()));
+	this->useBackgroundImage = json.value(PROFILE_USE_BACKGROUND_IMAGE_PN).toBool(true);
+	this->protectedAccount = json.value(PROTECTED_PN).toBool(false);
+	this->screenName = json.value(SCREEN_NAME_PN).toString("");
+	this->showAllInlineMedia = json.value(SHOW_ALL_INLINE_MEDIA_PN).toBool(false);
+	this->tweetsCount = int(json.value(STATUSES_COUNT_PN).toDouble(0));
+	this->timeZone = json.value(TIME_ZONE_PN).toString("London");
+	this->userURL = json.value(URL_PN).toString("");
+	this->timeZoneOffset = int(json.value(UTC_OFFSET_PN).toDouble(0));
+	this->verifiedAccount = json.value(VERIFIED_PN).toBool(false);
+	this->withheldInCountries = json.value(WITHHELD_IN_COUNTRIES_PN).toString("");
+	this->withheldScope = json.value(WITHHELD_SCOPE_PN).toString("");
 }
 
 // Getting a QJsonObject representation of the object

@@ -94,32 +94,10 @@ void URLEntity::reset() {
 
 // Filling the object with a QJsonObject.
 void URLEntity::fillWithVariant(QJsonObject json) {
-	// Base class
-	TweetEntity::fillWithVariant(json);
-
-	// "url" property
-	QJsonValue propval = json.value(URL_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->extractedURL = url;
-	}
-
-	// "displayed_url" property
-	propval = json.value(DISPLAYED_URL_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->displayedURL = url;
-	}
-
-	// "expanded_url" property
-	propval = json.value(EXPANDED_URL_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->expandedURL = url;
-	}
+	TweetEntity::fillWithVariant(json);		// Base class
+	this->extractedURL = json.value(URL_PN).toString("");
+	this->displayedURL = json.value(DISPLAYED_URL_PN).toString("");
+	this->expandedURL = json.value(EXPANDED_URL_PN).toString("");
 }
 
 // Getting a QJsonObject representation of the object

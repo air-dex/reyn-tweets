@@ -97,21 +97,8 @@ QDataStream & operator>>(QDataStream & in, RetweetInfos & infos) {
 
 // Filling the object with a QJsonObject.
 void RetweetInfos::fillWithVariant(QJsonObject json) {
-	// "id" property
-	QJsonValue propval = json.value(ID_PN);
-
-	if (!propval.isUndefined() && propval.isDouble()) {
-		qlonglong id = qlonglong(propval.toDouble());
-		this->retweetID = id;
-	}
-
-	// "id_str" property
-	propval = json.value(ID_STR_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString idStr = propval.toString();
-		this->retweetIDstr = idStr;
-	}
+	this->retweetID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	this->retweetIDstr = json.value(ID_STR_PN).toString("-1");
 }
 
 // Getting a QJsonObject representation of the object

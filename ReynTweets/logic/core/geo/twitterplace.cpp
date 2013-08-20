@@ -103,77 +103,15 @@ void TwitterPlace::reset() {
 
 // Filling the object with a QJsonObject.
 void TwitterPlace::fillWithVariant(QJsonObject json) {
-	// "attributes" property
-	QJsonValue propval = json.value(ATTRIBUTES_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject attr = propval.toObject();
-		this->placeMetadata = attr.toVariantMap();
-	}
-
-	// "bounding_box" property
-	propval = json.value(BOUNDING_BOX_PN);
-
-	if (!propval.isUndefined() && propval.isObject()) {
-		QJsonObject box = propval.toObject();
-		this->placePolygon.fillWithVariant(box);
-	}
-
-	// "country" property
-	propval = json.value(COUNTRY_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString pays = propval.toString();
-		this->land = pays;
-	}
-
-	// "country_code" property
-	propval = json.value(COUNTRY_CODE_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString mark = propval.toString();
-		this->landCode = mark;
-	}
-
-	// "full_name" property
-	propval = json.value(FULL_NAME_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString name = propval.toString();
-		this->fullName = name;
-	}
-
-	// "id" property
-	propval = json.value(ID_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString pID = propval.toString();
-		this->placeID = pID;
-	}
-
-	// "name" property
-	propval = json.value(NAME_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString name = propval.toString();
-		this->placeName = name;
-	}
-
-	// "place_type" property
-	propval = json.value(PLACE_TYPE_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString pType = propval.toString();
-		this->placeType = pType;
-	}
-
-	// "url" property
-	propval = json.value(URL_PN);
-
-	if (!propval.isUndefined() && propval.isString()) {
-		QString url = propval.toString();
-		this->metadataURL = url;
-	}
+	this->placeMetadata = json.value(ATTRIBUTES_PN).toObject().toVariantMap();
+	this->placePolygon.fillWithVariant(json.value(BOUNDING_BOX_PN).toObject());
+	this->land = json.value(COUNTRY_PN).toString("");
+	this->landCode = json.value(COUNTRY_CODE_PN).toString("");
+	this->fullName = json.value(FULL_NAME_PN).toString("");
+	this->placeID = json.value(ID_PN).toString("");
+	this->placeName = json.value(NAME_PN).toString("");
+	this->placeType = json.value(PLACE_TYPE_PN).toString("");
+	this->metadataURL = json.value(URL_PN).toString("");
 }
 
 // QJsonObject representation of the object

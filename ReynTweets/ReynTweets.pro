@@ -34,7 +34,7 @@
 # Common configuration #
 #----------------------#
 
-QT += core gui network webkitwidgets declarative xml
+QT += core gui network webkitwidgets xml
 
 TARGET = ReynTweets
 TEMPLATE = app
@@ -441,7 +441,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	#conf_files
+	conf_files
 
 
 #---------------------------#

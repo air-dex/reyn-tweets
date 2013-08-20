@@ -1154,6 +1154,13 @@ class Tweet : public JsonObject
 		///	@return The text to display (in a TweetPane)
 		Q_INVOKABLE QString getDisplayText();
 
+		/// @fn Q_INVOKABLE QString getPlainDisplayText();
+		/// @brief Getting this->getDisplayText(); as a plain text
+		///
+		/// It is used to quote a tweet in a QML View.
+		///	@return The text to quote (in a QML WriteTweetPane)
+		Q_INVOKABLE QString getPlainDisplayText();
+
 		/// @fn Q_INVOKABLE QString getDisplaySource();
 		/// @brief Getting the name of the Twitter client used to post the tweet
 		/// under the form of a HTML string.

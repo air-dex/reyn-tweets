@@ -30,7 +30,7 @@
 
 // Default constructor
 GeoBoundingBox::GeoBoundingBox() :
-	GenericCoordinates<GeoCoordList>()
+	GenericCoordinates<GeoCoordPolygon>()
 {
 	this->coordType = CoordType::POLYGON;
 }
@@ -40,7 +40,7 @@ GeoBoundingBox::~GeoBoundingBox() {}
 
 // Copy constructor
 GeoBoundingBox::GeoBoundingBox(const GeoBoundingBox & coord) :
-	GenericCoordinates<GeoCoordList>()
+	GenericCoordinates<GeoCoordPolygon>()
 {
 	this->recopie(coord);
 }

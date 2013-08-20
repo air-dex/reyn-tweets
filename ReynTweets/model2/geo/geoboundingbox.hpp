@@ -25,13 +25,14 @@
 #define GEOBOUNDINGBOX_HPP
 
 #include "genericcoordinates.tpp"
-#include "geocoordlist.hpp"
+#include "geocoordpolygon.hpp"
 
 using CoordType::CoordinatesType;
 
 /// @class GeoBoundingBox
 /// @brief Bounding box used for places
-class GeoBoundingBox : public GenericCoordinates<GeoCoordList>
+/// @see https://dev.twitter.com/docs/platform-objects/places#obj-boundingbox
+class GeoBoundingBox : public GenericCoordinates<GeoCoordPolygon>
 {
 	Q_OBJECT
 

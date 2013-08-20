@@ -29,6 +29,7 @@
 
 /// @class URLEntity
 /// @brief URL in a tweet
+/// @see https://dev.twitter.com/docs/platform-objects/entities#obj-url
 class URLEntity2 : public TweetEntity2
 {
 	Q_OBJECT

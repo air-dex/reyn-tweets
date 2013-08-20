@@ -97,20 +97,23 @@ class UserConfiguration : public JsonObject
 		// Configuration management //
 		//////////////////////////////
 
-		/// @fn CoreResult load();
+		/// @fn CoreResult load(QString &errorMsg);
 		/// @brief Loading the configuration from its file
+		/// @param errorMsg Error message
 		/// @return A value depending on what happened
-		CoreResult load();
+		CoreResult load(QString &errorMsg);
 
-		/// @fn CoreResult save();
+		/// @fn CoreResult save(QString &errorMsg);
 		/// @brief Writing the configuration in its file
+		/// @param errorMsg Error message
 		/// @return A value depending on what happened
-		CoreResult save();
+		CoreResult save(QString &errorMsg);
 
-		/// @fn bool reinit();
+		/// @fn bool reinit(QString &errorMsg);
 		/// @brief Reinits the configuration file
+		/// @param errorMsg Error message
 		/// @return true
-		CoreResult reinit();
+		CoreResult reinit(QString &errorMsg);
 
 	protected:
 		/// @fn void recopie(const UserConfiguration & configuration);
@@ -176,9 +179,6 @@ class UserConfiguration : public JsonObject
 
 
 	protected:
-		/// @brief Error while loading the settings
-		QString errorLoading;
-
 		////////////////////////////////////////
 		// User configuration file management //
 		////////////////////////////////////////
@@ -195,12 +195,16 @@ class UserConfiguration : public JsonObject
 		/// its absolute path.
 		QString getConfigurationFilePath();
 
-		/// @fn CoreResult writeConfigurationInFile(QIODevice::OpenMode openMode = QIODevice::WriteOnly);
+		/// @fn CoreResult writeConfigurationInFile(QString &errorMsg,
+		///											QIODevice::OpenMode openMode = QIODevice::WriteOnly);
 		/// @brief Writing the configuration.
+		/// @param errorMsg Error message
+		/// @param openMode How to open the file to write it.
 		/// @return CONFIGURATION_FILE_UNKNOWN if the configuration file do not
 		/// exist, CONFIGURATION_FILE_NOT_OPEN if it cannot be opened and
 		/// WRITE_SUCCESSFUL if the configuration was written successfully.
-		CoreResult writeConfigurationInFile(QIODevice::OpenMode openMode = QIODevice::WriteOnly);
+		CoreResult writeConfigurationInFile(QString &errorMsg,
+											QIODevice::OpenMode openMode = QIODevice::WriteOnly);
 
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;
@@ -209,11 +213,6 @@ class UserConfiguration : public JsonObject
 		/////////////////////////
 		// Getters and setters //
 		/////////////////////////
-
-		/// @fn QString getErrorLoading();
-		/// @brief Getter on the error message after loading the settings
-		/// @return errorLoading
-		QString getErrorLoading();
 
 		// user_account
 		/// @fn UserAccount getUserAccount();

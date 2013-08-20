@@ -66,11 +66,12 @@ CoreResult ReynTweetsAppConfiguration::load() {
 
 
 	// Parsing datas
+	// TODO : improve it because of improved JSONParser
 	bool parseOK = false;
 	JSONParser parser;
 	QVariant jsonSettings = parser.parse(confFile.readAll(),
 										 parseOK,
-										 errorLoading);
+										 errorLoading).toVariant();
 
 	if (!parseOK) {
 		return PARSE_ERROR;

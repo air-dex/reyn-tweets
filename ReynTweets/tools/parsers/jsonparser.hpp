@@ -27,11 +27,12 @@
 #ifndef JSONPARSER_HPP
 #define JSONPARSER_HPP
 
+#include <QJsonValue>
 #include "genericparser.hpp"
 
 /// @class JSONParser
 /// @brief Parser for JSON datas.
-class JSONParser : public GenericParser<QVariantMap>
+class JSONParser : public GenericParser<QJsonValue>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
@@ -45,7 +46,7 @@ class JSONParser : public GenericParser<QVariantMap>
 		/// @param parseError Error message about a parsing error
 		/// @param lineError Line of the error
 		/// @param columnError Column of the error. Unused
-		QVariantMap parse(QByteArray data,
+		QJsonValue parse(QByteArray data,
 						  bool & parseOK,
 						  QString & parseError,
 						  int * lineError = 0,

@@ -63,16 +63,15 @@ void AllowControl::allowReynTweets() {
 	}
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			this, SLOT(allowOK(ProcessWrapper)));
+			this, SLOT(requestTokensOK(ProcessWrapper)));
 
-	allowWiring();
 	processing = true;
 	emit showInfoMessage(AllowControl::trUtf8("Authorizing Reyn Tweets..."));
-	reyn.allowReynTweets();
+	reyn.requestOAuthTokens();
 }
 
 // After an authentication, if needed.
-void AllowControl::allowOK(ProcessWrapper res) {
+void AllowControl::requestTokensOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
@@ -82,12 +81,52 @@ void AllowControl::allowOK(ProcessWrapper res) {
 
 	// Disconnect
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-			   this, SLOT(allowOK(ProcessWrapper)));
+			   this, SLOT(requestTokensOK(ProcessWrapper)));
 	allowUnwiring();
 
-	QString displayMessage = result.errorMsg;
 	CoreResult issue = result.processIssue;
+	bool fatal = false;
 
+	// TODO : new treatments
+	switch (issue) {
+		case REQUEST_TOKENS_OK: {
+			// Send HTML to QML
+			QVariantMap parsedResults = result.results.toMap();
+			QString authorizePage = parsedResults.value("html").toString();
+			emit needVerifier(authorizePage);
+			processAgain();
+		} return;
+
+		// Problems that can be solved trying later
+		case NO_TOKENS:
+		case RATE_LIMITED:
+		case TWITTER_DOWN:
+		case NETWORK_CALL:
+		case REFUSED_REQUEST:	// Update limits
+			fatal = false;
+			break;
+
+		// Problematic ends
+		case PARSE_ERROR:
+		case NO_MORE_DATA:
+		case BAD_REQUEST:
+		case AUTHENTICATION_REQUIRED:
+		case BAD_REQUEST:
+		case INVALID_SEARCH:
+		case GONE:
+		case UNPROCESSABLE:
+		case UNKNOWN_PROBLEM:
+			fatal = true;
+			break;
+
+		default:
+			fatal = true;
+			break;
+	}
+
+	emit actionEnded(false, result.errorMsg, fatal);
+
+/*
 	switch (issue) {
 		case ALLOW_SUCCESSFUL:
 			// Process successful
@@ -124,6 +163,114 @@ void AllowControl::allowOK(ProcessWrapper res) {
 			emit actionEnded(false, displayMessage, false);
 			break;
 	}
+	//*/
+}
+
+// Allowing Reyn Tweets to use a Twitter Account
+void AllowControl::getAccessTokens(QString verifier) {
+	if (processing) {
+		return;
+	}
+
+	processing = true;
+	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			this, SLOT(accessTokensOK(ProcessWrapper)));
+	reyn.accessOAuthTokens(verifier.toLatin1());
+}
+
+// After an authentication, if needed.
+void AllowControl::accessTokensOK(ProcessWrapper res) {
+	ProcessResult result = res.accessResult(this);
+
+	// The result was not for the object. Stop the treatment.
+	if (INVALID_ISSUE == result.processIssue) {
+		return invalidEnd();
+	}
+
+	// Disconnect
+	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
+			   this, SLOT(requestTokensOK(ProcessWrapper)));
+
+	QString displayMessage = result.errorMsg;
+	CoreResult issue = result.processIssue;
+	bool endOK = false;
+	bool fatal = false;
+
+	// TODO : new treatments
+	switch (issue) {
+		case AUTHORIZED:
+			// End it !
+			endOK = true;
+			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized");
+			// TODO : màj la conf'
+			break;
+
+		// Problems that can be solved trying later
+		case NO_TOKENS:
+		case RATE_LIMITED:
+		case TWITTER_DOWN:
+		case NETWORK_CALL:
+		case REFUSED_REQUEST:	// Update limits
+			fatal = false;
+			break;
+
+		// Problematic ends
+		case PARSE_ERROR:
+		case NO_MORE_DATA:
+		case BAD_REQUEST:
+		case AUTHENTICATION_REQUIRED:
+		case BAD_REQUEST:
+		case INVALID_SEARCH:
+		case GONE:
+		case UNPROCESSABLE:
+		case UNKNOWN_PROBLEM:
+			fatal = true;
+			break;
+
+		default:
+			fatal = true;
+			break;
+	}
+
+	emit actionEnded(endOK, displayMessage, fatal);
+/*
+	switch (issue) {
+		case ALLOW_SUCCESSFUL:
+			// Process successful
+			emit actionEnded(true,
+							AllowControl::trUtf8("Reyn Tweets was authorized"),
+							false);
+			break;
+
+		case DENIED:
+			// Process successful but Reyn Tweets was denied :(
+			displayMessage = AllowControl::trUtf8("Reyn Tweets was denied.");
+
+		// Problems that can be solved trying later
+		case RATE_LIMITED:	// The user reached rates.
+		case TWITTER_DOWN:	// Twitter does not respond.
+			emit actionEnded(false, displayMessage, false);
+			break;
+
+		// Problems during process
+		case NO_MORE_DATA:
+		case TOKENS_NOT_AUTHORIZED:
+		case PARSE_ERROR:
+		case POST_AUTHORIZING_FAILED:
+		case NO_TOKENS:
+
+		// Problems with configuration file
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
+
+		// Unknown ends
+		case UNKNOWN_PROBLEM:
+
+		default:
+			emit actionEnded(false, displayMessage, false);
+			break;
+	}
+	//*/
 }
 
 

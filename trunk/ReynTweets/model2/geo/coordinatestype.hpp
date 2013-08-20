@@ -53,4 +53,6 @@ namespace CoordType {
 	CoordinatesType string2coord(QString coordStr);
 }
 
+using CoordType::CoordinatesType;
+
 #endif // COORDINATESTYPE_HPP

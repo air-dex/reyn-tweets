@@ -64,15 +64,15 @@ class GeoCoord : public JsonArray<qreal>, public QPointF
 		// Variant conversion //
 		////////////////////////
 
-		/// @fn QVariantList toVariant() const;
+		/// @fn virtual QVariantList toVariant() const;
 		/// @brief Converting the bounds into a QVariantList
 		/// @return The QVariant List with the bounds in two QVariant objects.
-		QVariantList toVariant() const;
+		virtual QVariantList toVariant() const;
 
-		/// @fn void fillWithVariant(QVariantList variantList);
+		/// @fn virtual void fillWithVariant(QVariantList variantList);
 		/// @brief Filling the object with a QVariantList
 		/// @param variantList The QVariantList.
-		void fillWithVariant(QVariantList variantList);
+		virtual void fillWithVariant(QVariantList variantList);
 
 		/////////////////////
 		// JSON conversion //
@@ -90,7 +90,7 @@ class GeoCoord : public JsonArray<qreal>, public QPointF
 		///
 		/// The method is overriden because of JSON optimization
 		/// @return The QJsonArray representation
-		virtual QJsonArray toJSON();
+		virtual QJsonArray toJSON() const;
 
 
 	private:

@@ -24,20 +24,24 @@
 #ifndef GENERICCOORDINATES_HPP
 #define GENERICCOORDINATES_HPP
 
-#include "../json/jsonobject.hpp"
-#include "coordinatestype.hpp"
-
-using CoordType::CoordinatesType;
-
+#include "gencoord.hpp"
 
 /// @class GenericCoordinates
-/// @brief Base class for coordinates handling
+/// @brief Base class for coordinates handling.
+///
+/// It is the part with template and implementation handling.
+///
+/// A C++ template class cannot get Qt properties. The GenericCoordinates class
+/// as conceived is in this case. So it was splat into two classes :<ul>
+/// <li>The GenCoord class which is not a template and which contains
+/// properties.</li>
+/// <li>The GenericCoordinates class which is a template class and which
+/// implements GenCoord.</li>
+/// </ul>
 /// @param C class representing coordinates
 template <class C>
-class GenericCoordinates : public JsonObject
+class GenericCoordinates : public GenCoord
 {
-	Q_OBJECT
-
 	public:
 		/// @fn GenericCoordinates();
 		/// @brief Default constructor
@@ -73,21 +77,20 @@ class GenericCoordinates : public JsonObject
 		/// @fn virtual QJsonObject toJSON();
 		/// @brief Getting a QJsonObject representation of the object
 		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
+		virtual QJsonObject toJSON() const;
 
-
-	private:
-		/// @fn void recopie(const GenericCoordinates & coord);
-		/// @brief Copy of a GenericCoordinates
-		/// @param coord GenericCoordinates to copy
-		void recopie(const GenericCoordinates & coord);
-
-
-	///////////////////////////
-	// Properties management //
-	///////////////////////////
 
 	protected:
+		/// @fn virtual void recopie(const GenericCoordinates & coord);
+		/// @brief Copy of a GenericCoordinates
+		/// @param coord GenericCoordinates to copy
+		virtual void recopie(const GenericCoordinates & coord);
+
+
+		///////////////////////////
+		// Properties management //
+		///////////////////////////
+
 		// coordinates
 		/// @property id
 		/// @brief Longitude and latitude.

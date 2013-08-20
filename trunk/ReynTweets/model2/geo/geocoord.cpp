@@ -84,12 +84,14 @@ void GeoCoord::fillWithVariant(QVariantList variantList) {
 
 // Filling the object with a QJsonArray.
 void GeoCoord::fillWithJSON(QJsonArray json) {
-	if (coordz.size() != 2) {
+	if (json.size() != 2) {
 		return;
 	}
 
+	this->clear();
+
 	// longitude
-	QJsonValue coord = coordz.at(0);
+	QJsonValue coord = json.at(0);
 	if (!coord.isUndefined() && coord.isDouble()) {
 		qreal longi = coord.toDouble();
 		if (qAbs(longi) <= 180) {
@@ -98,7 +100,7 @@ void GeoCoord::fillWithJSON(QJsonArray json) {
 	}
 
 	// latitude
-	coord = coordz.at(1);
+	coord = json.at(1);
 	if (!coord.isUndefined() && coord.isDouble()) {
 		qreal lati = coord.toDouble();
 		if (qAbs(lati) <= 90) {
@@ -108,7 +110,7 @@ void GeoCoord::fillWithJSON(QJsonArray json) {
 }
 
 // QJsonArray representation of the object
-QJsonArray GeoCoord::toJSON() {
+QJsonArray GeoCoord::toJSON() const {
 	QJsonArray coordz;
 
 	coordz.append(QJsonValue(this->x()));
@@ -123,11 +125,11 @@ QJsonArray GeoCoord::toJSON() {
 /////////////////////////////////////
 
 // Output stream operator for serialization
-friend QDataStream & operator<<(QDataStream & out, const GeoCoord & coord) {
+QDataStream & operator<<(QDataStream & out, const GeoCoord & coord) {
 	return jsonStreamingOut<qreal>(out, coord);
 }
 
 // Input stream operator for serialization
-friend QDataStream & operator>>(QDataStream & in, GeoCoord & coord) {
-	return jsonStreamingIn<qreal>(out, coord);
+QDataStream & operator>>(QDataStream & in, GeoCoord & coord) {
+	return jsonStreamingIn<qreal>(in, coord);
 }

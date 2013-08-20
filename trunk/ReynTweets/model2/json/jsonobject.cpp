@@ -33,8 +33,7 @@
 // Default constructor
 JsonObject::JsonObject(bool blacklistObjectName) :
 	Mappable(blacklistObjectName),
-	Jsonable<QJsonObject>(),
-	QJsonObject()
+	Jsonable<QJsonObject>()
 {}
 
 // Destructor
@@ -43,8 +42,7 @@ JsonObject::~JsonObject() {}
 // Copy constructor
 JsonObject::JsonObject(const JsonObject & jsonobj) :
 	Mappable(),
-	Jsonable<QJsonObject>(),
-	QJsonObject()
+	Jsonable<QJsonObject>()
 {
 	this->recopie(jsonobj);
 }
@@ -72,7 +70,7 @@ void JsonObject::fillWithVariant(QVariantMap map) {
 }
 
 // Getting a QVariantMap representation of the JsonObject
-QVariantMap JsonObject::toVariant() {
+QVariantMap JsonObject::toVariant() const {
 	return this->toJSON().toVariantMap();
 }
 
@@ -100,7 +98,7 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 
 // Specialization of jsonStreamingIn for JsonObjects
 QDataStream & jsonStreamingIn(QDataStream & in,
-							  const JsonObject &jsonobj)
+							  JsonObject &jsonobj)
 {
 	QByteArray json = "";
 	in >> json;

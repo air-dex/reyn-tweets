@@ -67,7 +67,7 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		/// @fn virtual QVariantMap toVariant();
 		/// @brief Getting a QVariantMap representation of the JsonObject
 		/// @return QVariantMap representation
-		virtual QVariantMap toVariant();
+		virtual QVariantMap toVariant() const;
 
 		/// @fn virtual void fillWithJSON(QJsonObject json);
 		/// @brief Filling the object with a QJsonObject.
@@ -80,7 +80,7 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		/// @fn virtual QJsonObject toJSON();
 		/// @brief Getting a QJsonObject representation of the JsonObject
 		/// @return QJsonObject representation, i.e. <code>this</code>
-		virtual QJsonObject toJSON() = 0;
+		virtual QJsonObject toJSON() const = 0;
 
 	protected:
 		/// @fn void recopie(const JsonObject & jsonobj);
@@ -102,22 +102,22 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 /// got properties to ignore. These properties are blacklisted in
 /// the Mappable::transientProperties attribute.
 /// @param out The output stream
-/// @param mappable Mappable to put in the stream
+/// @param jsonobj JsonObject to put in the stream
 /// @return The stream with the object
 QDataStream & jsonStreamingOut(QDataStream & out,
 							   const JsonObject & jsonobj);
 
 /// @fn QDataStream & jsonStreamingIn(QDataStream & in,
-///									  const Mappable & jsonobj);
+///									  JsonObject & jsonobj);
 /// @brief Input stream operator for serialization.
 ///
 /// This method is a specialization for JsonObjects because they have
 /// got properties to ignore. These properties are blacklisted in
 /// the Mappable::transientProperties attribute.
 /// @param in The input stream
-/// @param mappable Mappable to put in the stream
+/// @param jsonobj JsonObject to put in the stream
 /// @return The stream with the object
 QDataStream & jsonStreamingIn(QDataStream & in,
-							  const JsonObject & jsonobj);
+							  JsonObject &jsonobj);
 
 #endif // JSONOBJECT_HPP

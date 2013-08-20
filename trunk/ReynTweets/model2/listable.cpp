@@ -60,7 +60,7 @@ template <class V>
 void Listable<V>::recopie(const Listable<V> & list) {
 	this->clear();
 
-	for (typename Listable<M>::const_iterator it = list.begin();
+	for (typename Listable<V>::const_iterator it = list.begin();
 		 it != list.end();
 		 ++it)
 	{
@@ -83,9 +83,7 @@ void Listable<V>::fillWithVariant(QVariantList entities) {
 		 ++it)
 	{
 		QVariant v = *it;
-		V variantable;
-		variantable.fillWithVariant(v.toMap());
-		this->append(variantable);
+		this->append(v.value<V>());
 	}
 }
 
@@ -98,8 +96,8 @@ QVariantList Listable<V>::toVariant() const {
 		 it != this->end();
 		 ++it)
 	{
-		V variantable = *it;
-		res.append(variantable.toVariant());
+		V listableElt = *it;
+		res.append(QVariant::fromValue(listableElt));
 	}
 
 	return res;

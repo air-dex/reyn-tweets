@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "tweet2.hpp"
-
+/*
 #include <QtQml>
 #include <QWebPage>
 #include <QWebFrame>
@@ -582,3 +582,4 @@ Tweet2::Tweet2(QObject *parent) :
 	JsonObject(parent)
 {
 }
+//*/

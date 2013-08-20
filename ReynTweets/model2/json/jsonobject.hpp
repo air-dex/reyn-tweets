@@ -86,7 +86,7 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 		/// @fn void recopie(const JsonObject & jsonobj);
 		/// @brief Core method to copy a JsonObject
 		/// @param jsonobj The JsonObject to copy
-		void recopie(const JsonObject & jsonobj);
+		virtual void recopie(const JsonObject & jsonobj);
 };
 
 

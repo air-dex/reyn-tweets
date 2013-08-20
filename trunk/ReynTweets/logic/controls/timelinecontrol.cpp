@@ -80,7 +80,7 @@ void TimelineControl::loadTimeline() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(loadTimelineEnded(ProcessWrapper)));
 			emit actionEnded(false,
-							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
 			break;
 	}
@@ -110,7 +110,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			emit tlhandler.handledListChanged();
 			// Process successful
 			emit actionEnded(true,
-							 TimelineControl::trUtf8("Timeline loaded"),
+							 TimelineControl::trUtf8("Timeline loaded."),
 							 false);
 
 		}break;
@@ -176,7 +176,7 @@ void TimelineControl::refreshTimeline() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 			emit actionEnded(false,
-							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
 			break;
 	}
@@ -235,7 +235,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 						default:
 							newerTweets.clear();
 							emit actionEnded(false,
-											 TimelineControl::trUtf8("Invalid type of timeline"),
+											 TimelineControl::trUtf8("Invalid type of timeline."),
 											 false);
 							return;
 					}
@@ -248,7 +248,9 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 
 			// Process successful
 			emit tlhandler.handledListChanged();
-			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+			emit actionEnded(true,
+							 TimelineControl::trUtf8("Timeline refreshed."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -336,7 +338,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 			emit actionEnded(false,
-							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
 			break;
 	}
@@ -395,7 +397,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 						default:
 							newerTweets.clear();
 							emit actionEnded(false,
-											 TimelineControl::trUtf8("Invalid type of timeline"),
+											 TimelineControl::trUtf8("Invalid type of timeline."),
 											 false);
 							return;
 					}
@@ -412,7 +414,9 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 			// Process successful
 			emit tlhandler.handledListChanged();
-			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
+			emit actionEnded(true,
+							 TimelineControl::trUtf8("Timeline refreshed."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -481,7 +485,7 @@ void TimelineControl::moreOldTimeline() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 			emit actionEnded(false,
-							 TimelineControl::trUtf8("Invalid type of timeline"),
+							 TimelineControl::trUtf8("Invalid type of timeline."),
 							 false);
 			break;
 	}
@@ -511,7 +515,9 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 			tlhandler.appendTimeline(newTweets);
 			emit tlhandler.handledListChanged();
 			// Process successful
-			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
+			emit actionEnded(true,
+							 TimelineControl::trUtf8("Tweets loaded."),
+							 false);
 
 		} break;
 

@@ -79,11 +79,11 @@ void OAuthParser::rewriteAsBool(QVariantMap & parsedMap,
 					.append(result)
 					.append(QObject::trUtf8("' for parameter '"))
 					.append(parameterName)
-					.append("'.\n");
+					.append("'.");
 		}
 	} else {
 		rewriteError.append(QObject::trUtf8("Rewriting as bool : parameter '"))
 				.append(parameterName)
-				.append(QObject::trUtf8("' expected.")).append('\n');
+				.append(QObject::trUtf8("' expected."));
 	}
 }

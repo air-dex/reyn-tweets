@@ -146,7 +146,10 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 
 		case Network::SERVICE_ERRORS:
 			issue = UNSHORTENABLE_MESSAGE;
-			errorMsg = PostViaTwitLongerProcess::trUtf8("Tweet cannot be shortened");
+			// TODO : improve the message
+			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Tweet cannot be shortened"))
+					.append(" : ")
+					.append(result.errorMessage);
 			break;
 
 		case Network::API_CALL:
@@ -270,7 +273,10 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 
 		case Network::SERVICE_ERRORS:
 			issue = MESSAGE_NOT_UPDATED;
-			errorMsg = PostViaTwitLongerProcess::trUtf8("Message on TwitLonger cannot be updated.");
+			// TODO : improve the message
+			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Message on TwitLonger cannot be updated : "))
+					.append(" : ")
+					.append(result.errorMessage);
 			break;
 
 		case Network::API_CALL:

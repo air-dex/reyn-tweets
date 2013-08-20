@@ -93,7 +93,7 @@ void DeleteTweetProcess::canDeleteTweet() {
 	else {
 		// Tweet cannot be deleted
 		deleteTweet(false,
-					DeleteTweetProcess::trUtf8("The user is not the author of the tweet"));
+					DeleteTweetProcess::trUtf8("The user is not the author of the tweet."));
 	}
 }
 
@@ -109,11 +109,14 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			   this, SLOT(searchRetweetIDEnded(ResultWrapper)));
 
 	NetworkResultType errorType = result.resultType;
-
-	// For a potenitial anticipated end
-	QString beginErrMsg = DeleteTweetProcess::trUtf8("Retrieving retweet ID:") + '\n';
 	QString errorMsg = "";
 	CoreResult issue;	// Filled in ProcessUtils methods
+
+	// For a potenitial anticipated end
+	QString beginErrMsg = "";
+
+	beginErrMsg.append(DeleteTweetProcess::trUtf8("Retrieving retweet ID:"))
+			.append(' ');
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -132,7 +135,8 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 				addInfos = rtInfos->getIDstr();
 			} else {
 				// It is definitely not a retweet. Abort.
-				addInfos = beginErrMsg.append(DeleteTweetProcess::trUtf8("Reweet ID unreachable"));
+				addInfos.append(beginErrMsg)
+						.append(DeleteTweetProcess::trUtf8("Retweet ID unreachable."));
 			}
 
 			return deleteTweet(idFound, addInfos);

@@ -77,25 +77,25 @@ void SettingsControl::saveChanges() {
 	switch (saveRes) {
 		case SAVE_SUCCESSFUL:
 			isOK = true;
-			resMsg = SettingsControl::trUtf8("Settings updated");
+			resMsg = SettingsControl::trUtf8("Settings updated.");
 			isFatal = false;
 			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Configuration file not found");
+			resMsg = SettingsControl::trUtf8("Configuration file not found.");
 			isFatal = true;
 			break;
 
 		case CONFIGURATION_FILE_NOT_OPEN:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Cannot open configuration file");
+			resMsg = SettingsControl::trUtf8("Cannot open configuration file.");
 			isFatal = false;
 			break;
 
 		default:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Unknown problem");
+			resMsg = SettingsControl::trUtf8("Unknown problem.");
 			isFatal = true;
 			break;
 	}

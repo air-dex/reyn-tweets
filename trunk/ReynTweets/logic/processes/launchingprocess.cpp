@@ -98,8 +98,8 @@ void LaunchingProcess::loadConfiguration() {
 			break;
 
 		case PARSE_ERROR:
-			errorMsg = LaunchingProcess::trUtf8("Configuration cannot be loaded (parse error)");
-			errorMsg.append(" : ").append(userConfiguration.getErrorLoading());
+			errorMsg.append(LaunchingProcess::trUtf8("Configuration cannot be loaded (parse error)"))
+					.append(" : ").append(userConfiguration.getErrorLoading());
 			loadIssue = LOADING_CONFIGURATION_ERROR;
 			break;
 
@@ -114,7 +114,7 @@ void LaunchingProcess::loadConfiguration() {
 
 		default:
 			// Unknown problem.
-			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
+			errorMsg = LaunchingProcess::trUtf8("Unknown problem.");
 			loadIssue = UNKNOWN_PROBLEM;
 			break;
 	}
@@ -241,19 +241,19 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		case RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate:");
-			errorMsg.append('\n').append(verifyMsg);
+			errorMsg.append(' ').append(verifyMsg);
 			break;
 
 		case TWITTER_DOWN:
 			// Twitter problem. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("Twitter is down:");
-			errorMsg.append('\n').append(verifyMsg);
+			errorMsg.append(' ').append(verifyMsg);
 			break;
 
 		case NETWORK_CALL:
 			// Probably problem. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("Problem while connecting to Twitter:");
-			errorMsg.append('\n').append(verifyMsg);
+			errorMsg.append(' ').append(verifyMsg);
 			break;
 
 		case PARSE_ERROR:		// Parsing problem. Abort
@@ -264,7 +264,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 		default:
 			// Unexpected result. Abort.
 			errorMsg = LaunchingProcess::trUtf8("Unexpected result:");
-			errorMsg.append('\n').append(verifyMsg);
+			errorMsg.append(' ').append(verifyMsg);
 			break;
 	}
 
@@ -298,7 +298,7 @@ void LaunchingProcess::saveConfiguration() {
 
 		default:
 			saveIssue = UNKNOWN_PROBLEM;
-			errorMsg = LaunchingProcess::trUtf8("Unknown problem");
+			errorMsg = LaunchingProcess::trUtf8("Unknown problem.");
 			break;
 	}
 

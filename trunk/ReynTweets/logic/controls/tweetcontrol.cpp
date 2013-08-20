@@ -146,7 +146,9 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 			status->reset();
 			status->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			emit tweetChanged();
-			emit actionEnded(true, TweetControl::trUtf8("Tweet refreshed"), false);
+			emit actionEnded(true,
+							 TweetControl::trUtf8("Tweet refreshed."),
+							 false);
 			break;
 
 		case RESOURCE_NOT_FOUND:
@@ -192,8 +194,10 @@ void TweetControl::shareByMail() {
 	QString mailURL = "mailto:?";
 
 	// Writing the subject
-	QString subject = TweetControl::trUtf8("Tweet by ");
-	subject.append(getShownTweet()->getUser().getName());
+	QString subject = "";
+	subject.append(TweetControl::trUtf8("Tweet by"))
+			.append(' ')
+			.append(getShownTweet()->getUser().getName());
 
 	// Need to encode it on Windows
 	#ifdef Q_OS_WIN
@@ -259,7 +263,7 @@ void TweetControl::retweet() {
 				disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 						   this, SLOT(retweetEnd(ProcessWrapper)));
 				emit actionEnded(false,
-								 TweetControl::trUtf8("Cannot retweet this tweet"),
+								 TweetControl::trUtf8("Cannot retweet this tweet."),
 								 false);
 			} else {
 				emit showInfoMessage(TweetControl::trUtf8("Retweeting..."));
@@ -301,7 +305,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			if (!resultTweet.isRetweet()) {
 				// The retweet is not in the timeline and cannot be updated
 				emit actionEnded(false,
-								 TweetControl::trUtf8("No retweet in the retweeted status"),
+								 TweetControl::trUtf8("No retweet in the retweeted status."),
 								 false);
 				break;
 			}
@@ -311,7 +315,9 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 			status->setRetweeted(true);
 			// NB : status.id do not change.
 			emit tweetChanged();
-			emit actionEnded(true, TweetControl::trUtf8("Tweet retweeted"), false);
+			emit actionEnded(true,
+							 TweetControl::trUtf8("Tweet retweeted."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -366,7 +372,7 @@ void TweetControl::favorite() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(favoriteEnd(ProcessWrapper)));
 			emit actionEnded(false,
-							 TweetControl::trUtf8("Cannot favorite this tweet"),
+							 TweetControl::trUtf8("Cannot favorite this tweet."),
 							 false);
 			break;
 	}
@@ -395,7 +401,9 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			getShownTweet()->setFavorited(true);
 			emit tweetChanged();
-			emit actionEnded(true, TweetControl::trUtf8("Tweet favorited"), false);
+			emit actionEnded(true,
+							 TweetControl::trUtf8("Tweet favorited."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -451,7 +459,7 @@ void TweetControl::unfavorite() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(unfavoriteEnd(ProcessWrapper)));
 			emit actionEnded(false,
-							 TweetControl::trUtf8("Cannot unfavorite this tweet"),
+							 TweetControl::trUtf8("Cannot unfavorite this tweet."),
 							 false);
 			break;
 	}
@@ -481,7 +489,9 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 			getShownTweet()->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			getShownTweet()->setFavorited(false);
 			emit tweetChanged();
-			emit actionEnded(true, TweetControl::trUtf8("Tweet unfavorited"), false);
+			emit actionEnded(true,
+							 TweetControl::trUtf8("Tweet unfavorited."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:
@@ -535,7 +545,7 @@ void TweetControl::deleteTweet() {
 			disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 					   this, SLOT(deleteEnd(ProcessWrapper)));
 			emit actionEnded(false,
-							 TweetControl::trUtf8("Cannot delete this tweet"),
+							 TweetControl::trUtf8("Cannot delete this tweet."),
 							 false);
 			break;
 	}
@@ -569,8 +579,8 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 					// It's a tweet written by the user and should not be kept
 					// in the timeline. This is an error.
 					emit actionEnded(false,
-									TweetControl::trUtf8("Retweet expected in Twitter reply."),
-									false);
+									 TweetControl::trUtf8("Retweet expected in Twitter reply."),
+									 false);
 					return;
 				}
 
@@ -582,7 +592,9 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 				emit destroyTweet(status->toVariant());
 			}
 
-			emit actionEnded(true, TweetControl::trUtf8("Tweet deleted"), false);
+			emit actionEnded(true,
+							 TweetControl::trUtf8("Tweet deleted."),
+							 false);
 			break;
 
 		case TOKENS_NOT_AUTHORIZED:

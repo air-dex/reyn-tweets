@@ -76,7 +76,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 		case LAUNCH_SUCCESSFUL:
 			// Process successful
 			emit actionEnded(true,
-							 LaunchingControl::trUtf8("Reyn Tweets launched"),
+							 LaunchingControl::trUtf8("Reyn Tweets launched."),
 							 false);
 			break;
 

@@ -35,7 +35,7 @@ Rectangle {
 	property int avatar_side: 50
 
 	// Size of a side of an avatar
-	property int margin: 5
+	property int margin: constant.margin
 
 	// The tweet displayed in this pane
 	readonly property alias tweet: control.tweet
@@ -63,7 +63,7 @@ Rectangle {
 	// Folder where the icons are stored
 	property string icons_folder: "../../..".concat(constant.icon_folder)
 
-	width: 360
+	width: constant.reyn_tweets_width
 	height:  min_height
 			 + (shown_tweet.isReply() ?
 					(reply_info.height + margin)

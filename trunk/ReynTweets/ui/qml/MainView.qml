@@ -34,7 +34,7 @@ import "mainview_panes/timeline_panes"
 Rectangle {
 	id: main_view
 
-	property int margin: 5
+	property int margin: constant.margin
 	property int icon_bar_size: 40
 
 	Constants {	id:constant	}

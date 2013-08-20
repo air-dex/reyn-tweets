@@ -24,7 +24,6 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
-import ReynTweetsComponents 0.2
 import "../base_components"
 
 Rectangle {
@@ -36,7 +35,7 @@ Rectangle {
 	// Reyn Tweets constants
 	Constants { id: constant }
 
-	property int margin: 5
+	property int margin: constant.margin
 
 	// Dimensions
 	width: actions.implicitWidth + 2*margin

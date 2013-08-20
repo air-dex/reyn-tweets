@@ -31,7 +31,7 @@ import "../base_components"
 
 Rectangle {
 	id: write_tweet_pane
-	width: 360
+	width: constant.reyn_tweets_width
 	height: 4*margin + announce.height + write_zone.height + tweet_button.height
 
 	// Number of characters which can be written by the user.
@@ -67,7 +67,7 @@ Rectangle {
 		}
 	}
 
-	property int margin: 5
+	property int margin: constant.margin
 
 	Constants { id: constant }
 

@@ -34,7 +34,7 @@ Rectangle {
 	height: constant.reyn_tweets_height
 
 	// Generic margin
-	property int margin: 5
+	property int margin: constant.margin
 
 	// Display constants
 	radius: 2*margin

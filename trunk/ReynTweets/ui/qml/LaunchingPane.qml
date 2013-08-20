@@ -31,8 +31,8 @@ import "login"
 /// @brief Component used to launch the app
 Rectangle {
 	id: launching_pane
-	width: 360
-	height: 640
+	width: constant.reyn_tweets_width
+	height: constant.reyn_tweets_height
 
 	Constants {	id:constant	}
 
@@ -40,7 +40,7 @@ Rectangle {
 	// Design of the Widget //
 	//////////////////////////
 
-	property int margin: 5
+	property int margin: constant.margin
 
 	// Logo with the name and the icon
 	Column {

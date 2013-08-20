@@ -24,7 +24,6 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
-import ReynTweetsComponents 0.2
 
 /// @class GenericActionPane
 /// @brief Pane with one button
@@ -36,7 +35,7 @@ Rectangle {
 	property string button_text: "Leave it to Reyn !"
 
 	/// @brief Value for marges
-	property int margin_value: 5
+	property int margin_value: constant.margin
 
 	/// @brief Space between the text and the button
 	property int spacing: 6*margin_value
@@ -48,7 +47,7 @@ Rectangle {
 	signal act
 
 	id: generic_action_pane
-	width: 360
+	width: constant.reyn_tweets_width
 	height: description_action.height + spacing + action_button.height
 	color: constant.grey
 	radius: pane_radius

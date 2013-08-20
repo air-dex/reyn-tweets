@@ -22,11 +22,14 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
+import "base_components"
 
 Rectangle {
 	id: reyn_tweets
-	width: 360
-	height: 640
+	width: constant.reyn_tweets_width
+	height: constant.reyn_tweets_height
+
+	Constants {id: constant }
 
 	LaunchingPane {
 		id: splash_screen

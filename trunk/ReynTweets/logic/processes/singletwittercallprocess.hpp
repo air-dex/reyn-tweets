@@ -64,17 +64,6 @@ class SingleTwitterCallProcess : public GenericProcess
 		/// "<code>twitter.doSthg();</code>".
 		virtual void callTwitter() = 0;
 
-		/// @fn void buildResult(CoreResult issue, QString errMsg);
-		/// @brief Building process results for unsuccessful ends
-		/// @param issue Enum value describing how it ended.
-		/// @param errMsg Error message
-		void buildResult(CoreResult issue, QString errMsg);
-
-		/// @fn void buildResult(QVariant result);
-		/// @brief Building process results for successful ends
-		/// @param result Request result
-		void buildResult(QVariant result);
-
 		/// @fn virtual void treatSuccessfulResult(QVariant result);
 		/// @brief Default treatment when the request was successful
 		/// @param result Result

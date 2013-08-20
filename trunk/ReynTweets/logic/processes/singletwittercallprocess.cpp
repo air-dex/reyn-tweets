@@ -78,23 +78,11 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	}
 
 	// Failed end
-	buildResult(issue, errorMsg);
-	endProcess();
-}
-
-// Building the process results
-void SingleTwitterCallProcess::buildResult(CoreResult issue, QString errMsg) {
-	processResult = ProcessUtils::buildProcessResult(issue, errMsg);
-}
-
-// Building the process results
-void SingleTwitterCallProcess::buildResult(QVariant result) {
-	processResult = ProcessUtils::buildProcessResult(successfullIssue, result);
+	endProcess(issue, errorMsg);
 }
 
 void SingleTwitterCallProcess::treatSuccessfulResult(QVariant result) {
-	buildResult(result);
-	endProcess();
+	endProcess(successfullIssue, result);
 }
 
 void SingleTwitterCallProcess::treatTwitterErrorResult(RequestResult result,

@@ -44,13 +44,22 @@ ProcessResult GenericProcess::getProcessResult() {
 }
 
 // End of a process
-void GenericProcess::endProcess() {
+void GenericProcess::endProcess(CoreResult issue,
+								QVariant result,
+								QString errorMessage)
+{
+	processResult.processIssue = issue;
+	processResult.results = result;
+	processResult.errorMsg = errorMessage;
 	emit processEnded();
 }
 
-// Building the process results
-void GenericProcess::buildResult(CoreResult &issue, QString &errMsg) {
-	processResult = ProcessUtils::buildProcessResult(issue, errMsg);
+void GenericProcess::endProcess(CoreResult issue, QVariant result) {
+	endProcess(issue, result, "");
+}
+
+void GenericProcess::endProcess(CoreResult issue, QString errorMessage) {
+	endProcess(issue, QVariant(), errorMessage);
 }
 
 // Invalid ends
@@ -58,6 +67,5 @@ void GenericProcess::invalidEnd() {
 	CoreResult issue = INVALID_ISSUE;
 	QString errMsg = GenericProcess::trUtf8("Dead end");
 
-	buildResult(issue, errMsg);
-	endProcess();
+	endProcess(issue, errMsg);
 }

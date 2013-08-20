@@ -67,10 +67,9 @@ void LaunchingProcess::checkSettingsLoad() {
 			break;
 	}
 
-	// Telling the component that the launching process has ended fatally.
+	// Failed end
 	QString errMsg = appConfiguration.getErrorLoading();
-	buildResult(loadIssue, errMsg);
-	endProcess();
+	endProcess(loadIssue, errMsg);
 }
 
 
@@ -120,9 +119,8 @@ void LaunchingProcess::loadConfiguration() {
 			break;
 	}
 
-	// Telling the component that the launching process has ended fatally.
-	buildResult(loadIssue, errorMsg);
-	endProcess();
+	// Failed end
+	endProcess(loadIssue, errorMsg);
 }
 
 
@@ -140,9 +138,8 @@ void LaunchingProcess::checkTokens() {
 		CoreResult issue = AUTHENTICATION_REQUIRED;
 		QString errMsg = LaunchingProcess::trUtf8("Unexpected empty Twitter tokens.");
 
-		buildResult(issue, errMsg);
 		emit authenticationRequired();
-		endProcess();
+		endProcess(issue, errMsg);
 	} else {
 		// Tokens seems legit. Let's ensure that's really the case
 		connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
@@ -271,9 +268,8 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			break;
 	}
 
-	// Telling the component wat happens
-	buildResult(verifyIssue, errorMsg);
-	endProcess();
+	// Telling the control wat happened
+	endProcess(verifyIssue, errorMsg);
 }
 
 
@@ -307,8 +303,7 @@ void LaunchingProcess::saveConfiguration() {
 	}
 
 	// Ending the process
-	buildResult(saveIssue, errorMsg);
-	endProcess();
+	endProcess(saveIssue, errorMsg);
 }
 
 

@@ -67,19 +67,36 @@ class GenericProcess : public QObject
 		/// @brief Result of the process
 		ProcessResult processResult;
 
-		/// @fn virtual void endProcess();
-		/// @brief Ending the process
-		virtual void endProcess();
+		/// @fn virtual void endProcess(CoreResult issue,
+		///								QVariant result,
+		///								QString errorMessage);
+		/// @brief Ending the process.
+		///
+		/// The method builds the result and then sends it to the ReynCore.
+		/// @param issue Description on how the process ends.
+		/// @param result Results of the process.
+		/// @param errorMessage Message if an error occurs during the process.
+		virtual void endProcess(CoreResult issue, QVariant result, QString errorMessage);
+
+		/// @fn virtual void endProcess(CoreResult issue, QVariant result);
+		/// @brief Ending the process.
+		///
+		/// It is a shortcut for endProcess(issue, result, "");.
+		/// @param issue Description on how the process ends.
+		/// @param result Results of the process.
+		virtual void endProcess(CoreResult issue, QVariant result);
+
+		/// @fn virtual void endProcess(CoreResult issue, QString errorMessage);
+		/// @brief Ending the process.
+		///
+		/// It is a shortcut for endProcess(issue, QVariant(), errorMessage);.
+		/// @param issue Description on how the process ends.
+		/// @param errorMessage Message if an error occurs during the process.
+		virtual void endProcess(CoreResult issue, QString errorMessage);
 
 		/// @fn void invalidEnd();
 		/// @brief Generic treatment for invalid issues.
 		void invalidEnd();
-
-		/// @fn void buildResult(CoreResult & issue, QString & errMsg);
-		/// @brief Building process results
-		/// @param issue Enum value describing how it ended.
-		/// @param errMsg Error message
-		virtual void buildResult(CoreResult & issue, QString & errMsg);
 };
 
 #endif // GENERICPROCESS_HPP

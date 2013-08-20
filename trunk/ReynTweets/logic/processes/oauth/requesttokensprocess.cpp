@@ -132,8 +132,7 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	GenericProcess::buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }
 
 //////////////////////////////////////
@@ -168,9 +167,7 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
 			tokensMap.unite(result.parsedResult.toMap());
-			processResult = ProcessUtils::buildProcessResult(REQUEST_TOKENS_OK,
-															 QVariant(tokensMap));
-			endProcess();
+			endProcess(REQUEST_TOKENS_OK, QVariant(tokensMap));
 			return;
 
 		case Network::SERVICE_ERRORS:
@@ -211,6 +208,5 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	}
 
 	// Failed end
-	GenericProcess::buildResult(issue, errorMsg);
-	endProcess();
+	endProcess(issue, errorMsg);
 }

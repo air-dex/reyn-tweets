@@ -34,27 +34,6 @@
 /// @namespace ProcessUtils
 /// @brief Namespace with utilities for processes
 namespace ProcessUtils {
-	/////////////////////////////
-	// Building ProcessResults //
-	/////////////////////////////
-
-	/// @fn ProcessResult buildProcessResult(CoreResult issue, QString errMsg);
-	/// @brief Building process results for unsuccessful ends
-	/// @param issue Enum value describing how it ended.
-	/// @param errMsg Error message
-	/// @return A filled process result
-	ProcessResult buildProcessResult(CoreResult issue, QString errMsg);
-
-	/// @fn ProcessResult buildProcessResult(CoreResult issue,
-	///										 QVariant result = QVariant());
-	/// @brief Building process results for successful ends
-	/// @param issue A successful issue
-	/// @param result Process result
-	/// @return A filled process result
-	ProcessResult buildProcessResult(CoreResult issue,
-									 QVariant result = QVariant());
-
-
 	//////////////////////////////////////
 	// Treating Twitter request results //
 	//////////////////////////////////////

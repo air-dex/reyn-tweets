@@ -24,6 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
+import ReynTweetsComponents 0.2
 
 /// @class FormField
 /// @brief Text Input with a description.

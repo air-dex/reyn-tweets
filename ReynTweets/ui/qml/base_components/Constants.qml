@@ -57,13 +57,13 @@ QtObject {
 	//////////////////////
 
 	// Width
-	property int reyn_tweets_width: 360
+	readonly property int reyn_tweets_width: 360
 
 	// Height
-	property int reyn_tweets_height: 640
+	readonly property int reyn_tweets_height: 640
 
 	// Margin
-	property int margin: 5
+	readonly property int margin: 5
 
 
 	////////////
@@ -71,40 +71,40 @@ QtObject {
 	////////////
 
 	// Orange Reyn Tweets
-	property string orange: "#eb8801"
+	readonly property string orange: "#eb8801"
 
 	// Grey
-	property string grey: "#c4c4c4"
+	readonly property string grey: "#c4c4c4"
 
 	// Light grey
-	property string very_light_grey: "#fafafa"
+	readonly property string very_light_grey: "#fafafa"
 
 	// White
-	property string white: "#ffffff"
+	readonly property string white: "#ffffff"
 
 	// Black
-	property string black: "#000000"
+	readonly property string black: "#000000"
 
 	// Red
-	property string red: "#ff0000"
+	readonly property string red: "#ff0000"
 
 	// Green for mentions (separator_color)
-	property string green_mention: "#b8fe86"
+	readonly property string green_mention: "#b8fe86"
 
 	// Green for mentions (middle_color)
-	property string light_green_mention: "#d3ffb4"
+	readonly property string light_green_mention: "#d3ffb4"
 
 	// Blue for Direct messages (separator_color)
-	property string blue_dm: "#90c0fd"
+	readonly property string blue_dm: "#90c0fd"
 
 	// Blue for Direct messages (middle_color)
-	property string light_blue_dm: "#b3d3fd"
+	readonly property string light_blue_dm: "#b3d3fd"
 
 	// Orange for own tweets (separator_color)
-	property string orange_author: "#ffd35e"
+	readonly property string orange_author: "#ffd35e"
 
 	// Orange for own tweets (middle_color)
-	property string light_orange_author: "#ffe08d"
+	readonly property string light_orange_author: "#ffe08d"
 
 
 	//////////
@@ -112,8 +112,8 @@ QtObject {
 	//////////
 
 	// Font used for Reyn Tweets
-	property string font: {
-		switch (Qt.plateform.os.name) {
+	readonly property string font: {
+		switch (Qt.platform.os) {
 			case "windows":
 				return "Calibri"
 
@@ -127,21 +127,108 @@ QtObject {
 			default:
 				return "Arial"
 		}
-
-
 	}
 
-	// Font size for big titles
-	property int font_size_title: 36
+	// Font size XXL for big titles
+	readonly property real font_size_xxl: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 36.0
 
-	// Font size
-	property int font_size: 11
+			case "linux":
+				return 36.0
+
+			default:
+				return 36.0
+		}
+	}
+
+	// Font size XL
+	readonly property real font_size_xl: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 24.75
+
+			case "linux":
+				return 24.75
+
+			default:
+				return 24.75
+		}
+	}
+
+	// Font size Large
+	readonly property real font_size_l: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 15.0
+
+			case "linux":
+				return 15.0
+
+			default:
+				return 15.0
+		}
+	}
+
+	// Font size Medium
+	readonly property real font_size: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 11.0
+
+			case "linux":
+				return 11.0
+
+			case "ubuntu":
+				return 10.5
+
+			default:
+				return 11.0
+		}
+	}
 
 	// Font size (small - S)
-	property int font_size_s: 10
+	readonly property real font_size_s: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 9.0
+
+			case "linux":
+				return 9.0
+
+			default:
+				return 9.0
+		}
+	}
 
 	// Font size (very small - XS)
-	property int font_size_xs: 9
+	readonly property real font_size_xs: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 7.5
+
+			case "linux":
+				return 7.5
+
+			default:
+				return 7.5
+		}
+	}
+
+	// Font size (very small - XXS)
+	readonly property real font_size_xxs: {
+		switch (Qt.platform.os) {
+			case "windows":
+				return 6.0
+
+			case "linux":
+				return 6.0
+
+			default:
+				return 6.0
+		}
+	}
 
 
 	//////////////////
@@ -149,5 +236,5 @@ QtObject {
 	//////////////////
 
 	// Folder storing the icons
-	property string icon_folder: "/resources/icons"
+	readonly property string icon_folder: "/resources/icons"
 }

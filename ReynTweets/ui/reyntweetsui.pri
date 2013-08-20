@@ -25,11 +25,9 @@
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
-HEADERS += \
-	ui/uiconstants.hpp
+HEADERS +=
 
-SOURCES += \
-	ui/uiconstants.cpp
+SOURCES +=
 
 OTHER_FILES = \
 	ui/qmlapplicationviewer.pri \

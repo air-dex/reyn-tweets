@@ -172,8 +172,9 @@ SOURCES += \
 	model2/users/contributorlist.cpp \
 	model2/users/userentities.cpp \
 	model2/timelines/timeline.cpp \
-	model2/configuration/reyntweetsconfiguration.cpp \
-    model2/configuration/useraccount.cpp
+	model2/configuration/appconfiguration.cpp \
+	model2/configuration/useraccount.cpp \
+    model2/configuration/userconfiguration.cpp
 
 
 HEADERS  += \
@@ -320,8 +321,9 @@ HEADERS  += \
 	model2/users/contributorlist.hpp \
 	model2/users/userentities.hpp \
 	model2/timelines/timeline.hpp \
-	model2/configuration/reyntweetsconfiguration.hpp \
-    model2/configuration/useraccount.hpp
+	model2/configuration/appconfiguration.hpp \
+	model2/configuration/useraccount.hpp \
+    model2/configuration/userconfiguration.hpp
 
 
 OTHER_FILES = \

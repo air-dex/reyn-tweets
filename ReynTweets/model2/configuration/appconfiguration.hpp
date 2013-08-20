@@ -21,8 +21,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REYNTWEETSCONFIGURATION_HPP
-#define REYNTWEETSCONFIGURATION_HPP
+#ifndef APPCONFIGURATION_HPP
+#define APPCONFIGURATION_HPP
 
 #include <QByteArray>
 #include <QString>
@@ -41,11 +41,11 @@
 /// <li><a href="http://getpocket.com">Pocket</a></li>
 /// <li>More to come...</li>
 /// </ul>
-class ReynTweetsConfiguration : public JsonObject {
+class AppConfiguration : public JsonObject {
 	public:
 		/// @fn ReynTweetsAppConfiguration();
 		/// @brief Constructor
-		ReynTweetsConfiguration();
+		AppConfiguration();
 
 		/// @fn CoreResult load();
 		/// @brief Loading the settings from the settings file.
@@ -222,4 +222,4 @@ class ReynTweetsConfiguration : public JsonObject {
 		QByteArray pocketAPIKey;
 };
 
-#endif // REYNTWEETSCONFIGURATION_HPP
+#endif // APPCONFIGURATION_HPP

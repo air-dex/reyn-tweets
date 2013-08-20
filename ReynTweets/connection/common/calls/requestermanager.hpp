@@ -51,10 +51,17 @@ class RequesterManager : protected QMap<QUuid, RequestInfos>
 		/// @param requester Entity that executing the request
 		void addRequest(QObject * asker, GenericRequester * requester);
 
-		/// @fn void removeRequest(QUuid requestUuid);
+		/// @fn void removeRequest(GenericRequester * requester);
 		/// @brief Removing a request from the manager
-		/// @param requestUuid UUID of the requester
-		void removeRequest(QUuid requestUuid);
+		/// @param request Requester to remove
+		void removeRequest(GenericRequester * requester);
+
+		/// @fn QObject * getAsker(GenericRequester * requester);
+		/// @brief Getting the QObject which asked for the request
+		/// @param requester The requester which executes the request
+		/// @return The QObject which asked for the process. It should be
+		/// a Process.
+		QObject * getAsker(GenericRequester * requester);
 };
 
 #endif // REQUESTERMANAGER_HPP

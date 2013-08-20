@@ -77,8 +77,8 @@ ProcessManager ReynCore::processManager = ProcessManager();
 // Adding a requester to the requester manager
 void ReynCore::addProcess(GenericProcess * process) {
 	if (process) {
-		connect(process, SIGNAL(processEnded()),
-				this, SLOT(endProcess()));
+		connect(process, SIGNAL(processEnded(ProcessResult)),
+				this, SLOT(endProcess(ProcessResult)));
 		processManager.addProcess(requestDemander, process);
 	}
 }
@@ -86,30 +86,19 @@ void ReynCore::addProcess(GenericProcess * process) {
 // Removing a requester of the requester manager
 void ReynCore::removeProcess(GenericProcess * process) {
 	if (process) {
-		disconnect(process, SIGNAL(processEnded()),
-				   this, SLOT(endProcess()));
-		processManager.removeProcess(process->getProcessUUID());
+		disconnect(process, SIGNAL(processEnded(ProcessResult)),
+				   this, SLOT(endProcess(ProcessResult)));
+		processManager.removeProcess(process);
 	}
 }
 
 // Slot executed when a requester has finished its work
-void ReynCore::endProcess() {
+void ReynCore::endProcess(ProcessResult processResult) {
 	// Getting the process
 	GenericProcess * process = qobject_cast<GenericProcess *>(sender());
-	ProcessWrapper result = buildResultSender(process);
+	ProcessWrapper result(processManager.getAsker(process), processResult);
 	removeProcess(process);
 	emit sendResult(result);
-}
-
-// Method that builds the wrapper of a result
-ProcessWrapper ReynCore::buildResultSender(GenericProcess * endedProcess) {
-	if (endedProcess) {
-		ProcessInfos & procInfos = processManager.getProcessInfos(endedProcess->getProcessUUID());
-		return ProcessWrapper(procInfos.asker,
-							  procInfos.process->getProcessResult());
-	} else {
-		return ProcessWrapper();
-	}
 }
 
 // Inline method for executing processes

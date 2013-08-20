@@ -25,23 +25,37 @@
 
 #include "requestermanager.hpp"
 
+// Constructor
 RequesterManager::RequesterManager() :
 	QMap<QUuid, RequestInfos>()
-{
-}
+{}
 
+// Adding a request to the manager
 void RequesterManager::addRequest(QObject * asker, GenericRequester * requester) {
 	if (requester != 0) {
-		insert(requester->getUuid(), RequestInfos(asker, requester));
+		RequestInfos reqinf;
+
+		reqinf.asker = asker;
+		reqinf.requester = requester;
+
+		insert(requester->getUuid(), reqinf);
 	}
 }
 
-void RequesterManager::removeRequest(QUuid requestUuid) {
-	GenericRequester * requester = getRequestInfos(requestUuid).getRequester();
-	delete requester;
-	remove(requestUuid);
+// Removing a request to the manager
+void RequesterManager::removeRequest(GenericRequester * requester) {
+	if (requester) {
+		remove(requester->getUuid());
+		delete requester;
+	}
 }
 
+// Getting informations on a request
 RequestInfos & RequesterManager::getRequestInfos(QUuid requestUuid) {
 	return (*this)[requestUuid];
+}
+
+// Getting the QObject which asked for the request
+QObject * RequesterManager::getAsker(GenericRequester * requester) {
+	return requester ? getRequestInfos(requester->getUuid()).asker : 0;
 }

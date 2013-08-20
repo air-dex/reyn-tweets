@@ -56,9 +56,10 @@ class GenericProcess : public QObject
 		virtual void startProcess() = 0;
 
 	signals:
-		/// @fn void processEnded();
+		/// @fn void processEnded(ProcessResult processResult);
 		/// @brief Signal sent when the process has just ended
-		void processEnded();
+		/// @param processResult Result of the process
+		void processEnded(ProcessResult processResult);
 
 	protected:
 		/// @brief UUID of the process
@@ -76,7 +77,9 @@ class GenericProcess : public QObject
 		/// @param issue Description on how the process ends.
 		/// @param result Results of the process.
 		/// @param errorMessage Message if an error occurs during the process.
-		virtual void endProcess(CoreResult issue, QVariant result, QString errorMessage);
+		virtual void endProcess(CoreResult issue,
+								QVariant result,
+								QString errorMessage);
 
 		/// @fn virtual void endProcess(CoreResult issue, QVariant result);
 		/// @brief Ending the process.

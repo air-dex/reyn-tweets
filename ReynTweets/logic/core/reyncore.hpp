@@ -76,9 +76,10 @@ class ReynCore : public QObject
 		void sendResult(ProcessWrapper res);
 
 	public slots:
-		/// @fn void endProcess();
+		/// @fn void endProcess(ProcessResult processResult);
 		/// @brief Slot executed when a requester has finished its work
-		void endProcess();
+		/// @param processResult Result of the process
+		void endProcess(ProcessResult processResult);
 
 	protected:
 		/// @brief QObject that asks for the request
@@ -108,12 +109,6 @@ class ReynCore : public QObject
 		/// @brief Removing a process of the process manager
 		/// @param process Address of the process
 		void removeProcess(GenericProcess * process);
-
-		/// @fn ProcessWrapper buildResultSender(GenericProcess * endedProcess);
-		/// @brief Method that builds the wrapper of a result
-		/// @param endedProcess Ended process that contains the result
-		/// @return The wrapper of the process result
-		ProcessWrapper buildResultSender(GenericProcess * endedProcess);
 
 		/// @fn inline void executeProcess(GenericProcess * process);
 		/// @brief Inline method for executing processes

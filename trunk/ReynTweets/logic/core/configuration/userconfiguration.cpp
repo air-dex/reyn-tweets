@@ -161,10 +161,10 @@ void UserConfiguration::setUserAccount(UserAccount * account) {
 //////////////////////////////
 
 // Loading the configuration
-CoreResult UserConfiguration::load(QString & errorMsg) {
+ReynTweets::CoreResult UserConfiguration::load(QString & errorMsg) {
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (!this->checkConfigurationFile()) {
-		CoreResult reinitRes = this->reinit(errorMsg);
+		ReynTweets::CoreResult reinitRes = this->reinit(errorMsg);
 		return reinitRes;
 	}
 
@@ -173,12 +173,12 @@ CoreResult UserConfiguration::load(QString & errorMsg) {
 
 	if (!confFile.exists()) {
 		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : unknown configuration file. Try to create it manually");
-		return CONFIGURATION_FILE_UNKNOWN;
+		return ReynTweets::CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	if (!confFile.open(QFile::ReadOnly)) {
 		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened. Check if you can read it.");
-		return CONFIGURATION_FILE_NOT_OPEN;
+		return ReynTweets::CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 	// Launching the configuration
@@ -197,7 +197,7 @@ CoreResult UserConfiguration::load(QString & errorMsg) {
 				.append(' ')
 				.append(parseErrMsg)
 				.append('.');
-		return PARSE_ERROR;
+		return ReynTweets::PARSE_ERROR;
 	}
 
 
@@ -209,24 +209,28 @@ CoreResult UserConfiguration::load(QString & errorMsg) {
 
 	bool fillOK = oldErr == errorMsg;	// More errors if it fails.
 
-	return fillOK ? LOAD_CONFIGURATION_SUCCESSFUL : EXPECTED_KEY;
+	return fillOK ?
+				ReynTweets::LOAD_CONFIGURATION_SUCCESSFUL
+			  : ReynTweets::EXPECTED_KEY;
 }
 
 // Saving the configuration
-CoreResult UserConfiguration::save(QString & errorMsg) {
+ReynTweets::CoreResult UserConfiguration::save(QString & errorMsg) {
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (this->checkConfigurationFile()) {
 		// Writing the configuration
-		CoreResult writeConf = this->writeConfigurationInFile(errorMsg);
+		ReynTweets::CoreResult writeConf = this->writeConfigurationInFile(errorMsg);
 
-		return writeConf == WRITE_SUCCESSFUL ? SAVE_SUCCESSFUL : writeConf;
+		return writeConf == ReynTweets::WRITE_SUCCESSFUL ?
+					ReynTweets::SAVE_SUCCESSFUL
+				  : writeConf;
 	} else {
 		return this->reinit(errorMsg);
 	}
 }
 
 // Reinit the configuration file
-CoreResult UserConfiguration::reinit(QString & errorMsg) {
+ReynTweets::CoreResult UserConfiguration::reinit(QString & errorMsg) {
 	// Default user configuration
 	this->reset();
 
@@ -236,14 +240,16 @@ CoreResult UserConfiguration::reinit(QString & errorMsg) {
 	// If fhe App data directory does not exist, create it.
 	if (!confdir.exists() && !confdir.mkpath(confdir.path())) {
 		errorMsg = UserConfiguration::trUtf8("Cannot create the user configuration file because its directory cannot be created. Try to create it manually");
-		return APP_DATA_DIR_UNKNOWN;
+		return ReynTweets::APP_DATA_DIR_UNKNOWN;
 	}
 
 	// Writing the configuration
 	// Forces RW in order to be sure that the file file is readable.
-	CoreResult writeConf = this->writeConfigurationInFile(errorMsg, QIODevice::ReadWrite);
+	ReynTweets::CoreResult writeConf = this->writeConfigurationInFile(errorMsg, QIODevice::ReadWrite);
 
-	return writeConf == WRITE_SUCCESSFUL ? REINIT_SUCCESSFUL : writeConf;
+	return writeConf == ReynTweets::WRITE_SUCCESSFUL ?
+				ReynTweets::REINIT_SUCCESSFUL
+			  : writeConf;
 }
 
 
@@ -271,23 +277,25 @@ bool UserConfiguration::checkConfigurationFile() {
 }
 
 // Writing the configuration
-CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODevice::OpenMode openMode) {
+ReynTweets::CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg,
+																   QIODevice::OpenMode openMode)
+{
 	// Opening the configuration file
 	QFile confFile(this->getConfigurationFilePath());
 
 	if (!confFile.open(openMode)) {
 		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened.");
-		return CONFIGURATION_FILE_NOT_OPEN;
+		return ReynTweets::CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 	if (!confFile.isWritable()) {
 		errorMsg = UserConfiguration::trUtf8("Cannot write the user configuration file.");
-		return CONFIGURATION_FILE_NOT_OPEN;
+		return ReynTweets::CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 	if (!confFile.exists()) {
 		errorMsg = UserConfiguration::trUtf8("Cannot create the user configuration file. Try to create it manually");
-		return CONFIGURATION_FILE_UNKNOWN;
+		return ReynTweets::CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	// Saving the configuration
@@ -297,5 +305,5 @@ CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODe
 	confFile.close();
 
 	errorMsg = "";
-	return WRITE_SUCCESSFUL;
+	return ReynTweets::WRITE_SUCCESSFUL;
 }

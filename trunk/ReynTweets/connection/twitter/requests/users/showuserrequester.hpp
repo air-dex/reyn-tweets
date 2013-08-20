@@ -59,7 +59,7 @@ class ShowUserRequester : public TwitterRequester
 
 	protected:
 		/// @brief How the user is identified
-		IdentificationWay idWay;
+		LibRT::IdentificationWay idWay;
 
 
 		////////////////

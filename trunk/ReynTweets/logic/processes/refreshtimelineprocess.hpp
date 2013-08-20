@@ -106,14 +106,14 @@ class RefreshTimelineProcess : public GenericProcess
 
 		/// @brief Result of the process.
 		///
-		/// If some tweets are loaded, the CoreResult is TIMELINE_RETRIEVED,
-		/// even if there are problems while retrieving intermediate tweets.
-		/// Actually it depends on what happens while loading the most
-		/// recent tweets.
+		/// If some tweets are loaded, the CoreResult is
+		/// ReynTweets::TIMELINE_RETRIEVED, even if there are problems
+		/// while retrieving intermediate tweets. Actually it depends on what
+		/// happens while loading the most recent tweets.
 		/// If something bad happens while loading intermediate tweets, it will
 		/// be stored in the process results in a field called
 		/// "intermediate_result".
-		CoreResult finalEnd;
+		ReynTweets::CoreResult finalEnd;
 
 
 		/////////////////
@@ -141,14 +141,14 @@ class RefreshTimelineProcess : public GenericProcess
 
 		/// @fn virtual void endProcess(QString errorMessage,
 		///								bool gap = false,
-		///								CoreResult intermediateEnd = INVALID_END);
+		///								ReynTweets::CoreResult intermediateEnd = ReynTweets::INVALID_END);
 		/// @brief Special overriding of endProcess();
 		/// @param errorMessage Process error message.
 		/// @param intermediateEnd Value of the field "intermediate_end".
 		/// @param gap Value of the field "gap".
 		virtual void endProcess(QString errorMessage,
 								bool gap = false,
-								CoreResult intermediateEnd = INVALID_END);
+								ReynTweets::CoreResult intermediateEnd = ReynTweets::INVALID_END);
 
 	protected slots:
 		/// @fn void loadFirstTweetsEnded(ResultWrapper res);

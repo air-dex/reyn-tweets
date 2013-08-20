@@ -62,7 +62,7 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -71,37 +71,37 @@ void LaunchingControl::launchOK(ProcessWrapper res) {
 			   this, &LaunchingControl::launchOK);
 
 	switch (result.processEnd) {
-		case LAUNCH_SUCCESSFUL:
+		case ReynTweets::LAUNCH_SUCCESSFUL:
 			// Process successful
 			emit actionEnded(true,
 							 LaunchingControl::trUtf8("Reyn Tweets launched."),
 							 false);
 			break;
 
-		case AUTHENTICATION_REQUIRED:
+		case ReynTweets::AUTHENTICATION_REQUIRED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case REINIT_SUCCESSFUL:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::REINIT_SUCCESSFUL:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Problems with configuration file
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case LOADING_CONFIGURATION_ERROR:
-		case EXPECTED_KEY:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::LOADING_CONFIGURATION_ERROR:
+		case ReynTweets::EXPECTED_KEY:
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);

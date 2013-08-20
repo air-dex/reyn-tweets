@@ -101,16 +101,15 @@ void DeleteTweetProcess::canDeleteTweet() {
 void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &DeleteTweetProcess::searchRetweetIDEnded);
 
-	NetworkResultType errorType = result.resultType;
 	QString errorMsg = "";
-	CoreResult procEnd;	// Filled in ProcessUtils methods
+	ReynTweets::CoreResult procEnd;	// Filled in ProcessUtils methods
 
 	// For a potenitial anticipated end
 	QString beginErrMsg = "";
@@ -119,8 +118,8 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			.append(' ');
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:{
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:{
 			// Updating tweetToDelete
 			tweetToDelete.reset();
 			tweetToDelete.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
@@ -142,15 +141,15 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			return deleteTweet(idFound, addInfos);
 		}break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
@@ -168,7 +167,6 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 									 QString addInfos)
 {
-	CoreResult procEnd = TWEET_UNDESTROYABLE;
 	QString errMsg = "";
 
 	if (allowToDelete) {
@@ -192,48 +190,46 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 	}
 
 	// Failed end
-	endProcess(procEnd, errMsg);
+	endProcess(ReynTweets::TWEET_UNDESTROYABLE, errMsg);
 }
 
 // After deleting the tweet
 void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &DeleteTweetProcess::deleteEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;	// Filled in ProcessUtils methods
+	ReynTweets::CoreResult procEnd;	// Filled in ProcessUtils methods
 
 	// For NO_REQUEST_ERROR requests
 	QVariantMap deletionResult;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
 			deletionResult.insert("twitter_result", result.parsedResult);
 			deletionResult.insert("keep_in_timeline",
 								  QVariant::fromValue(keepInTimeline));
 
-			return endProcess(TWEET_DELETED,
+			return endProcess(ReynTweets::TWEET_DELETED,
 							  QVariant::fromValue(deletionResult));
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 

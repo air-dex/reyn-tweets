@@ -28,7 +28,7 @@
 RetweetRequester::RetweetRequester(TwitterAuthenticator &authManager,
 								   qlonglong statusID,
 								   bool userIDonly) :
-	TwitterRequester(Network::POST, TwitterURL::RETWEET_URL, authManager),
+	TwitterRequester(LibRT::POST, TwitterURL::RETWEET_URL, authManager),
 	tweetID(statusID),
 	trimUser(userIDonly)
 {

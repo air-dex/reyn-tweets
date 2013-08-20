@@ -29,7 +29,7 @@ PostToTwitLongerRequester::PostToTwitLongerRequester(TwitLongerAuthenticator &tl
 													 QString userScreenName,
 													 qlonglong replyToStatusID,
 													 QString replyToUserScreenName) :
-	TwitLongerRequester(Network::POST, TwitLongerURL::POST_LONG_TWEET_URL, tlmanager),
+	TwitLongerRequester(LibRT::POST, TwitLongerURL::POST_LONG_TWEET_URL, tlmanager),
 	message(longTweet),
 	username(userScreenName),
 	replyToTweetID(replyToStatusID),
@@ -50,7 +50,7 @@ void PostToTwitLongerRequester::buildPOSTParameters() {
 	} else {
 		// End the request to TwitLonger to send the post classicly.
 		RequestResult requestResult;
-		requestResult.resultType = Network::NO_REQUEST_ERROR;
+		requestResult.resultType = LibRT::NO_REQUEST_ERROR;
 		requestResult.parsedResult = QVariant::fromValue<QString>("too_short");
 		emit requestDone(requestResult);
 	}

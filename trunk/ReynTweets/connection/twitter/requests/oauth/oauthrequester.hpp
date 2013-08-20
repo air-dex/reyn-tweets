@@ -36,7 +36,7 @@ class OAuthRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn OAuthRequester(RequestType type,
+		/// @fn OAuthRequester(Network::HTTPRequestType type,
 		///					   QString url,
 		///					   TwitterAuthenticator &authManager,
 		///					   ErrorType parseErrorType,
@@ -55,10 +55,10 @@ class OAuthRequester : public TwitterRequester
 		/// parameter is required for authentication.
 		/// @param verifierNeeded Boolean indicating if the oauth_verifier
 		/// parameter is required for authentication.
-		OAuthRequester(HTTPRequestType type,
+		OAuthRequester(LibRT::HTTPRequestType type,
 					   QString url,
 					   TwitterAuthenticator &authManager,
-					   Network::NetworkResultType parseErrorType,
+					   LibRT::NetworkResultType parseErrorType,
 					   bool tokenNeeded = true,
 					   bool callbackURLNeeded = false,
 					   bool verifierNeeded = false);

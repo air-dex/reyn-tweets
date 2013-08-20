@@ -68,7 +68,7 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -79,7 +79,7 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	bool fatal = false;
 
 	switch (result.processEnd) {
-		case REQUEST_TOKENS_OK: {
+		case ReynTweets::REQUEST_TOKENS_OK: {
 			// Send HTML to QML
 			QVariantMap parsedResults = result.results.toMap();
 			QString authorizePage = parsedResults.value("html").toString();
@@ -89,23 +89,23 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 		} return;
 
 		// Problems that can be solved trying later
-		case NO_TOKENS:
-		case RATE_LIMITED:
-		case TWITTER_DOWN:
-		case NETWORK_CALL:
-		case REFUSED_REQUEST:	// Update limits
+		case ReynTweets::NO_TOKENS:
+		case ReynTweets::RATE_LIMITED:
+		case ReynTweets::TWITTER_DOWN:
+		case ReynTweets::NETWORK_CALL:
+		case ReynTweets::REFUSED_REQUEST:	// Update limits
 			fatal = false;
 			break;
 
 		// Problematic ends
-		case PARSE_ERROR:
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case AUTHENTICATION_REQUIRED:
-		case INVALID_SEARCH:
-		case GONE:
-		case UNPROCESSABLE:
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::PARSE_ERROR:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::AUTHENTICATION_REQUIRED:
+		case ReynTweets::INVALID_SEARCH:
+		case ReynTweets::GONE:
+		case ReynTweets::UNPROCESSABLE:
+		case ReynTweets::UNKNOWN_PROBLEM:
 			fatal = true;
 			break;
 
@@ -207,7 +207,7 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -216,13 +216,13 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 			   this, &AllowControl::accessTokensOK);
 
 	QString displayMessage = result.errorMsg;
-	CoreResult procEnd = result.processEnd;
+	ReynTweets::CoreResult procEnd = result.processEnd;
 	bool endOK = false;
 	bool fatal = false;
 
 	// Real process end
 	if (result.results.toMap().value("authorized").toBool()) {
-		if (procEnd != AUTHORIZED) {
+		if (procEnd != ReynTweets::AUTHORIZED) {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized.");
 		} else {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized but")
@@ -230,37 +230,37 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 							 .append(result.errorMsg);
 		}
 
-		procEnd = AUTHORIZED;
+		procEnd = ReynTweets::AUTHORIZED;
 	}
 
 	switch (procEnd) {
-		case ALLOW_SUCCESSFUL:
-		case AUTHORIZED:
+		case ReynTweets::ALLOW_SUCCESSFUL:
+		case ReynTweets::AUTHORIZED:
 			// End it !
 			endOK = true;
 			break;
 
 		// Problems that can be solved trying later
-		case NO_TOKENS:
-		case RATE_LIMITED:
-		case TWITTER_DOWN:
-		case NETWORK_CALL:
-		case REINIT_SUCCESSFUL:
-		case REFUSED_REQUEST:	// Update limits
+		case ReynTweets::NO_TOKENS:
+		case ReynTweets::RATE_LIMITED:
+		case ReynTweets::TWITTER_DOWN:
+		case ReynTweets::NETWORK_CALL:
+		case ReynTweets::REINIT_SUCCESSFUL:
+		case ReynTweets::REFUSED_REQUEST:	// Update limits
 			fatal = false;
 			break;
 
 		// Problematic ends
-		case PARSE_ERROR:
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case AUTHENTICATION_REQUIRED:
-		case INVALID_SEARCH:
-		case GONE:
-		case UNPROCESSABLE:
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::PARSE_ERROR:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::AUTHENTICATION_REQUIRED:
+		case ReynTweets::INVALID_SEARCH:
+		case ReynTweets::GONE:
+		case ReynTweets::UNPROCESSABLE:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::UNKNOWN_PROBLEM:
 			fatal = true;
 			break;
 

@@ -28,8 +28,8 @@
 ShowUserRequester::ShowUserRequester(TwitterAuthenticator & authManager,
 									 qlonglong id,
 									 bool entities) :
-	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(IdWay::ID),
+	TwitterRequester(LibRT::GET, TwitterURL::SHOW_USER_URL, authManager),
+	idWay(LibRT::ID),
 	userID(id),
 	includeEntities(entities),
 	screenName()
@@ -39,8 +39,8 @@ ShowUserRequester::ShowUserRequester(TwitterAuthenticator & authManager,
 ShowUserRequester::ShowUserRequester(TwitterAuthenticator & authManager,
 									 QString name,
 									 bool entities) :
-	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(IdWay::SCREEN_NAME),
+	TwitterRequester(LibRT::GET, TwitterURL::SHOW_USER_URL, authManager),
+	idWay(LibRT::SCREEN_NAME),
 	userID(),
 	includeEntities(entities),
 	screenName(name)
@@ -48,13 +48,13 @@ ShowUserRequester::ShowUserRequester(TwitterAuthenticator & authManager,
 
 // Building getParameters
 void ShowUserRequester::buildGETParameters() {
-	if (idWay == IdWay::ID) {
+	if (idWay == LibRT::ID) {
 		getParameters.insert("id", QString::number(userID));
 	}
 
 	getParameters.insert("include_entities", boolInString(includeEntities));
 
-	if (idWay == IdWay::SCREEN_NAME) {
+	if (idWay == LibRT::SCREEN_NAME) {
 		getParameters.insert("screen_name", screenName);
 	}
 

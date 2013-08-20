@@ -29,10 +29,10 @@
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(TwitterAuthenticator &authManager, bool forceLog, QString writeLogin) :
-	OAuthRequester(Network::GET,
+	OAuthRequester(LibRT::GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
-				   Network::NO_PARSING),	// Change because of pbms ?
+				   LibRT::NO_PARSING),	// Change because of pbms ?
 	forceLogin(forceLog),
 	screenName(writeLogin)
 {}
@@ -66,7 +66,7 @@ QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 		return QVariant::fromValue(resmap);
 	} else {
 		// Send an XML error message. Let's get it !
-		parsingErrorType = Network::XML_PARSING;
+		parsingErrorType = LibRT::XML_PARSING;
 
 		XMLParser parser;
 		QString parseErr;

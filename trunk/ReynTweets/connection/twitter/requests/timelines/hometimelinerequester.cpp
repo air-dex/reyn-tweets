@@ -33,7 +33,7 @@ HomeTimelineRequester::HomeTimelineRequester(TwitterAuthenticator & authManager,
 											 bool withoutReplies,
 											 int nbTweets,
 											 bool withContributorsDetails) :
-	TwitterRequester(Network::GET, TwitterURL::HOME_TIMELINE_URL, authManager),
+	TwitterRequester(LibRT::GET, TwitterURL::HOME_TIMELINE_URL, authManager),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),

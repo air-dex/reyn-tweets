@@ -27,26 +27,26 @@
 
 #include "coreresult.hpp"
 
-QMap<int, CoreResult> httpResults = buildHttpResults();
+QMap<int, ReynTweets::CoreResult> httpResults = buildHttpResults();
 
 // Initialize httpResults
-QMap<int, CoreResult> buildHttpResults() {
-	QMap<int, CoreResult> res;
+QMap<int, ReynTweets::CoreResult> buildHttpResults() {
+	QMap<int, ReynTweets::CoreResult> res;
 
-	res.insert(304, NO_MORE_DATA);
-	res.insert(400, BAD_REQUEST);
-	res.insert(401, AUTHENTICATION_REQUIRED);
-	res.insert(403, REFUSED_REQUEST);
-	res.insert(404, BAD_REQUEST);
-	res.insert(406, INVALID_SEARCH);
-	res.insert(410, GONE);
-	res.insert(420, RATE_LIMITED);
-	res.insert(422, UNPROCESSABLE);
-	res.insert(429, RATE_LIMITED);
-	res.insert(500, TWITTER_DOWN);
-	res.insert(502, TWITTER_DOWN);
-	res.insert(503, TWITTER_DOWN);
-	res.insert(504, TWITTER_DOWN);
+	res.insert(304, ReynTweets::NO_MORE_DATA);
+	res.insert(400, ReynTweets::BAD_REQUEST);
+	res.insert(401, ReynTweets::AUTHENTICATION_REQUIRED);
+	res.insert(403, ReynTweets::REFUSED_REQUEST);
+	res.insert(404, ReynTweets::BAD_REQUEST);
+	res.insert(406, ReynTweets::INVALID_SEARCH);
+	res.insert(410, ReynTweets::GONE);
+	res.insert(420, ReynTweets::RATE_LIMITED);
+	res.insert(422, ReynTweets::UNPROCESSABLE);
+	res.insert(429, ReynTweets::RATE_LIMITED);
+	res.insert(500, ReynTweets::TWITTER_DOWN);
+	res.insert(502, ReynTweets::TWITTER_DOWN);
+	res.insert(503, ReynTweets::TWITTER_DOWN);
+	res.insert(504, ReynTweets::TWITTER_DOWN);
 
 	return res;
 }

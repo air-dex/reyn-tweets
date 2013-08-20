@@ -87,22 +87,20 @@ void AccessTokensProcess::accessToken() {
 void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &AccessTokensProcess::accessTokenDemanded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// The authentication process is ended.
 
 			// Extract the different values
@@ -121,11 +119,11 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 				return updateConfiguration(accessToken, tokenSecret, userID, screenName);
 			} else {
 				// Don't update the configuration. Stop the process here.
-				procEnd = AUTHORIZED;
+				procEnd = ReynTweets::AUTHORIZED;
 			}
 		} break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -136,14 +134,14 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 					 || httpCode == 429
 					 ) ?
 						httpResults.value(httpCode)
-					  : NO_TOKENS;
+					  : ReynTweets::NO_TOKENS;
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::OAUTH_PARSING:
+		case LibRT::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  procEnd);
@@ -180,22 +178,20 @@ void AccessTokensProcess::updateConfiguration(QByteArray accessToken,
 void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &AccessTokensProcess::retrieveUserEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			UserInfos u;
@@ -205,14 +201,14 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 			saveConfiguration();
 		}return;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			// Looking for specific value of the return code
 			procEnd = (httpCode / 100 == 5
 					 || httpCode == 420
 					 || httpCode == 429
 					 ) ?
 						httpResults.value(httpCode)
-					  : NO_TOKENS;
+					  : ReynTweets::NO_TOKENS;
 
 			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 
@@ -220,11 +216,11 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  errorMsg,
 												  procEnd);
@@ -244,26 +240,26 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 // Saves the configuration
 void AccessTokensProcess::saveConfiguration() {
 	QString errorMsg = "";
-	CoreResult saveEnd = configuration->save(errorMsg);
+	ReynTweets::CoreResult saveEnd = configuration->save(errorMsg);
 
 	switch (saveEnd) {
-		case SAVE_SUCCESSFUL:
+		case ReynTweets::SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			saveEnd = ALLOW_SUCCESSFUL;
+			saveEnd = ReynTweets::ALLOW_SUCCESSFUL;
 			break;
 
-		case REINIT_SUCCESSFUL:
+		case ReynTweets::REINIT_SUCCESSFUL:
 			errorMsg = AccessTokensProcess::trUtf8("User configuration was reset.");
 			break;
 
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
-			saveEnd = UNKNOWN_PROBLEM;
+			saveEnd = ReynTweets::UNKNOWN_PROBLEM;
 			errorMsg = AccessTokensProcess::trUtf8("Unknown problem").append(" : ")
-					   .append(errorMsg);;
+					   .append(errorMsg);
 			break;
 	}
 

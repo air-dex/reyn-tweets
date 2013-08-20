@@ -30,6 +30,8 @@
 
 #include <QMap>
 
+namespace ReynTweets {
+
 /// @enum CoreResult
 /// @brief Unified error for all the possible ends of all treatments
 enum CoreResult {
@@ -161,6 +163,7 @@ enum CoreResult {
 	/// @brief The application is denied
 	DENIED,
 
+	// TODO : delete ?
 	/// @brief Unexpected redirection during POST authorizing
 	POST_AUTHORIZING_FAILED,
 
@@ -231,12 +234,14 @@ enum CoreResult {
 	FAVORITE_SUCCESSFUL
 };
 
-/// @brief Entity matching HTTP Return codes and CoreResult.
-extern QMap<int, CoreResult> httpResults;
+}	// end namespace
 
-/// @fn QMap<int, CoreResult> buildHttpResults();
+/// @brief Entity matching HTTP Return codes and CoreResult.
+extern QMap<int, ReynTweets::CoreResult> httpResults;
+
+/// @fn QMap<int, ReynTweets::CoreResult> buildHttpResults();
 /// @brief Function to build httpResults.
 /// @return A QMap whose content will be httpResults'.
-QMap<int, CoreResult> buildHttpResults();
+QMap<int, ReynTweets::CoreResult> buildHttpResults();
 
 #endif // CORERESULT_HPP

@@ -28,7 +28,7 @@ GetTweetProcess::GetTweetProcess(qlonglong id,
 								 bool userIDonly,
 								 bool withEntities,
 								 bool withRTid) :
-	SingleTwitterCallProcess(TWEET_RETRIEVED),
+	SingleTwitterCallProcess(ReynTweets::TWEET_RETRIEVED),
 	tweetID(id),
 	trimUser(userIDonly),
 	includeEntities(withEntities),

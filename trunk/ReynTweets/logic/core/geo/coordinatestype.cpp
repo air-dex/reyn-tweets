@@ -29,7 +29,7 @@
 //////////////////////
 
 // Converting a CoordinatesType into a QString
-QString CoordType::coord2string(CoordType::CoordinatesType coord) {
+QString ReynTweets::coord2string(ReynTweets::CoordinatesType coord) {
 	switch (coord) {
 		case POINT:
 			return "Point";
@@ -43,7 +43,7 @@ QString CoordType::coord2string(CoordType::CoordinatesType coord) {
 }
 
 // Converting a QString into a CoordinatesType
-CoordType::CoordinatesType CoordType::string2coord(QString coordStr) {
+ReynTweets::CoordinatesType ReynTweets::string2coord(QString coordStr) {
 	QString coord = coordStr.toLower();
 
 	if ("point" == coord) {

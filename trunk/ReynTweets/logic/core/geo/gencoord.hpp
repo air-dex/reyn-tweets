@@ -108,7 +108,7 @@ class GenCoord : public JsonObject
 		static QString TYPE_PN;
 
 		/// @brief Type of coordinates.
-		CoordType::CoordinatesType coordType;
+		ReynTweets::CoordinatesType coordType;
 
 		/// @fn virtual QString getType();
 		/// @brief Reading type
@@ -130,12 +130,12 @@ class GenCoord : public JsonObject
 		/// @fn CoordType::CoordinatesType getType();
 		/// @brief Reading type
 		/// @return coordType
-		CoordType::CoordinatesType getType();
+		ReynTweets::CoordinatesType getType();
 
 		/// @fn void setType(CoordType::CoordinatesType newValue);
 		/// @brief Writing type
 		/// @param newValue New value for coordType
-		void setType(CoordType::CoordinatesType newValue);
+		void setType(ReynTweets::CoordinatesType newValue);
 
 
 	/////////////////////////

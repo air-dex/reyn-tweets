@@ -34,7 +34,7 @@
 /// @brief Results of a request
 struct RequestResult {
 	/// @brief Code indicating whether an error occured during the request.
-	NetworkResultType resultType;
+	LibRT::NetworkResultType resultType;
 
 	/// @brief Parsed results.
 	QVariant parsedResult;
@@ -57,7 +57,7 @@ struct RequestResult {
 	/// @fn RequestResult();
 	/// @brief Constructor
 	RequestResult() :
-		resultType(Network::INVALID_RESULT),
+		resultType(LibRT::INVALID_RESULT),
 		parsedResult(),
 		httpResponse(),
 		serviceErrors(),

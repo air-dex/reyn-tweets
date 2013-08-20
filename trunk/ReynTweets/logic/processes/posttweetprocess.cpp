@@ -27,7 +27,7 @@
 PostTweetProcess::PostTweetProcess(Tweet status,
 								   bool userIDonly,
 								   bool showCoord) :
-	SingleTwitterCallProcess(TWEET_POSTED),
+	SingleTwitterCallProcess(ReynTweets::TWEET_POSTED),
 	tweet(status),
 	trimUser(userIDonly),
 	displayCoord(showCoord)

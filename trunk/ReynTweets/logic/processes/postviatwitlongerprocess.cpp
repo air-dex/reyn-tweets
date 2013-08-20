@@ -66,22 +66,20 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, &TwitLongerCalls::sendResult,
 			   this, &PostViaTwitLongerProcess::postToTwitLongerEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
 			if (result.parsedResult.canConvert<QVariantMap>()) {
 				// Request ends successfully
 				QVariantMap resMap = result.parsedResult.toMap();
@@ -103,18 +101,18 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 			}
 			break;
 
-		case Network::SERVICE_ERRORS:
-			procEnd = UNSHORTENABLE_MESSAGE;
+		case LibRT::SERVICE_ERRORS:
+			procEnd = ReynTweets::UNSHORTENABLE_MESSAGE;
 			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Tweet cannot be shortened"))
 					.append(" : ")
 					.append(result.errorMessage);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::XML_PARSING:
+		case LibRT::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
@@ -148,40 +146,38 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &PostViaTwitLongerProcess::postTweetEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
 			if (enoughShortMessage) {
 				// Classic post, normal end
-				return endProcess(TWEET_POSTED, result.parsedResult);
+				return endProcess(ReynTweets::TWEET_POSTED, result.parsedResult);
 			} else {
 				// Go to the next step !
 				postedTweet.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
 				return updateTweetOnTwitLonger();
 			}
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
@@ -209,40 +205,38 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, &TwitLongerCalls::sendResult,
 			   this, &PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
-			procEnd = TWEET_POSTED;
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
+			procEnd = ReynTweets::TWEET_POSTED;
 			break;
 
-		case Network::SERVICE_ERRORS:
-			procEnd = MESSAGE_NOT_UPDATED;
+		case LibRT::SERVICE_ERRORS:
+			procEnd = ReynTweets::MESSAGE_NOT_UPDATED;
 			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Message on TwitLonger cannot be updated : "))
 					.append(" : ")
 					.append(result.errorMessage);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
-			procEnd = MESSAGE_NOT_UPDATED;
+			procEnd = ReynTweets::MESSAGE_NOT_UPDATED;
 			break;
 
-		case Network::XML_PARSING:
+		case LibRT::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, procEnd);
-			procEnd = TWEET_POSTED;
+			procEnd = ReynTweets::TWEET_POSTED;
 			break;
 
 		default:

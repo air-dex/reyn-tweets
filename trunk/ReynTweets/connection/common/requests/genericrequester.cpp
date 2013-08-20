@@ -25,9 +25,9 @@
 #include "../utils/parsers/jsonparser.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(HTTPRequestType type,
+GenericRequester::GenericRequester(LibRT::HTTPRequestType type,
 								   QString url,
-								   NetworkResultType parseError) :
+								   LibRT::NetworkResultType parseError) :
 	QObject(),
 	uuid(QUuid::createUuid()),
 	requestURL(url),
@@ -54,7 +54,7 @@ QUuid GenericRequester::getUuid() {
 }
 
 // Setting parsingErrorType
-void GenericRequester::setParsingErrorType(NetworkResultType parseErrorType) {
+void GenericRequester::setParsingErrorType(LibRT::NetworkResultType parseErrorType) {
 	parsingErrorType = parseErrorType;
 }
 
@@ -106,10 +106,10 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 
 	if (httpReturnCode == -1) {
 		// Invalid response => INVALID_RESULT
-		requestResult.resultType = Network::INVALID_RESULT;
+		requestResult.resultType = LibRT::INVALID_RESULT;
 	} else if (httpReturnCode == 0) {
 		// No response => API_CALL
-		requestResult.resultType = Network::API_CALL;
+		requestResult.resultType = LibRT::API_CALL;
 	} else {
 		// Parsing the response and filling requestResult
 		bool parseOK;
@@ -126,8 +126,8 @@ void GenericRequester::treatResults(NetworkResponse netResponse) {
 																   netResponse);
 			// Updating the NetworkResultType with service errors
 			requestResult.resultType = requestResult.serviceErrors.isEmpty() ?
-						Network::NO_REQUEST_ERROR
-					  : Network::SERVICE_ERRORS;
+						LibRT::NO_REQUEST_ERROR
+					  : LibRT::SERVICE_ERRORS;
 		} else {
 			requestResult.resultType = parsingErrorType;
 

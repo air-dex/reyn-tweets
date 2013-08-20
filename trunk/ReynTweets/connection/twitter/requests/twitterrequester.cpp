@@ -28,10 +28,10 @@
 #include <QTextStream>
 
 // Constructor
-TwitterRequester::TwitterRequester(HTTPRequestType type,
+TwitterRequester::TwitterRequester(LibRT::HTTPRequestType type,
 								   QString url,
 								   TwitterAuthenticator &authManager,
-								   NetworkResultType parseError) :
+								   LibRT::NetworkResultType parseError) :
 	GenericRequester(type, url, parseError),
 	oauthManager(authManager)
 {}

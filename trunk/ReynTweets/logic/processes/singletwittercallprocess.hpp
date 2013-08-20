@@ -37,10 +37,10 @@ class SingleTwitterCallProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn SingleTwitterCallProcess(CoreResult rightEnd = INVALID_END);
+		/// @fn SingleTwitterCallProcess(ReynTweets::CoreResult rightEnd = ReynTweets::INVALID_END);
 		/// @brief Constructor
 		/// @brief rightEnd CoreResult if the request was successful
-		SingleTwitterCallProcess(CoreResult rightEnd = INVALID_END);
+		SingleTwitterCallProcess(ReynTweets::CoreResult rightEnd = ReynTweets::INVALID_END);
 
 		/// @fn void startProcess();
 		/// @brief Starting the processes by connecting the process and Twitter
@@ -58,7 +58,7 @@ class SingleTwitterCallProcess : public GenericProcess
 		ReynTwitterCalls twitter;
 
 		/// @brief CoreResult if the request was successful
-		CoreResult successfullEnd;
+		ReynTweets::CoreResult successfullEnd;
 
 		/// @fn virtual void callTwitter() = 0;
 		/// @brief Method calling Twitter its code often looks like
@@ -72,47 +72,47 @@ class SingleTwitterCallProcess : public GenericProcess
 
 		/// @fn virtual void treatTwitterErrorResult(RequestResult result,
 		///											 QString &errorMsg,
-		///											 CoreResult &procEnd);
+		///											 ReynTweets::CoreResult &procEnd);
 		/// @brief Default treatment when Twitter says that the request was unsuccessful
 		/// @param result Result of the request
 		/// @param errorMsg Error message of the process
 		/// @param procEnd Reference on the result of the process
 		virtual void treatTwitterErrorResult(RequestResult result,
 											 QString &errorMsg,
-											 CoreResult &procEnd);
+											 ReynTweets::CoreResult &procEnd);
 
 		/// @fn virtual void treatApiCallResult(RequestResult result,
 		///                                     QString &errorMsg,
-		///										CoreResult &procEnd);
+		///										ReynTweets::CoreResult &procEnd);
 		/// @brief Default treatment when there was a problem while calling Twitter
 		/// @param result Result of the request
 		/// @param errorMsg Error message of the process
 		/// @param procEnd Reference on the result of the process
 		virtual void treatApiCallResult(RequestResult result,
 										QString &errorMsg,
-										CoreResult &procEnd);
+										ReynTweets::CoreResult &procEnd);
 
 		/// @fn virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
 		///											 QString &errorMsg,
-		///											 CoreResult &procEnd);
+		///											 ReynTweets::CoreResult &procEnd);
 		/// @brief Default treatment when results cannot be parsed
 		/// @param parsingErrors Errors that occured while parsing results
 		/// @param errorMsg Error message of the process
 		/// @param procEnd Reference on the result of the process
 		virtual void treatQjsonParsingResult(ResponseInfos parsingErrors,
 											 QString &errorMsg,
-											 CoreResult &procEnd);
+											 ReynTweets::CoreResult &procEnd);
 
 		/// @fn virtual void treatUnknownResult(QString resultErrorMessage,
 		///										QString &errorMsg,
-		///                                     CoreResult & procEnd);
+		///                                     ReynTweets::CoreResult & procEnd);
 		/// @brief Default treatment when the result was unexpected
 		/// @param resultErrorMessage Error message of the request
 		/// @param errorMsg Error message of the process
 		/// @param procEnd Reference on the result of the process
 		virtual void treatUnknownResult(QString resultErrorMessage,
 										QString &errorMsg,
-										CoreResult & procEnd);
+										ReynTweets::CoreResult & procEnd);
 };
 
 #endif // SINGLETWITTERCALLPROCESS_HPP

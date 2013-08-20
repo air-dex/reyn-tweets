@@ -49,23 +49,23 @@ void LaunchingProcess::startProcess() {
 void LaunchingProcess::checkSettingsLoad() {
 	// Check if the application settings were loaded correctly
 	QString errMsg = "";
-	CoreResult loadEnd = appConfiguration.load(errMsg);
+	ReynTweets::CoreResult loadEnd = appConfiguration.load(errMsg);
 
 	switch(loadEnd) {
-		case LOAD_CONFIGURATION_SUCCESSFUL:
+		case ReynTweets::LOAD_CONFIGURATION_SUCCESSFUL:
 			fillTwitterOAuthAppSettings();
 			fillTwitLongerAppSettings();
 			return loadConfiguration();
 
 		// Expected errors
-		case CONFIGURATION_FILE_NOT_OPEN:
-		case PARSE_ERROR:
-		case CONFIGURATION_FILE_UNKNOWN:
-		case EXPECTED_KEY:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::PARSE_ERROR:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::EXPECTED_KEY:
 			break;
 
 		default:
-			loadEnd = UNKNOWN_PROBLEM;
+			loadEnd = ReynTweets::UNKNOWN_PROBLEM;
 			break;
 	}
 
@@ -81,30 +81,30 @@ void LaunchingProcess::checkSettingsLoad() {
 // Loading the configuartion from the configuration file
 void LaunchingProcess::loadConfiguration() {
 	QString errorMsg = "";
-	CoreResult loadEnd = userConfiguration.load(errorMsg);
+	ReynTweets::CoreResult loadEnd = userConfiguration.load(errorMsg);
 
 	switch (loadEnd) {
-		case REINIT_SUCCESSFUL:
+		case ReynTweets::REINIT_SUCCESSFUL:
 			userconfReinit = true;
 
-		case LOAD_CONFIGURATION_SUCCESSFUL:
+		case ReynTweets::LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
 			fillTwitterOAuthUserSettings();
 			return checkTokens();
 
-		case PARSE_ERROR:
-		case EXPECTED_KEY:
-			loadEnd = LOADING_CONFIGURATION_ERROR;
+		case ReynTweets::PARSE_ERROR:
+		case ReynTweets::EXPECTED_KEY:
+			loadEnd = ReynTweets::LOADING_CONFIGURATION_ERROR;
 			break;
 
-		case LOADING_CONFIGURATION_ERROR:
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::LOADING_CONFIGURATION_ERROR:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
 			// Unknown problem.
-			loadEnd = UNKNOWN_PROBLEM;
+			loadEnd = ReynTweets::UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
 					   .append(errorMsg);
 			break;
@@ -127,7 +127,7 @@ void LaunchingProcess::checkTokens() {
 	if (ua.getAccessToken().isEmpty() || ua.getTokenSecret().isEmpty()) {
 		// There's no OAuth tokens for Twitter -> Let's authenticate !
 		emit authenticationRequired();
-		endProcess(AUTHENTICATION_REQUIRED,
+		endProcess(ReynTweets::AUTHENTICATION_REQUIRED,
 				   LaunchingProcess::trUtf8("Unexpected empty Twitter tokens."));
 	} else {
 		// Tokens seems legit. Let's ensure that's really the case
@@ -141,37 +141,37 @@ void LaunchingProcess::checkTokens() {
 void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &LaunchingProcess::verifyCredentialsEnded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString verifyMsg = "";
-	CoreResult verifyEnd;
+	ReynTweets::CoreResult verifyEnd;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// Credentials were right a priori. Ensures that the user is the right one.
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;
 			userOfCredentials.fillWithVariant(QJsonObject::fromVariantMap(userMap));
 			UserAccount & account = userConfiguration.getUserAccountRef();
-			UserInfos confUser = account.getUser();
-			bool rightUser = confUser == userOfCredentials;
-			verifyEnd = rightUser ? TOKENS_OK : WRONG_USER;
+
+			bool rightUser = account.getUser() == userOfCredentials;
+			verifyEnd = rightUser ?
+							ReynTweets::TOKENS_OK
+						  : ReynTweets::WRONG_USER;
 			if (rightUser) {
 				account.setUser(userOfCredentials);
 			}
 		}break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			// Building error message
 			verifyMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -182,14 +182,14 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 						   || httpCode == 429
 						   ) ?
 						httpResults.value(httpCode)
-					  : UNKNOWN_PROBLEM;
+					  : ReynTweets::UNKNOWN_PROBLEM;
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  verifyMsg,
 												  verifyEnd);
@@ -207,46 +207,46 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	QString errorMsg = "";
 
 	switch (verifyEnd) {
-		case TOKENS_OK:
+		case ReynTweets::TOKENS_OK:
 			// Credentials were right. You can save configuration now.
 			return saveConfiguration();
 
-		case WRONG_USER:
+		case ReynTweets::WRONG_USER:
 			// User of the configuration and user of credentials do not match.
 			// Getting tokens for the user of the configuration
-			verifyEnd = AUTHENTICATION_REQUIRED;
+			verifyEnd = ReynTweets::AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("The user was not the right one.");
 			emit authenticationRequired();
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// Credentials were wrong for the user.
 			// Getting tokens for the user of the configuration.
-			verifyEnd = AUTHENTICATION_REQUIRED;
+			verifyEnd = ReynTweets::AUTHENTICATION_REQUIRED;
 			errorMsg = LaunchingProcess::trUtf8("Tokens for authentication to Twitter were wrong.");
 			emit authenticationRequired();
 			break;
 
-		case RATE_LIMITED:
+		case ReynTweets::RATE_LIMITED:
 			// Rate limited. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("You reach the authentication rate:");
 			errorMsg.append(' ').append(verifyMsg);
 			break;
 
-		case TWITTER_DOWN:
+		case ReynTweets::TWITTER_DOWN:
 			// Twitter problem. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("Twitter is down:");
 			errorMsg.append(' ').append(verifyMsg);
 			break;
 
-		case NETWORK_CALL:
+		case ReynTweets::NETWORK_CALL:
 			// Probably problem. Asking the user to try later.
 			errorMsg = LaunchingProcess::trUtf8("Problem while connecting to Twitter:");
 			errorMsg.append(' ').append(verifyMsg);
 			break;
 
-		case PARSE_ERROR:		// Parsing problem. Abort
-		case UNKNOWN_PROBLEM:	// Unknown problem. Abort
+		case ReynTweets::PARSE_ERROR:		// Parsing problem. Abort
+		case ReynTweets::UNKNOWN_PROBLEM:	// Unknown problem. Abort
 			errorMsg = verifyMsg;
 			break;
 
@@ -269,24 +269,24 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
 	QString errorMsg = "";
-	CoreResult saveEnd = userConfiguration.save(errorMsg);
+	ReynTweets::CoreResult saveEnd = userConfiguration.save(errorMsg);
 
 	switch (saveEnd) {
-		case SAVE_SUCCESSFUL:
+		case ReynTweets::SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			saveEnd = LAUNCH_SUCCESSFUL;
+			saveEnd = ReynTweets::LAUNCH_SUCCESSFUL;
 			break;
 
-		case REINIT_SUCCESSFUL:
+		case ReynTweets::REINIT_SUCCESSFUL:
 			userconfReinit = true;
 			break;
 
-		case CONFIGURATION_FILE_UNKNOWN:
-		case CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
-			saveEnd = UNKNOWN_PROBLEM;
+			saveEnd = ReynTweets::UNKNOWN_PROBLEM;
 			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
 					   .append(errorMsg);
 			break;
@@ -296,7 +296,9 @@ void LaunchingProcess::saveConfiguration() {
 	endProcess(saveEnd, errorMsg);
 }
 
-void LaunchingProcess::endProcess(CoreResult procEnd, QString errorMessage) {
+void LaunchingProcess::endProcess(ReynTweets::CoreResult procEnd,
+								  QString errorMessage)
+{
 	if (userconfReinit) {
 		errorMessage.append(' ')
 				.append(LaunchingProcess::trUtf8("User configuration was reset."));

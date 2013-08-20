@@ -24,7 +24,7 @@
 #include "singletwittercallprocess.hpp"
 #include "processutils.hpp"
 
-SingleTwitterCallProcess::SingleTwitterCallProcess(CoreResult rightEnd) :
+SingleTwitterCallProcess::SingleTwitterCallProcess(ReynTweets::CoreResult rightEnd) :
 	GenericProcess(),
 	twitter(this),
 	successfullEnd(rightEnd)
@@ -42,23 +42,21 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &SingleTwitterCallProcess::callEnded);
 
-	Network::NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 	//QVariant res;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
 			/*
 			res = result.parsedResult;
 			procEnd = successfullEnd;
@@ -66,15 +64,15 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 			//*/
 			return treatSuccessfulResult(result.parsedResult);
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
@@ -93,28 +91,28 @@ void SingleTwitterCallProcess::treatSuccessfulResult(QVariant result) {
 
 void SingleTwitterCallProcess::treatTwitterErrorResult(RequestResult result,
 													   QString & errorMsg,
-													   CoreResult & procEnd)
+													   ReynTweets::CoreResult & procEnd)
 {
 	ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatApiCallResult(RequestResult result,
 												  QString & errorMsg,
-												  CoreResult & procEnd)
+												  ReynTweets::CoreResult & procEnd)
 {
 	ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatQjsonParsingResult(ResponseInfos parsingErrors,
 													   QString & errorMsg,
-													   CoreResult & procEnd)
+													   ReynTweets::CoreResult & procEnd)
 {
 	ProcessUtils::treatQjsonParsingResult(parsingErrors, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatUnknownResult(QString resultErrorMessage,
 												  QString &errorMsg,
-												  CoreResult &procEnd)
+												  ReynTweets::CoreResult &procEnd)
 {
 	ProcessUtils::treatUnknownResult(resultErrorMessage, errorMsg, procEnd);
 }

@@ -45,14 +45,14 @@ namespace ProcessUtils {
 
 	/// @fn void treatTwitterErrorResult(RequestResult result,
 	///									 QString &errorMsg,
-	///									 CoreResult &procEnd);
+	///									 ReynTweets::CoreResult &procEnd);
 	/// @brief Default treatment when Twitter says that the request was unsuccessful
 	/// @param result Result of the request
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatTwitterErrorResult(RequestResult result,
 								 QString &errorMsg,
-								 CoreResult &procEnd);
+								 ReynTweets::CoreResult &procEnd);
 
 	/// @fn QString writeTwitterErrors(RequestResult result);
 	/// @brief Writing an error message with Twitter errors.
@@ -64,58 +64,58 @@ namespace ProcessUtils {
 
 	/// @fn void treatApiCallResult(RequestResult result,
 	///								QString &errorMsg,
-	///								CoreResult &procEnd);
+	///								ReynTweets::CoreResult &procEnd);
 	/// @brief Default treatment when there was a problem while calling Twitter
 	/// @param result Result of the request
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatApiCallResult(RequestResult result,
 							QString &errorMsg,
-							CoreResult &procEnd);
+							ReynTweets::CoreResult &procEnd);
 
 	/// @fn void treatQjsonParsingResult(ResponseInfos parsingErrors,
 	///									 QString &errorMsg,
-	///									 CoreResult &procEnd);
+	///									 ReynTweets::CoreResult &procEnd);
 	/// @brief Default treatment when JSON results cannot be parsed.
 	/// @param parsingErrors Errors that occured while parsing results
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatQjsonParsingResult(ResponseInfos parsingErrors,
 								 QString &errorMsg,
-								 CoreResult &procEnd);
+								 ReynTweets::CoreResult &procEnd);
 
 	/// @fn void treatXMLParsingResult(ResponseInfos parsingErrors,
 	///								   QString &errorMsg,
-	///								   CoreResult &procEnd);
+	///								   ReynTweets::CoreResult &procEnd);
 	/// @brief Default treatment when XML results cannot be parsed.
 	/// @param parsingErrors Errors that occured while parsing results
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatXMLParsingResult(ResponseInfos parsingErrors,
 							   QString &errorMsg,
-							   CoreResult &procEnd);
+							   ReynTweets::CoreResult &procEnd);
 
 	/// @fn void treatOAuthParsingResult(QString parsingErrorsMsg,
 	///									 QString &errorMsg,
-	///									 CoreResult &procEnd);
+	///									 ReynTweets::CoreResult &procEnd);
 	/// @brief Default treatment when OAuth results cannot be parsed
 	/// @param parsingErrorsMsg Errors that occured while parsing results
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatOAuthParsingResult(QString parsingErrorsMsg,
 								 QString &errorMsg,
-								 CoreResult &procEnd);
+								 ReynTweets::CoreResult &procEnd);
 
 	/// @fn void treatUnknownResult(QString resultErrorMessage,
 	///								QString &errorMsg,
-	///								CoreResult & procEnd);
+	///								ReynTweets::CoreResult & procEnd);
 	/// @brief Default treatment when the end of the process was unexpected.
 	/// @param resultErrorMessage Error message of the request
 	/// @param errorMsg Error message of the process
 	/// @param procEnd Reference on the result of the process
 	void treatUnknownResult(QString resultErrorMessage,
 							QString &errorMsg,
-							CoreResult & procEnd);
+							ReynTweets::CoreResult & procEnd);
 }
 
 #endif // PROCESSUTILS_HPP

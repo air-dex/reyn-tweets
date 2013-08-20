@@ -92,7 +92,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -101,7 +101,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			   this, &TimelineControl::loadTimelineEnded);
 
 	switch (result.processEnd) {
-		case TIMELINE_RETRIEVED: {
+		case ReynTweets::TIMELINE_RETRIEVED: {
 			QVariantList resList = result.results.toList();
 			Timeline tl;
 			tl.fillWithVariant(QJsonArray::fromVariantList(resList));
@@ -114,23 +114,23 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 
 		}break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			return;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -187,7 +187,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -196,13 +196,13 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			   this, &TimelineControl::refreshTimelineEnded);
 
 	switch (result.processEnd) {
-		case TIMELINE_RETRIEVED: {
+		case ReynTweets::TIMELINE_RETRIEVED: {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			CoreResult intermediateEnd = CoreResult(procRes.value("intermediate_end").toInt());
+			ReynTweets::CoreResult intermediateEnd = ReynTweets::CoreResult(procRes.value("intermediate_end").toInt());
 
-			if (intermediateEnd != INVALID_END) {
+			if (intermediateEnd != ReynTweets::INVALID_END) {
 				emit showInfoMessage(result.errorMsg);
 			}
 
@@ -217,24 +217,24 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 		} break;
 
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			return;
 
 		// Problems that can be solved trying later
-		case NO_MORE_TWEETS:
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_TWEETS:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -315,7 +315,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -324,13 +324,13 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 
 	switch (result.processEnd) {
-		case TIMELINE_RETRIEVED: {
+		case ReynTweets::TIMELINE_RETRIEVED: {
 			QVariantMap procRes = result.results.toMap();
 
 			// If something bad happened while loading missing tweets, say it
-			CoreResult intermediateEnd = CoreResult(procRes.value("intermediate_end").toInt());
+			ReynTweets::CoreResult intermediateEnd = ReynTweets::CoreResult(procRes.value("intermediate_end").toInt());
 
-			if (intermediateEnd != INVALID_END) {
+			if (intermediateEnd != ReynTweets::INVALID_END) {
 				emit showInfoMessage(result.errorMsg);
 			}
 
@@ -349,23 +349,23 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 							 false);
 		} break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			return;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -425,7 +425,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -434,7 +434,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 			   this, &TimelineControl::moreOldTimelineEnded);
 
 	switch (result.processEnd) {
-		case TIMELINE_RETRIEVED:{
+		case ReynTweets::TIMELINE_RETRIEVED:{
 			QVariantList resList = result.results.toList();
 			Timeline newTweets;
 			newTweets.fillWithVariant(QJsonArray::fromVariantList(resList));
@@ -447,23 +447,23 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 
 		} break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			return;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);

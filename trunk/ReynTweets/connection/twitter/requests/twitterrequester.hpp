@@ -38,10 +38,10 @@ class TwitterRequester : public GenericRequester
 	Q_OBJECT
 
 	public:
-		/// @fn TwitterRequester(RequestType type,
+		/// @fn TwitterRequester(Network::HTTPRequestType type,
 		///						 QString url,
 		///						 TwitterAuthenticator & authManager,
-		///						 NetworkResultType parseError = Network::JSON_PARSING);
+		///						 LibRT::NetworkResultType parseError = Network::JSON_PARSING);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
@@ -50,10 +50,10 @@ class TwitterRequester : public GenericRequester
 		/// of the time, this value is set to JSON_PARSING because results are
 		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
-		TwitterRequester(HTTPRequestType type,
+		TwitterRequester(LibRT::HTTPRequestType type,
 						 QString url,
 						 TwitterAuthenticator & authManager,
-						 NetworkResultType parseError = Network::JSON_PARSING);
+						 LibRT::NetworkResultType parseError = LibRT::JSON_PARSING);
 
 	protected:
 		/// @brief Entity with authentication information

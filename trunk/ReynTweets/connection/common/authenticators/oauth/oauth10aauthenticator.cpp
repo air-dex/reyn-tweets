@@ -88,7 +88,7 @@ void OAuth10aAuthenticator::resetTokens() {
 }
 
 // Getting the "Authorization" header
-QByteArray OAuth10aAuthenticator::getAuthorizationHeader(Network::HTTPRequestType type,
+QByteArray OAuth10aAuthenticator::getAuthorizationHeader(LibRT::HTTPRequestType type,
 														 QString baseURL,
 														 ArgsMap getDatas,
 														 ArgsMap postDatas,
@@ -125,7 +125,7 @@ QByteArray OAuth10aAuthenticator::getAuthorizationHeader(Network::HTTPRequestTyp
 }
 
 // Signing datas
-QByteArray OAuth10aAuthenticator::signDatas(Network::HTTPRequestType type,
+QByteArray OAuth10aAuthenticator::signDatas(LibRT::HTTPRequestType type,
 											QString baseURL,
 											ArgsMap getDatas,
 											ArgsMap postDatas,

@@ -26,7 +26,7 @@
 
 #include <QString>
 
-namespace CoordType {
+namespace ReynTweets {
 	/// @enum CoordinatesType
 	/// @brief Type of coordiante.
 	enum CoordinatesType {
@@ -52,7 +52,5 @@ namespace CoordType {
 	/// @return The corresponding CoordinatesType
 	CoordinatesType string2coord(QString coordStr);
 }
-
-using CoordType::CoordinatesType;
 
 #endif // COORDINATESTYPE_HPP

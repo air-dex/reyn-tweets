@@ -36,13 +36,13 @@ class TwitLongerRequester : public GenericRequester
 	Q_OBJECT
 
 	public:
-		/// @fn TwitLongerRequester(RequestType type,
+		/// @fn TwitLongerRequester(Network::HTTPRequestType type,
 		///							QString url,
 		///							TwitLongerAuthenticator & manager);
 		/// @param type Type of the HTTP request (GET or POST)
 		/// @param url URL of the request
 		/// @param manager Manager with TwitLonger IDs.
-		TwitLongerRequester(HTTPRequestType type,
+		TwitLongerRequester(LibRT::HTTPRequestType type,
 							QString url,
 							TwitLongerAuthenticator & manager);
 

@@ -57,11 +57,11 @@ class AppConfiguration : public QObject {
 		/// avoid memory leaks.
 		static void unleashReyn();
 
-		/// @fn CoreResult load(QString & errorMsg);
+		/// @fn ReynTweets::CoreResult load(QString & errorMsg);
 		/// @brief Loading the settings from the settings file.
 		/// @param errorMsg Error while loading
 		/// @return Tag describing what happened
-		CoreResult load(QString &errorMsg);
+		ReynTweets::CoreResult load(QString &errorMsg);
 
 		////////////////////////
 		// Getter on settings //

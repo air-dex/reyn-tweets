@@ -30,7 +30,7 @@ LoadMentionsTimelineProcess::LoadMentionsTimelineProcess(qlonglong oldestTweetID
 														 bool withEntities,
 														 int nbTweets,
 														 bool withContributorsDetails) :
-	SingleTwitterCallProcess(TIMELINE_RETRIEVED),
+	SingleTwitterCallProcess(ReynTweets::TIMELINE_RETRIEVED),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),

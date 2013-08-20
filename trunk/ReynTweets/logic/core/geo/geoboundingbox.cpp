@@ -33,7 +33,7 @@
 GeoBoundingBox::GeoBoundingBox() :
 	GenericCoordinates<GeoCoordPolygon, GeoCoordPolygonHandler>()
 {
-	this->coordType = CoordType::POLYGON;
+	this->coordType = ReynTweets::POLYGON;
 }
 
 // Destructor

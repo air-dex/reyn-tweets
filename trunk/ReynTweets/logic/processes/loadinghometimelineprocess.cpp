@@ -30,7 +30,7 @@ LoadingHomeTimelineProcess::LoadingHomeTimelineProcess(qlonglong oldestTweetID,
 													   bool withoutReplies,
 													   int nbTweets,
 													   bool withContributorsDetails) :
-	SingleTwitterCallProcess(TIMELINE_RETRIEVED),
+	SingleTwitterCallProcess(ReynTweets::TIMELINE_RETRIEVED),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),

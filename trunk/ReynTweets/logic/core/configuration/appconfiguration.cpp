@@ -63,18 +63,18 @@ AppConfiguration::AppConfiguration() :
 {}
 
 // Loading the settings from the settings file.
-CoreResult AppConfiguration::load(QString & errorMsg) {
+ReynTweets::CoreResult AppConfiguration::load(QString & errorMsg) {
 	// Opening the settings file
 	QFile confFile(SETTINGS_NAMEFILE);
 
 	if (!confFile.exists()) {
 		errorMsg = AppConfiguration::trUtf8("Settings file unknown.");
-		return  CONFIGURATION_FILE_UNKNOWN;
+		return  ReynTweets::CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	if (!confFile.open(QFile::ReadOnly)) {
 		errorMsg = AppConfiguration::trUtf8("Cannot open the settings file.");
-		return CONFIGURATION_FILE_NOT_OPEN;
+		return ReynTweets::CONFIGURATION_FILE_NOT_OPEN;
 	}
 
 
@@ -94,7 +94,7 @@ CoreResult AppConfiguration::load(QString & errorMsg) {
 				.append(' ')
 				.append(parseErrMsg)
 				.append('.');
-		return PARSE_ERROR;
+		return ReynTweets::PARSE_ERROR;
 	}
 
 
@@ -106,11 +106,11 @@ CoreResult AppConfiguration::load(QString & errorMsg) {
 
 	if (fillErr.isEmpty()) {
 		// No error while filling the configuration
-		return LOAD_CONFIGURATION_SUCCESSFUL;
+		return ReynTweets::LOAD_CONFIGURATION_SUCCESSFUL;
 	} else {
 		// Error while filling the configuration
 		errorMsg.append(' ').append(fillErr);
-		return EXPECTED_KEY;
+		return ReynTweets::EXPECTED_KEY;
 	}
 }
 

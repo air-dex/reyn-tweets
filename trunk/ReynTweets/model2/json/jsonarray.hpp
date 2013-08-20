@@ -30,6 +30,7 @@
 
 /// @class JsonArray
 /// @brief Base class for all objects which can be represented by a JSON array.
+/// @param V Type of the objects which composed the list.
 template <class V>
 class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 {

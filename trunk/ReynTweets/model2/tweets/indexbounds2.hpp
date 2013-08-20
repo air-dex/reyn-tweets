@@ -26,8 +26,13 @@
 #ifndef INDEXBOUNDS2_HPP
 #define INDEXBOUNDS2_HPP
 
+#include <QDataStream>
+#include <QObject>
+#include <QVariant>
 #include "../json/jsonarray.hpp"
 
+/// @class IndexBounds
+/// @brief Indices of a Tweet Entity in a tweet.
 class IndexBounds2 : public JsonArray<int>
 {
 	Q_OBJECT

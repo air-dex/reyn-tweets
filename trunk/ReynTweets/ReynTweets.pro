@@ -143,7 +143,11 @@ SOURCES += \
 	model2/json/jsonobject.cpp \
 	model2/json/jsonarray.cpp \
     model2/tweets/tweet2.cpp \
-    model2/tweets/indexbounds2.cpp
+    model2/tweets/indexbounds2.cpp \
+    model2/tweets/tweetentity2.cpp \
+    model2/tweets/hashtag2.cpp \
+    model2/tweets/usermention2.cpp \
+    model2/tweets/urlentity2.cpp
 
 
 HEADERS  += \
@@ -260,7 +264,11 @@ HEADERS  += \
 	model2/json/jsonarray.hpp \
 	model2/json/jsonarray.tpp \
     model2/tweets/tweet2.hpp \
-    model2/tweets/indexbounds2.hpp
+    model2/tweets/indexbounds2.hpp \
+    model2/tweets/tweetentity2.hpp \
+    model2/tweets/hashtag2.hpp \
+    model2/tweets/usermention2.hpp \
+    model2/tweets/urlentity2.hpp
 
 
 OTHER_FILES = \

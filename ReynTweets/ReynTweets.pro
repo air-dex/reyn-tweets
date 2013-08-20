@@ -168,7 +168,9 @@ SOURCES += \
 	model2/geo/coordinatestype.cpp \
     model2/geo/gencoord.cpp \
     model2/geo/geocoordpolygon.cpp \
-    model2/geo/twitterplace.cpp
+    model2/geo/twitterplace.cpp \
+    model2/users/contributor.cpp \
+    model2/users/contributorlist.cpp
 
 
 HEADERS  += \
@@ -311,7 +313,9 @@ HEADERS  += \
 	model2/geo/coordinatestype.hpp \
     model2/geo/gencoord.hpp \
     model2/geo/geocoordpolygon.hpp \
-    model2/geo/twitterplace.hpp
+    model2/geo/twitterplace.hpp \
+    model2/users/contributor.hpp \
+    model2/users/contributorlist.hpp
 
 
 OTHER_FILES = \

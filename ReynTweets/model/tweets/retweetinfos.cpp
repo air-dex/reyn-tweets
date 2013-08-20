@@ -61,7 +61,12 @@ void RetweetInfos::reset() {
 
 // Equality between RetweetInfos.
 bool RetweetInfos::operator==(const RetweetInfos & infos) {
-	return retweetID == infos.retweetID;
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	return this->retweetID == infos->retweetID;
+	//*/
+
+	return retweetIDstr == infos.retweetIDstr;
 }
 
 // Copy of a RetweetInfos
@@ -70,7 +75,10 @@ void RetweetInfos::recopie(const RetweetInfos & infos) {
 	retweetIDstr = infos.retweetIDstr;
 }
 
-// Friends serialization operators
+
+/////////////////////////////////////
+// Friends serialization operators //
+/////////////////////////////////////
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const RetweetInfos & infos) {
@@ -124,13 +132,14 @@ QJsonObject RetweetInfos::toJSON() const {
 // id
 QString RetweetInfos::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong RetweetInfos::getID() {
 	return retweetID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void RetweetInfos::setID(qlonglong newValue) {
 	retweetID = newValue;
-	retweetIDstr = QString::number(newValue);
 	emit idChanged();
 }
 
@@ -143,6 +152,5 @@ QString RetweetInfos::getIDstr() {
 
 void RetweetInfos::setIDstr(QString newValue) {
 	retweetIDstr = newValue;
-	retweetID = newValue.toLongLong();
 	emit idChanged();
 }

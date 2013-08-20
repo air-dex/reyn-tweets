@@ -192,7 +192,12 @@ void Tweet::reset() {
 
 // Equality between tweets
 bool Tweet::operator==(const Tweet & status) const {
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	return this->tweetID == status.tweetID;
+	//*/
+
+	return this->tweetIDstr == status.tweetIDstr;
 }
 
 
@@ -209,7 +214,7 @@ void Tweet::fillWithJSON(QJsonObject json) {
 	this->favoriteCount = int(json.value(FAVORITE_COUNT_PN).toDouble(0));
 	this->favoritedTweet = json.value(FAVORITED_PN).toBool(false);
 	this->filterLevel = json.value(FILTER_LEVEL_PN).toString("");
-	this->tweetID = qlonglong(json.value(ID_PN).toDouble(-1));
+	this->tweetID = qlonglong(json.value(ID_PN).toDouble(-1));	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 	this->tweetIDstr = json.value(ID_STR_PN).toString("-1");
 	this->replyToScreenName = json.value(IN_REPLY_TO_SCREEN_NAME_PN).toString("");
 	this->replyToTweetID = qlonglong(json.value(IN_REPLY_TO_STATUS_ID_PN).toDouble(-1));
@@ -482,13 +487,14 @@ void Tweet::setFilterLevel(QString newValue) {
 // id
 QString Tweet::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong Tweet::getID() {
 	return tweetID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void Tweet::setID(qlonglong newValue) {
 	tweetID = newValue;
-	tweetIDstr = QString::number(tweetID);
 	emit idChanged();
 }
 
@@ -501,7 +507,6 @@ QString Tweet::getIDstr() {
 
 void Tweet::setIDstr(QString newValue) {
 	tweetIDstr = newValue;
-	tweetID = tweetIDstr.toLongLong();
 	emit idChanged();
 }
 

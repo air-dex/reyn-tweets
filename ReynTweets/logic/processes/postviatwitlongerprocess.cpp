@@ -248,7 +248,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLonger() {
 	connect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
 			this, SLOT(updateTweetOnTwitLongerEnded(ResultWrapper)));
 
-	twitlonger.updateLongTweet(messageID, postedTweet.getID());
+	twitlonger.updateLongTweet(messageID, postedTweet.getIDstr().toLongLong());
 }
 
 void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {

@@ -165,8 +165,8 @@ void AccessTokensProcess::updateConfiguration(QByteArray accessToken,
 {
 	// Updating the tokens
 	UserAccount & account = configuration->getUserAccountRef();
-	account.setAccessToken(accessToken.toBase64()); // TODO
-	account.setTokenSecret(tokenSecret.toBase64()); // TODO
+	account.setAccessToken(accessToken);
+	account.setTokenSecret(tokenSecret);
 
 	// Getting informations about the user behind the account
 	connect(&twitter, SIGNAL(sendResult(ResultWrapper)),

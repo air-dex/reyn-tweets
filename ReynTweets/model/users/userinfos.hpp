@@ -74,6 +74,14 @@ class UserInfos : public JsonObject
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
 
+		/// @fn bool operator==(const UserInfos user) const;
+		/// @brief Equality between users.
+		///
+		/// Two users are considered as equal if they have got the same ID.
+		/// @param user The user to compare
+		/// @return True if both Users have got the same ID, false otherwise.
+		bool operator==(const UserInfos user) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////
@@ -1443,11 +1451,21 @@ class UserInfos : public JsonObject
 		// id
 		/// @fn qlonglong getID();
 		/// @brief Getter on ID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @return The value of ID
 		qlonglong getID();
 
 		/// @fn void setID(qlonglong newID);
 		/// @brief Setter on ID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @param newID The new value of ID
 		void setID(qlonglong newID);
 

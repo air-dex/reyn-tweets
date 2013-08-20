@@ -98,6 +98,16 @@ void Media::reset() {
 	*this = Media();
 }
 
+// Equality between medias.
+bool Media::operator==(const Media media) const {
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	return this->mediaID == media->mediaID;
+	//*/
+
+	return this->mediaIDstr == media.mediaIDstr;
+}
+
 
 /////////////////////
 // JSON conversion //
@@ -212,13 +222,14 @@ void Media::setSizes(QVariantMap newMap) {
 // id
 QString Media::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong Media::getID() {
 	return mediaID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void Media::setID(qlonglong newID) {
 	mediaID = newID;
-	mediaIDstr = QString::number(mediaID);
 }
 
 // id_str
@@ -230,7 +241,6 @@ QString Media::getIDstr() {
 
 void Media::setIDstr(QString newID) {
 	mediaIDstr = newID;
-	mediaID = mediaIDstr.toLongLong();
 }
 
 // media_url

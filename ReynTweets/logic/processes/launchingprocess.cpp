@@ -191,7 +191,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			userOfCredentials.fillWithVariant(userMap);
 			UserAccount & account = userConfiguration.getUserAccountRef();
 			UserInfos confUser = account.getUser();
-			bool rightUser = confUser.getID() == userOfCredentials.getID();
+			bool rightUser = confUser == userOfCredentials;
 			verifyIssue = rightUser ? TOKENS_OK : WRONG_USER;
 			if (rightUser) {
 				account.setUser(userOfCredentials);

@@ -109,7 +109,7 @@ void Timeline::insertTweet(Tweet newTweet) {
 
 // Finding the index of a tweet in the timeline.
 int Timeline::tweetIndex(Tweet tweet) {
-	qlonglong tweetID = tweet.getID();
+	qlonglong tweetID = tweet.getIDstr().toLongLong();
 
 	// Special case for default tweets.
 	if (tweetID == -1) {
@@ -121,7 +121,7 @@ int Timeline::tweetIndex(Tweet tweet) {
 		return 0;
 	}
 
-	qlonglong tlMaxID = this->last().getID();
+	qlonglong tlMaxID = this->last().getIDstr().toLongLong();
 
 	if (tweetID < tlMaxID) {
 		return this->size();
@@ -131,7 +131,7 @@ int Timeline::tweetIndex(Tweet tweet) {
 
 		while (a != b) {
 			int m = (a + b) /2;
-			qlonglong midTweetID = (*this)[m].getID();
+			qlonglong midTweetID = (*this)[m].getIDstr().toLongLong();
 
 			if (tweetID >= midTweetID) {
 				b = m;

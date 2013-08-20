@@ -90,6 +90,16 @@ void UserMention::reset() {
 	*this = UserMention();
 }
 
+// Equality between mentions.
+bool UserMention::operator==(const UserMention mention) const {
+	/*
+	// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
+	return this->mediaID == mention->mediaID;
+	//*/
+
+	return this->userIDstr == mention.userIDstr;
+}
+
 
 /////////////////////
 // JSON conversion //
@@ -153,13 +163,14 @@ QJsonObject UserMention::toJSON() const {
 // id
 QString UserMention::ID_PN = "id";
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 qlonglong UserMention::getID() {
 	return userID;
 }
 
+// BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void UserMention::setID(qlonglong newID) {
 	userID = newID;
-	userIDstr = QString::number(userID);
 }
 
 // id_str
@@ -171,7 +182,6 @@ QString UserMention::getIDstr() {
 
 void UserMention::setIDstr(QString newID) {
 	userIDstr = newID;
-	userID = userIDstr.toLongLong();
 }
 
 // screen_name

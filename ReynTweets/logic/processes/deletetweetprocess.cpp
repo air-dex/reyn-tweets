@@ -47,7 +47,7 @@ void DeleteTweetProcess::startProcess() {
 
 // Determining if the tweet can be deleted
 void DeleteTweetProcess::canDeleteTweet() {
-	if (user.getID() == tweetToDelete.getAuthor()->getID()) {
+	if (user == *(tweetToDelete.getAuthor())) {
 		// The user is the author of the tweet
 		// The tweet can be deleted and the ID is already known :) !
 
@@ -57,7 +57,7 @@ void DeleteTweetProcess::canDeleteTweet() {
 
 		deleteTweet(true, tweetToDelete.getIDstr());
 	}
-	else if (user.getID() == tweetToDelete.getRetweetedStatus()->getAuthor()->getID()
+	else if (user == *(tweetToDelete.getRetweetedStatus()->getAuthor())
 			 && tweetToDelete.isRetweet())
 	{
 		// The user is the author of the retweet. Delete the retweet
@@ -76,14 +76,14 @@ void DeleteTweetProcess::canDeleteTweet() {
 		// Looking at the "current_retweet_infos" property
 		RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
 
-		if (rtInfos->getID() == -1) {
+		if (rtInfos->getIDstr() == "-1") {
 			// The retweet ID is not in the tweet. Ask it to Twitter !
 
 			// The ID is in the details of tweetToDelete.
 			connect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 					this, SLOT(searchRetweetIDEnded(ResultWrapper)));
 
-			twitter.showTweet(tweetToDelete.getID());
+			twitter.showTweet(tweetToDelete.getIDstr().toLongLong());
 		} else {
 			// The retweet ID is in the tweet. Time for deletion.
 			deleteTweet(true, rtInfos->getIDstr());
@@ -125,7 +125,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 			// Looking at the "current_retweet_infos" property
 			RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
-			bool idFound = rtInfos->getID() != -1;
+			bool idFound = rtInfos->getIDstr() != "-1";
 
 			QString addInfos = "";
 			if (idFound) {

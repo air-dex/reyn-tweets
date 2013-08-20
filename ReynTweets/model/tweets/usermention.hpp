@@ -73,6 +73,15 @@ class UserMention : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/// @fn bool operator==(const UserMention mention) const;
+		/// @brief Equality between mentions.
+		///
+		/// Two mentions are considered as equal if the users mentionned have
+		/// got the same ID.
+		/// @param mention The mention to compare
+		/// @return True if both Medias have got the same ID, false otherwise.
+		bool operator==(const UserMention mention) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////
@@ -191,11 +200,21 @@ class UserMention : public TweetEntity
 	public:
 		/// @fn qlonglong getID();
 		/// @brief Reading userID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @return userID
 		qlonglong getID();
 
 		/// @fn void setID(qlonglong newID);
 		/// @brief Writing userID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @param newID New value for userID
 		void setID(qlonglong newID);
 

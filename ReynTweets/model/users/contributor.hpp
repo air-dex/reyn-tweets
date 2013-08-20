@@ -197,11 +197,21 @@ class Contributor : public JsonObject
 	public:
 		/// @fn qlonglong getID();
 		/// @brief Reading userID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @return userID
 		qlonglong getID();
 
 		/// @fn void setID(qlonglong newID);
 		/// @brief Writing userID
+		///
+		/// <strong>Not recommended because of
+		/// <a href="https://bugreports.qt-project.org/browse/QTBUG-28560">a bug
+		/// on Qt JSON writing numbers. Use the method with the string ID
+		/// instead.</a></strong>
 		/// @param newID New value for userID
 		void setID(qlonglong newID);
 

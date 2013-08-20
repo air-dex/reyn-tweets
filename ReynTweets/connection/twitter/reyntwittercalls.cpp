@@ -151,8 +151,8 @@ void ReynTwitterCalls::resetTokens() {
 void ReynTwitterCalls::setUserTokens(QByteArray accessToken,
 									 QByteArray tokenSecret)
 {
-	oauthManager.setOAuthToken(accessToken, false);
-	oauthManager.setOAuthSecret(tokenSecret, false);
+	oauthManager.setOAuthToken(accessToken);
+	oauthManager.setOAuthSecret(tokenSecret);
 }
 
 // Setting new OAuth consumer credentials and callback URL to connect to Twitter

@@ -71,18 +71,18 @@ void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
 }
 
 // Getter on the OAuth Token
-QByteArray OAuthManager::getOAuthToken(bool isClear) {
-	return isClear ? QByteArray::fromBase64(oauthToken) : oauthToken;
+QByteArray OAuthManager::getOAuthToken() {
+	return oauthToken;
 }
 
 // Setter on the OAuth token
-void OAuthManager::setOAuthToken(QByteArray authToken, bool isClear) {
-	oauthToken = isClear ? authToken.toBase64() : authToken;
+void OAuthManager::setOAuthToken(QByteArray authToken) {
+	oauthToken = authToken;
 }
 
 // Setter on the OAuth secret
-void OAuthManager::setOAuthSecret(QByteArray authSecret, bool isClear) {
-	oauthSecret = isClear ? authSecret.toBase64() : authSecret;
+void OAuthManager::setOAuthSecret(QByteArray authSecret) {
+	oauthSecret = authSecret;
 }
 
 // Getter on the verifier
@@ -205,19 +205,9 @@ QString OAuthManager::signDatas(HTTPRequestType type,
 	// Building the key
 	QString key = "";
 
-	key.append(QUrl::toPercentEncoding(
-				   QString::fromLatin1(
-					   QByteArray::fromBase64(consumerSecret).data()
-					   )
-				   )
-			   );
+	key.append(QUrl::toPercentEncoding(QString::fromLatin1(consumerSecret)));
 	key.append('&');
-	key.append(QUrl::toPercentEncoding(
-				   QString::fromLatin1(
-					   QByteArray::fromBase64(oauthSecret).data()
-					   )
-				   )
-			   );
+	key.append(QUrl::toPercentEncoding(QString::fromLatin1(oauthSecret)));
 
 
 	// Building that will be signed
@@ -271,9 +261,8 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 	}
 
 	// oauth_consumer_key
-	clearToken = QByteArray::fromBase64(consumerKey);
 	formattedParamString = formatParam("oauth_consumer_key",
-									   QString::fromLatin1(clearToken.data()),
+									   QString::fromLatin1(consumerKey),
 									   putDoubleQuotes);
 	oauthParamString.append(formattedParamString);
 	oauthParamString.append(separator);
@@ -310,9 +299,8 @@ QString OAuthManager::buildOAuthParameterString(QString nonce,
 
 	// oauth_token
 	if (oauthTokenNeeded) {
-		clearToken = QByteArray::fromBase64(oauthToken);
 		formattedParamString = formatParam("oauth_token",
-										   QString::fromLatin1(clearToken.data()),
+										   QString::fromLatin1(oauthToken),
 										   putDoubleQuotes);
 		oauthParamString.append(formattedParamString);
 		oauthParamString.append(separator);

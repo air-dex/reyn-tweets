@@ -78,25 +78,20 @@ class OAuthManager
 		/// @param clientSecret New consumer secret
 		void setConsumerSecret(QByteArray clientSecret);
 
-		/// @fn QByteArray getOAuthToken(bool isClear = true);
+		/// @fn QByteArray getOAuthToken();
 		/// @brief Getting the OAuth Token
-		/// @param isClear Boolean indicating if the clear value is asked
 		/// @return The OAuth Token
-		QByteArray getOAuthToken(bool isClear = true);
+		QByteArray getOAuthToken();
 
-		/// @fn void setOAuthToken(QByteArray authToken, bool isClear = true);
+		/// @fn void setOAuthToken(QByteArray authToken);
 		/// @brief Setter on the OAuth token
 		/// @param authToken The new value of the OAuth token
-		/// @param isClear Boolean indicating if the token passed to the method
-		/// is clear or encrypted.
-		void setOAuthToken(QByteArray authToken, bool isClear = true);
+		void setOAuthToken(QByteArray authToken);
 
-		/// @fn void setOAuthSecret(QByteArray oauthSecret, bool isClear = true);
+		/// @fn void setOAuthSecret(QByteArray oauthSecret);
 		/// @brief Setter on the OAuth secret
 		/// @param oauthSecret The new value of the OAuth secret
-		/// @param isClear Boolean indicating if the token passed to the method
-		/// is clear or encrypted.
-		void setOAuthSecret(QByteArray authSecret, bool isClear = true);
+		void setOAuthSecret(QByteArray authSecret);
 
 		/// @fn QByteArray getVerifier(bool isClear = true);
 		/// @brief Getter on the verifier

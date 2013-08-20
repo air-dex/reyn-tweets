@@ -31,7 +31,6 @@
 
 /// @class IndexBounds
 /// @brief Indices of a Tweet Entity in a tweet.
-///
 // TODO : why a QObject ?
 class IndexBounds : public QObject, public JsonArray<int>
 {

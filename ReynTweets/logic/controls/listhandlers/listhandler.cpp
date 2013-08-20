@@ -32,7 +32,6 @@
 // Constructor
 template<typename HL, typename U>
 ListHandler<HL,U>::ListHandler() :
-	//QObject(),
 	handledList()
 {}
 
@@ -43,7 +42,6 @@ ListHandler<HL,U>::~ListHandler() {}
 // Copy constructor
 template<typename HL, typename U>
 ListHandler<HL,U>::ListHandler(const ListHandler<HL,U> & listhandler) :
-	//QObject(),
 	handledList()
 {
 	recopie(listhandler);

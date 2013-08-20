@@ -42,6 +42,7 @@ class HandlerEmitter : public QObject
 		void handledListChanged();
 };
 
+
 /// @class ListHandler
 /// @brief Base class for all list handlers.
 ///

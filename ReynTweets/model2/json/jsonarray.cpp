@@ -23,6 +23,8 @@
 
 #include "jsonarray.hpp"
 #include <QJsonDocument>
+#include "../../tools/parsers/jsonparser.hpp"
+#include "../../tools/utils.hpp"
 
 /////////////
 // Coplien //
@@ -67,31 +69,20 @@ void JsonArray<V>::recopie(const JsonArray<V> & list) {
 // Conversions //
 /////////////////
 
-// Special optimisations due to JSON
-
-/*
-// Filling the MappableList with a QVariantList.
-template <class V>
-void JsonArray<V>::fillWithVariant(QVariantList entities) {
-	QJsonArray array = QJsonArray::fromVariantList(entities);
-	this->fillWithJSON(array);
-}
-//*/
-
 // Converting a MappableList into a QVariantList
 template <class V>
 QVariantList JsonArray<V>::toVariant() const {
 	return this->toVariantList();
 }
 
-// Filling the MappableList with a QVariantList.
+// Filling a JsonArray with a QJsonArray.
 template <class V>
 void JsonArray<V>::fillWithJSON(QJsonArray json) {
 	QVariantList entities = json.toVariantList();
 	this->fillWithVariant(entities);
 }
 
-// Converting a MappableList into a QVariantList
+// Converting the JsonArray into a QJsonArray
 template <class V>
 QJsonArray JsonArray<V>::toJSON() const {
 	return this;
@@ -103,7 +94,7 @@ QJsonArray JsonArray<V>::toJSON() const {
 ///////////////////////////
 
 template <class V>
-QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<M> & list) {
+QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<V> & list) {
 	// Serialize the QVariantList form of the listable and putting it in the stream.
 	return streamVariantOut(out, list.toVariant());
 }
@@ -111,17 +102,16 @@ QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<M> & list) {
 // Input stream operator for serialization
 template <class V>
 QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list) {
-	// TODO : use an improved JSONParser
-	// TODO : handling parse errors
-
 	QByteArray json = "";
 	in >> json;
 
-	QJsonDocument doc = QJsonDocument::fromJson(json, &parseErr);
+	JSONParser parser;
+	QString errorMsg = "";
+	bool parseOK;
+	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
 
-	if (doc.isArray()) {
-		QJsonArray array = doc.array();
-		list.fillWithJSON(array);
+	if (parseOK && parsedJson.isArray()) {
+		list.fillWithJSON(parsedJson.toArray());
 	}
 
 	return in;

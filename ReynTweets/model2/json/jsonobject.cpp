@@ -23,6 +23,7 @@
 
 #include "jsonobject.hpp"
 #include <QJsonDocument>
+#include "../../tools/parsers/jsonparser.hpp"
 
 /////////////
 // Coplien //
@@ -109,17 +110,16 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 QDataStream & jsonStreamingIn(QDataStream & in,
 							  const JsonObject &jsonobj)
 {
-	// TODO : use an improved JSONParser
-	// TODO : handling parse errors
+	QByteArray json = "";
+	in >> json;
 
-	QByteArray jsonStream = "";
-	in >> jsonStream;
+	JSONParser parser;
+	QString errorMsg = "";
+	bool parseOK;
+	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
 
-	QJsonDocument doc = QJsonDocument::fromJson(jsonStream);
-
-	if (doc.isObject()) {
-		QJsonObject json = doc.object();
-		jsonobj.fillWithJSON(json);
+	if (parseOK && parsedJson.isObject()) {
+		jsonobj.fillWithJSON(parsedJson.toObject());
 	}
 
 	return in;

@@ -23,6 +23,8 @@
 
 #include "twitterrequester.hpp"
 #include "../../../tools/parsers/jsonparser.hpp"
+#include <QJsonObject>
+#include <QJsonArray>
 
 // Constructor
 TwitterRequester::TwitterRequester(HTTPRequestType type,
@@ -66,21 +68,6 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 	QString errorMsg;
 	int lineMsg;
 
-	/*
-	 * Kept like this for the moment for QJSON transitional compatibility.
-	 * Will be refactored after the Qt5 bump, in a more general refactoring with
-	 * more Qt5 native JSON integration.
-	 */
-
-	// Special treatment for lists because of a QJSON bug while parsing lists
-	bool isList = rawResponse.startsWith('[');
-
-	// Bugfixer : the list to parse is the "reslist" value of a JSON object.
-	if (isList) {
-		rawResponse.prepend("{\"reslist\":");
-		rawResponse.append('}');
-	}
-
 	// TODO : improve it because of improved JSONParser
 	QVariant result = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg).toVariant();
 
@@ -90,11 +77,6 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 		parsingErrors.insert("lineError", QVariant(lineMsg));
 	}
 
-	// Retrieveing the list to parse
-	if (isList) {
-		result = QVariant(result.toMap().value("reslist"));
-	}
-
 	return result;
 }
 
@@ -102,85 +84,73 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 void TwitterRequester::treatParsedResult(RequestResult & requestResult,
 										 NetworkResponse netResponse)
 {
-	int httpReturnCode = netResponse.getHttpResponse().code;
+	int httpCode = netResponse.getHttpResponse().code;
 
-	// Is it a map with error messages
-	switch (httpReturnCode) {
+	// Is the return code expected ?
+	switch (httpCode) {
 		case 200:
-			break;
+			// If the response code is 200, it is not an error
+			return;
 
-		// Uncomment when the following feature is deployed :
-		// https://dev.twitter.com/blog/making-api-responses-match-request-content-type
-		case 404:
-		case 500:
-		case 503:
-			if (parsingErrorType == Network::JSON_PARSING
-					&& requestResult.parsedResult.type() == QVariant::Map
-				)
-			{
-				// Table error : one row ("errors"; QVariantList)
-				QVariantMap resultMap = requestResult.parsedResult.toMap();
-
-				if (resultMap.size() == 1
-						&& resultMap.contains("errors")
-						&& resultMap.value("errors").type() == QVariant::List
-					)
-				{
-					QVariantList errorList = resultMap.value("errors").toList();
-
-					// Building the list of errors
-					for (QVariantList::Iterator it = errorList.begin();
-						 it != errorList.end();
-						 ++it)
-					{
-						QVariantMap error = it->toMap();
-						ResponseInfos twitterError;
-						twitterError.code = error.value("code").toInt();
-						twitterError.message = error.value("message").toString();
-						requestResult.serviceErrors.append(twitterError);
-					}
-
-				}
-			}
-			requestResult.resultType = Network::SERVICE_ERRORS;
-			break;
-
+		// Expected return codes
 		case 304:
 		case 400:
 		case 401:
 		case 403:
+		case 404:
 		case 406:
+		case 410:
 		case 420:
+		case 422:
+		case 429:
+		case 500:
 		case 502:
-			if (parsingErrorType == Network::JSON_PARSING
-					&& requestResult.parsedResult.type() == QVariant::Map
-				)
-			{
-				// Table error : two rows called "error" and "request"
-				QVariantMap resultMap = requestResult.parsedResult.toMap();
-
-				if (resultMap.size() == 2
-						&& resultMap.contains("error")
-						&& resultMap.contains("request")
-					)
-				{
-					ResponseInfos twitterError;
-					twitterError.code = httpReturnCode;
-
-					twitterError.message = TwitterRequester::trUtf8("Error in request ");
-					twitterError.message.append(resultMap.value("request").toString());
-					twitterError.message.append(" : ");
-					twitterError.message.append(resultMap.value("error").toString());
-					twitterError.message.append('.');
-
-					requestResult.serviceErrors.append(twitterError);
-				}
-			}
-			requestResult.resultType = Network::SERVICE_ERRORS;
+		case 503:
+		case 504:
 			break;
 
 		default:
 			requestResult.resultType = Network::API_CALL;
 			break;
+	}
+
+
+	// Does the parsed results contain Twitter errors ?
+	bool areTwitterErrors = false;
+
+	// If there were twitter errors, parsed results are aa QJsonObject
+	QJsonValue resval = QJsonValue::fromVariant(requestResult.parsedResult);
+
+	if (resval.isObject()) {
+		// It is a QJsonObject. Does it contain the "errors" JSON Array ?
+		QJsonObject resobj = resval.toObject();
+		areTwitterErrors = resobj.value("errors").isArray();
+	}
+
+	// Treat if bad
+
+	if (!areTwitterErrors) {
+		return;
+	}
+
+	requestResult.resultType = Network::SERVICE_ERRORS;
+
+	// Filling the service errors
+	QJsonArray twitterErrors = resval.toObject().value("errors").toArray();
+
+	for (QJsonArray::Iterator it = twitterErrors.begin();
+		 it != twitterErrors.end();
+		 ++it)
+	{
+		QJsonValue twitterError = *it;
+
+		if (twitterError.isObject()) {
+			QJsonObject twError = twitterError.toObject();
+			ResponseInfos resError;
+			resError.code = int(twError.value("code").toDouble());
+			resError.message = twError.value("message").toString();
+
+			requestResult.serviceErrors.append(resError);
+		}
 	}
 }

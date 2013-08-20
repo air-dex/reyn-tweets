@@ -59,6 +59,13 @@ void ContributorList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void ContributorList::appendJsonArrayElement(QJsonArray & array,
+											 Contributor elt) const
+{
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const ContributorList & list) {
 	return list.writeInStream(out);

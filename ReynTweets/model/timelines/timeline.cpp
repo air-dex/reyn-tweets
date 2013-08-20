@@ -25,10 +25,8 @@
 #include "timeline.hpp"
 
 // Constructor
-Timeline::Timeline(TimelineType tlType) :
-	QObject(),
-	JsonArray<Tweet>(),
-	timelineType(tlType)
+Timeline::Timeline() :
+	JsonArray<Tweet>()
 {}
 
 // Destructor
@@ -36,9 +34,7 @@ Timeline::~Timeline() {}
 
 // Copy constructor
 Timeline::Timeline(const Timeline & list) :
-	QObject(),
-	JsonArray<Tweet>(),
-	timelineType(INVALID)
+	JsonArray<Tweet>()
 {
 	recopie(list);
 }
@@ -54,14 +50,14 @@ void Timeline::initSystem() {
 	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
 	qMetaTypeId<Timeline>();
 }
-
+/*
 // Declaring to the QML components
 void Timeline::declareQML() {
 	qmlRegisterType<Timeline>("ReynTweetsEntities",
 							  0, 2,
 							  "Timeline");
 }
-
+//*/
 // Appending the content of a QJsonValue
 void Timeline::appendJsonValue(QJsonValue v) {
 	if (v.isObject()) {
@@ -69,6 +65,11 @@ void Timeline::appendJsonValue(QJsonValue v) {
 		tweet.fillWithVariant(v.toObject());
 		this->append(tweet);
 	}
+}
+
+// Appends an element of the list in a QJsonArray
+void Timeline::appendJsonArrayElement(QJsonArray & array, Tweet elt) const {
+	array.append(elt.toVariant());
 }
 
 // Output stream operator for serialization
@@ -79,21 +80,6 @@ QDataStream & operator<<(QDataStream & out, const Timeline & list) {
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Timeline & list) {
 	return list.fillWithStream(in);
-}
-
-
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// type
-Timeline::TimelineType Timeline::getType() {
-	return timelineType;
-}
-
-void Timeline::setType(Timeline::TimelineType newType) {
-	timelineType = newType;
-	emit typeChanged();
 }
 
 
@@ -150,5 +136,27 @@ int Timeline::tweetIndex(Tweet tweet) {
 		}
 
 		return a;
+	}
+}
+
+// Getting the ID of the first tweet of the timeline.
+qlonglong Timeline::getFirstID() {
+	if (this->isEmpty()) {
+		return -1;
+	} else {
+		bool ok;
+		qlonglong id = this->first().getIDstr().toLongLong(&ok);
+		return ok ? id : -1;
+	}
+}
+
+// Getting the ID of the first tweet of the timeline.
+qlonglong Timeline::getLastID() {
+	if (this->isEmpty()) {
+		return -1;
+	} else {
+		bool ok;
+		qlonglong id = this->last().getIDstr().toLongLong(&ok);
+		return ok ? id : -1;
 	}
 }

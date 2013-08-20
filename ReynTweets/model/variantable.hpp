@@ -71,7 +71,7 @@ class Variantable
 		/// @param map The equivalent
 		virtual void fillWithVariant(V map) = 0;
 
-		operator V () const { return this->toVariant(); }
+		//operator V () const { return this->toVariant(); }
 };
 
 #endif // VARIANTABLE_HPP

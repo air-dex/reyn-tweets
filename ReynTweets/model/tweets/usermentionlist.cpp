@@ -59,6 +59,13 @@ void UserMentionList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void UserMentionList::appendJsonArrayElement(QJsonArray & array,
+											 UserMention elt) const
+{
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const UserMentionList & list) {
 	return list.writeInStream(out);

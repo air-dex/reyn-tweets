@@ -65,7 +65,7 @@ Rectangle {
 	TimelinePane {
 		id: htl_pane
 		width: parent.width
-		timeline_type: Timeline.HOME
+		timeline_type: TimelineHandler.HOME
 		anchors.right: parent.right
 		anchors.left: parent.left
 		anchors.bottom: parent.bottom

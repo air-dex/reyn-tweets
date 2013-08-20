@@ -70,6 +70,7 @@ void ReynTweets::initSystem() {
 
 	// Timelines
 	Timeline::initSystem();
+	TimelineHandler::initSystem();
 
 	// Tweets
 	Hashtag::initSystem();
@@ -105,7 +106,8 @@ void ReynTweets::declareQML() {
 	TwitterPlace::declareQML();
 
 	// Timelines
-	Timeline::declareQML();
+	//Timeline::declareQML();
+	TimelineHandler::declareQML();
 
 	// Tweets
 	Tweet::declareQML();

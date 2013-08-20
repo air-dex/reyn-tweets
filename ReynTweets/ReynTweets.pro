@@ -148,7 +148,8 @@ SOURCES += \
 	logic/controls/writetweetcontrol.cpp \
 	logic/coreresult.cpp \
 	tools/reyntweets.cpp \
-	main.cpp
+	main.cpp \
+    logic/controls/timelinehandler.cpp
 
 
 HEADERS  += \
@@ -269,7 +270,8 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/controls/controls.hpp \
-	tools/reyntweets.hpp
+	tools/reyntweets.hpp \
+    logic/controls/timelinehandler.hpp
 
 
 OTHER_FILES = \

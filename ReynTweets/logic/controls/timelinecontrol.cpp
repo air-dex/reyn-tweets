@@ -26,7 +26,8 @@
 
 TimelineControl::TimelineControl() :
 	GenericControl(),
-	timeline(),
+	tlhandler(),
+	timeline(tlhandler.getTimelineRef()),
 	backupedNewTweet()
 {}
 
@@ -42,91 +43,9 @@ void TimelineControl::declareQML() {
 // Property management //
 /////////////////////////
 
-// Reading the property tl_length
-int TimelineControl::getTimelineLength() {
-	return timeline.size();
-}
-
-// Reading the property timeline_type
-Timeline::TimelineType TimelineControl::getTimelineType() {
-	return timeline.getType();
-}
-
-// Writing the property timeline_type
-void TimelineControl::setTimelineType(Timeline::TimelineType newType) {
-	timeline.setType(newType);
-	emit timelineTypeChanged();
-}
-
-
-///////////////////////////////////
-// Accessing tweets in QML views //
-///////////////////////////////////
-
-// Getting a pointer on a tweet in the timeline.
-Tweet * TimelineControl::getTweet(int tweetIndex) {
-	if (tweetIndex >= 0 && tweetIndex < timeline.size()) {
-		return &(timeline[tweetIndex]);
-	} else {
-		return new Tweet;
-	}
-}
-
-// Replacing a tweet
-void TimelineControl::replaceTweet(QVariant updatedTweet, int tweetIndex) {
-	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-		return;
-	}
-
-	Tweet & tweet = timeline[tweetIndex];
-	tweet.reset();
-	tweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
-}
-
-void TimelineControl::replaceTweet(QVariant updatedTweet) {
-	Tweet newTweet;
-	newTweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
-
-	int tweetIndex = timeline.tweetIndex(newTweet);
-
-	if (tweetIndex < 0 || tweetIndex >= timeline.size()) {
-		return;
-	}
-
-	// Delete only if he's really in the timeline
-	if (newTweet == timeline[tweetIndex]) {
-		Tweet & tweet = timeline[tweetIndex];
-		tweet.reset();
-		tweet.fillWithVariant(QJsonObject::fromVariantMap(updatedTweet.toMap()));
-	}
-}
-
-// Deleting a tweet
-void TimelineControl::deleteTweet(int tweetIndex) {
-	if (tweetIndex < 0 || tweetIndex >= timeline.count()) {
-		return;
-	}
-
-	timeline.removeAt(tweetIndex);
-	emit timelineChanged();
-}
-
-// Deleting a tweet
-void TimelineControl::deleteTweet(QVariant variantTweet) {
-	Tweet tweet;
-	tweet.fillWithVariant(QJsonObject::fromVariantMap(variantTweet.toMap()));
-
-	int tweetIndex = timeline.tweetIndex(tweet);
-
-	if (tweetIndex < 0 || tweetIndex >= timeline.size()) {
-		return;
-	}
-
-	// Delete only if he's really in the timeline
-	if (tweet == timeline[tweetIndex]) {
-		timeline.removeAt(tweetIndex);
-		emit timelineChanged();
-	}
+// timeline_handler
+TimelineHandler * TimelineControl::getTimelineHandler() {
+	return &tlhandler;
 }
 
 
@@ -145,13 +64,13 @@ void TimelineControl::loadTimeline() {
 
 	processing = true;
 
-	switch (timeline.getType()) {
-		case Timeline::HOME:
+	switch (tlhandler.getType()) {
+		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading timeline..."));
 			reyn.loadHomeTimeline(-1, -1, 50);
 			break;
 
-		case Timeline::MENTIONS:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading mentions..."));
 			reyn.loadMentionsTimeline(-1, -1, 50);
 			break;
@@ -181,15 +100,20 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			   this, SLOT(loadTimelineEnded(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-	QVariantList resList = result.results.toList();
 
 	switch (issue) {
-		case TIMELINE_RETRIEVED:
-			timeline.fillWithVariant(QJsonArray::fromVariantList(resList));
-			emit timelineChanged();
+		case TIMELINE_RETRIEVED: {
+			QVariantList resList = result.results.toList();
+			Timeline tl;
+			tl.fillWithVariant(QJsonArray::fromVariantList(resList));
+			tlhandler.appendTimeline(tl);
+			emit tlhandler.timelineChanged();
 			// Process successful
-			emit actionEnded(true, TimelineControl::trUtf8("Timeline loaded"), false);
-			break;
+			emit actionEnded(true,
+							 TimelineControl::trUtf8("Timeline loaded"),
+							 false);
+
+		}break;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
@@ -236,15 +160,15 @@ void TimelineControl::refreshTimeline() {
 
 	processing = true;
 
-	switch (timeline.getType()) {
-		case Timeline::HOME:
+	switch (tlhandler.getType()) {
+		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.first().getIDstr().toLongLong());
+			reyn.loadHomeTimeline(timeline.getFirstID());
 			break;
 
-		case Timeline::MENTIONS:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-			reyn.loadMentionsTimeline(timeline.first().getIDstr().toLongLong());
+			reyn.loadMentionsTimeline(timeline.getFirstID());
 			break;
 
 		default:
@@ -284,8 +208,8 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
 
 			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
-				qlonglong maxID = timeline.first().getIDstr().toLongLong();
+				qlonglong newMinID = newTweets.getLastID();
+				static qlonglong maxID = timeline.getFirstID();
 
 				// Is there missing tweets in the timeline ?
 				if (newMinID == maxID) {
@@ -297,13 +221,13 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 					newerTweets.append(newTweets);
 
 					// Fill the gap
-					switch (timeline.getType()) {
-						case Timeline::HOME:
+					switch (tlhandler.getType()) {
+						case TimelineHandler::HOME:
 							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
 
-						case Timeline::MENTIONS:
+						case TimelineHandler::MENTIONS:
 							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
@@ -320,14 +244,10 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 
 			newerTweets.append(newTweets);
 			emit loadedMoreTweets(newerTweets.size());
-
-			// Equivalent to timeline.prepend(newerTweets);
-			newerTweets.append(timeline);
-			timeline.clear();
-			timeline.append(newerTweets);
+			tlhandler.prependTimeline(newerTweets);
 
 			// Process successful
-			emit timelineChanged();
+			emit tlhandler.timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -375,13 +295,13 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 	processing = true;
 
-	switch (timeline.getType()) {
-		case Timeline::HOME:
+	switch (tlhandler.getType()) {
+		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.first().getIDstr().toLongLong());
+			reyn.loadHomeTimeline(timeline.getFirstID());
 			break;
 
-		case Timeline::MENTIONS: {
+		case TimelineHandler::MENTIONS: {
 			// "Refresh after write" only if the user mentions himself. "Refrsh" otherwise.
 			Tweet backupedTweet;
 			backupedTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
@@ -399,7 +319,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 				if (userID == authorID) {
 					// The user mentions itself
 					emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-					return reyn.loadMentionsTimeline(timeline.first().getIDstr().toLongLong());
+					return reyn.loadMentionsTimeline(timeline.getFirstID());
 				}
 			}
 
@@ -448,8 +368,8 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
 
 			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.last().getIDstr().toLongLong();
-				qlonglong maxID = timeline.first().getIDstr().toLongLong();
+				qlonglong newMinID = newTweets.getLastID();
+				qlonglong maxID = timeline.getFirstID();
 
 				// Is there missing tweets in the timeline ?
 				if (newMinID == maxID) {
@@ -461,13 +381,13 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 					newerTweets.append(newTweets);
 
 					// Fill the gap
-					switch (timeline.getType()) {
-						case Timeline::HOME:
+					switch (tlhandler.getType()) {
+						case TimelineHandler::HOME:
 							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
 
-						case Timeline::MENTIONS:
+						case TimelineHandler::MENTIONS:
 							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
 							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
@@ -488,13 +408,10 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 			emit loadedMoreTweets(newerTweets.size());
 
-			// Equivalent to timeline.prepend(newerTweets);
-			newerTweets.append(timeline);
-			timeline.clear();
-			timeline.append(newerTweets);
+			tlhandler.prependTimeline(newerTweets);
 
 			// Process successful
-			emit timelineChanged();
+			emit tlhandler.timelineChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -541,20 +458,20 @@ void TimelineControl::moreOldTimeline() {
 		return loadTimeline();
 	}
 
-	qlonglong maxTweetID = timeline.last().getIDstr().toLongLong() - 1;
+	qlonglong maxTweetID = timeline.getLastID() - 1;
 
 	connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 
 	processing = true;
 
-	switch (timeline.getType()) {
-		case Timeline::HOME:
+	switch (tlhandler.getType()) {
+		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading more tweets..."));
 			reyn.loadHomeTimeline(-1, maxTweetID, 50);
 			break;
 
-		case Timeline::MENTIONS:
+		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Loading more mentions..."));
 			reyn.loadMentionsTimeline(-1, maxTweetID, 50);
 			break;
@@ -585,17 +502,18 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 			   this, SLOT(moreOldTimelineEnded(ProcessWrapper)));
 
 	CoreResult issue = result.processIssue;
-	QVariantList resList = result.results.toList();
-	Timeline newTweets;
 
 	switch (issue) {
-		case TIMELINE_RETRIEVED:
+		case TIMELINE_RETRIEVED:{
+			QVariantList resList = result.results.toList();
+			Timeline newTweets;
 			newTweets.fillWithVariant(QJsonArray::fromVariantList(resList));
-			timeline.append(newTweets);
-			emit timelineChanged();
+			tlhandler.appendTimeline(newTweets);
+			emit tlhandler.timelineChanged();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
-			break;
+
+		} break;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!

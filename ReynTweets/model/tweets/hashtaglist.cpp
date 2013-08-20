@@ -59,6 +59,11 @@ void HashtagList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void HashtagList::appendJsonArrayElement(QJsonArray & array, Hashtag elt) const {
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const HashtagList & list) {
 	return list.writeInStream(out);

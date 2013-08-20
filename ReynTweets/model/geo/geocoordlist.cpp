@@ -59,6 +59,11 @@ void GeoCoordList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void GeoCoordList::appendJsonArrayElement(QJsonArray & array, GeoCoord elt) const {
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoCoordList & list) {
 	return list.writeInStream(out);

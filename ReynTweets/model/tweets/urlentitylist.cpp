@@ -59,6 +59,13 @@ void URLEntityList::appendJsonValue(QJsonValue v) {
 	}
 }
 
+// Appends an element of the list in a QJsonArray
+void URLEntityList::appendJsonArrayElement(QJsonArray & array,
+										   URLEntity elt) const
+{
+	array.append(elt.toVariant());
+}
+
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const URLEntityList & list) {
 	return list.writeInStream(out);

@@ -138,3 +138,8 @@ void IndexBounds::appendJsonValue(QJsonValue v) {
 		this->append(bound);
 	}
 }
+
+// Appends an element of the list in a QJsonArray
+void IndexBounds::appendJsonArrayElement(QJsonArray & array, int elt) const {
+	array.append(double(elt));
+}

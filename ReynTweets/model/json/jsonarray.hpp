@@ -90,10 +90,17 @@ class JsonArray : public Variantable<QJsonArray>, public QList<V>
 		/// @param list JsonArray to copy
 		virtual void recopie(const JsonArray<V> &list);
 
-		/// virtual void appendJsonValue(QJsonValue v) = 0;
+		/// @fn virtual void appendJsonValue(QJsonValue v) = 0;
 		/// @brief Appending the content of a QJsonValue in the JsonArray
 		/// @param v the QJsonValue
 		virtual void appendJsonValue(QJsonValue v) = 0;
+
+		/// @fn virtual void appendJsonArrayElement(QJsonArray & array,
+		///											V elt) const = 0;
+		/// @brief Appends an element of the list in a QJsonArray
+		/// @param array The QJsonArray
+		/// @param elt The list element
+		virtual void appendJsonArrayElement(QJsonArray & array, V elt) const = 0;
 };
 
 #endif // JSONARRAY_HPP

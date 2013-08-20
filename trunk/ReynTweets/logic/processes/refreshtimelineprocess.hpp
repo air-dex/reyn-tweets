@@ -64,10 +64,10 @@ class RefreshTimelineProcess : public GenericProcess
 	Q_OBJECT
 
 	public:
-		/// @fn RefreshTimelineProcess(qlonglong oldestTweetID);
+		/// @fn RefreshTimelineProcess(Tweet oldestTweet);
 		/// @brief Constructor
-		/// @param oldestTweetID Value of sinceID
-		RefreshTimelineProcess(qlonglong oldestTweetID);
+		/// @param oldestTweet Value of latestTweet
+		RefreshTimelineProcess(Tweet oldestTweet);
 
 		/// @fn void startProcess();
 		/// @brief Starting the process by getting the most recent tweets.
@@ -87,8 +87,8 @@ class RefreshTimelineProcess : public GenericProcess
 		// Parameters //
 		////////////////
 
-		/// @brief ID of the most recent tweet in the timeline to refresh
-		qlonglong sinceID;
+		/// @brief Most recent tweet in the timeline to refresh
+		Tweet latestTweet;
 
 
 		///////////////////////////
@@ -98,11 +98,11 @@ class RefreshTimelineProcess : public GenericProcess
 		/// @brief All the new tweets
 		Timeline newerTweets;
 
-		/// @brief ID of the oldest tweet among the ones retrieved through
+		/// @brief Oldest tweet among the ones retrieved through
 		/// the Twitter API.
 		///
-		/// The process stops when <code>oldestNewTweetID == sinceID</code>.
-		qlonglong oldestNewTweetID;
+		/// The process stops when <code>oldestNewTweet == sinceID</code>.
+		Tweet oldestNewTweet;
 
 		/// @brief Issue of the process.
 		///

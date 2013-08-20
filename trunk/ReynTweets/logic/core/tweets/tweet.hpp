@@ -78,6 +78,10 @@ class Tweet : public JsonObject
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		//////////////////////
+		// Tweet comparison //
+		//////////////////////
+
 		/// @fn bool operator==(const Tweet & status) const;
 		/// @brief Equality between tweets.
 		///
@@ -85,6 +89,12 @@ class Tweet : public JsonObject
 		/// @param status Tweet to compare
 		/// @return true if they are equals, false otherwise.
 		bool operator==(const Tweet & status) const;
+
+		/// @fn bool operator!=(const Tweet & status) const;
+		/// @brief Difference between tweets (i.e. not equals).
+		/// @param status Tweet to compare
+		/// @return true if they are different, false otherwise.
+		bool operator!=(const Tweet & status) const;
 
 		/////////////////////
 		// JSON conversion //

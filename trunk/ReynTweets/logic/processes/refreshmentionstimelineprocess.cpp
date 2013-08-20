@@ -24,11 +24,11 @@
 #include "refreshmentionstimelineprocess.hpp"
 
 // Constructor
-RefreshMentionsTimelineProcess::RefreshMentionsTimelineProcess(qlonglong oldestTweetID,
+RefreshMentionsTimelineProcess::RefreshMentionsTimelineProcess(Tweet oldestTweet,
 															   bool userIDonly,
 															   bool withEntities,
 															   bool withContributorsDetails) :
-	RefreshTimelineProcess(oldestTweetID),
+	RefreshTimelineProcess(oldestTweet),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
 	contributorsDetails(withContributorsDetails)
@@ -44,7 +44,7 @@ void RefreshMentionsTimelineProcess::retrievingFirstTweets() {
 	connect(&twitter, &ReynTwitterCalls::sendResult,
 			this, &RefreshMentionsTimelineProcess::loadFirstTweetsEnded);
 
-	twitter.retrieveMentionsTimeline(sinceID -1,
+	twitter.retrieveMentionsTimeline(latestTweet.getIDstr().toLongLong() -1,
 									 -1,
 									 trimUser,
 									 includeEntities,
@@ -57,8 +57,8 @@ void RefreshMentionsTimelineProcess::retrievingIntermediateTweets() {
 	connect(&twitter, &ReynTwitterCalls::sendResult,
 			this, &RefreshMentionsTimelineProcess::loadIntermediateTweetsEnded);
 
-	twitter.retrieveMentionsTimeline(sinceID -1,
-									 oldestNewTweetID,
+	twitter.retrieveMentionsTimeline(latestTweet.getIDstr().toLongLong() -1,
+									 oldestNewTweet.getIDstr().toLongLong(),
 									 trimUser,
 									 includeEntities,
 									 ReynTwitterCalls::MAX_TWEETS_COUNT,

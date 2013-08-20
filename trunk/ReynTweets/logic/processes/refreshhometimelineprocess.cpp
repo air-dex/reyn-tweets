@@ -24,12 +24,12 @@
 #include "refreshhometimelineprocess.hpp"
 
 // Constructor
-RefreshHomeTimelineProcess::RefreshHomeTimelineProcess(qlonglong oldestTweetID,
+RefreshHomeTimelineProcess::RefreshHomeTimelineProcess(Tweet oldestTweet,
 													   bool userIDonly,
 													   bool withEntities,
 													   bool withoutReplies,
 													   bool withContributorsDetails) :
-	RefreshTimelineProcess(oldestTweetID),
+	RefreshTimelineProcess(oldestTweet),
 	trimUser(userIDonly),
 	includeEntities(withEntities),
 	excludeReplies(withoutReplies),
@@ -43,7 +43,7 @@ RefreshHomeTimelineProcess::RefreshHomeTimelineProcess(qlonglong oldestTweetID,
 
 // Step 1
 void RefreshHomeTimelineProcess::retrievingFirstTweets() {
-	twitter.retrieveHomeTimeline(sinceID -1,
+	twitter.retrieveHomeTimeline(latestTweet.getIDstr().toLongLong() -1,
 								 -1,
 								 trimUser,
 								 includeEntities,
@@ -54,8 +54,8 @@ void RefreshHomeTimelineProcess::retrievingFirstTweets() {
 
 // Step 2
 void RefreshHomeTimelineProcess::retrievingIntermediateTweets() {
-	twitter.retrieveHomeTimeline(sinceID -1,
-								 oldestNewTweetID,
+	twitter.retrieveHomeTimeline(latestTweet.getIDstr().toLongLong() -1,
+								 oldestNewTweet.getIDstr().toLongLong(),
 								 trimUser,
 								 includeEntities,
 								 excludeReplies,

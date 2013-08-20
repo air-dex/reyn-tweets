@@ -110,6 +110,9 @@ Rectangle {
 	// Alias on the control
 	property AllowControl allow_control
 
+	// Boolean to avoid unwanted end Authorizations
+	property bool can_postauthorize: state == "post_authorizing"
+
 	Component.onCompleted: {
 		// Wiring
 		twitter_page.urlChanged.connect(goReload)
@@ -130,19 +133,14 @@ Rectangle {
 			PropertyChanges {
 				target: twitter_page
 				url: "about:blank"
-				/*onUrlChanged: {
-					goReload()
-				}
-
-				onLoadFinished: {}*/
 			}
 
-			// Page reloading
+			// Reinit
 			StateChangeScript {
 				name: "reload_for_css"
 
 				script: {
-					twitter_page.loadFinished.disconnect(postAuthorize)
+					twitter_page.loadingChanged.disconnect(postAuthorize)
 					twitter_page.urlChanged.disconnect(afterAuth)
 					twitter_page.urlChanged.connect(goReload)
 				}
@@ -154,22 +152,15 @@ Rectangle {
 		State {
 			name: "reload_state"
 
-			// Do the user authorization once it's reloaded
-			PropertyChanges {
-				target: twitter_page
-/*
-				onUrlChanged: {}
-
-				onLoadFinished: postAuthorize()*/
-			}
-
 			// Page reloading
 			StateChangeScript {
 				name: "reload_for_css"
 
 				script: {
 					twitter_page.urlChanged.disconnect(goReload)
-					twitter_page.loadFinished.connect(postAuthorize)
+
+					// Do the user authorization once it's reloaded
+					twitter_page.loadingChanged.connect(postAuthorize)
 					twitter_page.reload()
 				}
 			}
@@ -184,21 +175,11 @@ Rectangle {
 				visible: true
 			}
 
-			PropertyChanges {
-				target: twitter_page
-/*
-				onUrlChanged: {
-					afterAuth()
-				}
-
-				onLoadFinished: {}*/
-			}
-
 			StateChangeScript {
 				name: "postauthorize_wirings"
 
 				script: {
-					twitter_page.loadFinished.disconnect(postAuthorize)
+					twitter_page.loadingChanged.disconnect(postAuthorize)
 					twitter_page.urlChanged.connect(afterAuth)
 				}
 			}
@@ -220,17 +201,20 @@ Rectangle {
 	}
 
 	function goReload() {
-		if (twitter_page.url === login_pane.base_url) {
+		// /!\ : twitter_page.url is a JS Object and base_url is a JS string.
+		if (twitter_page.url == login_pane.base_url) {
 			login_pane.state = "reload_state";
 		}
 	}
 
 	function postAuthorize() {
-		login_pane.state = "post_authorizing";
+		if (!twitter_page.loading) {
+			login_pane.state = "post_authorizing";
+		}
 	}
 
 	function afterAuth() {
-		if (allow_control.endAuth(twitter_page.url)) {
+		if (can_postauthorize && allow_control.endAuth(twitter_page.url)) {
 			login_pane.state = "";
 		}
 	}

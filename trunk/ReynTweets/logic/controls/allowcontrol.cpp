@@ -26,6 +26,7 @@
 #include "../../model/configuration/appconfiguration.hpp"
 #include "../../connection/twitter/requests/twitterurls.hpp"
 #include "../../tools/parsers/oauthparser.hpp"
+#include "../../tools/parsers/htmlparser.hpp"
 
 // Constructor
 AllowControl::AllowControl() :
@@ -39,15 +40,18 @@ void AllowControl::declareQML() {
 								  0, 2,
 								  "AllowControl");
 }
+/*
+// Get the body class name
+QString AllowControl::getBodyClass(QString html) {
+	HTMLParser parser;
+	bool parseOK;
+	QString errMsg;
 
-// Getting the authentication results
-QVariantMap AllowControl::getAuthenticationResults(QString endAuthURL) {
-	// TODO : parse the URL and get the QVariantMap with an OAuth parser
-	QVariantMap urlGetArgs;	// TODO : fill it
+	QWebElement htmlElt = parser.parse(html.toUtf8(), parseOK, errMsg);
 
-	return urlGetArgs;
+	return htmlElt.findFirst("body").attribute("class");
 }
-
+//*/
 
 /////////////////////////
 // Property management //
@@ -148,9 +152,15 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 
 // End of authentication
 bool AllowControl::endAuth(QString postauthURL) {
+	// Do not disturb the Control while working
+	if (processing) {
+		return false;
+	}
+
 	// Have a look at the URL
 	if (postauthURL.startsWith(TwitterURL::AUTHORIZE_URL)) {
 		// Still in POST authorizing
+		// TODO : passer l'HTML pour être sûr qu'on est encore en POST authorizing
 		return false;
 	} else if (postauthURL.startsWith(AppConfiguration::getReynTweetsConfiguration().getCallbackURL())) {
 		// This is the end (hold your breath & count to 10). Authorized or denied ?
@@ -169,7 +179,7 @@ bool AllowControl::endAuth(QString postauthURL) {
 			getAccessTokens(veryEndArgs.value("oauth_verifier").toByteArray());
 		} else if (parseOK && veryEndArgs.contains("denied")) {
 			// Denied :( ! TODO
-			emit actionEnded(true,
+			emit actionEnded(false,
 							 AllowControl::trUtf8("Reyn Tweets was denied."),
 							 false);
 		} else {

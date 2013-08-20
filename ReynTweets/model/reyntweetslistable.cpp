@@ -31,17 +31,17 @@
 /////////////
 
 // Constructor
-template <class S>
+template <typename S>
 ReynTweetsListable<S>::ReynTweetsListable() :
 	QList<S>()
 {}
 
 // Destructor
-template <class S>
+template <typename S>
 ReynTweetsListable<S>::~ReynTweetsListable() {}
 
 // Copy constructor
-template <class S>
+template <typename S>
 ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
 	QList<S>()
 {
@@ -49,14 +49,14 @@ ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
 }
 
 // Affrection operator
-template <class S>
+template <typename S>
 const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
 	recopie(list);
 	return *this;
 }
 
 // Copy of a ReynTweetsListable
-template <class S>
+template <typename S>
 void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 	this->clear();
 
@@ -74,7 +74,7 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
 ////////////////////////
 
 // Converting a QVariantList into a list of entities.
-template <class S>
+template <typename S>
 void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
 	this->clear();
 
@@ -90,7 +90,7 @@ void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
 }
 
 // Converting a list of serializables into a QVariantList
-template <class S>
+template <typename S>
 QVariantList ReynTweetsListable<S>::toVariant() const {
 	QVariantList res;
 
@@ -110,14 +110,14 @@ QVariantList ReynTweetsListable<S>::toVariant() const {
 // Serialization streams //
 ///////////////////////////
 
-template <class S>
+template <typename S>
 QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list) {
 	// Serialize the QVariantList form of the listable and putting it in the stream.
 	return streamVariantOut(out, list.toVariant());
 }
 
 // Input stream operator for serialization
-template <class S>
+template <typename S>
 QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list) {
 	QVariant listableVariant;
 	streamVariantIn(in, listableVariant);

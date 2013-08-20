@@ -30,6 +30,9 @@
 #include "model/timelines/timeline.hpp"
 #include "model/configuration/reyntweetsappconfiguration.hpp"
 
+#include "model2/geo/geocoord.hpp"
+#include "model2/geo/geocoordlist.hpp"
+
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly
 	#include <QDir>
@@ -57,6 +60,9 @@ void initReynTweetsSystem() {
 	User::initSystem();
 	UserAccount::initSystem();
 	ReynTweetsUserConfiguration::initSystem();
+
+	GeoCoord::initSystem();
+	GeoCoordList::initSystem();
 }
 
 /// @fn void declareReynTweetsControls();

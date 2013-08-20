@@ -69,12 +69,12 @@ void GeoBoundingBox::reset() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const GeoBoundingBox & coord) {
-	return jsonStreamingOut(out, coord);
+	return jsonObjectStreamingOut(out, coord);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord) {
-	return jsonStreamingIn(in, coord);
+	return jsonObjectStreamingIn(in, coord);
 }
 
 

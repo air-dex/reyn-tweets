@@ -34,7 +34,7 @@
 /// These objects have to be convertible into a QVariant. So most of the time
 /// they will be Variantables (and Mappables too).
 /// @param V Type of the objects which composed the list.
-template <class V>
+template <typename V>
 class Listable : public Variantable<QVariantList>, public QList<V>
 {
 	public:

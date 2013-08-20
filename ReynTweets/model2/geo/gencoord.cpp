@@ -52,3 +52,18 @@ const GenCoord & GenCoord::operator=(const GenCoord & coord) {
 void GenCoord::recopie(const GenCoord & coord) {
 	JsonObject::recopie(coord);
 }
+
+
+/////////////////////////
+// Q_OBJECT workaround //
+/////////////////////////
+
+// coordinatesChanged signal.
+void GenCoord::changeCoord() {
+	emit coordinatesChanged();
+}
+
+// typeChanged signal
+void GenCoord::changeType() {
+	emit typeChanged();
+}

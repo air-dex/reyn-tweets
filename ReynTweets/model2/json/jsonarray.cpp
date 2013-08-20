@@ -31,18 +31,18 @@
 /////////////
 
 // Constructor
-template <class V>
+template <typename V>
 JsonArray<V>::JsonArray() :
 	Listable<V>(),
 	Jsonable<QJsonArray>()
 {}
 
 // Destructor
-template <class V>
+template <typename V>
 JsonArray<V>::~JsonArray() {}
 
 // Copy constructor
-template <class V>
+template <typename V>
 JsonArray<V>::JsonArray(const JsonArray<V> & list) :
 	Listable<V>(),
 	Jsonable<QJsonArray>()
@@ -51,14 +51,14 @@ JsonArray<V>::JsonArray(const JsonArray<V> & list) :
 }
 
 // Affrection operator
-template <class V>
+template <typename V>
 const JsonArray<V> & JsonArray<V>::operator=(const JsonArray<V> & list) {
 	this->recopie(list);
 	return *this;
 }
 
 // Copy of a Listable
-template <class V>
+template <typename V>
 void JsonArray<V>::recopie(const JsonArray<V> & list) {
 	this->Listable<V>::recopie(list);
 }
@@ -69,14 +69,14 @@ void JsonArray<V>::recopie(const JsonArray<V> & list) {
 //////////////////////////////
 
 // Filling a JsonArray with a QJsonArray.
-template <class V>
+template <typename V>
 void JsonArray<V>::fillWithJSON(QJsonArray json) {
 	QVariantList entities = json.toVariantList();
 	this->fillWithVariant(entities);
 }
 
 // Converting the JsonArray into a QJsonArray
-template <class V>
+template <typename V>
 QJsonArray JsonArray<V>::toJSON() const {
 	return QJsonArray::fromVariantList(this->toVariant());
 }
@@ -86,14 +86,14 @@ QJsonArray JsonArray<V>::toJSON() const {
 // Serialization streams //
 ///////////////////////////
 
-template <class V>
+template <typename V>
 QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<V> & list) {
 	// Serialize the QVariantList form of the listable and putting it in the stream.
 	return streamVariantOut(out, list.toVariant());
 }
 
 // Input stream operator for serialization
-template <class V>
+template <typename V>
 QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list) {
 	QByteArray json = "";
 	in >> json;

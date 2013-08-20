@@ -28,7 +28,7 @@
 /////////////
 
 // Default constructor
-template <class C>
+template <typename C>
 GenericCoordinates<C>::GenericCoordinates() :
 	GenCoord(),
 	geoCoordinates(),
@@ -36,11 +36,11 @@ GenericCoordinates<C>::GenericCoordinates() :
 {}
 
 // Destructor
-template <class C>
+template <typename C>
 GenericCoordinates<C>::~GenericCoordinates() {}
 
 // Copy constructor
-template <class C>
+template <typename C>
 GenericCoordinates<C>::GenericCoordinates(const GenericCoordinates<C> & coord) :
 	GenCoord(),
 	geoCoordinates(),
@@ -50,14 +50,14 @@ GenericCoordinates<C>::GenericCoordinates(const GenericCoordinates<C> & coord) :
 }
 
 // Affectation
-template <class C>
+template <typename C>
 const GenericCoordinates<C> & GenericCoordinates<C>::operator=(const GenericCoordinates<C> & coord) {
 	this->recopie(coord);
 	return *this;
 }
 
 // Copy of a GenericCoordinates
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
 	GenCoord::recopie(coord);
 	this->geoCoordinates = coord.geoCoordinates;
@@ -70,7 +70,7 @@ void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::fillWithJSON(QJsonObject json) {
 	// "coordinates" property
 	QJsonValue propval = json.value(COORDINATES_PN);
@@ -91,7 +91,7 @@ void GenericCoordinates<C>::fillWithJSON(QJsonObject json) {
 }
 
 // QJsonObject representation of the object
-template <class C>
+template <typename C>
 QJsonObject GenericCoordinates<C>::toJSON() const {
 	QJsonObject json;
 
@@ -107,54 +107,54 @@ QJsonObject GenericCoordinates<C>::toJSON() const {
 ///////////////////////////
 
 // coordinates
-template <class C>
+template <typename C>
 QString GenericCoordinates<C>::COORDINATES_PN = "coordinates";
 
-template <class C>
+template <typename C>
 QVariantList GenericCoordinates<C>::getCoordinatesProperty() {
 	return this->geoCoordinates.toVariant();
 }
 
-template <class C>
+template <typename C>
 C GenericCoordinates<C>::getCoordinates() {
 	return this->geoCoordinates;
 }
 
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::setCoordinates(QVariantList newValue) {
 	this->geoCoordinates.fillWithVariant(newValue);
-	emit coordinatesChanged();
+	changeCoord();
 }
 
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::setCoordinates(C newValue) {
 	this->geoCoordinates = newValue;
-	emit coordinatesChanged();
+	changeCoord();
 }
 
 // type
-template <class C>
+template <typename C>
 QString GenericCoordinates<C>::TYPE_PN = "type";
 
-template <class C>
+template <typename C>
 QString GenericCoordinates<C>::getTypeProperty() {
 	return coord2string(this->coordType);
 }
 
-template <class C>
+template <typename C>
 CoordinatesType GenericCoordinates<C>::getType() {
 	return this->coordType;
 }
 
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::setType(CoordinatesType newValue) {
 	this->coordType = newValue;
-	emit typeChanged();
+	changeType();
 }
 
-template <class C>
+template <typename C>
 void GenericCoordinates<C>::setType(QString newValue) {
 	this->coordType = CoordType::string2coord(newValue);
-	emit typeChanged();
+	changeType();
 }
 

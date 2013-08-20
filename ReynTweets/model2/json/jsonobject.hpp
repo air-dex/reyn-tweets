@@ -94,8 +94,8 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 // Stream handling //
 /////////////////////
 
-/// @fn QDataStream & jsonStreamingOut(QDataStream & out,
-///									   const JsonObject & jsonobj);
+/// @fn QDataStream & jsonObjectStreamingOut(QDataStream & out,
+///											 const JsonObject & jsonobj);
 /// @brief Output stream operator for serialization.
 ///
 /// This method is a specialization for JsonObjects because they have
@@ -104,11 +104,11 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>
 /// @param out The output stream
 /// @param jsonobj JsonObject to put in the stream
 /// @return The stream with the object
-QDataStream & jsonStreamingOut(QDataStream & out,
-							   const JsonObject & jsonobj);
+QDataStream & jsonObjectStreamingOut(QDataStream & out,
+									 const JsonObject & jsonobj);
 
-/// @fn QDataStream & jsonStreamingIn(QDataStream & in,
-///									  JsonObject & jsonobj);
+/// @fn QDataStream & jsonObjectStreamingIn(QDataStream & in,
+///											JsonObject & jsonobj);
 /// @brief Input stream operator for serialization.
 ///
 /// This method is a specialization for JsonObjects because they have
@@ -117,7 +117,7 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 /// @param in The input stream
 /// @param jsonobj JsonObject to put in the stream
 /// @return The stream with the object
-QDataStream & jsonStreamingIn(QDataStream & in,
-							  JsonObject &jsonobj);
+QDataStream & jsonObjectStreamingIn(QDataStream & in,
+									JsonObject &jsonobj);
 
 #endif // JSONOBJECT_HPP

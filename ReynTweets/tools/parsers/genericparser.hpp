@@ -32,7 +32,7 @@
 /// @class GenericParser
 /// @brief Base class for all the parsers.
 /// @param T Type of parsed results
-template <class T>
+template <typename T>
 class GenericParser
 {
 	public:

@@ -39,7 +39,7 @@
 /// implements GenCoord.</li>
 /// </ul>
 /// @param C class representing coordinates
-template <class C>
+template <typename C>
 class GenericCoordinates : public GenCoord
 {
 	public:

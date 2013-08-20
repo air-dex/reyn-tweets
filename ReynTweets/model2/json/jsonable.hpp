@@ -29,7 +29,7 @@
 /// @param J Name of a Qt JSON class which can handle JSON for the Jsonable.
 ///
 /// Most of the time J is a QJsonObject or a QJsonArray.
-template <class J>
+template <typename J>
 class Jsonable
 {
 	public:

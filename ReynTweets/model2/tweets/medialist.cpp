@@ -52,10 +52,10 @@ void MediaList2::initSystem() {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const MediaList2 & list) {
-	return jsonStreamingOut<Media2>(out, list);
+	return jsonArrayStreamingOut<Media2>(out, list);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, MediaList2 & list) {
-	return jsonStreamingIn<Media2>(in, list);
+	return jsonArrayStreamingIn<Media2>(in, list);
 }

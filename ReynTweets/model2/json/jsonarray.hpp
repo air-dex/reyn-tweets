@@ -31,7 +31,7 @@
 /// @class JsonArray
 /// @brief Base class for all objects which can be represented by a JSON array.
 /// @param V Type of the objects which composed the list.
-template <class V>
+template <typename V>
 class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 {
 	public:
@@ -79,20 +79,22 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>
 // Streams //
 /////////////
 
-/// @fn QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<V> & list);
+/// @fn QDataStream & jsonArrayStreamingOut(QDataStream & out,
+///											const JsonArray<V> & list);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
 /// @param list JsonArray to put in the stream
 /// @return The stream with the object
-template <class V>
-QDataStream & jsonStreamingOut(QDataStream & out, const JsonArray<V> & list);
+template <typename V>
+QDataStream & jsonArrayStreamingOut(QDataStream & out, const JsonArray<V> & list);
 
-/// @fn QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list);
+/// @fn QDataStream & jsonArrayStreamingIn(QDataStream & in,
+///										   JsonArray<V> & list);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param list JsonArray to put in the stream
 /// @return The stream with the object
-template <class V>
-QDataStream & jsonStreamingIn(QDataStream & in, JsonArray<V> & list);
+template <typename V>
+QDataStream & jsonArrayStreamingIn(QDataStream & in, JsonArray<V> & list);
 
 #endif // JSONARRAY_HPP

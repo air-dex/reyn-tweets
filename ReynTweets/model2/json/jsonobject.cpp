@@ -80,7 +80,7 @@ QVariantMap JsonObject::toVariant() const {
 /////////////////////
 
 // Specialization of jsonStreamingOut for JsonObjects
-QDataStream & jsonStreamingOut(QDataStream & out,
+QDataStream & jsonObjectStreamingOut(QDataStream & out,
 							   const JsonObject & jsonobj)
 {
 	return streamVariantOut(out, jsonobj.toVariant());
@@ -97,7 +97,7 @@ QDataStream & jsonStreamingOut(QDataStream & out,
 }
 
 // Specialization of jsonStreamingIn for JsonObjects
-QDataStream & jsonStreamingIn(QDataStream & in,
+QDataStream & jsonObjectStreamingIn(QDataStream & in,
 							  JsonObject &jsonobj)
 {
 	QByteArray json = "";

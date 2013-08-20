@@ -68,12 +68,12 @@ void Hashtag2::recopie(const Hashtag2 & hashtag) {
 
 // Output stream operator for serialization
 QDataStream & operator<<(QDataStream & out, const Hashtag2 & hashtag) {
-	return jsonStreamingOut(out, hashtag);
+	return jsonObjectStreamingOut(out, hashtag);
 }
 
 // Input stream operator for serialization
 QDataStream & operator>>(QDataStream & in, Hashtag2 & hashtag) {
-	return jsonStreamingIn(in, hashtag);
+	return jsonObjectStreamingIn(in, hashtag);
 }
 
 // Resets the mappable to a default value

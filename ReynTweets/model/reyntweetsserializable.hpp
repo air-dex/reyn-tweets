@@ -29,7 +29,7 @@
 /// @class ReynTweetsSerializable
 /// @brief Class for objects that needs an equivalent serializable in JSON.
 /// @param V Type of the equivalent serializable in JSON.
-template <class V>
+template <typename V>
 class ReynTweetsSerializable
 {
 	public:

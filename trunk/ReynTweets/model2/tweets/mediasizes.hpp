@@ -24,7 +24,7 @@
 #ifndef MEDIASIZES2_HPP
 #define MEDIASIZES2_HPP
 
-#include "mediasize2.hpp"
+#include "mediasize.hpp"
 
 /// @class MediaSizes
 /// @brief Different sizes possible for a Media object

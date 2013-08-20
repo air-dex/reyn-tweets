@@ -24,7 +24,7 @@
 #ifndef USERMENTION2_HPP
 #define USERMENTION2_HPP
 
-#include "tweetentity2.hpp"
+#include "tweetentity.hpp"
 
 /// @class UserMention
 /// @brief Mention of a user in a tweet.

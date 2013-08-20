@@ -25,7 +25,7 @@
 #define URLENTITY2_HPP
 
 #include <QString>
-#include "tweetentity2.hpp"
+#include "tweetentity.hpp"
 
 /// @class URLEntity
 /// @brief URL in a tweet

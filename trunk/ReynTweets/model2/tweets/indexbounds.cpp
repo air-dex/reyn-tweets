@@ -23,7 +23,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "indexbounds2.hpp"
+#include "indexbounds.hpp"
 
 int IndexBounds2::FAKE_BOUND = -1;
 

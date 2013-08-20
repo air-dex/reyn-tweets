@@ -59,7 +59,7 @@ SOURCES += \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/requests/twitlonger/twitlongerurls.cpp \
 	connection/requests/twitter/twitterurls.cpp \
-	connection/model/resultwrapper.cpp \
+	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
 	connection/requests/twitter/twitterrequester.cpp \
 	connection/requests/twitter/accounts/verifycredentialsrequester.cpp \
@@ -164,15 +164,15 @@ HEADERS  += \
 	tools/parsers/xmlparser.hpp \
 	connection/model/managers/oauthmanager.hpp \
 	connection/model/managers/twitlongermanager.hpp \
-	connection/model/requesttype.hpp \
-	connection/model/headersmap.hpp \
+	connection/common/requesttype.hpp \
+	connection/common/headersmap.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
-	connection/model/errortypes.hpp \
-	connection/model/responseinfos.hpp \
+	connection/common/errortypes.hpp \
+	connection/common/responseinfos.hpp \
 	connection/requests/twitlonger/twitlongerurls.hpp \
 	connection/requests/twitter/twitterurls.hpp \
-	connection/model/requestresult.hpp \
-	connection/model/resultwrapper.hpp \
+	connection/common/requestresult.hpp \
+	connection/common/resultwrapper.hpp \
 	connection/common/requests/identificationway.hpp \
 	connection/common/requests/genericrequester.hpp \
 	connection/requests/twitter/twitterrequester.hpp \

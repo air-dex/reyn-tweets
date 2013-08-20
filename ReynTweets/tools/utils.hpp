@@ -30,7 +30,7 @@
 #include <QColor>
 #include <QDataStream>
 #include <QString>
-#include "../connection/model/requesttype.hpp"
+#include "../connection/common/requesttype.hpp"
 
 ///////////////////////
 // String convertion //

@@ -35,9 +35,9 @@
 #include <QUrl>
 #include <QMap>
 #include <QTimer>
-#include "../../model/responseinfos.hpp"
-#include "../../model/headersmap.hpp"
-#include "../../model/requesttype.hpp"
+#include "../../common/responseinfos.hpp"
+#include "../../common/headersmap.hpp"
+#include "../../common/requesttype.hpp"
 
 
 /////////////////////

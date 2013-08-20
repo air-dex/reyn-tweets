@@ -116,8 +116,9 @@ SOURCES += \
 	model/users/userinfos.cpp \
 	model/tweets/retweetinfos.cpp \
 	model/tweets/tweet.cpp \
-	model/timelines/timeline.cpp \
 	model/users/user.cpp \
+	model/timelines/timeline.cpp \
+	model/timelines/timelinehandler.cpp \
 	model/configuration/appconfiguration.cpp \
 	model/configuration/useraccount.cpp \
 	model/configuration/userconfiguration.cpp \
@@ -148,8 +149,7 @@ SOURCES += \
 	logic/controls/writetweetcontrol.cpp \
 	logic/coreresult.cpp \
 	tools/reyntweets.cpp \
-	main.cpp \
-    logic/controls/timelinehandler.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -234,8 +234,9 @@ HEADERS  += \
 	model/users/contributorlist.hpp \
 	model/tweets/retweetinfos.hpp \
 	model/tweets/tweet.hpp \
-	model/timelines/timeline.hpp \
 	model/users/user.hpp \
+	model/timelines/timeline.hpp \
+	model/timelines/timelinehandler.hpp \
 	model/configuration/appconfiguration.hpp \
 	model/configuration/useraccount.hpp \
 	model/configuration/userconfiguration.hpp \
@@ -270,8 +271,7 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/controls/controls.hpp \
-	tools/reyntweets.hpp \
-    logic/controls/timelinehandler.hpp
+	tools/reyntweets.hpp
 
 
 OTHER_FILES = \

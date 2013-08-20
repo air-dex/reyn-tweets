@@ -86,7 +86,8 @@ QDataStream & operator>>(QDataStream & in, TimelineHandler & handler) {
 // Getting a pointer on a tweet in the timeline.
 Tweet * TimelineHandler::getTweet(int tweetIndex) {
 	if (tweetIndex >= 0 && tweetIndex < tweetline.size()) {
-		return &(tweetline[tweetIndex]);
+		//return &(tweetline[tweetIndex]);
+		return new Tweet(tweetline[tweetIndex]);
 	} else {
 		return new Tweet;
 	}

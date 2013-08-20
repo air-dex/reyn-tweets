@@ -55,11 +55,8 @@ class Timeline : public JsonArray<Tweet>
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
 		static void initSystem();
-/*
-		/// @fn static void declareQML();
-		/// @brief Declaring to the QML system
-		static void declareQML();
-//*/
+
+
 		/////////////////////
 		// Tweet searching //
 		/////////////////////

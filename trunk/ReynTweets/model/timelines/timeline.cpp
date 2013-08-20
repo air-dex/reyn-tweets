@@ -50,14 +50,7 @@ void Timeline::initSystem() {
 	qRegisterMetaTypeStreamOperators<Timeline>("Timeline");
 	qMetaTypeId<Timeline>();
 }
-/*
-// Declaring to the QML components
-void Timeline::declareQML() {
-	qmlRegisterType<Timeline>("ReynTweetsEntities",
-							  0, 2,
-							  "Timeline");
-}
-//*/
+
 // Appending the content of a QJsonValue
 void Timeline::appendJsonValue(QJsonValue v) {
 	if (v.isObject()) {

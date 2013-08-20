@@ -26,7 +26,7 @@
 
 #include "genericcontrol.hpp"
 #include "../../model/timelines/timeline.hpp"
-#include "timelinehandler.hpp"
+#include "../../model/timelines/timelinehandler.hpp"
 #include "../reyncore.hpp"
 
 /// @class TimelineControl

@@ -106,7 +106,6 @@ void ReynTweets::declareQML() {
 	TwitterPlace::declareQML();
 
 	// Timelines
-	//Timeline::declareQML();
 	TimelineHandler::declareQML();
 
 	// Tweets

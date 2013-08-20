@@ -1,13 +1,10 @@
 /// @file allowcontrol.cpp
 /// @brief Implementation of AllowControl
-///
-/// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
-/// r204 is in /trunk/ReynTweets/logic
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///

@@ -42,6 +42,8 @@ Item {
 		login_control: login_popup.ctrl
 	}
 
+
+
 	// Popup displayed when the user has to enter its credentials
 	LoginPane {
 		id: login_popup

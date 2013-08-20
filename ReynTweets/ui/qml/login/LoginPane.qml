@@ -26,6 +26,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
+//import QtWebKit 3.0	// For the new one
 import ReynTweetsControls 0.2
 import "../js/jstools.js" as Tools
 import "../base_components"
@@ -255,3 +256,55 @@ Rectangle {
 		}
 	]
 }
+
+// The new one
+/*
+Rectangle {
+	id: login_component
+
+	width: 240
+	height: 360
+	property int margin: 5
+
+	color: constant.orange_author
+	radius: login_component.margin
+
+	Constants { id: constant }
+
+	AllowControl {
+		id: control
+		onShowLoginPopup:  {
+			login_component.visible = true
+		}
+	}
+
+	WebView {
+		id: twitter_page
+
+		anchors {
+			top: login_component.top
+			left: login_component.left
+			right: login_component.right
+			bottom: quit_button.top
+			margins: login_component.margin
+		}
+	}
+
+	RTButton {
+		id: quit_button
+
+		anchors {
+			right: login_component.right
+			bottom: login_component.bottom
+			margins: login_component.margin
+		}
+
+		button_text: qsTr("Quit")
+
+		onClick: {
+			console.log("TODO : arrêter le processus en cours")
+			Qt.quit()
+		}
+	}
+}
+//*/

@@ -33,12 +33,27 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(OAuthManager & authManager);
+		/// @fn AuthorizeRequester(OAuthManager & authManagerr,
+		///						   bool forceLog = false,
+		///						   QString writeLogin = "");
 		/// @brief Constructor
 		/// @param authManager Informations for OAuth.
-		AuthorizeRequester(OAuthManager & authManager);
+		/// @param forceLog Value for forceLogin
+		/// @param writeLogin Value for screenName
+		AuthorizeRequester(OAuthManager & authManager,
+						   bool forceLog = false,
+						   QString writeLogin = "");
 
 	protected:
+		/// @brief Boolean indicating if the user as to sign in to
+		/// Twitter to authorize the application. Quite useless in Reyn Tweets.
+		bool forceLogin;
+
+		/// @brief Screen name of the user which want to authorize the app,
+		/// in order to write it in the authentication page which will be
+		/// returned. Quite useless in Reyn Tweets.
+		QString screenName;
+
 		/////////////////////////////////
 		// Override for this requester //
 		/////////////////////////////////

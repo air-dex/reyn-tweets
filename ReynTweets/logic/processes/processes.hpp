@@ -35,5 +35,7 @@
 #include "posttweetprocess.hpp"
 #include "postviatwitlongerprocess.hpp"
 #include "retweetprocess.hpp"
+#include "oauth/requesttokensprocess.hpp"
+#include "oauth/accesstokensprocess.hpp"
 
 #endif // PROCESSES_HPP

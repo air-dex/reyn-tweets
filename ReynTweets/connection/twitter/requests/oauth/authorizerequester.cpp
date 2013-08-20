@@ -27,23 +27,49 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
+AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager, bool forceLog, QString writeLogin) :
 	OAuthRequester(Network::GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
-				   Network::HTML_PARSING)
+				   Network::NO_PARSING),	// Change because of pbms ?
+	forceLogin(forceLog),
+	screenName(writeLogin)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
 	getParameters.insert("oauth_token",
 						 QString::fromLatin1(oauthManager.getOAuthToken().data()));
+
+	getParameters.insert("force_login", boolInString(forceLogin));
+
+	if (!screenName.isEmpty()) {
+		getParameters.insert("screen_name", screenName);
+	}
 }
 
 // Parsing results
 QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 										 bool &parseOK,
-										 QVariantMap &parsingErrors) {
+										 QVariantMap &parsingErrors)
+{
+	// Look at the return code :
+	// TODO : verify it
+
+	if (results.getHttpResponse().code == 200) {
+		// It's the HTML page. Send back its code
+		parseOK = true;
+		parsingErrors = QVariantMap();
+		return QVariant::fromValue(results.getResponseBody());
+	} else {
+		// Perhaps it's JSON. Parse it as usual.
+		parsingErrorType = Network::JSON_PARSING;
+		return TwitterRequester::parseResult(results, parseOK, parsingErrors);
+	}
+
+	// Old HTML parsing
+
+	/*
 	// Flags for treatment
 	bool treatmentOK;
 	QString errTreatment = "";
@@ -137,4 +163,5 @@ QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 	}
 
 	return QVariant();
+	//*/
 }

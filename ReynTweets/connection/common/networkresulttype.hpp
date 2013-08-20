@@ -53,7 +53,10 @@ namespace Network {
 		HTML_PARSING,
 
 		/// @brief Code indicating that there was an error while parsing XML.
-		XML_PARSING
+		XML_PARSING,
+
+		/// @brief Code indicating that there is not any parsing.
+		NO_PARSING
 	};
 }
 

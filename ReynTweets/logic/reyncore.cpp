@@ -190,6 +190,18 @@ void ReynCore::allowReynTweets() {
 	executeProcess(process);
 }
 
+// Getting OAuth Request tokens for Reyn Tweets
+void ReynCore::requestOAuthTokens() {
+	RequestTokensProcess * process = new RequestTokensProcess();
+	executeProcess(process);
+}
+
+// Getting OAuth Access tokens for Reyn Tweets
+void ReynCore::accessOAuthTokens(QByteArray verifier) {
+	AccessTokensProcess * process = new AccessTokensProcess(verifier);
+	executeProcess(process);
+}
+
 // Special wiring of an OAuth process.
 void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
 	// Process giving informations about user credentials

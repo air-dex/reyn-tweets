@@ -133,6 +133,9 @@ enum CoreResult {
 	// OAuth ends //
 	////////////////
 
+	/// @brief The application has request tokens
+	REQUEST_TOKENS_OK,
+
 	/// @brief The application is authorized
 	AUTHORIZED,
 

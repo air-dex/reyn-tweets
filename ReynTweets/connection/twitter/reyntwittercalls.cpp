@@ -122,8 +122,10 @@ void ReynTwitterCalls::requestToken() {
 }
 
 // Authorizing request Tokens
-void ReynTwitterCalls::authorize() {
-	AuthorizeRequester * requester = new AuthorizeRequester(oauthManager);
+void ReynTwitterCalls::authorize(bool forceLogin, QString writeLogin) {
+	AuthorizeRequester * requester = new AuthorizeRequester(oauthManager,
+															forceLogin,
+															writeLogin);
 	executeRequest(requester);
 }
 
@@ -137,8 +139,9 @@ void ReynTwitterCalls::postAuthorize(QString login, QString password, bool deny)
 }
 
 // Getting the access tokens
-void ReynTwitterCalls::accessToken() {
-	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager);
+void ReynTwitterCalls::accessToken(QByteArray verifier) {
+	AccessTokenRequester * requester = new AccessTokenRequester(oauthManager,
+																verifier);
 	executeRequest(requester);
 }
 

@@ -54,7 +54,7 @@ const JsonObject & JsonObject::operator=(const JsonObject & jsonobj) {
 }
 
 // Core method to copy a JsonObject
-void JsonObject::recopie(const JsonObject & jsonobj) {}
+void JsonObject::recopie(const JsonObject & ) {}
 
 
 ////////////////////////////////////////

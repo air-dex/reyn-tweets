@@ -115,44 +115,22 @@ class UserEntities : public JsonObject
 
 	protected:
 		// url
-		/// @property url
-		/// @brief URL entities (QVariant form)
+		/// @property url_ent
+		/// @brief URL entities
 		///
 		/// userURL is the attribute beneath the property.
-		Q_PROPERTY(QVariantMap url
-				   READ getURLProperty
+		Q_PROPERTY(TweetEntities * url
+				   READ getURLPtr
 				   WRITE setURL
 				   NOTIFY urlChanged)
 
 		/// @brief Name of the property url.
 		static QString URL_PN;
 
-		/// @fn QVariantMap getURLProperty();
-		/// @brief Reading url.
-		/// @return userURL.toVariant();
-		QVariantMap getURLProperty();
-
-		/// @fn void setURL(QVariantMap newValue);
-		/// @brief Writing url.
-		/// @param newValue Variant list containing new values for userURL
-		void setURL(QVariantMap newValue);
-
-		/// @property url_ent
-		/// @brief URL entities
-		///
-		/// userURL is the attribute beneath the property.
-		Q_PROPERTY(TweetEntities * url_ent
-				   READ getURLptr
-				   WRITE setURL
-				   NOTIFY urlChanged)
-
-		/// @brief Name of the property url_ent.
-		static QString URL_ENT_PN;
-
-		/// @fn TweetEntities * getURLptr();
+		/// @fn TweetEntities * getURLPtr();
 		/// @brief Reading url.
 		/// @return &userURL
-		TweetEntities * getURLptr();
+		TweetEntities * getURLPtr();
 
 		/// @fn void setURL(TweetEntities * newValue);
 		/// @brief Writing url.
@@ -163,44 +141,22 @@ class UserEntities : public JsonObject
 		TweetEntities userURL;
 
 		// description
-		/// @property description
-		/// @brief URL entities in the description (QVariant form)
+		/// @property description_ent
+		/// @brief URL entities in the description.
 		///
 		/// userDescription is the attribute beneath the property.
-		Q_PROPERTY(QVariantMap description
-				   READ getDescriptionProperty
+		Q_PROPERTY(TweetEntities * description
+				   READ getDescriptionPtr
 				   WRITE setDescription
 				   NOTIFY descriptionChanged)
 
 		/// @brief Name of the property description.
 		static QString DESCRIPTION_PN;
 
-		/// @fn QVariantMap getDescriptionProperty();
-		/// @brief Reading description.
-		/// @return userDescription.toVariant();
-		QVariantMap getDescriptionProperty();
-
-		/// @fn void setDescription(QVariantMap newValue);
-		/// @brief Writing description.
-		/// @param newValue Variant list containing new values for userDescription.
-		void setDescription(QVariantMap newValue);
-
-		/// @property description_ent
-		/// @brief URL entities in the description.
-		///
-		/// userDescription is the attribute beneath the property.
-		Q_PROPERTY(TweetEntities * description_ent
-				   READ getDescriptionptr
-				   WRITE setDescription
-				   NOTIFY descriptionChanged)
-
-		/// @brief Name of the property description_ent.
-		static QString DESCRIPTION_ENT_PN;
-
-		/// @fn TweetEntities * getDescriptionptr();
+		/// @fn TweetEntities * getDescriptionPtr();
 		/// @brief Reading description.
 		/// @return &userDescription
-		TweetEntities * getDescriptionptr();
+		TweetEntities * getDescriptionPtr();
 
 		/// @fn void setDescription(TweetEntities * newValue);
 		/// @brief Writing description.

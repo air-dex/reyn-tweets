@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "mediasize.hpp"
+#include <QtQml>
 #include "../../../tools/utils.hpp"
 
 //////////////////////////////
@@ -65,6 +66,11 @@ void MediaSize::recopie(const MediaSize & size) {
 void MediaSize::initSystem() {
 	qRegisterMetaTypeStreamOperators<MediaSize>("MediaSize");
 	qMetaTypeId<MediaSize>();
+}
+
+// Declaring to the QML components
+void MediaSize::declareQML() {
+	qmlRegisterType<MediaSize>("ReynTweetsEntities", 0, 2, "MediaSize");
 }
 
 // Output stream operator for serialization
@@ -113,8 +119,18 @@ QJsonObject MediaSize::toVariant() const {
 // w
 QString MediaSize::W_PN = "w";
 
+void MediaSize::setWidth(int w) {
+	QSize::setWidth(w);
+	emit widthChanged();
+}
+
 // h
 QString MediaSize::H_PN = "h";
+
+void MediaSize::setHeight(int h) {
+	QSize::setWidth(h);
+	emit heightChanged();
+}
 
 // resize
 QString MediaSize::RESIZE_PN = "resize";
@@ -125,6 +141,7 @@ QString MediaSize::getResizeProperty() const {
 
 void MediaSize::setResize(QString newResize) {
 	resizeMedia = string2Resize(newResize);
+	emit resizeChanged();
 }
 
 

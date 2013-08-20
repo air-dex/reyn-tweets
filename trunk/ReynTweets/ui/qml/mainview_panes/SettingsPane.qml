@@ -145,12 +145,12 @@ Rectangle {
 
 	// Loading configuration in the pane
 	function loadSavedConfiguration() {
-		say_hello_setting.field_text = settings_control.configuration.current_account.hello_message
+		say_hello_setting.field_text = settings_control.configuration.user_account.hello_message
 	}
 
 	// Writing configuration with settings written in the pane
 	function overWriteConfiguration() {
-		settings_control.configuration.current_account.hello_message = say_hello_setting.field_text
+		settings_control.configuration.user_account.hello_message = say_hello_setting.field_text
 	}
 
 	Component.onCompleted: {

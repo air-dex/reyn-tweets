@@ -128,6 +128,7 @@ qlonglong Contributor::getID() {
 // BUGGY : https://bugreports.qt-project.org/browse/QTBUG-28560
 void Contributor::setID(qlonglong newID) {
 	userID = newID;
+	emit idChanged();
 }
 
 // id_str
@@ -139,6 +140,7 @@ QString Contributor::getIDstr() {
 
 void Contributor::setIDstr(QString newID) {
 	userIDstr = newID;
+	emit idChanged();
 }
 
 // screen_name
@@ -150,6 +152,7 @@ QString Contributor::getScreenName() {
 
 void Contributor::setScreenName(QString newScreenName) {
 	screenName = newScreenName;
+	emit screenNameChanged();
 }
 
 

@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "geoboundingbox.hpp"
+#include <QtQml>
 #include <QJsonArray>
 
 /////////////
@@ -55,6 +56,11 @@ const GeoBoundingBox & GeoBoundingBox::operator=(const GeoBoundingBox & coord) {
 void GeoBoundingBox::initSystem() {
 	qRegisterMetaTypeStreamOperators<GeoBoundingBox>("GeoBoundingBox");
 	qMetaTypeId<GeoBoundingBox>();
+}
+
+// Declaring to the QML components
+void GeoBoundingBox::declareQML() {
+	qmlRegisterType<GeoBoundingBox>("ReynTweetsEntities", 0, 2, "GeoBoundingBox");
 }
 
 // Reset

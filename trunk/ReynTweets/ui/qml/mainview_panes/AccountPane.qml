@@ -37,11 +37,11 @@ ActionElement {
 	// Sent to show a profile
 	signal showProfile
 
-	image_source: settings.configuration.current_account.current_user.profile_image_url
+	image_source: settings.configuration.user_account.current_user.profile_image_url
 	legend: '<strong style="color: '
-		.concat(settings.configuration.current_account.current_user.profile_link_color)
+		.concat(settings.configuration.user_account.current_user.profile_link_color)
 		.concat('">@')
-		.concat(settings.configuration.current_account.current_user.screen_name)
+		.concat(settings.configuration.user_account.current_user.screen_name)
 		.concat("</strong>")
 	onAct: showProfile()
 }

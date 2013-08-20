@@ -120,23 +120,12 @@ QDataStream & operator>>(QDataStream & in, UserEntities & entities) {
 // url
 QString UserEntities::URL_PN = "url";
 
-QString UserEntities::URL_ENT_PN = "url_ent";
-
 TweetEntities UserEntities::getURL() {
 	return userURL;
 }
 
-QVariantMap UserEntities::getURLProperty() {
-	return userURL.toVariant().toVariantMap();
-}
-
-TweetEntities * UserEntities::getURLptr() {
+TweetEntities * UserEntities::getURLPtr() {
 	return &userURL;
-}
-
-void UserEntities::setURL(QVariantMap newValue) {
-	userURL.fillWithVariant(QJsonObject::fromVariantMap(newValue));
-	emit urlChanged();
 }
 
 void UserEntities::setURL(TweetEntities * newValue) {
@@ -152,23 +141,12 @@ void UserEntities::setURL(TweetEntities newValue) {
 // description
 QString UserEntities::DESCRIPTION_PN = "description";
 
-QString UserEntities::DESCRIPTION_ENT_PN = "description_ent";
-
 TweetEntities UserEntities::getDescription() {
 	return userDescription;
 }
 
-QVariantMap UserEntities::getDescriptionProperty() {
-	return userDescription.toVariant().toVariantMap();
-}
-
-TweetEntities * UserEntities::getDescriptionptr() {
+TweetEntities * UserEntities::getDescriptionPtr() {
 	return &userDescription;
-}
-
-void UserEntities::setDescription(QVariantMap newValue) {
-	userDescription.fillWithVariant(QJsonObject::fromVariantMap(newValue));
-	emit descriptionChanged();
 }
 
 void UserEntities::setDescription(TweetEntities * newValue) {

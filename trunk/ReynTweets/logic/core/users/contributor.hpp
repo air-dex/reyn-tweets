@@ -145,7 +145,8 @@ class Contributor : public JsonObject
 		/// The userID attribute is behind this property.
 		Q_PROPERTY(qlonglong id
 				   READ getID
-				   WRITE setID)
+				   WRITE setID
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id.
 		static QString ID_PN;
@@ -157,7 +158,8 @@ class Contributor : public JsonObject
 		/// The userIDstr attribute is behind this property.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
-				   WRITE setIDstr)
+				   WRITE setIDstr
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id_str.
 		static QString ID_STR_PN;
@@ -169,10 +171,21 @@ class Contributor : public JsonObject
 		/// The screenName attribute is behind this property.
 		Q_PROPERTY(QString screen_name
 				   READ getScreenName
-				   WRITE setScreenName)
+				   WRITE setScreenName
+				   NOTIFY screenNameChanged)
 
 		/// @brief Name of the property screen_name.
 		static QString SCREEN_NAME_PN;
+
+	signals:
+		/// @fn void idChanged();
+		/// @brief Signal emitted when the properties id or id_str change
+		/// their values.
+		void idChanged();
+
+		/// @fn void screenNameChanged();
+		/// @brief Signal emitted when the property screen_name changes its value.
+		void screenNameChanged();
 
 
 	////////////////////////////

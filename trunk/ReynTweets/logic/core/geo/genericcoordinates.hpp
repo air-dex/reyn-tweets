@@ -106,7 +106,7 @@ class GenericCoordinates : public GenCoord
 
 		/// @fn QVariantList getCoordinatesProperty();
 		/// @brief Reading coordinates
-		/// @return retweetID
+		/// @return geoCoordinates.toVariant()
 		QVariantList getCoordinatesProperty();
 
 		/// @fn void setCoordinates(QVariantList newValue);
@@ -151,7 +151,7 @@ class GenericCoordinates : public GenCoord
 		/// @brief Coordinates of the point
 		C geoCoordinates;
 
-		/// @brief String version of retweetID
+		/// @brief Type of coordinates.
 		CoordinatesType coordType;
 
 	public:

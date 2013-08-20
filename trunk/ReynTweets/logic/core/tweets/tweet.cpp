@@ -52,7 +52,7 @@ Tweet::Tweet() :
 	replyToUserIDstr("-1"),
 	replyToTweetID(-1),
 	replyToTweetIDstr("-1"),
-	profile(),
+	author(),
 	createdAt(),
 	sourceClient(""),
 	withheldCopyright(false),
@@ -94,7 +94,7 @@ Tweet::Tweet(const Tweet & status) :
 	replyToUserIDstr("-1"),
 	replyToTweetID(-1),
 	replyToTweetIDstr("-1"),
-	profile(),
+	author(),
 	createdAt(),
 	sourceClient(""),
 	withheldCopyright(false),
@@ -134,7 +134,7 @@ void Tweet::recopie(const Tweet & status) {
 	replyToUserIDstr = status.replyToUserIDstr;
 	replyToTweetID = status.replyToTweetID;
 	replyToTweetIDstr = status.replyToTweetIDstr;
-	profile = status.profile;
+	author = status.author;
 	createdAt = status.createdAt;
 	sourceClient = status.sourceClient;
 	truncatedTweet = status.truncatedTweet;
@@ -230,7 +230,7 @@ void Tweet::fillWithVariant(QJsonObject json) {
 	this->sourceClient = json.value(SOURCE_PN).toString("");
 	this->tweet = json.value(TEXT_PN).toString("");
 	this->truncatedTweet = json.value(TRUNCATED_PN).toBool(false);
-	this->profile.fillWithVariant(json.value(USER_PN).toObject());
+	this->author.fillWithVariant(json.value(USER_PN).toObject());
 	this->withheldCopyright = json.value(WITHHELD_COPYRIGHT_PN).toBool(false);
 	this->withheldScope = json.value(WITHHELD_SCOPE_PN).toString("");
 
@@ -286,7 +286,7 @@ QJsonObject Tweet::toVariant() const {
 	json.insert(SOURCE_PN, QJsonValue(this->sourceClient));
 	json.insert(TEXT_PN, QJsonValue(this->tweet));
 	json.insert(TRUNCATED_PN, QJsonValue(this->truncatedTweet));
-	json.insert(USER_PN, QJsonValue(this->profile.toVariant()));
+	json.insert(USER_PN, QJsonValue(this->author.toVariant()));
 	json.insert(WITHHELD_COPYRIGHT_PN, QJsonValue(this->withheldCopyright));
 	json.insert(WITHHELD_IN_COUNTRIES_PN, QJsonValue(QJsonArray::fromStringList(this->withheldInCountries)));
 	json.insert(WITHHELD_SCOPE_PN, QJsonValue(this->withheldScope));
@@ -343,18 +343,12 @@ void Tweet::setContributors(ContributorList * newEntityMap) {
 // coordinates
 QString Tweet::COORDINATES_PN = "coordinates";
 
-QString Tweet::TWEET_COORDINATES_PN = "tweet_coordinates";
-
 Coordinates Tweet::getCoordinates() {
 	return tweetCoordinates;
 }
 
 Coordinates * Tweet::getCoordinatesPtr() {
 	return &tweetCoordinates;
-}
-
-QVariantMap Tweet::getCoordinatesProperty() {
-	return tweetCoordinates.toVariant().toVariantMap();
 }
 
 void Tweet::setCoordinates(Coordinates newValue) {
@@ -367,28 +361,11 @@ void Tweet::setCoordinates(Coordinates * newValue) {
 	emit coordinatesChanged();
 }
 
-void Tweet::setCoordinates(QVariantMap newEntityMap) {
-	tweetCoordinates.fillWithVariant(QJsonObject::fromVariantMap(newEntityMap));
-	emit coordinatesChanged();
-}
-
 // current_user_retweet
 QString Tweet::CURRENT_USER_RETWEET_PN = "current_user_retweet";
 
-QString Tweet::RETWEET_INFOS_PN = "retweet_infos";
-
-QVariantMap Tweet::getRetweetInfosVariant() {
-	return retweetInfos.toVariant().toVariantMap();
-}
-
 RetweetInfos * Tweet::getRetweetInfos() {
 	return &retweetInfos;
-}
-
-void Tweet::setRetweetInfos(QVariantMap newInfos) {
-	retweetInfos.reset();
-	retweetInfos.fillWithVariant(QJsonObject::fromVariantMap(newInfos));
-	emit retweetInfosChanged();
 }
 
 void Tweet::setRetweetInfos(RetweetInfos * newInfos) {
@@ -419,23 +396,12 @@ void Tweet::setCreatedAt(ReynTweetsDateTime newValue) {
 // entities
 QString Tweet::ENTITIES_PN = "entities";
 
-QString Tweet::TWEET_ENTITIES_PN = "tweet_entities";
-
-QVariantMap Tweet::getEntitiesProperty() {
-	return tweetEntities.toVariant().toVariantMap();
-}
-
 TweetEntities Tweet::getEntities() {
 	return tweetEntities;
 }
 
 TweetEntities * Tweet::getEntitiesPtr() {
 	return &tweetEntities;
-}
-
-void Tweet::setEntities(QVariantMap newEntityMap) {
-	tweetEntities.fillWithVariant(QJsonObject::fromVariantMap(newEntityMap));
-	emit entitiesChanged();
 }
 
 void Tweet::setEntities(TweetEntities newValue) {
@@ -589,23 +555,12 @@ void Tweet::setLang(QString newLang) {
 // place
 QString Tweet::PLACE_PN = "place";
 
-QString Tweet::TWEET_PLACE_PN = "tweet_place";
-
-QVariantMap Tweet::getPlaceProperty() {
-	return tweetPlace.toVariant().toVariantMap();
-}
-
 TwitterPlace Tweet::getPlace() {
 	return tweetPlace;
 }
 
 TwitterPlace * Tweet::getPlacePtr() {
 	return &tweetPlace;
-}
-
-void Tweet::setPlace(QVariantMap newEntityMap) {
-	tweetPlace.fillWithVariant(QJsonObject::fromVariantMap(newEntityMap));
-	emit placeChanged();
 }
 
 void Tweet::setPlace(TwitterPlace newValue) {
@@ -657,38 +612,8 @@ void Tweet::setRetweeted(bool newValue) {
 // retweeted_status
 QString Tweet::RETWEETED_STATUS_PN = "retweeted_status";
 
-QString Tweet::RETWEET_PN = "retweet";
-
-QVariantMap Tweet::getRetweetedStatusVariant() {
-	if (retweetSource && retweetSource->tweetID != -1) {
-		return retweetSource->toVariant().toVariantMap();
-	} else {
-		// Return an empty QVariantMap for a default tweet to avoid stack problems
-		return QVariantMap();
-	}
-}
-
 Tweet * Tweet::getRetweetedStatus() {
 	return retweetSource ? retweetSource : new Tweet;
-}
-
-void Tweet::setRetweetedStatus(QVariantMap statusMap) {
-	if (statusMap.empty()) {
-		// This is not a retweet
-		if (retweetSource) {
-			delete retweetSource;
-		}
-		retweetSource = 0;
-	}
-	else {
-		if (!retweetSource) {
-			retweetSource = new Tweet;
-		} else {
-			retweetSource->reset();
-		}
-		retweetSource->fillWithVariant(QJsonObject::fromVariantMap(statusMap));
-	}
-	emit retweetedStatusChanged();
 }
 
 void Tweet::setRetweetedStatus(Tweet * retweet) {
@@ -752,31 +677,21 @@ void Tweet::setTruncated(bool newValue) {
 // user
 QString Tweet::USER_PN = "user";
 
-QString Tweet::AUTHOR_PN = "author";
-
-QVariantMap Tweet::getUserProperty() {
-	return profile.toVariant().toVariantMap();
-}
-
-UserInfos * Tweet::getAuthor() {
-	return &profile;
+UserInfos * Tweet::getUserPtr() {
+	return &author;
 }
 
 UserInfos Tweet::getUser() {
-	return profile;
+	return author;
 }
 
-void Tweet::setUser(QVariantMap newUserMap) {
-	profile.fillWithVariant(QJsonObject::fromVariantMap(newUserMap));
-}
-
-void Tweet::setAuthor(UserInfos * newValue) {
-	profile = newValue ? *newValue : UserInfos();
+void Tweet::setUser(UserInfos * newValue) {
+	author = newValue ? *newValue : UserInfos();
 	emit userChanged();
 }
 
 void Tweet::setUser(UserInfos newValue) {
-	profile = newValue;
+	author = newValue;
 	emit userChanged();
 }
 
@@ -832,7 +747,7 @@ QString Tweet::getDisplayText() {
 		 ++it)
 	{
 		TweetEntity * entity = *it;
-		QString entityText = entity->getDisplayedText(profile.getProfileLinkColor());
+		QString entityText = entity->getDisplayedText(author.getProfileLinkColor());
 		int min = entity->getIndices().getMin();
 		int max = entity->getIndices().getMax();
 		displayedText.replace(min, max-min, entityText);
@@ -858,7 +773,7 @@ QString Tweet::getDisplaySource() {
 
 		// Styling
 		aTag.setStyleProperty("text-decoration", "none");
-		aTag.setStyleProperty("color", profile.getProfileLinkColor().name());
+		aTag.setStyleProperty("color", author.getProfileLinkColor().name());
 
 		// Extracting the tag under its QString form
 		return aTag.toOuterXml();
@@ -889,20 +804,19 @@ QString Tweet::whenWasItPosted(bool encloseInHtmlTag) {
 			aTag.setInnerXml(dateToReturn);
 			aTag.setAttribute("href", getTweetURL().toString());
 			aTag.setStyleProperty("text-decoration", "none");
-			aTag.setStyleProperty("color", profile.getProfileLinkColor().name());
+			aTag.setStyleProperty("color", author.getProfileLinkColor().name());
 
 			// Extracting the tag under its QString form
 			return aTag.toOuterXml();
 		} else {
 			QString s = "";
-			QTextStream t(&s);
 
-			t << "<a href=\"" << getTweetURL().toString()
-			  << "style=\"text-decoration: none ; color:\""
-			  << profile.getProfileLinkColor().name() << "\">"
-			  << dateToReturn << "</a>";
+			s.append("<a href=\"").append(getTweetURL().toString())
+				.append("style=\"text-decoration: none ; color:\"")
+				.append(author.getProfileLinkColor().name()).append("\">")
+				.append(dateToReturn).append("</a>");
 
-			return t.readAll();
+			return s;
 		}
 	} else {
 		// Do not enclose
@@ -929,12 +843,11 @@ bool Tweet::isRetweetedByPeople() {
 // Getting the URL of the tweet on twitter.com
 QUrl Tweet::getTweetURL() {
 	QString s = "";
-	QTextStream t(&s);
 
-	t << "https://twitter.com/#!/" << profile.getScreenName()
-	  << "/status/" << tweetIDstr;
+	s.append("https://twitter.com/").append(author.getScreenName())
+		.append("/status/").append(tweetIDstr);
 
-	return QUrl(t.readAll());
+	return QUrl(s);
 }
 
 // The shown tweet

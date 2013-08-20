@@ -62,6 +62,10 @@ class Media : public URLEntity
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();
@@ -125,7 +129,8 @@ class Media : public URLEntity
 		/// mediaID is the attribute behind this property.
 		Q_PROPERTY(qlonglong id
 				   READ getID
-				   WRITE setID)
+				   WRITE setID
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id.
 		static QString ID_PN;
@@ -137,7 +142,8 @@ class Media : public URLEntity
 		/// mediaIDstr is the attribute behind this property.
 		Q_PROPERTY(QString id_str
 				   READ getIDstr
-				   WRITE setIDstr)
+				   WRITE setIDstr
+				   NOTIFY idChanged)
 
 		/// @brief Name of the property id_str.
 		static QString ID_STR_PN;
@@ -149,7 +155,8 @@ class Media : public URLEntity
 		/// mediaURL is the attribute behind this property.
 		Q_PROPERTY(QString media_url
 				   READ getMediaURL
-				   WRITE setMediaURL)
+				   WRITE setMediaURL
+				   NOTIFY mediaURLChanged)
 
 		/// @brief Name of the property media_url.
 		static QString MEDIA_URL_PN;
@@ -161,7 +168,8 @@ class Media : public URLEntity
 		/// mediaURLhttps is the attribute behind this property.
 		Q_PROPERTY(QString media_url_https
 				   READ getMediaURLhttps
-				   WRITE setMediaURLhttps)
+				   WRITE setMediaURLhttps
+				   NOTIFY mediaURLhttpsChanged)
 
 		/// @brief Name of the property media_url_https.
 		static QString MEDIA_URL_HTTPS_PN;
@@ -173,7 +181,8 @@ class Media : public URLEntity
 		/// mediaType is the attribute behind this property.
 		Q_PROPERTY(QString type
 				   READ getType
-				   WRITE setType)
+				   WRITE setType
+				   NOTIFY typeChanged)
 
 		/// @brief Name of the property type.
 		static QString TYPE_PN;
@@ -183,22 +192,23 @@ class Media : public URLEntity
 		/// @brief Different sizes for the media
 		///
 		/// mediaSizes is the attribute behind this property.
-		Q_PROPERTY(QVariantMap sizes
-				   READ getSizesProperty
-				   WRITE setSizes)
+		Q_PROPERTY(MediaSizes * sizes
+				   READ getSizesPtr
+				   WRITE setSizes
+				   NOTIFY sizesChanged)
 
 		/// @brief Name of the property sizes.
 		static QString SIZES_PN;
 
-		/// @fn QVariantList getSizesProperty();
-		/// @brief Reading method for the property sizes
-		/// @return sizesMap
-		QVariantMap getSizesProperty();
+		/// @fn MediaSizes * getSizesPtr();
+		/// @brief Reading sizes
+		/// @return &mediaSizes
+		MediaSizes * getSizesPtr();
 
-		/// @fn void setSizes(QVariantMap newMap);
-		/// @brief Writing method for the property sizes
-		/// @param newMap New value for the property sizes
-		void setSizes(QVariantMap newMap);
+		/// @fn void setSizes(MediaSizes * newSizes);
+		/// @brief Writing sizes
+		/// @param newSizes New value for mediaSizes
+		void setSizes(MediaSizes * newSizes);
 
 		// source_status_id
 		/// @property source_status_id
@@ -207,7 +217,8 @@ class Media : public URLEntity
 		/// sourceID is the attribute behind this property.
 		Q_PROPERTY(qlonglong source_status_id
 				   READ getSourceID
-				   WRITE setSourceID)
+				   WRITE setSourceID
+				   NOTIFY sourceIDChanged)
 
 		/// @brief Name of the property id.
 		static QString SOURCE_STATUS_ID_PN;
@@ -219,10 +230,39 @@ class Media : public URLEntity
 		/// sourceIDstr is the attribute behind this property.
 		Q_PROPERTY(QString source_status_id_str
 				   READ getSourceIDstr
-				   WRITE setSourceIDstr)
+				   WRITE setSourceIDstr
+				   NOTIFY sourceIDChanged)
 
 		/// @brief Name of the property id_str.
 		static QString SOURCE_STATUS_ID_STR_PN;
+
+	signals:
+		/// @fn void idChanged();
+		/// @brief Signal emitted when the properties id or id_str have got
+		/// a new value.
+		void idChanged();
+
+		/// @fn void mediaURLChanged();
+		/// @brief Signal emitted when the property media_url has got a new value.
+		void mediaURLChanged();
+
+		/// @fn void mediaURLhttpsChanged();
+		/// @brief Signal emitted when the property media_url_https has got
+		/// a new value.
+		void mediaURLhttpsChanged();
+
+		/// @fn void typeChanged();
+		/// @brief Signal emitted when the property type has got a new value.
+		void typeChanged();
+
+		/// @fn void sizesChanged();
+		/// @brief Signal emitted when the property sizes has got a new value.
+		void sizesChanged();
+
+		/// @fn void sourceIDChanged();
+		/// @brief Signal emitted when the properties source_status_id or
+		/// source_status_id_str have got a new value.
+		void sourceIDChanged();
 
 
 	//////////////////////
@@ -260,6 +300,7 @@ class Media : public URLEntity
 	////////////////////////
 
 	public:
+		// id
 		/// @fn qlonglong getID();
 		/// @brief Reading mediaID
 		///
@@ -280,6 +321,7 @@ class Media : public URLEntity
 		/// @param newID New value for mediaID
 		void setID(qlonglong newID);
 
+		// id_str
 		/// @fn QString getIDstr();
 		/// @brief Reading mediaIDstr
 		/// @return mediaIDstr
@@ -290,6 +332,7 @@ class Media : public URLEntity
 		/// @param newID New value for mediaIDstr
 		void setIDstr(QString newID);
 
+		// media_url
 		/// @fn QString getMediaURL();
 		/// @brief Reading method for mediaURL
 		/// @return mediaURL
@@ -300,6 +343,7 @@ class Media : public URLEntity
 		/// @param newMediaURL New value for mediaURL
 		void setMediaURL(QString newMediaURL);
 
+		// media_url_https
 		/// @fn QString getMediaURLhttps();
 		/// @brief Reading method for mediaURLhttps
 		/// @return mediaURLhttps
@@ -310,6 +354,7 @@ class Media : public URLEntity
 		/// @param newMediaURL New value for mediaURLhttps
 		void setMediaURLhttps(QString newMediaURL);
 
+		// type
 		/// @fn QString getType();
 		/// @brief Reading method for mediaType
 		/// @return mediatype
@@ -320,6 +365,7 @@ class Media : public URLEntity
 		/// @param newType New value for mediaType
 		void setType(QString newType);
 
+		// sizes
 		/// @fn MediaSizes getSizes();
 		/// @brief Reading mediaSizes
 		/// @return mediaSizes
@@ -330,6 +376,7 @@ class Media : public URLEntity
 		/// @param newSizes New value for mediaSizes
 		void setSizes(MediaSizes newSizes);
 
+		// source_id
 		/// @fn qlonglong getSourceID();
 		/// @brief Reading source_status_id
 		/// @return sourceID
@@ -340,6 +387,7 @@ class Media : public URLEntity
 		/// @param newID New value for sourceID
 		void setSourceID(qlonglong newID);
 
+		// source_id_str
 		/// @fn QString getSourceIDstr();
 		/// @brief Reading source_status_id_str
 		/// @return sourceIDstr

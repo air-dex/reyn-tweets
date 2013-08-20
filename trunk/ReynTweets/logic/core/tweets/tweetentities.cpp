@@ -22,6 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "tweetentities.hpp"
+#include <QtQml>
 #include "../../../tools/utils.hpp"
 
 //////////////////////////////
@@ -61,6 +62,11 @@ const TweetEntities & TweetEntities::operator=(const TweetEntities & entities) {
 void TweetEntities::initSystem() {
 	qRegisterMetaTypeStreamOperators<TweetEntities>("TweetEntities");
 	qMetaTypeId<TweetEntities>();
+}
+
+// Declaring to the QML components
+void TweetEntities::declareQML() {
+	qmlRegisterType<TweetEntities>("ReynTweetsEntities", 0, 2,"TweetEntities");
 }
 
 // Copy of a TwitterEntities
@@ -130,10 +136,12 @@ MediaList TweetEntities::getMedia() {
 
 void TweetEntities::setMedia(QVariantList newMediaList) {
 	medias.fillWithVariant(QJsonArray::fromVariantList(newMediaList));
+	emit mediaChanged();
 }
 
 void TweetEntities::setMedia(MediaList newMedia) {
 	medias = newMedia;
+	emit mediaChanged();
 }
 
 // urls
@@ -149,10 +157,12 @@ URLEntityList TweetEntities::getURLs() {
 
 void TweetEntities::setURLs(QVariantList newURLList) {
 	tweetURLs.fillWithVariant(QJsonArray::fromVariantList(newURLList));
+	emit urlsChanged();
 }
 
 void TweetEntities::setURLs(URLEntityList newURLs) {
 	tweetURLs = newURLs;
+	emit urlsChanged();
 }
 
 // user_mentions
@@ -168,10 +178,12 @@ UserMentionList TweetEntities::getUserMentions() {
 
 void TweetEntities::setUserMentions(QVariantList newUserMentionsList) {
 	mentions.fillWithVariant(QJsonArray::fromVariantList(newUserMentionsList));
+	emit userMentionsChanged();
 }
 
 void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
 	mentions = newUserMentions;
+	emit userMentionsChanged();
 }
 
 // hashtags
@@ -187,10 +199,12 @@ HashtagList TweetEntities::getHashtags() {
 
 void TweetEntities::setHashtags(QVariantList newHashtagsList) {
 	 tweetHashtags.fillWithVariant(QJsonArray::fromVariantList(newHashtagsList));
+	 emit hashtagsChanged();
 }
 
 void TweetEntities::setHashtags(HashtagList newHashtags) {
 	tweetHashtags = newHashtags;
+	emit hashtagsChanged();
 }
 
 

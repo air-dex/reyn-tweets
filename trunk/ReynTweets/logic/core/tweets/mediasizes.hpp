@@ -61,6 +61,10 @@ class MediaSizes : public JsonObject
 		/// @brief Serialization declaration
 		static void initSystem();
 
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
+
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();
@@ -109,93 +113,114 @@ class MediaSizes : public JsonObject
 	///////////////////////////
 
 	protected:
-		// Large size
+		// large
 		/// @property large
 		/// @brief Large size for a media
 		///
 		/// largeSize is the attribute behind the property.
-		Q_PROPERTY(QVariantMap large
-				   READ getLargeProperty
-				   WRITE setLarge)
+		Q_PROPERTY(MediaSize * large
+				   READ getLargePtr
+				   WRITE setLarge
+				   NOTIFY largeChanged)
 
 		/// @brief Name of the property large.
 		static QString LARGE_PN;
 
-		/// @fn QVariantMap getLargeProperty();
-		/// @brief Reading method for the property large
-		/// @return largeMap
-		QVariantMap getLargeProperty();
+		/// @fn MediaSize * getLargePtr();
+		/// @brief Reading large
+		/// @return &largeSize
+		MediaSize * getLargePtr();
 
-		/// @fn void setLarge(QVariantMap newLargeMap);
-		/// @brief Writing method for the property large
-		/// @param newLargeMap New value for the property large
-		void setLarge(QVariantMap newLargeMap);
+		/// @fn void setLarge(MediaSize * newLargeSize);
+		/// @brief Writing large
+		/// @param newLargeSize New value for largeSize
+		void setLarge(MediaSize * newLargeSize);
 
-		// Medium size
+		// medium
 		/// @property medium
 		/// @brief Large size for a media
 		///
 		/// mediumSize is the attribute behind the property.
-		Q_PROPERTY(QVariantMap medium
-				   READ getMediumProperty
-				   WRITE setMedium)
+		Q_PROPERTY(MediaSize * medium
+				   READ getMediumPtr
+				   WRITE setMedium
+				   NOTIFY mediumChanged)
 
 		/// @brief Name of the property medium.
 		static QString MEDIUM_PN;
 
-		/// @fn QVariantMap getMediumProperty();
-		/// @brief Reading method for the property medium
-		/// @return mediumMap
-		QVariantMap getMediumProperty();
+		/// @fn MediaSize * getMediumPtr();
+		/// @brief Reading medium
+		/// @return &mediumSize
+		MediaSize * getMediumPtr();
 
-		/// @fn void setMedium(QVariantMap newMediumMap);
-		/// @brief Writing method for the property medium
-		/// @param newMediumMap New value for the property medium
-		void setMedium(QVariantMap newMediumMap);
+		/// @fn void setMedium(MediaSize * newMediumSize);
+		/// @brief Writing medium
+		/// @param newMediumSize New value for mediumSize
+		void setMedium(MediaSize * newMediumSize);
 
-		// Small size
+		// small
 		/// @property small
 		/// @brief Large size for a media
 		///
 		/// smallSize is the attribute behind the property.
-		Q_PROPERTY(QVariantMap small
-				   READ getSmallProperty
-				   WRITE setSmall)
+		Q_PROPERTY(MediaSize * small
+				   READ getSmallPtr
+				   WRITE setSmall
+				   NOTIFY smallChanged)
 
 		/// @brief Name of the property small.
 		static QString SMALL_PN;
 
-		/// @fn QVariantMap getSmallProperty();
-		/// @brief Reading method for the property small
-		/// @return smallMap
-		QVariantMap getSmallProperty();
+		/// @fn MediaSize * getSmallPtr();
+		/// @brief Reading small
+		/// @return &smallSize
+		MediaSize * getSmallPtr();
 
-		/// @fn void setSmall(QVariantMap newSmallMap);
-		/// @brief Writing method for the property small
-		/// @param newSmallMap New value for the property small
-		void setSmall(QVariantMap newSmallMap);
+		/// @fn void setSmall(MediaSize * newSmallSize);
+		/// @brief Writing small
+		/// @param newSmallSize New value for smallSize
+		void setSmall(MediaSize * newSmallSize);
 
-		// Thumb size
+		// thumb
 		/// @property thumb
 		/// @brief Large size for a media
 		///
 		/// thumbSize is the attribute behind the property.
-		Q_PROPERTY(QVariantMap thumb
-				   READ getThumbProperty
-				   WRITE setThumb)
+		Q_PROPERTY(MediaSize * thumb
+				   READ getThumbPtr
+				   WRITE setThumb
+				   NOTIFY thumbChanged)
 
 		/// @brief Name of the property thumb.
 		static QString THUMB_PN;
 
-		/// @fn QVariantMap getThumbProperty();
-		/// @brief Reading method for the property thumb
-		/// @return thumbMap
-		QVariantMap getThumbProperty();
+		/// @fn MediaSize * getThumbPtr();
+		/// @brief Reading thumb
+		/// @return &thumbSize
+		MediaSize * getThumbPtr();
 
-		/// @fn void setThumb(QVariantMap newThumbMap);
-		/// @brief Writing method for the property thumb
-		/// @param newThumbMap New value for the property thumb
-		void setThumb(QVariantMap newThumbMap);
+		/// @fn void setThumb(MediaSize newThumbSize);
+		/// @brief Writing thumb
+		/// @param newThumbSize New value for thumbSize
+		void setThumb(MediaSize * newThumbSize);
+
+	signals:
+		/// @fn void largeChanged();
+		/// @brief Signal emitted when the property large has got a new value.
+		void largeChanged();
+
+		/// @fn void mediumChanged();
+		/// @brief Signal emitted when the property medium has got a new value.
+		void mediumChanged();
+
+		/// @fn void smallChanged();
+		/// @brief Signal emitted when the property small has got a new value.
+		void smallChanged();
+
+		/// @fn void thumbChanged();
+		/// @brief Signal emitted when the property thumb has got a new value.
+		void thumbChanged();
 
 
 	/////////////////
@@ -221,6 +246,7 @@ class MediaSizes : public JsonObject
 	////////////////////////
 
 	public:
+		// large
 		/// @fn MediaSize getLarge();
 		/// @brief Reading method for largeSize
 		/// @return largeSize
@@ -231,6 +257,7 @@ class MediaSizes : public JsonObject
 		/// @param newLargeSize New value for largeSize
 		void setLarge(MediaSize newLargeSize);
 
+		// medium
 		/// @fn MediaSize getMedium();
 		/// @brief Reading method for mediumSize
 		/// @return mediumSize
@@ -241,6 +268,7 @@ class MediaSizes : public JsonObject
 		/// @param newMediumSize New value for mediumSize
 		void setMedium(MediaSize newMediumSize);
 
+		// small
 		/// @fn MediaSize getSmall();
 		/// @brief Reading method smallSize
 		/// @return smallSize
@@ -251,6 +279,7 @@ class MediaSizes : public JsonObject
 		/// @param newSmallSize New value for smallSize
 		void setSmall(MediaSize newSmallSize);
 
+		// thumb
 		/// @fn MediaSize getThumb();
 		/// @brief Reading method for thumbSize
 		/// @return thumbSize

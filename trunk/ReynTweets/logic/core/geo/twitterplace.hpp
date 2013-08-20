@@ -138,36 +138,13 @@ class TwitterPlace : public JsonObject
 		/// @brief Coordinates of the place
 		///
 		/// placePolygon is the attribute beneath the property.
-		Q_PROPERTY(QVariantMap bounding_box
-				   READ getBoundingBoxProperty
+		Q_PROPERTY(GeoBoundingBox * bounding_box
+				   READ getBoundingBoxPtr
 				   WRITE setBoundingBox
 				   NOTIFY boundingBoxChanged)
 
 		/// @brief Name of the property bounding_box.
 		static QString BOUNDING_BOX_PN;
-
-		/// @fn QVariantMap getBoundingBoxProperty();
-		/// @brief Reading bounding_box.
-		/// @return Variant form of placePolygon.
-		QVariantMap getBoundingBoxProperty();
-
-		/// @fn void ( newValue);
-		/// @brief Writing bounding_box.
-		/// @param newValue New value for placePolygon.
-		void setBoundingBox(QVariantMap newValue);
-
-		/// @property place_polygon
-		/// @brief bounding_box but with a GeoBoundingBox instead of
-		/// a QVariantMap.
-		///
-		/// placePolygon is the attribute beneath the property.
-		Q_PROPERTY(GeoBoundingBox * place_polygon
-				   READ getBoundingBox
-				   WRITE setBoundingBox
-				   NOTIFY boundingBoxChanged)
-
-		/// @brief Name of the property place_polygon.
-		static QString PLACE_POLYGON_PN;
 
 		// country
 		/// @property country
@@ -360,12 +337,22 @@ class TwitterPlace : public JsonObject
 
 		// bounding_box
 		/// @fn GeoBoundingBox * getBoundingBox();
-		/// @brief Reading bounding_box (real form).
+		/// @brief Reading bounding_box
+		/// @return placePolygon.
+		GeoBoundingBox getBoundingBox();
+
+		/// @fn GeoBoundingBox * getBoundingBoxPtr();
+		/// @brief Reading bounding_box
 		/// @return A pointer on placePolygon.
-		GeoBoundingBox * getBoundingBox();
+		GeoBoundingBox * getBoundingBoxPtr();
+
+		/// @fn void setBoundingBox(GeoBoundingBox newValue);
+		/// @brief Writing bounding_box
+		/// @param newValue New value for placePolygon.
+		void setBoundingBox(GeoBoundingBox newValue);
 
 		/// @fn void setBoundingBox(GeoBoundingBox * newValue);
-		/// @brief Writing bounding_box (real form).
+		/// @brief Writing bounding_box
 		/// @param newValue New value for placePolygon.
 		void setBoundingBox(GeoBoundingBox * newValue);
 

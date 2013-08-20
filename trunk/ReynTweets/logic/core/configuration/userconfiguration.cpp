@@ -131,21 +131,16 @@ QJsonObject UserConfiguration::toVariant() const {
 // user_account
 QString UserConfiguration::USER_ACCOUNT_PN = "user_account";
 
-QVariantMap UserConfiguration::getUserAccountProperty() {
-	return userAccount.toVariant().toVariantMap();
-}
-
 UserAccount UserConfiguration::getUserAccount() {
 	return userAccount;
 }
 
-UserAccount & UserConfiguration::getUserAccountRef() {
-	return userAccount;
+UserAccount * UserConfiguration::getUserAccountPtr() {
+	return &userAccount;
 }
 
-void UserConfiguration::setUserAccount(QVariantMap accountMap) {
-	userAccount.fillWithVariant(QJsonObject::fromVariantMap(accountMap));
-	emit currentAccountChanged();
+UserAccount & UserConfiguration::getUserAccountRef() {
+	return userAccount;
 }
 
 void UserConfiguration::setUserAccount(UserAccount account) {
@@ -153,14 +148,7 @@ void UserConfiguration::setUserAccount(UserAccount account) {
 	emit currentAccountChanged();
 }
 
-// current_account
-QString UserConfiguration::CURRENT_ACCOUNT_PN = "current_account";
-
-UserAccount * UserConfiguration::getCurrentAccount() {
-	return &userAccount;
-}
-
-void UserConfiguration::setCurrentAccount(UserAccount * account) {
+void UserConfiguration::setUserAccount(UserAccount * account) {
 	if (account) {
 		userAccount = *account;
 	} else {

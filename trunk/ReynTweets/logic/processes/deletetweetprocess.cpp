@@ -47,17 +47,17 @@ void DeleteTweetProcess::startProcess() {
 
 // Determining if the tweet can be deleted
 void DeleteTweetProcess::canDeleteTweet() {
-	if (user == *(tweetToDelete.getAuthor())) {
+	if (user == tweetToDelete.getUser()) {
 		// The user is the author of the tweet
 		// The tweet can be deleted and the ID is already known :) !
 
 		keepInTimeline = tweetToDelete.isRetweet() ?
-					tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
+					tweetToDelete.getRetweetedStatus()->getUser().isFollowedByMe()
 				  : false;
 
 		deleteTweet(true, tweetToDelete.getIDstr());
 	}
-	else if (user == *(tweetToDelete.getRetweetedStatus()->getAuthor())
+	else if (user == tweetToDelete.getRetweetedStatus()->getUser()
 			 && tweetToDelete.isRetweet())
 	{
 		// The user is the author of the retweet. Delete the retweet
@@ -70,10 +70,10 @@ void DeleteTweetProcess::canDeleteTweet() {
 		// But the retweet ID is unknown. So let's search it !
 
 		keepInTimeline = tweetToDelete.isRetweet() ?
-					tweetToDelete.getRetweetedStatus()->getAuthor()->isFollowedByMe()
-				  : tweetToDelete.getAuthor()->isFollowedByMe();
+					tweetToDelete.getRetweetedStatus()->getUser().isFollowedByMe()
+				  : tweetToDelete.getUser().isFollowedByMe();
 
-		// Looking at the "current_retweet_infos" property
+		// Looking at the "current_user_retweet" property
 		RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
 
 		if (rtInfos->getIDstr() == "-1") {
@@ -123,7 +123,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			tweetToDelete.reset();
 			tweetToDelete.fillWithVariant(QJsonObject::fromVariantMap(result.parsedResult.toMap()));
 
-			// Looking at the "current_retweet_infos" property
+			// Looking at the "current_user_retweet" property
 			RetweetInfos * rtInfos = tweetToDelete.getRetweetInfos();
 			bool idFound = rtInfos->getIDstr() != "-1";
 

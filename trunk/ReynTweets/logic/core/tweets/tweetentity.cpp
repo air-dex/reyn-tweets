@@ -71,21 +71,6 @@ QJsonObject TweetEntity::toVariant() const {
 }
 
 
-///////////////////////////
-// Properties management //
-///////////////////////////
-
-// Reading method for the property indices
-QVariantList TweetEntity::getIndicesProperty() {
-	return indexes.toVariant().toVariantList();
-}
-
-// Writing method for the property indices
-void TweetEntity::setIndices(QVariantList newIndexList) {
-	indexes.fillWithVariant(QJsonArray::fromVariantList(newIndexList));
-}
-
-
 ////////////////////////
 // Getter and setters //
 ////////////////////////
@@ -97,6 +82,16 @@ IndexBounds TweetEntity::getIndices() {
 	return indexes;
 }
 
+QVariantList TweetEntity::getIndicesProperty() {
+	return indexes.toVariant().toVariantList();
+}
+
 void TweetEntity::setIndices(IndexBounds newIndexes) {
 	indexes = newIndexes;
+	emit indicesChanged();
+}
+
+void TweetEntity::setIndices(QVariantList newIndexList) {
+	indexes.fillWithVariant(QJsonArray::fromVariantList(newIndexList));
+	emit indicesChanged();
 }

@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "hashtag.hpp"
-#include <QTextStream>
+#include <QtQml>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
@@ -58,6 +58,11 @@ const Hashtag & Hashtag::operator=(const Hashtag & hashtag) {
 void Hashtag::initSystem() {
 	qRegisterMetaTypeStreamOperators<Hashtag>("Hashtag");
 	qMetaTypeId<Hashtag>();
+}
+
+// Declaring to the QML components
+void Hashtag::declareQML() {
+	qmlRegisterType<Hashtag>("ReynTweetsEntities", 0, 2, "Hashtag");
 }
 
 // Copy of a Hashtag
@@ -115,14 +120,14 @@ QString Hashtag::getText() {
 
 void Hashtag::setText(QString newText) {
 	hashText = newText;
+	emit textChanged();
 }
 
 // #hashText
 QString Hashtag::getHashtag() {
 	QString s = "";
-	QTextStream t(&s);
-	t << '#' << hashText;
-	return t.readAll();
+	s.append('#').append(hashText);
+	return s;
 }
 
 
@@ -149,12 +154,12 @@ QString Hashtag::getDisplayedText(QColor linkColor) {
 	} else {
 		// Back to basics : writing a string.
 		QString s = "";
-		QTextStream t(&s);
 
-		t << "<a href=\"" << hashtag
-		  << "style=\"text-decoration: none ; color:\""
-		  << linkColor.name() << "\">" << hashtag << "</a>";
+		s.append("<a href=\"").append(hashtag)
+			.append("style=\"text-decoration: none ; color:\"")
+			.append(linkColor.name()).append("\">")
+			.append(hashtag).append("</a>");
 
-		return t.readAll();
+		return s;
 	}
 }

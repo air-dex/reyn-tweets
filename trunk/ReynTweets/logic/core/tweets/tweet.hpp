@@ -182,43 +182,21 @@ class Tweet : public JsonObject
 		/// @brief Coordinates where the tweet was supposed to be posted
 		///
 		/// tweetCoordinates is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap coordinates
-				   READ getCoordinatesProperty
+		Q_PROPERTY(Coordinates * coordinates
+				   READ getCoordinatesPtr
 				   WRITE setCoordinates
 				   NOTIFY coordinatesChanged)
 
 		/// @brief Name of the property coordinates.
 		static QString COORDINATES_PN;
 
-		/// @fn QVariantMap getCoordinatesProperty();
-		/// @brief Reading the property coordinates
-		/// @return tweetCoordinates
-		QVariantMap getCoordinatesProperty();
-
-		/// @fn void setCoordinates(QVariantMap newEntityMap);
-		/// @brief Writing the property coordinates
-		/// @param newEntityMap New value for tweetCoordinates
-		void setCoordinates(QVariantMap newEntityMap);
-
-		/// @property tweet_coordinates
-		/// @brief Coordinates where the tweet was supposed to be posted
-		///
-		/// tweetCoordinates is the attribute beneath this property.
-		Q_PROPERTY(Coordinates * tweet_coordinates
-				   READ getCoordinatesPtr
-				   WRITE setCoordinates
-				   NOTIFY coordinatesChanged)
-
-		/// @brief Name of the property tweet_coordinates.
-		static QString TWEET_COORDINATES_PN;
-
 		/// @fn Coordinates * getCoordinatesPtr();
-		/// @brief Reading the property tweet_coordinates
+		/// @brief Reading the property coordinates
 		/// @return tweetCoordinates
 		Coordinates * getCoordinatesPtr();
 
 		/// @fn void setCoordinates(Coordinates * newEntityMap);
-		/// @brief Writing the property tweet_coordinates
+		/// @brief Writing the property coordinates
 		/// @param newEntityMap New value for tweetCoordinates
 		void setCoordinates(Coordinates * newValue);
 
@@ -250,60 +228,26 @@ class Tweet : public JsonObject
 		/// @brief Serializable form of retweetInfos
 		///
 		/// retweetInfos is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap current_user_retweet
-				   READ getRetweetInfosVariant
+		Q_PROPERTY(RetweetInfos * current_user_retweet
+				   READ getRetweetInfos
 				   WRITE setRetweetInfos
 				   NOTIFY retweetInfosChanged)
 
 		/// @brief Name of the property current_user_retweet.
 		static QString CURRENT_USER_RETWEET_PN;
 
-		/// @property retweet_infos
-		/// @brief The retweet to display in a TweetPane
-		///
-		/// retweetInfos is the attribute beneath this property.
-		Q_PROPERTY(RetweetInfos * retweet_infos
-				   READ getRetweetInfos
-				   WRITE setRetweetInfos
-				   NOTIFY retweetInfosChanged)
-
-		/// @brief Name of the property retweet_infos.
-		static QString RETWEET_INFOS_PN;
-
 		// entities
 		/// @property entities
 		/// @brief Tweet Entities
 		///
 		/// tweetEntities is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap entities
-				   READ getEntitiesProperty
-				   WRITE setEntities
-				   NOTIFY entitiesChanged)
-
-		/// @brief Name of the property entities.
-		static QString ENTITIES_PN;
-
-		/// @fn QVariantMap getEntitiesProperty();
-		/// @brief Reading the property entities
-		/// @return entitiesMap
-		QVariantMap getEntitiesProperty();
-
-		/// @fn void setEntities(QVariantMap newEntityMap);
-		/// @brief Writing the property entities
-		/// @param newEntityMap New value for entities
-		void setEntities(QVariantMap newEntityMap);
-
-		/// @property tweet_entities
-		/// @brief Tweet Entities
-		///
-		/// tweetEntities is the attribute beneath this property.
-		Q_PROPERTY(TweetEntities * tweet_entities
+		Q_PROPERTY(TweetEntities * entities
 				   READ getEntitiesPtr
 				   WRITE setEntities
 				   NOTIFY entitiesChanged)
 
 		/// @brief Name of the property entities.
-		static QString TWEET_ENTITIES_PN;
+		static QString ENTITIES_PN;
 
 		/// @fn TweetEntities * getEntitiesPtr();
 		/// @brief Reading the property entities
@@ -476,35 +420,13 @@ class Tweet : public JsonObject
 		/// @brief Place where the tweet was supposed to be written
 		///
 		/// tweetPlace is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap place
-				   READ getPlaceProperty
+		Q_PROPERTY(TwitterPlace * place
+				   READ getPlacePtr
 				   WRITE setPlace
 				   NOTIFY placeChanged)
 
 		/// @brief Name of the property place.
 		static QString PLACE_PN;
-
-		/// @fn QVariantMap getPlaceProperty();
-		/// @brief Reading the property place
-		/// @return tweetPlace
-		QVariantMap getPlaceProperty();
-
-		/// @fn void setPlace(QVariantMap newEntityMap);
-		/// @brief Writing the property place
-		/// @param newEntityMap New value for tweetPlace
-		void setPlace(QVariantMap newEntityMap);
-
-		/// @property tweet_place
-		/// @brief Place where the tweet was supposed to be posted
-		///
-		/// tweetPlace is the attribute beneath this property.
-		Q_PROPERTY(TwitterPlace * tweet_place
-				   READ getPlacePtr
-				   WRITE setPlace
-				   NOTIFY placeChanged)
-
-		/// @brief Name of the property tweet_place.
-		static QString TWEET_PLACE_PN;
 
 		/// @fn TwitterPlace * getPlacePtr();
 		/// @brief Reading the property tweet_place
@@ -549,25 +471,13 @@ class Tweet : public JsonObject
 		/// @brief Serializable form of retweetedTweet
 		///
 		///  is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap retweeted_status
-				   READ getRetweetedStatusVariant
+		Q_PROPERTY(Tweet * retweeted_status
+				   READ getRetweetedStatus
 				   WRITE setRetweetedStatus
 				   NOTIFY retweetedStatusChanged)
 
 		/// @brief Name of the property retweeted_status.
 		static QString RETWEETED_STATUS_PN;
-
-		/// @property retweet
-		/// @brief The retweet to display in a TweetPane
-		///
-		/// retweetSource is the attribute beneath this property.
-		Q_PROPERTY(Tweet * retweet
-				   READ getRetweetedStatus
-				   WRITE setRetweetedStatus
-				   NOTIFY retweetedStatusChanged)
-
-		/// @brief Name of the property retweet.
-		static QString RETWEET_PN;
 
 		// scopes
 		/// @property scopes
@@ -625,37 +535,14 @@ class Tweet : public JsonObject
 		/// @property user
 		/// @brief User who wrote the tweet
 		///
-		/// profile is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap user
-				   READ getUserProperty
+		/// author is the attribute beneath this property.
+		Q_PROPERTY(UserInfos * user
+				   READ getUserPtr
 				   WRITE setUser
 				   NOTIFY userChanged)
 
 		/// @brief Name of the property user.
 		static QString USER_PN;
-
-		/// @fn QVariantMap getUserProperty();
-		/// @brief Reading the property user
-		/// @return userMap
-		QVariantMap getUserProperty();
-
-		/// @fn void setUser(QVariantMap newUserMap);
-		/// @brief Writing the property user
-		/// @param newUserMap New value for user
-		void setUser(QVariantMap newUserMap);
-
-		/// @property author
-		/// @brief User who wrote the tweet. Used to get information
-		/// to display about the author of the tweet (in a TweetPane).
-		///
-		/// profile is the attribute beneath this property.
-		Q_PROPERTY(UserInfos * author
-				   READ getAuthor
-				   WRITE setAuthor
-				   NOTIFY userChanged)
-
-		/// @brief Name of the property author.
-		static QString AUTHOR_PN;
 
 		// withheld_copyright
 		/// @property withheld_copyright
@@ -873,8 +760,8 @@ class Tweet : public JsonObject
 
 		// Tweet sources
 
-		/// @brief User who posted the tweet
-		UserInfos profile;
+		/// @brief User who posted the tweet, i.e. its author.
+		UserInfos author;
 
 		/// @brief Creation date of the tweet
 		ReynTweetsDateTime createdAt;
@@ -945,12 +832,12 @@ class Tweet : public JsonObject
 		// coordinates
 		/// @fn Coordinates getCoordinates();
 		/// @brief Reading coordinates
-		/// @return tweetContributors
+		/// @return tweetCoordinates
 		Coordinates getCoordinates();
 
 		/// @fn void setCoordinates(Coordinates newValue);
 		/// @brief Writing coordinates
-		/// @param newValue New value for tweetContributors
+		/// @param newValue New value for tweetCoordinates
 		void setCoordinates(Coordinates newValue);
 
 		// entities
@@ -1087,25 +974,24 @@ class Tweet : public JsonObject
 
 		// user
 		/// @fn UserInfos getUser();
-		/// @brief Reading user
-		/// @return profile
+		/// @brief Getter on the user
+		/// @return author
 		UserInfos getUser();
 
 		/// @fn void setUser(UserInfos newValue);
-		/// @brief Writing user
+		/// @brief Setter on the user
 		/// @param newValue New value for user
 		void setUser(UserInfos newValue);
 
-		// author
 		/// @fn UserInfos * getAuthor();
-		/// @brief Reading author
-		/// @return profile
-		UserInfos * getAuthor();
+		/// @brief Reading user
+		/// @return A pointer on author
+		UserInfos * getUserPtr();
 
-		/// @fn void setAuthor(UserInfos * newValue);
-		/// @brief Writing author
+		/// @fn void setUser(UserInfos * newValue);
+		/// @brief Writing user
 		/// @param newValue New value for author
-		void setAuthor(UserInfos * newValue);
+		void setUser(UserInfos * newValue);
 
 		// retweeted
 		/// @fn bool isRetweetedByMe();
@@ -1216,17 +1102,7 @@ class Tweet : public JsonObject
 		/// @param retweet The new value of the property
 		void setRetweetedStatus(Tweet * retweet);
 
-		/// @fn QVariantMap getRetweetedStatusVariant();
-		/// @brief Reading retweeted_status
-		/// @return retweetSource->toVariant();
-		QVariantMap getRetweetedStatusVariant();
-
-		/// @fn void setRetweetedStatus(QVariantMap statusMap);
-		/// @brief Writing retweeted_status
-		/// @param statusMap The new value of the property
-		void setRetweetedStatus(QVariantMap statusMap);
-
-		// retweet_infos
+		// current_user_retweet
 		/// @fn RetweetInfos * getRetweetInfos();
 		/// @brief Reading retweet_infos
 		/// @return retweetInfos
@@ -1236,17 +1112,6 @@ class Tweet : public JsonObject
 		/// @brief Writing retweet_infos
 		/// @param newInfos The new value of the property
 		void setRetweetInfos(RetweetInfos * newInfos);
-
-		// current_user_retweet
-		/// @fn QVariantMap getRetweetInfosVariant();
-		/// @brief Reading current_user_retweet
-		/// @return retweetInfos.toVariant();
-		QVariantMap getRetweetInfosVariant();
-
-		/// @fn void setRetweetInfos(QVariantMap newInfos);
-		/// @brief Writing current_user_retweet
-		/// @param newInfos The new value of the property
-		void setRetweetInfos(QVariantMap newInfos);
 
 		// filter_level
 		/// @fn QString getFilterLevel();

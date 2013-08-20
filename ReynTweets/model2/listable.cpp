@@ -29,80 +29,78 @@
 /////////////
 
 // Constructor
-template <class M>
-Listable<M>::Listable() :
+template <class V>
+Listable<V>::Listable() :
 	Variantable<QVariantList>(),
-	QList<M>()
+	QList<V>()
 {}
 
 // Destructor
-template <class M>
-Listable<M>::~Listable() {}
+template <class V>
+Listable<V>::~Listable() {}
 
 // Copy constructor
-template <class M>
-Listable<M>::Listable(const Listable<M> & list) :
+template <class V>
+Listable<V>::Listable(const Listable<V> & list) :
 	Variantable<QVariantList>(),
-	QList<M>()
+	QList<V>()
 {
 	this->recopie(list);
 }
 
 // Affrection operator
-template <class M>
-const Listable<M> & Listable<M>::operator=(const Listable<M> & list) {
+template <class V>
+const Listable<V> & Listable<V>::operator=(const Listable<V> & list) {
 	this->recopie(list);
 	return *this;
 }
 
 // Copy of a Listable
-template <class M>
-void Listable<M>::recopie(const Listable<M> & list) {
+template <class V>
+void Listable<V>::recopie(const Listable<V> & list) {
 	this->clear();
 
 	for (typename Listable<M>::const_iterator it = list.begin();
 		 it != list.end();
 		 ++it)
 	{
-		M serializable = *it;
-		this->append(serializable);
+		V variantable = *it;
+		this->append(variantable);
 	}
 }
 
-///////////////////////////
-// Serialization streams //
-///////////////////////////
+////////////////////////
+// Variant conversion //
+////////////////////////
 
-template <class M>
-QDataStream & jsonStreamingOut(QDataStream & out, const Listable<M> & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	return streamVariantOut(out, list.toVariant());
+// Filling the MappableList with a QVariantList.
+template <class V>
+void Listable<V>::fillWithVariant(QVariantList entities) {
+	this->clear();
+
+	for (QVariantList::Iterator it = entities.begin();
+		 it != entities.end();
+		 ++it)
+	{
+		QVariant v = *it;
+		V variantable;
+		variantable.fillWithVariant(v.toMap());
+		this->append(variantable);
+	}
 }
 
-// Input stream operator for serialization
-template <class M>
-QDataStream & jsonStreamingIn(QDataStream & in, Listable<M> & list) {
-	QVariant listableVariant;
-	streamVariantIn(in, listableVariant);
-	list.fillWithVariant(listableVariant.toList());
-	return in;
+// Converting a MappableList into a QVariantList
+template <class V>
+QVariantList Listable<V>::toVariant() const {
+	QVariantList res;
+
+	for (typename Listable<V>::const_iterator it = this->begin();
+		 it != this->end();
+		 ++it)
+	{
+		V variantable = *it;
+		res.append(variantable.toVariant());
+	}
+
+	return res;
 }
-/*
-#include "mappable.hpp"
-
-/// @fn QDataStream & jsonStreamingOut(QDataStream & out, const Listable<Mappable> & list);
-/// @brief Output stream operator for serialization
-/// @param out The output stream
-/// @param list Object to put in the stream
-/// @return The stream with the object
-template <>
-QDataStream & jsonStreamingOut(QDataStream & out, const Listable<Mappable> & list);
-
-/// @fn QDataStream & jsonStreamingIn(QDataStream & in, Listable<M> & list);
-/// @brief Input stream operator for serialization
-/// @param in The input stream
-/// @param list Object to put in the stream
-/// @return The stream with the object
-template <>
-QDataStream & jsonStreamingIn(QDataStream & in, Listable<Mappable> & list);
-//*/

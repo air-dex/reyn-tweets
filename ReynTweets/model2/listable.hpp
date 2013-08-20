@@ -31,11 +31,11 @@
 /// @class Listable
 /// @brief Class for objects that needs to be converted into a QVariantList.
 ///
-/// In practice, these objects will be lists of Mappable objects
-/// whose type is represented by the template type S.
-/// @param M Type of a Mappable object.
-template <class M>
-class Listable : public Variantable<QVariantList>, public QList<S>
+/// These objects have to be convertible into a QVariant. So most of the time
+/// they will be Variantables (and Mappables too).
+/// @param V Type of the object.
+template <class V>
+class Listable : public Variantable<QVariantList>, public QList<V>
 {
 	public:
 		/// @fn Listable();
@@ -46,15 +46,15 @@ class Listable : public Variantable<QVariantList>, public QList<S>
 		/// @brief Destructor
 		virtual ~Listable();
 
-		/// @fn Listable(const Listable & list);
+		/// @fn Listable(const Listable<V> & list);
 		/// @brief Copy constructor
 		/// @param list Listable to copy
-		Listable(const Listable<S> & list);
+		Listable(const Listable<V> & list);
 
-		/// @fn const Listable & operator=(const Listable & list);
+		/// @fn const Listable & operator=(const Listable<V> & list);
 		/// @brief Affrection operator
 		/// @param list Listable to affect
-		const Listable & operator=(const Listable<S> & list);
+		const Listable<V> & operator=(const Listable<V> & list);
 
 		////////////////////////
 		// Variant conversion //
@@ -63,38 +63,18 @@ class Listable : public Variantable<QVariantList>, public QList<S>
 		/// @fn virtual void fillWithVariant(QVariantList entities);
 		/// @brief Filling the list with the content of a QVariantList
 		/// @param entities The QVariantList
-		virtual void fillWithVariant(QVariantList entities) = 0;
+		virtual void fillWithVariant(QVariantList entities);
 
 		/// @fn virtual QVariantList toVariant() const;
 		/// @brief Converting the list of serializables into a QVariantList.
 		/// @return The corresponding QVariantList.
-		virtual QVariantList toVariant() const = 0;
+		virtual QVariantList toVariant() const;
 
 	protected:
 		/// @fn virtual void recopie(const Listable<S> & list);
 		/// @brief Copy of a Listable
 		/// @param list Listable to copy
-		virtual void recopie(const Listable<S> &list);
+		virtual void recopie(const Listable<V> &list);
 };
-
-/////////////
-// Streams //
-/////////////
-
-/// @fn QDataStream & jsonStreamingOut(QDataStream & out, const Listable<S> & list);
-/// @brief Output stream operator for serialization
-/// @param out The output stream
-/// @param list Object to put in the stream
-/// @return The stream with the object
-template <class M>
-QDataStream & jsonStreamingOut(QDataStream & out, const Listable<S> & list);
-
-/// @fn QDataStream & jsonStreamingIn(QDataStream & in, Listable<S> & list);
-/// @brief Input stream operator for serialization
-/// @param in The input stream
-/// @param list Object to put in the stream
-/// @return The stream with the object
-template <class M>
-QDataStream & jsonStreamingIn(QDataStream & in, Listable<S> & list);
 
 #endif // LISTABLE_HPP

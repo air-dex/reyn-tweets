@@ -59,12 +59,12 @@ class JsonObject : public Mappable, public Jsonable<QJsonObject>, public QJsonOb
 
 		// Implementation of abstract methods
 
-		/// @fn virtual void fillWithVariant(QVariantMap map)
+		/// @fn virtual void fillWithVariant(QVariantMap map);
 		/// @brief Filling the object with a QVariantMap.
 		/// @param map The QVariantMap used to fill the JsonObject
 		virtual void fillWithVariant(QVariantMap map);
 
-		/// @fn virtual void fillWithJSON(QJsonObject json) = 0;
+		/// @fn virtual void fillWithJSON(QJsonObject json);
 		/// @brief Filling the object with a QJsonObject.
 		///
 		/// The method is virtual because its implementation depends on the

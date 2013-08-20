@@ -1,10 +1,36 @@
+/// @file timelinehandler.hpp
+/// @brief Header of TimelineHandler
+/// @author Romain Ducher
+///
+/// @section LICENSE
+///
+/// Copyright 2013 Romain Ducher
+///
+/// This file is part of Reyn Tweets.
+///
+/// Reyn Tweets is free software: you can redistribute it and/or modify
+/// it under the terms of the GNU Lesser General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// Reyn Tweets is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/// GNU Lesser General Public License for more details.
+///
+/// You should have received a copy of the GNU Lesser General Public License
+/// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef TIMELINEHANDLER_HPP
 #define TIMELINEHANDLER_HPP
 
 #include <QObject>
-#include "timeline.hpp"
+#include "listhandler.tpp"
+#include "../../core/timelines/timeline.hpp"
 
-class TimelineHandler : public QObject
+/// @class TimelineHandler
+/// @brief List Handler for timelines
+class TimelineHandler : public ListHandler<Timeline, Tweet>
 {
 		Q_OBJECT
 
@@ -71,55 +97,17 @@ class TimelineHandler : public QObject
 		static void declareQML();
 
 
-		///////////////////////
-		// Timeline handling //
-		///////////////////////
-
-		/// @fn Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-		/// @brief Getting a pointer on a tweet in the timeline.
-		///
-		/// Used by QML delegates of the ListView in the TimelinePane
-		/// to attribute a tweet to TweetPane in the delegate in the list.
-		/// @param tweetIndex Index of the tweet in the timeline
-		/// @return The tweet &#135;tweetIndex in the timeline if the index
-		/// is ok, a default tweet otherwise.
-		Q_INVOKABLE Tweet * getTweet(int tweetIndex);
-
-		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-		/// @brief Replacing a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param updatedTweet New value of the tweet
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void replaceTweet(QVariant updatedTweet, int tweetIndex);
-
-		/// @fn Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
-		/// @brief Replacing a tweet in a timeline
-		///
-		/// Invoked when an update of the tweet is asked.
-		/// @param updatedTweet New value of the tweet
-		Q_INVOKABLE void replaceTweet(QVariant updatedTweet);
-
-		/// @fn Q_INVOKABLE void deleteTweet(int tweetIndex);
-		/// @brief Deleting a tweet in a timeline
-		///
-		/// It can be used after retweeting a tweet, for example.
-		/// @param tweetIndex Index of the tweet in the timeline
-		Q_INVOKABLE void deleteTweet(int tweetIndex);
-
-		/// @fn Q_INVOKABLE void deleteTweet(QVariant variantTweet);
-		/// @brief Deleting a tweet in a timeline
-		///
-		/// Invoked when a tweet is asked for deletion.
-		/// @param variantTweet The tweet (QVariant form)
-		Q_INVOKABLE void deleteTweet(QVariant variantTweet);
-
-
 	protected:
 		/// @fn virtual void recopie(const TimelineHandler & handler);
 		/// @brief Copy of a TimelineHandler
 		/// @param handler TimelineHandler to copy
 		virtual void recopie(const TimelineHandler &handler);
+
+		/// @fn virtual int getElementIndex(Tweet listElt);
+		/// @brief Getting the potential index of a tweet.
+		/// @param listElt Tweet that we want to know the potential index.
+		/// @return Its potential index of the tweet in the list.
+		virtual int getElementIndex(Tweet tweet);
 
 		/////////////////////////////////////
 		// Friends serialization operators //
@@ -164,33 +152,15 @@ class TimelineHandler : public QObject
 		///
 		/// timelineType is the attribute behind the property.
 		Q_PROPERTY(Timeline timeline
-				   READ getTimeline
-				   WRITE setTimeline
-				   NOTIFY timelineChanged)
-
-		/// @brief The handled timeline
-		Timeline tweetline;
-
-		// nb_tweets
-		/// @property nb_tweets
-		/// @brief Number of tweets in the timeline (timeline.size()).
-		Q_PROPERTY(int nb_tweets
-				   READ getTimelineLength
-				   NOTIFY timelineChanged)
-
-		/// @fn Timeline getTimelineLength();
-		/// @brief Reading the property nb_tweets
-		/// @return timeline.length();
-		int getTimelineLength();
+				   READ getHandledList
+				   WRITE setHandledList
+				   NOTIFY handledListChanged)
 
 	signals:
 		/// @fn void typeChanged();
 		/// @brief Notifying changes about the property type.
 		void typeChanged();
 
-		/// @fn void typeChanged();
-		/// @brief Notifying changes about the property timeline.
-		void timelineChanged();
 
 	public:
 		// type
@@ -204,25 +174,9 @@ class TimelineHandler : public QObject
 		/// @param newType New value for timelineType
 		void setType(TimelineType newType);
 
-		// timeline
-		/// @fn Timeline getTimeline();
-		/// @brief Reading the property timeline.
-		/// @return tweetline
-		Timeline getTimeline();
-
-		/// @fn void setTimeline(Timeline newTL);
-		/// @brief Writing the property timeline.
-		/// @param newTL New value for tweetline
-		void setTimeline(Timeline newTL);
-
 		//////////
 		// Misc //
 		//////////
-
-		/// @fn Timeline & getTimelineRef();
-		/// @brief Getting a reference on the timeline
-		/// @return tweetline
-		Timeline & getTimelineRef();
 
 		/// @fn void appendTimeline(Timeline moreTL);
 		/// @brief Appending a timeline to the current one

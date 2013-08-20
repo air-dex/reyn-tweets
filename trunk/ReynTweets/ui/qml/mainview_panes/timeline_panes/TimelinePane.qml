@@ -91,7 +91,7 @@ Rectangle {
 			TweetPane {
 				width: timeline_pane.width
 				timeline_type: timeline_pane.timeline_type
-				tweet: timeline_handler.getTweet(index)
+				tweet: timeline_handler.get(index)
 
 				Component.onCompleted: {
 					// When a tweet is quoted or reply to a tweet
@@ -117,11 +117,11 @@ Rectangle {
 				}
 
 				function deleteTweet(newTweet) {
-					timeline_handler.deleteTweet(index)
+					timeline_handler.remove(index)
 				}
 
 				function majTweet(newTweet) {
-					timeline_handler.replaceTweet(newTweet, index)
+					timeline_handler.replace(newTweet, index)
 				}
 			}
 		}
@@ -133,7 +133,7 @@ Rectangle {
 			function syncWithTimeline() {
 				timeline_model.clear();
 
-				for (var j = 0; j < timeline_handler.nb_tweets; j++) {
+				for (var j = 0; j < timeline_handler.getHandledListSize(); j++) {
 					timeline_model.append({})
 				}
 			}
@@ -156,7 +156,7 @@ Rectangle {
 					onClick: timeline_view.loadMore()
 				}
 
-				visible: timeline_handler.nb_tweets > 0
+				visible: timeline_handler.getHandledListSize() > 0
 			}
 		}
 
@@ -250,7 +250,7 @@ Rectangle {
 		control.loadedMoreTweets.connect(timeline_pane.moreTweets)
 
 		// Sync between the timeline and the list model
-		timeline_handler.timelineChanged.connect(timeline_model.syncWithTimeline)
+		timeline_handler.handledListChanged.connect(timeline_model.syncWithTimeline)
 	}
 
 	// Loading the home timeline
@@ -272,12 +272,12 @@ Rectangle {
 
 	// When an update is asked for a tweet
 	function updateATweet(tweet) {
-		timeline_handler.replaceTweet(tweet)
+		timeline_handler.replace(tweet)
 	}
 
 	// When a tweet is asked for deletion
 	function deleteATweet(tweet) {
-		timeline_handler.deleteTweet(tweet)
+		timeline_handler.remove(tweet)
 	}
 
 	// What happened after loading the timeline

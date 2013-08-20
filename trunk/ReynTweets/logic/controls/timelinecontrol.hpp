@@ -26,8 +26,8 @@
 
 #include "genericcontrol.hpp"
 #include "../core/timelines/timeline.hpp"
-#include "../core/timelines/timelinehandler.hpp"
 #include "../core/reyncore.hpp"
+#include "listhandlers/timelinehandler.hpp"
 
 /// @class TimelineControl
 /// @brief Control behind a TimelinePane

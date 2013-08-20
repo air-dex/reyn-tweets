@@ -51,7 +51,7 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: parent.verticalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		color: constant.white
 		visible: parent.visible
 	}

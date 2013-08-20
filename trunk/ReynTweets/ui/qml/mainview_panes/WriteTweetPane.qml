@@ -83,7 +83,7 @@ Rectangle {
 		anchors.leftMargin: margin
 		text: qsTr("What is happening ?")
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		verticalAlignment: Text.AlignVCenter
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 	}
@@ -93,7 +93,7 @@ Rectangle {
 		id: chars_left_indicator
 		color: constant.black
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		verticalAlignment: Text.AlignVCenter
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 		anchors.top: write_tweet_pane.top
@@ -131,7 +131,7 @@ Rectangle {
 			textFormat: TextEdit.PlainText
 			wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere
 			font.family: constant.font
-			font.pixelSize: constant.font_size
+			font.pointSize: constant.font_size
 		}
 	}
 

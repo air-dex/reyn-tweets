@@ -69,7 +69,7 @@ Rectangle {
 		anchors.leftMargin: margin_value
 		anchors.top: parent.top
 		anchors.topMargin: margin_value
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 	}
 
 	// Button to act

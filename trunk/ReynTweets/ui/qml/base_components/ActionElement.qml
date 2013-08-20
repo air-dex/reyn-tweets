@@ -68,7 +68,7 @@ Item {
 			verticalAlignment: Text.AlignVCenter
 			anchors.verticalCenter: action_row.verticalCenter
 			font.family: constants.font
-			font.pixelSize: constants.font_size
+			font.pointSize: constants.font_size
 		}
 	}
 

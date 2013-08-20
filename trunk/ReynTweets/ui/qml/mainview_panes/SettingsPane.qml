@@ -58,7 +58,7 @@ Rectangle {
 		anchors.topMargin: margin
 		anchors.horizontalCenter: settings_pane.horizontalCenter
 		font.family: constant.font
-		font.pixelSize: constant.font_size
+		font.pointSize: constant.font_size
 		wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 	}
 
@@ -127,7 +127,7 @@ Rectangle {
 
 					text: say_hello.say_hello_chars_nb
 					font.family: constant.font
-					font.pixelSize: constant.font_size_s
+					font.pointSize: constant.font_size_s
 					wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 					font.bold: say_hello.say_hello_chars_nb < 0
 					color: say_hello.say_hello_chars_nb < 0 ?

@@ -69,7 +69,7 @@ Rectangle {
 			font.family: constant.font
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: constant.font_size_title
+			font.pointSize: constant.font_size_title
 		}
 	}
 
@@ -93,7 +93,7 @@ Rectangle {
 			anchors.horizontalCenter: parent.horizontalCenter
 			verticalAlignment: Text.AlignVCenter
 			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: constant.font_size
+			font.pointSize: constant.font_size
 			onLinkActivated: Qt.openUrlExternally(link)
 		}
 
@@ -107,7 +107,7 @@ Rectangle {
 			anchors.horizontalCenter: parent.horizontalCenter
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
-			font.pixelSize: constant.font_size
+			font.pointSize: constant.font_size
 			onLinkActivated: Qt.openUrlExternally(link)
 		}
 	}

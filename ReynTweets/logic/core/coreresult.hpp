@@ -1,5 +1,5 @@
 /// @file coreresult.hpp
-/// @brief Header with enums indicating how ReynCore treatments have ended.
+/// @brief Header of ReynTweets::CoreResult and utilities around them.
 ///
 /// Revisions of the file older than r204 are in /trunk/ReynTweets/controls
 /// r204 is in /trunk/ReynTweets/logic

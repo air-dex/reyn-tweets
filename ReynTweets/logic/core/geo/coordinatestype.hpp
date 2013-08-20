@@ -1,5 +1,5 @@
 /// @file coordinatestype.hpp
-/// @brief Header of CoordinatesType
+/// @brief Header of ReynTweets::CoordinatesType
 /// @author Romain Ducher
 ///
 /// @section LICENSE

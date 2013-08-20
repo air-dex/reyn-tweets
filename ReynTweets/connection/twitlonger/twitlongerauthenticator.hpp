@@ -1,5 +1,5 @@
 /// @file twitlongerauthenticator.hpp
-/// @brief Header of TwitLongerManager
+/// @brief Header of TwitLongerAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE

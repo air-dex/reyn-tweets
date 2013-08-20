@@ -26,7 +26,7 @@
 
 // Constructor
 ContributorsHandler::ContributorsHandler() :
-	ListHandler<ContributorList, Contributor>()
+	ObjectListHandler<ContributorList, Contributor>()
 {}
 
 // Destructor
@@ -34,7 +34,7 @@ ContributorsHandler::~ContributorsHandler() {}
 
 // Copy constructor
 ContributorsHandler::ContributorsHandler(const ContributorsHandler & handler) :
-	ListHandler<ContributorList, Contributor>()
+	ObjectListHandler<ContributorList, Contributor>()
 {
 	recopie(handler);
 }
@@ -47,7 +47,7 @@ const ContributorsHandler & ContributorsHandler::operator=(const ContributorsHan
 
 // Copy of a TimelineHandler
 void ContributorsHandler::recopie(const ContributorsHandler &handler) {
-	ListHandler<ContributorList, Contributor>::recopie(handler);
+	ObjectListHandler<ContributorList, Contributor>::recopie(handler);
 }
 
 // Serialization initialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, ContributorsHandler & handler) {
 ///////////////////
 
 Contributor * ContributorsHandler::get(int index) {
-	return ListHandler<ContributorList, Contributor>::get(index);
+	return ObjectListHandler<ContributorList, Contributor>::get(index);
 }
 
 // Filling an element with a QVariant

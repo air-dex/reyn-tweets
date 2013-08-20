@@ -26,7 +26,7 @@
 
 // Constructor
 TimelineHandler::TimelineHandler(TimelineType tlType) :
-	ListHandler<Timeline, Tweet>(),
+	ObjectListHandler<Timeline, Tweet>(),
 	timelineType(tlType)
 {}
 
@@ -35,7 +35,7 @@ TimelineHandler::~TimelineHandler() {}
 
 // Copy constructor
 TimelineHandler::TimelineHandler(const TimelineHandler & handler) :
-	ListHandler<Timeline, Tweet>(),
+	ObjectListHandler<Timeline, Tweet>(),
 	timelineType(INVALID)
 {
 	recopie(handler);
@@ -49,7 +49,7 @@ const TimelineHandler & TimelineHandler::operator=(const TimelineHandler & handl
 
 // Copy of a TimelineHandler
 void TimelineHandler::recopie(const TimelineHandler &handler) {
-	ListHandler<Timeline, Tweet>::recopie(handler);
+	ObjectListHandler<Timeline, Tweet>::recopie(handler);
 	timelineType = handler.timelineType;
 }
 
@@ -82,7 +82,7 @@ QDataStream & operator>>(QDataStream & in, TimelineHandler & handler) {
 ///////////////////
 
 Tweet * TimelineHandler::get(int index) {
-	return ListHandler<Timeline, Tweet>::get(index);
+	return ObjectListHandler<Timeline, Tweet>::get(index);
 }
 
 // Filling an element with a QVariant

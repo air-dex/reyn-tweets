@@ -209,10 +209,11 @@ class ListHandler : public HandlerEmitter
 		/// @brief Filling a real element with its QVariant value
 		///
 		/// ListHandler is initially designed with the thought that the U
-		/// template parameter inherits from JsonObject, which is the case
-		/// the most of the time. However, there are some cases where U does not
-		/// inherit from JsonObject (int for the IndexBoundsHandler for example).
-		/// That's why some methods like fillElement() exist and are virtual.
+		/// template parameter inherits from JsonObject (ObjectListHandler),
+		/// which is the case the most of the time. However, there are some
+		/// cases where U does not inherit from JsonObject (int for the
+		/// IndexBoundsHandler for example). That's why some methods like
+		/// fillElement() exist and are virtual.
 		/// @param realElt Real element
 		/// @param varelt QVariant value
 		/// @param resetValue Boolean indicating if the realElt has to be reset.

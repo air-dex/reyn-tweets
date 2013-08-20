@@ -24,12 +24,12 @@
 #ifndef MEDIASHANDLER_HPP
 #define MEDIASHANDLER_HPP
 
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/tweets/medialist.hpp"
 
 /// @class MediasHandler
 /// @brief List handler for Medias.
-class MediasHandler : public ListHandler<MediaList, Media>
+class MediasHandler : public ObjectListHandler<MediaList, Media>
 {
 	Q_OBJECT
 

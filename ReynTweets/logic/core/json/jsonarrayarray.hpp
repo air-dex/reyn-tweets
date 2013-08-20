@@ -28,7 +28,8 @@
 
 /// @class JsonArrayArray
 /// @brief Base class for JsonArrays containing JsonArrays.
-/// @param V Type of element in the array. It has to extend JsonArray.
+/// @param V Type of element in the array. <strong>V has to extend
+/// JsonArray.</strong>
 template <class V>
 class JsonArrayArray : public JsonVariantableArray<V>
 {

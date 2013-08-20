@@ -26,7 +26,7 @@
 
 // Constructor
 MediasHandler::MediasHandler() :
-	ListHandler<MediaList, Media>()
+	ObjectListHandler<MediaList, Media>()
 {}
 
 // Destructor
@@ -34,7 +34,7 @@ MediasHandler::~MediasHandler() {}
 
 // Copy constructor
 MediasHandler::MediasHandler(const MediasHandler & handler) :
-	ListHandler<MediaList, Media>()
+	ObjectListHandler<MediaList, Media>()
 {
 	recopie(handler);
 }
@@ -47,7 +47,7 @@ const MediasHandler & MediasHandler::operator=(const MediasHandler & handler) {
 
 // Copy of a TimelineHandler
 void MediasHandler::recopie(const MediasHandler &handler) {
-	ListHandler<MediaList, Media>::recopie(handler);
+	ObjectListHandler<MediaList, Media>::recopie(handler);
 }
 
 // Serialization initialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, MediasHandler & handler) {
 ///////////////////
 
 Media * MediasHandler::get(int index) {
-	return ListHandler<MediaList, Media>::get(index);
+	return ObjectListHandler<MediaList, Media>::get(index);
 }
 
 // Filling an element with a QVariant

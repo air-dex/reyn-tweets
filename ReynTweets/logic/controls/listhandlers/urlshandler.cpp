@@ -26,7 +26,7 @@
 
 // Constructor
 UrlsHandler::UrlsHandler() :
-	ListHandler<URLEntityList, URLEntity>()
+	ObjectListHandler<URLEntityList, URLEntity>()
 {}
 
 // Destructor
@@ -34,7 +34,7 @@ UrlsHandler::~UrlsHandler() {}
 
 // Copy constructor
 UrlsHandler::UrlsHandler(const UrlsHandler & handler) :
-	ListHandler<URLEntityList, URLEntity>()
+	ObjectListHandler<URLEntityList, URLEntity>()
 {
 	recopie(handler);
 }
@@ -47,7 +47,7 @@ const UrlsHandler & UrlsHandler::operator=(const UrlsHandler & handler) {
 
 // Copy of a TimelineHandler
 void UrlsHandler::recopie(const UrlsHandler &handler) {
-	ListHandler<URLEntityList, URLEntity>::recopie(handler);
+	ObjectListHandler<URLEntityList, URLEntity>::recopie(handler);
 }
 
 // Serialization initialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, UrlsHandler & handler) {
 ///////////////////
 
 URLEntity * UrlsHandler::get(int index) {
-	return ListHandler<URLEntityList, URLEntity>::get(index);
+	return ObjectListHandler<URLEntityList, URLEntity>::get(index);
 }
 
 // Filling an element with a QVariant

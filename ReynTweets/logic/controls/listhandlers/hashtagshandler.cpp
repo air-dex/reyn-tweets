@@ -26,7 +26,7 @@
 
 // Constructor
 HashtagsHandler::HashtagsHandler() :
-	ListHandler<HashtagList, Hashtag>()
+	ObjectListHandler<HashtagList, Hashtag>()
 {}
 
 // Destructor
@@ -34,7 +34,7 @@ HashtagsHandler::~HashtagsHandler() {}
 
 // Copy constructor
 HashtagsHandler::HashtagsHandler(const HashtagsHandler & handler) :
-	ListHandler<HashtagList, Hashtag>()
+	ObjectListHandler<HashtagList, Hashtag>()
 {
 	recopie(handler);
 }
@@ -47,7 +47,7 @@ const HashtagsHandler & HashtagsHandler::operator=(const HashtagsHandler & handl
 
 // Copy of a HashtagsHandler
 void HashtagsHandler::recopie(const HashtagsHandler &handler) {
-	ListHandler<HashtagList, Hashtag>::recopie(handler);
+	ObjectListHandler<HashtagList, Hashtag>::recopie(handler);
 }
 
 // Serialization initialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, HashtagsHandler & handler) {
 ///////////////////
 
 Hashtag * HashtagsHandler::get(int index) {
-	return ListHandler<HashtagList, Hashtag>::get(index);
+	return ObjectListHandler<HashtagList, Hashtag>::get(index);
 }
 
 // Filling an element with a QVariant

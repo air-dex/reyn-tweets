@@ -151,6 +151,7 @@ SOURCES += \
 	logic/processes/processmanager.cpp \
 	logic/core/reyncore.cpp \
 	logic/controls/listhandlers/listhandler.cpp \
+	logic/controls/listhandlers/objectlisthandler.cpp \
 	logic/controls/listhandlers/contributorshandler.cpp \
 	logic/controls/listhandlers/geocoordhandler.cpp \
 	logic/controls/listhandlers/geocoordpolygonhandler.cpp \
@@ -298,6 +299,8 @@ HEADERS  += \
 	logic/core/reyncore.hpp \
 	logic/controls/listhandlers/listhandler.hpp \
 	logic/controls/listhandlers/listhandler.tpp \
+	logic/controls/listhandlers/objectlisthandler.hpp \
+	logic/controls/listhandlers/objectlisthandler.tpp \
 	logic/controls/listhandlers/contributorshandler.hpp \
 	logic/controls/listhandlers/geocoordhandler.hpp \
 	logic/controls/listhandlers/geocoordpolygonhandler.hpp \

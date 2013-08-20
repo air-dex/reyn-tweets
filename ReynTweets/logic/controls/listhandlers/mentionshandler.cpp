@@ -26,7 +26,7 @@
 
 // Constructor
 MentionsHandler::MentionsHandler() :
-	ListHandler<UserMentionList, UserMention>()
+	ObjectListHandler<UserMentionList, UserMention>()
 {}
 
 // Destructor
@@ -34,7 +34,7 @@ MentionsHandler::~MentionsHandler() {}
 
 // Copy constructor
 MentionsHandler::MentionsHandler(const MentionsHandler & handler) :
-	ListHandler<UserMentionList, UserMention>()
+	ObjectListHandler<UserMentionList, UserMention>()
 {
 	recopie(handler);
 }
@@ -47,7 +47,7 @@ const MentionsHandler & MentionsHandler::operator=(const MentionsHandler & handl
 
 // Copy of a TimelineHandler
 void MentionsHandler::recopie(const MentionsHandler &handler) {
-	ListHandler<UserMentionList, UserMention>::recopie(handler);
+	ObjectListHandler<UserMentionList, UserMention>::recopie(handler);
 }
 
 // Serialization initialization
@@ -79,7 +79,7 @@ QDataStream & operator>>(QDataStream & in, MentionsHandler & handler) {
 ///////////////////
 
 UserMention * MentionsHandler::get(int index) {
-	return ListHandler<UserMentionList, UserMention>::get(index);
+	return ObjectListHandler<UserMentionList, UserMention>::get(index);
 }
 
 // Filling an element with a QVariant

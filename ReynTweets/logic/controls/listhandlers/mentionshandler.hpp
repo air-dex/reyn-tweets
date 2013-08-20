@@ -24,12 +24,12 @@
 #ifndef MENTIONSHANDLER_HPP
 #define MENTIONSHANDLER_HPP
 
-#include "listhandler.tpp"
+#include "objectlisthandler.tpp"
 #include "../../core/tweets/usermentionlist.hpp"
 
 /// @class MentionsHandler
 /// @brief List handler for UserMentionList
-class MentionsHandler : public ListHandler<UserMentionList, UserMention>
+class MentionsHandler : public ObjectListHandler<UserMentionList, UserMention>
 {
 	Q_OBJECT
 

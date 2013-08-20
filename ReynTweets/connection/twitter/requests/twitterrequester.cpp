@@ -64,6 +64,12 @@ QByteArray TwitterRequester::getAuthorizationHeader() {
 // Network reply tratment //
 ////////////////////////////
 
+// Workaround for this bug : https://bugreports.qt-project.org/browse/QTBUG-32524
+// TODO : remove those 3 #include as soon as the bug is fixed
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
+
 // Method that will parse the raw results of the request.
 QVariant TwitterRequester::parseResult(NetworkResponse results,
 									   bool & parseOK,
@@ -74,10 +80,45 @@ QVariant TwitterRequester::parseResult(NetworkResponse results,
 	int lineMsg;
 
 	// TODO : improve it because of improved JSONParser
-	QVariant result = parser.parse(results.getResponseBody(),
-								   &parseOK, &errorMsg,
-								   &lineMsg
-								   ).toVariant();
+	QJsonValue parseval = parser.parse(results.getResponseBody(),
+									   &parseOK, &errorMsg,
+									   &lineMsg);
+
+	// Workaround for this bug : https://bugreports.qt-project.org/browse/QTBUG-32524
+	// TODO : remove it as soon as the bug is fixed
+	QVariant result;
+	switch (parseval.type()) {
+		case QJsonValue::Object: {
+			// Is the QJsonObject empty ?
+			QJsonObject o;
+			if (o.isEmpty()) {
+				// Buggy case
+				QVariantMap varmap;
+				result = QVariant::fromValue(varmap);
+			} else {
+				result = parseval.toVariant();
+			}
+		} break;
+
+		case QJsonValue::Array: {
+			// Is the QJsonArray empty ?
+			QJsonArray a;
+			if (a.isEmpty()) {
+				// Buggy case
+				QVariantList varlist;
+				result = QVariant::fromValue(varlist);
+			} else {
+				result = parseval.toVariant();
+			}
+		} break;
+
+		default:
+			result = parseval.toVariant();
+			break;
+	}
+
+	// Normal code (when no bug)
+//	QVariant result = parseval.toVariant();
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !

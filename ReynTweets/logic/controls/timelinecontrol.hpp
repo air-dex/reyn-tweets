@@ -114,7 +114,7 @@ class TimelineControl : public GenericControl
 		TimelineHandler tlhandler;
 
 		/// @brief The timeline
-		Timeline timeline;
+		Timeline & timeline;
 
 		// timeline_handler
 		/// @property timeline_type

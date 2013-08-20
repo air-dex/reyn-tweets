@@ -123,7 +123,6 @@ SOURCES += \
 	logic/core/tweets/tweet.cpp \
 	logic/core/users/user.cpp \
 	logic/core/timelines/timeline.cpp \
-	logic/core/timelines/timelinehandler.cpp \
 	logic/core/configuration/appconfiguration.cpp \
 	logic/core/configuration/useraccount.cpp \
 	logic/core/configuration/userconfiguration.cpp \
@@ -145,6 +144,8 @@ SOURCES += \
 	logic/processes/postviatwitlongerprocess.cpp \
 	logic/processes/processmanager.cpp \
 	logic/core/reyncore.cpp \
+	logic/controls/listhandlers/listhandler.cpp \
+	logic/controls/listhandlers/timelinehandler.cpp \
 	logic/controls/genericcontrol.cpp \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
@@ -247,7 +248,6 @@ HEADERS  += \
 	logic/core/tweets/tweet.hpp \
 	logic/core/users/user.hpp \
 	logic/core/timelines/timeline.hpp \
-	logic/core/timelines/timelinehandler.hpp \
 	logic/core/configuration/appconfiguration.hpp \
 	logic/core/configuration/useraccount.hpp \
 	logic/core/configuration/userconfiguration.hpp \
@@ -273,6 +273,9 @@ HEADERS  += \
 	logic/processes/processinfos.hpp \
 	logic/processes/processmanager.hpp \
 	logic/core/reyncore.hpp \
+	logic/controls/listhandlers/listhandler.hpp \
+	logic/controls/listhandlers/listhandler.tpp \
+	logic/controls/listhandlers/timelinehandler.hpp \
 	logic/controls/genericcontrol.hpp \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
@@ -441,7 +444,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	conf_files
+	#conf_files
 
 
 #---------------------------#

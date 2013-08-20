@@ -24,6 +24,8 @@
 #ifndef CONTROLS_HPP
 #define CONTROLS_HPP
 
+#include "listhandlers/timelinehandler.hpp"
+
 #include "allowcontrol.hpp"
 #include "launchingcontrol.hpp"
 #include "reyncontrol.hpp"

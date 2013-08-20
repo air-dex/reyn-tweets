@@ -36,7 +36,6 @@
 #include "geo/twitterplace.hpp"
 
 #include "timelines/timeline.hpp"
-#include "timelines/timelinehandler.hpp"
 
 #include "tweets/hashtag.hpp"
 #include "tweets/hashtaglist.hpp"

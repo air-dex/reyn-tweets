@@ -27,7 +27,7 @@
 TimelineControl::TimelineControl() :
 	GenericControl(),
 	tlhandler(),
-	timeline(tlhandler.getTimelineRef()),
+	timeline(tlhandler.getHandledListRef()),
 	backupedNewTweet()
 {}
 
@@ -107,7 +107,7 @@ void TimelineControl::loadTimelineEnded(ProcessWrapper res) {
 			Timeline tl;
 			tl.fillWithVariant(QJsonArray::fromVariantList(resList));
 			tlhandler.appendTimeline(tl);
-			emit tlhandler.timelineChanged();
+			emit tlhandler.handledListChanged();
 			// Process successful
 			emit actionEnded(true,
 							 TimelineControl::trUtf8("Timeline loaded"),
@@ -247,7 +247,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			tlhandler.prependTimeline(newerTweets);
 
 			// Process successful
-			emit tlhandler.timelineChanged();
+			emit tlhandler.handledListChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -411,7 +411,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			tlhandler.prependTimeline(newerTweets);
 
 			// Process successful
-			emit tlhandler.timelineChanged();
+			emit tlhandler.handledListChanged();
 			emit actionEnded(true, TimelineControl::trUtf8("Timeline refreshed"), false);
 			break;
 
@@ -509,7 +509,7 @@ void TimelineControl::moreOldTimelineEnded(ProcessWrapper res) {
 			Timeline newTweets;
 			newTweets.fillWithVariant(QJsonArray::fromVariantList(resList));
 			tlhandler.appendTimeline(newTweets);
-			emit tlhandler.timelineChanged();
+			emit tlhandler.handledListChanged();
 			// Process successful
 			emit actionEnded(true, TimelineControl::trUtf8("Tweets loaded"), false);
 

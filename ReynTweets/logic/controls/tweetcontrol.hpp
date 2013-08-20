@@ -30,7 +30,7 @@
 #include "genericcontrol.hpp"
 #include "../core/reyncore.hpp"
 #include "../core/tweets/tweet.hpp"
-#include "../core/timelines/timelinehandler.hpp"
+#include "listhandlers/timelinehandler.hpp"
 
 /// @class TweetControl
 /// @brief Control behind a TweetPane

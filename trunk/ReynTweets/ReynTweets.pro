@@ -136,7 +136,10 @@ SOURCES += \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	main.cpp \
-	logic/coreresult.cpp
+	logic/coreresult.cpp \
+	model2/mappable.cpp \
+	#model2/json/jsonable.cpp \
+	model2/json/jsonobject.cpp
 
 
 HEADERS  += \
@@ -243,7 +246,11 @@ HEADERS  += \
 	logic/controls/timelinecontrol.hpp \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
-	logic/controls/controls.hpp
+	logic/controls/controls.hpp \
+	model2/variantable.hpp \
+	model2/mappable.hpp \
+	model2/json/jsonable.hpp \
+	model2/json/jsonobject.hpp
 
 
 OTHER_FILES = \
@@ -400,7 +407,7 @@ conf_files.target = .
 
 DEPLOYMENTFOLDERS = qml_files \
 	resource \
-	#conf_files
+	conf_files
 
 
 #---------------------------#

@@ -55,14 +55,7 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>, public QJsonA
 		////////////////////////
 		// Overloaded methods //
 		////////////////////////
-/*
-		/// @fn virtual void fillWithVariant(QVariantList entities);
-		/// @brief Filling the list with the content of a QVariantList
-		///
-		/// It is a special overload to use Qt JSON methods.
-		/// @param entities The QVariantList
-		virtual void fillWithVariant(QVariantList entities);
-//*/
+
 		/// @fn virtual QVariantList toVariant() const;
 		/// @brief Converting the list of serializables into a QVariantList.
 		///
@@ -71,15 +64,15 @@ class JsonArray : public Listable<V>, public Jsonable<QJsonArray>, public QJsonA
 		virtual QVariantList toVariant() const;
 
 		/// @fn virtual QJsonArray toJSON() const;
-		/// @brief Converting the object into its "JSON handler" equivalent.
-		/// @return The corresponding equivalent.
+		/// @brief Converting the JsonArray into a QJsonArray.
+		/// @return The corresponding QJsonArray.
 		virtual QJsonArray toJSON() const;
 
-		/// @fn virtual void fillWithJSON(J json);
-		/// @brief Filling a Jsonable object with a "JSON handler" equivalent.
+		/// @fn virtual void fillWithJSON(QJsonArray json);
+		/// @brief Filling a JsonArray with a QJsonArray.
 		/// contained in the map.
-		/// @param json The equivalent
-		virtual void fillWithJSON(QJsonArray json) = 0;
+		/// @param json The QJsonArray
+		virtual void fillWithJSON(QJsonArray json);
 
 	protected:
 		/// @fn virtual void recopie(const JsonArray<V> & list);

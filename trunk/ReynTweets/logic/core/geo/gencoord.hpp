@@ -53,7 +53,7 @@ class GenCoord : public JsonObject
 		/// @brief Destructor
 		virtual ~GenCoord();
 
-		/// @fn GenericCoordinates(const GenCoord & coord);
+		/// @fn GenCoord(const GenCoord & coord);
 		/// @brief Copy constructor
 		/// @param coord GenCoord to copy
 		GenCoord(const GenCoord &coord);

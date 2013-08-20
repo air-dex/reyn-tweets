@@ -47,7 +47,7 @@ class GeoCoord : public JsonArray<double>, public QPointF
 		/// @brief Destructor
 		virtual ~GeoCoord();
 
-		/// @fn Coordinates(const GeoCoord & coord);
+		/// @fn GeoCoord(const GeoCoord & coord);
 		/// @brief Copy constructor
 		/// @param coord GeoCoord to copy
 		GeoCoord(const GeoCoord & coord);
@@ -134,18 +134,18 @@ class GeoCoord : public JsonArray<double>, public QPointF
 // Serialization of GeoCoord
 Q_DECLARE_METATYPE(GeoCoord)
 
-/// @fn QDataStream & operator<<(QDataStream & out, const GeoCoord & infos);
+/// @fn QDataStream & operator<<(QDataStream & out, const GeoCoord & coord);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
-/// @param infos GeoCoord to put in the stream
+/// @param coord GeoCoord to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const GeoCoord & infos);
+QDataStream & operator<<(QDataStream & out, const GeoCoord & coord);
 
-/// @fn QDataStream & operator>>(QDataStream & in, GeoCoord & infos);
+/// @fn QDataStream & operator>>(QDataStream & in, GeoCoord & coord);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
-/// @param infos GeoCoord to put in the stream
+/// @param coord GeoCoord to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, GeoCoord & infos);
+QDataStream & operator>>(QDataStream & in, GeoCoord & coord);
 
 #endif // GEOCOORD_HPP

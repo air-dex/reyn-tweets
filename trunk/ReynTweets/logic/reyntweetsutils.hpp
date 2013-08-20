@@ -1,4 +1,4 @@
-/// @file reyntweetsutils.cpp
+/// @file reyntweetsutils.hpp
 /// @brief Header of utilities for the logic part
 /// @author Romain Ducher
 ///

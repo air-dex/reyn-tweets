@@ -28,7 +28,7 @@
 #include "../../connection/twitter/reyntwittercalls.hpp"
 #include "../core/timelines/timeline.hpp"
 
-/// @class RefreshHomeTimelineProcess
+/// @class RefreshTimelineProcess
 /// @brief Base class for processes refreshing a timeline.
 ///
 /// The process for refreshing timelines consists in two steps :<ol>

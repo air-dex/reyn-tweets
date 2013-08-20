@@ -27,7 +27,7 @@
 #include "jsonvariantablearray.tpp"
 
 /// @class JsonArrayArray
-/// @brief Base class for JsonArrays containing JsonArrays.
+/// @brief Base class for JsonArray whose elements are JsonArray.
 /// @param V Type of element in the array. <strong>V has to extend
 /// JsonArray.</strong>
 template <class V>

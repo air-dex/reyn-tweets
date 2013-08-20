@@ -29,8 +29,8 @@
 #include <QObject>
 #include "../requests/genericrequester.hpp"
 
-/// @class RequestInfos
-/// @struct Struct containing the entity which asks for the request
+/// @struct RequestInfos
+/// @brief Struct containing the entity which asks for the request
 /// (the "asker") and the requester that executes the request (the "requester").
 struct RequestInfos {
 	/// @brief Entity which asks for the request

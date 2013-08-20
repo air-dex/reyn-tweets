@@ -114,9 +114,9 @@ linux-g++ {
 include (doc/documentation.pri)
 
 
-#--------------#
-# Translations #
-#--------------#
+#----------------------#
+# Translations targets #
+#----------------------#
 
 include(i18n/translation.pri)
 

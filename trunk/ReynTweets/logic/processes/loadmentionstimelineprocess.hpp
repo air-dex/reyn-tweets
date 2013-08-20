@@ -1,4 +1,4 @@
-/// @file loadmentionstimelineprocess.cpp
+/// @file loadmentionstimelineprocess.hpp
 /// @brief Header of LoadMentionsTimelineProcess
 /// @author Romain Ducher
 ///

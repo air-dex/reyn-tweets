@@ -50,11 +50,11 @@ namespace ReynTweets {
 	// main() handling //
 	/////////////////////
 
-	/// @fn void initControlSystem();
+	/// @fn void initSystem();
 	/// @brief Initializes all the serializable classes (Variantables)
 	void initSystem();
 
-	/// @fn void declareQMLControls();
+	/// @fn void declareQML();
 	/// @brief Declares all the controls and classes used by QML widgets
 	void declareQML();
 

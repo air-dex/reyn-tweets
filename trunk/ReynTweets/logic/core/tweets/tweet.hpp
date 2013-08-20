@@ -968,7 +968,7 @@ class Tweet : public JsonObject
 		/// @param newValue New value for user
 		void setUser(UserInfos newValue);
 
-		/// @fn UserInfos * getAuthor();
+		/// @fn UserInfos * getUserPtr();
 		/// @brief Reading user
 		/// @return A pointer on author
 		UserInfos * getUserPtr();
@@ -1132,7 +1132,7 @@ class Tweet : public JsonObject
 		void setWithheldInCountries(QStringList newValue);
 
 		// withheld_scope
-		/// @fn QString isWithheldScope();
+		/// @fn QString getWithheldScope();
 		/// @brief Reading withheld_scope
 		/// @return withheldScope
 		QString getWithheldScope();

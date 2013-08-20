@@ -33,7 +33,7 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(TwitterAuthenticator & authManagerr,
+		/// @fn AuthorizeRequester(TwitterAuthenticator & authManager,
 		///						   bool forceLog = false,
 		///						   QString writeLogin = Twitter::FAKE_SCREEN_NAME);
 		/// @brief Constructor

@@ -1,5 +1,5 @@
 /// @file librtconstants.hpp
-/// @brief Header for Reyn Tweets constants.
+/// @brief Header for libRT constants.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

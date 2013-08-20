@@ -1,5 +1,6 @@
 /// @file twitlongerurls.hpp
-/// @brief Declaration of the TwitLongerURL namespace.
+/// @brief Declaration of the TwitLonger namespace namespace part containing
+/// TwitLonger URLs.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

@@ -48,7 +48,7 @@ namespace ReynTweets {
 
 	/// @fn static CoordinatesType string2coord(QString coordStr);
 	/// @brief Converting a QString into a CoordinatesType.
-	/// @param coord The QString
+	/// @param coordStr The QString to convert
 	/// @return The corresponding CoordinatesType
 	CoordinatesType string2coord(QString coordStr);
 }

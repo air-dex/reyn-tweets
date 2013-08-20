@@ -42,7 +42,7 @@ class IndexBoundsHandler : public ListHandler<IndexBounds, int>
 		/// @brief Destructor
 		virtual ~IndexBoundsHandler();
 
-		/// @fn HashtagsHandler(const IndexBoundsHandler & handler);
+		/// @fn IndexBoundsHandler(const IndexBoundsHandler & handler);
 		/// @brief Copy constructor
 		/// @param handler IndexBoundsHandler to copy
 		IndexBoundsHandler(const IndexBoundsHandler & handler);

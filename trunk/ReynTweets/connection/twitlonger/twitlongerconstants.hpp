@@ -1,4 +1,4 @@
-/// @file twitlongerconstants.cpp
+/// @file twitlongerconstants.hpp
 /// @brief Implementation for Reyn Tweets constants related to TwitLonger.
 /// @author Romain Ducher
 ///

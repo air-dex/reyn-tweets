@@ -1,4 +1,4 @@
-/// @file reyntweetsentities.cpp
+/// @file reyntweetsentities.hpp
 /// @brief Header containing all the object models headers
 /// @author Romain Ducher
 ///

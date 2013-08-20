@@ -65,7 +65,7 @@ class IndexBounds : public JsonArray<int>
 		// Variant handling //
 		//////////////////////
 
-		/// @fn QVariantList QJsonArray() const;
+		/// @fn QJsonArray toVariant() const;
 		/// @brief Converting the bounds into a QJsonArray
 		/// @return The QJsonArray with the bounds in two QVariant objects.
 		QJsonArray toVariant() const;

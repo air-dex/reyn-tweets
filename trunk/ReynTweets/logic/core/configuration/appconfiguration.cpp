@@ -1,5 +1,5 @@
-/// @file reyntweetsconfiguration.cpp
-/// @brief Implementation of ReynTweetsConfiguration
+/// @file appconfiguration.cpp
+/// @brief Implementation of AppConfiguration
 /// @author Romain Ducher
 ///
 /// @section LICENSE

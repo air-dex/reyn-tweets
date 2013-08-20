@@ -1,4 +1,4 @@
-/// @file objectlisthandler.hpp
+/// @file objectlisthandler.tpp
 /// @brief Template header of ObjectListHandler
 /// @author Romain Ducher
 ///

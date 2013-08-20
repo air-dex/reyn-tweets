@@ -128,7 +128,7 @@ class User : public UserInfos
 		/// @brief Name of the property status
 		static QString STATUS_PN;
 
-		/// @fn Tweet * getStatusProperty();
+		/// @fn Tweet * getStatusPtr();
 		/// @brief Reading the "status" property
 		/// @return lastTweetMap
 		Tweet * getStatusPtr();

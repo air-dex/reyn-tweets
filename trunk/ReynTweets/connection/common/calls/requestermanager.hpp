@@ -53,7 +53,7 @@ class RequesterManager : protected QMap<QUuid, RequestInfos>
 
 		/// @fn void removeRequest(GenericRequester * requester);
 		/// @brief Removing a request from the manager
-		/// @param request Requester to remove
+		/// @param requester Requester to remove
 		void removeRequest(GenericRequester * requester);
 
 		/// @fn QObject * getAsker(GenericRequester * requester);

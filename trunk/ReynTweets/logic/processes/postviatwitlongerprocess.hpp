@@ -1,4 +1,4 @@
-/// @file postviatwitlongerprocess.cpp
+/// @file postviatwitlongerprocess.hpp
 /// @brief Header of PostViaTwitLongerProcess
 /// @author Romain Ducher
 ///

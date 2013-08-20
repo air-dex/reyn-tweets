@@ -1,5 +1,6 @@
 /// @file twitterurls.hpp
-/// @brief Header of the "Twitter" namespace.
+/// @brief Header of the Twitter namespace namespace part containing
+/// Twitter URLs.
 ///
 /// Revisions older than r242 were in /trunk/ReynTweets/connection
 /// Revisions from r243 to r426 were in /trunk/ReynTweets/connection/requests

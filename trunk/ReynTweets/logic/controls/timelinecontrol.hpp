@@ -117,7 +117,7 @@ class TimelineControl : public GenericControl
 		Timeline & timeline;
 
 		// timeline_handler
-		/// @property timeline_type
+		/// @property timeline_handler
 		/// @brief Type of the timeline handled by the control
 		Q_PROPERTY(TimelineHandler * timeline_handler
 				   READ getTimelineHandler)

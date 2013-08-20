@@ -1,7 +1,8 @@
 /// @file twitterurls.cpp
-/// @brief Implementation of the "Twitter" namespace.
+/// @brief Implementation of the "Twitter" namespace part containing
+/// Twitter URLs.
 ///
-/// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// Revisions older than SVN's r242 were in /trunk/ReynTweets/connection
 /// @author Romain Ducher
 ///
 /// @section LICENSE

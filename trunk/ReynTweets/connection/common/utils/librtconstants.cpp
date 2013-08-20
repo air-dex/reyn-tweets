@@ -1,5 +1,5 @@
 /// @file librtconstants.cpp
-/// @brief Implementation for Reyn Tweets constants.
+/// @brief Implementation for libRT constants.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

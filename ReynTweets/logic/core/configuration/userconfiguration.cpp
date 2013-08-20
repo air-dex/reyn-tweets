@@ -38,8 +38,7 @@
 // Default constructor
 UserConfiguration::UserConfiguration() :
 	JsonObject(),
-	userAccount(),
-	errorLoading("")
+	userAccount()
 {}
 
 // Destructor
@@ -48,8 +47,7 @@ UserConfiguration::~UserConfiguration() {}
 // Copy constructor
 UserConfiguration::UserConfiguration(const UserConfiguration & configuration) :
 	JsonObject(),
-	userAccount(),
-	errorLoading("")
+	userAccount()
 {
 	recopie(configuration);
 }
@@ -82,11 +80,6 @@ void UserConfiguration::declareQML() {
 // Resets the mappable to a default value
 void UserConfiguration::reset() {
 	*this = UserConfiguration();
-}
-
-// Getter on the error message after loading the settings
-QString UserConfiguration::getErrorLoading() {
-	return errorLoading;
 }
 
 
@@ -168,12 +161,12 @@ void UserConfiguration::setUserAccount(UserAccount * account) {
 //////////////////////////////
 
 // Loading the configuration
-CoreResult UserConfiguration::load() {
+CoreResult UserConfiguration::load(QString & errorMsg) {
 	// TODO : warn when the conf is reset.
 
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (!this->checkConfigurationFile()) {
-		CoreResult reinitRes = this->reinit();
+		CoreResult reinitRes = this->reinit(errorMsg);
 /*
 		if (reinitRes == REINIT_SUCCESSFUL) {
 			errorLoading = UserConfiguration::trUtf8("Warning : the configuration has been reset.");
@@ -187,12 +180,12 @@ CoreResult UserConfiguration::load() {
 	QFile confFile(this->getConfigurationFilePath());
 
 	if (!confFile.exists()) {
-		errorLoading = UserConfiguration::trUtf8("Cannot load the configuration file : unknown configuration file. Try to create it manually");
+		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : unknown configuration file. Try to create it manually");
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
 	if (!confFile.open(QFile::ReadOnly)) {
-		errorLoading = UserConfiguration::trUtf8("Cannot load the configuration file : configuration file cannot be opened. Check if you can read it.");
+		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened. Check if you can read it.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
@@ -206,65 +199,59 @@ CoreResult UserConfiguration::load() {
 
 	confFile.close();
 
-	if (!jsonSettings.isObject()) {
+	if (!parseOK || !jsonSettings.isObject()) {
 		// Parse error : JSON Object expected (and why it's not that).
-		errorLoading.append(UserConfiguration::trUtf8("Parse error (JSON object expected):"))
+		errorMsg.append(UserConfiguration::trUtf8("Parse error (JSON object expected):"))
 				.append(' ')
 				.append(parseErrMsg)
 				.append('.');
-		parseOK = false;
-	}
-
-	if (!parseOK) {
 		return PARSE_ERROR;
 	}
 
 
 	// Filling the settings
 	QJsonObject jsonConf = jsonSettings.toObject();
-	QString oldErr = errorLoading;
+	QString oldErr = errorMsg;
 
 	this->fillWithVariant(jsonConf);
 
-	bool fillOK = oldErr == errorLoading;	// More errors if it fails.
+	bool fillOK = oldErr == errorMsg;	// More errors if it fails.
 
 	return fillOK ? LOAD_CONFIGURATION_SUCCESSFUL : EXPECTED_KEY;
 }
 
 // Saving the configuration
-CoreResult UserConfiguration::save() {
+CoreResult UserConfiguration::save(QString & errorMsg) {
 	// TODO : warn when the conf is reset.
 
 	// Ensures that the file can be used correctly. If not, reinit the conf.
 	if (this->checkConfigurationFile()) {
 		// Writing the configuration
-		CoreResult writeConf = this->writeConfigurationInFile();
+		CoreResult writeConf = this->writeConfigurationInFile(errorMsg);
 
 		return writeConf == WRITE_SUCCESSFUL ? SAVE_SUCCESSFUL : writeConf;
 	} else {
-		return this->reinit();
+		return this->reinit(errorMsg);
 	}
 }
 
 // Reinit the configuration file
-CoreResult UserConfiguration::reinit() {
+CoreResult UserConfiguration::reinit(QString & errorMsg) {
 	// Default user configuration
 	this->reset();
 
 	// Directory where the configuration file is supposed to be
 	QDir confdir = AppConfiguration::getReynTweetsConfiguration().getAppDataDir();
 
-	if (!confdir.exists()) {
-		// The App data directory does not exist. Let's create it !
-		if (!confdir.mkpath(confdir.path())) {
-			errorLoading = UserConfiguration::trUtf8("Cannot create the configuration file because its directory cannot be created. Try to create it manually");
-			return APP_DATA_DIR_UNKNOWN;
-		}
+	// If fhe App data directory does not exist, create it.
+	if (!confdir.exists() && !confdir.mkpath(confdir.path())) {
+		errorMsg = UserConfiguration::trUtf8("Cannot create the user configuration file because its directory cannot be created. Try to create it manually");
+		return APP_DATA_DIR_UNKNOWN;
 	}
 
 	// Writing the configuration
 	// Forces RW in order to be sure that the file file is readable.
-	CoreResult writeConf = this->writeConfigurationInFile(QIODevice::ReadWrite);
+	CoreResult writeConf = this->writeConfigurationInFile(errorMsg, QIODevice::ReadWrite);
 
 	return writeConf == WRITE_SUCCESSFUL ? REINIT_SUCCESSFUL : writeConf;
 }
@@ -294,15 +281,19 @@ bool UserConfiguration::checkConfigurationFile() {
 }
 
 // Writing the configuration
-CoreResult UserConfiguration::writeConfigurationInFile(QIODevice::OpenMode openMode) {
+CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODevice::OpenMode openMode) {
 	// Opening the configuration file
 	QFile confFile(this->getConfigurationFilePath());
 
 	if (!confFile.exists()) {
+		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : unknown configuration file. Try to create it manually");
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
+	// TODO : check sur openMode
+
 	if (!confFile.open(openMode)) {
+		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened.");
 		return CONFIGURATION_FILE_NOT_OPEN;
 	}
 
@@ -311,6 +302,7 @@ CoreResult UserConfiguration::writeConfigurationInFile(QIODevice::OpenMode openM
 	QByteArray json = QJsonDocument(this->toVariant()).toJson();
 	readStream << json;
 	confFile.close();
+	errorMsg = "";
 
 	return WRITE_SUCCESSFUL;
 }

@@ -79,48 +79,35 @@ void LaunchingProcess::checkSettingsLoad() {
 
 // Loading the configuartion from the configuration file
 void LaunchingProcess::loadConfiguration() {
-	CoreResult loadIssue = userConfiguration.load();
-
 	QString errorMsg = "";
+	CoreResult loadIssue = userConfiguration.load(errorMsg);
 
-	// TODO : warn when the conf is reset.
+	// TODO : warn if the conf is reset.
 
 	switch (loadIssue) {
 		case REINIT_SUCCESSFUL:
-			//errorMsg = userConfiguration.getErrorLoading();
+			errorMsg = LaunchingProcess::trUtf8("User configuration was reset.");
 
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
 			fillTwitterOAuthUserSettings();
 			return checkTokens();
 
-		case CONFIGURATION_FILE_UNKNOWN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file does not exist.");
-			break;
-
-		case CONFIGURATION_FILE_NOT_OPEN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
-			break;
-
 		case PARSE_ERROR:
-			errorMsg.append(LaunchingProcess::trUtf8("Configuration cannot be loaded (parse error)"))
-					.append(" : ").append(userConfiguration.getErrorLoading());
-			loadIssue = LOADING_CONFIGURATION_ERROR;
-			break;
-
 		case EXPECTED_KEY:
-			errorMsg = userConfiguration.getErrorLoading();
 			loadIssue = LOADING_CONFIGURATION_ERROR;
 			break;
 
 		case LOADING_CONFIGURATION_ERROR:
-			errorMsg = LaunchingProcess::trUtf8("Configuration cannot be loaded.");
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
 			// Unknown problem.
-			errorMsg = LaunchingProcess::trUtf8("Unknown problem.");
 			loadIssue = UNKNOWN_PROBLEM;
+			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
+					   .append(errorMsg);
 			break;
 	}
 
@@ -284,8 +271,10 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 // Saving the configuartion in the configuration file
 void LaunchingProcess::saveConfiguration() {
-	CoreResult saveIssue = userConfiguration.save();
 	QString errorMsg = "";
+	CoreResult saveIssue = userConfiguration.save(errorMsg);
+
+	// NOTE : verify the reinit case
 
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
@@ -293,21 +282,18 @@ void LaunchingProcess::saveConfiguration() {
 			saveIssue = LAUNCH_SUCCESSFUL;
 			break;
 
-		case CONFIGURATION_FILE_UNKNOWN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file does not exist.");
-			break;
-
-		case CONFIGURATION_FILE_NOT_OPEN:
-			errorMsg = LaunchingProcess::trUtf8("Configuration file cannot be opened.");
-			break;
-
 		case REINIT_SUCCESSFUL:
-			errorMsg = userConfiguration.getErrorLoading();
+			errorMsg = LaunchingProcess::trUtf8("User configuration was reset.");
+			break;
+
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
 			saveIssue = UNKNOWN_PROBLEM;
-			errorMsg = LaunchingProcess::trUtf8("Unknown problem.");
+			errorMsg = LaunchingProcess::trUtf8("Unknown problem").append(" : ")
+					   .append(errorMsg);
 			break;
 	}
 

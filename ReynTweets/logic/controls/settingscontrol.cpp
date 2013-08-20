@@ -68,7 +68,8 @@ void SettingsControl::setConfiguration(UserConfiguration * config) {
 // Saving changes
 void SettingsControl::saveChanges() {
 	emit showInfoMessage(SettingsControl::trUtf8("Updating configuration..."));
-	CoreResult saveRes = conf.save();
+	QString errorMsg = "";
+	CoreResult saveRes = conf.save(errorMsg);
 
 	bool isOK;
 	QString resMsg = "";
@@ -85,27 +86,28 @@ void SettingsControl::saveChanges() {
 			isOK = true;
 			resMsg.append(SettingsControl::trUtf8("Problem while updating the configuration"))
 					.append(" : ")
-					.append(conf.getErrorLoading())
+					.append(errorMsg)
 					.append(' ')
-					.append(SettingsControl::trUtf8("Configuration was reset."));
+					.append(SettingsControl::trUtf8("User configuration was reset."));
 			isFatal = false;
 			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Configuration file not found.");
+			resMsg = errorMsg;
 			isFatal = true;
 			break;
 
 		case CONFIGURATION_FILE_NOT_OPEN:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Cannot open configuration file.");
+			resMsg = errorMsg;
 			isFatal = false;
 			break;
 
 		default:
 			isOK = false;
-			resMsg = SettingsControl::trUtf8("Unknown problem.");
+			resMsg = SettingsControl::trUtf8("Unknown problem").append(" : ")
+					 .append(errorMsg);
 			isFatal = true;
 			break;
 	}

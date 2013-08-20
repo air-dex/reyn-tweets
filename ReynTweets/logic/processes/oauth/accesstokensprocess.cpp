@@ -237,28 +237,28 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 
 // Saves the configuration
 void AccessTokensProcess::saveConfiguration() {
-	CoreResult saveIssue = configuration->save();
 	QString errorMsg = "";
+	CoreResult saveIssue = configuration->save(errorMsg);
+
+	// NOTE : verify the reinit case
 
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
 			return endProcess(ALLOW_SUCCESSFUL, oauthRes);
 
-		case CONFIGURATION_FILE_UNKNOWN:
-			errorMsg = AccessTokensProcess::trUtf8("Configuration file does not exist.");
-			break;
-
-		case CONFIGURATION_FILE_NOT_OPEN:
-			errorMsg = AccessTokensProcess::trUtf8("Configuration file cannot be opened.");
-			break;
-
 		case REINIT_SUCCESSFUL:
-			errorMsg = configuration->getErrorLoading();
+			errorMsg = AccessTokensProcess::trUtf8("User configuration was reset.");
+			break;
+
+		case CONFIGURATION_FILE_UNKNOWN:
+		case CONFIGURATION_FILE_NOT_OPEN:
 			break;
 
 		default:
-			errorMsg = AccessTokensProcess::trUtf8("Unknown problem.");
+			saveIssue = UNKNOWN_PROBLEM;
+			errorMsg = AccessTokensProcess::trUtf8("Unknown problem").append(" : ")
+					   .append(errorMsg);;
 			break;
 	}
 

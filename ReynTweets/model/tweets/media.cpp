@@ -24,7 +24,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "media.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -46,7 +46,7 @@ Media::~Media() {}
 
 // Copy constructor
 Media::Media(const Media & media) :
-    URLEntity()
+	URLEntity()
 {
 	recopie(media);
 }

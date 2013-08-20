@@ -28,7 +28,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include "hashtag.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -45,7 +45,7 @@ Hashtag::~Hashtag() {}
 
 // Copy constructor
 Hashtag::Hashtag(const Hashtag & hashtag) :
-    TweetEntity()
+	TweetEntity()
 {
 	recopie(hashtag);
 }

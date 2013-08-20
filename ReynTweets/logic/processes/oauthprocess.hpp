@@ -28,7 +28,7 @@
 #define OAUTHPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../connection/calls/reyntwittercalls.hpp"
+#include "../../connection/calls/reyntwittercalls.hpp"
 
 /// @class OAuthProcess
 /// @brief Controller for the execution of the Twitter's OAuth Authentication Flow

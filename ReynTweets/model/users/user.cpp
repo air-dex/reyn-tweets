@@ -25,7 +25,7 @@
 
 #include <QtDeclarative>
 #include "user.hpp"
-#include "../tools/utils.hpp"
+#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //

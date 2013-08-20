@@ -510,5 +510,5 @@ QML_IMPORT_PATH =
 # CONFIG += qdeclarative-boostable
 
 # Please do not modify the following two lines. Required for deployment.
-include(ui/qmlapplicationviewer.pri)
+include(ui/qtquick2applicationviewer.pri)
 qtcAddDeployment()

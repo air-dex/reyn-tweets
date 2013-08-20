@@ -25,7 +25,7 @@
 
 // Constructor
 SearchRequester::SearchRequester(TwitterAuthenticator &authManager, QString q) :
-	TwitterRequester(Network::GET, TwitterURL::SEARCH_URL, authManager),
+	TwitterRequester(LibRT::GET, TwitterURL::SEARCH_URL, authManager),
 	query(q)
 {}
 

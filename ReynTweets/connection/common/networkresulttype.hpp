@@ -1,5 +1,5 @@
 /// @file networkresulttype.hpp
-/// @brief Header containing the Network::NetworkResultType enum
+/// @brief Header containing the LibRT::NetworkResultType enum
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -24,42 +24,40 @@
 #ifndef ERRORTYPES_HPP
 #define ERRORTYPES_HPP
 
-namespace Network {
-	/// @enum ErrorType
+namespace LibRT {
+	/// @enum NetworkResultType
 	/// @brief Enumeration which indicates if something bad happened during the
 	/// request. It can takes three values depending on what happened. See the
 	/// enum values for more details.
 	enum NetworkResultType {
-		/// @brief Code indicating that there was no error.
+		/// @brief There was no error.
 		NO_REQUEST_ERROR,
 
 		/// @brief Code for an invalid request result.
 		INVALID_RESULT,
 
-		/// @brief Code indicating that there were an error while calling the API.
+		/// @brief There were an error while calling the API.
 		API_CALL,
 
-		/// @brief Code indicating that the service (ex. Twitter) has returned errors.
+		/// @brief The service (ex. Twitter) has returned errors.
 		SERVICE_ERRORS,
 
-		/// @brief Code indicating that there was an error while parsing JSON.
+		/// @brief There was an error while parsing JSON.
 		JSON_PARSING,
 
-		/// @brief Code indicating that there was an error while parsing results
-		/// under the form <code>arg1=val1&arg2=val2&...&argN=valN</code>.
+		/// @brief There was an error while parsing results under the form
+		/// <code>arg1=val1&arg2=val2&...&argN=valN</code>.
 		OAUTH_PARSING,
 
-		/// @brief Code indicating that there was an error while parsing HTML.
+		/// @brief There was an error while parsing HTML.
 		HTML_PARSING,
 
-		/// @brief Code indicating that there was an error while parsing XML.
+		/// @brief There was an error while parsing XML.
 		XML_PARSING,
 
-		/// @brief Code indicating that there is not any parsing.
+		/// @brief There is not any parsing.
 		NO_PARSING
 	};
 }
-
-using Network::NetworkResultType;
 
 #endif // ERRORTYPES_HPP

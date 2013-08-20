@@ -97,23 +97,23 @@ class UserConfiguration : public JsonObject
 		// Configuration management //
 		//////////////////////////////
 
-		/// @fn CoreResult load(QString &errorMsg);
+		/// @fn ReynTweets::CoreResult load(QString &errorMsg);
 		/// @brief Loading the configuration from its file
 		/// @param errorMsg Error message
 		/// @return A value depending on what happened
-		CoreResult load(QString &errorMsg);
+		ReynTweets::CoreResult load(QString &errorMsg);
 
-		/// @fn CoreResult save(QString &errorMsg);
+		/// @fn ReynTweets::CoreResult save(QString &errorMsg);
 		/// @brief Writing the configuration in its file
 		/// @param errorMsg Error message
 		/// @return A value depending on what happened
-		CoreResult save(QString &errorMsg);
+		ReynTweets::CoreResult save(QString &errorMsg);
 
-		/// @fn bool reinit(QString &errorMsg);
+		/// @fn ReynTweets::CoreResult reinit(QString &errorMsg);
 		/// @brief Reinits the configuration file
 		/// @param errorMsg Error message
 		/// @return true
-		CoreResult reinit(QString &errorMsg);
+		ReynTweets::CoreResult reinit(QString &errorMsg);
 
 	protected:
 		/// @fn void recopie(const UserConfiguration & configuration);
@@ -183,7 +183,7 @@ class UserConfiguration : public JsonObject
 		// User configuration file management //
 		////////////////////////////////////////
 
-		/// @fn CoreResult checkConfigurationFile();
+		/// @fn bool checkConfigurationFile();
 		/// @brief Checks if the user configuration file exists and is writable.
 		/// @return true if the user configuration file is OK, false otherwise.
 		bool checkConfigurationFile();
@@ -195,16 +195,17 @@ class UserConfiguration : public JsonObject
 		/// its absolute path.
 		QString getConfigurationFilePath();
 
-		/// @fn CoreResult writeConfigurationInFile(QString &errorMsg,
-		///											QIODevice::OpenMode openMode = QIODevice::WriteOnly);
+		/// @fn ReynTweets::CoreResult writeConfigurationInFile(QString &errorMsg,
+		///														QIODevice::OpenMode openMode = QIODevice::WriteOnly);
 		/// @brief Writing the configuration.
 		/// @param errorMsg Error message
 		/// @param openMode How to open the file to write it.
-		/// @return CONFIGURATION_FILE_UNKNOWN if the configuration file do not
-		/// exist, CONFIGURATION_FILE_NOT_OPEN if it cannot be opened and
-		/// WRITE_SUCCESSFUL if the configuration was written successfully.
-		CoreResult writeConfigurationInFile(QString &errorMsg,
-											QIODevice::OpenMode openMode = QIODevice::WriteOnly);
+		/// @return ReynTweets::CONFIGURATION_FILE_UNKNOWN if the configuration
+		/// file do not exist, ReynTweets::CONFIGURATION_FILE_NOT_OPEN if it
+		/// cannot be opened and ReynTweets::WRITE_SUCCESSFUL if the
+		/// configuration was written successfully.
+		ReynTweets::CoreResult writeConfigurationInFile(QString &errorMsg,
+														QIODevice::OpenMode openMode = QIODevice::WriteOnly);
 
 		/// @brief Configuration file name
 		static QString CONFIGURATION_NAMEFILE;

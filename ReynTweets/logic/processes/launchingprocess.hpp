@@ -91,13 +91,15 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Saving the configuartion in the configuration file
 		void saveConfiguration();
 
-		/// @fn virtual void endProcess(CoreResult procEnd, QString errorMessage);
+		/// @fn virtual void endProcess(ReynTweets::CoreResult procEnd,
+		///								QString errorMessage);
 		/// @brief Ending the process.
 		///
 		/// It is a shortcut for endProcess(procEnd, QVariant(), errorMessage);.
 		/// @param procEnd Description on how the process ends.
 		/// @param errorMessage Message if an error occurs during the process.
-		virtual void endProcess(CoreResult procEnd, QString errorMessage);
+		virtual void endProcess(ReynTweets::CoreResult procEnd,
+								QString errorMessage);
 
 		///////////////////////////
 		// Filling configuration //

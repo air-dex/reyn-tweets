@@ -32,46 +32,46 @@
 // For Twitter errors
 void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 										   QString & errorMsg,
-										   CoreResult & procEnd)
+										   ReynTweets::CoreResult & procEnd)
 {
 	// Looking for specific value of the return code
 	int httpCode = result.httpResponse.code;
 	procEnd = httpResults.value(httpCode);
 	switch (procEnd) {
-		case NO_MORE_DATA:
+		case ReynTweets::NO_MORE_DATA:
 			errorMsg = QObject::trUtf8("Twitter do not return new datas:");
 			break;
 
-		case BAD_REQUEST:
+		case ReynTweets::BAD_REQUEST:
 			errorMsg = QObject::trUtf8("Your request was invalid:");
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			errorMsg = QObject::trUtf8("Tokens were not authorized:");
 			break;
 
-		case REFUSED_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
 			errorMsg = QObject::trUtf8("Twitter refuses to treat your request:");
 			break;
 
-		case RESOURCE_NOT_FOUND:
+		case ReynTweets::RESOURCE_NOT_FOUND:
 			errorMsg = QObject::trUtf8("There is something invalid in your request:");
 			break;
 
-		case INVALID_SEARCH:
+		case ReynTweets::INVALID_SEARCH:
 			errorMsg = QObject::trUtf8("Your research was invalid:");
 			break;
 
-		case RATE_LIMITED:
+		case ReynTweets::RATE_LIMITED:
 			errorMsg = QObject::trUtf8("You reach the authentication rate:");
 			break;
 
-		case TWITTER_DOWN:
+		case ReynTweets::TWITTER_DOWN:
 			errorMsg = QObject::trUtf8("Twitter seems down:");
 			break;
 
 		default:
-			procEnd = UNKNOWN_PROBLEM;
+			procEnd = ReynTweets::UNKNOWN_PROBLEM;
 			errorMsg = QObject::trUtf8("Unexpected result:");
 			break;
 	}
@@ -119,7 +119,7 @@ QString ProcessUtils::writeTwitterErrors(RequestResult result) {
 // For Twitter API callings
 void ProcessUtils::treatApiCallResult(RequestResult result,
 									  QString & errorMsg,
-									  CoreResult & procEnd)
+									  ReynTweets::CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -136,13 +136,13 @@ void ProcessUtils::treatApiCallResult(RequestResult result,
 	errorMsg.append(" : ")
 			.append(result.errorMessage);
 
-	procEnd = NETWORK_CALL;
+	procEnd = ReynTweets::NETWORK_CALL;
 }
 
 // For unparsable JSON results
 void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 										   QString & errorMsg,
-										   CoreResult & procEnd)
+										   ReynTweets::CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -154,13 +154,13 @@ void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 			.append(" : ")
 			.append(parsingErrors.message);
 
-	procEnd = PARSE_ERROR;
+	procEnd = ReynTweets::PARSE_ERROR;
 }
 
 // For unparsable XML results
 void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
 										 QString & errorMsg,
-										 CoreResult & procEnd)
+										 ReynTweets::CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
@@ -176,31 +176,31 @@ void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
 			.append(" : ")
 			.append(parsingErrors.message);
 
-	procEnd = PARSE_ERROR;
+	procEnd = ReynTweets::PARSE_ERROR;
 }
 
 // For unparsable OAuth results
 void ProcessUtils::treatOAuthParsingResult(QString parsingErrorsMsg,
 										   QString & errorMsg,
-										   CoreResult & procEnd)
+										   ReynTweets::CoreResult & procEnd)
 {
 	// Building error message
 	errorMsg = "";
 	errorMsg.append(QObject::trUtf8("Parsing error:"))
 			.append(' ')
 			.append(parsingErrorsMsg);
-	procEnd = PARSE_ERROR;
+	procEnd = ReynTweets::PARSE_ERROR;
 }
 
 // For unknown treatments
 void ProcessUtils::treatUnknownResult(QString resultErrorMessage,
 									  QString &errorMsg,
-									  CoreResult &procEnd)
+									  ReynTweets::CoreResult &procEnd)
 {
 	// Unexpected problem. Abort.
 	errorMsg = "";
 	errorMsg.append(QObject::trUtf8("Unexpected problem:"))
 			.append(' ')
 			.append(resultErrorMessage);
-	procEnd = UNKNOWN_PROBLEM;
+	procEnd = ReynTweets::UNKNOWN_PROBLEM;
 }

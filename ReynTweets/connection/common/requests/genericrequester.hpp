@@ -38,9 +38,9 @@ class GenericRequester : public QObject
 	Q_OBJECT
 
 	public:
-		/// @fn GenericRequester(RequestType type,
+		/// @fn GenericRequester(Network::HTTPRequestType type,
 		///						 QString url,
-		///						 NetworkResultType parseError = Network::JSON_PARSING);
+		///						 LibRT::NetworkResultType parseError = Network::JSON_PARSING);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
@@ -48,9 +48,9 @@ class GenericRequester : public QObject
 		/// of the time, this value is set to JSON_PARSING because results are
 		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
-		GenericRequester(HTTPRequestType type,
+		GenericRequester(LibRT::HTTPRequestType type,
 						 QString url,
-						 NetworkResultType parseError = Network::JSON_PARSING);
+						 LibRT::NetworkResultType parseError = LibRT::JSON_PARSING);
 
 		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.
@@ -75,7 +75,7 @@ class GenericRequester : public QObject
 		QString requestURL;
 
 		/// @brief Request type
-		HTTPRequestType requestType;
+		LibRT::HTTPRequestType requestType;
 
 		/// @brief GET parameters that will be passed to the Communicator.
 		ArgsMap getParameters;
@@ -103,13 +103,13 @@ class GenericRequester : public QObject
 		TwitterCommunicator weblink;
 
 		/// @brief Type of parsing error
-		NetworkResultType parsingErrorType;
+		LibRT::NetworkResultType parsingErrorType;
 
-		/// @fn void setParsingErrorType(NetworkResultType parseErrorType);
+		/// @fn void setParsingErrorType(LibRT::NetworkResultType parseErrorType);
 		/// @brief Setting parsingErrorType in classes which inherits from
 		/// GenericRequesters.
 		/// @param parseErrorType New value for parsingErrorType
-		void setParsingErrorType(NetworkResultType parseErrorType);
+		void setParsingErrorType(LibRT::NetworkResultType parseErrorType);
 
 
 	//////////////////////////

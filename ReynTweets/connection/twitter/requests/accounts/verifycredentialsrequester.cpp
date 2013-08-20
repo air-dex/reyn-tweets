@@ -28,7 +28,7 @@
 VerifyCredentialsRequester::VerifyCredentialsRequester(TwitterAuthenticator & authManager,
 													   bool entities,
 													   bool skipLastTweet) :
-	TwitterRequester(Network::GET,
+	TwitterRequester(LibRT::GET,
 					 TwitterURL::VERIFY_CREDENTIALS_URL,
 					 authManager),
 	includeEntities(entities),

@@ -112,7 +112,7 @@ class OAuth10aAuthenticator : public virtual OAuthAuthenticator
 		/// @param oauthVerifierNeeded Boolean indicating whether
 		/// the oauth_verifier is required for the header.
 		/// @return Value of the "Authorization" header.
-		QByteArray getAuthorizationHeader(Network::HTTPRequestType type,
+		QByteArray getAuthorizationHeader(LibRT::HTTPRequestType type,
 										  QString baseURL,
 										  ArgsMap getDatas,
 										  ArgsMap postDatas,
@@ -164,7 +164,7 @@ class OAuth10aAuthenticator : public virtual OAuthAuthenticator
 		/// @param oauthVerifierNeeded Boolean indicating whether
 		/// the oauth_verifier is required.
 		/// @return The signature of the given datas
-		QByteArray signDatas(Network::HTTPRequestType type,
+		QByteArray signDatas(LibRT::HTTPRequestType type,
 							 QString baseURL,
 							 ArgsMap getDatas,
 							 ArgsMap postDatas,

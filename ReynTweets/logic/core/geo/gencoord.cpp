@@ -30,7 +30,7 @@
 // Default constructor
 GenCoord::GenCoord() :
 	JsonObject(),
-	coordType(CoordType::FAKE_COORDINATES)
+	coordType(ReynTweets::FAKE_COORDINATES)
 {}
 
 // Destructor
@@ -39,7 +39,7 @@ GenCoord::~GenCoord() {}
 // Copy constructor
 GenCoord::GenCoord(const GenCoord & coord) :
 	JsonObject(),
-	coordType(CoordType::FAKE_COORDINATES)
+	coordType(ReynTweets::FAKE_COORDINATES)
 {
 	recopie(coord);
 }
@@ -63,14 +63,14 @@ void GenCoord::recopie(const GenCoord & coord) {
 
 // Filling the object with a QJsonObject.
 void GenCoord::fillWithVariant(QJsonObject json) {
-	this->coordType = CoordType::string2coord(json.value(TYPE_PN).toString(""));
+	this->coordType = ReynTweets::string2coord(json.value(TYPE_PN).toString(""));
 }
 
 // QJsonObject representation of the object
 QJsonObject GenCoord::toVariant() const {
 	QJsonObject json;
 
-	json.insert(TYPE_PN, QJsonValue(CoordType::coord2string(this->coordType)));
+	json.insert(TYPE_PN, QJsonValue(ReynTweets::coord2string(this->coordType)));
 
 	return json;
 }
@@ -84,14 +84,14 @@ QJsonObject GenCoord::toVariant() const {
 QString GenCoord::TYPE_PN = "type";
 
 QString GenCoord::getTypeProperty() {
-	return CoordType::coord2string(this->coordType);
+	return ReynTweets::coord2string(this->coordType);
 }
 
-CoordType::CoordinatesType GenCoord::getType() {
+ReynTweets::CoordinatesType GenCoord::getType() {
 	return this->coordType;
 }
 
-void GenCoord::setType(CoordType::CoordinatesType newValue) {
+void GenCoord::setType(ReynTweets::CoordinatesType newValue) {
 	this->coordType = newValue;
 	emit typeChanged();
 }

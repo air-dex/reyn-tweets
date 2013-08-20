@@ -25,7 +25,7 @@
 
 // Constructor
 FavoriteProcess::FavoriteProcess(qlonglong id, bool fav, bool entities) :
-	SingleTwitterCallProcess(FAVORITE_SUCCESSFUL),
+	SingleTwitterCallProcess(ReynTweets::FAVORITE_SUCCESSFUL),
 	tweetID(id),
 	favorite(fav),
 	includeEntities(entities)

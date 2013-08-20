@@ -24,7 +24,7 @@
 #ifndef IDENTIFICATIONWAY_HPP
 #define IDENTIFICATIONWAY_HPP
 
-namespace IdWay {
+namespace LibRT {
 	/// @enum IdentificationWay
 	/// @brief How the user is identified in a request ?
 	enum IdentificationWay {
@@ -35,7 +35,5 @@ namespace IdWay {
 		SCREEN_NAME
 	};
 }
-
-using IdWay::IdentificationWay;
 
 #endif // IDENTIFICATIONWAY_HPP

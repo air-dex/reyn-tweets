@@ -69,20 +69,20 @@ void SettingsControl::setConfiguration(UserConfiguration * config) {
 void SettingsControl::saveChanges() {
 	emit showInfoMessage(SettingsControl::trUtf8("Updating configuration..."));
 	QString errorMsg = "";
-	CoreResult saveRes = conf.save(errorMsg);
+	ReynTweets::CoreResult saveRes = conf.save(errorMsg);
 
 	bool isOK;
 	QString resMsg = "";
 	bool isFatal;
 
 	switch (saveRes) {
-		case SAVE_SUCCESSFUL:
+		case ReynTweets::SAVE_SUCCESSFUL:
 			isOK = true;
 			resMsg = SettingsControl::trUtf8("Settings updated.");
 			isFatal = false;
 			break;
 
-		case REINIT_SUCCESSFUL:
+		case ReynTweets::REINIT_SUCCESSFUL:
 			isOK = true;
 			resMsg.append(SettingsControl::trUtf8("Problem while updating the configuration"))
 					.append(" : ")
@@ -92,13 +92,13 @@ void SettingsControl::saveChanges() {
 			isFatal = false;
 			break;
 
-		case CONFIGURATION_FILE_UNKNOWN:
+		case ReynTweets::CONFIGURATION_FILE_UNKNOWN:
 			isOK = false;
 			resMsg = errorMsg;
 			isFatal = true;
 			break;
 
-		case CONFIGURATION_FILE_NOT_OPEN:
+		case ReynTweets::CONFIGURATION_FILE_NOT_OPEN:
 			isOK = false;
 			resMsg = errorMsg;
 			isFatal = false;

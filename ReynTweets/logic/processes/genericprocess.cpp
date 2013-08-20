@@ -38,7 +38,7 @@ QUuid GenericProcess::getProcessUUID() {
 }
 
 // End of a process
-void GenericProcess::endProcess(CoreResult procEnd,
+void GenericProcess::endProcess(ReynTweets::CoreResult procEnd,
 								QVariant result,
 								QString errorMessage)
 {
@@ -49,16 +49,20 @@ void GenericProcess::endProcess(CoreResult procEnd,
 	emit processEnded(processResult);
 }
 
-void GenericProcess::endProcess(CoreResult procEnd, QVariant result) {
+void GenericProcess::endProcess(ReynTweets::CoreResult procEnd,
+								QVariant result)
+{
 	GenericProcess::endProcess(procEnd, result, "");
 }
 
-void GenericProcess::endProcess(CoreResult procEnd, QString errorMessage) {
+void GenericProcess::endProcess(ReynTweets::CoreResult procEnd,
+								QString errorMessage)
+{
 	GenericProcess::endProcess(procEnd, QVariant(), errorMessage);
 }
 
 // Invalid ends
 void GenericProcess::invalidEnd() {
-	GenericProcess::endProcess(INVALID_END,
+	GenericProcess::endProcess(ReynTweets::INVALID_END,
 							   GenericProcess::trUtf8("Dead end."));
 }

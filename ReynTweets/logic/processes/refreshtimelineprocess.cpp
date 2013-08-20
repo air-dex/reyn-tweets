@@ -31,7 +31,7 @@ RefreshTimelineProcess::RefreshTimelineProcess(Tweet oldestTweet) :
 	latestTweet(oldestTweet),
 	newerTweets(),
 	oldestNewTweet(),
-	finalEnd(INVALID_END)
+	finalEnd(ReynTweets::INVALID_END)
 {}
 
 // Starting the process
@@ -61,22 +61,20 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &RefreshTimelineProcess::loadFirstTweetsEnded);
 
-	Network::NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
 	bool gap = true;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// Getting the most recent tweets timeline
 			QJsonArray parsedResults = QJsonValue::fromVariant(result.parsedResult).toArray();
 			Timeline retrievedTweets;
@@ -87,10 +85,10 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 			// Are all the newer tweets retrieved ?
 
 			if (retrievedTweets.isEmpty()) {
-				finalEnd = NO_MORE_TWEETS;
+				finalEnd = ReynTweets::NO_MORE_TWEETS;
 				errorMsg = RefreshTimelineProcess::trUtf8("Unexpected empty timeline retrieved");
 			} else {
-				finalEnd = TIMELINE_RETRIEVED;
+				finalEnd = ReynTweets::TIMELINE_RETRIEVED;
 
 				// Need more intermediate tweets ?
 				oldestNewTweet = newerTweets.last();
@@ -106,15 +104,15 @@ void RefreshTimelineProcess::loadFirstTweetsEnded(ResultWrapper res) {
 			}
 		} break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, finalEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, finalEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, finalEnd);
 			break;
 
@@ -145,23 +143,21 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &RefreshTimelineProcess::loadFirstTweetsEnded);
 
-	Network::NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 	bool gap = true;
 
 	// Analysing the Twitter response
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// Getting the most recent tweets timeline
 			QJsonArray parsedResults = QJsonValue::fromVariant(result.parsedResult).toArray();
 			Timeline retrievedTweets;
@@ -172,7 +168,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 
 			if (retrievedTweets.isEmpty()) {
 				errorMsg = RefreshTimelineProcess::trUtf8("Twitter should retrieve at least one tweet");
-				procEnd = NO_MORE_TWEETS;
+				procEnd = ReynTweets::NO_MORE_TWEETS;
 			} else {
 				// The first tweet of retrievedTweets should be the last ot newerTweets
 
@@ -180,7 +176,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 
 				if (firstTweet != oldestNewTweet) {
 					errorMsg = RefreshTimelineProcess::trUtf8("Unexpected first tweet");
-					procEnd = WRONG_TIMELINE;
+					procEnd = ReynTweets::WRONG_TIMELINE;
 				}
 
 				retrievedTweets.removeFirst();
@@ -193,7 +189,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 					// All the newer tweets are retrieved. End the process
 					newerTweets.removeLast();
 					gap = false;
-					procEnd = TIMELINE_RETRIEVED;
+					procEnd = ReynTweets::TIMELINE_RETRIEVED;
 				} else {
 					// Some tweets are missing. Load them.
 					return loadIntermediateTweets();
@@ -201,15 +197,15 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 			}
 		} break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::JSON_PARSING:
+		case LibRT::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
@@ -225,7 +221,7 @@ void RefreshTimelineProcess::loadIntermediateTweetsEnded(ResultWrapper res) {
 // Building the result
 void RefreshTimelineProcess::endProcess(QString errorMessage,
 										bool gap,
-										CoreResult intermediateEnd)
+										ReynTweets::CoreResult intermediateEnd)
 {
 	QVariantMap resMap;
 

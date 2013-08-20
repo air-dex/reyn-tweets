@@ -21,12 +21,12 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REQUESTTYPE_HPP
-#define REQUESTTYPE_HPP
+#ifndef HTTPREQUESTTYPE_HPP
+#define HTTPREQUESTTYPE_HPP
 
 #include <QString>
 
-namespace Network {
+namespace LibRT {
 	/// @enum RequestType
 	/// @brief Enum indicating the type of the request
 	enum HTTPRequestType {
@@ -38,6 +38,4 @@ namespace Network {
 	};
 }
 
-using Network::HTTPRequestType;
-
-#endif // REQUESTTYPE_HPP
+#endif // HTTPREQUESTTYPE_HPP

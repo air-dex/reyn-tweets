@@ -29,7 +29,7 @@ FavoriteRequester::FavoriteRequester(TwitterAuthenticator &authManager,
 									 bool favorited,
 									 qlonglong id,
 									 bool withEntities) :
-	TwitterRequester(Network::POST,
+	TwitterRequester(LibRT::POST,
 					 favorited ?
 						 TwitterURL::CREATE_FAVORITE_URL
 					   : TwitterURL::DELETE_FAVORITE_URL,

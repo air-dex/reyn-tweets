@@ -79,7 +79,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 
 	protected:
 		/// @brief How the user is identified
-		IdentificationWay idWay;
+		LibRT::IdentificationWay idWay;
 
 		/// @brief ID of the user
 		qlonglong userID;

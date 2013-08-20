@@ -25,7 +25,7 @@
 
 // Constructor
 RetweetProcess::RetweetProcess(qlonglong statusID, bool userIDonly) :
-	SingleTwitterCallProcess(TWEET_RETWEETED),
+	SingleTwitterCallProcess(ReynTweets::TWEET_RETWEETED),
 	tweetID(statusID),
 	trimUser(userIDonly)
 {}

@@ -36,11 +36,11 @@
 // String convertion //
 ///////////////////////
 
-/// @fn QString requestTypeToString(RequestType type)
+/// @fn QString requestTypeToString(Network::HTTPRequestType type)
 /// @brief Converting a RequestType into a QString
 /// @param type The RequestType
 /// @return The corresponding QString
-QString requestTypeToString(HTTPRequestType type);
+QString requestTypeToString(LibRT::HTTPRequestType type);
 
 /// @fn QString boolInString(bool b);
 /// @brief Converting a bool into a QString

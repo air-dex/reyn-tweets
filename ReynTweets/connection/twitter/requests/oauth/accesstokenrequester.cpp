@@ -29,10 +29,10 @@
 // Constructor
 AccessTokenRequester::AccessTokenRequester(TwitterAuthenticator &authManager,
 										   QByteArray verifier) :
-	OAuthRequester(Network::POST,
+	OAuthRequester(LibRT::POST,
 				   TwitterURL::ACCESS_TOKEN_URL,
 				   authManager,
-				   Network::OAUTH_PARSING,
+				   LibRT::OAUTH_PARSING,
 				   true, false, true)
 {
 	oauthManager.setVerifier(verifier);

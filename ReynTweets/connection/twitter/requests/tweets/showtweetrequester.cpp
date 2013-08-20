@@ -30,7 +30,7 @@ ShowTweetRequester::ShowTweetRequester(TwitterAuthenticator & authManager,
 									   bool entities,
 									   bool userIdsOnly,
 									   bool withRTid) :
-	TwitterRequester(Network::GET, TwitterURL::SHOW_TWEET_URL, authManager),
+	TwitterRequester(LibRT::GET, TwitterURL::SHOW_TWEET_URL, authManager),
 	tweetID(id),
 	includeEntities(entities),
 	trimUser(userIdsOnly),

@@ -33,7 +33,7 @@ PostTweetRequester::PostTweetRequester(TwitterAuthenticator & authManager,
 									   QString place,
 									   bool showCoord,
 									   bool userIDonly) :
-	TwitterRequester(Network::POST, TwitterURL::UPDATE_TWEET_URL, authManager),
+	TwitterRequester(LibRT::POST, TwitterURL::UPDATE_TWEET_URL, authManager),
 	tweet(status),
 	replyToTweetID(replyTostatusID),
 	trimUser(userIDonly),

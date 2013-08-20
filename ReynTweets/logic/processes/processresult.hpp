@@ -32,7 +32,7 @@
 /// @brief Results of a process
 struct ProcessResult {
 	/// @brief Information about how the process ended
-	CoreResult processEnd;
+	ReynTweets::CoreResult processEnd;
 
 	/// @brief Results
 	QVariant results;
@@ -43,7 +43,7 @@ struct ProcessResult {
 	/// @fn ProcessResult();
 	/// @brief Constructor of an invalid result
 	ProcessResult() :
-		processEnd(INVALID_END),
+		processEnd(ReynTweets::INVALID_END),
 		results(),
 		errorMsg("")
 	{}

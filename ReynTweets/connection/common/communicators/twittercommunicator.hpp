@@ -45,7 +45,7 @@
 /////////////////////
 
 
-namespace Network {
+namespace LibRT {
 	/// @brief Network manager used by all the requesters for all the request.
 	/// <strong>Including him in the TwitterCommunicator
 	/// <a href="https://code.google.com/p/reyn-tweets/issues/detail?id=36">
@@ -66,7 +66,7 @@ class TwitterCommunicator : public QObject
 
 	public:
 		/// @fn TwitterCommunicator(QString &url,
-		///							RequestType type,
+		///							Network::HTTPRequestType type,
 		///							ArgsMap &getArgs,
 		///							ArgsMap &postArgs,
 		///							HeadersMap &headersParam);
@@ -77,7 +77,7 @@ class TwitterCommunicator : public QObject
 		/// @param postArgs POST arguments
 		/// @param headersParam HTTP headers
 		TwitterCommunicator(QString & url,
-							HTTPRequestType type,
+							LibRT::HTTPRequestType type,
 							ArgsMap &getArgs,
 							ArgsMap &postArgs,
 							HeadersMap &headersParam);
@@ -123,7 +123,7 @@ class TwitterCommunicator : public QObject
 		QString & serviceURL;
 
 		/// @brief Request type
-		HTTPRequestType requestType;
+		LibRT::HTTPRequestType requestType;
 
 		/// @brief GET datas
 		ArgsMap & getParameters;

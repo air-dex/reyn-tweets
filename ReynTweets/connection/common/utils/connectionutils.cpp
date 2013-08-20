@@ -36,11 +36,11 @@
 ///////////////////////
 
 // Converting a RequestType into a QString
-QString requestTypeToString(HTTPRequestType type) {
+QString requestTypeToString(LibRT::HTTPRequestType type) {
 	switch (type) {
-		case Network::GET:
+		case LibRT::GET:
 			return "GET";
-		case Network::POST:
+		case LibRT::POST:
 			return "POST";
 		default:
 			return "";

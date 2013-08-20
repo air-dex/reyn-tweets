@@ -22,7 +22,6 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QtQml>
-#include <QRegExp>
 #include <QUrl>
 #include "writetweetcontrol.hpp"
 
@@ -69,7 +68,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -78,7 +77,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 			   this, &WriteTweetControl::postTweetEnded);
 
 	switch (result.processEnd) {
-		case TWEET_POSTED:
+		case ReynTweets::TWEET_POSTED:
 			// Process successful
 			emit tweetPosted(result.results);
 			emit actionEnded(true,
@@ -86,23 +85,23 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -135,7 +134,7 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -147,36 +146,36 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 
 	switch (result.processEnd) {
 		// Process successful
-		case MESSAGE_NOT_UPDATED:
-			// One more thing specific to MESSAGE_NOT_UPDATED before the successful end.
+		case ReynTweets::MESSAGE_NOT_UPDATED:
+			// One more thing specific to ReynTweets::MESSAGE_NOT_UPDATED before the successful end.
 			successMessage.append(' ')
 					.append(WriteTweetControl::trUtf8("but the message is not updated on TwitLonger."));
 
-		case TWEET_POSTED:
+		case ReynTweets::TWEET_POSTED:
 			emit tweetPosted(result.results);
 			emit actionEnded(true,
 							 successMessage,
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case UNSHORTENABLE_MESSAGE:		// Problems with TwitLonger
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::UNSHORTENABLE_MESSAGE:		// Problems with TwitLonger
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);

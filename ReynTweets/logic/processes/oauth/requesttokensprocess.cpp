@@ -64,23 +64,21 @@ void RequestTokensProcess::requestToken() {
 void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &RequestTokensProcess::requestTokenDemanded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
 
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR: {
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR: {
 			// The request was successful. Was the callback URL confirmed ?
 			QVariantMap parsedResults = result.parsedResult.toMap();
 
@@ -97,11 +95,11 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			} else {
 				// Cannot keep on if the URL is not confirmed
 				errorMsg = RequestTokensProcess::trUtf8("Callback URL not confirmed.");
-				procEnd = NO_TOKENS;
+				procEnd = ReynTweets::NO_TOKENS;
 			}
 		}break;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -111,14 +109,14 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 					 || httpCode == 429
 					 ) ?
 						httpResults.value(httpCode)
-					  : NO_TOKENS;
+					  : ReynTweets::NO_TOKENS;
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::OAUTH_PARSING:
+		case LibRT::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  procEnd);
@@ -150,27 +148,26 @@ void RequestTokensProcess::authorize() {
 void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == Network::INVALID_RESULT) {
+	if (result.resultType == LibRT::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, &ReynTwitterCalls::sendResult,
 			   this, &RequestTokensProcess::authorizeDemanded);
 
-	NetworkResultType errorType = result.resultType;
-
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult procEnd;
+	ReynTweets::CoreResult procEnd;
 
-	switch (errorType) {
-		case Network::NO_REQUEST_ERROR:
+	switch (result.resultType) {
+		case LibRT::NO_REQUEST_ERROR:
 			tokensMap.unite(result.parsedResult.toMap());
-			endProcess(REQUEST_TOKENS_OK, QVariant::fromValue(tokensMap));
+			endProcess(ReynTweets::REQUEST_TOKENS_OK,
+					   QVariant::fromValue(tokensMap));
 			return;
 
-		case Network::SERVICE_ERRORS:
+		case LibRT::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -181,20 +178,20 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 					 || httpCode == 429
 					 ) ?
 						httpResults.value(httpCode)
-					  : NO_TOKENS;
+					  : ReynTweets::NO_TOKENS;
 			break;
 
-		case Network::API_CALL:
+		case LibRT::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
-		case Network::NO_PARSING:
+		case LibRT::NO_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  procEnd);
 			break;
 
-		case Network::XML_PARSING:
+		case LibRT::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors,
 												errorMsg,
 												procEnd);

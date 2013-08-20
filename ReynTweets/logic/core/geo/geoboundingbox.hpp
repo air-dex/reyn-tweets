@@ -27,8 +27,6 @@
 #include "genericcoordinates.tpp"
 #include "../../controls/listhandlers/geocoordpolygonhandler.hpp"
 
-using CoordType::CoordinatesType;
-
 /// @class GeoBoundingBox
 /// @brief Bounding box used for places
 /// @see https://dev.twitter.com/docs/platform-objects/places#obj-boundingbox

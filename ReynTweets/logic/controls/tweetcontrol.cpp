@@ -131,7 +131,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -142,7 +142,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 	QVariantMap parsedResults;
 
 	switch (result.processEnd) {
-		case TWEET_RETRIEVED:
+		case ReynTweets::TWEET_RETRIEVED:
 			parsedResults = result.results.toMap();
 			status->reset();
 			status->fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
@@ -152,7 +152,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case RESOURCE_NOT_FOUND:
+		case ReynTweets::RESOURCE_NOT_FOUND:
 			// Twitter didn't find the tweet so it doesn't exist anymore. Erase it.
 			emit destroyTweet(status->toVariant());
 			emit actionEnded(false,
@@ -160,23 +160,23 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -287,7 +287,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -299,7 +299,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	Tweet resultTweet;
 
 	switch (result.processEnd) {
-		case TWEET_RETWEETED:
+		case ReynTweets::TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
 			resultTweet.fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
 			if (!resultTweet.isRetweet()) {
@@ -320,24 +320,24 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case TWEET_UNDESTROYABLE:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::TWEET_UNDESTROYABLE:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -382,7 +382,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -393,7 +393,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	QVariantMap parsedResults;
 
 	switch (result.processEnd) {
-		case FAVORITE_SUCCESSFUL:
+		case ReynTweets::FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
 			getShownTweet()->reset();
@@ -405,29 +405,29 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case BAD_REQUEST:
+		case ReynTweets::BAD_REQUEST:
 			if (result.errorMsg.contains("You have already favorited this status")) {
 				getShownTweet()->setFavorited(true);
 			}
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
-		case NO_MORE_DATA:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -468,7 +468,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -479,7 +479,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	QVariantMap parsedResults;
 
 	switch (result.processEnd) {
-		case FAVORITE_SUCCESSFUL:
+		case ReynTweets::FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
 
@@ -492,23 +492,23 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 
 		default:
 			emit actionEnded(false, result.errorMsg, true);
@@ -553,7 +553,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_END == result.processEnd) {
+	if (ReynTweets::INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -564,7 +564,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 	QVariantMap parsedResults;
 
 	switch (result.processEnd) {
-		case TWEET_DELETED:
+		case ReynTweets::TWEET_DELETED:
 			parsedResults = result.results.toMap();
 
 			// Delete the tweet in the timeline ?
@@ -594,25 +594,25 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 							 false);
 			break;
 
-		case TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
 			emit authenticationNeeded();
 			break;
 
 
 		// Problems that can be solved trying later
-		case NO_MORE_DATA:
-		case BAD_REQUEST:
-		case REFUSED_REQUEST:
-		case RATE_LIMITED:	// The user reached rates.
-		case TWITTER_DOWN:	// Twitter does not respond.
-		case NETWORK_CALL:
-		case TWEET_UNDESTROYABLE: // Tweet not deleted
+		case ReynTweets::NO_MORE_DATA:
+		case ReynTweets::BAD_REQUEST:
+		case ReynTweets::REFUSED_REQUEST:
+		case ReynTweets::RATE_LIMITED:	// The user reached rates.
+		case ReynTweets::TWITTER_DOWN:	// Twitter does not respond.
+		case ReynTweets::NETWORK_CALL:
+		case ReynTweets::TWEET_UNDESTROYABLE: // Tweet not deleted
 			emit actionEnded(false, result.errorMsg, false);
 			break;
 
 		// Unknown ends
-		case UNKNOWN_PROBLEM:
+		case ReynTweets::UNKNOWN_PROBLEM:
 		default:
 			emit actionEnded(false, result.errorMsg, true);
 			break;

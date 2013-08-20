@@ -33,7 +33,7 @@
 Coordinates::Coordinates() :
 	GenericCoordinates<GeoCoord, GeoCoordHandler>()
 {
-	this->coordType = CoordType::POINT;
+	this->coordType = ReynTweets::POINT;
 }
 
 // Destructor

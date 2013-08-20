@@ -36,6 +36,7 @@
 // Default constructor
 Tweet::Tweet() :
 	JsonObject(),
+	tweetContributors(),
 	tweetID(-1),
 	tweetIDstr("-1"),
 	tweetEntities(),
@@ -59,7 +60,7 @@ Tweet::Tweet() :
 	withheldInCountries(),
 	withheldScope(""),
 	truncatedTweet(false),
-	tweetContributors(),
+	contributorsList(tweetContributors.getHandledListRef()),
 	tweetCoordinates(),
 	filterLevel(""),
 	language("en"),
@@ -78,6 +79,7 @@ Tweet::~Tweet() {
 // Copy constructor
 Tweet::Tweet(const Tweet & status) :
 	JsonObject(),
+	tweetContributors(),
 	tweetID(-1),
 	tweetIDstr("-1"),
 	tweetEntities(),
@@ -101,7 +103,7 @@ Tweet::Tweet(const Tweet & status) :
 	withheldInCountries(),
 	withheldScope(""),
 	truncatedTweet(false),
-	tweetContributors(),
+	contributorsList(tweetContributors.getHandledListRef()),
 	tweetCoordinates(),
 	filterLevel(""),
 	language("en"),
@@ -138,7 +140,7 @@ void Tweet::recopie(const Tweet & status) {
 	createdAt = status.createdAt;
 	sourceClient = status.sourceClient;
 	truncatedTweet = status.truncatedTweet;
-	tweetContributors = status.tweetContributors;
+	contributorsList = status.contributorsList;
 	tweetCoordinates = status.tweetCoordinates;
 	filterLevel = status.filterLevel;
 	language = status.language;
@@ -207,7 +209,7 @@ bool Tweet::operator==(const Tweet & status) const {
 
 // Filling the object with a QJsonObject.
 void Tweet::fillWithVariant(QJsonObject json) {
-	this->tweetContributors.fillWithVariant(json.value(CONTRIBUTORS_PN).toArray());
+	this->contributorsList.fillWithVariant(json.value(CONTRIBUTORS_PN).toArray());
 	this->tweetCoordinates.fillWithVariant(json.value(COORDINATES_PN).toObject());
 	this->retweetInfos.fillWithVariant(json.value(CURRENT_USER_RETWEET_PN).toObject());
 	this->tweetEntities.fillWithVariant(json.value(ENTITIES_PN).toObject());
@@ -262,7 +264,7 @@ void Tweet::fillWithVariant(QJsonObject json) {
 QJsonObject Tweet::toVariant() const {
 	QJsonObject json;
 
-	json.insert(CONTRIBUTORS_PN, QJsonValue(this->tweetContributors.toVariant()));
+	json.insert(CONTRIBUTORS_PN, QJsonValue(this->contributorsList.toVariant()));
 	json.insert(COORDINATES_PN, QJsonValue(this->tweetCoordinates.toVariant()));
 	json.insert(CREATED_AT_PN, QJsonValue(this->createdAt.toString()));
 	json.insert(CURRENT_USER_RETWEET_PN, QJsonValue(this->retweetInfos.toVariant()));
@@ -311,32 +313,16 @@ QJsonObject Tweet::toVariant() const {
 // contributors
 QString Tweet::CONTRIBUTORS_PN = "contributors";
 
-QString Tweet::TWEET_CONTRIBUTORS_PN = "tweet_contributors";
-
-QVariantList Tweet::getContributorsProperty() {
-	return tweetContributors.toVariant().toVariantList();
-}
-
 ContributorList Tweet::getContributors() {
-	return tweetContributors;
+	return contributorsList;
 }
 
-ContributorList * Tweet::getContributorsPtr() {
+ContributorsHandler * Tweet::getContributorsPtr() {
 	return &tweetContributors;
 }
 
-void Tweet::setContributors(QVariantList newEntityMap) {
-	tweetContributors.fillWithVariant(QJsonArray::fromVariantList(newEntityMap));
-	emit contributorsChanged();
-}
-
 void Tweet::setContributors(ContributorList newValue) {
-	tweetContributors = newValue;
-	emit contributorsChanged();
-}
-
-void Tweet::setContributors(ContributorList * newEntityMap) {
-	tweetContributors = newEntityMap ? *newEntityMap : ContributorList();
+	contributorsList = newValue;
 	emit contributorsChanged();
 }
 

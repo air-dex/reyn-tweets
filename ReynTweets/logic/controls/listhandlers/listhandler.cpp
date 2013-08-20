@@ -155,3 +155,13 @@ void ListHandler<HL,U>::remove(QVariant varelt) {
 		emit handledListChanged();
 	}
 }
+
+template<typename HL, typename U>
+int ListHandler<HL,U>::getElementIndex(U listElt, bool & exactIndex) {
+	int index = handledList.elementIndex(listElt);
+
+	exactIndex = index >= 0 && index < handledList.size()
+				 && listElt == handledList[index];
+
+	return index;
+}

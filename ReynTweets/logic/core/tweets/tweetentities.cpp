@@ -32,10 +32,14 @@
 // Default constructor
 TweetEntities::TweetEntities() :
 	JsonObject(),
-	medias(),
-	tweetURLs(),
-	mentions(),
-	tweetHashtags()
+	mediasHandler(),
+	urlsHandler(),
+	mentionsHandler(),
+	hashtagsHandler(),
+	medias(mediasHandler.getHandledListRef()),
+	tweetURLs(urlsHandler.getHandledListRef()),
+	mentions(mentionsHandler.getHandledListRef()),
+	tweetHashtags(hashtagsHandler.getHandledListRef())
 {}
 
 // Destructor
@@ -44,10 +48,14 @@ TweetEntities::~TweetEntities() {}
 // Copy constructor
 TweetEntities::TweetEntities(const TweetEntities & entities) :
 	JsonObject(),
-	medias(),
-	tweetURLs(),
-	mentions(),
-	tweetHashtags()
+	mediasHandler(),
+	urlsHandler(),
+	mentionsHandler(),
+	hashtagsHandler(),
+	medias(mediasHandler.getHandledListRef()),
+	tweetURLs(urlsHandler.getHandledListRef()),
+	mentions(mentionsHandler.getHandledListRef()),
+	tweetHashtags(hashtagsHandler.getHandledListRef())
 {
 	recopie(entities);
 }
@@ -126,17 +134,12 @@ QJsonObject TweetEntities::toVariant() const {
 // media
 QString TweetEntities::MEDIA_PN = "media";
 
-QVariantList TweetEntities::getMediaProperty() {
-	return medias.toVariant().toVariantList();
+MediasHandler * TweetEntities::getMediasHandler() {
+	return &mediasHandler;
 }
 
 MediaList TweetEntities::getMedia() {
 	return medias;
-}
-
-void TweetEntities::setMedia(QVariantList newMediaList) {
-	medias.fillWithVariant(QJsonArray::fromVariantList(newMediaList));
-	emit mediaChanged();
 }
 
 void TweetEntities::setMedia(MediaList newMedia) {
@@ -147,17 +150,12 @@ void TweetEntities::setMedia(MediaList newMedia) {
 // urls
 QString TweetEntities::URLS_PN = "urls";
 
-QVariantList TweetEntities::getURLsProperty() {
-	return tweetURLs.toVariant().toVariantList();
+UrlsHandler * TweetEntities::getURLsHandler() {
+	return &urlsHandler;
 }
 
 URLEntityList TweetEntities::getURLs() {
 	return tweetURLs;
-}
-
-void TweetEntities::setURLs(QVariantList newURLList) {
-	tweetURLs.fillWithVariant(QJsonArray::fromVariantList(newURLList));
-	emit urlsChanged();
 }
 
 void TweetEntities::setURLs(URLEntityList newURLs) {
@@ -168,17 +166,12 @@ void TweetEntities::setURLs(URLEntityList newURLs) {
 // user_mentions
 QString TweetEntities::USER_MENTIONS_PN = "user_mentions";
 
-QVariantList TweetEntities::getUserMentionsProperty() {
-	return mentions.toVariant().toVariantList();
+MentionsHandler * TweetEntities::getMentionsHandler() {
+	return &mentionsHandler;
 }
 
 UserMentionList TweetEntities::getUserMentions() {
 	return mentions;
-}
-
-void TweetEntities::setUserMentions(QVariantList newUserMentionsList) {
-	mentions.fillWithVariant(QJsonArray::fromVariantList(newUserMentionsList));
-	emit userMentionsChanged();
 }
 
 void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
@@ -189,17 +182,12 @@ void TweetEntities::setUserMentions(UserMentionList newUserMentions) {
 // hashtags
 QString TweetEntities::HASHTAGS_PN = "hashtags";
 
-QVariantList TweetEntities::getHashtagsProperty() {
-	return tweetHashtags.toVariant().toVariantList();
+HashtagsHandler * TweetEntities::getHashtagsHandler() {
+	return &hashtagsHandler;
 }
 
 HashtagList TweetEntities::getHashtags() {
 	return tweetHashtags;
-}
-
-void TweetEntities::setHashtags(QVariantList newHashtagsList) {
-	 tweetHashtags.fillWithVariant(QJsonArray::fromVariantList(newHashtagsList));
-	 emit hashtagsChanged();
 }
 
 void TweetEntities::setHashtags(HashtagList newHashtags) {

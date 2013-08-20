@@ -21,8 +21,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef REYNHELPER_HPP
-#define REYNHELPER_HPP
+#ifndef REYNTWEETS_HPP
+#define REYNTWEETS_HPP
 
 #include <QTranslator>
 
@@ -61,4 +61,4 @@ namespace ReynTweets {
 	void afterReynTime();
 }
 
-#endif // REYNHELPER_HPP
+#endif // REYNTWEETS_HPP

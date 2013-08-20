@@ -404,7 +404,7 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 			// Inserting the new Tweet in the timeline of new tweets
 			lastTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
-			newerTweets.insertTweet(lastTweet);
+			newerTweets.insertElement(lastTweet);
 
 			emit loadedMoreTweets(newerTweets.size());
 

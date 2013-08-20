@@ -61,22 +61,22 @@ class Timeline : public JsonArray<Tweet>
 		// Tweet searching //
 		/////////////////////
 
-		/// @fn void insertTweet(Tweet newTweet);
+		/// @fn void insertElement(Tweet newTweet);
 		/// @brief Inserting a tweet in the timeline.
 		///
 		/// All the tweets in a timeline are supposed to be sorted decreasingly
 		/// with their ID, so the dichotomy method is used here.
 		/// @param newTweet The tweet to insert.
-		void insertTweet(Tweet newTweet);
+		void insertElement(Tweet newTweet);
 
-		/// @fn int tweetIndex(Tweet newTweet);
+		/// @fn int elementIndex(Tweet newTweet);
 		/// @brief Finding the index of a tweet in the timeline.
 		///
 		/// All the tweets in a timeline are supposed to be sorted decreasingly
 		/// with their ID, so the dichotomy method is used here.
 		/// @param newTweet The tweet to insert.
 		/// @return The index where the tweet should be inserted in the timeline
-		int tweetIndex(Tweet tweet);
+		int elementIndex(Tweet tweet);
 
 		/// @fn qlonglong getFirstID();
 		/// @brief Getting the ID of the first tweet of the timeline.

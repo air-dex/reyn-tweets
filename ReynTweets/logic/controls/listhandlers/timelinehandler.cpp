@@ -21,8 +21,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include <QtQml>
 #include "timelinehandler.hpp"
+#include <QtQml>
 
 // Constructor
 TimelineHandler::TimelineHandler(TimelineType tlType) :
@@ -83,15 +83,6 @@ QDataStream & operator>>(QDataStream & in, TimelineHandler & handler) {
 
 Tweet * TimelineHandler::get(int index) {
 	return ListHandler<Timeline, Tweet>::get(index);
-}
-
-int TimelineHandler::getElementIndex(Tweet tweet, bool & exactIndex) {
-	int index = handledList.tweetIndex(tweet);
-
-	exactIndex = index >= 0 && index < handledList.size()
-				 && tweet == handledList[index];
-
-	return index;
 }
 
 

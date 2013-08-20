@@ -78,6 +78,15 @@ class URLEntity : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		virtual void reset();
 
+		/// @fn bool operator==(const URLEntity & entity) const;
+		/// @brief Equality between URLEntity
+		///
+		/// Two URLEntities are considered equals if they have got both the same
+		/// three urls.
+		/// @param entity The URLEntity to compare
+		/// @return True if they are equals, false otherwise.
+		bool operator==(const URLEntity & entity) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////

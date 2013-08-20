@@ -92,6 +92,13 @@ void URLEntity::reset() {
 	*this = URLEntity();
 }
 
+// Equality
+bool URLEntity::operator==(const URLEntity & entity) const {
+	return this->extractedURL == entity.extractedURL
+			&& this->displayedURL == entity.displayedURL
+			&& this->expandedURL == entity.expandedURL;
+}
+
 
 /////////////////////
 // JSON conversion //

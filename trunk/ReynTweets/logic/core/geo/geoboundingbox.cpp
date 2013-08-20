@@ -24,6 +24,7 @@
 #include "geoboundingbox.hpp"
 #include <QtQml>
 #include <QJsonArray>
+#include "../../reyntweetsutils.hpp"
 
 /////////////
 // Coplien //
@@ -60,7 +61,10 @@ void GeoBoundingBox::initSystem() {
 
 // Declaring to the QML components
 void GeoBoundingBox::declareQML() {
-	qmlRegisterType<GeoBoundingBox>("ReynTweetsEntities", 0, 2, "GeoBoundingBox");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<GeoBoundingBox>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+									"GeoBoundingBox");
 }
 
 // Reset

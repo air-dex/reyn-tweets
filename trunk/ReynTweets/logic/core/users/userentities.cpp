@@ -23,6 +23,7 @@
 
 #include "userentities.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 /////////////
 // Coplien //
@@ -70,8 +71,9 @@ void UserEntities::initSystem() {
 
 // Declaring to the QML system
 void UserEntities::declareQML() {
-	qmlRegisterType<UserEntities>("ReynTweetsEntities",
-								  0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UserEntities>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								  "UserEntities");
 }
 

@@ -23,6 +23,7 @@
 
 #include "indexboundshandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 IndexBoundsHandler::IndexBoundsHandler() :
@@ -58,8 +59,9 @@ void IndexBoundsHandler::initSystem() {
 
 // Declaring to the QML components
 void IndexBoundsHandler::declareQML() {
-	qmlRegisterType<IndexBoundsHandler>("ReynTweetsEntities",
-										0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<IndexBoundsHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+										ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 										"IndexBoundsHandler");
 }
 

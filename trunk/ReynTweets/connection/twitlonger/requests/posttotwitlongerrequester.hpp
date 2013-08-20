@@ -40,7 +40,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 		///								  QString longTweet,
 		///								  QString userScreenName,
 		///								  qlonglong replyToStatusID = TwitLonger::FAKE_TWEET_ID,
-		///								  QString replyToUserScreenName = "");
+		///								  QString replyToUserScreenName = TwitLonger::FAKE_SCREEN_NAME);
 		/// @brief Constructor
 		/// @param tlmanager Entity with TwitLonger settings.
 		/// @param longTweet Text of the tweet
@@ -53,7 +53,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 								  QString longTweet,
 								  QString userScreenName,
 								  qlonglong replyToStatusID = TwitLonger::FAKE_TWEET_ID,
-								  QString replyToUserScreenName = "");
+								  QString replyToUserScreenName = TwitLonger::FAKE_SCREEN_NAME);
 
 	protected:
 		/// @brief Text to post

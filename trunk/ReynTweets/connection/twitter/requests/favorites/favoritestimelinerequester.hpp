@@ -57,7 +57,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 								   int nbTweets = Twitter::DEFAULT_TWEETS_COUNT);
 
 		/// @fn FavoritesTimelineRequester(TwitterAuthenticator & authManager,
-		///								   QString userName = "",
+		///								   QString userName = Twitter::FAKE_SCREEN_NAME,
 		///								   qlonglong oldestTweetID = Twitter::FAKE_TWEET_ID,
 		///								   qlonglong earliestTweetID = Twitter::FAKE_TWEET_ID,
 		///								   bool withEntities = false,
@@ -71,7 +71,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		FavoritesTimelineRequester(TwitterAuthenticator & authManager,
-								   QString userName = "",
+								   QString userName = Twitter::FAKE_SCREEN_NAME,
 								   qlonglong oldestTweetID = Twitter::FAKE_TWEET_ID,
 								   qlonglong earliestTweetID = Twitter::FAKE_TWEET_ID,
 								   bool withEntities = false,

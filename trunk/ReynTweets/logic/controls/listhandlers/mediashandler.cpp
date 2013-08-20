@@ -23,6 +23,7 @@
 
 #include "mediashandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 MediasHandler::MediasHandler() :
@@ -58,8 +59,9 @@ void MediasHandler::initSystem() {
 
 // Declaring to the QML components
 void MediasHandler::declareQML() {
-	qmlRegisterType<MediasHandler>("ReynTweetsEntities",
-								   0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<MediasHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 								   "MediasHandler");
 }
 

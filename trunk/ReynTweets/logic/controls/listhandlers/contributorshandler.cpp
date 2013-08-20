@@ -23,6 +23,7 @@
 
 #include "contributorshandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 ContributorsHandler::ContributorsHandler() :
@@ -58,8 +59,9 @@ void ContributorsHandler::initSystem() {
 
 // Declaring to the QML components
 void ContributorsHandler::declareQML() {
-	qmlRegisterType<ContributorsHandler>("ReynTweetsEntities",
-										 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<ContributorsHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+										 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 										 "ContributorsHandler");
 }
 

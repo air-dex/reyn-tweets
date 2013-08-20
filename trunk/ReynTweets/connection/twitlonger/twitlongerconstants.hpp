@@ -24,11 +24,17 @@
 #ifndef TWITLONGERCONSTANTS_HPP
 #define TWITLONGERCONSTANTS_HPP
 
-#include <QtGlobal>
+#include <QString>
 
 namespace TwitLonger {
 	/// @brief Constant for a fake Tweet ID
 	extern const qlonglong FAKE_TWEET_ID;
+
+	/// @brief Fake TwitLonger message ID
+	extern const QString FAKE_MESSAGE_ID;
+
+	/// @brief Constant for a fake Twitter screen name (empty string)
+	extern const QString FAKE_SCREEN_NAME;
 }
 
 #endif // TWITLONGERCONSTANTS_HPP

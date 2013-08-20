@@ -81,7 +81,7 @@ class Hashtag : public TweetEntity
 		/// @brief Equality between Hashtags
 		///
 		/// Two GeoCoords are considered equals if they have got both the same
-		/// longitude and the same latitude.
+		/// text independently from the letter case.
 		/// @param hashtag The hashtag to compare
 		/// @return True if they are equals, false otherwise.
 		bool operator==(const Hashtag & hashtag) const;

@@ -23,6 +23,7 @@
 
 #include "mentionshandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 MentionsHandler::MentionsHandler() :
@@ -58,8 +59,9 @@ void MentionsHandler::initSystem() {
 
 // Declaring to the QML components
 void MentionsHandler::declareQML() {
-	qmlRegisterType<MentionsHandler>("ReynTweetsEntities",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<MentionsHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "MentionsHandler");
 }
 

@@ -23,6 +23,7 @@
 
 #include "geocoordhandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 GeoCoordHandler::GeoCoordHandler() :
@@ -58,8 +59,9 @@ void GeoCoordHandler::initSystem() {
 
 // Declaring to the QML components
 void GeoCoordHandler::declareQML() {
-	qmlRegisterType<GeoCoordHandler>("ReynTweetsEntities",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<GeoCoordHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "GeoCoordHandler");
 }
 
@@ -85,8 +87,8 @@ QDataStream & operator>>(QDataStream & in, GeoCoordHandler & handler) {
 
 // Filling an element with a QVariant
 void GeoCoordHandler::fillElement(double &realElt,
-									 QVariant varelt,
-									 bool resetValue)
+								  QVariant varelt,
+								  bool resetValue)
 {
 	Q_UNUSED(resetValue)
 	realElt = varelt.toDouble();

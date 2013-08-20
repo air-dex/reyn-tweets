@@ -23,6 +23,7 @@
 
 #include <QtQml>
 #include "user.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -65,8 +66,9 @@ void User::initSystem() {
 
 // Declaring to the QML components
 void User::declareQML() {
-	qmlRegisterType<User>("ReynTweetsEntities",
-						  0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<User>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+						  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 						  "User");
 }
 

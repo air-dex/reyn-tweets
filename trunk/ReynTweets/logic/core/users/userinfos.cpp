@@ -34,14 +34,14 @@ UserInfos::UserInfos() :
 	JsonObject(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName(""),
+	screenName(ReynTweets::FAKE_SCREEN_NAME),
 	userName(""),
 	userDescription(""),
-	userURL(""),
+	userURL(ReynTweets::FAKE_URL),
 	userLocation(""),
 	defaultProfileImage(true),
-	avatarURL(""),
-	avatarURLhttps(""),
+	avatarURL(ReynTweets::FAKE_URL),
+	avatarURLhttps(ReynTweets::FAKE_URL),
 	tweetsCount(0),
 	friendsCount(0),
 	followersCount(0),
@@ -50,14 +50,14 @@ UserInfos::UserInfos() :
 	defaultProfile(true),
 	useBackgroundImage(true),
 	backgroundTile(false),
-	backgroundURL(""),
-	backgroundURLhttps(""),
+	backgroundURL(ReynTweets::FAKE_URL),
+	backgroundURLhttps(ReynTweets::FAKE_URL),
 	backgroundColor(Qt::white),
 	textColor(Qt::black),
 	linkColor(Qt::blue),
 	sidebarColor(Qt::cyan),
 	sidebarBorderColor(Qt::darkCyan),
-	bannerURL(""),
+	bannerURL(ReynTweets::FAKE_URL),
 	timeZoneOffset(0),
 	timeZone("London"),
 	createdAt(),
@@ -83,14 +83,14 @@ UserInfos::UserInfos(const UserInfos & user) :
 	JsonObject(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName(""),
+	screenName(ReynTweets::FAKE_SCREEN_NAME),
 	userName(""),
 	userDescription(""),
-	userURL(""),
+	userURL(ReynTweets::FAKE_URL),
 	userLocation(""),
 	defaultProfileImage(true),
-	avatarURL(""),
-	avatarURLhttps(""),
+	avatarURL(ReynTweets::FAKE_URL),
+	avatarURLhttps(ReynTweets::FAKE_URL),
 	tweetsCount(0),
 	friendsCount(0),
 	followersCount(0),
@@ -99,14 +99,14 @@ UserInfos::UserInfos(const UserInfos & user) :
 	defaultProfile(true),
 	useBackgroundImage(true),
 	backgroundTile(false),
-	backgroundURL(""),
-	backgroundURLhttps(""),
+	backgroundURL(ReynTweets::FAKE_URL),
+	backgroundURLhttps(ReynTweets::FAKE_URL),
 	backgroundColor(Qt::white),
 	textColor(Qt::black),
 	linkColor(Qt::blue),
 	sidebarColor(Qt::cyan),
 	sidebarBorderColor(Qt::darkCyan),
-	bannerURL(""),
+	bannerURL(ReynTweets::FAKE_URL),
 	timeZoneOffset(0),
 	timeZone("London"),
 	createdAt(),
@@ -181,8 +181,9 @@ void UserInfos::initSystem() {
 
 // Declaring to the QML components
 void UserInfos::declareQML() {
-	qmlRegisterType<UserInfos>("ReynTweetsEntities",
-							   0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UserInfos>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+							   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 							   "UserInfos");
 }
 
@@ -241,23 +242,23 @@ void UserInfos::fillWithVariant(QJsonObject json) {
 	this->userName = json.value(NAME_PN).toString("");
 	this->notificationsEnabled = json.value(NOTIFICATIONS_PN).toBool(false);
 	this->backgroundColor = ReynTweets::string2color(json.value(PROFILE_BACKGROUND_COLOR_PN).toString(QColor(Qt::white).name()));
-	this->backgroundURL = json.value(PROFILE_BACKGROUND_IMAGE_URL_PN).toString("");
-	this->backgroundURLhttps = json.value(PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN).toString("");
+	this->backgroundURL = json.value(PROFILE_BACKGROUND_IMAGE_URL_PN).toString(ReynTweets::FAKE_URL);
+	this->backgroundURLhttps = json.value(PROFILE_BACKGROUND_IMAGE_URL_HTTPS_PN).toString(ReynTweets::FAKE_URL);
 	this->backgroundTile = json.value(PROFILE_BACKGROUND_TILE_PN).toBool(false);
-	this->bannerURL = json.value(PROFILE_BANNER_URL_PN).toString("");
-	this->avatarURL = json.value(PROFILE_IMAGE_URL_PN).toString("");
-	this->avatarURLhttps = json.value(PROFILE_IMAGE_URL_HTTPS_PN).toString("");
+	this->bannerURL = json.value(PROFILE_BANNER_URL_PN).toString(ReynTweets::FAKE_URL);
+	this->avatarURL = json.value(PROFILE_IMAGE_URL_PN).toString(ReynTweets::FAKE_URL);
+	this->avatarURLhttps = json.value(PROFILE_IMAGE_URL_HTTPS_PN).toString(ReynTweets::FAKE_URL);
 	this->linkColor = ReynTweets::string2color(json.value(PROFILE_LINK_COLOR_PN).toString(QColor(Qt::blue).name()));
 	this->sidebarBorderColor = ReynTweets::string2color(json.value(PROFILE_SIDEBAR_BORDER_COLOR_PN).toString(QColor(Qt::darkCyan).name()));
 	this->sidebarColor = ReynTweets::string2color(json.value(PROFILE_SIDEBAR_FILL_COLOR_PN).toString(QColor(Qt::cyan).name()));
 	this->textColor = ReynTweets::string2color(json.value(PROFILE_TEXT_COLOR_PN).toString(QColor(Qt::black).name()));
 	this->useBackgroundImage = json.value(PROFILE_USE_BACKGROUND_IMAGE_PN).toBool(true);
 	this->protectedAccount = json.value(PROTECTED_PN).toBool(false);
-	this->screenName = json.value(SCREEN_NAME_PN).toString("");
+	this->screenName = json.value(SCREEN_NAME_PN).toString(ReynTweets::FAKE_SCREEN_NAME);
 	this->showAllInlineMedia = json.value(SHOW_ALL_INLINE_MEDIA_PN).toBool(false);
 	this->tweetsCount = int(json.value(STATUSES_COUNT_PN).toDouble(0));
 	this->timeZone = json.value(TIME_ZONE_PN).toString("London");
-	this->userURL = json.value(URL_PN).toString("");
+	this->userURL = json.value(URL_PN).toString(ReynTweets::FAKE_URL);
 	this->timeZoneOffset = int(json.value(UTC_OFFSET_PN).toDouble(0));
 	this->verifiedAccount = json.value(VERIFIED_PN).toBool(false);
 	this->withheldInCountries = json.value(WITHHELD_IN_COUNTRIES_PN).toString("");

@@ -25,6 +25,7 @@
 #include <QJsonObject>
 #include "appconfiguration.hpp"
 #include "../../../connection/common/utils/parsers/jsonparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 ////////////////////
 // Static members //
@@ -54,12 +55,12 @@ AppConfiguration::AppConfiguration() :
 	QObject(),
 	dataDir(""),
 	dataDirs(),
-	consumerKey(""),
-	consumerSecret(""),
-	callbackURL(""),
+	consumerKey(ReynTweets::FAKE_TOKEN),
+	consumerSecret(ReynTweets::FAKE_TOKEN),
+	callbackURL(ReynTweets::FAKE_URL),
 	twitlongerAppName(""),
-	twitlongerAPIKey(""),
-	pocketAPIKey("")
+	twitlongerAPIKey(ReynTweets::FAKE_TOKEN),
+	pocketAPIKey(ReynTweets::FAKE_TOKEN)
 {}
 
 // Loading the settings from the settings file.

@@ -26,14 +26,15 @@
 #include <QUrl>
 #include "oauthutils.hpp"
 #include "../../utils/connectionutils.hpp"
+#include "../../utils/librtconstants.hpp"
 
 // Constructor
 OAuth10aAuthenticator::OAuth10aAuthenticator(QString signatureAlgorithm) :
 	OAuthAuthenticator("1.0"),
-	callbackUrl(""),
+	callbackUrl(LibRT::FAKE_URL),
 	oauthTokens(),
 	oauthSignatureMethod(signatureAlgorithm),
-	oauthVerifier("")
+	oauthVerifier(LibRT::FAKE_TOKEN)
 {}
 
 // Destructor
@@ -82,9 +83,9 @@ void OAuth10aAuthenticator::setVerifier(QByteArray verifier) {
 
 // Resetting tokens
 void OAuth10aAuthenticator::resetTokens() {
-	oauthTokens.first = "";
-	oauthTokens.second = "";
-	oauthVerifier = "";
+	oauthTokens.first = LibRT::FAKE_TOKEN;
+	oauthTokens.second = LibRT::FAKE_TOKEN;
+	oauthVerifier = LibRT::FAKE_TOKEN;
 }
 
 // Getting the "Authorization" header

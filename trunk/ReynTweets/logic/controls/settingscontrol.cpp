@@ -33,8 +33,9 @@ SettingsControl::SettingsControl() :
 
 // Declaring SettingsControl to the QML system
 void SettingsControl::declareQML() {
-	qmlRegisterType<SettingsControl>("ReynTweetsControls",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<SettingsControl>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "SettingsControl");
 }
 

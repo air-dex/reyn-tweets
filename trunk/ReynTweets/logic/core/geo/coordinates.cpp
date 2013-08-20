@@ -24,6 +24,7 @@
 #include "coordinates.hpp"
 #include <QtQml>
 #include <QJsonArray>
+#include "../../reyntweetsutils.hpp"
 
 /////////////
 // Coplien //
@@ -60,7 +61,10 @@ void Coordinates::initSystem() {
 
 // Declaring to the QML components
 void Coordinates::declareQML() {
-	qmlRegisterType<Coordinates>("ReynTweetsEntities", 0, 2, "Coordinates");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<Coordinates>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+								 "Coordinates");
 }
 
 // Reset

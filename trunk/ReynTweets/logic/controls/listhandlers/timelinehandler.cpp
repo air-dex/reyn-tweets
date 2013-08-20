@@ -23,6 +23,7 @@
 
 #include "timelinehandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 TimelineHandler::TimelineHandler(TimelineType tlType) :
@@ -61,8 +62,9 @@ void TimelineHandler::initSystem() {
 
 // Declaring to the QML components
 void TimelineHandler::declareQML() {
-	qmlRegisterType<TimelineHandler>("ReynTweetsEntities",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<TimelineHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "TimelineHandler");
 }
 

@@ -24,17 +24,34 @@
 #ifndef LIBRTCONSTANTS_HPP
 #define LIBRTCONSTANTS_HPP
 
-#include <QtGlobal>
+#include <QString>
 
 namespace LibRT {
 	/// @brief Generic fake ID.
 	extern const qlonglong FAKE_ID;
 
+	/// @brief Generic fake value for ID represented by a string (empty string)
+	extern const QString FAKE_STRING_ID;
+
 	/// @brief Fake longitude
-	extern const int FAKE_LONGITUDE;
+	extern const float FAKE_LONGITUDE;
 
 	/// @brief Fake latitude
-	extern const int FAKE_LATITUDE;
+	extern const float FAKE_LATITUDE;
+
+	/// @brief Maximum absolute value for a longitude (180 since a valid
+	/// longitude is between -180 and +180).
+	extern const float MAX_LONGITUDE;
+
+	/// @brief Maximum absolute value for a latitude (180 since a valid
+	/// latitude is between -90 and +90).
+	extern const float MAX_LATITUDE;
+
+	/// @brief Fake value for a token (empty string)
+	extern const QByteArray FAKE_TOKEN;
+
+	/// @brief Fake value for an URL (empty string)
+	extern const QString FAKE_URL;
 }
 
 #endif // LIBRTCONSTANTS_HPP

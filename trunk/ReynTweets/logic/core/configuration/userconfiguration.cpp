@@ -30,6 +30,7 @@
 
 #include "appconfiguration.hpp"
 #include "../../../connection/common/utils/parsers/jsonparser.hpp"
+#include "../../reyntweetsutils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -72,8 +73,9 @@ void UserConfiguration::initSystem() {
 
 // Declaring ReynTweetsConfiguration to the QML system
 void UserConfiguration::declareQML() {
-	qmlRegisterType<UserConfiguration>("ReynTweetsEntities",
-									   0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UserConfiguration>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									   ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									   "UserConfiguration");
 }
 

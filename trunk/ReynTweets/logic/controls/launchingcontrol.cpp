@@ -34,8 +34,9 @@ LaunchingControl::LaunchingControl() :
 
 // Declaring to the QML components
 void LaunchingControl::declareQML() {
-	qmlRegisterType<LaunchingControl>("ReynTweetsControls",
-									  0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<LaunchingControl>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									  ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									  "LaunchingControl");
 }
 

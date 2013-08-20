@@ -102,7 +102,7 @@ class ReynTwitterCalls : public GenericCalls
 								 bool entities = false,
 								 int count = Twitter::DEFAULT_TWEETS_COUNT);
 
-		/// @fn void getFavoriteTimeline(QString username = "",
+		/// @fn void getFavoriteTimeline(QString username = Twitter::FAKE_SCREEN_NAME,
 		///								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
 		///								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 		///								 bool entities = false,
@@ -117,7 +117,7 @@ class ReynTwitterCalls : public GenericCalls
 		/// @param entities Boolean whose value is true if the tweets have got
 		/// their entities
 		/// @see https://dev.twitter.com/docs/api/1.1/get/favorites
-		void getFavoriteTimeline(QString username = "",
+		void getFavoriteTimeline(QString username = Twitter::FAKE_SCREEN_NAME,
 								 qlonglong sinceID = Twitter::FAKE_TWEET_ID,
 								 qlonglong maxID = Twitter::FAKE_TWEET_ID,
 								 bool entities = false,
@@ -166,7 +166,8 @@ class ReynTwitterCalls : public GenericCalls
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/request_token
 		void requestToken();
 
-		/// @fn void authorize(bool forceLogin = false, QString writeLogin = "");
+		/// @fn void authorize(bool forceLogin = false,
+		///					   QString writeLogin = Twitter::FAKE_SCREEN_NAME);
 		/// @brief Method for authorizing request Tokens
 		/// @param forceLogin Boolean indicating if the user as to sign in to
 		/// Twitter to authorize the application. Quite useless in Reyn Tweets.
@@ -174,13 +175,14 @@ class ReynTwitterCalls : public GenericCalls
 		/// the app, in order to write it in the authentication page which will
 		/// be returned. Quite useless in Reyn Tweets.
 		/// @see https://dev.twitter.com/docs/api/1/get/oauth/authorize
-		void authorize(bool forceLogin = false, QString writeLogin = "");
+		void authorize(bool forceLogin = false,
+					   QString writeLogin = Twitter::FAKE_SCREEN_NAME);
 
-		/// @fn void accessToken(QByteArray verifier);
+		/// @fn void accessToken(QByteArray verifier = LibRT::FAKE_TOKEN);
 		/// @brief Method for getting an access token
 		/// @param verifier The OAuth Verifier needed for getting Access tokens.
 		/// @see https://dev.twitter.com/docs/api/1/post/oauth/access_token
-		void accessToken(QByteArray verifier = "");
+		void accessToken(QByteArray verifier = LibRT::FAKE_TOKEN);
 
 
 		//////////////
@@ -282,9 +284,9 @@ class ReynTwitterCalls : public GenericCalls
 
 		/// @fn void updateTweet(QString tweet,
 		///						 qlonglong replyToTweetID = Twitter::FAKE_TWEET_ID,
-		///						 float latitude = -361,
-		///						 float longitude = -361,
-		///						 QString reversePlace = "",
+		///						 float latitude = LibRT::FAKE_LATITUDE,
+		///						 float longitude = LibRT::FAKE_LONGITUDE,
+		///						 QString reversePlace = Twitter::FAKE_PLACE_ID,
 		///						 bool displayCoord = false,
 		///						 bool trimUser = false);
 		/// @brief Posting a tweet without media
@@ -301,9 +303,9 @@ class ReynTwitterCalls : public GenericCalls
 		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
 		void updateTweet(QString tweet,
 						 qlonglong replyToTweetID = Twitter::FAKE_TWEET_ID,
-						 float latitude = -361,
-						 float longitude = -361,
-						 QString reversePlace = "",
+						 float latitude = LibRT::FAKE_LATITUDE,
+						 float longitude = LibRT::FAKE_LONGITUDE,
+						 QString reversePlace = Twitter::FAKE_PLACE_ID,
 						 bool displayCoord = false,
 						 bool trimUser = false);
 

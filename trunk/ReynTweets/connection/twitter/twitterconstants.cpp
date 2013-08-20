@@ -36,3 +36,9 @@ const int Twitter::DEFAULT_TWEETS_COUNT = 20;
 
 // Maximum number of tweets that can be retrieved per call (200).
 const int Twitter::MAX_TWEETS_COUNT = 200;
+
+// Fake Twitter screen name (empty string)
+const QString Twitter::FAKE_SCREEN_NAME = LibRT::FAKE_STRING_ID;
+
+// Fake Twitter place ID
+const QString Twitter::FAKE_PLACE_ID = LibRT::FAKE_STRING_ID;

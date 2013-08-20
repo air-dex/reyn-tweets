@@ -36,7 +36,7 @@ UserMention::UserMention() :
 	TweetEntity(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName(""),
+	screenName(ReynTweets::FAKE_SCREEN_NAME),
 	userName("")
 {}
 
@@ -48,7 +48,7 @@ UserMention::UserMention(const UserMention & mention) :
 	TweetEntity(),
 	userID(ReynTweets::FAKE_USER_ID),
 	userIDstr(ReynTweets::FAKE_USER_ID_STR),
-	screenName(""),
+	screenName(ReynTweets::FAKE_SCREEN_NAME),
 	userName("")
 {
 	recopie(mention);
@@ -68,7 +68,10 @@ void UserMention::initSystem() {
 
 // Declaring to the QML components
 void UserMention::declareQML() {
-	qmlRegisterType<UserMention>("ReynTweetsEntities", 0, 2, "UserMention");
+	// @uri ReynTweetsComponents
+	qmlRegisterType<UserMention>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+								 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
+								 "UserMention");
 }
 
 // Copy of a User Mention

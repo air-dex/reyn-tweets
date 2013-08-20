@@ -95,9 +95,6 @@ class GeoCoord : public JsonArray<double>, public QPointF
 
 
 	protected:
-		/// @brief Constant for fake coordinates
-		static qreal FAKE_COORD;
-
 		/// @fn void recopie(const GeoCoord & coord);
 		/// @brief Copy of a Coordinates
 		/// @param coord GeoCoord to copy

@@ -22,10 +22,11 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "apikeyauthenticator.hpp"
+#include "../utils/librtconstants.hpp"
 
 // Constructor
 APIKeyAuthenticator::APIKeyAuthenticator():
-	apiKey("")
+	apiKey(LibRT::FAKE_TOKEN)
 {}
 
 // Destructor

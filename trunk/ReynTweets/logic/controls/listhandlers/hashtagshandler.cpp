@@ -23,6 +23,7 @@
 
 #include "hashtagshandler.hpp"
 #include <QtQml>
+#include "../../reyntweetsutils.hpp"
 
 // Constructor
 HashtagsHandler::HashtagsHandler() :
@@ -58,8 +59,9 @@ void HashtagsHandler::initSystem() {
 
 // Declaring to the QML components
 void HashtagsHandler::declareQML() {
-	qmlRegisterType<HashtagsHandler>("ReynTweetsEntities",
-									 0, 2,
+	// @uri ReynTweetsComponents
+	qmlRegisterType<HashtagsHandler>(ReynTweets::QML_LIBRARY_NAME.toLatin1().constData(),
+									 ReynTweets::MAJOR_VERSION, ReynTweets::MINOR_VERSION,
 									 "HashtagsHandler");
 }
 

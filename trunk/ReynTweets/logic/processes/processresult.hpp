@@ -31,29 +31,21 @@
 /// @struct ProcessResult
 /// @brief Results of a process
 struct ProcessResult {
-	/// @brief Boolean indicating if the process ended successfully
-	bool processOK;
-
-	/// @brief Error message
-	QString errorMsg;
+	/// @brief Information about how the process ended
+	CoreResult processIssue;
 
 	/// @brief Results
 	QVariant results;
 
-	/// @brief Boolean indicating if the error is fatal
-	bool fatalError;
-
-	/// @brief Information about how the process ended
-	CoreResult processIssue;
+	/// @brief Error message
+	QString errorMsg;
 
 	/// @fn ProcessResult();
 	/// @brief Constructor of an invalid result
 	ProcessResult() :
-		processOK(false),
-		errorMsg(""),
+		processIssue(INVALID_ISSUE),
 		results(),
-		fatalError(true),
-		processIssue(INVALID_ISSUE)
+		errorMsg("")
 	{}
 };
 

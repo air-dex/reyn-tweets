@@ -24,36 +24,42 @@
 #ifndef ERRORTYPES_HPP
 #define ERRORTYPES_HPP
 
-/// @enum ErrorType
-/// @brief Enumeration which indicates if something bad happened during the
-/// request. It can takes three values depending on what happened. See the
-/// enum values for more details.
-enum ErrorType {
-	/// @brief Code indicating that there was no error.
-	NO_REQUEST_ERROR,
+//namespace Network {
+	/// @enum ErrorType
+	/// @brief Enumeration which indicates if something bad happened during the
+	/// request. It can takes three values depending on what happened. See the
+	/// enum values for more details.
+	enum ErrorType {
+		/// @brief Code indicating that there was no error.
+		NO_REQUEST_ERROR,
 
-	/// @brief Code for an invalid request result.
-	INVALID_RESULT,
+		/// @brief Code for an invalid request result.
+		INVALID_RESULT,
 
-	/// @brief Code indicating that there were an error while calling the
-	/// Twitter API.
-	API_CALL,
+		/// @brief Code indicating that there were an error while calling the
+		/// Twitter API.
+		API_CALL,
 
-	/// @brief Code indicating that the service (ex. Twitter) has returned errors.
-	SERVICE_ERRORS,
+		/// @brief Code indicating that the service (ex. Twitter) has returned errors.
+		SERVICE_ERRORS,
 
-	/// @brief Code indicating that there was an error while parsing JSON.
-	JSON_PARSING,
+		/// @brief Code indicating that there was an error while parsing JSON.
+		JSON_PARSING,
 
-	/// @brief Code indicating that there was an error while parsing results
-	/// under the form <code>arg1=val1&arg2=val2&...&argN=valN</code>.
-	OAUTH_PARSING,
+		/// @brief Code indicating that there was an error while parsing results
+		/// under the form <code>arg1=val1&arg2=val2&...&argN=valN</code>.
+		OAUTH_PARSING,
 
-	/// @brief Code indicating that there was an error while parsing HTML.
-	HTML_PARSING,
+		/// @brief Code indicating that there was an error while parsing HTML.
+		HTML_PARSING,
 
-	/// @brief Code indicating that there was an error while parsing XML.
-	XML_PARSING
-};
+		/// @brief Code indicating that there was an error while parsing XML.
+		XML_PARSING
+	};
+/*
+}
+
+using Network::ErrorType;
+//*/
 
 #endif // ERRORTYPES_HPP

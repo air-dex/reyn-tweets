@@ -29,7 +29,7 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 qlonglong id,
 									 bool entities) :
 	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(ID),
+	idWay(IdWay::ID),
 	userID(id),
 	includeEntities(entities),
 	screenName()
@@ -40,7 +40,7 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 QString name,
 									 bool entities) :
 	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
-	idWay(SCREEN_NAME),
+	idWay(IdWay::SCREEN_NAME),
 	userID(),
 	includeEntities(entities),
 	screenName(name)
@@ -48,13 +48,13 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 
 // Building getParameters
 void ShowUserRequester::buildGETParameters() {
-	if (idWay == ID) {
+	if (idWay == IdWay::ID) {
 		getParameters.insert("id", QString::number(userID));
 	}
 
 	getParameters.insert("include_entities", boolInString(includeEntities));
 
-	if (idWay == SCREEN_NAME) {
+	if (idWay == IdWay::SCREEN_NAME) {
 		getParameters.insert("screen_name", screenName);
 	}
 

@@ -71,7 +71,9 @@ QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 
 }
 
-void TwitLongerRequester::treatParsedResult(NetworkResponse netResponse) {
+void TwitLongerRequester::treatParsedResult(RequestResult & requestResult,
+											NetworkResponse netResponse)
+{
 	QVariantMap resultMap = requestResult.parsedResult.toMap();
 
 	if (!resultMap.contains("error")) {

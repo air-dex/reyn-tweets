@@ -32,7 +32,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   bool withEntities,
 													   int nbTweets) :
 	TwitterRequester(Network::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
-	idWay(ID),
+	idWay(IdWay::ID),
 	userID(uid),
 	screenName(""),
 	count(nbTweets),
@@ -49,7 +49,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   bool withEntities,
 													   int nbTweets) :
 	TwitterRequester(Network::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
-	idWay(SCREEN_NAME),
+	idWay(IdWay::SCREEN_NAME),
 	userID(-1),
 	screenName(userName),
 	count(nbTweets),
@@ -63,10 +63,10 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 void FavoritesTimelineRequester::buildGETParameters() {
 	// Value for the user identifier
 	switch (idWay) {
-		case ID:
+		case IdWay::ID:
 			getParameters.insert("user_id", QString::number(userID));
 			break;
-		case SCREEN_NAME:
+		case IdWay::SCREEN_NAME:
 			getParameters.insert("screen_name", screenName);
 			break;
 	}

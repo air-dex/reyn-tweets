@@ -49,9 +49,10 @@ void PostToTwitLongerRequester::buildPOSTParameters() {
 		postParameters.insert("message", message);
 	} else {
 		// End the request to TwitLonger to send the post classicly.
+		RequestResult requestResult;
 		requestResult.resultType = Network::NO_REQUEST_ERROR;
 		requestResult.parsedResult = QVariant("too_short");
-		emit requestDone();
+		emit requestDone(requestResult);
 	}
 
 	// Optional reply

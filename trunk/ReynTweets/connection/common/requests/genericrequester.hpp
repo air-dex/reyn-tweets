@@ -67,11 +67,6 @@ class GenericRequester : public QObject
 		/// from the other ones.
 		virtual void executeRequest();
 
-		/// @fn RequestResult getRequestResult();
-		/// @brief Getting parsed results
-		/// @return Parsed results in a QVariant object.
-		RequestResult getRequestResult();
-
 	protected:
 		/// @brief UUID of the request
 		QUuid uuid;
@@ -129,9 +124,6 @@ class GenericRequester : public QObject
 		void treatResults(NetworkResponse netResponse);
 
 	protected:
-		/// @brief Result of the request.
-		RequestResult requestResult;
-
 		/// @fn virtual QVariant parseResult(NetworkResponse results,
 		///									 bool & parseOK,
 		///									 QVariantMap & parsingErrors) = 0;
@@ -147,16 +139,21 @@ class GenericRequester : public QObject
 									 bool & parseOK,
 									 QVariantMap & parsingErrors) = 0;
 
-		/// @fn virtual void treatParsedResult(NetworkResponse netResponse) = 0;
+		/// @fn virtual void treatParsedResult(RequestResult & requestResult,
+		///									   NetworkResponse netResponse) = 0;
 		/// @brief Treating parsed results
-		/// @param netResponse Other network responce elements, if needed.
-		virtual void treatParsedResult(NetworkResponse netResponse) = 0;
+		/// @param requestResult Reference on the request result, in order to
+		/// complete it.
+		/// @param netResponse Other network response elements, if needed.
+		virtual void treatParsedResult(RequestResult & requestResult,
+									   NetworkResponse netResponse) = 0;
 
 	signals:
-		/// @fn void requestDone();
+		/// @fn void requestDone(RequestResult requestResult);
 		/// @brief Signal sent when the results of the request received by
 		/// the Twitter Communicator have been treated.
-		void requestDone();
+		/// @param requestResult Result of the request.
+		void requestDone(RequestResult requestResult);
 };
 
 #endif // GENERICREQUESTER_HPP

@@ -65,10 +65,14 @@ class TwitLongerRequester : public GenericRequester
 									 bool &parseOK,
 									 QVariantMap &parsingErrors);
 
-		/// @fn virtual void treatParsedResult(NetworkResponse netResponse);
+		/// @fn virtual void treatParsedResult(RequestResult & requestResult,
+		///									   NetworkResponse netResponse);
 		/// @brief Treating parsed results
+		/// @param requestResult Reference on the request result, in order to
+		/// complete it.
 		/// @param netResponse Other network responce elements, if needed.
-		virtual void treatParsedResult(NetworkResponse netResponse);
+		virtual void treatParsedResult(RequestResult & requestResult,
+									   NetworkResponse netResponse);
 
 		/// @fn virtual QDomElement getInfoElement(QDomElement xmlRoot) = 0;
 		/// @brief Getting the XML element with all the necessary informations.

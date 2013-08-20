@@ -59,9 +59,10 @@ class GenericCalls : public QObject
 		void sendResult(ResultWrapper res);
 
 	public slots:
-		/// @fn void endRequest();
+		/// @fn void endRequest(RequestResult requestResult);
 		/// @brief Slot executed when a requester has finished its work
-		void endRequest();
+		/// @param requestResult Result of the request.
+		void endRequest(RequestResult requestResult);
 
 	protected:
 		/// @brief QObject that asks for the request
@@ -84,11 +85,14 @@ class GenericCalls : public QObject
 		/// @param requester Address of the requester
 		void removeRequester(GenericRequester * requester);
 
-		/// @fn ResultSender buildResultSender(GenericRequester * endedRequest);
+		/// @fn ResultSender buildResultSender(GenericRequester * endedRequest,
+		///									   RequestResult requestResult);
 		/// @brief Method that builds the wrapper of a result
 		/// @param endedRequest Ended request that contaons the result
+		/// @param requestResult Result of the request.
 		/// @return The wrapper of the request result
-		ResultWrapper buildResultSender(GenericRequester * endedRequest);
+		ResultWrapper buildResultSender(GenericRequester * endedRequest,
+										RequestResult requestResult);
 
 		/// @fn void executeRequest(GenericRequester * requester);
 		/// @brief Inline method for executing requests

@@ -29,7 +29,7 @@ QString DENY_NAME = "cancel";
 // Constructor
 OAuthRequester::OAuthRequester(HTTPRequestType type,
 							   QString url,
-							   TwitterManager &authManager,
+							   TwitterAuthenticator &authManager,
 							   NetworkResultType parseErrorType,
 							   bool tokenNeeded,
 							   bool callbackURLNeeded,

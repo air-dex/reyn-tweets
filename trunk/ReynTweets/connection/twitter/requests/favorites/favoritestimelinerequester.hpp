@@ -35,7 +35,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
+		/// @fn FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 		///								   qlonglong uid = -1,
 		///								   qlonglong oldestTweetID = -1,
 		///								   qlonglong earliestTweetID = -1,
@@ -49,14 +49,14 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
-		FavoritesTimelineRequester(TwitterManager & authManager,
+		FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 								   qlonglong uid = -1,
 								   qlonglong oldestTweetID = -1,
 								   qlonglong earliestTweetID = -1,
 								   bool withEntities = false,
 								   int nbTweets = 20);
 
-		/// @fn FavoritesTimelineRequester(OAuthManager & authManager,
+		/// @fn FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 		///								   QString userName = "",
 		///								   qlonglong oldestTweetID = -1,
 		///								   qlonglong earliestTweetID = -1,
@@ -70,7 +70,7 @@ class FavoritesTimelineRequester : public TwitterRequester
 		/// @param earliestTweetID Value of maxID
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
-		FavoritesTimelineRequester(TwitterManager & authManager,
+		FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 								   QString userName = "",
 								   qlonglong oldestTweetID = -1,
 								   qlonglong earliestTweetID = -1,

@@ -33,14 +33,14 @@ class AuthorizeRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AuthorizeRequester(OAuthManager & authManagerr,
+		/// @fn AuthorizeRequester(TwitterAuthenticator & authManagerr,
 		///						   bool forceLog = false,
 		///						   QString writeLogin = "");
 		/// @brief Constructor
 		/// @param authManager Informations for OAuth.
 		/// @param forceLog Value for forceLogin
 		/// @param writeLogin Value for screenName
-		AuthorizeRequester(TwitterManager & authManager,
+		AuthorizeRequester(TwitterAuthenticator & authManager,
 						   bool forceLog = false,
 						   QString writeLogin = "");
 

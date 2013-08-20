@@ -34,12 +34,12 @@ class AccessTokenRequester : public OAuthRequester
 	Q_OBJECT
 
 	public:
-		/// @fn AccessTokenRequester(OAuthManager & authManager,
+		/// @fn AccessTokenRequester(TwitterAuthenticator & authManager,
 		///							 QByteArray verifier);
 		/// @brief Constructor
 		/// @param authManager Information for OAuth.
 		/// @param verifier The OAuth Verifier needed for getting Access tokens.
-		AccessTokenRequester(TwitterManager & authManager, QByteArray verifier);
+		AccessTokenRequester(TwitterAuthenticator & authManager, QByteArray verifier);
 
 	protected:
 		/// @fn void buildPOSTParameters();

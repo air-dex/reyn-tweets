@@ -29,7 +29,7 @@
 // Constructor
 TwitLongerRequester::TwitLongerRequester(HTTPRequestType type,
 										 QString url,
-										 TwitLongerManager & manager) :
+										 TwitLongerAuthenticator & manager) :
 	GenericRequester(type, url, Network::XML_PARSING),
 	twitlongerManager(manager)
 {}

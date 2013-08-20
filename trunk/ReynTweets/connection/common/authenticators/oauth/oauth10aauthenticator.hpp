@@ -27,13 +27,13 @@
 #include <QByteArray>
 #include <QMap>
 #include <QString>
-#include "oauthmanager.hpp"
-#include "../httprequesttype.hpp"
-#include "../headersmap.hpp"
+#include "oauthauthenticator.hpp"
+#include "../../httprequesttype.hpp"
+#include "../../headersmap.hpp"
 
 /// @class OAuth10aAuthenticator
 /// @brief Authenticator for stuff related to OAuth 1.0a.
-class OAuth10aAuthenticator : public virtual OAuthManager
+class OAuth10aAuthenticator : public virtual OAuthAuthenticator
 {
 	public:
 		/// @fn OAuth10aAuthenticator(QString signatureAlgorithm = "SHA-1");

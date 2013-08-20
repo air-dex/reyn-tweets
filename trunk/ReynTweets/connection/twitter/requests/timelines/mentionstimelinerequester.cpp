@@ -24,7 +24,7 @@
 #include "mentionstimelinerequester.hpp"
 #include "../../../../tools/utils.hpp"
 
-MentionsTimelineRequester::MentionsTimelineRequester(TwitterManager &authManager,
+MentionsTimelineRequester::MentionsTimelineRequester(TwitterAuthenticator &authManager,
 													 qlonglong oldestTweetID,
 													 qlonglong youngestTweetID,
 													 bool userIDonly,

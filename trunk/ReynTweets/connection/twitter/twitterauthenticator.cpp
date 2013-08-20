@@ -1,10 +1,10 @@
-/// @file favoriterequester.cpp
-/// @brief Implementation of FavoriteRequester
+/// @file twitterauthenticator.cpp
+/// @brief Implementation of TwitterAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -21,26 +21,22 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "favoriterequester.hpp"
-#include "../../../../tools/utils.hpp"
+#include "twitterauthenticator.hpp"
 
 // Constructor
-FavoriteRequester::FavoriteRequester(TwitterAuthenticator &authManager,
-									 bool favorited,
-									 qlonglong id,
-									 bool withEntities) :
-	TwitterRequester(Network::POST,
-					 favorited ?
-						 TwitterURL::CREATE_FAVORITE_URL
-					   : TwitterURL::DELETE_FAVORITE_URL,
-					 authManager),
-	isFavorited(favorited),
-	tweetID(id),
-	includeEntities(withEntities)
-{}
+TwitterAuthenticator::TwitterAuthenticator() :
+	OAuth10aAuthenticator(),
+	OAuth2Authenticator()
+{
+	// Forces the version to "1.0" to avoid problems with requests authentication
+	this->oauthVersion = "1.0";
+}
 
-// Building postParameters
-void FavoriteRequester::buildPOSTParameters() {
-	postParameters.insert("id", QString::number(tweetID));
-	postParameters.insert("include_entities", boolInString(includeEntities));
+// Destructor
+TwitterAuthenticator::~TwitterAuthenticator() {}
+
+// Resetting the tokens.
+void TwitterAuthenticator::resetTokens() {
+	OAuth10aAuthenticator::resetTokens();
+	OAuth2Authenticator::resetTokens();
 }

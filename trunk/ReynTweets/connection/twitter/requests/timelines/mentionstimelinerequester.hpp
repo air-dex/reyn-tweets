@@ -33,7 +33,7 @@ class MentionsTimelineRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:
-		/// @fn MentionsTimelineRequester(OAuthManager & authManager,
+		/// @fn MentionsTimelineRequester(TwitterAuthenticator & authManager,
 		///								  qlonglong oldestTweetID = -1,
 		///								  qlonglong youngestTweetID = -1,
 		///								  bool userIDonly = false,
@@ -48,7 +48,7 @@ class MentionsTimelineRequester : public TwitterRequester
 		/// @param withEntities Value of includeEntities
 		/// @param nbTweets Value of count
 		/// @param withContributorsDetails Value of contributorsDetails
-		MentionsTimelineRequester(TwitterManager & authManager,
+		MentionsTimelineRequester(TwitterAuthenticator & authManager,
 								  qlonglong oldestTweetID = -1,
 								  qlonglong youngestTweetID = -1,
 								  bool userIDonly = false,

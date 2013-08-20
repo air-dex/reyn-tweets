@@ -24,11 +24,11 @@
 #ifndef OAUTH2AUTHENTICATOR_HPP
 #define OAUTH2AUTHENTICATOR_HPP
 
-#include "oauthmanager.hpp"
+#include "oauthauthenticator.hpp"
 
 /// @class OAuth2Authenticator
 /// @brief Authenticator for stuff related to OAuth 2.
-class OAuth2Authenticator : public virtual OAuthManager
+class OAuth2Authenticator : public virtual OAuthAuthenticator
 {
 	public:
 		/// @fn OAuth2Authenticator();

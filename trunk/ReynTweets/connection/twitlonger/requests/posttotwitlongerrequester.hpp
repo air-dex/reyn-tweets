@@ -34,7 +34,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 	Q_OBJECT
 
 	public:
-		/// @fn PostToTwitLongerRequester(TwitLongerManager & tlmanager,
+		/// @fn PostToTwitLongerRequester(TwitLongerAuthenticator & tlmanager,
 		///								  QString longTweet,
 		///								  QString userScreenName,
 		///								  qlonglong replyToStatusID = -1,
@@ -47,7 +47,7 @@ class PostToTwitLongerRequester : public TwitLongerRequester
 		/// the ID of the tweet that this tweet replies to.
 		/// @param replyToUserScreenName If the tweet is a reply, this parameter
 		/// is the screen name of the tweet that this tweet replies to.
-		PostToTwitLongerRequester(TwitLongerManager & tlmanager,
+		PostToTwitLongerRequester(TwitLongerAuthenticator & tlmanager,
 								  QString longTweet,
 								  QString userScreenName,
 								  qlonglong replyToStatusID = -1,

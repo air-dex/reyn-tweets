@@ -34,14 +34,14 @@ class VerifyCredentialsRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:
-		/// @fn VerifyCredentialsRequester(OAuthManager & authManager,
+		/// @fn VerifyCredentialsRequester(TwitterAuthenticator & authManager,
 		///								   bool entities = false,
 		///								   bool skipLastTweet = false);
 		/// @brief Constructor
-		/// @param authManager OAuthManager for authentication
+		/// @param authManager Twitter Authenticator for authentication
 		/// @param entities Include entities in the last tweet of the user ?
 		/// @param skipLastTweet Skip last tweet written by the user ?
-		VerifyCredentialsRequester(TwitterManager & authManager,
+		VerifyCredentialsRequester(TwitterAuthenticator & authManager,
 								   bool entities = false,
 								   bool skipLastTweet = false);
 

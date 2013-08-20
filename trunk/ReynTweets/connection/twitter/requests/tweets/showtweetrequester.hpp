@@ -34,19 +34,19 @@ class ShowTweetRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn ShowTweetRequester(OAuthManager & authManager,
+		/// @fn ShowTweetRequester(TwitterAuthenticator & authManager,
 		///						   qlonglong id,
 		///						   bool entities = true,
 		///						   bool userIdsOnly = false,
 		///						   bool withRTid = false);
 		/// @brief Constructor
-		/// @param authManager OAuthManager with authentication informations
+		/// @param authManager TwitterAuthenticator with authentication infos.
 		/// @param id ID of the tweet
 		/// @param entities Include Tweet Entities in th reply ?
 		/// @param userIdsOnly Return only user IDs instead of all the values ?
 		/// @param withRTid If the user retweeted the tweet and if this
 		/// boolean is set to true, this would include the id of the retweet.
-		ShowTweetRequester(TwitterManager & authManager,
+		ShowTweetRequester(TwitterAuthenticator & authManager,
 						   qlonglong id,
 						   bool entities = true,
 						   bool userIdsOnly = false,

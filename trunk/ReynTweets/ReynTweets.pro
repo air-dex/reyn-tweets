@@ -55,18 +55,18 @@ SOURCES += \
 	tools/parsers/oauthparser.cpp \
 	tools/parsers/xmlparser.cpp \
 	connection/common/networkresult.cpp \
-	connection/common/authmanagers/apikeymanager.cpp \
-	connection/common/authmanagers/oauthutils.cpp \
-	connection/common/authmanagers/oauthmanager.cpp \
-	connection/common/authmanagers/oauth10aauthenticator.cpp \
-	connection/common/authmanagers/oauth2authenticator.cpp \
+	connection/common/authenticators/apikeyauthenticator.cpp \
+	connection/common/authenticators/oauth/oauthutils.cpp \
+	connection/common/authenticators/oauth/oauthauthenticator.cpp \
+	connection/common/authenticators/oauth/oauth10aauthenticator.cpp \
+	connection/common/authenticators/oauth/oauth2authenticator.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
 	connection/common/calls/requestinfos.cpp \
 	connection/common/calls/requestermanager.cpp \
 	connection/common/calls/genericcalls.cpp \
-	connection/twitter/twittermanager.cpp \
+	connection/twitter/twitterauthenticator.cpp \
 	connection/twitter/requests/twitterurls.cpp \
 	connection/twitter/requests/twitterrequester.cpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.cpp \
@@ -85,7 +85,7 @@ SOURCES += \
 	connection/twitter/requests/tweets/showtweetrequester.cpp \
 	connection/twitter/requests/users/showuserrequester.cpp \
 	connection/twitter/reyntwittercalls.cpp \
-	connection/twitlonger/twitlongermanager.cpp \
+	connection/twitlonger/twitlongerauthenticator.cpp \
 	connection/twitlonger/requests/twitlongerurls.cpp \
 	connection/twitlonger/requests/twitlongerrequester.cpp \
 	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
@@ -170,11 +170,12 @@ HEADERS  += \
 	connection/common/headersmap.hpp \
 	connection/common/networkresult.hpp \
 	connection/common/responseinfos.hpp \
-	connection/common/authmanagers/apikeymanager.hpp \
-	connection/common/authmanagers/oauthutils.hpp \
-	connection/common/authmanagers/oauthmanager.hpp \
-	connection/common/authmanagers/oauth10aauthenticator.hpp \
-	connection/common/authmanagers/oauth2authenticator.hpp \
+	connection/common/authenticators/apikeyauthenticator.hpp \
+	connection/common/authenticators/basicauthenticators.hpp \
+	connection/common/authenticators/oauth/oauthutils.hpp \
+	connection/common/authenticators/oauth/oauthauthenticator.hpp \
+	connection/common/authenticators/oauth/oauth10aauthenticator.hpp \
+	connection/common/authenticators/oauth/oauth2authenticator.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
 	connection/common/networkresulttype.hpp \
 	connection/common/requestresult.hpp \
@@ -184,7 +185,7 @@ HEADERS  += \
 	connection/common/calls/requestinfos.hpp \
 	connection/common/calls/requestermanager.hpp \
 	connection/common/calls/genericcalls.hpp \
-	connection/twitter/twittermanager.hpp \
+	connection/twitter/twitterauthenticator.hpp \
 	connection/twitter/requests/twitterurls.hpp \
 	connection/twitter/requests/twitterrequester.hpp \
 	connection/twitter/requests/accounts/verifycredentialsrequester.hpp \
@@ -204,7 +205,7 @@ HEADERS  += \
 	connection/twitter/requests/users/showuserrequester.hpp \
 	connection/twitter/requests/twitterrequests.hpp \
 	connection/twitter/reyntwittercalls.hpp \
-	connection/twitlonger/twitlongermanager.hpp \
+	connection/twitlonger/twitlongerauthenticator.hpp \
 	connection/twitlonger/requests/twitlongerurls.hpp \
 	connection/twitlonger/requests/twitlongerrequester.hpp \
 	connection/twitlonger/requests/posttotwitlongerrequester.hpp \

@@ -21,20 +21,20 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "twitlongermanager.hpp"
+#include "twitlongerauthenticator.hpp"
 
 // Constructor
-TwitLongerManager::TwitLongerManager() :
-	APIKeyManager(),
+TwitLongerAuthenticator::TwitLongerAuthenticator() :
+	APIKeyAuthenticator(),
 	applicationName("")
 {}
 
 // Getting the application name
-QString TwitLongerManager::getApplicationName() {
+QString TwitLongerAuthenticator::getApplicationName() {
 	return applicationName;
 }
 
 // Setting the application name
-void TwitLongerManager::setApplicationName(QString newAppName) {
+void TwitLongerAuthenticator::setApplicationName(QString newAppName) {
 	applicationName = newAppName;
 }

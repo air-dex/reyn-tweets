@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-DestroyTweetRequester::DestroyTweetRequester(TwitterManager &authManager,
+DestroyTweetRequester::DestroyTweetRequester(TwitterAuthenticator &authManager,
 											 qlonglong statusID,
 											 bool userIDonly) :
 	TwitterRequester(Network::POST, TwitterURL::DELETE_TWEET_URL, authManager),

@@ -53,7 +53,6 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	// Analysing the Twitter response
@@ -74,25 +73,18 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 			break;
 
 		default:
-			treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	endProcess();
 }
 
 // Building the process results
-void SingleTwitterCallProcess::buildResult(bool processOK,
-										   CoreResult issue,
-										   QString errMsg,
-										   bool isFatal)
-{
-	processResult = ProcessUtils::buildProcessResult(processOK,
-													 issue,
-													 errMsg,
-													 isFatal);
+void SingleTwitterCallProcess::buildResult(CoreResult issue, QString errMsg) {
+	processResult = ProcessUtils::buildProcessResult(issue, errMsg);
 }
 
 // Building the process results
@@ -128,8 +120,7 @@ void SingleTwitterCallProcess::treatQjsonParsingResult(ResponseInfos parsingErro
 
 void SingleTwitterCallProcess::treatUnknownResult(QString resultErrorMessage,
 												  QString &errorMsg,
-												  CoreResult &issue,
-												  bool &fatal)
+												  CoreResult &issue)
 {
-	ProcessUtils::treatUnknownResult(resultErrorMessage, errorMsg, issue, fatal);
+	ProcessUtils::treatUnknownResult(resultErrorMessage, errorMsg, issue);
 }

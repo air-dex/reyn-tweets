@@ -118,7 +118,6 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	// Analysing the Twitter response
@@ -141,8 +140,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 				// Unexpected end : abort !
 				ProcessUtils::treatUnknownResult(result.errorMessage,
 												 errorMsg,
-												 issue,
-												 isFatal);
+												 issue);
 			}
 			break;
 
@@ -160,12 +158,12 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	endProcess();
 }
 
@@ -201,7 +199,6 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	// Analysing the Twitter response
@@ -231,12 +228,12 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
 	// Failed end
-	buildResult(false, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	endProcess();
 }
 
@@ -266,15 +263,12 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	bool isOK = false;
-	bool isFatal = false;
 	CoreResult issue;
 
 	// Analysing the Twitter response
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
 			// TODO : final treatment : Nothing a priori
-			isOK = true;
 			issue = TWEET_POSTED;
 			break;
 
@@ -294,7 +288,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue, isFatal);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
 			break;
 	}
 
@@ -304,7 +298,7 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	 * (TwitLonger errors, network problems, failed to parse the TwitLonger XML
 	 * response). The most important is done (posting the tweet) !
 	 */
-	buildResult(isOK, issue, errorMsg, isFatal);
+	buildResult(issue, errorMsg);
 	processResult.results = postedTweet.toVariant();
 	endProcess();
 }

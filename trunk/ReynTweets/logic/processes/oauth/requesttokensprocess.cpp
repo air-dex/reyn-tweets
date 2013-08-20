@@ -76,7 +76,6 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 
@@ -98,7 +97,6 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			} else {
 				// Cannot keep on if the URL is not confirmed
 				errorMsg = RequestTokensProcess::trUtf8("Callback URL not confirmed.");
-				isFatal = true;
 				issue = NO_TOKENS;
 			}
 		}break;
@@ -129,13 +127,12 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue,
-											 isFatal);
+											 issue);
 			break;
 	}
 
 	// Failed end
-	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(issue, errorMsg);
 	endProcess();
 }
 
@@ -166,7 +163,6 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	bool isFatal = false;
 	CoreResult issue;
 
 	switch (errorType) {
@@ -210,12 +206,11 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue,
-											 isFatal);
+											 issue);
 			break;
 	}
 
 	// Failed end
-	GenericProcess::buildResult(false, issue, errorMsg, isFatal);
+	GenericProcess::buildResult(issue, errorMsg);
 	endProcess();
 }

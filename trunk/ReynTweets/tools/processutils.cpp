@@ -27,11 +27,7 @@
 // Building ProcessResults //
 /////////////////////////////
 
-ProcessResult ProcessUtils::buildProcessResult(bool processOK,
-											   CoreResult issue,
-											   QString errMsg,
-											   bool isFatal)
-{
+ProcessResult ProcessUtils::buildProcessResult(CoreResult issue, QString errMsg) {
 	ProcessResult processResult;
 
 	processResult.processIssue = issue;
@@ -203,8 +199,7 @@ void ProcessUtils::treatOAuthParsingResult(QString parsingErrorsMsg,
 // For unknown treatments
 void ProcessUtils::treatUnknownResult(QString resultErrorMessage,
 									  QString &errorMsg,
-									  CoreResult &issue,
-									  bool &fatal)
+									  CoreResult &issue)
 {
 	// Unexpected problem. Abort.
 	errorMsg = QObject::trUtf8("Unexpected problem:");

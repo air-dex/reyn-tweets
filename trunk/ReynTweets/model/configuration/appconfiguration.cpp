@@ -86,8 +86,8 @@ CoreResult AppConfiguration::load() {
 	bool parseOK = false;
 	JSONParser parser;
 	QJsonValue jsonSettings = parser.parse(confFile.readAll(),
-										   parseOK,
-										   errorLoading);
+										   &parseOK,
+										   &errorLoading);
 
 	confFile.close();
 

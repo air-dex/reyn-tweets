@@ -74,8 +74,8 @@ QVariant AuthorizeRequester::parseResult(NetworkResponse results,
 		int lineErr, colErr;
 
 		QDomElement parsedError = parser.parse(results.getResponseBody(),
-											   parseOK,
-											   parseErr,
+											   &parseOK,
+											   &parseErr,
 											   &lineErr,
 											   &colErr);
 

@@ -29,16 +29,22 @@
 
 // Parsing method
 QJsonValue JSONParser::parse(QByteArray data,
-							 bool & parseOK,
-							 QString & parseError,
+							 bool *parseOK,
+							 QString *parseError,
 							 int * lineError,
 							 int *)
 {
 	QJsonParseError jsonParseError;
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(data, &jsonParseError);
-	parseOK = jsonParseError.error == QJsonParseError::NoError;
 
-	parseError = jsonParseError.errorString();
+	if (parseOK) {
+		*parseOK = jsonParseError.error == QJsonParseError::NoError;
+	}
+
+	if (parseError) {
+		*parseError = jsonParseError.errorString();
+	}
+
 	if (lineError) {
 		*lineError = jsonParseError.offset;
 	}

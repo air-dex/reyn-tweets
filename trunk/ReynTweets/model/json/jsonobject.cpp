@@ -83,9 +83,8 @@ QDataStream & JsonObject::fillWithStream(QDataStream & in) {
 	in >> json;
 
 	JSONParser parser;
-	QString errorMsg = "";
 	bool parseOK;
-	QJsonValue parsedJson = parser.parse(json, parseOK, errorMsg);
+	QJsonValue parsedJson = parser.parse(json, &parseOK);
 
 	if (parseOK && parsedJson.isObject()) {
 		this->fillWithJSON(parsedJson.toObject());

@@ -45,11 +45,10 @@ QVariant RequestTokenRequester::parseResult(NetworkResponse results,
 
 	// Parsing
 	OAuthParser parser;
-	QByteArray rawResponse = results.getResponseBody();
-	QString errorMsg = "";
-	QVariantMap resultMap = parser.parse(rawResponse, parseOK, errorMsg);
+	QVariantMap resultMap = parser.parse(results.getResponseBody());
 
 	// For treatments
+	QString errorMsg = "";
 	QVariant extractedCredential;
 	bool treatmentOK;
 	QString treatmentErrorMsg = "";
@@ -89,7 +88,7 @@ QVariant RequestTokenRequester::parseResult(NetworkResponse results,
 		missingArgs.append(OAUTH_CALLBACK_CONFIRMED_KEY);
 	}
 
-	parseOK = parseOK && missingArgs.isEmpty();
+	parseOK = missingArgs.isEmpty();
 
 	// Listing all the expected parameters
 	if (!missingArgs.isEmpty()) {

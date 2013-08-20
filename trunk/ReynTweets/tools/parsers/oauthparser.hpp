@@ -37,8 +37,8 @@ class OAuthParser : public GenericParser<QVariantMap>
 {
 	public:
 		/// @fn QVariantMap parse(QByteArray data,
-		///						  bool & parseOK,
-		///						  QString & parseError,
+		///						  bool * parseOK = 0,
+		///						  QString * parseError = 0,
 		///						  int * lineError = 0,
 		///						  int * columnError = 0);
 		/// @brief Parsing datas for OAuth
@@ -48,25 +48,10 @@ class OAuthParser : public GenericParser<QVariantMap>
 		/// @param lineError Line of the error. Unused.
 		/// @param columnError Column of the error. Unused.
 		QVariantMap parse(QByteArray data,
-						  bool & parseOK,
-						  QString & parseError,
+						  bool * parseOK = 0,
+						  QString * parseError = 0,
 						  int * lineError = 0,
 						  int * columnError = 0);
-
-		/// @fn QVariant extractParameter(QVariantMap & parsedMap,
-		///								  QString parameterName,
-		///								  bool & extractOK,
-		///								  QString & extractError);
-		/// @brief Extracting one parameter from the parsed result
-		/// @param parsedMap Parsed result
-		/// @param parameterName Name of the the parameter to extract
-		/// @param extractOK Boolean indicating if the extraction was successful
-		/// @param extractError Error message about an extraction error
-		/// @return The value of the extracted parameter
-		QVariant extractParameter(QVariantMap & parsedMap,
-								  QString parameterName,
-								  bool & extractOK,
-								  QString & extractError);
 
 		/// @fn void rewriteAsBool(QVariantMap & parsedMap,
 		///						   QString parameterName,

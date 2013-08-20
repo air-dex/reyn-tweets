@@ -40,11 +40,12 @@ QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 										  QVariantMap &parsingErrors)
 {
 	XMLParser parser;
-	QByteArray rawResponse = results.getResponseBody();
 	QString errorMsg;
 	int lineMsg;
 
-	QDomElement xmlResults = parser.parse(rawResponse, parseOK, errorMsg, &lineMsg);
+	QDomElement xmlResults = parser.parse(results.getResponseBody(),
+										  &parseOK, &errorMsg,
+										  &lineMsg);
 
 	if (!parseOK) {
 		// There was a problem while parsing -> fill the parsingErrors map !

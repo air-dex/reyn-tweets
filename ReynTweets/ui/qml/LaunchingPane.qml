@@ -124,6 +124,7 @@ Rectangle {
 		id: log_component
 		z: launching_pane.z + 10
 		width: parent.width
+		height: parent.height
 		anchors.verticalCenter: parent.verticalCenter
 		onAllowOK: launching_pane.endLaunch();
 		visible: false

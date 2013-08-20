@@ -121,36 +121,6 @@ void ReynCore::executeProcess(GenericProcess * process) {
 }
 
 
-////////////////////
-// Special wiring //
-////////////////////
-
-// OAuth process giving informations about user credentials
-
-// Executed when an OAuthProcess send its userCredentialsRequired() signal.
-void ReynCore::userCredentialsRequired() {
-	emit userCredentialsNeeded();
-}
-
-// Telling the user whether credentials given by it are right.
-void ReynCore::credentialsOK(bool credsOK) {
-	emit credentialsValid(credsOK);
-}
-
-
-// Authorize or deny
-
-// Allowing Reyn Tweets to use the Twitter account :)
-void ReynCore::authorizeReynTweets(QString login, QString password) {
-	emit authorize(login, password);
-}
-
-// Denying Reyn Tweets :(
-void ReynCore::denyReynTweets(QString login, QString password) {
-	emit deny(login, password);
-}
-
-
 ////////////////////////
 // Actions to realize //
 ////////////////////////
@@ -176,20 +146,6 @@ void ReynCore::launchReynTweets() {
 	executeProcess(process);
 }
 
-// Allowing Reyn Tweets
-void ReynCore::authorizeReynTweets() {
-	OAuthProcess * process = new OAuthProcess();
-	oauthSpecialWiring(process);
-	executeProcess(process);
-}
-
-// Allowing Reyn Tweets
-void ReynCore::allowReynTweets() {
-	AllowProcess * process = new AllowProcess(userConfiguration);
-	oauthSpecialWiring(process);
-	executeProcess(process);
-}
-
 // Getting OAuth Request tokens for Reyn Tweets
 void ReynCore::requestOAuthTokens() {
 	RequestTokensProcess * process = new RequestTokensProcess();
@@ -205,20 +161,6 @@ void ReynCore::accessOAuthTokens(QByteArray verifier, bool updateConfiguration) 
 	executeProcess(process);
 }
 
-// Special wiring of an OAuth process.
-void ReynCore::oauthSpecialWiring(OAuthProcess * oauthProcess) {
-	// Process giving informations about user credentials
-	connect(oauthProcess, SIGNAL(userCredentialsRequired()),
-			this, SLOT(userCredentialsRequired()));
-	connect(oauthProcess, SIGNAL(credentialsOK(bool)),
-			this, SLOT(credentialsOK(bool)));
-
-	// User telling the process if he want to authorize or to deny Reyn Tweets
-	connect(this, SIGNAL(authorize(QString,QString)),
-			oauthProcess, SLOT(authorizeReynTweets(QString,QString)));
-	connect(this, SIGNAL(deny(QString,QString)),
-			oauthProcess, SLOT(denyReynTweets(QString,QString)));
-}
 
 ///////////////
 // Timelines //

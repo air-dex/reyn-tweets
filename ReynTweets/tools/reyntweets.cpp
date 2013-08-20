@@ -119,7 +119,6 @@ void ReynTweets::declareQML() {
 	// Controls
 	AllowControl::declareQML();
 	LaunchingControl::declareQML();
-	LoginControl::declareQML();
 	ReynControl::declareQML();
 	SettingsControl::declareQML();
 	TimelineControl::declareQML();

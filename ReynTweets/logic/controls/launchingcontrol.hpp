@@ -28,33 +28,32 @@
 #define LAUNCHINGCONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "logincontrol.hpp"
 #include "../reyncore.hpp"
 
 /// @class LaunchingControl
 /// @brief Control behind a LaunchingPane
 class LaunchingControl : public GenericControl
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
-        /// @fn LaunchingControl();
-        /// @brief Constructor
-        LaunchingControl();
+	public:
+		/// @fn LaunchingControl();
+		/// @brief Constructor
+		LaunchingControl();
 
-        /// @fn static void declareQML();
-        /// @brief Declaring to the QML system
-        static void declareQML();
+		/// @fn static void declareQML();
+		/// @brief Declaring to the QML system
+		static void declareQML();
 
-        /// @fn Q_INVOKABLE void launchReynTweets();
-        /// @brief Lauching Reyn Tweets
-        Q_INVOKABLE void launchReynTweets();
+		/// @fn Q_INVOKABLE void launchReynTweets();
+		/// @brief Lauching Reyn Tweets
+		Q_INVOKABLE void launchReynTweets();
 
-    protected slots:
-        /// @fn void launchOK(ProcessWrapper res);
-        /// @brief Slot executed at the end of the launch process
-        /// @param res The process result
-        void launchOK(ProcessWrapper res);
+	protected slots:
+		/// @fn void launchOK(ProcessWrapper res);
+		/// @brief Slot executed at the end of the launch process
+		/// @param res The process result
+		void launchOK(ProcessWrapper res);
 };
 
 #endif // LAUNCHINGCONTROL_HPP

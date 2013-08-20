@@ -33,7 +33,6 @@
 #include "../model/configuration/appconfiguration.hpp"
 #include "../model/tweets/tweet.hpp"
 #include "processes/genericprocess.hpp"
-#include "processes/oauthprocess.hpp"
 #include "processes/processmanager.hpp"
 #include "processes/processwrapper.hpp"
 
@@ -144,14 +143,6 @@ class ReynCore : public QObject
 		/// @fn void launchReynTweets();
 		/// @brief Launching the app
 		void launchReynTweets();
-
-		/// @fn void authorizeReynTweets();
-		/// @brief Authorizing Reyn Tweets (not saving the configuration after).
-		void authorizeReynTweets();
-
-		/// @fn void allowReynTweets();
-		/// @brief Allowing Reyn Tweets
-		void allowReynTweets();
 
 		/// @fn void requestOAuthTokens();
 		/// @brief Getting OAuth Request tokens for Reyn Tweets
@@ -378,80 +369,6 @@ class ReynCore : public QObject
 					  bool trimUser = false,
 					  bool includeEntities = true,
 					  bool includeMyRetweet = true);
-
-
-	protected:
-		/// @fn inline void oauthSpecialWiring(OAuthProcess * oauthProcess);
-		/// @brief Special wiring of an OAuth process.
-		/// @param oauthProcess The process
-		inline void oauthSpecialWiring(OAuthProcess * oauthProcess);
-
-
-	////////////////////
-	// Special wiring //
-	////////////////////
-
-	signals:
-		//////////////////////////////////////////////////////////////
-		// OAuth process giving informations about user credentials //
-		//////////////////////////////////////////////////////////////
-
-		/// @fn void userCredentialsNeeded();
-		/// @brief Transmitting the userCredentialsRequired() signal of
-		/// a given OAuthProcess.
-		void userCredentialsNeeded();
-
-		/// @fn void credentialsValid(bool credsOK);
-		/// @brief Telling the user whether credentials given by it are right.
-		/// @param credsOK Boolean indicating if credentials are right (true).
-		void credentialsValid(bool credsOK);
-
-		///////////////////////
-		// Authorize or deny //
-		///////////////////////
-
-		/// @fn void authorize(QString login, QString password);
-		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void authorize(QString login, QString password);
-
-		/// @fn void deny(QString login, QString password);
-		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void deny(QString login, QString password);
-
-	public slots:
-		//////////////////////////////////////////////////////////////
-		// OAuth process giving informations about user credentials //
-		//////////////////////////////////////////////////////////////
-
-		/// @fn void userCredentialsRequired();
-		/// @brief Executed when an OAuthProcess send its
-		/// userCredentialsRequired() signal.
-		void userCredentialsRequired();
-
-		/// @fn void credentialsOK(bool credsOK);
-		/// @brief Telling the user whether credentials given by it are right.
-		/// @param credsOK Boolean indicating if credentials are right (true).
-		void credentialsOK(bool credsOK);
-
-		///////////////////////
-		// Authorize or deny //
-		///////////////////////
-
-		/// @fn void authorizeReynTweets(QString login, QString password);
-		/// @brief Slot executed to allow Reyn Tweets to use the Twitter account :).
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void authorizeReynTweets(QString login, QString password);
-
-		/// @fn void denyReynTweets(QString login, QString password);
-		/// @brief Slot executed to deny Reyn Tweets to use the Twitter account :(.
-		/// @param login User login, i.e. its username or its email.
-		/// @param password User password
-		void denyReynTweets(QString login, QString password);
 };
 
 #endif // REYNCORE_HPP

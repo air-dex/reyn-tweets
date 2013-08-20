@@ -25,7 +25,6 @@
 #define ALLOWCONTROL_HPP
 
 #include "genericcontrol.hpp"
-#include "logincontrol.hpp"
 
 /// @class AllowControl
 /// @brief Control behind a LoginComponent
@@ -58,25 +57,8 @@ class AllowControl : public GenericControl
 		/// (via the QML embedded browser)
 		Q_INVOKABLE void getAccessTokens(QString verifier);
 
-		/// @fn LoginControl * getLoginControl();
-		/// @brief Reading the login_control property
-		/// @return control
-		LoginControl * getLoginControl();
-
-		/// @fn void setLoginControl(LoginControl * ctrl);
-		/// @brief Writing the login_control property
-		/// @param ctrl New value for control
-		void setLoginControl(LoginControl * ctrl);
-
 
 	signals:
-		/// @fn void showLoginPopup(bool popupVisible);
-		/// @brief Signal sent to modify the visibility of the popup used to
-		/// ask the user to give its credentials.
-		/// @param popupVisible Boolean indicating if the popup has to be
-		/// shown or hidden.
-		void showLoginPopup(bool popupVisible);
-
 		/// @fn void needVerifier(QString htmlPage, QString baseURL);
 		/// @brief Signal after asking for OAuth Request Tokens suucessfully.
 		///
@@ -87,17 +69,6 @@ class AllowControl : public GenericControl
 
 
 	protected slots:
-		/// @fn void validCredentials(bool valid);
-		/// @brief Slot executed when reyn tells the control if the credentials
-		/// given by the user were right.
-		/// @param valid Boolean whose value is true if the credentials are OK.
-		void validCredentials(bool valid);
-
-		/// @fn void credentialsNeeded();
-		/// @brief Slot executed when reyn tells the control that it needs
-		/// user credentials.
-		void credentialsNeeded();
-
 		/// @fn void requestTokensOK(ProcessWrapper res);
 		/// @brief Slot executed after getting OAuth Request tokens
 		/// @param res The process result
@@ -107,26 +78,6 @@ class AllowControl : public GenericControl
 		/// @brief Slot executed after getting OAuth Access tokens
 		/// @param res The process result
 		void accessTokensOK(ProcessWrapper res);
-
-	protected:
-		/// @property login_control
-		/// @brief Control behind the authentication popup
-		Q_PROPERTY(LoginControl * login_control
-				   READ getLoginControl
-				   WRITE setLoginControl)
-
-		/// @brief Value behind login_control property
-		LoginControl * control;
-
-	private:
-		/// @fn void allowWiring();
-		/// @brief Wiring for authentication process
-		void allowWiring();
-
-		/// @fn void allowUnwiring();
-		/// @brief Disconnect what was connected while executing
-		/// <code>allowWiring();</code>.
-		void allowUnwiring();
 };
 
 #endif // ALLOWCONTROL_HPP

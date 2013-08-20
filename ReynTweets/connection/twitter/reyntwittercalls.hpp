@@ -175,18 +175,6 @@ class ReynTwitterCalls : public GenericCalls
 		/// @see https://dev.twitter.com/docs/api/1/get/oauth/authorize
 		void authorize(bool forceLogin = false, QString writeLogin = "");
 
-		/// @fn void postAuthorize(QString login,
-		///						   QString password,
-		///						   bool deny);
-		/// @brief POST authorize() requests to allow or to deny the application.
-		/// @param login User login, i.e. its username or its email
-		/// @param password User password
-		/// @param deny Boolean indicating if the application must be denied
-		/// (true) or authorized (false).
-		void postAuthorize(QString login,
-						   QString password,
-						   bool deny);
-
 		/// @fn void accessToken(QByteArray verifier);
 		/// @brief Method for getting an access token
 		/// @param verifier The OAuth Verifier needed for getting Access tokens.

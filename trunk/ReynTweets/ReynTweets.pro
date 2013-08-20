@@ -295,7 +295,6 @@ TRANSLATIONS = reyntweets_en.ts reyntweets_fr.ts
 # RMDIR_CMD : Command to delete directories
 # RMFILE_CMD : Command to delete files
 # COPY_CMD : Command to copy files
-# SRC_FOLDER : Source folder
 
 win32 {
 	# Leave an empty line because of the backslash at the end of the variable
@@ -313,8 +312,6 @@ linux-g++ {
 	COPY_CMD = cp -v
 }
 
-SRC_FOLDER = ..$${SEPARATOR}ReynTweets$${SEPARATOR}
-
 
 #-----------------------#
 # Documentation targets #
@@ -325,12 +322,12 @@ win32 {
 }
 
 linux-g++ {
-	DOXYGEN_CMD = doxygen
+    DOXYGEN_CMD = /usr/bin/doxygen
 }
 
 # Create doc
 doc.target = doc
-doc.commands = $${DOXYGEN_CMD} $${SRC_FOLDER}Doxyfile.txt
+doc.commands = $${DOXYGEN_CMD} $${PWD}Doxyfile.txt
 
 # Clean doc
 cleandoc.target = cleandoc
@@ -345,11 +342,11 @@ QMAKE_EXTRA_TARGETS += doc cleandoc
 #---------------------#
 
 # Folder containing translations
-TR_FOLDER = $${SRC_FOLDER}i18n$${SEPARATOR}
+TR_FOLDER = $${PWD}i18n$${SEPARATOR}
 
 # lupdate
-LUPDATE_FR = lupdate -noobsolete $${SRC_FOLDER} -ts $${TR_FOLDER}reyntweets_fr.ts
-LUPDATE_EN = lupdate -noobsolete $${SRC_FOLDER} -ts $${TR_FOLDER}reyntweets_en.ts
+LUPDATE_FR = lupdate -noobsolete $${PWD} -ts $${TR_FOLDER}reyntweets_fr.ts
+LUPDATE_EN = lupdate -noobsolete $${PWD} -ts $${TR_FOLDER}reyntweets_en.ts
 
 trupdate.target = trupdate
 win32 {

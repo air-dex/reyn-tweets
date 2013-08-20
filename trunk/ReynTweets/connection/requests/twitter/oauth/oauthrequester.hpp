@@ -26,39 +26,42 @@
 
 #include "../twitterrequester.hpp"
 
+/// @brief Input name of the button to cancel the authorize process
+extern QString DENY_NAME;
+
 /// @class OAuthRequester
 /// @brief Generic requester for requests dealing with OAuth
 class OAuthRequester : public TwitterRequester
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		/// @fn OAuthRequester(RequestType type,
-		///					   QString url,
-		///					   OAuthManager &authManager,
-		///					   ErrorType parseErrorType,
-		///					   bool tokenNeeded = true,
-		///					   bool callbackURLNeeded = false,
-		///					   bool verifierNeeded = false);
-		/// @brief Constructor
-		/// @param type Type of the request (GET ou POST).
-		/// @param url URL of the request
-		/// @param authManager Information for OAuth. The requester takes its
-		/// memory address.
-		/// @param parseErrorType Error type while parsing. It is not JSON.
-		/// @param tokenNeeded Boolean indicating if the oauth_token parameter
-		/// is required for authentication.
-		/// @param callbackURLNeeded Boolean indicating if the oauth_callback
-		/// parameter is required for authentication.
-		/// @param verifierNeeded Boolean indicating if the oauth_verifier
-		/// parameter is required for authentication.
-		OAuthRequester(RequestType type,
-					   QString url,
-					   OAuthManager &authManager,
-					   ErrorType parseErrorType,
-					   bool tokenNeeded = true,
-					   bool callbackURLNeeded = false,
-					   bool verifierNeeded = false);
+    public:
+        /// @fn OAuthRequester(RequestType type,
+        ///					   QString url,
+        ///					   OAuthManager &authManager,
+        ///					   ErrorType parseErrorType,
+        ///					   bool tokenNeeded = true,
+        ///					   bool callbackURLNeeded = false,
+        ///					   bool verifierNeeded = false);
+        /// @brief Constructor
+        /// @param type Type of the request (GET ou POST).
+        /// @param url URL of the request
+        /// @param authManager Information for OAuth. The requester takes its
+        /// memory address.
+        /// @param parseErrorType Error type while parsing. It is not JSON.
+        /// @param tokenNeeded Boolean indicating if the oauth_token parameter
+        /// is required for authentication.
+        /// @param callbackURLNeeded Boolean indicating if the oauth_callback
+        /// parameter is required for authentication.
+        /// @param verifierNeeded Boolean indicating if the oauth_verifier
+        /// parameter is required for authentication.
+        OAuthRequester(RequestType type,
+                       QString url,
+                       OAuthManager &authManager,
+                       ErrorType parseErrorType,
+                       bool tokenNeeded = true,
+                       bool callbackURLNeeded = false,
+                       bool verifierNeeded = false);
 };
 
 #endif // OAUTHREQUESTER_HPP

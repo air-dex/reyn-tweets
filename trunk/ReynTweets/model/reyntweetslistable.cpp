@@ -34,7 +34,7 @@
 // Constructor
 template <class S>
 ReynTweetsListable<S>::ReynTweetsListable() :
-	QList<S>()
+    QList<S>()
 {}
 
 // Destructor
@@ -44,16 +44,16 @@ ReynTweetsListable<S>::~ReynTweetsListable() {}
 // Copy constructor
 template <class S>
 ReynTweetsListable<S>::ReynTweetsListable(const ReynTweetsListable<S> & list) :
-	QList<S>()
+    QList<S>()
 {
-	recopie(list);
+    recopie(list);
 }
 
 // Affrection operator
 template <class S>
 const ReynTweetsListable<S> & ReynTweetsListable<S>::operator=(const ReynTweetsListable<S> & list) {
-	recopie(list);
-	return *this;
+    recopie(list);
+    return *this;
 }
 
 // Copy of a ReynTweetsListable
@@ -62,12 +62,12 @@ void ReynTweetsListable<S>::recopie(const ReynTweetsListable<S> & list) {
     this->clear();
 
     for (typename ReynTweetsListable<S>::const_iterator it = list.begin();
-		 it != list.end();
-		 ++it)
-	{
-		S serializable = *it;
-		append(serializable);
-	}
+         it != list.end();
+         ++it)
+    {
+        S serializable = *it;
+        this->append(serializable);
+    }
 }
 
 ////////////////////////
@@ -79,31 +79,31 @@ template <class S>
 void ReynTweetsListable<S>::fillWithVariant(QVariantList entities) {
     this->clear();
 
-	for (QVariantList::Iterator it = entities.begin();
-		 it != entities.end();
-		 ++it)
-	{
-		QVariant v = *it;
-		S entity;
-		entity.fillWithVariant(v.toMap());
-		append(entity);
-	}
+    for (QVariantList::Iterator it = entities.begin();
+         it != entities.end();
+         ++it)
+    {
+        QVariant v = *it;
+        S entity;
+        entity.fillWithVariant(v.toMap());
+        this->append(entity);
+    }
 }
 
 // Converting a list of serializables into a QVariantList
 template <class S>
 QVariantList ReynTweetsListable<S>::toVariant() const {
-	QVariantList res;
+    QVariantList res;
 
     for (typename ReynTweetsListable<S>::const_iterator it = this->begin();
          it != this->end();
-		 ++it)
-	{
-		S serializable = *it;
-		res.append(serializable.toVariant());
-	}
+         ++it)
+    {
+        S serializable = *it;
+        res.append(serializable.toVariant());
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -113,30 +113,30 @@ QVariantList ReynTweetsListable<S>::toVariant() const {
 
 template <class S>
 QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<S> & list) {
-	// Serialize the QVariantList form of the listable and putting it in the stream.
-	QJson::Serializer serializer;
-	QByteArray serializedListable = serializer.serialize(list.toVariant());
+    // Serialize the QVariantList form of the listable and putting it in the stream.
+    QJson::Serializer serializer;
+    QByteArray serializedListable = serializer.serialize(list.toVariant());
 
-	out << serializedListable;
+    out << serializedListable;
 
-	return out;
+    return out;
 }
 
 // Input stream operator for serialization
 template <class S>
 QDataStream & jsonStreamingIn(QDataStream & in, ReynTweetsListable<S> & list) {
-	QByteArray jsonedListable= "";
-	in >> jsonedListable;
+    QByteArray jsonedListable= "";
+    in >> jsonedListable;
 
-	QJson::Parser parser;
-	bool parseOK;
-	QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
+    QJson::Parser parser;
+    bool parseOK;
+    QVariant listableVariant = parser.parse(jsonedListable, &parseOK);
 
-	if (parseOK) {
-		list.fillWithVariant(listableVariant.toList());
-	}
+    if (parseOK) {
+        list.fillWithVariant(listableVariant.toList());
+    }
 
-	return in;
+    return in;
 }
 /*
 /// @fn QDataStream & jsonStreamingOut(QDataStream & out, const ReynTweetsListable<ReynTweetsMappables> & list);

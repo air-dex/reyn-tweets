@@ -23,19 +23,22 @@
 
 #include "oauthrequester.hpp"
 
+// Cancel button name
+QString DENY_NAME = "cancel";
+
 // Constructor
 OAuthRequester::OAuthRequester(RequestType type,
-							   QString url,
-							   OAuthManager &authManager,
-							   ErrorType parseErrorType,
-							   bool tokenNeeded,
-							   bool callbackURLNeeded,
-							   bool verifierNeeded) :
-	TwitterRequester(type,
-					 url,
-					 authManager,
-					 parseErrorType,
-					 tokenNeeded,
-					 callbackURLNeeded,
-					 verifierNeeded)
+                               QString url,
+                               OAuthManager &authManager,
+                               ErrorType parseErrorType,
+                               bool tokenNeeded,
+                               bool callbackURLNeeded,
+                               bool verifierNeeded) :
+    TwitterRequester(type,
+                     url,
+                     authManager,
+                     parseErrorType,
+                     tokenNeeded,
+                     callbackURLNeeded,
+                     verifierNeeded)
 {}

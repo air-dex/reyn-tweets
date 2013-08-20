@@ -28,16 +28,16 @@
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
-	OAuthRequester(GET,
-				   TwitterURL::AUTHORIZE_URL,
-				   authManager,
-				   HTML_PARSING)
+    OAuthRequester(GET,
+                   TwitterURL::AUTHORIZE_URL,
+                   authManager,
+                   HTML_PARSING)
 {}
 
 // Building GET Parameters
 void AuthorizeRequester::buildGETParameters() {
-	getParameters.insert("oauth_token",
-						 QString::fromAscii(oauthManager.getOAuthToken().data()));
+    getParameters.insert("oauth_token",
+                         QString::fromAscii(oauthManager.getOAuthToken().data()));
 }
 
 // Parsing results
@@ -96,6 +96,8 @@ QVariant AuthorizeRequester::parseResult(bool &parseOK, QVariantMap &parsingErro
 				oauthManager.setDeny(inputValue);
 				denyFound = true;
 			}
+			
+			// Hotfix. Remove it after Qt5 port and Authorization refactoring.
 			oauthManager.setDeny("cancel");
 			denyFound = true;
 

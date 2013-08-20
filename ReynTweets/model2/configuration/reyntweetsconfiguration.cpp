@@ -229,7 +229,7 @@ QString ReynTweetsConfiguration::getTwitLongerAppName() {
 }
 
 // twitlonger_api_key
-QString ReynTweetsConfiguration::twitlonger_api_key_pn = "twitlonger_api_key";
+QString ReynTweetsConfiguration::TWITLONGER_API_KEY_PN = "twitlonger_api_key";
 
 QByteArray ReynTweetsConfiguration::getTwitLongerAPIKey() {
 	return twitlongerAPIKey;

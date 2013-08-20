@@ -28,7 +28,8 @@
 #include "../../controls/listhandlers/geocoordhandler.hpp"
 
 /// @class Coordinates
-/// @brief Class representing coordinates
+/// @brief Class representing coordinates.
+/// @see https://dev.twitter.com/docs/platform-objects/tweets#obj-coordinates
 class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 {
 	Q_OBJECT
@@ -64,6 +65,16 @@ class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 		/// @fn void reset();
 		/// @brief Resets the mappable to a default value
 		void reset();
+
+		/// @fn qreal getLongitude();
+		/// @brief Getting the longitude of the point
+		/// @return coordinates.x
+		qreal getLongitude();
+
+		/// @fn qreal getLatitude();
+		/// @brief Getting the latitude of the point
+		/// @return coordinates.y
+		qreal getLatitude();
 
 	protected:
 		//////////////////////////

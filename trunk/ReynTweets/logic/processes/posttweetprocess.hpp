@@ -25,6 +25,7 @@
 #define POSTTWEETPROCESS_HPP
 
 #include "singletwittercallprocess.hpp"
+#include "../core/tweets/tweet.hpp"
 
 /// @class PostTweetProcess
 /// @brief Process to update a tweet (aka tweeting) without medias.
@@ -33,78 +34,25 @@ class PostTweetProcess : public SingleTwitterCallProcess
 	Q_OBJECT
 
 	public:
-		/// @fn PostTweetProcess(QString status,
-		///						 QString replyTostatusID = "-1",
+		/// @fn PostTweetProcess(Tweet status,
 		///						 bool userIDonly = true,
-		///						 float lat = -361,
-		///						 float lon = -361,
-		///						 QString place = "",
 		///						 bool showCoord = false);
 		/// @brief Constructor
-		/// @param status Text of the tweet
-		/// @param replyTostatusID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
+		/// @param status Tweet to post.
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param lat For geolocation, your longitude.
-		/// @param lon For geolocation, your latitude.
-		/// @param place For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
 		/// @param showCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
-		PostTweetProcess(QString status,
-						 QString replyTostatusID = "-1",
+		PostTweetProcess(Tweet status,
 						 bool userIDonly = true,
-						 float lat = -361,
-						 float lon = -361,
-						 QString place = "",
 						 bool showCoord = false);
-
-		/// @fn PostTweetProcess(QString status,
-		///						 qlonglong replyTostatusID = -1,
-		///						 bool userIDonly = true,
-		///						 float lat = -361,
-		///						 float lon = -361,
-		///						 QString place = "",
-		///						 bool showCoord = false);
-		/// @brief Constructor
-		/// @param status Text of the tweet
-		/// @param replyTostatusID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		/// @param lat For geolocation, your longitude.
-		/// @param lon For geolocation, your latitude.
-		/// @param place For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
-		/// @param showCoord Displaying the coordonates of the tweet
-		/// with a pin on a map
-		PostTweetProcess(QString status,
-						 qlonglong replyTostatusID = -1,
-						 bool userIDonly = true,
-						 float lat = -361,
-						 float lon = -361,
-						 QString place = "",
-						 bool showCoord = false);
-
-
 
 	protected:
-		/// @brief Text to post
-		QString tweet;
-
-		/// @brief ID of the tweet that this status replies to
-		qlonglong replyToTweetID;
+		/// @brief Tweet to post. It almost contains all that the Twitter API
+		/// needs for updating it.
+		Tweet tweet;
 
 		/// @brief Only include the userID in the "user" field of a tweet
 		bool trimUser;
-
-		/// @brief Longitude of the tweet
-		float longitude;
-
-		/// @brief Latitude of the tweet
-		float latitude;
-
-		/// @brief place where the tweet was supposed to be sent
-		QString reversePlace;
 
 		/// @brief Displaying coordonates on a map
 		bool displayCoord;

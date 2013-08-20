@@ -50,6 +50,10 @@ class TwitLongerRequester : public GenericRequester
 		/// @brief Manager with TwitLonger IDs.
 		TwitLongerAuthenticator & twitlongerManager;
 
+		/// @fn virtual void buildHTTPHeaders();
+		/// @brief Virtual method building headers
+		virtual void buildHTTPHeaders();
+
 		/// @fn virtual QVariant parseResult(NetworkResponse results,
 		///									 bool & parseOK,
 		///									 QVariantMap & parsingErrors);

@@ -34,6 +34,14 @@ TwitLongerRequester::TwitLongerRequester(HTTPRequestType type,
 	twitlongerManager(manager)
 {}
 
+// Building HTTP Headers
+void TwitLongerRequester::buildHTTPHeaders() {
+	GenericRequester::buildHTTPHeaders();
+
+	// Content type
+	headers.insert("Content-Type", "application/x-www-form-urlencoded");
+}
+
 // Method that will parse the raw results of the request.
 QVariant TwitLongerRequester::parseResult(NetworkResponse results,
 										  bool &parseOK,

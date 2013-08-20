@@ -23,10 +23,13 @@
 
 #include "geocoord.hpp"
 
+// Constant for fake coordinates
+qreal GeoCoord::FAKE_COORD = 361;
+
 // Default constructor
 GeoCoord::GeoCoord() :
 	JsonArray<double>(),
-	QPointF()
+	QPointF(FAKE_COORD, FAKE_COORD)
 {}
 
 // Destructor
@@ -35,7 +38,7 @@ GeoCoord::~GeoCoord() {}
 // Copy constructor
 GeoCoord::GeoCoord(const GeoCoord & coord) :
 	JsonArray<double>(),
-	QPointF()
+	QPointF(FAKE_COORD, FAKE_COORD)
 {
 	recopie(coord);
 }

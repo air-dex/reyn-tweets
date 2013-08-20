@@ -66,10 +66,10 @@ void GenericRequester::setParsingErrorType(NetworkResultType parseErrorType) {
 // Building GET Parameters
 void GenericRequester::buildGETParameters() {}
 
-// Bbuilding POST Parameters
+// Building POST Parameters
 void GenericRequester::buildPOSTParameters() {}
 
-// Bbuilding HTTP Headers
+// Building HTTP Headers
 void GenericRequester::buildHTTPHeaders() {}
 
 // Executing the request

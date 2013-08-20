@@ -43,24 +43,33 @@ class WriteTweetControl : public GenericControl
 		/// @brief Declaring WriteTweetControl to the QML system
 		static void declareQML();
 
-		/// @fn Q_INVOKABLE void postTweet(QString tweet,
-		///								   QString inReplyToTweetID = -1);
+		/// @fn Q_INVOKABLE void postTweet();
 		/// @brief Posting a tweet without medias
-		/// @param tweet The text of the tweet
-		/// @param inReplyToTweetID ID of the tweet that the tweet replies to.
-		Q_INVOKABLE void postTweet(QString tweet,
-								   QString inReplyToTweetID = "-1");
+		Q_INVOKABLE void postTweet();
 
-		/// @fn Q_INVOKABLE void postViaTwitLonger(QString tweet,
-		///										   QString inReplyToTweetID = "-1",
-		///										   QString inReplyToUser = "");
+		/// @fn Q_INVOKABLE void postViaTwitLonger();
 		/// @brief Posting a long tweet using TwitLonger
-		/// @param tweet The text of the tweet
-		/// @param inReplyToTweetID ID of the tweet that the tweet replies to.
-		/// @param inReplyToUser Username of the user that the tweet replies to.
-		Q_INVOKABLE void postViaTwitLonger(QString tweet,
-										   QString inReplyToTweetID = "-1",
-										   QString inReplyToUser = "");
+		Q_INVOKABLE void postViaTwitLonger();
+
+	protected:
+		// Tweet to update (future_tweet)
+		/// @property future_tweet
+		/// @brief Backend tweet getting all the informations that will be sent
+		/// to Twitter while posting it.
+		///
+		/// futureStatus is the attribute beneath this property.
+		Q_PROPERTY(Tweet * future_tweet
+				   READ getFutureTweet
+				   NOTIFY futureTweetChanged)
+
+		/// @brief Backend tweet getting all the informations that will be sent
+		/// to Twitter while posting it.
+		Tweet futureStatus;
+
+		/// @fn Tweet * getFutureTweet();
+		/// @brief Reading future_tweet
+		/// @return A pointer on futureStatus
+		Tweet * getFutureTweet();
 
 
 	signals:
@@ -68,6 +77,10 @@ class WriteTweetControl : public GenericControl
 		/// @brief Signal sent if the tweet was posted successfully
 		/// @param newTweetVariant Posted tweet under a QVariant form.
 		void tweetPosted(QVariant newTweetVariant);
+
+		/// @fn void futureTweetChanged();
+		/// @brief Emitted when the future_tweet property changes its value.
+		void futureTweetChanged();
 
 	protected slots:
 		/// @fn void postTweetEnded(ProcessWrapper res);

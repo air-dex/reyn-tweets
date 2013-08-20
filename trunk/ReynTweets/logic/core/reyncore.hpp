@@ -252,118 +252,29 @@ class ReynCore : public QObject
 		/// tweet (when set to true).
 		void unfavoriteTweet(qlonglong id, bool includeEntities = true);
 
-		/// @fn void postTweet(QString tweet,
-		///					   qlonglong replyToTweetID,
+		/// @fn void postTweet(Tweet tweet,
 		///					   bool trimUser = false,
-		///					   float latitude = -361,
-		///					   float longitude = -361,
-		///					   QString reversePlace = "",
 		///					   bool displayCoord = false);
-		/// @brief Posting a tweet without media (ID qlonglong)
-		/// @param tweet Text of the tweet
-		/// @param replyToTweetID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
+		/// @brief Posting a tweet without media.
+		/// @param tweet Tweet to post
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your longitude.
-		/// @param latitude For geolocation, your latitude.
-		/// @param reversePlace For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
 		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
-		void postTweet(QString tweet,
-					   qlonglong replyToTweetID = -1,
+		void postTweet(Tweet tweet,
 					   bool trimUser = false,
-					   float latitude = -361,
-					   float longitude = -361,
-					   QString reversePlace = "",
 					   bool displayCoord = false);
 
-		/// @fn void postTweet(QString tweet,
-		///					   QString replyToTweetID = "-1",
-		///					   bool trimUser = false,
-		///					   float latitude = -361,
-		///					   float longitude = -361,
-		///					   QString reversePlace = "",
-		///					   bool displayCoord = false);
-		/// @brief Posting a tweet without media (ID QString)
-		/// @param tweet Text of the tweet
-		/// @param replyToTweetID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your longitude.
-		/// @param latitude For geolocation, your latitude.
-		/// @param reversePlace For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
-		/// @param displayCoord Displaying the coordonates of the tweet
-		/// with a pin on a map
-		/// @see https://dev.twitter.com/docs/api/1.1/post/statuses/update
-		void postTweet(QString tweet,
-					   QString replyToTweetID = "-1",
-					   bool trimUser = false,
-					   float latitude = -361,
-					   float longitude = -361,
-					   QString reversePlace = "",
-					   bool displayCoord = false);
-
-		/// @fn void postTweetViaTwitLonger(QString tweet,
-		///									qlonglong replyToTweetID = -1,
-		///									QString replyToUser = "",
+		/// @fn void postTweetViaTwitLonger(Tweet tweet,
 		///									bool trimUser = false,
-		///									float latitude = -361,
-		///									float longitude = -361,
-		///									QString reversePlace = "",
 		///									bool displayCoord = false);
-		/// @brief Posting a tweet via TwitLonger
+		/// @brief Posting a tweet (without media) via TwitLonger.
 		/// @param tweet Text of the tweet
-		/// @param replyToTweetID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param replyToUser If the tweet is a reply, this parameter is
-		/// the screen name of the tweet that this tweet replies to.
 		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your longitude.
-		/// @param latitude For geolocation, your latitude.
-		/// @param reversePlace For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
 		/// @param displayCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
-		void postTweetViaTwitLonger(QString tweet,
-									qlonglong replyToTweetID = -1,
-									QString replyToUser = "",
+		void postTweetViaTwitLonger(Tweet tweet,
 									bool trimUser = false,
-									float latitude = -361,
-									float longitude = -361,
-									QString reversePlace = "",
-									bool displayCoord = false);
-
-		/// @fn void postTweetViaTwitLonger(QString tweet,
-		///									QString replyToTweetID = "-1",
-		///									QString replyToUser = "",
-		///									bool trimUser = false,
-		///									float latitude = -361,
-		///									float longitude = -361,
-		///									QString reversePlace = "",
-		///									bool displayCoord = false);
-		/// @brief Posting a tweet via TwitLonger
-		/// @param tweet Text of the tweet
-		/// @param replyToTweetID If the tweet is a reply, this parameter is
-		/// the ID of the tweet that this tweet replies to.
-		/// @param replyToUser If the tweet is a reply, this parameter is
-		/// the screen name of the tweet that this tweet replies to.
-		/// @param trimUser In tweets, giving only the ID of the author (true).
-		/// @param longitude For geolocation, your longitude.
-		/// @param latitude For geolocation, your latitude.
-		/// @param reversePlace For geolocation, ID of the place where the tweet
-		/// is supposed to be sent
-		/// @param displayCoord Displaying the coordonates of the tweet
-		/// with a pin on a map
-		void postTweetViaTwitLonger(QString tweet,
-									QString replyToTweetID = "-1",
-									QString replyToUser = "",
-									bool trimUser = false,
-									float latitude = -361,
-									float longitude = -361,
-									QString reversePlace = "",
 									bool displayCoord = false);
 
 		/// @fn void retweet(qlonglong tweetID, bool trimUser = false);

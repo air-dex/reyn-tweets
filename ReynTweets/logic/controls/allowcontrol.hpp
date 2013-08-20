@@ -46,6 +46,13 @@ class AllowControl : public GenericControl
 		/// @brief Getting temporary tokens for the OAuth authentication flow.
 		Q_INVOKABLE void allowReynTweets();
 
+		/// @fn Q_INVOKABLE bool endAuth(QString postauthURL);
+		/// @brief Finishing the authentication
+		/// @param postauthURL URL after authenticating
+		/// @return true if it is the very end, false if the app is still in the
+		/// POST authorizing state.
+		Q_INVOKABLE bool endAuth(QString postauthURL);
+
 		/// @fn Q_INVOKABLE void getAccessTokens(QString verifier);
 		/// @brief Getting the final OAuth tokens after user authorization
 		/// (via the QML embedded browser)
@@ -120,6 +127,32 @@ class AllowControl : public GenericControl
 		/// @brief Disconnect what was connected while executing
 		/// <code>allowWiring();</code>.
 		void allowUnwiring();
+
+
+	////////////////////////////
+	// Authentication results //
+	////////////////////////////
+
+	public:
+		/// @enum AuthResult
+		/// @brief Enum to indicate if Reyn Tweets was authorized or denied.
+		enum AuthResult {
+			/// @brief Cannont conculed if Reyn Tweets was authorized or denied
+			NO_AUTH = -3,
+
+			/// @brief Reyn Tweets was authorized
+			AUTHORIZED,
+
+			/// @brief Reyn Tweets was denied
+			DENIED
+		};
+		Q_ENUMS(AuthResult)
+
+		/// @fn Q_INVOKABLE QVariantMap getAuthenticationResults(QString endAuthURL);
+		/// @brief Getting the authentication results.
+		/// @param endAuthURL URL containing the result
+		/// @return The corresponding results (GET arguments)
+		Q_INVOKABLE QVariantMap getAuthenticationResults(QString endAuthURL);
 };
 
 #endif // ALLOWCONTROL_HPP

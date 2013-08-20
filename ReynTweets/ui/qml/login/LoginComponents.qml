@@ -52,6 +52,7 @@ Item {
 		anchors.rightMargin: login_component.margin
 		anchors.verticalCenter: parent.verticalCenter
 		visible: false
+		allow_control: control
 	}
 
 	// Popup after denying ReynTweets
@@ -102,7 +103,7 @@ Item {
 
 	// Allowing Reyn Tweets
 	function allowReynTweets() {
-		login_popup.state = "UnknownValidity"
+		login_popup.state = ""
 		control.allowReynTweets();
 	}
 
@@ -119,7 +120,7 @@ Item {
 	/// @param visible Boolean indicating if login_popup has to be shown or hidden.
 	function showAuthPage(html, baseURL) {
 		login_component.visible = true;
-		login_popup.visible = true;
+		login_popup.visible = false;
 		login_popup.showAuthPage(html, baseURL);
 	}
 

@@ -27,6 +27,7 @@
 #include "genericcontrol.hpp"
 #include "../reyncore.hpp"
 #include "../../model/configuration/userconfiguration.hpp"
+#include "../../model/configuration/appconfiguration.hpp"
 
 /// @class SettingsControl
 /// @brief Control for managing the configuration
@@ -47,6 +48,13 @@ class SettingsControl : public GenericControl
 		/// @brief Saving changes in the configuration
 		Q_INVOKABLE void saveChanges();
 
+		/// @fn Q_INVOKABLE QString getCallbackURL();
+		/// @brief Gets the callback URL.
+		///
+		/// Needed for Twitter OAuth authentication.
+		/// @return The Twitter callback URL.
+		Q_INVOKABLE QString getCallbackURL();
+
 	signals:
 		/// @fn void configurationChanged();
 		/// @brief Emitted to notify changes about the configuration property
@@ -57,6 +65,9 @@ class SettingsControl : public GenericControl
 		void currentAccountChanged();
 
 	protected:
+		/// @brief Reyn Tweets' general settings
+		AppConfiguration & reynTweetsConf;
+
 		/// @brief Reference on the configuration of Reyn Tweets
 		UserConfiguration & conf;
 

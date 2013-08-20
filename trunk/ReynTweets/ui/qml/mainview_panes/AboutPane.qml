@@ -178,7 +178,7 @@ Rectangle {
 				anchors.topMargin: 2*margin
 
 				text: qsTr('Reyn Tweets is an open source Twitter client for \
-Windows, Linux and Symbian (version still unavailable) written in Qt.')
+Windows and Linux written in Qt.')
 				.concat('<br/><br/>')
 				.concat(qsTr('Reyn Tweets is free software: you can redistribute \
 it and/or modify it under the terms of the GNU Lesser General Public License as \

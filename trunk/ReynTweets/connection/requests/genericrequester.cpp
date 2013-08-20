@@ -78,10 +78,7 @@ void GenericRequester::buildPOSTParameters() {}
 // Bbuilding HTTP Headers
 void GenericRequester::buildHTTPHeaders() {
 	// Be careful for update with medias
-	#ifndef Q_OS_SYMBIAN
-		// Needed for Qt 4.8.x (Windows and Linux) and Symbian version is 4.7.4.
-		headers.insert("Content-Type", "application/x-www-form-urlencoded");
-	#endif
+	//headers.insert("Content-Type", "application/x-www-form-urlencoded");
 }
 
 // Executing the request

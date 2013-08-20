@@ -131,9 +131,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	#ifdef Q_OS_LINUX
 		QLatin1String mainQMLFile("./ui/qml/main_desktop.qml");
 	#endif
-	#ifdef Q_OS_SYMBIAN
-		QLatin1String mainQMLFile("./ui/qml/main_symbian.qml");
-	#endif
 
 	QtQuick2ApplicationViewer viewer;
 	viewer.setTitle("Reyn Tweets");

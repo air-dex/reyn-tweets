@@ -277,7 +277,7 @@ win32 {
 	RC_FILE = ReynTweets.rc
 }
 
-# TODO : Linux, Symbian
+# TODO : Linux
 
 
 #--------------#
@@ -403,35 +403,6 @@ DEPLOYMENTFOLDERS = qml_files \
 	conf_files
 
 
-#-------#
-# QJSON #
-#-------#
-
-# QJSON (http://qjson.sourceforge.net/) is an open source parser for JSON
-# written in Qt (LGPLv2.1 license). It is compatible with Windows, Mac, Linux,
-# Symbian and MeeGo.
-# QJSON_PATH is the location of QJSON in the system.
-
-win32 {
-	QJSON_PATH = C:\\Libs\\qjson
-	LIB_QJSON = qjson0
-}
-
-linux-g++ {
-	QJSON_PATH = /home/ducher/Libs/qjson
-	LIB_QJSON = qjson
-}
-
-INCLUDEPATH += $${QJSON_PATH}$${SEPARATOR}include
-LIBS += -L$${QJSON_PATH}$${SEPARATOR}lib -l$${LIB_QJSON}
-
-symbian {
-#	QJSON_PATH = # TODO
-#	INCLUDEPATH += c:\Libs\Qjson\include
-#	LIBS += -Lc:\Libs\Qjson\lib -lqjson
-}
-
-
 #---------------------------#
 # Qt Components for Desktop #
 #---------------------------#
@@ -465,35 +436,6 @@ linux {
 }
 
 
-#-------------------------------#
-# Symbian special configuration #
-#-------------------------------#
-
-CONFIG += mobility
-MOBILITY =
-
-# Add dependency to Symbian components
-CONFIG += qt-components
-
-symbian {
-
-TARGET.UID3 = 0xE541D97B
-#TARGET.EPOCSTACKSIZE = 0x14000
-#TARGET.EPOCHEAPSIZE = 0x020000 0x800000
-
-# Allow network access on Symbian
-TARGET.CAPABILITY += NetworkServices
-
-# Smart Installer package's UID
-# This UID is from the protected range and therefore the package will
-# fail to install if self-signed. By default qmake uses the unprotected
-# range value if unprotected UID is defined for the application and
-# 0x2002CCCF value if protected UID is given to the application
-#DEPLOYMENT.installer_header = 0x2002CCCF
-
-}
-
-
 #--------------#
 # Miscanellous #
 #--------------#
@@ -505,9 +447,6 @@ QML_IMPORT_PATH =
 # lines and add the respective components to the MOBILITY variable.
 # CONFIG += mobility
 # MOBILITY +=
-
-# Speed up launching on MeeGo/Harmattan when using applauncherd daemon
-# CONFIG += qdeclarative-boostable
 
 # Please do not modify the following two lines. Required for deployment.
 include(ui/qtquick2applicationviewer.pri)

@@ -27,7 +27,7 @@
 #define REQUESTINFOS_HPP
 
 #include <QObject>
-#include "../requests/genericrequester.hpp"
+#include "../../requests/genericrequester.hpp"
 
 /// @class RequestInfos
 /// @brief Class containing the entity which asks for the request (the "asker")

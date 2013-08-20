@@ -26,7 +26,7 @@
 
 #include <QNetworkRequest>
 #include "twittercommunicator.hpp"
-#include "../../tools/utils.hpp"
+#include "../../../tools/utils.hpp"
 
 // Network manager
 #ifdef Q_OS_WIN

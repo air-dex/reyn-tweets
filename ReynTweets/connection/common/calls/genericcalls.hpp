@@ -25,9 +25,9 @@
 #define GENERICCALLS_HPP
 
 #include <QObject>
-#include "../requests/genericrequester.hpp"
-#include "../model/resultwrapper.hpp"
-#include "../model/requestermanager.hpp"
+#include "../../requests/genericrequester.hpp"
+#include "../../model/resultwrapper.hpp"
+#include "requestermanager.hpp"
 
 /// @class GenericCalls
 /// @brief Base class for all classes which manage calls to services.

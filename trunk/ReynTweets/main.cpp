@@ -26,7 +26,7 @@
 #include <QTranslator>
 #include <QIcon>
 #include "ui/qtquick2applicationviewer.hpp"
-#include "logic/controls/controls.hpp"
+#include "logic/controls/declarecontrols.hpp"
 #include "model/declaremodel.hpp"
 
 #ifdef Q_OS_LINUX
@@ -44,14 +44,7 @@ void initReynTweetsSystem() {
 /// @brief Declares all the controls and classes used by QML widgets
 void declareReynTweetsControls() {
 	declareQMLModel();
-	WriteTweetControl::declareQML();
-	AllowControl::declareQML();
-	LaunchingControl::declareQML();
-	LoginControl::declareQML();
-	TimelineControl::declareQML();
-	TweetControl::declareQML();
-	SettingsControl::declareQML();
-	ReynControl::declareQML();
+	declareQMLControls();
 }
 
 /// @fn void loadTranslation(QScopedPointer<QApplication> & a);

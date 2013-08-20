@@ -1,8 +1,8 @@
-#------------------------------------------#
-# reyntweetsui.pri                         #
-# .pri sub project file related to the GUI #
-# Author : Romain Ducher                   #
-#------------------------------------------#
+#------------------------------------------------------------#
+# resources.pri                                              #
+# .pri sub project file related to the (graphical) resources #
+# Author : Romain Ducher                                     #
+#------------------------------------------------------------#
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -26,30 +26,26 @@
 #-----------------------------------------------------------------------------#
 
 OTHER_FILES = \
-	ui/qmlapplicationviewer.pri \
-	ui/qml/tools.js \
-	ui/qml/twitter-text-js-wrapper.js \
-	ui/qml/twitter-text-1.4.16.js \
-	ui/qml/twitter-text-1.6.1.js
+	resources/ReynTweets.rc \
+	resources/Logo Reyn Tweets.svg \
+	resources/Logo Reyn Tweets.png
 
 
-#------------------------#
-# Folders with QML files #
-#------------------------#
+#----------------------#
+# Icon for the program #
+#----------------------#
+win32 {
+	RC_FILE = resources/ReynTweets.rc
+}
 
-# QML files
-qml_files.source = ui/qml
-qml_files.target = ui
+# TODO : Linux
 
-DEPLOYMENTFOLDERS += qml_files
+#------------------------------------------------#
+# Graphical resources to deploy with the program #
+#------------------------------------------------#
 
+# Resources
+resource.source = resources
+resource.target = .
 
-#--------------#
-# Miscanellous #
-#--------------#
-
-# Additional import path used to resolve QML modules in Creator's code model
-QML_IMPORT_PATH =
-
-# Required for deployment.
-include(qtquick2applicationviewer.pri)
+DEPLOYMENTFOLDERS += resource

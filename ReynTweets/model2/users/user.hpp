@@ -1,12 +1,10 @@
 /// @file user.hpp
 /// @brief Header of User
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -23,15 +21,15 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef USER_HPP
-#define USER_HPP
-/*
-#include "../reyntweetslistable.hpp"
+#ifndef USER2_HPP
+#define USER2_HPP
+
+#include "../json/jsonarray.hpp"
 #include "../tweets/tweet.hpp"
 
 /// @class User
 /// @brief Person who uses Twitter
-class User : public UserInfos
+class User2 : public UserInfos2
 {
 	Q_OBJECT
 
@@ -43,22 +41,22 @@ class User : public UserInfos
 	public:
 		/// @fn User();
 		/// @brief Default constructor
-		User();
+		User2();
 
 		/// @fn virtual ~User();
 		/// @brief Destructor
-		virtual ~User();
+		virtual ~User2();
 
 		/// @fn User(const User & user);
 		/// @brief Copy constructor
 		/// @param user User to copy
-		User(const User & user);
+		User2(const User2 & user);
 
 		/// @fn const User & operator=(const User & user);
 		/// @brief Affectation
 		/// @param user User to copy
 		/// @return Copy of the original user
-		const User & operator=(const User & user);
+		const User2 & operator=(const User2 & user);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
@@ -72,11 +70,28 @@ class User : public UserInfos
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
+
+		/// @fn virtual void fillWithJSON(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
+		///
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithJSON(QJsonObject json);
+
+		/// @fn virtual QJsonObject toJSON() const;
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toJSON() const;
+
 	private:
 		/// @fn void recopie(const User & user);
 		/// @brief Copy of a User
 		/// @param user User to copy
-		void recopie(const User & user);
+		void recopie(const User2 & user);
 
 		// Friends serialization operators
 
@@ -85,14 +100,14 @@ class User : public UserInfos
 		/// @param out The output stream
 		/// @param user Object to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator<<(QDataStream & out, const User & user);
+		friend QDataStream & operator<<(QDataStream & out, const User2 & user);
 
 		/// @fn friend QDataStream & operator>>(QDataStream & in, User & user);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param user Object to put in the stream
 		/// @return The stream with the object
-		friend QDataStream & operator>>(QDataStream & in, User & user);
+		friend QDataStream & operator>>(QDataStream & in, User2 & user);
 
 
 	///////////////////////////
@@ -103,9 +118,15 @@ class User : public UserInfos
 		// status
 		/// @property status
 		/// @brief Serializable form of lastTweet
+		///
+		/// lastTweet is the attribute beneath this property.
 		Q_PROPERTY(QVariantMap status
 				   READ getStatusProperty
-				   WRITE setStatus)
+				   WRITE setStatus
+				   NOTIFY statusChanged)
+
+		/// @brief Name of the property status
+		static QString STATUS_PN;
 
 		/// @fn QVariantMap getStatusProperty();
 		/// @brief Reading the "status" property
@@ -117,6 +138,33 @@ class User : public UserInfos
 		/// @param statusMap The new value of the property
 		void setStatus(QVariantMap statusMap);
 
+		/// @property last_status
+		/// @brief Serializable form of lastTweet
+		///
+		/// lastTweet is the attribute beneath this property.
+		Q_PROPERTY(Tweet2 * last_status
+				   READ getStatusPtr
+				   WRITE setStatus
+				   NOTIFY statusChanged)
+
+		/// @brief Name of the property last_status
+		static QString LAST_STATUS_PN;
+
+		/// @fn Tweet2 * getStatusProperty();
+		/// @brief Reading the "status" property
+		/// @return lastTweetMap
+		Tweet2 * getStatusPtr();
+
+		/// @fn void setStatus(Tweet2 * statusMap);
+		/// @brief Writing the status property
+		/// @param statusMap The new value of the property
+		void setStatus(Tweet2 * statusMap);
+
+	signals:
+		/// @fn void statusChanged();
+		/// @brief Signal emitted when the property status changes.
+		void statusChanged();
+
 
 	/////////////////////
 	// User management //
@@ -124,7 +172,7 @@ class User : public UserInfos
 
 	protected:
 		/// @brief Last tweet posted by the user
-		Tweet lastTweet;
+		Tweet2 lastTweet;
 
 
 	////////////////////////
@@ -132,37 +180,38 @@ class User : public UserInfos
 	////////////////////////
 
 	public:
+		// status
 		/// @fn Tweet getStatus();
 		/// @brief Getter on the last tweet written by the user
 		/// @return The value of the last tweet written by the user
-		Tweet getStatus();
+		Tweet2 getStatus();
 
 		/// @fn void setStatus(Tweet newLastTweet);
 		/// @brief Setter on the last tweet written by the user
 		/// @param newLastTweet The new value of the last tweet written by the user
-		void setStatus(Tweet newLastTweet);
+		void setStatus(Tweet2 newLastTweet);
 };
 
 // Serialization of User
-Q_DECLARE_METATYPE(User)
+Q_DECLARE_METATYPE(User2)
 
 /// @fn QDataStream & operator<<(QDataStream & out, const User & user);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
 /// @param user Object to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const User & user);
+QDataStream & operator<<(QDataStream & out, const User2 & user);
 
 /// @fn QDataStream & operator>>(QDataStream & in, User & user);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param user Object to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, User & user);
+QDataStream & operator>>(QDataStream & in, User2 & user);
 
 
-/// @typedef ReynTweetsSerializableList<User> UserList;
+/// @typedef JsonArray<User> UserList;
 /// @brief Shortcut for lists of users
-typedef ReynTweetsListable<User> UserList;
-//*/
+typedef JsonArray<User2> UserList;
+
 #endif // USER_HPP

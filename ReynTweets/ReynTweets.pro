@@ -158,7 +158,7 @@ SOURCES += \
 	model2/tweets/tweetentities.cpp \
 	model2/tweets/retweetinfos.cpp \
 	model2/users/userinfos.cpp \
-	#model2/users/user.cpp \
+	model2/users/user.cpp \
 	model2/geo/coordinates.cpp \
 	model2/geo/geocoord.cpp \
 	model2/geo/geocoordlist.cpp \
@@ -286,7 +286,7 @@ HEADERS  += \
 	model2/json/jsonobject.hpp \
 	model2/json/jsonarray.hpp \
 	model2/json/jsonarray.tpp \
-	#model2/tweets/tweet.hpp \
+	model2/tweets/tweet.hpp \
 	model2/tweets/indexbounds.hpp \
 	model2/tweets/tweetentity.hpp \
 	model2/tweets/hashtag.hpp \
@@ -302,7 +302,7 @@ HEADERS  += \
 	model2/tweets/tweetentities.hpp \
 	model2/tweets/retweetinfos.hpp \
 	model2/users/userinfos.hpp \
-	#model2/users/user.hpp \
+	model2/users/user.hpp \
 	model2/geo/coordinates.hpp \
 	model2/geo/geocoord.hpp \
 	model2/geo/geocoordlist.hpp \

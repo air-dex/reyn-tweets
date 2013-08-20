@@ -1,12 +1,10 @@
 /// @file user.cpp
 /// @brief Implementation of User
-///
-/// Revisions older than r243 was in /trunk/ReynTwets/model
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -26,67 +24,87 @@
 #include <QtQml>
 #include "user.hpp"
 #include "../../tools/utils.hpp"
-/*
+
 //////////////////////////////
 // Serialization management //
 //////////////////////////////
 
 // Default constructor
-User::User() :
-	UserInfos(),
+User2::User2() :
+	UserInfos2(),
 	lastTweet()
 {}
 
 // Destructor
-User::~User() {}
+User2::~User2() {}
 
 // Copy constructor
-User::User(const User & user) :
-	UserInfos()
+User2::User2(const User2 & user) :
+	UserInfos2()
 {
 	recopie(user);
 }
 
 // Affectation operator
-const User & User::operator=(const User & user) {
+const User2 & User2::operator=(const User2 & user) {
 	recopie(user);
 	return *this;
 }
 
 // Copy of a User
-void User::recopie(const User & user) {
-	UserInfos::recopie(user);
+void User2::recopie(const User2 & user) {
+	UserInfos2::recopie(user);
 	lastTweet = user.lastTweet;
 }
 
 // Serialization declaration
-void User::initSystem() {
-	qRegisterMetaTypeStreamOperators<User>("User");
-	qMetaTypeId<User>();
+void User2::initSystem() {
+	qRegisterMetaTypeStreamOperators<User2>("User2");
+	qMetaTypeId<User2>();
 }
 
 // Declaring to the QML components
-void User::declareQML() {
-	qmlRegisterType<User>("ReynTweetsEntities",
+void User2::declareQML() {
+	qmlRegisterType<User2>("ReynTweetsEntities",
 						  0, 2,
-						  "User");
+						  "User2");
 }
 
 // Friends serialization operators
 
 // Output stream operator for serialization
-QDataStream & operator<<(QDataStream & out, const User & user) {
-	return jsonStreamingOut(out, user);
+QDataStream & operator<<(QDataStream & out, const User2 & user) {
+	return user.writeInStream(out);
 }
 
 // Input stream operator for serialization
-QDataStream & operator>>(QDataStream & in, User & user) {
-	return jsonStreamingIn(in, user);
+QDataStream & operator>>(QDataStream & in, User2 & user) {
+	return user.fillWithStream(in);
 }
 
 // Resets the mappable to a default value
-void User::reset() {
-	*this = User();
+void User2::reset() {
+	*this = User2();
+}
+
+
+/////////////////////
+// JSON conversion //
+/////////////////////
+
+// Filling the object with a QJsonObject.
+void User2::fillWithJSON(QJsonObject json) {
+	UserInfos2::fillWithJSON(json);
+	this->lastTweet.fillWithJSON(json.value(STATUS_PN).toObject());
+}
+
+// Getting a QJsonObject representation of the object
+QJsonObject User2::toJSON() const {
+	QJsonObject json = UserInfos2::toJSON();
+
+	json.insert(STATUS_PN, QJsonValue(this->lastTweet.toJSON()));
+
+	return json;
 }
 
 
@@ -94,31 +112,37 @@ void User::reset() {
 // Properties management //
 ///////////////////////////
 
-// Reading the "status" property
-QVariantMap User::getStatusProperty() {
+// status
+QString User2::STATUS_PN = "status";
+
+QString User2::LAST_STATUS_PN = "last_status";
+
+Tweet2 User2::getStatus() {
+	return lastTweet;
+}
+
+QVariantMap User2::getStatusProperty() {
 	// Return an empty QVariantMap for a default tweet to avoid stack problems
 	return lastTweet.getID() == -1 ?
 				QVariantMap()
 			  : lastTweet.toVariant();
 }
 
-// Writing the status property
-void User::setStatus(QVariantMap statusMap) {
+Tweet2 * User2::getStatusPtr() {
+	return &lastTweet;
+}
+
+void User2::setStatus(QVariantMap statusMap) {
 	lastTweet.fillWithVariant(statusMap);
+	emit statusChanged();
 }
 
-
-/////////////////////////
-// Getters and setters //
-/////////////////////////
-
-// Getter on the last tweet written by the user
-Tweet User::getStatus() {
-	return lastTweet;
-}
-
-// Setter on the last tweet written by the user
-void User::setStatus(Tweet newLastTweet) {
+void User2::setStatus(Tweet2 newLastTweet) {
 	lastTweet = newLastTweet;
+	emit statusChanged();
 }
-//*/
+
+void User2::setStatus(Tweet2 * newLastTweet) {
+	lastTweet = newLastTweet ? *newLastTweet : Tweet2();
+	emit statusChanged();
+}

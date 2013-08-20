@@ -26,7 +26,7 @@
 
 #include <QObject>
 #include "../requests/genericrequester.hpp"
-#include "../../model/resultwrapper.hpp"
+#include "../resultwrapper.hpp"
 #include "requestermanager.hpp"
 
 /// @class GenericCalls

@@ -33,40 +33,39 @@
 /////////////
 
 // Default constructor
-template <typename C>
-GenericCoordinates<C>::GenericCoordinates() :
+template <typename C, typename LH>
+GenericCoordinates<C,LH>::GenericCoordinates() :
 	GenCoord(),
-	geoCoordinates(),
-	coordType(CoordType::FAKE_COORDINATES)
+	coordinatesHandler(),
+	geoCoordinates(coordinatesHandler.getHandledListRef())
 {}
 
 // Destructor
-template <typename C>
-GenericCoordinates<C>::~GenericCoordinates() {}
+template <typename C, typename LH>
+GenericCoordinates<C,LH>::~GenericCoordinates() {}
 
 // Copy constructor
-template <typename C>
-GenericCoordinates<C>::GenericCoordinates(const GenericCoordinates<C> & coord) :
+template <typename C, typename LH>
+GenericCoordinates<C,LH>::GenericCoordinates(const GenericCoordinates<C,LH> & coord) :
 	GenCoord(),
-	geoCoordinates(),
-	coordType(CoordType::FAKE_COORDINATES)
+	coordinatesHandler(),
+	geoCoordinates(coordinatesHandler.getHandledListRef())
 {
 	this->recopie(coord);
 }
 
 // Affectation
-template <typename C>
-const GenericCoordinates<C> & GenericCoordinates<C>::operator=(const GenericCoordinates<C> & coord) {
+template <typename C, typename LH>
+const GenericCoordinates<C,LH> & GenericCoordinates<C,LH>::operator=(const GenericCoordinates<C,LH> & coord) {
 	this->recopie(coord);
 	return *this;
 }
 
 // Copy of a GenericCoordinates
-template <typename C>
-void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
+template <typename C, typename LH>
+void GenericCoordinates<C,LH>::recopie(const GenericCoordinates<C,LH> & coord) {
 	GenCoord::recopie(coord);
 	this->geoCoordinates = coord.geoCoordinates;
-	this->coordType = coord.coordType;
 }
 
 
@@ -75,19 +74,19 @@ void GenericCoordinates<C>::recopie(const GenericCoordinates<C> & coord) {
 /////////////////////
 
 // Filling the object with a QJsonObject.
-template <typename C>
-void GenericCoordinates<C>::fillWithVariant(QJsonObject json) {
+template <typename C, typename LH>
+void GenericCoordinates<C,LH>::fillWithVariant(QJsonObject json) {
+	GenCoord::fillWithVariant(json);	// Base class
+
 	this->geoCoordinates.fillWithVariant(json.value(COORDINATES_PN).toArray());
-	this->coordType = CoordType::string2coord(json.value(TYPE_PN).toString(""));
 }
 
 // QJsonObject representation of the object
-template <typename C>
-QJsonObject GenericCoordinates<C>::toVariant() const {
-	QJsonObject json;
+template <typename C, typename LH>
+QJsonObject GenericCoordinates<C,LH>::toVariant() const {
+	QJsonObject json = GenCoord::toVariant();	// Base class
 
 	json.insert(COORDINATES_PN, QJsonValue(this->geoCoordinates.toVariant()));
-	json.insert(TYPE_PN, QJsonValue(CoordType::coord2string(this->coordType)));
 
 	return json;
 }
@@ -98,54 +97,22 @@ QJsonObject GenericCoordinates<C>::toVariant() const {
 ///////////////////////////
 
 // coordinates
-template <typename C>
-QString GenericCoordinates<C>::COORDINATES_PN = "coordinates";
+template <typename C, typename LH>
+QString GenericCoordinates<C,LH>::COORDINATES_PN = "coordinates";
 
-template <typename C>
-QVariantList GenericCoordinates<C>::getCoordinatesProperty() {
-	return this->geoCoordinates.toVariant().toVariantList();
+template <typename C, typename LH>
+LH * GenericCoordinates<C,LH>::getCoordinatesProperty() {
+	return &coordinatesHandler;
 }
 
-template <typename C>
-C GenericCoordinates<C>::getCoordinates() {
+template <typename C, typename LH>
+C GenericCoordinates<C,LH>::getCoordinates() {
 	return this->geoCoordinates;
 }
 
-template <typename C>
-void GenericCoordinates<C>::setCoordinates(QVariantList newValue) {
-	this->geoCoordinates.fillWithVariant(QJsonArray::fromVariantList(newValue));
-	changeCoord();
-}
-
-template <typename C>
-void GenericCoordinates<C>::setCoordinates(C newValue) {
+template <typename C, typename LH>
+void GenericCoordinates<C, LH>::setCoordinates(C newValue) {
 	this->geoCoordinates = newValue;
 	changeCoord();
-}
-
-// type
-template <typename C>
-QString GenericCoordinates<C>::TYPE_PN = "type";
-
-template <typename C>
-QString GenericCoordinates<C>::getTypeProperty() {
-	return coord2string(this->coordType);
-}
-
-template <typename C>
-CoordinatesType GenericCoordinates<C>::getType() {
-	return this->coordType;
-}
-
-template <typename C>
-void GenericCoordinates<C>::setType(CoordinatesType newValue) {
-	this->coordType = newValue;
-	changeType();
-}
-
-template <typename C>
-void GenericCoordinates<C>::setType(QString newValue) {
-	this->coordType = CoordType::string2coord(newValue);
-	changeType();
 }
 

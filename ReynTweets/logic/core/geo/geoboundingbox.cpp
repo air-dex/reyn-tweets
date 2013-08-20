@@ -31,7 +31,7 @@
 
 // Default constructor
 GeoBoundingBox::GeoBoundingBox() :
-	GenericCoordinates<GeoCoordPolygon>()
+	GenericCoordinates<GeoCoordPolygon, GeoCoordPolygonHandler>()
 {
 	this->coordType = CoordType::POLYGON;
 }
@@ -41,7 +41,7 @@ GeoBoundingBox::~GeoBoundingBox() {}
 
 // Copy constructor
 GeoBoundingBox::GeoBoundingBox(const GeoBoundingBox & coord) :
-	GenericCoordinates<GeoCoordPolygon>()
+	GenericCoordinates<GeoCoordPolygon, GeoCoordPolygonHandler>()
 {
 	this->recopie(coord);
 }
@@ -86,3 +86,9 @@ QDataStream & operator>>(QDataStream & in, GeoBoundingBox & coord) {
 
 // Do not change CoordinatesType
 void GeoBoundingBox::setType(CoordinatesType) {}
+
+
+// Getting all the coordinates bounds.
+GeoCoordList GeoBoundingBox::getBoundsList() const {
+	return geoCoordinates.at(0);
+}

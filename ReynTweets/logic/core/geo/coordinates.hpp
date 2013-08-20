@@ -25,17 +25,13 @@
 #define COORDINATES_HPP
 
 #include "genericcoordinates.tpp"
-#include "geocoord.hpp"
+#include "../../controls/listhandlers/geocoordhandler.hpp"
 
 /// @class Coordinates
 /// @brief Class representing coordinates
-class Coordinates : public GenericCoordinates<GeoCoord>
+class Coordinates : public GenericCoordinates<GeoCoord, GeoCoordHandler>
 {
 	Q_OBJECT
-
-	//////////////////////
-	// Coordinates type //
-	//////////////////////
 
 	public:
 		/// @fn Coordinates();
@@ -69,6 +65,20 @@ class Coordinates : public GenericCoordinates<GeoCoord>
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+	protected:
+		//////////////////////////
+		// coordinates property //
+		//////////////////////////
+
+		/// @property coordinates
+		/// @brief Geographic coordinates of the point
+		Q_PROPERTY(GeoCoordHandler * coordinates
+				   READ getCoordinatesProperty
+				   NOTIFY coordinatesChanged)
+
+	signals:
+		/// @see { @link GenCoord::coordinatesChanged(); }
+		void coordinatesChanged();
 
 	private:
 		// Friends serialization operators

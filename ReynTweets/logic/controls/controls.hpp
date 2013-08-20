@@ -26,6 +26,8 @@
 
 // List handlers
 #include "listhandlers/contributorshandler.hpp"
+#include "listhandlers/geocoordhandler.hpp"
+#include "listhandlers/geocoordpolygonhandler.hpp"
 #include "listhandlers/hashtagshandler.hpp"
 #include "listhandlers/indexboundshandler.hpp"
 #include "listhandlers/mediashandler.hpp"

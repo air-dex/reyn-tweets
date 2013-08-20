@@ -146,6 +146,8 @@ SOURCES += \
 	logic/core/reyncore.cpp \
 	logic/controls/listhandlers/listhandler.cpp \
 	logic/controls/listhandlers/contributorshandler.cpp \
+	logic/controls/listhandlers/geocoordhandler.cpp \
+	logic/controls/listhandlers/geocoordpolygonhandler.cpp \
 	logic/controls/listhandlers/hashtagshandler.cpp \
 	logic/controls/listhandlers/indexboundshandler.cpp \
 	logic/controls/listhandlers/mediashandler.cpp \
@@ -282,6 +284,8 @@ HEADERS  += \
 	logic/controls/listhandlers/listhandler.hpp \
 	logic/controls/listhandlers/listhandler.tpp \
 	logic/controls/listhandlers/contributorshandler.hpp \
+	logic/controls/listhandlers/geocoordhandler.hpp \
+	logic/controls/listhandlers/geocoordpolygonhandler.hpp \
 	logic/controls/listhandlers/hashtagshandler.hpp \
 	logic/controls/listhandlers/indexboundshandler.hpp \
 	logic/controls/listhandlers/mediashandler.hpp \

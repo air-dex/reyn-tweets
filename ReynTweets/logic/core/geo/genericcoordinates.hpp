@@ -39,7 +39,8 @@
 /// implements GenCoord.</li>
 /// </ul>
 /// @param C class representing coordinates
-template <typename C>
+/// @param LH List Handler to handle geoCoordinates
+template <typename C, typename LH>
 class GenericCoordinates : public GenCoord
 {
 	public:
@@ -92,67 +93,22 @@ class GenericCoordinates : public GenCoord
 		///////////////////////////
 
 		// coordinates
-		/// @property id
-		/// @brief Longitude and latitude.
-		///
-		/// geoCoordinates is the attribute beneath this property.
-		Q_PROPERTY(QVariantList coordinates
-				   READ getCoordinatesProperty
-				   WRITE setCoordinates
-				   NOTIFY coordinatesChanged)
+		// Q_PROPERTY defined later because it depends on the LH template class.
 
-		/// @brief Name of the property id.
+		/// @brief Name of the property coordinates.
 		static QString COORDINATES_PN;
 
-		/// @fn QVariantList getCoordinatesProperty();
+		/// @fn LH * getCoordinatesProperty();
 		/// @brief Reading coordinates
-		/// @return geoCoordinates.toVariant()
-		QVariantList getCoordinatesProperty();
-
-		/// @fn void setCoordinates(QVariantList newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for id
-		void setCoordinates(QVariantList newValue);
-
-		// type
-		/// @property type
-		/// @brief Type of coordinates.
-		///
-		/// coordType is the attribute beneath this property.
-		Q_PROPERTY(QString type
-				   READ getTypeProperty
-				   WRITE setType
-				   NOTIFY typeChanged)
-
-		/// @brief Name of the property type.
-		static QString TYPE_PN;
-
-		/// @fn QString getType();
-		/// @brief Reading type
-		/// @return coordType
-		QString getTypeProperty();
-
-		/// @fn void setType(QString newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(QString newValue);
-
-
-	signals:
-		/// @fn void coordinatesChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void coordinatesChanged();
-
-		/// @fn void typeChanged();
-		/// @brief Emitted when the id and id_str properties change
-		void typeChanged();
+		/// @return A pointer on coordinatesHandler
+		LH * getCoordinatesProperty();
 
 	protected:
-		/// @brief Coordinates of the point
-		C geoCoordinates;
+		/// @brief List Handler of geoCoordinates.
+		LH coordinatesHandler;
 
-		/// @brief Type of coordinates.
-		CoordinatesType coordType;
+		/// @brief Coordinates of the point
+		C & geoCoordinates;
 
 	public:
 		// coordinates
@@ -165,17 +121,6 @@ class GenericCoordinates : public GenCoord
 		/// @brief Writing coordinates
 		/// @param newValue New value for coordinate locations
 		void setCoordinates(C newValue);
-
-		// type
-		/// @fn CoordinatesType getType();
-		/// @brief Reading type
-		/// @return coordType
-		CoordinatesType getType();
-
-		/// @fn void setType(CoordinatesType newValue);
-		/// @brief Writing type
-		/// @param newValue New value for coordType
-		void setType(CoordinatesType newValue);
 };
 
 #endif // GENERICCOORDINATES_HPP

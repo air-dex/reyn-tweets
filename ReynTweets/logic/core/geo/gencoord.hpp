@@ -71,34 +71,29 @@ class GenCoord : public JsonObject
 		/// @param coord GenCoord to copy
 		virtual void recopie(const GenCoord & coord);
 
+		/////////////////////
+		// JSON conversion //
+		/////////////////////
 
-	///////////////////////////
-	// Properties management //
-	///////////////////////////
-
-	protected:
-		// coordinates
-		/// @property id
-		/// @brief Longitude and latitude.
+		/// @fn virtual void fillWithVariant(QJsonObject json);
+		/// @brief Filling the object with a QJsonObject.
 		///
-		/// geoCoordinates is the attribute beneath this property.
-		Q_PROPERTY(QVariantList coordinates
-				   READ getCoordinatesProperty
-				   WRITE setCoordinates
-				   NOTIFY coordinatesChanged)
+		/// The method is virtual because its implementation depends on the
+		/// object type.
+		/// @param json The QJsonObject used to fill the JsonObject
+		virtual void fillWithVariant(QJsonObject json);
 
-		/// @brief Name of the property coordinates.
-		static QString COORDINATES_PN;
+		/// @fn virtual QJsonObject toVariant();
+		/// @brief Getting a QJsonObject representation of the object
+		/// @return The QJsonObject representation
+		virtual QJsonObject toVariant() const;
 
-		/// @fn virtual QVariantList getCoordinatesProperty();
-		/// @brief Reading coordinates
-		/// @return geoCoordinates as a QVariantList
-		virtual QVariantList getCoordinatesProperty() = 0;
+		///////////////////////////
+		// Properties management //
+		///////////////////////////
 
-		/// @fn virtual void setCoordinates(QVariantList newValue);
-		/// @brief Writing coordinates
-		/// @param newValue New value for id
-		virtual void setCoordinates(QVariantList newValue) = 0;
+		// coordinates
+		// Only common Q_OBJECT related parts are defined here (NOTIFY signal).
 
 		// type
 		/// @property type
@@ -113,25 +108,40 @@ class GenCoord : public JsonObject
 		/// @brief Name of the property type.
 		static QString TYPE_PN;
 
+		/// @brief Type of coordinates.
+		CoordType::CoordinatesType coordType;
+
 		/// @fn virtual QString getType();
 		/// @brief Reading type
 		/// @return coordType
-		virtual QString getTypeProperty() = 0;
+		virtual QString getTypeProperty();
 
 		/// @fn virtual void setType(QString newValue);
 		/// @brief Writing type
 		/// @param newValue New value for coordType
-		virtual void setType(QString newValue) = 0;
+		virtual void setType(QString newValue);
 
 
 	signals:
 		/// @fn void coordinatesChanged();
-		/// @brief Emitted when the id and id_str properties change
+		/// @brief Emitted when the coordinates property changes its value.
 		void coordinatesChanged();
 
 		/// @fn void typeChanged();
-		/// @brief Emitted when the id and id_str properties change
+		/// @brief Emitted when the type property changes its value.
 		void typeChanged();
+
+	public:
+		// type
+		/// @fn CoordType::CoordinatesType getType();
+		/// @brief Reading type
+		/// @return coordType
+		CoordType::CoordinatesType getType();
+
+		/// @fn void setType(CoordType::CoordinatesType newValue);
+		/// @brief Writing type
+		/// @param newValue New value for coordType
+		void setType(CoordType::CoordinatesType newValue);
 
 
 	/////////////////////////
@@ -145,13 +155,6 @@ class GenCoord : public JsonObject
 		/// It is a workaround to avoid using Q_OBJECT-related things just like
 		/// signals in GenericCoordinates (template class).
 		void changeCoord();
-
-		/// @fn void changeType();
-		/// @brief Emitting the typeChanged signal.
-		///
-		/// It is a workaround to avoid using Q_OBJECT-related things just like
-		/// signals in GenericCoordinates (template class).
-		void changeType();
 };
 
 #endif // GENCOORD_HPP

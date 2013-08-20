@@ -1,5 +1,5 @@
-/// @file hashtagshandler.hpp
-/// @brief Header of HashtagsHandler
+/// @file geocoordpolygonhandler.hpp
+/// @brief Header of GeoCoordPolygonHandler
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,36 +21,36 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef HASHTAGSHANDLER_HPP
-#define HASHTAGSHANDLER_HPP
+#ifndef GEOCOORDPOLYGONHANDLER_HPP
+#define GEOCOORDPOLYGONHANDLER_HPP
 
 #include "listhandler.tpp"
-#include "../../core/tweets/hashtaglist.hpp"
+#include "../../core/geo/geocoordpolygon.hpp"
 
-/// @class HashtagsHandler
-/// @brief List handler for HashtagList
-class HashtagsHandler : public ListHandler<HashtagList, Hashtag>
+/// @class GeoCoordPolygonHandler
+/// @brief List Handler for GeoCoordPolygon
+class GeoCoordPolygonHandler : public ListHandler<GeoCoordPolygon, GeoCoordList>
 {
 	Q_OBJECT
 
 	public:
-		/// @fn HashtagsHandler();
+		/// @fn GeoCoordPolygonHandler();
 		/// @brief Default constructor
-		HashtagsHandler();
+		GeoCoordPolygonHandler();
 
-		/// @fn virtual ~HashtagsHandler();
+		/// @fn virtual ~GeoCoordPolygonHandler();
 		/// @brief Destructor
-		virtual ~HashtagsHandler();
+		virtual ~GeoCoordPolygonHandler();
 
-		/// @fn HashtagsHandler(const HashtagsHandler & handler);
+		/// @fn GeoCoordPolygonHandler(const GeoCoordPolygonHandler & handler);
 		/// @brief Copy constructor
-		/// @param handler HashtagsHandler to copy
-		HashtagsHandler(const HashtagsHandler & handler);
+		/// @param handler GeoCoordPolygonHandler to copy
+		GeoCoordPolygonHandler(const GeoCoordPolygonHandler & handler);
 
-		/// @fn const HashtagsHandler & operator=(const HashtagsHandler & handler);
+		/// @fn const GeoCoordPolygonHandler & operator=(const GeoCoordPolygonHandler & handler);
 		/// @brief Affection operator
-		/// @param handler HashtagsHandler to affect
-		const HashtagsHandler & operator=(const HashtagsHandler & handler);
+		/// @param handler GeoCoordPolygonHandler to affect
+		const GeoCoordPolygonHandler & operator=(const GeoCoordPolygonHandler & handler);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration
@@ -62,71 +62,73 @@ class HashtagsHandler : public ListHandler<HashtagList, Hashtag>
 
 
 	protected:
-		/// @fn virtual void recopie(const HashtagsHandler & handler);
-		/// @brief Copy of a HashtagsHandler
-		/// @param handler HashtagsHandler to copy
-		virtual void recopie(const HashtagsHandler &handler);
+		/// @fn virtual void recopie(const GeoCoordPolygonHandler & handler);
+		/// @brief Copy of a GeoCoordPolygonHandler
+		/// @param handler GeoCoordPolygonHandler to copy
+		virtual void recopie(const GeoCoordPolygonHandler &handler);
 
 		///////////////////
 		// List handling //
 		///////////////////
 
-		/// @fn Q_INVOKABLE virtual Hashtag * get(int index);
+		/// @fn Q_INVOKABLE virtual GeoCoordList * get(int index);
 		/// @brief Get an element of the handled list
 		/// @param index Index of the element
 		/// @return A pointer with the corresponding element if index is valid,
 		/// a default element otherwise.
-		Q_INVOKABLE virtual Hashtag * get(int index);
+		Q_INVOKABLE virtual GeoCoordList * get(int index);
 
 		/////////////////////////////////////
 		// Friends serialization operators //
 		/////////////////////////////////////
 
 		/// @fn friend QDataStream & operator<<(QDataStream & out,
-		///										const HashtagsHandler & handler);
+		///										const GeoCoordPolygonHandler & handler);
 		/// @brief Output stream operator for serialization
 		/// @param out The output stream
 		/// @param handler Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator<<(QDataStream & out,
-										const HashtagsHandler & handler);
+										const GeoCoordPolygonHandler & handler);
 
 		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										HashtagsHandler & handler);
+		///										GeoCoordPolygonHandler & handler);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param handler Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
-										HashtagsHandler & handler);
+										GeoCoordPolygonHandler & handler);
 
-		/// @fn virtual void fillElement(Hashtag & realElt,
+		/// @fn virtual void fillElement(GeoCoordList & realElt,
 		///								 QVariant varelt,
 		///								 bool resetValue = false);
 		/// @brief Filling a list element with a QVariant value.
 		/// @param realElt Real element
 		/// @param varelt QVariant value
 		/// @param resetValue Boolean indicating if the realElt has to be reset.
-		virtual void fillElement(Hashtag & realElt,
+		virtual void fillElement(GeoCoordList & realElt,
 								 QVariant varelt,
 								 bool resetValue = false);
 };
 
-// Serialization of HashtagsHandler
-Q_DECLARE_METATYPE(HashtagsHandler)
+// Serialization of GeoCoordPolygonHandler
+Q_DECLARE_METATYPE(GeoCoordPolygonHandler)
 
-/// @fn QDataStream & operator<<(QDataStream & out, const HashtagsHandler & handler);
+/// @fn QDataStream & operator<<(QDataStream & out,
+///								 const GeoCoordPolygonHandler & handler);
 /// @brief Output stream operator for serialization
 /// @param out The output stream
 /// @param handler Object to put in the stream
 /// @return The stream with the object
-QDataStream & operator<<(QDataStream & out, const HashtagsHandler & handler);
+QDataStream & operator<<(QDataStream & out,
+						 const GeoCoordPolygonHandler & handler);
 
 /// @fn QDataStream & operator>>(QDataStream & in, HashtagsHandler & handler);
 /// @brief Input stream operator for serialization
 /// @param in The input stream
 /// @param handler Object to put in the stream
 /// @return The stream with the object
-QDataStream & operator>>(QDataStream & in, HashtagsHandler & handler);
+QDataStream & operator>>(QDataStream & in, GeoCoordPolygonHandler & handler);
 
-#endif // HASHTAGSHANDLER_HPP
+#endif // GEOCOORDPOLYGONHANDLER_HPP

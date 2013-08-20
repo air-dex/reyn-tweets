@@ -58,7 +58,7 @@ class OAuthRequester : public TwitterRequester
 		OAuthRequester(HTTPRequestType type,
 					   QString url,
 					   OAuthManager &authManager,
-					   NetworkResultType parseErrorType,
+					   Network::NetworkResultType parseErrorType,
 					   bool tokenNeeded = true,
 					   bool callbackURLNeeded = false,
 					   bool verifierNeeded = false);

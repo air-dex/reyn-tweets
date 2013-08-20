@@ -69,7 +69,7 @@ QVariant RequestTokenRequester::parseResult(NetworkResponse results,
 	if (resultMap.contains(OAUTH_TOKEN_SECRET_KEY)) {
 		// Extracting the "oauth_token_secret" parameter
 		extractedCredential = resultMap.value(OAUTH_TOKEN_SECRET_KEY);
-		oauthManager.setOAuthToken(extractedCredential.toByteArray());
+		oauthManager.setOAuthSecret(extractedCredential.toByteArray());
 	} else {
 		// Add it to the missing arguments
 		missingArgs.append(OAUTH_TOKEN_SECRET_KEY);

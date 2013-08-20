@@ -57,30 +57,30 @@ SOURCES += \
 	connection/twitter/oauthmanager.cpp \
 	connection/twitlonger/twitlongermanager.cpp \
 	connection/common/communicators/twittercommunicator.cpp \
-	connection/requests/twitlonger/twitlongerurls.cpp \
-	connection/requests/twitter/twitterurls.cpp \
+	connection/twitlonger/requests/twitlongerurls.cpp \
+	connection/twitter/requests/twitterurls.cpp \
 	connection/common/resultwrapper.cpp \
 	connection/common/requests/genericrequester.cpp \
-	connection/requests/twitter/twitterrequester.cpp \
-	connection/requests/twitter/accounts/verifycredentialsrequester.cpp \
-	connection/requests/twitter/favorites/favoriterequester.cpp \
-	connection/requests/twitter/favorites/favoritestimelinerequester.cpp \
-	connection/requests/twitter/oauth/oauthrequester.cpp \
-	connection/requests/twitter/oauth/requesttokenrequester.cpp \
-	connection/requests/twitter/oauth/authorizerequester.cpp \
-	connection/requests/twitter/oauth/postauthorizerequester.cpp \
-	connection/requests/twitter/oauth/accesstokenrequester.cpp \
-	connection/requests/twitter/searches/searchrequester.cpp \
-	connection/requests/twitter/timelines/hometimelinerequester.cpp \
-	connection/requests/twitter/timelines/mentionstimelinerequester.cpp \
-	connection/requests/twitter/tweets/destroytweetrequester.cpp \
-	connection/requests/twitter/tweets/posttweetrequester.cpp \
-	connection/requests/twitter/tweets/retweetrequester.cpp \
-	connection/requests/twitter/tweets/showtweetrequester.cpp \
-	connection/requests/twitter/users/showuserrequester.cpp \
-	connection/requests/twitlonger/twitlongerrequester.cpp \
-	connection/requests/twitlonger/posttotwitlongerrequester.cpp \
-	connection/requests/twitlonger/sendidtotwitlongerrequester.cpp \
+	connection/twitter/requests/twitterrequester.cpp \
+	connection/twitter/requests/accounts/verifycredentialsrequester.cpp \
+	connection/twitter/requests/favorites/favoriterequester.cpp \
+	connection/twitter/requests/favorites/favoritestimelinerequester.cpp \
+	connection/twitter/requests/oauth/oauthrequester.cpp \
+	connection/twitter/requests/oauth/requesttokenrequester.cpp \
+	connection/twitter/requests/oauth/authorizerequester.cpp \
+	connection/twitter/requests/oauth/postauthorizerequester.cpp \
+	connection/twitter/requests/oauth/accesstokenrequester.cpp \
+	connection/twitter/requests/searches/searchrequester.cpp \
+	connection/twitter/requests/timelines/hometimelinerequester.cpp \
+	connection/twitter/requests/timelines/mentionstimelinerequester.cpp \
+	connection/twitter/requests/tweets/destroytweetrequester.cpp \
+	connection/twitter/requests/tweets/posttweetrequester.cpp \
+	connection/twitter/requests/tweets/retweetrequester.cpp \
+	connection/twitter/requests/tweets/showtweetrequester.cpp \
+	connection/twitter/requests/users/showuserrequester.cpp \
+	connection/twitlonger/requests/twitlongerrequester.cpp \
+	connection/twitlonger/requests/posttotwitlongerrequester.cpp \
+	connection/twitlonger/requests/sendidtotwitlongerrequester.cpp \
 	connection/common/calls/requestinfos.cpp \
 	connection/common/calls/requestermanager.cpp \
 	connection/common/calls/genericcalls.cpp \
@@ -169,34 +169,34 @@ HEADERS  += \
 	connection/common/communicators/twittercommunicator.hpp \
 	connection/common/errortypes.hpp \
 	connection/common/responseinfos.hpp \
-	connection/requests/twitlonger/twitlongerurls.hpp \
-	connection/requests/twitter/twitterurls.hpp \
+	connection/twitlonger/requests/twitlongerurls.hpp \
+	connection/twitter/requests/twitterurls.hpp \
 	connection/common/requestresult.hpp \
 	connection/common/resultwrapper.hpp \
 	connection/common/requests/identificationway.hpp \
 	connection/common/requests/genericrequester.hpp \
-	connection/requests/twitter/twitterrequester.hpp \
-	connection/requests/twitter/accounts/verifycredentialsrequester.hpp \
-	connection/requests/twitter/favorites/favoriterequester.hpp \
-	connection/requests/twitter/favorites/favoritestimelinerequester.hpp \
-	connection/requests/twitter/oauth/oauthrequester.hpp \
-	connection/requests/twitter/oauth/requesttokenrequester.hpp \
-	connection/requests/twitter/oauth/authorizerequester.hpp \
-	connection/requests/twitter/oauth/postauthorizerequester.hpp \
-	connection/requests/twitter/oauth/accesstokenrequester.hpp \
-	connection/requests/twitter/searches/searchrequester.hpp \
-	connection/requests/twitter/timelines/hometimelinerequester.hpp \
-	connection/requests/twitter/timelines/mentionstimelinerequester.hpp \
-	connection/requests/twitter/tweets/destroytweetrequester.hpp \
-	connection/requests/twitter/tweets/posttweetrequester.hpp \
-	connection/requests/twitter/tweets/retweetrequester.hpp \
-	connection/requests/twitter/tweets/showtweetrequester.hpp \
-	connection/requests/twitter/users/showuserrequester.hpp \
-	connection/requests/twitter/twitterrequests.hpp \
-	connection/requests/twitlonger/twitlongerrequester.hpp \
-	connection/requests/twitlonger/posttotwitlongerrequester.hpp \
-	connection/requests/twitlonger/sendidtotwitlongerrequester.hpp \
-	connection/requests/twitlonger/twitlongerrequests.hpp \
+	connection/twitter/requests/twitterrequester.hpp \
+	connection/twitter/requests/accounts/verifycredentialsrequester.hpp \
+	connection/twitter/requests/favorites/favoriterequester.hpp \
+	connection/twitter/requests/favorites/favoritestimelinerequester.hpp \
+	connection/twitter/requests/oauth/oauthrequester.hpp \
+	connection/twitter/requests/oauth/requesttokenrequester.hpp \
+	connection/twitter/requests/oauth/authorizerequester.hpp \
+	connection/twitter/requests/oauth/postauthorizerequester.hpp \
+	connection/twitter/requests/oauth/accesstokenrequester.hpp \
+	connection/twitter/requests/searches/searchrequester.hpp \
+	connection/twitter/requests/timelines/hometimelinerequester.hpp \
+	connection/twitter/requests/timelines/mentionstimelinerequester.hpp \
+	connection/twitter/requests/tweets/destroytweetrequester.hpp \
+	connection/twitter/requests/tweets/posttweetrequester.hpp \
+	connection/twitter/requests/tweets/retweetrequester.hpp \
+	connection/twitter/requests/tweets/showtweetrequester.hpp \
+	connection/twitter/requests/users/showuserrequester.hpp \
+	connection/twitter/requests/twitterrequests.hpp \
+	connection/twitlonger/requests/twitlongerrequester.hpp \
+	connection/twitlonger/requests/posttotwitlongerrequester.hpp \
+	connection/twitlonger/requests/sendidtotwitlongerrequester.hpp \
+	connection/twitlonger/requests/twitlongerrequests.hpp \
 	connection/common/calls/requestinfos.hpp \
 	connection/common/calls/requestermanager.hpp \
 	connection/common/calls/genericcalls.hpp \

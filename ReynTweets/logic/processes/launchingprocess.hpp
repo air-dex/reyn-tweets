@@ -69,7 +69,10 @@ class LaunchingProcess : public GenericProcess
 		/// @brief Configuration of Reyn Tweets
 		AppConfiguration & appConfiguration;
 
-	private:
+		/// @brief Boolean indicating if the user configuration was reset
+		bool userconfReinit;
+
+	protected:
 		/// @fn void checkSettingsLoad();
 		/// @brief Checking if the application settings were loaded successfully.
 		void checkSettingsLoad();
@@ -87,6 +90,14 @@ class LaunchingProcess : public GenericProcess
 		/// @fn void saveConfiguration();
 		/// @brief Saving the configuartion in the configuration file
 		void saveConfiguration();
+
+		/// @fn virtual void endProcess(CoreResult issue, QString errorMessage);
+		/// @brief Ending the process.
+		///
+		/// It is a shortcut for endProcess(issue, QVariant(), errorMessage);.
+		/// @param issue Description on how the process ends.
+		/// @param errorMessage Message if an error occurs during the process.
+		virtual void endProcess(CoreResult issue, QString errorMessage);
 
 		///////////////////////////
 		// Filling configuration //

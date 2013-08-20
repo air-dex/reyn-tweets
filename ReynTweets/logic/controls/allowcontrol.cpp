@@ -79,7 +79,6 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	CoreResult issue = result.processIssue;
 	bool fatal = false;
 
-	// TODO : new treatments
 	switch (issue) {
 		case REQUEST_TOKENS_OK: {
 			// Send HTML to QML
@@ -152,7 +151,7 @@ bool AllowControl::endAuth(QString postauthURL) {
 			// Authorized :) !
 			getAccessTokens(veryEndArgs.value("oauth_verifier").toByteArray());
 		} else if (parseOK && veryEndArgs.contains("denied")) {
-			// Denied :( ! TODO
+			// TODO : Denied :( !
 			emit actionEnded(false,
 							 AllowControl::trUtf8("Reyn Tweets was denied."),
 							 false);
@@ -224,16 +223,15 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 
 	// Real issue
 	if (result.results.toMap().value("authorized").toBool()) {
-		CoreResult oldissue = issue;
-		issue = AUTHORIZED;
-
-		if (oldissue != AUTHORIZED) {
+		if (issue != AUTHORIZED) {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized.");
 		} else {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized but")
 							 .append(' ')
 							 .append(result.errorMsg);
 		}
+
+		issue = AUTHORIZED;
 	}
 
 	switch (issue) {

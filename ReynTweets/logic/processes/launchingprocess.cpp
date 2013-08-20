@@ -31,7 +31,8 @@ LaunchingProcess::LaunchingProcess(UserConfiguration & userConf) :
 	GenericProcess(),
 	twitter(this),
 	userConfiguration(userConf),
-	appConfiguration(AppConfiguration::getReynTweetsConfiguration())
+	appConfiguration(AppConfiguration::getReynTweetsConfiguration()),
+	userconfReinit(false)
 {}
 
 // Starting the process
@@ -82,11 +83,9 @@ void LaunchingProcess::loadConfiguration() {
 	QString errorMsg = "";
 	CoreResult loadIssue = userConfiguration.load(errorMsg);
 
-	// TODO : warn if the conf is reset.
-
 	switch (loadIssue) {
 		case REINIT_SUCCESSFUL:
-			errorMsg = LaunchingProcess::trUtf8("User configuration was reset.");
+			userconfReinit = true;
 
 		case LOAD_CONFIGURATION_SUCCESSFUL:
 			// The configuration was loaded correctly. Let's check the credentials
@@ -274,8 +273,6 @@ void LaunchingProcess::saveConfiguration() {
 	QString errorMsg = "";
 	CoreResult saveIssue = userConfiguration.save(errorMsg);
 
-	// NOTE : verify the reinit case
-
 	switch (saveIssue) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
@@ -283,7 +280,7 @@ void LaunchingProcess::saveConfiguration() {
 			break;
 
 		case REINIT_SUCCESSFUL:
-			errorMsg = LaunchingProcess::trUtf8("User configuration was reset.");
+			userconfReinit = true;
 			break;
 
 		case CONFIGURATION_FILE_UNKNOWN:
@@ -299,6 +296,17 @@ void LaunchingProcess::saveConfiguration() {
 
 	// Ending the process
 	endProcess(saveIssue, errorMsg);
+}
+
+void LaunchingProcess::endProcess(CoreResult issue, QString errorMessage) {
+	if (userconfReinit) {
+		errorMessage.append(' ')
+				.append(LaunchingProcess::trUtf8("User configuration was reset."));
+	}
+
+	GenericProcess::endProcess(issue,
+							   QVariant::fromValue<bool>(userconfReinit),
+							   errorMessage);
 }
 
 

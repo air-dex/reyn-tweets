@@ -48,29 +48,14 @@ QString SettingsControl::getCallbackURL() {
 // Properties management //
 ///////////////////////////
 
-// Reading the configuration property
+// configuration
 UserConfiguration * SettingsControl::getConfiguration() {
 	return &conf;
 }
 
-// Writing the configuration property
 void SettingsControl::setConfiguration(UserConfiguration * config) {
 	if (config) {
 		ReynCore::setUserConfiguration(*config);
-		emit configurationChanged();
-	}
-}
-
-// Reading the current_account property
-UserAccount * SettingsControl::getCurrentAccount() {
-	return &(conf.getUserAccountRef());
-}
-
-// Writing the current_account property
-void SettingsControl::setCurrentAccount(UserAccount * account) {
-	if (account) {
-		conf.setUserAccount(*account);
-		emit currentAccountChanged();
 		emit configurationChanged();
 	}
 }

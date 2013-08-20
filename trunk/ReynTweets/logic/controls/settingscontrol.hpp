@@ -60,10 +60,6 @@ class SettingsControl : public GenericControl
 		/// @brief Emitted to notify changes about the configuration property
 		void configurationChanged();
 
-		/// @fn void currentAccountChanged();
-		/// @brief Emitted to notify changes about the current_account property
-		void currentAccountChanged();
-
 	protected:
 		/// @brief Reyn Tweets' general settings
 		AppConfiguration & reynTweetsConf;
@@ -71,8 +67,11 @@ class SettingsControl : public GenericControl
 		/// @brief Reference on the configuration of Reyn Tweets
 		UserConfiguration & conf;
 
+		// configuration
 		/// @property configuration
 		/// @brief Read only property to access to the configuration for QML.
+		///
+		/// conf is the attribute beneath this property.
 		Q_PROPERTY(UserConfiguration * configuration
 				   READ getConfiguration
 				   WRITE setConfiguration
@@ -87,23 +86,6 @@ class SettingsControl : public GenericControl
 		/// @brief Writing the configuration property
 		/// @param config New value for the configuration
 		void setConfiguration(UserConfiguration * config);
-
-		/// @property current_account
-		/// @brief Shortcut for configuration.current_account
-		Q_PROPERTY(UserAccount * current_account
-				   READ getCurrentAccount
-				   WRITE setCurrentAccount
-				   NOTIFY currentAccountChanged)
-
-		/// @fn UserAccount * getCurrentAccount();
-		/// @brief Reading the current_account property
-		/// @return Pointer on conf.current_account
-		UserAccount * getCurrentAccount();
-
-		/// @fn void setCurrentAccount(UserAccount * account);
-		/// @brief Writing the current_account property
-		/// @param account New value for the account
-		void setCurrentAccount(UserAccount *account);
 };
 
 #endif // SETTINGSCONTROL_HPP

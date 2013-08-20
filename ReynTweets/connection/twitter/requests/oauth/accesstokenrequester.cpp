@@ -22,6 +22,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 #include "accesstokenrequester.hpp"
+
+#include <QStringList>
 #include "../../../common/utils/parsers/oauthparser.hpp"
 
 // Constructor
@@ -59,7 +61,7 @@ QVariant AccessTokenRequester::parseResult(NetworkResponse results,
 
 	// For treatments
 	QVariant extractedCredential;
-	QList<QString> missingArgs;
+	QStringList missingArgs;
 
 	// oauth_token
 	if (resultMap.contains(OAUTH_TOKEN_KEY)) {
@@ -99,11 +101,10 @@ QVariant AccessTokenRequester::parseResult(NetworkResponse results,
 	if (!missingArgs.isEmpty()) {
 		QString errorMsg = "";
 
-		foreach (QString argName, missingArgs) {
-			errorMsg.append(AccessTokenRequester::trUtf8("Unexpected parameter '"))
-					.append(argName)
-					.append("'.\n");
-		}
+		errorMsg.append(AccessTokenRequester::trUtf8("The following parameters were expected:"))
+				.append(' ')
+				.append(missingArgs.join(", "))
+				.append('.');
 
 		// Fill the parsingErrors map !
 		parsingErrors.insert("errorMsg", QVariant(errorMsg));

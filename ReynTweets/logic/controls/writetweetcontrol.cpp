@@ -78,7 +78,7 @@ void WriteTweetControl::postTweetEnded(ProcessWrapper res) {
 			// Process successful
 			emit tweetPosted(result.results);
 			emit actionEnded(true,
-							 WriteTweetControl::trUtf8("Tweet sent successfully"),
+							 WriteTweetControl::trUtf8("Tweet sent successfully."),
 							 false);
 			break;
 
@@ -149,7 +149,8 @@ void WriteTweetControl::postViaTwitLongerEnded(ProcessWrapper res) {
 		// Process successful
 		case MESSAGE_NOT_UPDATED:
 			// One more thing specific to MESSAGE_NOT_UPDATED before the successful end.
-			successMessage.append(WriteTweetControl::trUtf8(" but the message is not updated on TwitLonger."));
+			successMessage.append(' ')
+					.append(WriteTweetControl::trUtf8("but the message is not updated on TwitLonger."));
 
 		case TWEET_POSTED:
 			emit tweetPosted(result.results);

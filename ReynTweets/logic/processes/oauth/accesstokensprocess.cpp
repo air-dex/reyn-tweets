@@ -254,7 +254,7 @@ void AccessTokensProcess::saveConfiguration() {
 			break;
 
 		default:
-			errorMsg = AccessTokensProcess::trUtf8("Unknown problem");
+			errorMsg = AccessTokensProcess::trUtf8("Unknown problem.");
 			break;
 	}
 

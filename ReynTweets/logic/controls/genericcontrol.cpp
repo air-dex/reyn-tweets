@@ -46,6 +46,6 @@ void GenericControl::processAgain() {
 
 void GenericControl::invalidEnd() {
 	emit actionEnded(false,
-					 GenericControl::trUtf8("Dead end"),
+					 GenericControl::trUtf8("Dead end."),
 					 false);
 }

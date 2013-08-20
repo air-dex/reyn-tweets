@@ -185,18 +185,21 @@ CoreResult UserConfiguration::load() {
 	}
 
 	// Launching the configuration
-	bool parseOK = false;
 	JSONParser parser;
+	bool parseOK = false;
+	QString parseErrMsg = "";
 	QJsonValue jsonSettings = parser.parse(confFile.readAll(),
 										   &parseOK,
-										   &errorLoading);
+										   &parseErrMsg);
 
 	confFile.close();
 
 	if (!jsonSettings.isObject()) {
-		// Parse error : JSON Object expected
-		static QString wrongJSONType = UserConfiguration::trUtf8("Parse error : JSON object expected.");
-		errorLoading.append(' ').append(wrongJSONType);
+		// Parse error : JSON Object expected (and why it's not that).
+		errorLoading.append(UserConfiguration::trUtf8("Parse error (JSON object expected):"))
+				.append(' ')
+				.append(parseErrMsg)
+				.append('.');
 		parseOK = false;
 	}
 
@@ -206,7 +209,6 @@ CoreResult UserConfiguration::load() {
 
 
 	// Filling the settings
-
 	QJsonObject jsonConf = jsonSettings.toObject();
 	QString oldErr = errorLoading;
 

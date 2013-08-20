@@ -83,18 +83,21 @@ CoreResult AppConfiguration::load() {
 
 
 	// Parsing datas
-	bool parseOK = false;
 	JSONParser parser;
+	bool parseOK = false;
+	QString parseErrMsg = "";
 	QJsonValue jsonSettings = parser.parse(confFile.readAll(),
 										   &parseOK,
-										   &errorLoading);
+										   &parseErrMsg);
 
 	confFile.close();
 
 	if (!jsonSettings.isObject()) {
-		// Parse error : JSON Object expected
-		static QString wrongJSONType = AppConfiguration::trUtf8("Parse error : JSON object expected.");
-		errorLoading.append(' ').append(wrongJSONType);
+		// Parse error : JSON Object expected (and why it's not that).
+		errorLoading.append(AppConfiguration::trUtf8("Parse error (JSON object expected):"))
+				.append(' ')
+				.append(parseErrMsg)
+				.append('.');
 		parseOK = false;
 	}
 
@@ -202,10 +205,13 @@ void AppConfiguration::fillWithVariant(QJsonObject json) {
 	}
 
 	// Post treatment (missing settings)
-	QString errorFilling = AppConfiguration::trUtf8("The following setting(s) are missing: ");
 
 	if (!missingSettings.isEmpty()) {
-		errorFilling.append(missingSettings.join(", ")).append('.');
+		QString errorFilling = "";
+		errorFilling.append(AppConfiguration::trUtf8("The following setting(s) are missing:"))
+				.append(' ')
+				.append(missingSettings.join(", "))
+				.append('.');
 		errorLoading.append(' ').append(errorFilling);
 	}
 }

@@ -61,7 +61,7 @@ void GenericProcess::endProcess(CoreResult issue, QString errorMessage) {
 // Invalid ends
 void GenericProcess::invalidEnd() {
 	CoreResult issue = INVALID_ISSUE;
-	QString errMsg = GenericProcess::trUtf8("Dead end");
+	QString errMsg = GenericProcess::trUtf8("Dead end.");
 
 	endProcess(issue, errMsg);
 }

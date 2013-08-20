@@ -23,6 +23,8 @@
 
 #include "processutils.hpp"
 
+#include <QStringList>
+
 //////////////////////////////////////
 // Treating Twitter request results //
 //////////////////////////////////////
@@ -74,31 +76,44 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			break;
 	}
 
-	// Building error messageb
+	// Building error message
 	errorMsg.append(' ').append(writeTwitterErrors(result));
 }
 
 QString ProcessUtils::writeTwitterErrors(RequestResult result) {
-	// Building error message
+	// Building the list of error messages
 	QList<ResponseInfos> twitterErrors = result.serviceErrors;
-	QString errorMsg = result.errorMessage;
-	errorMsg.append('\n').append(QObject::trUtf8("Twitter errors:")).append('\n');
+	QStringList errorMsgs;
+
+	if (!result.errorMessage.isEmpty()) {
+		errorMsgs.append(result.errorMessage);
+	}
 
 	for (QList<ResponseInfos>::Iterator it = twitterErrors.begin();
 		 it < twitterErrors.end();
 		 ++it)
 	{
-		errorMsg.append(QObject::trUtf8("Error "))
+		QString errorMsg = "";
+
+		errorMsg.append(QObject::trUtf8("Error"))
+				.append(' ')
 				.append(QString::number(it->code))
 				.append(" : ")
 				.append(it->message)
-				.append(".\n");
+				.append(".");
+
+		errorMsgs.append(errorMsg);
 	}
 
-	// Erasing the last '\n'
-	errorMsg.chop(1);
+	// Build the final message
+	QString twitterErrorsMsg = "";
 
-	return errorMsg;
+	if (!errorMsgs.isEmpty()) {
+		errorMsgs.prepend(QObject::trUtf8("Twitter errors:"));
+		twitterErrorsMsg = errorMsgs.join("\n\t - ");
+	}
+
+	return twitterErrorsMsg;
 }
 
 // For Twitter API callings
@@ -107,8 +122,10 @@ void ProcessUtils::treatApiCallResult(RequestResult result,
 									  CoreResult & issue)
 {
 	// Building error message
-	errorMsg = QObject::trUtf8("Network error ");
-	errorMsg.append(QString::number(result.httpResponse.code));
+	errorMsg = "";
+	errorMsg.append(QObject::trUtf8("Network error"))
+			.append(' ')
+			.append(QString::number(result.httpResponse.code));
 
 	if (!result.httpResponse.message.isEmpty()) {
 		errorMsg.append(" (")
@@ -116,10 +133,8 @@ void ProcessUtils::treatApiCallResult(RequestResult result,
 				.append(")");
 	}
 
-	errorMsg.append(result.httpResponse.message)
-			.append(" : ")
-			.append(result.errorMessage)
-			.append('.');
+	errorMsg.append(" : ")
+			.append(result.errorMessage);
 
 	issue = NETWORK_CALL;
 }
@@ -130,9 +145,11 @@ void ProcessUtils::treatQjsonParsingResult(ResponseInfos parsingErrors,
 										   CoreResult & issue)
 {
 	// Building error message
-	errorMsg = QObject::trUtf8("Parsing error:");
-	errorMsg.append('\n')
-			.append(QObject::trUtf8("Line "))
+	errorMsg = "";
+	errorMsg.append(QObject::trUtf8("Parsing error:"))
+			.append(' ')
+			.append(QObject::trUtf8("Line"))
+			.append(' ')
 			.append(QString::number(parsingErrors.code))
 			.append(" : ")
 			.append(parsingErrors.message);
@@ -146,12 +163,15 @@ void ProcessUtils::treatXMLParsingResult(ResponseInfos parsingErrors,
 										 CoreResult & issue)
 {
 	// Building error message
-	errorMsg = QObject::trUtf8("Parsing error:");
-	errorMsg.append('\n')
-			.append(QObject::trUtf8("Line "))
+	errorMsg = "";
+	errorMsg.append(QObject::trUtf8("Parsing error:"))
+			.append('\n')
+			.append(QObject::trUtf8("Line"))
+			.append(' ')
 			.append(QString::number(parsingErrors.code))
 			.append(" , ")
-			.append(QObject::trUtf8("Column "))
+			.append(QObject::trUtf8("Column"))
+			.append(' ')
 			.append(QString::number(parsingErrors.code))
 			.append(" : ")
 			.append(parsingErrors.message);
@@ -165,8 +185,9 @@ void ProcessUtils::treatOAuthParsingResult(QString parsingErrorsMsg,
 										   CoreResult & issue)
 {
 	// Building error message
-	errorMsg = QObject::trUtf8("Parsing error:");
-	errorMsg.append('\n')
+	errorMsg = "";
+	errorMsg.append(QObject::trUtf8("Parsing error:"))
+			.append(' ')
 			.append(parsingErrorsMsg);
 	issue = PARSE_ERROR;
 }
@@ -177,7 +198,9 @@ void ProcessUtils::treatUnknownResult(QString resultErrorMessage,
 									  CoreResult &issue)
 {
 	// Unexpected problem. Abort.
-	errorMsg = QObject::trUtf8("Unexpected problem:");
-	errorMsg.append('\n').append(resultErrorMessage).append('.');
+	errorMsg = "";
+	errorMsg.append(QObject::trUtf8("Unexpected problem:"))
+			.append(' ')
+			.append(resultErrorMessage);
 	issue = UNKNOWN_PROBLEM;
 }

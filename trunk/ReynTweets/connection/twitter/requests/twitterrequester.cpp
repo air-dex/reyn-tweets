@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2012 Romain Ducher
+/// Copyright 2012, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -31,18 +31,15 @@
 TwitterRequester::TwitterRequester(HTTPRequestType type,
 								   QString url,
 								   OAuthManager &authManager,
-								   NetworkResultType parseError,
-								   bool tokenNeeded,
-								   bool callbackURLNeeded,
-								   bool verifierNeeded) :
+								   NetworkResultType parseError) :
 	GenericRequester(type, url, parseError),
-	oauthManager(authManager),
-	oauthTokenNeeded(tokenNeeded),
-	oauthCallbackUrlNeeded(callbackURLNeeded),
-	oauthVerifierNeeded(verifierNeeded)
+	oauthManager(authManager)
 {}
 
-// Building HTTP Headers
+///////////////////////////
+// Building HTTP Headers //
+///////////////////////////
+
 void TwitterRequester::buildHTTPHeaders() {
 	// For the Content-Type
 	GenericRequester::buildHTTPHeaders();
@@ -51,16 +48,21 @@ void TwitterRequester::buildHTTPHeaders() {
 	headers.insert("Content-Type", "application/x-www-form-urlencoded");
 
 	// Building the OAuth header
-	QByteArray authHeader = oauthManager.getAuthorizationHeader(requestType,
-																requestURL,
-																getParameters,
-																postParameters,
-																oauthTokenNeeded,
-																oauthCallbackUrlNeeded,
-																oauthVerifierNeeded);
-
-	headers.insert("Authorization", authHeader);
+	headers.insert("Authorization", this->getAuthorizationHeader());
 }
+
+// Building the "Authorization" header needed for Twitter requests
+QByteArray TwitterRequester::getAuthorizationHeader() {
+	return oauthManager.getAuthorizationHeader(requestType,
+											   requestURL,
+											   getParameters,
+											   postParameters);
+}
+
+
+////////////////////////////
+// Network reply tratment //
+////////////////////////////
 
 // Method that will parse the raw results of the request.
 QVariant TwitterRequester::parseResult(NetworkResponse results,

@@ -4,7 +4,7 @@
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,17 +28,28 @@ QString DENY_NAME = "cancel";
 
 // Constructor
 OAuthRequester::OAuthRequester(HTTPRequestType type,
-                               QString url,
-                               OAuthManager &authManager,
-                               NetworkResultType parseErrorType,
-                               bool tokenNeeded,
-                               bool callbackURLNeeded,
-                               bool verifierNeeded) :
-    TwitterRequester(type,
-                     url,
-                     authManager,
-                     parseErrorType,
-                     tokenNeeded,
-                     callbackURLNeeded,
-                     verifierNeeded)
+							   QString url,
+							   OAuthManager &authManager,
+							   NetworkResultType parseErrorType,
+							   bool tokenNeeded,
+							   bool callbackURLNeeded,
+							   bool verifierNeeded) :
+	TwitterRequester(type,
+					 url,
+					 authManager,
+					 parseErrorType),
+	oauthTokenNeeded(tokenNeeded),
+	oauthCallbackUrlNeeded(callbackURLNeeded),
+	oauthVerifierNeeded(verifierNeeded)
 {}
+
+// Building the "Authorization" header needed for Twitter requests
+QByteArray OAuthRequester::getAuthorizationHeader() {
+	return oauthManager.getAuthorizationHeader(requestType,
+											   requestURL,
+											   getParameters,
+											   postParameters,
+											   oauthTokenNeeded,
+											   oauthCallbackUrlNeeded,
+											   oauthVerifierNeeded);
+}

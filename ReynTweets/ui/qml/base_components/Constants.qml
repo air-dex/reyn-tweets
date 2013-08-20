@@ -133,7 +133,7 @@ QtObject {
 	readonly property real font_size_xxl: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 36.0
+				return 37.0
 
 			case "linux":
 				return 36.0
@@ -147,7 +147,7 @@ QtObject {
 	readonly property real font_size_xl: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 24.75
+				return 26.0
 
 			case "linux":
 				return 24.75
@@ -175,7 +175,7 @@ QtObject {
 	readonly property real font_size: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 11.0
+				return 12.0
 
 			case "linux":
 				return 11.0
@@ -192,7 +192,7 @@ QtObject {
 	readonly property real font_size_s: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 9.0
+				return 10.0
 
 			case "linux":
 				return 9.0
@@ -206,7 +206,7 @@ QtObject {
 	readonly property real font_size_xs: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 7.5
+				return 8.5
 
 			case "linux":
 				return 7.5
@@ -220,7 +220,7 @@ QtObject {
 	readonly property real font_size_xxs: {
 		switch (Qt.platform.os) {
 			case "windows":
-				return 6.0
+				return 7.0
 
 			case "linux":
 				return 6.0

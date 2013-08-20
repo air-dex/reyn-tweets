@@ -9,32 +9,32 @@
         <translation>À propos de Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="158"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="166"/>
         <source>Website : </source>
         <translation>Site Internet : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="179"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="194"/>
         <source>Reyn Tweets is an open source Twitter client for Windows and Linux written in Qt.</source>
         <translation>Reyn Tweets est un client Twitter open source pour Windows et Linux écrit en Qt.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="182"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="197"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Reyn Tweets est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale Limitée GNU, telle que publiée par la Free Software Foundation, version 3 de la licence, ou (à votre discrétion) toute version ultérieure.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="187"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="202"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
         <translation>Reyn Tweets est distribué dans l&apos;espoir qu&apos;il vous sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de VALEUR MARCHANDE ou D&apos;ADÉQUATION À UN BESOIN PARTICULIER. Consultez la Licence Publique Générale Limitée GNU pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="192"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="207"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
         <translation>Vous avez dû recevoir une copie de la Licence Publique Générale Limitée GNU en même temps que Reyn Tweets. Si ce n&apos;est pas le cas, visitez </translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="236"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="255"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -276,28 +276,28 @@
 <context>
     <name>LoginComponents</name>
     <message>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="64"/>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="124"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="66"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="126"/>
         <source>Reyn Tweets was denied.</source>
         <translation>Reyn Tweets n&apos;a pas été autorisé.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="65"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="67"/>
         <source>Are you sure that you do not want Reyn Tweets to use your Twitter account ?</source>
         <translation>Êtes-vous sûr de ne pas vouloir utiliser Reyn Tweets avec votre compte Twitter ?</translation>
     </message>
     <message>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="68"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="70"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="75"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="77"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../ui/qml/login/LoginComponents.qml" line="90"/>
+        <location filename="../ui/qml/login/LoginComponents.qml" line="92"/>
         <source>Reyn Tweets will quit. Bye bye !</source>
         <translation>Reyn Tweets va s&apos;arrêter. Au revoir !</translation>
     </message>

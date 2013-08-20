@@ -138,3 +138,29 @@ QDataStream & JsonArray<V>::writeInStream(QDataStream & out) const {
 	out << json;
 	return out;
 }
+
+/////////////////////
+// Tweet searching //
+/////////////////////
+
+// Inserting a tweet in the timeline
+template <typename V>
+void JsonArray<V>::insertElement(V element) {
+	int eltIndex = elementIndex(element);
+
+	if (eltIndex >= 0 && eltIndex < this->size()) {
+		if (element == this->at(eltIndex)) {
+			this->replace(eltIndex, element);
+		} else {
+			this->insert(eltIndex, element);
+		}
+	} else if (eltIndex >= this->size()) {
+		this->append(element);
+	}
+}
+
+// Finding the index of a tweet in the timeline.
+template <typename V>
+int JsonArray<V>::elementIndex(V element) {
+	return this->indexOf(element);
+}

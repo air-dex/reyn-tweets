@@ -25,10 +25,10 @@
 #define TWEETENTITIES_HPP
 
 #include "../json/jsonobject.hpp"
-#include "hashtaglist.hpp"
-#include "medialist.hpp"
-#include "urlentitylist.hpp"
-#include "usermentionlist.hpp"
+#include "../../controls/listhandlers/hashtagshandler.hpp"
+#include "../../controls/listhandlers/mediashandler.hpp"
+#include "../../controls/listhandlers/mentionshandler.hpp"
+#include "../../controls/listhandlers/urlshandler.hpp"
 
 
 /// @class TweetEntities
@@ -123,93 +123,81 @@ class TweetEntities : public JsonObject
 		/// @property media
 		/// @brief Medias
 		///
-		/// medias is the attribute beneath this property.
-		Q_PROPERTY(QVariantList media
-				   READ getMediaProperty
-				   WRITE setMedia
+		/// mediasHandler is the attribute beneath this property.
+		Q_PROPERTY(MediasHandler * media
+				   READ getMediasHandler
 				   NOTIFY mediaChanged)
 
 		/// @brief Name of the property media.
 		static QString MEDIA_PN;
 
-		/// @fn QVariantList getMediaProperty();
+		/// @brief Handler for medias
+		MediasHandler mediasHandler;
+
+		/// @fn MediasHandler * getMediasHandler();
 		/// @brief Reading the property media
 		/// @return mediaList
-		QVariantList getMediaProperty();
-
-		/// @fn void setMedia(QVariantList newMediaList);
-		/// @brief Writing the property media
-		/// @param newMediaList New value for the property media
-		void setMedia(QVariantList newMediaList);
+		MediasHandler * getMediasHandler();
 
 		// urls
 		/// @property urls
 		/// @brief URLs written in the tweet
 		///
-		/// tweetURLs is the attribute beneath this property.
-		Q_PROPERTY(QVariantList urls
-				   READ getURLsProperty
-				   WRITE setURLs
+		/// urlsHandler is the attribute beneath this property.
+		Q_PROPERTY(UrlsHandler * urls
+				   READ getURLsHandler
 				   NOTIFY urlsChanged)
 
 		/// @brief Name of the property urls.
 		static QString URLS_PN;
 
-		/// @fn QVariantList getURLsProperty();
+		/// @brief Handler for urls
+		UrlsHandler urlsHandler;
+
+		/// @fn UrlsHandler * getURLsHandler();
 		/// @brief Reading the property urls
 		/// @return urlsList
-		QVariantList getURLsProperty();
-
-		/// @fn void setURLs(QVariantList newURLList);
-		/// @brief Writing the property urls
-		/// @param newURLList New value for the property urls
-		void setURLs(QVariantList newURLList);
+		UrlsHandler * getURLsHandler();
 
 		// user_mentions
 		/// @property user_mentions
 		/// @brief Users mentionned in the tweet
 		///
-		/// mentions is the attribute beneath this property.
-		Q_PROPERTY(QVariantList user_mentions
-				   READ getUserMentionsProperty
-				   WRITE setUserMentions
+		/// mentionsHandler is the attribute beneath this property.
+		Q_PROPERTY(MentionsHandler * user_mentions
+				   READ getMentionsHandler
 				   NOTIFY userMentionsChanged)
 
 		/// @brief Name of the property user_mentions.
 		static QString USER_MENTIONS_PN;
 
-		/// @fn QVariantList getUserMentionsProperty();
+		/// @brief Handler for user_mentions
+		MentionsHandler mentionsHandler;
+
+		/// @fn MentionsHandler * getMentionsHandler();
 		/// @brief Reading the property user_mentions
 		/// @return userMentionsList
-		QVariantList getUserMentionsProperty();
-
-		/// @fn void setUserMentions(QVariantList newUserMentionsList);
-		/// @brief Writing the property user_mentions
-		/// @param newUserMentionsList New value for the property user_mentions
-		void setUserMentions(QVariantList newUserMentionsList);
+		MentionsHandler * getMentionsHandler();
 
 		// hashtags
 		/// @property hashtags
 		/// @brief Hashtags in the tweet
 		///
-		/// tweetHashtags is the attribute beneath this property.
-		Q_PROPERTY(QVariantList hashtags
-				   READ getHashtagsProperty
-				   WRITE setHashtags
+		/// hashtagsHandler is the attribute beneath this property.
+		Q_PROPERTY(HashtagsHandler * hashtags
+				   READ getHashtagsHandler
 				   NOTIFY hashtagsChanged)
 
 		/// @brief Name of the property hashtags.
 		static QString HASHTAGS_PN;
 
-		/// @fn QVariantList getHashtagsProperty();
+		/// @brief Handler for hashtags
+		HashtagsHandler hashtagsHandler;
+
+		/// @fn HashtagsHandler * getHashtagsHandler();
 		/// @brief Reading the property hashtags
 		/// @return hashtagsList
-		QVariantList getHashtagsProperty();
-
-		/// @fn void setHashtags(QVariantList newHashtagsList);
-		/// @brief Writing the property hashtags
-		/// @param newHashtagsList New value for the property hashtags
-		void setHashtags(QVariantList newHashtagsList);
+		HashtagsHandler * getHashtagsHandler();
 
 	signals:
 		/// @fn void mediaChanged();
@@ -236,16 +224,16 @@ class TweetEntities : public JsonObject
 
 	protected:
 		/// @brief Medias
-		MediaList medias;
+		MediaList & medias;
 
 		/// @brief URLs
-		URLEntityList tweetURLs;
+		URLEntityList & tweetURLs;
 
 		/// @brief User mentions
-		UserMentionList mentions;
+		UserMentionList & mentions;
 
 		/// @brief Hashtags
-		HashtagList tweetHashtags;
+		HashtagList & tweetHashtags;
 
 
 	///////////////

@@ -77,6 +77,15 @@ class Hashtag : public TweetEntity
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/// @fn bool operator==(const Hashtag & hashtag) const;
+		/// @brief Equality between Hashtags
+		///
+		/// Two GeoCoords are considered equals if they have got both the same
+		/// longitude and the same latitude.
+		/// @param hashtag The hashtag to compare
+		/// @return True if they are equals, false otherwise.
+		bool operator==(const Hashtag & hashtag) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////

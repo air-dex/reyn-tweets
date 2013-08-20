@@ -75,13 +75,13 @@ QDataStream & operator>>(QDataStream & in, Timeline & list) {
 }
 
 
-//////////
-// Misc //
-//////////
+/////////////////////
+// Tweet searching //
+/////////////////////
 
 // Inserting a tweet in the timeline
-void Timeline::insertTweet(Tweet newTweet) {
-	int newTweetIndex = tweetIndex(newTweet);
+void Timeline::insertElement(Tweet newTweet) {
+	int newTweetIndex = elementIndex(newTweet);
 
 	if (newTweetIndex >= 0 && newTweetIndex < this->size()) {
 		if (newTweet == this->at(newTweetIndex)) {
@@ -95,7 +95,7 @@ void Timeline::insertTweet(Tweet newTweet) {
 }
 
 // Finding the index of a tweet in the timeline.
-int Timeline::tweetIndex(Tweet tweet) {
+int Timeline::elementIndex(Tweet tweet) {
 	qlonglong tweetID = tweet.getIDstr().toLongLong();
 
 	// Special case for default tweets.

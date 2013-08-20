@@ -25,8 +25,8 @@
 
 #include <QApplication>
 #include <QLocale>
-#include "../logic/core/reyntweetsentities.hpp"
-#include "../logic/controls/controls.hpp"
+#include "core/reyntweetsentities.hpp"
+#include "controls/controls.hpp"
 
 ////////////////////////////
 // Translation management //
@@ -70,7 +70,6 @@ void ReynTweets::initSystem() {
 
 	// Timelines
 	Timeline::initSystem();
-	TimelineHandler::initSystem();
 
 	// Entities
 	Hashtag::initSystem();
@@ -97,6 +96,14 @@ void ReynTweets::initSystem() {
 	UserEntities::initSystem();
 	UserInfos::initSystem();
 
+	// List handlers
+	ContributorsHandler::initSystem();
+	HashtagsHandler::initSystem();
+	MediasHandler::initSystem();
+	MentionsHandler::initSystem();
+	TimelineHandler::initSystem();
+	UrlsHandler::initSystem();
+
 	// No controls for the moment
 }
 
@@ -111,8 +118,7 @@ void ReynTweets::declareQML() {
 	GeoBoundingBox::declareQML();
 	TwitterPlace::declareQML();
 
-	// Timelines
-	TimelineHandler::declareQML();
+	// Timelines. Nothing for the moment
 
 	// Entities
 	TweetEntities::declareQML();
@@ -120,8 +126,8 @@ void ReynTweets::declareQML() {
 	Media::declareQML();
 	MediaSize::declareQML();
 	MediaSizes::declareQML();
-	UserMention::declareQML();
 	URLEntity::declareQML();
+	UserMention::declareQML();
 
 	// Tweets
 	Tweet::declareQML();
@@ -132,6 +138,14 @@ void ReynTweets::declareQML() {
 	User::declareQML();
 	UserEntities::declareQML();
 	UserInfos::declareQML();
+
+	// List handlers
+	ContributorsHandler::declareQML();
+	HashtagsHandler::declareQML();
+	MediasHandler::declareQML();
+	MentionsHandler::declareQML();
+	TimelineHandler::declareQML();
+	UrlsHandler::declareQML();
 
 	// Controls
 	AllowControl::declareQML();

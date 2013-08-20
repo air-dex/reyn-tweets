@@ -78,7 +78,7 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		/// @brief Destructor
 		virtual ~TimelineHandler();
 
-		/// @fn Timeline(const TimelineHandler & handler);
+		/// @fn TimelineHandler(const TimelineHandler & handler);
 		/// @brief Copy constructor
 		/// @param handler Timeline to copy
 		TimelineHandler(const TimelineHandler & handler);
@@ -95,11 +95,6 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		/// @fn static void declareQML();
 		/// @brief Declaring to the QML system
 		static void declareQML();
-
-	signals:
-		/// @fn void timelineChanged();
-		/// @brief Signal emitted when the handled timeline has got a new value.
-		void handledListChanged();
 
 
 	protected:
@@ -119,12 +114,6 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		/// a default element otherwise.
 		Q_INVOKABLE virtual Tweet * get(int index);
 
-		/// @fn virtual int getElementIndex(Tweet listElt, bool & exactIndex);
-		/// @brief Getting the potential index of a tweet.
-		/// @param listElt Tweet that we want to know the potential index.
-		/// @return Its potential index of the tweet in the list.
-		virtual int getElementIndex(Tweet tweet, bool &exactIndex);
-
 		/////////////////////////////////////
 		// Friends serialization operators //
 		/////////////////////////////////////
@@ -139,7 +128,7 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 										const TimelineHandler & handler);
 
 		/// @fn friend QDataStream & operator>>(QDataStream & in,
-		///										Timeline & handler);
+		///										TimelineHandler & handler);
 		/// @brief Input stream operator for serialization
 		/// @param in The input stream
 		/// @param handler Object to put in the stream
@@ -176,6 +165,9 @@ class TimelineHandler : public ListHandler<Timeline, Tweet>
 		/// @fn void typeChanged();
 		/// @brief Notifying changes about the property type.
 		void typeChanged();
+
+		/// @see { @link HandlerEmitter::handledListChanged(); }
+		void handledListChanged();
 
 
 	public:

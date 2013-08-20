@@ -53,6 +53,25 @@ class JsonArray : public Variantable<QJsonArray>, public QList<V>
 		/// @param list JsonArray to affect
 		const JsonArray<V> & operator=(const JsonArray<V> & list);
 
+
+		////////////
+		// Search //
+		////////////
+
+		/// @fn virtual int elementIndex(V element);
+		/// @brief Custom method for getting the element of an index.
+		///
+		/// This method uses QList::indexOf(); but it could be overriden for
+		/// better performances (dichotomy in sorted JsonArrays like Timelines).
+		/// @param element The element
+		/// @return The index
+		virtual int elementIndex(V element);
+
+		/// @fn virtual void insertElement(V element);
+		/// @brief Custom method for inserting an element.
+		/// @param element The element to insert
+		virtual void insertElement(V element);
+
 		/////////////////////////////////
 		// Variantable virtual methods //
 		/////////////////////////////////

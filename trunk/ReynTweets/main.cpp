@@ -25,7 +25,7 @@
 #include <QDateTime>
 #include <QIcon>
 #include "ui/qtquick2applicationviewer.hpp"
-#include "tools/reyntweets.hpp"
+#include "logic/reyntweets.hpp"
 
 #ifdef Q_OS_LINUX
 	// Include QDir for setting the working path correctly

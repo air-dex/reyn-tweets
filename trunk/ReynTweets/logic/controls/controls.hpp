@@ -24,8 +24,15 @@
 #ifndef CONTROLS_HPP
 #define CONTROLS_HPP
 
+// List handlers
+#include "listhandlers/contributorshandler.hpp"
+#include "listhandlers/hashtagshandler.hpp"
+#include "listhandlers/mediashandler.hpp"
+#include "listhandlers/mentionshandler.hpp"
 #include "listhandlers/timelinehandler.hpp"
+#include "listhandlers/urlshandler.hpp"
 
+// Other controls
 #include "allowcontrol.hpp"
 #include "launchingcontrol.hpp"
 #include "reyncontrol.hpp"

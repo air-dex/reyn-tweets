@@ -63,6 +63,15 @@ class GeoCoord : public JsonArray<double>, public QPointF
 		/// @brief Resets the mappable to a default value
 		void reset();
 
+		/// @fn bool operator==(const GeoCoord & coord) const;
+		/// @brief Equality between GeoCoord
+		///
+		/// Two GeoCoords are considered equals if they have got both the same
+		/// longitude and the same latitude.
+		/// @param coord The GeoCoord to compare
+		/// @return True if they are equals, false otherwise.
+		bool operator==(const GeoCoord & coord) const;
+
 		/////////////////////
 		// JSON conversion //
 		/////////////////////

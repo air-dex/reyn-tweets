@@ -64,6 +64,11 @@ void GeoCoord::reset() {
 	*this = GeoCoord();
 }
 
+// Equality
+bool GeoCoord::operator==(const GeoCoord & coord) const {
+	return this->x() == coord.x() && this->y() == coord.y();
+}
+
 
 /////////////////////
 // JSON conversion //

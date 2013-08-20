@@ -31,7 +31,7 @@
 #include "tweetentities.hpp"
 #include "../users/userinfos.hpp"
 #include "retweetinfos.hpp"
-#include "../users/contributorlist.hpp"
+#include "../../controls/listhandlers/contributorshandler.hpp"
 #include "../geo/coordinates.hpp"
 #include "../geo/twitterplace.hpp"
 
@@ -134,48 +134,23 @@ class Tweet : public JsonObject
 	protected:
 		// contributors
 		/// @property contributors
-		/// @brief Tweet Entities
+		/// @brief Contributors of the tweet
 		///
 		/// tweetContributors is the attribute beneath this property.
-		Q_PROPERTY(QVariantList contributors
-				   READ getContributorsProperty
-				   WRITE setContributors
+		Q_PROPERTY(ContributorsHandler * contributors
+				   READ getContributorsPtr
 				   NOTIFY contributorsChanged)
 
 		/// @brief Name of the property contributors.
 		static QString CONTRIBUTORS_PN;
 
-		/// @fn QVariantList getContributorsProperty();
+		/// @brief Contributors (handler)
+		ContributorsHandler tweetContributors;
+
+		/// @fn ContributorsHandler * getContributorsPtr();
 		/// @brief Reading the property contributors
 		/// @return entitiesMap
-		QVariantList getContributorsProperty();
-
-		/// @fn void setContributors(QVariantList newEntityMap);
-		/// @brief Writing the property contributors
-		/// @param newEntityMap New value for entities
-		void setContributors(QVariantList newEntityMap);
-
-		/// @property tweet_contributors
-		/// @brief Tweet Entities
-		///
-		/// tweetContributors is the attribute beneath this property.
-		Q_PROPERTY(ContributorList * tweet_contributors
-				   READ getContributorsPtr
-				   WRITE setContributors
-				   NOTIFY contributorsChanged)
-
-		/// @brief Name of the property tweet_contributors.
-		static QString TWEET_CONTRIBUTORS_PN;
-
-		/// @fn ContributorList * getContributorsPtr();
-		/// @brief Reading the property tweet_contributors
-		/// @return entitiesMap
-		ContributorList * getContributorsPtr();
-
-		/// @fn void setContributors(ContributorList * newEntityMap);
-		/// @brief Writing the property tweet_contributors
-		/// @param newEntityMap New value for entities
-		void setContributors(ContributorList * newEntityMap);
+		ContributorsHandler * getContributorsPtr();
 
 		// coordinates
 		/// @property coordinates
@@ -785,8 +760,8 @@ class Tweet : public JsonObject
 		/// @brief truncated
 		bool truncatedTweet;
 
-		/// @brief Contributors
-		ContributorList tweetContributors;
+		/// @brief Contributors (list)
+		ContributorList & contributorsList;
 
 		/// @brief Coordinates where the tweet was supposed to be posted
 		Coordinates tweetCoordinates;

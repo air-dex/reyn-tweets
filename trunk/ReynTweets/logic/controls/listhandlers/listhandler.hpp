@@ -184,7 +184,7 @@ class ListHandler : public HandlerEmitter
 		/// @param exactIndex Boolean indicating if it is the element at
 		/// the index position is equal to the searched element.
 		/// @return Its potential index in the list.
-		virtual int getElementIndex(U listElt, bool & exactIndex) = 0;
+		virtual int getElementIndex(U listElt, bool & exactIndex);
 };
 
 #endif // LISTHANDLER_HPP

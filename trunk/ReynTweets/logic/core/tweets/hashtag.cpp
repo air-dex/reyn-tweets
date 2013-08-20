@@ -86,6 +86,11 @@ void Hashtag::reset() {
 	*this = Hashtag();
 }
 
+// Equality
+bool Hashtag::operator==(const Hashtag & hashtag) const {
+	return this->hashText == hashtag.hashText;
+}
+
 
 /////////////////////
 // JSON conversion //

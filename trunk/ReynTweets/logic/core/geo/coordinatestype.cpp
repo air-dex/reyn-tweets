@@ -1,6 +1,6 @@
 /// @file coordinatestype.cpp
-/// @brief Implementation of functions for converting CoordinatesType into
-/// QString and vice versa.
+/// @brief Implementation of functions for converting ReynTweetsCoordinatesType
+/// into QString and vice versa.
 /// @author Romain Ducher
 ///
 /// @section LICENSE

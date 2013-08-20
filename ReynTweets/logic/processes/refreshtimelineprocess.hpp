@@ -54,10 +54,10 @@
 /// tweets.</li>
 /// <li><strong>"gap"</strong> : boolean indicating if despite the 2nd step of
 /// the process, some tweets are still missing.</li>
-/// <li><strong>"intermediate_issue"</strong> : if the process has to load
+/// <li><strong>"intermediate_end"</strong> : if the process has to load
 /// timelines several times, all the timeline requests might not end successfully.
-/// The process will stop at the first failed end and the issue of these failed
-/// end will be stored in thyis field.</li>
+/// The process will stop at the first failed end and the CoreResult of these
+/// failed end will be stored in this field.</li>
 /// </ul>
 class RefreshTimelineProcess : public GenericProcess
 {
@@ -104,16 +104,16 @@ class RefreshTimelineProcess : public GenericProcess
 		/// The process stops when <code>oldestNewTweet == sinceID</code>.
 		Tweet oldestNewTweet;
 
-		/// @brief Issue of the process.
+		/// @brief Result of the process.
 		///
-		/// If some tweets are loaded, the issue is TIMELINE_RETRIEVED,
+		/// If some tweets are loaded, the CoreResult is TIMELINE_RETRIEVED,
 		/// even if there are problems while retrieving intermediate tweets.
 		/// Actually it depends on what happens while loading the most
 		/// recent tweets.
 		/// If something bad happens while loading intermediate tweets, it will
 		/// be stored in the process results in a field called
 		/// "intermediate_result".
-		CoreResult finalIssue;
+		CoreResult finalEnd;
 
 
 		/////////////////
@@ -141,14 +141,14 @@ class RefreshTimelineProcess : public GenericProcess
 
 		/// @fn virtual void endProcess(QString errorMessage,
 		///								bool gap = false,
-		///								CoreResult intermediateIssue = INVALID_ISSUE);
+		///								CoreResult intermediateEnd = INVALID_END);
 		/// @brief Special overriding of endProcess();
 		/// @param errorMessage Process error message.
-		/// @param intermediateIssue Value of the field "intermediate_issue".
+		/// @param intermediateEnd Value of the field "intermediate_end".
 		/// @param gap Value of the field "gap".
 		virtual void endProcess(QString errorMessage,
 								bool gap = false,
-								CoreResult intermediateIssue = INVALID_ISSUE);
+								CoreResult intermediateEnd = INVALID_END);
 
 	protected slots:
 		/// @fn void loadFirstTweetsEnded(ResultWrapper res);

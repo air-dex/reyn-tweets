@@ -99,7 +99,7 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR: {
@@ -121,7 +121,7 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 				return updateConfiguration(accessToken, tokenSecret, userID, screenName);
 			} else {
 				// Don't update the configuration. Stop the process here.
-				issue = AUTHORIZED;
+				procEnd = AUTHORIZED;
 			}
 		} break;
 
@@ -130,7 +130,7 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			issue = (httpCode / 100 == 5
+			procEnd = (httpCode / 100 == 5
 					 || httpCode == 401
 					 || httpCode == 420
 					 || httpCode == 429
@@ -140,24 +140,24 @@ void AccessTokensProcess::accessTokenDemanded(ResultWrapper res) {
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
-												  issue);
+												  procEnd);
 			break;
 
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue);
+											 procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
+	endProcess(procEnd, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }
 
 // Uploading the configuration with the authentified user after an authentication process
@@ -192,7 +192,7 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR: {
@@ -207,49 +207,49 @@ void AccessTokensProcess::retrieveUserEnded(ResultWrapper res) {
 
 		case Network::SERVICE_ERRORS:
 			// Looking for specific value of the return code
-			issue = (httpCode / 100 == 5
+			procEnd = (httpCode / 100 == 5
 					 || httpCode == 420
 					 || httpCode == 429
 					 ) ?
 						httpResults.value(httpCode)
 					  : NO_TOKENS;
 
-			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+			//ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  errorMsg,
-												  issue);
+												  procEnd);
 			break;
 
 		default:
 			ProcessUtils::treatUnknownResult(result.errorMessage,
 											 errorMsg,
-											 issue);
+											 procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
+	endProcess(procEnd, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }
 
 // Saves the configuration
 void AccessTokensProcess::saveConfiguration() {
 	QString errorMsg = "";
-	CoreResult saveIssue = configuration->save(errorMsg);
+	CoreResult saveEnd = configuration->save(errorMsg);
 
-	switch (saveIssue) {
+	switch (saveEnd) {
 		case SAVE_SUCCESSFUL:
 			// The application was saved correctly.
-			saveIssue = ALLOW_SUCCESSFUL;
+			saveEnd = ALLOW_SUCCESSFUL;
 			break;
 
 		case REINIT_SUCCESSFUL:
@@ -261,12 +261,12 @@ void AccessTokensProcess::saveConfiguration() {
 			break;
 
 		default:
-			saveIssue = UNKNOWN_PROBLEM;
+			saveEnd = UNKNOWN_PROBLEM;
 			errorMsg = AccessTokensProcess::trUtf8("Unknown problem").append(" : ")
 					   .append(errorMsg);;
 			break;
 	}
 
 	// Ending the process
-	endProcess(saveIssue, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
+	endProcess(saveEnd, QVariant::fromValue<QVariantMap>(oauthRes), errorMsg);
 }

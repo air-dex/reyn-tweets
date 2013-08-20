@@ -110,7 +110,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 	NetworkResultType errorType = result.resultType;
 	QString errorMsg = "";
-	CoreResult issue;	// Filled in ProcessUtils methods
+	CoreResult procEnd;	// Filled in ProcessUtils methods
 
 	// For a potenitial anticipated end
 	QString beginErrMsg = "";
@@ -143,32 +143,32 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 		}break;
 
 		case Network::SERVICE_ERRORS:
-			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
 	// Failed end
 	errorMsg.prepend(beginErrMsg);
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }
 
 // Deleting the tweet
 void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 									 QString addInfos)
 {
-	CoreResult issue = TWEET_UNDESTROYABLE;
+	CoreResult procEnd = TWEET_UNDESTROYABLE;
 	QString errMsg = "";
 
 	if (allowToDelete) {
@@ -192,7 +192,7 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 	}
 
 	// Failed end
-	endProcess(issue, errMsg);
+	endProcess(procEnd, errMsg);
 }
 
 // After deleting the tweet
@@ -210,7 +210,7 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;	// Filled in ProcessUtils methods
+	CoreResult procEnd;	// Filled in ProcessUtils methods
 
 	// For NO_REQUEST_ERROR requests
 	QVariantMap deletionResult;
@@ -226,22 +226,22 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 							  QVariant::fromValue(deletionResult));
 
 		case Network::SERVICE_ERRORS:
-			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }

@@ -24,10 +24,10 @@
 #include "singletwittercallprocess.hpp"
 #include "processutils.hpp"
 
-SingleTwitterCallProcess::SingleTwitterCallProcess(CoreResult rightIssue) :
+SingleTwitterCallProcess::SingleTwitterCallProcess(CoreResult rightEnd) :
 	GenericProcess(),
 	twitter(this),
-	successfullIssue(rightIssue)
+	successfullEnd(rightEnd)
 {}
 
 // Starting the process by calling Twitter
@@ -53,7 +53,7 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 	//QVariant res;
 
 	// Analysing the Twitter response
@@ -61,60 +61,60 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 		case Network::NO_REQUEST_ERROR:
 			/*
 			res = result.parsedResult;
-			issue = successfullIssue;
+			procEnd = successfullEnd;
 			break;
 			//*/
 			return treatSuccessfulResult(result.parsedResult);
 
 		case Network::SERVICE_ERRORS:
-			treatTwitterErrorResult(result, errorMsg, issue);
+			treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::API_CALL:
-			treatApiCallResult(result, errorMsg, issue);
+			treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
+			treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			treatUnknownResult(result.errorMessage, errorMsg, issue);
+			treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
 	// End of the process
-	endProcess(issue, /*res,*/ errorMsg);
+	endProcess(procEnd, /*res,*/ errorMsg);
 }
 
 void SingleTwitterCallProcess::treatSuccessfulResult(QVariant result) {
-	endProcess(successfullIssue, result);
+	endProcess(successfullEnd, result);
 }
 
 void SingleTwitterCallProcess::treatTwitterErrorResult(RequestResult result,
 													   QString & errorMsg,
-													   CoreResult & issue)
+													   CoreResult & procEnd)
 {
-	ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+	ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatApiCallResult(RequestResult result,
 												  QString & errorMsg,
-												  CoreResult & issue)
+												  CoreResult & procEnd)
 {
-	ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+	ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatQjsonParsingResult(ResponseInfos parsingErrors,
 													   QString & errorMsg,
-													   CoreResult & issue)
+													   CoreResult & procEnd)
 {
-	ProcessUtils::treatQjsonParsingResult(parsingErrors, errorMsg, issue);
+	ProcessUtils::treatQjsonParsingResult(parsingErrors, errorMsg, procEnd);
 }
 
 void SingleTwitterCallProcess::treatUnknownResult(QString resultErrorMessage,
 												  QString &errorMsg,
-												  CoreResult &issue)
+												  CoreResult &procEnd)
 {
-	ProcessUtils::treatUnknownResult(resultErrorMessage, errorMsg, issue);
+	ProcessUtils::treatUnknownResult(resultErrorMessage, errorMsg, procEnd);
 }

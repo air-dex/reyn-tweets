@@ -68,7 +68,7 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -76,10 +76,9 @@ void AllowControl::requestTokensOK(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &AllowControl::requestTokensOK);
 
-	CoreResult issue = result.processIssue;
 	bool fatal = false;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case REQUEST_TOKENS_OK: {
 			// Send HTML to QML
 			QVariantMap parsedResults = result.results.toMap();
@@ -208,7 +207,7 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -217,13 +216,13 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 			   this, &AllowControl::accessTokensOK);
 
 	QString displayMessage = result.errorMsg;
-	CoreResult issue = result.processIssue;
+	CoreResult procEnd = result.processEnd;
 	bool endOK = false;
 	bool fatal = false;
 
-	// Real issue
+	// Real process end
 	if (result.results.toMap().value("authorized").toBool()) {
-		if (issue != AUTHORIZED) {
+		if (procEnd != AUTHORIZED) {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized.");
 		} else {
 			displayMessage = AllowControl::trUtf8("Reyn Tweets was authorized but")
@@ -231,10 +230,10 @@ void AllowControl::accessTokensOK(ProcessWrapper res) {
 							 .append(result.errorMsg);
 		}
 
-		issue = AUTHORIZED;
+		procEnd = AUTHORIZED;
 	}
 
-	switch (issue) {
+	switch (procEnd) {
 		case ALLOW_SUCCESSFUL:
 		case AUTHORIZED:
 			// End it !

@@ -77,7 +77,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -99,32 +99,32 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 				// Unexpected end : abort !
 				ProcessUtils::treatUnknownResult(result.errorMessage,
 												 errorMsg,
-												 issue);
+												 procEnd);
 			}
 			break;
 
 		case Network::SERVICE_ERRORS:
-			issue = UNSHORTENABLE_MESSAGE;
+			procEnd = UNSHORTENABLE_MESSAGE;
 			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Tweet cannot be shortened"))
 					.append(" : ")
 					.append(result.errorMessage);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::XML_PARSING:
-			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, issue);
+			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }
 
 //////////////////////////////////////////////////
@@ -159,7 +159,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	// Analysing the Twitter response
 	switch (errorType) {
@@ -174,24 +174,24 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 			}
 
 		case Network::SERVICE_ERRORS:
-			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
+			ProcessUtils::treatTwitterErrorResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
 			break;
 
 		case Network::JSON_PARSING:
-			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
+			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, procEnd);
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
 	// Failed end
-	endProcess(issue, errorMsg);
+	endProcess(procEnd, errorMsg);
 }
 
 ///////////////////////////////////////////////////
@@ -220,33 +220,33 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
-	CoreResult issue;
+	CoreResult procEnd;
 
 	// Analysing the Twitter response
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
-			issue = TWEET_POSTED;
+			procEnd = TWEET_POSTED;
 			break;
 
 		case Network::SERVICE_ERRORS:
-			issue = MESSAGE_NOT_UPDATED;
+			procEnd = MESSAGE_NOT_UPDATED;
 			errorMsg.append(PostViaTwitLongerProcess::trUtf8("Message on TwitLonger cannot be updated : "))
 					.append(" : ")
 					.append(result.errorMessage);
 			break;
 
 		case Network::API_CALL:
-			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
-			issue = MESSAGE_NOT_UPDATED;
+			ProcessUtils::treatApiCallResult(result, errorMsg, procEnd);
+			procEnd = MESSAGE_NOT_UPDATED;
 			break;
 
 		case Network::XML_PARSING:
-			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, issue);
-			issue = TWEET_POSTED;
+			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, procEnd);
+			procEnd = TWEET_POSTED;
 			break;
 
 		default:
-			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, issue);
+			ProcessUtils::treatUnknownResult(result.errorMessage, errorMsg, procEnd);
 			break;
 	}
 
@@ -256,5 +256,5 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	 * (TwitLonger errors, network problems, failed to parse the TwitLonger XML
 	 * response). The most important is done (posting the tweet) !
 	 */
-	endProcess(issue, postedTweet.toVariant(), errorMsg);
+	endProcess(procEnd, postedTweet.toVariant(), errorMsg);
 }

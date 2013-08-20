@@ -1,5 +1,6 @@
 /// @file QuitPane.qml
-/// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.
+/// @brief Widget displayed to quit Reyn Tweets, after fatal process ends
+/// for example.
 ///
 /// It were in the /trunk/ReynTweets/ui/qml folder until r491
 /// @author Romain DUCHER
@@ -27,7 +28,7 @@ import QtQuick 2.0
 import "../base_components"
 
 /// @class QuitPane
-/// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.
+/// @brief Widget displayed to quit Reyn Tweets, after fatal ends for example.
 GenericActionPane {
 	button_text: qsTr("Quit")
 	onAct: Qt.quit()

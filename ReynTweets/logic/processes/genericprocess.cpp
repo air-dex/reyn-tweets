@@ -38,29 +38,27 @@ QUuid GenericProcess::getProcessUUID() {
 }
 
 // End of a process
-void GenericProcess::endProcess(CoreResult issue,
+void GenericProcess::endProcess(CoreResult procEnd,
 								QVariant result,
 								QString errorMessage)
 {
 	ProcessResult processResult;
-	processResult.processIssue = issue;
+	processResult.processEnd = procEnd;
 	processResult.results = result;
 	processResult.errorMsg = errorMessage;
 	emit processEnded(processResult);
 }
 
-void GenericProcess::endProcess(CoreResult issue, QVariant result) {
-	endProcess(issue, result, "");
+void GenericProcess::endProcess(CoreResult procEnd, QVariant result) {
+	GenericProcess::endProcess(procEnd, result, "");
 }
 
-void GenericProcess::endProcess(CoreResult issue, QString errorMessage) {
-	endProcess(issue, QVariant(), errorMessage);
+void GenericProcess::endProcess(CoreResult procEnd, QString errorMessage) {
+	GenericProcess::endProcess(procEnd, QVariant(), errorMessage);
 }
 
 // Invalid ends
 void GenericProcess::invalidEnd() {
-	CoreResult issue = INVALID_ISSUE;
-	QString errMsg = GenericProcess::trUtf8("Dead end.");
-
-	endProcess(issue, errMsg);
+	GenericProcess::endProcess(INVALID_END,
+							   GenericProcess::trUtf8("Dead end."));
 }

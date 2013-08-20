@@ -131,7 +131,7 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -139,10 +139,9 @@ void TweetControl::refreshEnd(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TweetControl::refreshEnd);
 
-	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case TWEET_RETRIEVED:
 			parsedResults = result.results.toMap();
 			status->reset();
@@ -288,7 +287,7 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -296,11 +295,10 @@ void TweetControl::retweetEnd(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TweetControl::retweetEnd);
 
-	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
 	Tweet resultTweet;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case TWEET_RETWEETED:
 			parsedResults = result.results.toMap();
 			resultTweet.fillWithVariant(QJsonObject::fromVariantMap(parsedResults));
@@ -384,7 +382,7 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -392,10 +390,9 @@ void TweetControl::favoriteEnd(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TweetControl::favoriteEnd);
 
-	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
@@ -471,7 +468,7 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -479,10 +476,9 @@ void TweetControl::unfavoriteEnd(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TweetControl::unfavoriteEnd);
 
-	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case FAVORITE_SUCCESSFUL:
 			// Don't forget to update the tweet
 			parsedResults = result.results.toMap();
@@ -557,7 +553,7 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 	ProcessResult result = res.accessResult(this);
 
 	// The result was not for the object. Stop the treatment.
-	if (INVALID_ISSUE == result.processIssue) {
+	if (INVALID_END == result.processEnd) {
 		return invalidEnd();
 	}
 
@@ -565,10 +561,9 @@ void TweetControl::deleteEnd(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TweetControl::deleteEnd);
 
-	CoreResult issue = result.processIssue;
 	QVariantMap parsedResults;
 
-	switch (issue) {
+	switch (result.processEnd) {
 		case TWEET_DELETED:
 			parsedResults = result.results.toMap();
 

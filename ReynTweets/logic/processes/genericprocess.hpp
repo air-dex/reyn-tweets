@@ -60,37 +60,37 @@ class GenericProcess : public QObject
 		/// @brief UUID of the process
 		QUuid processUuid;
 
-		/// @fn virtual void endProcess(CoreResult issue,
+		/// @fn virtual void endProcess(CoreResult procEnd,
 		///								QVariant result,
 		///								QString errorMessage);
 		/// @brief Ending the process.
 		///
 		/// The method builds the result and then sends it to the ReynCore.
-		/// @param issue Description on how the process ends.
+		/// @param procEnd Description on how the process ends.
 		/// @param result Results of the process.
 		/// @param errorMessage Message if an error occurs during the process.
-		virtual void endProcess(CoreResult issue,
+		virtual void endProcess(CoreResult procEnd,
 								QVariant result,
 								QString errorMessage);
 
-		/// @fn virtual void endProcess(CoreResult issue, QVariant result);
+		/// @fn virtual void endProcess(CoreResult procEnd, QVariant result);
 		/// @brief Ending the process.
 		///
-		/// It is a shortcut for endProcess(issue, result, "");.
-		/// @param issue Description on how the process ends.
+		/// It is a shortcut for endProcess(procEnd, result, "");.
+		/// @param procEnd Description on how the process ends.
 		/// @param result Results of the process.
-		virtual void endProcess(CoreResult issue, QVariant result);
+		virtual void endProcess(CoreResult procEnd, QVariant result);
 
-		/// @fn virtual void endProcess(CoreResult issue, QString errorMessage);
+		/// @fn virtual void endProcess(CoreResult procEnd, QString errorMessage);
 		/// @brief Ending the process.
 		///
-		/// It is a shortcut for endProcess(issue, QVariant(), errorMessage);.
-		/// @param issue Description on how the process ends.
+		/// It is a shortcut for endProcess(procEnd, QVariant(), errorMessage);.
+		/// @param procEnd Description on how the process ends.
 		/// @param errorMessage Message if an error occurs during the process.
-		virtual void endProcess(CoreResult issue, QString errorMessage);
+		virtual void endProcess(CoreResult procEnd, QString errorMessage);
 
 		/// @fn void invalidEnd();
-		/// @brief Generic treatment for invalid issues.
+		/// @brief Generic treatment for invalid process ends.
 		void invalidEnd();
 };
 

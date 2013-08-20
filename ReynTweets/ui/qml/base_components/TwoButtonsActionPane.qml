@@ -26,7 +26,7 @@
 import QtQuick 2.0
 
 /// @class TwoButtonsActionPane
-/// @brief Widget displayed to quit Reyn Tweets, after fatal issues for example.
+/// @brief Widget displayed to quit Reyn Tweets, after fatal ends for example.
 Rectangle {
 	/// @brief Text of the pane
 	property alias pane_text: description_action.text

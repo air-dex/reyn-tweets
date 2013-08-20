@@ -102,12 +102,26 @@ template<typename HL, typename U>
 int ListHandler<HL,U>::getHandledListSize() {
 	return handledList.size();
 }
+/*
+// Filling an element with a QVariant
+template<typename HL, typename U>
+void ListHandler<HL,U>::fillElement(U & realElt,
+									QVariant varelt,
+									bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}
+//*/
 
 // Replacing an element in the list
 template<typename HL, typename U>
 void ListHandler<HL,U>::replace(QVariant varelt) {
 	U realElt;
-	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+	this->fillElement(realElt, varelt);
 
 	bool exact;
 	int index = getElementIndex(realElt, exact);
@@ -126,9 +140,7 @@ void ListHandler<HL,U>::replace(QVariant varelt, int index) {
 		return;
 	}
 
-	U & listElt = handledList[index];
-	listElt.reset();
-	listElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+	this->fillElement(handledList[index], varelt, true);
 	emit handledListChanged();
 }
 
@@ -144,7 +156,7 @@ void ListHandler<HL,U>::remove(int index) {
 template<typename HL, typename U>
 void ListHandler<HL,U>::remove(QVariant varelt) {
 	U realElt;
-	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+	this->fillElement(realElt, varelt);
 
 	bool exact;
 	int index = getElementIndex(realElt, exact);

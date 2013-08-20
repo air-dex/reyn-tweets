@@ -27,7 +27,6 @@ int IndexBounds::FAKE_BOUND = -1;
 
 // Constructor
 IndexBounds::IndexBounds() :
-	QObject(),
 	JsonArray<int>(),
 	min(FAKE_BOUND),
 	max(FAKE_BOUND)
@@ -38,7 +37,6 @@ IndexBounds::~IndexBounds() {}
 
 // Copy constructor
 IndexBounds::IndexBounds(const IndexBounds & indexes) :
-	QObject(),
 	JsonArray<int>(),
 	min(FAKE_BOUND),
 	max(FAKE_BOUND)

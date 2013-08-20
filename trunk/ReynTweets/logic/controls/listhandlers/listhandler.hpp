@@ -78,9 +78,15 @@ class HandlerEmitter : public QObject
 /// the given list and methods to get, replace and remove elements of the
 /// handled list.
 ///
-/// In a perfect world this class would be merged with ListHandler.
+/// In a perfect world this class would be merged with HandlerEmitter.
 /// Unfortunately, template classes are not supported by Q_OBJECT. This class
 /// contains the part related to templates.
+///
+/// ListHandler is initially designed with the thought that the U template
+/// parameter inherits from JsonObject, which is the case the most of the time.
+/// However, there are some cases where U does not inherit from JsonObject
+/// (int for the IndexBoundsHandler for example). That's why some methods just
+/// like fillElement() exist and are virtual.
 /// @param HL Type of the list handled by the list handler. <strong>T has to
 /// inherit JsonArray&lt;U&gt;.</strong>
 /// @param U Type of the elements of the handled list.
@@ -168,7 +174,7 @@ class ListHandler : public HandlerEmitter
 		/// @param listhandler ListHandler to copy
 		virtual void recopie(const ListHandler<HL,U> & listhandler);
 
-		/// @fn virtual int getElementIndex(U listElt, bool & exactIndex) = 0;
+		/// @fn virtual int getElementIndex(U listElt, bool & exactIndex);
 		/// @brief Getting the potential index of an element in handledList.
 		///
 		/// Replacing and removing method often needs to know the potential
@@ -185,6 +191,23 @@ class ListHandler : public HandlerEmitter
 		/// the index position is equal to the searched element.
 		/// @return Its potential index in the list.
 		virtual int getElementIndex(U listElt, bool & exactIndex);
+
+		/// @fn virtual void fillElement(U & realElt,
+		///								 QVariant varelt,
+		///								 bool resetValue = false) = 0;
+		/// @brief Filling a real element with its QVariant value
+		///
+		/// ListHandler is initially designed with the thought that the U
+		/// template parameter inherits from JsonObject, which is the case
+		/// the most of the time. However, there are some cases where U does not
+		/// inherit from JsonObject (int for the IndexBoundsHandler for example).
+		/// That's why some methods like fillElement() exist and are virtual.
+		/// @param realElt Real element
+		/// @param varelt QVariant value
+		/// @param resetValue Boolean indicating if the realElt has to be reset.
+		virtual void fillElement(U & realElt,
+								 QVariant varelt,
+								 bool resetValue = false) = 0;
 };
 
 #endif // LISTHANDLER_HPP

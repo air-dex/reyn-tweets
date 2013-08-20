@@ -81,3 +81,15 @@ QDataStream & operator>>(QDataStream & in, ContributorsHandler & handler) {
 Contributor * ContributorsHandler::get(int index) {
 	return ListHandler<ContributorList, Contributor>::get(index);
 }
+
+// Filling an element with a QVariant
+void ContributorsHandler::fillElement(Contributor & realElt,
+									  QVariant varelt,
+									  bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}

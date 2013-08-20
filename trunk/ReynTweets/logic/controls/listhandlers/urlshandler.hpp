@@ -98,6 +98,17 @@ class UrlsHandler : public ListHandler<URLEntityList, URLEntity>
 		/// @param handler Object to put in the stream
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in, UrlsHandler & handler);
+
+		/// @fn virtual void fillElement(URLEntity & realElt,
+		///								 QVariant varelt,
+		///								 bool resetValue = false);
+		/// @brief Filling a list element with a QVariant value.
+		/// @param realElt Real element
+		/// @param varelt QVariant value
+		/// @param resetValue Boolean indicating if the realElt has to be reset.
+		virtual void fillElement(URLEntity & realElt,
+								 QVariant varelt,
+								 bool resetValue = false);
 };
 
 // Serialization of UrlsHandler

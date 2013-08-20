@@ -99,6 +99,17 @@ class HashtagsHandler : public ListHandler<HashtagList, Hashtag>
 		/// @return The stream with the object
 		friend QDataStream & operator>>(QDataStream & in,
 										HashtagsHandler & handler);
+
+		/// @fn virtual void fillElement(Hashtag & realElt,
+		///								 QVariant varelt,
+		///								 bool resetValue = false);
+		/// @brief Filling a list element with a QVariant value.
+		/// @param realElt Real element
+		/// @param varelt QVariant value
+		/// @param resetValue Boolean indicating if the realElt has to be reset.
+		virtual void fillElement(Hashtag & realElt,
+								 QVariant varelt,
+								 bool resetValue = false);
 };
 
 // Serialization of HashtagsHandler

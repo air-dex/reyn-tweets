@@ -27,6 +27,7 @@
 // List handlers
 #include "listhandlers/contributorshandler.hpp"
 #include "listhandlers/hashtagshandler.hpp"
+#include "listhandlers/indexboundshandler.hpp"
 #include "listhandlers/mediashandler.hpp"
 #include "listhandlers/mentionshandler.hpp"
 #include "listhandlers/timelinehandler.hpp"

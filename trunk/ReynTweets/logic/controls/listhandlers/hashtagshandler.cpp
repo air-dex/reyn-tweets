@@ -81,3 +81,15 @@ QDataStream & operator>>(QDataStream & in, HashtagsHandler & handler) {
 Hashtag * HashtagsHandler::get(int index) {
 	return ListHandler<HashtagList, Hashtag>::get(index);
 }
+
+// Filling an element with a QVariant
+void HashtagsHandler::fillElement(Hashtag & realElt,
+								  QVariant varelt,
+								  bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}

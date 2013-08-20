@@ -81,3 +81,15 @@ QDataStream & operator>>(QDataStream & in, MentionsHandler & handler) {
 UserMention * MentionsHandler::get(int index) {
 	return ListHandler<UserMentionList, UserMention>::get(index);
 }
+
+// Filling an element with a QVariant
+void MentionsHandler::fillElement(UserMention & realElt,
+								  QVariant varelt,
+								  bool resetValue)
+{
+	if (resetValue) {
+		realElt.reset();
+	}
+
+	realElt.fillWithVariant(QJsonObject::fromVariantMap(varelt.toMap()));
+}

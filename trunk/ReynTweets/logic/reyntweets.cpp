@@ -99,6 +99,7 @@ void ReynTweets::initSystem() {
 	// List handlers
 	ContributorsHandler::initSystem();
 	HashtagsHandler::initSystem();
+	IndexBoundsHandler::initSystem();
 	MediasHandler::initSystem();
 	MentionsHandler::initSystem();
 	TimelineHandler::initSystem();
@@ -142,6 +143,7 @@ void ReynTweets::declareQML() {
 	// List handlers
 	ContributorsHandler::declareQML();
 	HashtagsHandler::declareQML();
+	IndexBoundsHandler::declareQML();
 	MediasHandler::declareQML();
 	MentionsHandler::declareQML();
 	TimelineHandler::declareQML();

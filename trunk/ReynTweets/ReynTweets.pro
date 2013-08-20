@@ -146,7 +146,12 @@ SOURCES += \
 	logic/core/reyncore.cpp \
 	logic/controls/listhandlers/listhandler.cpp \
 	logic/controls/listhandlers/contributorshandler.cpp \
+	logic/controls/listhandlers/hashtagshandler.cpp \
+	logic/controls/listhandlers/indexboundshandler.cpp \
+	logic/controls/listhandlers/mediashandler.cpp \
+	logic/controls/listhandlers/mentionshandler.cpp \
 	logic/controls/listhandlers/timelinehandler.cpp \
+	logic/controls/listhandlers/urlshandler.cpp \
 	logic/controls/genericcontrol.cpp \
 	logic/controls/allowcontrol.cpp \
 	logic/controls/launchingcontrol.cpp \
@@ -156,11 +161,7 @@ SOURCES += \
 	logic/controls/tweetcontrol.cpp \
 	logic/controls/writetweetcontrol.cpp \
 	logic/reyntweets.cpp \
-	main.cpp \
-    logic/controls/listhandlers/mediashandler.cpp \
-    logic/controls/listhandlers/hashtagshandler.cpp \
-    logic/controls/listhandlers/mentionshandler.cpp \
-    logic/controls/listhandlers/urlshandler.cpp
+	main.cpp
 
 
 HEADERS  += \
@@ -281,7 +282,12 @@ HEADERS  += \
 	logic/controls/listhandlers/listhandler.hpp \
 	logic/controls/listhandlers/listhandler.tpp \
 	logic/controls/listhandlers/contributorshandler.hpp \
+	logic/controls/listhandlers/hashtagshandler.hpp \
+	logic/controls/listhandlers/indexboundshandler.hpp \
+	logic/controls/listhandlers/mediashandler.hpp \
+	logic/controls/listhandlers/mentionshandler.hpp \
 	logic/controls/listhandlers/timelinehandler.hpp \
+	logic/controls/listhandlers/urlshandler.hpp \
 	logic/controls/genericcontrol.hpp \
 	logic/controls/allowcontrol.hpp \
 	logic/controls/launchingcontrol.hpp \
@@ -291,11 +297,7 @@ HEADERS  += \
 	logic/controls/tweetcontrol.hpp \
 	logic/controls/writetweetcontrol.hpp \
 	logic/controls/controls.hpp \
-	logic/reyntweets.hpp \
-    logic/controls/listhandlers/mediashandler.hpp \
-    logic/controls/listhandlers/hashtagshandler.hpp \
-    logic/controls/listhandlers/mentionshandler.hpp \
-    logic/controls/listhandlers/urlshandler.hpp
+	logic/reyntweets.hpp
 
 
 OTHER_FILES = \

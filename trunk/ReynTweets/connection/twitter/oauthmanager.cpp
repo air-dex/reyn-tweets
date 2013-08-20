@@ -130,7 +130,7 @@ void OAuthManager::resetTokens() {
 }
 
 // Getting the "Authorization" header
-QByteArray OAuthManager::getAuthorizationHeader(RequestType type,
+QByteArray OAuthManager::getAuthorizationHeader(HTTPRequestType type,
 												QString baseURL,
 												ArgsMap getDatas,
 												ArgsMap postDatas,
@@ -192,7 +192,7 @@ QString OAuthManager::generateTimestamp() {
 }
 
 // Signing datas
-QString OAuthManager::signDatas(RequestType type,
+QString OAuthManager::signDatas(HTTPRequestType type,
 								QString baseURL,
 								ArgsMap getDatas,
 								ArgsMap postDatas,

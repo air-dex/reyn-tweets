@@ -28,7 +28,7 @@
 
 // Constructor
 AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
-	OAuthRequester(GET,
+	OAuthRequester(Network::GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
 				   Network::HTML_PARSING)

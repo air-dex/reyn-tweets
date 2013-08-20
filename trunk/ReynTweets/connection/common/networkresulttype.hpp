@@ -1,10 +1,10 @@
-/// @file errortypes.hpp
-/// @brief Header containing the ErrorType enum
+/// @file networkresulttype.hpp
+/// @brief Header containing the Network::NetworkResultType enum
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2012 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///

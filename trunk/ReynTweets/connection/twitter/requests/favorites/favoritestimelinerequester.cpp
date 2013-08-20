@@ -31,7 +31,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   qlonglong earliestTweetID,
 													   bool withEntities,
 													   int nbTweets) :
-	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
+	TwitterRequester(Network::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(ID),
 	userID(uid),
 	screenName(""),
@@ -48,7 +48,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(OAuthManager & authManage
 													   qlonglong earliestTweetID,
 													   bool withEntities,
 													   int nbTweets) :
-	TwitterRequester(GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
+	TwitterRequester(Network::GET, TwitterURL::FAVORITE_TIMELINE_URL, authManager),
 	idWay(SCREEN_NAME),
 	userID(-1),
 	screenName(userName),

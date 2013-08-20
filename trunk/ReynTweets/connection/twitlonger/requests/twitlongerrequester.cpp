@@ -27,7 +27,7 @@
 #include "../../../tools/parsers/xmlparser.hpp"
 
 // Constructor
-TwitLongerRequester::TwitLongerRequester(RequestType type,
+TwitLongerRequester::TwitLongerRequester(HTTPRequestType type,
 										 QString url,
 										 TwitLongerManager & manager) :
 	GenericRequester(type, url, Network::XML_PARSING),

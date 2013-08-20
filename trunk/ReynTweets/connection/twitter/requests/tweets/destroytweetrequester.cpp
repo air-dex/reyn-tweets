@@ -28,7 +28,7 @@
 DestroyTweetRequester::DestroyTweetRequester(OAuthManager &authManager,
 											 qlonglong statusID,
 											 bool userIDonly) :
-	TwitterRequester(POST, TwitterURL::DELETE_TWEET_URL, authManager),
+	TwitterRequester(Network::POST, TwitterURL::DELETE_TWEET_URL, authManager),
 	tweetID(statusID),
 	trimUser(userIDonly)
 {

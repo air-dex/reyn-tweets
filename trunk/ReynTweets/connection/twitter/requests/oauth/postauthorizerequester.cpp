@@ -30,7 +30,7 @@ PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 											   QString pseudo,
 											   QString pwd,
 											   bool deny) :
-	OAuthRequester(POST,
+	OAuthRequester(Network::POST,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
 				   Network::HTML_PARSING),

@@ -42,7 +42,7 @@ class TwitLongerRequester : public GenericRequester
 		/// @param type Type of the HTTP request (GET or POST)
 		/// @param url URL of the request
 		/// @param manager Manager with TwitLonger IDs.
-		TwitLongerRequester(RequestType type,
+		TwitLongerRequester(HTTPRequestType type,
 							QString url,
 							TwitLongerManager & manager);
 

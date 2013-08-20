@@ -26,7 +26,7 @@
 
 // Constructor
 AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager) :
-	OAuthRequester(POST,
+	OAuthRequester(Network::POST,
 				   TwitterURL::ACCESS_TOKEN_URL,
 				   authManager,
 				   Network::OAUTH_PARSING,

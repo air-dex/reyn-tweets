@@ -27,7 +27,7 @@
 SendIDToTwitLongerRequester::SendIDToTwitLongerRequester(TwitLongerManager &manager,
 														 QString tlMessageID,
 														 qlonglong statusID) :
-	TwitLongerRequester(POST, TwitLongerURL::UPDATE_LONG_TWEET_URL, manager),
+	TwitLongerRequester(Network::POST, TwitLongerURL::UPDATE_LONG_TWEET_URL, manager),
 	messageID(tlMessageID),
 	tweetID(statusID)
 {}

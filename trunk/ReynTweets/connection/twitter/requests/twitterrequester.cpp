@@ -25,7 +25,7 @@
 #include "../../../tools/parsers/jsonparser.hpp"
 
 // Constructor
-TwitterRequester::TwitterRequester(RequestType type,
+TwitterRequester::TwitterRequester(HTTPRequestType type,
 								   QString url,
 								   OAuthManager &authManager,
 								   NetworkResultType parseError,

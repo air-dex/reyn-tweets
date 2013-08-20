@@ -29,7 +29,7 @@ PostToTwitLongerRequester::PostToTwitLongerRequester(TwitLongerManager &tlmanage
 													 QString userScreenName,
 													 qlonglong replyToStatusID,
 													 QString replyToUserScreenName) :
-	TwitLongerRequester(POST, TwitLongerURL::POST_LONG_TWEET_URL, tlmanager),
+	TwitLongerRequester(Network::POST, TwitLongerURL::POST_LONG_TWEET_URL, tlmanager),
 	message(longTweet),
 	username(userScreenName),
 	replyToTweetID(replyToStatusID),

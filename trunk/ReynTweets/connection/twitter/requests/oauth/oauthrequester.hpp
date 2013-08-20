@@ -55,7 +55,7 @@ class OAuthRequester : public TwitterRequester
         /// parameter is required for authentication.
         /// @param verifierNeeded Boolean indicating if the oauth_verifier
         /// parameter is required for authentication.
-        OAuthRequester(RequestType type,
+        OAuthRequester(HTTPRequestType type,
                        QString url,
                        OAuthManager &authManager,
                        NetworkResultType parseErrorType,

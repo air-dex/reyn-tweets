@@ -28,7 +28,7 @@
 ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 qlonglong id,
 									 bool entities) :
-	TwitterRequester(GET, TwitterURL::SHOW_USER_URL, authManager),
+	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
 	idWay(ID),
 	userID(id),
 	includeEntities(entities),
@@ -39,7 +39,7 @@ ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 ShowUserRequester::ShowUserRequester(OAuthManager & authManager,
 									 QString name,
 									 bool entities) :
-	TwitterRequester(GET, TwitterURL::SHOW_USER_URL, authManager),
+	TwitterRequester(Network::GET, TwitterURL::SHOW_USER_URL, authManager),
 	idWay(SCREEN_NAME),
 	userID(),
 	includeEntities(entities),

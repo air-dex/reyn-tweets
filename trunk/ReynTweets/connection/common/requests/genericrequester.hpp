@@ -47,7 +47,7 @@ class GenericRequester : public QObject
 		/// of the time, this value is set to JSON_PARSING because results are
 		/// written in JSON. However, OAuth requesters use their
 		/// own parsing process so they need a special value called OAUTH_PARSING.
-		GenericRequester(RequestType type,
+		GenericRequester(HTTPRequestType type,
 						 QString url,
 						 NetworkResultType parseError = Network::JSON_PARSING);
 
@@ -79,7 +79,7 @@ class GenericRequester : public QObject
 		QString requestURL;
 
 		/// @brief Request type
-		RequestType requestType;
+		HTTPRequestType requestType;
 
 		/// @brief GET parameters that will be passed to the Communicator.
 		ArgsMap getParameters;

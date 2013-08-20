@@ -162,10 +162,10 @@ HEADERS  += \
 	tools/parsers/jsonparser.hpp \
 	tools/parsers/oauthparser.hpp \
 	tools/parsers/xmlparser.hpp \
-	connection/common/requesttype.hpp \
+	connection/common/httprequesttype.hpp \
 	connection/common/headersmap.hpp \
 	connection/common/communicators/twittercommunicator.hpp \
-	connection/common/errortypes.hpp \
+	connection/common/networkresulttype.hpp \
 	connection/common/responseinfos.hpp \
 	connection/common/requestresult.hpp \
 	connection/common/resultwrapper.hpp \

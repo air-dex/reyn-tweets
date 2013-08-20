@@ -31,7 +31,7 @@ MentionsTimelineRequester::MentionsTimelineRequester(OAuthManager &authManager,
 													 bool withEntities,
 													 int nbTweets,
 													 bool withContributorsDetails) :
-	TwitterRequester(GET, TwitterURL::MENTIONS_TIMELINE_URL, authManager),
+	TwitterRequester(Network::GET, TwitterURL::MENTIONS_TIMELINE_URL, authManager),
 	count(nbTweets),
 	sinceID(oldestTweetID),
 	maxID(youngestTweetID),

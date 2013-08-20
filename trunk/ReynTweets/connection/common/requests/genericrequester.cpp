@@ -25,7 +25,7 @@
 #include "../../../tools/parsers/jsonparser.hpp"
 
 // Constructor. It just calls the parent constructor.
-GenericRequester::GenericRequester(RequestType type,
+GenericRequester::GenericRequester(HTTPRequestType type,
 								   QString url,
 								   NetworkResultType parseError) :
 	QObject(),

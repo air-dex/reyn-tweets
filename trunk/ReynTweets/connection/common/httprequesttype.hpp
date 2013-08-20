@@ -1,12 +1,10 @@
-/// @file requesttype.hpp
-/// @brief Header of RequestType
-///
-/// Revisions older than r242 were in /trunk/ReynTweets/connection
+/// @file httprequesttype.hpp
+/// @brief Header of Network::HTTPRequestType
 /// @author Romain Ducher
 ///
 /// @section LICENSE
 ///
-/// Copyright 2011 Romain Ducher
+/// Copyright 2011, 2013 Romain Ducher
 ///
 /// This file is part of Reyn Tweets.
 ///
@@ -28,14 +26,18 @@
 
 #include <QString>
 
-/// @enum RequestType
-/// @brief Enum indicating the type of the request
-enum RequestType {
-	/// @brief GET requests
-	GET,
+namespace Network {
+	/// @enum RequestType
+	/// @brief Enum indicating the type of the request
+	enum HTTPRequestType {
+		/// @brief GET requests
+		GET,
 
-	/// @brief POST requests
-	POST
-};
+		/// @brief POST requests
+		POST
+	};
+}
+
+using Network::HTTPRequestType;
 
 #endif // REQUESTTYPE_HPP

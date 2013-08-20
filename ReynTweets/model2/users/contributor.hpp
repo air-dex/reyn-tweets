@@ -86,13 +86,13 @@ class Contributor : public JsonObject
 		/// @return true if the contributors are equals, false otherwise
 		bool operator==(const Contributor & contributor) const;
 
-		/// @fn bool isNull();
+		/// @fn bool isNull() const;
 		/// @brief Testing if a Contributor is null
 		///
 		/// A contributor is considered as null if it gets the default values
 		/// (i.e. the one given by the default constructor).
 		/// @return true if the contributor is null, false otherwise
-		Q_INVOKABLE bool isNull();
+		Q_INVOKABLE bool isNull() const;
 
 		/////////////////////
 		// JSON conversion //
@@ -106,10 +106,10 @@ class Contributor : public JsonObject
 		/// @param json The QJsonObject used to fill the JsonObject
 		virtual void fillWithJSON(QJsonObject json);
 
-		/// @fn virtual QJsonObject toJSON();
+		/// @fn virtual QJsonObject toJSON() const;
 		/// @brief Getting a QJsonObject representation of the object
 		/// @return The QJsonObject representation
-		virtual QJsonObject toJSON();
+		virtual QJsonObject toJSON() const;
 
 	private:
 		/// @fn void recopie(const Contributor & contributor);

@@ -26,7 +26,7 @@
 #include <QtQml>
 #include "user.hpp"
 #include "../../tools/utils.hpp"
-
+/*
 //////////////////////////////
 // Serialization management //
 //////////////////////////////
@@ -121,3 +121,4 @@ Tweet User::getStatus() {
 void User::setStatus(Tweet newLastTweet) {
 	lastTweet = newLastTweet;
 }
+//*/

@@ -174,7 +174,7 @@ void Media2::fillWithJSON(QJsonObject json) {
 }
 
 // Getting a QJsonObject representation of the object
-QJsonObject Media2::toJSON() {
+QJsonObject Media2::toJSON() const {
 	QJsonObject json = URLEntity2::toJSON();	// Don't forget the base class !
 
 	json.insert(ID_PN, QJsonValue(this->mediaID));

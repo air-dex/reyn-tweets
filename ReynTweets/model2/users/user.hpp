@@ -25,7 +25,7 @@
 
 #ifndef USER_HPP
 #define USER_HPP
-
+/*
 #include "../reyntweetslistable.hpp"
 #include "../tweets/tweet.hpp"
 
@@ -164,5 +164,5 @@ QDataStream & operator>>(QDataStream & in, User & user);
 /// @typedef ReynTweetsSerializableList<User> UserList;
 /// @brief Shortcut for lists of users
 typedef ReynTweetsListable<User> UserList;
-
+//*/
 #endif // USER_HPP

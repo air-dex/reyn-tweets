@@ -49,7 +49,7 @@ class MediaList2 : public JsonArray<Media2>
 		/// @fn const MediaList & operator=(const MediaList & list);
 		/// @brief Affrection operator
 		/// @param list MediaList to affect
-		const MediaList & operator=(const MediaList2 & list);
+		const MediaList2 & operator=(const MediaList2 & list);
 
 		/// @fn static void initSystem();
 		/// @brief Serialization declaration

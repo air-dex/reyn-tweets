@@ -157,7 +157,7 @@ SOURCES += \
 	model2/tweets/medialist.cpp \
 	model2/tweets/tweetentities.cpp \
 	model2/tweets/retweetinfos.cpp \
-	#model2/users/userinfos.cpp \
+	model2/users/userinfos.cpp \
 	#model2/users/user.cpp \
 	model2/geo/coordinates.cpp \
 	#model2/geo/place.cpp \
@@ -166,11 +166,12 @@ SOURCES += \
 	model2/geo/geoboundingbox.cpp \
 	model2/geo/genericcoordinates.cpp \
 	model2/geo/coordinatestype.cpp \
-    model2/geo/gencoord.cpp \
-    model2/geo/geocoordpolygon.cpp \
-    model2/geo/twitterplace.cpp \
-    model2/users/contributor.cpp \
-    model2/users/contributorlist.cpp
+	model2/geo/gencoord.cpp \
+	model2/geo/geocoordpolygon.cpp \
+	model2/geo/twitterplace.cpp \
+	model2/users/contributor.cpp \
+	model2/users/contributorlist.cpp \
+    model2/users/userentities.cpp
 
 
 HEADERS  += \
@@ -301,7 +302,7 @@ HEADERS  += \
 	model2/tweets/medialist.hpp \
 	model2/tweets/tweetentities.hpp \
 	model2/tweets/retweetinfos.hpp \
-	#model2/users/userinfos.hpp \
+	model2/users/userinfos.hpp \
 	#model2/users/user.hpp \
 	model2/geo/coordinates.hpp \
 	#model2/geo/place.hpp \
@@ -311,11 +312,12 @@ HEADERS  += \
 	model2/geo/genericcoordinates.hpp \
 	model2/geo/genericcoordinates.tpp \
 	model2/geo/coordinatestype.hpp \
-    model2/geo/gencoord.hpp \
-    model2/geo/geocoordpolygon.hpp \
-    model2/geo/twitterplace.hpp \
-    model2/users/contributor.hpp \
-    model2/users/contributorlist.hpp
+	model2/geo/gencoord.hpp \
+	model2/geo/geocoordpolygon.hpp \
+	model2/geo/twitterplace.hpp \
+	model2/users/contributor.hpp \
+	model2/users/contributorlist.hpp \
+    model2/users/userentities.hpp
 
 
 OTHER_FILES = \
@@ -329,6 +331,7 @@ OTHER_FILES = \
 	ui/qml/tools.js \
 	ui/qml/twitter-text-js-wrapper.js \
 	ui/qml/twitter-text-1.4.16.js \
+	ui/qml/twitter-text-1.6.1.js \
 	Doxyfile.txt \
 	.bzrignore \
 	ReynTweets.rc

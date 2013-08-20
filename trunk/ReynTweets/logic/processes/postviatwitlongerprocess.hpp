@@ -25,8 +25,8 @@
 #define POSTVIATWITLONGERPROCESS_HPP
 
 #include "genericprocess.hpp"
-#include "../../connection/calls/reyntwittercalls.hpp"
-#include "../../connection/calls/twitlongercalls.hpp"
+#include "../../connection/twitter/reyntwittercalls.hpp"
+#include "../../connection/twitlonger/twitlongercalls.hpp"
 #include "../../model/tweets/tweet.hpp"
 
 /// @class PostViaTwitLongerProcess

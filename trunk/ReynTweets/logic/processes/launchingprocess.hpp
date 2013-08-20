@@ -27,7 +27,7 @@
 #include "genericprocess.hpp"
 #include "../../model/configuration/appconfiguration.hpp"
 #include "../../model/configuration/userconfiguration.hpp"
-#include "../../connection/calls/reyntwittercalls.hpp"
+#include "../../connection/twitter/reyntwittercalls.hpp"
 #include "../coreresult.hpp"
 #include "processwrapper.hpp"
 

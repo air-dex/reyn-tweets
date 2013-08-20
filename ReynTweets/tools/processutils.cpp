@@ -34,10 +34,8 @@ ProcessResult ProcessUtils::buildProcessResult(bool processOK,
 {
 	ProcessResult processResult;
 
-	processResult.processOK = processOK;
 	processResult.processIssue = issue;
 	processResult.errorMsg = errMsg;
-	processResult.fatalError = isFatal;
 	processResult.results = QVariant();
 
 	return processResult;
@@ -46,10 +44,8 @@ ProcessResult ProcessUtils::buildProcessResult(bool processOK,
 ProcessResult ProcessUtils::buildProcessResult(CoreResult issue, QVariant result) {
 	ProcessResult processResult;
 
-	processResult.processOK = true;
 	processResult.processIssue = issue;
 	processResult.errorMsg = "";
-	processResult.fatalError = false;
 	processResult.results = result;
 
 	return processResult;
@@ -213,6 +209,5 @@ void ProcessUtils::treatUnknownResult(QString resultErrorMessage,
 	// Unexpected problem. Abort.
 	errorMsg = QObject::trUtf8("Unexpected problem:");
 	errorMsg.append('\n').append(resultErrorMessage).append('.');
-	fatal = true;
 	issue = UNKNOWN_PROBLEM;
 }

@@ -145,28 +145,6 @@ class UserAccount : public JsonObject
 		static QString TOKEN_SECRET_PN;
 
 		// twitter_user
-		/// @property twitter_user
-		/// @brief Twitter user
-		///
-		/// user is the attribute beneath this property.
-		Q_PROPERTY(QVariantMap twitter_user
-				   READ getUserProperty
-				   WRITE setUser
-				   NOTIFY currentUserChanged)
-
-		/// @brief Name of the property twitter_user.
-		static QString TWITTER_USER_PN;
-
-		/// @fn QVariantMap getUserProperty();
-		/// @brief Reading the property twitter_user
-		/// @return userMap
-		QVariantMap getUserProperty();
-
-		/// @fn void setUser(QVariantMap newUserMap);
-		/// @brief Writing the property twitter_user
-		/// @param newUserMap New value for twitter_user
-		void setUser(QVariantMap newUserMap);
-
 		/// @property current_user
 		/// @brief Twitter user
 		///

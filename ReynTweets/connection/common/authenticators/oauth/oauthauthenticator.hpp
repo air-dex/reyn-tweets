@@ -1,5 +1,5 @@
-/// @file oauthmanager.hpp
-/// @brief Header of OAuthManager
+/// @file oauthauthenticator.hpp
+/// @brief Header of OAuthAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,36 +21,25 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef OAUTHMANAGER_HPP
-#define OAUTHMANAGER_HPP
+#ifndef OAUTHAUTHENTICATOR_HPP
+#define OAUTHAUTHENTICATOR_HPP
 
-#include <QByteArray>
-#include <QPair>
-#include <QString>
+#include "../basicauthenticators.hpp"
 
-/// @typedef QPair<QByteArray, QByteArray> TokenPair;
-/// @brief A token pair.
-///
-/// A token pair is a QPair whose field are:<ul>
-/// <li>first : the public key (token).</li>
-/// <li>secret : the private key (secret).</li>
-/// </ul>
-typedef QPair<QByteArray, QByteArray> TokenPair;
-
-/// @class OAuthManager
+/// @class OAuthAuthenticator
 /// @brief Base class for Authentication managers related to OAuth.
 ///
 /// It contains the Consumer tokens pair
-class OAuthManager {
+class OAuthAuthenticator {
 	public:
-		/// @fn OAuthManager(QString version = "");
+		/// @fn OAuthAuthenticator(QString version = "");
 		/// @brief Constructor
 		/// @param version Version of OAuth
-		OAuthManager(QString version = "");
+		OAuthAuthenticator(QString version = "");
 
-		/// @fn virtual ~OAuthManager();
+		/// @fn virtual ~OAuthAuthenticator();
 		/// @brief Destructor
-		virtual ~OAuthManager();
+		virtual ~OAuthAuthenticator();
 
 		/////////////////////
 		// Getters on data //
@@ -74,4 +63,4 @@ class OAuthManager {
 		QString oauthVersion;
 };
 
-#endif // OAUTHMANAGER_HPP
+#endif // OAUTHAUTHENTICATOR_HPP

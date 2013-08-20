@@ -28,7 +28,7 @@
 #define REYNTWITTERCALLS_HPP
 
 #include "../common/calls/genericcalls.hpp"
-#include "twittermanager.hpp"
+#include "twitterauthenticator.hpp"
 
 /// @class ReynTwitterCalls
 /// @brief ReynTwitterCalls is a class which manages calls to Twitter.
@@ -48,7 +48,7 @@ class ReynTwitterCalls : public GenericCalls
 
 	protected:
 		/// @brief OAuth information
-		static TwitterManager oauthManager;
+		static TwitterAuthenticator oauthManager;
 
 
 	/////////////////////////////
@@ -141,7 +141,7 @@ class ReynTwitterCalls : public GenericCalls
 
 		/// @fn static void setUserTokens(QByteArray accessToken,
 		///								  QByteArray tokenSecret);
-		/// @brief Setting new OAuth access tokens in the OAuthManager
+		/// @brief Setting new OAuth access tokens in the TwitterAuthenticator
 		/// to connect to Twitter
 		/// @param accessToken New access token
 		/// @param tokenSecret New token secret
@@ -152,7 +152,7 @@ class ReynTwitterCalls : public GenericCalls
 		///								 QByteArray consumerSecret,
 		///								 QString callbackURL);
 		/// @brief Setting new OAuth consumer credentials and callback URL
-		/// in the OAuthManager to connect to Twitter.
+		/// in the TwitterAuthenticator to connect to Twitter.
 		/// @param consumerKey New consumer key
 		/// @param consumerSecret New consumer secret
 		/// @param callbackURL New callback URL

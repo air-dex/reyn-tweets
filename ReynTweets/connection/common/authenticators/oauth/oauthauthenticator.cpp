@@ -1,5 +1,5 @@
-/// @file apikeymanager.cpp
-/// @brief Implementation of APIKeyManager
+/// @file oauthauthenticator.cpp
+/// @brief Implementation of OAuthAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,19 +21,26 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "apikeymanager.hpp"
+#include "oauthauthenticator.hpp"
 
-// Constructor
-APIKeyManager::APIKeyManager():
-	apiKey("")
+OAuthAuthenticator::OAuthAuthenticator(QString version) :
+	consumerTokens(),
+	oauthVersion(version)
 {}
 
-// Getting the API Key
-QByteArray APIKeyManager::getAPIKey() {
-	return apiKey;
+OAuthAuthenticator::~OAuthAuthenticator() {}
+
+
+/////////////////////
+// Getters on data //
+/////////////////////
+
+// Consumer key
+void OAuthAuthenticator::setConsumerKey(QByteArray clientKey) {
+	consumerTokens.first = clientKey;
 }
 
-// Setting the API Key
-void APIKeyManager::setAPIKey(QByteArray newAPIKey) {
-	apiKey = newAPIKey;
+// Consumer secret
+void OAuthAuthenticator::setConsumerSecret(QByteArray clientSecret) {
+	consumerTokens.second = clientSecret;
 }

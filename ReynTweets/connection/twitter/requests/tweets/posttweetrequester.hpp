@@ -34,7 +34,7 @@ class PostTweetRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn PostTweetRequester(OAuthManager & authManager,
+		/// @fn PostTweetRequester(TwitterAuthenticator & authManager,
 		///						   QString status,
 		///						   qlonglong replyTostatusID = -1,
 		///						   float lat = -361,
@@ -43,7 +43,7 @@ class PostTweetRequester : public TwitterRequester
 		///						   bool showCoord = false,
 		///						   bool userIDonly = true);
 		/// @brief Posting a tweet without media
-		/// @param authManager OAuthManager with authentication informations
+		/// @param authManager TwitterAuthenticator with authentication infos
 		/// @param status Text of the tweet
 		/// @param replyTostatusID If the tweet is a reply, this parameter is
 		/// the ID of the tweet that this tweet replies to.
@@ -54,7 +54,7 @@ class PostTweetRequester : public TwitterRequester
 		/// @param showCoord Displaying the coordonates of the tweet
 		/// with a pin on a map
 		/// @param userIDonly In tweets, giving only the ID of the author (true).
-		PostTweetRequester(TwitterManager & authManager,
+		PostTweetRequester(TwitterAuthenticator & authManager,
 						   QString status,
 						   qlonglong replyTostatusID = -1,
 						   float lat = -361,

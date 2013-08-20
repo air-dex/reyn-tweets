@@ -93,15 +93,15 @@ class LaunchingProcess : public GenericProcess
 		///////////////////////////
 
 		/// @fn void fillTwitterOAuthAppSettings();
-		/// @brief Filling the OAuthManager of Twitter with consumer tokens
+		/// @brief Filling the TwitterAuthenticator of Twitter with consumer tokens
 		void fillTwitterOAuthAppSettings();
 
 		/// @fn void fillTwitterOAuthUserSettings();
-		/// @brief Filling the OAuthManager of twitter with access tokens
+		/// @brief Filling the TwitterAuthenticator of twitter with access tokens
 		void fillTwitterOAuthUserSettings();
 
 		/// @fn void fillTwitLongerAppSettings();
-		/// @brief Filling the TwitLongerManager with the TwitLonger IDs
+		/// @brief Filling the TwitLongerAuthenticator with the TwitLonger IDs
 		/// of the application.
 		void fillTwitLongerAppSettings();
 };

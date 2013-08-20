@@ -1,5 +1,5 @@
-/// @file oauthmanager.cpp
-/// @brief Implementation of OAuthManager
+/// @file basicauthenticators.cpp
+/// @brief Typedefs of BasicAuthenticator and TokenPair
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,26 +21,27 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#include "oauthmanager.hpp"
+#ifndef BASICAUTHENTICATORS_HPP
+#define BASICAUTHENTICATORS_HPP
 
-OAuthManager::OAuthManager(QString version) :
-	consumerTokens(),
-	oauthVersion(version)
-{}
+#include <QByteArray>
+#include <QPair>
+#include <QString>
 
-OAuthManager::~OAuthManager() {}
+/// @typedef QPair <QString, QByteArray> BasicAuthenticator;
+/// @brief QPair for classic authentications with a login and a pasword :<ul>
+/// <li>first : the login.</li>
+/// <li>secret : the password.</li>
+/// @see TokenPair
+typedef QPair<QString, QByteArray> BasicAuthenticator;
 
+/// @typedef QPair<QByteArray, QByteArray> TokenPair;
+/// @brief A token pair.
+///
+/// A token pair is a QPair whose field are:<ul>
+/// <li>first : the public key (token).</li>
+/// <li>secret : the private key (secret).</li>
+/// </ul>
+typedef QPair<QByteArray, QByteArray> TokenPair;
 
-/////////////////////
-// Getters on data //
-/////////////////////
-
-// Consumer key
-void OAuthManager::setConsumerKey(QByteArray clientKey) {
-	consumerTokens.first = clientKey;
-}
-
-// Consumer secret
-void OAuthManager::setConsumerSecret(QByteArray clientSecret) {
-	consumerTokens.second = clientSecret;
-}
+#endif // BASICAUTHENTICATORS_HPP

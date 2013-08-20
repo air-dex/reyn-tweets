@@ -24,7 +24,7 @@
 #include "sendidtotwitlongerrequester.hpp"
 
 // Constructor
-SendIDToTwitLongerRequester::SendIDToTwitLongerRequester(TwitLongerManager &manager,
+SendIDToTwitLongerRequester::SendIDToTwitLongerRequester(TwitLongerAuthenticator &manager,
 														 QString tlMessageID,
 														 qlonglong statusID) :
 	TwitLongerRequester(Network::POST, TwitLongerURL::UPDATE_LONG_TWEET_URL, manager),

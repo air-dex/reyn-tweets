@@ -32,7 +32,7 @@ class SendIDToTwitLongerRequester : public TwitLongerRequester
 {
 		Q_OBJECT
 	public:
-		SendIDToTwitLongerRequester(TwitLongerManager & manager,
+		SendIDToTwitLongerRequester(TwitLongerAuthenticator & manager,
 									QString tlMessageID,
 									qlonglong statusID);
 

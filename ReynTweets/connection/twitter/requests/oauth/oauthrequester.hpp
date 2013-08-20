@@ -38,7 +38,7 @@ class OAuthRequester : public TwitterRequester
 	public:
 		/// @fn OAuthRequester(RequestType type,
 		///					   QString url,
-		///					   OAuthManager &authManager,
+		///					   TwitterAuthenticator &authManager,
 		///					   ErrorType parseErrorType,
 		///					   bool tokenNeeded = true,
 		///					   bool callbackURLNeeded = false,
@@ -57,7 +57,7 @@ class OAuthRequester : public TwitterRequester
 		/// parameter is required for authentication.
 		OAuthRequester(HTTPRequestType type,
 					   QString url,
-					   TwitterManager &authManager,
+					   TwitterAuthenticator &authManager,
 					   Network::NetworkResultType parseErrorType,
 					   bool tokenNeeded = true,
 					   bool callbackURLNeeded = false,

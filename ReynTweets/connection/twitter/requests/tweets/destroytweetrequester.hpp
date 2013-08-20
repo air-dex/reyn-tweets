@@ -33,14 +33,14 @@ class DestroyTweetRequester : public TwitterRequester
 {
 		Q_OBJECT
 	public:
-		/// @fn DestroyTweetRequester(OAuthManager & authManager,
+		/// @fn DestroyTweetRequester(TwitterAuthenticator & authManager,
 		///							  qlonglong statusID,
 		///							  bool userIDonly = false);
 		/// @brief Constructor
 		/// @param authManager Entities with OAuth values
 		/// @param statusID ID of the tweet
 		/// @param userIDonly Omit user details in the reply ?
-		DestroyTweetRequester(TwitterManager & authManager,
+		DestroyTweetRequester(TwitterAuthenticator & authManager,
 							  qlonglong statusID,
 							  bool userIDonly = false);
 

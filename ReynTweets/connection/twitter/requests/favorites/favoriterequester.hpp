@@ -35,7 +35,7 @@ class FavoriteRequester : public TwitterRequester
 	Q_OBJECT
 
 	public:
-		/// @fn FavoriteRequester(OAuthManager & authManager,
+		/// @fn FavoriteRequester(TwitterAuthenticator & authManager,
 		///						  bool favorited,
 		///						  qlonglong id,
 		///						  bool withEntities = false);
@@ -45,7 +45,7 @@ class FavoriteRequester : public TwitterRequester
 		/// (true) or not (false).
 		/// @param id ID of the tweet to favorite
 		/// @param withEntities Value of includeEntities
-		FavoriteRequester(TwitterManager & authManager,
+		FavoriteRequester(TwitterAuthenticator & authManager,
 						  bool favorited,
 						  qlonglong id,
 						  bool withEntities = false);

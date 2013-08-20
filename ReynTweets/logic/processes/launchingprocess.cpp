@@ -349,20 +349,20 @@ void LaunchingProcess::saveConfiguration() {
 // Filling configuration //
 ///////////////////////////
 
-// Filling the OAuthManager of Twitter with consumer tokens
+// Filling the TwitterAuthenticator of Twitter with consumer tokens
 void LaunchingProcess::fillTwitterOAuthAppSettings() {
 	ReynTwitterCalls::setAppTokens(appConfiguration.getConsumerKey(),
 								   appConfiguration.getConsumerSecret(),
 								   appConfiguration.getCallbackURL());
 }
 
-// Filling the OAuthManager of Twitter with access tokens
+// Filling the TwitterAuthenticator of Twitter with access tokens
 void LaunchingProcess::fillTwitterOAuthUserSettings() {
 	ReynTwitterCalls::setUserTokens(userConfiguration.getUserAccount().getAccessToken(),
 									userConfiguration.getUserAccount().getTokenSecret());
 }
 
-// Filling the TwitLongerManager with the TwitLonger IDs of the application.
+// Filling the TwitLongerAuthenticator with the TwitLonger IDs of the application.
 void LaunchingProcess::fillTwitLongerAppSettings() {
 	TwitLongerCalls::setAppTokens(appConfiguration.getTwitLongerAppName(),
 								  appConfiguration.getTwitLongerAPIKey());

@@ -28,7 +28,7 @@
 #include "requests/twitterrequests.hpp"
 
 // OAuth information
-TwitterManager ReynTwitterCalls::oauthManager = TwitterManager();
+TwitterAuthenticator ReynTwitterCalls::oauthManager = TwitterAuthenticator();
 
 // Protected constructor
 ReynTwitterCalls::ReynTwitterCalls(QObject * requester) :

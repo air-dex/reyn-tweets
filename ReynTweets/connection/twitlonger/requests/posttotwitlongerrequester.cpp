@@ -24,7 +24,7 @@
 #include "posttotwitlongerrequester.hpp"
 
 // Constructor
-PostToTwitLongerRequester::PostToTwitLongerRequester(TwitLongerManager &tlmanager,
+PostToTwitLongerRequester::PostToTwitLongerRequester(TwitLongerAuthenticator &tlmanager,
 													 QString longTweet,
 													 QString userScreenName,
 													 qlonglong replyToStatusID,

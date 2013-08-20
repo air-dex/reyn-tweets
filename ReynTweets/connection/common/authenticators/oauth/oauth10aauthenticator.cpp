@@ -25,11 +25,11 @@
 
 #include <QUrl>
 #include "oauthutils.hpp"
-#include "../../../tools/utils.hpp"
+#include "../../../../tools/utils.hpp"
 
 // Constructor
 OAuth10aAuthenticator::OAuth10aAuthenticator(QString signatureAlgorithm) :
-	OAuthManager("1.0"),
+	OAuthAuthenticator("1.0"),
 	callbackUrl(""),
 	oauthSignatureMethod(signatureAlgorithm),
 	oauthTokens(),

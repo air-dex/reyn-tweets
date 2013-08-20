@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor with ID
-FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterManager & authManager,
+FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 													   qlonglong uid,
 													   qlonglong oldestTweetID,
 													   qlonglong earliestTweetID,
@@ -42,7 +42,7 @@ FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterManager & authMana
 {}
 
 // Constructor with screen name
-FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterManager & authManager,
+FavoritesTimelineRequester::FavoritesTimelineRequester(TwitterAuthenticator & authManager,
 													   QString userName,
 													   qlonglong oldestTweetID,
 													   qlonglong earliestTweetID,

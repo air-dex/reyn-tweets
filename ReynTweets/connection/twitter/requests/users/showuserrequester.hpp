@@ -35,25 +35,25 @@
 class ShowUserRequester : public TwitterRequester
 {
 	public:
-		/// @fn ShowUserRequester(OAuthManager & authManager,
+		/// @fn ShowUserRequester(TwitterAuthenticator & authManager,
 		///						  qlonglong id,
 		///						  bool entities = true);
 		/// @brief Constructor with the user ID
-		/// @param authManager OAuthManager for authentication
+		/// @param authManager TwitterAuthenticator for authentication
 		/// @param id User ID
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(TwitterManager & authManager,
+		ShowUserRequester(TwitterAuthenticator & authManager,
 						  qlonglong id,
 						  bool entities = true);
 
-		/// @fn ShowUserRequester(OAuthManager & authManager,
+		/// @fn ShowUserRequester(TwitterAuthenticator & authManager,
 		///						  QString name,
 		///						  bool entities = true);
 		/// @brief Constructor with the screen name
-		/// @param authManager OAuthManager for authentication
+		/// @param authManager TwitterAuthenticator for authentication
 		/// @param name Screen name
 		/// @param entities Include entities in the last tweet of the user ?
-		ShowUserRequester(TwitterManager & authManager,
+		ShowUserRequester(TwitterAuthenticator & authManager,
 						  QString name,
 						  bool entities = true);
 

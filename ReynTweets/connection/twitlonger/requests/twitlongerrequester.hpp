@@ -25,7 +25,7 @@
 #define TWITLONGERREQUESTER_HPP
 
 #include "../../common/requests/genericrequester.hpp"
-#include "../../twitlonger/twitlongermanager.hpp"
+#include "../../twitlonger/twitlongerauthenticator.hpp"
 #include "twitlongerurls.hpp"
 #include <QDomElement>
 
@@ -38,17 +38,17 @@ class TwitLongerRequester : public GenericRequester
 	public:
 		/// @fn TwitLongerRequester(RequestType type,
 		///							QString url,
-		///							TwitLongerManager & manager);
+		///							TwitLongerAuthenticator & manager);
 		/// @param type Type of the HTTP request (GET or POST)
 		/// @param url URL of the request
 		/// @param manager Manager with TwitLonger IDs.
 		TwitLongerRequester(HTTPRequestType type,
 							QString url,
-							TwitLongerManager & manager);
+							TwitLongerAuthenticator & manager);
 
 	protected:
 		/// @brief Manager with TwitLonger IDs.
-		TwitLongerManager & twitlongerManager;
+		TwitLongerAuthenticator & twitlongerManager;
 
 		/// @fn virtual QVariant parseResult(NetworkResponse results,
 		///									 bool & parseOK,

@@ -27,7 +27,7 @@
 
 // Constructor
 OAuth2Authenticator::OAuth2Authenticator() :
-	OAuthManager("2.0"),
+	OAuthAuthenticator("2.0"),
 	bearerToken("")
 {}
 

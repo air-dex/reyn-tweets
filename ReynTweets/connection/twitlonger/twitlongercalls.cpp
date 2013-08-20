@@ -25,7 +25,7 @@
 #include "requests/twitlongerrequests.hpp"
 
 // Static member
-TwitLongerManager TwitLongerCalls::twitlongerManager = TwitLongerManager();
+TwitLongerAuthenticator TwitLongerCalls::twitlongerManager = TwitLongerAuthenticator();
 
 // Constructor
 TwitLongerCalls::TwitLongerCalls(QObject * requester) :

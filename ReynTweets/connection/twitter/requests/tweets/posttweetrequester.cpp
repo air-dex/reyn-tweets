@@ -25,7 +25,7 @@
 #include "../../../../tools/utils.hpp"
 
 // Constructor
-PostTweetRequester::PostTweetRequester(TwitterManager & authManager,
+PostTweetRequester::PostTweetRequester(TwitterAuthenticator & authManager,
 									   QString status,
 									   qlonglong replyTostatusID,
 									   float lat,

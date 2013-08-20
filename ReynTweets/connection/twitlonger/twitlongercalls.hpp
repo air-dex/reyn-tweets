@@ -25,7 +25,7 @@
 #define TWITLONGERCALLS_HPP
 
 #include "../common/calls/genericcalls.hpp"
-#include "twitlongermanager.hpp"
+#include "twitlongerauthenticator.hpp"
 
 /// @class TwitLongerCalls
 /// @brief Class managing calls to the TwitLonger API.
@@ -49,7 +49,7 @@ class TwitLongerCalls : public GenericCalls
 
 	protected:
 		/// @brief Settings of the application on TwitLonger
-		static TwitLongerManager twitlongerManager;
+		static TwitLongerAuthenticator twitlongerManager;
 
 
 	////////////////////////

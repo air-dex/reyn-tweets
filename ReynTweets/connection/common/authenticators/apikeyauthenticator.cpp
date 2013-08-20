@@ -1,5 +1,5 @@
-/// @file apikeymanager.cpp
-/// @brief Header of APIKeyManager
+/// @file apikeyauthenticator.cpp
+/// @brief Implementation of APIKeyAuthenticator
 /// @author Romain Ducher
 ///
 /// @section LICENSE
@@ -21,33 +21,22 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef APIKEYMANAGER_HPP
-#define APIKEYMANAGER_HPP
+#include "apikeyauthenticator.hpp"
 
-#include <QByteArray>
+// Constructor
+APIKeyAuthenticator::APIKeyAuthenticator():
+	apiKey("")
+{}
 
-/// @class APIKeyManager
-/// @brief Base class for Authentication managers with needs a simple API key.
-class APIKeyManager
-{
-	public:
-		/// @fn APIKeyManager();
-		/// @brief Constructor
-		APIKeyManager();
+// Destructor
+APIKeyAuthenticator::~APIKeyAuthenticator() {}
 
-		/// @fn QByteArray getAPIKey();
-		/// @brief Getting the API key
-		/// @return apiKey
-		QByteArray getAPIKey();
+// Getting the API Key
+QByteArray APIKeyAuthenticator::getAPIKey() {
+	return apiKey;
+}
 
-		/// @fn void setAPIKey(QByteArray newAPIKey);
-		/// @brief Setting the API key
-		/// @param newAPIKey New value for apiKey
-		void setAPIKey(QByteArray newAPIKey);
-
-	protected:
-		/// @brief API Key of the application on TwitLonger
-		QByteArray apiKey;
-};
-
-#endif // APIKEYMANAGER_HPP
+// Setting the API Key
+void APIKeyAuthenticator::setAPIKey(QByteArray newAPIKey) {
+	apiKey = newAPIKey;
+}

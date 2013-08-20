@@ -41,7 +41,7 @@ class TwitterRequester : public GenericRequester
 		/// @fn TwitterRequester(RequestType type,
 		///						 QString url,
 		///						 OAuthManager & authManager,
-		///						 ErrorType parseError = JSON_PARSING,
+		///						 NetworkResultType parseError = Network::JSON_PARSING,
 		///						 bool tokenNeeded = true,
 		///						 bool callbackURLNeeded = false,
 		///						 bool verifierNeeded = false);
@@ -62,7 +62,7 @@ class TwitterRequester : public GenericRequester
 		TwitterRequester(RequestType type,
 						 QString url,
 						 OAuthManager & authManager,
-						 ErrorType parseError = JSON_PARSING,
+						 NetworkResultType parseError = Network::JSON_PARSING,
 						 bool tokenNeeded = true,
 						 bool callbackURLNeeded = false,
 						 bool verifierNeeded = false);

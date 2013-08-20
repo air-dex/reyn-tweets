@@ -24,12 +24,12 @@
 #ifndef ERRORTYPES_HPP
 #define ERRORTYPES_HPP
 
-//namespace Network {
+namespace Network {
 	/// @enum ErrorType
 	/// @brief Enumeration which indicates if something bad happened during the
 	/// request. It can takes three values depending on what happened. See the
 	/// enum values for more details.
-	enum ErrorType {
+	enum NetworkResultType {
 		/// @brief Code indicating that there was no error.
 		NO_REQUEST_ERROR,
 
@@ -56,10 +56,8 @@
 		/// @brief Code indicating that there was an error while parsing XML.
 		XML_PARSING
 	};
-/*
 }
 
-using Network::ErrorType;
-//*/
+using Network::NetworkResultType;
 
 #endif // ERRORTYPES_HPP

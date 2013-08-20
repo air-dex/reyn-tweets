@@ -101,14 +101,14 @@ void DeleteTweetProcess::canDeleteTweet() {
 void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(searchRetweetIDEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString beginErrMsg = DeleteTweetProcess::trUtf8("Retrieving retweet ID:") + '\n';
@@ -118,7 +118,7 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:{
+		case Network::NO_REQUEST_ERROR:{
 			// Updating tweetToDelete
 			tweetToDelete.reset();
 			tweetToDelete.fillWithVariant(result.parsedResult.toMap());
@@ -139,15 +139,15 @@ void DeleteTweetProcess::searchRetweetIDEnded(ResultWrapper res) {
 			return deleteTweet(idFound, addInfos);
 		}break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 
@@ -199,14 +199,14 @@ void DeleteTweetProcess::deleteTweet(bool allowToDelete,
 void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(deleteEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
@@ -218,22 +218,22 @@ void DeleteTweetProcess::deleteEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			deletionResult.insert("twitter_result", result.parsedResult);
 			deletionResult.insert("keep_in_timeline", QVariant(keepInTimeline));
 			processResult = ProcessUtils::buildProcessResult(TWEET_DELETED,
 															 QVariant(deletionResult));
 			return endProcess();
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 

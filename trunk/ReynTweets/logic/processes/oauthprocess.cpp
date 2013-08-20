@@ -83,14 +83,14 @@ void OAuthProcess::requestToken() {
 void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(requestTokenDemanded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -100,7 +100,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 
 
 	switch (errorType) {
-		case NO_REQUEST_ERROR: {
+		case Network::NO_REQUEST_ERROR: {
 			// The request was successful. Was the callback URL confirmed ?
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			if (parsedResults.value("oauth_callback_confirmed").toBool()) {
@@ -114,7 +114,7 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -127,11 +127,11 @@ void OAuthProcess::requestTokenDemanded(ResultWrapper res) {
 					  : NO_TOKENS;
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case OAUTH_PARSING:
+		case Network::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  issue);
@@ -165,14 +165,14 @@ void OAuthProcess::authorize() {
 void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(authorizeDemanded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -181,12 +181,12 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			// The user can give its credentials now
 			emit userCredentialsRequired();
 			return;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -200,11 +200,11 @@ void OAuthProcess::authorizeDemanded(ResultWrapper res) {
 					  : NO_TOKENS;
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case HTML_PARSING:
+		case Network::HTML_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  issue);
@@ -245,14 +245,14 @@ void OAuthProcess::denyReynTweets(QString login, QString password) {
 void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postAuthorizeDemanded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -262,7 +262,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_REQUEST_ERROR: {
+		case Network::NO_REQUEST_ERROR: {
 			QVariantMap resultMap = result.parsedResult.toMap();
 			bool urlOK = resultMap.value("urlOK").toBool();
 
@@ -288,7 +288,7 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 			}
 		}break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -302,12 +302,12 @@ void OAuthProcess::postAuthorizeDemanded(ResultWrapper res) {
 					  : NO_TOKENS;
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case HTML_PARSING:
-		case OAUTH_PARSING:
+		case Network::HTML_PARSING:
+		case Network::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  issue);
@@ -341,14 +341,14 @@ void OAuthProcess::accessToken() {
 void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(accessTokenDemanded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -357,7 +357,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_REQUEST_ERROR: {
+		case Network::NO_REQUEST_ERROR: {
 			// The authentication process is ended.
 
 			// Extract the different values
@@ -372,7 +372,7 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 			endProcess();
 		}return;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Building error message
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -386,11 +386,11 @@ void OAuthProcess::accessTokenDemanded(ResultWrapper res) {
 					  : NO_TOKENS;
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case OAUTH_PARSING:
+		case Network::OAUTH_PARSING:
 			ProcessUtils::treatOAuthParsingResult(result.parsingErrors.message,
 												  errorMsg,
 												  issue);

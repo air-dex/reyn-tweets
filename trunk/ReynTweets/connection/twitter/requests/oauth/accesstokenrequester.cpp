@@ -29,7 +29,7 @@ AccessTokenRequester::AccessTokenRequester(OAuthManager &authManager) :
 	OAuthRequester(POST,
 				   TwitterURL::ACCESS_TOKEN_URL,
 				   authManager,
-				   OAUTH_PARSING,
+				   Network::OAUTH_PARSING,
 				   true,
 				   false,
 				   true)

@@ -33,7 +33,7 @@ PostAuthorizeRequester::PostAuthorizeRequester(OAuthManager &authManager,
 	OAuthRequester(POST,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
-				   HTML_PARSING),
+				   Network::HTML_PARSING),
 	login(pseudo),
 	password(pwd),
 	denyReynTweets(deny)
@@ -175,7 +175,7 @@ QVariant PostAuthorizeRequester::parseResult(bool & parseOK,
 						QByteArray oauthParameters = redirectURL.toUtf8().split('?').at(1);
 
 						// Parsing oauthParameters to get oauth_token and the oauth_verifier
-						setParsingErrorType(OAUTH_PARSING);
+						setParsingErrorType(Network::OAUTH_PARSING);
 						OAuthParser parser;
 						QVariantMap resultMap = parser.parse(oauthParameters, parseOK, errTreatment);
 						errorMsg.append(errTreatment);

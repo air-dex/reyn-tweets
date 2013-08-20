@@ -154,14 +154,14 @@ void LaunchingProcess::checkTokens() {
 void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(verifyCredentialsEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -171,7 +171,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR: {
+		case Network::NO_REQUEST_ERROR: {
 			// Credentials were right a priori. Ensures that the user is the right one.
 			QVariantMap userMap = result.parsedResult.toMap();
 			UserInfos userOfCredentials;
@@ -185,7 +185,7 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 			}
 		}break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Building error message
 			verifyMsg = ProcessUtils::writeTwitterErrors(result);
 
@@ -199,11 +199,11 @@ void LaunchingProcess::verifyCredentialsEnded(ResultWrapper res) {
 					  : UNKNOWN_PROBLEM;
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, verifyMsg, verifyIssue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  verifyMsg,
 												  verifyIssue);

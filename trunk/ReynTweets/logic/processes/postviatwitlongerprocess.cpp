@@ -107,14 +107,14 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postToTwitLongerEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
@@ -123,7 +123,7 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			if (result.parsedResult.canConvert<QVariantMap>()) {
 				// Request ends successfully
 				QVariantMap resMap = result.parsedResult.toMap();
@@ -146,16 +146,16 @@ void PostViaTwitLongerProcess::postToTwitLongerEnded(ResultWrapper res) {
 			}
 			break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			issue = UNSHORTENABLE_MESSAGE;
 			errorMsg = PostViaTwitLongerProcess::trUtf8("Tweet cannot be shortened");
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case XML_PARSING:
+		case Network::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 
@@ -190,14 +190,14 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(postTweetEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
@@ -206,7 +206,7 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			if (enoughShortMessage) {
 				// Classic post, normal end
 				processResult = ProcessUtils::buildProcessResult(TWEET_POSTED,
@@ -218,15 +218,15 @@ void PostViaTwitLongerProcess::postTweetEnded(ResultWrapper res) {
 				return updateTweetOnTwitLonger();
 			}
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			ProcessUtils::treatTwitterErrorResult(result, errorMsg, issue);
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 
@@ -255,14 +255,14 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitlonger, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(updateTweetOnTwitLongerEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
@@ -272,23 +272,23 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			// TODO : final treatment : Nothing a priori
 			isOK = true;
 			issue = TWEET_POSTED;
 			break;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			issue = MESSAGE_NOT_UPDATED;
 			errorMsg = PostViaTwitLongerProcess::trUtf8("Message on TwitLonger cannot be updated.");
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			issue = MESSAGE_NOT_UPDATED;
 			break;
 
-		case XML_PARSING:
+		case Network::XML_PARSING:
 			ProcessUtils::treatXMLParsingResult(result.parsingErrors, errorMsg, issue);
 			issue = TWEET_POSTED;
 			break;

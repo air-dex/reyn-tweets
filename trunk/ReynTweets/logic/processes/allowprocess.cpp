@@ -83,14 +83,14 @@ void AllowProcess::updateConfiguration(QByteArray accessToken,
 void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(retrieveUserEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	int httpCode = result.httpResponse.code;
@@ -99,7 +99,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 	CoreResult issue;
 
 	switch (errorType) {
-		case NO_REQUEST_ERROR: {
+		case Network::NO_REQUEST_ERROR: {
 			// Get user, put it in the conf and save
 			QVariantMap parsedResults = result.parsedResult.toMap();
 			UserInfos u;
@@ -109,7 +109,7 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			saveConfiguration();
 		}return;
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			// Looking for specific value of the return code
 			issue = (httpCode / 100 == 5
 					 || httpCode == 420
@@ -124,11 +124,11 @@ void AllowProcess::retrieveUserEnded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			ProcessUtils::treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			ProcessUtils::treatQjsonParsingResult(result.parsingErrors,
 												  errorMsg,
 												  issue);

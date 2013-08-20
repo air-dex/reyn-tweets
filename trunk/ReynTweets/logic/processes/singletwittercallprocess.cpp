@@ -42,14 +42,14 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 	// Ensures that res is for the process
 	RequestResult result = res.accessResult(this);
 
-	if (result.resultType == INVALID_RESULT) {
+	if (result.resultType == Network::INVALID_RESULT) {
 		return invalidEnd();
 	}
 
 	disconnect(&twitter, SIGNAL(sendResult(ResultWrapper)),
 			   this, SLOT(callEnded(ResultWrapper)));
 
-	ErrorType errorType = result.resultType;
+	NetworkResultType errorType = result.resultType;
 
 	// For a potenitial anticipated end
 	QString errorMsg = "";
@@ -58,18 +58,18 @@ void SingleTwitterCallProcess::callEnded(ResultWrapper res) {
 
 	// Analysing the Twitter response
 	switch (errorType) {
-		case NO_REQUEST_ERROR:
+		case Network::NO_REQUEST_ERROR:
 			return treatSuccessfulResult(result.parsedResult);
 
-		case SERVICE_ERRORS:
+		case Network::SERVICE_ERRORS:
 			treatTwitterErrorResult(result, errorMsg, issue);
 			break;
 
-		case API_CALL:
+		case Network::API_CALL:
 			treatApiCallResult(result, errorMsg, issue);
 			break;
 
-		case JSON_PARSING:
+		case Network::JSON_PARSING:
 			treatQjsonParsingResult(result.parsingErrors, errorMsg, issue);
 			break;
 

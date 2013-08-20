@@ -39,7 +39,7 @@ class GenericRequester : public QObject
 	public:
 		/// @fn GenericRequester(RequestType type,
 		///						 QString url,
-		///						 ErrorType parseError = JSON_PARSING);
+		///						 NetworkResultType parseError = Network::JSON_PARSING);
 		/// @brief Constructor
 		/// @param type Type of the request (GET ou POST).
 		/// @param url URL called by the requester
@@ -49,7 +49,7 @@ class GenericRequester : public QObject
 		/// own parsing process so they need a special value called OAUTH_PARSING.
 		GenericRequester(RequestType type,
 						 QString url,
-						 ErrorType parseError = JSON_PARSING);
+						 NetworkResultType parseError = Network::JSON_PARSING);
 
 		/// @fn virtual ~GenericRequester();
 		/// @brief Destructor.
@@ -107,13 +107,13 @@ class GenericRequester : public QObject
 		TwitterCommunicator weblink;
 
 		/// @brief Type of parsing error
-		ErrorType parsingErrorType;
+		NetworkResultType parsingErrorType;
 
-		/// @fn void setParsingErrorType(ErrorType parseErrorType);
+		/// @fn void setParsingErrorType(NetworkResultType parseErrorType);
 		/// @brief Setting parsingErrorType in classes which inherits from
 		/// GenericRequesters.
 		/// @param parseErrorType New value for parsingErrorType
-		void setParsingErrorType(ErrorType parseErrorType);
+		void setParsingErrorType(NetworkResultType parseErrorType);
 
 
 	//////////////////////////

@@ -30,7 +30,7 @@
 TwitLongerRequester::TwitLongerRequester(RequestType type,
 										 QString url,
 										 TwitLongerManager & manager) :
-	GenericRequester(type, url, XML_PARSING),
+	GenericRequester(type, url, Network::XML_PARSING),
 	twitlongerManager(manager)
 {}
 
@@ -81,6 +81,6 @@ void TwitLongerRequester::treatParsedResult() {
 	twitLongerError.message = resultMap.value("error").toString();
 	requestResult.serviceErrors.append(twitLongerError);
 
-	requestResult.resultType = SERVICE_ERRORS;
+	requestResult.resultType = Network::SERVICE_ERRORS;
 }
 

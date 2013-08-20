@@ -31,7 +31,7 @@ AuthorizeRequester::AuthorizeRequester(OAuthManager &authManager) :
 	OAuthRequester(GET,
 				   TwitterURL::AUTHORIZE_URL,
 				   authManager,
-				   HTML_PARSING)
+				   Network::HTML_PARSING)
 {}
 
 // Building GET Parameters

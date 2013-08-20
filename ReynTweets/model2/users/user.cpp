@@ -23,7 +23,6 @@
 
 #include <QtQml>
 #include "user.hpp"
-#include "../../tools/utils.hpp"
 
 //////////////////////////////
 // Serialization management //
@@ -40,7 +39,8 @@ User2::~User2() {}
 
 // Copy constructor
 User2::User2(const User2 & user) :
-	UserInfos2()
+	UserInfos2(),
+	lastTweet()
 {
 	recopie(user);
 }

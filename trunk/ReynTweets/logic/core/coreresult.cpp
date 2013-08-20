@@ -27,26 +27,42 @@
 
 #include "coreresult.hpp"
 
-QMap<int, ReynTweets::CoreResult> httpResults = buildHttpResults();
+QMap<LibRT::HTTPCode, ReynTweets::CoreResult> ReynTweets::httpResults = ReynTweets::buildHttpResults();
 
 // Initialize httpResults
-QMap<int, ReynTweets::CoreResult> buildHttpResults() {
-	QMap<int, ReynTweets::CoreResult> res;
+QMap<LibRT::HTTPCode, ReynTweets::CoreResult> ReynTweets::buildHttpResults() {
+	QMap<LibRT::HTTPCode, ReynTweets::CoreResult> res;
 
-	res.insert(304, ReynTweets::NO_MORE_DATA);
-	res.insert(400, ReynTweets::BAD_REQUEST);
-	res.insert(401, ReynTweets::AUTHENTICATION_REQUIRED);
-	res.insert(403, ReynTweets::REFUSED_REQUEST);
-	res.insert(404, ReynTweets::BAD_REQUEST);
-	res.insert(406, ReynTweets::INVALID_SEARCH);
-	res.insert(410, ReynTweets::GONE);
-	res.insert(420, ReynTweets::RATE_LIMITED);
-	res.insert(422, ReynTweets::UNPROCESSABLE);
-	res.insert(429, ReynTweets::RATE_LIMITED);
-	res.insert(500, ReynTweets::TWITTER_DOWN);
-	res.insert(502, ReynTweets::TWITTER_DOWN);
-	res.insert(503, ReynTweets::TWITTER_DOWN);
-	res.insert(504, ReynTweets::TWITTER_DOWN);
+	res.insert(LibRT::NOT_MODIFIED, ReynTweets::NO_MORE_DATA);
+	res.insert(LibRT::BAD_REQUEST, ReynTweets::BAD_REQUEST);
+	res.insert(LibRT::UNAUTHORIZED, ReynTweets::AUTHENTICATION_REQUIRED);
+	res.insert(LibRT::FORBIDDEN, ReynTweets::REFUSED_REQUEST);
+	res.insert(LibRT::NOT_FOUND, ReynTweets::BAD_REQUEST);
+	res.insert(LibRT::NOT_ACCEPTABLE, ReynTweets::INVALID_SEARCH);
+	res.insert(LibRT::GONE, ReynTweets::GONE);
+	res.insert(LibRT::ENHANCE_YOUR_CALM, ReynTweets::RATE_LIMITED);
+	res.insert(LibRT::UNPROCESSABLLE_ENTITY, ReynTweets::UNPROCESSABLE);
+	res.insert(LibRT::TOO_MANY_REQUESTS, ReynTweets::RATE_LIMITED);
+	res.insert(LibRT::INTERNAL_SERVER_ERROR, ReynTweets::TWITTER_DOWN);
+	res.insert(LibRT::BAD_GATEWAY, ReynTweets::TWITTER_DOWN);
+	res.insert(LibRT::SERVICE_UNAVAILABLE, ReynTweets::TWITTER_DOWN);
+	res.insert(LibRT::GATEWAY_TIMEOUT, ReynTweets::TWITTER_DOWN);
 
 	return res;
+}
+
+// CoreResult corresponding to a given HTTP code
+ReynTweets::CoreResult ReynTweets::getCoreResultFromCode(LibRT::HTTPCode code,
+														 ReynTweets::CoreResult okEnd)
+{
+	if (ReynTweets::httpResults.keys().contains(code)) {
+		// The code is well known. Give it.
+		return ReynTweets::httpResults.value(code);
+	} else if (code == LibRT::OK) {
+		// httpResults hasn't got a dedicate value for 200. Give it one !
+		return okEnd;
+	} else {
+		// Unknown code => unknown problem
+		return ReynTweets::UNKNOWN_PROBLEM;
+	}
 }

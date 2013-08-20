@@ -35,8 +35,7 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 										   ReynTweets::CoreResult & procEnd)
 {
 	// Looking for specific value of the return code
-	int httpCode = result.httpResponse.code;
-	procEnd = httpResults.value(httpCode);
+	procEnd = ReynTweets::getCoreResultFromCode(result.getHTTPCode());
 	switch (procEnd) {
 		case ReynTweets::NO_MORE_DATA:
 			errorMsg = QObject::trUtf8("Twitter do not return new datas:");
@@ -46,7 +45,8 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			errorMsg = QObject::trUtf8("Your request was invalid:");
 			break;
 
-		case ReynTweets::TOKENS_NOT_AUTHORIZED:
+		case ReynTweets::AUTHENTICATION_REQUIRED:
+			procEnd = ReynTweets::TOKENS_NOT_AUTHORIZED;
 			errorMsg = QObject::trUtf8("Tokens were not authorized:");
 			break;
 
@@ -62,8 +62,16 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			errorMsg = QObject::trUtf8("Your research was invalid:");
 			break;
 
+		case ReynTweets::GONE:
+			errorMsg = QObject::trUtf8("This resource is gone:");
+			break;
+
 		case ReynTweets::RATE_LIMITED:
 			errorMsg = QObject::trUtf8("You reach the authentication rate:");
+			break;
+
+		case ReynTweets::UNPROCESSABLE:
+			errorMsg = QObject::trUtf8("Your profile banner cannot be processed:");
 			break;
 
 		case ReynTweets::TWITTER_DOWN:
@@ -71,6 +79,7 @@ void ProcessUtils::treatTwitterErrorResult(RequestResult result,
 			break;
 
 		default:
+			// This is an error so a 200 return code is not expected at all.
 			procEnd = ReynTweets::UNKNOWN_PROBLEM;
 			errorMsg = QObject::trUtf8("Unexpected result:");
 			break;

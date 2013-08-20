@@ -72,10 +72,8 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			   this, &RequestTokensProcess::requestTokenDemanded);
 
 	// For a potenitial anticipated end
-	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	ReynTweets::CoreResult procEnd;
-
 
 	switch (result.resultType) {
 		case LibRT::NO_REQUEST_ERROR: {
@@ -104,12 +102,13 @@ void RequestTokensProcess::requestTokenDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			procEnd = (httpCode / 100 == 5
-					 || httpCode == 420
-					 || httpCode == 429
-					 ) ?
-						httpResults.value(httpCode)
-					  : ReynTweets::NO_TOKENS;
+			procEnd = ReynTweets::getCoreResultFromCode(result.getHTTPCode());
+
+			if (procEnd != ReynTweets::TWITTER_DOWN
+					&& procEnd != ReynTweets::RATE_LIMITED)
+			{
+				procEnd = ReynTweets::NO_TOKENS;
+			}
 			break;
 
 		case LibRT::API_CALL:
@@ -156,7 +155,6 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			   this, &RequestTokensProcess::authorizeDemanded);
 
 	// For a potenitial anticipated end
-	int httpCode = result.httpResponse.code;
 	QString errorMsg = "";
 	ReynTweets::CoreResult procEnd;
 
@@ -172,13 +170,14 @@ void RequestTokensProcess::authorizeDemanded(ResultWrapper res) {
 			errorMsg = ProcessUtils::writeTwitterErrors(result);
 
 			// Looking for specific value of the return code
-			procEnd = (httpCode / 100 == 5
-					 || httpCode == 401
-					 || httpCode == 420
-					 || httpCode == 429
-					 ) ?
-						httpResults.value(httpCode)
-					  : ReynTweets::NO_TOKENS;
+			procEnd = ReynTweets::getCoreResultFromCode(result.getHTTPCode());
+
+			if (procEnd != ReynTweets::TWITTER_DOWN
+					&& procEnd != ReynTweets::RATE_LIMITED
+					&& procEnd != ReynTweets::AUTHENTICATION_REQUIRED)
+			{
+				procEnd = ReynTweets::NO_TOKENS;
+			}
 			break;
 
 		case LibRT::API_CALL:

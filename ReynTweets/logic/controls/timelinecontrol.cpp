@@ -164,12 +164,12 @@ void TimelineControl::refreshTimeline() {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.getFirstID());
+			reyn.refreshHomeTimeline(timeline.getFirstID());
 			break;
 
 		case TimelineHandler::MENTIONS:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-			reyn.loadMentionsTimeline(timeline.getFirstID());
+			reyn.refreshMentionsTimeline(timeline.getFirstID());
 			break;
 
 		default:
@@ -197,63 +197,30 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 	disconnect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
 			   this, SLOT(refreshTimelineEnded(ProcessWrapper)));
 
-	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
-	Timeline newTweets;
-
-	// newerTweets is static because it contains all the new tweets of the TL.
-	static Timeline newerTweets;
 
 	switch (issue) {
-		case TIMELINE_RETRIEVED:
-			// Retrieving the new tweets
-			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
+		case TIMELINE_RETRIEVED: {
+			QVariantMap procRes = result.results.toMap();
 
-			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.getLastID();
-				static qlonglong maxID = timeline.getFirstID();
+			// If something bad happened while loading missing tweets, say it
+			// TODO : improve
+			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
 
-				// Is there missing tweets in the timeline ?
-				if (newMinID == maxID) {
-					newTweets.removeLast();
-				} else {
-					// There's a gap to fill
-
-					// Save the the retrieved tweets before
-					newerTweets.append(newTweets);
-
-					// Fill the gap
-					switch (tlhandler.getType()) {
-						case TimelineHandler::HOME:
-							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
-							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
-
-						case TimelineHandler::MENTIONS:
-							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-									this, SLOT(refreshTimelineEnded(ProcessWrapper)));
-							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
-
-						default:
-							newerTweets.clear();
-							emit actionEnded(false,
-											 TimelineControl::trUtf8("Invalid type of timeline."),
-											 false);
-							return;
-					}
-				}
+			if (intermediateIssue != INVALID_ISSUE) {
+				emit showInfoMessage(result.errorMsg);
 			}
 
-			newerTweets.append(newTweets);
-			emit loadedMoreTweets(newerTweets.size());
-			tlhandler.prependTimeline(newerTweets);
+			// Do the timeline modifications and end the action
+			Timeline newerTweets = procRes.value("newer_tweets").value<Timeline>();
 
-			// Process successful
-			emit tlhandler.handledListChanged();
+			tlhandler.prependTimeline(newerTweets);
+			emit loadedMoreTweets(newerTweets.size());
 			emit actionEnded(true,
 							 TimelineControl::trUtf8("Timeline refreshed."),
 							 false);
-			break;
+		} break;
+
 
 		case TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
@@ -261,6 +228,7 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			return;
 
 		// Problems that can be solved trying later
+		case NO_MORE_TWEETS:
 		case NO_MORE_DATA:
 		case BAD_REQUEST:
 		case REFUSED_REQUEST:
@@ -277,9 +245,6 @@ void TimelineControl::refreshTimelineEnded(ProcessWrapper res) {
 			emit actionEnded(false, result.errorMsg, true);
 			break;
 	}
-
-	// Resetting this static variable (no former "new tweets" for the next refresh)
-	newerTweets.clear();
 }
 
 // Refreshing after writing a tweet
@@ -302,11 +267,13 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 	switch (tlhandler.getType()) {
 		case TimelineHandler::HOME:
 			emit showInfoMessage(TimelineControl::trUtf8("Refreshing timeline..."));
-			reyn.loadHomeTimeline(timeline.getFirstID());
+			reyn.refreshHomeTimeline(timeline.getFirstID());
 			break;
 
 		case TimelineHandler::MENTIONS: {
-			// "Refresh after write" only if the user mentions himself. "Refrsh" otherwise.
+			// TODO : simplify
+
+			// "Refresh after write" only if the user mentions himself. "Refresh" otherwise.
 			Tweet backupedTweet;
 			backupedTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
 
@@ -314,6 +281,7 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 			QString authorID = conf.getUserAccount().getUser().getIDstr();
 			UserMentionList tweetMentions = backupedTweet.getEntities().getUserMentions();
 
+			// Searching the auto mention
 			for (UserMentionList::Iterator it = tweetMentions.begin();
 				 it != tweetMentions.end();
 				 ++it)
@@ -321,9 +289,9 @@ void TimelineControl::refreshTimelineAfterWrite(QVariant newTweetVariant) {
 				QString userID = it->getIDstr();
 
 				if (userID == authorID) {
-					// The user mentions itself
+					// The user mentions itself : let's refresh !
 					emit showInfoMessage(TimelineControl::trUtf8("Refreshing mentions..."));
-					return reyn.loadMentionsTimeline(timeline.getFirstID());
+					return reyn.refreshMentionsTimeline(timeline.getFirstID());
 				}
 			}
 
@@ -362,65 +330,33 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 
 	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
-	Timeline newTweets;
-	Tweet lastTweet;
-
-	// newerTweets is static because it contains all the new tweets of the TL.
-	static Timeline newerTweets;
 
 	switch (issue) {
-		case TIMELINE_RETRIEVED:
-			newTweets.fillWithVariant(QJsonArray::fromVariantList(result.results.toList()));
+		case TIMELINE_RETRIEVED: {
+			QVariantMap procRes = result.results.toMap();
 
-			if (!newTweets.isEmpty()) {
-				qlonglong newMinID = newTweets.getLastID();
-				qlonglong maxID = timeline.getFirstID();
+			// If something bad happened while loading missing tweets, say it
+			// TODO : improve
+			CoreResult intermediateIssue = CoreResult(procRes.value("intermediate_issue").toInt());
 
-				// Is there missing tweets in the timeline ?
-				if (newMinID == maxID) {
-					newTweets.removeLast();
-				} else {
-					// There's a gap to fill
-
-					// Save the the retrieved tweets before
-					newerTweets.append(newTweets);
-
-					// Fill the gap
-					switch (tlhandler.getType()) {
-						case TimelineHandler::HOME:
-							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
-							return reyn.loadHomeTimeline(maxID -1, newMinID -1);
-
-						case TimelineHandler::MENTIONS:
-							connect(&reyn, SIGNAL(sendResult(ProcessWrapper)),
-									this, SLOT(refreshTimelineAfterWriteEnded(ProcessWrapper)));
-							return reyn.loadMentionsTimeline(maxID -1, newMinID -1);
-
-						default:
-							newerTweets.clear();
-							emit actionEnded(false,
-											 TimelineControl::trUtf8("Invalid type of timeline."),
-											 false);
-							return;
-					}
-				}
+			if (intermediateIssue != INVALID_ISSUE) {
+				emit showInfoMessage(result.errorMsg);
 			}
 
+			// Do the timeline modifications and end the action
+			Timeline newerTweets = procRes.value("newer_tweets").value<Timeline>();
+
 			// Inserting the new Tweet in the timeline of new tweets
+			Tweet lastTweet;
 			lastTweet.fillWithVariant(QJsonObject::fromVariantMap(backupedNewTweet.toMap()));
 			newerTweets.insertElement(lastTweet);
 
-			emit loadedMoreTweets(newerTweets.size());
-
 			tlhandler.prependTimeline(newerTweets);
-
-			// Process successful
-			emit tlhandler.handledListChanged();
+			emit loadedMoreTweets(newerTweets.size());
 			emit actionEnded(true,
 							 TimelineControl::trUtf8("Timeline refreshed."),
 							 false);
-			break;
+		} break;
 
 		case TOKENS_NOT_AUTHORIZED:
 			// An authentication is needed. So let's do it!
@@ -445,8 +381,6 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 			break;
 	}
 
-	// Resetting this static variable
-	newerTweets.clear();
 }
 
 

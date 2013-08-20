@@ -28,6 +28,8 @@
 #include "twittercommunicator.hpp"
 #include "../utils/connectionutils.hpp"
 
+//#include <QtDebug>		// For debug purposes
+
 // Network manager
 #ifdef Q_OS_WIN
 	QNetworkAccessManager REYN_TWEETS_NETWORK_MANAGER = QNetworkAccessManager();
@@ -152,11 +154,9 @@ void TwitterCommunicator::endRequest(QNetworkReply * response) {
 	NetworkResponse netrep(response);
 	response->deleteLater();
 
-	// responseBuffer (for debug purposes)
-	/*
-	qDebug("responseBuffer :");
-	qDebug(netrep.getResponseBody());
-	qDebug("\n");
+	/* responseBuffer (for debug purposes)
+	qDebug() << "responseBuffer :" << '\n'
+			 << netrep.getResponseBody() << '\n';
 	//*/
 
 	// Ending the request

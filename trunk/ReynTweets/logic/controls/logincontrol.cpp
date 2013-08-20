@@ -51,7 +51,7 @@ const LoginControl & LoginControl::operator=(const LoginControl & control) {
 // Declaring to the QML components
 void LoginControl::declareQML() {
 	qmlRegisterType<LoginControl>("ReynTweetsControls",
-								  0, 1,
+								  0, 2,
 								  "LoginControl");
 }
 

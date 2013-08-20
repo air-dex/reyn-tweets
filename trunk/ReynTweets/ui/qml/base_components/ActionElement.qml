@@ -24,7 +24,7 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-import QtQuick 1.1
+import QtQuick 2.0
 import "../js/jstools.js" as Tools
 
 // QML Component with an icon and a description that can be clicked to do sthg

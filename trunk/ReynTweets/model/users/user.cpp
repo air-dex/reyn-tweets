@@ -68,7 +68,7 @@ void User::initSystem() {
 // Declaring to the QML components
 void User::declareQML() {
 	qmlRegisterType<User>("ReynTweetsEntities",
-						  0, 1,
+						  0, 2,
 						  "User");
 }
 

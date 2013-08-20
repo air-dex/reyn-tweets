@@ -34,7 +34,7 @@ WriteTweetControl::WriteTweetControl() :
 // Declaring WriteTweetControl to the QML system
 void WriteTweetControl::declareQML() {
 	qmlRegisterType<WriteTweetControl>("ReynTweetsControls",
-									   0, 1,
+									   0, 2,
 									   "WriteTweetControl");
 }
 

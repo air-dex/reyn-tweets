@@ -128,7 +128,7 @@ void Tweet::initSystem() {
 // Declaring to the QML components
 void Tweet::declareQML() {
 	qmlRegisterType<Tweet>("ReynTweetsEntities",
-						   0, 1,
+						   0, 2,
 						   "Tweet");
 }
 

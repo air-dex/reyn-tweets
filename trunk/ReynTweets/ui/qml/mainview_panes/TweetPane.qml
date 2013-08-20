@@ -24,8 +24,8 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 1.1
-import ReynTweetsControls 0.1
-import ReynTweetsEntities 0.1
+import ReynTweetsControls 0.2
+import ReynTweetsEntities 0.2
 import "../base_components"
 
 // Pane to show a tweet

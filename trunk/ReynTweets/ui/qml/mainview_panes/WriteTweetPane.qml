@@ -23,8 +23,8 @@
 /// You should have received a copy of the GNU Lesser General Public License
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
-import QtQuick 1.1
-import ReynTweetsControls 0.1
+import QtQuick 2.0
+import ReynTweetsControls 0.2
 import "../js/jstools.js" as Tools
 import "../js/twitter-text-js-wrapper.js" as TwitterTextJS
 import "../base_components"

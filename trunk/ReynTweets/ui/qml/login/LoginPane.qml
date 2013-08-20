@@ -73,7 +73,6 @@ Rectangle {
 		button_text: qsTr("Reload")
 
 		onClick: {
-			// TODO : just load the html
 			twitter_page.reload()
 		}
 	}

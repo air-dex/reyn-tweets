@@ -226,7 +226,6 @@ void PostViaTwitLongerProcess::updateTweetOnTwitLongerEnded(ResultWrapper res) {
 	// Analysing the Twitter response
 	switch (errorType) {
 		case Network::NO_REQUEST_ERROR:
-			// TODO : final treatment : Nothing a priori
 			issue = TWEET_POSTED;
 			break;
 

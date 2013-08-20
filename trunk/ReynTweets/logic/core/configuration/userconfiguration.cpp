@@ -290,7 +290,10 @@ CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODe
 		return CONFIGURATION_FILE_UNKNOWN;
 	}
 
-	// TODO : check sur openMode
+	if (!(openMode & QIODevice::WriteOnly)) {
+		errorMsg = UserConfiguration::trUtf8("Cannot write the user configuration file.");
+		return CONFIGURATION_FILE_NOT_OPEN;
+	}
 
 	if (!confFile.open(openMode)) {
 		errorMsg = UserConfiguration::trUtf8("Cannot load the user configuration file : configuration file cannot be opened.");
@@ -303,6 +306,5 @@ CoreResult UserConfiguration::writeConfigurationInFile(QString & errorMsg, QIODe
 	readStream << json;
 	confFile.close();
 	errorMsg = "";
-
 	return WRITE_SUCCESSFUL;
 }

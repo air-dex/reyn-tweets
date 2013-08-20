@@ -328,7 +328,6 @@ void TimelineControl::refreshTimelineAfterWriteEnded(ProcessWrapper res) {
 	disconnect(&reyn, &ReynCore::sendResult,
 			   this, &TimelineControl::refreshTimelineAfterWriteEnded);
 
-	// TODO : new parsed results
 	CoreResult issue = result.processIssue;
 
 	switch (issue) {

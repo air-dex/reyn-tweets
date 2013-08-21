@@ -69,12 +69,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 	viewer.setTitle("Reyn Tweets");
 
 	// Setting the icon
-	const QString iconName = "./resources/ReynTweets.ico";
-	QIcon icone(iconName);
-	viewer.setIcon(icone);
+	QIcon icone("resources/ReynTweets.svg");
 
 	viewer.setMainQmlFile(mainQMLFile);
 	viewer.showExpanded();
+	viewer.setIcon(icone);
 
 	// Now it's Reyn time !
 	int reynScore = app.exec();

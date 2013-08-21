@@ -120,6 +120,8 @@ Rectangle {
 				.concat(constant.orange)
 				.concat('">http://code.google.com/p/reyn-tweeets/</a>')
 
+			textFormat: Text.RichText
+
 			font {
 				family: constant.font
 				pointSize: constant.font_size

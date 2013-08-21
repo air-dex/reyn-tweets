@@ -36,10 +36,10 @@ QtObject {
 	property int major_version: 0
 
 	// Minor version
-	property int minor_version: 2
+	property int minor_version: 3
 
 	// Number of bugfixes
-	property int bugfix_version: 1
+	property int bugfix_version: 0
 
 	function getVersion() {
 		var versionString = "".concat(major_version).concat('.').concat(minor_version)

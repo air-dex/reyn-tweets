@@ -9,32 +9,32 @@
         <translation>À propos de Reyn Tweets</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="166"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="167"/>
         <source>Website : </source>
         <translation>Site Internet : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="194"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="196"/>
         <source>Reyn Tweets is an open source Twitter client for Windows and Linux written in Qt.</source>
         <translation>Reyn Tweets est un client Twitter open source pour Windows et Linux écrit en Qt.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="197"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="199"/>
         <source>Reyn Tweets is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
         <translation>Reyn Tweets est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale Limitée GNU, telle que publiée par la Free Software Foundation, version 3 de la licence, ou (à votre discrétion) toute version ultérieure.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="202"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="204"/>
         <source>Reyn Tweets is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.</source>
         <translation>Reyn Tweets est distribué dans l&apos;espoir qu&apos;il vous sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de VALEUR MARCHANDE ou D&apos;ADÉQUATION À UN BESOIN PARTICULIER. Consultez la Licence Publique Générale Limitée GNU pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="207"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="209"/>
         <source>You should have received a copy of the GNU Lesser General Public License along with Reyn Tweets. If not, see </source>
         <translation>Vous avez dû recevoir une copie de la Licence Publique Générale Limitée GNU en même temps que Reyn Tweets. Si ce n&apos;est pas le cas, visitez </translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="255"/>
+        <location filename="../ui/qml/mainview_panes/AboutPane.qml" line="258"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -198,28 +198,28 @@
 <context>
     <name>LaunchingPane</name>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="102"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="118"/>
         <source>Website : </source>
         <translation>Internet : </translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="223"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="244"/>
         <source>A fatal error occured while launching Reyn Tweets:</source>
         <translation>Une erreur fatale s&apos;est produite au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="227"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="248"/>
         <source>The application will quit.</source>
         <translation>L&apos;application va s&apos;arrêter.</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="233"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="254"/>
         <source>An hitch occured while launching Reyn Tweets:</source>
         <translatorcomment>Trouver une meilleure traduction pour &quot;hitch&quot;.</translatorcomment>
         <translation>Un pépin s&apos;est produit au lancement de Reyn Tweets :</translation>
     </message>
     <message>
-        <location filename="../ui/qml/LaunchingPane.qml" line="237"/>
+        <location filename="../ui/qml/LaunchingPane.qml" line="258"/>
         <source>Do you want to try to launch Reyn Tweets again or to quit ?</source>
         <translation>Voulez-vous essayer de relancer Reyn Tweets ou l&apos;arrêter ?</translation>
     </message>
@@ -833,88 +833,88 @@
 <context>
     <name>TweetPane</name>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="333"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="336"/>
         <source>In reply to </source>
         <translation>En réponse à </translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="335"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="338"/>
         <source>Show conversation</source>
         <translation>Voir la conversation</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="402"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="407"/>
         <source>Retweeted by</source>
         <translation>Retweeté par</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="418"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="431"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="423"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="436"/>
         <source>me</source>
         <translation>moi</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="473"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="478"/>
         <source>other</source>
         <translation>autre</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="477"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="482"/>
         <source>others</source>
         <translation>autres</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="443"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="460"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="448"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="465"/>
         <source>and</source>
         <translation>et</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="474"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="479"/>
         <source>person</source>
         <translation>personne</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="478"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="483"/>
         <source>people</source>
         <translation>personnes</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="513"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="518"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="523"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="528"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="535"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="612"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="540"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="617"/>
         <source>Retweeted</source>
         <translation>Retweeté</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="535"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="626"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="540"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="631"/>
         <source>Retweet</source>
         <translation>Retweeter</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="551"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="556"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="561"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="640"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="566"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="645"/>
         <source>Favorited</source>
         <translation>Favorisé</translation>
     </message>
     <message>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="561"/>
-        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="654"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="566"/>
+        <location filename="../ui/qml/mainview_panes/TweetPane.qml" line="659"/>
         <source>Favorite</source>
         <translation>Favoriser</translation>
     </message>

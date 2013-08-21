@@ -769,9 +769,12 @@ QString Tweet::getPlainDisplayText() {
 // Getting a HTML string of the name of the Twitter client used to post the tweet
 QString Tweet::getDisplaySource() {
 	// Getting the HTML source. "web" redirects to Twitter website.
-	QString htmlText = (sourceClient == "web") ?
+	QString htmlSource = (sourceClient == "web") ?
 				"<a href=\"https://twitter.com\">web</a>"
 			  : sourceClient;
+
+	QString htmlText = "";
+	htmlText.append("<html>").append(htmlSource).append("</html>");
 
 	// Getting the 'a' tag
 	HTMLParser parser;
@@ -780,6 +783,7 @@ QString Tweet::getDisplaySource() {
 
 	if (parseOK) {
 		// Styling
+		aTag = aTag.findFirst("a");
 		aTag.setStyleProperty("text-decoration", "none");
 		aTag.setStyleProperty("color", author.getProfileLinkColor().name());
 

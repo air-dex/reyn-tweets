@@ -317,15 +317,22 @@ Rectangle {
 		id: source_text
 		text: "via ".concat(shown_tweet.getDisplaySource())
 		textFormat: Text.RichText
-		font.italic: true
-		font.family: constant.font
-		font.pointSize: constant.font_size_s
-		anchors.left: author_identity.left
-		anchors.leftMargin: 0
-		anchors.top: text.bottom
-		anchors.topMargin: margin
-		anchors.right: tweet_pane.right
-		anchors.rightMargin: margin
+
+		font {
+			family: constant.font
+			pointSize: constant.font_size_s
+			italic: true
+		}
+
+		anchors {
+			left: author_identity.left
+			top: text.bottom
+			right: tweet_pane.right
+			leftMargin: 0
+			topMargin: margin
+			rightMargin: margin
+		}
+
 		onLinkActivated: Qt.openUrlExternally(link)
 	}
 

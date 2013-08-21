@@ -22,7 +22,7 @@
 /// along with Reyn Tweets. If not, see <http://www.gnu.org/licenses/>.
 
 import QtQuick 2.0
-import ReynTweetsComponents 0.2
+import ReynTweetsComponents 0.3
 import "base_components"
 import "info_display"
 import "login"

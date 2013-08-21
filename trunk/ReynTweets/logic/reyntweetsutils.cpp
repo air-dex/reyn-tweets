@@ -104,7 +104,7 @@ const QString ReynTweets::QML_LIBRARY_NAME = "ReynTweetsComponents";
 const int ReynTweets::MAJOR_VERSION = 0;
 
 // Reyn Tweets minor version.
-const int ReynTweets::MINOR_VERSION = 2;
+const int ReynTweets::MINOR_VERSION = 3;
 
 // Reyn Tweets bugfix version.
-const int ReynTweets::BUGFIX_VERSION = 1;
+const int ReynTweets::BUGFIX_VERSION = 0;

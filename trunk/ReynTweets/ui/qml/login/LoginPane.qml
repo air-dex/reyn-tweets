@@ -27,7 +27,7 @@
 
 import QtQuick 2.0
 import QtWebKit 3.0
-import ReynTweetsComponents 0.2
+import ReynTweetsComponents 0.3
 import "../base_components"
 
 /// @class LoginPane

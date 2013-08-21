@@ -52,7 +52,7 @@ doc.commands = $${DOXYGEN_CMD} $${DOC_FOLDER}Doxyfile.txt
 
 # Clean doc
 cleandoc.target = cleandoc
-cleandoc.commands = $${RMDIR_CMD} $${DOC_FOLDER}html
+cleandoc.commands = $${RMDIR_CMD} $${DOC_FOLDER}html/*
 
 # Extra targets
 QMAKE_EXTRA_TARGETS += doc cleandoc
